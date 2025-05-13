@@ -1,6 +1,12 @@
+/**
+ * @file wifi_manager.cpp
+ * @brief Управление WiFi, веб-интерфейсом и индикацией
+ * @details Реализация логики подключения к WiFi, работы в режимах AP/STA, веб-конфигурирования, управления светодиодом и сервисных функций.
+ */
 #include "wifi_manager.h"
 #include "config.h"
 #include "modbus_sensor.h"
+#include "mqtt_client.h"
 
 // Глобальные переменные
 bool wifiConnected = false;
@@ -46,130 +52,6 @@ void updateLed() {
         }
     }
 }
-
-// HTML страница для настройки WiFi
-const char* setupPage = R"(
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Настройка JXCT датчика</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; }
-        h1 { color: #333; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; }
-        input[type="text"], input[type="password"] { width: 100%; padding: 8px; box-sizing: border-box; }
-        button { background: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; }
-        button:hover { background: #45a049; }
-        .section { margin-bottom: 20px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Настройка JXCT датчика</h1>
-        <form action="/save" method="post">
-            <div class="section">
-                <h2>WiFi настройки</h2>
-                <div class="form-group">
-                    <label for="ssid">SSID:</label>
-                    <input type="text" id="ssid" name="ssid" required>
-                </div>
-                <div class="form-group">
-                    <label for="password">Пароль:</label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>MQTT настройки</h2>
-                <div class="form-group">
-                    <label for="mqtt_enabled">Включить MQTT:</label>
-                    <input type="checkbox" id="mqtt_enabled" name="mqtt_enabled" checked>
-                </div>
-                <div class="form-group">
-                    <label for="mqtt_server">MQTT сервер:</label>
-                    <input type="text" id="mqtt_server" name="mqtt_server">
-                </div>
-                <div class="form-group">
-                    <label for="mqtt_port">MQTT порт:</label>
-                    <input type="text" id="mqtt_port" name="mqtt_port" value="1883">
-                </div>
-                <div class="form-group">
-                    <label for="mqtt_user">MQTT пользователь:</label>
-                    <input type="text" id="mqtt_user" name="mqtt_user">
-                </div>
-                <div class="form-group">
-                    <label for="mqtt_password">MQTT пароль:</label>
-                    <input type="password" id="mqtt_password" name="mqtt_password">
-                </div>
-                <div class="form-group">
-                    <label for="mqtt_topic">MQTT префикс топика:</label>
-                    <input type="text" id="mqtt_topic" name="mqtt_topic" value="jxct">
-                </div>
-                <div class="form-group">
-                    <label for="mqtt_qos">MQTT QoS:</label>
-                    <select id="mqtt_qos" name="mqtt_qos">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>ThingSpeak настройки</h2>
-                <div class="form-group">
-                    <label for="ts_enabled">Включить ThingSpeak:</label>
-                    <input type="checkbox" id="ts_enabled" name="ts_enabled" checked>
-                </div>
-                <div class="form-group">
-                    <label for="ts_api_key">API ключ:</label>
-                    <input type="text" id="ts_api_key" name="ts_api_key">
-                </div>
-                <div class="form-group">
-                    <label for="ts_interval">Интервал публикации (сек):</label>
-                    <input type="number" id="ts_interval" name="ts_interval" min="15" max="3600" value="900">
-                </div>
-                <div class="form-group">
-                    <label for="ts_channel_id">Channel ID:</label>
-                    <input type="text" id="ts_channel_id" name="ts_channel_id" value="">
-                </div>
-                <div style="color:#b00;font-size:13px">Внимание: ThingSpeak разрешает публикацию не чаще 1 раза в 15 секунд!</div>
-            </div>
-            
-            <div class="section">
-                <h2>Датчик</h2>
-                <div class="form-group">
-                    <label for="real_sensor">Реальный датчик:</label>
-                    <input type="checkbox" id="real_sensor" name="real_sensor">
-                </div>
-            </div>
-            
-            <div class="section">
-                <h2>Дополнительные настройки</h2>
-                <div class="form-group">
-                    <label for="manufacturer">Производитель:</label>
-                    <input type="text" id="manufacturer" name="manufacturer" value="JXCT">
-                </div>
-                <div class="form-group">
-                    <label for="model">Модель:</label>
-                    <input type="text" id="model" name="model" value="JXCT-ESP32">
-                </div>
-                <div class="form-group">
-                    <label for="sw_version">Версия ПО:</label>
-                    <input type="text" id="sw_version" name="sw_version" value="1.0.0">
-                </div>
-            </div>
-            
-            <button type="submit">Сохранить настройки</button>
-        </form>
-    </div>
-</body>
-</html>
-)";
 
 // HTML для навигации
 String navHtml() {
@@ -335,10 +217,6 @@ void setupWebServer() {
             String realSensorChecked = config.useRealSensor ? " checked" : "";
             html += "<div class='section'><h2>Датчик</h2>";
             html += "<div class='form-group'><label for='real_sensor'>Реальный датчик:</label><input type='checkbox' id='real_sensor' name='real_sensor'" + realSensorChecked + "></div></div>";
-            html += "<div class='section'><h2>Дополнительные настройки</h2>";
-            html += "<div class='form-group'><label for='manufacturer'>Производитель:</label><input type='text' id='manufacturer' name='manufacturer' value='" + String(config.manufacturer) + "'></div>";
-            html += "<div class='form-group'><label for='model'>Модель:</label><input type='text' id='model' name='model' value='" + String(config.model) + "'></div>";
-            html += "<div class='form-group'><label for='sw_version'>Версия ПО:</label><input type='text' id='sw_version' name='sw_version' value='" + String(config.swVersion) + "'></div></div>";
         }
         html += "<button type='submit'>Сохранить настройки</button></form></div></body></html>";
         webServer.send(200, "text/html; charset=utf-8", html);
@@ -381,8 +259,9 @@ void setupWebServer() {
             Serial.print("[WEB /save] TS Channel ID: "); Serial.println(config.thingSpeakChannelId);
         }
         saveConfig();
-        webServer.send(200, "text/plain; charset=utf-8", "Настройки сохранены. Перезагрузка...");
-        delay(1000);
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='2;url=/'><title>Сохранение</title></head><body style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'><h2>Настройки сохранены</h2><p>Перезагрузка...<br>Сейчас вы будете перенаправлены на главную страницу.</p></body></html>";
+        webServer.send(200, "text/html; charset=utf-8", html);
+        delay(2000);
         ESP.restart();
     });
 
@@ -413,9 +292,16 @@ void setupWebServer() {
             webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
             return;
         }
-        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Сервис</title><style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:600px;margin:0 auto}h1{color:#333}.nav{margin-bottom:20px}.nav a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}button{background:#4CAF50;color:white;padding:10px 15px;border:none;cursor:pointer;margin-right:10px}button:hover{background:#45a049}form{display:inline-block;margin-right:10px}</style></head><body><div class='container'>";
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Сервис</title><style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:600px;margin:0 auto}h1{color:#333}.nav{margin-bottom:20px}.nav a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}button{background:#4CAF50;color:white;padding:10px 15px;border:none;cursor:pointer;margin-right:10px}button:hover{background:#45a049}form{display:inline-block;margin-right:10px}.info-block{margin-top:20px;padding:10px 15px;background:#f7f7f7;border:1px solid #ddd;border-radius:5px}</style></head><body><div class='container'>";
         html += navHtml();
         html += "<h1>Сервис</h1>";
+        // Блок статусов
+        html += "<div class='info-block'><b>WiFi:</b> " + String(wifiConnected ? "Подключено (" + WiFi.localIP().toString() + ")" : "Не подключено") + "<br>";
+        html += "<b>MQTT:</b> " + String((config.mqttEnabled && mqttClient.connected()) ? "Подключено" : "Не подключено") + "<br>";
+        html += "<b>ThingSpeak:</b> " + String(config.thingSpeakEnabled ? "Включено" : "Выключено") + "<br>";
+        html += "<b>Home Assistant:</b> " + String(config.hassEnabled ? "Включено" : "Выключено") + "</div>";
+        // Блок справочной информации
+        html += "<div class='info-block'><b>Производитель:</b> Eyera<br><b>Модель:</b> JXCT-7in1<br><b>Версия:</b> 1.0</div>";
         html += "<form method='post' action='/reset'><button type='submit'>Сбросить настройки</button></form>";
         html += "<form method='post' action='/reboot'><button type='submit'>Перезагрузить</button></form>";
         html += "<form method='post' action='/ota'><button type='submit'>OTA (заглушка)</button></form>";
@@ -430,8 +316,9 @@ void setupWebServer() {
             return;
         }
         resetConfig();
-        webServer.send(200, "text/plain; charset=utf-8", "Настройки сброшены. Перезагрузка...");
-        delay(1000);
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='2;url=/service'><title>Сброс</title></head><body style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'><h2>Настройки сброшены</h2><p>Перезагрузка...<br>Сейчас вы будете перенаправлены на страницу сервисов.</p></body></html>";
+        webServer.send(200, "text/html; charset=utf-8", html);
+        delay(2000);
         ESP.restart();
     });
     webServer.on("/reboot", HTTP_POST, []() {
@@ -439,8 +326,9 @@ void setupWebServer() {
             webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
             return;
         }
-        webServer.send(200, "text/plain; charset=utf-8", "Перезагрузка...");
-        delay(1000);
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='2;url=/service'><title>Перезагрузка</title></head><body style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'><h2>Перезагрузка...</h2><p>Сейчас вы будете перенаправлены на страницу сервисов.</p></body></html>";
+        webServer.send(200, "text/html; charset=utf-8", html);
+        delay(2000);
         ESP.restart();
     });
     webServer.on("/ota", HTTP_POST, []() {
@@ -448,7 +336,9 @@ void setupWebServer() {
             webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
             return;
         }
-        webServer.send(200, "text/plain; charset=utf-8", "OTA пока не реализовано");
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='2;url=/service'><title>OTA</title></head><body style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'><h2>OTA пока не реализовано</h2><p>Сейчас вы будете перенаправлены на страницу сервисов.</p></body></html>";
+        webServer.send(200, "text/html; charset=utf-8", html);
+        delay(2000);
     });
 
     webServer.on("/status", HTTP_GET, handleStatus);

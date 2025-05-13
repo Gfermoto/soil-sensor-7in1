@@ -1,3 +1,8 @@
+/**
+ * @file config.cpp
+ * @brief Работа с конфигурацией устройства
+ * @details Загрузка, сохранение, сброс и валидация настроек устройства через NVS (Preferences).
+ */
 #include "config.h"
 
 Config config;
@@ -42,7 +47,7 @@ void loadConfig() {
     if (strlen(config.thingSpeakChannelId) == 0) strlcpy(config.thingSpeakChannelId, "", sizeof(config.thingSpeakChannelId));
     if (strlen(config.manufacturer) == 0) strlcpy(config.manufacturer, "JXCT", sizeof(config.manufacturer));
     if (strlen(config.model) == 0) strlcpy(config.model, "ESP32-Soil", sizeof(config.model));
-    if (strlen(config.swVersion) == 0) strlcpy(config.swVersion, "1.0", sizeof(config.swVersion));
+    if (strlen(config.swVersion) == 0) strlcpy(config.swVersion, "1.2", sizeof(config.swVersion));
     Serial.println("[loadConfig] Настройки загружены:");
     Serial.print("  SSID: "); Serial.println(config.ssid);
     Serial.print("  PASSWORD: "); Serial.println(config.password);
@@ -148,7 +153,7 @@ void resetConfig() {
     // Жёстко задаём manufacturer, model, swVersion
     strlcpy(config.manufacturer, "JXCT", sizeof(config.manufacturer));
     strlcpy(config.model, "ESP32-Soil", sizeof(config.model));
-    strlcpy(config.swVersion, "1.0", sizeof(config.swVersion));
+    strlcpy(config.swVersion, "1.2", sizeof(config.swVersion));
     Serial.println("[resetConfig] Все настройки сброшены!");
     Serial.print("[resetConfig] config.ssid: "); Serial.println(config.ssid);
     Serial.print("[resetConfig] config.password: "); Serial.println(config.password);
