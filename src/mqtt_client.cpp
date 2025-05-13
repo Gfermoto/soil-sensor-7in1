@@ -1,0 +1,306 @@
+#include <Arduino.h>
+#include <PubSubClient.h>
+#include <ArduinoJson.h>
+#include "config.h"
+#include "modbus_sensor.h"
+#include "wifi_manager.h"
+#include <WiFiClient.h>
+
+WiFiClient espClient;
+PubSubClient mqttClient(espClient);
+bool mqttConnected = false;
+
+// Forward declarations
+void mqttCallback(char* topic, byte* payload, unsigned int length);
+void publishHomeAssistantConfig();
+
+// Создаем уникальный ID клиента на основе MAC адреса
+String getClientId() {
+    uint8_t mac[6];
+    WiFi.macAddress(mac);
+    String clientId = "JXCT_";
+    for (int i = 0; i < 6; i++) {
+        if (mac[i] < 0x10) {
+            clientId += "0";
+        }
+        clientId += String(mac[i], HEX);
+    }
+    return clientId;
+}
+
+// Возвращает имя клиента для MQTT
+String getMqttClientName() {
+    if (strlen(config.mqttDeviceName) > 0) {
+        return String(config.mqttDeviceName);
+    } else {
+        return getClientId();
+    }
+}
+
+String getStatusTopic() {
+    return String(config.mqttTopicPrefix) + "/status";
+}
+
+String getCommandTopic() {
+    return String(config.mqttTopicPrefix) + "/command";
+}
+
+void publishAvailability(bool online) {
+    String topic = getStatusTopic();
+    const char* payload = online ? "online" : "offline";
+    Serial.printf("[publishAvailability] Публикация статуса: %s в топик %s\n", payload, topic.c_str());
+    mqttClient.publish(topic.c_str(), payload, true);
+}
+
+void setupMQTT() {
+    Serial.println("[setupMQTT] Инициализация MQTT...");
+    Serial.print("[setupMQTT] mqttEnabled: "); Serial.println(config.mqttEnabled);
+    Serial.print("[setupMQTT] wifiConnected: "); Serial.println(wifiConnected);
+    Serial.print("[setupMQTT] mqttServer: "); Serial.println(config.mqttServer);
+    Serial.print("[setupMQTT] mqttPort: "); Serial.println(config.mqttPort);
+    if (!config.mqttEnabled || !wifiConnected || strlen(config.mqttServer) == 0) {
+        Serial.println("[setupMQTT] MQTT не инициализирован: отключено или нет сервера");
+        config.mqttEnabled = false;
+        return;
+    }
+    mqttClient.setServer(config.mqttServer, config.mqttPort);
+    mqttClient.setCallback(mqttCallback);
+    mqttClient.setKeepAlive(MQTT_KEEPALIVE);
+    mqttClient.setSocketTimeout(MQTT_SOCKET_TIMEOUT);
+    Serial.println("[setupMQTT] MQTT инициализирован");
+}
+
+bool connectMQTT() {
+    Serial.println("[connectMQTT] Попытка подключения к MQTT...");
+    Serial.printf("[connectMQTT] mqttEnabled: %d, wifiConnected: %d, mqttServer: %s, mqttPort: %d\n", config.mqttEnabled, wifiConnected, config.mqttServer, config.mqttPort);
+    String clientName = getMqttClientName();
+    Serial.printf("[connectMQTT] Имя клиента: %s\n", clientName.c_str());
+    Serial.printf("[connectMQTT] mqttUser: %s, mqttPassword: %s\n", config.mqttUser, config.mqttPassword);
+    if (!config.mqttEnabled || !wifiConnected || strlen(config.mqttServer) == 0) {
+        Serial.println("[connectMQTT] MQTT неактивен или нет сервера");
+        config.mqttEnabled = false;
+        return false;
+    }
+    if (mqttClient.connected()) {
+        Serial.println("[connectMQTT] Уже подключено к MQTT");
+        return true;
+    }
+    String lwtTopic = getStatusTopic();
+    const char* lwtPayload = "offline";
+    bool connected = false;
+    if (strlen(config.mqttUser) > 0 && strlen(config.mqttPassword) > 0) {
+        Serial.println("[connectMQTT] Пробую с аутентификацией...");
+        connected = mqttClient.connect(clientName.c_str(), config.mqttUser, config.mqttPassword, lwtTopic.c_str(), 1, true, lwtPayload);
+    } else {
+        Serial.println("[connectMQTT] Пробую без аутентификации...");
+        connected = mqttClient.connect(clientName.c_str(), lwtTopic.c_str(), 1, true, lwtPayload);
+    }
+    Serial.printf("[connectMQTT] Результат connect: %d, state: %d\n", connected, mqttClient.state());
+    if (connected) {
+        Serial.println("[connectMQTT] Подключено к MQTT брокеру");
+        mqttConnected = true;
+        publishAvailability(true);
+        // Подписка на командный топик
+        bool subRes = mqttClient.subscribe(getCommandTopic().c_str());
+        Serial.printf("[MQTT] Подписка на командный топик: %s, результат: %d\n", getCommandTopic().c_str(), subRes);
+        if (config.hassEnabled) publishHomeAssistantConfig();
+        return true;
+    } else {
+        Serial.print("[connectMQTT] Ошибка подключения к MQTT брокеру, код: ");
+        Serial.println(mqttClient.state());
+        mqttConnected = false;
+        return false;
+    }
+}
+
+void handleMQTT() {
+    Serial.printf("[handleMQTT] mqttEnabled: %d, mqttClient.connected: %d\n", config.mqttEnabled, mqttClient.connected());
+    if (!config.mqttEnabled) {
+        Serial.println("[handleMQTT] MQTT отключён");
+        return;
+    }
+    if (!mqttClient.connected()) {
+        mqttConnected = false;
+        static unsigned long lastReconnectAttempt = 0;
+        if (millis() - lastReconnectAttempt > 5000) {
+            lastReconnectAttempt = millis();
+            Serial.println("[handleMQTT] Потеряно соединение с MQTT, переподключение...");
+            if (connectMQTT()) {
+                lastReconnectAttempt = 0;
+            }
+        }
+    } else {
+        mqttClient.loop();
+    }
+}
+
+void publishSensorData() {
+    Serial.println("[publishSensorData] Публикация данных в MQTT...");
+    Serial.printf("[publishSensorData] mqttEnabled: %d, mqttClient.connected: %d, sensorData.valid: %d\n", config.mqttEnabled, mqttClient.connected(), sensorData.valid);
+    if (!config.mqttEnabled || !mqttClient.connected() || !sensorData.valid) {
+        Serial.println("[publishSensorData] Публикация отменена: нет соединения или данные невалидны");
+        return;
+    }
+    StaticJsonDocument<512> doc;
+    doc["temperature"] = sensorData.temperature;
+    doc["humidity"] = sensorData.humidity;
+    doc["ec"] = sensorData.ec;
+    doc["ph"] = sensorData.ph;
+    doc["nitrogen"] = sensorData.nitrogen;
+    doc["phosphorus"] = sensorData.phosphorus;
+    doc["potassium"] = sensorData.potassium;
+    String jsonString;
+    serializeJson(doc, jsonString);
+    String topic = String(config.mqttTopicPrefix) + "/state";
+    Serial.printf("[publishSensorData] Топик: %s\n", topic.c_str());
+    Serial.printf("[publishSensorData] JSON: %s\n", jsonString.c_str());
+    bool res = mqttClient.publish(topic.c_str(), jsonString.c_str(), true);
+    Serial.printf("[publishSensorData] Результат публикации: %d\n", res);
+    if (res) Serial.println("[publishSensorData] Данные опубликованы в MQTT");
+}
+
+void publishHomeAssistantConfig() {
+    Serial.println("[publishHomeAssistantConfig] Публикация discovery-конфигов Home Assistant...");
+    if (!config.mqttEnabled || !mqttClient.connected() || !config.hassEnabled) {
+        Serial.println("[publishHomeAssistantConfig] Условия не выполнены, публикация отменена");
+        return;
+    }
+    String deviceId = getMqttClientName();
+    
+    // device info
+    StaticJsonDocument<256> deviceInfo;
+    deviceInfo["identifiers"] = deviceId;
+    deviceInfo["manufacturer"] = config.manufacturer;
+    deviceInfo["model"] = config.model;
+    deviceInfo["sw_version"] = config.swVersion;
+    
+    // Температура
+    StaticJsonDocument<512> tempConfig;
+    tempConfig["name"] = "JXCT Temperature";
+    tempConfig["device_class"] = "temperature";
+    tempConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+    tempConfig["unit_of_measurement"] = "°C";
+    tempConfig["value_template"] = "{{ value_json.temperature }}";
+    tempConfig["unique_id"] = deviceId + "_temp";
+    tempConfig["availability_topic"] = getStatusTopic();
+    tempConfig["device"] = deviceInfo;
+    
+    // Влажность
+    StaticJsonDocument<512> humConfig;
+    humConfig["name"] = "JXCT Humidity";
+    humConfig["device_class"] = "humidity";
+    humConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+    humConfig["unit_of_measurement"] = "%";
+    humConfig["value_template"] = "{{ value_json.humidity }}";
+    humConfig["unique_id"] = deviceId + "_hum";
+    humConfig["availability_topic"] = getStatusTopic();
+    humConfig["device"] = deviceInfo;
+    
+    // EC
+    StaticJsonDocument<512> ecConfig;
+    ecConfig["name"] = "JXCT EC";
+    ecConfig["device_class"] = "conductivity";
+    ecConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+    ecConfig["unit_of_measurement"] = "µS/cm";
+    ecConfig["value_template"] = "{{ value_json.ec }}";
+    ecConfig["unique_id"] = deviceId + "_ec";
+    ecConfig["availability_topic"] = getStatusTopic();
+    ecConfig["device"] = deviceInfo;
+    
+    // pH
+    StaticJsonDocument<512> phConfig;
+    phConfig["name"] = "JXCT pH";
+    phConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+    phConfig["unit_of_measurement"] = "pH";
+    phConfig["value_template"] = "{{ value_json.ph }}";
+    phConfig["unique_id"] = deviceId + "_ph";
+    phConfig["availability_topic"] = getStatusTopic();
+    phConfig["device"] = deviceInfo;
+    
+    // NPK (раздельно)
+    StaticJsonDocument<512> nitrogenConfig;
+    nitrogenConfig["name"] = "JXCT Nitrogen";
+    nitrogenConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+    nitrogenConfig["unit_of_measurement"] = "mg/kg";
+    nitrogenConfig["value_template"] = "{{ value_json.nitrogen }}";
+    nitrogenConfig["unique_id"] = deviceId + "_nitrogen";
+    nitrogenConfig["availability_topic"] = getStatusTopic();
+    nitrogenConfig["device"] = deviceInfo;
+
+    StaticJsonDocument<512> phosphorusConfig;
+    phosphorusConfig["name"] = "JXCT Phosphorus";
+    phosphorusConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+    phosphorusConfig["unit_of_measurement"] = "mg/kg";
+    phosphorusConfig["value_template"] = "{{ value_json.phosphorus }}";
+    phosphorusConfig["unique_id"] = deviceId + "_phosphorus";
+    phosphorusConfig["availability_topic"] = getStatusTopic();
+    phosphorusConfig["device"] = deviceInfo;
+
+    StaticJsonDocument<512> potassiumConfig;
+    potassiumConfig["name"] = "JXCT Potassium";
+    potassiumConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+    potassiumConfig["unit_of_measurement"] = "mg/kg";
+    potassiumConfig["value_template"] = "{{ value_json.potassium }}";
+    potassiumConfig["unique_id"] = deviceId + "_potassium";
+    potassiumConfig["availability_topic"] = getStatusTopic();
+    potassiumConfig["device"] = deviceInfo;
+
+    // Сериализуем конфигурации в строки
+    String tempConfigStr, humConfigStr, ecConfigStr, phConfigStr;
+    String nitrogenConfigStr, phosphorusConfigStr, potassiumConfigStr;
+    serializeJson(tempConfig, tempConfigStr);
+    serializeJson(humConfig, humConfigStr);
+    serializeJson(ecConfig, ecConfigStr);
+    serializeJson(phConfig, phConfigStr);
+    serializeJson(nitrogenConfig, nitrogenConfigStr);
+    serializeJson(phosphorusConfig, phosphorusConfigStr);
+    serializeJson(potassiumConfig, potassiumConfigStr);
+
+    // Публикуем конфигурации
+    mqttClient.publish("homeassistant/sensor/jxct_temperature/config", tempConfigStr.c_str(), true);
+    mqttClient.publish("homeassistant/sensor/jxct_humidity/config", humConfigStr.c_str(), true);
+    mqttClient.publish("homeassistant/sensor/jxct_ec/config", ecConfigStr.c_str(), true);
+    mqttClient.publish("homeassistant/sensor/jxct_ph/config", phConfigStr.c_str(), true);
+    mqttClient.publish("homeassistant/sensor/jxct_nitrogen/config", nitrogenConfigStr.c_str(), true);
+    mqttClient.publish("homeassistant/sensor/jxct_phosphorus/config", phosphorusConfigStr.c_str(), true);
+    mqttClient.publish("homeassistant/sensor/jxct_potassium/config", potassiumConfigStr.c_str(), true);
+    
+    Serial.println("[publishHomeAssistantConfig] Конфигурация Home Assistant опубликована");
+}
+
+void removeHomeAssistantConfig() {
+    // Публикуем пустой payload с retain для удаления сенсоров из HA
+    mqttClient.publish("homeassistant/sensor/jxct_temperature/config", "", true);
+    mqttClient.publish("homeassistant/sensor/jxct_humidity/config", "", true);
+    mqttClient.publish("homeassistant/sensor/jxct_ec/config", "", true);
+    mqttClient.publish("homeassistant/sensor/jxct_ph/config", "", true);
+    mqttClient.publish("homeassistant/sensor/jxct_nitrogen/config", "", true);
+    mqttClient.publish("homeassistant/sensor/jxct_phosphorus/config", "", true);
+    mqttClient.publish("homeassistant/sensor/jxct_potassium/config", "", true);
+    Serial.println("[MQTT] Discovery-конфиги Home Assistant удалены");
+}
+
+void handleMqttCommand(const String& cmd) {
+    Serial.print("[MQTT] Получена команда: ");
+    Serial.println(cmd);
+    if (cmd == "reboot") {
+        ESP.restart();
+    } else if (cmd == "reset") {
+        resetConfig();
+        ESP.restart();
+    } else if (cmd == "publish_test") {
+        publishSensorData();
+    } else {
+        Serial.println("[MQTT] Неизвестная команда");
+    }
+}
+
+void mqttCallback(char* topic, byte* payload, unsigned int length) {
+    String t = String(topic);
+    String message;
+    for (unsigned int i = 0; i < length; i++) message += (char)payload[i];
+    Serial.printf("[mqttCallback] Получено сообщение: %s = %s\n", t.c_str(), message.c_str());
+    if (t == getCommandTopic()) {
+        handleMqttCommand(message);
+    }
+} 

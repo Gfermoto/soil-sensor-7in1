@@ -1,0 +1,25 @@
+
+    QUERY SENT               RESPONSE FROM NPK 
+ 
+01 03 00 1E 00 01 E4 0C  |    01 03 02 00 2B F8 5B   N value 00 2B = decimal  43
+ 			 | 
+01 03 00 1F 00 01 B5 CC  |    01 03 02 00 3C B8 55   P value 00 3C = decimal  60
+                         |
+01 03 00 20 00 01 85 C0  |    01 03 02 00 78 B8 66    K  value 00 78 = decmal 120
+			 | 
+                         |
+01 03 00 06 00 01  64 0B |   01 03 02 02 8E 39 40     PH value 02 8E = decimal  654/100 = 6.54
+                         |
+01 03 00 12 00 01  24 0F |   01 03 02 00 9B F9 EF    SOIL MOISTURE 00 9B  =decimal  155/10 = 15.5
+                         |
+01 03 00 13 00 01  75 CF |   01 03 02 01 47 F9 E6    SOIL TEMP 01 47 =decimal 327/10 = 32.7
+                         |
+01 03 00 15 00 01  95 CE |    01 03 02 02 5C B9 1D    CONDUCTIVITY  02 5C = decimal  604
+
+
+
+                        |
+01 03 00 1E 00 03 65 CD |   01 03 06 00 2B 00 3C 00 79 04 9D                                N value 00 2B = decimal 43
+ P value 00 3C = decimasl 60   K value 00 79 = decimal 121
+
+
