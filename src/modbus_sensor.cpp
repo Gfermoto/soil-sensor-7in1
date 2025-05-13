@@ -1,5 +1,11 @@
+/**
+ * @file modbus_sensor.cpp
+ * @brief Работа с Modbus-датчиком JXCT
+ * @details Реализация функций и задач для опроса датчика по Modbus RTU, преобразование данных, управление линией передачи.
+ */
 #include "modbus_sensor.h"
-#include "config.h"
+#include "jxct_device_info.h"
+#include "jxct_config_vars.h"
 
 ModbusMaster modbus;
 SensorData sensorData;

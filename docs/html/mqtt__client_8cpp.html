@@ -1,0 +1,555 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor: Файл src/mqtt_client.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл mqtt_client.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Взаимодействие с MQTT-брокером и Home Assistant.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &lt;PubSubClient.h&gt;</code><br />
+<code>#include &lt;ArduinoJson.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="config_8h_source.html">config.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">wifi_manager.h</a>&quot;</code><br />
+<code>#include &lt;WiFiClient.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Граф включаемых заголовочных файлов для mqtt_client.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp__incl.png" border="0" usemap="#asrc_2mqtt__client_8cpp" alt=""/></div>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a717105311582e81f1c9c6bb2238a00d2" id="r_a717105311582e81f1c9c6bb2238a00d2"><td class="memItemLeft" align="right" valign="top">PubSubClient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a717105311582e81f1c9c6bb2238a00d2">mqttClient</a> (<a class="el" href="#abd77e757e4b3bb6f1e4b42b21ea9e040">espClient</a>)</td></tr>
+<tr class="separator:a717105311582e81f1c9c6bb2238a00d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f06b273defaebb581fdf1adc8969f40" id="r_a6f06b273defaebb581fdf1adc8969f40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f06b273defaebb581fdf1adc8969f40">mqttCallback</a> (char *topic, byte *payload, unsigned int length)</td></tr>
+<tr class="separator:a6f06b273defaebb581fdf1adc8969f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac49364afe5be3cf4e718ab09d67017da" id="r_ac49364afe5be3cf4e718ab09d67017da"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac49364afe5be3cf4e718ab09d67017da">publishHomeAssistantConfig</a> ()</td></tr>
+<tr class="separator:ac49364afe5be3cf4e718ab09d67017da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add6d3c0fdc5d81926c892afd692c776b" id="r_add6d3c0fdc5d81926c892afd692c776b"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add6d3c0fdc5d81926c892afd692c776b">getClientId</a> ()</td></tr>
+<tr class="separator:add6d3c0fdc5d81926c892afd692c776b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a681aa515ca2e6ecdbeed2635b88578d7" id="r_a681aa515ca2e6ecdbeed2635b88578d7"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a681aa515ca2e6ecdbeed2635b88578d7">getMqttClientName</a> ()</td></tr>
+<tr class="separator:a681aa515ca2e6ecdbeed2635b88578d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3da586210877e66ba92641dc5d6246e5" id="r_a3da586210877e66ba92641dc5d6246e5"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3da586210877e66ba92641dc5d6246e5">getStatusTopic</a> ()</td></tr>
+<tr class="separator:a3da586210877e66ba92641dc5d6246e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57972325aef8cfc9b4112fda932dd6bf" id="r_a57972325aef8cfc9b4112fda932dd6bf"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57972325aef8cfc9b4112fda932dd6bf">getCommandTopic</a> ()</td></tr>
+<tr class="separator:a57972325aef8cfc9b4112fda932dd6bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa9510911ee8e47743efa916df00c13b" id="r_aaa9510911ee8e47743efa916df00c13b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa9510911ee8e47743efa916df00c13b">publishAvailability</a> (bool online)</td></tr>
+<tr class="separator:aaa9510911ee8e47743efa916df00c13b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3cff6686f09444558b7c9436e082e73c" id="r_a3cff6686f09444558b7c9436e082e73c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cff6686f09444558b7c9436e082e73c">setupMQTT</a> ()</td></tr>
+<tr class="separator:a3cff6686f09444558b7c9436e082e73c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5a788a03971cae1e5e641ae9b1d7fe0" id="r_ab5a788a03971cae1e5e641ae9b1d7fe0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5a788a03971cae1e5e641ae9b1d7fe0">connectMQTT</a> ()</td></tr>
+<tr class="separator:ab5a788a03971cae1e5e641ae9b1d7fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a926aeaa7d52ebd60e289af8d6ef98600" id="r_a926aeaa7d52ebd60e289af8d6ef98600"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a926aeaa7d52ebd60e289af8d6ef98600">handleMQTT</a> ()</td></tr>
+<tr class="separator:a926aeaa7d52ebd60e289af8d6ef98600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d23c1c2b3b5f9613a2215945494badb" id="r_a9d23c1c2b3b5f9613a2215945494badb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9d23c1c2b3b5f9613a2215945494badb">publishSensorData</a> ()</td></tr>
+<tr class="separator:a9d23c1c2b3b5f9613a2215945494badb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a9b6d18074276b45340af02c443924a" id="r_a7a9b6d18074276b45340af02c443924a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a9b6d18074276b45340af02c443924a">removeHomeAssistantConfig</a> ()</td></tr>
+<tr class="separator:a7a9b6d18074276b45340af02c443924a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58d6760f5e7f2aaf28fbb2155942d579" id="r_a58d6760f5e7f2aaf28fbb2155942d579"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58d6760f5e7f2aaf28fbb2155942d579">handleMqttCommand</a> (const String &amp;cmd)</td></tr>
+<tr class="separator:a58d6760f5e7f2aaf28fbb2155942d579"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:abd77e757e4b3bb6f1e4b42b21ea9e040" id="r_abd77e757e4b3bb6f1e4b42b21ea9e040"><td class="memItemLeft" align="right" valign="top">WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd77e757e4b3bb6f1e4b42b21ea9e040">espClient</a></td></tr>
+<tr class="separator:abd77e757e4b3bb6f1e4b42b21ea9e040"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1da8e8d4c027f4c08db8b493b99e12da" id="r_a1da8e8d4c027f4c08db8b493b99e12da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1da8e8d4c027f4c08db8b493b99e12da">mqttConnected</a> = false</td></tr>
+<tr class="separator:a1da8e8d4c027f4c08db8b493b99e12da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Взаимодействие с MQTT-брокером и Home Assistant. </p>
+<p>Реализация подключения, публикации данных, обработки команд и интеграции с Home Assistant через discovery. </p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="ab5a788a03971cae1e5e641ae9b1d7fe0" name="ab5a788a03971cae1e5e641ae9b1d7fe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5a788a03971cae1e5e641ae9b1d7fe0">&#9670;&#160;</a></span>connectMQTT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool connectMQTT </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_cgraph.png" border="0" usemap="#amqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_icgraph.png" border="0" usemap="#amqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="add6d3c0fdc5d81926c892afd692c776b" name="add6d3c0fdc5d81926c892afd692c776b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add6d3c0fdc5d81926c892afd692c776b">&#9670;&#160;</a></span>getClientId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String getClientId </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_add6d3c0fdc5d81926c892afd692c776b_icgraph.png" border="0" usemap="#amqtt__client_8cpp_add6d3c0fdc5d81926c892afd692c776b_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a57972325aef8cfc9b4112fda932dd6bf" name="a57972325aef8cfc9b4112fda932dd6bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57972325aef8cfc9b4112fda932dd6bf">&#9670;&#160;</a></span>getCommandTopic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String getCommandTopic </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a57972325aef8cfc9b4112fda932dd6bf_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a57972325aef8cfc9b4112fda932dd6bf_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a681aa515ca2e6ecdbeed2635b88578d7" name="a681aa515ca2e6ecdbeed2635b88578d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a681aa515ca2e6ecdbeed2635b88578d7">&#9670;&#160;</a></span>getMqttClientName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String getMqttClientName </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a3da586210877e66ba92641dc5d6246e5" name="a3da586210877e66ba92641dc5d6246e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3da586210877e66ba92641dc5d6246e5">&#9670;&#160;</a></span>getStatusTopic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String getStatusTopic </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a3da586210877e66ba92641dc5d6246e5_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a3da586210877e66ba92641dc5d6246e5_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a926aeaa7d52ebd60e289af8d6ef98600" name="a926aeaa7d52ebd60e289af8d6ef98600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a926aeaa7d52ebd60e289af8d6ef98600">&#9670;&#160;</a></span>handleMQTT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleMQTT </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a58d6760f5e7f2aaf28fbb2155942d579" name="a58d6760f5e7f2aaf28fbb2155942d579"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58d6760f5e7f2aaf28fbb2155942d579">&#9670;&#160;</a></span>handleMqttCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleMqttCommand </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>cmd</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a6f06b273defaebb581fdf1adc8969f40" name="a6f06b273defaebb581fdf1adc8969f40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f06b273defaebb581fdf1adc8969f40">&#9670;&#160;</a></span>mqttCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mqttCallback </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>topic</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">byte *</td>          <td class="paramname"><span class="paramname"><em>payload</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a717105311582e81f1c9c6bb2238a00d2" name="a717105311582e81f1c9c6bb2238a00d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a717105311582e81f1c9c6bb2238a00d2">&#9670;&#160;</a></span>mqttClient()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">PubSubClient mqttClient </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#abd77e757e4b3bb6f1e4b42b21ea9e040">espClient</a></td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa9510911ee8e47743efa916df00c13b" name="aaa9510911ee8e47743efa916df00c13b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa9510911ee8e47743efa916df00c13b">&#9670;&#160;</a></span>publishAvailability()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void publishAvailability </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>online</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_cgraph.png" border="0" usemap="#amqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_icgraph.png" border="0" usemap="#amqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="ac49364afe5be3cf4e718ab09d67017da" name="ac49364afe5be3cf4e718ab09d67017da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac49364afe5be3cf4e718ab09d67017da">&#9670;&#160;</a></span>publishHomeAssistantConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void publishHomeAssistantConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_cgraph.png" border="0" usemap="#amqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_icgraph.png" border="0" usemap="#amqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a9d23c1c2b3b5f9613a2215945494badb" name="a9d23c1c2b3b5f9613a2215945494badb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d23c1c2b3b5f9613a2215945494badb">&#9670;&#160;</a></span>publishSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void publishSensorData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a9d23c1c2b3b5f9613a2215945494badb_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a9d23c1c2b3b5f9613a2215945494badb_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<a id="a7a9b6d18074276b45340af02c443924a" name="a7a9b6d18074276b45340af02c443924a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a9b6d18074276b45340af02c443924a">&#9670;&#160;</a></span>removeHomeAssistantConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void removeHomeAssistantConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3cff6686f09444558b7c9436e082e73c" name="a3cff6686f09444558b7c9436e082e73c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3cff6686f09444558b7c9436e082e73c">&#9670;&#160;</a></span>setupMQTT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupMQTT </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_cgraph" alt=""/></div>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_icgraph" alt=""/></div>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="abd77e757e4b3bb6f1e4b42b21ea9e040" name="abd77e757e4b3bb6f1e4b42b21ea9e040"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd77e757e4b3bb6f1e4b42b21ea9e040">&#9670;&#160;</a></span>espClient</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">WiFiClient espClient</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1da8e8d4c027f4c08db8b493b99e12da" name="a1da8e8d4c027f4c08db8b493b99e12da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1da8e8d4c027f4c08db8b493b99e12da">&#9670;&#160;</a></span>mqttConnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool mqttConnected = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="mqtt__client_8cpp.html">mqtt_client.cpp</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

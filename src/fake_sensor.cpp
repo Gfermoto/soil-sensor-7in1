@@ -1,3 +1,8 @@
+/**
+ * @file fake_sensor.cpp
+ * @brief Эмуляция работы датчика для тестирования
+ * @details Генерация тестовых данных для отладки и демонстрации работы системы без реального оборудования.
+ */
 #include "fake_sensor.h"
 #include "modbus_sensor.h"
 #include <Arduino.h>

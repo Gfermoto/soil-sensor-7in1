@@ -1,0 +1,55 @@
+# Doxyfile 1.9.8
+# Основной конфиг для генерации документации Doxygen
+
+# Имя проекта
+PROJECT_NAME           = "JXCT Soil Sensor"
+
+# Каталоги для поиска исходников
+INPUT                  = src include
+RECURSIVE              = YES
+
+# Каталог для вывода документации
+OUTPUT_DIRECTORY       = docs
+
+# Язык документации
+OUTPUT_LANGUAGE        = Russian
+
+# Генерировать HTML
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+
+# Генерировать LaTeX (PDF)
+GENERATE_LATEX         = NO
+
+# Включать все публичные и приватные члены
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+
+# Обрабатывать только файлы с расширениями
+FILE_PATTERNS          = *.cpp *.h
+
+# Кодировка исходников
+INPUT_ENCODING         = UTF-8
+
+# Генерировать графы зависимостей
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+CLASS_DIAGRAMS         = YES
+
+# Не документировать стандартные библиотеки
+EXCLUDE_PATTERNS       = */.pio/* */libdeps/*
+
+# Генерировать краткое описание в оглавлении
+SHORT_NAMES            = NO
+
+# Включить документацию для групп
+OPTIMIZE_OUTPUT_FOR_C  = NO
+OPTIMIZE_OUTPUT_JAVA   = NO
+OPTIMIZE_FOR_FORTRAN   = NO
+OPTIMIZE_OUTPUT_VHDL   = NO
+
+# Включить документацию для всех файлов
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = 

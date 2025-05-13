@@ -1,9 +1,13 @@
 #include <WiFiClient.h>
 #include "thingspeak_client.h"
-#include "config.h"
 #include "modbus_sensor.h"
 #include "wifi_manager.h"
 #include <ThingSpeak.h>
+#include "jxct_device_info.h"
+#include "jxct_config_vars.h"
+#include "jxct_format_utils.h"
+#include <NTPClient.h>
+extern NTPClient* timeClient;
 
 // URL для отправки данных в ThingSpeak
 const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";
@@ -25,13 +29,14 @@ bool sendDataToThingSpeak() {
     }
     lastTsPublish = now;
     unsigned long channelId = strtoul(config.thingSpeakChannelId, nullptr, 10);
-    ThingSpeak.setField(1, sensorData.temperature);
-    ThingSpeak.setField(2, sensorData.humidity);
-    ThingSpeak.setField(3, sensorData.ec);
-    ThingSpeak.setField(4, sensorData.ph);
-    ThingSpeak.setField(5, sensorData.nitrogen);
-    ThingSpeak.setField(6, sensorData.phosphorus);
-    ThingSpeak.setField(7, sensorData.potassium);
+    ThingSpeak.setField(1, format_temperature(sensorData.temperature).c_str());
+    ThingSpeak.setField(2, format_moisture(sensorData.humidity).c_str());
+    ThingSpeak.setField(3, format_ec(sensorData.ec).c_str());
+    ThingSpeak.setField(4, format_ph(sensorData.ph).c_str());
+    ThingSpeak.setField(5, format_npk(sensorData.nitrogen).c_str());
+    ThingSpeak.setField(6, format_npk(sensorData.phosphorus).c_str());
+    ThingSpeak.setField(7, format_npk(sensorData.potassium).c_str());
+    ThingSpeak.setField(8, String(timeClient ? timeClient->getEpochTime() : 0));
     int res = ThingSpeak.writeFields(channelId, config.thingSpeakApiKey);
     if (res == 200) {
         Serial.println("[ThingSpeak] Данные успешно отправлены");

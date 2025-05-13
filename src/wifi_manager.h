@@ -6,7 +6,6 @@
 #include <DNSServer.h>
 #include <WebServer.h>
 #include <Preferences.h>
-#include "config.h"
 
 // Перечисление для режимов WiFi
 enum class WiFiMode {

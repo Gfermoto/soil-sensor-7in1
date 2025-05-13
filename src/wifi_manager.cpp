@@ -4,9 +4,11 @@
  * @details Реализация логики подключения к WiFi, работы в режимах AP/STA, веб-конфигурирования, управления светодиодом и сервисных функций.
  */
 #include "wifi_manager.h"
-#include "config.h"
 #include "modbus_sensor.h"
 #include "mqtt_client.h"
+#include "jxct_device_info.h"
+#include "jxct_config_vars.h"
+#include "jxct_format_utils.h"
 
 // Глобальные переменные
 bool wifiConnected = false;
@@ -105,15 +107,26 @@ void handleWiFi() {
     }
 }
 
+String getApSsid() {
+    uint8_t mac[6];
+    WiFi.macAddress(mac);
+    char buf[20];
+    snprintf(buf, sizeof(buf), "jxct-%02X%02X%02X", mac[3], mac[4], mac[5]);
+    for (int i = 0; buf[i]; ++i) buf[i] = tolower(buf[i]);
+    return String(buf);
+}
+
 void startAPMode() {
     currentWiFiMode = WiFiMode::AP;
     WiFi.disconnect();
     WiFi.mode(WIFI_AP);
-    WiFi.softAP(WIFI_AP_SSID, WIFI_AP_PASS);
+    String apSsid = getApSsid();
+    WiFi.softAP(apSsid.c_str(), WIFI_AP_PASS);
     dnsServer.start(53, "*", WiFi.softAPIP());
     setupWebServer();
     setLedBlink(500);
     Serial.println("[startAPMode] Режим точки доступа запущен");
+    Serial.print("[startAPMode] SSID: "); Serial.println(apSsid);
     Serial.print("[startAPMode] IP адрес: ");
     Serial.println(WiFi.softAPIP());
 }
@@ -121,6 +134,8 @@ void startAPMode() {
 void startSTAMode() {
     currentWiFiMode = WiFiMode::STA;
     WiFi.mode(WIFI_STA);
+    String hostname = getApSsid();
+    WiFi.setHostname(hostname.c_str());
     if (strlen(config.ssid) > 0) {
         WiFi.begin(config.ssid, config.password);
         Serial.println("[startSTAMode] Подключение к WiFi...");
@@ -137,6 +152,7 @@ void startSTAMode() {
             setLedOn();
             setupWebServer();
             Serial.println("\n[startSTAMode] Подключено к WiFi");
+            Serial.print("[startSTAMode] Hostname: "); Serial.println(hostname);
             Serial.print("[startSTAMode] IP адрес: ");
             Serial.println(WiFi.localIP());
         } else {
@@ -203,8 +219,6 @@ void setupWebServer() {
             html += "<div class='form-group'><label for='mqtt_port'>MQTT порт:</label><input type='text' id='mqtt_port' name='mqtt_port' value='" + String(config.mqttPort) + "'></div>";
             html += "<div class='form-group'><label for='mqtt_user'>MQTT пользователь:</label><input type='text' id='mqtt_user' name='mqtt_user' value='" + String(config.mqttUser) + "'></div>";
             html += "<div class='form-group'><label for='mqtt_password'>MQTT пароль:</label><input type='password' id='mqtt_password' name='mqtt_password' value='" + String(config.mqttPassword) + "'></div>";
-            html += "<div class='form-group'><label for='mqtt_topic'>MQTT префикс топика:</label><input type='text' id='mqtt_topic' name='mqtt_topic' value='" + String(config.mqttTopicPrefix) + "'></div>";
-            html += "<div class='form-group'><label for='mqtt_device_name'>Имя устройства:</label><input type='text' id='mqtt_device_name' name='mqtt_device_name' value='" + String(config.mqttDeviceName) + "'></div>";
             String hassChecked = config.hassEnabled ? " checked" : "";
             html += "<div class='form-group'><label for='hass_enabled'>Интеграция с Home Assistant:</label><input type='checkbox' id='hass_enabled' name='hass_enabled'" + hassChecked + "></div></div>";
             String tsChecked = config.thingSpeakEnabled ? " checked" : "";
@@ -217,6 +231,9 @@ void setupWebServer() {
             String realSensorChecked = config.useRealSensor ? " checked" : "";
             html += "<div class='section'><h2>Датчик</h2>";
             html += "<div class='form-group'><label for='real_sensor'>Реальный датчик:</label><input type='checkbox' id='real_sensor' name='real_sensor'" + realSensorChecked + "></div></div>";
+            html += "<div class='section'><h2>NTP</h2>";
+            html += "<div class='form-group'><label for='ntp_server'>NTP сервер:</label><input type='text' id='ntp_server' name='ntp_server' value='" + String(config.ntpServer) + "' required></div>";
+            html += "<div class='form-group'><label for='ntp_interval'>Интервал обновления NTP (мс):</label><input type='number' id='ntp_interval' name='ntp_interval' min='10000' max='86400000' value='" + String(config.ntpUpdateInterval) + "'></div></div>";
         }
         html += "<button type='submit'>Сохранить настройки</button></form></div></body></html>";
         webServer.send(200, "text/html; charset=utf-8", html);
@@ -235,8 +252,6 @@ void setupWebServer() {
             config.mqttPort = webServer.arg("mqtt_port").toInt();
             strlcpy(config.mqttUser, webServer.arg("mqtt_user").c_str(), sizeof(config.mqttUser));
             strlcpy(config.mqttPassword, webServer.arg("mqtt_password").c_str(), sizeof(config.mqttPassword));
-            strlcpy(config.mqttTopicPrefix, webServer.arg("mqtt_topic").c_str(), sizeof(config.mqttTopicPrefix));
-            strlcpy(config.mqttDeviceName, webServer.arg("mqtt_device_name").c_str(), sizeof(config.mqttDeviceName));
             config.hassEnabled = webServer.hasArg("hass_enabled");
             config.thingSpeakEnabled = webServer.hasArg("ts_enabled");
             strlcpy(config.thingSpeakApiKey, webServer.arg("ts_api_key").c_str(), sizeof(config.thingSpeakApiKey));
@@ -244,12 +259,12 @@ void setupWebServer() {
             config.thingspeakInterval = webServer.arg("ts_interval").toInt();
             strlcpy(config.thingSpeakChannelId, webServer.arg("ts_channel_id").c_str(), sizeof(config.thingSpeakChannelId));
             config.useRealSensor = webServer.hasArg("real_sensor");
+            strlcpy(config.ntpServer, webServer.arg("ntp_server").c_str(), sizeof(config.ntpServer));
+            config.ntpUpdateInterval = webServer.arg("ntp_interval").toInt();
             Serial.print("[WEB /save] MQTT сервер: "); Serial.println(config.mqttServer);
             Serial.print("[WEB /save] MQTT порт: "); Serial.println(config.mqttPort);
             Serial.print("[WEB /save] MQTT пользователь: "); Serial.println(config.mqttUser);
             Serial.print("[WEB /save] MQTT пароль: "); Serial.println(config.mqttPassword);
-            Serial.print("[WEB /save] MQTT топик: "); Serial.println(config.mqttTopicPrefix);
-            Serial.print("[WEB /save] MQTT имя устройства: "); Serial.println(config.mqttDeviceName);
             Serial.print("[WEB /save] HASS: "); Serial.println(config.hassEnabled);
             Serial.print("[WEB /save] ThingSpeak: "); Serial.println(config.thingSpeakEnabled);
             Serial.print("[WEB /save] TS API: "); Serial.println(config.thingSpeakApiKey);
@@ -257,6 +272,8 @@ void setupWebServer() {
             Serial.print("[WEB /save] MQTT QoS: "); Serial.println(config.mqttQos);
             Serial.print("[WEB /save] useRealSensor: "); Serial.println(config.useRealSensor);
             Serial.print("[WEB /save] TS Channel ID: "); Serial.println(config.thingSpeakChannelId);
+            Serial.print("[WEB /save] NTP Server: "); Serial.println(config.ntpServer);
+            Serial.print("[WEB /save] NTP Interval: "); Serial.println(config.ntpUpdateInterval);
         }
         saveConfig();
         String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='2;url=/'><title>Сохранение</title></head><body style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'><h2>Настройки сохранены</h2><p>Перезагрузка...<br>Сейчас вы будете перенаправлены на главную страницу.</p></body></html>";
@@ -271,17 +288,17 @@ void setupWebServer() {
             webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
             return;
         }
-        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Показания датчика</title><style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:600px;margin:0 auto}h1{color:#333}.nav{margin-bottom:20px}.nav a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}</style></head><body><div class='container'>";
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Показания датчика</title><style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:600px;margin:0 auto}h1{color:#333}.nav{margin-bottom:20px}.nav a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}.section{margin-bottom:20px;padding:15px;border:1px solid #ddd;border-radius:5px}</style></head><body><div class='container'>";
         html += navHtml();
         html += "<h1>Показания датчика</h1>";
-        html += "<ul>";
-        html += "<li>Температура: " + String(sensorData.temperature) + " °C</li>";
-        html += "<li>Влажность: " + String(sensorData.humidity) + " %</li>";
-        html += "<li>EC: " + String(sensorData.ec) + " µS/cm</li>";
-        html += "<li>pH: " + String(sensorData.ph) + "</li>";
-        html += "<li>Азот: " + String(sensorData.nitrogen) + " мг/кг</li>";
-        html += "<li>Фосфор: " + String(sensorData.phosphorus) + " мг/кг</li>";
-        html += "<li>Калий: " + String(sensorData.potassium) + " мг/кг</li>";
+        html += "<div class='section'><ul>";
+        html += "<li>Температура: " + String(format_temperature(sensorData.temperature).c_str()) + " °C</li>";
+        html += "<li>Влажность: " + String(format_moisture(sensorData.humidity).c_str()) + " %</li>";
+        html += "<li>EC: " + String(format_ec(sensorData.ec).c_str()) + " µS/cm</li>";
+        html += "<li>pH: " + String(format_ph(sensorData.ph).c_str()) + "</li>";
+        html += "<li>Азот: " + String(format_npk(sensorData.nitrogen).c_str()) + " мг/кг</li>";
+        html += "<li>Фосфор: " + String(format_npk(sensorData.phosphorus).c_str()) + " мг/кг</li>";
+        html += "<li>Калий: " + String(format_npk(sensorData.potassium).c_str()) + " мг/кг</li>";
         html += "</ul></div></body></html>";
         webServer.send(200, "text/html; charset=utf-8", html);
     });
@@ -301,7 +318,7 @@ void setupWebServer() {
         html += "<b>ThingSpeak:</b> " + String(config.thingSpeakEnabled ? "Включено" : "Выключено") + "<br>";
         html += "<b>Home Assistant:</b> " + String(config.hassEnabled ? "Включено" : "Выключено") + "</div>";
         // Блок справочной информации
-        html += "<div class='info-block'><b>Производитель:</b> Eyera<br><b>Модель:</b> JXCT-7in1<br><b>Версия:</b> 1.0</div>";
+        html += "<div class='info-block'><b>Производитель:</b> " + String(DEVICE_MANUFACTURER) + "<br><b>Модель:</b> " + String(DEVICE_MODEL) + "<br><b>Версия:</b> " + String(DEVICE_SW_VERSION) + "</div>";
         html += "<form method='post' action='/reset'><button type='submit'>Сбросить настройки</button></form>";
         html += "<form method='post' action='/reboot'><button type='submit'>Перезагрузить</button></form>";
         html += "<form method='post' action='/ota'><button type='submit'>OTA (заглушка)</button></form>";

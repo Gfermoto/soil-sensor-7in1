@@ -3,7 +3,26 @@
  * @brief Работа с конфигурацией устройства
  * @details Загрузка, сохранение, сброс и валидация настроек устройства через NVS (Preferences).
  */
+#include <WiFi.h>
 #include "config.h"
+#include "jxct_device_info.h"
+#include "jxct_config_vars.h"
+
+String getDeviceId() {
+    uint8_t mac[6];
+    WiFi.macAddress(mac);
+    char buf[32];
+    snprintf(buf, sizeof(buf), "%s_%02X%02X%02X", DEVICE_MODEL, mac[3], mac[4], mac[5]);
+    return String(buf);
+}
+
+String getDefaultTopic() {
+    uint8_t mac[6];
+    WiFi.macAddress(mac);
+    char buf[32];
+    snprintf(buf, sizeof(buf), "jxct_%02X%02X%02X", mac[3], mac[4], mac[5]);
+    return String(buf);
+}
 
 Config config;
 Preferences preferences;
@@ -41,13 +60,16 @@ void loadConfig() {
     // Настройка датчика
     config.modbusId = preferences.getUChar("modbusId", JXCT_MODBUS_ID);
     
+    // NTP настройки
+    String ntpServer = preferences.getString("ntpServer", "pool.ntp.org");
+    ntpServer.toCharArray(config.ntpServer, sizeof(config.ntpServer));
+    config.ntpUpdateInterval = preferences.getUInt("ntpUpdateInterval", 60000);
+    
     preferences.end();
     // Значения по умолчанию для новых полей
     if (strlen(config.mqttDeviceName) == 0) strlcpy(config.mqttDeviceName, "JXCT_Device", sizeof(config.mqttDeviceName));
     if (strlen(config.thingSpeakChannelId) == 0) strlcpy(config.thingSpeakChannelId, "", sizeof(config.thingSpeakChannelId));
-    if (strlen(config.manufacturer) == 0) strlcpy(config.manufacturer, "JXCT", sizeof(config.manufacturer));
-    if (strlen(config.model) == 0) strlcpy(config.model, "ESP32-Soil", sizeof(config.model));
-    if (strlen(config.swVersion) == 0) strlcpy(config.swVersion, "1.2", sizeof(config.swVersion));
+    if (strlen(config.mqttTopicPrefix) == 0) strlcpy(config.mqttTopicPrefix, getDefaultTopic().c_str(), sizeof(config.mqttTopicPrefix));
     Serial.println("[loadConfig] Настройки загружены:");
     Serial.print("  SSID: "); Serial.println(config.ssid);
     Serial.print("  PASSWORD: "); Serial.println(config.password);
@@ -67,6 +89,8 @@ void loadConfig() {
     Serial.print("  Manufacturer: "); Serial.println(config.manufacturer);
     Serial.print("  Model: "); Serial.println(config.model);
     Serial.print("  SW Version: "); Serial.println(config.swVersion);
+    Serial.print("  NTP Server: "); Serial.println(config.ntpServer);
+    Serial.print("  NTP Update Interval: "); Serial.println(config.ntpUpdateInterval);
 }
 
 void saveConfig() {
@@ -102,6 +126,10 @@ void saveConfig() {
     // Настройка датчика
     preferences.putUChar("modbusId", config.modbusId);
     
+    // NTP настройки
+    preferences.putString("ntpServer", config.ntpServer);
+    preferences.putUInt("ntpUpdateInterval", config.ntpUpdateInterval);
+    
     preferences.end();
     Serial.println("[saveConfig] Настройки сохранены:");
     Serial.print("  SSID: "); Serial.println(config.ssid);
@@ -122,6 +150,8 @@ void saveConfig() {
     Serial.print("  Manufacturer: "); Serial.println(config.manufacturer);
     Serial.print("  Model: "); Serial.println(config.model);
     Serial.print("  SW Version: "); Serial.println(config.swVersion);
+    Serial.print("  NTP Server: "); Serial.println(config.ntpServer);
+    Serial.print("  NTP Update Interval: "); Serial.println(config.ntpUpdateInterval);
 }
 
 void resetConfig() {
@@ -139,7 +169,7 @@ void resetConfig() {
     config.mqttEnabled = true;
     config.thingSpeakEnabled = true;
     config.modbusId = JXCT_MODBUS_ID;
-    strlcpy(config.mqttTopicPrefix, "jxct", sizeof(config.mqttTopicPrefix));
+    strlcpy(config.mqttTopicPrefix, getDefaultTopic().c_str(), sizeof(config.mqttTopicPrefix));
     strlcpy(config.mqttDeviceName, "JXCT_Device", sizeof(config.mqttDeviceName));
     config.hassEnabled = false;
     strlcpy(config.thingSpeakChannelId, "", sizeof(config.thingSpeakChannelId));
@@ -150,10 +180,10 @@ void resetConfig() {
     config.useRealSensor = true;
     config.mqttQos = 0;
     config.thingspeakInterval = 60;
-    // Жёстко задаём manufacturer, model, swVersion
-    strlcpy(config.manufacturer, "JXCT", sizeof(config.manufacturer));
-    strlcpy(config.model, "ESP32-Soil", sizeof(config.model));
-    strlcpy(config.swVersion, "1.2", sizeof(config.swVersion));
+    // NTP
+    strlcpy(config.ntpServer, "pool.ntp.org", sizeof(config.ntpServer));
+    config.ntpUpdateInterval = 60000;
+    // Жёстко задаём manufacturer, model, swVersion больше не нужно
     Serial.println("[resetConfig] Все настройки сброшены!");
     Serial.print("[resetConfig] config.ssid: "); Serial.println(config.ssid);
     Serial.print("[resetConfig] config.password: "); Serial.println(config.password);
@@ -172,6 +202,8 @@ void resetConfig() {
     Serial.print("[resetConfig] config.manufacturer: "); Serial.println(config.manufacturer);
     Serial.print("[resetConfig] config.model: "); Serial.println(config.model);
     Serial.print("[resetConfig] config.swVersion: "); Serial.println(config.swVersion);
+    Serial.print("[resetConfig] config.ntpServer: "); Serial.println(config.ntpServer);
+    Serial.print("[resetConfig] config.ntpUpdateInterval: "); Serial.println(config.ntpUpdateInterval);
 }
 
 bool isConfigValid() {
