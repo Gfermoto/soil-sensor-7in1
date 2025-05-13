@@ -9,6 +9,7 @@
 #include "jxct_device_info.h"
 #include "jxct_config_vars.h"
 #include "jxct_format_utils.h"
+#include <NTPClient.h>
 
 // Глобальные переменные
 bool wifiConnected = false;
@@ -21,6 +22,8 @@ unsigned long ledLastToggle = 0;
 bool ledState = false;
 unsigned long ledBlinkInterval = 0;
 bool ledFastBlink = false;
+
+extern NTPClient* timeClient;
 
 void setLedOn() {
     digitalWrite(STATUS_LED_PIN, HIGH);
@@ -292,15 +295,72 @@ void setupWebServer() {
         html += navHtml();
         html += "<h1>Показания датчика</h1>";
         html += "<div class='section'><ul>";
-        html += "<li>Температура: " + String(format_temperature(sensorData.temperature).c_str()) + " °C</li>";
-        html += "<li>Влажность: " + String(format_moisture(sensorData.humidity).c_str()) + " %</li>";
-        html += "<li>EC: " + String(format_ec(sensorData.ec).c_str()) + " µS/cm</li>";
-        html += "<li>pH: " + String(format_ph(sensorData.ph).c_str()) + "</li>";
-        html += "<li>Азот: " + String(format_npk(sensorData.nitrogen).c_str()) + " мг/кг</li>";
-        html += "<li>Фосфор: " + String(format_npk(sensorData.phosphorus).c_str()) + " мг/кг</li>";
-        html += "<li>Калий: " + String(format_npk(sensorData.potassium).c_str()) + " мг/кг</li>";
-        html += "</ul></div></body></html>";
+        html += "<li>Температура: <span id='temp'></span> °C</li>";
+        html += "<li>Влажность: <span id='hum'></span> %</li>";
+        html += "<li>EC: <span id='ec'></span> µS/cm</li>";
+        html += "<li>pH: <span id='ph'></span></li>";
+        html += "<li>Азот: <span id='n'></span> мг/кг</li>";
+        html += "<li>Фосфор: <span id='p'></span> мг/кг</li>";
+        html += "<li>Калий: <span id='k'></span> мг/кг</li>";
+        html += "</ul></div>";
+        html += "<div class='section' style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='/api/sensor' target='_blank'>/api/sensor</a> (JSON, +timestamp)</div>";
+        html += "<script>"
+                "function updateSensor(){"
+                "fetch('/sensor_json').then(r=>r.json()).then(d=>{"
+                "document.getElementById('temp').textContent=d.temperature;"
+                "document.getElementById('hum').textContent=d.humidity;"
+                "document.getElementById('ec').textContent=d.ec;"
+                "document.getElementById('ph').textContent=d.ph;"
+                "document.getElementById('n').textContent=d.nitrogen;"
+                "document.getElementById('p').textContent=d.phosphorus;"
+                "document.getElementById('k').textContent=d.potassium;"
+                "});"
+                "}"
+                "setInterval(updateSensor,2000);"
+                "updateSensor();"
+                "</script>";
+        html += "</div></body></html>";
         webServer.send(200, "text/html; charset=utf-8", html);
+    });
+
+    // Новый эндпоинт для AJAX-обновления показаний
+    webServer.on("/sensor_json", HTTP_GET, []() {
+        if (currentWiFiMode != WiFiMode::STA) {
+            webServer.send(403, "application/json", "{\"error\":\"AP mode\"}");
+            return;
+        }
+        StaticJsonDocument<256> doc;
+        doc["temperature"] = format_temperature(sensorData.temperature);
+        doc["humidity"] = format_moisture(sensorData.humidity);
+        doc["ec"] = format_ec(sensorData.ec);
+        doc["ph"] = format_ph(sensorData.ph);
+        doc["nitrogen"] = format_npk(sensorData.nitrogen);
+        doc["phosphorus"] = format_npk(sensorData.phosphorus);
+        doc["potassium"] = format_npk(sensorData.potassium);
+        doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
+        String json;
+        serializeJson(doc, json);
+        webServer.send(200, "application/json", json);
+    });
+
+    // Новый API-эндпоинт для интеграции
+    webServer.on("/api/sensor", HTTP_GET, []() {
+        if (currentWiFiMode != WiFiMode::STA) {
+            webServer.send(403, "application/json", "{\"error\":\"AP mode\"}");
+            return;
+        }
+        StaticJsonDocument<256> doc;
+        doc["temperature"] = format_temperature(sensorData.temperature);
+        doc["humidity"] = format_moisture(sensorData.humidity);
+        doc["ec"] = format_ec(sensorData.ec);
+        doc["ph"] = format_ph(sensorData.ph);
+        doc["nitrogen"] = format_npk(sensorData.nitrogen);
+        doc["phosphorus"] = format_npk(sensorData.phosphorus);
+        doc["potassium"] = format_npk(sensorData.potassium);
+        doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
+        String json;
+        serializeJson(doc, json);
+        webServer.send(200, "application/json", json);
     });
 
     // Вкладка сервис (STA)
@@ -309,7 +369,7 @@ void setupWebServer() {
             webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
             return;
         }
-        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Сервис</title><style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:600px;margin:0 auto}h1{color:#333}.nav{margin-bottom:20px}.nav a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}button{background:#4CAF50;color:white;padding:10px 15px;border:none;cursor:pointer;margin-right:10px}button:hover{background:#45a049}form{display:inline-block;margin-right:10px}.info-block{margin-top:20px;padding:10px 15px;background:#f7f7f7;border:1px solid #ddd;border-radius:5px}</style></head><body><div class='container'>";
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Сервис</title><style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:600px;margin:0 auto}h1{color:#333}.nav{margin-bottom:20px}.nav a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}button{background:#4CAF50;color:white;padding:10px 15px;border:none;cursor:pointer;margin-right:10px}.info-block{margin-top:20px;padding:10px 15px;background:#f7f7f7;border:1px solid #ddd;border-radius:5px}</style></head><body><div class='container'>";
         html += navHtml();
         html += "<h1>Сервис</h1>";
         // Блок статусов
@@ -319,9 +379,10 @@ void setupWebServer() {
         html += "<b>Home Assistant:</b> " + String(config.hassEnabled ? "Включено" : "Выключено") + "</div>";
         // Блок справочной информации
         html += "<div class='info-block'><b>Производитель:</b> " + String(DEVICE_MANUFACTURER) + "<br><b>Модель:</b> " + String(DEVICE_MODEL) + "<br><b>Версия:</b> " + String(DEVICE_SW_VERSION) + "</div>";
-        html += "<form method='post' action='/reset'><button type='submit'>Сбросить настройки</button></form>";
-        html += "<form method='post' action='/reboot'><button type='submit'>Перезагрузить</button></form>";
-        html += "<form method='post' action='/ota'><button type='submit'>OTA (заглушка)</button></form>";
+        // Кнопки управления
+        html += "<div class='section' style='margin-top:20px;'><form method='post' action='/reset' style='margin-bottom:10px'><button type='submit'>Сбросить настройки</button></form>";
+        html += "<form method='post' action='/reboot' style='margin-bottom:10px'><button type='submit'>Перезагрузить</button></form>";
+        html += "<form method='post' action='/ota'><button type='submit'>OTA (заглушка)</button></form></div>";
         html += "</div></body></html>";
         webServer.send(200, "text/html; charset=utf-8", html);
     });
