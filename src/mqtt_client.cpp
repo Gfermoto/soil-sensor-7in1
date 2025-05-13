@@ -182,6 +182,7 @@ void publishHomeAssistantConfig() {
     deviceInfo["manufacturer"] = DEVICE_MANUFACTURER;
     deviceInfo["model"] = DEVICE_MODEL;
     deviceInfo["sw_version"] = DEVICE_SW_VERSION;
+    deviceInfo["name"] = deviceId;
     // Температура
     StaticJsonDocument<512> tempConfig;
     tempConfig["name"] = "JXCT Temperature";
