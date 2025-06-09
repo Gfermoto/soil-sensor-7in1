@@ -161,49 +161,94 @@ bool changeDeviceAddress(uint8_t new_address) {
 }
 
 void readSensorData() {
-    Serial.println("\n[readSensorData] Попытка чтения NPK значений...");
+    Serial.println("\n[readSensorData] Чтение всех параметров с правильных адресов JXCT...");
     
     uint8_t result;
+    bool success = true;
     
-    // Пробуем прочитать Nitrogen (адрес 0x1E как в примере)
-    Serial.println("[readSensorData] Чтение Nitrogen (0x1E)...");
-    result = modbus.readHoldingRegisters(0x1E, 1);
+    // 1. PH (адрес 0x0006, ÷ 100)
+    Serial.println("[readSensorData] Чтение PH (0x0006)...");
+    result = modbus.readHoldingRegisters(0x0006, 1);
+    if (result == modbus.ku8MBSuccess) {
+        uint16_t ph_raw = modbus.getResponseBuffer(0);
+        sensorData.ph = (float)ph_raw / 100.0;  // Делим на 100
+        Serial.printf("[readSensorData] ✅ PH: %d (%.2f pH)\n", ph_raw, sensorData.ph);
+    } else {
+        Serial.printf("[readSensorData] ❌ Ошибка чтения PH: %d\n", result);
+        printModbusError(result);
+        success = false;
+    }
     
+    // 2. Влажность почвы (адрес 0x0012, ÷ 10)
+    Serial.println("[readSensorData] Чтение влажности (0x0012)...");
+    result = modbus.readHoldingRegisters(0x0012, 1);
+    if (result == modbus.ku8MBSuccess) {
+        uint16_t moisture_raw = modbus.getResponseBuffer(0);
+        sensorData.humidity = (float)moisture_raw / 10.0;  // Записываем в humidity для веб-интерфейса
+        sensorData.moisture = sensorData.humidity;          // Дублируем в moisture
+        Serial.printf("[readSensorData] ✅ Влажность: %d (%.1f%%)\n", moisture_raw, sensorData.humidity);
+    } else {
+        Serial.printf("[readSensorData] ❌ Ошибка чтения влажности: %d\n", result);
+        printModbusError(result);
+        success = false;
+    }
+    
+    // 3. Температура (адрес 0x0013, ÷ 10)
+    Serial.println("[readSensorData] Чтение температуры (0x0013)...");
+    result = modbus.readHoldingRegisters(0x0013, 1);
+    if (result == modbus.ku8MBSuccess) {
+        uint16_t temp_raw = modbus.getResponseBuffer(0);
+        sensorData.temperature = (float)temp_raw / 10.0;  // Делим на 10
+        Serial.printf("[readSensorData] ✅ Температура: %d (%.1f°C)\n", temp_raw, sensorData.temperature);
+    } else {
+        Serial.printf("[readSensorData] ❌ Ошибка чтения температуры: %d\n", result);
+        printModbusError(result);
+        success = false;
+    }
+    
+    // 4. Электропроводность (адрес 0x0015, как есть)
+    Serial.println("[readSensorData] Чтение проводимости (0x0015)...");
+    result = modbus.readHoldingRegisters(0x0015, 1);
+    if (result == modbus.ku8MBSuccess) {
+        uint16_t conductivity_raw = modbus.getResponseBuffer(0);
+        sensorData.ec = (float)conductivity_raw;  // Как есть, µS/cm
+        Serial.printf("[readSensorData] ✅ Проводимость: %d (%.0f µS/cm)\n", conductivity_raw, sensorData.ec);
+    } else {
+        Serial.printf("[readSensorData] ❌ Ошибка чтения проводимости: %d\n", result);
+        printModbusError(result);
+        success = false;
+    }
+    
+    // 5-7. NPK одним запросом (адреса 0x001E-0x0020, как есть)
+    Serial.println("[readSensorData] Чтение NPK (0x001E-0x0020)...");
+    result = modbus.readHoldingRegisters(0x001E, 3);
     if (result == modbus.ku8MBSuccess) {
         uint16_t nitrogen_raw = modbus.getResponseBuffer(0);
-        sensorData.nitrogen = (float)nitrogen_raw;
-        Serial.printf("[readSensorData] Nitrogen успешно прочитан: %d (%.1f мг/кг)\n", nitrogen_raw, sensorData.nitrogen);
+        uint16_t phosphorus_raw = modbus.getResponseBuffer(1);
+        uint16_t potassium_raw = modbus.getResponseBuffer(2);
         
-        // Пробуем прочитать Phosphorus (адрес 0x1F)
-        Serial.println("[readSensorData] Чтение Phosphorus (0x1F)...");
-        result = modbus.readHoldingRegisters(0x1F, 1);
-        if (result == modbus.ku8MBSuccess) {
-            uint16_t phosphorus_raw = modbus.getResponseBuffer(0);
-            sensorData.phosphorus = (float)phosphorus_raw;
-            Serial.printf("[readSensorData] Phosphorus успешно прочитан: %d (%.1f мг/кг)\n", phosphorus_raw, sensorData.phosphorus);
-            
-            // Пробуем прочитать Potassium (адрес 0x20)
-            Serial.println("[readSensorData] Чтение Potassium (0x20)...");
-            result = modbus.readHoldingRegisters(0x20, 1);
-            if (result == modbus.ku8MBSuccess) {
-                uint16_t potassium_raw = modbus.getResponseBuffer(0);
-                sensorData.potassium = (float)potassium_raw;
-                Serial.printf("[readSensorData] Potassium успешно прочитан: %d (%.1f мг/кг)\n", potassium_raw, sensorData.potassium);
-                
-                sensorData.valid = true;
-                sensorData.last_update = millis();
-                Serial.println("[readSensorData] *** ВСЕ NPK ЗНАЧЕНИЯ УСПЕШНО ПРОЧИТАНЫ! ***");
-            } else {
-                Serial.printf("[readSensorData] Ошибка чтения Potassium: %d\n", result);
-                printModbusError(result);
-            }
-        } else {
-            Serial.printf("[readSensorData] Ошибка чтения Phosphorus: %d\n", result);
-            printModbusError(result);
-        }
+        sensorData.nitrogen = (float)nitrogen_raw;
+        sensorData.phosphorus = (float)phosphorus_raw;
+        sensorData.potassium = (float)potassium_raw;
+        
+        Serial.printf("[readSensorData] ✅ Азот (N): %d (%.0f мг/кг)\n", nitrogen_raw, sensorData.nitrogen);
+        Serial.printf("[readSensorData] ✅ Фосфор (P): %d (%.0f мг/кг)\n", phosphorus_raw, sensorData.phosphorus);
+        Serial.printf("[readSensorData] ✅ Калий (K): %d (%.0f мг/кг)\n", potassium_raw, sensorData.potassium);
     } else {
-        Serial.printf("[readSensorData] Ошибка чтения Nitrogen: %d\n", result);
+        Serial.printf("[readSensorData] ❌ Ошибка чтения NPK: %d\n", result);
         printModbusError(result);
+        success = false;
+    }
+    
+    if (success) {
+        sensorData.valid = true;
+        sensorData.last_update = millis();
+        Serial.println("\n🎉 [readSensorData] *** ВСЕ 7 ПАРАМЕТРОВ УСПЕШНО ПРОЧИТАНЫ! ***");
+        Serial.printf("📊 Полные данные: PH=%.2f, Влаж=%.1f%%, Темп=%.1f°C, EC=%.0fµS/cm, N=%.0f, P=%.0f, K=%.0f мг/кг\n",
+                     sensorData.ph, sensorData.humidity, sensorData.temperature, sensorData.ec,
+                     sensorData.nitrogen, sensorData.phosphorus, sensorData.potassium);
+    } else {
+        Serial.println("\n⚠️ [readSensorData] Не все параметры удалось прочитать");
     }
 }
 
