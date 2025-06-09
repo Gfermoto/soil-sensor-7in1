@@ -1,0 +1,11 @@
+<map id="readSensorData" name="readSensorData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="457,31,573,57"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="331,5,376,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="441,35,376,25,377,20,442,30"/>
+<area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,56,409,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="442,58,410,63,409,58,441,53"/>
+<area shape="rect" id="Node000004" href="$modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,56,250,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="283,72,250,72,250,67,283,67"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,56,59,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="91,72,59,72,59,67,91,67"/>
+</map>

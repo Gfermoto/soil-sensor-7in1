@@ -114,14 +114,56 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 <div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;PubSubClient.h&gt;</code><br />
 <code>#include &lt;ArduinoJson.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="config_8h_source.html">config.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">wifi_manager.h</a>&quot;</code><br />
 <code>#include &lt;WiFiClient.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="jxct__device__info_8h_source.html">jxct_device_info.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__format__utils_8h_source.html">jxct_format_utils.h</a>&quot;</code><br />
+<code>#include &lt;NTPClient.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Граф включаемых заголовочных файлов для mqtt_client.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp__incl.png" border="0" usemap="#asrc_2mqtt__client_8cpp" alt=""/></div>
+<map name="asrc_2mqtt__client_8cpp" id="asrc_2mqtt__client_8cpp">
+<area shape="rect" title="Взаимодействие с MQTT&#45;брокером и Home Assistant." alt="" coords="557,5,690,32"/>
+<area shape="rect" title=" " alt="" coords="449,155,526,181"/>
+<area shape="poly" title=" " alt="" coords="617,34,592,68,559,109,517,147,514,143,555,105,588,65,613,31"/>
+<area shape="rect" title=" " alt="" coords="154,80,266,107"/>
+<area shape="poly" title=" " alt="" coords="558,34,282,82,281,77,557,29"/>
+<area shape="rect" title=" " alt="" coords="290,80,394,107"/>
+<area shape="poly" title=" " alt="" coords="575,35,407,78,405,73,574,30"/>
+<area shape="rect" href="modbus__sensor_8h.html" title=" " alt="" coords="5,80,130,107"/>
+<area shape="poly" title=" " alt="" coords="557,30,146,82,145,77,556,25"/>
+<area shape="rect" href="wifi__manager_8h.html" title=" " alt="" coords="737,80,846,107"/>
+<area shape="poly" title=" " alt="" coords="654,30,749,71,747,76,652,35"/>
+<area shape="rect" title=" " alt="" coords="620,80,713,107"/>
+<area shape="poly" title=" " alt="" coords="633,31,653,65,649,68,629,34"/>
+<area shape="rect" href="jxct__device__info_8h.html" title=" " alt="" coords="419,80,545,107"/>
+<area shape="poly" title=" " alt="" coords="600,35,522,75,519,70,598,30"/>
+<area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="870,80,998,107"/>
+<area shape="poly" title=" " alt="" coords="679,30,865,73,864,79,677,35"/>
+<area shape="rect" href="jxct__format__utils_8h.html" title=" " alt="" coords="1022,80,1150,107"/>
+<area shape="poly" title=" " alt="" coords="691,28,1007,77,1006,82,690,33"/>
+<area shape="rect" title=" " alt="" coords="1174,80,1268,107"/>
+<area shape="poly" title=" " alt="" coords="690,23,896,43,1159,77,1158,82,895,48,690,28"/>
+<area shape="poly" title=" " alt="" coords="130,103,435,155,434,160,129,108"/>
+<area shape="rect" title=" " alt="" coords="8,155,127,181"/>
+<area shape="poly" title=" " alt="" coords="70,107,70,139,65,139,65,107"/>
+<area shape="poly" title=" " alt="" coords="739,110,542,157,540,151,738,105"/>
+<area shape="rect" title=" " alt="" coords="799,155,858,181"/>
+<area shape="poly" title=" " alt="" coords="800,106,818,140,813,142,796,108"/>
+<area shape="rect" title=" " alt="" coords="556,155,656,181"/>
+<area shape="poly" title=" " alt="" coords="760,110,654,151,652,146,758,105"/>
+<area shape="rect" title=" " alt="" coords="679,155,776,181"/>
+<area shape="poly" title=" " alt="" coords="782,109,751,145,747,141,778,105"/>
+<area shape="rect" title=" " alt="" coords="883,155,985,181"/>
+<area shape="poly" title=" " alt="" coords="818,105,897,145,894,150,815,110"/>
+<area shape="poly" title=" " alt="" coords="486,107,488,139,483,139,480,107"/>
+<area shape="poly" title=" " alt="" coords="937,107,937,139,932,139,932,107"/>
+<area shape="rect" title=" " alt="" coords="1060,155,1113,181"/>
+<area shape="poly" title=" " alt="" coords="1089,107,1089,139,1084,139,1084,107"/>
+</map>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -157,6 +199,8 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Переменные</h2></td></tr>
+<tr class="memitem:ab4cd0eb2684ad54d1d0782f4ff75e07f" id="r_ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memItemLeft" align="right" valign="top">NTPClient *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">timeClient</a></td></tr>
+<tr class="separator:ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd77e757e4b3bb6f1e4b42b21ea9e040" id="r_abd77e757e4b3bb6f1e4b42b21ea9e040"><td class="memItemLeft" align="right" valign="top">WiFiClient&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd77e757e4b3bb6f1e4b42b21ea9e040">espClient</a></td></tr>
 <tr class="separator:abd77e757e4b3bb6f1e4b42b21ea9e040"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1da8e8d4c027f4c08db8b493b99e12da" id="r_a1da8e8d4c027f4c08db8b493b99e12da"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1da8e8d4c027f4c08db8b493b99e12da">mqttConnected</a> = false</td></tr>
@@ -184,11 +228,38 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_cgraph.png" border="0" usemap="#amqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_cgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_cgraph" id="amqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_cgraph">
+<area shape="rect" title=" " alt="" coords="5,107,110,133"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a57972325aef8cfc9b4112fda932dd6bf" title=" " alt="" coords="188,5,318,32"/>
+<area shape="poly" title=" " alt="" coords="71,104,108,73,156,42,172,35,174,40,159,46,111,77,75,108"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a681aa515ca2e6ecdbeed2635b88578d7" title=" " alt="" coords="186,56,320,83"/>
+<area shape="poly" title=" " alt="" coords="109,104,183,85,184,90,111,109"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3da586210877e66ba92641dc5d6246e5" title=" " alt="" coords="398,119,506,145"/>
+<area shape="poly" title=" " alt="" coords="110,119,383,127,383,133,110,124"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="190,157,316,184"/>
+<area shape="poly" title=" " alt="" coords="111,131,184,150,183,155,109,136"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="158,208,348,235"/>
+<area shape="poly" title=" " alt="" coords="75,132,111,163,159,194,173,200,171,205,156,198,108,167,71,136"/>
+<area shape="rect" href="mqtt__client_8cpp.html#add6d3c0fdc5d81926c892afd692c776b" title=" " alt="" coords="410,56,494,83"/>
+<area shape="poly" title=" " alt="" coords="320,67,395,67,395,72,320,72"/>
+<area shape="poly" title=" " alt="" coords="315,156,383,143,384,148,316,161"/>
+<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="396,195,508,221"/>
+<area shape="poly" title=" " alt="" coords="348,212,380,210,381,215,349,218"/>
+<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="406,245,498,272"/>
+<area shape="poly" title=" " alt="" coords="328,233,392,245,391,250,327,238"/>
+</map>
 </div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_icgraph.png" border="0" usemap="#amqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_icgraph" id="amqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_icgraph">
+<area shape="rect" title=" " alt="" coords="243,5,347,32"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="99,5,195,32"/>
+<area shape="poly" title=" " alt="" coords="227,21,196,21,196,16,227,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
+<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+</map>
 </div>
 
 </div>
@@ -211,6 +282,17 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_add6d3c0fdc5d81926c892afd692c776b_icgraph.png" border="0" usemap="#amqtt__client_8cpp_add6d3c0fdc5d81926c892afd692c776b_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_add6d3c0fdc5d81926c892afd692c776b_icgraph" id="amqtt__client_8cpp_add6d3c0fdc5d81926c892afd692c776b_icgraph">
+<area shape="rect" title=" " alt="" coords="578,5,662,32"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a681aa515ca2e6ecdbeed2635b88578d7" title=" " alt="" coords="395,5,530,32"/>
+<area shape="poly" title=" " alt="" coords="562,21,530,21,530,16,562,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="243,5,347,32"/>
+<area shape="poly" title=" " alt="" coords="380,21,348,21,348,16,380,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="99,5,195,32"/>
+<area shape="poly" title=" " alt="" coords="227,21,196,21,196,16,227,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
+<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+</map>
 </div>
 
 </div>
@@ -233,6 +315,21 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a57972325aef8cfc9b4112fda932dd6bf_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a57972325aef8cfc9b4112fda932dd6bf_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a57972325aef8cfc9b4112fda932dd6bf_icgraph" id="amqtt__client_8cpp_a57972325aef8cfc9b4112fda932dd6bf_icgraph">
+<area shape="rect" title=" " alt="" coords="403,31,534,57"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="251,5,355,32"/>
+<area shape="poly" title=" " alt="" coords="388,34,355,29,356,24,388,29"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="254,56,352,83"/>
+<area shape="poly" title=" " alt="" coords="388,59,353,64,352,59,387,54"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="107,5,203,32"/>
+<area shape="poly" title=" " alt="" coords="235,21,204,21,204,16,235,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,5,55,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,55,21,55,16,91,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="110,56,200,83"/>
+<area shape="poly" title=" " alt="" coords="239,72,200,72,200,67,239,67"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,56,59,83"/>
+<area shape="poly" title=" " alt="" coords="94,72,59,72,59,67,94,67"/>
+</map>
 </div>
 
 </div>
@@ -255,11 +352,25 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_cgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_cgraph" id="amqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,140,32"/>
+<area shape="rect" href="mqtt__client_8cpp.html#add6d3c0fdc5d81926c892afd692c776b" title=" " alt="" coords="188,5,272,32"/>
+<area shape="poly" title=" " alt="" coords="140,16,172,16,172,21,140,21"/>
+</map>
 </div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_icgraph" id="amqtt__client_8cpp_a681aa515ca2e6ecdbeed2635b88578d7_icgraph">
+<area shape="rect" title=" " alt="" coords="395,5,530,32"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="243,5,347,32"/>
+<area shape="poly" title=" " alt="" coords="380,21,348,21,348,16,380,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="99,5,195,32"/>
+<area shape="poly" title=" " alt="" coords="227,21,196,21,196,16,227,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
+<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+</map>
 </div>
 
 </div>
@@ -282,6 +393,18 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a3da586210877e66ba92641dc5d6246e5_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a3da586210877e66ba92641dc5d6246e5_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a3da586210877e66ba92641dc5d6246e5_icgraph" id="amqtt__client_8cpp_a3da586210877e66ba92641dc5d6246e5_icgraph">
+<area shape="rect" title=" " alt="" coords="569,5,677,32"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="243,5,347,32"/>
+<area shape="poly" title=" " alt="" coords="553,21,348,21,348,16,553,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="395,31,521,57"/>
+<area shape="poly" title=" " alt="" coords="554,32,521,37,521,32,553,27"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="99,5,195,32"/>
+<area shape="poly" title=" " alt="" coords="227,21,196,21,196,16,227,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
+<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+<area shape="poly" title=" " alt="" coords="379,34,347,29,348,24,380,29"/>
+</map>
 </div>
 
 </div>
@@ -304,11 +427,38 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_cgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_cgraph" id="amqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_cgraph">
+<area shape="rect" title=" " alt="" coords="5,107,102,133"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="150,107,254,133"/>
+<area shape="poly" title=" " alt="" coords="102,117,134,117,134,123,102,123"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a57972325aef8cfc9b4112fda932dd6bf" title=" " alt="" coords="332,5,462,32"/>
+<area shape="poly" title=" " alt="" coords="216,104,252,73,301,42,316,35,318,40,303,46,256,77,219,108"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a681aa515ca2e6ecdbeed2635b88578d7" title=" " alt="" coords="330,56,464,83"/>
+<area shape="poly" title=" " alt="" coords="254,104,327,85,329,90,255,109"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3da586210877e66ba92641dc5d6246e5" title=" " alt="" coords="542,119,651,145"/>
+<area shape="poly" title=" " alt="" coords="254,119,527,127,527,133,254,124"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="334,157,460,184"/>
+<area shape="poly" title=" " alt="" coords="255,131,329,150,327,155,254,136"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="302,208,492,235"/>
+<area shape="poly" title=" " alt="" coords="219,132,256,163,303,194,318,200,316,205,301,198,252,167,216,136"/>
+<area shape="rect" href="mqtt__client_8cpp.html#add6d3c0fdc5d81926c892afd692c776b" title=" " alt="" coords="554,56,639,83"/>
+<area shape="poly" title=" " alt="" coords="465,67,540,67,540,72,465,72"/>
+<area shape="poly" title=" " alt="" coords="460,156,527,143,528,148,461,161"/>
+<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="540,195,653,221"/>
+<area shape="poly" title=" " alt="" coords="493,212,525,210,525,215,493,218"/>
+<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="551,245,642,272"/>
+<area shape="poly" title=" " alt="" coords="472,233,536,245,535,250,471,238"/>
+</map>
 </div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_icgraph" id="amqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_icgraph">
+<area shape="rect" title=" " alt="" coords="99,5,195,32"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
+<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+</map>
 </div>
 
 </div>
@@ -331,11 +481,29 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_cgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_cgraph" id="amqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,151,57"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a9d23c1c2b3b5f9613a2215945494badb" title=" " alt="" coords="199,5,330,32"/>
+<area shape="poly" title=" " alt="" coords="151,31,183,27,184,32,151,37"/>
+<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="220,56,308,83"/>
+<area shape="poly" title=" " alt="" coords="151,51,205,59,204,64,151,57"/>
+<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="378,56,490,83"/>
+<area shape="poly" title=" " alt="" coords="309,67,363,67,363,72,309,72"/>
+</map>
 </div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_icgraph" id="amqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_icgraph">
+<area shape="rect" title=" " alt="" coords="391,5,537,32"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="245,5,343,32"/>
+<area shape="poly" title=" " alt="" coords="376,21,344,21,344,16,376,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="107,5,197,32"/>
+<area shape="poly" title=" " alt="" coords="229,21,197,21,197,16,229,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
 </div>
 
 </div>
@@ -367,11 +535,31 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_cgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_cgraph" id="amqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,104,57"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a57972325aef8cfc9b4112fda932dd6bf" title=" " alt="" coords="159,5,290,32"/>
+<area shape="poly" title=" " alt="" coords="104,34,143,28,144,33,105,39"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="152,56,297,83"/>
+<area shape="poly" title=" " alt="" coords="105,49,137,54,136,59,104,54"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a9d23c1c2b3b5f9613a2215945494badb" title=" " alt="" coords="345,31,476,57"/>
+<area shape="poly" title=" " alt="" coords="297,57,329,52,330,58,298,62"/>
+<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="366,81,455,108"/>
+<area shape="poly" title=" " alt="" coords="298,77,351,84,350,89,297,82"/>
+<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="524,81,637,108"/>
+<area shape="poly" title=" " alt="" coords="455,92,509,92,509,97,455,97"/>
+</map>
 </div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_icgraph" id="amqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_icgraph">
+<area shape="rect" title=" " alt="" coords="245,5,343,32"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="107,5,197,32"/>
+<area shape="poly" title=" " alt="" coords="229,21,197,21,197,16,229,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
 </div>
 
 </div>
@@ -411,11 +599,25 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_cgraph.png" border="0" usemap="#amqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_cgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_cgraph" id="amqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,131,32"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3da586210877e66ba92641dc5d6246e5" title=" " alt="" coords="179,5,287,32"/>
+<area shape="poly" title=" " alt="" coords="131,16,163,16,163,21,131,21"/>
+</map>
 </div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_icgraph.png" border="0" usemap="#amqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_icgraph" id="amqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_icgraph">
+<area shape="rect" title=" " alt="" coords="395,5,521,32"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="243,5,347,32"/>
+<area shape="poly" title=" " alt="" coords="380,21,348,21,348,16,380,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="99,5,195,32"/>
+<area shape="poly" title=" " alt="" coords="227,21,196,21,196,16,227,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
+<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+</map>
 </div>
 
 </div>
@@ -438,11 +640,27 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_cgraph.png" border="0" usemap="#amqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_cgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_cgraph" id="amqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,196,57"/>
+<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="244,5,356,32"/>
+<area shape="poly" title=" " alt="" coords="196,29,228,25,229,30,196,34"/>
+<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="254,56,346,83"/>
+<area shape="poly" title=" " alt="" coords="196,54,239,59,238,64,196,59"/>
+</map>
 </div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_icgraph.png" border="0" usemap="#amqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_icgraph" id="amqtt__client_8cpp_ac49364afe5be3cf4e718ab09d67017da_icgraph">
+<area shape="rect" title=" " alt="" coords="395,5,586,32"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="243,5,347,32"/>
+<area shape="poly" title=" " alt="" coords="380,21,348,21,348,16,380,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="99,5,195,32"/>
+<area shape="poly" title=" " alt="" coords="227,21,196,21,196,16,227,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
+<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+</map>
 </div>
 
 </div>
@@ -465,6 +683,19 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a9d23c1c2b3b5f9613a2215945494badb_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a9d23c1c2b3b5f9613a2215945494badb_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a9d23c1c2b3b5f9613a2215945494badb_icgraph" id="amqtt__client_8cpp_a9d23c1c2b3b5f9613a2215945494badb_icgraph">
+<area shape="rect" title=" " alt="" coords="585,31,716,57"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="391,5,537,32"/>
+<area shape="poly" title=" " alt="" coords="569,36,537,31,537,26,570,30"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="441,56,487,83"/>
+<area shape="poly" title=" " alt="" coords="570,58,488,69,487,64,569,52"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="245,5,343,32"/>
+<area shape="poly" title=" " alt="" coords="376,21,344,21,344,16,376,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="107,5,197,32"/>
+<area shape="poly" title=" " alt="" coords="229,21,197,21,197,16,229,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
 </div>
 
 </div>
@@ -504,11 +735,31 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_cgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_cgraph" id="amqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,96,57"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="144,31,242,57"/>
+<area shape="poly" title=" " alt="" coords="96,41,128,41,128,47,96,47"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a57972325aef8cfc9b4112fda932dd6bf" title=" " alt="" coords="298,5,428,32"/>
+<area shape="poly" title=" " alt="" coords="242,34,281,28,282,33,243,39"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="290,56,435,83"/>
+<area shape="poly" title=" " alt="" coords="243,49,275,54,274,59,242,54"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a9d23c1c2b3b5f9613a2215945494badb" title=" " alt="" coords="483,31,615,57"/>
+<area shape="poly" title=" " alt="" coords="435,57,468,52,468,58,436,62"/>
+<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="505,81,593,108"/>
+<area shape="poly" title=" " alt="" coords="436,77,489,84,489,89,435,82"/>
+<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="663,81,775,108"/>
+<area shape="poly" title=" " alt="" coords="594,92,647,92,647,97,594,97"/>
+</map>
 </div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_icgraph" id="amqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_icgraph">
+<area shape="rect" title=" " alt="" coords="107,5,197,32"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
 </div>
 
 </div>
@@ -538,6 +789,28 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
           <td class="memname">bool mqttConnected = false</td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4cd0eb2684ad54d1d0782f4ff75e07f" name="ab4cd0eb2684ad54d1d0782f4ff75e07f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">&#9670;&#160;</a></span>timeClient</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTPClient* timeClient</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

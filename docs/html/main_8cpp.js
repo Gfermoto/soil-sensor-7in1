@@ -6,5 +6,8 @@ var main_8cpp =
     [ "startFakeSensorTask", "main_8cpp.html#abd277e18147efb1103e91eac01627612", null ],
     [ "startRealSensorTask", "main_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df", null ],
     [ "lastDataPublishTime", "main_8cpp.html#a6d9eac2bbb6f1354d8abcc8072978a4e", null ],
-    [ "lastSensorReadTime", "main_8cpp.html#a84aca0ffa2567a5fcd17bba8e330690a", null ]
+    [ "lastNtpUpdate", "main_8cpp.html#acc1f621a9291ba211ffa0100abe000ca", null ],
+    [ "lastSensorReadTime", "main_8cpp.html#a84aca0ffa2567a5fcd17bba8e330690a", null ],
+    [ "ntpUDP", "main_8cpp.html#a22f33e7e05df58bb6145bb6e543e232a", null ],
+    [ "timeClient", "main_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f", null ]
 ];

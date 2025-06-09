@@ -13,6 +13,8 @@ extern NTPClient* timeClient;
 const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";
 
 static unsigned long lastTsPublish = 0;
+String thingSpeakLastPublish = "";
+String thingSpeakLastError = "";
 
 void setupThingSpeak(WiFiClient& client) {
     ThingSpeak.begin(client);
@@ -40,12 +42,16 @@ bool sendDataToThingSpeak() {
     int res = ThingSpeak.writeFields(channelId, config.thingSpeakApiKey);
     if (res == 200) {
         Serial.println("[ThingSpeak] Данные успешно отправлены");
+        thingSpeakLastPublish = String(millis());
+        thingSpeakLastError = "";
         return true;
     } else if (res == -401) {
         Serial.println("[ThingSpeak] Превышен лимит публикаций (15 сек)");
+        thingSpeakLastError = "Превышен лимит публикаций (15 сек)";
     } else {
         Serial.print("[ThingSpeak] Ошибка публикации, код: ");
         Serial.println(res);
+        thingSpeakLastError = "Ошибка публикации ThingSpeak";
     }
     return false;
 } 

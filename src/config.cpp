@@ -42,7 +42,7 @@ void loadConfig() {
     preferences.getString("mqttTopicPrefix", config.mqttTopicPrefix, sizeof(config.mqttTopicPrefix));
     preferences.getString("mqttDeviceName", config.mqttDeviceName, sizeof(config.mqttDeviceName));
     config.hassEnabled = preferences.getBool("hassEnabled", false);
-    config.useRealSensor = preferences.getBool("useRealSensor", true);
+    config.useRealSensor = true;
     config.mqttQos = preferences.getUChar("mqttQos", 0);
     config.thingspeakInterval = preferences.getUShort("tsInterval", 60);
     preferences.getString("manufacturer", config.manufacturer, sizeof(config.manufacturer));

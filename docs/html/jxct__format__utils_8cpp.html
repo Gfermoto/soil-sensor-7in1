@@ -1,0 +1,371 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor: Файл src/jxct_format_utils.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor
+   </div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('jxct__format__utils_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл jxct_format_utils.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="jxct__format__utils_8h_source.html">jxct_format_utils.h</a>&quot;</code><br />
+<code>#include &lt;cstdio&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Граф включаемых заголовочных файлов для jxct_format_utils.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="jxct__format__utils_8cpp__incl.png" border="0" usemap="#asrc_2jxct__format__utils_8cpp" alt=""/></div>
+<map name="asrc_2jxct__format__utils_8cpp" id="asrc_2jxct__format__utils_8cpp">
+<area shape="rect" title=" " alt="" coords="45,5,209,32"/>
+<area shape="rect" href="jxct__format__utils_8h.html" title=" " alt="" coords="5,80,134,107"/>
+<area shape="poly" title=" " alt="" coords="119,34,91,69,87,66,115,31"/>
+<area shape="rect" title=" " alt="" coords="157,80,214,107"/>
+<area shape="poly" title=" " alt="" coords="139,31,168,66,164,69,135,34"/>
+<area shape="rect" title=" " alt="" coords="43,155,96,181"/>
+<area shape="poly" title=" " alt="" coords="72,107,72,139,67,139,67,107"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a3be478cef555484efe62159216f6d470" id="r_a3be478cef555484efe62159216f6d470"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3be478cef555484efe62159216f6d470">format_moisture</a> (float value)</td></tr>
+<tr class="separator:a3be478cef555484efe62159216f6d470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a843da2888c9b8014dd9506284f1351" id="r_a9a843da2888c9b8014dd9506284f1351"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a843da2888c9b8014dd9506284f1351">format_temperature</a> (float value)</td></tr>
+<tr class="separator:a9a843da2888c9b8014dd9506284f1351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39b2dedc3670adcf20a62a8d113d2483" id="r_a39b2dedc3670adcf20a62a8d113d2483"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39b2dedc3670adcf20a62a8d113d2483">format_ec</a> (float value)</td></tr>
+<tr class="separator:a39b2dedc3670adcf20a62a8d113d2483"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a416ab24406c338058778bbde7c4da152" id="r_a416ab24406c338058778bbde7c4da152"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a416ab24406c338058778bbde7c4da152">format_ph</a> (float value)</td></tr>
+<tr class="separator:a416ab24406c338058778bbde7c4da152"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abdc9f6cdc05f0aa72eec54b3e904ca7b" id="r_abdc9f6cdc05f0aa72eec54b3e904ca7b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdc9f6cdc05f0aa72eec54b3e904ca7b">format_npk</a> (float value)</td></tr>
+<tr class="separator:abdc9f6cdc05f0aa72eec54b3e904ca7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Функции</h2>
+<a id="a39b2dedc3670adcf20a62a8d113d2483" name="a39b2dedc3670adcf20a62a8d113d2483"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39b2dedc3670adcf20a62a8d113d2483">&#9670;&#160;</a></span>format_ec()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string format_ec </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="jxct__format__utils_8cpp_a39b2dedc3670adcf20a62a8d113d2483_icgraph.png" border="0" usemap="#ajxct__format__utils_8cpp_a39b2dedc3670adcf20a62a8d113d2483_icgraph" alt=""/></div>
+<map name="ajxct__format__utils_8cpp_a39b2dedc3670adcf20a62a8d113d2483_icgraph" id="ajxct__format__utils_8cpp_a39b2dedc3670adcf20a62a8d113d2483_icgraph">
+<area shape="rect" title=" " alt="" coords="761,68,840,95"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="387,5,548,32"/>
+<area shape="poly" title=" " alt="" coords="745,74,542,35,543,30,746,69"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="596,93,713,120"/>
+<area shape="poly" title=" " alt="" coords="746,93,714,99,713,94,745,88"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
+<area shape="poly" title=" " alt="" coords="372,24,235,33,170,43,169,37,235,28,372,19"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="419,93,516,120"/>
+<area shape="poly" title=" " alt="" coords="580,109,517,109,517,104,580,104"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,144,339,171"/>
+<area shape="poly" title=" " alt="" coords="587,127,548,135,437,149,340,157,340,152,436,144,547,129,586,122"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,43,330,69"/>
+<area shape="poly" title=" " alt="" coords="403,91,330,71,332,65,405,86"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
+<area shape="poly" title=" " alt="" coords="403,112,188,121,187,116,403,107"/>
+<area shape="poly" title=" " alt="" coords="405,127,338,146,337,141,403,122"/>
+<area shape="poly" title=" " alt="" coords="228,54,170,49,170,43,229,48"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
+<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
+<area shape="poly" title=" " alt="" coords="219,142,187,133,188,128,221,137"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3be478cef555484efe62159216f6d470" name="a3be478cef555484efe62159216f6d470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3be478cef555484efe62159216f6d470">&#9670;&#160;</a></span>format_moisture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string format_moisture </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="jxct__format__utils_8cpp_a3be478cef555484efe62159216f6d470_icgraph.png" border="0" usemap="#ajxct__format__utils_8cpp_a3be478cef555484efe62159216f6d470_icgraph" alt=""/></div>
+<map name="ajxct__format__utils_8cpp_a3be478cef555484efe62159216f6d470_icgraph" id="ajxct__format__utils_8cpp_a3be478cef555484efe62159216f6d470_icgraph">
+<area shape="rect" title=" " alt="" coords="761,68,876,95"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="387,5,548,32"/>
+<area shape="poly" title=" " alt="" coords="745,71,546,35,547,30,746,66"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="596,93,713,120"/>
+<area shape="poly" title=" " alt="" coords="746,95,714,100,713,95,745,90"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
+<area shape="poly" title=" " alt="" coords="372,24,235,33,170,43,169,37,235,28,372,19"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="419,93,516,120"/>
+<area shape="poly" title=" " alt="" coords="580,109,517,109,517,104,580,104"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,144,339,171"/>
+<area shape="poly" title=" " alt="" coords="587,127,548,135,437,149,340,157,340,152,436,144,547,129,586,122"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,43,330,69"/>
+<area shape="poly" title=" " alt="" coords="403,91,330,71,332,65,405,86"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
+<area shape="poly" title=" " alt="" coords="403,112,188,121,187,116,403,107"/>
+<area shape="poly" title=" " alt="" coords="405,127,338,146,337,141,403,122"/>
+<area shape="poly" title=" " alt="" coords="228,54,170,49,170,43,229,48"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
+<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
+<area shape="poly" title=" " alt="" coords="219,142,187,133,188,128,221,137"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="abdc9f6cdc05f0aa72eec54b3e904ca7b" name="abdc9f6cdc05f0aa72eec54b3e904ca7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abdc9f6cdc05f0aa72eec54b3e904ca7b">&#9670;&#160;</a></span>format_npk()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string format_npk </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="jxct__format__utils_8cpp_abdc9f6cdc05f0aa72eec54b3e904ca7b_icgraph.png" border="0" usemap="#ajxct__format__utils_8cpp_abdc9f6cdc05f0aa72eec54b3e904ca7b_icgraph" alt=""/></div>
+<map name="ajxct__format__utils_8cpp_abdc9f6cdc05f0aa72eec54b3e904ca7b_icgraph" id="ajxct__format__utils_8cpp_abdc9f6cdc05f0aa72eec54b3e904ca7b_icgraph">
+<area shape="rect" title=" " alt="" coords="761,68,847,95"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="387,5,548,32"/>
+<area shape="poly" title=" " alt="" coords="745,73,543,35,544,30,746,68"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="596,93,713,120"/>
+<area shape="poly" title=" " alt="" coords="746,94,714,99,713,94,745,89"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
+<area shape="poly" title=" " alt="" coords="372,24,235,33,170,43,169,37,235,28,372,19"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="419,93,516,120"/>
+<area shape="poly" title=" " alt="" coords="580,109,517,109,517,104,580,104"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,144,339,171"/>
+<area shape="poly" title=" " alt="" coords="587,127,548,135,437,149,340,157,340,152,436,144,547,129,586,122"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,43,330,69"/>
+<area shape="poly" title=" " alt="" coords="403,91,330,71,332,65,405,86"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
+<area shape="poly" title=" " alt="" coords="403,112,188,121,187,116,403,107"/>
+<area shape="poly" title=" " alt="" coords="405,127,338,146,337,141,403,122"/>
+<area shape="poly" title=" " alt="" coords="228,54,170,49,170,43,229,48"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
+<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
+<area shape="poly" title=" " alt="" coords="219,142,187,133,188,128,221,137"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a416ab24406c338058778bbde7c4da152" name="a416ab24406c338058778bbde7c4da152"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a416ab24406c338058778bbde7c4da152">&#9670;&#160;</a></span>format_ph()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string format_ph </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="jxct__format__utils_8cpp_a416ab24406c338058778bbde7c4da152_icgraph.png" border="0" usemap="#ajxct__format__utils_8cpp_a416ab24406c338058778bbde7c4da152_icgraph" alt=""/></div>
+<map name="ajxct__format__utils_8cpp_a416ab24406c338058778bbde7c4da152_icgraph" id="ajxct__format__utils_8cpp_a416ab24406c338058778bbde7c4da152_icgraph">
+<area shape="rect" title=" " alt="" coords="761,68,840,95"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="387,5,548,32"/>
+<area shape="poly" title=" " alt="" coords="745,74,542,35,543,30,746,69"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="596,93,713,120"/>
+<area shape="poly" title=" " alt="" coords="746,93,714,99,713,94,745,88"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
+<area shape="poly" title=" " alt="" coords="372,24,235,33,170,43,169,37,235,28,372,19"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="419,93,516,120"/>
+<area shape="poly" title=" " alt="" coords="580,109,517,109,517,104,580,104"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,144,339,171"/>
+<area shape="poly" title=" " alt="" coords="587,127,548,135,437,149,340,157,340,152,436,144,547,129,586,122"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,43,330,69"/>
+<area shape="poly" title=" " alt="" coords="403,91,330,71,332,65,405,86"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
+<area shape="poly" title=" " alt="" coords="403,112,188,121,187,116,403,107"/>
+<area shape="poly" title=" " alt="" coords="405,127,338,146,337,141,403,122"/>
+<area shape="poly" title=" " alt="" coords="228,54,170,49,170,43,229,48"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
+<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
+<area shape="poly" title=" " alt="" coords="219,142,187,133,188,128,221,137"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9a843da2888c9b8014dd9506284f1351" name="a9a843da2888c9b8014dd9506284f1351"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a843da2888c9b8014dd9506284f1351">&#9670;&#160;</a></span>format_temperature()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string format_temperature </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="jxct__format__utils_8cpp_a9a843da2888c9b8014dd9506284f1351_icgraph.png" border="0" usemap="#ajxct__format__utils_8cpp_a9a843da2888c9b8014dd9506284f1351_icgraph" alt=""/></div>
+<map name="ajxct__format__utils_8cpp_a9a843da2888c9b8014dd9506284f1351_icgraph" id="ajxct__format__utils_8cpp_a9a843da2888c9b8014dd9506284f1351_icgraph">
+<area shape="rect" title=" " alt="" coords="761,68,895,95"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="387,5,548,32"/>
+<area shape="poly" title=" " alt="" coords="745,70,548,35,549,30,746,64"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="596,93,713,120"/>
+<area shape="poly" title=" " alt="" coords="746,96,714,101,713,95,745,91"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
+<area shape="poly" title=" " alt="" coords="372,24,235,33,170,43,169,37,235,28,372,19"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="419,93,516,120"/>
+<area shape="poly" title=" " alt="" coords="580,109,517,109,517,104,580,104"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,144,339,171"/>
+<area shape="poly" title=" " alt="" coords="587,127,548,135,437,149,340,157,340,152,436,144,547,129,586,122"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,43,330,69"/>
+<area shape="poly" title=" " alt="" coords="403,91,330,71,332,65,405,86"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
+<area shape="poly" title=" " alt="" coords="403,112,188,121,187,116,403,107"/>
+<area shape="poly" title=" " alt="" coords="405,127,338,146,337,141,403,122"/>
+<area shape="poly" title=" " alt="" coords="228,54,170,49,170,43,229,48"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
+<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
+<area shape="poly" title=" " alt="" coords="219,142,187,133,188,128,221,137"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="jxct__format__utils_8cpp.html">jxct_format_utils.cpp</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

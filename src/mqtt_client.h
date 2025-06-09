@@ -8,6 +8,7 @@
 extern WiFiClient espClient;
 extern PubSubClient mqttClient;
 extern bool mqttConnected;
+extern String mqttLastError;
 
 // Инициализация MQTT клиента
 void setupMQTT();

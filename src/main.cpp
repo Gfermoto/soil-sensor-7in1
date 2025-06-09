@@ -13,8 +13,15 @@ unsigned long lastSensorReadTime = 0;
 unsigned long lastDataPublishTime = 0;
 unsigned long lastNtpUpdate = 0;
 
-extern void startFakeSensorTask();
-extern void startRealSensorTask();
+// Объявления функций
+void initPreferences();
+void setupWiFi();
+void setupModbus();
+void loadConfig();
+void startRealSensorTask();
+void startFakeSensorTask();
+void handleWiFi();
+void handleMQTT();
 
 WiFiUDP ntpUDP;
 NTPClient* timeClient = nullptr;
@@ -33,39 +40,23 @@ void resetButtonTask(void *pvParameters) {
 
 void setup() {
     Serial.begin(115200);
-    Serial.println("\n\nJXCT 7in1 Soil Sensor");
-    Serial.println("=====================");
-    Serial.println("[setup] Запуск инициализации...");
-    
-    // Настройка пина кнопки
-    pinMode(BOOT_BUTTON, INPUT_PULLUP);
-    Serial.print("[setup] BOOT_BUTTON пин: "); Serial.println(BOOT_BUTTON);
+    Serial.println("\n[setup] Инициализация устройства...");
 
-    // Запуск задачи FreeRTOS для кнопки сброса
-    xTaskCreate(resetButtonTask, "ResetButton", 2048, NULL, 1, NULL);
-    Serial.println("[setup] Задача resetButtonTask запущена");
-    
-    // Инициализация WiFi (и загрузка конфига)
+    // Инициализация EEPROM и конфигурации
+    initPreferences();
+    loadConfig();
+
+    // Настройка WiFi
     setupWiFi();
-    Serial.println("[setup] setupWiFi завершён");
-    
-    // Инициализация Modbus
+
+    // Настройка Modbus и датчика
     setupModbus();
-    Serial.println("[setup] setupModbus завершён");
-    
-    // Инициализация MQTT
-    setupMQTT();
-    Serial.println("[setup] setupMQTT завершён");
-    
-    // Инициализация ThingSpeak
-    setupThingSpeak(espClient);
-    Serial.println("[setup] setupThingSpeak завершён");
-    
-    // Инициализация NTP
-    if (timeClient) delete timeClient;
-    timeClient = new NTPClient(ntpUDP, config.ntpServer, 3 * 3600, config.ntpUpdateInterval);
-    timeClient->begin();
-    
+    Serial.print("[setup] Режим реального датчика: "); 
+    Serial.println(config.useRealSensor ? "ВКЛЮЧЕН" : "ВЫКЛЮЧЕН");
+    Serial.print("[setup] Интервал чтения датчика: "); 
+    Serial.print(SENSOR_READ_INTERVAL); 
+    Serial.println(" мс");
+
     // Запуск задачи датчика
     if (config.useRealSensor) {
         startRealSensorTask();
@@ -73,29 +64,44 @@ void setup() {
     } else {
         startFakeSensorTask();
         Serial.println("[setup] Запущена задача фейкового датчика");
+        Serial.println("[setup] ВНИМАНИЕ: Для работы с реальным датчиком включите опцию 'useRealSensor' в настройках!");
     }
     Serial.println("[setup] Инициализация завершена");
+}
+
+void initPreferences() {
+    // Инициализация Preferences
+    if (!preferences.begin("jxct-sensor", false)) {
+        Serial.println("[initPreferences] Ошибка инициализации Preferences!");
+    } else {
+        Serial.println("[initPreferences] Preferences успешно инициализирован");
+    }
 }
 
 void loop() {
     handleWiFi();
     handleMQTT();
     
-    if (millis() - lastSensorReadTime >= SENSOR_READ_INTERVAL) {
+    // Расширенная отладка чтения датчика
+    static unsigned long lastDebugTime = 0;
+    if (millis() - lastDebugTime >= 10000) {  // Отладочное сообщение каждые 10 секунд
+        lastDebugTime = millis();
+        Serial.println("\n[DEBUG] Состояние системы:");
+        Serial.print("Время работы: "); Serial.print(millis()/1000); Serial.println(" сек");
+        Serial.print("Режим реального датчика: "); 
+        Serial.println(config.useRealSensor ? "ВКЛЮЧЕН" : "ВЫКЛЮЧЕН");
+    }
+    
+    if (config.useRealSensor && millis() - lastSensorReadTime >= SENSOR_READ_INTERVAL) {
         lastSensorReadTime = millis();
         Serial.println("[loop] Опрос датчика...");
-        if (readSensorData()) {
-            Serial.println("[loop] Данные с датчика успешно прочитаны");
-            Serial.print("[loop] Температура: "); Serial.println(sensorData.temperature);
-            Serial.print("[loop] Влажность: "); Serial.println(sensorData.humidity);
-            Serial.print("[loop] EC: "); Serial.println(sensorData.ec);
-            Serial.print("[loop] pH: "); Serial.println(sensorData.ph);
-            Serial.print("[loop] Азот: "); Serial.println(sensorData.nitrogen);
-            Serial.print("[loop] Фосфор: "); Serial.println(sensorData.phosphorus);
-            Serial.print("[loop] Калий: "); Serial.println(sensorData.potassium);
-        } else {
-            Serial.println("[loop] Ошибка чтения данных с датчика");
-        }
+        
+        // Расширенная отладка
+        Serial.print("[loop] Интервал чтения: "); 
+        Serial.print(SENSOR_READ_INTERVAL); 
+        Serial.println(" мс");
+        
+        readSensorData();
     }
     if (millis() - lastDataPublishTime >= DATA_PUBLISH_INTERVAL) {
         lastDataPublishTime = millis();

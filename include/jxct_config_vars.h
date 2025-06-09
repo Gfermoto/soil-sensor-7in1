@@ -3,7 +3,8 @@
 // Аппаратные пины
 #define RX_PIN 16
 #define TX_PIN 17
-#define MAX485_DE_RE 4
+#define MAX485_DE 4   // Data Enable
+#define MAX485_RE 5   // Receive Enable
 #define BOOT_BUTTON 0
 #define STATUS_LED_PIN 2
 
@@ -41,6 +42,8 @@ struct Config {
     bool mqttEnabled;
     bool thingSpeakEnabled;
     uint8_t modbusId;
+    char ntpServer[64];
+    uint32_t ntpUpdateInterval;
 };
 extern Config config;
 extern Preferences preferences;
@@ -48,4 +51,5 @@ extern Preferences preferences;
 // Объявления функций работы с конфигом
 void loadConfig();
 void saveConfig();
-void resetConfig(); 
+void resetConfig();
+bool isConfigValid(); 

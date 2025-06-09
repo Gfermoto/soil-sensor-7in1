@@ -8,5 +8,6 @@ var searchData=
   ['thingspeakchannelid_5',['thingSpeakChannelId',['../struct_config.html#ac6f3c8d2693a4f16ec88274f0e013524',1,'Config']]],
   ['thingspeakenabled_6',['thingSpeakEnabled',['../struct_config.html#a60d20f612e5ba4bc7f7479d24e9e6ad6',1,'Config']]],
   ['thingspeakinterval_7',['thingspeakInterval',['../struct_config.html#a13e63c68dce75b6186790ae71f8835ff',1,'Config']]],
-  ['tx_5fpin_8',['TX_PIN',['../config_8h.html#a3bb17f5daa2b1eaef58c8aa2d989e27e',1,'config.h']]]
+  ['timeclient_8',['timeClient',['../main_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../mqtt__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../thingspeak__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../wifi__manager_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp']]],
+  ['tx_5fpin_9',['TX_PIN',['../jxct__config__vars_8h.html#a3bb17f5daa2b1eaef58c8aa2d989e27e',1,'jxct_config_vars.h']]]
 ];

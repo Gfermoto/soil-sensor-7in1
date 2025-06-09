@@ -6,6 +6,8 @@
 #include <ThingSpeak.h>
 
 extern WiFiClient espClient;
+extern String thingSpeakLastPublish;
+extern String thingSpeakLastError;
 
 // Инициализация ThingSpeak клиента (передаём WiFiClient)
 void setupThingSpeak(WiFiClient& client);

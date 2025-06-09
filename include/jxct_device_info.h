@@ -2,7 +2,7 @@
 
 static const char DEVICE_MANUFACTURER[] = "Eyera";
 static const char DEVICE_MODEL[] = "JXCT-7in1";
-static const char DEVICE_SW_VERSION[] = "1.4";
+static const char DEVICE_SW_VERSION[] = "1.8";
 
 #include <Arduino.h>
 

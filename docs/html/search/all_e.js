@@ -11,7 +11,7 @@ var searchData=
   ['reg_5fsoil_5ftemp_8',['REG_SOIL_TEMP',['../modbus__sensor_8h.html#a183e5bdeda520ac205c6fa93a52e1ef4',1,'modbus_sensor.h']]],
   ['removehomeassistantconfig_9',['removeHomeAssistantConfig',['../mqtt__client_8cpp.html#a7a9b6d18074276b45340af02c443924a',1,'removeHomeAssistantConfig():&#160;mqtt_client.cpp'],['../mqtt__client_8h.html#a7a9b6d18074276b45340af02c443924a',1,'removeHomeAssistantConfig():&#160;mqtt_client.cpp']]],
   ['resetbuttontask_10',['resetButtonTask',['../main_8cpp.html#a78aea0b783dee7e793220e19bf94eea9',1,'main.cpp']]],
-  ['resetconfig_11',['resetConfig',['../config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061',1,'resetConfig():&#160;config.cpp'],['../config_8h.html#a6fa5204bcafe1db397da4a87b1690061',1,'resetConfig():&#160;config.cpp'],['../wifi__manager_8h.html#a6fa5204bcafe1db397da4a87b1690061',1,'resetConfig():&#160;config.cpp']]],
+  ['resetconfig_11',['resetConfig',['../config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061',1,'resetConfig():&#160;config.cpp'],['../wifi__manager_8h.html#a6fa5204bcafe1db397da4a87b1690061',1,'resetConfig():&#160;config.cpp'],['../jxct__config__vars_8h.html#a6fa5204bcafe1db397da4a87b1690061',1,'resetConfig():&#160;config.cpp']]],
   ['restartesp_12',['restartESP',['../wifi__manager_8cpp.html#a40cec05f995ed2024366761fa28604a7',1,'restartESP():&#160;wifi_manager.cpp'],['../wifi__manager_8h.html#a40cec05f995ed2024366761fa28604a7',1,'restartESP():&#160;wifi_manager.cpp']]],
-  ['rx_5fpin_13',['RX_PIN',['../config_8h.html#aa7089c01538b339ae745173c117f95b9',1,'config.h']]]
+  ['rx_5fpin_13',['RX_PIN',['../jxct__config__vars_8h.html#aa7089c01538b339ae745173c117f95b9',1,'jxct_config_vars.h']]]
 ];

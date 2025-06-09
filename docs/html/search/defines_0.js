@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['boot_5fbutton_5freset_5ftime_0',['BOOT_BUTTON_RESET_TIME',['../config_8h.html#a3a0a19605d70bc873d8c781b441c7eeb',1,'config.h']]]
+  ['boot_5fbutton_0',['BOOT_BUTTON',['../jxct__config__vars_8h.html#ac1268edc13ca85789628d69528560051',1,'jxct_config_vars.h']]]
 ];

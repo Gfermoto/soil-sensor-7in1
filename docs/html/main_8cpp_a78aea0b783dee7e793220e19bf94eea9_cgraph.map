@@ -1,0 +1,11 @@
+<map id="resetButtonTask" name="resetButtonTask">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,122,83"/>
+<area shape="rect" id="Node000002" href="$wifi__manager_8cpp.html#ac90eb7c31515447a075eee8f395ac02f" title=" " alt="" coords="170,5,299,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="110,53,172,34,173,39,112,58"/>
+<area shape="rect" id="Node000003" href="$config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="190,56,278,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,67,175,67,175,72,122,72"/>
+<area shape="rect" id="Node000005" href="$wifi__manager_8cpp.html#ab4e589808cf702c83022456542ce6301" title=" " alt="" coords="177,107,292,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="112,81,173,99,172,104,110,86"/>
+<area shape="rect" id="Node000004" href="$config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="347,56,459,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="279,67,332,67,332,72,279,72"/>
+</map>

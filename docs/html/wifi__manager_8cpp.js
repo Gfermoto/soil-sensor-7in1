@@ -1,6 +1,7 @@
 var wifi__manager_8cpp =
 [
     [ "checkResetButton", "wifi__manager_8cpp.html#ac90eb7c31515447a075eee8f395ac02f", null ],
+    [ "getApSsid", "wifi__manager_8cpp.html#af857f35623b29612a3b4cc45dd6fff23", null ],
     [ "handleStatus", "wifi__manager_8cpp.html#a1e811785ccbaccda2e3e3457971720cb", null ],
     [ "handleWiFi", "wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2", null ],
     [ "navHtml", "wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9", null ],
@@ -21,6 +22,6 @@ var wifi__manager_8cpp =
     [ "ledFastBlink", "wifi__manager_8cpp.html#abb4e2051d388569c5106a007f5ed6b36", null ],
     [ "ledLastToggle", "wifi__manager_8cpp.html#ad9c7d4c7f119b4c410067ff6563f156c", null ],
     [ "ledState", "wifi__manager_8cpp.html#ad43bbd53ee15610b1c213b0b6412d175", null ],
-    [ "setupPage", "wifi__manager_8cpp.html#a78dfb33020500415375d16fbe3020544", null ],
+    [ "timeClient", "wifi__manager_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f", null ],
     [ "wifiConnected", "wifi__manager_8cpp.html#ac542c876ea54085aa0173a9cd1e3251c", null ]
 ];

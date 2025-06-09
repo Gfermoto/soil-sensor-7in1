@@ -1,0 +1,7 @@
+<map id="realSensorTask" name="realSensorTask">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,117,32"/>
+<area shape="rect" id="Node000002" href="$modbus__sensor_8cpp.html#a90317d8e6573d5ce69fcb7e55adf236e" title=" " alt="" coords="165,5,280,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,16,149,16,149,21,117,21"/>
+<area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="328,5,484,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="280,16,312,16,312,21,280,21"/>
+</map>
