@@ -147,6 +147,24 @@ bool connectMQTT() {
         default: Serial.println("Неизвестная ошибка"); break;
     }
     
+    // Если подключились успешно
+    if (result) {
+        Serial.println("[MQTT] Подключение успешно!");
+        
+        // Подписываемся на топик команд
+        String commandTopic = getCommandTopic();
+        mqttClient.subscribe(commandTopic.c_str());
+        Serial.printf("[MQTT] Подписались на топик команд: %s\n", commandTopic.c_str());
+        
+        // Публикуем статус availability
+        publishAvailability(true);
+        
+        // Публикуем конфигурацию Home Assistant discovery если включено
+        if (config.hassEnabled) {
+            publishHomeAssistantConfig();
+        }
+    }
+    
     return result;
 }
 
@@ -212,66 +230,66 @@ void publishHomeAssistantConfig() {
     StaticJsonDocument<512> tempConfig;
     tempConfig["name"] = "JXCT Temperature";
     tempConfig["device_class"] = "temperature";
-    tempConfig["state_topic"] = getDefaultTopic() + "/state";
+    tempConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     tempConfig["unit_of_measurement"] = "°C";
     tempConfig["value_template"] = "{{ value_json.temperature }}";
     tempConfig["unique_id"] = deviceId + "_temp";
-    tempConfig["availability_topic"] = getDefaultTopic() + "/status";
+    tempConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     tempConfig["device"] = deviceInfo;
     // Влажность
     StaticJsonDocument<512> humConfig;
     humConfig["name"] = "JXCT Humidity";
     humConfig["device_class"] = "humidity";
-    humConfig["state_topic"] = getDefaultTopic() + "/state";
+    humConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     humConfig["unit_of_measurement"] = "%";
     humConfig["value_template"] = "{{ value_json.humidity }}";
     humConfig["unique_id"] = deviceId + "_hum";
-    humConfig["availability_topic"] = getDefaultTopic() + "/status";
+    humConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     humConfig["device"] = deviceInfo;
     // EC
     StaticJsonDocument<512> ecConfig;
     ecConfig["name"] = "JXCT EC";
     ecConfig["device_class"] = "conductivity";
-    ecConfig["state_topic"] = getDefaultTopic() + "/state";
+    ecConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     ecConfig["unit_of_measurement"] = "µS/cm";
     ecConfig["value_template"] = "{{ value_json.ec }}";
     ecConfig["unique_id"] = deviceId + "_ec";
-    ecConfig["availability_topic"] = getDefaultTopic() + "/status";
+    ecConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     ecConfig["device"] = deviceInfo;
     // pH
     StaticJsonDocument<512> phConfig;
     phConfig["name"] = "JXCT pH";
     phConfig["device_class"] = "ph";
-    phConfig["state_topic"] = getDefaultTopic() + "/state";
+    phConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     phConfig["unit_of_measurement"] = "pH";
     phConfig["value_template"] = "{{ value_json.ph }}";
     phConfig["unique_id"] = deviceId + "_ph";
-    phConfig["availability_topic"] = getDefaultTopic() + "/status";
+    phConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     phConfig["device"] = deviceInfo;
     // NPK (раздельно)
     StaticJsonDocument<512> nitrogenConfig;
     nitrogenConfig["name"] = "JXCT Nitrogen";
-    nitrogenConfig["state_topic"] = getDefaultTopic() + "/state";
+    nitrogenConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     nitrogenConfig["unit_of_measurement"] = "mg/kg";
     nitrogenConfig["value_template"] = "{{ value_json.nitrogen }}";
     nitrogenConfig["unique_id"] = deviceId + "_nitrogen";
-    nitrogenConfig["availability_topic"] = getDefaultTopic() + "/status";
+    nitrogenConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     nitrogenConfig["device"] = deviceInfo;
     StaticJsonDocument<512> phosphorusConfig;
     phosphorusConfig["name"] = "JXCT Phosphorus";
-    phosphorusConfig["state_topic"] = getDefaultTopic() + "/state";
+    phosphorusConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     phosphorusConfig["unit_of_measurement"] = "mg/kg";
     phosphorusConfig["value_template"] = "{{ value_json.phosphorus }}";
     phosphorusConfig["unique_id"] = deviceId + "_phosphorus";
-    phosphorusConfig["availability_topic"] = getDefaultTopic() + "/status";
+    phosphorusConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     phosphorusConfig["device"] = deviceInfo;
     StaticJsonDocument<512> potassiumConfig;
     potassiumConfig["name"] = "JXCT Potassium";
-    potassiumConfig["state_topic"] = getDefaultTopic() + "/state";
+    potassiumConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     potassiumConfig["unit_of_measurement"] = "mg/kg";
     potassiumConfig["value_template"] = "{{ value_json.potassium }}";
     potassiumConfig["unique_id"] = deviceId + "_potassium";
-    potassiumConfig["availability_topic"] = getDefaultTopic() + "/status";
+    potassiumConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     potassiumConfig["device"] = deviceInfo;
     // Сериализуем конфигурации в строки
     String tempConfigStr, humConfigStr, ecConfigStr, phConfigStr;
@@ -296,14 +314,15 @@ void publishHomeAssistantConfig() {
 }
 
 void removeHomeAssistantConfig() {
+    String deviceId = getDeviceId();
     // Публикуем пустой payload с retain для удаления сенсоров из HA
-    mqttClient.publish("homeassistant/sensor/jxct_temperature/config", "", true);
-    mqttClient.publish("homeassistant/sensor/jxct_humidity/config", "", true);
-    mqttClient.publish("homeassistant/sensor/jxct_ec/config", "", true);
-    mqttClient.publish("homeassistant/sensor/jxct_ph/config", "", true);
-    mqttClient.publish("homeassistant/sensor/jxct_nitrogen/config", "", true);
-    mqttClient.publish("homeassistant/sensor/jxct_phosphorus/config", "", true);
-    mqttClient.publish("homeassistant/sensor/jxct_potassium/config", "", true);
+    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_temperature/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_humidity/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_ec/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_ph/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_nitrogen/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_phosphorus/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_potassium/config").c_str(), "", true);
     Serial.println("[MQTT] Discovery-конфиги Home Assistant удалены");
     mqttLastError = "";
 }
@@ -318,6 +337,10 @@ void handleMqttCommand(const String& cmd) {
         ESP.restart();
     } else if (cmd == "publish_test") {
         publishSensorData();
+    } else if (cmd == "publish_discovery") {
+        publishHomeAssistantConfig();
+    } else if (cmd == "remove_discovery") {
+        removeHomeAssistantConfig();
     } else {
         Serial.println("[MQTT] Неизвестная команда");
     }
