@@ -292,19 +292,20 @@ void setupWebServer()
             // Сохраняем остальные настройки только в режиме STA
             if (currentWiFiMode == WiFiMode::STA)
             {
-                config.mqttEnabled = webServer.hasArg("mqtt_enabled");
+                // ✅ Явное приведение bool для битовых полей
+                config.flags.mqttEnabled = (uint8_t)webServer.hasArg("mqtt_enabled");
                 strlcpy(config.mqttServer, webServer.arg("mqtt_server").c_str(), sizeof(config.mqttServer));
                 config.mqttPort = webServer.arg("mqtt_port").toInt();
                 strlcpy(config.mqttUser, webServer.arg("mqtt_user").c_str(), sizeof(config.mqttUser));
                 strlcpy(config.mqttPassword, webServer.arg("mqtt_password").c_str(), sizeof(config.mqttPassword));
-                config.hassEnabled = webServer.hasArg("hass_enabled");
-                config.thingSpeakEnabled = webServer.hasArg("ts_enabled");
+                config.flags.hassEnabled = (uint8_t)webServer.hasArg("hass_enabled");
+                config.flags.thingSpeakEnabled = (uint8_t)webServer.hasArg("ts_enabled");
                 strlcpy(config.thingSpeakApiKey, webServer.arg("ts_api_key").c_str(), sizeof(config.thingSpeakApiKey));
                 config.mqttQos = webServer.arg("mqtt_qos").toInt();
                 config.thingspeakInterval = webServer.arg("ts_interval").toInt();
                 strlcpy(config.thingSpeakChannelId, webServer.arg("ts_channel_id").c_str(),
                         sizeof(config.thingSpeakChannelId));
-                config.useRealSensor = webServer.hasArg("real_sensor");
+                config.flags.useRealSensor = (uint8_t)webServer.hasArg("real_sensor");
                 strlcpy(config.ntpServer, webServer.arg("ntp_server").c_str(), sizeof(config.ntpServer));
                 config.ntpUpdateInterval = webServer.arg("ntp_interval").toInt();
             }
@@ -381,7 +382,7 @@ void setupWebServer()
                     String(config.password) + "' required></div></div>";
                 if (currentWiFiMode == WiFiMode::STA)
                 {
-                    String mqttChecked = config.mqttEnabled ? " checked" : "";
+                    String mqttChecked = config.flags.mqttEnabled ? " checked" : "";
                     html += "<div class='section'><h2>MQTT настройки</h2>";
                     html +=
                         "<div class='form-group'><label for='mqtt_enabled'>Включить MQTT:</label><input "
@@ -390,7 +391,7 @@ void setupWebServer()
                     html +=
                         "<div class='form-group'><label for='mqtt_server'>MQTT сервер:</label><input type='text' "
                         "id='mqtt_server' name='mqtt_server' value='" +
-                        String(config.mqttServer) + "'" + (config.mqttEnabled ? " required" : "") + "></div>";
+                        String(config.mqttServer) + "'" + (config.flags.mqttEnabled ? " required" : "") + "></div>";
                     html +=
                         "<div class='form-group'><label for='mqtt_port'>MQTT порт:</label><input type='text' "
                         "id='mqtt_port' name='mqtt_port' value='" +
@@ -403,12 +404,12 @@ void setupWebServer()
                         "<div class='form-group'><label for='mqtt_password'>MQTT пароль:</label><input type='password' "
                         "id='mqtt_password' name='mqtt_password' value='" +
                         String(config.mqttPassword) + "'></div>";
-                    String hassChecked = config.hassEnabled ? " checked" : "";
+                    String hassChecked = config.flags.hassEnabled ? " checked" : "";
                     html +=
                         "<div class='form-group'><label for='hass_enabled'>Интеграция с Home Assistant:</label><input "
                         "type='checkbox' id='hass_enabled' name='hass_enabled'" +
                         hassChecked + "></div></div>";
-                    String tsChecked = config.thingSpeakEnabled ? " checked" : "";
+                    String tsChecked = config.flags.thingSpeakEnabled ? " checked" : "";
                     html += "<div class='section'><h2>ThingSpeak настройки</h2>";
                     html +=
                         "<div class='form-group'><label for='ts_enabled'>Включить ThingSpeak:</label><input "
@@ -417,7 +418,7 @@ void setupWebServer()
                     html +=
                         "<div class='form-group'><label for='ts_api_key'>API ключ:</label><input type='text' "
                         "id='ts_api_key' name='ts_api_key' value='" +
-                        String(config.thingSpeakApiKey) + "'" + (config.thingSpeakEnabled ? " required" : "") +
+                        String(config.thingSpeakApiKey) + "'" + (config.flags.thingSpeakEnabled ? " required" : "") +
                         "></div>";
                     html +=
                         "<div class='form-group'><label for='ts_interval'>Интервал публикации (сек):</label><input "
@@ -430,7 +431,7 @@ void setupWebServer()
                     html +=
                         "<div style='color:#b00;font-size:13px'>Внимание: ThingSpeak разрешает публикацию не чаще 1 "
                         "раза в 15 секунд!</div></div>";
-                    String realSensorChecked = config.useRealSensor ? " checked" : "";
+                    String realSensorChecked = config.flags.useRealSensor ? " checked" : "";
                     html += "<div class='section'><h2>Датчик</h2>";
                     html +=
                         "<div class='form-group'><label for='real_sensor'>Реальный датчик:</label><input "
@@ -576,13 +577,13 @@ void setupWebServer()
                      doc["wifi_ip"] = WiFi.localIP().toString();
                      doc["wifi_ssid"] = WiFi.SSID();
                      doc["wifi_rssi"] = WiFi.RSSI();
-                     doc["mqtt_enabled"] = config.mqttEnabled;
-                     doc["mqtt_connected"] = config.mqttEnabled && mqttClient.connected();
+                     doc["mqtt_enabled"] = (bool)config.flags.mqttEnabled;
+                     doc["mqtt_connected"] = (bool)config.flags.mqttEnabled && mqttClient.connected();
                      doc["mqtt_last_error"] = getMqttLastError();  // ✅ Используем функцию-геттер
-                     doc["thingspeak_enabled"] = config.thingSpeakEnabled;
+                     doc["thingspeak_enabled"] = (bool)config.flags.thingSpeakEnabled;
                      doc["thingspeak_last_pub"] = getThingSpeakLastPublish();  // ✅ Используем функцию-геттер
                      doc["thingspeak_last_error"] = getThingSpeakLastError();  // ✅ Используем функцию-геттер
-                     doc["hass_enabled"] = config.hassEnabled;
+                     doc["hass_enabled"] = (bool)config.flags.hassEnabled;
                      doc["sensor_ok"] = sensorData.valid;         // предполагается, что есть такая переменная
                      doc["sensor_last_error"] = sensorLastError;  // предполагается, что есть такая переменная
                      String json;
@@ -756,7 +757,7 @@ void handleRoot()
     // Показываем остальные настройки только в режиме STA
     if (currentWiFiMode == WiFiMode::STA)
     {
-        String mqttChecked = config.mqttEnabled ? " checked" : "";
+        String mqttChecked = config.flags.mqttEnabled ? " checked" : "";
         html += "<div class='section'><h2>MQTT настройки</h2>";
         html +=
             "<div class='form-group'><label for='mqtt_enabled'>Включить MQTT:</label><input type='checkbox' "
@@ -765,7 +766,7 @@ void handleRoot()
         html +=
             "<div class='form-group'><label for='mqtt_server'>MQTT сервер:</label><input type='text' id='mqtt_server' "
             "name='mqtt_server' value='" +
-            String(config.mqttServer) + "'" + (config.mqttEnabled ? " required" : "") + "></div>";
+            String(config.mqttServer) + "'" + (config.flags.mqttEnabled ? " required" : "") + "></div>";
         html +=
             "<div class='form-group'><label for='mqtt_port'>MQTT порт:</label><input type='text' id='mqtt_port' "
             "name='mqtt_port' value='" +
@@ -778,12 +779,12 @@ void handleRoot()
             "<div class='form-group'><label for='mqtt_password'>MQTT пароль:</label><input type='password' "
             "id='mqtt_password' name='mqtt_password' value='" +
             String(config.mqttPassword) + "'></div>";
-        String hassChecked = config.hassEnabled ? " checked" : "";
+        String hassChecked = config.flags.hassEnabled ? " checked" : "";
         html +=
             "<div class='form-group'><label for='hass_enabled'>Интеграция с Home Assistant:</label><input "
             "type='checkbox' id='hass_enabled' name='hass_enabled'" +
             hassChecked + "></div></div>";
-        String tsChecked = config.thingSpeakEnabled ? " checked" : "";
+        String tsChecked = config.flags.thingSpeakEnabled ? " checked" : "";
         html += "<div class='section'><h2>ThingSpeak настройки</h2>";
         html +=
             "<div class='form-group'><label for='ts_enabled'>Включить ThingSpeak:</label><input type='checkbox' "
@@ -792,7 +793,7 @@ void handleRoot()
         html +=
             "<div class='form-group'><label for='ts_api_key'>API ключ:</label><input type='text' id='ts_api_key' "
             "name='ts_api_key' value='" +
-            String(config.thingSpeakApiKey) + "'" + (config.thingSpeakEnabled ? " required" : "") + "></div>";
+            String(config.thingSpeakApiKey) + "'" + (config.flags.thingSpeakEnabled ? " required" : "") + "></div>";
         html +=
             "<div class='form-group'><label for='ts_interval'>Интервал публикации (сек):</label><input type='number' "
             "id='ts_interval' name='ts_interval' min='15' max='3600' value='" +
@@ -804,7 +805,7 @@ void handleRoot()
         html +=
             "<div style='color:#b00;font-size:13px'>Внимание: ThingSpeak разрешает публикацию не чаще 1 раза в 15 "
             "секунд!</div></div>";
-        String realSensorChecked = config.useRealSensor ? " checked" : "";
+        String realSensorChecked = config.flags.useRealSensor ? " checked" : "";
         html += "<div class='section'><h2>Датчик</h2>";
         html +=
             "<div class='form-group'><label for='real_sensor'>Реальный датчик:</label><input type='checkbox' "

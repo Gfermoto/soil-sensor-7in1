@@ -30,7 +30,7 @@ void setupThingSpeak(WiFiClient& client)
 bool sendDataToThingSpeak()
 {
     // Проверки
-    if (!config.thingSpeakEnabled) return false;
+    if (!config.flags.thingSpeakEnabled) return false;
     if (!wifiConnected) return false;
     if (!sensorData.valid) return false;
 

@@ -97,13 +97,13 @@ void setupMQTT()
     DEBUG_PRINTF("Шлюз: %s\n", WiFi.gatewayIP().toString().c_str());
 
     DEBUG_PRINTLN("[MQTT Debug] Параметры:");
-    DEBUG_PRINTF("MQTT включен: %d\n", config.mqttEnabled);
+    DEBUG_PRINTF("MQTT включен: %d\n", config.flags.mqttEnabled);
     DEBUG_PRINTF("Сервер: %s\n", config.mqttServer);
     DEBUG_PRINTF("Порт: %d\n", config.mqttPort);
     DEBUG_PRINTF("Префикс топика: %s\n", config.mqttTopicPrefix);
     DEBUG_PRINTF("Пользователь: %s\n", config.mqttUser);
 
-    if (!config.mqttEnabled || strlen(config.mqttServer) == 0)
+    if (!config.flags.mqttEnabled || strlen(config.mqttServer) == 0)
     {
         ERROR_PRINTLN("[ОШИБКА] MQTT не может быть инициализирован");
         return;
@@ -224,7 +224,7 @@ bool connectMQTT()
         publishAvailability(true);
 
         // Публикуем конфигурацию Home Assistant discovery если включено
-        if (config.hassEnabled)
+        if (config.flags.hassEnabled)
         {
             publishHomeAssistantConfig();
         }
@@ -235,7 +235,7 @@ bool connectMQTT()
 
 void handleMQTT()
 {
-    if (!config.mqttEnabled)
+    if (!config.flags.mqttEnabled)
     {
         return;
     }
@@ -272,7 +272,7 @@ void handleMQTT()
 
 void publishSensorData()
 {
-    if (!config.mqttEnabled || !mqttClient.connected() || !sensorData.valid)
+    if (!config.flags.mqttEnabled || !mqttClient.connected() || !sensorData.valid)
     {
         return;
     }
@@ -307,7 +307,7 @@ void publishSensorData()
 void publishHomeAssistantConfig()
 {
     DEBUG_PRINTLN("[publishHomeAssistantConfig] Публикация discovery-конфигов Home Assistant...");
-    if (!config.mqttEnabled || !mqttClient.connected() || !config.hassEnabled)
+    if (!config.flags.mqttEnabled || !mqttClient.connected() || !config.flags.hassEnabled)
     {
         DEBUG_PRINTLN("[publishHomeAssistantConfig] Условия не выполнены, публикация отменена");
         return;

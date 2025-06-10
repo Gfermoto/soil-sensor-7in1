@@ -46,8 +46,12 @@ void loadConfig()
     preferences.getString("mqttPassword", config.mqttPassword, sizeof(config.mqttPassword));
     preferences.getString("mqttTopicPrefix", config.mqttTopicPrefix, sizeof(config.mqttTopicPrefix));
     preferences.getString("mqttDeviceName", config.mqttDeviceName, sizeof(config.mqttDeviceName));
-    config.hassEnabled = preferences.getBool("hassEnabled", false);
-    config.useRealSensor = preferences.getBool("useRealSensor", false);
+    // Битовые поля boolean флагов
+    config.flags.hassEnabled = preferences.getBool("hassEnabled", false);
+    config.flags.useRealSensor = preferences.getBool("useRealSensor", false);
+    config.flags.mqttEnabled = preferences.getBool("mqttEnabled", false);
+    config.flags.thingSpeakEnabled = preferences.getBool("tsEnabled", false);
+    
     config.mqttQos = preferences.getUChar("mqttQos", 0);
     config.thingspeakInterval = preferences.getUShort("tsInterval", 60);
     preferences.getString("manufacturer", config.manufacturer, sizeof(config.manufacturer));
@@ -57,10 +61,6 @@ void loadConfig()
     // ThingSpeak настройки
     preferences.getString("tsApiKey", config.thingSpeakApiKey, sizeof(config.thingSpeakApiKey));
     preferences.getString("tsChannelId", config.thingSpeakChannelId, sizeof(config.thingSpeakChannelId));
-
-    // Сервисные настройки
-    config.mqttEnabled = preferences.getBool("mqttEnabled", false);
-    config.thingSpeakEnabled = preferences.getBool("tsEnabled", false);
 
     // Настройка датчика
     config.modbusId = preferences.getUChar("modbusId", JXCT_MODBUS_ID);
@@ -81,7 +81,7 @@ void loadConfig()
 
     logSuccess("Конфигурация загружена");
     logDebug("SSID: %s, MQTT: %s:%d, ThingSpeak: %s", config.ssid, config.mqttServer, config.mqttPort,
-             config.thingSpeakEnabled ? "включен" : "выключен");
+             config.flags.thingSpeakEnabled ? "включен" : "выключен");
 }
 
 void saveConfig()
@@ -99,8 +99,13 @@ void saveConfig()
     preferences.putString("mqttPassword", config.mqttPassword);
     preferences.putString("mqttTopicPrefix", config.mqttTopicPrefix);
     preferences.putString("mqttDeviceName", config.mqttDeviceName);
-    preferences.putBool("hassEnabled", config.hassEnabled);
-    preferences.putBool("useRealSensor", config.useRealSensor);
+    
+    // Битовые поля boolean флагов
+    preferences.putBool("hassEnabled", config.flags.hassEnabled);
+    preferences.putBool("useRealSensor", config.flags.useRealSensor);
+    preferences.putBool("mqttEnabled", config.flags.mqttEnabled);
+    preferences.putBool("tsEnabled", config.flags.thingSpeakEnabled);
+    
     preferences.putUChar("mqttQos", config.mqttQos);
     preferences.putUShort("tsInterval", config.thingspeakInterval);
     preferences.putString("manufacturer", config.manufacturer);
@@ -110,10 +115,6 @@ void saveConfig()
     // ThingSpeak настройки
     preferences.putString("tsApiKey", config.thingSpeakApiKey);
     preferences.putString("tsChannelId", config.thingSpeakChannelId);
-
-    // Сервисные настройки
-    preferences.putBool("mqttEnabled", config.mqttEnabled);
-    preferences.putBool("tsEnabled", config.thingSpeakEnabled);
 
     // Настройка датчика
     preferences.putUChar("modbusId", config.modbusId);
@@ -132,27 +133,37 @@ void resetConfig()
     preferences.begin("jxct-sensor", false);
     preferences.clear();
     preferences.end();
-    // Полный сброс структуры config
-    memset(&config, 0, sizeof(Config));
+    // ✅ Безопасный сброс структуры config без memset для упакованных структур
     // Wi-Fi
     config.ssid[0] = '\0';
     config.password[0] = '\0';
     // MQTT
     config.mqttPort = 1883;
-    config.mqttEnabled = false;
-    config.thingSpeakEnabled = false;
     config.modbusId = JXCT_MODBUS_ID;
     strlcpy(config.mqttTopicPrefix, getDefaultTopic().c_str(), sizeof(config.mqttTopicPrefix));
     strlcpy(config.mqttDeviceName, "JXCT_Device", sizeof(config.mqttDeviceName));
-    config.hassEnabled = false;
+    
+    // ✅ Явный сброс битовых полей
+    config.flags.mqttEnabled = 0;
+    config.flags.thingSpeakEnabled = 0;
+    config.flags.hassEnabled = 0;
+    config.flags.useRealSensor = 0;
+    config.flags.reserved = 0;
+    
+    // ✅ Очистка всех строковых полей
     strlcpy(config.thingSpeakChannelId, "", sizeof(config.thingSpeakChannelId));
     strlcpy(config.mqttServer, "", sizeof(config.mqttServer));
     strlcpy(config.mqttUser, "", sizeof(config.mqttUser));
     strlcpy(config.mqttPassword, "", sizeof(config.mqttPassword));
     strlcpy(config.thingSpeakApiKey, "", sizeof(config.thingSpeakApiKey));
-    config.useRealSensor = false;
+    strlcpy(config.manufacturer, "", sizeof(config.manufacturer));
+    strlcpy(config.model, "", sizeof(config.model));
+    strlcpy(config.swVersion, "", sizeof(config.swVersion));
+    
+    // ✅ Сброс числовых полей
     config.mqttQos = 0;
     config.thingspeakInterval = 60;
+    
     // NTP
     strlcpy(config.ntpServer, "pool.ntp.org", sizeof(config.ntpServer));
     config.ntpUpdateInterval = 60000;
@@ -181,13 +192,13 @@ bool isConfigValid()
     }
 
     // Если MQTT включен, проверяем настройки MQTT
-    if (config.mqttEnabled && strlen(config.mqttServer) == 0)
+    if (config.flags.mqttEnabled && strlen(config.mqttServer) == 0)
     {
         return false;
     }
 
     // Если ThingSpeak включен, проверяем API ключ
-    if (config.thingSpeakEnabled && strlen(config.thingSpeakApiKey) == 0)
+    if (config.flags.thingSpeakEnabled && strlen(config.thingSpeakApiKey) == 0)
     {
         return false;
     }

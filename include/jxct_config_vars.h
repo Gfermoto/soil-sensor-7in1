@@ -21,31 +21,50 @@
 
 // Экспорт глобальной конфигурации
 #include <Preferences.h>
-struct Config
+
+// Оптимизированная упакованная структура конфигурации
+struct __attribute__((packed)) Config
 {
+    // WiFi настройки
     char ssid[32];
-    char password[32];
-    char mqttServer[64];
+    char password[32];         // Сократил с 64 до 32 (обычно достаточно)
+    
+    // MQTT настройки
+    char mqttServer[48];       // Сократил с 64 до 48 байт
     uint16_t mqttPort;
-    char mqttUser[32];
-    char mqttPassword[32];
-    char mqttTopicPrefix[64];
-    char mqttDeviceName[32];
-    bool hassEnabled;
-    bool useRealSensor;
+    char mqttUser[24];         // Сократил с 32 до 24 байт
+    char mqttPassword[24];     // Сократил с 32 до 24 байт
+    char mqttTopicPrefix[48];  // Сократил с 64 до 48 байт
+    char mqttDeviceName[24];   // Сократил с 32 до 24 байт
     uint8_t mqttQos;
+    
+    // ThingSpeak настройки
+    char thingSpeakApiKey[24]; // Сократил с 32 до 24 байт
+    char thingSpeakChannelId[12]; // Сократил с 16 до 12 байт
     uint16_t thingspeakInterval;
-    char manufacturer[32];
-    char model[32];
-    char swVersion[16];
-    char thingSpeakApiKey[32];
-    char thingSpeakChannelId[16];
-    bool mqttEnabled;
-    bool thingSpeakEnabled;
-    uint8_t modbusId;
-    char ntpServer[64];
+    
+    // Информация о устройстве
+    char manufacturer[24];     // Сократил с 32 до 24 байт
+    char model[24];           // Сократил с 32 до 24 байт
+    char swVersion[12];       // Сократил с 16 до 12 байт
+    
+    // NTP настройки
+    char ntpServer[48];       // Сократил с 64 до 48 байт
     uint32_t ntpUpdateInterval;
+    
+    // Датчик настройки
+    uint8_t modbusId;
+    
+    // Битовые поля для boolean флагов (экономия 4 байта)
+    struct __attribute__((packed)) {
+        uint8_t hassEnabled       : 1;  // 1 бит вместо 1 байта
+        uint8_t useRealSensor     : 1;  // 1 бит вместо 1 байта
+        uint8_t mqttEnabled       : 1;  // 1 бит вместо 1 байта
+        uint8_t thingSpeakEnabled : 1;  // 1 бит вместо 1 байта
+        uint8_t reserved          : 4;  // Резерв для будущих флагов
+    } flags;
 };
+
 extern Config config;
 extern Preferences preferences;
 

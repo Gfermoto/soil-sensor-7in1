@@ -104,27 +104,27 @@ void setup()
     logSuccess("Конфигурация загружена");
 
     // Информация о режиме работы
-    logSystem("Режим датчика: %s", config.useRealSensor ? "РЕАЛЬНЫЙ" : "ЭМУЛЯЦИЯ");
+    logSystem("Режим датчика: %s", config.flags.useRealSensor ? "РЕАЛЬНЫЙ" : "ЭМУЛЯЦИЯ");
     logSystem("Интервал чтения: %d мс", SENSOR_READ_INTERVAL);
 
     // Инициализация WiFi
     setupWiFi();
 
     // Инициализация MQTT
-    if (config.mqttEnabled)
+    if (config.flags.mqttEnabled)
     {
         setupMQTT();
         logSuccess("MQTT инициализирован");
     }
 
     // Инициализация Modbus (если используется реальный датчик)
-    if (config.useRealSensor)
+    if (config.flags.useRealSensor)
     {
         setupModbus();
     }
 
     // Запуск задач
-    if (config.useRealSensor)
+    if (config.flags.useRealSensor)
     {
         startRealSensorTask();
         logSuccess("Запущена задача реального датчика");
@@ -169,7 +169,7 @@ void loop()
         logUptime();
         logMemoryUsage();
         logWiFiStatus();
-        logSystem("Режим датчика: %s", config.useRealSensor ? "РЕАЛЬНЫЙ" : "ЭМУЛЯЦИЯ");
+        logSystem("Режим датчика: %s", config.flags.useRealSensor ? "РЕАЛЬНЫЙ" : "ЭМУЛЯЦИЯ");
 
         // Статус данных датчика
         if (sensorData.valid)
