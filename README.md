@@ -61,6 +61,7 @@ JXCT/
 - **Официальная документация JXCT:** [Modbus Protocol Manual](https://www.jxct.net/)
 - **QA Отчет v2.0:** [docs/QA_REPORT_2025.md](docs/QA_REPORT_2025.md)
 - **План развития:** [docs/DEVELOPMENT_ROADMAP_2025.md](docs/DEVELOPMENT_ROADMAP_2025.md)
+- **План оптимизации:** [docs/OPTIMIZATION_PLAN_2025.md](docs/OPTIMIZATION_PLAN_2025.md)
 
 ### ⚡ **Пример чтения:**
 ```cpp
