@@ -280,7 +280,7 @@ void realSensorTask(void *pvParameters) {
 }
 
 void startRealSensorTask() {
-    xTaskCreate(realSensorTask, "RealSensor", 2048, NULL, 1, NULL);
+    xTaskCreate(realSensorTask, "RealSensor", 4096, NULL, 1, NULL);
 }
 
 // Функция для вывода ошибок Modbus (как в примере)

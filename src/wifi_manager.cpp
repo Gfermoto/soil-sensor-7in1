@@ -168,6 +168,12 @@ void startSTAMode() {
             wifiConnected = true;
             setLedOn();
             setupWebServer();
+            
+            // Инициализация ThingSpeak с общим WiFiClient
+            extern WiFiClient espClient;
+            setupThingSpeak(espClient);
+            Serial.println("[startSTAMode] ThingSpeak инициализирован");
+            
             Serial.println("\n[startSTAMode] Подключено к WiFi");
             Serial.print("[startSTAMode] Hostname: "); Serial.println(hostname);
             Serial.print("[startSTAMode] IP адрес: ");

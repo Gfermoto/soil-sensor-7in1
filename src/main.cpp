@@ -7,9 +7,9 @@
 #include "jxct_config_vars.h"
 #include <WiFiUdp.h>
 #include <NTPClient.h>
+#include <esp_task_wdt.h>
 
 // Переменные для отслеживания времени
-unsigned long lastSensorReadTime = 0;
 unsigned long lastDataPublishTime = 0;
 unsigned long lastNtpUpdate = 0;
 
@@ -29,9 +29,10 @@ NTPClient* timeClient = nullptr;
 void resetButtonTask(void *pvParameters) {
     for (;;) {
         if (checkResetButton()) {
+            Serial.println("[resetButtonTask] Кнопка сброса нажата!");
             resetConfig();
             setLedFastBlink();
-            delay(2000);
+            vTaskDelay(2000 / portTICK_PERIOD_MS); // Неблокирующая задержка
             ESP.restart();
         }
         vTaskDelay(50 / portTICK_PERIOD_MS);
@@ -41,6 +42,12 @@ void resetButtonTask(void *pvParameters) {
 void setup() {
     Serial.begin(115200);
     Serial.println("\n[setup] Инициализация устройства...");
+
+    // Инициализация Watchdog Timer (30 секунд)
+    Serial.println("[setup] Настройка Watchdog Timer...");
+    esp_task_wdt_init(30, true);
+    esp_task_wdt_add(NULL);
+    Serial.println("[setup] Watchdog Timer активирован");
 
     // Инициализация EEPROM и конфигурации
     initPreferences();
@@ -92,17 +99,7 @@ void loop() {
         Serial.println(config.useRealSensor ? "ВКЛЮЧЕН" : "ВЫКЛЮЧЕН");
     }
     
-    if (config.useRealSensor && millis() - lastSensorReadTime >= SENSOR_READ_INTERVAL) {
-        lastSensorReadTime = millis();
-        Serial.println("[loop] Опрос датчика...");
-        
-        // Расширенная отладка
-        Serial.print("[loop] Интервал чтения: "); 
-        Serial.print(SENSOR_READ_INTERVAL); 
-        Serial.println(" мс");
-        
-        readSensorData();
-    }
+    // Чтение датчика выполняется в отдельной задаче - дублирование удалено!
     if (millis() - lastDataPublishTime >= DATA_PUBLISH_INTERVAL) {
         lastDataPublishTime = millis();
         if (sensorData.valid) {
@@ -119,5 +116,10 @@ void loop() {
         timeClient->update();
         lastNtpUpdate = millis();
     }
-    delay(10);
+    
+    // Сброс watchdog timer
+    esp_task_wdt_reset();
+    
+    // Неблокирующая пауза
+    vTaskDelay(10 / portTICK_PERIOD_MS);
 } 

@@ -23,5 +23,5 @@ void fakeSensorTask(void *pvParameters) {
 }
 
 void startFakeSensorTask() {
-    xTaskCreate(fakeSensorTask, "FakeSensor", 2048, NULL, 1, NULL);
+    xTaskCreate(fakeSensorTask, "FakeSensor", 4096, NULL, 1, NULL);
 } 
