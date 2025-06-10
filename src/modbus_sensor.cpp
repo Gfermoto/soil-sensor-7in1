@@ -7,6 +7,7 @@
 #include "modbus_sensor.h"
 #include "jxct_device_info.h"
 #include "jxct_config_vars.h"
+#include "logger.h"
 
 ModbusMaster modbus;
 SensorData sensorData;
@@ -23,18 +24,19 @@ const unsigned long RETRY_DELAY = 1000;    // Задержка между поп
 #define RE_PIN 5
 
 void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length) {
-    Serial.print(prefix);
+    if (currentLogLevel < LOG_DEBUG) return;
+    
+    String hex_str = "";
     for(size_t i = 0; i < length; i++) {
-        Serial.print("0x");
-        if(buffer[i] < 0x10) Serial.print("0");
-        Serial.print(buffer[i], HEX);
-        Serial.print(" ");
+        if(buffer[i] < 0x10) hex_str += "0";
+        hex_str += String(buffer[i], HEX);
+        hex_str += " ";
     }
-    Serial.println();
+    logDebug("%s%s", prefix, hex_str.c_str());
 }
 
 void testMAX485() {
-    Serial.println("Тест MAX485...");
+    logDebug("Тест MAX485...");
     digitalWrite(DE_PIN, HIGH);
     digitalWrite(RE_PIN, HIGH);
     delay(2);
@@ -44,47 +46,47 @@ void testMAX485() {
     digitalWrite(RE_PIN, LOW);
     delay(1000);
     if (Serial2.available()) {
-        Serial.print("Получен ответ: ");
+        String response = "Получен ответ: ";
         while (Serial2.available()) {
-            Serial.print(Serial2.read(), HEX);
-            Serial.print(" ");
+            response += String(Serial2.read(), HEX) + " ";
         }
-        Serial.println();
+        logDebug("%s", response.c_str());
     } else {
-        Serial.println("Нет ответа от MAX485");
+        logDebug("Нет ответа от MAX485");
     }
 }
 
 void setupModbus() {
-    Serial.println("\n[Modbus] Начало инициализации Modbus...");
+    logPrintHeader("ИНИЦИАЛИЗАЦИЯ MODBUS", COLOR_CYAN);
     
     // Проверяем пины
-    Serial.printf("[Modbus] RX_PIN: %d, TX_PIN: %d\n", RX_PIN, TX_PIN);
-    Serial.printf("[Modbus] DE_PIN: %d, RE_PIN: %d\n", DE_PIN, RE_PIN);
+    logSystem("RX_PIN: %d, TX_PIN: %d", RX_PIN, TX_PIN);
+    logSystem("DE_PIN: %d, RE_PIN: %d", DE_PIN, RE_PIN);
     
     // Устанавливаем пины управления MAX485
-    Serial.println("[Modbus] Настройка пинов MAX485...");
+    logSystem("Настройка пинов MAX485...");
     pinMode(DE_PIN, OUTPUT);
     pinMode(RE_PIN, OUTPUT);
     digitalWrite(DE_PIN, LOW);  // Режим приема
     digitalWrite(RE_PIN, LOW);  // Режим приема
-    Serial.println("[Modbus] Пины MAX485 настроены");
+    logSuccess("Пины MAX485 настроены");
     
     // Инициализируем Serial2 на скорости 9600 (из примера)
-    Serial.println("[Modbus] Инициализация Serial2 на 9600 бод...");
+    logSystem("Инициализация Serial2 на 9600 бод...");
     Serial2.begin(9600, SERIAL_8N1, RX_PIN, TX_PIN);
     delay(100);
-    Serial.println("[Modbus] Serial2 инициализирован");
+    logSuccess("Serial2 инициализирован");
     
     // Инициализируем ModbusMaster с адресом устройства 1
-    Serial.println("[Modbus] Инициализация ModbusMaster...");
+    logSystem("Инициализация ModbusMaster...");
     modbus.begin(1, Serial2);
     
     // Устанавливаем колбэки для управления DE/RE
     modbus.preTransmission(preTransmission);
     modbus.postTransmission(postTransmission);
     
-    Serial.println("[Modbus] ModbusMaster инициализирован успешно");
+    logSuccess("ModbusMaster инициализирован успешно");
+    logPrintSeparator("─", 60);
 }
 
 // Функция для расчета CRC16 Modbus
@@ -125,16 +127,16 @@ bool getCachedData(SensorData& data) {
 }
 
 bool readFirmwareVersion() {
-    Serial.println("\n[Modbus] Запрос версии прошивки");
+    logSensor("Запрос версии прошивки датчика...");
     uint8_t result = modbus.readHoldingRegisters(0x07, 1);
-    Serial.printf("[Modbus] Результат запроса версии: %d\n", result);
     
     if (result == modbus.ku8MBSuccess) {
         uint16_t version = modbus.getResponseBuffer(0);
-        Serial.printf("[Modbus] Версия прошивки: %d.%d\n", (version >> 8) & 0xFF, version & 0xFF);
+        logSuccess("Версия прошивки датчика: %d.%d", (version >> 8) & 0xFF, version & 0xFF);
         return true;
     } else {
-        Serial.printf("[Modbus] Ошибка чтения версии: %d\n", result);
+        logError("Ошибка чтения версии прошивки: %d", result);
+        printModbusError(result);
         return false;
     }
 }
@@ -161,66 +163,62 @@ bool changeDeviceAddress(uint8_t new_address) {
 }
 
 void readSensorData() {
-    Serial.println("\n[readSensorData] Чтение всех параметров с правильных адресов JXCT...");
+    logSensor("Чтение всех параметров JXCT 7-в-1 датчика...");
     
     uint8_t result;
     bool success = true;
     
     // 1. PH (адрес 0x0006, ÷ 100)
-    Serial.println("[readSensorData] Чтение PH (0x0006)...");
+    logDebug("Чтение PH (0x0006)...");
     result = modbus.readHoldingRegisters(0x0006, 1);
     if (result == modbus.ku8MBSuccess) {
         uint16_t ph_raw = modbus.getResponseBuffer(0);
         sensorData.ph = (float)ph_raw / 100.0;  // Делим на 100
-        Serial.printf("[readSensorData] ✅ PH: %d (%.2f pH)\n", ph_raw, sensorData.ph);
+        logData("PH: %.2f", sensorData.ph);
     } else {
-        Serial.printf("[readSensorData] ❌ Ошибка чтения PH: %d\n", result);
-        printModbusError(result);
+        logError("Ошибка чтения PH: %d", result);
         success = false;
     }
     
     // 2. Влажность почвы (адрес 0x0012, ÷ 10)
-    Serial.println("[readSensorData] Чтение влажности (0x0012)...");
+    logDebug("Чтение влажности (0x0012)...");
     result = modbus.readHoldingRegisters(0x0012, 1);
     if (result == modbus.ku8MBSuccess) {
         uint16_t moisture_raw = modbus.getResponseBuffer(0);
         sensorData.humidity = (float)moisture_raw / 10.0;  // Записываем в humidity для веб-интерфейса
         sensorData.moisture = sensorData.humidity;          // Дублируем в moisture
-        Serial.printf("[readSensorData] ✅ Влажность: %d (%.1f%%)\n", moisture_raw, sensorData.humidity);
+        logData("Влажность: %.1f%%", sensorData.humidity);
     } else {
-        Serial.printf("[readSensorData] ❌ Ошибка чтения влажности: %d\n", result);
-        printModbusError(result);
+        logError("Ошибка чтения влажности: %d", result);
         success = false;
     }
     
     // 3. Температура (адрес 0x0013, ÷ 10)
-    Serial.println("[readSensorData] Чтение температуры (0x0013)...");
+    logDebug("Чтение температуры (0x0013)...");
     result = modbus.readHoldingRegisters(0x0013, 1);
     if (result == modbus.ku8MBSuccess) {
         uint16_t temp_raw = modbus.getResponseBuffer(0);
         sensorData.temperature = (float)temp_raw / 10.0;  // Делим на 10
-        Serial.printf("[readSensorData] ✅ Температура: %d (%.1f°C)\n", temp_raw, sensorData.temperature);
+        logData("Температура: %.1f°C", sensorData.temperature);
     } else {
-        Serial.printf("[readSensorData] ❌ Ошибка чтения температуры: %d\n", result);
-        printModbusError(result);
+        logError("Ошибка чтения температуры: %d", result);
         success = false;
     }
     
     // 4. Электропроводность (адрес 0x0015, как есть)
-    Serial.println("[readSensorData] Чтение проводимости (0x0015)...");
+    logDebug("Чтение проводимости (0x0015)...");
     result = modbus.readHoldingRegisters(0x0015, 1);
     if (result == modbus.ku8MBSuccess) {
         uint16_t conductivity_raw = modbus.getResponseBuffer(0);
         sensorData.ec = (float)conductivity_raw;  // Как есть, µS/cm
-        Serial.printf("[readSensorData] ✅ Проводимость: %d (%.0f µS/cm)\n", conductivity_raw, sensorData.ec);
+        logData("Проводимость: %.0f µS/cm", sensorData.ec);
     } else {
-        Serial.printf("[readSensorData] ❌ Ошибка чтения проводимости: %d\n", result);
-        printModbusError(result);
+        logError("Ошибка чтения проводимости: %d", result);
         success = false;
     }
     
     // 5-7. NPK одним запросом (адреса 0x001E-0x0020, как есть)
-    Serial.println("[readSensorData] Чтение NPK (0x001E-0x0020)...");
+    logDebug("Чтение NPK (0x001E-0x0020)...");
     result = modbus.readHoldingRegisters(0x001E, 3);
     if (result == modbus.ku8MBSuccess) {
         uint16_t nitrogen_raw = modbus.getResponseBuffer(0);
@@ -231,24 +229,24 @@ void readSensorData() {
         sensorData.phosphorus = (float)phosphorus_raw;
         sensorData.potassium = (float)potassium_raw;
         
-        Serial.printf("[readSensorData] ✅ Азот (N): %d (%.0f мг/кг)\n", nitrogen_raw, sensorData.nitrogen);
-        Serial.printf("[readSensorData] ✅ Фосфор (P): %d (%.0f мг/кг)\n", phosphorus_raw, sensorData.phosphorus);
-        Serial.printf("[readSensorData] ✅ Калий (K): %d (%.0f мг/кг)\n", potassium_raw, sensorData.potassium);
+        logData("NPK: N=%.0f, P=%.0f, K=%.0f мг/кг", 
+               sensorData.nitrogen, sensorData.phosphorus, sensorData.potassium);
     } else {
-        Serial.printf("[readSensorData] ❌ Ошибка чтения NPK: %d\n", result);
-        printModbusError(result);
+        logError("Ошибка чтения NPK: %d", result);
         success = false;
     }
     
     if (success) {
         sensorData.valid = true;
-        sensorData.last_update = millis();
-        Serial.println("\n🎉 [readSensorData] *** ВСЕ 7 ПАРАМЕТРОВ УСПЕШНО ПРОЧИТАНЫ! ***");
-        Serial.printf("📊 Полные данные: PH=%.2f, Влаж=%.1f%%, Темп=%.1f°C, EC=%.0fµS/cm, N=%.0f, P=%.0f, K=%.0f мг/кг\n",
-                     sensorData.ph, sensorData.humidity, sensorData.temperature, sensorData.ec,
-                     sensorData.nitrogen, sensorData.phosphorus, sensorData.potassium);
+                sensorData.last_update = millis();
+        
+        logSuccess("Все 7 параметров успешно прочитаны!");
+        logData("📊 PH=%.2f, Влаж=%.1f%%, Темп=%.1f°C, EC=%.0fµS/cm, N=%.0f, P=%.0f, K=%.0f", 
+               sensorData.ph, sensorData.humidity, sensorData.temperature, sensorData.ec,
+               sensorData.nitrogen, sensorData.phosphorus, sensorData.potassium);
     } else {
-        Serial.println("\n⚠️ [readSensorData] Не все параметры удалось прочитать");
+        logWarn("Не все параметры удалось прочитать");
+        sensorData.valid = false;
     }
 }
 
@@ -257,19 +255,17 @@ float convertRegisterToFloat(uint16_t value, float multiplier) {
 }
 
 void preTransmission() {
-    Serial.println("\n[Modbus] preTransmission - переключение в режим передачи");
-    Serial.printf("[Modbus] DE: %d, RE: %d\n", digitalRead(DE_PIN), digitalRead(RE_PIN));
+    logDebug("Modbus TX режим");
     digitalWrite(DE_PIN, HIGH);
     digitalWrite(RE_PIN, HIGH);
     delayMicroseconds(50);
 }
 
 void postTransmission() {
-    Serial.println("[Modbus] postTransmission - переключение в режим приема");
     delayMicroseconds(50);
     digitalWrite(DE_PIN, LOW);
     digitalWrite(RE_PIN, LOW);
-    Serial.printf("[Modbus] DE: %d, RE: %d\n", digitalRead(DE_PIN), digitalRead(RE_PIN));
+    logDebug("Modbus RX режим");
 }
 
 void realSensorTask(void *pvParameters) {
@@ -283,38 +279,38 @@ void startRealSensorTask() {
     xTaskCreate(realSensorTask, "RealSensor", 4096, NULL, 1, NULL);
 }
 
-// Функция для вывода ошибок Modbus (как в примере)
+// Функция для вывода ошибок Modbus
 void printModbusError(uint8_t errNum) {
     switch (errNum) {
         case ModbusMaster::ku8MBSuccess:
-            Serial.println("[Modbus] Успех");
+            logSuccess("Modbus операция успешна");
             break;
         case ModbusMaster::ku8MBIllegalFunction:
-            Serial.println("[Modbus] Ошибка: Illegal Function Exception");
+            logError("Modbus: Illegal Function Exception");
             break;
         case ModbusMaster::ku8MBIllegalDataAddress:
-            Serial.println("[Modbus] Ошибка: Illegal Data Address Exception");
+            logError("Modbus: Illegal Data Address Exception");
             break;
         case ModbusMaster::ku8MBIllegalDataValue:
-            Serial.println("[Modbus] Ошибка: Illegal Data Value Exception");
+            logError("Modbus: Illegal Data Value Exception");
             break;
         case ModbusMaster::ku8MBSlaveDeviceFailure:
-            Serial.println("[Modbus] Ошибка: Slave Device Failure");
+            logError("Modbus: Slave Device Failure");
             break;
         case ModbusMaster::ku8MBInvalidSlaveID:
-            Serial.println("[Modbus] Ошибка: Invalid Slave ID");
+            logError("Modbus: Invalid Slave ID");
             break;
         case ModbusMaster::ku8MBInvalidFunction:
-            Serial.println("[Modbus] Ошибка: Invalid Function");
+            logError("Modbus: Invalid Function");
             break;
         case ModbusMaster::ku8MBResponseTimedOut:
-            Serial.println("[Modbus] Ошибка: Response Timed Out");
+            logError("Modbus: Response Timed Out");
             break;
         case ModbusMaster::ku8MBInvalidCRC:
-            Serial.println("[Modbus] Ошибка: Invalid CRC");
+            logError("Modbus: Invalid CRC");
             break;
         default:
-            Serial.printf("[Modbus] Неизвестная ошибка: %d\n", errNum);
+            logError("Modbus: Неизвестная ошибка %d", errNum);
             break;
     }
 } 

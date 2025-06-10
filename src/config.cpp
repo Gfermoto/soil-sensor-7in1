@@ -7,6 +7,7 @@
 #include "config.h"
 #include "jxct_device_info.h"
 #include "jxct_config_vars.h"
+#include "logger.h"
 
 String getDeviceId() {
     uint8_t mac[6];
@@ -42,7 +43,7 @@ void loadConfig() {
     preferences.getString("mqttTopicPrefix", config.mqttTopicPrefix, sizeof(config.mqttTopicPrefix));
     preferences.getString("mqttDeviceName", config.mqttDeviceName, sizeof(config.mqttDeviceName));
     config.hassEnabled = preferences.getBool("hassEnabled", false);
-    config.useRealSensor = true;
+    config.useRealSensor = preferences.getBool("useRealSensor", false);
     config.mqttQos = preferences.getUChar("mqttQos", 0);
     config.thingspeakInterval = preferences.getUShort("tsInterval", 60);
     preferences.getString("manufacturer", config.manufacturer, sizeof(config.manufacturer));
@@ -54,8 +55,8 @@ void loadConfig() {
     preferences.getString("tsChannelId", config.thingSpeakChannelId, sizeof(config.thingSpeakChannelId));
     
     // Сервисные настройки
-    config.mqttEnabled = preferences.getBool("mqttEnabled", true);
-    config.thingSpeakEnabled = preferences.getBool("tsEnabled", true);
+    config.mqttEnabled = preferences.getBool("mqttEnabled", false);
+    config.thingSpeakEnabled = preferences.getBool("tsEnabled", false);
     
     // Настройка датчика
     config.modbusId = preferences.getUChar("modbusId", JXCT_MODBUS_ID);
@@ -70,27 +71,11 @@ void loadConfig() {
     if (strlen(config.mqttDeviceName) == 0) strlcpy(config.mqttDeviceName, "JXCT_Device", sizeof(config.mqttDeviceName));
     if (strlen(config.thingSpeakChannelId) == 0) strlcpy(config.thingSpeakChannelId, "", sizeof(config.thingSpeakChannelId));
     if (strlen(config.mqttTopicPrefix) == 0) strlcpy(config.mqttTopicPrefix, getDefaultTopic().c_str(), sizeof(config.mqttTopicPrefix));
-    Serial.println("[loadConfig] Настройки загружены:");
-    Serial.print("  SSID: "); Serial.println(config.ssid);
-    Serial.print("  PASSWORD: "); Serial.println(config.password);
-    Serial.print("  MQTT сервер: "); Serial.println(config.mqttServer);
-    Serial.print("  MQTT порт: "); Serial.println(config.mqttPort);
-    Serial.print("  MQTT пользователь: "); Serial.println(config.mqttUser);
-    Serial.print("  MQTT пароль: "); Serial.println(config.mqttPassword);
-    Serial.print("  MQTT топик: "); Serial.println(config.mqttTopicPrefix);
-    Serial.print("  MQTT имя устройства: "); Serial.println(config.mqttDeviceName);
-    Serial.print("  HASS: "); Serial.println(config.hassEnabled);
-    Serial.print("  ThingSpeak: "); Serial.println(config.thingSpeakEnabled);
-    Serial.print("  TS API: "); Serial.println(config.thingSpeakApiKey);
-    Serial.print("  TS Channel: "); Serial.println(config.thingSpeakChannelId);
-    Serial.print("  Modbus ID: "); Serial.println(config.modbusId);
-    Serial.print("  MQTT QoS: "); Serial.println(config.mqttQos);
-    Serial.print("  ThingSpeak Interval: "); Serial.println(config.thingspeakInterval);
-    Serial.print("  Manufacturer: "); Serial.println(config.manufacturer);
-    Serial.print("  Model: "); Serial.println(config.model);
-    Serial.print("  SW Version: "); Serial.println(config.swVersion);
-    Serial.print("  NTP Server: "); Serial.println(config.ntpServer);
-    Serial.print("  NTP Update Interval: "); Serial.println(config.ntpUpdateInterval);
+    
+    logSuccess("Конфигурация загружена");
+    logDebug("SSID: %s, MQTT: %s:%d, ThingSpeak: %s", 
+            config.ssid, config.mqttServer, config.mqttPort,
+            config.thingSpeakEnabled ? "включен" : "выключен");
 }
 
 void saveConfig() {
@@ -131,31 +116,11 @@ void saveConfig() {
     preferences.putUInt("ntpUpdateInterval", config.ntpUpdateInterval);
     
     preferences.end();
-    Serial.println("[saveConfig] Настройки сохранены:");
-    Serial.print("  SSID: "); Serial.println(config.ssid);
-    Serial.print("  PASSWORD: "); Serial.println(config.password);
-    Serial.print("  MQTT сервер: "); Serial.println(config.mqttServer);
-    Serial.print("  MQTT порт: "); Serial.println(config.mqttPort);
-    Serial.print("  MQTT пользователь: "); Serial.println(config.mqttUser);
-    Serial.print("  MQTT пароль: "); Serial.println(config.mqttPassword);
-    Serial.print("  MQTT топик: "); Serial.println(config.mqttTopicPrefix);
-    Serial.print("  MQTT имя устройства: "); Serial.println(config.mqttDeviceName);
-    Serial.print("  HASS: "); Serial.println(config.hassEnabled);
-    Serial.print("  ThingSpeak: "); Serial.println(config.thingSpeakEnabled);
-    Serial.print("  TS API: "); Serial.println(config.thingSpeakApiKey);
-    Serial.print("  TS Channel: "); Serial.println(config.thingSpeakChannelId);
-    Serial.print("  Modbus ID: "); Serial.println(config.modbusId);
-    Serial.print("  MQTT QoS: "); Serial.println(config.mqttQos);
-    Serial.print("  ThingSpeak Interval: "); Serial.println(config.thingspeakInterval);
-    Serial.print("  Manufacturer: "); Serial.println(config.manufacturer);
-    Serial.print("  Model: "); Serial.println(config.model);
-    Serial.print("  SW Version: "); Serial.println(config.swVersion);
-    Serial.print("  NTP Server: "); Serial.println(config.ntpServer);
-    Serial.print("  NTP Update Interval: "); Serial.println(config.ntpUpdateInterval);
+    logSuccess("Конфигурация сохранена");
 }
 
 void resetConfig() {
-    Serial.println("[resetConfig] resetConfig() вызван");
+    logWarn("Сброс конфигурации...");
     preferences.begin("jxct-sensor", false);
     preferences.clear();
     preferences.end();
@@ -166,8 +131,8 @@ void resetConfig() {
     config.password[0] = '\0';
     // MQTT
     config.mqttPort = 1883;
-    config.mqttEnabled = true;
-    config.thingSpeakEnabled = true;
+    config.mqttEnabled = false;
+    config.thingSpeakEnabled = false;
     config.modbusId = JXCT_MODBUS_ID;
     strlcpy(config.mqttTopicPrefix, getDefaultTopic().c_str(), sizeof(config.mqttTopicPrefix));
     strlcpy(config.mqttDeviceName, "JXCT_Device", sizeof(config.mqttDeviceName));
@@ -177,27 +142,14 @@ void resetConfig() {
     strlcpy(config.mqttUser, "", sizeof(config.mqttUser));
     strlcpy(config.mqttPassword, "", sizeof(config.mqttPassword));
     strlcpy(config.thingSpeakApiKey, "", sizeof(config.thingSpeakApiKey));
-    config.useRealSensor = true;
+    config.useRealSensor = false;
     config.mqttQos = 0;
     config.thingspeakInterval = 60;
     // NTP
     strlcpy(config.ntpServer, "pool.ntp.org", sizeof(config.ntpServer));
     config.ntpUpdateInterval = 60000;
-    // Жёстко задаём manufacturer, model, swVersion больше не нужно
-    Serial.println("[resetConfig] Все настройки сброшены!");
-    Serial.print("[resetConfig] config.ssid: "); Serial.println(config.ssid);
-    Serial.print("[resetConfig] config.password: "); Serial.println(config.password);
-    Serial.print("[resetConfig] config.mqttServer: "); Serial.println(config.mqttServer);
-    Serial.print("[resetConfig] config.mqttPort: "); Serial.println(config.mqttPort);
-    Serial.print("[resetConfig] config.mqttTopicPrefix: "); Serial.println(config.mqttTopicPrefix);
-    Serial.print("[resetConfig] config.mqttDeviceName: "); Serial.println(config.mqttDeviceName);
-    Serial.print("[resetConfig] config.thingSpeakApiKey: "); Serial.println(config.thingSpeakApiKey);
-    Serial.print("[resetConfig] config.thingSpeakChannelId: "); Serial.println(config.thingSpeakChannelId);
-    Serial.print("[resetConfig] config.mqttEnabled: "); Serial.println(config.mqttEnabled);
-    Serial.print("[resetConfig] config.thingSpeakEnabled: "); Serial.println(config.thingSpeakEnabled);
-    Serial.print("[resetConfig] config.hassEnabled: "); Serial.println(config.hassEnabled);
-    Serial.print("[resetConfig] config.modbusId: "); Serial.println(config.modbusId);
-    Serial.print("[resetConfig] config.mqttQos: "); Serial.println(config.mqttQos);
+    
+    logSuccess("Все настройки сброшены к значениям по умолчанию");
     Serial.print("[resetConfig] config.thingspeakInterval: "); Serial.println(config.thingspeakInterval);
     Serial.print("[resetConfig] config.manufacturer: "); Serial.println(config.manufacturer);
     Serial.print("[resetConfig] config.model: "); Serial.println(config.model);

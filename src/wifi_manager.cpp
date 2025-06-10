@@ -12,6 +12,7 @@
 #include <NTPClient.h>
 #include "thingspeak_client.h"
 #include "config.h"
+#include "logger.h"
 
 // Глобальные переменные
 bool wifiConnected = false;
@@ -82,19 +83,24 @@ String navHtml() {
 }
 
 void setupWiFi() {
+    logPrintHeader("ИНИЦИАЛИЗАЦИЯ WiFi", COLOR_GREEN);
+    
     pinMode(STATUS_LED_PIN, OUTPUT);
     setLedBlink(500);
     WiFi.mode(WIFI_AP_STA);
     loadConfig();
-    Serial.print("[setupWiFi] config.ssid: "); Serial.println(config.ssid);
-    Serial.print("[setupWiFi] config.password: "); Serial.println(config.password);
+    
+    logSystem("SSID: %s", config.ssid);
+    logDebug("Password: %s", strlen(config.password) > 0 ? "задан" : "не задан");
+    
     if (strlen(config.ssid) > 0 && strlen(config.password) > 0) {
-        Serial.println("[setupWiFi] Переход в STA");
+        logWiFi("Переход в режим STA (клиент)");
         startSTAMode();
     } else {
-        Serial.println("[setupWiFi] Переход в AP");
+        logWiFi("Переход в режим AP (точка доступа)");
         startAPMode();
     }
+    logPrintSeparator("─", 60);
 }
 
 void handleWiFi() {
@@ -111,14 +117,12 @@ void handleWiFi() {
         if (WiFi.status() != WL_CONNECTED) {
             wifiConnected = false;
             setLedBlink(500);
-            Serial.println("[handleWiFi] Потеряно соединение с WiFi, переход в AP");
+            logWarn("Потеряно соединение с WiFi, переход в AP");
             startAPMode();
         } else if (!wifiConnected) {
             wifiConnected = true;
             setLedOn();
-            Serial.println("[handleWiFi] Подключено к WiFi");
-            Serial.print("[handleWiFi] IP адрес: ");
-            Serial.println(WiFi.localIP());
+            logSuccess("Подключено к WiFi, IP: %s", WiFi.localIP().toString().c_str());
         }
         webServer.handleClient();
     }
@@ -142,10 +146,9 @@ void startAPMode() {
     dnsServer.start(53, "*", WiFi.softAPIP());
     setupWebServer();
     setLedBlink(500);
-    Serial.println("[startAPMode] Режим точки доступа запущен");
-    Serial.print("[startAPMode] SSID: "); Serial.println(apSsid);
-    Serial.print("[startAPMode] IP адрес: ");
-    Serial.println(WiFi.softAPIP());
+    logWiFi("Режим точки доступа запущен");
+    logSystem("SSID: %s", apSsid.c_str());
+    logSystem("IP адрес: %s", WiFi.softAPIP().toString().c_str());
 }
 
 void startSTAMode() {
@@ -155,13 +158,12 @@ void startSTAMode() {
     WiFi.setHostname(hostname.c_str());
     if (strlen(config.ssid) > 0) {
         WiFi.begin(config.ssid, config.password);
-        Serial.println("[startSTAMode] Подключение к WiFi...");
+        logWiFi("Подключение к WiFi...");
         int attempts = 0;
         setLedBlink(500);
         while (WiFi.status() != WL_CONNECTED && attempts < 20) {
             delay(500);
             updateLed();
-            Serial.print(".");
             attempts++;
         }
         if (WiFi.status() == WL_CONNECTED) {
@@ -172,18 +174,17 @@ void startSTAMode() {
             // Инициализация ThingSpeak с общим WiFiClient
             extern WiFiClient espClient;
             setupThingSpeak(espClient);
-            Serial.println("[startSTAMode] ThingSpeak инициализирован");
+            logSuccess("ThingSpeak инициализирован");
             
-            Serial.println("\n[startSTAMode] Подключено к WiFi");
-            Serial.print("[startSTAMode] Hostname: "); Serial.println(hostname);
-            Serial.print("[startSTAMode] IP адрес: ");
-            Serial.println(WiFi.localIP());
+            logSuccess("Подключено к WiFi");
+            logSystem("Hostname: %s", hostname.c_str());
+            logSystem("IP адрес: %s", WiFi.localIP().toString().c_str());
         } else {
-            Serial.println("\n[startSTAMode] Не удалось подключиться к WiFi, переход в AP");
+            logWarn("Не удалось подключиться к WiFi, переход в AP");
             startAPMode();
         }
     } else {
-        Serial.println("[startSTAMode] Нет SSID, переход в AP");
+        logWarn("Нет SSID, переход в AP");
         startAPMode();
     }
 }

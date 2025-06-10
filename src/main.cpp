@@ -1,3 +1,8 @@
+/**
+ * @file main.cpp
+ * @brief Главный файл проекта JXCT датчика
+ */
+
 #include <WiFiClient.h>
 #include <Arduino.h>
 #include "wifi_manager.h"
@@ -8,13 +13,16 @@
 #include <WiFiUdp.h>
 #include <NTPClient.h>
 #include <esp_task_wdt.h>
+#include "config.h"
+#include "fake_sensor.h"
+#include "logger.h"
 
 // Переменные для отслеживания времени
 unsigned long lastDataPublishTime = 0;
 unsigned long lastNtpUpdate = 0;
 
 // Объявления функций
-void initPreferences();
+bool initPreferences();
 void setupWiFi();
 void setupModbus();
 void loadConfig();
@@ -26,100 +34,135 @@ void handleMQTT();
 WiFiUDP ntpUDP;
 NTPClient* timeClient = nullptr;
 
-void resetButtonTask(void *pvParameters) {
-    for (;;) {
-        if (checkResetButton()) {
-            Serial.println("[resetButtonTask] Кнопка сброса нажата!");
-            resetConfig();
-            setLedFastBlink();
-            vTaskDelay(2000 / portTICK_PERIOD_MS); // Неблокирующая задержка
-            ESP.restart();
+// Константы
+const int RESET_BUTTON_PIN = 0;  // GPIO0 для кнопки сброса
+const unsigned long STATUS_PRINT_INTERVAL = 30000; // 30 секунд
+
+// Переменные
+unsigned long lastStatusPrint = 0;
+
+// Задача мониторинга кнопки сброса
+void resetButtonTask(void* parameter) {
+    pinMode(RESET_BUTTON_PIN, INPUT_PULLUP);
+    
+    while (true) {
+        if (digitalRead(RESET_BUTTON_PIN) == LOW) {
+            logWarn("Кнопка сброса нажата! Сброс настроек через 2 сек...");
+            vTaskDelay(2000 / portTICK_PERIOD_MS);
+            
+            if (digitalRead(RESET_BUTTON_PIN) == LOW) {
+                resetConfig();
+                ESP.restart();
+            }
         }
-        vTaskDelay(50 / portTICK_PERIOD_MS);
+        vTaskDelay(100 / portTICK_PERIOD_MS);
     }
 }
 
 void setup() {
     Serial.begin(115200);
-    Serial.println("\n[setup] Инициализация устройства...");
-
-    // Инициализация Watchdog Timer (30 секунд)
-    Serial.println("[setup] Настройка Watchdog Timer...");
+    
+    // Красивый баннер запуска
+    logPrintBanner("JXCT 7-в-1 Датчик v2.0 - Запуск системы");
+    
+    logPrintHeader("ИНИЦИАЛИЗАЦИЯ СИСТЕМЫ", COLOR_CYAN);
+    
+    // Настройка Watchdog Timer
+    logSystem("Настройка Watchdog Timer (30 сек)...");
     esp_task_wdt_init(30, true);
     esp_task_wdt_add(NULL);
-    Serial.println("[setup] Watchdog Timer активирован");
-
-    // Инициализация EEPROM и конфигурации
-    initPreferences();
+    logSuccess("Watchdog Timer активирован");
+    
+    // Инициализация Preferences
+    if (!initPreferences()) {
+        logError("Ошибка инициализации Preferences!");
+        return;
+    }
+    logSuccess("Preferences инициализирован");
+    
+    // Загрузка конфигурации
     loadConfig();
-
-    // Настройка WiFi
+    logSuccess("Конфигурация загружена");
+    
+    // Информация о режиме работы
+    logSystem("Режим датчика: %s", config.useRealSensor ? "РЕАЛЬНЫЙ" : "ЭМУЛЯЦИЯ");
+    logSystem("Интервал чтения: %d мс", SENSOR_READ_INTERVAL);
+    
+    // Инициализация WiFi
     setupWiFi();
-
-    // Настройка Modbus и датчика
-    setupModbus();
-    Serial.print("[setup] Режим реального датчика: "); 
-    Serial.println(config.useRealSensor ? "ВКЛЮЧЕН" : "ВЫКЛЮЧЕН");
-    Serial.print("[setup] Интервал чтения датчика: "); 
-    Serial.print(SENSOR_READ_INTERVAL); 
-    Serial.println(" мс");
-
-    // Запуск задачи датчика
+    
+    // Инициализация MQTT
+    if (config.mqttEnabled) {
+        setupMQTT();
+        logSuccess("MQTT инициализирован");
+    }
+    
+    // Инициализация Modbus (если используется реальный датчик)
+    if (config.useRealSensor) {
+        setupModbus();
+    }
+    
+    // Запуск задач
     if (config.useRealSensor) {
         startRealSensorTask();
-        Serial.println("[setup] Запущена задача реального датчика");
+        logSuccess("Запущена задача реального датчика");
     } else {
         startFakeSensorTask();
-        Serial.println("[setup] Запущена задача фейкового датчика");
-        Serial.println("[setup] ВНИМАНИЕ: Для работы с реальным датчиком включите опцию 'useRealSensor' в настройках!");
+        logSuccess("Запущена задача эмулятора датчика");
+        logWarn("Включите 'useRealSensor' в настройках для работы с реальным датчиком");
     }
-    Serial.println("[setup] Инициализация завершена");
+    
+    // Запуск задачи мониторинга кнопки сброса
+    xTaskCreate(resetButtonTask, "ResetButton", 2048, NULL, 1, NULL);
+    
+    logSuccess("Инициализация завершена успешно!");
+    logPrintSeparator("─", 60);
 }
 
-void initPreferences() {
-    // Инициализация Preferences
-    if (!preferences.begin("jxct-sensor", false)) {
-        Serial.println("[initPreferences] Ошибка инициализации Preferences!");
-    } else {
-        Serial.println("[initPreferences] Preferences успешно инициализирован");
-    }
+bool initPreferences() {
+    return preferences.begin("jxct", false);
 }
 
 void loop() {
-    handleWiFi();
-    handleMQTT();
-    
-    // Расширенная отладка чтения датчика
-    static unsigned long lastDebugTime = 0;
-    if (millis() - lastDebugTime >= 10000) {  // Отладочное сообщение каждые 10 секунд
-        lastDebugTime = millis();
-        Serial.println("\n[DEBUG] Состояние системы:");
-        Serial.print("Время работы: "); Serial.print(millis()/1000); Serial.println(" сек");
-        Serial.print("Режим реального датчика: "); 
-        Serial.println(config.useRealSensor ? "ВКЛЮЧЕН" : "ВЫКЛЮЧЕН");
-    }
-    
-    // Чтение датчика выполняется в отдельной задаче - дублирование удалено!
-    if (millis() - lastDataPublishTime >= DATA_PUBLISH_INTERVAL) {
-        lastDataPublishTime = millis();
-        if (sensorData.valid) {
-            Serial.println("[loop] Публикация данных в MQTT и ThingSpeak...");
-            publishSensorData();
-            sendDataToThingSpeak();
-        } else {
-            Serial.println("[loop] Данные невалидны, публикация пропущена");
-        }
-    }
-    if (timeClient && millis() - lastNtpUpdate > config.ntpUpdateInterval) {
-        timeClient->setPoolServerName(config.ntpServer);
-        timeClient->setUpdateInterval(config.ntpUpdateInterval);
-        timeClient->update();
-        lastNtpUpdate = millis();
-    }
-    
-    // Сброс watchdog timer
+    // Сброс watchdog
     esp_task_wdt_reset();
     
-    // Неблокирующая пауза
-    vTaskDelay(10 / portTICK_PERIOD_MS);
+    // Вывод статуса системы каждые 30 секунд
+    if (millis() - lastStatusPrint >= STATUS_PRINT_INTERVAL) {
+        logPrintHeader("СТАТУС СИСТЕМЫ", COLOR_GREEN);
+        
+        logUptime();
+        logMemoryUsage();
+        logWiFiStatus();
+        logSystem("Режим датчика: %s", config.useRealSensor ? "РЕАЛЬНЫЙ" : "ЭМУЛЯЦИЯ");
+        
+        // Статус данных датчика
+        if (sensorData.valid) {
+            logData("Последние измерения получены %.1f сек назад", 
+                   (millis() - sensorData.last_update) / 1000.0);
+        } else {
+            logWarn("Данные датчика недоступны");
+        }
+        
+        logPrintSeparator("─", 60);
+        lastStatusPrint = millis();
+    }
+    
+    // Основная логика публикации данных
+    if (sensorData.valid) {
+        // Публикация в MQTT
+        publishSensorData();
+        
+        // Публикация в ThingSpeak
+        sendDataToThingSpeak();
+    }
+    
+    // Управление WiFi
+    handleWiFi();
+    
+    // Управление MQTT
+    handleMQTT();
+    
+    // Небольшая задержка
+    vTaskDelay(100 / portTICK_PERIOD_MS);
 } 

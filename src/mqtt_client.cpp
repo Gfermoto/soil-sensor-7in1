@@ -12,6 +12,7 @@
 #include "jxct_device_info.h"
 #include "jxct_config_vars.h"
 #include "jxct_format_utils.h"
+#include "logger.h"
 #include <NTPClient.h>
 extern NTPClient* timeClient;
 
@@ -173,10 +174,22 @@ void handleMQTT() {
         return;
     }
     
-    if (!mqttClient.connected()) {
+    static bool wasConnected = false;
+    bool isConnected = mqttClient.connected();
+    
+    // Логирование изменений состояния подключения
+    if (wasConnected && !isConnected) {
+        logWarn("MQTT подключение потеряно!");
+    } else if (!wasConnected && isConnected) {
+        logSuccess("MQTT переподключение успешно");
+    }
+    wasConnected = isConnected;
+    
+    if (!isConnected) {
         static unsigned long lastReconnectAttempt = 0;
         if (millis() - lastReconnectAttempt > 5000) {
             lastReconnectAttempt = millis();
+            logMQTT("Попытка переподключения...");
             connectMQTT();
         }
     } else {
