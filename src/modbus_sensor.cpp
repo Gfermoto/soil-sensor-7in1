@@ -8,6 +8,7 @@
 #include "modbus_sensor.h"
 #include "jxct_device_info.h"
 #include "jxct_config_vars.h"
+#include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "logger.h"
 
 ModbusMaster modbus;
@@ -180,7 +181,8 @@ bool changeDeviceAddress(uint8_t new_address)
     uint8_t result = modbus.writeSingleRegister(REG_DEVICE_ADDRESS, new_address);
     if (result == modbus.ku8MBSuccess)
     {
-        delay(100);  // Даем время на применение нового адреса
+        // ✅ Неблокирующая задержка через vTaskDelay
+        vTaskDelay(100 / portTICK_PERIOD_MS);  // Даем время на применение нового адреса
         modbus.begin(new_address, Serial2);
         return true;
     }
@@ -300,26 +302,40 @@ float convertRegisterToFloat(uint16_t value, float multiplier)
 
 void preTransmission()
 {
-    logDebug("Modbus TX режим");
+    DEBUG_PRINTLN("Modbus TX режим");
     digitalWrite(DE_PIN, HIGH);
     digitalWrite(RE_PIN, HIGH);
-    delayMicroseconds(50);
+    delayMicroseconds(50);  // ✅ Микросекундные задержки критичны для Modbus
 }
 
 void postTransmission()
 {
-    delayMicroseconds(50);
+    delayMicroseconds(50);  // ✅ Микросекундные задержки критичны для Modbus
     digitalWrite(DE_PIN, LOW);
     digitalWrite(RE_PIN, LOW);
-    logDebug("Modbus RX режим");
+    DEBUG_PRINTLN("Modbus RX режим");
 }
 
+// ✅ Неблокирующая задача реального датчика с оптимизированным циклом
 void realSensorTask(void* pvParameters)
 {
+    const TickType_t taskDelay = 1000 / portTICK_PERIOD_MS;  // 1 секунда
+    const uint32_t sensorReadInterval = (SENSOR_READ_INTERVAL / 1000);  // Интервал в секундах
+    uint32_t iterationCounter = 0;
+    
     for (;;)
     {
-        readSensorData();
-        vTaskDelay(SENSOR_READ_INTERVAL / portTICK_PERIOD_MS);
+        // Читаем датчик только с нужным интервалом
+        if (iterationCounter >= sensorReadInterval)
+        {
+            readSensorData();
+            iterationCounter = 0;  // Сброс счетчика
+        }
+        
+        iterationCounter++;
+        
+        // ✅ Более частые, но короткие задержки для отзывчивости
+        vTaskDelay(taskDelay);
     }
 }
 

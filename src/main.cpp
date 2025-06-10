@@ -15,6 +15,7 @@
 #include <esp_task_wdt.h>
 #include "config.h"
 #include "fake_sensor.h"
+#include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "logger.h"
 
 // Переменные для отслеживания времени
@@ -41,25 +42,37 @@ const unsigned long STATUS_PRINT_INTERVAL = 30000;  // 30 секунд
 // Переменные
 unsigned long lastStatusPrint = 0;
 
-// Задача мониторинга кнопки сброса
+// ✅ Неблокирующая задача мониторинга кнопки сброса
 void resetButtonTask(void* parameter)
 {
     pinMode(RESET_BUTTON_PIN, INPUT_PULLUP);
+    static unsigned long buttonPressTime = 0;
+    static bool buttonPressed = false;
 
     while (true)
     {
-        if (digitalRead(RESET_BUTTON_PIN) == LOW)
-        {
+        bool currentState = (digitalRead(RESET_BUTTON_PIN) == LOW);
+        
+        if (currentState && !buttonPressed) {
+            // Кнопка только что нажата
+            buttonPressed = true;
+            buttonPressTime = millis();
             logWarn("Кнопка сброса нажата! Сброс настроек через 2 сек...");
-            vTaskDelay(2000 / portTICK_PERIOD_MS);
-
-            if (digitalRead(RESET_BUTTON_PIN) == LOW)
-            {
-                resetConfig();
-                ESP.restart();
-            }
         }
-        vTaskDelay(100 / portTICK_PERIOD_MS);
+        else if (!currentState && buttonPressed) {
+            // Кнопка отпущена раньше времени
+            buttonPressed = false;
+            DEBUG_PRINTLN("Кнопка сброса отпущена");
+        }
+        else if (currentState && buttonPressed && (millis() - buttonPressTime >= 2000)) {
+            // Кнопка удерживалась 2 секунды
+            logError("Выполняется сброс настроек!");
+            resetConfig();
+            ESP.restart();
+        }
+        
+        // ✅ Неблокирующая задержка - проверяем кнопку каждые 50мс
+        vTaskDelay(50 / portTICK_PERIOD_MS);
     }
 }
 
@@ -135,13 +148,21 @@ bool initPreferences()
     return preferences.begin("jxct", false);
 }
 
+// ✅ Неблокирующий главный цикл с оптимизированными интервалами
 void loop()
 {
+    static unsigned long lastDataPublish = 0;
+    static unsigned long lastMqttCheck = 0;
+    static unsigned long lastWiFiCheck = 0;
+    
+    // Текущее время
+    unsigned long currentTime = millis();
+    
     // Сброс watchdog
     esp_task_wdt_reset();
 
-    // Вывод статуса системы каждые 30 секунд
-    if (millis() - lastStatusPrint >= STATUS_PRINT_INTERVAL)
+    // ✅ Вывод статуса системы каждые 30 секунд (неблокирующий)
+    if (currentTime - lastStatusPrint >= STATUS_PRINT_INTERVAL)
     {
         logPrintHeader("СТАТУС СИСТЕМЫ", COLOR_GREEN);
 
@@ -153,7 +174,7 @@ void loop()
         // Статус данных датчика
         if (sensorData.valid)
         {
-            logData("Последние измерения получены %.1f сек назад", (millis() - sensorData.last_update) / 1000.0);
+            logData("Последние измерения получены %.1f сек назад", (currentTime - sensorData.last_update) / 1000.0);
         }
         else
         {
@@ -161,25 +182,35 @@ void loop()
         }
 
         logPrintSeparator("─", 60);
-        lastStatusPrint = millis();
+        lastStatusPrint = currentTime;
     }
 
-    // Основная логика публикации данных
-    if (sensorData.valid)
+    // ✅ Публикация данных датчика (каждые 5 секунд)
+    if (sensorData.valid && (currentTime - lastDataPublish >= 5000))
     {
         // Публикация в MQTT
         publishSensorData();
 
         // Публикация в ThingSpeak
         sendDataToThingSpeak();
+        
+        lastDataPublish = currentTime;
     }
 
-    // Управление WiFi
-    handleWiFi();
+    // ✅ Управление MQTT (каждые 100мс)
+    if (currentTime - lastMqttCheck >= 100)
+    {
+        handleMQTT();
+        lastMqttCheck = currentTime;
+    }
 
-    // Управление MQTT
-    handleMQTT();
+    // ✅ Управление WiFi (каждые 1 секунду)
+    if (currentTime - lastWiFiCheck >= 1000)
+    {
+        handleWiFi();
+        lastWiFiCheck = currentTime;
+    }
 
-    // Небольшая задержка
-    vTaskDelay(100 / portTICK_PERIOD_MS);
+    // ✅ Минимальная задержка для стабильности (10мс вместо 100мс)
+    vTaskDelay(10 / portTICK_PERIOD_MS);
 }

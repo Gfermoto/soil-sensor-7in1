@@ -7,6 +7,7 @@
 #include "config.h"
 #include "jxct_device_info.h"
 #include "jxct_config_vars.h"
+#include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "logger.h"
 
 String getDeviceId()
@@ -157,18 +158,18 @@ void resetConfig()
     config.ntpUpdateInterval = 60000;
 
     logSuccess("Все настройки сброшены к значениям по умолчанию");
-    Serial.print("[resetConfig] config.thingspeakInterval: ");
-    Serial.println(config.thingspeakInterval);
-    Serial.print("[resetConfig] config.manufacturer: ");
-    Serial.println(config.manufacturer);
-    Serial.print("[resetConfig] config.model: ");
-    Serial.println(config.model);
-    Serial.print("[resetConfig] config.swVersion: ");
-    Serial.println(config.swVersion);
-    Serial.print("[resetConfig] config.ntpServer: ");
-    Serial.println(config.ntpServer);
-    Serial.print("[resetConfig] config.ntpUpdateInterval: ");
-    Serial.println(config.ntpUpdateInterval);
+    DEBUG_PRINT("[resetConfig] config.thingspeakInterval: ");
+    DEBUG_PRINTLN(config.thingspeakInterval);
+    DEBUG_PRINT("[resetConfig] config.manufacturer: ");
+    DEBUG_PRINTLN(config.manufacturer);
+    DEBUG_PRINT("[resetConfig] config.model: ");
+    DEBUG_PRINTLN(config.model);
+    DEBUG_PRINT("[resetConfig] config.swVersion: ");
+    DEBUG_PRINTLN(config.swVersion);
+    DEBUG_PRINT("[resetConfig] config.ntpServer: ");
+    DEBUG_PRINTLN(config.ntpServer);
+    DEBUG_PRINT("[resetConfig] config.ntpUpdateInterval: ");
+    DEBUG_PRINTLN(config.ntpUpdateInterval);
 }
 
 bool isConfigValid()
