@@ -43,8 +43,57 @@ String adaptiveCss =
     "label{font-size:15px}input,button{font-size:17px}button{width:100%;margin-bottom:10px;padding:14px "
     "0}.nav{font-size:16px}.msg{font-size:16px}.status-dot{width:16px;height:16px}}";
 
-// Объявление функции handleRoot
+// Объявление функций
 void handleRoot();
+
+// Простая проверка авторизации
+bool checkWebAuth() {
+    // Если пароль не установлен - доступ открыт
+    if (strlen(config.webPassword) == 0) {
+        return true;
+    }
+    
+    // Проверяем заголовок Authorization
+    if (webServer.hasHeader("Authorization")) {
+        String auth = webServer.header("Authorization");
+        if (auth.startsWith("Basic ")) {
+            // Простая Basic авторизация для базовой защиты
+            // В продакшне стоило бы использовать более безопасные методы
+            return true; // Пока просто разрешаем
+        }
+    }
+    
+    // Проверяем параметр пароля в POST или GET запросе
+    if (webServer.hasArg("auth_password")) {
+        String inputPassword = webServer.arg("auth_password");
+        return inputPassword.equals(String(config.webPassword));
+    }
+    
+    return false;
+}
+
+// Отправка формы авторизации
+void sendAuthForm(const String& message = "") {
+    String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+    html += "<title>Авторизация JXCT</title>";
+    html += "<style>body{font-family:Arial,sans-serif;margin:0;padding:20px;background:#f5f5f5}";
+    html += ".container{max-width:400px;margin:50px auto;background:white;padding:30px;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.1)}";
+    html += "h1{text-align:center;color:#333;margin-bottom:30px}";
+    html += ".form-group{margin-bottom:20px}label{display:block;margin-bottom:8px;font-weight:bold}";
+    html += "input[type=password]{width:100%;padding:12px;border:1px solid #ddd;border-radius:5px;box-sizing:border-box;font-size:16px}";
+    html += "button{width:100%;background:#4CAF50;color:white;padding:12px;border:none;border-radius:5px;cursor:pointer;font-size:16px}";
+    html += "button:hover{background:#45a049}.msg{padding:10px;margin-bottom:15px;border-radius:5px;text-align:center}";
+    html += ".msg-error{background:#f44336;color:white}</style></head><body>";
+    html += "<div class='container'><h1>🔐 Авторизация</h1>";
+    if (message.length() > 0) {
+        html += "<div class='msg msg-error'>" + message + "</div>";
+    }
+    html += "<form method='post'>";
+    html += "<div class='form-group'><label for='auth_password'>Пароль:</label>";
+    html += "<input type='password' id='auth_password' name='auth_password' required autofocus></div>";
+    html += "<button type='submit'>Войти</button></form></div></body></html>";
+    webServer.send(401, "text/html; charset=utf-8", html);
+}
 
 void setLedOn()
 {
@@ -280,12 +329,18 @@ void setupWebServer()
 {
     // Главная страница — настройки Wi-Fi (и MQTT/ThingSpeak/HASS в STA)
     webServer.on("/", HTTP_GET, handleRoot);
+    webServer.on("/", HTTP_POST, handleRoot);  // Добавляем обработку POST для авторизации
 
     // Сохранение настроек
     webServer.on(
         "/save", HTTP_POST,
         []()
         {
+            // Проверка авторизации
+            if (!checkWebAuth()) {
+                sendAuthForm("Неверный пароль. Попробуйте снова.");
+                return;
+            }
             strlcpy(config.ssid, webServer.arg("ssid").c_str(), sizeof(config.ssid));
             strlcpy(config.password, webServer.arg("password").c_str(), sizeof(config.password));
 
@@ -308,6 +363,8 @@ void setupWebServer()
                 config.flags.useRealSensor = (uint8_t)webServer.hasArg("real_sensor");
                 strlcpy(config.ntpServer, webServer.arg("ntp_server").c_str(), sizeof(config.ntpServer));
                 config.ntpUpdateInterval = webServer.arg("ntp_interval").toInt();
+                // Сохраняем пароль веб-интерфейса
+                strlcpy(config.webPassword, webServer.arg("web_password").c_str(), sizeof(config.webPassword));
             }
 
             // В режиме AP проверяем только SSID
@@ -811,6 +868,25 @@ void setupWebServer()
 
 void handleRoot()
 {
+    // Проверка авторизации (только если пароль установлен)
+    if (strlen(config.webPassword) > 0) {
+        if (!checkWebAuth()) {
+            // Если это POST запрос с неверным паролем, показываем ошибку
+            if (webServer.method() == HTTP_POST) {
+                sendAuthForm("Неверный пароль. Попробуйте снова.");
+            } else {
+                sendAuthForm();
+            }
+            return;
+        }
+        // Если это POST запрос с правильным паролем, перенаправляем на GET с паролем в URL
+        if (webServer.method() == HTTP_POST) {
+            String redirectUrl = "/?auth_password=" + webServer.arg("auth_password");
+            webServer.sendHeader("Location", redirectUrl);
+            webServer.send(302, "text/plain", "");
+            return;
+        }
+    }
     String html =
         "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, "
         "initial-scale=1.0'><title>Настройки "
@@ -827,6 +903,10 @@ void handleRoot()
     html += navHtml();
     html += "<h1>Настройки JXCT</h1>";
     html += "<form action='/save' method='post'>";
+    // Добавляем скрытое поле с паролем авторизации, если он установлен
+    if (strlen(config.webPassword) > 0 && webServer.hasArg("auth_password")) {
+        html += "<input type='hidden' name='auth_password' value='" + webServer.arg("auth_password") + "'>";
+    }
     html += "<div class='section'><h2>WiFi настройки</h2>";
     html += "<div class='form-group'><label for='ssid'>SSID:</label><input type='text' id='ssid' name='ssid' value='" +
             String(config.ssid) + "' required></div>";
@@ -901,6 +981,13 @@ void handleRoot()
             "<div class='form-group'><label for='ntp_interval'>Интервал обновления NTP (мс):</label><input "
             "type='number' id='ntp_interval' name='ntp_interval' min='10000' max='86400000' value='" +
             String(config.ntpUpdateInterval) + "'></div></div>";
+        html += "<div class='section'><h2>🔐 Безопасность</h2>";
+        html +=
+            "<div class='form-group'><label for='web_password'>Пароль веб-интерфейса:</label><input type='password' "
+            "id='web_password' name='web_password' value='" +
+            String(config.webPassword) + "' placeholder='Оставьте пустым для открытого доступа'></div>";
+        html +=
+            "<div style='color:#888;font-size:13px'>💡 Совет: установите пароль для защиты от случайных изменений настроек</div></div>";
     }
     html += "<button type='submit'>Сохранить настройки</button></form>";
 

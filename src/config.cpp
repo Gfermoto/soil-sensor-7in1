@@ -65,6 +65,9 @@ void loadConfig()
     // Настройка датчика
     config.modbusId = preferences.getUChar("modbusId", JXCT_MODBUS_ID);
 
+    // Безопасность веб-интерфейса
+    preferences.getString("webPassword", config.webPassword, sizeof(config.webPassword));
+
     // NTP настройки
     String ntpServer = preferences.getString("ntpServer", "pool.ntp.org");
     ntpServer.toCharArray(config.ntpServer, sizeof(config.ntpServer));
@@ -119,6 +122,9 @@ void saveConfig()
     // Настройка датчика
     preferences.putUChar("modbusId", config.modbusId);
 
+    // Безопасность веб-интерфейса
+    preferences.putString("webPassword", config.webPassword);
+
     // NTP настройки
     preferences.putString("ntpServer", config.ntpServer);
     preferences.putUInt("ntpUpdateInterval", config.ntpUpdateInterval);
@@ -168,6 +174,9 @@ void resetConfig()
     // ✅ Сброс числовых полей
     config.mqttQos = 0;
     config.thingspeakInterval = 60;
+    
+    // ✅ Безопасность веб-интерфейса
+    strlcpy(config.webPassword, "", sizeof(config.webPassword));
     
     // NTP
     strlcpy(config.ntpServer, "pool.ntp.org", sizeof(config.ntpServer));

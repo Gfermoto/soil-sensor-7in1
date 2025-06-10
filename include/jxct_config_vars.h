@@ -55,6 +55,9 @@ struct __attribute__((packed)) Config
     // Датчик настройки
     uint8_t modbusId;
     
+    // Безопасность веб-интерфейса
+    char webPassword[24];     // Пароль для доступа к веб-интерфейсу
+    
     // Битовые поля для boolean флагов (экономия 4 байта)
     struct __attribute__((packed)) {
         uint8_t hassEnabled       : 1;  // 1 бит вместо 1 байта
