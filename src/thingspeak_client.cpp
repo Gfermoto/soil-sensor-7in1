@@ -17,24 +17,27 @@ static unsigned long lastTsPublish = 0;
 String thingSpeakLastPublish = "";
 String thingSpeakLastError = "";
 
-void setupThingSpeak(WiFiClient& client) {
+void setupThingSpeak(WiFiClient& client)
+{
     ThingSpeak.begin(client);
 }
 
-bool sendDataToThingSpeak() {
+bool sendDataToThingSpeak()
+{
     // Проверки
     if (!config.thingSpeakEnabled) return false;
     if (!wifiConnected) return false;
     if (!sensorData.valid) return false;
-    
+
     unsigned long now = millis();
-    if (now - lastTsPublish < config.thingspeakInterval * 1000UL) {
-        return false; // Слишком часто
+    if (now - lastTsPublish < config.thingspeakInterval * 1000UL)
+    {
+        return false;  // Слишком часто
     }
     lastTsPublish = now;
-    
+
     unsigned long channelId = strtoul(config.thingSpeakChannelId, nullptr, 10);
-    
+
     // Подготовка данных
     String temp = String(format_temperature(sensorData.temperature).c_str());
     String hum = String(format_moisture(sensorData.humidity).c_str());
@@ -51,38 +54,51 @@ bool sendDataToThingSpeak() {
     ThingSpeak.setField(5, n.c_str());
     ThingSpeak.setField(6, p.c_str());
     ThingSpeak.setField(7, k.c_str());
-    
-    logData("Отправка в ThingSpeak: T=%.1f°C, H=%.1f%%, PH=%.2f", 
-           sensorData.temperature, sensorData.humidity, sensorData.ph);
-    
+
+    logData("Отправка в ThingSpeak: T=%.1f°C, H=%.1f%%, PH=%.2f", sensorData.temperature, sensorData.humidity,
+            sensorData.ph);
+
     int res = ThingSpeak.writeFields(channelId, config.thingSpeakApiKey);
-    
-    if (res == 200) {
+
+    if (res == 200)
+    {
         logSuccess("ThingSpeak: данные отправлены");
         thingSpeakLastPublish = String(millis());
         thingSpeakLastError = "";
         return true;
-    } else if (res == -301) {
+    }
+    else if (res == -301)
+    {
         // Ошибка -301 часто возникает при таймауте, но данные могут быть отправлены
         logWarn("ThingSpeak: таймаут ответа (данные могли быть отправлены)");
         thingSpeakLastPublish = String(millis());
         thingSpeakLastError = "Таймаут ответа (возможно успешно)";
-        return true; // Считаем успешным для избежания повторных отправок
-    } else if (res == -401) {
+        return true;  // Считаем успешным для избежания повторных отправок
+    }
+    else if (res == -401)
+    {
         logDebug("ThingSpeak: превышен лимит публикаций");
         thingSpeakLastError = "Превышен лимит публикаций (15 сек)";
-    } else if (res == -302) {
+    }
+    else if (res == -302)
+    {
         logError("ThingSpeak: неверный API ключ");
         thingSpeakLastError = "Неверный API ключ";
-    } else if (res == -304) {
+    }
+    else if (res == -304)
+    {
         logError("ThingSpeak: неверный Channel ID");
         thingSpeakLastError = "Неверный Channel ID";
-    } else if (res == 0) {
+    }
+    else if (res == 0)
+    {
         logError("ThingSpeak: ошибка подключения");
         thingSpeakLastError = "Ошибка подключения";
-    } else {
+    }
+    else
+    {
         logError("ThingSpeak: ошибка %d", res);
         thingSpeakLastError = "Ошибка публикации ThingSpeak";
     }
     return false;
-} 
+}

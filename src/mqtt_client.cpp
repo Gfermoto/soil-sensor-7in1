@@ -26,12 +26,15 @@ void mqttCallback(char* topic, byte* payload, unsigned int length);
 void publishHomeAssistantConfig();
 
 // Создаем уникальный ID клиента на основе MAC адреса
-String getClientId() {
+String getClientId()
+{
     uint8_t mac[6];
     WiFi.macAddress(mac);
     String clientId = "JXCT_";
-    for (int i = 0; i < 6; i++) {
-        if (mac[i] < 0x10) {
+    for (int i = 0; i < 6; i++)
+    {
+        if (mac[i] < 0x10)
+        {
             clientId += "0";
         }
         clientId += String(mac[i], HEX);
@@ -40,74 +43,86 @@ String getClientId() {
 }
 
 // Возвращает имя клиента для MQTT
-String getMqttClientName() {
-    if (strlen(config.mqttDeviceName) > 0) {
+String getMqttClientName()
+{
+    if (strlen(config.mqttDeviceName) > 0)
+    {
         return String(config.mqttDeviceName);
-    } else {
+    }
+    else
+    {
         return getClientId();
     }
 }
 
-String getStatusTopic() {
+String getStatusTopic()
+{
     return String(config.mqttTopicPrefix) + "/status";
 }
 
-String getCommandTopic() {
+String getCommandTopic()
+{
     return String(config.mqttTopicPrefix) + "/command";
 }
 
-void publishAvailability(bool online) {
+void publishAvailability(bool online)
+{
     String topic = getStatusTopic();
     const char* payload = online ? "online" : "offline";
     Serial.printf("[publishAvailability] Публикация статуса: %s в топик %s\n", payload, topic.c_str());
     mqttClient.publish(topic.c_str(), payload, true);
 }
 
-void setupMQTT() {
+void setupMQTT()
+{
     Serial.println("[КРИТИЧЕСКАЯ ОТЛАДКА] Инициализация MQTT");
-    
+
     // Расширенная диагностика WiFi
     Serial.println("[WiFi Debug] Статус подключения:");
     Serial.printf("WiFi статус: %d\n", WiFi.status());
     Serial.printf("IP-адрес: %s\n", WiFi.localIP().toString().c_str());
     Serial.printf("Маска подсети: %s\n", WiFi.subnetMask().toString().c_str());
     Serial.printf("Шлюз: %s\n", WiFi.gatewayIP().toString().c_str());
-    
+
     Serial.println("[MQTT Debug] Параметры:");
     Serial.printf("MQTT включен: %d\n", config.mqttEnabled);
     Serial.printf("Сервер: %s\n", config.mqttServer);
     Serial.printf("Порт: %d\n", config.mqttPort);
     Serial.printf("Префикс топика: %s\n", config.mqttTopicPrefix);
     Serial.printf("Пользователь: %s\n", config.mqttUser);
-    
-    if (!config.mqttEnabled || strlen(config.mqttServer) == 0) {
+
+    if (!config.mqttEnabled || strlen(config.mqttServer) == 0)
+    {
         Serial.println("[ОШИБКА] MQTT не может быть инициализирован");
         return;
     }
-    
+
     mqttClient.setServer(config.mqttServer, config.mqttPort);
     mqttClient.setCallback(mqttCallback);
     mqttClient.setKeepAlive(30);
     mqttClient.setSocketTimeout(30);
-    
+
     Serial.println("[MQTT] Инициализация завершена");
 }
 
-bool connectMQTT() {
+bool connectMQTT()
+{
     Serial.println("[КРИТИЧЕСКАЯ ОТЛАДКА] Попытка подключения к MQTT");
-    
+
     // Проверка WiFi
-    if (WiFi.status() != WL_CONNECTED) {
+    if (WiFi.status() != WL_CONNECTED)
+    {
         Serial.println("[ОШИБКА] WiFi не подключен!");
         return false;
     }
-    
+
     // Расширенная проверка параметров
-    if (strlen(config.mqttServer) == 0) {
+    if (strlen(config.mqttServer) == 0)
+    {
         Serial.println("[ОШИБКА] Не указан MQTT-сервер");
         return false;
     }
-    
+
     // Попытка подключения с максимальной детализацией
     String clientId = getMqttClientName();
     Serial.printf("[MQTT] Сервер: %s\n", config.mqttServer);
@@ -115,93 +130,128 @@ bool connectMQTT() {
     Serial.printf("[MQTT] ID клиента: %s\n", clientId.c_str());
     Serial.printf("[MQTT] Пользователь: %s\n", config.mqttUser);
     Serial.printf("[MQTT] Пароль: %s\n", config.mqttPassword);
-    
+
     mqttClient.setServer(config.mqttServer, config.mqttPort);
-    
+
     // Попытка подключения с максимально подробной информацией
-    bool result = mqttClient.connect(
-        clientId.c_str(),
-        config.mqttUser,  // может быть пустым
-        config.mqttPassword,  // может быть пустым
-        (String(config.mqttTopicPrefix) + "/status").c_str(),
-        1,  // QoS
-        true,  // retain
-        "offline"  // will message
+    bool result = mqttClient.connect(clientId.c_str(),
+                                     config.mqttUser,      // может быть пустым
+                                     config.mqttPassword,  // может быть пустым
+                                     (String(config.mqttTopicPrefix) + "/status").c_str(),
+                                     1,         // QoS
+                                     true,      // retain
+                                     "offline"  // will message
     );
-    
+
     Serial.printf("[MQTT] Результат подключения: %d\n", result);
-    
+
     // Расшифровка кодов состояния
     int state = mqttClient.state();
     Serial.printf("[MQTT] Состояние клиента: %d - ", state);
-    switch(state) {
-        case -4: Serial.println("Тайм-аут подключения"); break;
-        case -3: Serial.println("Соединение потеряно"); break;
-        case -2: Serial.println("Ошибка подключения"); break;
-        case -1: Serial.println("Отключено"); break;
-        case 0: Serial.println("Подключено"); break;
-        case 1: Serial.println("Неверный протокол"); break;
-        case 2: Serial.println("Неверный ID клиента"); break;
-        case 3: Serial.println("Сервер недоступен"); break;
-        case 4: Serial.println("Неверные учетные данные"); break;
-        case 5: Serial.println("Не авторизован"); break;
-        default: Serial.println("Неизвестная ошибка"); break;
+    switch (state)
+    {
+        case -4:
+            Serial.println("Тайм-аут подключения");
+            break;
+        case -3:
+            Serial.println("Соединение потеряно");
+            break;
+        case -2:
+            Serial.println("Ошибка подключения");
+            break;
+        case -1:
+            Serial.println("Отключено");
+            break;
+        case 0:
+            Serial.println("Подключено");
+            break;
+        case 1:
+            Serial.println("Неверный протокол");
+            break;
+        case 2:
+            Serial.println("Неверный ID клиента");
+            break;
+        case 3:
+            Serial.println("Сервер недоступен");
+            break;
+        case 4:
+            Serial.println("Неверные учетные данные");
+            break;
+        case 5:
+            Serial.println("Не авторизован");
+            break;
+        default:
+            Serial.println("Неизвестная ошибка");
+            break;
     }
-    
+
     // Если подключились успешно
-    if (result) {
+    if (result)
+    {
         Serial.println("[MQTT] Подключение успешно!");
-        
+
         // Подписываемся на топик команд
         String commandTopic = getCommandTopic();
         mqttClient.subscribe(commandTopic.c_str());
         Serial.printf("[MQTT] Подписались на топик команд: %s\n", commandTopic.c_str());
-        
+
         // Публикуем статус availability
         publishAvailability(true);
-        
+
         // Публикуем конфигурацию Home Assistant discovery если включено
-        if (config.hassEnabled) {
+        if (config.hassEnabled)
+        {
             publishHomeAssistantConfig();
         }
     }
-    
+
     return result;
 }
 
-void handleMQTT() {
-    if (!config.mqttEnabled) {
+void handleMQTT()
+{
+    if (!config.mqttEnabled)
+    {
         return;
     }
-    
+
     static bool wasConnected = false;
     bool isConnected = mqttClient.connected();
-    
+
     // Логирование изменений состояния подключения
-    if (wasConnected && !isConnected) {
+    if (wasConnected && !isConnected)
+    {
         logWarn("MQTT подключение потеряно!");
-    } else if (!wasConnected && isConnected) {
+    }
+    else if (!wasConnected && isConnected)
+    {
         logSuccess("MQTT переподключение успешно");
     }
     wasConnected = isConnected;
-    
-    if (!isConnected) {
+
+    if (!isConnected)
+    {
         static unsigned long lastReconnectAttempt = 0;
-        if (millis() - lastReconnectAttempt > 5000) {
+        if (millis() - lastReconnectAttempt > 5000)
+        {
             lastReconnectAttempt = millis();
             logMQTT("Попытка переподключения...");
             connectMQTT();
         }
-    } else {
+    }
+    else
+    {
         mqttClient.loop();
     }
 }
 
-void publishSensorData() {
-    if (!config.mqttEnabled || !mqttClient.connected() || !sensorData.valid) {
+void publishSensorData()
+{
+    if (!config.mqttEnabled || !mqttClient.connected() || !sensorData.valid)
+    {
         return;
     }
-    
+
     StaticJsonDocument<512> doc;
     doc["temperature"] = round(sensorData.temperature * 10) / 10.0;
     doc["humidity"] = round(sensorData.humidity * 10) / 10.0;
@@ -211,23 +261,28 @@ void publishSensorData() {
     doc["phosphorus"] = (int)round(sensorData.phosphorus);
     doc["potassium"] = (int)round(sensorData.potassium);
     doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
-    
+
     String jsonString;
     serializeJson(doc, jsonString);
-    
+
     String topic = String(config.mqttTopicPrefix) + "/state";
     bool res = mqttClient.publish(topic.c_str(), jsonString.c_str(), true);
-    
-    if (res) {
+
+    if (res)
+    {
         mqttLastError = "";
-    } else {
+    }
+    else
+    {
         mqttLastError = "Ошибка публикации MQTT";
     }
 }
 
-void publishHomeAssistantConfig() {
+void publishHomeAssistantConfig()
+{
     Serial.println("[publishHomeAssistantConfig] Публикация discovery-конфигов Home Assistant...");
-    if (!config.mqttEnabled || !mqttClient.connected() || !config.hassEnabled) {
+    if (!config.mqttEnabled || !mqttClient.connected() || !config.hassEnabled)
+    {
         Serial.println("[publishHomeAssistantConfig] Условия не выполнены, публикация отменена");
         return;
     }
@@ -315,18 +370,23 @@ void publishHomeAssistantConfig() {
     serializeJson(phosphorusConfig, phosphorusConfigStr);
     serializeJson(potassiumConfig, potassiumConfigStr);
     // Публикуем конфигурации
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_temperature/config").c_str(), tempConfigStr.c_str(), true);
+    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_temperature/config").c_str(), tempConfigStr.c_str(),
+                       true);
     mqttClient.publish(("homeassistant/sensor/" + deviceId + "_humidity/config").c_str(), humConfigStr.c_str(), true);
     mqttClient.publish(("homeassistant/sensor/" + deviceId + "_ec/config").c_str(), ecConfigStr.c_str(), true);
     mqttClient.publish(("homeassistant/sensor/" + deviceId + "_ph/config").c_str(), phConfigStr.c_str(), true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_nitrogen/config").c_str(), nitrogenConfigStr.c_str(), true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_phosphorus/config").c_str(), phosphorusConfigStr.c_str(), true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_potassium/config").c_str(), potassiumConfigStr.c_str(), true);
+    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_nitrogen/config").c_str(), nitrogenConfigStr.c_str(),
+                       true);
+    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_phosphorus/config").c_str(), phosphorusConfigStr.c_str(),
+                       true);
+    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_potassium/config").c_str(), potassiumConfigStr.c_str(),
+                       true);
     Serial.println("[publishHomeAssistantConfig] Конфигурация Home Assistant опубликована");
     mqttLastError = "";
 }
 
-void removeHomeAssistantConfig() {
+void removeHomeAssistantConfig()
+{
     String deviceId = getDeviceId();
     // Публикуем пустой payload с retain для удаления сенсоров из HA
     mqttClient.publish(("homeassistant/sensor/" + deviceId + "_temperature/config").c_str(), "", true);
@@ -340,31 +400,45 @@ void removeHomeAssistantConfig() {
     mqttLastError = "";
 }
 
-void handleMqttCommand(const String& cmd) {
+void handleMqttCommand(const String& cmd)
+{
     Serial.print("[MQTT] Получена команда: ");
     Serial.println(cmd);
-    if (cmd == "reboot") {
+    if (cmd == "reboot")
+    {
         ESP.restart();
-    } else if (cmd == "reset") {
+    }
+    else if (cmd == "reset")
+    {
         resetConfig();
         ESP.restart();
-    } else if (cmd == "publish_test") {
+    }
+    else if (cmd == "publish_test")
+    {
         publishSensorData();
-    } else if (cmd == "publish_discovery") {
+    }
+    else if (cmd == "publish_discovery")
+    {
         publishHomeAssistantConfig();
-    } else if (cmd == "remove_discovery") {
+    }
+    else if (cmd == "remove_discovery")
+    {
         removeHomeAssistantConfig();
-    } else {
+    }
+    else
+    {
         Serial.println("[MQTT] Неизвестная команда");
     }
 }
 
-void mqttCallback(char* topic, byte* payload, unsigned int length) {
+void mqttCallback(char* topic, byte* payload, unsigned int length)
+{
     String t = String(topic);
     String message;
     for (unsigned int i = 0; i < length; i++) message += (char)payload[i];
     Serial.printf("[mqttCallback] Получено сообщение: %s = %s\n", t.c_str(), message.c_str());
-    if (t == getCommandTopic()) {
+    if (t == getCommandTopic())
+    {
         handleMqttCommand(message);
     }
-} 
+}

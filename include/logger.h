@@ -9,7 +9,8 @@
 #include <Arduino.h>
 
 // Уровни логгирования
-enum LogLevel {
+enum LogLevel
+{
     LOG_ERROR = 0,
     LOG_WARN = 1,
     LOG_INFO = 2,
@@ -21,8 +22,8 @@ extern LogLevel currentLogLevel;
 
 // Символы для разных типов сообщений
 #define LOG_SYMBOL_ERROR "❌"
-#define LOG_SYMBOL_WARN  "⚠️ "
-#define LOG_SYMBOL_INFO  "ℹ️ "
+#define LOG_SYMBOL_WARN "⚠️ "
+#define LOG_SYMBOL_INFO "ℹ️ "
 #define LOG_SYMBOL_DEBUG "🔧"
 #define LOG_SYMBOL_SUCCESS "✅"
 #define LOG_SYMBOL_SENSOR "📡"
@@ -32,15 +33,15 @@ extern LogLevel currentLogLevel;
 #define LOG_SYMBOL_SYSTEM "⚙️ "
 
 // Цвета для консоли (ANSI escape codes)
-#define COLOR_RESET   "\033[0m"
-#define COLOR_RED     "\033[31m"
-#define COLOR_GREEN   "\033[32m"
-#define COLOR_YELLOW  "\033[33m"
-#define COLOR_BLUE    "\033[34m"
+#define COLOR_RESET "\033[0m"
+#define COLOR_RED "\033[31m"
+#define COLOR_GREEN "\033[32m"
+#define COLOR_YELLOW "\033[33m"
+#define COLOR_BLUE "\033[34m"
 #define COLOR_MAGENTA "\033[35m"
-#define COLOR_CYAN    "\033[36m"
-#define COLOR_WHITE   "\033[37m"
-#define COLOR_BOLD    "\033[1m"
+#define COLOR_CYAN "\033[36m"
+#define COLOR_WHITE "\033[37m"
+#define COLOR_BOLD "\033[1m"
 
 // Функции логгирования
 void logPrintHeader(const char* title, const char* color = COLOR_CYAN);
@@ -66,4 +67,4 @@ void logUptime();
 void logMemoryUsage();
 void logWiFiStatus();
 
-#endif // LOGGER_H 
+#endif  // LOGGER_H

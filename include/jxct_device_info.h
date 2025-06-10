@@ -7,4 +7,4 @@ static const char DEVICE_SW_VERSION[] = "2.0";
 #include <Arduino.h>
 
 String getDeviceId();
-String getDefaultTopic(); 
+String getDefaultTopic();

@@ -9,7 +9,8 @@
 #include "jxct_config_vars.h"
 #include "logger.h"
 
-String getDeviceId() {
+String getDeviceId()
+{
     uint8_t mac[6];
     WiFi.macAddress(mac);
     char buf[32];
@@ -17,7 +18,8 @@ String getDeviceId() {
     return String(buf);
 }
 
-String getDefaultTopic() {
+String getDefaultTopic()
+{
     uint8_t mac[6];
     WiFi.macAddress(mac);
     char buf[32];
@@ -28,13 +30,14 @@ String getDefaultTopic() {
 Config config;
 Preferences preferences;
 
-void loadConfig() {
+void loadConfig()
+{
     preferences.begin("jxct-sensor", false);
-    
+
     // WiFi настройки
     preferences.getString("ssid", config.ssid, sizeof(config.ssid));
     preferences.getString("password", config.password, sizeof(config.password));
-    
+
     // MQTT настройки
     preferences.getString("mqttServer", config.mqttServer, sizeof(config.mqttServer));
     config.mqttPort = preferences.getUShort("mqttPort", 1883);
@@ -49,42 +52,45 @@ void loadConfig() {
     preferences.getString("manufacturer", config.manufacturer, sizeof(config.manufacturer));
     preferences.getString("model", config.model, sizeof(config.model));
     preferences.getString("swVersion", config.swVersion, sizeof(config.swVersion));
-    
+
     // ThingSpeak настройки
     preferences.getString("tsApiKey", config.thingSpeakApiKey, sizeof(config.thingSpeakApiKey));
     preferences.getString("tsChannelId", config.thingSpeakChannelId, sizeof(config.thingSpeakChannelId));
-    
+
     // Сервисные настройки
     config.mqttEnabled = preferences.getBool("mqttEnabled", false);
     config.thingSpeakEnabled = preferences.getBool("tsEnabled", false);
-    
+
     // Настройка датчика
     config.modbusId = preferences.getUChar("modbusId", JXCT_MODBUS_ID);
-    
+
     // NTP настройки
     String ntpServer = preferences.getString("ntpServer", "pool.ntp.org");
     ntpServer.toCharArray(config.ntpServer, sizeof(config.ntpServer));
     config.ntpUpdateInterval = preferences.getUInt("ntpUpdateInterval", 60000);
-    
+
     preferences.end();
     // Значения по умолчанию для новых полей
-    if (strlen(config.mqttDeviceName) == 0) strlcpy(config.mqttDeviceName, "JXCT_Device", sizeof(config.mqttDeviceName));
-    if (strlen(config.thingSpeakChannelId) == 0) strlcpy(config.thingSpeakChannelId, "", sizeof(config.thingSpeakChannelId));
-    if (strlen(config.mqttTopicPrefix) == 0) strlcpy(config.mqttTopicPrefix, getDefaultTopic().c_str(), sizeof(config.mqttTopicPrefix));
-    
+    if (strlen(config.mqttDeviceName) == 0)
+        strlcpy(config.mqttDeviceName, "JXCT_Device", sizeof(config.mqttDeviceName));
+    if (strlen(config.thingSpeakChannelId) == 0)
+        strlcpy(config.thingSpeakChannelId, "", sizeof(config.thingSpeakChannelId));
+    if (strlen(config.mqttTopicPrefix) == 0)
+        strlcpy(config.mqttTopicPrefix, getDefaultTopic().c_str(), sizeof(config.mqttTopicPrefix));
+
     logSuccess("Конфигурация загружена");
-    logDebug("SSID: %s, MQTT: %s:%d, ThingSpeak: %s", 
-            config.ssid, config.mqttServer, config.mqttPort,
-            config.thingSpeakEnabled ? "включен" : "выключен");
+    logDebug("SSID: %s, MQTT: %s:%d, ThingSpeak: %s", config.ssid, config.mqttServer, config.mqttPort,
+             config.thingSpeakEnabled ? "включен" : "выключен");
 }
 
-void saveConfig() {
+void saveConfig()
+{
     preferences.begin("jxct-sensor", false);
-    
+
     // WiFi настройки
     preferences.putString("ssid", config.ssid);
     preferences.putString("password", config.password);
-    
+
     // MQTT настройки
     preferences.putString("mqttServer", config.mqttServer);
     preferences.putUShort("mqttPort", config.mqttPort);
@@ -99,27 +105,28 @@ void saveConfig() {
     preferences.putString("manufacturer", config.manufacturer);
     preferences.putString("model", config.model);
     preferences.putString("swVersion", config.swVersion);
-    
+
     // ThingSpeak настройки
     preferences.putString("tsApiKey", config.thingSpeakApiKey);
     preferences.putString("tsChannelId", config.thingSpeakChannelId);
-    
+
     // Сервисные настройки
     preferences.putBool("mqttEnabled", config.mqttEnabled);
     preferences.putBool("tsEnabled", config.thingSpeakEnabled);
-    
+
     // Настройка датчика
     preferences.putUChar("modbusId", config.modbusId);
-    
+
     // NTP настройки
     preferences.putString("ntpServer", config.ntpServer);
     preferences.putUInt("ntpUpdateInterval", config.ntpUpdateInterval);
-    
+
     preferences.end();
     logSuccess("Конфигурация сохранена");
 }
 
-void resetConfig() {
+void resetConfig()
+{
     logWarn("Сброс конфигурации...");
     preferences.begin("jxct-sensor", false);
     preferences.clear();
@@ -148,31 +155,41 @@ void resetConfig() {
     // NTP
     strlcpy(config.ntpServer, "pool.ntp.org", sizeof(config.ntpServer));
     config.ntpUpdateInterval = 60000;
-    
+
     logSuccess("Все настройки сброшены к значениям по умолчанию");
-    Serial.print("[resetConfig] config.thingspeakInterval: "); Serial.println(config.thingspeakInterval);
-    Serial.print("[resetConfig] config.manufacturer: "); Serial.println(config.manufacturer);
-    Serial.print("[resetConfig] config.model: "); Serial.println(config.model);
-    Serial.print("[resetConfig] config.swVersion: "); Serial.println(config.swVersion);
-    Serial.print("[resetConfig] config.ntpServer: "); Serial.println(config.ntpServer);
-    Serial.print("[resetConfig] config.ntpUpdateInterval: "); Serial.println(config.ntpUpdateInterval);
+    Serial.print("[resetConfig] config.thingspeakInterval: ");
+    Serial.println(config.thingspeakInterval);
+    Serial.print("[resetConfig] config.manufacturer: ");
+    Serial.println(config.manufacturer);
+    Serial.print("[resetConfig] config.model: ");
+    Serial.println(config.model);
+    Serial.print("[resetConfig] config.swVersion: ");
+    Serial.println(config.swVersion);
+    Serial.print("[resetConfig] config.ntpServer: ");
+    Serial.println(config.ntpServer);
+    Serial.print("[resetConfig] config.ntpUpdateInterval: ");
+    Serial.println(config.ntpUpdateInterval);
 }
 
-bool isConfigValid() {
+bool isConfigValid()
+{
     // Проверяем минимально необходимые настройки
-    if (strlen(config.ssid) == 0) {
+    if (strlen(config.ssid) == 0)
+    {
         return false;
     }
-    
+
     // Если MQTT включен, проверяем настройки MQTT
-    if (config.mqttEnabled && strlen(config.mqttServer) == 0) {
+    if (config.mqttEnabled && strlen(config.mqttServer) == 0)
+    {
         return false;
     }
-    
+
     // Если ThingSpeak включен, проверяем API ключ
-    if (config.thingSpeakEnabled && strlen(config.thingSpeakApiKey) == 0) {
+    if (config.thingSpeakEnabled && strlen(config.thingSpeakApiKey) == 0)
+    {
         return false;
     }
-    
+
     return true;
-} 
+}

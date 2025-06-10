@@ -3,8 +3,8 @@
 // Аппаратные пины
 #define RX_PIN 16
 #define TX_PIN 17
-#define MAX485_DE 4   // Data Enable
-#define MAX485_RE 5   // Receive Enable
+#define MAX485_DE 4  // Data Enable
+#define MAX485_RE 5  // Receive Enable
 #define BOOT_BUTTON 0
 #define STATUS_LED_PIN 2
 
@@ -21,7 +21,8 @@
 
 // Экспорт глобальной конфигурации
 #include <Preferences.h>
-struct Config {
+struct Config
+{
     char ssid[32];
     char password[32];
     char mqttServer[64];
@@ -52,4 +53,4 @@ extern Preferences preferences;
 void loadConfig();
 void saveConfig();
 void resetConfig();
-bool isConfigValid(); 
+bool isConfigValid();

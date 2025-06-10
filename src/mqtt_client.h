@@ -37,4 +37,4 @@ void handleMqttCommand(const String& cmd);
 // Обработчик входящих MQTT сообщений
 void mqttCallback(char* topic, byte* payload, unsigned int length);
 
-#endif // MQTT_CLIENT_H 
+#endif  // MQTT_CLIENT_H

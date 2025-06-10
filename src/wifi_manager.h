@@ -8,9 +8,10 @@
 #include <Preferences.h>
 
 // Перечисление для режимов WiFi
-enum class WiFiMode {
-    AP,    // Режим точки доступа
-    STA    // Режим клиента
+enum class WiFiMode
+{
+    AP,  // Режим точки доступа
+    STA  // Режим клиента
 };
 
 // Глобальные переменные
@@ -51,4 +52,4 @@ void resetConfig();
 // Перезапуск ESP32
 void restartESP();
 
-#endif // WIFI_MANAGER_H 
+#endif  // WIFI_MANAGER_H

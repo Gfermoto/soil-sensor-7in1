@@ -15,4 +15,4 @@ void setupThingSpeak(WiFiClient& client);
 // Отправка данных в ThingSpeak (с учётом интервала)
 bool sendDataToThingSpeak();
 
-#endif // THINGSPEAK_CLIENT_H 
+#endif  // THINGSPEAK_CLIENT_H

@@ -3,4 +3,4 @@
 
 void startFakeSensorTask();
 
-#endif // FAKE_SENSOR_H 
+#endif  // FAKE_SENSOR_H
