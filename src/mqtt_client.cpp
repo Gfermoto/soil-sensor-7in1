@@ -53,10 +53,21 @@ static char cachedSensorJson[256] = "";
 static unsigned long lastCachedSensorTime = 0;
 static bool sensorJsonCacheValid = false;
 
+// ✅ ОПТИМИЗАЦИЯ 3.3: DNS кэширование для избежания повторных запросов
+struct DNSCache {
+    char hostname[64];
+    IPAddress cachedIP;
+    unsigned long cacheTime;
+    bool isValid;
+} dnsCacheMqtt = {"", IPAddress(0, 0, 0, 0), 0, false};
+
+const unsigned long DNS_CACHE_TTL = 300000;  // 5 минут TTL для DNS кэша
+
 // Forward declarations
 void mqttCallback(char* topic, byte* payload, unsigned int length);
 void publishHomeAssistantConfig();
 void invalidateHAConfigCache();  // ✅ НОВОЕ: Инвалидация кэша
+IPAddress getCachedIP(const char* hostname);  // ✅ НОВОЕ: Forward declaration для DNS кэша
 
 // ✅ Оптимизированная функция getClientId с буфером
 const char* getClientId()
@@ -133,12 +144,21 @@ void setupMQTT()
         return;
     }
 
-    mqttClient.setServer(config.mqttServer, config.mqttPort);
+    // ✅ ОПТИМИЗАЦИЯ 3.3: Используем кэшированный DNS резолвинг
+    IPAddress mqttServerIP = getCachedIP(config.mqttServer);
+    if (mqttServerIP == IPAddress(0, 0, 0, 0)) {
+        ERROR_PRINTF("[DNS] Не удалось разрешить DNS для %s\n", config.mqttServer);
+        strlcpy(mqttLastErrorBuffer, "Ошибка DNS резолвинга", sizeof(mqttLastErrorBuffer));
+        return;
+    }
+
+    DEBUG_PRINTF("[DNS] MQTT сервер %s -> %s\n", config.mqttServer, mqttServerIP.toString().c_str());
+    mqttClient.setServer(mqttServerIP, config.mqttPort);  // Используем IP вместо hostname
     mqttClient.setCallback(mqttCallback);
     mqttClient.setKeepAlive(30);
     mqttClient.setSocketTimeout(30);
 
-    INFO_PRINTLN("[MQTT] Инициализация завершена");
+    INFO_PRINTLN("[MQTT] Инициализация завершена с DNS кэшированием");
 }
 
 bool connectMQTT()
@@ -317,21 +337,23 @@ void publishSensorData()
     {
         // Пересоздаем JSON только при необходимости
         StaticJsonDocument<256> doc;  // ✅ Уменьшен размер с 512 до 256
-        doc["temperature"] = round(sensorData.temperature * 10) / 10.0;
-        doc["humidity"] = round(sensorData.humidity * 10) / 10.0;
-        doc["ec"] = (int)round(sensorData.ec);
-        doc["ph"] = round(sensorData.ph * 10) / 10.0;
-        doc["nitrogen"] = (int)round(sensorData.nitrogen);
-        doc["phosphorus"] = (int)round(sensorData.phosphorus);
-        doc["potassium"] = (int)round(sensorData.potassium);
-        doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
+        
+        // ✅ ОПТИМИЗАЦИЯ 3.1: Сокращенные ключи для экономии трафика
+        doc["t"] = round(sensorData.temperature * 10) / 10.0;    // temperature → t (-10 байт)
+        doc["h"] = round(sensorData.humidity * 10) / 10.0;       // humidity → h (-7 байт)  
+        doc["e"] = (int)round(sensorData.ec);                    // ec → e (стабильно)
+        doc["p"] = round(sensorData.ph * 10) / 10.0;            // ph → p (стабильно)
+        doc["n"] = (int)round(sensorData.nitrogen);             // nitrogen → n (-7 байт)
+        doc["r"] = (int)round(sensorData.phosphorus);           // phosphorus → r (-9 байт) 
+        doc["k"] = (int)round(sensorData.potassium);            // potassium → k (-8 байт)
+        doc["ts"] = (long)(timeClient ? timeClient->getEpochTime() : 0);  // timestamp → ts (-7 байт)
 
         // ✅ Кэшируем результат
         serializeJson(doc, cachedSensorJson, sizeof(cachedSensorJson));
         lastCachedSensorTime = currentTime;
         sensorJsonCacheValid = true;
         
-        DEBUG_PRINTLN("[MQTT] JSON датчика пересоздан и закэширован");
+        DEBUG_PRINTLN("[MQTT] Компактный JSON датчика пересоздан и закэширован");
     }
 
     // ✅ Кэшируем топик публикации
@@ -398,7 +420,7 @@ void publishHomeAssistantConfig()
         tempConfig["device_class"] = "temperature";
         tempConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
         tempConfig["unit_of_measurement"] = "°C";
-        tempConfig["value_template"] = "{{ value_json.temperature }}";
+        tempConfig["value_template"] = "{{ value_json.t }}";  // ✅ temperature → t
         tempConfig["unique_id"] = String(deviceId) + "_temp";
         tempConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         tempConfig["device"] = deviceInfo;
@@ -409,7 +431,7 @@ void publishHomeAssistantConfig()
         humConfig["device_class"] = "humidity";
         humConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
         humConfig["unit_of_measurement"] = "%";
-        humConfig["value_template"] = "{{ value_json.humidity }}";
+        humConfig["value_template"] = "{{ value_json.h }}";  // ✅ humidity → h
         humConfig["unique_id"] = String(deviceId) + "_hum";
         humConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         humConfig["device"] = deviceInfo;
@@ -420,7 +442,7 @@ void publishHomeAssistantConfig()
         ecConfig["device_class"] = "conductivity";
         ecConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
         ecConfig["unit_of_measurement"] = "µS/cm";
-        ecConfig["value_template"] = "{{ value_json.ec }}";
+        ecConfig["value_template"] = "{{ value_json.e }}";  // ✅ ec → e
         ecConfig["unique_id"] = String(deviceId) + "_ec";
         ecConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         ecConfig["device"] = deviceInfo;
@@ -431,7 +453,7 @@ void publishHomeAssistantConfig()
         phConfig["device_class"] = "ph";
         phConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
         phConfig["unit_of_measurement"] = "pH";
-        phConfig["value_template"] = "{{ value_json.ph }}";
+        phConfig["value_template"] = "{{ value_json.p }}";  // ✅ ph → p
         phConfig["unique_id"] = String(deviceId) + "_ph";
         phConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         phConfig["device"] = deviceInfo;
@@ -441,7 +463,7 @@ void publishHomeAssistantConfig()
         nitrogenConfig["name"] = "JXCT Nitrogen";
         nitrogenConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
         nitrogenConfig["unit_of_measurement"] = "mg/kg";
-        nitrogenConfig["value_template"] = "{{ value_json.nitrogen }}";
+        nitrogenConfig["value_template"] = "{{ value_json.n }}";  // ✅ nitrogen → n
         nitrogenConfig["unique_id"] = String(deviceId) + "_nitrogen";
         nitrogenConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         nitrogenConfig["device"] = deviceInfo;
@@ -451,7 +473,7 @@ void publishHomeAssistantConfig()
         phosphorusConfig["name"] = "JXCT Phosphorus";
         phosphorusConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
         phosphorusConfig["unit_of_measurement"] = "mg/kg";
-        phosphorusConfig["value_template"] = "{{ value_json.phosphorus }}";
+        phosphorusConfig["value_template"] = "{{ value_json.r }}";  // ✅ phosphorus → r
         phosphorusConfig["unique_id"] = String(deviceId) + "_phosphorus";
         phosphorusConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         phosphorusConfig["device"] = deviceInfo;
@@ -461,7 +483,7 @@ void publishHomeAssistantConfig()
         potassiumConfig["name"] = "JXCT Potassium";
         potassiumConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
         potassiumConfig["unit_of_measurement"] = "mg/kg";
-        potassiumConfig["value_template"] = "{{ value_json.potassium }}";
+        potassiumConfig["value_template"] = "{{ value_json.k }}";  // ✅ potassium → k
         potassiumConfig["unique_id"] = String(deviceId) + "_potassium";
         potassiumConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         potassiumConfig["device"] = deviceInfo;
@@ -568,4 +590,33 @@ void invalidateHAConfigCache()
     strcpy(haConfigCache.potassiumConfig, "");
     INFO_PRINTLN("[MQTT] Кэш Home Assistant конфигураций инвалидирован");
     strcpy(mqttLastErrorBuffer, "");
+}
+
+// Функция получения IP с кэшированием
+IPAddress getCachedIP(const char* hostname) {
+    unsigned long currentTime = millis();
+    
+    // Проверяем кэш
+    if (dnsCacheMqtt.isValid && 
+        strcmp(dnsCacheMqtt.hostname, hostname) == 0 &&
+        (currentTime - dnsCacheMqtt.cacheTime < DNS_CACHE_TTL)) {
+        DEBUG_PRINTF("[DNS] Используем кэшированный IP %s для %s\n", 
+                     dnsCacheMqtt.cachedIP.toString().c_str(), hostname);
+        return dnsCacheMqtt.cachedIP;
+    }
+    
+    // DNS запрос
+    IPAddress resolvedIP;
+    if (WiFi.hostByName(hostname, resolvedIP)) {
+        // Кэшируем результат
+        strlcpy(dnsCacheMqtt.hostname, hostname, sizeof(dnsCacheMqtt.hostname));
+        dnsCacheMqtt.cachedIP = resolvedIP;
+        dnsCacheMqtt.cacheTime = currentTime;
+        dnsCacheMqtt.isValid = true;
+        DEBUG_PRINTF("[DNS] Новый IP %s для %s кэширован\n", 
+                     resolvedIP.toString().c_str(), hostname);
+        return resolvedIP;
+    }
+    
+    return IPAddress(0, 0, 0, 0);  // Ошибка резолвинга
 }
