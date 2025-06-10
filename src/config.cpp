@@ -124,6 +124,11 @@ void saveConfig()
     preferences.putUInt("ntpUpdateInterval", config.ntpUpdateInterval);
 
     preferences.end();
+    
+    // ✅ Инвалидируем кэш MQTT конфигураций при изменении настроек
+    extern void invalidateHAConfigCache();
+    invalidateHAConfigCache();
+    
     logSuccess("Конфигурация сохранена");
 }
 

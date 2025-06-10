@@ -33,6 +33,9 @@ void publishAvailability(bool online);
 // Удаление discovery-конфигов Home Assistant
 void removeHomeAssistantConfig();
 
+// ✅ НОВОЕ: Инвалидация кэша Home Assistant конфигураций
+void invalidateHAConfigCache();
+
 // Обработка команд из MQTT
 void handleMqttCommand(const String& cmd);
 

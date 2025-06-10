@@ -30,9 +30,33 @@ static char clientIdBuffer[32] = "";
 static char statusTopicBuffer[128] = "";
 static char commandTopicBuffer[128] = "";
 
+// ✅ НОВОЕ: Кэш Home Assistant конфигураций
+struct HomeAssistantConfigCache {
+    char tempConfig[512];
+    char humConfig[512];
+    char ecConfig[512];
+    char phConfig[512];
+    char nitrogenConfig[512];
+    char phosphorusConfig[512];
+    char potassiumConfig[512];
+    bool isValid;
+    char cachedDeviceId[32];
+    char cachedTopicPrefix[64];
+} haConfigCache = {"", "", "", "", "", "", "", false, "", ""};
+
+// ✅ НОВОЕ: Кэш топиков публикации
+static char pubTopicCache[7][128] = {"", "", "", "", "", "", ""};
+static bool pubTopicCacheValid = false;
+
+// ✅ НОВОЕ: Кэш данных датчика JSON
+static char cachedSensorJson[256] = "";
+static unsigned long lastCachedSensorTime = 0;
+static bool sensorJsonCacheValid = false;
+
 // Forward declarations
 void mqttCallback(char* topic, byte* payload, unsigned int length);
 void publishHomeAssistantConfig();
+void invalidateHAConfigCache();  // ✅ НОВОЕ: Инвалидация кэша
 
 // ✅ Оптимизированная функция getClientId с буфером
 const char* getClientId()
@@ -277,22 +301,50 @@ void publishSensorData()
         return;
     }
 
-    StaticJsonDocument<512> doc;
-    doc["temperature"] = round(sensorData.temperature * 10) / 10.0;
-    doc["humidity"] = round(sensorData.humidity * 10) / 10.0;
-    doc["ec"] = (int)round(sensorData.ec);
-    doc["ph"] = round(sensorData.ph * 10) / 10.0;
-    doc["nitrogen"] = (int)round(sensorData.nitrogen);
-    doc["phosphorus"] = (int)round(sensorData.phosphorus);
-    doc["potassium"] = (int)round(sensorData.potassium);
-    doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
+    // ✅ ОПТИМИЗАЦИЯ: Кэшируем JSON данных датчика
+    unsigned long currentTime = millis();
+    bool needToRebuildJson = false;
+    
+    // Проверяем, нужно ли пересоздать JSON (данные обновились или кэш устарел)
+    if (!sensorJsonCacheValid || 
+        (currentTime - lastCachedSensorTime > 1000) ||  // Кэш на 1 секунду
+        (currentTime - sensorData.last_update < 100))   // Свежие данные
+    {
+        needToRebuildJson = true;
+    }
+    
+    if (needToRebuildJson)
+    {
+        // Пересоздаем JSON только при необходимости
+        StaticJsonDocument<256> doc;  // ✅ Уменьшен размер с 512 до 256
+        doc["temperature"] = round(sensorData.temperature * 10) / 10.0;
+        doc["humidity"] = round(sensorData.humidity * 10) / 10.0;
+        doc["ec"] = (int)round(sensorData.ec);
+        doc["ph"] = round(sensorData.ph * 10) / 10.0;
+        doc["nitrogen"] = (int)round(sensorData.nitrogen);
+        doc["phosphorus"] = (int)round(sensorData.phosphorus);
+        doc["potassium"] = (int)round(sensorData.potassium);
+        doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
 
-    String jsonString;
-    serializeJson(doc, jsonString);
+        // ✅ Кэшируем результат
+        serializeJson(doc, cachedSensorJson, sizeof(cachedSensorJson));
+        lastCachedSensorTime = currentTime;
+        sensorJsonCacheValid = true;
+        
+        DEBUG_PRINTLN("[MQTT] JSON датчика пересоздан и закэширован");
+    }
 
-    char stateTopicBuffer[128];
-    snprintf(stateTopicBuffer, sizeof(stateTopicBuffer), "%s/state", config.mqttTopicPrefix);
-    bool res = mqttClient.publish(stateTopicBuffer, jsonString.c_str(), true);
+    // ✅ Кэшируем топик публикации
+    static char stateTopicBuffer[128] = "";
+    static bool stateTopicCached = false;
+    if (!stateTopicCached)
+    {
+        snprintf(stateTopicBuffer, sizeof(stateTopicBuffer), "%s/state", config.mqttTopicPrefix);
+        stateTopicCached = true;
+    }
+
+    // Публикуем кэшированный JSON
+    bool res = mqttClient.publish(stateTopicBuffer, cachedSensorJson, true);
 
     if (res)
     {
@@ -312,103 +364,133 @@ void publishHomeAssistantConfig()
         DEBUG_PRINTLN("[publishHomeAssistantConfig] Условия не выполнены, публикация отменена");
         return;
     }
+    
     String deviceIdStr = getDeviceId();
     const char* deviceId = deviceIdStr.c_str();
-    // device info
-    StaticJsonDocument<256> deviceInfo;
-    deviceInfo["identifiers"] = deviceId;
-    deviceInfo["manufacturer"] = DEVICE_MANUFACTURER;
-    deviceInfo["model"] = DEVICE_MODEL;
-    deviceInfo["sw_version"] = DEVICE_SW_VERSION;
-    deviceInfo["name"] = deviceId;
-    // Температура
-    StaticJsonDocument<512> tempConfig;
-    tempConfig["name"] = "JXCT Temperature";
-    tempConfig["device_class"] = "temperature";
-    tempConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
-    tempConfig["unit_of_measurement"] = "°C";
-    tempConfig["value_template"] = "{{ value_json.temperature }}";
-    tempConfig["unique_id"] = String(deviceId) + "_temp";
-    tempConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
-    tempConfig["device"] = deviceInfo;
-    // Влажность
-    StaticJsonDocument<512> humConfig;
-    humConfig["name"] = "JXCT Humidity";
-    humConfig["device_class"] = "humidity";
-    humConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
-    humConfig["unit_of_measurement"] = "%";
-    humConfig["value_template"] = "{{ value_json.humidity }}";
-    humConfig["unique_id"] = String(deviceId) + "_hum";
-    humConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
-    humConfig["device"] = deviceInfo;
-    // EC
-    StaticJsonDocument<512> ecConfig;
-    ecConfig["name"] = "JXCT EC";
-    ecConfig["device_class"] = "conductivity";
-    ecConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
-    ecConfig["unit_of_measurement"] = "µS/cm";
-    ecConfig["value_template"] = "{{ value_json.ec }}";
-    ecConfig["unique_id"] = String(deviceId) + "_ec";
-    ecConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
-    ecConfig["device"] = deviceInfo;
-    // pH
-    StaticJsonDocument<512> phConfig;
-    phConfig["name"] = "JXCT pH";
-    phConfig["device_class"] = "ph";
-    phConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
-    phConfig["unit_of_measurement"] = "pH";
-    phConfig["value_template"] = "{{ value_json.ph }}";
-    phConfig["unique_id"] = String(deviceId) + "_ph";
-    phConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
-    phConfig["device"] = deviceInfo;
-    // NPK (раздельно)
-    StaticJsonDocument<512> nitrogenConfig;
-    nitrogenConfig["name"] = "JXCT Nitrogen";
-    nitrogenConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
-    nitrogenConfig["unit_of_measurement"] = "mg/kg";
-    nitrogenConfig["value_template"] = "{{ value_json.nitrogen }}";
-    nitrogenConfig["unique_id"] = String(deviceId) + "_nitrogen";
-    nitrogenConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
-    nitrogenConfig["device"] = deviceInfo;
-    StaticJsonDocument<512> phosphorusConfig;
-    phosphorusConfig["name"] = "JXCT Phosphorus";
-    phosphorusConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
-    phosphorusConfig["unit_of_measurement"] = "mg/kg";
-    phosphorusConfig["value_template"] = "{{ value_json.phosphorus }}";
-    phosphorusConfig["unique_id"] = String(deviceId) + "_phosphorus";
-    phosphorusConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
-    phosphorusConfig["device"] = deviceInfo;
-    StaticJsonDocument<512> potassiumConfig;
-    potassiumConfig["name"] = "JXCT Potassium";
-    potassiumConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
-    potassiumConfig["unit_of_measurement"] = "mg/kg";
-    potassiumConfig["value_template"] = "{{ value_json.potassium }}";
-    potassiumConfig["unique_id"] = String(deviceId) + "_potassium";
-    potassiumConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
-    potassiumConfig["device"] = deviceInfo;
-    // Сериализуем конфигурации в строки
-    String tempConfigStr, humConfigStr, ecConfigStr, phConfigStr;
-    String nitrogenConfigStr, phosphorusConfigStr, potassiumConfigStr;
-    serializeJson(tempConfig, tempConfigStr);
-    serializeJson(humConfig, humConfigStr);
-    serializeJson(ecConfig, ecConfigStr);
-    serializeJson(phConfig, phConfigStr);
-    serializeJson(nitrogenConfig, nitrogenConfigStr);
-    serializeJson(phosphorusConfig, phosphorusConfigStr);
-    serializeJson(potassiumConfig, potassiumConfigStr);
-    // Публикуем конфигурации
-    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_temperature/config").c_str(), tempConfigStr.c_str(),
-                       true);
-    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_humidity/config").c_str(), humConfigStr.c_str(), true);
-    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_ec/config").c_str(), ecConfigStr.c_str(), true);
-    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_ph/config").c_str(), phConfigStr.c_str(), true);
-    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_nitrogen/config").c_str(), nitrogenConfigStr.c_str(),
-                       true);
-    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_phosphorus/config").c_str(), phosphorusConfigStr.c_str(),
-                       true);
-    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_potassium/config").c_str(), potassiumConfigStr.c_str(),
-                       true);
-    INFO_PRINTLN("[publishHomeAssistantConfig] Конфигурация Home Assistant опубликована");
+    
+    // ✅ ОПТИМИЗАЦИЯ: Проверяем кэш конфигураций
+    bool needToRebuildConfigs = false;
+    if (!haConfigCache.isValid ||
+        strcmp(haConfigCache.cachedDeviceId, deviceId) != 0 ||
+        strcmp(haConfigCache.cachedTopicPrefix, config.mqttTopicPrefix) != 0)
+    {
+        needToRebuildConfigs = true;
+        DEBUG_PRINTLN("[HA] Кэш конфигураций устарел, пересоздаем...");
+    }
+    
+    if (needToRebuildConfigs)
+    {
+        // Обновляем кэшированные значения
+        strlcpy(haConfigCache.cachedDeviceId, deviceId, sizeof(haConfigCache.cachedDeviceId));
+        strlcpy(haConfigCache.cachedTopicPrefix, config.mqttTopicPrefix, sizeof(haConfigCache.cachedTopicPrefix));
+        
+        // ✅ Создаем JSON конфигурации один раз и кэшируем их
+        StaticJsonDocument<256> deviceInfo;
+        deviceInfo["identifiers"] = deviceId;
+        deviceInfo["manufacturer"] = DEVICE_MANUFACTURER;
+        deviceInfo["model"] = DEVICE_MODEL;
+        deviceInfo["sw_version"] = DEVICE_SW_VERSION;
+        deviceInfo["name"] = deviceId;
+        
+        // Создаем все конфигурации и сразу сериализуем в кэш
+        StaticJsonDocument<512> tempConfig;
+        tempConfig["name"] = "JXCT Temperature";
+        tempConfig["device_class"] = "temperature";
+        tempConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+        tempConfig["unit_of_measurement"] = "°C";
+        tempConfig["value_template"] = "{{ value_json.temperature }}";
+        tempConfig["unique_id"] = String(deviceId) + "_temp";
+        tempConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
+        tempConfig["device"] = deviceInfo;
+        serializeJson(tempConfig, haConfigCache.tempConfig, sizeof(haConfigCache.tempConfig));
+        
+        StaticJsonDocument<512> humConfig;
+        humConfig["name"] = "JXCT Humidity";
+        humConfig["device_class"] = "humidity";
+        humConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+        humConfig["unit_of_measurement"] = "%";
+        humConfig["value_template"] = "{{ value_json.humidity }}";
+        humConfig["unique_id"] = String(deviceId) + "_hum";
+        humConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
+        humConfig["device"] = deviceInfo;
+        serializeJson(humConfig, haConfigCache.humConfig, sizeof(haConfigCache.humConfig));
+        
+        StaticJsonDocument<512> ecConfig;
+        ecConfig["name"] = "JXCT EC";
+        ecConfig["device_class"] = "conductivity";
+        ecConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+        ecConfig["unit_of_measurement"] = "µS/cm";
+        ecConfig["value_template"] = "{{ value_json.ec }}";
+        ecConfig["unique_id"] = String(deviceId) + "_ec";
+        ecConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
+        ecConfig["device"] = deviceInfo;
+        serializeJson(ecConfig, haConfigCache.ecConfig, sizeof(haConfigCache.ecConfig));
+        
+        StaticJsonDocument<512> phConfig;
+        phConfig["name"] = "JXCT pH";
+        phConfig["device_class"] = "ph";
+        phConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+        phConfig["unit_of_measurement"] = "pH";
+        phConfig["value_template"] = "{{ value_json.ph }}";
+        phConfig["unique_id"] = String(deviceId) + "_ph";
+        phConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
+        phConfig["device"] = deviceInfo;
+        serializeJson(phConfig, haConfigCache.phConfig, sizeof(haConfigCache.phConfig));
+        
+        StaticJsonDocument<512> nitrogenConfig;
+        nitrogenConfig["name"] = "JXCT Nitrogen";
+        nitrogenConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+        nitrogenConfig["unit_of_measurement"] = "mg/kg";
+        nitrogenConfig["value_template"] = "{{ value_json.nitrogen }}";
+        nitrogenConfig["unique_id"] = String(deviceId) + "_nitrogen";
+        nitrogenConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
+        nitrogenConfig["device"] = deviceInfo;
+        serializeJson(nitrogenConfig, haConfigCache.nitrogenConfig, sizeof(haConfigCache.nitrogenConfig));
+        
+        StaticJsonDocument<512> phosphorusConfig;
+        phosphorusConfig["name"] = "JXCT Phosphorus";
+        phosphorusConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+        phosphorusConfig["unit_of_measurement"] = "mg/kg";
+        phosphorusConfig["value_template"] = "{{ value_json.phosphorus }}";
+        phosphorusConfig["unique_id"] = String(deviceId) + "_phosphorus";
+        phosphorusConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
+        phosphorusConfig["device"] = deviceInfo;
+        serializeJson(phosphorusConfig, haConfigCache.phosphorusConfig, sizeof(haConfigCache.phosphorusConfig));
+        
+        StaticJsonDocument<512> potassiumConfig;
+        potassiumConfig["name"] = "JXCT Potassium";
+        potassiumConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
+        potassiumConfig["unit_of_measurement"] = "mg/kg";
+        potassiumConfig["value_template"] = "{{ value_json.potassium }}";
+        potassiumConfig["unique_id"] = String(deviceId) + "_potassium";
+        potassiumConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
+        potassiumConfig["device"] = deviceInfo;
+        serializeJson(potassiumConfig, haConfigCache.potassiumConfig, sizeof(haConfigCache.potassiumConfig));
+        
+        // ✅ Кэшируем топики публикации
+        snprintf(pubTopicCache[0], sizeof(pubTopicCache[0]), "homeassistant/sensor/%s_temperature/config", deviceId);
+        snprintf(pubTopicCache[1], sizeof(pubTopicCache[1]), "homeassistant/sensor/%s_humidity/config", deviceId);
+        snprintf(pubTopicCache[2], sizeof(pubTopicCache[2]), "homeassistant/sensor/%s_ec/config", deviceId);
+        snprintf(pubTopicCache[3], sizeof(pubTopicCache[3]), "homeassistant/sensor/%s_ph/config", deviceId);
+        snprintf(pubTopicCache[4], sizeof(pubTopicCache[4]), "homeassistant/sensor/%s_nitrogen/config", deviceId);
+        snprintf(pubTopicCache[5], sizeof(pubTopicCache[5]), "homeassistant/sensor/%s_phosphorus/config", deviceId);
+        snprintf(pubTopicCache[6], sizeof(pubTopicCache[6]), "homeassistant/sensor/%s_potassium/config", deviceId);
+        pubTopicCacheValid = true;
+        
+        haConfigCache.isValid = true;
+        INFO_PRINTLN("[HA] Конфигурации созданы и закэшированы");
+    }
+    
+    // ✅ Публикуем из кэша (супер быстро!)
+    mqttClient.publish(pubTopicCache[0], haConfigCache.tempConfig, true);
+    mqttClient.publish(pubTopicCache[1], haConfigCache.humConfig, true);
+    mqttClient.publish(pubTopicCache[2], haConfigCache.ecConfig, true);
+    mqttClient.publish(pubTopicCache[3], haConfigCache.phConfig, true);
+    mqttClient.publish(pubTopicCache[4], haConfigCache.nitrogenConfig, true);
+    mqttClient.publish(pubTopicCache[5], haConfigCache.phosphorusConfig, true);
+    mqttClient.publish(pubTopicCache[6], haConfigCache.potassiumConfig, true);
+    
+    INFO_PRINTLN("[HA] Конфигурация Home Assistant опубликована из кэша");
     strcpy(mqttLastErrorBuffer, "");
 }
 
@@ -469,4 +551,21 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)
     {
         handleMqttCommand(message);
     }
+}
+
+void invalidateHAConfigCache()
+{
+    // Реализация инвалидации кэша Home Assistant конфигураций
+    haConfigCache.isValid = false;
+    strcpy(haConfigCache.cachedDeviceId, "");
+    strcpy(haConfigCache.cachedTopicPrefix, "");
+    strcpy(haConfigCache.tempConfig, "");
+    strcpy(haConfigCache.humConfig, "");
+    strcpy(haConfigCache.ecConfig, "");
+    strcpy(haConfigCache.phConfig, "");
+    strcpy(haConfigCache.nitrogenConfig, "");
+    strcpy(haConfigCache.phosphorusConfig, "");
+    strcpy(haConfigCache.potassiumConfig, "");
+    INFO_PRINTLN("[MQTT] Кэш Home Assistant конфигураций инвалидирован");
+    strcpy(mqttLastErrorBuffer, "");
 }
