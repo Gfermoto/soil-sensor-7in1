@@ -568,6 +568,86 @@ void setupWebServer()
                      webServer.send(200, "application/json", json);
                  });
 
+    // Health endpoint - подробная диагностика системы
+    webServer.on("/health", HTTP_GET,
+                 []()
+                 {
+                     StaticJsonDocument<1024> doc;
+                     
+                     // System info
+                     doc["device"]["manufacturer"] = DEVICE_MANUFACTURER;
+                     doc["device"]["model"] = DEVICE_MODEL;
+                     doc["device"]["version"] = DEVICE_SW_VERSION;
+                     doc["device"]["uptime"] = millis() / 1000;
+                     doc["device"]["free_heap"] = ESP.getFreeHeap();
+                     doc["device"]["chip_model"] = ESP.getChipModel();
+                     doc["device"]["chip_revision"] = ESP.getChipRevision();
+                     doc["device"]["cpu_freq"] = ESP.getCpuFreqMHz();
+                     
+                     // Memory info
+                     doc["memory"]["free_heap"] = ESP.getFreeHeap();
+                     doc["memory"]["largest_free_block"] = ESP.getMaxAllocHeap();
+                     doc["memory"]["heap_size"] = ESP.getHeapSize();
+                     doc["memory"]["psram_size"] = ESP.getPsramSize();
+                     doc["memory"]["free_psram"] = ESP.getFreePsram();
+                     
+                     // WiFi status
+                     doc["wifi"]["connected"] = wifiConnected;
+                     if (wifiConnected) {
+                         doc["wifi"]["ssid"] = WiFi.SSID();
+                         doc["wifi"]["ip"] = WiFi.localIP().toString();
+                         doc["wifi"]["rssi"] = WiFi.RSSI();
+                         doc["wifi"]["mac"] = WiFi.macAddress();
+                         doc["wifi"]["gateway"] = WiFi.gatewayIP().toString();
+                         doc["wifi"]["dns"] = WiFi.dnsIP().toString();
+                     }
+                     
+                     // MQTT status
+                     doc["mqtt"]["enabled"] = (bool)config.flags.mqttEnabled;
+                     if (config.flags.mqttEnabled) {
+                         doc["mqtt"]["connected"] = mqttClient.connected();
+                         doc["mqtt"]["server"] = config.mqttServer;
+                         doc["mqtt"]["port"] = config.mqttPort;
+                         doc["mqtt"]["last_error"] = getMqttLastError();
+                     }
+                     
+                     // ThingSpeak status
+                     doc["thingspeak"]["enabled"] = (bool)config.flags.thingSpeakEnabled;
+                     if (config.flags.thingSpeakEnabled) {
+                         doc["thingspeak"]["last_publish"] = getThingSpeakLastPublish();
+                         doc["thingspeak"]["last_error"] = getThingSpeakLastError();
+                         doc["thingspeak"]["interval"] = config.thingspeakInterval;
+                     }
+                     
+                     // Home Assistant status  
+                     doc["homeassistant"]["enabled"] = (bool)config.flags.hassEnabled;
+                     
+                     // Sensor status
+                     doc["sensor"]["enabled"] = (bool)config.flags.useRealSensor;
+                     doc["sensor"]["valid"] = sensorData.valid;
+                     doc["sensor"]["last_read"] = sensorData.last_update;
+                     if (sensorLastError.length() > 0) {
+                         doc["sensor"]["last_error"] = sensorLastError;
+                     }
+                     
+                     // Current readings
+                     doc["readings"]["temperature"] = format_temperature(sensorData.temperature);
+                     doc["readings"]["humidity"] = format_moisture(sensorData.humidity);
+                     doc["readings"]["ec"] = format_ec(sensorData.ec);
+                     doc["readings"]["ph"] = format_ph(sensorData.ph);
+                     doc["readings"]["nitrogen"] = format_npk(sensorData.nitrogen);
+                     doc["readings"]["phosphorus"] = format_npk(sensorData.phosphorus);
+                     doc["readings"]["potassium"] = format_npk(sensorData.potassium);
+                     
+                     // Timestamps
+                     doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
+                     doc["boot_time"] = (long)(timeClient ? timeClient->getEpochTime() - (millis() / 1000) : 0);
+                     
+                     String json;
+                     serializeJson(doc, json);
+                     webServer.send(200, "application/json", json);
+                 });
+
     // Добавляю обработчик для AJAX-статусов
     webServer.on("/service_status", HTTP_GET,
                  []()
@@ -633,7 +713,8 @@ void setupWebServer()
             html += "<form method='post' action='/ota'><button type='submit'>OTA (заглушка)</button></form></div>";
             html +=
                 "<div class='section' style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a "
-                "href='/service_status' target='_blank'>/service_status</a> (JSON, статусы сервисов)</div>";
+                "href='/service_status' target='_blank'>/service_status</a> (JSON, статусы сервисов) | <a "
+                "href='/health' target='_blank'>/health</a> (JSON, подробная диагностика)</div>";
             html += "<script>";
             html += "function dot(status){";
             html += "if(status===true)return'<span class=\"status-dot dot-ok\"></span>';";
