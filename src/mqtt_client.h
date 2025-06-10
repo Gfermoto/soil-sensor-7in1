@@ -8,7 +8,9 @@
 extern WiFiClient espClient;
 extern PubSubClient mqttClient;
 extern bool mqttConnected;
-extern String mqttLastError;
+
+// ✅ Заменяем String на функцию-геттер для совместимости
+const char* getMqttLastError();
 
 // Инициализация MQTT клиента
 void setupMQTT();

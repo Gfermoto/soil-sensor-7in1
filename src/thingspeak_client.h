@@ -6,8 +6,10 @@
 #include <ThingSpeak.h>
 
 extern WiFiClient espClient;
-extern String thingSpeakLastPublish;
-extern String thingSpeakLastError;
+
+// ✅ Заменяем String на функции-геттеры для совместимости
+const char* getThingSpeakLastPublish();
+const char* getThingSpeakLastError();
 
 // Инициализация ThingSpeak клиента (передаём WiFiClient)
 void setupThingSpeak(WiFiClient& client);

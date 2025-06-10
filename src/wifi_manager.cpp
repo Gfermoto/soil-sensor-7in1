@@ -578,10 +578,10 @@ void setupWebServer()
                      doc["wifi_rssi"] = WiFi.RSSI();
                      doc["mqtt_enabled"] = config.mqttEnabled;
                      doc["mqtt_connected"] = config.mqttEnabled && mqttClient.connected();
-                     doc["mqtt_last_error"] = mqttLastError;  // предполагается, что есть такая переменная
+                     doc["mqtt_last_error"] = getMqttLastError();  // ✅ Используем функцию-геттер
                      doc["thingspeak_enabled"] = config.thingSpeakEnabled;
-                     doc["thingspeak_last_pub"] = thingSpeakLastPublish;  // предполагается, что есть такая переменная
-                     doc["thingspeak_last_error"] = thingSpeakLastError;  // предполагается, что есть такая переменная
+                     doc["thingspeak_last_pub"] = getThingSpeakLastPublish();  // ✅ Используем функцию-геттер
+                     doc["thingspeak_last_error"] = getThingSpeakLastError();  // ✅ Используем функцию-геттер
                      doc["hass_enabled"] = config.hassEnabled;
                      doc["sensor_ok"] = sensorData.valid;         // предполагается, что есть такая переменная
                      doc["sensor_last_error"] = sensorLastError;  // предполагается, что есть такая переменная

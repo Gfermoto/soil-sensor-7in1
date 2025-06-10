@@ -14,8 +14,13 @@ extern NTPClient* timeClient;
 const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";
 
 static unsigned long lastTsPublish = 0;
-String thingSpeakLastPublish = "";
-String thingSpeakLastError = "";
+// ✅ Заменяем String на статические буферы
+static char thingSpeakLastPublishBuffer[32] = "0";
+static char thingSpeakLastErrorBuffer[64] = "";
+
+// Геттеры для совместимости с внешним кодом
+const char* getThingSpeakLastPublish() { return thingSpeakLastPublishBuffer; }
+const char* getThingSpeakLastError() { return thingSpeakLastErrorBuffer; }
 
 void setupThingSpeak(WiFiClient& client)
 {
@@ -38,22 +43,15 @@ bool sendDataToThingSpeak()
 
     unsigned long channelId = strtoul(config.thingSpeakChannelId, nullptr, 10);
 
-    // Подготовка данных
-    String temp = String(format_temperature(sensorData.temperature).c_str());
-    String hum = String(format_moisture(sensorData.humidity).c_str());
-    String ec = String(format_ec(sensorData.ec).c_str());
-    String ph = String(format_ph(sensorData.ph).c_str());
-    String n = String(format_npk(sensorData.nitrogen).c_str());
-    String p = String(format_npk(sensorData.phosphorus).c_str());
-    String k = String(format_npk(sensorData.potassium).c_str());
+    // ✅ Используем прямую передачу данных без String объектов
     // Отправка (убираем timestamp для избежания ошибок)
-    ThingSpeak.setField(1, temp.c_str());
-    ThingSpeak.setField(2, hum.c_str());
-    ThingSpeak.setField(3, ec.c_str());
-    ThingSpeak.setField(4, ph.c_str());
-    ThingSpeak.setField(5, n.c_str());
-    ThingSpeak.setField(6, p.c_str());
-    ThingSpeak.setField(7, k.c_str());
+    ThingSpeak.setField(1, format_temperature(sensorData.temperature).c_str());
+    ThingSpeak.setField(2, format_moisture(sensorData.humidity).c_str());
+    ThingSpeak.setField(3, format_ec(sensorData.ec).c_str());
+    ThingSpeak.setField(4, format_ph(sensorData.ph).c_str());
+    ThingSpeak.setField(5, format_npk(sensorData.nitrogen).c_str());
+    ThingSpeak.setField(6, format_npk(sensorData.phosphorus).c_str());
+    ThingSpeak.setField(7, format_npk(sensorData.potassium).c_str());
 
     logData("Отправка в ThingSpeak: T=%.1f°C, H=%.1f%%, PH=%.2f", sensorData.temperature, sensorData.humidity,
             sensorData.ph);
@@ -63,42 +61,42 @@ bool sendDataToThingSpeak()
     if (res == 200)
     {
         logSuccess("ThingSpeak: данные отправлены");
-        thingSpeakLastPublish = String(millis());
-        thingSpeakLastError = "";
+        snprintf(thingSpeakLastPublishBuffer, sizeof(thingSpeakLastPublishBuffer), "%lu", millis());
+        thingSpeakLastErrorBuffer[0] = '\0';  // Очистка ошибки
         return true;
     }
     else if (res == -301)
     {
         // Ошибка -301 часто возникает при таймауте, но данные могут быть отправлены
         logWarn("ThingSpeak: таймаут ответа (данные могли быть отправлены)");
-        thingSpeakLastPublish = String(millis());
-        thingSpeakLastError = "Таймаут ответа (возможно успешно)";
+        snprintf(thingSpeakLastPublishBuffer, sizeof(thingSpeakLastPublishBuffer), "%lu", millis());
+        strlcpy(thingSpeakLastErrorBuffer, "Таймаут ответа (возможно успешно)", sizeof(thingSpeakLastErrorBuffer));
         return true;  // Считаем успешным для избежания повторных отправок
     }
     else if (res == -401)
     {
         logDebug("ThingSpeak: превышен лимит публикаций");
-        thingSpeakLastError = "Превышен лимит публикаций (15 сек)";
+        strlcpy(thingSpeakLastErrorBuffer, "Превышен лимит публикаций (15 сек)", sizeof(thingSpeakLastErrorBuffer));
     }
     else if (res == -302)
     {
         logError("ThingSpeak: неверный API ключ");
-        thingSpeakLastError = "Неверный API ключ";
+        strlcpy(thingSpeakLastErrorBuffer, "Неверный API ключ", sizeof(thingSpeakLastErrorBuffer));
     }
     else if (res == -304)
     {
         logError("ThingSpeak: неверный Channel ID");
-        thingSpeakLastError = "Неверный Channel ID";
+        strlcpy(thingSpeakLastErrorBuffer, "Неверный Channel ID", sizeof(thingSpeakLastErrorBuffer));
     }
     else if (res == 0)
     {
         logError("ThingSpeak: ошибка подключения");
-        thingSpeakLastError = "Ошибка подключения";
+        strlcpy(thingSpeakLastErrorBuffer, "Ошибка подключения", sizeof(thingSpeakLastErrorBuffer));
     }
     else
     {
         logError("ThingSpeak: ошибка %d", res);
-        thingSpeakLastError = "Ошибка публикации ThingSpeak";
+        strlcpy(thingSpeakLastErrorBuffer, "Ошибка публикации ThingSpeak", sizeof(thingSpeakLastErrorBuffer));
     }
     return false;
 }

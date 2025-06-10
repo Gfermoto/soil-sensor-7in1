@@ -19,35 +19,38 @@ extern NTPClient* timeClient;
 WiFiClient espClient;
 PubSubClient mqttClient(espClient);
 bool mqttConnected = false;
-String mqttLastError = "";
+
+// ✅ Заменяем String на статический буфер
+static char mqttLastErrorBuffer[128] = "";
+const char* getMqttLastError() { return mqttLastErrorBuffer; }
+
+// ✅ Статические буферы для топиков и ID
+static char clientIdBuffer[32] = "";
+static char statusTopicBuffer[128] = "";
+static char commandTopicBuffer[128] = "";
 
 // Forward declarations
 void mqttCallback(char* topic, byte* payload, unsigned int length);
 void publishHomeAssistantConfig();
 
-// Создаем уникальный ID клиента на основе MAC адреса
-String getClientId()
+// ✅ Оптимизированная функция getClientId с буфером
+const char* getClientId()
 {
-    uint8_t mac[6];
-    WiFi.macAddress(mac);
-    String clientId = "JXCT_";
-    for (int i = 0; i < 6; i++)
-    {
-        if (mac[i] < 0x10)
-        {
-            clientId += "0";
-        }
-        clientId += String(mac[i], HEX);
+    if (clientIdBuffer[0] == '\0') {  // Кэшируем результат
+        uint8_t mac[6];
+        WiFi.macAddress(mac);
+        snprintf(clientIdBuffer, sizeof(clientIdBuffer), "JXCT_%02X%02X%02X%02X%02X%02X", 
+                 mac[0], mac[1], mac[2], mac[3], mac[4], mac[5]);
     }
-    return clientId;
+    return clientIdBuffer;
 }
 
-// Возвращает имя клиента для MQTT
-String getMqttClientName()
+// ✅ Оптимизированная функция getMqttClientName
+const char* getMqttClientName()
 {
     if (strlen(config.mqttDeviceName) > 0)
     {
-        return String(config.mqttDeviceName);
+        return config.mqttDeviceName;
     }
     else
     {
@@ -55,22 +58,30 @@ String getMqttClientName()
     }
 }
 
-String getStatusTopic()
+// ✅ Оптимизированная функция getStatusTopic с буфером
+const char* getStatusTopic()
 {
-    return String(config.mqttTopicPrefix) + "/status";
+    if (statusTopicBuffer[0] == '\0') {  // Кэшируем результат
+        snprintf(statusTopicBuffer, sizeof(statusTopicBuffer), "%s/status", config.mqttTopicPrefix);
+    }
+    return statusTopicBuffer;
 }
 
-String getCommandTopic()
+// ✅ Оптимизированная функция getCommandTopic с буфером
+const char* getCommandTopic()
 {
-    return String(config.mqttTopicPrefix) + "/command";
+    if (commandTopicBuffer[0] == '\0') {  // Кэшируем результат
+        snprintf(commandTopicBuffer, sizeof(commandTopicBuffer), "%s/command", config.mqttTopicPrefix);
+    }
+    return commandTopicBuffer;
 }
 
 void publishAvailability(bool online)
 {
-    String topic = getStatusTopic();
+    const char* topic = getStatusTopic();
     const char* payload = online ? "online" : "offline";
-    Serial.printf("[publishAvailability] Публикация статуса: %s в топик %s\n", payload, topic.c_str());
-    mqttClient.publish(topic.c_str(), payload, true);
+    Serial.printf("[publishAvailability] Публикация статуса: %s в топик %s\n", payload, topic);
+    mqttClient.publish(topic, payload, true);
 }
 
 void setupMQTT()
@@ -124,20 +135,20 @@ bool connectMQTT()
     }
 
     // Попытка подключения с максимальной детализацией
-    String clientId = getMqttClientName();
+    const char* clientId = getMqttClientName();
     Serial.printf("[MQTT] Сервер: %s\n", config.mqttServer);
     Serial.printf("[MQTT] Порт: %d\n", config.mqttPort);
-    Serial.printf("[MQTT] ID клиента: %s\n", clientId.c_str());
+    Serial.printf("[MQTT] ID клиента: %s\n", clientId);
     Serial.printf("[MQTT] Пользователь: %s\n", config.mqttUser);
     Serial.printf("[MQTT] Пароль: %s\n", config.mqttPassword);
 
     mqttClient.setServer(config.mqttServer, config.mqttPort);
 
     // Попытка подключения с максимально подробной информацией
-    bool result = mqttClient.connect(clientId.c_str(),
+    bool result = mqttClient.connect(clientId,
                                      config.mqttUser,      // может быть пустым
                                      config.mqttPassword,  // может быть пустым
-                                     (String(config.mqttTopicPrefix) + "/status").c_str(),
+                                     getStatusTopic(),
                                      1,         // QoS
                                      true,      // retain
                                      "offline"  // will message
@@ -191,9 +202,9 @@ bool connectMQTT()
         Serial.println("[MQTT] Подключение успешно!");
 
         // Подписываемся на топик команд
-        String commandTopic = getCommandTopic();
-        mqttClient.subscribe(commandTopic.c_str());
-        Serial.printf("[MQTT] Подписались на топик команд: %s\n", commandTopic.c_str());
+        const char* commandTopic = getCommandTopic();
+        mqttClient.subscribe(commandTopic);
+        Serial.printf("[MQTT] Подписались на топик команд: %s\n", commandTopic);
 
         // Публикуем статус availability
         publishAvailability(true);
@@ -265,16 +276,17 @@ void publishSensorData()
     String jsonString;
     serializeJson(doc, jsonString);
 
-    String topic = String(config.mqttTopicPrefix) + "/state";
-    bool res = mqttClient.publish(topic.c_str(), jsonString.c_str(), true);
+    char stateTopicBuffer[128];
+    snprintf(stateTopicBuffer, sizeof(stateTopicBuffer), "%s/state", config.mqttTopicPrefix);
+    bool res = mqttClient.publish(stateTopicBuffer, jsonString.c_str(), true);
 
     if (res)
     {
-        mqttLastError = "";
+        strcpy(mqttLastErrorBuffer, "");
     }
     else
     {
-        mqttLastError = "Ошибка публикации MQTT";
+        strcpy(mqttLastErrorBuffer, "Ошибка публикации MQTT");
     }
 }
 
@@ -286,7 +298,8 @@ void publishHomeAssistantConfig()
         Serial.println("[publishHomeAssistantConfig] Условия не выполнены, публикация отменена");
         return;
     }
-    String deviceId = getDeviceId();
+    String deviceIdStr = getDeviceId();
+    const char* deviceId = deviceIdStr.c_str();
     // device info
     StaticJsonDocument<256> deviceInfo;
     deviceInfo["identifiers"] = deviceId;
@@ -301,7 +314,7 @@ void publishHomeAssistantConfig()
     tempConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     tempConfig["unit_of_measurement"] = "°C";
     tempConfig["value_template"] = "{{ value_json.temperature }}";
-    tempConfig["unique_id"] = deviceId + "_temp";
+    tempConfig["unique_id"] = String(deviceId) + "_temp";
     tempConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     tempConfig["device"] = deviceInfo;
     // Влажность
@@ -311,7 +324,7 @@ void publishHomeAssistantConfig()
     humConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     humConfig["unit_of_measurement"] = "%";
     humConfig["value_template"] = "{{ value_json.humidity }}";
-    humConfig["unique_id"] = deviceId + "_hum";
+    humConfig["unique_id"] = String(deviceId) + "_hum";
     humConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     humConfig["device"] = deviceInfo;
     // EC
@@ -321,7 +334,7 @@ void publishHomeAssistantConfig()
     ecConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     ecConfig["unit_of_measurement"] = "µS/cm";
     ecConfig["value_template"] = "{{ value_json.ec }}";
-    ecConfig["unique_id"] = deviceId + "_ec";
+    ecConfig["unique_id"] = String(deviceId) + "_ec";
     ecConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     ecConfig["device"] = deviceInfo;
     // pH
@@ -331,7 +344,7 @@ void publishHomeAssistantConfig()
     phConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     phConfig["unit_of_measurement"] = "pH";
     phConfig["value_template"] = "{{ value_json.ph }}";
-    phConfig["unique_id"] = deviceId + "_ph";
+    phConfig["unique_id"] = String(deviceId) + "_ph";
     phConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     phConfig["device"] = deviceInfo;
     // NPK (раздельно)
@@ -340,7 +353,7 @@ void publishHomeAssistantConfig()
     nitrogenConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     nitrogenConfig["unit_of_measurement"] = "mg/kg";
     nitrogenConfig["value_template"] = "{{ value_json.nitrogen }}";
-    nitrogenConfig["unique_id"] = deviceId + "_nitrogen";
+    nitrogenConfig["unique_id"] = String(deviceId) + "_nitrogen";
     nitrogenConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     nitrogenConfig["device"] = deviceInfo;
     StaticJsonDocument<512> phosphorusConfig;
@@ -348,7 +361,7 @@ void publishHomeAssistantConfig()
     phosphorusConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     phosphorusConfig["unit_of_measurement"] = "mg/kg";
     phosphorusConfig["value_template"] = "{{ value_json.phosphorus }}";
-    phosphorusConfig["unique_id"] = deviceId + "_phosphorus";
+    phosphorusConfig["unique_id"] = String(deviceId) + "_phosphorus";
     phosphorusConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     phosphorusConfig["device"] = deviceInfo;
     StaticJsonDocument<512> potassiumConfig;
@@ -356,7 +369,7 @@ void publishHomeAssistantConfig()
     potassiumConfig["state_topic"] = String(config.mqttTopicPrefix) + "/state";
     potassiumConfig["unit_of_measurement"] = "mg/kg";
     potassiumConfig["value_template"] = "{{ value_json.potassium }}";
-    potassiumConfig["unique_id"] = deviceId + "_potassium";
+    potassiumConfig["unique_id"] = String(deviceId) + "_potassium";
     potassiumConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
     potassiumConfig["device"] = deviceInfo;
     // Сериализуем конфигурации в строки
@@ -370,34 +383,35 @@ void publishHomeAssistantConfig()
     serializeJson(phosphorusConfig, phosphorusConfigStr);
     serializeJson(potassiumConfig, potassiumConfigStr);
     // Публикуем конфигурации
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_temperature/config").c_str(), tempConfigStr.c_str(),
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_temperature/config").c_str(), tempConfigStr.c_str(),
                        true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_humidity/config").c_str(), humConfigStr.c_str(), true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_ec/config").c_str(), ecConfigStr.c_str(), true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_ph/config").c_str(), phConfigStr.c_str(), true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_nitrogen/config").c_str(), nitrogenConfigStr.c_str(),
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_humidity/config").c_str(), humConfigStr.c_str(), true);
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_ec/config").c_str(), ecConfigStr.c_str(), true);
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_ph/config").c_str(), phConfigStr.c_str(), true);
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_nitrogen/config").c_str(), nitrogenConfigStr.c_str(),
                        true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_phosphorus/config").c_str(), phosphorusConfigStr.c_str(),
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_phosphorus/config").c_str(), phosphorusConfigStr.c_str(),
                        true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_potassium/config").c_str(), potassiumConfigStr.c_str(),
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_potassium/config").c_str(), potassiumConfigStr.c_str(),
                        true);
     Serial.println("[publishHomeAssistantConfig] Конфигурация Home Assistant опубликована");
-    mqttLastError = "";
+    strcpy(mqttLastErrorBuffer, "");
 }
 
 void removeHomeAssistantConfig()
 {
-    String deviceId = getDeviceId();
+    String deviceIdStr = getDeviceId();
+    const char* deviceId = deviceIdStr.c_str();
     // Публикуем пустой payload с retain для удаления сенсоров из HA
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_temperature/config").c_str(), "", true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_humidity/config").c_str(), "", true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_ec/config").c_str(), "", true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_ph/config").c_str(), "", true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_nitrogen/config").c_str(), "", true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_phosphorus/config").c_str(), "", true);
-    mqttClient.publish(("homeassistant/sensor/" + deviceId + "_potassium/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_temperature/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_humidity/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_ec/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_ph/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_nitrogen/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_phosphorus/config").c_str(), "", true);
+    mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_potassium/config").c_str(), "", true);
     Serial.println("[MQTT] Discovery-конфиги Home Assistant удалены");
-    mqttLastError = "";
+    strcpy(mqttLastErrorBuffer, "");
 }
 
 void handleMqttCommand(const String& cmd)
