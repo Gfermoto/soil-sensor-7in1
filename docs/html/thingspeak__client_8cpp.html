@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor: Файл src/thingspeak_client.cpp</title>
+<title>JXCT Soil Sensor v2.0: Файл src/thingspeak_client.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,8 +32,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
    </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -116,51 +117,55 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
 <code>#include &quot;<a class="el" href="jxct__device__info_8h_source.html">jxct_device_info.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__format__utils_8h_source.html">jxct_format_utils.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
 <code>#include &lt;NTPClient.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Граф включаемых заголовочных файлов для thingspeak_client.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="thingspeak__client_8cpp__incl.png" border="0" usemap="#asrc_2thingspeak__client_8cpp" alt=""/></div>
 <map name="asrc_2thingspeak__client_8cpp" id="asrc_2thingspeak__client_8cpp">
-<area shape="rect" title=" " alt="" coords="425,5,594,32"/>
+<area shape="rect" title=" " alt="" coords="471,5,641,32"/>
 <area shape="rect" title=" " alt="" coords="5,155,99,181"/>
-<area shape="poly" title=" " alt="" coords="425,28,252,47,172,62,141,72,117,82,101,95,87,110,66,142,62,139,83,106,98,91,115,78,139,67,171,57,251,41,424,23"/>
-<area shape="rect" href="thingspeak__client_8h.html" title=" " alt="" coords="140,80,273,107"/>
-<area shape="poly" title=" " alt="" coords="457,35,275,78,274,73,456,30"/>
-<area shape="rect" title=" " alt="" coords="123,155,224,181"/>
-<area shape="poly" title=" " alt="" coords="424,24,341,28,253,38,177,55,149,67,130,82,124,96,127,111,137,127,150,142,146,146,132,130,122,113,119,95,126,78,146,63,175,50,252,33,341,23,424,18"/>
-<area shape="rect" href="modbus__sensor_8h.html" title=" " alt="" coords="298,80,422,107"/>
-<area shape="poly" title=" " alt="" coords="484,35,401,75,399,70,482,30"/>
-<area shape="rect" href="wifi__manager_8h.html" title=" " alt="" coords="596,80,705,107"/>
-<area shape="poly" title=" " alt="" coords="535,30,614,70,611,75,533,35"/>
-<area shape="rect" href="jxct__device__info_8h.html" title=" " alt="" coords="446,80,572,107"/>
-<area shape="poly" title=" " alt="" coords="512,33,512,64,507,64,507,33"/>
-<area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="730,80,857,107"/>
-<area shape="poly" title=" " alt="" coords="559,30,729,73,728,78,558,35"/>
-<area shape="rect" href="jxct__format__utils_8h.html" title=" " alt="" coords="881,80,1010,107"/>
-<area shape="poly" title=" " alt="" coords="586,30,866,76,865,82,585,35"/>
-<area shape="rect" title=" " alt="" coords="1033,80,1127,107"/>
-<area shape="poly" title=" " alt="" coords="595,25,785,45,1018,77,1017,82,784,51,594,30"/>
-<area shape="poly" title=" " alt="" coords="181,110,94,150,92,145,179,105"/>
-<area shape="rect" title=" " alt="" coords="390,155,466,181"/>
-<area shape="poly" title=" " alt="" coords="246,105,376,147,374,152,244,110"/>
-<area shape="poly" title=" " alt="" coords="203,108,188,142,183,139,198,106"/>
-<area shape="poly" title=" " alt="" coords="374,105,408,141,404,145,370,109"/>
-<area shape="rect" title=" " alt="" coords="248,155,366,181"/>
-<area shape="poly" title=" " alt="" coords="353,109,327,144,323,141,349,106"/>
-<area shape="poly" title=" " alt="" coords="613,110,482,152,480,147,611,105"/>
-<area shape="rect" title=" " alt="" coords="490,155,550,181"/>
-<area shape="poly" title=" " alt="" coords="629,110,558,149,555,144,627,105"/>
-<area shape="rect" title=" " alt="" coords="574,155,674,181"/>
-<area shape="poly" title=" " alt="" coords="649,108,636,141,631,139,644,106"/>
-<area shape="rect" title=" " alt="" coords="697,155,794,181"/>
-<area shape="poly" title=" " alt="" coords="669,105,719,143,715,147,666,109"/>
-<area shape="rect" title=" " alt="" coords="818,155,920,181"/>
-<area shape="poly" title=" " alt="" coords="690,105,817,147,816,152,688,110"/>
-<area shape="poly" title=" " alt="" coords="497,109,455,146,451,142,493,105"/>
-<area shape="poly" title=" " alt="" coords="808,105,847,142,844,146,805,109"/>
-<area shape="rect" title=" " alt="" coords="944,155,997,181"/>
-<area shape="poly" title=" " alt="" coords="952,106,964,139,959,141,947,108"/>
+<area shape="poly" title=" " alt="" coords="471,27,229,48,121,63,85,72,66,82,57,94,52,109,51,140,45,139,47,108,52,92,62,78,83,67,120,58,228,42,471,22"/>
+<area shape="rect" href="thingspeak__client_8h.html" title=" " alt="" coords="76,80,209,107"/>
+<area shape="poly" title=" " alt="" coords="484,35,225,80,225,75,483,30"/>
+<area shape="rect" title=" " alt="" coords="149,155,251,181"/>
+<area shape="poly" title=" " alt="" coords="471,26,424,32,373,43,321,59,273,82,241,111,217,143,212,140,237,107,271,78,319,54,371,38,423,27,471,21"/>
+<area shape="rect" href="modbus__sensor_8h.html" title=" " alt="" coords="284,80,409,107"/>
+<area shape="poly" title=" " alt="" coords="520,35,399,77,397,72,519,30"/>
+<area shape="rect" href="wifi__manager_8h.html" title=" " alt="" coords="675,80,784,107"/>
+<area shape="poly" title=" " alt="" coords="587,30,686,71,684,76,585,35"/>
+<area shape="rect" href="jxct__device__info_8h.html" title=" " alt="" coords="433,80,559,107"/>
+<area shape="poly" title=" " alt="" coords="548,34,518,70,514,66,544,31"/>
+<area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="808,80,936,107"/>
+<area shape="poly" title=" " alt="" coords="612,30,802,73,801,79,611,35"/>
+<area shape="rect" href="jxct__format__utils_8h.html" title=" " alt="" coords="960,80,1088,107"/>
+<area shape="poly" title=" " alt="" coords="640,30,945,77,944,82,639,35"/>
+<area shape="rect" href="logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="584,80,651,107"/>
+<area shape="poly" title=" " alt="" coords="569,31,599,66,595,70,565,34"/>
+<area shape="rect" title=" " alt="" coords="1112,80,1205,107"/>
+<area shape="poly" title=" " alt="" coords="641,24,845,44,1097,77,1096,82,844,50,641,30"/>
+<area shape="poly" title=" " alt="" coords="129,109,81,147,78,143,125,105"/>
+<area shape="rect" title=" " alt="" coords="436,155,513,181"/>
+<area shape="poly" title=" " alt="" coords="201,105,422,153,421,158,200,110"/>
+<area shape="poly" title=" " alt="" coords="155,106,183,141,179,144,151,109"/>
+<area shape="poly" title=" " alt="" coords="370,105,440,144,438,149,368,110"/>
+<area shape="rect" title=" " alt="" coords="288,155,406,181"/>
+<area shape="poly" title=" " alt="" coords="349,107,349,139,344,139,344,107"/>
+<area shape="poly" title=" " alt="" coords="686,110,528,154,527,149,684,105"/>
+<area shape="rect" title=" " alt="" coords="537,155,596,181"/>
+<area shape="poly" title=" " alt="" coords="702,110,610,150,608,145,700,105"/>
+<area shape="rect" title=" " alt="" coords="621,155,720,181"/>
+<area shape="poly" title=" " alt="" coords="721,109,692,144,688,141,717,106"/>
+<area shape="rect" title=" " alt="" coords="744,155,840,181"/>
+<area shape="poly" title=" " alt="" coords="742,105,773,141,769,145,738,109"/>
+<area shape="rect" title=" " alt="" coords="865,155,967,181"/>
+<area shape="poly" title=" " alt="" coords="763,105,870,146,868,151,761,110"/>
+<area shape="poly" title=" " alt="" coords="495,108,485,141,480,139,490,106"/>
+<area shape="poly" title=" " alt="" coords="882,106,903,140,898,143,877,109"/>
+<area shape="rect" title=" " alt="" coords="997,155,1051,181"/>
+<area shape="poly" title=" " alt="" coords="1027,107,1027,139,1021,139,1021,107"/>
+<area shape="poly" title=" " alt="" coords="594,110,514,150,512,145,591,105"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -179,6 +184,10 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
 <tr class="separator:af914716ab642c858bca6b31ae976d15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c15cb6759eb866fba42b090ffaf0d2a" id="r_a2c15cb6759eb866fba42b090ffaf0d2a"><td class="memItemLeft" align="right" valign="top">static unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c15cb6759eb866fba42b090ffaf0d2a">lastTsPublish</a> = 0</td></tr>
 <tr class="separator:a2c15cb6759eb866fba42b090ffaf0d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7ba7f8645edaafa8d51adc34cfe01fc" id="r_ae7ba7f8645edaafa8d51adc34cfe01fc"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7ba7f8645edaafa8d51adc34cfe01fc">thingSpeakLastPublish</a> = &quot;&quot;</td></tr>
+<tr class="separator:ae7ba7f8645edaafa8d51adc34cfe01fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9853ad4b20dc0095aa7efa9058a66e40" id="r_a9853ad4b20dc0095aa7efa9058a66e40"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9853ad4b20dc0095aa7efa9058a66e40">thingSpeakLastError</a> = &quot;&quot;</td></tr>
+<tr class="separator:a9853ad4b20dc0095aa7efa9058a66e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
 <a id="aaef2ba5628e59244986aa0c0f40b58cf" name="aaef2ba5628e59244986aa0c0f40b58cf"></a>
@@ -200,17 +209,27 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
 <div class="dyncontent">
 <div class="center"><img src="thingspeak__client_8cpp_aaef2ba5628e59244986aa0c0f40b58cf_cgraph.png" border="0" usemap="#athingspeak__client_8cpp_aaef2ba5628e59244986aa0c0f40b58cf_cgraph" alt=""/></div>
 <map name="athingspeak__client_8cpp_aaef2ba5628e59244986aa0c0f40b58cf_cgraph" id="athingspeak__client_8cpp_aaef2ba5628e59244986aa0c0f40b58cf_cgraph">
-<area shape="rect" title=" " alt="" coords="5,107,166,133"/>
+<area shape="rect" title=" " alt="" coords="5,233,166,260"/>
 <area shape="rect" href="jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483" title=" " alt="" coords="241,5,320,32"/>
-<area shape="poly" title=" " alt="" coords="106,104,154,74,212,42,226,36,228,41,215,46,156,78,109,108"/>
+<area shape="poly" title=" " alt="" coords="89,232,105,194,131,144,167,90,212,42,226,33,228,37,215,46,171,93,136,147,110,197,94,234"/>
 <area shape="rect" href="jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470" title=" " alt="" coords="223,56,338,83"/>
-<area shape="poly" title=" " alt="" coords="139,103,211,85,213,90,141,109"/>
+<area shape="poly" title=" " alt="" coords="93,231,138,166,172,127,212,93,219,88,222,92,215,97,176,131,142,169,97,234"/>
 <area shape="rect" href="jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b" title=" " alt="" coords="238,107,324,133"/>
-<area shape="poly" title=" " alt="" coords="166,117,222,117,222,123,166,123"/>
+<area shape="poly" title=" " alt="" coords="99,231,147,189,212,143,223,138,225,142,215,148,151,193,103,235"/>
 <area shape="rect" href="jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152" title=" " alt="" coords="241,157,320,184"/>
-<area shape="poly" title=" " alt="" coords="141,131,227,154,225,159,139,137"/>
+<area shape="poly" title=" " alt="" coords="120,230,213,194,228,188,230,193,215,198,122,235"/>
 <area shape="rect" href="jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351" title=" " alt="" coords="214,208,348,235"/>
-<area shape="poly" title=" " alt="" coords="109,132,156,162,215,194,227,199,225,204,212,198,154,166,106,136"/>
+<area shape="poly" title=" " alt="" coords="166,234,198,229,198,235,167,239"/>
+<area shape="rect" href="logger_8cpp.html#af2cfc49d3e5f87ebc351693b47c348e1" title=" " alt="" coords="248,259,314,285"/>
+<area shape="poly" title=" " alt="" coords="167,254,233,263,232,268,166,260"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="243,309,319,336"/>
+<area shape="poly" title=" " alt="" coords="122,258,215,295,230,301,228,306,213,300,120,263"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="248,360,314,387"/>
+<area shape="poly" title=" " alt="" coords="103,258,151,300,215,346,234,355,232,360,212,350,147,305,99,262"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="236,411,326,437"/>
+<area shape="poly" title=" " alt="" coords="97,259,142,324,176,363,215,397,224,402,221,406,212,401,172,366,138,327,93,262"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="247,461,315,488"/>
+<area shape="poly" title=" " alt="" coords="94,260,110,297,136,347,171,400,215,447,234,459,231,463,212,451,167,404,131,350,105,299,89,262"/>
 </map>
 </div>
 <div class="dynheader">
@@ -245,7 +264,11 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
 <div class="dyncontent">
 <div class="center"><img src="thingspeak__client_8cpp_af8e20ef000ee56a6aedcc07d88f38f90_icgraph.png" border="0" usemap="#athingspeak__client_8cpp_af8e20ef000ee56a6aedcc07d88f38f90_icgraph" alt=""/></div>
 <map name="athingspeak__client_8cpp_af8e20ef000ee56a6aedcc07d88f38f90_icgraph" id="athingspeak__client_8cpp_af8e20ef000ee56a6aedcc07d88f38f90_icgraph">
-<area shape="rect" title=" " alt="" coords="107,5,229,32"/>
+<area shape="rect" title=" " alt="" coords="387,5,510,32"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,5,339,32"/>
+<area shape="poly" title=" " alt="" coords="372,21,340,21,340,16,372,16"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,5,187,32"/>
+<area shape="poly" title=" " alt="" coords="219,21,187,21,187,16,219,16"/>
 <area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
 <area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
 </map>
@@ -284,6 +307,34 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
       <table class="memname">
         <tr>
           <td class="memname">const char* THINGSPEAK_API_URL = &quot;https://api.thingspeak.com/update&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9853ad4b20dc0095aa7efa9058a66e40" name="a9853ad4b20dc0095aa7efa9058a66e40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9853ad4b20dc0095aa7efa9058a66e40">&#9670;&#160;</a></span>thingSpeakLastError</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String thingSpeakLastError = &quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7ba7f8645edaafa8d51adc34cfe01fc" name="ae7ba7f8645edaafa8d51adc34cfe01fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7ba7f8645edaafa8d51adc34cfe01fc">&#9670;&#160;</a></span>thingSpeakLastPublish</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String thingSpeakLastPublish = &quot;&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">

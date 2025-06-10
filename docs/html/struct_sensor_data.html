@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor: Структура SensorData</title>
+<title>JXCT Soil Sensor v2.0: Структура SensorData</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,8 +32,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
    </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -127,10 +128,34 @@ $(function(){initNavTree('struct_sensor_data.html',''); initResizable(true); });
 <tr class="separator:a05e9b50851e82dba2487bf1b0c770539"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afa3d7a9345781758cec2e8bac97ac1d3" id="r_afa3d7a9345781758cec2e8bac97ac1d3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa3d7a9345781758cec2e8bac97ac1d3">potassium</a></td></tr>
 <tr class="separator:afa3d7a9345781758cec2e8bac97ac1d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e1daf37ef4f33ec73aa3bd93fc3d42f" id="r_a3e1daf37ef4f33ec73aa3bd93fc3d42f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e1daf37ef4f33ec73aa3bd93fc3d42f">moisture</a></td></tr>
+<tr class="separator:a3e1daf37ef4f33ec73aa3bd93fc3d42f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba644ee83b3bceceea0b6325fe00257e" id="r_aba644ee83b3bceceea0b6325fe00257e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba644ee83b3bceceea0b6325fe00257e">conductivity</a></td></tr>
+<tr class="separator:aba644ee83b3bceceea0b6325fe00257e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afde3c50727e3e15ce3850afa8d73eff8" id="r_afde3c50727e3e15ce3850afa8d73eff8"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afde3c50727e3e15ce3850afa8d73eff8">firmware_version</a></td></tr>
+<tr class="separator:afde3c50727e3e15ce3850afa8d73eff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4ca11b4574092a5d653f9c3a838e218" id="r_ac4ca11b4574092a5d653f9c3a838e218"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4ca11b4574092a5d653f9c3a838e218">error_status</a></td></tr>
+<tr class="separator:ac4ca11b4574092a5d653f9c3a838e218"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a232e987cbc8cfe2b9977416c9e25554f" id="r_a232e987cbc8cfe2b9977416c9e25554f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a232e987cbc8cfe2b9977416c9e25554f">valid</a></td></tr>
 <tr class="separator:a232e987cbc8cfe2b9977416c9e25554f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad603dc902dc414959a862b8e4b2777f9" id="r_ad603dc902dc414959a862b8e4b2777f9"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad603dc902dc414959a862b8e4b2777f9">last_update</a></td></tr>
+<tr class="separator:ad603dc902dc414959a862b8e4b2777f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Данные класса</h2>
+<a id="aba644ee83b3bceceea0b6325fe00257e" name="aba644ee83b3bceceea0b6325fe00257e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba644ee83b3bceceea0b6325fe00257e">&#9670;&#160;</a></span>conductivity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::conductivity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aa990acd0e7ae2bdc99a54069ffe36e41" name="aa990acd0e7ae2bdc99a54069ffe36e41"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa990acd0e7ae2bdc99a54069ffe36e41">&#9670;&#160;</a></span>ec</h2>
 
@@ -145,6 +170,34 @@ $(function(){initNavTree('struct_sensor_data.html',''); initResizable(true); });
 
 </div>
 </div>
+<a id="ac4ca11b4574092a5d653f9c3a838e218" name="ac4ca11b4574092a5d653f9c3a838e218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4ca11b4574092a5d653f9c3a838e218">&#9670;&#160;</a></span>error_status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SensorData::error_status</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afde3c50727e3e15ce3850afa8d73eff8" name="afde3c50727e3e15ce3850afa8d73eff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afde3c50727e3e15ce3850afa8d73eff8">&#9670;&#160;</a></span>firmware_version</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SensorData::firmware_version</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a29ce8f1d86589b1c5af915ec961742f2" name="a29ce8f1d86589b1c5af915ec961742f2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a29ce8f1d86589b1c5af915ec961742f2">&#9670;&#160;</a></span>humidity</h2>
 
@@ -153,6 +206,34 @@ $(function(){initNavTree('struct_sensor_data.html',''); initResizable(true); });
       <table class="memname">
         <tr>
           <td class="memname">float SensorData::humidity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad603dc902dc414959a862b8e4b2777f9" name="ad603dc902dc414959a862b8e4b2777f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad603dc902dc414959a862b8e4b2777f9">&#9670;&#160;</a></span>last_update</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long SensorData::last_update</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e1daf37ef4f33ec73aa3bd93fc3d42f" name="a3e1daf37ef4f33ec73aa3bd93fc3d42f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e1daf37ef4f33ec73aa3bd93fc3d42f">&#9670;&#160;</a></span>moisture</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::moisture</td>
         </tr>
       </table>
 </div><div class="memdoc">

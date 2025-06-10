@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor: Исходный файл src/thingspeak_client.h</title>
+<title>JXCT Soil Sensor v2.0: Исходный файл src/thingspeak_client.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,8 +32,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
    </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -113,17 +114,21 @@ $(function(){initNavTree('thingspeak__client_8h_source.html',''); initResizable(
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;ThingSpeak.h&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">extern</span> WiFiClient <a class="code hl_variable" href="mqtt__client_8cpp.html#abd77e757e4b3bb6f1e4b42b21ea9e040">espClient</a>;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// Инициализация ThingSpeak клиента (передаём WiFiClient)</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keywordtype">void</span> <a class="code hl_function" href="thingspeak__client_8h.html#af8e20ef000ee56a6aedcc07d88f38f90">setupThingSpeak</a>(WiFiClient&amp; client);</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// Отправка данных в ThingSpeak (с учётом интервала)</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keywordtype">bool</span> <a class="code hl_function" href="thingspeak__client_8h.html#aaef2ba5628e59244986aa0c0f40b58cf">sendDataToThingSpeak</a>();</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif </span><span class="comment">// THINGSPEAK_CLIENT_H </span></div>
-<div class="ttc" id="amqtt__client_8cpp_html_abd77e757e4b3bb6f1e4b42b21ea9e040"><div class="ttname"><a href="mqtt__client_8cpp.html#abd77e757e4b3bb6f1e4b42b21ea9e040">espClient</a></div><div class="ttdeci">WiFiClient espClient</div><div class="ttdef"><b>Определения</b> mqtt_client.cpp:18</div></div>
-<div class="ttc" id="athingspeak__client_8h_html_aaef2ba5628e59244986aa0c0f40b58cf"><div class="ttname"><a href="thingspeak__client_8h.html#aaef2ba5628e59244986aa0c0f40b58cf">sendDataToThingSpeak</a></div><div class="ttdeci">bool sendDataToThingSpeak()</div><div class="ttdef"><b>Определения</b> thingspeak_client.cpp:21</div></div>
-<div class="ttc" id="athingspeak__client_8h_html_af8e20ef000ee56a6aedcc07d88f38f90"><div class="ttname"><a href="thingspeak__client_8h.html#af8e20ef000ee56a6aedcc07d88f38f90">setupThingSpeak</a></div><div class="ttdeci">void setupThingSpeak(WiFiClient &amp;client)</div><div class="ttdef"><b>Определения</b> thingspeak_client.cpp:17</div></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">extern</span> String <a class="code hl_variable" href="thingspeak__client_8cpp.html#ae7ba7f8645edaafa8d51adc34cfe01fc">thingSpeakLastPublish</a>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">extern</span> String <a class="code hl_variable" href="thingspeak__client_8cpp.html#a9853ad4b20dc0095aa7efa9058a66e40">thingSpeakLastError</a>;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// Инициализация ThingSpeak клиента (передаём WiFiClient)</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="keywordtype">void</span> <a class="code hl_function" href="thingspeak__client_8h.html#af8e20ef000ee56a6aedcc07d88f38f90">setupThingSpeak</a>(WiFiClient&amp; client);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// Отправка данных в ThingSpeak (с учётом интервала)</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keywordtype">bool</span> <a class="code hl_function" href="thingspeak__client_8h.html#aaef2ba5628e59244986aa0c0f40b58cf">sendDataToThingSpeak</a>();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#endif  </span><span class="comment">// THINGSPEAK_CLIENT_H</span></div>
+<div class="ttc" id="amqtt__client_8cpp_html_abd77e757e4b3bb6f1e4b42b21ea9e040"><div class="ttname"><a href="mqtt__client_8cpp.html#abd77e757e4b3bb6f1e4b42b21ea9e040">espClient</a></div><div class="ttdeci">WiFiClient espClient</div><div class="ttdef"><b>Определения</b> mqtt_client.cpp:19</div></div>
+<div class="ttc" id="athingspeak__client_8cpp_html_a9853ad4b20dc0095aa7efa9058a66e40"><div class="ttname"><a href="thingspeak__client_8cpp.html#a9853ad4b20dc0095aa7efa9058a66e40">thingSpeakLastError</a></div><div class="ttdeci">String thingSpeakLastError</div><div class="ttdef"><b>Определения</b> thingspeak_client.cpp:18</div></div>
+<div class="ttc" id="athingspeak__client_8cpp_html_ae7ba7f8645edaafa8d51adc34cfe01fc"><div class="ttname"><a href="thingspeak__client_8cpp.html#ae7ba7f8645edaafa8d51adc34cfe01fc">thingSpeakLastPublish</a></div><div class="ttdeci">String thingSpeakLastPublish</div><div class="ttdef"><b>Определения</b> thingspeak_client.cpp:17</div></div>
+<div class="ttc" id="athingspeak__client_8h_html_aaef2ba5628e59244986aa0c0f40b58cf"><div class="ttname"><a href="thingspeak__client_8h.html#aaef2ba5628e59244986aa0c0f40b58cf">sendDataToThingSpeak</a></div><div class="ttdeci">bool sendDataToThingSpeak()</div><div class="ttdef"><b>Определения</b> thingspeak_client.cpp:25</div></div>
+<div class="ttc" id="athingspeak__client_8h_html_af8e20ef000ee56a6aedcc07d88f38f90"><div class="ttname"><a href="thingspeak__client_8h.html#af8e20ef000ee56a6aedcc07d88f38f90">setupThingSpeak</a></div><div class="ttdeci">void setupThingSpeak(WiFiClient &amp;client)</div><div class="ttdef"><b>Определения</b> thingspeak_client.cpp:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

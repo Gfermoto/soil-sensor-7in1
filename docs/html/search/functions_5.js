@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['loadconfig_0',['loadConfig',['../config_8cpp.html#ad5ed6ddd9940c0097cc91774056df1c2',1,'loadConfig():&#160;config.cpp'],['../jxct__config__vars_8h.html#ad5ed6ddd9940c0097cc91774056df1c2',1,'loadConfig():&#160;config.cpp']]],
-  ['loop_1',['loop',['../main_8cpp.html#afe461d27b9c48d5921c00d521181f12f',1,'main.cpp']]]
+  ['initpreferences_0',['initPreferences',['../main_8cpp.html#abb0ddf3422a587580e789235c0503668',1,'main.cpp']]],
+  ['isconfigvalid_1',['isConfigValid',['../config_8cpp.html#aeb61f04cd3b4b68e8146d85c447d70d1',1,'isConfigValid():&#160;config.cpp'],['../jxct__config__vars_8h.html#aeb61f04cd3b4b68e8146d85c447d70d1',1,'isConfigValid():&#160;config.cpp']]]
 ];

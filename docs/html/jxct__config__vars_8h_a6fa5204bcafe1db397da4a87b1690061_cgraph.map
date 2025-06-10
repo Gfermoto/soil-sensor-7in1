@@ -1,5 +1,9 @@
 <map id="resetConfig" name="resetConfig">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,94,32"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,94,83"/>
 <area shape="rect" id="Node000002" href="$config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="142,5,254,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="94,16,126,16,126,21,94,21"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,53,141,35,143,40,92,58"/>
+<area shape="rect" id="Node000003" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="153,56,242,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="94,67,137,67,137,72,94,72"/>
+<area shape="rect" id="Node000004" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="164,107,232,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="92,81,150,101,148,106,90,86"/>
 </map>

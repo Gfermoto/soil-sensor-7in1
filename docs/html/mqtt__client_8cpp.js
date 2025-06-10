@@ -16,5 +16,6 @@ var mqtt__client_8cpp =
     [ "setupMQTT", "mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c", null ],
     [ "espClient", "mqtt__client_8cpp.html#abd77e757e4b3bb6f1e4b42b21ea9e040", null ],
     [ "mqttConnected", "mqtt__client_8cpp.html#a1da8e8d4c027f4c08db8b493b99e12da", null ],
+    [ "mqttLastError", "mqtt__client_8cpp.html#a01c577989100164224d7536c44e35b53", null ],
     [ "timeClient", "mqtt__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f", null ]
 ];

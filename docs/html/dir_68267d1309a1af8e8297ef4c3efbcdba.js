@@ -4,6 +4,7 @@ var dir_68267d1309a1af8e8297ef4c3efbcdba =
     [ "fake_sensor.cpp", "fake__sensor_8cpp.html", "fake__sensor_8cpp" ],
     [ "fake_sensor.h", "fake__sensor_8h.html", "fake__sensor_8h" ],
     [ "jxct_format_utils.cpp", "jxct__format__utils_8cpp.html", "jxct__format__utils_8cpp" ],
+    [ "logger.cpp", "logger_8cpp.html", "logger_8cpp" ],
     [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
     [ "modbus_sensor.cpp", "modbus__sensor_8cpp.html", "modbus__sensor_8cpp" ],
     [ "modbus_sensor.h", "modbus__sensor_8h.html", "modbus__sensor_8h" ],

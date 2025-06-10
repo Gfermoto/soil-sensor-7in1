@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor: Исходный файл include/jxct_format_utils.h</title>
+<title>JXCT Soil Sensor v2.0: Исходный файл include/jxct_format_utils.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,8 +32,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
    </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -108,16 +109,16 @@ $(function(){initNavTree('jxct__format__utils_8h_source.html',''); initResizable
 <a href="jxct__format__utils_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>std::string <a class="code hl_function" href="jxct__format__utils_8h.html#a3be478cef555484efe62159216f6d470">format_moisture</a>(<span class="keywordtype">float</span> value);      <span class="comment">// &quot;65.8&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>std::string <a class="code hl_function" href="jxct__format__utils_8h.html#a9a843da2888c9b8014dd9506284f1351">format_temperature</a>(<span class="keywordtype">float</span> value);   <span class="comment">// &quot;23.4&quot;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>std::string <a class="code hl_function" href="jxct__format__utils_8h.html#a39b2dedc3670adcf20a62a8d113d2483">format_ec</a>(<span class="keywordtype">float</span> value);            <span class="comment">// &quot;1234&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>std::string <a class="code hl_function" href="jxct__format__utils_8h.html#a416ab24406c338058778bbde7c4da152">format_ph</a>(<span class="keywordtype">float</span> value);            <span class="comment">// &quot;6.7&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>std::string <a class="code hl_function" href="jxct__format__utils_8h.html#abdc9f6cdc05f0aa72eec54b3e904ca7b">format_npk</a>(<span class="keywordtype">float</span> value);           <span class="comment">// &quot;123&quot; </span></div>
-<div class="ttc" id="ajxct__format__utils_8h_html_a39b2dedc3670adcf20a62a8d113d2483"><div class="ttname"><a href="jxct__format__utils_8h.html#a39b2dedc3670adcf20a62a8d113d2483">format_ec</a></div><div class="ttdeci">std::string format_ec(float value)</div><div class="ttdef"><b>Определения</b> jxct_format_utils.cpp:16</div></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span>std::string <a class="code hl_function" href="jxct__format__utils_8h.html#a3be478cef555484efe62159216f6d470">format_moisture</a>(<span class="keywordtype">float</span> value);     <span class="comment">// &quot;65.8&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>std::string <a class="code hl_function" href="jxct__format__utils_8h.html#a9a843da2888c9b8014dd9506284f1351">format_temperature</a>(<span class="keywordtype">float</span> value);  <span class="comment">// &quot;23.4&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>std::string <a class="code hl_function" href="jxct__format__utils_8h.html#a39b2dedc3670adcf20a62a8d113d2483">format_ec</a>(<span class="keywordtype">float</span> value);           <span class="comment">// &quot;1234&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>std::string <a class="code hl_function" href="jxct__format__utils_8h.html#a416ab24406c338058778bbde7c4da152">format_ph</a>(<span class="keywordtype">float</span> value);           <span class="comment">// &quot;6.7&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>std::string <a class="code hl_function" href="jxct__format__utils_8h.html#abdc9f6cdc05f0aa72eec54b3e904ca7b">format_npk</a>(<span class="keywordtype">float</span> value);          <span class="comment">// &quot;123&quot;</span></div>
+<div class="ttc" id="ajxct__format__utils_8h_html_a39b2dedc3670adcf20a62a8d113d2483"><div class="ttname"><a href="jxct__format__utils_8h.html#a39b2dedc3670adcf20a62a8d113d2483">format_ec</a></div><div class="ttdeci">std::string format_ec(float value)</div><div class="ttdef"><b>Определения</b> jxct_format_utils.cpp:18</div></div>
 <div class="ttc" id="ajxct__format__utils_8h_html_a3be478cef555484efe62159216f6d470"><div class="ttname"><a href="jxct__format__utils_8h.html#a3be478cef555484efe62159216f6d470">format_moisture</a></div><div class="ttdeci">std::string format_moisture(float value)</div><div class="ttdef"><b>Определения</b> jxct_format_utils.cpp:4</div></div>
-<div class="ttc" id="ajxct__format__utils_8h_html_a416ab24406c338058778bbde7c4da152"><div class="ttname"><a href="jxct__format__utils_8h.html#a416ab24406c338058778bbde7c4da152">format_ph</a></div><div class="ttdeci">std::string format_ph(float value)</div><div class="ttdef"><b>Определения</b> jxct_format_utils.cpp:22</div></div>
-<div class="ttc" id="ajxct__format__utils_8h_html_a9a843da2888c9b8014dd9506284f1351"><div class="ttname"><a href="jxct__format__utils_8h.html#a9a843da2888c9b8014dd9506284f1351">format_temperature</a></div><div class="ttdeci">std::string format_temperature(float value)</div><div class="ttdef"><b>Определения</b> jxct_format_utils.cpp:10</div></div>
-<div class="ttc" id="ajxct__format__utils_8h_html_abdc9f6cdc05f0aa72eec54b3e904ca7b"><div class="ttname"><a href="jxct__format__utils_8h.html#abdc9f6cdc05f0aa72eec54b3e904ca7b">format_npk</a></div><div class="ttdeci">std::string format_npk(float value)</div><div class="ttdef"><b>Определения</b> jxct_format_utils.cpp:28</div></div>
+<div class="ttc" id="ajxct__format__utils_8h_html_a416ab24406c338058778bbde7c4da152"><div class="ttname"><a href="jxct__format__utils_8h.html#a416ab24406c338058778bbde7c4da152">format_ph</a></div><div class="ttdeci">std::string format_ph(float value)</div><div class="ttdef"><b>Определения</b> jxct_format_utils.cpp:25</div></div>
+<div class="ttc" id="ajxct__format__utils_8h_html_a9a843da2888c9b8014dd9506284f1351"><div class="ttname"><a href="jxct__format__utils_8h.html#a9a843da2888c9b8014dd9506284f1351">format_temperature</a></div><div class="ttdeci">std::string format_temperature(float value)</div><div class="ttdef"><b>Определения</b> jxct_format_utils.cpp:11</div></div>
+<div class="ttc" id="ajxct__format__utils_8h_html_abdc9f6cdc05f0aa72eec54b3e904ca7b"><div class="ttname"><a href="jxct__format__utils_8h.html#abdc9f6cdc05f0aa72eec54b3e904ca7b">format_npk</a></div><div class="ttdeci">std::string format_npk(float value)</div><div class="ttdef"><b>Определения</b> jxct_format_utils.cpp:32</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['fake_5fsensor_2ecpp_0',['fake_sensor.cpp',['../fake__sensor_8cpp.html',1,'']]],
-  ['fake_5fsensor_2eh_1',['fake_sensor.h',['../fake__sensor_8h.html',1,'']]]
+  ['development_5froadmap_5f2025_2emd_0',['DEVELOPMENT_ROADMAP_2025.md',['../_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025_8md.html',1,'']]]
 ];

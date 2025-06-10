@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor: Исходный файл include/jxct_device_info.h</title>
+<title>JXCT Soil Sensor v2.0: Исходный файл include/jxct_device_info.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,8 +32,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
    </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -109,15 +110,15 @@ $(function(){initNavTree('jxct__device__info_8h_source.html',''); initResizable(
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="jxct__device__info_8h.html#a83f77c2317b3d28560f91fffca64efea">    3</a></span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code hl_variable" href="jxct__device__info_8h.html#a83f77c2317b3d28560f91fffca64efea">DEVICE_MANUFACTURER</a>[] = <span class="stringliteral">&quot;Eyera&quot;</span>;</div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="jxct__device__info_8h.html#acd8d2dccf471a5d0cbd070ff1bef8887">    4</a></span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code hl_variable" href="jxct__device__info_8h.html#acd8d2dccf471a5d0cbd070ff1bef8887">DEVICE_MODEL</a>[] = <span class="stringliteral">&quot;JXCT-7in1&quot;</span>;</div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="jxct__device__info_8h.html#aa6399036840a604f6b3bbbf93f7ecd3c">    5</a></span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code hl_variable" href="jxct__device__info_8h.html#aa6399036840a604f6b3bbbf93f7ecd3c">DEVICE_SW_VERSION</a>[] = <span class="stringliteral">&quot;1.4&quot;</span>;</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="jxct__device__info_8h.html#aa6399036840a604f6b3bbbf93f7ecd3c">    5</a></span><span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code hl_variable" href="jxct__device__info_8h.html#aa6399036840a604f6b3bbbf93f7ecd3c">DEVICE_SW_VERSION</a>[] = <span class="stringliteral">&quot;2.0&quot;</span>;</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>String <a class="code hl_function" href="jxct__device__info_8h.html#aa1f35b9688dbf1109436ad91c42901aa">getDeviceId</a>();</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>String <a class="code hl_function" href="jxct__device__info_8h.html#a74bdf2231a5ebe05de0f3a0b4c538023">getDefaultTopic</a>(); </div>
-<div class="ttc" id="ajxct__device__info_8h_html_a74bdf2231a5ebe05de0f3a0b4c538023"><div class="ttname"><a href="jxct__device__info_8h.html#a74bdf2231a5ebe05de0f3a0b4c538023">getDefaultTopic</a></div><div class="ttdeci">String getDefaultTopic()</div><div class="ttdef"><b>Определения</b> config.cpp:19</div></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>String <a class="code hl_function" href="jxct__device__info_8h.html#a74bdf2231a5ebe05de0f3a0b4c538023">getDefaultTopic</a>();</div>
+<div class="ttc" id="ajxct__device__info_8h_html_a74bdf2231a5ebe05de0f3a0b4c538023"><div class="ttname"><a href="jxct__device__info_8h.html#a74bdf2231a5ebe05de0f3a0b4c538023">getDefaultTopic</a></div><div class="ttdeci">String getDefaultTopic()</div><div class="ttdef"><b>Определения</b> config.cpp:21</div></div>
 <div class="ttc" id="ajxct__device__info_8h_html_a83f77c2317b3d28560f91fffca64efea"><div class="ttname"><a href="jxct__device__info_8h.html#a83f77c2317b3d28560f91fffca64efea">DEVICE_MANUFACTURER</a></div><div class="ttdeci">static const char DEVICE_MANUFACTURER[]</div><div class="ttdef"><b>Определения</b> jxct_device_info.h:3</div></div>
-<div class="ttc" id="ajxct__device__info_8h_html_aa1f35b9688dbf1109436ad91c42901aa"><div class="ttname"><a href="jxct__device__info_8h.html#aa1f35b9688dbf1109436ad91c42901aa">getDeviceId</a></div><div class="ttdeci">String getDeviceId()</div><div class="ttdef"><b>Определения</b> config.cpp:11</div></div>
+<div class="ttc" id="ajxct__device__info_8h_html_aa1f35b9688dbf1109436ad91c42901aa"><div class="ttname"><a href="jxct__device__info_8h.html#aa1f35b9688dbf1109436ad91c42901aa">getDeviceId</a></div><div class="ttdeci">String getDeviceId()</div><div class="ttdef"><b>Определения</b> config.cpp:12</div></div>
 <div class="ttc" id="ajxct__device__info_8h_html_aa6399036840a604f6b3bbbf93f7ecd3c"><div class="ttname"><a href="jxct__device__info_8h.html#aa6399036840a604f6b3bbbf93f7ecd3c">DEVICE_SW_VERSION</a></div><div class="ttdeci">static const char DEVICE_SW_VERSION[]</div><div class="ttdef"><b>Определения</b> jxct_device_info.h:5</div></div>
 <div class="ttc" id="ajxct__device__info_8h_html_acd8d2dccf471a5d0cbd070ff1bef8887"><div class="ttname"><a href="jxct__device__info_8h.html#acd8d2dccf471a5d0cbd070ff1bef8887">DEVICE_MODEL</a></div><div class="ttdeci">static const char DEVICE_MODEL[]</div><div class="ttdef"><b>Определения</b> jxct_device_info.h:4</div></div>
 </div><!-- fragment --></div><!-- contents -->

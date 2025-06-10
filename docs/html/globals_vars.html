@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor: Список членов всех файлов</title>
+<title>JXCT Soil Sensor v2.0: Список членов всех файлов</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,8 +32,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
    </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -104,8 +105,15 @@ $(function(){initNavTree('globals_vars.html',''); initResizable(true); });
 <div class="contents">
 <div class="textblock">Список всех переменных соссылками на файлы, к которым они относятся:</div>
 
+<h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
+<li>adaptiveCss&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#a6b4d082c4bace675ed22fd33151f212f">wifi_manager.cpp</a></li>
+</ul>
+
+
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<li>CACHE_TIMEOUT&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#abd184d23ed906bffd898e7a94be87d17">modbus_sensor.cpp</a></li>
 <li>config&#160;:&#160;<a class="el" href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config.cpp</a>, <a class="el" href="jxct__config__vars_8h.html#a4a8dd3a2de125b72d4fe6251a0a271b5">jxct_config_vars.h</a></li>
+<li>currentLogLevel&#160;:&#160;<a class="el" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">logger.cpp</a>, <a class="el" href="logger_8h.html#a16cca5b581e7f50a9cc5e838510ae6f5">logger.h</a></li>
 <li>currentWiFiMode&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#afd1ea40c3b78acfa354aed81da58e582">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#afd1ea40c3b78acfa354aed81da58e582">wifi_manager.h</a></li>
 </ul>
 
@@ -126,7 +134,7 @@ $(function(){initNavTree('globals_vars.html',''); initResizable(true); });
 <h3><a id="index_l" name="index_l"></a>- l -</h3><ul>
 <li>lastDataPublishTime&#160;:&#160;<a class="el" href="main_8cpp.html#a6d9eac2bbb6f1354d8abcc8072978a4e">main.cpp</a></li>
 <li>lastNtpUpdate&#160;:&#160;<a class="el" href="main_8cpp.html#acc1f621a9291ba211ffa0100abe000ca">main.cpp</a></li>
-<li>lastSensorReadTime&#160;:&#160;<a class="el" href="main_8cpp.html#a84aca0ffa2567a5fcd17bba8e330690a">main.cpp</a></li>
+<li>lastStatusPrint&#160;:&#160;<a class="el" href="main_8cpp.html#a3ddd577fce6fb4aace7649231884939e">main.cpp</a></li>
 <li>lastTsPublish&#160;:&#160;<a class="el" href="thingspeak__client_8cpp.html#a2c15cb6759eb866fba42b090ffaf0d2a">thingspeak_client.cpp</a></li>
 <li>ledBlinkInterval&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#a7fe2f065663c24ba1c4a493987b013e2">wifi_manager.cpp</a></li>
 <li>ledFastBlink&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#abb4e2051d388569c5106a007f5ed6b36">wifi_manager.cpp</a></li>
@@ -136,9 +144,11 @@ $(function(){initNavTree('globals_vars.html',''); initResizable(true); });
 
 
 <h3><a id="index_m" name="index_m"></a>- m -</h3><ul>
+<li>MAX_RETRIES&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a58fff818a2313afe4a13970541fa17fa">modbus_sensor.cpp</a></li>
 <li>modbus&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a9f7da14569cf54a5633c163642e97dff">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#a9f7da14569cf54a5633c163642e97dff">modbus_sensor.h</a></li>
 <li>mqttClient&#160;:&#160;<a class="el" href="mqtt__client_8h.html#a86d63f481644da70f063c2593fcafe19">mqtt_client.h</a></li>
 <li>mqttConnected&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#a1da8e8d4c027f4c08db8b493b99e12da">mqtt_client.cpp</a>, <a class="el" href="mqtt__client_8h.html#a1da8e8d4c027f4c08db8b493b99e12da">mqtt_client.h</a></li>
+<li>mqttLastError&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#a01c577989100164224d7536c44e35b53">mqtt_client.cpp</a>, <a class="el" href="mqtt__client_8h.html#a01c577989100164224d7536c44e35b53">mqtt_client.h</a></li>
 </ul>
 
 
@@ -152,14 +162,26 @@ $(function(){initNavTree('globals_vars.html',''); initResizable(true); });
 </ul>
 
 
+<h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
+<li>RESET_BUTTON_PIN&#160;:&#160;<a class="el" href="main_8cpp.html#aaef35518e8271022cf7cfca55d8c86d4">main.cpp</a></li>
+<li>RETRY_DELAY&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#af329fc560fd32e4dcab1e2b0aa0d59c1">modbus_sensor.cpp</a></li>
+</ul>
+
+
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>sensorCache&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a5a90cc33c11a27aac5f56dcaac387c0d">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#a5a90cc33c11a27aac5f56dcaac387c0d">modbus_sensor.h</a></li>
 <li>sensorData&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#ae6ed671f3036da58a93991fca2a2329c">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#ae6ed671f3036da58a93991fca2a2329c">modbus_sensor.h</a></li>
+<li>sensorLastError&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#acc5319275c2df675d59ff17f862d3e44">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#acc5319275c2df675d59ff17f862d3e44">modbus_sensor.h</a></li>
+<li>STATUS_PRINT_INTERVAL&#160;:&#160;<a class="el" href="main_8cpp.html#ab04f92e3fb6eeb5d01d3cc19653805a1">main.cpp</a></li>
 </ul>
 
 
 <h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
 <li>THINGSPEAK_API_URL&#160;:&#160;<a class="el" href="thingspeak__client_8cpp.html#af914716ab642c858bca6b31ae976d15e">thingspeak_client.cpp</a></li>
+<li>thingSpeakLastError&#160;:&#160;<a class="el" href="thingspeak__client_8cpp.html#a9853ad4b20dc0095aa7efa9058a66e40">thingspeak_client.cpp</a>, <a class="el" href="thingspeak__client_8h.html#a9853ad4b20dc0095aa7efa9058a66e40">thingspeak_client.h</a></li>
+<li>thingSpeakLastPublish&#160;:&#160;<a class="el" href="thingspeak__client_8cpp.html#ae7ba7f8645edaafa8d51adc34cfe01fc">thingspeak_client.cpp</a>, <a class="el" href="thingspeak__client_8h.html#ae7ba7f8645edaafa8d51adc34cfe01fc">thingspeak_client.h</a></li>
 <li>timeClient&#160;:&#160;<a class="el" href="main_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f">main.cpp</a>, <a class="el" href="mqtt__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f">mqtt_client.cpp</a>, <a class="el" href="thingspeak__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f">thingspeak_client.cpp</a>, <a class="el" href="wifi__manager_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f">wifi_manager.cpp</a></li>
+<li>toastHtml&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#a0a9399093e7edb907e46ae01afa41d40">wifi_manager.cpp</a></li>
 </ul>
 
 

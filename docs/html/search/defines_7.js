@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['wifi_5fap_5fpass_0',['WIFI_AP_PASS',['../jxct__config__vars_8h.html#a3408bc061b1888cfd751dad7b5e3d874',1,'jxct_config_vars.h']]],
-  ['wifi_5fap_5fssid_1',['WIFI_AP_SSID',['../jxct__config__vars_8h.html#a8e19d13af09f7ed0afad391730f1e3e7',1,'jxct_config_vars.h']]]
+  ['sensor_5fread_5finterval_0',['SENSOR_READ_INTERVAL',['../jxct__config__vars_8h.html#aa0e54eb96835b229951b29cfe762097b',1,'jxct_config_vars.h']]],
+  ['status_5fled_5fpin_1',['STATUS_LED_PIN',['../wifi__manager_8h.html#a089a71f836911c71b3f73fdd3b4b890b',1,'STATUS_LED_PIN:&#160;wifi_manager.h'],['../jxct__config__vars_8h.html#a089a71f836911c71b3f73fdd3b4b890b',1,'STATUS_LED_PIN:&#160;jxct_config_vars.h']]]
 ];

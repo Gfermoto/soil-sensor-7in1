@@ -1,13 +1,17 @@
 var searchData=
 [
-  ['temperature_0',['temperature',['../struct_sensor_data.html#a0a1593ad64f79756c14d208ce7b17adb',1,'SensorData']]],
-  ['thingspeak_5fapi_5furl_1',['THINGSPEAK_API_URL',['../thingspeak__client_8cpp.html#af914716ab642c858bca6b31ae976d15e',1,'thingspeak_client.cpp']]],
-  ['thingspeak_5fclient_2ecpp_2',['thingspeak_client.cpp',['../thingspeak__client_8cpp.html',1,'']]],
-  ['thingspeak_5fclient_2eh_3',['thingspeak_client.h',['../thingspeak__client_8h.html',1,'']]],
-  ['thingspeakapikey_4',['thingSpeakApiKey',['../struct_config.html#ace59138ef906fe29072fe1821a681635',1,'Config']]],
-  ['thingspeakchannelid_5',['thingSpeakChannelId',['../struct_config.html#ac6f3c8d2693a4f16ec88274f0e013524',1,'Config']]],
-  ['thingspeakenabled_6',['thingSpeakEnabled',['../struct_config.html#a60d20f612e5ba4bc7f7479d24e9e6ad6',1,'Config']]],
-  ['thingspeakinterval_7',['thingspeakInterval',['../struct_config.html#a13e63c68dce75b6186790ae71f8835ff',1,'Config']]],
-  ['timeclient_8',['timeClient',['../main_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../mqtt__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../thingspeak__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../wifi__manager_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp']]],
-  ['tx_5fpin_9',['TX_PIN',['../jxct__config__vars_8h.html#a3bb17f5daa2b1eaef58c8aa2d989e27e',1,'jxct_config_vars.h']]]
+  ['fake_5fsensor_2ecpp_0',['fake_sensor.cpp',['../fake__sensor_8cpp.html',1,'']]],
+  ['fake_5fsensor_2eh_1',['fake_sensor.h',['../fake__sensor_8h.html',1,'']]],
+  ['fakesensortask_2',['fakeSensorTask',['../fake__sensor_8cpp.html#a88a6670c876eb66b3358db30715c4416',1,'fake_sensor.cpp']]],
+  ['features_20ноябрь_202025_3',['🚀 v2.5 - ADVANCED FEATURES (Ноябрь 2025)',['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025.html#autotoc_md88',1,'']]],
+  ['firmware_5fversion_4',['firmware_version',['../struct_sensor_data.html#afde3c50727e3e15ce3850afa8d73eff8',1,'SensorData']]],
+  ['first_20июль_202025_5',['🔥 v2.1 - SECURITY FIRST (Июль 2025)',['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025.html#autotoc_md80',1,'']]],
+  ['format_5fec_6',['format_ec',['../jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483',1,'format_ec(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a39b2dedc3670adcf20a62a8d113d2483',1,'format_ec(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5fmoisture_7',['format_moisture',['../jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470',1,'format_moisture(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a3be478cef555484efe62159216f6d470',1,'format_moisture(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5fnpk_8',['format_npk',['../jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b',1,'format_npk(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#abdc9f6cdc05f0aa72eec54b3e904ca7b',1,'format_npk(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5fph_9',['format_ph',['../jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152',1,'format_ph(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a416ab24406c338058778bbde7c4da152',1,'format_ph(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5ftemperature_10',['format_temperature',['../jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351',1,'format_temperature(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a9a843da2888c9b8014dd9506284f1351',1,'format_temperature(float value):&#160;jxct_format_utils.cpp']]],
+  ['formatting_11',['4.3 Data Formatting',['../md_docs_2_q_a___r_e_p_o_r_t__2025.html#autotoc_md52',1,'']]],
+  ['foundation_20сентябрь_202025_12',['🧪 v2.3 - TESTING FOUNDATION (Сентябрь 2025)',['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025.html#autotoc_md84',1,'']]],
+  ['framework_13',['Unit Testing Framework',['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025.html#autotoc_md85',1,'']]]
 ];

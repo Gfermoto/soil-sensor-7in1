@@ -1,6 +1,20 @@
 var searchData=
 [
-  ['sensordata_0',['sensorData',['../modbus__sensor_8cpp.html#ae6ed671f3036da58a93991fca2a2329c',1,'sensorData:&#160;modbus_sensor.cpp'],['../modbus__sensor_8h.html#ae6ed671f3036da58a93991fca2a2329c',1,'sensorData:&#160;modbus_sensor.cpp']]],
-  ['ssid_1',['ssid',['../struct_config.html#aad5eadd9c594206a338ecc46e7c877be',1,'Config']]],
-  ['swversion_2',['swVersion',['../struct_config.html#aa82fcb47ebf5f206b43d693d9fcd0851',1,'Config']]]
+  ['manufacturer_0',['manufacturer',['../struct_config.html#a98a25f61ff9262327785c8d9343f2b76',1,'Config']]],
+  ['max_5fretries_1',['MAX_RETRIES',['../modbus__sensor_8cpp.html#a58fff818a2313afe4a13970541fa17fa',1,'modbus_sensor.cpp']]],
+  ['modbus_2',['modbus',['../modbus__sensor_8cpp.html#a9f7da14569cf54a5633c163642e97dff',1,'modbus:&#160;modbus_sensor.cpp'],['../modbus__sensor_8h.html#a9f7da14569cf54a5633c163642e97dff',1,'modbus:&#160;modbus_sensor.cpp']]],
+  ['modbusid_3',['modbusId',['../struct_config.html#ad2e51c93765d0431df918144c819fdbc',1,'Config']]],
+  ['model_4',['model',['../struct_config.html#a25fb2f9126aea483896df01d60f0f536',1,'Config']]],
+  ['moisture_5',['moisture',['../struct_sensor_data.html#a3e1daf37ef4f33ec73aa3bd93fc3d42f',1,'SensorData']]],
+  ['mqttclient_6',['mqttClient',['../mqtt__client_8h.html#a86d63f481644da70f063c2593fcafe19',1,'mqtt_client.h']]],
+  ['mqttconnected_7',['mqttConnected',['../mqtt__client_8cpp.html#a1da8e8d4c027f4c08db8b493b99e12da',1,'mqttConnected:&#160;mqtt_client.cpp'],['../mqtt__client_8h.html#a1da8e8d4c027f4c08db8b493b99e12da',1,'mqttConnected:&#160;mqtt_client.cpp']]],
+  ['mqttdevicename_8',['mqttDeviceName',['../struct_config.html#a6565317b559b4916182017939e296c3e',1,'Config']]],
+  ['mqttenabled_9',['mqttEnabled',['../struct_config.html#aa89463a80edddc26439d0c4cd69b7b7f',1,'Config']]],
+  ['mqttlasterror_10',['mqttLastError',['../mqtt__client_8cpp.html#a01c577989100164224d7536c44e35b53',1,'mqttLastError:&#160;mqtt_client.cpp'],['../mqtt__client_8h.html#a01c577989100164224d7536c44e35b53',1,'mqttLastError:&#160;mqtt_client.cpp']]],
+  ['mqttpassword_11',['mqttPassword',['../struct_config.html#ac070b01c0dbb5220d0ba8dedf380dc8a',1,'Config']]],
+  ['mqttport_12',['mqttPort',['../struct_config.html#a4f38c0b89acf4c244fd9431a1a3c301e',1,'Config']]],
+  ['mqttqos_13',['mqttQos',['../struct_config.html#a6cdac078a10c93de4015c91fc33b0148',1,'Config']]],
+  ['mqttserver_14',['mqttServer',['../struct_config.html#a684caf68f6584f2b5b3e1f6ac061e8ad',1,'Config']]],
+  ['mqtttopicprefix_15',['mqttTopicPrefix',['../struct_config.html#a627b0e5598d138a6ee9307dae44a4dc0',1,'Config']]],
+  ['mqttuser_16',['mqttUser',['../struct_config.html#a5d377389c172434862ddefddd2c64667',1,'Config']]]
 ];

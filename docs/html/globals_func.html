@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor: Список членов всех файлов</title>
+<title>JXCT Soil Sensor v2.0: Список членов всех файлов</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,8 +32,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
    </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -105,9 +106,16 @@ $(function(){initNavTree('globals_func.html',''); initResizable(true); });
 <div class="textblock">Список всех функций соссылками на файлы, к которым они относятся:</div>
 
 <h3><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<li>calculateCRC16()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a0e1b4f2813957877a5ac0ab90787f0e5">modbus_sensor.cpp</a></li>
+<li>changeDeviceAddress()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#aac87bc87eaf0bc01ebda5fe1bb44c88b">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#aac87bc87eaf0bc01ebda5fe1bb44c88b">modbus_sensor.h</a></li>
 <li>checkResetButton()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#ac90eb7c31515447a075eee8f395ac02f">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#ac90eb7c31515447a075eee8f395ac02f">wifi_manager.h</a></li>
 <li>connectMQTT()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0">mqtt_client.cpp</a>, <a class="el" href="mqtt__client_8h.html#ab5a788a03971cae1e5e641ae9b1d7fe0">mqtt_client.h</a></li>
 <li>convertRegisterToFloat()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#aca7d239567ef1281e0fd378082fd48ac">modbus_sensor.h</a></li>
+</ul>
+
+
+<h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
+<li>debugPrintBuffer()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a2f7382dca34cb8bc9e1c80da26865a0a">modbus_sensor.cpp</a></li>
 </ul>
 
 
@@ -123,30 +131,50 @@ $(function(){initNavTree('globals_func.html',''); initResizable(true); });
 
 <h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
 <li>getApSsid()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#af857f35623b29612a3b4cc45dd6fff23">wifi_manager.cpp</a></li>
+<li>getCachedData()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a8eb8daa78bacfc8a930012162882aa9c">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#a8eb8daa78bacfc8a930012162882aa9c">modbus_sensor.h</a></li>
 <li>getClientId()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#add6d3c0fdc5d81926c892afd692c776b">mqtt_client.cpp</a></li>
 <li>getCommandTopic()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#a57972325aef8cfc9b4112fda932dd6bf">mqtt_client.cpp</a></li>
 <li>getDefaultTopic()&#160;:&#160;<a class="el" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023">config.cpp</a>, <a class="el" href="jxct__device__info_8h.html#a74bdf2231a5ebe05de0f3a0b4c538023">jxct_device_info.h</a></li>
 <li>getDeviceId()&#160;:&#160;<a class="el" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa">config.cpp</a>, <a class="el" href="jxct__device__info_8h.html#aa1f35b9688dbf1109436ad91c42901aa">jxct_device_info.h</a></li>
 <li>getMqttClientName()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#a681aa515ca2e6ecdbeed2635b88578d7">mqtt_client.cpp</a></li>
 <li>getStatusTopic()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#a3da586210877e66ba92641dc5d6246e5">mqtt_client.cpp</a></li>
+<li>getUptimeString()&#160;:&#160;<a class="el" href="logger_8cpp.html#a9ce43588b680fbf5d2269e785fc39f21">logger.cpp</a></li>
 </ul>
 
 
 <h3><a id="index_h" name="index_h"></a>- h -</h3><ul>
-<li>handleMQTT()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600">mqtt_client.cpp</a>, <a class="el" href="mqtt__client_8h.html#a926aeaa7d52ebd60e289af8d6ef98600">mqtt_client.h</a></li>
+<li>handleMQTT()&#160;:&#160;<a class="el" href="main_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600">main.cpp</a>, <a class="el" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600">mqtt_client.cpp</a>, <a class="el" href="mqtt__client_8h.html#a926aeaa7d52ebd60e289af8d6ef98600">mqtt_client.h</a></li>
 <li>handleMqttCommand()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579">mqtt_client.cpp</a>, <a class="el" href="mqtt__client_8h.html#a58d6760f5e7f2aaf28fbb2155942d579">mqtt_client.h</a></li>
+<li>handleRoot()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#a8427468f39342a1990703e9f5ce7fd29">wifi_manager.cpp</a></li>
 <li>handleStatus()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#a1e811785ccbaccda2e3e3457971720cb">wifi_manager.cpp</a></li>
-<li>handleWiFi()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#aef11d16b4d8e760671e3487b2106b6b2">wifi_manager.h</a></li>
+<li>handleWiFi()&#160;:&#160;<a class="el" href="main_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2">main.cpp</a>, <a class="el" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#aef11d16b4d8e760671e3487b2106b6b2">wifi_manager.h</a></li>
 </ul>
 
 
 <h3><a id="index_i" name="index_i"></a>- i -</h3><ul>
-<li>isConfigValid()&#160;:&#160;<a class="el" href="config_8cpp.html#aeb61f04cd3b4b68e8146d85c447d70d1">config.cpp</a></li>
+<li>initPreferences()&#160;:&#160;<a class="el" href="main_8cpp.html#abb0ddf3422a587580e789235c0503668">main.cpp</a></li>
+<li>isConfigValid()&#160;:&#160;<a class="el" href="config_8cpp.html#aeb61f04cd3b4b68e8146d85c447d70d1">config.cpp</a>, <a class="el" href="jxct__config__vars_8h.html#aeb61f04cd3b4b68e8146d85c447d70d1">jxct_config_vars.h</a></li>
 </ul>
 
 
 <h3><a id="index_l" name="index_l"></a>- l -</h3><ul>
-<li>loadConfig()&#160;:&#160;<a class="el" href="config_8cpp.html#ad5ed6ddd9940c0097cc91774056df1c2">config.cpp</a>, <a class="el" href="jxct__config__vars_8h.html#ad5ed6ddd9940c0097cc91774056df1c2">jxct_config_vars.h</a></li>
+<li>loadConfig()&#160;:&#160;<a class="el" href="config_8cpp.html#ad5ed6ddd9940c0097cc91774056df1c2">config.cpp</a>, <a class="el" href="main_8cpp.html#ad5ed6ddd9940c0097cc91774056df1c2">main.cpp</a>, <a class="el" href="jxct__config__vars_8h.html#ad5ed6ddd9940c0097cc91774056df1c2">jxct_config_vars.h</a></li>
+<li>logData()&#160;:&#160;<a class="el" href="logger_8cpp.html#af2cfc49d3e5f87ebc351693b47c348e1">logger.cpp</a>, <a class="el" href="logger_8h.html#af2cfc49d3e5f87ebc351693b47c348e1">logger.h</a></li>
+<li>logDebug()&#160;:&#160;<a class="el" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe">logger.cpp</a>, <a class="el" href="logger_8h.html#a1e536b98344ba271bbfc484cca848dbe">logger.h</a></li>
+<li>logError()&#160;:&#160;<a class="el" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce">logger.cpp</a>, <a class="el" href="logger_8h.html#a60baa11f08afed73f5a7bc5d31f698ce">logger.h</a></li>
+<li>logInfo()&#160;:&#160;<a class="el" href="logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf">logger.cpp</a>, <a class="el" href="logger_8h.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf">logger.h</a></li>
+<li>logMemoryUsage()&#160;:&#160;<a class="el" href="logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d">logger.cpp</a>, <a class="el" href="logger_8h.html#ab014807afa04f9783ed19c897cbdf54d">logger.h</a></li>
+<li>logMQTT()&#160;:&#160;<a class="el" href="logger_8cpp.html#ace461ff84ce50a76653ec959a2436320">logger.cpp</a>, <a class="el" href="logger_8h.html#ace461ff84ce50a76653ec959a2436320">logger.h</a></li>
+<li>logPrintBanner()&#160;:&#160;<a class="el" href="logger_8cpp.html#aef367594259e15c9df8b0caf3dfddba8">logger.cpp</a>, <a class="el" href="logger_8h.html#aef367594259e15c9df8b0caf3dfddba8">logger.h</a></li>
+<li>logPrintHeader()&#160;:&#160;<a class="el" href="logger_8cpp.html#a372ab412c03841f6fe08c751c5d44cba">logger.cpp</a>, <a class="el" href="logger_8h.html#a573f0d6e1b4dff871cf401471622a3d4">logger.h</a></li>
+<li>logPrintSeparator()&#160;:&#160;<a class="el" href="logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e">logger.cpp</a>, <a class="el" href="logger_8h.html#af0851b3565de2c7c6a23b5d3d30a8fcd">logger.h</a></li>
+<li>logSensor()&#160;:&#160;<a class="el" href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b">logger.cpp</a>, <a class="el" href="logger_8h.html#a4a348f4af13be9d7c726e296e9b3c89b">logger.h</a></li>
+<li>logSuccess()&#160;:&#160;<a class="el" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695">logger.cpp</a>, <a class="el" href="logger_8h.html#a54dab32db32234798ff063ccc0dde695">logger.h</a></li>
+<li>logSystem()&#160;:&#160;<a class="el" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14">logger.cpp</a>, <a class="el" href="logger_8h.html#a6673a3ba037fc4ceda09f36e43cd7f14">logger.h</a></li>
+<li>logUptime()&#160;:&#160;<a class="el" href="logger_8cpp.html#a07e106e3f19501a64fde4b0c6fa8d73a">logger.cpp</a>, <a class="el" href="logger_8h.html#a07e106e3f19501a64fde4b0c6fa8d73a">logger.h</a></li>
+<li>logWarn()&#160;:&#160;<a class="el" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431">logger.cpp</a>, <a class="el" href="logger_8h.html#a34f49079ccda568e5054918ae4354431">logger.h</a></li>
+<li>logWiFi()&#160;:&#160;<a class="el" href="logger_8cpp.html#a8a220d54e17d73c281bb715f70bf6df9">logger.cpp</a>, <a class="el" href="logger_8h.html#a8a220d54e17d73c281bb715f70bf6df9">logger.h</a></li>
+<li>logWiFiStatus()&#160;:&#160;<a class="el" href="logger_8cpp.html#abf70e1b094519276f0363ac763f100ab">logger.cpp</a>, <a class="el" href="logger_8h.html#abf70e1b094519276f0363ac763f100ab">logger.h</a></li>
 <li>loop()&#160;:&#160;<a class="el" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f">main.cpp</a></li>
 </ul>
 
@@ -165,6 +193,7 @@ $(function(){initNavTree('globals_func.html',''); initResizable(true); });
 <h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
 <li>postTransmission()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a33b535e84f654e423bb627b25b7b3759">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#a33b535e84f654e423bb627b25b7b3759">modbus_sensor.h</a></li>
 <li>preTransmission()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a1c43d8a4afead0d0df29635242290377">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#a1c43d8a4afead0d0df29635242290377">modbus_sensor.h</a></li>
+<li>printModbusError()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#adbf50656913748323cd03274af03c116">modbus_sensor.h</a></li>
 <li>publishAvailability()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b">mqtt_client.cpp</a>, <a class="el" href="mqtt__client_8h.html#aaa9510911ee8e47743efa916df00c13b">mqtt_client.h</a></li>
 <li>publishHomeAssistantConfig()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da">mqtt_client.cpp</a>, <a class="el" href="mqtt__client_8h.html#ac49364afe5be3cf4e718ab09d67017da">mqtt_client.h</a></li>
 <li>publishSensorData()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#a9d23c1c2b3b5f9613a2215945494badb">mqtt_client.cpp</a>, <a class="el" href="mqtt__client_8h.html#a9d23c1c2b3b5f9613a2215945494badb">mqtt_client.h</a></li>
@@ -172,10 +201,12 @@ $(function(){initNavTree('globals_func.html',''); initResizable(true); });
 
 
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
-<li>readSensorData()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a90317d8e6573d5ce69fcb7e55adf236e">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#a90317d8e6573d5ce69fcb7e55adf236e">modbus_sensor.h</a></li>
+<li>readErrorStatus()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a8b6b2ad640c9580fa45d8cbad28adf53">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#a8b6b2ad640c9580fa45d8cbad28adf53">modbus_sensor.h</a></li>
+<li>readFirmwareVersion()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#a6444c2d436a57168cc75d4ef8529a6c8">modbus_sensor.h</a></li>
+<li>readSensorData()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#ac3a37446a712d9ae94e76304361d35d2">modbus_sensor.h</a></li>
 <li>realSensorTask()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4">modbus_sensor.cpp</a></li>
 <li>removeHomeAssistantConfig()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#a7a9b6d18074276b45340af02c443924a">mqtt_client.cpp</a>, <a class="el" href="mqtt__client_8h.html#a7a9b6d18074276b45340af02c443924a">mqtt_client.h</a></li>
-<li>resetButtonTask()&#160;:&#160;<a class="el" href="main_8cpp.html#a78aea0b783dee7e793220e19bf94eea9">main.cpp</a></li>
+<li>resetButtonTask()&#160;:&#160;<a class="el" href="main_8cpp.html#a7086f14b298ca33663ff4c10ff47cb4f">main.cpp</a></li>
 <li>resetConfig()&#160;:&#160;<a class="el" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061">config.cpp</a>, <a class="el" href="wifi__manager_8h.html#a6fa5204bcafe1db397da4a87b1690061">wifi_manager.h</a>, <a class="el" href="jxct__config__vars_8h.html#a6fa5204bcafe1db397da4a87b1690061">jxct_config_vars.h</a></li>
 <li>restartESP()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#a40cec05f995ed2024366761fa28604a7">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#a40cec05f995ed2024366761fa28604a7">wifi_manager.h</a></li>
 </ul>
@@ -189,11 +220,11 @@ $(function(){initNavTree('globals_func.html',''); initResizable(true); });
 <li>setLedOff()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#ab314091f4e2540ab48709ac656457472">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#ab314091f4e2540ab48709ac656457472">wifi_manager.h</a></li>
 <li>setLedOn()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#a3e4fd9a252cddb70e2b894b1bc6c0f5a">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#a3e4fd9a252cddb70e2b894b1bc6c0f5a">wifi_manager.h</a></li>
 <li>setup()&#160;:&#160;<a class="el" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d">main.cpp</a></li>
-<li>setupModbus()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#a0c4410314e55fce67a3c727cb1bf9520">modbus_sensor.h</a></li>
+<li>setupModbus()&#160;:&#160;<a class="el" href="main_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520">main.cpp</a>, <a class="el" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#a0c4410314e55fce67a3c727cb1bf9520">modbus_sensor.h</a></li>
 <li>setupMQTT()&#160;:&#160;<a class="el" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c">mqtt_client.cpp</a>, <a class="el" href="mqtt__client_8h.html#a3cff6686f09444558b7c9436e082e73c">mqtt_client.h</a></li>
 <li>setupThingSpeak()&#160;:&#160;<a class="el" href="thingspeak__client_8cpp.html#af8e20ef000ee56a6aedcc07d88f38f90">thingspeak_client.cpp</a>, <a class="el" href="thingspeak__client_8h.html#af8e20ef000ee56a6aedcc07d88f38f90">thingspeak_client.h</a></li>
 <li>setupWebServer()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#ada2454c68167b49ab4f42817be2b4959">wifi_manager.h</a></li>
-<li>setupWiFi()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#ad2a97dbe5f144cd247e3b15c6af7c767">wifi_manager.h</a></li>
+<li>setupWiFi()&#160;:&#160;<a class="el" href="main_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767">main.cpp</a>, <a class="el" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#ad2a97dbe5f144cd247e3b15c6af7c767">wifi_manager.h</a></li>
 <li>startAPMode()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#a9b3d409b1449092a0b4efaace9c666a2">wifi_manager.h</a></li>
 <li>startFakeSensorTask()&#160;:&#160;<a class="el" href="fake__sensor_8cpp.html#abd277e18147efb1103e91eac01627612">fake_sensor.cpp</a>, <a class="el" href="fake__sensor_8h.html#abd277e18147efb1103e91eac01627612">fake_sensor.h</a>, <a class="el" href="main_8cpp.html#abd277e18147efb1103e91eac01627612">main.cpp</a></li>
 <li>startRealSensorTask()&#160;:&#160;<a class="el" href="main_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df">main.cpp</a>, <a class="el" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#a4f1a431da8f1feb8a64e2c5f887056df">modbus_sensor.h</a></li>
@@ -201,8 +232,18 @@ $(function(){initNavTree('globals_func.html',''); initResizable(true); });
 </ul>
 
 
+<h3><a id="index_t" name="index_t"></a>- t -</h3><ul>
+<li>testMAX485()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#a1449e844a2772a9b0fe1f3927ab14ad7">modbus_sensor.cpp</a></li>
+</ul>
+
+
 <h3><a id="index_u" name="index_u"></a>- u -</h3><ul>
 <li>updateLed()&#160;:&#160;<a class="el" href="wifi__manager_8cpp.html#aa43f68b6c12da400ebbda9664b030944">wifi_manager.cpp</a>, <a class="el" href="wifi__manager_8h.html#aa43f68b6c12da400ebbda9664b030944">wifi_manager.h</a></li>
+</ul>
+
+
+<h3><a id="index_v" name="index_v"></a>- v -</h3><ul>
+<li>validateSensorData()&#160;:&#160;<a class="el" href="modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67">modbus_sensor.cpp</a>, <a class="el" href="modbus__sensor_8h.html#aa8a3b28ec8c21261d4e467da91a17a67">modbus_sensor.h</a></li>
 </ul>
 
 

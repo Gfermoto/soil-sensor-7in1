@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor: Файл src/config.cpp</title>
+<title>JXCT Soil Sensor v2.0: Файл src/config.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,8 +32,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
    </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -115,24 +116,28 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
 <code>#include &quot;config.h&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__device__info_8h_source.html">jxct_device_info.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Граф включаемых заголовочных файлов для config.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="config_8cpp__incl.png" border="0" usemap="#asrc_2config_8cpp" alt=""/></div>
 <map name="asrc_2config_8cpp" id="asrc_2config_8cpp">
-<area shape="rect" title="Работа с конфигурацией устройства" alt="" coords="131,5,235,32"/>
+<area shape="rect" title="Работа с конфигурацией устройства" alt="" coords="193,5,296,32"/>
 <area shape="rect" title=" " alt="" coords="5,80,65,107"/>
-<area shape="poly" title=" " alt="" coords="158,35,76,75,73,70,156,30"/>
+<area shape="poly" title=" " alt="" coords="209,35,80,79,78,74,207,30"/>
 <area shape="rect" title=" " alt="" coords="89,80,157,107"/>
-<area shape="poly" title=" " alt="" coords="175,34,145,70,141,66,171,31"/>
+<area shape="poly" title=" " alt="" coords="225,35,159,74,156,69,222,30"/>
 <area shape="rect" href="jxct__device__info_8h.html" title=" " alt="" coords="181,80,308,107"/>
-<area shape="poly" title=" " alt="" coords="196,31,226,66,222,70,192,34"/>
-<area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="331,80,459,107"/>
-<area shape="poly" title=" " alt="" coords="221,30,344,72,342,77,219,35"/>
-<area shape="rect" title=" " alt="" coords="206,155,282,181"/>
-<area shape="poly" title=" " alt="" coords="247,107,247,139,242,139,242,107"/>
-<area shape="rect" title=" " alt="" coords="344,155,446,181"/>
-<area shape="poly" title=" " alt="" coords="398,107,398,139,392,139,392,107"/>
+<area shape="poly" title=" " alt="" coords="247,33,247,64,242,64,242,33"/>
+<area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="423,80,551,107"/>
+<area shape="poly" title=" " alt="" coords="287,30,431,73,429,78,286,35"/>
+<area shape="rect" href="logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="332,80,399,107"/>
+<area shape="poly" title=" " alt="" coords="267,30,333,69,330,74,264,35"/>
+<area shape="rect" title=" " alt="" coords="268,155,344,181"/>
+<area shape="poly" title=" " alt="" coords="257,105,287,141,283,145,253,109"/>
+<area shape="rect" title=" " alt="" coords="436,155,538,181"/>
+<area shape="poly" title=" " alt="" coords="490,107,490,139,484,139,484,107"/>
+<area shape="poly" title=" " alt="" coords="357,109,328,145,323,141,353,106"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -181,45 +186,39 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
 <div class="dyncontent">
 <div class="center"><img src="config_8cpp_a74bdf2231a5ebe05de0f3a0b4c538023_icgraph.png" border="0" usemap="#aconfig_8cpp_a74bdf2231a5ebe05de0f3a0b4c538023_icgraph" alt=""/></div>
 <map name="aconfig_8cpp_a74bdf2231a5ebe05de0f3a0b4c538023_icgraph" id="aconfig_8cpp_a74bdf2231a5ebe05de0f3a0b4c538023_icgraph">
-<area shape="rect" title=" " alt="" coords="1001,187,1114,213"/>
-<area shape="rect" href="config_8cpp.html#ad5ed6ddd9940c0097cc91774056df1c2" title=" " alt="" coords="816,60,900,87"/>
-<area shape="poly" title=" " alt="" coords="1021,180,879,90,882,85,1023,176"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="763,263,953,289"/>
-<area shape="poly" title=" " alt="" coords="1007,222,897,265,895,260,1005,217"/>
-<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="814,187,902,213"/>
-<area shape="poly" title=" " alt="" coords="986,203,903,203,903,197,986,197"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="125,60,205,87"/>
-<area shape="poly" title=" " alt="" coords="801,60,701,37,568,16,495,10,420,8,345,13,272,25,227,42,189,62,186,57,224,37,270,20,344,8,420,3,495,5,569,11,702,32,802,55"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,187,59,213"/>
-<area shape="poly" title=" " alt="" coords="141,100,49,188,46,184,137,96"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="590,288,694,315"/>
-<area shape="poly" title=" " alt="" coords="748,292,695,298,694,293,748,286"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="424,288,521,315"/>
-<area shape="poly" title=" " alt="" coords="575,304,521,304,521,299,575,299"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="142,288,188,315"/>
-<area shape="poly" title=" " alt="" coords="409,304,188,304,188,299,409,299"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="570,187,715,213"/>
-<area shape="poly" title=" " alt="" coords="798,203,715,203,715,197,798,197"/>
-<area shape="rect" href="main_8cpp.html#a78aea0b783dee7e793220e19bf94eea9" title=" " alt="" coords="107,237,223,264"/>
-<area shape="poly" title=" " alt="" coords="799,215,715,228,577,240,440,248,224,253,224,248,440,243,577,235,715,223,798,210"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="584,85,701,112"/>
-<area shape="poly" title=" " alt="" coords="813,182,672,115,674,110,815,178"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="423,187,522,213"/>
-<area shape="poly" title=" " alt="" coords="554,203,522,203,522,197,554,197"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="278,187,368,213"/>
-<area shape="poly" title=" " alt="" coords="408,203,369,203,369,197,408,197"/>
-<area shape="poly" title=" " alt="" coords="262,203,59,203,59,197,262,197"/>
-<area shape="poly" title=" " alt="" coords="113,234,58,213,60,208,115,229"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="424,85,521,112"/>
-<area shape="poly" title=" " alt="" coords="568,101,522,101,522,96,568,96"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="271,35,375,61"/>
-<area shape="poly" title=" " alt="" coords="568,85,521,76,375,56,376,51,522,71,569,80"/>
-<area shape="poly" title=" " alt="" coords="408,96,205,79,206,74,408,91"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="280,136,366,163"/>
-<area shape="poly" title=" " alt="" coords="418,120,366,138,364,133,416,115"/>
-<area shape="poly" title=" " alt="" coords="416,83,364,65,366,60,418,77"/>
-<area shape="poly" title=" " alt="" coords="276,174,273,177,256,202,250,226,243,252,225,278,207,290,189,298,187,293,205,286,221,274,238,250,245,225,251,200,269,173,272,170"/>
-<area shape="poly" title=" " alt="" coords="256,62,206,70,205,64,255,56"/>
+<area shape="rect" title=" " alt="" coords="891,87,1004,113"/>
+<area shape="rect" href="config_8cpp.html#ad5ed6ddd9940c0097cc91774056df1c2" title=" " alt="" coords="256,5,339,32"/>
+<area shape="poly" title=" " alt="" coords="876,94,339,26,340,21,876,89"/>
+<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="755,137,843,164"/>
+<area shape="poly" title=" " alt="" coords="892,122,841,139,840,134,891,116"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,145,59,172"/>
+<area shape="poly" title=" " alt="" coords="240,27,174,42,140,55,108,72,87,89,69,109,43,146,39,143,65,105,83,85,105,67,138,50,173,37,239,22"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="112,81,192,108"/>
+<area shape="poly" title=" " alt="" coords="255,42,246,46,179,83,176,78,244,42,252,37"/>
+<area shape="poly" title=" " alt="" coords="113,118,60,147,57,142,111,113"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="562,169,707,196"/>
+<area shape="poly" title=" " alt="" coords="740,165,707,171,706,166,739,160"/>
+<area shape="rect" href="main_8cpp.html#a7086f14b298ca33663ff4c10ff47cb4f" title=" " alt="" coords="397,245,514,272"/>
+<area shape="poly" title=" " alt="" coords="769,176,740,194,708,210,658,227,607,240,515,256,514,250,606,235,657,222,706,206,738,190,766,171"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="576,107,693,133"/>
+<area shape="poly" title=" " alt="" coords="739,142,693,134,694,128,740,137"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="406,183,505,209"/>
+<area shape="poly" title=" " alt="" coords="546,192,505,195,505,190,546,187"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="107,208,197,235"/>
+<area shape="poly" title=" " alt="" coords="391,204,198,220,197,215,390,199"/>
+<area shape="poly" title=" " alt="" coords="110,203,58,175,61,170,113,198"/>
+<area shape="poly" title=" " alt="" coords="383,275,321,282,250,282,176,273,140,263,105,249,82,233,63,213,38,174,42,171,67,210,86,229,108,244,141,258,177,268,250,277,320,276,382,270"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="407,107,504,133"/>
+<area shape="poly" title=" " alt="" coords="560,123,505,123,505,117,560,117"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="245,56,349,83"/>
+<area shape="poly" title=" " alt="" coords="560,106,513,97,350,77,350,71,514,92,561,101"/>
+<area shape="poly" title=" " alt="" coords="391,117,192,101,193,95,392,112"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="254,157,340,184"/>
+<area shape="poly" title=" " alt="" coords="398,141,342,159,340,154,396,136"/>
+<area shape="poly" title=" " alt="" coords="396,104,340,86,342,81,398,99"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="129,157,174,184"/>
+<area shape="poly" title=" " alt="" coords="238,173,175,173,175,168,238,168"/>
+<area shape="poly" title=" " alt="" coords="230,84,193,90,192,85,229,78"/>
 </map>
 </div>
 
@@ -244,15 +243,26 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
 <div class="dyncontent">
 <div class="center"><img src="config_8cpp_aa1f35b9688dbf1109436ad91c42901aa_icgraph.png" border="0" usemap="#aconfig_8cpp_aa1f35b9688dbf1109436ad91c42901aa_icgraph" alt=""/></div>
 <map name="aconfig_8cpp_aa1f35b9688dbf1109436ad91c42901aa_icgraph" id="aconfig_8cpp_aa1f35b9688dbf1109436ad91c42901aa_icgraph">
-<area shape="rect" title=" " alt="" coords="634,5,725,32"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="395,5,586,32"/>
-<area shape="poly" title=" " alt="" coords="618,21,586,21,586,16,618,16"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="243,5,347,32"/>
-<area shape="poly" title=" " alt="" coords="380,21,348,21,348,16,380,16"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="99,5,195,32"/>
-<area shape="poly" title=" " alt="" coords="227,21,196,21,196,16,227,16"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
-<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+<area shape="rect" title=" " alt="" coords="825,31,916,57"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="586,5,776,32"/>
+<area shape="poly" title=" " alt="" coords="809,39,776,34,777,29,810,33"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a7a9b6d18074276b45340af02c443924a" title=" " alt="" coords="585,56,777,83"/>
+<area shape="poly" title=" " alt="" coords="810,55,778,59,777,54,809,49"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="412,5,516,32"/>
+<area shape="poly" title=" " alt="" coords="570,21,516,21,516,16,570,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="391,56,537,83"/>
+<area shape="poly" title=" " alt="" coords="606,39,525,58,524,53,605,34"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="246,5,342,32"/>
+<area shape="poly" title=" " alt="" coords="396,21,343,21,343,16,396,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="129,5,174,32"/>
+<area shape="poly" title=" " alt="" coords="231,21,175,21,175,16,231,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="245,56,343,83"/>
+<area shape="poly" title=" " alt="" coords="376,72,344,72,344,67,376,67"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="107,56,197,83"/>
+<area shape="poly" title=" " alt="" coords="229,72,197,72,197,67,229,67"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,56,59,83"/>
+<area shape="poly" title=" " alt="" coords="91,72,59,72,59,67,91,67"/>
+<area shape="poly" title=" " alt="" coords="569,72,537,72,537,67,569,67"/>
 </map>
 </div>
 
@@ -272,6 +282,30 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="config_8cpp_aeb61f04cd3b4b68e8146d85c447d70d1_icgraph.png" border="0" usemap="#aconfig_8cpp_aeb61f04cd3b4b68e8146d85c447d70d1_icgraph" alt=""/></div>
+<map name="aconfig_8cpp_aeb61f04cd3b4b68e8146d85c447d70d1_icgraph" id="aconfig_8cpp_aeb61f04cd3b4b68e8146d85c447d70d1_icgraph">
+<area shape="rect" title=" " alt="" coords="698,81,795,108"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,81,650,108"/>
+<area shape="poly" title=" " alt="" coords="682,97,651,97,651,92,682,92"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,56,485,83"/>
+<area shape="poly" title=" " alt="" coords="517,85,485,80,486,75,518,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,107,339,133"/>
+<area shape="poly" title=" " alt="" coords="517,103,340,118,339,113,517,98"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,5,330,32"/>
+<area shape="poly" title=" " alt="" coords="379,53,328,35,330,30,381,48"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,81,187,108"/>
+<area shape="poly" title=" " alt="" coords="372,78,188,94,187,89,371,72"/>
+<area shape="poly" title=" " alt="" coords="381,91,330,109,328,104,379,86"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
+<area shape="poly" title=" " alt="" coords="228,21,170,21,170,16,228,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,81,59,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,59,97,59,92,91,92"/>
+<area shape="poly" title=" " alt="" coords="219,110,187,105,188,99,220,105"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -294,9 +328,13 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
 <div class="dyncontent">
 <div class="center"><img src="config_8cpp_ad5ed6ddd9940c0097cc91774056df1c2_cgraph.png" border="0" usemap="#aconfig_8cpp_ad5ed6ddd9940c0097cc91774056df1c2_cgraph" alt=""/></div>
 <map name="aconfig_8cpp_ad5ed6ddd9940c0097cc91774056df1c2_cgraph" id="aconfig_8cpp_ad5ed6ddd9940c0097cc91774056df1c2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,89,32"/>
+<area shape="rect" title=" " alt="" coords="5,56,89,83"/>
 <area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="137,5,249,32"/>
-<area shape="poly" title=" " alt="" coords="89,16,121,16,121,21,89,21"/>
+<area shape="poly" title=" " alt="" coords="87,53,137,35,139,40,89,58"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="155,56,231,83"/>
+<area shape="poly" title=" " alt="" coords="89,67,139,67,139,72,89,72"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="148,107,238,133"/>
+<area shape="poly" title=" " alt="" coords="89,81,139,99,137,104,87,86"/>
 </map>
 </div>
 <div class="dynheader">
@@ -305,10 +343,11 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
 <div class="center"><img src="config_8cpp_ad5ed6ddd9940c0097cc91774056df1c2_icgraph.png" border="0" usemap="#aconfig_8cpp_ad5ed6ddd9940c0097cc91774056df1c2_icgraph" alt=""/></div>
 <map name="aconfig_8cpp_ad5ed6ddd9940c0097cc91774056df1c2_icgraph" id="aconfig_8cpp_ad5ed6ddd9940c0097cc91774056df1c2_icgraph">
 <area shape="rect" title=" " alt="" coords="235,5,318,32"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,5,187,32"/>
-<area shape="poly" title=" " alt="" coords="219,21,187,21,187,16,219,16"/>
 <area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
-<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+<area shape="poly" title=" " alt="" coords="220,21,59,21,59,16,220,16"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,31,187,57"/>
+<area shape="poly" title=" " alt="" coords="220,32,188,39,187,34,219,27"/>
+<area shape="poly" title=" " alt="" coords="91,34,58,27,60,22,92,29"/>
 </map>
 </div>
 
@@ -333,9 +372,13 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
 <div class="dyncontent">
 <div class="center"><img src="config_8cpp_a6fa5204bcafe1db397da4a87b1690061_cgraph.png" border="0" usemap="#aconfig_8cpp_a6fa5204bcafe1db397da4a87b1690061_cgraph" alt=""/></div>
 <map name="aconfig_8cpp_a6fa5204bcafe1db397da4a87b1690061_cgraph" id="aconfig_8cpp_a6fa5204bcafe1db397da4a87b1690061_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,94,32"/>
+<area shape="rect" title=" " alt="" coords="5,56,94,83"/>
 <area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="142,5,254,32"/>
-<area shape="poly" title=" " alt="" coords="94,16,126,16,126,21,94,21"/>
+<area shape="poly" title=" " alt="" coords="90,53,141,35,143,40,92,58"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="153,56,242,83"/>
+<area shape="poly" title=" " alt="" coords="94,67,137,67,137,72,94,72"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="164,107,232,133"/>
+<area shape="poly" title=" " alt="" coords="92,81,150,101,148,106,90,86"/>
 </map>
 </div>
 <div class="dynheader">
@@ -346,7 +389,7 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
 <area shape="rect" title=" " alt="" coords="755,56,843,83"/>
 <area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="562,5,707,32"/>
 <area shape="poly" title=" " alt="" coords="739,54,680,35,681,30,741,49"/>
-<area shape="rect" href="main_8cpp.html#a78aea0b783dee7e793220e19bf94eea9" title=" " alt="" coords="397,56,514,83"/>
+<area shape="rect" href="main_8cpp.html#a7086f14b298ca33663ff4c10ff47cb4f" title=" " alt="" coords="397,56,514,83"/>
 <area shape="poly" title=" " alt="" coords="739,72,514,72,514,67,739,67"/>
 <area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="576,157,693,184"/>
 <area shape="poly" title=" " alt="" coords="764,93,659,159,656,155,761,89"/>
@@ -389,6 +432,16 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="config_8cpp_a688d00bbabd28fbaf9e0c50eca3adeae_cgraph.png" border="0" usemap="#aconfig_8cpp_a688d00bbabd28fbaf9e0c50eca3adeae_cgraph" alt=""/></div>
+<map name="aconfig_8cpp_a688d00bbabd28fbaf9e0c50eca3adeae_cgraph" id="aconfig_8cpp_a688d00bbabd28fbaf9e0c50eca3adeae_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,93,32"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="141,5,230,32"/>
+<area shape="poly" title=" " alt="" coords="93,16,125,16,125,21,93,21"/>
+</map>
+</div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">

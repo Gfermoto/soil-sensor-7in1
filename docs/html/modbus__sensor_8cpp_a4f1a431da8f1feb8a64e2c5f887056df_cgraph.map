@@ -1,9 +1,19 @@
 <map id="startRealSensorTask" name="startRealSensorTask">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,149,32"/>
-<area shape="rect" id="Node000002" href="$modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="197,5,308,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,16,181,16,181,21,149,21"/>
-<area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html#a90317d8e6573d5ce69fcb7e55adf236e" title=" " alt="" coords="356,5,471,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="308,16,340,16,340,21,308,21"/>
-<area shape="rect" id="Node000004" href="$modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="519,5,676,32"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="472,16,504,16,504,21,472,21"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,132,149,159"/>
+<area shape="rect" id="Node000002" href="$modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="197,132,308,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="149,143,181,143,181,148,149,148"/>
+<area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="356,132,471,159"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="308,143,340,143,340,148,308,148"/>
+<area shape="rect" id="Node000004" href="$logger_8cpp.html#af2cfc49d3e5f87ebc351693b47c348e1" title=" " alt="" coords="531,5,597,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="425,130,465,88,518,42,522,38,526,43,521,46,468,92,429,133"/>
+<area shape="rect" id="Node000005" href="$logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="526,56,602,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="441,129,521,88,524,92,443,134"/>
+<area shape="rect" id="Node000006" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="531,107,597,133"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="471,133,515,125,516,131,472,138"/>
+<area shape="rect" id="Node000007" href="$logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="524,157,604,184"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="472,152,509,159,508,164,471,158"/>
+<area shape="rect" id="Node000008" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="519,208,609,235"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="443,157,524,198,521,203,441,162"/>
+<area shape="rect" id="Node000009" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="530,259,598,285"/>
+<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="429,157,468,198,521,245,526,248,522,252,518,249,465,202,425,161"/>
 </map>

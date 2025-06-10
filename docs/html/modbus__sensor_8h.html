@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor: Файл src/modbus_sensor.h</title>
+<title>JXCT Soil Sensor v2.0: Файл src/modbus_sensor.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -32,8 +32,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
    </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
   </td>
     <td>        <div id="MSearchBox" class="MSearchBoxInactive">
         <span class="left">
@@ -132,7 +133,7 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <area shape="rect" title=" " alt="" coords="380,5,527,32"/>
 <area shape="rect" href="fake__sensor_8cpp.html" title="Эмуляция работы датчика для тестирования" alt="" coords="5,80,145,107"/>
 <area shape="poly" title=" " alt="" coords="373,38,142,82,141,77,372,33"/>
-<area shape="rect" href="main_8cpp.html" title=" " alt="" coords="168,80,264,107"/>
+<area shape="rect" href="main_8cpp.html" title="Главный файл проекта JXCT датчика" alt="" coords="168,80,264,107"/>
 <area shape="poly" title=" " alt="" coords="399,39,259,82,257,77,397,34"/>
 <area shape="rect" href="modbus__sensor_8cpp.html" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="288,80,448,107"/>
 <area shape="poly" title=" " alt="" coords="429,44,385,82,381,78,426,40"/>
@@ -151,36 +152,78 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 Классы</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_sensor_data.html">SensorData</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_sensor_cache.html">SensorCache</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Макросы</h2></td></tr>
-<tr class="memitem:ae81f2380d8a1a56150fef81dfff25cfc" id="r_ae81f2380d8a1a56150fef81dfff25cfc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae81f2380d8a1a56150fef81dfff25cfc">REG_SOIL_MOISTURE</a>&#160;&#160;&#160;0x12</td></tr>
+<tr class="memitem:ae81f2380d8a1a56150fef81dfff25cfc" id="r_ae81f2380d8a1a56150fef81dfff25cfc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae81f2380d8a1a56150fef81dfff25cfc">REG_SOIL_MOISTURE</a>&#160;&#160;&#160;0x00</td></tr>
 <tr class="separator:ae81f2380d8a1a56150fef81dfff25cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a183e5bdeda520ac205c6fa93a52e1ef4" id="r_a183e5bdeda520ac205c6fa93a52e1ef4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a183e5bdeda520ac205c6fa93a52e1ef4">REG_SOIL_TEMP</a>&#160;&#160;&#160;0x13</td></tr>
+<tr class="memitem:a183e5bdeda520ac205c6fa93a52e1ef4" id="r_a183e5bdeda520ac205c6fa93a52e1ef4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a183e5bdeda520ac205c6fa93a52e1ef4">REG_SOIL_TEMP</a>&#160;&#160;&#160;0x01</td></tr>
 <tr class="separator:a183e5bdeda520ac205c6fa93a52e1ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4a11435c54c0c61a370f01ad74783dd" id="r_ae4a11435c54c0c61a370f01ad74783dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4a11435c54c0c61a370f01ad74783dd">REG_CONDUCTIVITY</a>&#160;&#160;&#160;0x15</td></tr>
+<tr class="memitem:ae4a11435c54c0c61a370f01ad74783dd" id="r_ae4a11435c54c0c61a370f01ad74783dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4a11435c54c0c61a370f01ad74783dd">REG_CONDUCTIVITY</a>&#160;&#160;&#160;0x02</td></tr>
 <tr class="separator:ae4a11435c54c0c61a370f01ad74783dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f0d81a7889405dddfd0740779103c1c" id="r_a1f0d81a7889405dddfd0740779103c1c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f0d81a7889405dddfd0740779103c1c">REG_PH</a>&#160;&#160;&#160;0x06</td></tr>
+<tr class="memitem:a1f0d81a7889405dddfd0740779103c1c" id="r_a1f0d81a7889405dddfd0740779103c1c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f0d81a7889405dddfd0740779103c1c">REG_PH</a>&#160;&#160;&#160;0x03</td></tr>
 <tr class="separator:a1f0d81a7889405dddfd0740779103c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9f80ba4d6b98c8b586f32a67189637c9" id="r_a9f80ba4d6b98c8b586f32a67189637c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f80ba4d6b98c8b586f32a67189637c9">REG_NITROGEN</a>&#160;&#160;&#160;0x1E</td></tr>
+<tr class="memitem:a9f80ba4d6b98c8b586f32a67189637c9" id="r_a9f80ba4d6b98c8b586f32a67189637c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f80ba4d6b98c8b586f32a67189637c9">REG_NITROGEN</a>&#160;&#160;&#160;0x04</td></tr>
 <tr class="separator:a9f80ba4d6b98c8b586f32a67189637c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6aa33492b3c99407fab5717bf51f3c58" id="r_a6aa33492b3c99407fab5717bf51f3c58"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6aa33492b3c99407fab5717bf51f3c58">REG_PHOSPHORUS</a>&#160;&#160;&#160;0x1F</td></tr>
+<tr class="memitem:a6aa33492b3c99407fab5717bf51f3c58" id="r_a6aa33492b3c99407fab5717bf51f3c58"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6aa33492b3c99407fab5717bf51f3c58">REG_PHOSPHORUS</a>&#160;&#160;&#160;0x05</td></tr>
 <tr class="separator:a6aa33492b3c99407fab5717bf51f3c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f35ba14a2dedd4527dadfe5df270ecc" id="r_a2f35ba14a2dedd4527dadfe5df270ecc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f35ba14a2dedd4527dadfe5df270ecc">REG_POTASSIUM</a>&#160;&#160;&#160;0x20</td></tr>
+<tr class="memitem:a2f35ba14a2dedd4527dadfe5df270ecc" id="r_a2f35ba14a2dedd4527dadfe5df270ecc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f35ba14a2dedd4527dadfe5df270ecc">REG_POTASSIUM</a>&#160;&#160;&#160;0x06</td></tr>
 <tr class="separator:a2f35ba14a2dedd4527dadfe5df270ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a149baf37365c4dd67e8c37e211fe5afc" id="r_a149baf37365c4dd67e8c37e211fe5afc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a149baf37365c4dd67e8c37e211fe5afc">REG_FIRMWARE_VERSION</a>&#160;&#160;&#160;0x07</td></tr>
+<tr class="separator:a149baf37365c4dd67e8c37e211fe5afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b707a93013b08d191303ed584a140d7" id="r_a9b707a93013b08d191303ed584a140d7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b707a93013b08d191303ed584a140d7">REG_CALIBRATION</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="separator:a9b707a93013b08d191303ed584a140d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac264831b378bd2513785f56a63a2cf9a" id="r_ac264831b378bd2513785f56a63a2cf9a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac264831b378bd2513785f56a63a2cf9a">REG_ERROR_STATUS</a>&#160;&#160;&#160;0x0B</td></tr>
+<tr class="separator:ac264831b378bd2513785f56a63a2cf9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9261d699774c32e6612b86d5ff383120" id="r_a9261d699774c32e6612b86d5ff383120"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9261d699774c32e6612b86d5ff383120">REG_DEVICE_ADDRESS</a>&#160;&#160;&#160;0x0C</td></tr>
+<tr class="separator:a9261d699774c32e6612b86d5ff383120"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5080f3f6bf208edce5de49e5117a5f2" id="r_ac5080f3f6bf208edce5de49e5117a5f2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5080f3f6bf208edce5de49e5117a5f2">MIN_TEMPERATURE</a>&#160;&#160;&#160;-10.0</td></tr>
+<tr class="separator:ac5080f3f6bf208edce5de49e5117a5f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af900a8b6b1e1763dd0e90e48fc2fb317" id="r_af900a8b6b1e1763dd0e90e48fc2fb317"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af900a8b6b1e1763dd0e90e48fc2fb317">MAX_TEMPERATURE</a>&#160;&#160;&#160;50.0</td></tr>
+<tr class="separator:af900a8b6b1e1763dd0e90e48fc2fb317"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc7849e08d6e99a7e151cb4366ebc96d" id="r_abc7849e08d6e99a7e151cb4366ebc96d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc7849e08d6e99a7e151cb4366ebc96d">MIN_HUMIDITY</a>&#160;&#160;&#160;0.0</td></tr>
+<tr class="separator:abc7849e08d6e99a7e151cb4366ebc96d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ae8ae01ff5a5ce2e90eca5fbc669d81" id="r_a4ae8ae01ff5a5ce2e90eca5fbc669d81"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ae8ae01ff5a5ce2e90eca5fbc669d81">MAX_HUMIDITY</a>&#160;&#160;&#160;100.0</td></tr>
+<tr class="separator:a4ae8ae01ff5a5ce2e90eca5fbc669d81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6595c2759ec7982567a7648cc513465" id="r_ac6595c2759ec7982567a7648cc513465"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6595c2759ec7982567a7648cc513465">MIN_EC</a>&#160;&#160;&#160;0.0</td></tr>
+<tr class="separator:ac6595c2759ec7982567a7648cc513465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8060470295f959c8f0f60905d04691c1" id="r_a8060470295f959c8f0f60905d04691c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8060470295f959c8f0f60905d04691c1">MAX_EC</a>&#160;&#160;&#160;20000.0</td></tr>
+<tr class="separator:a8060470295f959c8f0f60905d04691c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb31a7b73c962d56d9fca3209a95723e" id="r_aeb31a7b73c962d56d9fca3209a95723e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb31a7b73c962d56d9fca3209a95723e">MIN_PH</a>&#160;&#160;&#160;0.0</td></tr>
+<tr class="separator:aeb31a7b73c962d56d9fca3209a95723e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6035bff843569e704debcabd15c481d6" id="r_a6035bff843569e704debcabd15c481d6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6035bff843569e704debcabd15c481d6">MAX_PH</a>&#160;&#160;&#160;14.0</td></tr>
+<tr class="separator:a6035bff843569e704debcabd15c481d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4ce924e7edbb024c3f5f25c42d64eca" id="r_ad4ce924e7edbb024c3f5f25c42d64eca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4ce924e7edbb024c3f5f25c42d64eca">MIN_NPK</a>&#160;&#160;&#160;0.0</td></tr>
+<tr class="separator:ad4ce924e7edbb024c3f5f25c42d64eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0db0c07c73c5ce97b292e0ff8414da3d" id="r_a0db0c07c73c5ce97b292e0ff8414da3d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0db0c07c73c5ce97b292e0ff8414da3d">MAX_NPK</a>&#160;&#160;&#160;2000.0</td></tr>
+<tr class="separator:a0db0c07c73c5ce97b292e0ff8414da3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
 <tr class="memitem:a0c4410314e55fce67a3c727cb1bf9520" id="r_a0c4410314e55fce67a3c727cb1bf9520"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c4410314e55fce67a3c727cb1bf9520">setupModbus</a> ()</td></tr>
 <tr class="separator:a0c4410314e55fce67a3c727cb1bf9520"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90317d8e6573d5ce69fcb7e55adf236e" id="r_a90317d8e6573d5ce69fcb7e55adf236e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90317d8e6573d5ce69fcb7e55adf236e">readSensorData</a> ()</td></tr>
-<tr class="separator:a90317d8e6573d5ce69fcb7e55adf236e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3a37446a712d9ae94e76304361d35d2" id="r_ac3a37446a712d9ae94e76304361d35d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3a37446a712d9ae94e76304361d35d2">readSensorData</a> ()</td></tr>
+<tr class="separator:ac3a37446a712d9ae94e76304361d35d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6444c2d436a57168cc75d4ef8529a6c8" id="r_a6444c2d436a57168cc75d4ef8529a6c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6444c2d436a57168cc75d4ef8529a6c8">readFirmwareVersion</a> ()</td></tr>
+<tr class="separator:a6444c2d436a57168cc75d4ef8529a6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b6b2ad640c9580fa45d8cbad28adf53" id="r_a8b6b2ad640c9580fa45d8cbad28adf53"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b6b2ad640c9580fa45d8cbad28adf53">readErrorStatus</a> ()</td></tr>
+<tr class="separator:a8b6b2ad640c9580fa45d8cbad28adf53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac87bc87eaf0bc01ebda5fe1bb44c88b" id="r_aac87bc87eaf0bc01ebda5fe1bb44c88b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac87bc87eaf0bc01ebda5fe1bb44c88b">changeDeviceAddress</a> (uint8_t new_address)</td></tr>
+<tr class="separator:aac87bc87eaf0bc01ebda5fe1bb44c88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8a3b28ec8c21261d4e467da91a17a67" id="r_aa8a3b28ec8c21261d4e467da91a17a67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8a3b28ec8c21261d4e467da91a17a67">validateSensorData</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data)</td></tr>
+<tr class="separator:aa8a3b28ec8c21261d4e467da91a17a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eb8daa78bacfc8a930012162882aa9c" id="r_a8eb8daa78bacfc8a930012162882aa9c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8eb8daa78bacfc8a930012162882aa9c">getCachedData</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data)</td></tr>
+<tr class="separator:a8eb8daa78bacfc8a930012162882aa9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca7d239567ef1281e0fd378082fd48ac" id="r_aca7d239567ef1281e0fd378082fd48ac"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca7d239567ef1281e0fd378082fd48ac">convertRegisterToFloat</a> (uint16_t value, float multiplier)</td></tr>
 <tr class="separator:aca7d239567ef1281e0fd378082fd48ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c43d8a4afead0d0df29635242290377" id="r_a1c43d8a4afead0d0df29635242290377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c43d8a4afead0d0df29635242290377">preTransmission</a> ()</td></tr>
 <tr class="separator:a1c43d8a4afead0d0df29635242290377"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33b535e84f654e423bb627b25b7b3759" id="r_a33b535e84f654e423bb627b25b7b3759"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33b535e84f654e423bb627b25b7b3759">postTransmission</a> ()</td></tr>
 <tr class="separator:a33b535e84f654e423bb627b25b7b3759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbf50656913748323cd03274af03c116" id="r_adbf50656913748323cd03274af03c116"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbf50656913748323cd03274af03c116">printModbusError</a> (uint8_t errNum)</td></tr>
+<tr class="separator:adbf50656913748323cd03274af03c116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f1a431da8f1feb8a64e2c5f887056df" id="r_a4f1a431da8f1feb8a64e2c5f887056df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f1a431da8f1feb8a64e2c5f887056df">startRealSensorTask</a> ()</td></tr>
 <tr class="separator:a4f1a431da8f1feb8a64e2c5f887056df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -190,8 +233,166 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <tr class="separator:a9f7da14569cf54a5633c163642e97dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6ed671f3036da58a93991fca2a2329c" id="r_ae6ed671f3036da58a93991fca2a2329c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_sensor_data.html">SensorData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6ed671f3036da58a93991fca2a2329c">sensorData</a></td></tr>
 <tr class="separator:ae6ed671f3036da58a93991fca2a2329c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a90cc33c11a27aac5f56dcaac387c0d" id="r_a5a90cc33c11a27aac5f56dcaac387c0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_sensor_cache.html">SensorCache</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a90cc33c11a27aac5f56dcaac387c0d">sensorCache</a></td></tr>
+<tr class="separator:a5a90cc33c11a27aac5f56dcaac387c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc5319275c2df675d59ff17f862d3e44" id="r_acc5319275c2df675d59ff17f862d3e44"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc5319275c2df675d59ff17f862d3e44">sensorLastError</a></td></tr>
+<tr class="separator:acc5319275c2df675d59ff17f862d3e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Макросы</h2>
+<a id="a8060470295f959c8f0f60905d04691c1" name="a8060470295f959c8f0f60905d04691c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8060470295f959c8f0f60905d04691c1">&#9670;&#160;</a></span>MAX_EC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_EC&#160;&#160;&#160;20000.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ae8ae01ff5a5ce2e90eca5fbc669d81" name="a4ae8ae01ff5a5ce2e90eca5fbc669d81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ae8ae01ff5a5ce2e90eca5fbc669d81">&#9670;&#160;</a></span>MAX_HUMIDITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_HUMIDITY&#160;&#160;&#160;100.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0db0c07c73c5ce97b292e0ff8414da3d" name="a0db0c07c73c5ce97b292e0ff8414da3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0db0c07c73c5ce97b292e0ff8414da3d">&#9670;&#160;</a></span>MAX_NPK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_NPK&#160;&#160;&#160;2000.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6035bff843569e704debcabd15c481d6" name="a6035bff843569e704debcabd15c481d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6035bff843569e704debcabd15c481d6">&#9670;&#160;</a></span>MAX_PH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_PH&#160;&#160;&#160;14.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af900a8b6b1e1763dd0e90e48fc2fb317" name="af900a8b6b1e1763dd0e90e48fc2fb317"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af900a8b6b1e1763dd0e90e48fc2fb317">&#9670;&#160;</a></span>MAX_TEMPERATURE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_TEMPERATURE&#160;&#160;&#160;50.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac6595c2759ec7982567a7648cc513465" name="ac6595c2759ec7982567a7648cc513465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6595c2759ec7982567a7648cc513465">&#9670;&#160;</a></span>MIN_EC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_EC&#160;&#160;&#160;0.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abc7849e08d6e99a7e151cb4366ebc96d" name="abc7849e08d6e99a7e151cb4366ebc96d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc7849e08d6e99a7e151cb4366ebc96d">&#9670;&#160;</a></span>MIN_HUMIDITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_HUMIDITY&#160;&#160;&#160;0.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4ce924e7edbb024c3f5f25c42d64eca" name="ad4ce924e7edbb024c3f5f25c42d64eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4ce924e7edbb024c3f5f25c42d64eca">&#9670;&#160;</a></span>MIN_NPK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_NPK&#160;&#160;&#160;0.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeb31a7b73c962d56d9fca3209a95723e" name="aeb31a7b73c962d56d9fca3209a95723e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb31a7b73c962d56d9fca3209a95723e">&#9670;&#160;</a></span>MIN_PH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_PH&#160;&#160;&#160;0.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5080f3f6bf208edce5de49e5117a5f2" name="ac5080f3f6bf208edce5de49e5117a5f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5080f3f6bf208edce5de49e5117a5f2">&#9670;&#160;</a></span>MIN_TEMPERATURE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_TEMPERATURE&#160;&#160;&#160;-10.0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b707a93013b08d191303ed584a140d7" name="a9b707a93013b08d191303ed584a140d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b707a93013b08d191303ed584a140d7">&#9670;&#160;</a></span>REG_CALIBRATION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_CALIBRATION&#160;&#160;&#160;0x08</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ae4a11435c54c0c61a370f01ad74783dd" name="ae4a11435c54c0c61a370f01ad74783dd"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae4a11435c54c0c61a370f01ad74783dd">&#9670;&#160;</a></span>REG_CONDUCTIVITY</h2>
 
@@ -199,7 +400,49 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define REG_CONDUCTIVITY&#160;&#160;&#160;0x15</td>
+          <td class="memname">#define REG_CONDUCTIVITY&#160;&#160;&#160;0x02</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9261d699774c32e6612b86d5ff383120" name="a9261d699774c32e6612b86d5ff383120"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9261d699774c32e6612b86d5ff383120">&#9670;&#160;</a></span>REG_DEVICE_ADDRESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_DEVICE_ADDRESS&#160;&#160;&#160;0x0C</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac264831b378bd2513785f56a63a2cf9a" name="ac264831b378bd2513785f56a63a2cf9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac264831b378bd2513785f56a63a2cf9a">&#9670;&#160;</a></span>REG_ERROR_STATUS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_ERROR_STATUS&#160;&#160;&#160;0x0B</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a149baf37365c4dd67e8c37e211fe5afc" name="a149baf37365c4dd67e8c37e211fe5afc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a149baf37365c4dd67e8c37e211fe5afc">&#9670;&#160;</a></span>REG_FIRMWARE_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_FIRMWARE_VERSION&#160;&#160;&#160;0x07</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -213,7 +456,7 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define REG_NITROGEN&#160;&#160;&#160;0x1E</td>
+          <td class="memname">#define REG_NITROGEN&#160;&#160;&#160;0x04</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -227,7 +470,7 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define REG_PH&#160;&#160;&#160;0x06</td>
+          <td class="memname">#define REG_PH&#160;&#160;&#160;0x03</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -241,7 +484,7 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define REG_PHOSPHORUS&#160;&#160;&#160;0x1F</td>
+          <td class="memname">#define REG_PHOSPHORUS&#160;&#160;&#160;0x05</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -255,7 +498,7 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define REG_POTASSIUM&#160;&#160;&#160;0x20</td>
+          <td class="memname">#define REG_POTASSIUM&#160;&#160;&#160;0x06</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -269,7 +512,7 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define REG_SOIL_MOISTURE&#160;&#160;&#160;0x12</td>
+          <td class="memname">#define REG_SOIL_MOISTURE&#160;&#160;&#160;0x00</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -283,7 +526,7 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define REG_SOIL_TEMP&#160;&#160;&#160;0x13</td>
+          <td class="memname">#define REG_SOIL_TEMP&#160;&#160;&#160;0x01</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -291,6 +534,23 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 </div>
 </div>
 <h2 class="groupheader">Функции</h2>
+<a id="aac87bc87eaf0bc01ebda5fe1bb44c88b" name="aac87bc87eaf0bc01ebda5fe1bb44c88b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac87bc87eaf0bc01ebda5fe1bb44c88b">&#9670;&#160;</a></span>changeDeviceAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool changeDeviceAddress </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>new_address</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="aca7d239567ef1281e0fd378082fd48ac" name="aca7d239567ef1281e0fd378082fd48ac"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aca7d239567ef1281e0fd378082fd48ac">&#9670;&#160;</a></span>convertRegisterToFloat()</h2>
 
@@ -309,24 +569,23 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Граф вызова функции:</div>
-<div class="dyncontent">
-<div class="center"><img src="modbus__sensor_8h_aca7d239567ef1281e0fd378082fd48ac_icgraph.png" border="0" usemap="#amodbus__sensor_8h_aca7d239567ef1281e0fd378082fd48ac_icgraph" alt=""/></div>
-<map name="amodbus__sensor_8h_aca7d239567ef1281e0fd378082fd48ac_icgraph" id="amodbus__sensor_8h_aca7d239567ef1281e0fd378082fd48ac_icgraph">
-<area shape="rect" title=" " alt="" coords="621,31,777,57"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a90317d8e6573d5ce69fcb7e55adf236e" title=" " alt="" coords="457,31,573,57"/>
-<area shape="poly" title=" " alt="" coords="605,47,573,47,573,41,605,41"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="331,5,376,32"/>
-<area shape="poly" title=" " alt="" coords="441,35,376,25,377,20,442,30"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,56,409,83"/>
-<area shape="poly" title=" " alt="" coords="442,58,410,63,409,58,441,53"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,56,250,83"/>
-<area shape="poly" title=" " alt="" coords="283,72,250,72,250,67,283,67"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,56,59,83"/>
-<area shape="poly" title=" " alt="" coords="91,72,59,72,59,67,91,67"/>
-</map>
+
 </div>
+</div>
+<a id="a8eb8daa78bacfc8a930012162882aa9c" name="a8eb8daa78bacfc8a930012162882aa9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eb8daa78bacfc8a930012162882aa9c">&#9670;&#160;</a></span>getCachedData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool getCachedData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -344,6 +603,16 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8h_a33b535e84f654e423bb627b25b7b3759_cgraph.png" border="0" usemap="#amodbus__sensor_8h_a33b535e84f654e423bb627b25b7b3759_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8h_a33b535e84f654e423bb627b25b7b3759_cgraph" id="amodbus__sensor_8h_a33b535e84f654e423bb627b25b7b3759_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,130,32"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="178,5,254,32"/>
+<area shape="poly" title=" " alt="" coords="130,16,162,16,162,21,130,21"/>
+</map>
+</div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -374,6 +643,16 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 <div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8h_a1c43d8a4afead0d0df29635242290377_cgraph.png" border="0" usemap="#amodbus__sensor_8h_a1c43d8a4afead0d0df29635242290377_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8h_a1c43d8a4afead0d0df29635242290377_cgraph" id="amodbus__sensor_8h_a1c43d8a4afead0d0df29635242290377_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,123,32"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="171,5,247,32"/>
+<area shape="poly" title=" " alt="" coords="123,16,155,16,155,21,123,21"/>
+</map>
+</div>
+<div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="modbus__sensor_8h_a1c43d8a4afead0d0df29635242290377_icgraph.png" border="0" usemap="#amodbus__sensor_8h_a1c43d8a4afead0d0df29635242290377_icgraph" alt=""/></div>
@@ -388,14 +667,70 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 
 </div>
 </div>
-<a id="a90317d8e6573d5ce69fcb7e55adf236e" name="a90317d8e6573d5ce69fcb7e55adf236e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90317d8e6573d5ce69fcb7e55adf236e">&#9670;&#160;</a></span>readSensorData()</h2>
+<a id="adbf50656913748323cd03274af03c116" name="adbf50656913748323cd03274af03c116"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbf50656913748323cd03274af03c116">&#9670;&#160;</a></span>printModbusError()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool readSensorData </td>
+          <td class="memname">void printModbusError </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>errNum</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8h_adbf50656913748323cd03274af03c116_cgraph.png" border="0" usemap="#amodbus__sensor_8h_adbf50656913748323cd03274af03c116_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8h_adbf50656913748323cd03274af03c116_cgraph" id="amodbus__sensor_8h_adbf50656913748323cd03274af03c116_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,126,57"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="185,5,252,32"/>
+<area shape="poly" title=" " alt="" coords="126,31,169,24,170,29,127,37"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="174,56,263,83"/>
+<area shape="poly" title=" " alt="" coords="127,51,159,57,158,62,126,57"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8h_adbf50656913748323cd03274af03c116_icgraph.png" border="0" usemap="#amodbus__sensor_8h_adbf50656913748323cd03274af03c116_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8h_adbf50656913748323cd03274af03c116_icgraph" id="amodbus__sensor_8h_adbf50656913748323cd03274af03c116_icgraph">
+<area shape="rect" title=" " alt="" coords="197,5,317,32"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8" title=" " alt="" coords="5,5,149,32"/>
+<area shape="poly" title=" " alt="" coords="181,21,149,21,149,16,181,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8b6b2ad640c9580fa45d8cbad28adf53" name="a8b6b2ad640c9580fa45d8cbad28adf53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b6b2ad640c9580fa45d8cbad28adf53">&#9670;&#160;</a></span>readErrorStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool readErrorStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6444c2d436a57168cc75d4ef8529a6c8" name="a6444c2d436a57168cc75d4ef8529a6c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6444c2d436a57168cc75d4ef8529a6c8">&#9670;&#160;</a></span>readFirmwareVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool readFirmwareVersion </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -405,27 +740,70 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
-<div class="center"><img src="modbus__sensor_8h_a90317d8e6573d5ce69fcb7e55adf236e_cgraph.png" border="0" usemap="#amodbus__sensor_8h_a90317d8e6573d5ce69fcb7e55adf236e_cgraph" alt=""/></div>
-<map name="amodbus__sensor_8h_a90317d8e6573d5ce69fcb7e55adf236e_cgraph" id="amodbus__sensor_8h_a90317d8e6573d5ce69fcb7e55adf236e_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,121,32"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="169,5,325,32"/>
-<area shape="poly" title=" " alt="" coords="121,16,153,16,153,21,121,21"/>
+<div class="center"><img src="modbus__sensor_8h_a6444c2d436a57168cc75d4ef8529a6c8_cgraph.png" border="0" usemap="#amodbus__sensor_8h_a6444c2d436a57168cc75d4ef8529a6c8_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8h_a6444c2d436a57168cc75d4ef8529a6c8_cgraph" id="amodbus__sensor_8h_a6444c2d436a57168cc75d4ef8529a6c8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,52,149,79"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="376,52,443,79"/>
+<area shape="poly" title=" " alt="" coords="102,49,145,28,196,12,257,3,284,5,318,12,350,24,379,41,376,45,348,29,316,17,283,10,257,8,197,17,147,33,104,54"/>
+<area shape="rect" href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="217,27,296,53"/>
+<area shape="poly" title=" " alt="" coords="148,52,202,45,202,50,149,58"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="365,115,454,141"/>
+<area shape="poly" title=" " alt="" coords="105,77,147,97,197,113,276,125,350,127,350,133,276,130,196,118,145,102,103,82"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="197,77,317,104"/>
+<area shape="poly" title=" " alt="" coords="149,73,182,77,181,83,148,78"/>
+<area shape="poly" title=" " alt="" coords="317,78,361,71,362,76,318,83"/>
+<area shape="poly" title=" " alt="" coords="315,102,351,111,349,116,313,107"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac3a37446a712d9ae94e76304361d35d2" name="ac3a37446a712d9ae94e76304361d35d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3a37446a712d9ae94e76304361d35d2">&#9670;&#160;</a></span>readSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void readSensorData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_cgraph.png" border="0" usemap="#amodbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_cgraph" id="amodbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,132,121,159"/>
+<area shape="rect" href="logger_8cpp.html#af2cfc49d3e5f87ebc351693b47c348e1" title=" " alt="" coords="180,5,246,32"/>
+<area shape="poly" title=" " alt="" coords="75,130,114,88,167,42,172,38,175,43,170,46,118,92,79,133"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="175,56,252,83"/>
+<area shape="poly" title=" " alt="" coords="90,129,170,88,173,92,93,134"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="180,107,246,133"/>
+<area shape="poly" title=" " alt="" coords="121,133,164,125,165,131,121,138"/>
+<area shape="rect" href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="174,157,253,184"/>
+<area shape="poly" title=" " alt="" coords="121,152,159,159,158,164,121,158"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="169,208,258,235"/>
+<area shape="poly" title=" " alt="" coords="93,157,173,198,170,203,90,162"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="179,259,248,285"/>
+<area shape="poly" title=" " alt="" coords="79,157,118,198,170,245,175,248,172,252,167,249,114,202,75,161"/>
 </map>
 </div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
-<div class="center"><img src="modbus__sensor_8h_a90317d8e6573d5ce69fcb7e55adf236e_icgraph.png" border="0" usemap="#amodbus__sensor_8h_a90317d8e6573d5ce69fcb7e55adf236e_icgraph" alt=""/></div>
-<map name="amodbus__sensor_8h_a90317d8e6573d5ce69fcb7e55adf236e_icgraph" id="amodbus__sensor_8h_a90317d8e6573d5ce69fcb7e55adf236e_icgraph">
-<area shape="rect" title=" " alt="" coords="457,31,573,57"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="331,5,376,32"/>
-<area shape="poly" title=" " alt="" coords="441,35,376,25,377,20,442,30"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,56,409,83"/>
-<area shape="poly" title=" " alt="" coords="442,58,410,63,409,58,441,53"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,56,250,83"/>
-<area shape="poly" title=" " alt="" coords="283,72,250,72,250,67,283,67"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,56,59,83"/>
-<area shape="poly" title=" " alt="" coords="91,72,59,72,59,67,91,67"/>
+<div class="center"><img src="modbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_icgraph.png" border="0" usemap="#amodbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_icgraph" id="amodbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_icgraph">
+<area shape="rect" title=" " alt="" coords="457,5,573,32"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,5,409,32"/>
+<area shape="poly" title=" " alt="" coords="442,21,410,21,410,16,442,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,5,250,32"/>
+<area shape="poly" title=" " alt="" coords="283,21,250,21,250,16,283,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
 </map>
 </div>
 
@@ -445,28 +823,6 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="dynheader">
-Граф вызовов:</div>
-<div class="dyncontent">
-<div class="center"><img src="modbus__sensor_8h_a0c4410314e55fce67a3c727cb1bf9520_cgraph.png" border="0" usemap="#amodbus__sensor_8h_a0c4410314e55fce67a3c727cb1bf9520_cgraph" alt=""/></div>
-<map name="amodbus__sensor_8h_a0c4410314e55fce67a3c727cb1bf9520_cgraph" id="amodbus__sensor_8h_a0c4410314e55fce67a3c727cb1bf9520_cgraph">
-<area shape="rect" title=" " alt="" coords="5,31,105,57"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a33b535e84f654e423bb627b25b7b3759" title=" " alt="" coords="153,5,277,32"/>
-<area shape="poly" title=" " alt="" coords="105,33,137,28,138,34,106,39"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a1c43d8a4afead0d0df29635242290377" title=" " alt="" coords="156,56,274,83"/>
-<area shape="poly" title=" " alt="" coords="106,49,141,55,140,60,105,55"/>
-</map>
-</div>
-<div class="dynheader">
-Граф вызова функции:</div>
-<div class="dyncontent">
-<div class="center"><img src="modbus__sensor_8h_a0c4410314e55fce67a3c727cb1bf9520_icgraph.png" border="0" usemap="#amodbus__sensor_8h_a0c4410314e55fce67a3c727cb1bf9520_icgraph" alt=""/></div>
-<map name="amodbus__sensor_8h_a0c4410314e55fce67a3c727cb1bf9520_icgraph" id="amodbus__sensor_8h_a0c4410314e55fce67a3c727cb1bf9520_icgraph">
-<area shape="rect" title=" " alt="" coords="107,5,206,32"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
-<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
-</map>
-</div>
 
 </div>
 </div>
@@ -480,6 +836,23 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
           <td class="memname">void startRealSensorTask </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8a3b28ec8c21261d4e467da91a17a67" name="aa8a3b28ec8c21261d4e467da91a17a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a3b28ec8c21261d4e467da91a17a67">&#9670;&#160;</a></span>validateSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool validateSensorData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -510,6 +883,28 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 
 </div>
 </div>
+<a id="a5a90cc33c11a27aac5f56dcaac387c0d" name="a5a90cc33c11a27aac5f56dcaac387c0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a90cc33c11a27aac5f56dcaac387c0d">&#9670;&#160;</a></span>sensorCache</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_sensor_cache.html">SensorCache</a> sensorCache</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ae6ed671f3036da58a93991fca2a2329c" name="ae6ed671f3036da58a93991fca2a2329c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae6ed671f3036da58a93991fca2a2329c">&#9670;&#160;</a></span>sensorData</h2>
 
@@ -521,6 +916,28 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="struct_sensor_data.html">SensorData</a> sensorData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc5319275c2df675d59ff17f862d3e44" name="acc5319275c2df675d59ff17f862d3e44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc5319275c2df675d59ff17f862d3e44">&#9670;&#160;</a></span>sensorLastError</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String sensorLastError</td>
         </tr>
       </table>
   </td>

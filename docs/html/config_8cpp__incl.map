@@ -1,15 +1,18 @@
 <map id="src/config.cpp" name="src/config.cpp">
-<area shape="rect" id="Node000001" title="Работа с конфигурацией устройства" alt="" coords="131,5,235,32"/>
+<area shape="rect" id="Node000001" title="Работа с конфигурацией устройства" alt="" coords="193,5,296,32"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,80,65,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,35,76,75,73,70,156,30"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,35,80,79,78,74,207,30"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="89,80,157,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="175,34,145,70,141,66,171,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,35,159,74,156,69,222,30"/>
 <area shape="rect" id="Node000004" href="$jxct__device__info_8h.html" title=" " alt="" coords="181,80,308,107"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="196,31,226,66,222,70,192,34"/>
-<area shape="rect" id="Node000006" href="$jxct__config__vars_8h.html" title=" " alt="" coords="331,80,459,107"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="221,30,344,72,342,77,219,35"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="206,155,282,181"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="247,107,247,139,242,139,242,107"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="344,155,446,181"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="398,107,398,139,392,139,392,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="247,33,247,64,242,64,242,33"/>
+<area shape="rect" id="Node000006" href="$jxct__config__vars_8h.html" title=" " alt="" coords="423,80,551,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="287,30,431,73,429,78,286,35"/>
+<area shape="rect" id="Node000008" href="$logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="332,80,399,107"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="267,30,333,69,330,74,264,35"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="268,155,344,181"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="257,105,287,141,283,145,253,109"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="436,155,538,181"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="490,107,490,139,484,139,484,107"/>
+<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="357,109,328,145,323,141,353,106"/>
 </map>

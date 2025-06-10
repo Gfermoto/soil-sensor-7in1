@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['getapssid_0',['getApSsid',['../wifi__manager_8cpp.html#af857f35623b29612a3b4cc45dd6fff23',1,'wifi_manager.cpp']]],
-  ['getclientid_1',['getClientId',['../mqtt__client_8cpp.html#add6d3c0fdc5d81926c892afd692c776b',1,'mqtt_client.cpp']]],
-  ['getcommandtopic_2',['getCommandTopic',['../mqtt__client_8cpp.html#a57972325aef8cfc9b4112fda932dd6bf',1,'mqtt_client.cpp']]],
-  ['getdefaulttopic_3',['getDefaultTopic',['../config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023',1,'getDefaultTopic():&#160;config.cpp'],['../jxct__device__info_8h.html#a74bdf2231a5ebe05de0f3a0b4c538023',1,'getDefaultTopic():&#160;config.cpp']]],
-  ['getdeviceid_4',['getDeviceId',['../config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa',1,'getDeviceId():&#160;config.cpp'],['../jxct__device__info_8h.html#aa1f35b9688dbf1109436ad91c42901aa',1,'getDeviceId():&#160;config.cpp']]],
-  ['getmqttclientname_5',['getMqttClientName',['../mqtt__client_8cpp.html#a681aa515ca2e6ecdbeed2635b88578d7',1,'mqtt_client.cpp']]],
-  ['getstatustopic_6',['getStatusTopic',['../mqtt__client_8cpp.html#a3da586210877e66ba92641dc5d6246e5',1,'mqtt_client.cpp']]]
+  ['fakesensortask_0',['fakeSensorTask',['../fake__sensor_8cpp.html#a88a6670c876eb66b3358db30715c4416',1,'fake_sensor.cpp']]],
+  ['format_5fec_1',['format_ec',['../jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483',1,'format_ec(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a39b2dedc3670adcf20a62a8d113d2483',1,'format_ec(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5fmoisture_2',['format_moisture',['../jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470',1,'format_moisture(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a3be478cef555484efe62159216f6d470',1,'format_moisture(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5fnpk_3',['format_npk',['../jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b',1,'format_npk(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#abdc9f6cdc05f0aa72eec54b3e904ca7b',1,'format_npk(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5fph_4',['format_ph',['../jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152',1,'format_ph(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a416ab24406c338058778bbde7c4da152',1,'format_ph(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5ftemperature_5',['format_temperature',['../jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351',1,'format_temperature(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a9a843da2888c9b8014dd9506284f1351',1,'format_temperature(float value):&#160;jxct_format_utils.cpp']]]
 ];

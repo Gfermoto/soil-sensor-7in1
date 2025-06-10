@@ -1,0 +1,545 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor v2.0: 🚀 ПЛАН РАЗВИТИЯ JXCT Soil Sensor v2.x</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('md_docs_2_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">🚀 ПЛАН РАЗВИТИЯ JXCT Soil Sensor v2.x</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="autotoc_md75"></a></p>
+<p><b>Версия документа:</b> 1.0 <br  />
+ <b>Дата создания:</b> Июнь 2025 <br  />
+ <b>На основе:</b> QA Отчёта v2.0 <br  />
+</p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md77"></a>
+🎯 ВИДЕНИЕ И ЦЕЛИ</h1>
+<p><b>МИССИЯ:</b> Превратить JXCT Soil Sensor в промышленно-готовое IoT решение для мониторинга почвы с высокими стандартами безопасности и надежности.</p>
+<p><b>СТРАТЕГИЧЕСКИЕ ЦЕЛИ:</b></p><ul>
+<li>🔒 Достижение enterprise-уровня безопасности</li>
+<li>📊 Промышленная надежность и мониторинг</li>
+<li>🌐 Масштабируемость для больших инсталляций</li>
+<li>🧪 Полное покрытие тестами</li>
+<li>📚 Профессиональная документация</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md79"></a>
+📅 ROADMAP ПО ВЕРСИЯМ</h1>
+<h2><a class="anchor" id="autotoc_md80"></a>
+🔥 v2.1 - SECURITY FIRST (Июль 2025)</h2>
+<blockquote class="doxtable">
+<p><b>Цель:</b> Устранение критических уязвимостей безопасности </p>
+</blockquote>
+<h3><a class="anchor" id="autotoc_md81"></a>
+Критические исправления безопасности</h3>
+<ul class="check">
+<li class="unchecked"><b>Web Authentication System</b><ul>
+<li>Простая HTTP Basic Auth для веб-интерфейса</li>
+<li>Настраиваемый admin пароль через веб</li>
+<li>Session management с таймаутом</li>
+<li>Время: 3 дня</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>Password Security</b><ul>
+<li>Шифрование паролей в Preferences (AES-256)</li>
+<li>Secure password generator для AP mode</li>
+<li>Минимальные требования к паролям</li>
+<li>Время: 2 дня</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>CSRF Protection</b><ul>
+<li>Добавление CSRF токенов во все формы</li>
+<li>Проверка referer headers</li>
+<li>Rate limiting для POST запросов</li>
+<li>Время: 2 дня</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>Access Control</b><ul>
+<li>Блокировка админ функций в AP режиме</li>
+<li>IP whitelist для критических операций</li>
+<li>Audit log основных действий</li>
+<li>Время: 1 день</li>
+</ul>
+</li>
+</ul>
+<p><b>Итого v2.1: 8 дней разработки</b></p>
+<h2><a class="anchor" id="autotoc_md82"></a>
+🛡️ v2.2 - ENTERPRISE SECURITY (Август 2025)</h2>
+<blockquote class="doxtable">
+<p><b>Цель:</b> Внедрение enterprise-уровня безопасности </p>
+</blockquote>
+<h3><a class="anchor" id="autotoc_md83"></a>
+HTTPS &amp; Certificates</h3>
+<ul class="check">
+<li class="unchecked"><b>SSL/TLS Support</b><ul>
+<li>Self-signed сертификаты по умолчанию</li>
+<li>Let's Encrypt интеграция (опционально)</li>
+<li>HTTP to HTTPS redirect</li>
+<li>Время: 4 дня</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>MQTT Security</b><ul>
+<li>MQTT over SSL (MQTTS)</li>
+<li>Client certificates поддержка</li>
+<li>Secure topic naming</li>
+<li>Время: 2 дня</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>API Security</b><ul>
+<li>API Key authentication</li>
+<li>JWT tokens для advanced API</li>
+<li>API rate limiting</li>
+<li>Время: 3 дня</li>
+</ul>
+</li>
+</ul>
+<p><b>Итого v2.2: 9 дней разработки</b></p>
+<h2><a class="anchor" id="autotoc_md84"></a>
+🧪 v2.3 - TESTING FOUNDATION (Сентябрь 2025)</h2>
+<blockquote class="doxtable">
+<p><b>Цель:</b> Создание надежной системы тестирования </p>
+</blockquote>
+<h3><a class="anchor" id="autotoc_md85"></a>
+Unit Testing Framework</h3>
+<ul class="check">
+<li class="unchecked"><b>Test Infrastructure</b><ul>
+<li>Unity/PlatformIO Unit Testing setup</li>
+<li>Mock framework для hardware</li>
+<li>CI/CD pipeline (GitHub Actions)</li>
+<li>Время: 3 дня</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>Core Tests</b><ul>
+<li>Modbus communication tests</li>
+<li><a class="el" href="struct_config.html">Config</a> validation tests</li>
+<li>Data formatting tests</li>
+<li>WiFi state machine tests</li>
+<li>Время: 5 дней</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>Integration Tests</b><ul>
+<li>End-to-end API tests</li>
+<li>MQTT publishing tests</li>
+<li>Web interface automation</li>
+<li>Время: 4 дня</li>
+</ul>
+</li>
+</ul>
+<p><b>Итого v2.3: 12 дней разработки</b></p>
+<h2><a class="anchor" id="autotoc_md86"></a>
+📊 v2.4 - MONITORING &amp; OBSERVABILITY (Октябрь 2025)</h2>
+<blockquote class="doxtable">
+<p><b>Цель:</b> Профессиональный мониторинг и диагностика </p>
+</blockquote>
+<h3><a class="anchor" id="autotoc_md87"></a>
+Advanced Logging</h3>
+<ul class="check">
+<li class="unchecked"><b>Structured Logging</b><ul>
+<li>JSON log format option</li>
+<li>Log levels configuration</li>
+<li>Remote syslog support</li>
+<li>Время: 2 дня</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>Metrics &amp; Telemetry</b><ul>
+<li>Prometheus metrics endpoint</li>
+<li>Memory/CPU usage tracking</li>
+<li>Network statistics</li>
+<li>Sensor health metrics</li>
+<li>Время: 4 дня</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>Alerting System</b><ul>
+<li>Email notifications</li>
+<li>Webhook alerts</li>
+<li>Health check endpoint</li>
+<li>Время: 3 дня</li>
+</ul>
+</li>
+</ul>
+<p><b>Итого v2.4: 9 дней разработки</b></p>
+<h2><a class="anchor" id="autotoc_md88"></a>
+🚀 v2.5 - ADVANCED FEATURES (Ноябрь 2025)</h2>
+<blockquote class="doxtable">
+<p><b>Цель:</b> Расширенная функциональность </p>
+</blockquote>
+<h3><a class="anchor" id="autotoc_md89"></a>
+OTA &amp; Management</h3>
+<ul class="check">
+<li class="unchecked"><b>Secure OTA Updates</b><ul>
+<li>Signed firmware validation</li>
+<li>Rollback mechanism</li>
+<li>Progress reporting</li>
+<li>Время: 5 дней</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>Configuration Management</b><ul>
+<li><a class="el" href="struct_config.html">Config</a> backup/restore</li>
+<li>Template configurations</li>
+<li>Bulk configuration API</li>
+<li>Время: 3 дня</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>Multi-sensor Support</b><ul>
+<li>Multiple Modbus devices</li>
+<li>Sensor auto-discovery</li>
+<li>Load balancing</li>
+<li>Время: 6 дней</li>
+</ul>
+</li>
+</ul>
+<p><b>Итого v2.5: 14 дней разработки</b></p>
+<h2><a class="anchor" id="autotoc_md90"></a>
+🌟 v3.0 - NEXT GENERATION (Q1 2026)</h2>
+<blockquote class="doxtable">
+<p><b>Цель:</b> Кардинальное обновление архитектуры </p>
+</blockquote>
+<h3><a class="anchor" id="autotoc_md91"></a>
+Architecture Refactoring</h3>
+<ul class="check">
+<li class="unchecked"><b>Microservices Architecture</b><ul>
+<li>Separate services (Web, MQTT, Modbus)</li>
+<li>Inter-service communication</li>
+<li>Service discovery</li>
+<li>Время: 10 дней</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>Advanced UI</b><ul>
+<li>React-based web interface</li>
+<li>Real-time dashboards</li>
+<li>Mobile app support</li>
+<li>Время: 15 дней</li>
+</ul>
+</li>
+</ul>
+<ul class="check">
+<li class="unchecked"><b>Cloud Integration</b><ul>
+<li>AWS IoT Core support</li>
+<li>Azure IoT Hub support</li>
+<li>Edge computing features</li>
+<li>Время: 12 дней</li>
+</ul>
+</li>
+</ul>
+<p><b>Итого v3.0: 37 дней разработки</b></p>
+<hr  />
+<h1><a class="anchor" id="autotoc_md93"></a>
+📋 ДЕТАЛЬНЫЙ ПЛАН ЗАДАЧ</h1>
+<h2><a class="anchor" id="autotoc_md94"></a>
+🏃‍♂️ SPRINT 1: Authentication System (v2.1)</h2>
+<h3><a class="anchor" id="autotoc_md95"></a>
+Week 1: Basic Authentication</h3>
+<div class="fragment"><div class="line">Day 1-2: Web Authentication</div>
+<div class="line">├── Add login form HTML/CSS</div>
+<div class="line">├── Session management (cookies)</div>
+<div class="line">├── Password validation</div>
+<div class="line">└── Logout functionality</div>
+<div class="line"> </div>
+<div class="line">Day 3: Admin Password Management</div>
+<div class="line">├── Default password generation</div>
+<div class="line">├── Password change interface</div>
+<div class="line">├── Password strength validation</div>
+<div class="line">└── Secure storage</div>
+<div class="line"> </div>
+<div class="line">Day 4-5: CSRF Protection</div>
+<div class="line">├── Token generation/validation</div>
+<div class="line">├── Form updates with tokens</div>
+<div class="line">├── AJAX request protection</div>
+<div class="line">└── Testing and validation</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md96"></a>
+Week 2: Access Control &amp; Security Hardening</h3>
+<div class="fragment"><div class="line">Day 6: Rate Limiting</div>
+<div class="line">├── Login attempt limiting</div>
+<div class="line">├── Request rate limiting</div>
+<div class="line">├── IP-based blocking</div>
+<div class="line">└── Security headers</div>
+<div class="line"> </div>
+<div class="line">Day 7-8: Final Integration</div>
+<div class="line">├── End-to-end testing</div>
+<div class="line">├── Security review</div>
+<div class="line">├── Documentation update</div>
+<div class="line">└── Release preparation</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md97"></a>
+🛡️ SPRINT 2: Password Encryption (v2.1)</h2>
+<h3><a class="anchor" id="autotoc_md98"></a>
+Implementation Details:</h3>
+<div class="fragment"><div class="line"><span class="comment">// Новая система шифрования паролей</span></div>
+<div class="line"><span class="keyword">class </span>SecureStorage {</div>
+<div class="line"><span class="keyword">private</span>:</div>
+<div class="line">    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* ENCRYPTION_KEY;</div>
+<div class="line">    </div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keyword">static</span> String encrypt(<span class="keyword">const</span> String&amp; plaintext);</div>
+<div class="line">    <span class="keyword">static</span> String decrypt(<span class="keyword">const</span> String&amp; encrypted);</div>
+<div class="line">    <span class="keyword">static</span> <span class="keywordtype">bool</span> storePassword(<span class="keyword">const</span> String&amp; key, <span class="keyword">const</span> String&amp; password);</div>
+<div class="line">    <span class="keyword">static</span> String retrievePassword(<span class="keyword">const</span> String&amp; key);</div>
+<div class="line">};</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md99"></a>
+🔐 SPRINT 3: HTTPS Implementation (v2.2)</h2>
+<h3><a class="anchor" id="autotoc_md100"></a>
+Technical Approach:</h3>
+<ol type="1">
+<li><b>Self-signed certificates generation</b></li>
+<li><b>ESP32 SSL context setup</b></li>
+<li><b>HTTP to HTTPS redirect</b></li>
+<li><b>Certificate management interface</b></li>
+</ol>
+<hr  />
+<h1><a class="anchor" id="autotoc_md102"></a>
+🛠️ ТЕХНИЧЕСКИЕ ТРЕБОВАНИЯ</h1>
+<h2><a class="anchor" id="autotoc_md103"></a>
+Минимальные системные требования для v2.5:</h2>
+<ul>
+<li><b>Flash:</b> 4MB (OTA + filesystem)</li>
+<li><b>RAM:</b> 520KB (ESP32 standard)</li>
+<li><b>CPU:</b> Dual-core 240MHz</li>
+<li><b>Network:</b> WiFi 802.11 b/g/n</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md104"></a>
+Новые зависимости:</h2>
+<div class="fragment"><div class="line">lib_deps =</div>
+<div class="line">  ; Существующие</div>
+<div class="line">  knolleary/PubSubClient @ ^2.8</div>
+<div class="line">  bblanchon/ArduinoJson @ ^6.21.4</div>
+<div class="line">  4-20ma/ModbusMaster @ ^2.0.1</div>
+<div class="line">  arduino-libraries/NTPClient @ ^3.2.1</div>
+<div class="line">  mathworks/ThingSpeak @ ^2.1.1</div>
+<div class="line">  </div>
+<div class="line">  ; Новые для v2.1+</div>
+<div class="line">  bblanchon/ESP32 Crypto @ ^1.0.0</div>
+<div class="line">  throwtheswitch/Unity @ ^2.5.2</div>
+<div class="line">  me-no-dev/AsyncTCP @ ^1.1.1</div>
+<div class="line">  me-no-dev/ESPAsyncWebServer @ ^1.2.3</div>
+</div><!-- fragment --><hr  />
+<h1><a class="anchor" id="autotoc_md106"></a>
+📊 МЕТРИКИ УСПЕХА</h1>
+<h2><a class="anchor" id="autotoc_md107"></a>
+Безопасность:</h2>
+<ul class="check">
+<li class="unchecked">OWASP Top 10 compliance</li>
+</ul>
+<ul class="check">
+<li class="unchecked">Penetration testing пройден</li>
+</ul>
+<ul class="check">
+<li class="unchecked">0 критических уязвимостей</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md108"></a>
+Качество:</h2>
+<ul class="check">
+<li class="unchecked">Code coverage &gt; 80%</li>
+</ul>
+<ul class="check">
+<li class="unchecked">0 critical bugs</li>
+</ul>
+<ul class="check">
+<li class="unchecked">Performance regression &lt; 5%</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md109"></a>
+Функциональность:</h2>
+<ul class="check">
+<li class="unchecked">100% backward compatibility</li>
+</ul>
+<ul class="check">
+<li class="unchecked">API response time &lt; 200ms</li>
+</ul>
+<ul class="check">
+<li class="unchecked">99.9% uptime в production</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md111"></a>
+🤝 РЕСУРСЫ И КОМАНДА</h1>
+<h2><a class="anchor" id="autotoc_md112"></a>
+Роли:</h2>
+<ul>
+<li><b>Security Engineer</b> - v2.1, v2.2</li>
+<li><b>QA Engineer</b> - v2.3, testing</li>
+<li><b>DevOps Engineer</b> - CI/CD, monitoring</li>
+<li><b>Frontend Developer</b> - v3.0 UI</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md113"></a>
+Внешние ресурсы:</h2>
+<ul>
+<li>Security audit (v2.2)</li>
+<li>Performance testing (v2.4)</li>
+<li>UI/UX design (v3.0)</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md115"></a>
+🚨 РИСКИ И МИТИГАЦИЯ</h1>
+<h2><a class="anchor" id="autotoc_md116"></a>
+Технические риски:</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Риск   </th><th class="markdownTableHeadNone">Вероятность   </th><th class="markdownTableHeadNone">Влияние   </th><th class="markdownTableHeadNone">Митигация    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Memory limitations   </td><td class="markdownTableBodyNone">Высокая   </td><td class="markdownTableBodyNone">Высокое   </td><td class="markdownTableBodyNone">Профилирование, оптимизация    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">SSL performance   </td><td class="markdownTableBodyNone">Средняя   </td><td class="markdownTableBodyNone">Среднее   </td><td class="markdownTableBodyNone">Hardware crypto, оптимизация    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Breaking changes   </td><td class="markdownTableBodyNone">Низкая   </td><td class="markdownTableBodyNone">Высокое   </td><td class="markdownTableBodyNone">Extensive testing, rollback   </td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md117"></a>
+Бизнес риски:</h2>
+<ul>
+<li><b>Scope creep</b> → Строгие спринты, definition of done</li>
+<li><b>Resource availability</b> → Buffer time, parallel tasks</li>
+<li><b>User adoption</b> → Backward compatibility, migration guides</li>
+</ul>
+<hr  />
+<h1><a class="anchor" id="autotoc_md119"></a>
+📈 LONG-TERM VISION (2026+)</h1>
+<h2><a class="anchor" id="autotoc_md120"></a>
+v4.0 - IoT Platform:</h2>
+<ul>
+<li>Multi-tenant architecture</li>
+<li>Edge AI/ML capabilities</li>
+<li>Kubernetes deployment</li>
+<li>Global sensor network</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md121"></a>
+Market positioning:</h2>
+<ul>
+<li>Enterprise IoT solution</li>
+<li>Agricultural tech platform</li>
+<li>Environmental monitoring system</li>
+</ul>
+<hr  />
+<p><b>Документ поддерживается:</b> Development Team <br  />
+ <b>Последнее обновление:</b> Июнь 2025 <br  />
+ <b>Следующий review:</b> Каждые 4 недели </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

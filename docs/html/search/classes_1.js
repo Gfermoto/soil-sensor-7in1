@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['sensordata_0',['SensorData',['../struct_sensor_data.html',1,'']]]
+  ['sensorcache_0',['SensorCache',['../struct_sensor_cache.html',1,'']]],
+  ['sensordata_1',['SensorData',['../struct_sensor_data.html',1,'']]]
 ];

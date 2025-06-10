@@ -1,12 +1,28 @@
 var modbus__sensor_8cpp =
 [
+    [ "DE_PIN", "modbus__sensor_8cpp.html#adbd2ea2266042c0b767e0fdac0c55d64", null ],
+    [ "RE_PIN", "modbus__sensor_8cpp.html#a8d41caa64e735985723398ee0065e1f4", null ],
+    [ "calculateCRC16", "modbus__sensor_8cpp.html#a0e1b4f2813957877a5ac0ab90787f0e5", null ],
+    [ "changeDeviceAddress", "modbus__sensor_8cpp.html#aac87bc87eaf0bc01ebda5fe1bb44c88b", null ],
     [ "convertRegisterToFloat", "modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac", null ],
+    [ "debugPrintBuffer", "modbus__sensor_8cpp.html#a2f7382dca34cb8bc9e1c80da26865a0a", null ],
+    [ "getCachedData", "modbus__sensor_8cpp.html#a8eb8daa78bacfc8a930012162882aa9c", null ],
     [ "postTransmission", "modbus__sensor_8cpp.html#a33b535e84f654e423bb627b25b7b3759", null ],
     [ "preTransmission", "modbus__sensor_8cpp.html#a1c43d8a4afead0d0df29635242290377", null ],
-    [ "readSensorData", "modbus__sensor_8cpp.html#a90317d8e6573d5ce69fcb7e55adf236e", null ],
+    [ "printModbusError", "modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116", null ],
+    [ "readErrorStatus", "modbus__sensor_8cpp.html#a8b6b2ad640c9580fa45d8cbad28adf53", null ],
+    [ "readFirmwareVersion", "modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8", null ],
+    [ "readSensorData", "modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2", null ],
     [ "realSensorTask", "modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4", null ],
     [ "setupModbus", "modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520", null ],
     [ "startRealSensorTask", "modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df", null ],
+    [ "testMAX485", "modbus__sensor_8cpp.html#a1449e844a2772a9b0fe1f3927ab14ad7", null ],
+    [ "validateSensorData", "modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67", null ],
+    [ "CACHE_TIMEOUT", "modbus__sensor_8cpp.html#abd184d23ed906bffd898e7a94be87d17", null ],
+    [ "MAX_RETRIES", "modbus__sensor_8cpp.html#a58fff818a2313afe4a13970541fa17fa", null ],
     [ "modbus", "modbus__sensor_8cpp.html#a9f7da14569cf54a5633c163642e97dff", null ],
-    [ "sensorData", "modbus__sensor_8cpp.html#ae6ed671f3036da58a93991fca2a2329c", null ]
+    [ "RETRY_DELAY", "modbus__sensor_8cpp.html#af329fc560fd32e4dcab1e2b0aa0d59c1", null ],
+    [ "sensorCache", "modbus__sensor_8cpp.html#a5a90cc33c11a27aac5f56dcaac387c0d", null ],
+    [ "sensorData", "modbus__sensor_8cpp.html#ae6ed671f3036da58a93991fca2a2329c", null ],
+    [ "sensorLastError", "modbus__sensor_8cpp.html#acc5319275c2df675d59ff17f862d3e44", null ]
 ];

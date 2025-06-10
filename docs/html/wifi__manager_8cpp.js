@@ -2,6 +2,7 @@ var wifi__manager_8cpp =
 [
     [ "checkResetButton", "wifi__manager_8cpp.html#ac90eb7c31515447a075eee8f395ac02f", null ],
     [ "getApSsid", "wifi__manager_8cpp.html#af857f35623b29612a3b4cc45dd6fff23", null ],
+    [ "handleRoot", "wifi__manager_8cpp.html#a8427468f39342a1990703e9f5ce7fd29", null ],
     [ "handleStatus", "wifi__manager_8cpp.html#a1e811785ccbaccda2e3e3457971720cb", null ],
     [ "handleWiFi", "wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2", null ],
     [ "navHtml", "wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9", null ],
@@ -16,6 +17,7 @@ var wifi__manager_8cpp =
     [ "startSTAMode", "wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f", null ],
     [ "updateLed", "wifi__manager_8cpp.html#aa43f68b6c12da400ebbda9664b030944", null ],
     [ "webServer", "wifi__manager_8cpp.html#ae4f1791fd59f61a92af54c63a79ac112", null ],
+    [ "adaptiveCss", "wifi__manager_8cpp.html#a6b4d082c4bace675ed22fd33151f212f", null ],
     [ "currentWiFiMode", "wifi__manager_8cpp.html#afd1ea40c3b78acfa354aed81da58e582", null ],
     [ "dnsServer", "wifi__manager_8cpp.html#a52c5394c861b62875409604eedc0fcd7", null ],
     [ "ledBlinkInterval", "wifi__manager_8cpp.html#a7fe2f065663c24ba1c4a493987b013e2", null ],
@@ -23,5 +25,6 @@ var wifi__manager_8cpp =
     [ "ledLastToggle", "wifi__manager_8cpp.html#ad9c7d4c7f119b4c410067ff6563f156c", null ],
     [ "ledState", "wifi__manager_8cpp.html#ad43bbd53ee15610b1c213b0b6412d175", null ],
     [ "timeClient", "wifi__manager_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f", null ],
+    [ "toastHtml", "wifi__manager_8cpp.html#a0a9399093e7edb907e46ae01afa41d40", null ],
     [ "wifiConnected", "wifi__manager_8cpp.html#ac542c876ea54085aa0173a9cd1e3251c", null ]
 ];

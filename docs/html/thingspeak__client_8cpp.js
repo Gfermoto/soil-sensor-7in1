@@ -4,5 +4,7 @@ var thingspeak__client_8cpp =
     [ "setupThingSpeak", "thingspeak__client_8cpp.html#af8e20ef000ee56a6aedcc07d88f38f90", null ],
     [ "lastTsPublish", "thingspeak__client_8cpp.html#a2c15cb6759eb866fba42b090ffaf0d2a", null ],
     [ "THINGSPEAK_API_URL", "thingspeak__client_8cpp.html#af914716ab642c858bca6b31ae976d15e", null ],
+    [ "thingSpeakLastError", "thingspeak__client_8cpp.html#a9853ad4b20dc0095aa7efa9058a66e40", null ],
+    [ "thingSpeakLastPublish", "thingspeak__client_8cpp.html#ae7ba7f8645edaafa8d51adc34cfe01fc", null ],
     [ "timeClient", "thingspeak__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f", null ]
 ];
