@@ -15,6 +15,7 @@
 #include "config.h"
 #include "logger.h"
 #include "jxct_ui_system.h"  // 🎨 Единая система дизайна v2.3.1
+#include "analytics_system.h"  // v2.4.0: Система аналитики
 
 // Глобальные переменные
 bool wifiConnected = false;
@@ -128,6 +129,7 @@ String navHtml()
     {
         html += "<a href='/readings'>" UI_ICON_DATA " Показания</a>";
         html += "<a href='/intervals'>" UI_ICON_INTERVALS " Интервалы</a>";  // v2.3.0
+        html += "<a href='/analytics'>📈 Аналитика</a>";  // v2.4.0: Новая вкладка аналитики
         html += "<a href='/config_manager'>" UI_ICON_FOLDER " Конфигурация</a>";  // v2.3.0
         html += "<a href='/service'>" UI_ICON_SERVICE " Сервис</a>";
     }
@@ -1139,6 +1141,56 @@ void setupWebServer()
          html += "</div></body></html>";
          
          webServer.send(200, "text/html; charset=utf-8", html);
+     });
+     
+     // v2.4.0: Обработчики системы аналитики
+     webServer.on("/analytics", HTTP_GET, []() {
+         if (currentWiFiMode == WiFiMode::AP) {
+             String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>📊 Аналитика</title>";
+             html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+             html += "<h1>📊 Аналитика</h1>";
+             html += "<div class='msg msg-error'>" UI_ICON_ERROR " Недоступно в режиме точки доступа</div></div></body></html>";
+             webServer.send(200, "text/html; charset=utf-8", html);
+             return;
+         }
+         
+         // Проверка авторизации
+         if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
+             sendAuthForm();
+             return;
+         }
+         
+         handleAnalyticsPage();
+     });
+     
+     webServer.on("/api/analytics", HTTP_GET, []() {
+         if (currentWiFiMode == WiFiMode::AP) {
+             webServer.send(403, "application/json", "{\"error\":\"AP mode\"}");
+             return;
+         }
+         
+         // Проверка авторизации для API
+         if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
+             webServer.send(401, "application/json", "{\"error\":\"Unauthorized\"}");
+             return;
+         }
+         
+         handleAnalyticsAPI();
+     });
+     
+     webServer.on("/api/analytics/export", HTTP_GET, []() {
+         if (currentWiFiMode == WiFiMode::AP) {
+             webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
+             return;
+         }
+         
+         // Проверка авторизации
+         if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
+             webServer.send(401, "text/plain", "Unauthorized");
+             return;
+         }
+         
+         handleAnalyticsExport();
      });
      
     webServer.begin();
