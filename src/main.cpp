@@ -82,7 +82,7 @@ void setup()
     Serial.begin(115200);
 
     // Красивый баннер запуска
-    logPrintBanner("JXCT 7-в-1 Датчик v2.0 - Запуск системы");
+    logPrintBanner("JXCT 7-в-1 Датчик v2.4.1 - Запуск системы");
 
     logPrintHeader("ИНИЦИАЛИЗАЦИЯ СИСТЕМЫ", COLOR_CYAN);
 

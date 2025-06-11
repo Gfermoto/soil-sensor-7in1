@@ -857,7 +857,7 @@ void setupWebServer()
         html += "<title>" UI_ICON_INTERVALS " Интервалы и фильтры JXCT</title>";
         html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
         html += navHtml();
-        html += "<h1>" UI_ICON_INTERVALS " Настройка интервалов и фильтров v2.3.0</h1>";
+        html += "<h1>" UI_ICON_INTERVALS " Настройка интервалов и фильтров</h1>";
         html += "<form action='/save_intervals' method='post'>";
         
         // Скрытое поле для авторизации
@@ -1040,7 +1040,7 @@ void setupWebServer()
          
          // Создаем JSON с конфигурацией
          String json = "{";
-         json += "\"version\":\"2.3.0\",";
+         json += "\"version\":\"2.4.1\",";
          json += "\"exported\":\"" + String(millis()) + "\",";
          json += "\"wifi\":{";
          json += "\"ssid\":\"" + String(config.ssid) + "\",";
@@ -1111,7 +1111,7 @@ void setupWebServer()
          html += "<title>" UI_ICON_FOLDER " Управление конфигурацией JXCT</title>";
          html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
          html += navHtml();
-         html += "<h1>" UI_ICON_FOLDER " Управление конфигурацией v2.3.0</h1>";
+         html += "<h1>" UI_ICON_FOLDER " Управление конфигурацией</h1>";
          
          html += "<div class='section'><h2>📤 Экспорт настроек</h2>";
          html += "<p>Скачайте текущие настройки устройства в JSON файл для резервного копирования.</p>";
