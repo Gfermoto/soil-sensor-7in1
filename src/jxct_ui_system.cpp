@@ -51,7 +51,7 @@ h2 {
 
 .nav a {
     display: inline-block;
-    margin-right: 20px;
+    margin-right: 10px;
     text-decoration: none;
     color: #4CAF50;
     font-weight: 600;

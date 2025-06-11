@@ -5,6 +5,9 @@
 #include <math.h>
 #include <WebServer.h>  // Для веб-интерфейса аналитики
 
+// Внешние объявления
+extern String navHtml();
+
 // Глобальная система аналитики
 AnalyticsSystem analytics;
 
@@ -395,14 +398,7 @@ void handleAnalyticsPage()
     html += "</head><body><div class='container'>";
     
     // Навигация
-    html += "<div class='nav'>";
-    html += "<a href='/'>⚙️ Главная</a>";
-    html += "<a href='/readings'>📊 Показания</a>";
-    html += "<a href='/intervals'>⏱️ Интервалы</a>";
-    html += "<a href='/analytics'>📈 Аналитика</a>";
-    html += "<a href='/config_manager'>📁 Конфигурация</a>";
-    html += "<a href='/service'>🔧 Сервис</a>";
-    html += "</div>";
+    html += navHtml();
     
     html += "<h1>📊 Аналитика</h1>";
     

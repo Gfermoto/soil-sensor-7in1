@@ -530,13 +530,13 @@ void setupWebServer()
                      html += navHtml();
                      html += "<h1>" UI_ICON_DATA " Показания датчика</h1>";
                      html += "<div class='section'><ul>";
-                     html += "<li>Температура: <span id='temp'></span> °C</li>";
-                     html += "<li>Влажность: <span id='hum'></span> %</li>";
-                     html += "<li>EC: <span id='ec'></span> µS/cm</li>";
-                     html += "<li>pH: <span id='ph'></span></li>";
-                     html += "<li>Азот: <span id='n'></span> мг/кг</li>";
-                     html += "<li>Фосфор: <span id='p'></span> мг/кг</li>";
-                     html += "<li>Калий: <span id='k'></span> мг/кг</li>";
+                     html += "<li>🌡️ Температура: <span id='temp'></span> °C</li>";
+                     html += "<li>💧 Влажность: <span id='hum'></span> %</li>";
+                     html += "<li>⚡ EC: <span id='ec'></span> µS/cm</li>";
+                     html += "<li>⚗️ pH: <span id='ph'></span></li>";
+                     html += "<li>🔴 Азот (N): <span id='n'></span> мг/кг</li>";
+                     html += "<li>🟡 Фосфор (P): <span id='p'></span> мг/кг</li>";
+                     html += "<li>🔵 Калий (K): <span id='k'></span> мг/кг</li>";
                      html += "</ul></div>";
                      html +=
                          "<div style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='/api/sensor' "
