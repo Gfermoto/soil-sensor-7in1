@@ -1,6 +1,7 @@
 #include "analytics_system.h"
 #include "debug.h"
 #include "logger.h"
+#include "jxct_config_vars.h"  // v2.4.1: Для доступа к Config
 #include <math.h>
 #include <WebServer.h>  // Для веб-интерфейса аналитики
 
@@ -38,18 +39,27 @@ void addDataPointToAnalytics(const SensorData& data)
         return;
     }
     
-    // Добавляем точку данных в circular buffer
-    AnalyticsDataPoint& point = analytics.buffer[analytics.head_index];
+    // v2.4.1: Создаем временную точку для проверки фильтром выбросов
+    AnalyticsDataPoint temp_point;
+    temp_point.temperature = data.temperature;
+    temp_point.humidity = data.humidity;
+    temp_point.ec = data.ec;
+    temp_point.ph = data.ph;
+    temp_point.nitrogen = data.nitrogen;
+    temp_point.phosphorus = data.phosphorus;
+    temp_point.potassium = data.potassium;
+    temp_point.timestamp = millis();
+    temp_point.valid = true;
     
-    point.temperature = data.temperature;
-    point.humidity = data.humidity;
-    point.ec = data.ec;
-    point.ph = data.ph;
-    point.nitrogen = data.nitrogen;
-    point.phosphorus = data.phosphorus;
-    point.potassium = data.potassium;
-    point.timestamp = millis();
-    point.valid = true;
+    // v2.4.1: Применяем фильтр выбросов
+    if (!applyOutlierFilter(&temp_point)) {
+        DEBUG_PRINTLN("[ANALYTICS] Точка отклонена фильтром выбросов");
+        return;  // Не добавляем выброс в буфер
+    }
+    
+    // Добавляем проверенную точку в circular buffer
+    AnalyticsDataPoint& point = analytics.buffer[analytics.head_index];
+    point = temp_point;  // Копируем проверенную точку
     
     // Обновляем индексы
     analytics.head_index = (analytics.head_index + 1) % ANALYTICS_BUFFER_SIZE;
@@ -556,5 +566,124 @@ void handleAnalyticsExport()
         // JSON по умолчанию
         webServer.sendHeader("Content-Disposition", "attachment; filename=" + filename + ".json");
         webServer.send(200, "application/json", exportAnalyticsToJSON(period_ms));
+    }
+}
+
+// v2.4.1: Алгоритмы обработки данных
+
+float calculateMean(float* values, int count)
+{
+    if (count <= 0) return 0.0f;
+    
+    float sum = 0.0f;
+    for (int i = 0; i < count; i++) {
+        sum += values[i];
+    }
+    return sum / count;
+}
+
+float calculateMedian(float* values, int count)
+{
+    if (count <= 0) return 0.0f;
+    
+    // Создаем копию массива для сортировки
+    float* sorted = new float[count];
+    for (int i = 0; i < count; i++) {
+        sorted[i] = values[i];
+    }
+    
+    // Простая сортировка пузырьком для небольших массивов
+    for (int i = 0; i < count - 1; i++) {
+        for (int j = 0; j < count - i - 1; j++) {
+            if (sorted[j] > sorted[j + 1]) {
+                float temp = sorted[j];
+                sorted[j] = sorted[j + 1];
+                sorted[j + 1] = temp;
+            }
+        }
+    }
+    
+    float median;
+    if (count % 2 == 0) {
+        // Четное количество элементов - среднее из двух средних
+        median = (sorted[count/2 - 1] + sorted[count/2]) / 2.0f;
+    } else {
+        // Нечетное количество - средний элемент
+        median = sorted[count/2];
+    }
+    
+    delete[] sorted;
+    return median;
+}
+
+float calculateStandardDeviation(float* values, int count, float mean)
+{
+    if (count <= 1) return 0.0f;
+    
+    float sum_sq_diff = 0.0f;
+    for (int i = 0; i < count; i++) {
+        float diff = values[i] - mean;
+        sum_sq_diff += diff * diff;
+    }
+    
+    return sqrt(sum_sq_diff / (count - 1));  // Выборочное стандартное отклонение
+}
+
+bool isOutlier(float value, float mean, float stddev)
+{
+    if (stddev <= 0.0f) return false;  // Если нет вариации, то нет выбросов
+    
+    float z_score = fabs(value - mean) / stddev;
+    return z_score > OUTLIER_SIGMA_THRESHOLD;
+}
+
+bool applyOutlierFilter(AnalyticsDataPoint* point)
+{
+    extern Config config;
+    
+    if (!config.outlierFilterEnabled) {
+        return true;  // Фильтр отключен - принимаем все данные
+    }
+    
+    // Проверяем выбросы по температуре (используем последние 10 точек)
+    const int check_count = 10;
+    if (analytics.count >= check_count) {
+        float temp_values[check_count];
+        int values_collected = 0;
+        
+        // Собираем последние значения температуры
+        for (int i = 0; i < check_count && values_collected < check_count; i++) {
+            int idx = (analytics.head_index - 1 - i + ANALYTICS_BUFFER_SIZE) % ANALYTICS_BUFFER_SIZE;
+            if (analytics.buffer[idx].valid) {
+                temp_values[values_collected] = analytics.buffer[idx].temperature;
+                values_collected++;
+            }
+        }
+        
+        if (values_collected >= 3) {  // Минимум 3 точки для статистики
+            float mean = calculateMean(temp_values, values_collected);
+            float stddev = calculateStandardDeviation(temp_values, values_collected, mean);
+            
+            if (isOutlier(point->temperature, mean, stddev)) {
+                logWarn("Outlier filter: температура %.1f°C отклоняется более чем на %.1fσ", 
+                        point->temperature, OUTLIER_SIGMA_THRESHOLD);
+                return false;  // Отбрасываем выброс
+            }
+        }
+    }
+    
+    return true;  // Точка прошла фильтр или недостаточно данных для анализа
+}
+
+float processValueWithFilter(float* buffer, int count, uint8_t algorithm)
+{
+    if (count <= 0) return 0.0f;
+    
+    switch (algorithm) {
+        case FILTER_ALGORITHM_MEDIAN:
+            return calculateMedian(buffer, count);
+        case FILTER_ALGORITHM_MEAN:
+        default:
+            return calculateMean(buffer, count);
     }
 } 

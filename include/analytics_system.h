@@ -9,6 +9,13 @@
 #define ANALYTICS_STATS_WINDOW_DAY 86400000 // 1 день в миллисекундах  
 #define ANALYTICS_STATS_WINDOW_WEEK 604800000 // 1 неделя в миллисекундах
 
+// v2.4.1: Алгоритмы обработки данных
+#define FILTER_ALGORITHM_MEAN 0     // Среднее арифметическое
+#define FILTER_ALGORITHM_MEDIAN 1   // Медианное значение
+
+// v2.4.1: Фильтр выбросов
+#define OUTLIER_SIGMA_THRESHOLD 2.0f // Порог в сигмах для определения выбросов
+
 // Структура для одного измерения в историческом буфере
 struct AnalyticsDataPoint
 {
@@ -81,4 +88,12 @@ void clearAnalyticsBuffer();
 // Веб-интерфейс аналитики
 void handleAnalyticsPage();
 void handleAnalyticsAPI();
-void handleAnalyticsExport(); 
+void handleAnalyticsExport();
+
+// v2.4.1: Алгоритмы обработки данных
+float calculateMedian(float* values, int count);
+float calculateMean(float* values, int count);
+bool isOutlier(float value, float mean, float stddev);
+float calculateStandardDeviation(float* values, int count, float mean);
+bool applyOutlierFilter(AnalyticsDataPoint* point);
+float processValueWithFilter(float* buffer, int count, uint8_t algorithm); 

@@ -910,7 +910,22 @@ void setupWebServer()
         
         html += "<div class='form-group'><label for='force_cycles'>Принудительная публикация (циклов):</label>";
         html += "<input type='number' id='force_cycles' name='force_cycles' min='5' max='50' value='" + String(config.forcePublishCycles) + "' required>";
-        html += "<div class='help'>5-50 циклов. Публикация каждые N циклов даже без изменений</div></div></div>";
+        html += "<div class='help'>5-50 циклов. Публикация каждые N циклов даже без изменений</div></div>";
+        
+        // v2.4.1: Новые настройки алгоритма и фильтра выбросов
+        html += "<div class='form-group'><label for='filter_algo'>Алгоритм обработки данных:</label>";
+        html += "<select id='filter_algo' name='filter_algo' required>";
+        html += "<option value='0'" + String(config.filterAlgorithm == 0 ? " selected" : "") + ">Среднее арифметическое</option>";
+        html += "<option value='1'" + String(config.filterAlgorithm == 1 ? " selected" : "") + ">Медианное значение</option>";
+        html += "</select>";
+        html += "<div class='help'>Среднее - быстрее, медиана - устойчивее к выбросам</div></div>";
+        
+        html += "<div class='form-group'><label for='outlier_filter'>Фильтр выбросов >2σ:</label>";
+        html += "<select id='outlier_filter' name='outlier_filter' required>";
+        html += "<option value='0'" + String(config.outlierFilterEnabled == 0 ? " selected" : "") + ">Отключен</option>";
+        html += "<option value='1'" + String(config.outlierFilterEnabled == 1 ? " selected" : "") + ">Включен</option>";
+        html += "</select>";
+        html += "<div class='help'>Автоматически отбрасывает измерения, отклоняющиеся более чем на 2 сигма</div></div></div>";
         
         html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить настройки");
         html += generateButton(ButtonType::SECONDARY, UI_ICON_RESET, "Сбросить к умолчанию", "location.href='/reset_intervals'");
@@ -948,6 +963,10 @@ void setupWebServer()
         // Сохраняем настройки скользящего среднего
         config.movingAverageWindow = webServer.arg("avg_window").toInt();
         config.forcePublishCycles = webServer.arg("force_cycles").toInt();
+        
+        // v2.4.1: Сохраняем новые настройки алгоритма и фильтра выбросов
+        config.filterAlgorithm = webServer.arg("filter_algo").toInt();
+        config.outlierFilterEnabled = webServer.arg("outlier_filter").toInt();
         
         // Сохраняем в NVS
         saveConfig();

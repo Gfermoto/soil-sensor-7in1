@@ -476,16 +476,42 @@ float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
 {
     if (filled == 0) return 0.0;
     
-    float sum = 0.0;
-    uint8_t count = 0;
-    
     // Берем последние filled элементов (или window_size, если filled >= window_size)
     uint8_t elements_to_use = (filled < window_size) ? filled : window_size;
     
-    for (uint8_t i = 0; i < elements_to_use; i++) {
-        sum += buffer[i];
-        count++;
-    }
+    // v2.4.1: Используем настраиваемый алгоритм (среднее или медиана)
+    extern Config config;
     
-    return count > 0 ? (sum / count) : 0.0;
+    if (config.filterAlgorithm == 1) {  // FILTER_ALGORITHM_MEDIAN
+        // Создаем временный массив для медианы
+        float temp_values[15];  // Максимальный размер окна
+        for (uint8_t i = 0; i < elements_to_use; i++) {
+            temp_values[i] = buffer[i];
+        }
+        
+        // Простая сортировка для медианы
+        for (uint8_t i = 0; i < elements_to_use - 1; i++) {
+            for (uint8_t j = 0; j < elements_to_use - i - 1; j++) {
+                if (temp_values[j] > temp_values[j + 1]) {
+                    float temp = temp_values[j];
+                    temp_values[j] = temp_values[j + 1];
+                    temp_values[j + 1] = temp;
+                }
+            }
+        }
+        
+        // Возвращаем медиану
+        if (elements_to_use % 2 == 0) {
+            return (temp_values[elements_to_use/2 - 1] + temp_values[elements_to_use/2]) / 2.0f;
+        } else {
+            return temp_values[elements_to_use/2];
+        }
+    } else {
+        // FILTER_ALGORITHM_MEAN (по умолчанию)
+        float sum = 0.0;
+        for (uint8_t i = 0; i < elements_to_use; i++) {
+            sum += buffer[i];
+        }
+        return sum / elements_to_use;
+    }
 }
