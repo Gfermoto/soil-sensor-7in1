@@ -554,7 +554,7 @@ void setupWebServer()
                          "document.getElementById('k').textContent=d.potassium;"
                          "});"
                          "}"
-                         "setInterval(updateSensor,2000);"
+                         "setInterval(updateSensor,3000);"
                          "updateSensor();"
                          "</script>";
                      html += "</div>" + String(getToastHTML()) + "</body></html>";

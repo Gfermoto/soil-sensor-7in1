@@ -12,7 +12,7 @@
 #define SENSOR_READ_INTERVAL 30000     // 30 сек (было 5 сек) - экономия CPU
 #define MQTT_PUBLISH_INTERVAL 300000   // 5 мин (было 3 сек) - экономия трафика 
 #define THINGSPEAK_INTERVAL 900000     // 15 мин (было 15 сек) - соблюдение rate limit
-#define WEB_UPDATE_INTERVAL 10000      // 10 сек (было 2 сек) - разумная частота UI
+#define WEB_UPDATE_INTERVAL 5000       // 5 сек (было 10 сек) - улучшенная отзывчивость
 
 // ДЕЛЬТА-ФИЛЬТР v2.2.1: Пороговые значения для публикации
 #define DELTA_TEMPERATURE 0.5f         // ±0.5°C

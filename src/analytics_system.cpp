@@ -394,7 +394,7 @@ void handleAnalyticsPage()
     html += ".chart-container{margin:20px 0;padding:15px;background:#fafafa;border-radius:5px}";
     html += "@media(max-width:768px){.stats-grid{grid-template-columns:1fr}.container{padding:10px;margin:5px}}";
     html += "</style>";
-    html += "<script src='https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js'></script>";
+    html += "<script src='https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js' async></script>";
     html += "</head><body><div class='container'>";
     
     // Навигация
@@ -478,11 +478,16 @@ void handleAnalyticsPage()
         html += "<script>";
         html += "async function loadChart() {";
         html += "  try {";
+        html += "    if (typeof Chart === 'undefined') {";
+        html += "      setTimeout(loadChart, 100);";
+        html += "      return;";
+        html += "    }";
         html += "    const response = await fetch('/api/analytics?period=hour');";
         html += "    const data = await response.json();";
-        html += "    if (data.raw_data && data.raw_data.length > 0) {";
+        html += "    console.log('Analytics data:', data);";
+        html += "    if (data.analytics_export && data.analytics_export.raw_data && data.analytics_export.raw_data.length > 0) {";
         html += "      const ctx = document.getElementById('tempChart').getContext('2d');";
-        html += "      const chartData = data.raw_data.slice(-20);";  // Последние 20 точек
+        html += "      const chartData = data.analytics_export.raw_data.slice(-20);";  // Последние 20 точек
         html += "      new Chart(ctx, {";
         html += "        type: 'line',";
         html += "        data: {";
@@ -502,9 +507,12 @@ void handleAnalyticsPage()
         html += "          }";
         html += "        }";
         html += "      });";
+        html += "    } else {";
+        html += "      document.getElementById('tempChart').parentElement.innerHTML = '<h3>📈 Недостаточно данных для графика</h3>';";
         html += "    }";
         html += "  } catch (error) {";
         html += "    console.error('Ошибка загрузки данных:', error);";
+        html += "    document.getElementById('tempChart').parentElement.innerHTML = '<h3>📈 Ошибка загрузки данных</h3>';";
         html += "  }";
         html += "}";
         html += "window.onload = loadChart;";
@@ -513,6 +521,10 @@ void handleAnalyticsPage()
     
     html += "</div></body></html>";
     
+    // Добавляем заголовки для кэширования
+    webServer.sendHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    webServer.sendHeader("Pragma", "no-cache");
+    webServer.sendHeader("Expires", "0");
     webServer.send(200, "text/html; charset=utf-8", html);
 }
 
