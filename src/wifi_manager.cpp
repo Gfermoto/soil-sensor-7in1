@@ -14,6 +14,7 @@
 #include "thingspeak_client.h"
 #include "config.h"
 #include "logger.h"
+#include "jxct_ui_system.h"  // 🎨 Единая система дизайна v2.3.1
 
 // Глобальные переменные
 bool wifiConnected = false;
@@ -29,19 +30,8 @@ bool ledFastBlink = false;
 
 extern NTPClient* timeClient;
 
-// toastHtml для всех страниц
-String toastHtml =
-    "<div id='toast' class='toast'></div><script>function showToast(msg,type){var "
-    "t=document.getElementById('toast');t.innerHTML=msg;t.className='toast "
-    "show';t.style.background=(type==='error')?'#F44336':(type==='success')?'#4CAF50':'#333';setTimeout(function(){t."
-    "className='toast';},3000);}</script>";
-
-// Вставляю media-запросы в каждый <style> на страницах
-String adaptiveCss =
-    "@media (max-width:600px){.container{padding:0 2vw;max-width:100vw}.section,.info-block{padding:10px "
-    "4vw}.form-group "
-    "label{font-size:15px}input,button{font-size:17px}button{width:100%;margin-bottom:10px;padding:14px "
-    "0}.nav{font-size:16px}.msg{font-size:16px}.status-dot{width:16px;height:16px}}";
+// Удалены старые глобальные переменные toastHtml и adaptiveCss
+// Теперь используется единая система дизайна из jxct_ui_system.h
 
 // Объявление функций
 void handleRoot();
@@ -75,23 +65,17 @@ bool checkWebAuth() {
 // Отправка формы авторизации
 void sendAuthForm(const String& message = "") {
     String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
-    html += "<title>Авторизация JXCT</title>";
-    html += "<style>body{font-family:Arial,sans-serif;margin:0;padding:20px;background:#f5f5f5}";
-    html += ".container{max-width:400px;margin:50px auto;background:white;padding:30px;border-radius:10px;box-shadow:0 4px 6px rgba(0,0,0,0.1)}";
-    html += "h1{text-align:center;color:#333;margin-bottom:30px}";
-    html += ".form-group{margin-bottom:20px}label{display:block;margin-bottom:8px;font-weight:bold}";
-    html += "input[type=password]{width:100%;padding:12px;border:1px solid #ddd;border-radius:5px;box-sizing:border-box;font-size:16px}";
-    html += "button{width:100%;background:#4CAF50;color:white;padding:12px;border:none;border-radius:5px;cursor:pointer;font-size:16px}";
-    html += "button:hover{background:#45a049}.msg{padding:10px;margin-bottom:15px;border-radius:5px;text-align:center}";
-    html += ".msg-error{background:#f44336;color:white}</style></head><body>";
-    html += "<div class='container'><h1>🔐 Авторизация</h1>";
+    html += "<title>" UI_ICON_LOCK " Авторизация JXCT</title>";
+    html += "<style>" + String(getUnifiedCSS()) + "</style></head><body>";
+    html += "<div class='container'><h1>" UI_ICON_LOCK " Авторизация</h1>";
     if (message.length() > 0) {
-        html += "<div class='msg msg-error'>" + message + "</div>";
+        html += "<div class='msg msg-error'>" UI_ICON_ERROR " " + message + "</div>";
     }
     html += "<form method='post'>";
     html += "<div class='form-group'><label for='auth_password'>Пароль:</label>";
     html += "<input type='password' id='auth_password' name='auth_password' required autofocus></div>";
-    html += "<button type='submit'>Войти</button></form></div></body></html>";
+    html += generateButton(ButtonType::PRIMARY, UI_ICON_LOCK, "Войти");
+    html += "</form></div>" + String(getToastHTML()) + "</body></html>";
     webServer.send(401, "text/html; charset=utf-8", html);
 }
 
@@ -139,13 +123,13 @@ void updateLed()
 String navHtml()
 {
     String html = "<div class='nav'>";
-    html += "<a href='/'>Настройки</a>";
+    html += "<a href='/'>" UI_ICON_CONFIG " Настройки</a>";
     if (currentWiFiMode == WiFiMode::STA)
     {
-        html += "<a href='/readings'>Показания</a>";
-        html += "<a href='/intervals'>⚙️ Интервалы</a>";  // v2.3.0
-        html += "<a href='/config_manager'>📁 Конфигурация</a>";  // v2.3.0
-        html += "<a href='/service'>Сервис</a>";
+        html += "<a href='/readings'>" UI_ICON_DATA " Показания</a>";
+        html += "<a href='/intervals'>" UI_ICON_INTERVALS " Интервалы</a>";  // v2.3.0
+        html += "<a href='/config_manager'>" UI_ICON_FOLDER " Конфигурация</a>";  // v2.3.0
+        html += "<a href='/service'>" UI_ICON_SERVICE " Сервис</a>";
     }
     html += "</div>";
     return html;
@@ -530,24 +514,19 @@ void setupWebServer()
                  {
                      if (currentWiFiMode == WiFiMode::AP)
                      {
-                         String html =
-                             "<!DOCTYPE html><html><head><meta "
-                             "charset='UTF-8'><title>Показания</title></head><body><h1>Показания</h1><div class='msg "
-                             "msg-error'>Недоступно в режиме точки доступа</div></body></html>";
+                         String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'>";
+                         html += "<title>" UI_ICON_DATA " Показания</title>";
+                         html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+                         html += "<h1>" UI_ICON_DATA " Показания</h1>";
+                         html += "<div class='msg msg-error'>" UI_ICON_ERROR " Недоступно в режиме точки доступа</div></div></body></html>";
                          webServer.send(200, "text/html; charset=utf-8", html);
                          return;
                      }
-                     String html =
-                         "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' "
-                         "content='width=device-width, initial-scale=1.0'><title>Показания "
-                         "датчика</"
-                         "title><style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:"
-                         "600px;margin:0 auto}h1{color:#333}.nav{margin-bottom:20px}.nav "
-                         "a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}.section{margin-"
-                         "bottom:20px;padding:15px;border:1px solid #ddd;border-radius:5px}" +
-                         adaptiveCss + "</style></head><body><div class='container'>";
+                     String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+                     html += "<title>" UI_ICON_DATA " Показания датчика JXCT</title>";
+                     html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
                      html += navHtml();
-                     html += "<h1>Показания датчика</h1>";
+                     html += "<h1>" UI_ICON_DATA " Показания датчика</h1>";
                      html += "<div class='section'><ul>";
                      html += "<li>Температура: <span id='temp'></span> °C</li>";
                      html += "<li>Влажность: <span id='hum'></span> %</li>";
@@ -576,8 +555,7 @@ void setupWebServer()
                          "setInterval(updateSensor,2000);"
                          "updateSensor();"
                          "</script>";
-                     html += "</div></body></html>";
-                     html += toastHtml;
+                     html += "</div>" + String(getToastHTML()) + "</body></html>";
                      webServer.send(200, "text/html; charset=utf-8", html);
                  });
 
@@ -737,39 +715,30 @@ void setupWebServer()
         {
             if (currentWiFiMode == WiFiMode::AP)
             {
-                String html =
-                    "<!DOCTYPE html><html><head><meta "
-                    "charset='UTF-8'><title>Сервис</title></head><body><h1>Сервис</h1><div class='msg "
-                    "msg-error'>Недоступно в режиме точки доступа</div></body></html>";
+                            String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'>";
+            html += "<title>" UI_ICON_SERVICE " Сервис</title>";
+            html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+            html += "<h1>" UI_ICON_SERVICE " Сервис</h1>";
+            html += "<div class='msg msg-error'>" UI_ICON_ERROR " Недоступно в режиме точки доступа</div></div></body></html>";
                 webServer.send(200, "text/html; charset=utf-8", html);
                 return;
             }
-            String html =
-                "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, "
-                "initial-scale=1.0'><title>Сервис</"
-                "title><style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:600px;"
-                "margin:0 auto}h1{color:#333}.nav{margin-bottom:20px}.nav "
-                "a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}button{background:#4CAF50;"
-                "color:white;padding:10px "
-                "15px;border:none;cursor:pointer;margin-right:10px}.info-block{margin-top:20px;padding:10px "
-                "15px;background:#f7f7f7;border:1px solid "
-                "#ddd;border-radius:5px}.status-dot{display:inline-block;width:12px;height:12px;border-radius:50%;"
-                "margin-right:6px;vertical-align:middle}.dot-ok{background:#4CAF50}.dot-warn{background:#FFC107}.dot-"
-                "err{background:#F44336}.dot-off{background:#bbb}" +
-                adaptiveCss + "</style></head><body><div class='container'>";
+            String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+            html += "<title>" UI_ICON_SERVICE " Сервис JXCT</title>";
+            html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
             html += navHtml();
-            html += "<h1>Сервис</h1>";
+            html += "<h1>" UI_ICON_SERVICE " Сервис</h1>";
             html += "<div class='info-block' id='status-block'>Загрузка статусов...</div>";
             html += "<div class='info-block'><b>Производитель:</b> " + String(DEVICE_MANUFACTURER) +
                     "<br><b>Модель:</b> " + String(DEVICE_MODEL) + "<br><b>Версия:</b> " + String(DEVICE_SW_VERSION) +
                     "</div>";
-            html +=
-                "<div class='section' style='margin-top:20px;'><form method='post' action='/reset' "
-                "style='margin-bottom:10px'><button type='submit'>Сбросить настройки</button></form>";
-            html +=
-                "<form method='post' action='/reboot' style='margin-bottom:10px'><button "
-                "type='submit'>Перезагрузить</button></form>";
-            html += "<form method='post' action='/ota'><button type='submit'>OTA (заглушка)</button></form></div>";
+            html += "<div class='section' style='margin-top:20px;'>";
+            html += "<form method='post' action='/reset' style='margin-bottom:10px'>";
+            html += generateButton(ButtonType::DANGER, UI_ICON_RESET, "Сбросить настройки") + "</form>";
+            html += "<form method='post' action='/reboot' style='margin-bottom:10px'>";
+            html += generateButton(ButtonType::SECONDARY, "🔄", "Перезагрузить") + "</form>";
+            html += "<form method='post' action='/ota'>";
+            html += generateButton(ButtonType::OUTLINE, "🚀", "OTA (заглушка)") + "</form></div>";
             html +=
                 "<div class='section' style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a "
                 "href='/service_status' target='_blank'>/service_status</a> (JSON, статусы сервисов) | <a "
@@ -805,8 +774,7 @@ void setupWebServer()
             html += "document.getElementById('status-block').innerHTML=html;";
             html += "});}setInterval(updateStatus," + String(config.webUpdateInterval) + ");updateStatus();";  // НАСТРАИВАЕМО v2.3.0
             html += "</script>";
-            html += "</div></body></html>";
-            html += toastHtml;
+            html += "</div>" + String(getToastHTML()) + "</body></html>";
             webServer.send(200, "text/html; charset=utf-8", html);
         });
 
@@ -869,7 +837,10 @@ void setupWebServer()
     // v2.3.0: Новая страница настроек интервалов и фильтров
     webServer.on("/intervals", HTTP_GET, []() {
         if (currentWiFiMode == WiFiMode::AP) {
-            String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Интервалы</title></head><body><h1>Интервалы</h1><div class='msg msg-error'>Недоступно в режиме точки доступа</div></body></html>";
+            String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>" UI_ICON_INTERVALS " Интервалы</title>";
+        html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+        html += "<h1>" UI_ICON_INTERVALS " Интервалы</h1>";
+        html += "<div class='msg msg-error'>" UI_ICON_ERROR " Недоступно в режиме точки доступа</div></div></body></html>";
             webServer.send(200, "text/html; charset=utf-8", html);
             return;
         }
@@ -880,11 +851,11 @@ void setupWebServer()
             return;
         }
         
-        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Интервалы и фильтры</title>";
-        html += "<style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1{color:#333}.form-group{margin-bottom:15px}label{display:block;margin-bottom:5px}input[type=number]{width:100%;padding:8px;box-sizing:border-box}button{background:#4CAF50;color:white;padding:10px 15px;border:none;cursor:pointer}button:hover{background:#45a049}.section{margin-bottom:20px;padding:15px;border:1px solid #ddd;border-radius:5px}.nav{margin-bottom:20px}.nav a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}.help{color:#666;font-size:12px;margin-top:5px}</style>";
-        html += "</head><body><div class='container'>";
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+        html += "<title>" UI_ICON_INTERVALS " Интервалы и фильтры JXCT</title>";
+        html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
         html += navHtml();
-        html += "<h1>⚙️ Настройка интервалов и фильтров v2.3.0</h1>";
+        html += "<h1>" UI_ICON_INTERVALS " Настройка интервалов и фильтров v2.3.1</h1>";
         html += "<form action='/save_intervals' method='post'>";
         
         // Скрытое поле для авторизации
@@ -939,9 +910,9 @@ void setupWebServer()
         html += "<input type='number' id='force_cycles' name='force_cycles' min='5' max='50' value='" + String(config.forcePublishCycles) + "' required>";
         html += "<div class='help'>5-50 циклов. Публикация каждые N циклов даже без изменений</div></div></div>";
         
-        html += "<button type='submit'>💾 Сохранить настройки</button>";
-        html += "<button type='button' onclick=\"location.href='/reset_intervals'\">🔄 Сбросить к умолчанию</button>";
-        html += "</form></div></body></html>";
+        html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить настройки");
+        html += generateButton(ButtonType::SECONDARY, UI_ICON_RESET, "Сбросить к умолчанию", "location.href='/reset_intervals'");
+        html += "</form></div>" + String(getToastHTML()) + "</body></html>";
         
                  webServer.send(200, "text/html; charset=utf-8", html);
      });
@@ -979,14 +950,17 @@ void setupWebServer()
         // Сохраняем в NVS
         saveConfig();
         
-        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='3;url=/intervals'><title>Настройки сохранены</title></head>";
-        html += "<body style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'>";
-        html += "<h2>✅ Настройки интервалов сохранены!</h2>";
-        html += "<p>Новые настройки вступят в силу сразу.<br>";
-        html += "Датчик: " + String(config.sensorReadInterval/1000) + " сек, ";
-        html += "MQTT: " + String(config.mqttPublishInterval/60000) + " мин, ";
-        html += "ThingSpeak: " + String(config.thingSpeakInterval/60000) + " мин<br>";
-        html += "Возврат к настройкам через 3 секунды...</p></body></html>";
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='3;url=/intervals'>";
+        html += "<title>" UI_ICON_SUCCESS " Настройки сохранены</title>";
+        html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+        html += "<h1>" UI_ICON_SUCCESS " Настройки интервалов сохранены!</h1>";
+        html += "<div class='msg msg-success'>" UI_ICON_SUCCESS " Новые настройки вступили в силу</div>";
+        html += "<p><strong>Текущие интервалы:</strong><br>";
+        html += "📊 Датчик: " + String(config.sensorReadInterval/1000) + " сек<br>";
+        html += "📡 MQTT: " + String(config.mqttPublishInterval/60000) + " мин<br>";
+        html += "📈 ThingSpeak: " + String(config.thingSpeakInterval/60000) + " мин</p>";
+        html += "<p><em>Возврат к настройкам через 3 секунды...</em></p>";
+        html += "</div>" + String(getToastHTML()) + "</body></html>";
         webServer.send(200, "text/html; charset=utf-8", html);
     });
     
@@ -1020,10 +994,13 @@ void setupWebServer()
         
         saveConfig();
         
-        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='2;url=/intervals'><title>Сброс настроек</title></head>";
-        html += "<body style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'>";
-        html += "<h2>🔄 Настройки сброшены к умолчанию</h2>";
-        html += "<p>Возврат к настройкам через 2 секунды...</p></body></html>";
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='2;url=/intervals'>";
+        html += "<title>" UI_ICON_RESET " Сброс настроек</title>";
+        html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+        html += "<h1>" UI_ICON_RESET " Настройки сброшены</h1>";
+        html += "<div class='msg msg-success'>" UI_ICON_SUCCESS " Настройки интервалов возвращены к значениям по умолчанию</div>";
+        html += "<p><em>Возврат к настройкам через 2 секунды...</em></p>";
+        html += "</div>" + String(getToastHTML()) + "</body></html>";
         webServer.send(200, "text/html; charset=utf-8", html);
     });
      
@@ -1095,7 +1072,10 @@ void setupWebServer()
      // v2.3.0: Страница управления конфигурацией
      webServer.on("/config_manager", HTTP_GET, []() {
          if (currentWiFiMode == WiFiMode::AP) {
-             String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Управление конфигурацией</title></head><body><h1>Управление конфигурацией</h1><div class='msg msg-error'>Недоступно в режиме точки доступа</div></body></html>";
+             String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>" UI_ICON_FOLDER " Управление конфигурацией</title>";
+         html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+         html += "<h1>" UI_ICON_FOLDER " Управление конфигурацией</h1>";
+         html += "<div class='msg msg-error'>" UI_ICON_ERROR " Недоступно в режиме точки доступа</div></div></body></html>";
              webServer.send(200, "text/html; charset=utf-8", html);
              return;
          }
@@ -1106,11 +1086,11 @@ void setupWebServer()
              return;
          }
          
-         String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Управление конфигурацией</title>";
-         html += "<style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:600px;margin:0 auto}h1{color:#333}.section{margin-bottom:20px;padding:15px;border:1px solid #ddd;border-radius:5px}.nav{margin-bottom:20px}.nav a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}button{background:#4CAF50;color:white;padding:10px 15px;border:none;cursor:pointer;margin-right:10px}button:hover{background:#45a049}.btn-download{background:#2196F3}.btn-download:hover{background:#0b7dda}.help{color:#666;font-size:12px;margin-top:10px}</style>";
-         html += "</head><body><div class='container'>";
+         String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+         html += "<title>" UI_ICON_FOLDER " Управление конфигурацией JXCT</title>";
+         html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
          html += navHtml();
-         html += "<h1>📁 Управление конфигурацией v2.3.0</h1>";
+         html += "<h1>" UI_ICON_FOLDER " Управление конфигурацией v2.3.1</h1>";
          
          html += "<div class='section'><h2>📤 Экспорт настроек</h2>";
          html += "<p>Скачайте текущие настройки устройства в JSON файл для резервного копирования.</p>";
@@ -1118,21 +1098,21 @@ void setupWebServer()
          if (strlen(config.webPassword) > 0 && webServer.hasArg("auth_password")) {
              html += "?auth_password=" + webServer.arg("auth_password");
          }
-         html += "'><button type='button' class='btn-download'>📥 Скачать конфигурацию</button></a>";
-         html += "<div class='help'>💡 Пароли не включаются в экспорт по соображениям безопасности</div></div>";
+         html += "'>" + generateButton(ButtonType::SECONDARY, UI_ICON_DOWNLOAD, "Скачать конфигурацию") + "</a>";
+         html += "<div class='help'>" UI_ICON_INFO " Пароли не включаются в экспорт по соображениям безопасности</div></div>";
          
-         html += "<div class='section'><h2>📥 Импорт настроек</h2>";
+         html += "<div class='section'><h2>" UI_ICON_UPLOAD " Импорт настроек</h2>";
          html += "<p>Загрузите JSON файл с настройками для восстановления конфигурации.</p>";
          html += "<form enctype='multipart/form-data' method='post' action='/api/config/import'>";
          if (strlen(config.webPassword) > 0 && webServer.hasArg("auth_password")) {
              html += "<input type='hidden' name='auth_password' value='" + webServer.arg("auth_password") + "'>";
          }
          html += "<input type='file' name='config_file' accept='.json' required>";
-         html += "<button type='submit'>📤 Загрузить конфигурацию</button>";
+         html += generateButton(ButtonType::PRIMARY, UI_ICON_UPLOAD, "Загрузить конфигурацию");
          html += "</form>";
-         html += "<div class='help'>⚠️ Устройство перезагрузится после успешного импорта</div></div>";
+         html += "<div class='help'>" UI_ICON_WARNING " Устройство перезагрузится после успешного импорта</div></div>";
          
-         html += "</div></body></html>";
+         html += "</div>" + String(getToastHTML()) + "</body></html>";
          webServer.send(200, "text/html; charset=utf-8", html);
      });
      
@@ -1160,21 +1140,11 @@ void handleRoot()
             return;
         }
     }
-    String html =
-        "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, "
-        "initial-scale=1.0'><title>Настройки "
-        "JXCT</"
-        "title><style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:600px;margin:0 "
-        "auto}h1{color:#333}.form-group{margin-bottom:15px}label{display:block;margin-bottom:5px}input[type=text],"
-        "input[type=password]{width:100%;padding:8px;box-sizing:border-box}button{background:#4CAF50;color:white;"
-        "padding:10px "
-        "15px;border:none;cursor:pointer}button:hover{background:#45a049}.section{margin-bottom:20px;padding:15px;"
-        "border:1px solid #ddd;border-radius:5px}.nav{margin-bottom:20px}.nav "
-        "a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}.msg{padding:10px "
-        "15px;margin-bottom:15px;border-radius:5px;font-size:15px}.msg-error{background:#F44336;color:#fff}.msg-"
-        "success{background:#4CAF50;color:#fff}</style></head><body><div class='container'>";
+    String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+    html += "<title>" UI_ICON_CONFIG " Настройки JXCT</title>";
+    html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
     html += navHtml();
-    html += "<h1>Настройки JXCT</h1>";
+    html += "<h1>" UI_ICON_CONFIG " Настройки JXCT</h1>";
     html += "<form action='/save' method='post'>";
     // Добавляем скрытое поле с паролем авторизации, если он установлен
     if (strlen(config.webPassword) > 0 && webServer.hasArg("auth_password")) {
@@ -1262,7 +1232,7 @@ void handleRoot()
         html +=
             "<div style='color:#888;font-size:13px'>💡 Совет: установите пароль для защиты от случайных изменений настроек</div></div>";
     }
-    html += "<button type='submit'>Сохранить настройки</button></form>";
+    html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить настройки") + "</form>";
 
     // Добавляем JavaScript для динамического изменения обязательных полей
     if (currentWiFiMode == WiFiMode::STA)
@@ -1277,7 +1247,7 @@ void handleRoot()
         html += "</script>";
     }
 
-    html += "</div></body></html>";
+    html += "</div>" + String(getToastHTML()) + "</body></html>";
     webServer.send(200, "text/html; charset=utf-8", html);
 }
 
