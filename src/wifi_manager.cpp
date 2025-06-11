@@ -855,7 +855,7 @@ void setupWebServer()
         html += "<title>" UI_ICON_INTERVALS " Интервалы и фильтры JXCT</title>";
         html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
         html += navHtml();
-        html += "<h1>" UI_ICON_INTERVALS " Настройка интервалов и фильтров v2.3.1</h1>";
+        html += "<h1>" UI_ICON_INTERVALS " Настройка интервалов и фильтров v2.3.0</h1>";
         html += "<form action='/save_intervals' method='post'>";
         
         // Скрытое поле для авторизации
@@ -1090,7 +1090,7 @@ void setupWebServer()
          html += "<title>" UI_ICON_FOLDER " Управление конфигурацией JXCT</title>";
          html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
          html += navHtml();
-         html += "<h1>" UI_ICON_FOLDER " Управление конфигурацией v2.3.1</h1>";
+         html += "<h1>" UI_ICON_FOLDER " Управление конфигурацией v2.3.0</h1>";
          
          html += "<div class='section'><h2>📤 Экспорт настроек</h2>";
          html += "<p>Скачайте текущие настройки устройства в JSON файл для резервного копирования.</p>";
@@ -1113,6 +1113,31 @@ void setupWebServer()
          html += "<div class='help'>" UI_ICON_WARNING " Устройство перезагрузится после успешного импорта</div></div>";
          
          html += "</div>" + String(getToastHTML()) + "</body></html>";
+         webServer.send(200, "text/html; charset=utf-8", html);
+     });
+     
+     // v2.3.0: Обработчик импорта конфигурации 
+     webServer.on("/api/config/import", HTTP_POST, []() {
+         if (currentWiFiMode == WiFiMode::AP) {
+             webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
+             return;
+         }
+         
+         // Проверка авторизации
+         if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
+             sendAuthForm("Неверный пароль");
+             return;
+         }
+         
+         String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Импорт конфигурации</title>";
+         html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+         html += "<h1>" UI_ICON_UPLOAD " Результат импорта</h1>";
+         html += "<div class='msg msg-info'>" UI_ICON_INFO " Импорт конфигурации (v2.3.0 - базовая реализация)</div>";
+         html += "<div class='msg msg-warning'>" UI_ICON_WARNING " Функция импорта будет полностью реализована в v2.4.0</div>";
+         html += "<p>API для импорта готов, но парсер JSON будет добавлен в следующей версии.</p>";
+         html += "<p><a href='/config_manager'>← Вернуться к управлению конфигурацией</a></p>";
+         html += "</div></body></html>";
+         
          webServer.send(200, "text/html; charset=utf-8", html);
      });
      
