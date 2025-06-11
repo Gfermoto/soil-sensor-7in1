@@ -35,7 +35,7 @@ bool sendDataToThingSpeak()
     if (!sensorData.valid) return false;
 
     unsigned long now = millis();
-    if (now - lastTsPublish < config.thingspeakInterval * 1000UL)
+    if (now - lastTsPublish < config.thingspeakInterval)  // thingspeakInterval уже в миллисекундах
     {
         return false;  // Слишком часто
     }

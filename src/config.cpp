@@ -65,8 +65,7 @@ void loadConfig()
     // Настройка датчика
     config.modbusId = preferences.getUChar("modbusId", JXCT_MODBUS_ID);
 
-    // Безопасность веб-интерфейса
-    preferences.getString("webPassword", config.webPassword, sizeof(config.webPassword));
+    config.webPassword[0] = '\0';
 
     // NTP настройки
     String ntpServer = preferences.getString("ntpServer", "pool.ntp.org");
@@ -141,8 +140,7 @@ void saveConfig()
     // Настройка датчика
     preferences.putUChar("modbusId", config.modbusId);
 
-    // Безопасность веб-интерфейса
-    preferences.putString("webPassword", config.webPassword);
+    preferences.putString("webPassword", "");
 
     // NTP настройки
     preferences.putString("ntpServer", config.ntpServer);

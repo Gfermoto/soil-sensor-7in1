@@ -65,7 +65,7 @@ void resetButtonTask(void* parameter)
             buttonPressed = false;
             DEBUG_PRINTLN("Кнопка сброса отпущена");
         }
-        else if (currentState && buttonPressed && (millis() - buttonPressTime >= 2000)) {
+        else if (currentState && buttonPressed && (millis() - buttonPressTime >= BUTTON_HOLD_TIME_MS)) {
             // Кнопка удерживалась 2 секунды
             logError("Выполняется сброс настроек!");
             resetConfig();
@@ -88,7 +88,7 @@ void setup()
 
     // Настройка Watchdog Timer
     logSystem("Настройка Watchdog Timer (30 сек)...");
-    esp_task_wdt_init(30, true);
+    esp_task_wdt_init(WATCHDOG_TIMEOUT_SEC, true);
     esp_task_wdt_add(NULL);
     logSuccess("Watchdog Timer активирован");
 

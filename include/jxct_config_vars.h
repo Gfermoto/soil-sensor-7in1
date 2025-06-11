@@ -14,6 +14,18 @@
 #define THINGSPEAK_INTERVAL 900000     // 15 мин (было 15 сек) - соблюдение rate limit
 #define WEB_UPDATE_INTERVAL 5000       // 5 сек (было 10 сек) - улучшенная отзывчивость
 
+// Константы для системы - v2.5.0 подготовка к OTA
+#define HTTP_PORT 80                   // Порт веб-сервера
+#define DNS_PORT 53                    // Порт DNS сервера для captive portal
+#define LED_FAST_BLINK_MS 100          // Быстрое мигание LED
+#define LED_SLOW_BLINK_MS 500          // Медленное мигание LED
+#define WIFI_MAX_ATTEMPTS 20           // Максимум попыток подключения к WiFi
+#define WIFI_RETRY_DELAY_MS 500        // Задержка между попытками WiFi
+#define BUTTON_HOLD_TIME_MS 2000       // Время удержания кнопки для сброса
+#define CONFIG_SAVE_DELAY_MS 2000      // Задержка перед перезагрузкой после сохранения
+#define WATCHDOG_TIMEOUT_SEC 30        // Таймаут watchdog timer
+#define OTA_WATCHDOG_TIMEOUT_SEC 60    // Увеличенный таймаут для OTA
+
 // ДЕЛЬТА-ФИЛЬТР v2.2.1: Пороговые значения для публикации
 #define DELTA_TEMPERATURE 0.5f         // ±0.5°C
 #define DELTA_HUMIDITY 2.0f            // ±2%

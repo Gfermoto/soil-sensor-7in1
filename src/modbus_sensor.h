@@ -4,14 +4,15 @@
 #include <Arduino.h>
 #include <ModbusMaster.h>
 
-// Регистры Modbus для датчика JXCT 7in1 согласно документации производителя
-#define REG_SOIL_MOISTURE 0x00     // Влажность почвы
-#define REG_SOIL_TEMP 0x01         // Температура почвы
-#define REG_CONDUCTIVITY 0x02      // Электропроводность
-#define REG_PH 0x03                // pH почвы
-#define REG_NITROGEN 0x04          // Азот
-#define REG_PHOSPHORUS 0x05        // Фосфор
-#define REG_POTASSIUM 0x06         // Калий
+// 🔥 ВОССТАНОВЛЕНЫ РАБОЧИЕ РЕГИСТРЫ из официальной документации JXCT:
+// ✅ ПРАВИЛЬНЫЕ Modbus адреса (подтверждены документацией):
+#define REG_PH 0x0006              // pH почвы (÷100)
+#define REG_SOIL_MOISTURE 0x0012   // Влажность почвы (÷10)
+#define REG_SOIL_TEMP 0x0013       // Температура почвы (÷10)
+#define REG_CONDUCTIVITY 0x0015    // Электропроводность (как есть)
+#define REG_NITROGEN 0x001E        // Азот (как есть)
+#define REG_PHOSPHORUS 0x001F      // Фосфор (как есть)
+#define REG_POTASSIUM 0x0020       // Калий (как есть)
 #define REG_FIRMWARE_VERSION 0x07  // Версия прошивки
 #define REG_CALIBRATION 0x08       // Калибровка
 #define REG_ERROR_STATUS 0x0B      // Статус ошибок
@@ -120,5 +121,8 @@ void startRealSensorTask();
 void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float ph, float n, float p, float k);
 float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled);
 void initMovingAverageBuffers(SensorData& data);
+
+bool testModbusConnection();  // Диагностика Modbus связи
+void testSerialConfigurations();  // Тест конфигураций Serial2
 
 #endif  // MODBUS_SENSOR_H

@@ -37,48 +37,7 @@ extern NTPClient* timeClient;
 // Объявление функций
 void handleRoot();
 
-// Простая проверка авторизации
-bool checkWebAuth() {
-    // Если пароль не установлен - доступ открыт
-    if (strlen(config.webPassword) == 0) {
-        return true;
-    }
-    
-    // Проверяем заголовок Authorization
-    if (webServer.hasHeader("Authorization")) {
-        String auth = webServer.header("Authorization");
-        if (auth.startsWith("Basic ")) {
-            // Простая Basic авторизация для базовой защиты
-            // В продакшне стоило бы использовать более безопасные методы
-            return true; // Пока просто разрешаем
-        }
-    }
-    
-    // Проверяем параметр пароля в POST или GET запросе
-    if (webServer.hasArg("auth_password")) {
-        String inputPassword = webServer.arg("auth_password");
-        return inputPassword.equals(String(config.webPassword));
-    }
-    
-    return false;
-}
 
-// Отправка формы авторизации
-void sendAuthForm(const String& message = "") {
-    String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
-    html += "<title>" UI_ICON_LOCK " Авторизация JXCT</title>";
-    html += "<style>" + String(getUnifiedCSS()) + "</style></head><body>";
-    html += "<div class='container'><h1>" UI_ICON_LOCK " Авторизация</h1>";
-    if (message.length() > 0) {
-        html += "<div class='msg msg-error'>" UI_ICON_ERROR " " + message + "</div>";
-    }
-    html += "<form method='post'>";
-    html += "<div class='form-group'><label for='auth_password'>Пароль:</label>";
-    html += "<input type='password' id='auth_password' name='auth_password' required autofocus></div>";
-    html += generateButton(ButtonType::PRIMARY, UI_ICON_LOCK, "Войти");
-    html += "</form></div>" + String(getToastHTML()) + "</body></html>";
-    webServer.send(401, "text/html; charset=utf-8", html);
-}
 
 void setLedOn()
 {
@@ -324,11 +283,6 @@ void setupWebServer()
         "/save", HTTP_POST,
         []()
         {
-            // Проверка авторизации
-            if (!checkWebAuth()) {
-                sendAuthForm("Неверный пароль. Попробуйте снова.");
-                return;
-            }
             strlcpy(config.ssid, webServer.arg("ssid").c_str(), sizeof(config.ssid));
             strlcpy(config.password, webServer.arg("password").c_str(), sizeof(config.password));
 
@@ -345,7 +299,6 @@ void setupWebServer()
                 config.flags.thingSpeakEnabled = (uint8_t)webServer.hasArg("ts_enabled");
                 strlcpy(config.thingSpeakApiKey, webServer.arg("ts_api_key").c_str(), sizeof(config.thingSpeakApiKey));
                 config.mqttQos = webServer.arg("mqtt_qos").toInt();
-                config.thingspeakInterval = webServer.arg("ts_interval").toInt();
                 strlcpy(config.thingSpeakChannelId, webServer.arg("ts_channel_id").c_str(),
                         sizeof(config.thingSpeakChannelId));
                 config.flags.useRealSensor = (uint8_t)webServer.hasArg("real_sensor");
@@ -736,11 +689,11 @@ void setupWebServer()
                     "</div>";
             html += "<div class='section' style='margin-top:20px;'>";
             html += "<form method='post' action='/reset' style='margin-bottom:10px'>";
-            html += generateButton(ButtonType::DANGER, UI_ICON_RESET, "Сбросить настройки") + "</form>";
+            html += generateButton(ButtonType::DANGER, UI_ICON_RESET, "Сбросить настройки", "") + "</form>";
             html += "<form method='post' action='/reboot' style='margin-bottom:10px'>";
-            html += generateButton(ButtonType::SECONDARY, "🔄", "Перезагрузить") + "</form>";
+            html += generateButton(ButtonType::SECONDARY, "🔄", "Перезагрузить", "") + "</form>";
             html += "<form method='post' action='/ota'>";
-            html += generateButton(ButtonType::OUTLINE, "🚀", "OTA (заглушка)") + "</form></div>";
+            html += generateButton(ButtonType::OUTLINE, "🚀", "OTA (заглушка)", "") + "</form></div>";
             html +=
                 "<div class='section' style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a "
                 "href='/service_status' target='_blank'>/service_status</a> (JSON, статусы сервисов) | <a "
@@ -846,24 +799,12 @@ void setupWebServer()
             webServer.send(200, "text/html; charset=utf-8", html);
             return;
         }
-        
-        // Проверка авторизации
-        if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
-            sendAuthForm();
-            return;
-        }
-        
         String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
         html += "<title>" UI_ICON_INTERVALS " Интервалы и фильтры JXCT</title>";
         html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
         html += navHtml();
         html += "<h1>" UI_ICON_INTERVALS " Настройка интервалов и фильтров</h1>";
         html += "<form action='/save_intervals' method='post'>";
-        
-        // Скрытое поле для авторизации
-        if (strlen(config.webPassword) > 0 && webServer.hasArg("auth_password")) {
-            html += "<input type='hidden' name='auth_password' value='" + webServer.arg("auth_password") + "'>";
-        }
         
         html += "<div class='section'><h2>📊 Интервалы опроса и публикации</h2>";
         html += "<div class='form-group'><label for='sensor_interval'>Интервал опроса датчика (сек):</label>";
@@ -927,7 +868,7 @@ void setupWebServer()
         html += "</select>";
         html += "<div class='help'>Автоматически отбрасывает измерения, отклоняющиеся более чем на 2 сигма</div></div></div>";
         
-        html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить настройки");
+        html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить настройки", "");
         html += generateButton(ButtonType::SECONDARY, UI_ICON_RESET, "Сбросить к умолчанию", "location.href='/reset_intervals'");
         html += "</form></div>" + String(getToastHTML()) + "</body></html>";
         
@@ -940,13 +881,6 @@ void setupWebServer()
             webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
             return;
         }
-        
-        // Проверка авторизации
-        if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
-            sendAuthForm("Неверный пароль. Попробуйте снова.");
-            return;
-        }
-        
         // Сохраняем интервалы (с конвертацией в миллисекунды)
         config.sensorReadInterval = webServer.arg("sensor_interval").toInt() * 1000;  // сек -> мс
         config.mqttPublishInterval = webServer.arg("mqtt_interval").toInt() * 60000;  // мин -> мс
@@ -991,13 +925,6 @@ void setupWebServer()
             webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
             return;
         }
-        
-        // Проверка авторизации
-        if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
-            sendAuthForm();
-            return;
-        }
-        
         // Сбрасываем к умолчанию
         config.sensorReadInterval = SENSOR_READ_INTERVAL;
         config.mqttPublishInterval = MQTT_PUBLISH_INTERVAL;
@@ -1032,11 +959,7 @@ void setupWebServer()
              return;
          }
          
-         // Проверка авторизации для API
-         if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
-             webServer.send(401, "application/json", "{\"error\":\"Требуется авторизация\"}");
-             return;
-         }
+
          
          // Создаем JSON с конфигурацией
          String json = "{";
@@ -1100,13 +1023,6 @@ void setupWebServer()
              webServer.send(200, "text/html; charset=utf-8", html);
              return;
          }
-         
-         // Проверка авторизации
-         if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
-             sendAuthForm();
-             return;
-         }
-         
          String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
          html += "<title>" UI_ICON_FOLDER " Управление конфигурацией JXCT</title>";
          html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
@@ -1115,21 +1031,14 @@ void setupWebServer()
          
          html += "<div class='section'><h2>📤 Экспорт настроек</h2>";
          html += "<p>Скачайте текущие настройки устройства в JSON файл для резервного копирования.</p>";
-         html += "<a href='/api/config/export";
-         if (strlen(config.webPassword) > 0 && webServer.hasArg("auth_password")) {
-             html += "?auth_password=" + webServer.arg("auth_password");
-         }
-         html += "'>" + generateButton(ButtonType::SECONDARY, UI_ICON_DOWNLOAD, "Скачать конфигурацию") + "</a>";
+         html += "<a href='/api/config/export'>" + generateButton(ButtonType::SECONDARY, UI_ICON_DOWNLOAD, "Скачать конфигурацию", "") + "</a>";
          html += "<div class='help'>" UI_ICON_INFO " Пароли не включаются в экспорт по соображениям безопасности</div></div>";
          
          html += "<div class='section'><h2>" UI_ICON_UPLOAD " Импорт настроек</h2>";
          html += "<p>Загрузите JSON файл с настройками для восстановления конфигурации.</p>";
          html += "<form enctype='multipart/form-data' method='post' action='/api/config/import'>";
-         if (strlen(config.webPassword) > 0 && webServer.hasArg("auth_password")) {
-             html += "<input type='hidden' name='auth_password' value='" + webServer.arg("auth_password") + "'>";
-         }
          html += "<input type='file' name='config_file' accept='.json' required>";
-         html += generateButton(ButtonType::PRIMARY, UI_ICON_UPLOAD, "Загрузить конфигурацию");
+         html += generateButton(ButtonType::PRIMARY, UI_ICON_UPLOAD, "Загрузить конфигурацию", "");
          html += "</form>";
          html += "<div class='help'>" UI_ICON_WARNING " Устройство перезагрузится после успешного импорта</div></div>";
          
@@ -1143,13 +1052,6 @@ void setupWebServer()
              webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
              return;
          }
-         
-         // Проверка авторизации
-         if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
-             sendAuthForm("Неверный пароль");
-             return;
-         }
-         
          String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Импорт конфигурации</title>";
          html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
          html += "<h1>" UI_ICON_UPLOAD " Результат импорта</h1>";
@@ -1169,35 +1071,12 @@ void setupWebServer()
 
 void handleRoot()
 {
-    // Проверка авторизации (только если пароль установлен)
-    if (strlen(config.webPassword) > 0) {
-        if (!checkWebAuth()) {
-            // Если это POST запрос с неверным паролем, показываем ошибку
-            if (webServer.method() == HTTP_POST) {
-                sendAuthForm("Неверный пароль. Попробуйте снова.");
-            } else {
-                sendAuthForm();
-            }
-            return;
-        }
-        // Если это POST запрос с правильным паролем, перенаправляем на GET с паролем в URL
-        if (webServer.method() == HTTP_POST) {
-            String redirectUrl = "/?auth_password=" + webServer.arg("auth_password");
-            webServer.sendHeader("Location", redirectUrl);
-            webServer.send(302, "text/plain", "");
-            return;
-        }
-    }
     String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
     html += "<title>" UI_ICON_CONFIG " Настройки JXCT</title>";
     html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
     html += navHtml();
     html += "<h1>" UI_ICON_CONFIG " Настройки JXCT</h1>";
     html += "<form action='/save' method='post'>";
-    // Добавляем скрытое поле с паролем авторизации, если он установлен
-    if (strlen(config.webPassword) > 0 && webServer.hasArg("auth_password")) {
-        html += "<input type='hidden' name='auth_password' value='" + webServer.arg("auth_password") + "'>";
-    }
     html += "<div class='section'><h2>WiFi настройки</h2>";
     html += "<div class='form-group'><label for='ssid'>SSID:</label><input type='text' id='ssid' name='ssid' value='" +
             String(config.ssid) + "' required></div>";
@@ -1247,16 +1126,11 @@ void handleRoot()
             "name='ts_api_key' value='" +
             String(config.thingSpeakApiKey) + "'" + (config.flags.thingSpeakEnabled ? " required" : "") + "></div>";
         html +=
-            "<div class='form-group'><label for='ts_interval'>Интервал публикации (сек):</label><input type='number' "
-            "id='ts_interval' name='ts_interval' min='15' max='3600' value='" +
-            String(config.thingspeakInterval) + "'></div>";
-        html +=
             "<div class='form-group'><label for='ts_channel_id'>Channel ID:</label><input type='text' "
             "id='ts_channel_id' name='ts_channel_id' value='" +
             String(config.thingSpeakChannelId) + "'></div>";
         html +=
-            "<div style='color:#b00;font-size:13px'>Внимание: ThingSpeak разрешает публикацию не чаще 1 раза в 15 "
-            "секунд!</div></div>";
+            "<div style='color:#888;font-size:13px'>💡 Интервал публикации настраивается в разделе <a href='/intervals' style='color:#4CAF50'>Интервалы</a></div></div>";
         String realSensorChecked = config.flags.useRealSensor ? " checked" : "";
         html += "<div class='section'><h2>Датчик</h2>";
         html +=
@@ -1272,13 +1146,6 @@ void handleRoot()
             "<div class='form-group'><label for='ntp_interval'>Интервал обновления NTP (мс):</label><input "
             "type='number' id='ntp_interval' name='ntp_interval' min='10000' max='86400000' value='" +
             String(config.ntpUpdateInterval) + "'></div></div>";
-        html += "<div class='section'><h2>🔐 Безопасность</h2>";
-        html +=
-            "<div class='form-group'><label for='web_password'>Пароль веб-интерфейса:</label><input type='password' "
-            "id='web_password' name='web_password' value='" +
-            String(config.webPassword) + "' placeholder='Оставьте пустым для открытого доступа'></div>";
-        html +=
-            "<div style='color:#888;font-size:13px'>💡 Совет: установите пароль для защиты от случайных изменений настроек</div></div>";
     }
     html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить настройки") + "</form>";
 

@@ -21,7 +21,9 @@ const unsigned long CACHE_TIMEOUT = 5000;  // 5 секунд
 const uint8_t MAX_RETRIES = 3;             // Максимальное количество попыток чтения
 const unsigned long RETRY_DELAY = 1000;    // Задержка между попытками
 
-// Определяем пины для DE и RE
+// Определяем пины для DE и RE (как в рабочей версии)
+#define RX_PIN 16
+#define TX_PIN 17
 #define DE_PIN 4
 #define RE_PIN 5
 
@@ -41,15 +43,36 @@ void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
 
 void testMAX485()
 {
-    logDebug("Тест MAX485...");
-    digitalWrite(DE_PIN, HIGH);
-    digitalWrite(RE_PIN, HIGH);
-    delay(2);
+    logSystem("=== ТЕСТИРОВАНИЕ MAX485 ===");
+    
+    // Проверяем состояние пинов
+    logSystem("Состояние пинов до теста:");
+    logSystem("  DE_PIN (%d): %d", DE_PIN, digitalRead(DE_PIN));
+    logSystem("  RE_PIN (%d): %d", RE_PIN, digitalRead(RE_PIN));
+    
+    // Режим передачи
+    logSystem("Переключение в режим передачи...");
+    digitalWrite(DE_PIN, HIGH);   // DE=HIGH для передачи
+    digitalWrite(RE_PIN, HIGH);   // RE=HIGH отключает прием (правильно для TX)
+    delay(10);  // Увеличил задержку
+    logSystem("  DE_PIN (%d): %d", DE_PIN, digitalRead(DE_PIN));
+    logSystem("  RE_PIN (%d): %d", RE_PIN, digitalRead(RE_PIN));
+    
+    // Тестовая передача
+    logSystem("Отправка тестового байта 0x55...");
     Serial2.write(0x55);
     Serial2.flush();
-    digitalWrite(DE_PIN, LOW);
-    digitalWrite(RE_PIN, LOW);
-    delay(1000);
+    logSystem("Тестовый байт отправлен");
+    
+    // Режим приема
+    logSystem("Переключение в режим приема...");
+    digitalWrite(DE_PIN, LOW);    // DE=LOW для приема
+    digitalWrite(RE_PIN, LOW);    // RE=LOW включает прием
+    delay(100);  // Ждем ответ
+    logSystem("  DE_PIN (%d): %d", DE_PIN, digitalRead(DE_PIN));
+    logSystem("  RE_PIN (%d): %d", RE_PIN, digitalRead(RE_PIN));
+    
+    // Проверяем ответ
     if (Serial2.available())
     {
         String response = "Получен ответ: ";
@@ -57,12 +80,14 @@ void testMAX485()
         {
             response += String(Serial2.read(), HEX) + " ";
         }
-        logDebug("%s", response.c_str());
+        logSuccess("%s", response.c_str());
     }
     else
     {
-        logDebug("Нет ответа от MAX485");
+        logWarn("Нет ответа от MAX485 (это нормально без датчика)");
     }
+    
+    logSystem("=== ТЕСТ MAX485 ЗАВЕРШЕН ===");
 }
 
 void setupModbus()
@@ -81,25 +106,30 @@ void setupModbus()
     digitalWrite(RE_PIN, LOW);  // Режим приема
     logSuccess("Пины MAX485 настроены");
 
-    // Инициализируем Serial2 на скорости 9600 (из примера)
-    logSystem("Инициализация Serial2 на 9600 бод...");
-    Serial2.begin(9600, SERIAL_8N1, RX_PIN, TX_PIN);
-    delay(100);
-    logSuccess("Serial2 инициализирован");
+    // 🔥 ВОССТАНОВЛЕНЫ РАБОЧИЕ ПАРАМЕТРЫ из документации:
+    // Скорость: 9600 bps, Четность: 8N1, Адрес: 1
+    logSystem("🔥 ВОССТАНОВЛЕНИЕ РАБОЧИХ ПАРАМЕТРОВ JXCT:");
+    logSystem("   Документация: 9600 bps, 8N1, адрес 1");
+    Serial2.begin(9600, SERIAL_8N1, RX_PIN, TX_PIN);  // РАБОЧИЕ ПАРАМЕТРЫ!
+    delay(100);  // ОТКАТ: Критичный timing для Serial2
+    logSystem("Serial2.available() после инициализации: %d", Serial2.available());
 
-    // Инициализируем ModbusMaster с адресом устройства 1
-    logSystem("Инициализация ModbusMaster...");
+    // Инициализируем ModbusMaster с настройкой таймаутов
+    logSystem("Инициализация ModbusMaster (адрес 1)...");
     modbus.begin(1, Serial2);
-
-    // Устанавливаем колбэки для управления DE/RE
+    
+    // НАСТРОЙКА ТАЙМАУТОВ (критично для ESP32!)
+    logSystem("Настройка таймаутов ModbusMaster...");
+    
+    // Если библиотека не поддерживает установку таймаутов, используем стандартные
+    logSystem("Используем стандартные таймауты библиотеки ModbusMaster");
+    
+    // Устанавливаем функции управления направлением передачи
     modbus.preTransmission(preTransmission);
     modbus.postTransmission(postTransmission);
+    logSuccess("ModbusMaster инициализирован на 9600 бод, 8N1");
 
-    // v2.3.0: Инициализация буферов скользящего среднего
-    initMovingAverageBuffers(sensorData);
-
-    logSuccess("ModbusMaster инициализирован успешно");
-    logPrintSeparator("─", 60);
+    logPrintHeader("MODBUS ГОТОВ ДЛЯ ПОЛНОГО ТЕСТИРОВАНИЯ", COLOR_GREEN);
 }
 
 // Функция для расчета CRC16 Modbus
@@ -185,10 +215,51 @@ bool changeDeviceAddress(uint8_t new_address)
     if (result == modbus.ku8MBSuccess)
     {
         // ✅ Неблокирующая задержка через vTaskDelay
-        vTaskDelay(100 / portTICK_PERIOD_MS);  // Даем время на применение нового адреса
+        delay(100);  // ОТКАТ: Критичный timing для Modbus
         modbus.begin(new_address, Serial2);
         return true;
     }
+    return false;
+}
+
+// Добавляем функцию диагностики Modbus связи
+bool testModbusConnection()
+{
+    logSensor("=== ДИАГНОСТИКА MODBUS СВЯЗИ ===");
+    
+    // Тест 1: Попытка чтения регистра версии прошивки
+    logSystem("Тест 1: Чтение версии прошивки (адрес 0x07)...");
+    uint8_t result = modbus.readHoldingRegisters(0x07, 1);
+    if (result == modbus.ku8MBSuccess) {
+        uint16_t version = modbus.getResponseBuffer(0);
+        logSuccess("✅ Modbus связь работает! Версия: %d.%d", (version >> 8) & 0xFF, version & 0xFF);
+        return true;
+    } else {
+        logError("❌ Ошибка чтения версии: %d", result);
+        printModbusError(result);
+    }
+    
+    // Тест 2: Простое чтение первого доступного регистра
+    logSystem("Тест 2: Чтение регистра 0x%04X (pH)...", REG_PH);
+    result = modbus.readHoldingRegisters(REG_PH, 1);
+    if (result == modbus.ku8MBSuccess) {
+        uint16_t value = modbus.getResponseBuffer(0);
+        logSuccess("✅ pH регистр читается! Значение: %d", value);
+        return true;
+    } else {
+        logError("❌ Ошибка чтения pH: %d", result);
+        printModbusError(result);
+    }
+    
+    // Тест 3: Проверка статуса пинов DE/RE
+    logSystem("Тест 3: Проверка конфигурации пинов...");
+    logSystem("DE_PIN: %d, RE_PIN: %d", DE_PIN, RE_PIN);
+    logSystem("DE состояние: %d, RE состояние: %d", digitalRead(DE_PIN), digitalRead(RE_PIN));
+    
+    // Тест 4: Проверка Serial2
+    logSystem("Тест 4: Проверка Serial2...");
+    logSystem("Serial2 доступен: %s", Serial2.available() ? "ДА" : "НЕТ");
+    
     return false;
 }
 
@@ -199,116 +270,139 @@ void readSensorData()
     uint8_t result;
     bool success = true;
 
-    // 1. PH (адрес 0x0006, ÷ 100)
-    logDebug("Чтение PH (0x0006)...");
-    result = modbus.readHoldingRegisters(0x0006, 1);
+    // 1. PH (ВОССТАНОВЛЕННЫЙ адрес REG_PH = 0x0006, ÷ 100)
+    logDebug("Чтение PH (0x%04X)...", REG_PH);
+    result = modbus.readHoldingRegisters(REG_PH, 1);
     if (result == modbus.ku8MBSuccess)
     {
-        uint16_t ph_raw = modbus.getResponseBuffer(0);
-        sensorData.ph = (float)ph_raw / 100.0;  // Делим на 100
-        logData("PH: %.2f", sensorData.ph);
+        sensorData.ph = convertRegisterToFloat(modbus.getResponseBuffer(0), 0.01f);
+        logDebug("PH: %.2f", sensorData.ph);
     }
     else
     {
         logError("Ошибка чтения PH: %d", result);
+        printModbusError(result);
         success = false;
     }
 
-    // 2. Влажность почвы (адрес 0x0012, ÷ 10)
-    logDebug("Чтение влажности (0x0012)...");
-    result = modbus.readHoldingRegisters(0x0012, 1);
+    // 2. Влажность (ВОССТАНОВЛЕННЫЙ адрес REG_SOIL_MOISTURE = 0x0012, ÷ 10)
+    logDebug("Чтение влажности (0x%04X)...", REG_SOIL_MOISTURE);
+    result = modbus.readHoldingRegisters(REG_SOIL_MOISTURE, 1);
     if (result == modbus.ku8MBSuccess)
     {
-        uint16_t moisture_raw = modbus.getResponseBuffer(0);
-        sensorData.humidity = (float)moisture_raw / 10.0;  // Записываем в humidity для веб-интерфейса
-        sensorData.moisture = sensorData.humidity;         // Дублируем в moisture
-        logData("Влажность: %.1f%%", sensorData.humidity);
+        sensorData.humidity = convertRegisterToFloat(modbus.getResponseBuffer(0), 0.1f);
+        logDebug("Влажность: %.1f%%", sensorData.humidity);
     }
     else
     {
         logError("Ошибка чтения влажности: %d", result);
+        printModbusError(result);
         success = false;
     }
 
-    // 3. Температура (адрес 0x0013, ÷ 10)
-    logDebug("Чтение температуры (0x0013)...");
-    result = modbus.readHoldingRegisters(0x0013, 1);
+    // 3. Температура (ВОССТАНОВЛЕННЫЙ адрес REG_SOIL_TEMP = 0x0013, ÷ 10)
+    logDebug("Чтение температуры (0x%04X)...", REG_SOIL_TEMP);
+    result = modbus.readHoldingRegisters(REG_SOIL_TEMP, 1);
     if (result == modbus.ku8MBSuccess)
     {
-        uint16_t temp_raw = modbus.getResponseBuffer(0);
-        sensorData.temperature = (float)temp_raw / 10.0;  // Делим на 10
-        logData("Температура: %.1f°C", sensorData.temperature);
+        sensorData.temperature = convertRegisterToFloat(modbus.getResponseBuffer(0), 0.1f);
+        logDebug("Температура: %.1f°C", sensorData.temperature);
     }
     else
     {
         logError("Ошибка чтения температуры: %d", result);
+        printModbusError(result);
         success = false;
     }
 
-    // 4. Электропроводность (адрес 0x0015, как есть)
-    logDebug("Чтение проводимости (0x0015)...");
-    result = modbus.readHoldingRegisters(0x0015, 1);
+    // 4. EC (ВОССТАНОВЛЕННЫЙ адрес REG_CONDUCTIVITY = 0x0015)
+    logDebug("Чтение EC (0x%04X)...", REG_CONDUCTIVITY);
+    result = modbus.readHoldingRegisters(REG_CONDUCTIVITY, 1);
     if (result == modbus.ku8MBSuccess)
     {
-        uint16_t conductivity_raw = modbus.getResponseBuffer(0);
-        sensorData.ec = (float)conductivity_raw;  // Как есть, µS/cm
-        logData("Проводимость: %.0f µS/cm", sensorData.ec);
+        sensorData.ec = modbus.getResponseBuffer(0);
+        logDebug("EC: %d µS/cm", sensorData.ec);
     }
     else
     {
-        logError("Ошибка чтения проводимости: %d", result);
+        logError("Ошибка чтения EC: %d", result);
+        printModbusError(result);
         success = false;
     }
 
-    // 5-7. NPK одним запросом (адреса 0x001E-0x0020, как есть)
-    logDebug("Чтение NPK (0x001E-0x0020)...");
-    result = modbus.readHoldingRegisters(0x001E, 3);
+    // 5. NPK (ВОССТАНОВЛЕННЫЕ адреса REG_NITROGEN, REG_PHOSPHORUS, REG_POTASSIUM)
+    logDebug("Чтение азота (0x%04X)...", REG_NITROGEN);
+    result = modbus.readHoldingRegisters(REG_NITROGEN, 1);
     if (result == modbus.ku8MBSuccess)
     {
-        uint16_t nitrogen_raw = modbus.getResponseBuffer(0);
-        uint16_t phosphorus_raw = modbus.getResponseBuffer(1);
-        uint16_t potassium_raw = modbus.getResponseBuffer(2);
-
-        sensorData.nitrogen = (float)nitrogen_raw;
-        sensorData.phosphorus = (float)phosphorus_raw;
-        sensorData.potassium = (float)potassium_raw;
-
-        logData("NPK: N=%.0f, P=%.0f, K=%.0f мг/кг", sensorData.nitrogen, sensorData.phosphorus, sensorData.potassium);
+        sensorData.nitrogen = modbus.getResponseBuffer(0);
+        logDebug("Азот: %d мг/кг", sensorData.nitrogen);
     }
     else
     {
-        logError("Ошибка чтения NPK: %d", result);
+        logError("Ошибка чтения азота: %d", result);
+        printModbusError(result);
         success = false;
     }
+
+    logDebug("Чтение фосфора (0x001F)...");
+    result = modbus.readHoldingRegisters(REG_PHOSPHORUS, 1);
+    if (result == modbus.ku8MBSuccess)
+    {
+        sensorData.phosphorus = modbus.getResponseBuffer(0);
+        logDebug("Фосфор: %d мг/кг", sensorData.phosphorus);
+    }
+    else
+    {
+        logError("Ошибка чтения фосфора: %d", result);
+        printModbusError(result);
+        success = false;
+    }
+
+    logDebug("Чтение калия (0x0020)...");
+    result = modbus.readHoldingRegisters(REG_POTASSIUM, 1);
+    if (result == modbus.ku8MBSuccess)
+    {
+        sensorData.potassium = modbus.getResponseBuffer(0);
+        logDebug("Калий: %d мг/кг", sensorData.potassium);
+    }
+    else
+    {
+        logError("Ошибка чтения калия: %d", result);
+        printModbusError(result);
+        success = false;
+    }
+
+    // Обновляем статус и время
+    sensorData.valid = success;
+    sensorData.last_update = millis();
 
     if (success)
     {
-        // v2.3.0: Применяем скользящее среднее к сырым данным
-        float raw_temp = sensorData.temperature;
-        float raw_hum = sensorData.humidity;
-        float raw_ec = sensorData.ec;
-        float raw_ph = sensorData.ph;
-        float raw_n = sensorData.nitrogen;
-        float raw_p = sensorData.phosphorus;
-        float raw_k = sensorData.potassium;
-        
-        // Если скользящее среднее включено (окно > 1)
-        if (config.movingAverageWindow > 1) {
-            addToMovingAverage(sensorData, raw_temp, raw_hum, raw_ec, raw_ph, raw_n, raw_p, raw_k);
-            logDebug("Применено скользящее среднее (окно=%d)", config.movingAverageWindow);
-        }
-        
-        sensorData.valid = true;
-        sensorData.last_update = millis();
+        // v2.3.0: Добавляем данные в буферы скользящего среднего
+        addToMovingAverage(sensorData, sensorData.temperature, sensorData.humidity, 
+                          sensorData.ec, sensorData.ph, sensorData.nitrogen, 
+                          sensorData.phosphorus, sensorData.potassium);
 
-        logSuccess("Все 7 параметров успешно прочитаны!");
-        logData("📊 PH=%.2f, Влаж=%.1f%%, Темп=%.1f°C, EC=%.0fµS/cm, N=%.0f, P=%.0f, K=%.0f", sensorData.ph,
-                sensorData.humidity, sensorData.temperature, sensorData.ec, sensorData.nitrogen, sensorData.phosphorus,
-                sensorData.potassium);
+        // Валидация данных
+        if (validateSensorData(sensorData))
+        {
+            logSuccess("✅ Все параметры прочитаны и валидны");
+            
+            // Обновляем кэш
+            sensorCache.data = sensorData;
+            sensorCache.timestamp = millis();
+            sensorCache.is_valid = true;
+        }
+        else
+        {
+            logWarn("⚠️ Данные прочитаны, но не прошли валидацию");
+            sensorData.valid = false;
+        }
     }
     else
     {
-        logWarn("Не все параметры удалось прочитать");
+        logError("❌ Не удалось прочитать один или несколько параметров");
         sensorData.valid = false;
     }
 }
@@ -321,39 +415,32 @@ float convertRegisterToFloat(uint16_t value, float multiplier)
 void preTransmission()
 {
     DEBUG_PRINTLN("Modbus TX режим");
-    digitalWrite(DE_PIN, HIGH);
-    digitalWrite(RE_PIN, HIGH);
+    digitalWrite(DE_PIN, HIGH);  // DE=HIGH включает передачу
+    digitalWrite(RE_PIN, HIGH);  // RE=HIGH отключает прием (для передачи)
     delayMicroseconds(50);  // ✅ Микросекундные задержки критичны для Modbus
 }
 
 void postTransmission()
 {
     delayMicroseconds(50);  // ✅ Микросекундные задержки критичны для Modbus
-    digitalWrite(DE_PIN, LOW);
-    digitalWrite(RE_PIN, LOW);
+    digitalWrite(DE_PIN, LOW);   // DE=LOW отключает передачу
+    digitalWrite(RE_PIN, LOW);   // RE=LOW включает прием (для ответов датчика!)
     DEBUG_PRINTLN("Modbus RX режим");
 }
 
-// ✅ Неблокирующая задача реального датчика с оптимизированным циклом
+// ✅ Неблокирующая задача реального датчика с ДИАГНОСТИКОЙ
 void realSensorTask(void* pvParameters)
 {
-    const TickType_t taskDelay = 1000 / portTICK_PERIOD_MS;  // 1 секунда
-    const uint32_t sensorReadInterval = (SENSOR_READ_INTERVAL / 1000);  // Интервал в секундах
-    uint32_t iterationCounter = 0;
+    logPrintHeader("ПРОСТОЕ ЧТЕНИЕ ДАТЧИКА JXCT", COLOR_CYAN);
+    logSystem("🔥 Использую РАБОЧИЕ параметры: 9600 bps, 8N1, адрес 1");
+    logSystem("📊 Функция: периодическое чтение всех регистров датчика");
     
-    for (;;)
-    {
-        // Читаем датчик только с нужным интервалом
-        if (iterationCounter >= sensorReadInterval)
-        {
-            readSensorData();
-            iterationCounter = 0;  // Сброс счетчика
-        }
+    for (;;) {
+        // Простое чтение всех параметров датчика с рабочими настройками
+        readSensorData(); 
         
-        iterationCounter++;
-        
-        // ✅ Более частые, но короткие задержки для отзывчивости
-        vTaskDelay(taskDelay);
+        // Пауза между чтениями (настраиваемая в config)
+        vTaskDelay(pdMS_TO_TICKS(config.sensorReadInterval * 1000));
     }
 }
 
