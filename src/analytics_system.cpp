@@ -27,7 +27,7 @@ void initAnalyticsSystem()
     analytics.stats_day.valid = false;
     analytics.stats_week.valid = false;
     
-    logSuccess("Analytics System v2.4.0 инициализирована");
+    logSuccess("Analytics System инициализирована");
     logDebug("Circular Buffer: %d слотов, размер структуры: %d байт", 
              ANALYTICS_BUFFER_SIZE, sizeof(AnalyticsDataPoint));
 }
@@ -189,7 +189,7 @@ String exportAnalyticsToJSON(unsigned long period_ms)
 {
     String json = "{\"analytics_export\":{";
     json += "\"timestamp\":" + String(millis()) + ",";
-    json += "\"version\":\"2.4.0\",";
+    json += "\"version\":\"2.4.1\",";
     json += "\"buffer_usage\":" + String(getAnalyticsBufferUsage()) + ",";
     
     // Общая информация
@@ -373,7 +373,7 @@ void handleAnalyticsPage()
     extern WebServer webServer;  // Объявляем внешний webServer
     
     String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
-    html += "<title>📊 Аналитика JXCT v2.4.0</title>";
+    html += "<title>📊 Аналитика JXCT</title>";
     html += "<style>";
     html += "body{font-family:Arial,sans-serif;margin:0;padding:20px;background:#f5f5f5}";
     html += ".container{max-width:1200px;margin:0 auto;background:white;padding:20px;border-radius:8px;box-shadow:0 2px 10px rgba(0,0,0,0.1)}";
@@ -404,7 +404,7 @@ void handleAnalyticsPage()
     html += "<a href='/service'>🔧 Сервис</a>";
     html += "</div>";
     
-    html += "<h1>📊 Аналитика JXCT v2.4.0</h1>";
+    html += "<h1>📊 Аналитика</h1>";
     
     // Информация о буфере
     html += "<div class='info-block'>";

@@ -21,9 +21,9 @@
 #define UI_COLOR_BORDER "#ddd"          // Границы элементов
 
 // 📱 РАЗМЕРЫ И ОТСТУПЫ
-#define UI_CONTAINER_MAX_WIDTH "800px"
+#define UI_CONTAINER_MAX_WIDTH "1000px"
 #define UI_SECTION_PADDING "15px"
-#define UI_BUTTON_PADDING "12px 20px"
+#define UI_BUTTON_PADDING "8px 16px"
 #define UI_INPUT_PADDING "10px"
 #define UI_BORDER_RADIUS "6px"
 
@@ -31,8 +31,8 @@
 #define UI_FONT_FAMILY "Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
 #define UI_FONT_SIZE_BASE "16px"
 #define UI_FONT_SIZE_SMALL "14px"
-#define UI_FONT_SIZE_H1 "28px"
-#define UI_FONT_SIZE_H2 "22px"
+#define UI_FONT_SIZE_H1 "22px"
+#define UI_FONT_SIZE_H2 "18px"
 
 // 🖱️ АНИМАЦИИ
 #define UI_TRANSITION_FAST "0.2s ease"

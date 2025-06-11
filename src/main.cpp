@@ -126,7 +126,7 @@ void setup()
     
     // v2.4.0: Инициализация системы аналитики
     initAnalyticsSystem();
-    logSuccess("Analytics System v2.4.0 инициализирована");
+    logSuccess("Analytics System инициализирована");
 
     // Запуск задач
     if (config.flags.useRealSensor)

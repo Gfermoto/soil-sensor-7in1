@@ -1153,9 +1153,9 @@ void setupWebServer()
          String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Импорт конфигурации</title>";
          html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
          html += "<h1>" UI_ICON_UPLOAD " Результат импорта</h1>";
-         html += "<div class='msg msg-info'>" UI_ICON_INFO " Импорт конфигурации (v2.3.0 - базовая реализация)</div>";
-         html += "<div class='msg msg-warning'>" UI_ICON_WARNING " Функция импорта будет полностью реализована в v2.4.0</div>";
-         html += "<p>API для импорта готов, но парсер JSON будет добавлен в следующей версии.</p>";
+         html += "<div class='msg msg-info'>" UI_ICON_INFO " Импорт конфигурации</div>";
+         html += "<div class='msg msg-warning'>" UI_ICON_WARNING " Базовая реализация импорта готова</div>";
+         html += "<p>API endpoint для импорта создан. Полный парсер JSON будет добавлен в следующих версиях.</p>";
          html += "<p><a href='/config_manager'>← Вернуться к управлению конфигурацией</a></p>";
          html += "</div></body></html>";
          

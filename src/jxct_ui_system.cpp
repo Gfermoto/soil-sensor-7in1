@@ -17,7 +17,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1000px;
     margin: 0 auto;
     background: white;
     border-radius: 6px;
@@ -28,18 +28,18 @@ body {
 /* === ТИПОГРАФИКА === */
 h1 {
     color: #333;
-    font-size: 28px;
-    margin: 0 0 30px 0;
+    font-size: 22px;
+    margin: 0 0 20px 0;
     font-weight: 600;
 }
 
 h2 {
     color: #333;
-    font-size: 22px;
-    margin: 25px 0 15px 0;
+    font-size: 18px;
+    margin: 20px 0 12px 0;
     font-weight: 500;
     border-bottom: 2px solid #4CAF50;
-    padding-bottom: 8px;
+    padding-bottom: 6px;
 }
 
 /* === НАВИГАЦИЯ === */
@@ -105,17 +105,17 @@ input:focus, select:focus, textarea:focus {
 /* === КНОПКИ (ЕДИНАЯ СИСТЕМА) === */
 .btn {
     display: inline-block;
-    padding: 12px 20px;
+    padding: 8px 16px;
     border: none;
     border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
     text-decoration: none;
     transition: 0.3s ease;
     margin-right: 10px;
     margin-bottom: 10px;
-    min-width: 140px;
+    min-width: 120px;
     text-align: center;
 }
 
@@ -257,9 +257,9 @@ input:focus, select:focus, textarea:focus {
 /* === МОБИЛЬНАЯ АДАПТАЦИЯ === */
 @media (max-width: 768px) {
     body { padding: 10px; }
-    .container { padding: 20px; }
-    h1 { font-size: 24px; }
-    h2 { font-size: 20px; }
+    .container { padding: 20px; margin: 5px; }
+    h1 { font-size: 20px; }
+    h2 { font-size: 16px; }
     .nav a { 
         display: block; 
         margin: 5px 0; 
@@ -270,6 +270,8 @@ input:focus, select:focus, textarea:focus {
         margin-right: 0;
         margin-bottom: 15px;
     }
+    .section { padding: 12px; }
+    .form-group { margin-bottom: 15px; }
 }
     )";
     return css;
