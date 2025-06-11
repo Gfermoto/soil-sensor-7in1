@@ -254,72 +254,7 @@ input:focus, select:focus, textarea:focus {
     transform: translateX(0);
 }
 
-/* === ГРАФИКИ === */
-.charts-section {
-    margin: 20px 0;
-    padding: 20px;
-    background: #fafafa;
-    border-radius: 8px;
-    border: 1px solid #e0e0e0;
-}
 
-.chart-row {
-    display: flex;
-    gap: 20px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-.chart-container {
-    flex: 1;
-    min-width: 300px;
-    background: white;
-    padding: 15px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.chart-container.full-width {
-    flex: 1 1 100%;
-    min-width: 100%;
-}
-
-.chart-container h4 {
-    margin: 0 0 15px 0;
-    color: #333;
-    font-size: 16px;
-    text-align: center;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #f0f0f0;
-}
-
-.chart-status {
-    text-align: center;
-    padding: 10px;
-    background: #e8f5e8;
-    border-radius: 6px;
-    margin-bottom: 20px;
-    font-weight: 600;
-    color: #2e7d32;
-}
-
-.simple-chart {
-    min-height: 120px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.no-data {
-    text-align: center;
-    padding: 40px 20px;
-    color: #999;
-    font-style: italic;
-}
-
-.no-data.error {
-    color: #f44336;
-}
 
 /* === МОБИЛЬНАЯ АДАПТАЦИЯ === */
 @media (max-width: 768px) {
@@ -340,21 +275,7 @@ input:focus, select:focus, textarea:focus {
     .section { padding: 12px; }
     .form-group { margin-bottom: 15px; }
     
-    /* Адаптация графиков для мобильных */
-    .chart-row {
-        flex-direction: column;
-        gap: 15px;
-    }
-    
-    .chart-container {
-        min-width: 100%;
-        padding: 10px;
-    }
-    
-    .charts-section {
-        padding: 15px;
-        margin: 15px 0;
-    }
+
 }
     )";
     return css;

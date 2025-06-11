@@ -17,7 +17,7 @@
 #include "fake_sensor.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "logger.h"
-#include "analytics_system.h"  // v2.4.0: Система аналитики
+
 
 // Переменные для отслеживания времени
 unsigned long lastDataPublishTime = 0;
@@ -125,8 +125,7 @@ void setup()
     }
     
     // v2.4.0: Инициализация системы аналитики
-    initAnalyticsSystem();
-    logSuccess("Analytics System инициализирована");
+    
 
     // Запуск задач
     if (config.flags.useRealSensor)
@@ -199,8 +198,7 @@ void loop()
     // Проверяем наличие новых данных датчика (НАСТРАИВАЕМО v2.3.0)
     if (sensorData.valid && (currentTime - lastDataPublish >= config.sensorReadInterval))
     {
-        // v2.4.0: Добавляем данные в аналитику
-        addDataPointToAnalytics(sensorData);
+
         
         // Помечаем что есть данные для отправки (не отправляем сразу)
         pendingMqttPublish = true;
