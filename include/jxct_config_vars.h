@@ -68,6 +68,25 @@ struct __attribute__((packed)) Config
     // Безопасность веб-интерфейса
     char webPassword[24];     // Пароль для доступа к веб-интерфейсу
     
+    // v2.3.0: Настраиваемые интервалы (16 байт)
+    uint32_t sensorReadInterval;    // Интервал опроса датчика (10-300 сек)
+    uint32_t mqttPublishInterval;   // Интервал MQTT публикации (1-60 мин)
+    uint32_t thingSpeakInterval;    // Интервал ThingSpeak (5-120 мин)
+    uint32_t webUpdateInterval;     // Интервал обновления веб-интерфейса (5-60 сек)
+    
+    // v2.3.0: Настраиваемые пороги дельта-фильтра (20 байт)
+    float deltaTemperature;         // Порог температуры (0.1-5.0°C)
+    float deltaHumidity;            // Порог влажности (0.5-10.0%)
+    float deltaPh;                  // Порог pH (0.01-1.0)
+    float deltaEc;                  // Порог EC (10-500 µS/cm)
+    float deltaNpk;                 // Порог NPK (1-50 mg/kg)
+    
+    // v2.3.0: Настройки скользящего среднего (8 байт)
+    uint8_t movingAverageWindow;    // Размер окна (5-15 измерений)
+    uint8_t forcePublishCycles;     // Принудительная публикация (5-50 циклов)
+    uint8_t filterAlgorithm;        // 0=среднее, 1=медиана
+    uint8_t outlierFilterEnabled;   // 0=отключен, 1=включен (>2σ)
+    
     // Битовые поля для boolean флагов (экономия 4 байта)
     struct __attribute__((packed)) {
         uint8_t hassEnabled       : 1;  // 1 бит вместо 1 байта

@@ -324,8 +324,8 @@ bool shouldPublishMqtt()
         return true;
     }
     
-    // Принудительная публикация каждые N циклов
-    if (++skipCounter >= FORCE_PUBLISH_CYCLES) {
+    // Принудительная публикация каждые N циклов (настраиваемо v2.3.0)
+    if (++skipCounter >= config.forcePublishCycles) {
         skipCounter = 0;
         DEBUG_PRINTLN("[DELTA] Принудительная публикация (цикл)");
         return true;
@@ -334,37 +334,37 @@ bool shouldPublishMqtt()
     // Проверяем дельта изменения
     bool hasSignificantChange = false;
     
-    if (abs(sensorData.temperature - sensorData.prev_temperature) >= DELTA_TEMPERATURE) {
+    if (abs(sensorData.temperature - sensorData.prev_temperature) >= config.deltaTemperature) {
         DEBUG_PRINTF("[DELTA] Температура изменилась: %.1f -> %.1f\n", sensorData.prev_temperature, sensorData.temperature);
         hasSignificantChange = true;
     }
     
-    if (abs(sensorData.humidity - sensorData.prev_humidity) >= DELTA_HUMIDITY) {
+    if (abs(sensorData.humidity - sensorData.prev_humidity) >= config.deltaHumidity) {
         DEBUG_PRINTF("[DELTA] Влажность изменилась: %.1f -> %.1f\n", sensorData.prev_humidity, sensorData.humidity);
         hasSignificantChange = true;
     }
     
-    if (abs(sensorData.ph - sensorData.prev_ph) >= DELTA_PH) {
+    if (abs(sensorData.ph - sensorData.prev_ph) >= config.deltaPh) {
         DEBUG_PRINTF("[DELTA] pH изменился: %.1f -> %.1f\n", sensorData.prev_ph, sensorData.ph);
         hasSignificantChange = true;
     }
     
-    if (abs(sensorData.ec - sensorData.prev_ec) >= DELTA_EC) {
+    if (abs(sensorData.ec - sensorData.prev_ec) >= config.deltaEc) {
         DEBUG_PRINTF("[DELTA] EC изменилась: %.0f -> %.0f\n", sensorData.prev_ec, sensorData.ec);
         hasSignificantChange = true;
     }
     
-    if (abs(sensorData.nitrogen - sensorData.prev_nitrogen) >= DELTA_NPK) {
+    if (abs(sensorData.nitrogen - sensorData.prev_nitrogen) >= config.deltaNpk) {
         DEBUG_PRINTF("[DELTA] Азот изменился: %.0f -> %.0f\n", sensorData.prev_nitrogen, sensorData.nitrogen);
         hasSignificantChange = true;
     }
     
-    if (abs(sensorData.phosphorus - sensorData.prev_phosphorus) >= DELTA_NPK) {
+    if (abs(sensorData.phosphorus - sensorData.prev_phosphorus) >= config.deltaNpk) {
         DEBUG_PRINTF("[DELTA] Фосфор изменился: %.0f -> %.0f\n", sensorData.prev_phosphorus, sensorData.phosphorus);
         hasSignificantChange = true;
     }
     
-    if (abs(sensorData.potassium - sensorData.prev_potassium) >= DELTA_NPK) {
+    if (abs(sensorData.potassium - sensorData.prev_potassium) >= config.deltaNpk) {
         DEBUG_PRINTF("[DELTA] Калий изменился: %.0f -> %.0f\n", sensorData.prev_potassium, sensorData.potassium);
         hasSignificantChange = true;
     }

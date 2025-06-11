@@ -72,6 +72,25 @@ void loadConfig()
     String ntpServer = preferences.getString("ntpServer", "pool.ntp.org");
     ntpServer.toCharArray(config.ntpServer, sizeof(config.ntpServer));
     config.ntpUpdateInterval = preferences.getUInt("ntpUpdateInterval", 60000);
+    
+    // v2.3.0: Настраиваемые интервалы (с дефолтными значениями из v2.2.1)
+    config.sensorReadInterval = preferences.getUInt("sensorInterval", SENSOR_READ_INTERVAL);
+    config.mqttPublishInterval = preferences.getUInt("mqttInterval", MQTT_PUBLISH_INTERVAL);
+    config.thingSpeakInterval = preferences.getUInt("tsInterval", THINGSPEAK_INTERVAL);
+    config.webUpdateInterval = preferences.getUInt("webInterval", WEB_UPDATE_INTERVAL);
+    
+    // v2.3.0: Настраиваемые пороги дельта-фильтра
+    config.deltaTemperature = preferences.getFloat("deltaTemp", DELTA_TEMPERATURE);
+    config.deltaHumidity = preferences.getFloat("deltaHum", DELTA_HUMIDITY);
+    config.deltaPh = preferences.getFloat("deltaPh", DELTA_PH);
+    config.deltaEc = preferences.getFloat("deltaEc", DELTA_EC);
+    config.deltaNpk = preferences.getFloat("deltaNpk", DELTA_NPK);
+    
+    // v2.3.0: Настройки скользящего среднего
+    config.movingAverageWindow = preferences.getUChar("avgWindow", 5);
+    config.forcePublishCycles = preferences.getUChar("forceCycles", FORCE_PUBLISH_CYCLES);
+    config.filterAlgorithm = preferences.getUChar("filterAlgo", 0);  // 0=среднее
+    config.outlierFilterEnabled = preferences.getUChar("outlierFilter", 0);  // отключен
 
     preferences.end();
     // Значения по умолчанию для новых полей
@@ -128,6 +147,25 @@ void saveConfig()
     // NTP настройки
     preferences.putString("ntpServer", config.ntpServer);
     preferences.putUInt("ntpUpdateInterval", config.ntpUpdateInterval);
+    
+    // v2.3.0: Настраиваемые интервалы
+    preferences.putUInt("sensorInterval", config.sensorReadInterval);
+    preferences.putUInt("mqttInterval", config.mqttPublishInterval);
+    preferences.putUInt("tsInterval", config.thingSpeakInterval);
+    preferences.putUInt("webInterval", config.webUpdateInterval);
+    
+    // v2.3.0: Настраиваемые пороги дельта-фильтра
+    preferences.putFloat("deltaTemp", config.deltaTemperature);
+    preferences.putFloat("deltaHum", config.deltaHumidity);
+    preferences.putFloat("deltaPh", config.deltaPh);
+    preferences.putFloat("deltaEc", config.deltaEc);
+    preferences.putFloat("deltaNpk", config.deltaNpk);
+    
+    // v2.3.0: Настройки скользящего среднего
+    preferences.putUChar("avgWindow", config.movingAverageWindow);
+    preferences.putUChar("forceCycles", config.forcePublishCycles);
+    preferences.putUChar("filterAlgo", config.filterAlgorithm);
+    preferences.putUChar("outlierFilter", config.outlierFilterEnabled);
 
     preferences.end();
     
@@ -181,6 +219,25 @@ void resetConfig()
     // NTP
     strlcpy(config.ntpServer, "pool.ntp.org", sizeof(config.ntpServer));
     config.ntpUpdateInterval = 60000;
+    
+    // v2.3.0: Сброс настраиваемых интервалов к оптимизированным значениям v2.2.1
+    config.sensorReadInterval = SENSOR_READ_INTERVAL;
+    config.mqttPublishInterval = MQTT_PUBLISH_INTERVAL;
+    config.thingSpeakInterval = THINGSPEAK_INTERVAL;
+    config.webUpdateInterval = WEB_UPDATE_INTERVAL;
+    
+    // v2.3.0: Сброс порогов дельта-фильтра
+    config.deltaTemperature = DELTA_TEMPERATURE;
+    config.deltaHumidity = DELTA_HUMIDITY;
+    config.deltaPh = DELTA_PH;
+    config.deltaEc = DELTA_EC;
+    config.deltaNpk = DELTA_NPK;
+    
+    // v2.3.0: Сброс настроек скользящего среднего
+    config.movingAverageWindow = 5;
+    config.forcePublishCycles = FORCE_PUBLISH_CYCLES;
+    config.filterAlgorithm = 0;        // среднее
+    config.outlierFilterEnabled = 0;   // отключен
 
     logSuccess("Все настройки сброшены к значениям по умолчанию");
     DEBUG_PRINT("[resetConfig] config.thingspeakInterval: ");

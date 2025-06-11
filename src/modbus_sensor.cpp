@@ -95,6 +95,9 @@ void setupModbus()
     modbus.preTransmission(preTransmission);
     modbus.postTransmission(postTransmission);
 
+    // v2.3.0: Инициализация буферов скользящего среднего
+    initMovingAverageBuffers(sensorData);
+
     logSuccess("ModbusMaster инициализирован успешно");
     logPrintSeparator("─", 60);
 }
@@ -280,6 +283,21 @@ void readSensorData()
 
     if (success)
     {
+        // v2.3.0: Применяем скользящее среднее к сырым данным
+        float raw_temp = sensorData.temperature;
+        float raw_hum = sensorData.humidity;
+        float raw_ec = sensorData.ec;
+        float raw_ph = sensorData.ph;
+        float raw_n = sensorData.nitrogen;
+        float raw_p = sensorData.phosphorus;
+        float raw_k = sensorData.potassium;
+        
+        // Если скользящее среднее включено (окно > 1)
+        if (config.movingAverageWindow > 1) {
+            addToMovingAverage(sensorData, raw_temp, raw_hum, raw_ec, raw_ph, raw_n, raw_p, raw_k);
+            logDebug("Применено скользящее среднее (окно=%d)", config.movingAverageWindow);
+        }
+        
         sensorData.valid = true;
         sensorData.last_update = millis();
 
@@ -380,4 +398,94 @@ void printModbusError(uint8_t errNum)
             logError("Modbus: Неизвестная ошибка %d", errNum);
             break;
     }
+}
+
+// ========================================
+// v2.3.0: РЕАЛИЗАЦИЯ СКОЛЬЗЯЩЕГО СРЕДНЕГО
+// ========================================
+
+void initMovingAverageBuffers(SensorData& data)
+{
+    // Инициализируем буферы нулями
+    for (int i = 0; i < 15; i++) {
+        data.temp_buffer[i] = 0.0;
+        data.hum_buffer[i] = 0.0;
+        data.ec_buffer[i] = 0.0;
+        data.ph_buffer[i] = 0.0;
+        data.n_buffer[i] = 0.0;
+        data.p_buffer[i] = 0.0;
+        data.k_buffer[i] = 0.0;
+    }
+    data.buffer_index = 0;
+    data.buffer_filled = 0;
+    DEBUG_PRINTLN("[MOVING_AVG] Буферы скользящего среднего инициализированы");
+}
+
+void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float ph, float n, float p, float k)
+{
+    uint8_t window_size = config.movingAverageWindow;
+    if (window_size < 5) window_size = 5;     // Минимум 5
+    if (window_size > 15) window_size = 15;   // Максимум 15
+    
+    // Добавляем новые значения в кольцевые буферы
+    data.temp_buffer[data.buffer_index] = temp;
+    data.hum_buffer[data.buffer_index] = hum;
+    data.ec_buffer[data.buffer_index] = ec;
+    data.ph_buffer[data.buffer_index] = ph;
+    data.n_buffer[data.buffer_index] = n;
+    data.p_buffer[data.buffer_index] = p;
+    data.k_buffer[data.buffer_index] = k;
+    
+    // Обновляем индекс (кольцевой буфер)
+    data.buffer_index = (data.buffer_index + 1) % window_size;
+    
+    // Обновляем количество заполненных элементов
+    if (data.buffer_filled < window_size) {
+        data.buffer_filled++;
+    }
+    
+    // Вычисляем скользящее среднее только если буфер достаточно заполнен (минимум 3 значения)
+    if (data.buffer_filled >= 3) {
+        // Используем реальный размер заполненных данных для расчета
+        uint8_t effective_window = (data.buffer_filled < window_size) ? data.buffer_filled : window_size;
+        
+        data.temperature = calculateMovingAverage(data.temp_buffer, effective_window, data.buffer_filled);
+        data.humidity = calculateMovingAverage(data.hum_buffer, effective_window, data.buffer_filled);
+        data.ec = calculateMovingAverage(data.ec_buffer, effective_window, data.buffer_filled);
+        data.ph = calculateMovingAverage(data.ph_buffer, effective_window, data.buffer_filled);
+        data.nitrogen = calculateMovingAverage(data.n_buffer, effective_window, data.buffer_filled);
+        data.phosphorus = calculateMovingAverage(data.p_buffer, effective_window, data.buffer_filled);
+        data.potassium = calculateMovingAverage(data.k_buffer, effective_window, data.buffer_filled);
+        
+        DEBUG_PRINTF("[MOVING_AVG] Окно=%d, заполнено=%d, Темп=%.1f°C\n", effective_window, data.buffer_filled, data.temperature);
+    } else {
+        // Если данных мало, используем последние значения без усреднения
+        data.temperature = temp;
+        data.humidity = hum;
+        data.ec = ec;
+        data.ph = ph;
+        data.nitrogen = n;
+        data.phosphorus = p;
+        data.potassium = k;
+        
+        DEBUG_PRINTF("[MOVING_AVG] Накопление данных: %d/%d\n", data.buffer_filled, window_size);
+    }
+}
+
+float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
+{
+    if (filled == 0) return 0.0;
+    
+    float sum = 0.0;
+    uint8_t count = 0;
+    
+    // Берем последние filled элементов (или window_size, если filled >= window_size)
+    uint8_t elements_to_use = (filled < window_size) ? filled : window_size;
+    
+    for (uint8_t i = 0; i < elements_to_use; i++) {
+        sum += buffer[i];
+        count++;
+    }
+    
+    return count > 0 ? (sum / count) : 0.0;
 }

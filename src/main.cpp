@@ -105,7 +105,7 @@ void setup()
 
     // Информация о режиме работы
     logSystem("Режим датчика: %s", config.flags.useRealSensor ? "РЕАЛЬНЫЙ" : "ЭМУЛЯЦИЯ");
-    logSystem("Интервал чтения: %d мс", SENSOR_READ_INTERVAL);
+    logSystem("Интервал чтения: %d мс", config.sensorReadInterval);
 
     // Инициализация WiFi
     setupWiFi();
@@ -191,8 +191,8 @@ void loop()
     static bool pendingMqttPublish = false;
     static bool pendingThingspeakPublish = false;
     
-    // Проверяем наличие новых данных датчика (ОПТИМИЗИРОВАНО v2.2.1)
-    if (sensorData.valid && (currentTime - lastDataPublish >= SENSOR_READ_INTERVAL))
+    // Проверяем наличие новых данных датчика (НАСТРАИВАЕМО v2.3.0)
+    if (sensorData.valid && (currentTime - lastDataPublish >= config.sensorReadInterval))
     {
         // Помечаем что есть данные для отправки (не отправляем сразу)
         pendingMqttPublish = true;
@@ -202,8 +202,8 @@ void loop()
         DEBUG_PRINTLN("[BATCH] Новые данные помечены для групповой отправки");
     }
 
-    // ✅ Групповая отправка MQTT (каждые 5 минут - ОПТИМИЗИРОВАНО v2.2.1)
-    if (pendingMqttPublish && (currentTime - mqttBatchTimer >= MQTT_PUBLISH_INTERVAL))
+    // ✅ Групповая отправка MQTT (настраиваемо v2.3.0)
+    if (pendingMqttPublish && (currentTime - mqttBatchTimer >= config.mqttPublishInterval))
     {
         publishSensorData();
         pendingMqttPublish = false;
@@ -211,8 +211,8 @@ void loop()
         DEBUG_PRINTLN("[BATCH] MQTT данные отправлены группой");
     }
 
-    // ✅ Групповая отправка ThingSpeak (каждые 15 минут - ОПТИМИЗИРОВАНО v2.2.1)
-    if (pendingThingspeakPublish && (currentTime - thingspeakBatchTimer >= THINGSPEAK_INTERVAL))
+    // ✅ Групповая отправка ThingSpeak (настраиваемо v2.3.0)
+    if (pendingThingspeakPublish && (currentTime - thingspeakBatchTimer >= config.thingSpeakInterval))
     {
         sendDataToThingSpeak();
         pendingThingspeakPublish = false;

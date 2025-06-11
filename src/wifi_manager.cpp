@@ -143,6 +143,8 @@ String navHtml()
     if (currentWiFiMode == WiFiMode::STA)
     {
         html += "<a href='/readings'>Показания</a>";
+        html += "<a href='/intervals'>⚙️ Интервалы</a>";  // v2.3.0
+        html += "<a href='/config_manager'>📁 Конфигурация</a>";  // v2.3.0
         html += "<a href='/service'>Сервис</a>";
     }
     html += "</div>";
@@ -801,7 +803,7 @@ void setupWebServer()
                 "html+=dot(d.sensor_ok)+'<b>Датчик:</b> '+(d.sensor_ok?'Ок':'Ошибка'+(d.sensor_last_error?' "
                 "('+d.sensor_last_error+')':''));";
             html += "document.getElementById('status-block').innerHTML=html;";
-            html += "});}setInterval(updateStatus,10000);updateStatus();";  // ОПТИМИЗИРОВАНО v2.2.1: 10 сек вместо 3 сек
+            html += "});}setInterval(updateStatus," + String(config.webUpdateInterval) + ");updateStatus();";  // НАСТРАИВАЕМО v2.3.0
             html += "</script>";
             html += "</div></body></html>";
             html += toastHtml;
@@ -863,6 +865,277 @@ void setupWebServer()
                  });
 
     webServer.on("/status", HTTP_GET, handleStatus);
+    
+    // v2.3.0: Новая страница настроек интервалов и фильтров
+    webServer.on("/intervals", HTTP_GET, []() {
+        if (currentWiFiMode == WiFiMode::AP) {
+            String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Интервалы</title></head><body><h1>Интервалы</h1><div class='msg msg-error'>Недоступно в режиме точки доступа</div></body></html>";
+            webServer.send(200, "text/html; charset=utf-8", html);
+            return;
+        }
+        
+        // Проверка авторизации
+        if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
+            sendAuthForm();
+            return;
+        }
+        
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Интервалы и фильтры</title>";
+        html += "<style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:800px;margin:0 auto}h1{color:#333}.form-group{margin-bottom:15px}label{display:block;margin-bottom:5px}input[type=number]{width:100%;padding:8px;box-sizing:border-box}button{background:#4CAF50;color:white;padding:10px 15px;border:none;cursor:pointer}button:hover{background:#45a049}.section{margin-bottom:20px;padding:15px;border:1px solid #ddd;border-radius:5px}.nav{margin-bottom:20px}.nav a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}.help{color:#666;font-size:12px;margin-top:5px}</style>";
+        html += "</head><body><div class='container'>";
+        html += navHtml();
+        html += "<h1>⚙️ Настройка интервалов и фильтров v2.3.0</h1>";
+        html += "<form action='/save_intervals' method='post'>";
+        
+        // Скрытое поле для авторизации
+        if (strlen(config.webPassword) > 0 && webServer.hasArg("auth_password")) {
+            html += "<input type='hidden' name='auth_password' value='" + webServer.arg("auth_password") + "'>";
+        }
+        
+        html += "<div class='section'><h2>📊 Интервалы опроса и публикации</h2>";
+        html += "<div class='form-group'><label for='sensor_interval'>Интервал опроса датчика (сек):</label>";
+        html += "<input type='number' id='sensor_interval' name='sensor_interval' min='10' max='300' value='" + String(config.sensorReadInterval/1000) + "' required>";
+        html += "<div class='help'>10-300 сек. Текущее: " + String(config.sensorReadInterval/1000) + " сек</div></div>";
+        
+        html += "<div class='form-group'><label for='mqtt_interval'>Интервал MQTT публикации (мин):</label>";
+        html += "<input type='number' id='mqtt_interval' name='mqtt_interval' min='1' max='60' value='" + String(config.mqttPublishInterval/60000) + "' required>";
+        html += "<div class='help'>1-60 мин. Текущее: " + String(config.mqttPublishInterval/60000) + " мин</div></div>";
+        
+        html += "<div class='form-group'><label for='ts_interval'>Интервал ThingSpeak (мин):</label>";
+        html += "<input type='number' id='ts_interval' name='ts_interval' min='5' max='120' value='" + String(config.thingSpeakInterval/60000) + "' required>";
+        html += "<div class='help'>5-120 мин. Текущее: " + String(config.thingSpeakInterval/60000) + " мин</div></div>";
+        
+        html += "<div class='form-group'><label for='web_interval'>Интервал обновления веб-интерфейса (сек):</label>";
+        html += "<input type='number' id='web_interval' name='web_interval' min='5' max='60' value='" + String(config.webUpdateInterval/1000) + "' required>";
+        html += "<div class='help'>5-60 сек. Текущее: " + String(config.webUpdateInterval/1000) + " сек</div></div></div>";
+        
+        html += "<div class='section'><h2>🎯 Пороги дельта-фильтра</h2>";
+        html += "<div class='form-group'><label for='delta_temp'>Порог температуры (°C):</label>";
+        html += "<input type='number' id='delta_temp' name='delta_temp' min='0.1' max='5.0' step='0.1' value='" + String(config.deltaTemperature) + "' required>";
+        html += "<div class='help'>0.1-5.0°C. Публикация при изменении более чем на это значение</div></div>";
+        
+        html += "<div class='form-group'><label for='delta_hum'>Порог влажности (%):</label>";
+        html += "<input type='number' id='delta_hum' name='delta_hum' min='0.5' max='10.0' step='0.5' value='" + String(config.deltaHumidity) + "' required>";
+        html += "<div class='help'>0.5-10.0%. Публикация при изменении более чем на это значение</div></div>";
+        
+        html += "<div class='form-group'><label for='delta_ph'>Порог pH:</label>";
+        html += "<input type='number' id='delta_ph' name='delta_ph' min='0.01' max='1.0' step='0.01' value='" + String(config.deltaPh) + "' required>";
+        html += "<div class='help'>0.01-1.0. Публикация при изменении более чем на это значение</div></div>";
+        
+        html += "<div class='form-group'><label for='delta_ec'>Порог EC (µS/cm):</label>";
+        html += "<input type='number' id='delta_ec' name='delta_ec' min='10' max='500' value='" + String((int)config.deltaEc) + "' required>";
+        html += "<div class='help'>10-500 µS/cm. Публикация при изменении более чем на это значение</div></div>";
+        
+        html += "<div class='form-group'><label for='delta_npk'>Порог NPK (mg/kg):</label>";
+        html += "<input type='number' id='delta_npk' name='delta_npk' min='1' max='50' value='" + String((int)config.deltaNpk) + "' required>";
+        html += "<div class='help'>1-50 mg/kg. Публикация при изменении более чем на это значение</div></div></div>";
+        
+        html += "<div class='section'><h2>📈 Скользящее среднее</h2>";
+        html += "<div class='form-group'><label for='avg_window'>Размер окна усреднения:</label>";
+        html += "<input type='number' id='avg_window' name='avg_window' min='5' max='15' value='" + String(config.movingAverageWindow) + "' required>";
+        html += "<div class='help'>5-15 измерений. Больше = плавнее, но медленнее реакция</div></div>";
+        
+        html += "<div class='form-group'><label for='force_cycles'>Принудительная публикация (циклов):</label>";
+        html += "<input type='number' id='force_cycles' name='force_cycles' min='5' max='50' value='" + String(config.forcePublishCycles) + "' required>";
+        html += "<div class='help'>5-50 циклов. Публикация каждые N циклов даже без изменений</div></div></div>";
+        
+        html += "<button type='submit'>💾 Сохранить настройки</button>";
+        html += "<button type='button' onclick=\"location.href='/reset_intervals'\">🔄 Сбросить к умолчанию</button>";
+        html += "</form></div></body></html>";
+        
+                 webServer.send(200, "text/html; charset=utf-8", html);
+     });
+     
+    // v2.3.0: Обработчик сохранения настроек интервалов
+    webServer.on("/save_intervals", HTTP_POST, []() {
+        if (currentWiFiMode == WiFiMode::AP) {
+            webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
+            return;
+        }
+        
+        // Проверка авторизации
+        if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
+            sendAuthForm("Неверный пароль. Попробуйте снова.");
+            return;
+        }
+        
+        // Сохраняем интервалы (с конвертацией в миллисекунды)
+        config.sensorReadInterval = webServer.arg("sensor_interval").toInt() * 1000;  // сек -> мс
+        config.mqttPublishInterval = webServer.arg("mqtt_interval").toInt() * 60000;  // мин -> мс
+        config.thingSpeakInterval = webServer.arg("ts_interval").toInt() * 60000;     // мин -> мс
+        config.webUpdateInterval = webServer.arg("web_interval").toInt() * 1000;      // сек -> мс
+        
+        // Сохраняем пороги дельта-фильтра
+        config.deltaTemperature = webServer.arg("delta_temp").toFloat();
+        config.deltaHumidity = webServer.arg("delta_hum").toFloat();
+        config.deltaPh = webServer.arg("delta_ph").toFloat();
+        config.deltaEc = webServer.arg("delta_ec").toFloat();
+        config.deltaNpk = webServer.arg("delta_npk").toFloat();
+        
+        // Сохраняем настройки скользящего среднего
+        config.movingAverageWindow = webServer.arg("avg_window").toInt();
+        config.forcePublishCycles = webServer.arg("force_cycles").toInt();
+        
+        // Сохраняем в NVS
+        saveConfig();
+        
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='3;url=/intervals'><title>Настройки сохранены</title></head>";
+        html += "<body style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'>";
+        html += "<h2>✅ Настройки интервалов сохранены!</h2>";
+        html += "<p>Новые настройки вступят в силу сразу.<br>";
+        html += "Датчик: " + String(config.sensorReadInterval/1000) + " сек, ";
+        html += "MQTT: " + String(config.mqttPublishInterval/60000) + " мин, ";
+        html += "ThingSpeak: " + String(config.thingSpeakInterval/60000) + " мин<br>";
+        html += "Возврат к настройкам через 3 секунды...</p></body></html>";
+        webServer.send(200, "text/html; charset=utf-8", html);
+    });
+    
+    // v2.3.0: Сброс интервалов к умолчанию
+    webServer.on("/reset_intervals", HTTP_GET, []() {
+        if (currentWiFiMode == WiFiMode::AP) {
+            webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
+            return;
+        }
+        
+        // Проверка авторизации
+        if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
+            sendAuthForm();
+            return;
+        }
+        
+        // Сбрасываем к умолчанию
+        config.sensorReadInterval = SENSOR_READ_INTERVAL;
+        config.mqttPublishInterval = MQTT_PUBLISH_INTERVAL;
+        config.thingSpeakInterval = THINGSPEAK_INTERVAL;
+        config.webUpdateInterval = WEB_UPDATE_INTERVAL;
+        config.deltaTemperature = DELTA_TEMPERATURE;
+        config.deltaHumidity = DELTA_HUMIDITY;
+        config.deltaPh = DELTA_PH;
+        config.deltaEc = DELTA_EC;
+        config.deltaNpk = DELTA_NPK;
+        config.movingAverageWindow = 5;
+        config.forcePublishCycles = FORCE_PUBLISH_CYCLES;
+        config.filterAlgorithm = 0;
+        config.outlierFilterEnabled = 0;
+        
+        saveConfig();
+        
+        String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' content='2;url=/intervals'><title>Сброс настроек</title></head>";
+        html += "<body style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'>";
+        html += "<h2>🔄 Настройки сброшены к умолчанию</h2>";
+        html += "<p>Возврат к настройкам через 2 секунды...</p></body></html>";
+        webServer.send(200, "text/html; charset=utf-8", html);
+    });
+     
+     // v2.3.0: API для экспорта конфигурации в JSON
+     webServer.on("/api/config/export", HTTP_GET, []() {
+         if (currentWiFiMode == WiFiMode::AP) {
+             webServer.send(403, "application/json", "{\"error\":\"Недоступно в режиме точки доступа\"}");
+             return;
+         }
+         
+         // Проверка авторизации для API
+         if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
+             webServer.send(401, "application/json", "{\"error\":\"Требуется авторизация\"}");
+             return;
+         }
+         
+         // Создаем JSON с конфигурацией
+         String json = "{";
+         json += "\"version\":\"2.3.0\",";
+         json += "\"exported\":\"" + String(millis()) + "\",";
+         json += "\"wifi\":{";
+         json += "\"ssid\":\"" + String(config.ssid) + "\",";
+         json += "\"password\":\"***\"";  // Пароль не экспортируем
+         json += "},";
+         json += "\"mqtt\":{";
+         json += "\"enabled\":" + String(config.flags.mqttEnabled ? "true" : "false") + ",";
+         json += "\"server\":\"" + String(config.mqttServer) + "\",";
+         json += "\"port\":" + String(config.mqttPort) + ",";
+         json += "\"user\":\"" + String(config.mqttUser) + "\",";
+         json += "\"topic_prefix\":\"" + String(config.mqttTopicPrefix) + "\",";
+         json += "\"device_name\":\"" + String(config.mqttDeviceName) + "\"";
+         json += "},";
+         json += "\"thingspeak\":{";
+         json += "\"enabled\":" + String(config.flags.thingSpeakEnabled ? "true" : "false") + ",";
+         json += "\"api_key\":\"***\",";  // API ключ не экспортируем
+         json += "\"channel_id\":\"" + String(config.thingSpeakChannelId) + "\"";
+         json += "},";
+         json += "\"intervals\":{";
+         json += "\"sensor_read\":" + String(config.sensorReadInterval) + ",";
+         json += "\"mqtt_publish\":" + String(config.mqttPublishInterval) + ",";
+         json += "\"thingspeak\":" + String(config.thingSpeakInterval) + ",";
+         json += "\"web_update\":" + String(config.webUpdateInterval);
+         json += "},";
+         json += "\"delta_filter\":{";
+         json += "\"temperature\":" + String(config.deltaTemperature) + ",";
+         json += "\"humidity\":" + String(config.deltaHumidity) + ",";
+         json += "\"ph\":" + String(config.deltaPh) + ",";
+         json += "\"ec\":" + String(config.deltaEc) + ",";
+         json += "\"npk\":" + String(config.deltaNpk);
+         json += "},";
+         json += "\"moving_average\":{";
+         json += "\"window\":" + String(config.movingAverageWindow) + ",";
+         json += "\"force_cycles\":" + String(config.forcePublishCycles) + ",";
+         json += "\"algorithm\":" + String(config.filterAlgorithm) + ",";
+         json += "\"outlier_filter\":" + String(config.outlierFilterEnabled);
+         json += "},";
+         json += "\"flags\":{";
+         json += "\"hass_enabled\":" + String(config.flags.hassEnabled ? "true" : "false") + ",";
+         json += "\"real_sensor\":" + String(config.flags.useRealSensor ? "true" : "false");
+         json += "}";
+         json += "}";
+         
+         // Отправляем с заголовком для скачивания файла
+         String filename = "jxct_config_" + String(millis()) + ".json";
+         webServer.sendHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+         webServer.send(200, "application/json", json);
+     });
+     
+     // v2.3.0: Страница управления конфигурацией
+     webServer.on("/config_manager", HTTP_GET, []() {
+         if (currentWiFiMode == WiFiMode::AP) {
+             String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Управление конфигурацией</title></head><body><h1>Управление конфигурацией</h1><div class='msg msg-error'>Недоступно в режиме точки доступа</div></body></html>";
+             webServer.send(200, "text/html; charset=utf-8", html);
+             return;
+         }
+         
+         // Проверка авторизации
+         if (strlen(config.webPassword) > 0 && !checkWebAuth()) {
+             sendAuthForm();
+             return;
+         }
+         
+         String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'><title>Управление конфигурацией</title>";
+         html += "<style>body{font-family:Arial,sans-serif;margin:0;padding:20px}.container{max-width:600px;margin:0 auto}h1{color:#333}.section{margin-bottom:20px;padding:15px;border:1px solid #ddd;border-radius:5px}.nav{margin-bottom:20px}.nav a{margin-right:10px;text-decoration:none;color:#4CAF50;font-weight:bold}button{background:#4CAF50;color:white;padding:10px 15px;border:none;cursor:pointer;margin-right:10px}button:hover{background:#45a049}.btn-download{background:#2196F3}.btn-download:hover{background:#0b7dda}.help{color:#666;font-size:12px;margin-top:10px}</style>";
+         html += "</head><body><div class='container'>";
+         html += navHtml();
+         html += "<h1>📁 Управление конфигурацией v2.3.0</h1>";
+         
+         html += "<div class='section'><h2>📤 Экспорт настроек</h2>";
+         html += "<p>Скачайте текущие настройки устройства в JSON файл для резервного копирования.</p>";
+         html += "<a href='/api/config/export";
+         if (strlen(config.webPassword) > 0 && webServer.hasArg("auth_password")) {
+             html += "?auth_password=" + webServer.arg("auth_password");
+         }
+         html += "'><button type='button' class='btn-download'>📥 Скачать конфигурацию</button></a>";
+         html += "<div class='help'>💡 Пароли не включаются в экспорт по соображениям безопасности</div></div>";
+         
+         html += "<div class='section'><h2>📥 Импорт настроек</h2>";
+         html += "<p>Загрузите JSON файл с настройками для восстановления конфигурации.</p>";
+         html += "<form enctype='multipart/form-data' method='post' action='/api/config/import'>";
+         if (strlen(config.webPassword) > 0 && webServer.hasArg("auth_password")) {
+             html += "<input type='hidden' name='auth_password' value='" + webServer.arg("auth_password") + "'>";
+         }
+         html += "<input type='file' name='config_file' accept='.json' required>";
+         html += "<button type='submit'>📤 Загрузить конфигурацию</button>";
+         html += "</form>";
+         html += "<div class='help'>⚠️ Устройство перезагрузится после успешного импорта</div></div>";
+         
+         html += "</div></body></html>";
+         webServer.send(200, "text/html; charset=utf-8", html);
+     });
+     
     webServer.begin();
 }
 
