@@ -191,8 +191,8 @@ void loop()
     static bool pendingMqttPublish = false;
     static bool pendingThingspeakPublish = false;
     
-    // Проверяем наличие новых данных датчика
-    if (sensorData.valid && (currentTime - lastDataPublish >= 5000))
+    // Проверяем наличие новых данных датчика (ОПТИМИЗИРОВАНО v2.2.1)
+    if (sensorData.valid && (currentTime - lastDataPublish >= SENSOR_READ_INTERVAL))
     {
         // Помечаем что есть данные для отправки (не отправляем сразу)
         pendingMqttPublish = true;
@@ -202,8 +202,8 @@ void loop()
         DEBUG_PRINTLN("[BATCH] Новые данные помечены для групповой отправки");
     }
 
-    // ✅ Групповая отправка MQTT (каждые 3 секунды или при накоплении данных)
-    if (pendingMqttPublish && (currentTime - mqttBatchTimer >= 3000))
+    // ✅ Групповая отправка MQTT (каждые 5 минут - ОПТИМИЗИРОВАНО v2.2.1)
+    if (pendingMqttPublish && (currentTime - mqttBatchTimer >= MQTT_PUBLISH_INTERVAL))
     {
         publishSensorData();
         pendingMqttPublish = false;
@@ -211,8 +211,8 @@ void loop()
         DEBUG_PRINTLN("[BATCH] MQTT данные отправлены группой");
     }
 
-    // ✅ Групповая отправка ThingSpeak (каждые 15 секунд - лимит API)
-    if (pendingThingspeakPublish && (currentTime - thingspeakBatchTimer >= 15000))
+    // ✅ Групповая отправка ThingSpeak (каждые 15 минут - ОПТИМИЗИРОВАНО v2.2.1)
+    if (pendingThingspeakPublish && (currentTime - thingspeakBatchTimer >= THINGSPEAK_INTERVAL))
     {
         sendDataToThingSpeak();
         pendingThingspeakPublish = false;

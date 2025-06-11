@@ -801,7 +801,7 @@ void setupWebServer()
                 "html+=dot(d.sensor_ok)+'<b>Датчик:</b> '+(d.sensor_ok?'Ок':'Ошибка'+(d.sensor_last_error?' "
                 "('+d.sensor_last_error+')':''));";
             html += "document.getElementById('status-block').innerHTML=html;";
-            html += "});}setInterval(updateStatus,3000);updateStatus();";
+            html += "});}setInterval(updateStatus,10000);updateStatus();";  // ОПТИМИЗИРОВАНО v2.2.1: 10 сек вместо 3 сек
             html += "</script>";
             html += "</div></body></html>";
             html += toastHtml;

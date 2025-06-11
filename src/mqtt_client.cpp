@@ -314,10 +314,79 @@ void handleMQTT()
     }
 }
 
+// ДЕЛЬТА-ФИЛЬТР v2.2.1: Проверка необходимости публикации
+bool shouldPublishMqtt()
+{
+    static int skipCounter = 0;
+    
+    // Первая публикация - всегда публикуем
+    if (sensorData.last_mqtt_publish == 0) {
+        return true;
+    }
+    
+    // Принудительная публикация каждые N циклов
+    if (++skipCounter >= FORCE_PUBLISH_CYCLES) {
+        skipCounter = 0;
+        DEBUG_PRINTLN("[DELTA] Принудительная публикация (цикл)");
+        return true;
+    }
+    
+    // Проверяем дельта изменения
+    bool hasSignificantChange = false;
+    
+    if (abs(sensorData.temperature - sensorData.prev_temperature) >= DELTA_TEMPERATURE) {
+        DEBUG_PRINTF("[DELTA] Температура изменилась: %.1f -> %.1f\n", sensorData.prev_temperature, sensorData.temperature);
+        hasSignificantChange = true;
+    }
+    
+    if (abs(sensorData.humidity - sensorData.prev_humidity) >= DELTA_HUMIDITY) {
+        DEBUG_PRINTF("[DELTA] Влажность изменилась: %.1f -> %.1f\n", sensorData.prev_humidity, sensorData.humidity);
+        hasSignificantChange = true;
+    }
+    
+    if (abs(sensorData.ph - sensorData.prev_ph) >= DELTA_PH) {
+        DEBUG_PRINTF("[DELTA] pH изменился: %.1f -> %.1f\n", sensorData.prev_ph, sensorData.ph);
+        hasSignificantChange = true;
+    }
+    
+    if (abs(sensorData.ec - sensorData.prev_ec) >= DELTA_EC) {
+        DEBUG_PRINTF("[DELTA] EC изменилась: %.0f -> %.0f\n", sensorData.prev_ec, sensorData.ec);
+        hasSignificantChange = true;
+    }
+    
+    if (abs(sensorData.nitrogen - sensorData.prev_nitrogen) >= DELTA_NPK) {
+        DEBUG_PRINTF("[DELTA] Азот изменился: %.0f -> %.0f\n", sensorData.prev_nitrogen, sensorData.nitrogen);
+        hasSignificantChange = true;
+    }
+    
+    if (abs(sensorData.phosphorus - sensorData.prev_phosphorus) >= DELTA_NPK) {
+        DEBUG_PRINTF("[DELTA] Фосфор изменился: %.0f -> %.0f\n", sensorData.prev_phosphorus, sensorData.phosphorus);
+        hasSignificantChange = true;
+    }
+    
+    if (abs(sensorData.potassium - sensorData.prev_potassium) >= DELTA_NPK) {
+        DEBUG_PRINTF("[DELTA] Калий изменился: %.0f -> %.0f\n", sensorData.prev_potassium, sensorData.potassium);
+        hasSignificantChange = true;
+    }
+    
+    if (hasSignificantChange) {
+        skipCounter = 0; // Сбрасываем счетчик при значимом изменении
+    } else {
+        DEBUG_PRINTLN("[DELTA] Изменения незначительные, пропускаем публикацию");
+    }
+    
+    return hasSignificantChange;
+}
+
 void publishSensorData()
 {
     if (!config.flags.mqttEnabled || !mqttClient.connected() || !sensorData.valid)
     {
+        return;
+    }
+    
+    // ДЕЛЬТА-ФИЛЬТР v2.2.1: Проверяем необходимость публикации
+    if (!shouldPublishMqtt()) {
         return;
     }
 
@@ -371,6 +440,18 @@ void publishSensorData()
     if (res)
     {
         strcpy(mqttLastErrorBuffer, "");
+        
+        // ДЕЛЬТА-ФИЛЬТР v2.2.1: Сохраняем текущие значения как предыдущие
+        sensorData.prev_temperature = sensorData.temperature;
+        sensorData.prev_humidity = sensorData.humidity;
+        sensorData.prev_ec = sensorData.ec;
+        sensorData.prev_ph = sensorData.ph;
+        sensorData.prev_nitrogen = sensorData.nitrogen;
+        sensorData.prev_phosphorus = sensorData.phosphorus;
+        sensorData.prev_potassium = sensorData.potassium;
+        sensorData.last_mqtt_publish = millis();
+        
+        DEBUG_PRINTLN("[MQTT] Данные опубликованы, предыдущие значения обновлены");
     }
     else
     {

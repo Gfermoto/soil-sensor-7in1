@@ -8,9 +8,19 @@
 #define BOOT_BUTTON 0
 #define STATUS_LED_PIN 2
 
-// Интервалы (мс)
-#define SENSOR_READ_INTERVAL 5000
-#define DATA_PUBLISH_INTERVAL 15000
+// Интервалы (мс) - ОПТИМИЗИРОВАНО v2.2.1
+#define SENSOR_READ_INTERVAL 30000     // 30 сек (было 5 сек) - экономия CPU
+#define MQTT_PUBLISH_INTERVAL 300000   // 5 мин (было 3 сек) - экономия трафика 
+#define THINGSPEAK_INTERVAL 900000     // 15 мин (было 15 сек) - соблюдение rate limit
+#define WEB_UPDATE_INTERVAL 10000      // 10 сек (было 2 сек) - разумная частота UI
+
+// ДЕЛЬТА-ФИЛЬТР v2.2.1: Пороговые значения для публикации
+#define DELTA_TEMPERATURE 0.5f         // ±0.5°C
+#define DELTA_HUMIDITY 2.0f            // ±2%
+#define DELTA_PH 0.1f                  // ±0.1 pH
+#define DELTA_EC 50.0f                 // ±50 µS/cm
+#define DELTA_NPK 5.0f                 // ±5 mg/kg (для N, P, K)
+#define FORCE_PUBLISH_CYCLES 12        // Принудительная публикация каждые 12 циклов (1 час при 5 мин интервале)
 
 // Modbus ID по умолчанию
 #define JXCT_MODBUS_ID 1

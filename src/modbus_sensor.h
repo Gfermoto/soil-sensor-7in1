@@ -45,6 +45,16 @@ struct SensorData
     uint8_t error_status;       // Статус ошибок
     bool valid;                 // Флаг валидности данных
     unsigned long last_update;  // Время последнего обновления
+    
+    // ДЕЛЬТА-ФИЛЬТР v2.2.1: Поля для хранения предыдущих значений
+    float prev_temperature;     // Предыдущая температура для дельта-фильтра
+    float prev_humidity;        // Предыдущая влажность для дельта-фильтра  
+    float prev_ec;              // Предыдущая EC для дельта-фильтра
+    float prev_ph;              // Предыдущий pH для дельта-фильтра
+    float prev_nitrogen;        // Предыдущий азот для дельта-фильтра
+    float prev_phosphorus;      // Предыдущий фосфор для дельта-фильтра
+    float prev_potassium;       // Предыдущий калий для дельта-фильтра
+    unsigned long last_mqtt_publish; // Время последней публикации MQTT
 };
 
 // Структура для кэширования данных
