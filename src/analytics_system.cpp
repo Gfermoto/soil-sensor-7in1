@@ -456,13 +456,45 @@ void handleAnalyticsPage()
         }
         
         html += "</div>";
-        
-        // График температуры
-        html += "<div class='chart-container'>";
-        html += "<h3>📈 График температуры (последние 20 точек)</h3>";
-        html += "<canvas id='tempChart' width='400' height='200'></canvas>";
-        html += "</div>";
     }
+    
+    // Графики показаний (всегда отображаем)
+    html += "<div class='charts-section'>";
+    html += "<h3>📈 Графики показаний (последние 15 точек)</h3>";
+    
+    // Основные показатели
+    html += "<div class='chart-row'>";
+    html += "<div class='chart-container'>";
+    html += "<h4>🌡️ Температура</h4>";
+    html += "<canvas id='tempChart' width='400' height='200'></canvas>";
+    html += "</div>";
+    html += "<div class='chart-container'>";
+    html += "<h4>💧 Влажность</h4>";
+    html += "<canvas id='humChart' width='400' height='200'></canvas>";
+    html += "</div>";
+    html += "</div>";
+    
+    // Химические показатели  
+    html += "<div class='chart-row'>";
+    html += "<div class='chart-container'>";
+    html += "<h4>⚗️ pH кислотность</h4>";
+    html += "<canvas id='phChart' width='400' height='200'></canvas>";
+    html += "</div>";
+    html += "<div class='chart-container'>";
+    html += "<h4>⚡ EC проводимость</h4>";
+    html += "<canvas id='ecChart' width='400' height='200'></canvas>";
+    html += "</div>";
+    html += "</div>";
+    
+    // NPK питательные вещества
+    html += "<div class='chart-row'>";
+    html += "<div class='chart-container full-width'>";
+    html += "<h4>🌱 NPK питательные вещества</h4>";
+    html += "<canvas id='npkChart' width='800' height='300'></canvas>";
+    html += "</div>";
+    html += "</div>";
+    
+    html += "</div>"; // charts-section
     
     // Экспорт данных
     html += "<div class='export-section'>";
@@ -474,50 +506,122 @@ void handleAnalyticsPage()
     html += "</div>";
     
     // JavaScript для графиков
-    if (analytics.count > 0) {
-        html += "<script>";
-        html += "async function loadChart() {";
-        html += "  try {";
-        html += "    if (typeof Chart === 'undefined') {";
-        html += "      setTimeout(loadChart, 100);";
-        html += "      return;";
-        html += "    }";
-        html += "    const response = await fetch('/api/analytics?period=hour');";
-        html += "    const data = await response.json();";
-        html += "    console.log('Analytics data:', data);";
-        html += "    if (data.analytics_export && data.analytics_export.raw_data && data.analytics_export.raw_data.length > 0) {";
-        html += "      const ctx = document.getElementById('tempChart').getContext('2d');";
-        html += "      const chartData = data.analytics_export.raw_data.slice(-20);";  // Последние 20 точек
-        html += "      new Chart(ctx, {";
-        html += "        type: 'line',";
-        html += "        data: {";
-        html += "          labels: chartData.map(p => new Date(p.timestamp).toLocaleTimeString()),";
-        html += "          datasets: [{";
-        html += "            label: 'Температура (°C)',";
-        html += "            data: chartData.map(p => p.temperature),";
-        html += "            borderColor: '#4CAF50',";
-        html += "            backgroundColor: 'rgba(76, 175, 80, 0.1)',";
-        html += "            tension: 0.1";
-        html += "          }]";
-        html += "        },";
-        html += "        options: {";
-        html += "          responsive: true,";
-        html += "          scales: {";
-        html += "            y: { beginAtZero: false }";
-        html += "          }";
-        html += "        }";
-        html += "      });";
-        html += "    } else {";
-        html += "      document.getElementById('tempChart').parentElement.innerHTML = '<h3>📈 Недостаточно данных для графика</h3>';";
-        html += "    }";
-        html += "  } catch (error) {";
-        html += "    console.error('Ошибка загрузки данных:', error);";
-        html += "    document.getElementById('tempChart').parentElement.innerHTML = '<h3>📈 Ошибка загрузки данных</h3>';";
-        html += "  }";
-        html += "}";
-        html += "window.onload = loadChart;";
-        html += "</script>";
-    }
+    html += "<script>";
+    html += "async function loadCharts() {";
+    html += "  try {";
+    html += "    if (typeof Chart === 'undefined') {";
+    html += "      console.log('Chart.js не загружен, повторяем...');";
+    html += "      setTimeout(loadCharts, 200);";
+    html += "      return;";
+    html += "    }";
+    html += "    ";
+    html += "    const response = await fetch('/api/analytics?period=hour');";
+    html += "    const data = await response.json();";
+    html += "    console.log('Analytics data:', data);";
+    html += "    ";
+    html += "    if (data.analytics_export && data.analytics_export.raw_data && data.analytics_export.raw_data.length > 0) {";
+    html += "      const rawData = data.analytics_export.raw_data.slice(-15);";
+    html += "      const labels = rawData.map(p => new Date(p.timestamp).toLocaleTimeString());";
+    html += "      ";
+    html += "      // График температуры";
+    html += "      new Chart(document.getElementById('tempChart').getContext('2d'), {";
+    html += "        type: 'line',";
+    html += "        data: {";
+    html += "          labels: labels,";
+    html += "          datasets: [{";
+    html += "            label: 'Температура °C',";
+    html += "            data: rawData.map(p => p.temperature),";
+    html += "            borderColor: '#FF6B6B', backgroundColor: 'rgba(255, 107, 107, 0.1)', tension: 0.3";
+    html += "          }]";
+    html += "        },";
+    html += "        options: { responsive: true, scales: { y: { beginAtZero: false } } }";
+    html += "      });";
+    html += "      ";
+    html += "      // График влажности";
+    html += "      new Chart(document.getElementById('humChart').getContext('2d'), {";
+    html += "        type: 'line',";
+    html += "        data: {";
+    html += "          labels: labels,";
+    html += "          datasets: [{";
+    html += "            label: 'Влажность %',";
+    html += "            data: rawData.map(p => p.humidity),";
+    html += "            borderColor: '#4ECDC4', backgroundColor: 'rgba(78, 205, 196, 0.1)', tension: 0.3";
+    html += "          }]";
+    html += "        },";
+    html += "        options: { responsive: true, scales: { y: { min: 0, max: 100 } } }";
+    html += "      });";
+    html += "      ";
+    html += "      // График pH";
+    html += "      new Chart(document.getElementById('phChart').getContext('2d'), {";
+    html += "        type: 'line',";
+    html += "        data: {";
+    html += "          labels: labels,";
+    html += "          datasets: [{";
+    html += "            label: 'pH',";
+    html += "            data: rawData.map(p => p.ph),";
+    html += "            borderColor: '#FFE66D', backgroundColor: 'rgba(255, 230, 109, 0.1)', tension: 0.3";
+    html += "          }]";
+    html += "        },";
+    html += "        options: { responsive: true, scales: { y: { min: 0, max: 14 } } }";
+    html += "      });";
+    html += "      ";
+    html += "      // График EC";
+    html += "      new Chart(document.getElementById('ecChart').getContext('2d'), {";
+    html += "        type: 'line',";
+    html += "        data: {";
+    html += "          labels: labels,";
+    html += "          datasets: [{";
+    html += "            label: 'EC µS/cm',";
+    html += "            data: rawData.map(p => p.ec),";
+    html += "            borderColor: '#A8E6CF', backgroundColor: 'rgba(168, 230, 207, 0.1)', tension: 0.3";
+    html += "          }]";
+    html += "        },";
+    html += "        options: { responsive: true, scales: { y: { beginAtZero: true } } }";
+    html += "      });";
+    html += "      ";
+    html += "      // График NPK";
+    html += "      new Chart(document.getElementById('npkChart').getContext('2d'), {";
+    html += "        type: 'line',";
+    html += "        data: {";
+    html += "          labels: labels,";
+    html += "          datasets: [{";
+    html += "            label: 'Азот (N) мг/кг',";
+    html += "            data: rawData.map(p => p.nitrogen),";
+    html += "            borderColor: '#FF8A80', backgroundColor: 'rgba(255, 138, 128, 0.1)', tension: 0.3";
+    html += "          }, {";
+    html += "            label: 'Фосфор (P) мг/кг',";
+    html += "            data: rawData.map(p => p.phosphorus),";
+    html += "            borderColor: '#82B1FF', backgroundColor: 'rgba(130, 177, 255, 0.1)', tension: 0.3";
+    html += "          }, {";
+    html += "            label: 'Калий (K) мг/кг',";
+    html += "            data: rawData.map(p => p.potassium),";
+    html += "            borderColor: '#B39DDB', backgroundColor: 'rgba(179, 157, 219, 0.1)', tension: 0.3";
+    html += "          }]";
+    html += "        },";
+    html += "        options: { responsive: true, scales: { y: { beginAtZero: true } } }";
+    html += "      });";
+    html += "      ";
+    html += "    } else {";
+    html += "      const noDataMsg = '<div style=\"text-align:center;padding:20px;color:#999;\">📊 Накапливаем данные...<br/>График появится через 30-60 секунд</div>';";
+    html += "      document.querySelectorAll('canvas').forEach(canvas => {";
+    html += "        canvas.parentElement.innerHTML = noDataMsg;";
+    html += "      });";
+    html += "    }";
+    html += "  } catch (error) {";
+    html += "    console.error('Ошибка загрузки графиков:', error);";
+    html += "    const errorMsg = '<div style=\"text-align:center;padding:20px;color:#f44336;\">❌ Ошибка загрузки данных</div>';";
+    html += "    document.querySelectorAll('canvas').forEach(canvas => {";
+    html += "      canvas.parentElement.innerHTML = errorMsg;";
+    html += "    });";
+    html += "  }";
+    html += "}";
+    html += "";
+    html += "// Загружаем графики при загрузке страницы и обновляем каждые 10 секунд";
+    html += "window.onload = function() {";
+    html += "  loadCharts();";
+    html += "  setInterval(loadCharts, 10000);";
+    html += "};";
+    html += "</script>";
     
     html += "</div></body></html>";
     
