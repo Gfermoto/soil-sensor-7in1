@@ -293,6 +293,34 @@ input:focus, select:focus, textarea:focus {
     border-bottom: 2px solid #f0f0f0;
 }
 
+.chart-status {
+    text-align: center;
+    padding: 10px;
+    background: #e8f5e8;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: #2e7d32;
+}
+
+.simple-chart {
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.no-data {
+    text-align: center;
+    padding: 40px 20px;
+    color: #999;
+    font-style: italic;
+}
+
+.no-data.error {
+    color: #f44336;
+}
+
 /* === МОБИЛЬНАЯ АДАПТАЦИЯ === */
 @media (max-width: 768px) {
     body { padding: 10px; }
