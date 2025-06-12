@@ -8,9 +8,9 @@
 #define BOOT_BUTTON 0
 #define STATUS_LED_PIN 2
 
-// Интервалы (мс) - ОПТИМИЗИРОВАНО v2.2.1
-#define SENSOR_READ_INTERVAL 30000     // 30 сек (было 5 сек) - экономия CPU
-#define MQTT_PUBLISH_INTERVAL 300000   // 5 мин (было 3 сек) - экономия трафика 
+// Интервалы (мс) - МАКСИМАЛЬНАЯ ОТЗЫВЧИВОСТЬ
+#define SENSOR_READ_INTERVAL 1000      // 1 сек - максимальная частота опроса датчика
+#define MQTT_PUBLISH_INTERVAL 60000    // 1 мин (было 5 мин) - увеличенная частота отправки
 #define THINGSPEAK_INTERVAL 900000     // 15 мин (было 15 сек) - соблюдение rate limit
 #define WEB_UPDATE_INTERVAL 5000       // 5 сек (было 10 сек) - улучшенная отзывчивость
 
@@ -26,13 +26,13 @@
 #define WATCHDOG_TIMEOUT_SEC 30        // Таймаут watchdog timer
 #define OTA_WATCHDOG_TIMEOUT_SEC 60    // Увеличенный таймаут для OTA
 
-// ДЕЛЬТА-ФИЛЬТР v2.2.1: Пороговые значения для публикации
-#define DELTA_TEMPERATURE 0.5f         // ±0.5°C
-#define DELTA_HUMIDITY 2.0f            // ±2%
-#define DELTA_PH 0.1f                  // ±0.1 pH
-#define DELTA_EC 50.0f                 // ±50 µS/cm
-#define DELTA_NPK 5.0f                 // ±5 mg/kg (для N, P, K)
-#define FORCE_PUBLISH_CYCLES 12        // Принудительная публикация каждые 12 циклов (1 час при 5 мин интервале)
+// ДЕЛЬТА-ФИЛЬТР v2.2.1: Пороговые значения для публикации (МИНИМАЛЬНАЯ ФИЛЬТРАЦИЯ)
+#define DELTA_TEMPERATURE 0.1f         // ±0.1°C (минимум)
+#define DELTA_HUMIDITY 0.5f            // ±0.5% (минимум)
+#define DELTA_PH 0.01f                 // ±0.01 pH (минимум)
+#define DELTA_EC 10.0f                 // ±10 µS/cm (минимум)
+#define DELTA_NPK 1.0f                 // ±1 mg/kg (минимум для N, P, K)
+#define FORCE_PUBLISH_CYCLES 5         // Принудительная публикация каждые 5 циклов (5 мин при 1 мин интервале)
 
 // Modbus ID по умолчанию
 #define JXCT_MODBUS_ID 1
@@ -81,7 +81,7 @@ struct __attribute__((packed)) Config
     char webPassword[24];     // Пароль для доступа к веб-интерфейсу
     
     // v2.3.0: Настраиваемые интервалы (16 байт)
-    uint32_t sensorReadInterval;    // Интервал опроса датчика (10-300 сек)
+    uint32_t sensorReadInterval;    // Интервал опроса датчика (1-300 сек, по умолчанию 1 сек)
     uint32_t mqttPublishInterval;   // Интервал MQTT публикации (1-60 мин)
     uint32_t thingSpeakInterval;    // Интервал ThingSpeak (5-120 мин)
     uint32_t webUpdateInterval;     // Интервал обновления веб-интерфейса (5-60 сек)

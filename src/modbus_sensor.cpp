@@ -439,8 +439,8 @@ void realSensorTask(void* pvParameters)
         // Простое чтение всех параметров датчика с рабочими настройками
         readSensorData(); 
         
-        // Пауза между чтениями (настраиваемая в config)
-        vTaskDelay(pdMS_TO_TICKS(config.sensorReadInterval * 1000));
+        // Пауза между чтениями (настраиваемая в config в миллисекундах)
+        vTaskDelay(pdMS_TO_TICKS(config.sensorReadInterval));
     }
 }
 

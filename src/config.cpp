@@ -85,11 +85,11 @@ void loadConfig()
     config.deltaEc = preferences.getFloat("deltaEc", DELTA_EC);
     config.deltaNpk = preferences.getFloat("deltaNpk", DELTA_NPK);
     
-    // v2.3.0: Настройки скользящего среднего
-    config.movingAverageWindow = preferences.getUChar("avgWindow", 5);
+    // v2.3.0: Настройки скользящего среднего (МИНИМАЛЬНАЯ ФИЛЬТРАЦИЯ)
+    config.movingAverageWindow = preferences.getUChar("avgWindow", 5);       // минимальное окно
     config.forcePublishCycles = preferences.getUChar("forceCycles", FORCE_PUBLISH_CYCLES);
     config.filterAlgorithm = preferences.getUChar("filterAlgo", 0);  // 0=среднее
-    config.outlierFilterEnabled = preferences.getUChar("outlierFilter", 0);  // отключен
+    config.outlierFilterEnabled = preferences.getUChar("outlierFilter", 0);  // отключен для минимальной фильтрации
 
     preferences.end();
     // Значения по умолчанию для новых полей
@@ -231,11 +231,11 @@ void resetConfig()
     config.deltaEc = DELTA_EC;
     config.deltaNpk = DELTA_NPK;
     
-    // v2.3.0: Сброс настроек скользящего среднего
-    config.movingAverageWindow = 5;
+    // v2.3.0: Сброс настроек скользящего среднего (МИНИМАЛЬНАЯ ФИЛЬТРАЦИЯ)
+    config.movingAverageWindow = 5;    // минимальное окно
     config.forcePublishCycles = FORCE_PUBLISH_CYCLES;
     config.filterAlgorithm = 0;        // среднее
-    config.outlierFilterEnabled = 0;   // отключен
+    config.outlierFilterEnabled = 0;   // отключен для минимальной фильтрации
 
     logSuccess("Все настройки сброшены к значениям по умолчанию");
     DEBUG_PRINT("[resetConfig] config.thingspeakInterval: ");

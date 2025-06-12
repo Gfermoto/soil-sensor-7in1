@@ -808,8 +808,8 @@ void setupWebServer()
         
         html += "<div class='section'><h2>📊 Интервалы опроса и публикации</h2>";
         html += "<div class='form-group'><label for='sensor_interval'>Интервал опроса датчика (сек):</label>";
-        html += "<input type='number' id='sensor_interval' name='sensor_interval' min='10' max='300' value='" + String(config.sensorReadInterval/1000) + "' required>";
-        html += "<div class='help'>10-300 сек. Текущее: " + String(config.sensorReadInterval/1000) + " сек</div></div>";
+        html += "<input type='number' id='sensor_interval' name='sensor_interval' min='1' max='300' value='" + String(config.sensorReadInterval/1000) + "' required>";
+        html += "<div class='help'>1-300 сек. Текущее: " + String(config.sensorReadInterval/1000) + " сек (по умолчанию: 1 сек)</div></div>";
         
         html += "<div class='form-group'><label for='mqtt_interval'>Интервал MQTT публикации (мин):</label>";
         html += "<input type='number' id='mqtt_interval' name='mqtt_interval' min='1' max='60' value='" + String(config.mqttPublishInterval/60000) + "' required>";
@@ -869,7 +869,7 @@ void setupWebServer()
         html += "<div class='help'>Автоматически отбрасывает измерения, отклоняющиеся более чем на 2 сигма</div></div></div>";
         
         html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить настройки", "");
-        html += generateButton(ButtonType::SECONDARY, UI_ICON_RESET, "Сбросить к умолчанию", "location.href='/reset_intervals'");
+        html += generateButton(ButtonType::SECONDARY, UI_ICON_RESET, "Сбросить к умолчанию (1 сек + мин. фильтрация)", "location.href='/reset_intervals'");
         html += "</form></div>" + String(getToastHTML()) + "</body></html>";
         
                  webServer.send(200, "text/html; charset=utf-8", html);
@@ -925,20 +925,20 @@ void setupWebServer()
             webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
             return;
         }
-        // Сбрасываем к умолчанию
+        // Сбрасываем к умолчанию (МИНИМАЛЬНАЯ ФИЛЬТРАЦИЯ + ЧАСТЫЙ MQTT)
         config.sensorReadInterval = SENSOR_READ_INTERVAL;
         config.mqttPublishInterval = MQTT_PUBLISH_INTERVAL;
         config.thingSpeakInterval = THINGSPEAK_INTERVAL;
         config.webUpdateInterval = WEB_UPDATE_INTERVAL;
-        config.deltaTemperature = DELTA_TEMPERATURE;
-        config.deltaHumidity = DELTA_HUMIDITY;
-        config.deltaPh = DELTA_PH;
-        config.deltaEc = DELTA_EC;
-        config.deltaNpk = DELTA_NPK;
-        config.movingAverageWindow = 5;
-        config.forcePublishCycles = FORCE_PUBLISH_CYCLES;
-        config.filterAlgorithm = 0;
-        config.outlierFilterEnabled = 0;
+        config.deltaTemperature = DELTA_TEMPERATURE;    // 0.1°C
+        config.deltaHumidity = DELTA_HUMIDITY;          // 0.5%
+        config.deltaPh = DELTA_PH;                      // 0.01 pH
+        config.deltaEc = DELTA_EC;                      // 10 µS/cm
+        config.deltaNpk = DELTA_NPK;                    // 1 mg/kg
+        config.movingAverageWindow = 5;                 // минимальное окно
+        config.forcePublishCycles = FORCE_PUBLISH_CYCLES;  // каждые 5 циклов
+        config.filterAlgorithm = 0;                     // среднее
+        config.outlierFilterEnabled = 0;                // отключен
         
         saveConfig();
         
