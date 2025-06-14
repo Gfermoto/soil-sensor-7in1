@@ -100,44 +100,35 @@ public:
 
 ### **ЭТАП 2: РАЗБИВКА НА МОДУЛИ** ⏱️ 5 часов | **Риск:** Средний
 
-#### 2.1 Модуль авторизации и главной страницы
+#### 2.1 Модуль главной страницы и настроек
 ```cpp
-// src/web_server/web_auth_routes.cpp
-#include "web_server/web_auth_routes.h"
+// src/web_server/web_main_routes.cpp
+#include "web_server/web_main_routes.h"
 #include "web_server/web_templates.h" 
 #include "web_server/web_utils.h"
 
 extern WebServer webServer;
 
-void setupAuthRoutes() {
+void setupMainRoutes() {
     webServer.on("/", HTTP_GET, handleMainPage);
-    webServer.on("/", HTTP_POST, handleAuthPost);
-    webServer.on("/login", HTTP_GET, handleLoginPage);
-    webServer.on("/logout", HTTP_POST, handleLogout);
+    webServer.on("/", HTTP_POST, handleMainPagePost);
 }
 
 void handleMainPage() {
-    if (!WebUtils::validateWebAuth()) {
-        handleLoginPage();
-        return;
-    }
-    
     // Логика главной страницы в зависимости от режима WiFi
     String content = buildMainPageContent();
     String html = WebTemplates::buildHTMLPage("Настройки JXCT", content);
     WebUtils::sendHTMLResponse(html);
 }
 
-void handleAuthPost() {
-    // Обработка POST запроса авторизации
-    String username = webServer.arg("username");
-    String password = webServer.arg("password");
+void handleMainPagePost() {
+    // Обработка POST запросов на главной странице
+    String action = webServer.arg("action");
     
-    if (validateCredentials(username, password)) {
-        // Успешная авторизация
-        WebUtils::sendJSONSuccess("Авторизация успешна");
+    if (action == "save_config") {
+        handleSaveConfig();
     } else {
-        WebUtils::sendJSONError("Неверные учетные данные", 401);
+        WebUtils::sendJSONError("Неизвестное действие", 400);
     }
 }
 ```
@@ -157,11 +148,6 @@ void setupConfigRoutes() {
 }
 
 void handleSaveConfig() {
-    if (!WebUtils::validateWebAuth()) {
-        WebUtils::sendJSONError("Требуется авторизация", 401);
-        return;
-    }
-    
     // Валидация входных данных
     String ssid = webServer.arg("ssid");
     String password = webServer.arg("password");
@@ -192,11 +178,6 @@ void setupIntervalsRoutes() {
 }
 
 void handleSaveIntervals() {
-    if (!WebUtils::validateWebAuth()) {
-        WebUtils::sendJSONError("Требуется авторизация", 401);
-        return;
-    }
-    
     // Валидация интервалов
     int sensorInterval = webServer.arg("sensor_interval").toInt();
     int mqttInterval = webServer.arg("mqtt_interval").toInt();
@@ -224,19 +205,22 @@ void handleSaveIntervals() {
 // src/web_server/web_middleware.cpp
 class WebMiddleware {
 public:
-    static bool authRequired(bool required = true);
     static bool rateLimiting(const String& endpoint, int maxRequests = 60);
     static bool validateContentType(const String& expectedType);
     static void addSecurityHeaders();
 };
 
-bool WebMiddleware::authRequired(bool required) {
-    if (!required) return true;
+bool WebMiddleware::rateLimiting(const String& endpoint, int maxRequests) {
+    // Простая защита от спама запросов
+    static unsigned long lastRequest = 0;
+    unsigned long now = millis();
     
-    if (!WebUtils::validateWebAuth()) {
-        WebUtils::sendJSONError("Требуется авторизация", 401);
+    if (now - lastRequest < 100) { // минимум 100мс между запросами
+        WebUtils::sendJSONError("Слишком частые запросы", 429);
         return false;
     }
+    
+    lastRequest = now;
     return true;
 }
 ```
@@ -270,7 +254,7 @@ src/
 │   ├── web_validators.cpp        # Валидация данных
 │   ├── web_middleware.cpp        # Middleware функции
 │   ├── web_error_handler.cpp     # Обработка ошибок
-│   ├── web_auth_routes.cpp       # Авторизация + главная
+│   ├── web_main_routes.cpp       # Главная страница
 │   ├── web_config_routes.cpp     # Настройки конфигурации
 │   ├── web_intervals_routes.cpp  # Интервалы и фильтры
 │   ├── web_service_routes.cpp    # Сервисные функции
@@ -300,7 +284,7 @@ void setupWebServer() {
     WebErrorHandler::initialize();
     
     // Настройка маршрутов по модулям
-    setupAuthRoutes();          // Авторизация и главная страница
+    setupMainRoutes();          // Главная страница
     setupConfigRoutes();        // Конфигурация и сохранение
     setupIntervalsRoutes();     // Интервалы и фильтры  
     setupServiceRoutes();       // Сервисные функции

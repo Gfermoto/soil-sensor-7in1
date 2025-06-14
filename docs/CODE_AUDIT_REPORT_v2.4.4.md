@@ -118,7 +118,7 @@ bool validateWebAuth();  // Обертка над checkWebAuth
 ```cpp
 // Новая структура:
 src/web_server/
-├── web_auth_routes.cpp       # "/" - авторизация + главная
+├── web_main_routes.cpp       # "/" - главная страница
 ├── web_config_routes.cpp     # "/save" - сохранение настроек  
 ├── web_intervals_routes.cpp  # "/intervals" - настройка интервалов
 ├── web_service_routes.cpp    # "/service", "/reset", "/reboot"
@@ -129,7 +129,7 @@ src/web_server/
 #### 2.2 Упрощенная setupWebServer()
 ```cpp
 void setupWebServer() {
-    setupAuthRoutes();      // Авторизация и главная
+    setupMainRoutes();      // Главная страница
     setupConfigRoutes();    // Настройки и сохранение
     setupIntervalsRoutes(); // Интервалы и фильтры
     setupServiceRoutes();   // Сервисные функции
