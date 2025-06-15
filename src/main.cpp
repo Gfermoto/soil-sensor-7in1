@@ -112,6 +112,14 @@ void setup()
     // Инициализация WiFi
     setupWiFi();
 
+    // Инициализация ThingSpeak
+    if (config.flags.thingSpeakEnabled)
+    {
+        extern WiFiClient espClient; // объявлен в mqtt_client.cpp
+        setupThingSpeak(espClient);
+        logSuccess("ThingSpeak инициализирован");
+    }
+
     // Инициализация MQTT
     if (config.flags.mqttEnabled)
     {

@@ -185,10 +185,8 @@ void setupServiceRoutes() {
         html += "html+=dot(d.mqtt_enabled?d.mqtt_connected:false)+'<b>MQTT:</b> "
                 "'+(d.mqtt_enabled?(d.mqtt_connected?'Подключено':'Ошибка'+(d.mqtt_last_error?' "
                 "('+d.mqtt_last_error+')':'')):'Отключено')+'<br>';";
-        html += "html+=dot(d.thingspeak_enabled?!!d.thingspeak_last_pub:false)+'<b>ThingSpeak:</b> "
-                "'+(d.thingspeak_enabled?(d.thingspeak_last_pub?'Последняя публикация: "
-                "'+d.thingspeak_last_pub:(d.thingspeak_last_error?'Ошибка: '+d.thingspeak_last_error:'Нет "
-                "публикаций')):'Отключено')+'<br>';";
+        html += "html+=dot(d.thingspeak_enabled?(d.thingspeak_last_error?false:true):false)+'<b>ThingSpeak:</b> "
+                "'+(d.thingspeak_enabled?(d.thingspeak_last_error?'Ошибка: '+d.thingspeak_last_error:((d.thingspeak_last_pub && d.thingspeak_last_pub!=='0')?'Последняя публикация: '+d.thingspeak_last_pub:'Нет публикаций')):'Отключено')+'<br>';";
         html += "if(d.thingspeak_enabled && d.thingspeak_last_error){showToast('Ошибка ThingSpeak: "
                 "'+d.thingspeak_last_error,'error');}";
         html += "html+=dot(d.hass_enabled)+'<b>Home Assistant:</b> '+(d.hass_enabled?'Включено':'Отключено')+'<br>';";
