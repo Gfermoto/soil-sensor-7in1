@@ -5,6 +5,7 @@
 
 #include <WiFiClient.h>
 #include <Arduino.h>
+#include "version.h"  // ✅ Централизованное управление версией
 #include "wifi_manager.h"
 #include "modbus_sensor.h"
 #include "mqtt_client.h"
@@ -82,7 +83,7 @@ void setup()
     Serial.begin(115200);
 
     // Красивый баннер запуска
-    logPrintBanner("JXCT 7-в-1 Датчик v2.4.1 - Запуск системы");
+    logPrintBanner("JXCT 7-в-1 Датчик v" JXCT_VERSION_STRING " - Запуск системы");
 
     logPrintHeader("ИНИЦИАЛИЗАЦИЯ СИСТЕМЫ", COLOR_CYAN);
 

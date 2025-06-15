@@ -4,11 +4,15 @@
  * @details Загрузка, сохранение, сброс и валидация настроек устройства через NVS (Preferences).
  */
 #include <WiFi.h>
+#include "version.h"  // ✅ Централизованное управление версией
 #include "config.h"
 #include "jxct_device_info.h"
 #include "jxct_config_vars.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "logger.h"
+
+// Firmware version definition - теперь берется из централизованного файла version.h
+// const char* FIRMWARE_VERSION уже определена в version.h
 
 String getDeviceId()
 {

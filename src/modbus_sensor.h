@@ -45,7 +45,9 @@ struct SensorData
     uint16_t firmware_version;  // Версия прошивки
     uint8_t error_status;       // Статус ошибок
     bool valid;                 // Флаг валидности данных
+    bool isValid;               // Альтернативное поле валидности для веб-интерфейса
     unsigned long last_update;  // Время последнего обновления
+    unsigned long timestamp;    // Альтернативное поле времени для веб-интерфейса
     
     // ДЕЛЬТА-ФИЛЬТР v2.2.1: Поля для хранения предыдущих значений
     float prev_temperature;     // Предыдущая температура для дельта-фильтра
@@ -81,6 +83,9 @@ extern ModbusMaster modbus;
 extern SensorData sensorData;
 extern SensorCache sensorCache;
 extern String sensorLastError;
+
+// Получение текущих данных датчика
+SensorData getSensorData();
 
 // Инициализация Modbus
 void setupModbus();

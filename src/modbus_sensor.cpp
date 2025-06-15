@@ -10,16 +10,12 @@
 #include "jxct_config_vars.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "logger.h"
+#include "jxct_constants.h"  // ✅ Централизованные константы
 
 ModbusMaster modbus;
 SensorData sensorData;
 SensorCache sensorCache;
 String sensorLastError = "";
-
-// Константы для работы с датчиком
-const unsigned long CACHE_TIMEOUT = 5000;  // 5 секунд
-const uint8_t MAX_RETRIES = 3;             // Максимальное количество попыток чтения
-const unsigned long RETRY_DELAY = 1000;    // Задержка между попытками
 
 // Определяем пины для DE и RE (как в рабочей версии)
 #define RX_PIN 16
@@ -171,7 +167,7 @@ bool validateSensorData(SensorData& data)
 bool getCachedData(SensorData& data)
 {
     if (!sensorCache.is_valid) return false;
-    if (millis() - sensorCache.timestamp > CACHE_TIMEOUT) return false;
+    if (millis() - sensorCache.timestamp > MODBUS_CACHE_TIMEOUT) return false;
 
     data = sensorCache.data;
     return true;
@@ -263,123 +259,112 @@ bool testModbusConnection()
     return false;
 }
 
-void readSensorData()
+// ============================================================================
+// ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ СНИЖЕНИЯ ЦИКЛОМАТИЧЕСКОЙ СЛОЖНОСТИ
+// ============================================================================
+
+/**
+ * @brief Чтение одного регистра с обработкой ошибок
+ * @param reg_addr Адрес регистра
+ * @param reg_name Название регистра для логирования
+ * @param multiplier Множитель для конвертации
+ * @param target Указатель на переменную для сохранения результата
+ * @param is_float Флаг - сохранять как float или int
+ * @return true если чтение успешно
+ */
+bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)
 {
-    logSensor("Чтение всех параметров JXCT 7-в-1 датчика...");
-
-    uint8_t result;
-    bool success = true;
-
-    // 1. PH (ВОССТАНОВЛЕННЫЙ адрес REG_PH = 0x0006, ÷ 100)
-    logDebug("Чтение PH (0x%04X)...", REG_PH);
-    result = modbus.readHoldingRegisters(REG_PH, 1);
+    logDebug("Чтение %s (0x%04X)...", reg_name, reg_addr);
+    uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
+    
     if (result == modbus.ku8MBSuccess)
     {
-        sensorData.ph = convertRegisterToFloat(modbus.getResponseBuffer(0), 0.01f);
-        logDebug("PH: %.2f", sensorData.ph);
+        uint16_t raw_value = modbus.getResponseBuffer(0);
+        
+        if (is_float)
+        {
+            float* float_target = static_cast<float*>(target);
+            *float_target = convertRegisterToFloat(raw_value, multiplier);
+            logDebug("%s: %.2f", reg_name, *float_target);
+        }
+        else
+        {
+            uint16_t* int_target = static_cast<uint16_t*>(target);
+            *int_target = raw_value;
+            logDebug("%s: %d", reg_name, *int_target);
+        }
+        return true;
     }
     else
     {
-        logError("Ошибка чтения PH: %d", result);
+        logError("Ошибка чтения %s: %d", reg_name, result);
         printModbusError(result);
-        success = false;
+        return false;
     }
+}
 
-    // 2. Влажность (ВОССТАНОВЛЕННЫЙ адрес REG_SOIL_MOISTURE = 0x0012, ÷ 10)
-    logDebug("Чтение влажности (0x%04X)...", REG_SOIL_MOISTURE);
-    result = modbus.readHoldingRegisters(REG_SOIL_MOISTURE, 1);
-    if (result == modbus.ku8MBSuccess)
-    {
-        sensorData.humidity = convertRegisterToFloat(modbus.getResponseBuffer(0), 0.1f);
-        logDebug("Влажность: %.1f%%", sensorData.humidity);
-    }
-    else
-    {
-        logError("Ошибка чтения влажности: %d", result);
-        printModbusError(result);
-        success = false;
-    }
+/**
+ * @brief Чтение основных параметров (температура, влажность, pH, EC)
+ * @return Количество успешно прочитанных параметров
+ */
+int readBasicParameters()
+{
+    int success_count = 0;
+    
+    // pH (÷ 100)
+    if (readSingleRegister(REG_PH, "pH", 0.01f, &sensorData.ph, true))
+        success_count++;
+    
+    // Влажность (÷ 10)
+    if (readSingleRegister(REG_SOIL_MOISTURE, "Влажность", 0.1f, &sensorData.humidity, true))
+        success_count++;
+    
+    // Температура (÷ 10)
+    if (readSingleRegister(REG_SOIL_TEMP, "Температура", 0.1f, &sensorData.temperature, true))
+        success_count++;
+    
+    // EC (без деления)
+    if (readSingleRegister(REG_CONDUCTIVITY, "EC", 1.0f, &sensorData.ec, true))
+        success_count++;
+    
+    return success_count;
+}
 
-    // 3. Температура (ВОССТАНОВЛЕННЫЙ адрес REG_SOIL_TEMP = 0x0013, ÷ 10)
-    logDebug("Чтение температуры (0x%04X)...", REG_SOIL_TEMP);
-    result = modbus.readHoldingRegisters(REG_SOIL_TEMP, 1);
-    if (result == modbus.ku8MBSuccess)
-    {
-        sensorData.temperature = convertRegisterToFloat(modbus.getResponseBuffer(0), 0.1f);
-        logDebug("Температура: %.1f°C", sensorData.temperature);
-    }
-    else
-    {
-        logError("Ошибка чтения температуры: %d", result);
-        printModbusError(result);
-        success = false;
-    }
+/**
+ * @brief Чтение NPK параметров (азот, фосфор, калий)
+ * @return Количество успешно прочитанных параметров
+ */
+int readNPKParameters()
+{
+    int success_count = 0;
+    
+    // Азот
+    if (readSingleRegister(REG_NITROGEN, "Азот", 1.0f, &sensorData.nitrogen, true))
+        success_count++;
+    
+    // Фосфор
+    if (readSingleRegister(REG_PHOSPHORUS, "Фосфор", 1.0f, &sensorData.phosphorus, true))
+        success_count++;
+    
+    // Калий
+    if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0f, &sensorData.potassium, true))
+        success_count++;
+    
+    return success_count;
+}
 
-    // 4. EC (ВОССТАНОВЛЕННЫЙ адрес REG_CONDUCTIVITY = 0x0015)
-    logDebug("Чтение EC (0x%04X)...", REG_CONDUCTIVITY);
-    result = modbus.readHoldingRegisters(REG_CONDUCTIVITY, 1);
-    if (result == modbus.ku8MBSuccess)
-    {
-        sensorData.ec = modbus.getResponseBuffer(0);
-        logDebug("EC: %d µS/cm", sensorData.ec);
-    }
-    else
-    {
-        logError("Ошибка чтения EC: %d", result);
-        printModbusError(result);
-        success = false;
-    }
-
-    // 5. NPK (ВОССТАНОВЛЕННЫЕ адреса REG_NITROGEN, REG_PHOSPHORUS, REG_POTASSIUM)
-    logDebug("Чтение азота (0x%04X)...", REG_NITROGEN);
-    result = modbus.readHoldingRegisters(REG_NITROGEN, 1);
-    if (result == modbus.ku8MBSuccess)
-    {
-        sensorData.nitrogen = modbus.getResponseBuffer(0);
-        logDebug("Азот: %d мг/кг", sensorData.nitrogen);
-    }
-    else
-    {
-        logError("Ошибка чтения азота: %d", result);
-        printModbusError(result);
-        success = false;
-    }
-
-    logDebug("Чтение фосфора (0x001F)...");
-    result = modbus.readHoldingRegisters(REG_PHOSPHORUS, 1);
-    if (result == modbus.ku8MBSuccess)
-    {
-        sensorData.phosphorus = modbus.getResponseBuffer(0);
-        logDebug("Фосфор: %d мг/кг", sensorData.phosphorus);
-    }
-    else
-    {
-        logError("Ошибка чтения фосфора: %d", result);
-        printModbusError(result);
-        success = false;
-    }
-
-    logDebug("Чтение калия (0x0020)...");
-    result = modbus.readHoldingRegisters(REG_POTASSIUM, 1);
-    if (result == modbus.ku8MBSuccess)
-    {
-        sensorData.potassium = modbus.getResponseBuffer(0);
-        logDebug("Калий: %d мг/кг", sensorData.potassium);
-    }
-    else
-    {
-        logError("Ошибка чтения калия: %d", result);
-        printModbusError(result);
-        success = false;
-    }
-
-    // Обновляем статус и время
+/**
+ * @brief Финализация данных датчика (валидация, кэширование, скользящее среднее)
+ * @param success Флаг успешности чтения всех параметров
+ */
+void finalizeSensorData(bool success)
+{
     sensorData.valid = success;
     sensorData.last_update = millis();
 
     if (success)
     {
-        // v2.3.0: Добавляем данные в буферы скользящего среднего
+        // Добавляем данные в буферы скользящего среднего
         addToMovingAverage(sensorData, sensorData.temperature, sensorData.humidity, 
                           sensorData.ec, sensorData.ph, sensorData.nitrogen, 
                           sensorData.phosphorus, sensorData.potassium);
@@ -405,6 +390,27 @@ void readSensorData()
         logError("❌ Не удалось прочитать один или несколько параметров");
         sensorData.valid = false;
     }
+}
+
+// ============================================================================
+// ОСНОВНАЯ ФУНКЦИЯ ЧТЕНИЯ ДАТЧИКА (РЕФАКТОРИНГ)
+// ============================================================================
+
+void readSensorData()
+{
+    logSensor("Чтение всех параметров JXCT 7-в-1 датчика...");
+
+    // Читаем основные параметры (4 параметра)
+    int basic_success = readBasicParameters();
+    
+    // Читаем NPK параметры (3 параметра)
+    int npk_success = readNPKParameters();
+    
+    // Общий успех - все 7 параметров прочитаны
+    bool total_success = (basic_success == 4) && (npk_success == 3);
+    
+    // Финализируем данные
+    finalizeSensorData(total_success);
 }
 
 float convertRegisterToFloat(uint16_t value, float multiplier)
@@ -601,4 +607,20 @@ float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
         }
         return sum / elements_to_use;
     }
+}
+
+// Функция для получения текущих данных датчика
+SensorData getSensorData() {
+    // Возвращаем копию текущих данных датчика
+    SensorData result = sensorData;
+    
+    // Обновляем поле isValid для совместимости с веб-интерфейсом
+    result.isValid = result.valid;
+    result.timestamp = result.last_update;
+    
+    // Копируем значения в поля с правильными именами для веб-интерфейса
+    result.conductivity = result.ec;
+    result.moisture = result.humidity;
+    
+    return result;
 }

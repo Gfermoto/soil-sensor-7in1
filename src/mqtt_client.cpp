@@ -14,6 +14,7 @@
 #include "jxct_format_utils.h"
 #include "logger.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
+#include "jxct_constants.h"  // ✅ Централизованные константы
 #include <NTPClient.h>
 extern NTPClient* timeClient;
 
@@ -55,13 +56,11 @@ static bool sensorJsonCacheValid = false;
 
 // ✅ ОПТИМИЗАЦИЯ 3.3: DNS кэширование для избежания повторных запросов
 struct DNSCache {
-    char hostname[64];
+    char hostname[HOSTNAME_BUFFER_SIZE];
     IPAddress cachedIP;
     unsigned long cacheTime;
     bool isValid;
 } dnsCacheMqtt = {"", IPAddress(0, 0, 0, 0), 0, false};
-
-const unsigned long DNS_CACHE_TTL = 300000;  // 5 минут TTL для DNS кэша
 
 // Forward declarations
 void mqttCallback(char* topic, byte* payload, unsigned int length);
