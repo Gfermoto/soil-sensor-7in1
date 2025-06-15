@@ -42,7 +42,7 @@ void setupDataRoutes();
 // ============================================================================
 
 /**
- * @brief Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)
+ * @brief Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/\*)
  */
 void setupConfigRoutes();
 

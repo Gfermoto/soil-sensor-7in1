@@ -166,7 +166,6 @@ void logWebRequest(const String& method, const String& uri, const String& client
 /**
  * @brief Генерация HTML ответа с ошибкой валидации
  * @param errorMsg Сообщение об ошибке
- * @param formData Данные формы для восстановления
  * @return HTML ответ с ошибкой
  */
 String generateValidationErrorResponse(const String& errorMsg)
