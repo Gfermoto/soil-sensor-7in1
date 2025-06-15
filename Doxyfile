@@ -7,7 +7,7 @@ PROJECT_NUMBER         = "v2.0 (June 2025)"
 PROJECT_BRIEF          = "Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration"
 
 # Каталоги для поиска исходников
-INPUT                  = src include README.md docs/QA_REPORT_2025.md docs/DEVELOPMENT_ROADMAP_2025.md
+INPUT                  = src include README.md docs/DEVELOPMENT_ROADMAP_2025.md
 RECURSIVE              = YES
 USE_MDFILE_AS_MAINPAGE = README.md
 
@@ -43,7 +43,6 @@ INPUT_ENCODING         = UTF-8
 HAVE_DOT               = YES
 CALL_GRAPH             = YES
 CALLER_GRAPH           = YES
-CLASS_DIAGRAMS         = YES
 COLLABORATION_GRAPH    = YES
 INCLUDE_GRAPH          = YES
 INCLUDED_BY_GRAPH      = YES
