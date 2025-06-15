@@ -419,16 +419,11 @@ void setupWebServer()
                         String(config.thingSpeakApiKey) + "'" + (config.flags.thingSpeakEnabled ? " required" : "") +
                         "></div>";
                     html +=
-                        "<div class='form-group'><label for='ts_interval'>Интервал публикации (сек):</label><input "
-                        "type='number' id='ts_interval' name='ts_interval' min='15' max='3600' value='" +
-                        String(config.thingspeakInterval) + "'></div>";
-                    html +=
                         "<div class='form-group'><label for='ts_channel_id'>Channel ID:</label><input type='text' "
                         "id='ts_channel_id' name='ts_channel_id' value='" +
                         String(config.thingSpeakChannelId) + "'></div>";
                     html +=
-                        "<div style='color:#b00;font-size:13px'>Внимание: ThingSpeak разрешает публикацию не чаще 1 "
-                        "раза в 15 секунд!</div></div>";
+                        "<div style='color:#888;font-size:13px'>💡 Интервал публикации настраивается в разделе <a href='/intervals' style='color:#4CAF50'>Интервалы</a></div></div>";
                     String realSensorChecked = config.flags.useRealSensor ? " checked" : "";
                     html += "<div class='section'><h2>Датчик</h2>";
                     html +=
@@ -1047,22 +1042,77 @@ void setupWebServer()
      });
      
      // v2.3.0: Обработчик импорта конфигурации 
-     webServer.on("/api/config/import", HTTP_POST, []() {
-         if (currentWiFiMode == WiFiMode::AP) {
-             webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
-             return;
+     webServer.on("/api/config/import", HTTP_POST, 
+         []() {
+             // Обработка завершения загрузки
+             if (currentWiFiMode == WiFiMode::AP) {
+                 webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
+                 return;
+             }
+             
+             String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Импорт конфигурации</title>";
+             html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+             html += "<h1>" UI_ICON_UPLOAD " Результат импорта</h1>";
+             
+             if (webServer.hasArg("import_success")) {
+                 html += "<div class='msg msg-success'>" UI_ICON_SUCCESS " Конфигурация успешно импортирована!</div>";
+                 html += "<div class='msg msg-info'>" UI_ICON_INFO " Устройство перезагрузится через 5 секунд...</div>";
+                 html += "<script>setTimeout(function(){window.location.href='/';}, 5000);</script>";
+             } else if (webServer.hasArg("import_error")) {
+                 html += "<div class='msg msg-error'>" UI_ICON_ERROR " Ошибка импорта: " + webServer.arg("import_error") + "</div>";
+                 html += "<p><a href='/config_manager'>← Вернуться к управлению конфигурацией</a></p>";
+             } else {
+                 html += "<div class='msg msg-error'>" UI_ICON_ERROR " Неизвестная ошибка импорта</div>";
+                 html += "<p><a href='/config_manager'>← Вернуться к управлению конфигурацией</a></p>";
+             }
+             
+             html += "</div></body></html>";
+             webServer.send(200, "text/html; charset=utf-8", html);
+         },
+         []() {
+             // Обработка загрузки файла
+             HTTPUpload& upload = webServer.upload();
+             static String jsonContent = "";
+             
+             if (upload.status == UPLOAD_FILE_START) {
+                 jsonContent = "";
+                 logSystem("Начало загрузки файла конфигурации: %s", upload.filename.c_str());
+             } else if (upload.status == UPLOAD_FILE_WRITE) {
+                 // Накапливаем содержимое файла
+                 for (size_t i = 0; i < upload.currentSize; i++) {
+                     jsonContent += (char)upload.buf[i];
+                 }
+             } else if (upload.status == UPLOAD_FILE_END) {
+                 logSystem("Загрузка завершена, размер: %d байт", jsonContent.length());
+                 
+                 // Парсим JSON и применяем настройки
+                 bool success = false;
+                 String error = "";
+                 
+                 if (jsonContent.length() > 0) {
+                     success = parseAndApplyConfig(jsonContent, error);
+                 } else {
+                     error = "Пустой файл";
+                 }
+                 
+                 // Перенаправляем с результатом
+                 if (success) {
+                     saveConfig();
+                     logSuccess("Конфигурация импортирована успешно");
+                     webServer.sendHeader("Location", "/api/config/import?import_success=1");
+                     webServer.send(302, "text/plain", "");
+                     delay(1000);
+                     ESP.restart();
+                 } else {
+                     logError("Ошибка импорта: %s", error.c_str());
+                     webServer.sendHeader("Location", "/api/config/import?import_error=" + error);
+                     webServer.send(302, "text/plain", "");
+                 }
+                 
+                 jsonContent = "";
+             }
          }
-         String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Импорт конфигурации</title>";
-         html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
-         html += "<h1>" UI_ICON_UPLOAD " Результат импорта</h1>";
-         html += "<div class='msg msg-info'>" UI_ICON_INFO " Импорт конфигурации</div>";
-         html += "<div class='msg msg-warning'>" UI_ICON_WARNING " Базовая реализация импорта готова</div>";
-         html += "<p>API endpoint для импорта создан. Полный парсер JSON будет добавлен в следующих версиях.</p>";
-         html += "<p><a href='/config_manager'>← Вернуться к управлению конфигурацией</a></p>";
-         html += "</div></body></html>";
-         
-         webServer.send(200, "text/html; charset=utf-8", html);
-     });
+     );
      
 
      
@@ -1174,3 +1224,205 @@ void handleRoot()
 // Удаляю функции setup() и loop() из этого файла
 // void setup() { ... }
 // void loop() { ... }
+
+// Функция парсинга и применения конфигурации из JSON
+bool parseAndApplyConfig(const String& jsonContent, String& error) {
+    // Простой парсер JSON для основных настроек
+    // Используем indexOf для поиска значений (без библиотеки ArduinoJson для экономии памяти)
+    
+    try {
+        // Парсим WiFi настройки
+        int ssidStart = jsonContent.indexOf("\"ssid\":\"") + 8;
+        int ssidEnd = jsonContent.indexOf("\"", ssidStart);
+        if (ssidStart > 7 && ssidEnd > ssidStart) {
+            String ssid = jsonContent.substring(ssidStart, ssidEnd);
+            if (ssid.length() > 0 && ssid != "***") {
+                strlcpy(config.ssid, ssid.c_str(), sizeof(config.ssid));
+            }
+        }
+        
+        // Парсим MQTT настройки
+        int mqttEnabledPos = jsonContent.indexOf("\"enabled\":");
+        if (mqttEnabledPos > 0) {
+            config.flags.mqttEnabled = jsonContent.substring(mqttEnabledPos + 10, mqttEnabledPos + 14) == "true" ? 1 : 0;
+        }
+        
+        int serverStart = jsonContent.indexOf("\"server\":\"") + 10;
+        int serverEnd = jsonContent.indexOf("\"", serverStart);
+        if (serverStart > 9 && serverEnd > serverStart) {
+            String server = jsonContent.substring(serverStart, serverEnd);
+            strlcpy(config.mqttServer, server.c_str(), sizeof(config.mqttServer));
+        }
+        
+        int portPos = jsonContent.indexOf("\"port\":");
+        if (portPos > 0) {
+            int portStart = portPos + 7;
+            int portEnd = jsonContent.indexOf(",", portStart);
+            if (portEnd == -1) portEnd = jsonContent.indexOf("}", portStart);
+            if (portEnd > portStart) {
+                config.mqttPort = jsonContent.substring(portStart, portEnd).toInt();
+            }
+        }
+        
+        int userStart = jsonContent.indexOf("\"user\":\"") + 8;
+        int userEnd = jsonContent.indexOf("\"", userStart);
+        if (userStart > 7 && userEnd > userStart) {
+            String user = jsonContent.substring(userStart, userEnd);
+            strlcpy(config.mqttUser, user.c_str(), sizeof(config.mqttUser));
+        }
+        
+        // Парсим ThingSpeak настройки
+        int tsEnabledPos = jsonContent.indexOf("\"thingspeak\":{\"enabled\":");
+        if (tsEnabledPos > 0) {
+            config.flags.thingSpeakEnabled = jsonContent.substring(tsEnabledPos + 24, tsEnabledPos + 28) == "true" ? 1 : 0;
+        }
+        
+        int channelStart = jsonContent.indexOf("\"channel_id\":\"") + 14;
+        int channelEnd = jsonContent.indexOf("\"", channelStart);
+        if (channelStart > 13 && channelEnd > channelStart) {
+            String channelId = jsonContent.substring(channelStart, channelEnd);
+            strlcpy(config.thingSpeakChannelId, channelId.c_str(), sizeof(config.thingSpeakChannelId));
+        }
+        
+        // Парсим интервалы
+        int sensorReadPos = jsonContent.indexOf("\"sensor_read\":");
+        if (sensorReadPos > 0) {
+            int valueStart = sensorReadPos + 14;
+            int valueEnd = jsonContent.indexOf(",", valueStart);
+            if (valueEnd == -1) valueEnd = jsonContent.indexOf("}", valueStart);
+            if (valueEnd > valueStart) {
+                config.sensorReadInterval = jsonContent.substring(valueStart, valueEnd).toInt();
+            }
+        }
+        
+        int mqttPublishPos = jsonContent.indexOf("\"mqtt_publish\":");
+        if (mqttPublishPos > 0) {
+            int valueStart = mqttPublishPos + 15;
+            int valueEnd = jsonContent.indexOf(",", valueStart);
+            if (valueEnd == -1) valueEnd = jsonContent.indexOf("}", valueStart);
+            if (valueEnd > valueStart) {
+                config.mqttPublishInterval = jsonContent.substring(valueStart, valueEnd).toInt();
+            }
+        }
+        
+        int thingspeakPos = jsonContent.indexOf("\"thingspeak\":");
+        if (thingspeakPos > 0) {
+            int valueStart = thingspeakPos + 13;
+            int valueEnd = jsonContent.indexOf(",", valueStart);
+            if (valueEnd == -1) valueEnd = jsonContent.indexOf("}", valueStart);
+            if (valueEnd > valueStart) {
+                config.thingSpeakInterval = jsonContent.substring(valueStart, valueEnd).toInt();
+            }
+        }
+        
+        int webUpdatePos = jsonContent.indexOf("\"web_update\":");
+        if (webUpdatePos > 0) {
+            int valueStart = webUpdatePos + 13;
+            int valueEnd = jsonContent.indexOf("}", valueStart);
+            if (valueEnd > valueStart) {
+                config.webUpdateInterval = jsonContent.substring(valueStart, valueEnd).toInt();
+            }
+        }
+        
+        // Парсим дельта-фильтры
+        int tempDeltaPos = jsonContent.indexOf("\"temperature\":");
+        if (tempDeltaPos > 0) {
+            int valueStart = tempDeltaPos + 14;
+            int valueEnd = jsonContent.indexOf(",", valueStart);
+            if (valueEnd > valueStart) {
+                config.deltaTemperature = jsonContent.substring(valueStart, valueEnd).toFloat();
+            }
+        }
+        
+        int humDeltaPos = jsonContent.indexOf("\"humidity\":");
+        if (humDeltaPos > 0) {
+            int valueStart = humDeltaPos + 11;
+            int valueEnd = jsonContent.indexOf(",", valueStart);
+            if (valueEnd > valueStart) {
+                config.deltaHumidity = jsonContent.substring(valueStart, valueEnd).toFloat();
+            }
+        }
+        
+        int phDeltaPos = jsonContent.indexOf("\"ph\":");
+        if (phDeltaPos > 0) {
+            int valueStart = phDeltaPos + 5;
+            int valueEnd = jsonContent.indexOf(",", valueStart);
+            if (valueEnd > valueStart) {
+                config.deltaPh = jsonContent.substring(valueStart, valueEnd).toFloat();
+            }
+        }
+        
+        int ecDeltaPos = jsonContent.indexOf("\"ec\":");
+        if (ecDeltaPos > 0) {
+            int valueStart = ecDeltaPos + 5;
+            int valueEnd = jsonContent.indexOf(",", valueStart);
+            if (valueEnd > valueStart) {
+                config.deltaEc = jsonContent.substring(valueStart, valueEnd).toFloat();
+            }
+        }
+        
+        int npkDeltaPos = jsonContent.indexOf("\"npk\":");
+        if (npkDeltaPos > 0) {
+            int valueStart = npkDeltaPos + 6;
+            int valueEnd = jsonContent.indexOf("}", valueStart);
+            if (valueEnd > valueStart) {
+                config.deltaNpk = jsonContent.substring(valueStart, valueEnd).toFloat();
+            }
+        }
+        
+        // Парсим настройки скользящего среднего
+        int windowPos = jsonContent.indexOf("\"window\":");
+        if (windowPos > 0) {
+            int valueStart = windowPos + 9;
+            int valueEnd = jsonContent.indexOf(",", valueStart);
+            if (valueEnd > valueStart) {
+                config.movingAverageWindow = jsonContent.substring(valueStart, valueEnd).toInt();
+            }
+        }
+        
+        int forceCyclesPos = jsonContent.indexOf("\"force_cycles\":");
+        if (forceCyclesPos > 0) {
+            int valueStart = forceCyclesPos + 15;
+            int valueEnd = jsonContent.indexOf(",", valueStart);
+            if (valueEnd > valueStart) {
+                config.forcePublishCycles = jsonContent.substring(valueStart, valueEnd).toInt();
+            }
+        }
+        
+        int algorithmPos = jsonContent.indexOf("\"algorithm\":");
+        if (algorithmPos > 0) {
+            int valueStart = algorithmPos + 12;
+            int valueEnd = jsonContent.indexOf(",", valueStart);
+            if (valueEnd > valueStart) {
+                config.filterAlgorithm = jsonContent.substring(valueStart, valueEnd).toInt();
+            }
+        }
+        
+        int outlierPos = jsonContent.indexOf("\"outlier_filter\":");
+        if (outlierPos > 0) {
+            int valueStart = outlierPos + 17;
+            int valueEnd = jsonContent.indexOf("}", valueStart);
+            if (valueEnd > valueStart) {
+                config.outlierFilterEnabled = jsonContent.substring(valueStart, valueEnd).toInt();
+            }
+        }
+        
+        // Парсим флаги
+        int hassEnabledPos = jsonContent.indexOf("\"hass_enabled\":");
+        if (hassEnabledPos > 0) {
+            config.flags.hassEnabled = jsonContent.substring(hassEnabledPos + 15, hassEnabledPos + 19) == "true" ? 1 : 0;
+        }
+        
+        int realSensorPos = jsonContent.indexOf("\"real_sensor\":");
+        if (realSensorPos > 0) {
+            config.flags.useRealSensor = jsonContent.substring(realSensorPos + 14, realSensorPos + 18) == "true" ? 1 : 0;
+        }
+        
+        logSuccess("JSON конфигурация успешно распарсена");
+        return true;
+        
+    } catch (...) {
+        error = "Ошибка парсинга JSON";
+        return false;
+    }
+}

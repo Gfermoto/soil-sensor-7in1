@@ -52,4 +52,7 @@ void resetConfig();
 // Перезапуск ESP32
 void restartESP();
 
+// Парсинг и применение конфигурации из JSON
+bool parseAndApplyConfig(const String& jsonContent, String& error);
+
 #endif  // WIFI_MANAGER_H
