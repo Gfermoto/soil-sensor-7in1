@@ -229,10 +229,14 @@ void loop()
     // ✅ Групповая отправка ThingSpeak (настраиваемо v2.3.0)
     if (pendingThingspeakPublish && (currentTime - thingspeakBatchTimer >= config.thingSpeakInterval))
     {
-        sendDataToThingSpeak();
+        bool tsOk = sendDataToThingSpeak();
         pendingThingspeakPublish = false;
-        thingspeakBatchTimer = currentTime;
-        DEBUG_PRINTLN("[BATCH] ThingSpeak данные отправлены группой");
+        if (tsOk) {
+            thingspeakBatchTimer = currentTime;   // Сбрасываем таймер только при успешной отправке
+            DEBUG_PRINTLN("[BATCH] ThingSpeak данные отправлены группой");
+        } else {
+            DEBUG_PRINTLN("[BATCH] ThingSpeak отправка не удалась, повтор через следующий интервал");
+        }
     }
 
     // ✅ Управление MQTT (каждые 100мс)
