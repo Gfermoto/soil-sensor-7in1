@@ -1,25 +1,21 @@
-MIT License
+# JXCT Inform License v1.0
 
-Copyright (c) 2024 JXCT
+Copyright (c) 2025 JXCT
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software for non-commercial purposes only, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to use, study, and share the Software, **при соблюдении всех условий, изложенных ниже**.
 
-1. The above copyright notice and this permission notice shall be included in all
-   copies or substantial portions of the Software.
+1. **Предварительное уведомление**  
+   До любого использования, распространения, публикации или развёртывания (коммерческого либо некоммерческого) вы обязаны отправить письменное уведомление автору на e-mail `author@jxct.dev`, кратко описав предполагаемое применение. Ответ автора не обязателен; факт уведомления фиксируется для учёта.
 
-2. Any use of the Software for commercial purposes is strictly prohibited.
+2. **Коммерческое использование**  
+   Любое использование с целью извлечения прямой или косвенной прибыли допускается **только** после получения явного письменного разрешения автора.
 
-3. When using the Software for non-commercial purposes, you must include:
-   - A clear attribution to the original author
-   - A link to the original repository
-   - This license text
+3. **Атрибуция**  
+   При распространении или демонстрации вы должны сохранять настоящее лицензионное уведомление и явную ссылку на оригинальный репозиторий.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE. 
+4. **Без гарантий**  
+   SOFTWARE ПРЕДОСТАВЛЯЕТСЯ «КАК ЕСТЬ», БЕЗ ГАРАНТИЙ ЛЮБОГО РОДА. Автор не несёт ответственности за любые убытки или ущерб, возникшие вследствие использования ПО.
+
+---
+
+By using the Software you agree to the terms of this license. 
