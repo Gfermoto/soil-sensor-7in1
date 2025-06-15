@@ -94,7 +94,7 @@ void loadConfig()
     preferences.end();
     // Значения по умолчанию для новых полей
     if (strlen(config.mqttDeviceName) == 0)
-        strlcpy(config.mqttDeviceName, "JXCT_Device", sizeof(config.mqttDeviceName));
+        strlcpy(config.mqttDeviceName, getDeviceId().c_str(), sizeof(config.mqttDeviceName));
     if (strlen(config.thingSpeakChannelId) == 0)
         strlcpy(config.thingSpeakChannelId, "", sizeof(config.thingSpeakChannelId));
     if (strlen(config.mqttTopicPrefix) == 0)
@@ -188,7 +188,7 @@ void resetConfig()
     config.mqttPort = 1883;
     config.modbusId = JXCT_MODBUS_ID;
     strlcpy(config.mqttTopicPrefix, getDefaultTopic().c_str(), sizeof(config.mqttTopicPrefix));
-    strlcpy(config.mqttDeviceName, "JXCT_Device", sizeof(config.mqttDeviceName));
+    strlcpy(config.mqttDeviceName, getDeviceId().c_str(), sizeof(config.mqttDeviceName));
     
     // ✅ Явный сброс битовых полей
     config.flags.mqttEnabled = 0;

@@ -958,20 +958,14 @@ void setupWebServer()
          
          // Создаем JSON с конфигурацией (ТОЛЬКО БЕЗОПАСНЫЕ НАСТРОЙКИ)
          String json = "{";
-         // ❌ Убрали version - не нужна
-         // ❌ Убрали exported - не нужна  
-         // ❌ Убрали wifi - устройство уже подключено
          json += "\"mqtt\":{";
          json += "\"enabled\":" + String(config.flags.mqttEnabled ? "true" : "false") + ",";
          json += "\"server\":\"" + String(config.mqttServer) + "\",";
          json += "\"port\":" + String(config.mqttPort) + ",";
          json += "\"user\":\"" + String(config.mqttUser) + "\"";
-         // ❌ Убрали topic_prefix - опасно! Основан на MAC адресе
-         // ❌ Убрали device_name - опасно! Должен быть уникальным
          json += "},";
          json += "\"thingspeak\":{";
          json += "\"enabled\":" + String(config.flags.thingSpeakEnabled ? "true" : "false") + ",";
-         // ❌ API ключ не экспортируем по безопасности
          json += "\"channel_id\":\"" + String(config.thingSpeakChannelId) + "\"";
          json += "},";
          json += "\"intervals\":{";
@@ -1228,8 +1222,6 @@ bool parseAndApplyConfig(const String& jsonContent, String& error) {
     // Используем indexOf для поиска значений (без библиотеки ArduinoJson для экономии памяти)
     
     try {
-        // ❌ Убрали парсинг WiFi - устройство уже подключено
-        
         // Парсим MQTT настройки
         int mqttEnabledPos = jsonContent.indexOf("\"enabled\":");
         if (mqttEnabledPos > 0) {
@@ -1260,8 +1252,6 @@ bool parseAndApplyConfig(const String& jsonContent, String& error) {
             strlcpy(config.mqttUser, user.c_str(), sizeof(config.mqttUser));
         }
         
-        // ❌ Убрали парсинг topic_prefix и device_name - опасно для множественных устройств!
-        
         // Парсим ThingSpeak настройки
         int tsEnabledPos = jsonContent.indexOf("\"thingspeak\":{\"enabled\":");
         if (tsEnabledPos > 0) {
@@ -1273,6 +1263,16 @@ bool parseAndApplyConfig(const String& jsonContent, String& error) {
         if (channelStart > 13 && channelEnd > channelStart) {
             String channelId = jsonContent.substring(channelStart, channelEnd);
             strlcpy(config.thingSpeakChannelId, channelId.c_str(), sizeof(config.thingSpeakChannelId));
+        }
+        
+        // Парсим ThingSpeak API ключ (если есть в файле, хотя мы его не экспортируем)
+        int apiKeyStart = jsonContent.indexOf("\"api_key\":\"") + 11;
+        int apiKeyEnd = jsonContent.indexOf("\"", apiKeyStart);
+        if (apiKeyStart > 10 && apiKeyEnd > apiKeyStart) {
+            String apiKey = jsonContent.substring(apiKeyStart, apiKeyEnd);
+            if (apiKey.length() > 0 && apiKey != "***") {
+                strlcpy(config.thingSpeakApiKey, apiKey.c_str(), sizeof(config.thingSpeakApiKey));
+            }
         }
         
         // Парсим интервалы
