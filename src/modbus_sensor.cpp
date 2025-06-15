@@ -17,10 +17,9 @@ SensorData sensorData;
 SensorCache sensorCache;
 String sensorLastError = "";
 
-// Определяем пины для DE и RE (как в рабочей версии)
-#define RX_PIN 16
-#define TX_PIN 17
-// Используем константы из jxct_constants.h
+// Используем все пины из централизованных констант jxct_constants.h
+#define RX_PIN MODBUS_RX_PIN
+#define TX_PIN MODBUS_TX_PIN
 #define DE_PIN MODBUS_DE_PIN
 #define RE_PIN MODBUS_RE_PIN
 

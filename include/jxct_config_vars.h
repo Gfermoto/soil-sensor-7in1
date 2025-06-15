@@ -1,10 +1,7 @@
 #pragma once
 
-// Аппаратные пины
-#define RX_PIN 16
-#define TX_PIN 17
-#define MAX485_DE 4  // Data Enable
-#define MAX485_RE 5  // Receive Enable
+// Аппаратные пины (перенесены в jxct_constants.h для централизации)
+// Оставляем только те, которые еще не перенесены
 #define BOOT_BUTTON 0
 #define STATUS_LED_PIN 2
 
