@@ -27,10 +27,15 @@ http://IP_УСТРОЙСТВА/config_manager
 - ✅ **Скользящее среднее**: window, force_cycles, algorithm, outlier_filter
 - ✅ **Флаги**: hass_enabled, real_sensor
 
-### Что НЕ экспортируется (по безопасности)
+### Что заменяется заглушками (по безопасности)
+- 🔒 **MQTT сервер** → `YOUR_MQTT_SERVER_HERE`
+- 🔒 **MQTT пользователь** → `YOUR_MQTT_USER_HERE`
+- 🔒 **MQTT пароль** → `YOUR_MQTT_PASSWORD_HERE`
+- 🔒 **ThingSpeak канал** → `YOUR_CHANNEL_ID_HERE`
+- 🔒 **ThingSpeak API ключ** → `YOUR_API_KEY_HERE`
+
+### Что НЕ экспортируется
 - ❌ **WiFi настройки** (ssid, password)
-- ❌ **MQTT пароль** (password)
-- ❌ **ThingSpeak API ключ** (api_key)
 - ❌ **MAC-зависимые поля** (topic_prefix, device_name)
 - ❌ **Системная информация** (version, exported timestamp)
 

@@ -956,17 +956,20 @@ void setupWebServer()
          
 
          
-         // Создаем JSON с конфигурацией (ТОЛЬКО БЕЗОПАСНЫЕ НАСТРОЙКИ)
+         // Создаем JSON с конфигурацией (с заглушками для чувствительных данных)
          String json = "{";
          json += "\"mqtt\":{";
          json += "\"enabled\":" + String(config.flags.mqttEnabled ? "true" : "false") + ",";
-         json += "\"server\":\"" + String(config.mqttServer) + "\",";
+         // Используем заглушки для чувствительных данных
+         json += "\"server\":\"" + (strlen(config.mqttServer) > 0 ? String("YOUR_MQTT_SERVER_HERE") : String("YOUR_MQTT_SERVER_HERE")) + "\",";
          json += "\"port\":" + String(config.mqttPort) + ",";
-         json += "\"user\":\"" + String(config.mqttUser) + "\"";
+         json += "\"user\":\"" + (strlen(config.mqttUser) > 0 ? String("YOUR_MQTT_USER_HERE") : String("YOUR_MQTT_USER_HERE")) + "\",";
+         json += "\"password\":\"YOUR_MQTT_PASSWORD_HERE\"";
          json += "},";
          json += "\"thingspeak\":{";
          json += "\"enabled\":" + String(config.flags.thingSpeakEnabled ? "true" : "false") + ",";
-         json += "\"channel_id\":\"" + String(config.thingSpeakChannelId) + "\"";
+         json += "\"channel_id\":\"" + (strlen(config.thingSpeakChannelId) > 0 ? String("YOUR_CHANNEL_ID_HERE") : String("YOUR_CHANNEL_ID_HERE")) + "\",";
+         json += "\"api_key\":\"YOUR_API_KEY_HERE\"";
          json += "},";
          json += "\"intervals\":{";
          json += "\"sensor_read\":" + String(config.sensorReadInterval) + ",";
@@ -1025,7 +1028,7 @@ void setupWebServer()
          html += "<div class='section'><h2>📤 Экспорт настроек</h2>";
          html += "<p>Скачайте текущие настройки устройства в JSON файл для резервного копирования.</p>";
          html += "<a href='/api/config/export'>" + generateButton(ButtonType::SECONDARY, UI_ICON_DOWNLOAD, "Скачать конфигурацию", "") + "</a>";
-         html += "<div class='help'>" UI_ICON_INFO " Экспортируются только безопасные настройки: интервалы, фильтры, флаги. WiFi, пароли, MAC-зависимые поля исключены</div></div>";
+         html += "<div class='help'>" UI_ICON_INFO " Чувствительные данные (пароли, API ключи, каналы) заменяются заглушками для безопасности. WiFi и MAC-зависимые поля исключены</div></div>";
          
          html += "<div class='section'><h2>" UI_ICON_UPLOAD " Импорт настроек</h2>";
          html += "<p>Загрузите JSON файл с настройками для восстановления конфигурации.</p>";
