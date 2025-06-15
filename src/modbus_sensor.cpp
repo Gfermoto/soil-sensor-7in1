@@ -20,8 +20,9 @@ String sensorLastError = "";
 // Определяем пины для DE и RE (как в рабочей версии)
 #define RX_PIN 16
 #define TX_PIN 17
-#define DE_PIN 4
-#define RE_PIN 5
+// Используем константы из jxct_constants.h
+#define DE_PIN MODBUS_DE_PIN
+#define RE_PIN MODBUS_RE_PIN
 
 void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
 {
