@@ -1015,6 +1015,13 @@ void setupWebServer()
          html += navHtml();
          html += "<h1>" UI_ICON_FOLDER " Управление конфигурацией</h1>";
          
+         // Показываем сообщения об успехе/ошибке импорта
+         if (webServer.hasArg("import_success")) {
+             html += "<div class='msg msg-success'>" UI_ICON_SUCCESS " Конфигурация успешно импортирована! Устройство перезагрузится...</div>";
+         } else if (webServer.hasArg("import_error")) {
+             html += "<div class='msg msg-error'>" UI_ICON_ERROR " Ошибка импорта: " + webServer.arg("import_error") + "</div>";
+         }
+         
          html += "<div class='section'><h2>📤 Экспорт настроек</h2>";
          html += "<p>Скачайте текущие настройки устройства в JSON файл для резервного копирования.</p>";
          html += "<a href='/api/config/export'>" + generateButton(ButtonType::SECONDARY, UI_ICON_DOWNLOAD, "Скачать конфигурацию", "") + "</a>";
@@ -1090,13 +1097,13 @@ void setupWebServer()
                  if (success) {
                      saveConfig();
                      logSuccess("Конфигурация импортирована успешно");
-                     webServer.sendHeader("Location", "/api/config/import?import_success=1");
+                     webServer.sendHeader("Location", "/config_manager?import_success=1");
                      webServer.send(302, "text/plain", "");
                      delay(1000);
                      ESP.restart();
                  } else {
                      logError("Ошибка импорта: %s", error.c_str());
-                     webServer.sendHeader("Location", "/api/config/import?import_error=" + error);
+                     webServer.sendHeader("Location", "/config_manager?import_error=" + error);
                      webServer.send(302, "text/plain", "");
                  }
                  
@@ -1108,10 +1115,10 @@ void setupWebServer()
      // Тестовый GET маршрут для проверки доступности
      webServer.on("/api/config/import", HTTP_GET, []() {
          if (currentWiFiMode == WiFiMode::AP) {
-             webServer.send(403, "text/plain", "Import недоступен в режиме AP");
+             webServer.send(403, "text/plain; charset=utf-8", "Import недоступен в режиме AP");
              return;
          }
-         webServer.send(200, "text/plain", "Import endpoint доступен. Используйте POST для загрузки файла.");
+         webServer.send(200, "text/plain; charset=utf-8", "Import endpoint доступен. Используйте POST для загрузки файла.");
      });
 
      
@@ -1232,56 +1239,82 @@ bool parseAndApplyConfig(const String& jsonContent, String& error) {
     // Используем indexOf для поиска значений (без библиотеки ArduinoJson для экономии памяти)
     
     try {
-        // Парсим MQTT настройки
-        int mqttEnabledPos = jsonContent.indexOf("\"enabled\":");
-        if (mqttEnabledPos > 0) {
-            config.flags.mqttEnabled = jsonContent.substring(mqttEnabledPos + 10, mqttEnabledPos + 14) == "true" ? 1 : 0;
-        }
-        
-        int serverStart = jsonContent.indexOf("\"server\":\"") + 10;
-        int serverEnd = jsonContent.indexOf("\"", serverStart);
-        if (serverStart > 9 && serverEnd > serverStart) {
-            String server = jsonContent.substring(serverStart, serverEnd);
-            strlcpy(config.mqttServer, server.c_str(), sizeof(config.mqttServer));
-        }
-        
-        int portPos = jsonContent.indexOf("\"port\":");
-        if (portPos > 0) {
-            int portStart = portPos + 7;
-            int portEnd = jsonContent.indexOf(",", portStart);
-            if (portEnd == -1) portEnd = jsonContent.indexOf("}", portStart);
-            if (portEnd > portStart) {
-                config.mqttPort = jsonContent.substring(portStart, portEnd).toInt();
+        // Парсим MQTT настройки - ищем в секции "mqtt"
+        int mqttStart = jsonContent.indexOf("\"mqtt\":{");
+        if (mqttStart > 0) {
+            int mqttEnd = jsonContent.indexOf("}", mqttStart);
+            String mqttSection = jsonContent.substring(mqttStart, mqttEnd + 1);
+            
+            int enabledPos = mqttSection.indexOf("\"enabled\":");
+            if (enabledPos > 0) {
+                config.flags.mqttEnabled = mqttSection.substring(enabledPos + 10, enabledPos + 14) == "true" ? 1 : 0;
+            }
+            
+            int serverStart = mqttSection.indexOf("\"server\":\"") + 10;
+            int serverEnd = mqttSection.indexOf("\"", serverStart);
+            if (serverStart > 9 && serverEnd > serverStart) {
+                String server = mqttSection.substring(serverStart, serverEnd);
+                if (server != "YOUR_MQTT_SERVER_HERE") {
+                    strlcpy(config.mqttServer, server.c_str(), sizeof(config.mqttServer));
+                }
+            }
+            
+            int portPos = mqttSection.indexOf("\"port\":");
+            if (portPos > 0) {
+                int portStart = portPos + 7;
+                int portEnd = mqttSection.indexOf(",", portStart);
+                if (portEnd == -1) portEnd = mqttSection.indexOf("}", portStart);
+                if (portEnd > portStart) {
+                    config.mqttPort = mqttSection.substring(portStart, portEnd).toInt();
+                }
+            }
+            
+            int userStart = mqttSection.indexOf("\"user\":\"") + 8;
+            int userEnd = mqttSection.indexOf("\"", userStart);
+            if (userStart > 7 && userEnd > userStart) {
+                String user = mqttSection.substring(userStart, userEnd);
+                if (user != "YOUR_MQTT_USER_HERE") {
+                    strlcpy(config.mqttUser, user.c_str(), sizeof(config.mqttUser));
+                }
+            }
+            
+            int passwordStart = mqttSection.indexOf("\"password\":\"") + 12;
+            int passwordEnd = mqttSection.indexOf("\"", passwordStart);
+            if (passwordStart > 11 && passwordEnd > passwordStart) {
+                String password = mqttSection.substring(passwordStart, passwordEnd);
+                if (password != "YOUR_MQTT_PASSWORD_HERE") {
+                    strlcpy(config.mqttPassword, password.c_str(), sizeof(config.mqttPassword));
+                }
             }
         }
         
-        int userStart = jsonContent.indexOf("\"user\":\"") + 8;
-        int userEnd = jsonContent.indexOf("\"", userStart);
-        if (userStart > 7 && userEnd > userStart) {
-            String user = jsonContent.substring(userStart, userEnd);
-            strlcpy(config.mqttUser, user.c_str(), sizeof(config.mqttUser));
-        }
-        
-        // Парсим ThingSpeak настройки
-        int tsEnabledPos = jsonContent.indexOf("\"thingspeak\":{\"enabled\":");
-        if (tsEnabledPos > 0) {
-            config.flags.thingSpeakEnabled = jsonContent.substring(tsEnabledPos + 24, tsEnabledPos + 28) == "true" ? 1 : 0;
-        }
-        
-        int channelStart = jsonContent.indexOf("\"channel_id\":\"") + 14;
-        int channelEnd = jsonContent.indexOf("\"", channelStart);
-        if (channelStart > 13 && channelEnd > channelStart) {
-            String channelId = jsonContent.substring(channelStart, channelEnd);
-            strlcpy(config.thingSpeakChannelId, channelId.c_str(), sizeof(config.thingSpeakChannelId));
-        }
-        
-        // Парсим ThingSpeak API ключ (если есть в файле, хотя мы его не экспортируем)
-        int apiKeyStart = jsonContent.indexOf("\"api_key\":\"") + 11;
-        int apiKeyEnd = jsonContent.indexOf("\"", apiKeyStart);
-        if (apiKeyStart > 10 && apiKeyEnd > apiKeyStart) {
-            String apiKey = jsonContent.substring(apiKeyStart, apiKeyEnd);
-            if (apiKey.length() > 0 && apiKey != "***") {
-                strlcpy(config.thingSpeakApiKey, apiKey.c_str(), sizeof(config.thingSpeakApiKey));
+        // Парсим ThingSpeak настройки - ищем в секции "thingspeak"
+        int tsStart = jsonContent.indexOf("\"thingspeak\":{");
+        if (tsStart > 0) {
+            int tsEnd = jsonContent.indexOf("}", tsStart);
+            String tsSection = jsonContent.substring(tsStart, tsEnd + 1);
+            
+            int enabledPos = tsSection.indexOf("\"enabled\":");
+            if (enabledPos > 0) {
+                config.flags.thingSpeakEnabled = tsSection.substring(enabledPos + 10, enabledPos + 14) == "true" ? 1 : 0;
+            }
+            
+            int channelStart = tsSection.indexOf("\"channel_id\":\"") + 14;
+            int channelEnd = tsSection.indexOf("\"", channelStart);
+            if (channelStart > 13 && channelEnd > channelStart) {
+                String channelId = tsSection.substring(channelStart, channelEnd);
+                if (channelId != "YOUR_CHANNEL_ID_HERE") {
+                    strlcpy(config.thingSpeakChannelId, channelId.c_str(), sizeof(config.thingSpeakChannelId));
+                }
+            }
+            
+            int apiKeyStart = tsSection.indexOf("\"api_key\":\"") + 11;
+            int apiKeyEnd = tsSection.indexOf("\"", apiKeyStart);
+            if (apiKeyStart > 10 && apiKeyEnd > apiKeyStart) {
+                String apiKey = tsSection.substring(apiKeyStart, apiKeyEnd);
+                if (apiKey.length() > 0 && apiKey != "YOUR_API_KEY_HERE") {
+                    strlcpy(config.thingSpeakApiKey, apiKey.c_str(), sizeof(config.thingSpeakApiKey));
+                }
             }
         }
         
@@ -1306,13 +1339,17 @@ bool parseAndApplyConfig(const String& jsonContent, String& error) {
             }
         }
         
-        int thingspeakPos = jsonContent.indexOf("\"thingspeak\":");
-        if (thingspeakPos > 0) {
-            int valueStart = thingspeakPos + 13;
-            int valueEnd = jsonContent.indexOf(",", valueStart);
-            if (valueEnd == -1) valueEnd = jsonContent.indexOf("}", valueStart);
-            if (valueEnd > valueStart) {
-                config.thingSpeakInterval = jsonContent.substring(valueStart, valueEnd).toInt();
+        // Ищем thingspeak интервал в секции intervals
+        int intervalsStart = jsonContent.indexOf("\"intervals\":{");
+        if (intervalsStart > 0) {
+            int thingspeakPos = jsonContent.indexOf("\"thingspeak\":", intervalsStart);
+            if (thingspeakPos > 0) {
+                int valueStart = thingspeakPos + 13;
+                int valueEnd = jsonContent.indexOf(",", valueStart);
+                if (valueEnd == -1) valueEnd = jsonContent.indexOf("}", valueStart);
+                if (valueEnd > valueStart) {
+                    config.thingSpeakInterval = jsonContent.substring(valueStart, valueEnd).toInt();
+                }
             }
         }
         
@@ -1408,16 +1445,32 @@ bool parseAndApplyConfig(const String& jsonContent, String& error) {
             }
         }
         
-        // Парсим флаги
-        int hassEnabledPos = jsonContent.indexOf("\"hass_enabled\":");
-        if (hassEnabledPos > 0) {
-            config.flags.hassEnabled = jsonContent.substring(hassEnabledPos + 15, hassEnabledPos + 19) == "true" ? 1 : 0;
+        // Парсим флаги - ищем в секции "flags"
+        int flagsStart = jsonContent.indexOf("\"flags\":{");
+        if (flagsStart > 0) {
+            int flagsEnd = jsonContent.indexOf("}", flagsStart);
+            String flagsSection = jsonContent.substring(flagsStart, flagsEnd + 1);
+            
+            int hassEnabledPos = flagsSection.indexOf("\"hass_enabled\":");
+            if (hassEnabledPos > 0) {
+                config.flags.hassEnabled = flagsSection.substring(hassEnabledPos + 15, hassEnabledPos + 19) == "true" ? 1 : 0;
+            }
+            
+            int realSensorPos = flagsSection.indexOf("\"real_sensor\":");
+            if (realSensorPos > 0) {
+                config.flags.useRealSensor = flagsSection.substring(realSensorPos + 14, realSensorPos + 18) == "true" ? 1 : 0;
+            }
         }
         
-        int realSensorPos = jsonContent.indexOf("\"real_sensor\":");
-        if (realSensorPos > 0) {
-            config.flags.useRealSensor = jsonContent.substring(realSensorPos + 14, realSensorPos + 18) == "true" ? 1 : 0;
-        }
+        // Отладочные сообщения
+        Serial.printf("[IMPORT] MQTT enabled: %d, server: %s, port: %d, user: %s\n", 
+                     config.flags.mqttEnabled, config.mqttServer, config.mqttPort, config.mqttUser);
+        Serial.printf("[IMPORT] ThingSpeak enabled: %d, channel: %s, interval: %d\n", 
+                     config.flags.thingSpeakEnabled, config.thingSpeakChannelId, config.thingSpeakInterval);
+        Serial.printf("[IMPORT] Intervals - sensor: %d, mqtt: %d, ts: %d, web: %d\n", 
+                     config.sensorReadInterval, config.mqttPublishInterval, config.thingSpeakInterval, config.webUpdateInterval);
+        Serial.printf("[IMPORT] Flags - hass: %d, real_sensor: %d\n", 
+                     config.flags.hassEnabled, config.flags.useRealSensor);
         
         logSuccess("JSON конфигурация успешно распарсена");
         return true;
