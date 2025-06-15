@@ -12,9 +12,9 @@
 void fakeSensorTask(void *pvParameters)
 {
     const TickType_t taskDelay = 1000 / portTICK_PERIOD_MS;  // 1 секунда
-    const uint32_t dataGenerationInterval = 10;  // Генерация данных каждые 10 итераций
+    const uint32_t dataGenerationInterval = 10;              // Генерация данных каждые 10 итераций
     uint32_t iterationCounter = 0;
-    
+
     for (;;)
     {
         // Генерируем данные только каждые 10 секунд
@@ -29,13 +29,13 @@ void fakeSensorTask(void *pvParameters)
             sensorData.potassium = 20 + random(-5, 5);               // 15..25
             sensorData.valid = true;
             sensorData.last_update = millis();  // ✅ Обновляем timestamp
-            
+
             DEBUG_PRINTLN("[fakeSensorTask] Сгенерированы тестовые данные датчика");
             iterationCounter = 0;  // Сброс счетчика
         }
-        
+
         iterationCounter++;
-        
+
         // ✅ Более частые, но короткие задержки для отзывчивости
         vTaskDelay(taskDelay);
     }

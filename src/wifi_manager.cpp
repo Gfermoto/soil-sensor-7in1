@@ -5,7 +5,7 @@
  * и сервисных функций.
  */
 #include "wifi_manager.h"
-#include "web_routes.h"      // 🏗️ Модульная архитектура v2.4.5
+#include "web_routes.h"  // 🏗️ Модульная архитектура v2.4.5
 #include "modbus_sensor.h"
 #include "mqtt_client.h"
 #include "jxct_device_info.h"
@@ -86,7 +86,7 @@ String navHtml()
     {
         html += "<a href='/readings'>" UI_ICON_DATA " Показания</a>";
         html += "<a href='/intervals'>" UI_ICON_INTERVALS " Интервалы</a>";  // v2.3.0
-    
+
         html += "<a href='/config_manager'>" UI_ICON_FOLDER " Конфигурация</a>";  // v2.3.0
         html += "<a href='/service'>" UI_ICON_SERVICE " Сервис</a>";
     }
@@ -261,7 +261,8 @@ void handleStatus()
     html += "<h1>" UI_ICON_STATUS " Статус системы</h1>";
     html += "<div class='section'><h2>WiFi</h2><ul>";
     html += "<li>Режим: " + String(currentWiFiMode == WiFiMode::AP ? "Точка доступа" : "Клиент") + "</li>";
-    if (currentWiFiMode == WiFiMode::STA && wifiConnected) {
+    if (currentWiFiMode == WiFiMode::STA && wifiConnected)
+    {
         html += "<li>SSID: " + String(config.ssid) + "</li>";
         html += "<li>IP: " + WiFi.localIP().toString() + "</li>";
         html += "<li>RSSI: " + String(WiFi.RSSI()) + " dBm</li>";
@@ -279,32 +280,33 @@ void handleStatus()
 void setupWebServer()
 {
     logInfo("🏗️ Настройка модульного веб-сервера v2.4.5...");
-    
+
     // ============================================================================
     // МОДУЛЬНАЯ АРХИТЕКТУРА - Настройка всех маршрутов по группам
     // ============================================================================
-    
+
     setupMainRoutes();     // Основные маршруты (/, /save, /status)
     setupDataRoutes();     // Данные датчика (/readings, /sensor_json, /api/sensor)
     setupConfigRoutes();   // Конфигурация (/intervals, /config_manager, /api/config/*)
     setupServiceRoutes();  // Сервис (/health, /service_status, /reset, /reboot, /ota)
-    
+
     setupErrorHandlers();  // Обработчики ошибок (404, 500) - должны быть последними
-    
+
     // ============================================================================
     // ЗАПУСК СЕРВЕРА
     // ============================================================================
-    
+
     webServer.begin();
-    logSuccess("🏗️ Модульный веб-сервер v2.4.5 запущен. Режим: %s", 
-              currentWiFiMode == WiFiMode::AP ? "AP" : "STA");
+    logSuccess("🏗️ Модульный веб-сервер v2.4.5 запущен. Режим: %s", currentWiFiMode == WiFiMode::AP ? "AP" : "STA");
     logSystem("✅ Активные модули: main_routes, data_routes, config_routes, service_routes, error_handlers");
     logSystem("📋 Полный набор маршрутов готов к использованию");
 }
 
 void handleRoot()
 {
-    String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, initial-scale=1.0'>";
+    String html =
+        "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, "
+        "initial-scale=1.0'>";
     html += "<title>" UI_ICON_CONFIG " Настройки JXCT</title>";
     html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
     html += navHtml();
@@ -363,7 +365,8 @@ void handleRoot()
             "id='ts_channel_id' name='ts_channel_id' value='" +
             String(config.thingSpeakChannelId) + "'></div>";
         html +=
-            "<div style='color:#888;font-size:13px'>💡 Интервал публикации настраивается в разделе <a href='/intervals' style='color:#4CAF50'>Интервалы</a></div></div>";
+            "<div style='color:#888;font-size:13px'>💡 Интервал публикации настраивается в разделе <a "
+            "href='/intervals' style='color:#4CAF50'>Интервалы</a></div></div>";
         String realSensorChecked = config.flags.useRealSensor ? " checked" : "";
         html += "<div class='section'><h2>Датчик</h2>";
         html +=
@@ -397,4 +400,4 @@ void handleRoot()
 
     html += "</div>" + String(getToastHTML()) + "</body></html>";
     webServer.send(200, "text/html; charset=utf-8", html);
-} 
+}

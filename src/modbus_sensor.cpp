@@ -40,34 +40,34 @@ void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
 void testMAX485()
 {
     logSystem("=== ТЕСТИРОВАНИЕ MAX485 ===");
-    
+
     // Проверяем состояние пинов
     logSystem("Состояние пинов до теста:");
     logSystem("  DE_PIN (%d): %d", DE_PIN, digitalRead(DE_PIN));
     logSystem("  RE_PIN (%d): %d", RE_PIN, digitalRead(RE_PIN));
-    
+
     // Режим передачи
     logSystem("Переключение в режим передачи...");
-    digitalWrite(DE_PIN, HIGH);   // DE=HIGH для передачи
-    digitalWrite(RE_PIN, HIGH);   // RE=HIGH отключает прием (правильно для TX)
-    delay(10);  // Увеличил задержку
+    digitalWrite(DE_PIN, HIGH);  // DE=HIGH для передачи
+    digitalWrite(RE_PIN, HIGH);  // RE=HIGH отключает прием (правильно для TX)
+    delay(10);                   // Увеличил задержку
     logSystem("  DE_PIN (%d): %d", DE_PIN, digitalRead(DE_PIN));
     logSystem("  RE_PIN (%d): %d", RE_PIN, digitalRead(RE_PIN));
-    
+
     // Тестовая передача
     logSystem("Отправка тестового байта 0x55...");
     Serial2.write(0x55);
     Serial2.flush();
     logSystem("Тестовый байт отправлен");
-    
+
     // Режим приема
     logSystem("Переключение в режим приема...");
-    digitalWrite(DE_PIN, LOW);    // DE=LOW для приема
-    digitalWrite(RE_PIN, LOW);    // RE=LOW включает прием
-    delay(100);  // Ждем ответ
+    digitalWrite(DE_PIN, LOW);  // DE=LOW для приема
+    digitalWrite(RE_PIN, LOW);  // RE=LOW включает прием
+    delay(100);                 // Ждем ответ
     logSystem("  DE_PIN (%d): %d", DE_PIN, digitalRead(DE_PIN));
     logSystem("  RE_PIN (%d): %d", RE_PIN, digitalRead(RE_PIN));
-    
+
     // Проверяем ответ
     if (Serial2.available())
     {
@@ -82,7 +82,7 @@ void testMAX485()
     {
         logWarn("Нет ответа от MAX485 (это нормально без датчика)");
     }
-    
+
     logSystem("=== ТЕСТ MAX485 ЗАВЕРШЕН ===");
 }
 
@@ -107,19 +107,19 @@ void setupModbus()
     logSystem("🔥 ВОССТАНОВЛЕНИЕ РАБОЧИХ ПАРАМЕТРОВ JXCT:");
     logSystem("   Документация: 9600 bps, 8N1, адрес 1");
     Serial2.begin(9600, SERIAL_8N1, RX_PIN, TX_PIN);  // РАБОЧИЕ ПАРАМЕТРЫ!
-    delay(100);  // ОТКАТ: Критичный timing для Serial2
+    delay(100);                                       // ОТКАТ: Критичный timing для Serial2
     logSystem("Serial2.available() после инициализации: %d", Serial2.available());
 
     // Инициализируем ModbusMaster с настройкой таймаутов
     logSystem("Инициализация ModbusMaster (адрес 1)...");
     modbus.begin(1, Serial2);
-    
+
     // НАСТРОЙКА ТАЙМАУТОВ (критично для ESP32!)
     logSystem("Настройка таймаутов ModbusMaster...");
-    
+
     // Если библиотека не поддерживает установку таймаутов, используем стандартные
     logSystem("Используем стандартные таймауты библиотеки ModbusMaster");
-    
+
     // Устанавливаем функции управления направлением передачи
     modbus.preTransmission(preTransmission);
     modbus.postTransmission(postTransmission);
@@ -222,40 +222,46 @@ bool changeDeviceAddress(uint8_t new_address)
 bool testModbusConnection()
 {
     logSensor("=== ДИАГНОСТИКА MODBUS СВЯЗИ ===");
-    
+
     // Тест 1: Попытка чтения регистра версии прошивки
     logSystem("Тест 1: Чтение версии прошивки (адрес 0x07)...");
     uint8_t result = modbus.readHoldingRegisters(0x07, 1);
-    if (result == modbus.ku8MBSuccess) {
+    if (result == modbus.ku8MBSuccess)
+    {
         uint16_t version = modbus.getResponseBuffer(0);
         logSuccess("✅ Modbus связь работает! Версия: %d.%d", (version >> 8) & 0xFF, version & 0xFF);
         return true;
-    } else {
+    }
+    else
+    {
         logError("❌ Ошибка чтения версии: %d", result);
         printModbusError(result);
     }
-    
+
     // Тест 2: Простое чтение первого доступного регистра
     logSystem("Тест 2: Чтение регистра 0x%04X (pH)...", REG_PH);
     result = modbus.readHoldingRegisters(REG_PH, 1);
-    if (result == modbus.ku8MBSuccess) {
+    if (result == modbus.ku8MBSuccess)
+    {
         uint16_t value = modbus.getResponseBuffer(0);
         logSuccess("✅ pH регистр читается! Значение: %d", value);
         return true;
-    } else {
+    }
+    else
+    {
         logError("❌ Ошибка чтения pH: %d", result);
         printModbusError(result);
     }
-    
+
     // Тест 3: Проверка статуса пинов DE/RE
     logSystem("Тест 3: Проверка конфигурации пинов...");
     logSystem("DE_PIN: %d, RE_PIN: %d", DE_PIN, RE_PIN);
     logSystem("DE состояние: %d, RE состояние: %d", digitalRead(DE_PIN), digitalRead(RE_PIN));
-    
+
     // Тест 4: Проверка Serial2
     logSystem("Тест 4: Проверка Serial2...");
     logSystem("Serial2 доступен: %s", Serial2.available() ? "ДА" : "НЕТ");
-    
+
     return false;
 }
 
@@ -276,11 +282,11 @@ bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplie
 {
     logDebug("Чтение %s (0x%04X)...", reg_name, reg_addr);
     uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
-    
+
     if (result == modbus.ku8MBSuccess)
     {
         uint16_t raw_value = modbus.getResponseBuffer(0);
-        
+
         if (is_float)
         {
             float* float_target = static_cast<float*>(target);
@@ -310,23 +316,19 @@ bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplie
 int readBasicParameters()
 {
     int success_count = 0;
-    
+
     // pH (÷ 100)
-    if (readSingleRegister(REG_PH, "pH", 0.01f, &sensorData.ph, true))
-        success_count++;
-    
+    if (readSingleRegister(REG_PH, "pH", 0.01f, &sensorData.ph, true)) success_count++;
+
     // Влажность (÷ 10)
-    if (readSingleRegister(REG_SOIL_MOISTURE, "Влажность", 0.1f, &sensorData.humidity, true))
-        success_count++;
-    
+    if (readSingleRegister(REG_SOIL_MOISTURE, "Влажность", 0.1f, &sensorData.humidity, true)) success_count++;
+
     // Температура (÷ 10)
-    if (readSingleRegister(REG_SOIL_TEMP, "Температура", 0.1f, &sensorData.temperature, true))
-        success_count++;
-    
+    if (readSingleRegister(REG_SOIL_TEMP, "Температура", 0.1f, &sensorData.temperature, true)) success_count++;
+
     // EC (без деления)
-    if (readSingleRegister(REG_CONDUCTIVITY, "EC", 1.0f, &sensorData.ec, true))
-        success_count++;
-    
+    if (readSingleRegister(REG_CONDUCTIVITY, "EC", 1.0f, &sensorData.ec, true)) success_count++;
+
     return success_count;
 }
 
@@ -337,19 +339,16 @@ int readBasicParameters()
 int readNPKParameters()
 {
     int success_count = 0;
-    
+
     // Азот
-    if (readSingleRegister(REG_NITROGEN, "Азот", 1.0f, &sensorData.nitrogen, true))
-        success_count++;
-    
+    if (readSingleRegister(REG_NITROGEN, "Азот", 1.0f, &sensorData.nitrogen, true)) success_count++;
+
     // Фосфор
-    if (readSingleRegister(REG_PHOSPHORUS, "Фосфор", 1.0f, &sensorData.phosphorus, true))
-        success_count++;
-    
+    if (readSingleRegister(REG_PHOSPHORUS, "Фосфор", 1.0f, &sensorData.phosphorus, true)) success_count++;
+
     // Калий
-    if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0f, &sensorData.potassium, true))
-        success_count++;
-    
+    if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0f, &sensorData.potassium, true)) success_count++;
+
     return success_count;
 }
 
@@ -365,15 +364,14 @@ void finalizeSensorData(bool success)
     if (success)
     {
         // Добавляем данные в буферы скользящего среднего
-        addToMovingAverage(sensorData, sensorData.temperature, sensorData.humidity, 
-                          sensorData.ec, sensorData.ph, sensorData.nitrogen, 
-                          sensorData.phosphorus, sensorData.potassium);
+        addToMovingAverage(sensorData, sensorData.temperature, sensorData.humidity, sensorData.ec, sensorData.ph,
+                           sensorData.nitrogen, sensorData.phosphorus, sensorData.potassium);
 
         // Валидация данных
         if (validateSensorData(sensorData))
         {
             logSuccess("✅ Все параметры прочитаны и валидны");
-            
+
             // Обновляем кэш
             sensorCache.data = sensorData;
             sensorCache.timestamp = millis();
@@ -402,13 +400,13 @@ void readSensorData()
 
     // Читаем основные параметры (4 параметра)
     int basic_success = readBasicParameters();
-    
+
     // Читаем NPK параметры (3 параметра)
     int npk_success = readNPKParameters();
-    
+
     // Общий успех - все 7 параметров прочитаны
     bool total_success = (basic_success == 4) && (npk_success == 3);
-    
+
     // Финализируем данные
     finalizeSensorData(total_success);
 }
@@ -423,14 +421,14 @@ void preTransmission()
     DEBUG_PRINTLN("Modbus TX режим");
     digitalWrite(DE_PIN, HIGH);  // DE=HIGH включает передачу
     digitalWrite(RE_PIN, HIGH);  // RE=HIGH отключает прием (для передачи)
-    delayMicroseconds(50);  // ✅ Микросекундные задержки критичны для Modbus
+    delayMicroseconds(50);       // ✅ Микросекундные задержки критичны для Modbus
 }
 
 void postTransmission()
 {
-    delayMicroseconds(50);  // ✅ Микросекундные задержки критичны для Modbus
-    digitalWrite(DE_PIN, LOW);   // DE=LOW отключает передачу
-    digitalWrite(RE_PIN, LOW);   // RE=LOW включает прием (для ответов датчика!)
+    delayMicroseconds(50);      // ✅ Микросекундные задержки критичны для Modbus
+    digitalWrite(DE_PIN, LOW);  // DE=LOW отключает передачу
+    digitalWrite(RE_PIN, LOW);  // RE=LOW включает прием (для ответов датчика!)
     DEBUG_PRINTLN("Modbus RX режим");
 }
 
@@ -440,11 +438,12 @@ void realSensorTask(void* pvParameters)
     logPrintHeader("ПРОСТОЕ ЧТЕНИЕ ДАТЧИКА JXCT", COLOR_CYAN);
     logSystem("🔥 Использую РАБОЧИЕ параметры: 9600 bps, 8N1, адрес 1");
     logSystem("📊 Функция: периодическое чтение всех регистров датчика");
-    
-    for (;;) {
+
+    for (;;)
+    {
         // Простое чтение всех параметров датчика с рабочими настройками
-        readSensorData(); 
-        
+        readSensorData();
+
         // Пауза между чтениями (настраиваемая в config в миллисекундах)
         vTaskDelay(pdMS_TO_TICKS(config.sensorReadInterval));
     }
@@ -500,7 +499,8 @@ void printModbusError(uint8_t errNum)
 void initMovingAverageBuffers(SensorData& data)
 {
     // Инициализируем буферы нулями
-    for (int i = 0; i < 15; i++) {
+    for (int i = 0; i < 15; i++)
+    {
         data.temp_buffer[i] = 0.0;
         data.hum_buffer[i] = 0.0;
         data.ec_buffer[i] = 0.0;
@@ -517,9 +517,9 @@ void initMovingAverageBuffers(SensorData& data)
 void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float ph, float n, float p, float k)
 {
     uint8_t window_size = config.movingAverageWindow;
-    if (window_size < 5) window_size = 5;     // Минимум 5
-    if (window_size > 15) window_size = 15;   // Максимум 15
-    
+    if (window_size < 5) window_size = 5;    // Минимум 5
+    if (window_size > 15) window_size = 15;  // Максимум 15
+
     // Добавляем новые значения в кольцевые буферы
     data.temp_buffer[data.buffer_index] = temp;
     data.hum_buffer[data.buffer_index] = hum;
@@ -528,20 +528,22 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
     data.n_buffer[data.buffer_index] = n;
     data.p_buffer[data.buffer_index] = p;
     data.k_buffer[data.buffer_index] = k;
-    
+
     // Обновляем индекс (кольцевой буфер)
     data.buffer_index = (data.buffer_index + 1) % window_size;
-    
+
     // Обновляем количество заполненных элементов
-    if (data.buffer_filled < window_size) {
+    if (data.buffer_filled < window_size)
+    {
         data.buffer_filled++;
     }
-    
+
     // Вычисляем скользящее среднее только если буфер достаточно заполнен (минимум 3 значения)
-    if (data.buffer_filled >= 3) {
+    if (data.buffer_filled >= 3)
+    {
         // Используем реальный размер заполненных данных для расчета
         uint8_t effective_window = (data.buffer_filled < window_size) ? data.buffer_filled : window_size;
-        
+
         data.temperature = calculateMovingAverage(data.temp_buffer, effective_window, data.buffer_filled);
         data.humidity = calculateMovingAverage(data.hum_buffer, effective_window, data.buffer_filled);
         data.ec = calculateMovingAverage(data.ec_buffer, effective_window, data.buffer_filled);
@@ -549,9 +551,12 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
         data.nitrogen = calculateMovingAverage(data.n_buffer, effective_window, data.buffer_filled);
         data.phosphorus = calculateMovingAverage(data.p_buffer, effective_window, data.buffer_filled);
         data.potassium = calculateMovingAverage(data.k_buffer, effective_window, data.buffer_filled);
-        
-        DEBUG_PRINTF("[MOVING_AVG] Окно=%d, заполнено=%d, Темп=%.1f°C\n", effective_window, data.buffer_filled, data.temperature);
-    } else {
+
+        DEBUG_PRINTF("[MOVING_AVG] Окно=%d, заполнено=%d, Темп=%.1f°C\n", effective_window, data.buffer_filled,
+                     data.temperature);
+    }
+    else
+    {
         // Если данных мало, используем последние значения без усреднения
         data.temperature = temp;
         data.humidity = hum;
@@ -560,7 +565,7 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
         data.nitrogen = n;
         data.phosphorus = p;
         data.potassium = k;
-        
+
         DEBUG_PRINTF("[MOVING_AVG] Накопление данных: %d/%d\n", data.buffer_filled, window_size);
     }
 }
@@ -568,41 +573,52 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
 float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
 {
     if (filled == 0) return 0.0;
-    
+
     // Берем последние filled элементов (или window_size, если filled >= window_size)
     uint8_t elements_to_use = (filled < window_size) ? filled : window_size;
-    
+
     // v2.4.1: Используем настраиваемый алгоритм (среднее или медиана)
     extern Config config;
-    
-    if (config.filterAlgorithm == 1) {  // FILTER_ALGORITHM_MEDIAN
+
+    if (config.filterAlgorithm == 1)
+    {  // FILTER_ALGORITHM_MEDIAN
         // Создаем временный массив для медианы
         float temp_values[15];  // Максимальный размер окна
-        for (uint8_t i = 0; i < elements_to_use; i++) {
+        for (uint8_t i = 0; i < elements_to_use; i++)
+        {
             temp_values[i] = buffer[i];
         }
-        
+
         // Простая сортировка для медианы
-        for (uint8_t i = 0; i < elements_to_use - 1; i++) {
-            for (uint8_t j = 0; j < elements_to_use - i - 1; j++) {
-                if (temp_values[j] > temp_values[j + 1]) {
+        for (uint8_t i = 0; i < elements_to_use - 1; i++)
+        {
+            for (uint8_t j = 0; j < elements_to_use - i - 1; j++)
+            {
+                if (temp_values[j] > temp_values[j + 1])
+                {
                     float temp = temp_values[j];
                     temp_values[j] = temp_values[j + 1];
                     temp_values[j + 1] = temp;
                 }
             }
         }
-        
+
         // Возвращаем медиану
-        if (elements_to_use % 2 == 0) {
-            return (temp_values[elements_to_use/2 - 1] + temp_values[elements_to_use/2]) / 2.0f;
-        } else {
-            return temp_values[elements_to_use/2];
+        if (elements_to_use % 2 == 0)
+        {
+            return (temp_values[elements_to_use / 2 - 1] + temp_values[elements_to_use / 2]) / 2.0f;
         }
-    } else {
+        else
+        {
+            return temp_values[elements_to_use / 2];
+        }
+    }
+    else
+    {
         // FILTER_ALGORITHM_MEAN (по умолчанию)
         float sum = 0.0;
-        for (uint8_t i = 0; i < elements_to_use; i++) {
+        for (uint8_t i = 0; i < elements_to_use; i++)
+        {
             sum += buffer[i];
         }
         return sum / elements_to_use;
@@ -610,17 +626,18 @@ float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
 }
 
 // Функция для получения текущих данных датчика
-SensorData getSensorData() {
+SensorData getSensorData()
+{
     // Возвращаем копию текущих данных датчика
     SensorData result = sensorData;
-    
+
     // Обновляем поле isValid для совместимости с веб-интерфейсом
     result.isValid = result.valid;
     result.timestamp = result.last_update;
-    
+
     // Копируем значения в поля с правильными именами для веб-интерфейса
     result.conductivity = result.ec;
     result.moisture = result.humidity;
-    
+
     return result;
 }

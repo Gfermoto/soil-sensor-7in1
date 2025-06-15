@@ -19,7 +19,6 @@
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "logger.h"
 
-
 // Переменные для отслеживания времени
 unsigned long lastDataPublishTime = 0;
 unsigned long lastNtpUpdate = 0;
@@ -54,25 +53,28 @@ void resetButtonTask(void* parameter)
     while (true)
     {
         bool currentState = (digitalRead(RESET_BUTTON_PIN) == LOW);
-        
-        if (currentState && !buttonPressed) {
+
+        if (currentState && !buttonPressed)
+        {
             // Кнопка только что нажата
             buttonPressed = true;
             buttonPressTime = millis();
             logWarn("Кнопка сброса нажата! Сброс настроек через 2 сек...");
         }
-        else if (!currentState && buttonPressed) {
+        else if (!currentState && buttonPressed)
+        {
             // Кнопка отпущена раньше времени
             buttonPressed = false;
             DEBUG_PRINTLN("Кнопка сброса отпущена");
         }
-        else if (currentState && buttonPressed && (millis() - buttonPressTime >= BUTTON_HOLD_TIME_MS)) {
+        else if (currentState && buttonPressed && (millis() - buttonPressTime >= BUTTON_HOLD_TIME_MS))
+        {
             // Кнопка удерживалась 2 секунды
             logError("Выполняется сброс настроек!");
             resetConfig();
             ESP.restart();
         }
-        
+
         // ✅ Неблокирующая задержка - проверяем кнопку каждые 50мс
         vTaskDelay(50 / portTICK_PERIOD_MS);
     }
@@ -115,7 +117,7 @@ void setup()
     // Инициализация ThingSpeak
     if (config.flags.thingSpeakEnabled)
     {
-        extern WiFiClient espClient; // объявлен в mqtt_client.cpp
+        extern WiFiClient espClient;  // объявлен в mqtt_client.cpp
         setupThingSpeak(espClient);
         logSuccess("ThingSpeak инициализирован");
     }
@@ -132,9 +134,6 @@ void setup()
     {
         setupModbus();
     }
-    
-  
-    
 
     // Запуск задач
     if (config.flags.useRealSensor)
@@ -167,10 +166,10 @@ void loop()
     static unsigned long lastDataPublish = 0;
     static unsigned long lastMqttCheck = 0;
     static unsigned long lastWiFiCheck = 0;
-    
+
     // Текущее время
     unsigned long currentTime = millis();
-    
+
     // Сброс watchdog
     esp_task_wdt_reset();
 
@@ -203,17 +202,15 @@ void loop()
     static unsigned long thingspeakBatchTimer = 0;
     static bool pendingMqttPublish = false;
     static bool pendingThingspeakPublish = false;
-    
+
     // Проверяем наличие новых данных датчика (НАСТРАИВАЕМО v2.3.0)
     if (sensorData.valid && (currentTime - lastDataPublish >= config.sensorReadInterval))
     {
-
-        
         // Помечаем что есть данные для отправки (не отправляем сразу)
         pendingMqttPublish = true;
         pendingThingspeakPublish = true;
         lastDataPublish = currentTime;
-        
+
         DEBUG_PRINTLN("[BATCH] Новые данные помечены для групповой отправки");
     }
 
@@ -231,10 +228,13 @@ void loop()
     {
         bool tsOk = sendDataToThingSpeak();
         pendingThingspeakPublish = false;
-        if (tsOk) {
-            thingspeakBatchTimer = currentTime;   // Сбрасываем таймер только при успешной отправке
+        if (tsOk)
+        {
+            thingspeakBatchTimer = currentTime;  // Сбрасываем таймер только при успешной отправке
             DEBUG_PRINTLN("[BATCH] ThingSpeak данные отправлены группой");
-        } else {
+        }
+        else
+        {
             DEBUG_PRINTLN("[BATCH] ThingSpeak отправка не удалась, повтор через следующий интервал");
         }
     }

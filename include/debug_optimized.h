@@ -13,9 +13,9 @@
 // ============================================================================
 
 #ifdef DEBUG_BUILD
-    #define DEBUG_ENABLED true
+#define DEBUG_ENABLED true
 #else
-    #define DEBUG_ENABLED false
+#define DEBUG_ENABLED false
 #endif
 
 // ============================================================================
@@ -24,44 +24,92 @@
 
 // Общие отладочные макросы
 #if DEBUG_ENABLED
-    #define DEBUG_PRINT(x) Serial.print(x)
-    #define DEBUG_PRINTLN(x) Serial.println(x)
-    #define DEBUG_PRINTF(fmt, ...) Serial.printf(fmt, ##__VA_ARGS__)
+#define DEBUG_PRINT(x) Serial.print(x)
+#define DEBUG_PRINTLN(x) Serial.println(x)
+#define DEBUG_PRINTF(fmt, ...) Serial.printf(fmt, ##__VA_ARGS__)
 #else
-    #define DEBUG_PRINT(x) do {} while(0)
-    #define DEBUG_PRINTLN(x) do {} while(0)
-    #define DEBUG_PRINTF(fmt, ...) do {} while(0)
+#define DEBUG_PRINT(x) \
+    do                 \
+    {                  \
+    } while (0)
+#define DEBUG_PRINTLN(x) \
+    do                   \
+    {                    \
+    } while (0)
+#define DEBUG_PRINTF(fmt, ...) \
+    do                         \
+    {                          \
+    } while (0)
 #endif
 
 // Модульные отладочные макросы (включаются отдельно)
 #if DEBUG_ENABLED && DEBUG_MODBUS_ENABLED
-    #define DEBUG_MODBUS_PRINT(x) Serial.print("[MODBUS] "); Serial.print(x)
-    #define DEBUG_MODBUS_PRINTLN(x) Serial.print("[MODBUS] "); Serial.println(x)
-    #define DEBUG_MODBUS_PRINTF(fmt, ...) Serial.printf("[MODBUS] " fmt, ##__VA_ARGS__)
+#define DEBUG_MODBUS_PRINT(x)  \
+    Serial.print("[MODBUS] "); \
+    Serial.print(x)
+#define DEBUG_MODBUS_PRINTLN(x) \
+    Serial.print("[MODBUS] ");  \
+    Serial.println(x)
+#define DEBUG_MODBUS_PRINTF(fmt, ...) Serial.printf("[MODBUS] " fmt, ##__VA_ARGS__)
 #else
-    #define DEBUG_MODBUS_PRINT(x) do {} while(0)
-    #define DEBUG_MODBUS_PRINTLN(x) do {} while(0)
-    #define DEBUG_MODBUS_PRINTF(fmt, ...) do {} while(0)
+#define DEBUG_MODBUS_PRINT(x) \
+    do                        \
+    {                         \
+    } while (0)
+#define DEBUG_MODBUS_PRINTLN(x) \
+    do                          \
+    {                           \
+    } while (0)
+#define DEBUG_MODBUS_PRINTF(fmt, ...) \
+    do                                \
+    {                                 \
+    } while (0)
 #endif
 
 #if DEBUG_ENABLED && DEBUG_MQTT_ENABLED
-    #define DEBUG_MQTT_PRINT(x) Serial.print("[MQTT] "); Serial.print(x)
-    #define DEBUG_MQTT_PRINTLN(x) Serial.print("[MQTT] "); Serial.println(x)
-    #define DEBUG_MQTT_PRINTF(fmt, ...) Serial.printf("[MQTT] " fmt, ##__VA_ARGS__)
+#define DEBUG_MQTT_PRINT(x)  \
+    Serial.print("[MQTT] "); \
+    Serial.print(x)
+#define DEBUG_MQTT_PRINTLN(x) \
+    Serial.print("[MQTT] ");  \
+    Serial.println(x)
+#define DEBUG_MQTT_PRINTF(fmt, ...) Serial.printf("[MQTT] " fmt, ##__VA_ARGS__)
 #else
-    #define DEBUG_MQTT_PRINT(x) do {} while(0)
-    #define DEBUG_MQTT_PRINTLN(x) do {} while(0)
-    #define DEBUG_MQTT_PRINTF(fmt, ...) do {} while(0)
+#define DEBUG_MQTT_PRINT(x) \
+    do                      \
+    {                       \
+    } while (0)
+#define DEBUG_MQTT_PRINTLN(x) \
+    do                        \
+    {                         \
+    } while (0)
+#define DEBUG_MQTT_PRINTF(fmt, ...) \
+    do                              \
+    {                               \
+    } while (0)
 #endif
 
 #if DEBUG_ENABLED && DEBUG_WIFI_ENABLED
-    #define DEBUG_WIFI_PRINT(x) Serial.print("[WIFI] "); Serial.print(x)
-    #define DEBUG_WIFI_PRINTLN(x) Serial.print("[WIFI] "); Serial.println(x)
-    #define DEBUG_WIFI_PRINTF(fmt, ...) Serial.printf("[WIFI] " fmt, ##__VA_ARGS__)
+#define DEBUG_WIFI_PRINT(x)  \
+    Serial.print("[WIFI] "); \
+    Serial.print(x)
+#define DEBUG_WIFI_PRINTLN(x) \
+    Serial.print("[WIFI] ");  \
+    Serial.println(x)
+#define DEBUG_WIFI_PRINTF(fmt, ...) Serial.printf("[WIFI] " fmt, ##__VA_ARGS__)
 #else
-    #define DEBUG_WIFI_PRINT(x) do {} while(0)
-    #define DEBUG_WIFI_PRINTLN(x) do {} while(0)
-    #define DEBUG_WIFI_PRINTF(fmt, ...) do {} while(0)
+#define DEBUG_WIFI_PRINT(x) \
+    do                      \
+    {                       \
+    } while (0)
+#define DEBUG_WIFI_PRINTLN(x) \
+    do                        \
+    {                         \
+    } while (0)
+#define DEBUG_WIFI_PRINTF(fmt, ...) \
+    do                              \
+    {                               \
+    } while (0)
 #endif
 
 // ============================================================================
@@ -76,15 +124,16 @@
  */
 inline void debugConditionalPrint(int level, const char* format, ...)
 {
-    #if DEBUG_ENABLED
+#if DEBUG_ENABLED
     extern int currentLogLevel;
-    if (currentLogLevel >= level) {
+    if (currentLogLevel >= level)
+    {
         va_list args;
         va_start(args, format);
         Serial.printf(format, args);
         va_end(args);
     }
-    #endif
+#endif
 }
 
 /**
@@ -95,18 +144,20 @@ inline void debugConditionalPrint(int level, const char* format, ...)
  */
 inline void debugPrintHexBuffer(const char* prefix, const uint8_t* buffer, size_t length)
 {
-    #if DEBUG_ENABLED && DEBUG_MODBUS_ENABLED
+#if DEBUG_ENABLED && DEBUG_MODBUS_ENABLED
     extern int currentLogLevel;
-    if (currentLogLevel >= LOG_LEVEL_DEBUG && length > 0) {
+    if (currentLogLevel >= LOG_LEVEL_DEBUG && length > 0)
+    {
         Serial.print(prefix);
-        for (size_t i = 0; i < length; i++) {
+        for (size_t i = 0; i < length; i++)
+        {
             if (buffer[i] < 0x10) Serial.print("0");
             Serial.print(buffer[i], HEX);
             Serial.print(" ");
         }
         Serial.println();
     }
-    #endif
+#endif
 }
 
 /**
@@ -117,13 +168,14 @@ inline void debugPrintHexBuffer(const char* prefix, const uint8_t* buffer, size_
  */
 inline void debugPrintStatus(const char* module, bool status, const char* details = nullptr)
 {
-    #if DEBUG_ENABLED
+#if DEBUG_ENABLED
     Serial.printf("[%s] %s", module, status ? "✅" : "❌");
-    if (details) {
+    if (details)
+    {
         Serial.printf(" - %s", details);
     }
     Serial.println();
-    #endif
+#endif
 }
 
 // ============================================================================
@@ -149,7 +201,8 @@ inline void debugPrintStatus(const char* module, bool status, const char* detail
 // ============================================================================
 
 #if DEBUG_ENABLED
-struct DebugStats {
+struct DebugStats
+{
     unsigned long total_messages;
     unsigned long modbus_messages;
     unsigned long mqtt_messages;
@@ -159,26 +212,31 @@ struct DebugStats {
 
 extern DebugStats debug_stats;
 
-inline void debugStatsInit() {
+inline void debugStatsInit()
+{
     debug_stats = {0, 0, 0, 0, millis()};
 }
 
-inline void debugStatsIncrement(const char* category) {
+inline void debugStatsIncrement(const char* category)
+{
     debug_stats.total_messages++;
-    if (strstr(category, "MODBUS")) debug_stats.modbus_messages++;
-    else if (strstr(category, "MQTT")) debug_stats.mqtt_messages++;
-    else if (strstr(category, "WIFI")) debug_stats.wifi_messages++;
+    if (strstr(category, "MODBUS"))
+        debug_stats.modbus_messages++;
+    else if (strstr(category, "MQTT"))
+        debug_stats.mqtt_messages++;
+    else if (strstr(category, "WIFI"))
+        debug_stats.wifi_messages++;
 }
 
-inline void debugStatsPrint() {
+inline void debugStatsPrint()
+{
     unsigned long uptime = millis() - debug_stats.start_time;
     Serial.printf("\n=== DEBUG СТАТИСТИКА ===\n");
     Serial.printf("Время работы: %lu мс\n", uptime);
     Serial.printf("Всего сообщений: %lu\n", debug_stats.total_messages);
-    Serial.printf("MODBUS: %lu, MQTT: %lu, WIFI: %lu\n", 
-                  debug_stats.modbus_messages, debug_stats.mqtt_messages, debug_stats.wifi_messages);
-    Serial.printf("Частота: %.2f сообщений/сек\n", 
-                  debug_stats.total_messages * 1000.0 / uptime);
+    Serial.printf("MODBUS: %lu, MQTT: %lu, WIFI: %lu\n", debug_stats.modbus_messages, debug_stats.mqtt_messages,
+                  debug_stats.wifi_messages);
+    Serial.printf("Частота: %.2f сообщений/сек\n", debug_stats.total_messages * 1000.0 / uptime);
     Serial.printf("========================\n\n");
 }
 #else
@@ -196,6 +254,10 @@ inline void debugStatsPrint() {}
 #define MIGRATE_DEBUG_PRINTLN(msg) DEBUG_PRINTLN(msg)
 
 // Макросы для критически важных отладочных сообщений (всегда включены)
-#define CRITICAL_DEBUG_PRINT(x) Serial.print("[CRITICAL] "); Serial.print(x)
-#define CRITICAL_DEBUG_PRINTLN(x) Serial.print("[CRITICAL] "); Serial.println(x)
-#define CRITICAL_DEBUG_PRINTF(fmt, ...) Serial.printf("[CRITICAL] " fmt, ##__VA_ARGS__) 
+#define CRITICAL_DEBUG_PRINT(x)  \
+    Serial.print("[CRITICAL] "); \
+    Serial.print(x)
+#define CRITICAL_DEBUG_PRINTLN(x) \
+    Serial.print("[CRITICAL] ");  \
+    Serial.println(x)
+#define CRITICAL_DEBUG_PRINTF(fmt, ...) Serial.printf("[CRITICAL] " fmt, ##__VA_ARGS__)

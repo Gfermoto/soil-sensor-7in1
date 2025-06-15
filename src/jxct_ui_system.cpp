@@ -1,7 +1,8 @@
 #include "jxct_ui_system.h"
 
 // 🎨 ЕДИНЫЙ CSS ДЛЯ ВСЕХ СТРАНИЦ
-const char* getUnifiedCSS() {
+const char* getUnifiedCSS()
+{
     static const char css[] = R"(
 /* === JXCT UI DESIGN SYSTEM v2.3.1 === */
 * { box-sizing: border-box; }
@@ -282,10 +283,12 @@ input:focus, select:focus, textarea:focus {
 }
 
 // 🎯 ГЕНЕРАЦИЯ HTML КНОПОК
-String generateButton(ButtonType type, const char* icon, const char* text, const char* action) {
+String generateButton(ButtonType type, const char* icon, const char* text, const char* action)
+{
     String cssClass = "btn ";
-    
-    switch(type) {
+
+    switch (type)
+    {
         case ButtonType::PRIMARY:
             cssClass += "btn-primary";
             break;
@@ -302,18 +305,20 @@ String generateButton(ButtonType type, const char* icon, const char* text, const
             cssClass += "btn-outline";
             break;
     }
-    
+
     String html = "<button type='submit' class='" + cssClass + "'";
-    if (strlen(action) > 0) {
+    if (strlen(action) > 0)
+    {
         html = "<button type='button' class='" + cssClass + "' onclick=\"" + String(action) + "\"";
     }
     html += ">" + String(icon) + " " + String(text) + "</button>";
-    
+
     return html;
 }
 
 // 🍞 TOAST УВЕДОМЛЕНИЯ
-const char* getToastHTML() {
+const char* getToastHTML()
+{
     return R"(
 <script>
 function showToast(message, type) {
@@ -352,6 +357,7 @@ window.addEventListener('load', function() {
 }
 
 // ⌛ ЛОАДЕР
-const char* getLoaderHTML() {
+const char* getLoaderHTML()
+{
     return "<div class='loader'></div>";
-} 
+}

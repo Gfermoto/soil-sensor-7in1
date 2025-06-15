@@ -16,7 +16,8 @@
 /**
  * @brief Результат валидации одного поля
  */
-struct ValidationResult {
+struct ValidationResult
+{
     bool isValid;
     String message;
 };
@@ -24,7 +25,8 @@ struct ValidationResult {
 /**
  * @brief Ошибка валидации с указанием поля
  */
-struct ValidationError {
+struct ValidationError
+{
     String field;
     String message;
 };
@@ -32,7 +34,8 @@ struct ValidationError {
 /**
  * @brief Результат валидации конфигурации
  */
-struct ConfigValidationResult {
+struct ConfigValidationResult
+{
     bool isValid;
     std::vector<ValidationError> errors;
 };
@@ -40,7 +43,8 @@ struct ConfigValidationResult {
 /**
  * @brief Результат валидации данных датчика
  */
-struct SensorValidationResult {
+struct SensorValidationResult
+{
     bool isValid;
     std::vector<ValidationError> errors;
 };
@@ -50,7 +54,8 @@ struct SensorValidationResult {
 // ============================================================================
 
 // Упрощенная структура конфигурации для валидации
-struct ConfigData {
+struct ConfigData
+{
     String ssid;
     String password;
     bool mqttEnabled;
@@ -65,14 +70,15 @@ struct ConfigData {
 };
 
 // Упрощенная структура данных датчика для валидации
-struct SensorData {
+struct SensorData
+{
     float temperature;
     float humidity;
     float ph;
-    float ec;           // Исправлено: должно быть float
-    float nitrogen;     // Исправлено: должно быть float
-    float phosphorus;   // Исправлено: должно быть float
-    float potassium;    // Исправлено: должно быть float
+    float ec;          // Исправлено: должно быть float
+    float nitrogen;    // Исправлено: должно быть float
+    float phosphorus;  // Исправлено: должно быть float
+    float potassium;   // Исправлено: должно быть float
 };
 
 // ============================================================================
@@ -122,7 +128,8 @@ ValidationResult validateThingSpeakAPIKey(const String& apiKey);
  * @param name Название интервала для сообщения об ошибке
  * @return Результат валидации
  */
-ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val, const char* name);
+ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val,
+                                  const char* name);
 
 /**
  * @brief Валидация интервала чтения датчика
@@ -259,4 +266,4 @@ void logValidationResult(const ConfigValidationResult& result, const char* conte
  * @param result Результат валидации
  * @param context Контекст валидации
  */
-void logSensorValidationResult(const SensorValidationResult& result, const char* context); 
+void logSensorValidationResult(const SensorValidationResult& result, const char* context);

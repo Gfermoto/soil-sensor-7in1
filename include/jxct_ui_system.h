@@ -7,18 +7,18 @@
 // ========================================
 
 // 🎨 ЦВЕТОВАЯ ПАЛИТРА
-#define UI_COLOR_PRIMARY "#4CAF50"      // Основной зеленый
-#define UI_COLOR_PRIMARY_HOVER "#45a049" // Зеленый при наведении
-#define UI_COLOR_SECONDARY "#2196F3"    // Синий для второстепенных кнопок
-#define UI_COLOR_SECONDARY_HOVER "#0b7dda" // Синий при наведении
-#define UI_COLOR_DANGER "#F44336"       // Красный для опасных действий
-#define UI_COLOR_DANGER_HOVER "#d32f2f" // Красный при наведении
-#define UI_COLOR_WARNING "#FFC107"      // Желтый для предупреждений
-#define UI_COLOR_SUCCESS "#4CAF50"      // Зеленый для успеха
-#define UI_COLOR_TEXT "#333"            // Основной текст
-#define UI_COLOR_TEXT_LIGHT "#666"      // Светлый текст
-#define UI_COLOR_BG "#f5f5f5"          // Фон страницы
-#define UI_COLOR_BORDER "#ddd"          // Границы элементов
+#define UI_COLOR_PRIMARY "#4CAF50"          // Основной зеленый
+#define UI_COLOR_PRIMARY_HOVER "#45a049"    // Зеленый при наведении
+#define UI_COLOR_SECONDARY "#2196F3"        // Синий для второстепенных кнопок
+#define UI_COLOR_SECONDARY_HOVER "#0b7dda"  // Синий при наведении
+#define UI_COLOR_DANGER "#F44336"           // Красный для опасных действий
+#define UI_COLOR_DANGER_HOVER "#d32f2f"     // Красный при наведении
+#define UI_COLOR_WARNING "#FFC107"          // Желтый для предупреждений
+#define UI_COLOR_SUCCESS "#4CAF50"          // Зеленый для успеха
+#define UI_COLOR_TEXT "#333"                // Основной текст
+#define UI_COLOR_TEXT_LIGHT "#666"          // Светлый текст
+#define UI_COLOR_BG "#f5f5f5"               // Фон страницы
+#define UI_COLOR_BORDER "#ddd"              // Границы элементов
 
 // 📱 РАЗМЕРЫ И ОТСТУПЫ
 #define UI_CONTAINER_MAX_WIDTH "1000px"
@@ -59,18 +59,20 @@
 #define UI_ICON_REFRESH "🔄"
 
 // 📋 ТИПЫ КНОПОК
-enum class ButtonType {
-    PRIMARY,     // Основная зеленая кнопка
-    SECONDARY,   // Синяя кнопка
-    DANGER,      // Красная кнопка
-    SUCCESS,     // Зеленая кнопка успеха
-    OUTLINE      // Кнопка с контуром
+enum class ButtonType
+{
+    PRIMARY,    // Основная зеленая кнопка
+    SECONDARY,  // Синяя кнопка
+    DANGER,     // Красная кнопка
+    SUCCESS,    // Зеленая кнопка успеха
+    OUTLINE     // Кнопка с контуром
 };
 
 // 🎨 ТИПЫ СООБЩЕНИЙ
-enum class MessageType {
+enum class MessageType
+{
     SUCCESS,
-    ERROR, 
+    ERROR,
     WARNING,
     INFO
 };
@@ -79,4 +81,4 @@ enum class MessageType {
 const char* getUnifiedCSS();
 const char* getToastHTML();
 const char* getLoaderHTML();
-String generateButton(ButtonType type, const char* icon, const char* text, const char* action = ""); 
+String generateButton(ButtonType type, const char* icon, const char* text, const char* action = "");

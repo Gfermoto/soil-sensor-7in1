@@ -22,7 +22,7 @@ void setupMainRoutes();
 void handleRoot();
 
 /**
- * @brief Обработчик статуса (уже существует в wifi_manager.cpp)  
+ * @brief Обработчик статуса (уже существует в wifi_manager.cpp)
  */
 void handleStatus();
 
@@ -93,8 +93,8 @@ String generateErrorPage(int errorCode, const String& errorMessage);
  * @param redirectDelay Задержка перенаправления в секундах (по умолчанию 2)
  * @return Полная HTML страница с сообщением об успехе
  */
-String generateSuccessPage(const String& title, const String& message, 
-                          const String& redirectUrl = "", int redirectDelay = 2);
+String generateSuccessPage(const String& title, const String& message, const String& redirectUrl = "",
+                           int redirectDelay = 2);
 
 /**
  * @brief Генерация базовой HTML структуры с навигацией
@@ -159,8 +159,8 @@ void logWebRequest(const String& method, const String& uri, const String& client
 /**
  * @brief Генерация формы с общими элементами
  */
-String generateForm(const String& action, const String& method, const String& formContent, 
-                   const String& buttonText, const String& buttonIcon);
+String generateForm(const String& action, const String& method, const String& formContent, const String& buttonText,
+                    const String& buttonIcon);
 
 /**
  * @brief Генерация секции конфигурации
@@ -170,9 +170,8 @@ String generateConfigSection(const String& title, const String& content, const S
 /**
  * @brief Генерация поля ввода
  */
-String generateInputField(const String& id, const String& name, const String& label, 
-                         const String& value, const String& type = "text", 
-                         bool required = false, const String& placeholder = "");
+String generateInputField(const String& id, const String& name, const String& label, const String& value,
+                          const String& type = "text", bool required = false, const String& placeholder = "");
 
 /**
  * @brief Генерация поля чекбокса
@@ -182,8 +181,8 @@ String generateCheckboxField(const String& id, const String& name, const String&
 /**
  * @brief Генерация числового поля с валидацией
  */
-String generateNumberField(const String& id, const String& name, const String& label, 
-                          int value, int min, int max, int step = 1);
+String generateNumberField(const String& id, const String& name, const String& label, int value, int min, int max,
+                           int step = 1);
 
 /**
  * @brief Генерация сообщения об ошибке в форме
@@ -202,7 +201,7 @@ String generateApModeUnavailablePage(const String& title, const String& icon);
 /**
  * @brief Генерация HTML ответа с ошибкой валидации
  */
-String generateValidationErrorResponse(const String& errorMsg); 
+String generateValidationErrorResponse(const String& errorMsg);
 
 /**
  * @brief Обработка критических ошибок сервера
@@ -217,4 +216,4 @@ bool isRouteAvailable(const String& uri);
 /**
  * @brief Middleware для проверки доступности маршрута
  */
-bool checkRouteAccess(const String& routeName, const String& icon); 
+bool checkRouteAccess(const String& routeName, const String& icon);

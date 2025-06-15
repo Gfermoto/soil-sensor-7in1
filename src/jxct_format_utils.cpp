@@ -37,11 +37,13 @@ std::string format_npk(float value)
 }
 
 // Универсальная функция форматирования для веб-интерфейса
-String formatValue(float value, const char* unit, int precision) {
+String formatValue(float value, const char* unit, int precision)
+{
     char buf[32];
-    
+
     // Форматируем значение с заданной точностью
-    switch (precision) {
+    switch (precision)
+    {
         case 0:
             snprintf(buf, sizeof(buf), "%.0f%s", value, unit);
             break;
@@ -56,6 +58,6 @@ String formatValue(float value, const char* unit, int precision) {
             snprintf(buf, sizeof(buf), "%.3f%s", value, unit);
             break;
     }
-    
+
     return String(buf);
 }

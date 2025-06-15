@@ -19,8 +19,14 @@ static char thingSpeakLastPublishBuffer[32] = "0";
 static char thingSpeakLastErrorBuffer[64] = "";
 
 // Геттеры для совместимости с внешним кодом
-const char* getThingSpeakLastPublish() { return thingSpeakLastPublishBuffer; }
-const char* getThingSpeakLastError() { return thingSpeakLastErrorBuffer; }
+const char* getThingSpeakLastPublish()
+{
+    return thingSpeakLastPublishBuffer;
+}
+const char* getThingSpeakLastError()
+{
+    return thingSpeakLastErrorBuffer;
+}
 
 void setupThingSpeak(WiFiClient& client)
 {

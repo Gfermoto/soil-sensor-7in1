@@ -48,27 +48,27 @@ struct SensorData
     bool isValid;               // Альтернативное поле валидности для веб-интерфейса
     unsigned long last_update;  // Время последнего обновления
     unsigned long timestamp;    // Альтернативное поле времени для веб-интерфейса
-    
+
     // ДЕЛЬТА-ФИЛЬТР v2.2.1: Поля для хранения предыдущих значений
-    float prev_temperature;     // Предыдущая температура для дельта-фильтра
-    float prev_humidity;        // Предыдущая влажность для дельта-фильтра  
-    float prev_ec;              // Предыдущая EC для дельта-фильтра
-    float prev_ph;              // Предыдущий pH для дельта-фильтра
-    float prev_nitrogen;        // Предыдущий азот для дельта-фильтра
-    float prev_phosphorus;      // Предыдущий фосфор для дельта-фильтра
-    float prev_potassium;       // Предыдущий калий для дельта-фильтра
-    unsigned long last_mqtt_publish; // Время последней публикации MQTT
-    
+    float prev_temperature;           // Предыдущая температура для дельта-фильтра
+    float prev_humidity;              // Предыдущая влажность для дельта-фильтра
+    float prev_ec;                    // Предыдущая EC для дельта-фильтра
+    float prev_ph;                    // Предыдущий pH для дельта-фильтра
+    float prev_nitrogen;              // Предыдущий азот для дельта-фильтра
+    float prev_phosphorus;            // Предыдущий фосфор для дельта-фильтра
+    float prev_potassium;             // Предыдущий калий для дельта-фильтра
+    unsigned long last_mqtt_publish;  // Время последней публикации MQTT
+
     // СКОЛЬЗЯЩЕЕ СРЕДНЕЕ v2.3.0: Кольцевые буферы для усреднения
-    float temp_buffer[15];      // Буфер температуры (макс 15 значений)
-    float hum_buffer[15];       // Буфер влажности
-    float ec_buffer[15];        // Буфер EC
-    float ph_buffer[15];        // Буфер pH
-    float n_buffer[15];         // Буфер азота
-    float p_buffer[15];         // Буфер фосфора
-    float k_buffer[15];         // Буфер калия
-    uint8_t buffer_index;       // Текущий индекс в буферах
-    uint8_t buffer_filled;      // Количество заполненных элементов (0-15)
+    float temp_buffer[15];  // Буфер температуры (макс 15 значений)
+    float hum_buffer[15];   // Буфер влажности
+    float ec_buffer[15];    // Буфер EC
+    float ph_buffer[15];    // Буфер pH
+    float n_buffer[15];     // Буфер азота
+    float p_buffer[15];     // Буфер фосфора
+    float k_buffer[15];     // Буфер калия
+    uint8_t buffer_index;   // Текущий индекс в буферах
+    uint8_t buffer_filled;  // Количество заполненных элементов (0-15)
 };
 
 // Структура для кэширования данных
@@ -127,7 +127,7 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
 float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled);
 void initMovingAverageBuffers(SensorData& data);
 
-bool testModbusConnection();  // Диагностика Modbus связи
+bool testModbusConnection();      // Диагностика Modbus связи
 void testSerialConfigurations();  // Тест конфигураций Serial2
 
 #endif  // MODBUS_SENSOR_H
