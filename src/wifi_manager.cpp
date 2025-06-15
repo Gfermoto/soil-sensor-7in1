@@ -1105,9 +1105,19 @@ void setupWebServer()
          }
      );
      
+     // Тестовый GET маршрут для проверки доступности
+     webServer.on("/api/config/import", HTTP_GET, []() {
+         if (currentWiFiMode == WiFiMode::AP) {
+             webServer.send(403, "text/plain", "Import недоступен в режиме AP");
+             return;
+         }
+         webServer.send(200, "text/plain", "Import endpoint доступен. Используйте POST для загрузки файла.");
+     });
 
      
     webServer.begin();
+    logSuccess("Веб-сервер запущен. Режим: %s", currentWiFiMode == WiFiMode::AP ? "AP" : "STA");
+    logSystem("Доступные маршруты: /, /save, /config_manager, /api/config/export, /api/config/import");
 }
 
 void handleRoot()
