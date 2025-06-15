@@ -1,0 +1,35 @@
+{
+  "mqtt": {
+    "enabled": true,
+    "server": "192.168.2.11",
+    "port": 1883,
+    "user": "mqtt"
+  },
+  "thingspeak": {
+    "enabled": true,
+    "channel_id": "2952280"
+  },
+  "intervals": {
+    "sensor_read": 5000,
+    "mqtt_publish": 60000,
+    "thingspeak": 900000,
+    "web_update": 5000
+  },
+  "delta_filter": {
+    "temperature": 0.10,
+    "humidity": 0.50,
+    "ph": 0.01,
+    "ec": 10.00,
+    "npk": 1.00
+  },
+  "moving_average": {
+    "window": 5,
+    "force_cycles": 5,
+    "algorithm": 0,
+    "outlier_filter": 0
+  },
+  "flags": {
+    "hass_enabled": true,
+    "real_sensor": true
+  }
+} 

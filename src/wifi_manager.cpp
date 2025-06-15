@@ -956,25 +956,22 @@ void setupWebServer()
          
 
          
-         // Создаем JSON с конфигурацией
+         // Создаем JSON с конфигурацией (ТОЛЬКО БЕЗОПАСНЫЕ НАСТРОЙКИ)
          String json = "{";
-         json += "\"version\":\"2.4.1\",";
-         json += "\"exported\":\"" + String(millis()) + "\",";
-         json += "\"wifi\":{";
-         json += "\"ssid\":\"" + String(config.ssid) + "\",";
-         json += "\"password\":\"***\"";  // Пароль не экспортируем
-         json += "},";
+         // ❌ Убрали version - не нужна
+         // ❌ Убрали exported - не нужна  
+         // ❌ Убрали wifi - устройство уже подключено
          json += "\"mqtt\":{";
          json += "\"enabled\":" + String(config.flags.mqttEnabled ? "true" : "false") + ",";
          json += "\"server\":\"" + String(config.mqttServer) + "\",";
          json += "\"port\":" + String(config.mqttPort) + ",";
-         json += "\"user\":\"" + String(config.mqttUser) + "\",";
-         json += "\"topic_prefix\":\"" + String(config.mqttTopicPrefix) + "\",";
-         json += "\"device_name\":\"" + String(config.mqttDeviceName) + "\"";
+         json += "\"user\":\"" + String(config.mqttUser) + "\"";
+         // ❌ Убрали topic_prefix - опасно! Основан на MAC адресе
+         // ❌ Убрали device_name - опасно! Должен быть уникальным
          json += "},";
          json += "\"thingspeak\":{";
          json += "\"enabled\":" + String(config.flags.thingSpeakEnabled ? "true" : "false") + ",";
-         json += "\"api_key\":\"***\",";  // API ключ не экспортируем
+         // ❌ API ключ не экспортируем по безопасности
          json += "\"channel_id\":\"" + String(config.thingSpeakChannelId) + "\"";
          json += "},";
          json += "\"intervals\":{";
@@ -1027,7 +1024,7 @@ void setupWebServer()
          html += "<div class='section'><h2>📤 Экспорт настроек</h2>";
          html += "<p>Скачайте текущие настройки устройства в JSON файл для резервного копирования.</p>";
          html += "<a href='/api/config/export'>" + generateButton(ButtonType::SECONDARY, UI_ICON_DOWNLOAD, "Скачать конфигурацию", "") + "</a>";
-         html += "<div class='help'>" UI_ICON_INFO " Пароли не включаются в экспорт по соображениям безопасности</div></div>";
+         html += "<div class='help'>" UI_ICON_INFO " Экспортируются только безопасные настройки: интервалы, фильтры, флаги. WiFi, пароли, MAC-зависимые поля исключены</div></div>";
          
          html += "<div class='section'><h2>" UI_ICON_UPLOAD " Импорт настроек</h2>";
          html += "<p>Загрузите JSON файл с настройками для восстановления конфигурации.</p>";
@@ -1231,15 +1228,7 @@ bool parseAndApplyConfig(const String& jsonContent, String& error) {
     // Используем indexOf для поиска значений (без библиотеки ArduinoJson для экономии памяти)
     
     try {
-        // Парсим WiFi настройки
-        int ssidStart = jsonContent.indexOf("\"ssid\":\"") + 8;
-        int ssidEnd = jsonContent.indexOf("\"", ssidStart);
-        if (ssidStart > 7 && ssidEnd > ssidStart) {
-            String ssid = jsonContent.substring(ssidStart, ssidEnd);
-            if (ssid.length() > 0 && ssid != "***") {
-                strlcpy(config.ssid, ssid.c_str(), sizeof(config.ssid));
-            }
-        }
+        // ❌ Убрали парсинг WiFi - устройство уже подключено
         
         // Парсим MQTT настройки
         int mqttEnabledPos = jsonContent.indexOf("\"enabled\":");
@@ -1270,6 +1259,8 @@ bool parseAndApplyConfig(const String& jsonContent, String& error) {
             String user = jsonContent.substring(userStart, userEnd);
             strlcpy(config.mqttUser, user.c_str(), sizeof(config.mqttUser));
         }
+        
+        // ❌ Убрали парсинг topic_prefix и device_name - опасно для множественных устройств!
         
         // Парсим ThingSpeak настройки
         int tsEnabledPos = jsonContent.indexOf("\"thingspeak\":{\"enabled\":");
