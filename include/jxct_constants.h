@@ -147,7 +147,7 @@ constexpr int JXCT_STATUS_LED_PIN = 2;                         // GPIO2 (вст�
 constexpr int MODBUS_RX_PIN = 16;                              // GPIO16
 constexpr int MODBUS_TX_PIN = 17;                              // GPIO17  
 constexpr int MODBUS_DE_PIN = 4;                               // GPIO4 (Data Enable)
-constexpr int MODBUS_RE_PIN = 2;                               // GPIO2 (Receive Enable)
+constexpr int MODBUS_RE_PIN = 5;                               // GPIO5 (Receive Enable)
 
 // ============================================================================
 // ПРОИЗВОДИТЕЛЬНОСТЬ И ПАМЯТЬ
