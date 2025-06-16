@@ -11,8 +11,10 @@
 #include "../../include/jxct_format_utils.h"
 #include "../wifi_manager.h"
 #include "../modbus_sensor.h"
+#include "calibration_manager.h"
 #include <ArduinoJson.h>
 #include <NTPClient.h>
+#include <LittleFS.h>
 
 extern NTPClient* timeClient;
 
@@ -20,6 +22,63 @@ extern NTPClient* timeClient;
 extern String navHtml();
 extern String formatValue(float value, const char* unit, int precision);
 extern String getApSsid();
+
+// Буфер для загрузки файлов (калибровка через /readings)
+static File uploadFile;
+static SoilProfile uploadProfile = SoilProfile::SAND;
+
+static void handleReadingsUpload()
+{
+    HTTPUpload& upload = webServer.upload();
+    if (upload.status == UPLOAD_FILE_START)
+    {
+        String profileStr = webServer.arg("soil_profile");
+        if (profileStr == "sand") uploadProfile = SoilProfile::SAND;
+        else if (profileStr == "loam") uploadProfile = SoilProfile::LOAM;
+        else if (profileStr == "peat") uploadProfile = SoilProfile::PEAT;
+
+        CalibrationManager::init();
+        const char* path = CalibrationManager::profileToFilename(uploadProfile);
+        uploadFile = LittleFS.open(path, "w");
+        if (!uploadFile)
+        {
+            logError("Не удалось создать файл %s", path);
+        }
+    }
+    else if (upload.status == UPLOAD_FILE_WRITE)
+    {
+        if (uploadFile)
+        {
+            uploadFile.write(upload.buf, upload.currentSize);
+        }
+    }
+    else if (upload.status == UPLOAD_FILE_END)
+    {
+        if (uploadFile)
+        {
+            uploadFile.close();
+            logSuccess("Файл калибровки загружен (%u байт)", upload.totalSize);
+        }
+        webServer.sendHeader("Location", "/readings?toast=Калибровка+загружена", true);
+        webServer.send(302, "text/plain", "Redirect");
+    }
+}
+
+static void handleProfileSave()
+{
+    if (webServer.hasArg("soil_profile"))
+    {
+        String profileStr = webServer.arg("soil_profile");
+        if (profileStr == "sand") config.soilProfile = 0;
+        else if (profileStr == "loam") config.soilProfile = 1;
+        else if (profileStr == "peat") config.soilProfile = 2;
+
+        saveConfig();
+        logSuccess("Профиль почвы изменён на %s", profileStr.c_str());
+    }
+    webServer.sendHeader("Location", "/readings?toast=Профиль+сохранен", true);
+    webServer.send(302, "text/plain", "Redirect");
+}
 
 void setupDataRoutes()
 {
@@ -48,56 +107,69 @@ void setupDataRoutes()
                      html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
                      html += navHtml();
                      html += "<h1>" UI_ICON_DATA " Показания датчика</h1>";
-                     html += "<div class='section'><ul>";
-                     html += "<li>🌡️ Температура: <span id='temp'></span> °C";
-                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='temp_raw'></span>)";
-                     html += "</li>";
-                     html += "<li>💧 Влажность: <span id='hum'></span> %";
-                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='hum_raw'></span>)";
-                     html += "</li>";
-                     html += "<li>⚡ EC: <span id='ec'></span> µS/cm";
-                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='ec_raw'></span>)";
-                     html += "</li>";
-                     html += "<li>⚗️ pH: <span id='ph'></span>";
-                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='ph_raw'></span>)";
-                     html += "</li>";
-                     html += "<li>🔴 Азот (N): <span id='n'></span> мг/кг";
-                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='n_raw'></span>)";
-                     html += "</li>";
-                     html += "<li>🟡 Фосфор (P): <span id='p'></span> мг/кг";
-                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='p_raw'></span>)";
-                     html += "</li>";
-                     html += "<li>🔵 Калий (K): <span id='k'></span> мг/кг";
-                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='k_raw'></span>)";
-                     html += "</li>";
-                     html += "</ul></div>";
+                     // Таблица данных "После / До"
+                     html += "<div class='section'><table class='data'><thead><tr><th></th><th>После</th><th>До</th></tr></thead><tbody>";
+                     html += "<tr><td>🌡️ Температура, °C</td><td><span id='temp'></span></td><td><span id='temp_raw'></span></td></tr>";
+                     html += "<tr><td>💧 Влажность, %</td><td><span id='hum'></span></td><td><span id='hum_raw'></span></td></tr>";
+                     html += "<tr><td>⚡ EC, µS/cm</td><td><span id='ec'></span></td><td><span id='ec_raw'></span></td></tr>";
+                     html += "<tr><td>⚗️ pH</td><td><span id='ph'></span></td><td><span id='ph_raw'></span></td></tr>";
+                     html += "<tr><td>🔴 Азот (N), мг/кг</td><td><span id='n'></span></td><td><span id='n_raw'></span></td></tr>";
+                     html += "<tr><td>🟡 Фосфор (P), мг/кг</td><td><span id='p'></span></td><td><span id='p_raw'></span></td></tr>";
+                     html += "<tr><td>🔵 Калий (K), мг/кг</td><td><span id='k'></span></td><td><span id='k_raw'></span></td></tr>";
+                     html += "</tbody></table></div>";
                      html +=
                          "<div style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='/api/sensor' "
                          "target='_blank'>/api/sensor</a> (JSON, +timestamp)</div>";
                      html += "<script>";
+                     html += "function set(id,v){if(v!==undefined&&v!==null){document.getElementById(id).textContent=v;}}";
                      html += "function updateSensor(){";
                      html += "fetch('/sensor_json').then(r=>r.json()).then(d=>{";
-                     html += "document.getElementById('temp').textContent=d.temperature;";
-                     html += "document.getElementById('hum').textContent=d.humidity;";
-                     html += "document.getElementById('ec').textContent=d.ec;";
-                     html += "document.getElementById('ph').textContent=d.ph;";
-                     html += "document.getElementById('n').textContent=d.nitrogen;";
-                     html += "document.getElementById('p').textContent=d.phosphorus;";
-                     html += "document.getElementById('k').textContent=d.potassium;";
-                     html += "if(d.raw_temperature!==undefined){";
-                     html += "document.getElementById('temp_raw').textContent=d.raw_temperature;";
-                     html += "document.getElementById('hum_raw').textContent=d.raw_humidity;";
-                     html += "document.getElementById('ec_raw').textContent=d.raw_ec;";
-                     html += "document.getElementById('ph_raw').textContent=d.raw_ph;";
-                     html += "document.getElementById('n_raw').textContent=d.raw_nitrogen;";
-                     html += "document.getElementById('p_raw').textContent=d.raw_phosphorus;";
-                     html += "document.getElementById('k_raw').textContent=d.raw_potassium;";
-                     html += "}";
+                     html += "set('temp',d.temperature);";
+                     html += "set('hum',d.humidity);";
+                     html += "set('ec',d.ec);";
+                     html += "set('ph',d.ph);";
+                     html += "set('n',d.nitrogen);";
+                     html += "set('p',d.phosphorus);";
+                     html += "set('k',d.potassium);";
+                     html += "set('temp_raw',d.raw_temperature);";
+                     html += "set('hum_raw',d.raw_humidity);";
+                     html += "set('ec_raw',d.raw_ec);";
+                     html += "set('ph_raw',d.raw_ph);";
+                     html += "set('n_raw',d.raw_nitrogen);";
+                     html += "set('p_raw',d.raw_phosphorus);";
+                     html += "set('k_raw',d.raw_potassium);";
                      html += "});";
                      html += "}";
                      html += "setInterval(updateSensor,3000);";
                      html += "updateSensor();";
                      html += "</script>";
+
+                     // ======= Калибровка =======
+                     html += "<div class='section'><h2>⚙️ Калибровка</h2>";
+                     // ----- Форма выбора профиля -----
+                     html += "<form action='/readings/profile' method='post'>";
+                     html += "<div class='section'><h3>Профиль почвы</h3>";
+                     html += "<select name='soil_profile' id='soil_sel'>";
+                     html += "<option value='sand'" + String(config.soilProfile==0?" selected":"") + ">Песок</option>";
+                     html += "<option value='loam'" + String(config.soilProfile==1?" selected":"") + ">Суглинок</option>";
+                     html += "<option value='peat'" + String(config.soilProfile==2?" selected":"") + ">Торф</option>";
+                     html += "</select></div>";
+                     html += generateButton(ButtonType::SECONDARY, UI_ICON_SAVE, "Сохранить профиль", "");
+                     html += "</form>";
+
+                     // ----- Форма загрузки CSV -----
+                     html += "<form action='/readings/upload' method='post' enctype='multipart/form-data' style='margin-top:10px'>";
+                     html += "<input type='hidden' name='soil_profile' id='upload_hidden' value='sand'>";
+                     html += "<div class='section'><h3>Загрузить CSV</h3><input type='file' name='calibration_csv' accept='.csv' required></div>";
+                     html += generateButton(ButtonType::PRIMARY, UI_ICON_UPLOAD, "Загрузить CSV", "");
+                     html += "</form>";
+
+                     // JS синхронизации селекта с hidden upload
+                     html += "<script>document.getElementById('soil_sel').addEventListener('change',e=>{document.getElementById('upload_hidden').value=e.target.value;});</script>";
+
+                     // CSS для таблицы данных
+                     html += "<style>.data{width:100%;border-collapse:collapse}.data th,.data td{border:1px solid #ccc;padding:6px;text-align:center}.data th{background:#f5f5f5}</style>";
+
                      html += "</div>" + String(getToastHTML()) + "</body></html>";
                      webServer.send(200, "text/html; charset=utf-8", html);
                  });
@@ -114,7 +186,7 @@ void setupDataRoutes()
                          return;
                      }
 
-                     StaticJsonDocument<256> doc;
+                     StaticJsonDocument<384> doc;
                      doc["temperature"] = format_temperature(sensorData.temperature);
                      doc["humidity"] = format_moisture(sensorData.humidity);
                      doc["ec"] = format_ec(sensorData.ec);
@@ -122,16 +194,13 @@ void setupDataRoutes()
                      doc["nitrogen"] = format_npk(sensorData.nitrogen);
                      doc["phosphorus"] = format_npk(sensorData.phosphorus);
                      doc["potassium"] = format_npk(sensorData.potassium);
-                     if (config.flags.calibrationEnabled)
-                     {
-                         doc["raw_temperature"] = format_temperature(sensorData.raw_temperature);
-                         doc["raw_humidity"] = format_moisture(sensorData.raw_humidity);
-                         doc["raw_ec"] = format_ec(sensorData.raw_ec);
-                         doc["raw_ph"] = format_ph(sensorData.raw_ph);
-                         doc["raw_nitrogen"] = format_npk(sensorData.raw_nitrogen);
-                         doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
-                         doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
-                     }
+                     doc["raw_temperature"] = format_temperature(sensorData.raw_temperature);
+                     doc["raw_humidity"] = format_moisture(sensorData.raw_humidity);
+                     doc["raw_ec"] = format_ec(sensorData.raw_ec);
+                     doc["raw_ph"] = format_ph(sensorData.raw_ph);
+                     doc["raw_nitrogen"] = format_npk(sensorData.raw_nitrogen);
+                     doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
+                     doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
                      doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
 
                      String json;
@@ -151,7 +220,7 @@ void setupDataRoutes()
                          return;
                      }
 
-                     StaticJsonDocument<256> doc;
+                     StaticJsonDocument<384> doc;
                      doc["temperature"] = format_temperature(sensorData.temperature);
                      doc["humidity"] = format_moisture(sensorData.humidity);
                      doc["ec"] = format_ec(sensorData.ec);
@@ -159,22 +228,25 @@ void setupDataRoutes()
                      doc["nitrogen"] = format_npk(sensorData.nitrogen);
                      doc["phosphorus"] = format_npk(sensorData.phosphorus);
                      doc["potassium"] = format_npk(sensorData.potassium);
-                     if (config.flags.calibrationEnabled)
-                     {
-                         doc["raw_temperature"] = format_temperature(sensorData.raw_temperature);
-                         doc["raw_humidity"] = format_moisture(sensorData.raw_humidity);
-                         doc["raw_ec"] = format_ec(sensorData.raw_ec);
-                         doc["raw_ph"] = format_ph(sensorData.raw_ph);
-                         doc["raw_nitrogen"] = format_npk(sensorData.raw_nitrogen);
-                         doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
-                         doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
-                     }
+                     doc["raw_temperature"] = format_temperature(sensorData.raw_temperature);
+                     doc["raw_humidity"] = format_moisture(sensorData.raw_humidity);
+                     doc["raw_ec"] = format_ec(sensorData.raw_ec);
+                     doc["raw_ph"] = format_ph(sensorData.raw_ph);
+                     doc["raw_nitrogen"] = format_npk(sensorData.raw_nitrogen);
+                     doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
+                     doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
                      doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
 
                      String json;
                      serializeJson(doc, json);
                      webServer.send(200, "application/json", json);
                  });
+
+    // Загрузка калибровочного CSV через вкладку
+    webServer.on("/readings/upload", HTTP_POST, [](){}, handleReadingsUpload);
+
+    // Форма для сохранения профиля
+    webServer.on("/readings/profile", HTTP_POST, [](){}, handleProfileSave);
 
     logDebug("Маршруты данных настроены: /readings, /sensor_json, /api/sensor");
 }

@@ -90,7 +90,6 @@ String navHtml()
         html += "<a href='/intervals'>" UI_ICON_INTERVALS " Интервалы</a>";  // v2.3.0
     
         html += "<a href='/config_manager'>" UI_ICON_FOLDER " Конфигурация</a>";  // v2.3.0
-        html += "<a href='/calibration'>⚙️ Калибровка</a>";  // v2.5.1
         html += "<a href='/service'>" UI_ICON_SERVICE " Сервис</a>";
     }
     html += "</div>";
@@ -346,7 +345,6 @@ void setupWebServer()
 
     setupMainRoutes();     // Основные маршруты (/, /save, /status)
     setupDataRoutes();     // Данные датчика (/readings, /sensor_json, /api/sensor)
-    setupCalibrationRoutes(); // Калибровка (/calibration)
     setupConfigRoutes();   // Конфигурация (/intervals, /config_manager, /api/config/*)
     setupServiceRoutes();  // Сервис (/health, /service_status, /reset, /reboot, /ota)
 
