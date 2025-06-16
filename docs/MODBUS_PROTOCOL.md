@@ -144,20 +144,47 @@ Hex значение: 0x00ED = 237 (decimal)
 #### Подключение SP3485E
 ```
 ESP32 GPIO   │ SP3485E Pin │ Функция
-─────────────┼────────────┼──────────────────────
-GPIO16       │ RO         │ UART2 RX (прием)
-GPIO17       │ DI         │ UART2 TX (передача)
-GPIO5        │ DE/RE      │ Управление направлением
-3.3V         │ VCC        │ Питание трансивера
+─────────────┼────────────┼──────────────────────────────────
+GPIO16       │ RO         │ Receive Output (к UART RX)
+GPIO17       │ DI         │ Data Input (от UART TX)
+GPIO4        │ DE         │ Driver Enable (управление передатчиком)
+GPIO5        │ RE         │ Receiver Enable (управление приемником)
 GND          │ GND        │ Общий провод
+3.3V         │ VCC        │ Питание модуля
 ```
 
-#### Преимущества SP3485E:
-- ✅ Нативная работа от 3.3V
-- ✅ Высокая скорость до 10 Mbps
-- ✅ Расширенная защита от помех
-- ✅ Низкое энергопотребление
-- ✅ Встроенная защита от перенапряжений
+#### Важность раздельного управления DE и RE
+- **DE (Driver Enable)** - управляет передатчиком:
+  - HIGH: передатчик активен (для отправки данных)
+  - LOW: передатчик в высокоимпедансном состоянии
+- **RE (Receiver Enable)** - управляет приемником:
+  - HIGH: приемник отключен (во время передачи)
+  - LOW: приемник активен (для приема данных)
+
+Раздельное управление этими пинами обеспечивает:
+1. Более точный контроль над временем переключения
+2. Возможность тонкой настройки задержек
+3. Предотвращение коллизий на шине RS-485
+4. Улучшенную помехозащищенность
+
+#### Временные диаграммы переключения
+
+```
+DE ──┐          ┌────────┐          ┌────────
+     │          │        │          │
+     └──────────┘        └──────────┘
+
+RE ──┐          ┌────────┐          ┌────────
+     │          │        │          │
+     └──────────┘        └──────────┘
+     ├─ прием ──┤├─ передача ─┤├─ прием ──┤
+     
+     │◄─ 50µs ─►│          │◄─ 50µs ─►│
+```
+
+Задержки переключения:
+- 50 микросекунд перед передачей (preTransmission)
+- 50 микросекунд после передачи (postTransmission)
 
 ### Подключение к датчику JXCT
 ```
@@ -185,26 +212,28 @@ void setupModbus() {
     Serial2.begin(9600, SERIAL_8N1, MODBUS_RX_PIN, MODBUS_TX_PIN);
     
     // Настройка пинов SP3485E
-    pinMode(MODBUS_DE_RE_PIN, OUTPUT);
-    digitalWrite(MODBUS_DE_RE_PIN, LOW);  // Режим приема
+    pinMode(MODBUS_DE_PIN, OUTPUT);    // GPIO4
+    pinMode(MODBUS_RE_PIN, OUTPUT);    // GPIO5
+    digitalWrite(MODBUS_DE_PIN, LOW);  // Передатчик выключен
+    digitalWrite(MODBUS_RE_PIN, LOW);  // Приемник включен
     
     // Инициализация Modbus
     node.begin(SENSOR_ID, Serial2);
     
-    // Настройка предварительной обработки
-    node.preTransmission(preTransmission);
-    node.postTransmission(postTransmission);
+    // Настройка обработчиков переключения режима
+    node.preTransmission(preTransmission);   // Перед передачей
+    node.postTransmission(postTransmission); // После передачи
 }
 
 // Управление направлением передачи SP3485E
 void preTransmission() {
-    digitalWrite(MODBUS_DE_RE_PIN, HIGH);  // Режим передачи
+    digitalWrite(MODBUS_DE_PIN, HIGH);  // Режим передачи
     delayMicroseconds(50);
 }
 
 void postTransmission() {
     delayMicroseconds(50);
-    digitalWrite(MODBUS_DE_RE_PIN, LOW);   // Режим приема
+    digitalWrite(MODBUS_RE_PIN, LOW);   // Режим приема
 }
 ```
 

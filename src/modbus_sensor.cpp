@@ -31,19 +31,34 @@ void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
     logDebug("%s%s", prefix, hex_str.c_str());
 }
 
+/**
+ * @brief Тестирование работы SP3485E
+ * @details Проверяет корректность работы пинов DE и RE:
+ * 1. Устанавливает оба пина в режим OUTPUT
+ * 2. Проверяет переключение HIGH/LOW
+ * 3. Проверяет возможность независимого управления передатчиком и приемником
+ */
 void testSP3485E()
 {
     logSystem("=== ТЕСТИРОВАНИЕ SP3485E ===");
     
     // Проверяем пины
-    pinMode(MODBUS_DE_RE_PIN, OUTPUT);
-    digitalWrite(MODBUS_DE_RE_PIN, HIGH);
-    delay(10);
-    digitalWrite(MODBUS_DE_RE_PIN, LOW);
+    pinMode(MODBUS_DE_PIN, OUTPUT);      // Driver Enable - управление передатчиком
+    pinMode(MODBUS_RE_PIN, OUTPUT);      // Receiver Enable - управление приемником
     
-    if (digitalRead(MODBUS_DE_RE_PIN) == LOW)
+    // Тест 1: Включаем передачу, выключаем прием
+    digitalWrite(MODBUS_DE_PIN, HIGH);   // Активируем передатчик
+    digitalWrite(MODBUS_RE_PIN, HIGH);   // Отключаем приемник
+    delay(10);
+    
+    // Тест 2: Включаем прием, выключаем передачу
+    digitalWrite(MODBUS_DE_PIN, LOW);    // Деактивируем передатчик
+    digitalWrite(MODBUS_RE_PIN, LOW);    // Активируем приемник
+    
+    // Проверяем состояние
+    if (digitalRead(MODBUS_DE_PIN) == LOW && digitalRead(MODBUS_RE_PIN) == LOW)
     {
-        logSuccess("SP3485E DE/RE пин работает корректно");
+        logSuccess("SP3485E DE/RE пины работают корректно");
     }
     else
     {
@@ -53,28 +68,36 @@ void testSP3485E()
     logSystem("=== ТЕСТ SP3485E ЗАВЕРШЕН ===");
 }
 
+/**
+ * @brief Инициализация Modbus и SP3485E
+ * @details Настраивает пины управления SP3485E и инициализирует UART для Modbus.
+ * Важно: DE и RE управляются раздельно для лучшего контроля над временем переключения
+ */
 void setupModbus()
 {
     logPrintHeader("ИНИЦИАЛИЗАЦИЯ MODBUS", COLOR_CYAN);
 
     // Устанавливаем пины управления SP3485E
     logSystem("Настройка пинов SP3485E...");
-    pinMode(MODBUS_DE_RE_PIN, OUTPUT);
-    digitalWrite(MODBUS_DE_RE_PIN, LOW);  // Режим приема
+    pinMode(MODBUS_DE_PIN, OUTPUT);      // Driver Enable - GPIO4
+    pinMode(MODBUS_RE_PIN, OUTPUT);      // Receiver Enable - GPIO5
     
-    logSystem("DE/RE пин: %d", MODBUS_DE_RE_PIN);
+    // Начальное состояние: прием включен, передача выключена
+    digitalWrite(MODBUS_DE_PIN, LOW);    // Передатчик в высокоимпедансном состоянии
+    digitalWrite(MODBUS_RE_PIN, LOW);    // Приемник активен
+    
+    logSystem("DE пин: %d, RE пин: %d", MODBUS_DE_PIN, MODBUS_RE_PIN);
     logSuccess("Пины SP3485E настроены");
     
     // Инициализация UART для Modbus
     Serial2.begin(9600, SERIAL_8N1, MODBUS_RX_PIN, MODBUS_TX_PIN);
     
-    // Настройка Modbus
+    // Настройка Modbus с обработчиками переключения режима
     modbus.begin(JXCT_MODBUS_ID, Serial2);
-    modbus.preTransmission(preTransmission);
-    modbus.postTransmission(postTransmission);
+    modbus.preTransmission(preTransmission);   // Вызывается перед передачей
+    modbus.postTransmission(postTransmission); // Вызывается после передачи
     
     logSuccess("Modbus инициализирован");
-
     logPrintHeader("MODBUS ГОТОВ ДЛЯ ПОЛНОГО ТЕСТИРОВАНИЯ", COLOR_GREEN);
 }
 
@@ -174,10 +197,58 @@ bool testModbusConnection()
     logSystem("=== ТЕСТ MODBUS СОЕДИНЕНИЯ ===");
     
     // Проверяем пины
-    logSystem("DE/RE пин: %d", MODBUS_DE_RE_PIN);
+    logSystem("DE пин: %d, RE пин: %d", MODBUS_DE_PIN, MODBUS_RE_PIN);
     
-    // Тест 1: Попытка чтения регистра версии прошивки
-    logSystem("Тест 1: Чтение версии прошивки...");
+    // Тест 1: Проверка конфигурации пинов
+    logSystem("Тест 1: Проверка конфигурации пинов...");
+    pinMode(MODBUS_DE_PIN, OUTPUT);
+    pinMode(MODBUS_RE_PIN, OUTPUT);
+    if (digitalRead(MODBUS_DE_PIN) == LOW && digitalRead(MODBUS_RE_PIN) == LOW)
+    {
+        logSuccess("Пины в правильном начальном состоянии (прием)");
+    }
+    else
+    {
+        logError("Неверное начальное состояние пинов");
+        return false;
+    }
+    
+    // Тест 2: Проверка временных задержек
+    logSystem("Тест 2: Проверка временных задержек...");
+    unsigned long start_time = micros();
+    preTransmission();
+    unsigned long pre_delay = micros() - start_time;
+    
+    start_time = micros();
+    postTransmission();
+    unsigned long post_delay = micros() - start_time;
+    
+    logSystem("Задержка preTransmission: %lu мкс", pre_delay);
+    logSystem("Задержка postTransmission: %lu мкс", post_delay);
+    
+    if (pre_delay >= 50 && post_delay >= 50)
+    {
+        logSuccess("Временные задержки в норме");
+    }
+    else
+    {
+        logWarn("Временные задержки меньше рекомендованных (50 мкс)");
+    }
+    
+    // Тест 3: Проверка конфигурации UART
+    logSystem("Тест 3: Проверка конфигурации UART...");
+    if (Serial2.baudRate() == 9600)
+    {
+        logSuccess("Скорость UART настроена правильно: 9600");
+    }
+    else
+    {
+        logError("Неверная скорость UART: %d", Serial2.baudRate());
+        return false;
+    }
+    
+    // Тест 4: Попытка чтения регистра версии прошивки
+    logSystem("Тест 4: Чтение версии прошивки...");
     uint8_t result = modbus.readHoldingRegisters(0x00, 1);
     if (result == modbus.ku8MBSuccess)
     {
@@ -188,26 +259,6 @@ bool testModbusConnection()
         logError("Ошибка чтения регистра версии: %02X", result);
         return false;
     }
-    
-    // Тест 2: Проверка конфигурации UART
-    logSystem("Тест 2: Проверка конфигурации UART...");
-    if (Serial2.available() >= 0)
-    {
-        logSuccess("UART2 работает корректно");
-    }
-    else
-    {
-        logError("Ошибка UART2");
-        return false;
-    }
-    
-    // Тест 3: Проверка статуса пина DE/RE
-    logSystem("Тест 3: Проверка конфигурации пинов...");
-    logSystem("DE/RE состояние: %d", digitalRead(MODBUS_DE_RE_PIN));
-    
-    // Тест 4: Проверка Serial2
-    logSystem("Тест 4: Проверка параметров Serial2...");
-    logSystem("Скорость: %d, Режим: 8N1", Serial2.baudRate());
     
     logSuccess("=== ТЕСТ MODBUS ЗАВЕРШЕН УСПЕШНО ===");
     return true;
@@ -364,17 +415,28 @@ float convertRegisterToFloat(uint16_t value, float multiplier)
     return value * multiplier;
 }
 
-// Управление направлением передачи SP3485E
+/**
+ * @brief Подготовка к передаче данных
+ * @details Включает передатчик и отключает приемник с необходимой задержкой.
+ * Важно: Задержка 50 мкс необходима для стабилизации сигналов на шине RS-485
+ */
 void preTransmission()
 {
-    digitalWrite(MODBUS_DE_RE_PIN, HIGH);  // Режим передачи
-    delayMicroseconds(50);
+    digitalWrite(MODBUS_DE_PIN, HIGH);  // Активируем передатчик
+    digitalWrite(MODBUS_RE_PIN, HIGH);  // Отключаем приемник для предотвращения эха
+    delayMicroseconds(50);             // Ждем стабилизации сигналов
 }
 
+/**
+ * @brief Завершение передачи данных
+ * @details Выключает передатчик и включает приемник с необходимой задержкой.
+ * Важно: Задержка 50 мкс необходима для корректного переключения режимов
+ */
 void postTransmission()
 {
-    delayMicroseconds(50);
-    digitalWrite(MODBUS_DE_RE_PIN, LOW);   // Режим приема
+    delayMicroseconds(50);             // Ждем завершения передачи последнего байта
+    digitalWrite(MODBUS_DE_PIN, LOW);  // Отключаем передатчик
+    digitalWrite(MODBUS_RE_PIN, LOW);  // Включаем приемник
 }
 
 // ✅ Неблокирующая задача реального датчика с ДИАГНОСТИКОЙ
