@@ -82,6 +82,10 @@ namespace CalibrationManager
             line = f.readStringUntil('\n');
             line.trim();
             if (line.length() == 0) continue;
+            if (line[0] == '#') continue; // комментарий
+
+            // Пропускаем строку-заголовок (если обнаружены буквы)
+            if (!isDigit(line[0]) && line[0] != '-') continue;
 
             int comma = line.indexOf(',');
             if (comma < 0) continue;
