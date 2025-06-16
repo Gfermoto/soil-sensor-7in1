@@ -1,9 +1,5 @@
 var modbus__sensor_8cpp =
 [
-    [ "DE_PIN", "modbus__sensor_8cpp.html#adbd2ea2266042c0b767e0fdac0c55d64", null ],
-    [ "RE_PIN", "modbus__sensor_8cpp.html#a8d41caa64e735985723398ee0065e1f4", null ],
-    [ "RX_PIN", "modbus__sensor_8cpp.html#aa7089c01538b339ae745173c117f95b9", null ],
-    [ "TX_PIN", "modbus__sensor_8cpp.html#a3bb17f5daa2b1eaef58c8aa2d989e27e", null ],
     [ "addToMovingAverage", "modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b", null ],
     [ "calculateCRC16", "modbus__sensor_8cpp.html#a0e1b4f2813957877a5ac0ab90787f0e5", null ],
     [ "calculateMovingAverage", "modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94", null ],

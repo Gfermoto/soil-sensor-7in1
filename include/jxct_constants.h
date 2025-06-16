@@ -144,9 +144,10 @@ constexpr int RESET_BUTTON_PIN = 0;     // GPIO0
 constexpr int JXCT_STATUS_LED_PIN = 2;  // GPIO2 (встроенный LED) - избегаем конфликта
 
 // Modbus RS485 пины
-constexpr int MODBUS_RX_PIN = 16;      // GPIO16 - прием данных
-constexpr int MODBUS_TX_PIN = 17;      // GPIO17 - передача данных
-constexpr int MODBUS_DE_RE_PIN = 5;    // GPIO5 - общий пин управления приемом/передачей для SP3485E
+constexpr int MODBUS_RX_PIN = 16;  // GPIO16 - прием данных
+constexpr int MODBUS_TX_PIN = 17;  // GPIO17 - передача данных
+constexpr int MODBUS_DE_PIN = 4;   // GPIO4 - управление передачей (Driver Enable)
+constexpr int MODBUS_RE_PIN = 5;   // GPIO5 - управление приемом (Receiver Enable)
 
 // ============================================================================
 // ПРОИЗВОДИТЕЛЬНОСТЬ И ПАМЯТЬ

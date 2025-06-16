@@ -6,7 +6,7 @@
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="452,104,397,86,398,81,454,99"/>
 <area shape="rect" id="Node000005" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,132,59,159"/>
 <area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="442,126,59,147,59,141,442,121"/>
-<area shape="rect" id="Node000006" href="$modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title=" " alt="" coords="129,157,228,184"/>
+<area shape="rect" id="Node000006" href="$modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="129,157,228,184"/>
 <area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="443,136,410,141,229,167,228,162,409,136,442,130"/>
 <area shape="rect" id="Node000007" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="138,208,218,235"/>
 <area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="464,142,410,163,308,193,220,215,218,210,306,188,408,157,462,137"/>

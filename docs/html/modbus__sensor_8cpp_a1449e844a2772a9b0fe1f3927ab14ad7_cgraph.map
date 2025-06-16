@@ -1,9 +1,0 @@
-<map id="testMAX485" name="testMAX485">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,99,83"/>
-<area shape="rect" id="Node000002" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="147,5,236,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,53,137,35,139,40,92,58"/>
-<area shape="rect" id="Node000003" href="$logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="150,56,233,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="99,67,134,67,134,72,99,72"/>
-<area shape="rect" id="Node000004" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="157,107,226,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="92,81,143,100,141,105,90,86"/>
-</map>

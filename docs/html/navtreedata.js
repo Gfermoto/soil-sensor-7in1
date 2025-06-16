@@ -52,8 +52,8 @@ var NAVTREEINDEX =
 [
 "annotated.html",
 "jxct__constants_8h.html#abc736911b242f167449b14cf593b6096",
-"modbus__sensor_8h.html#a9b707a93013b08d191303ed584a140d7",
-"version_8h.html#a83f77c2317b3d28560f91fffca64efea"
+"modbus__sensor_8h.html#aaaaed48863426c3f790f977bc04e7b94",
+"version_8h.html#aba3d86f9adebd869f9dabcde75a28eab"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

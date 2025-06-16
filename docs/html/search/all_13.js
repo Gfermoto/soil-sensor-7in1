@@ -18,6 +18,5 @@ var searchData=
   ['timeclient_15',['timeClient',['../main_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../mqtt__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../thingspeak__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../routes__data_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../wifi__manager_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp']]],
   ['timestamp_16',['timestamp',['../struct_sensor_data.html#ac3cf8281a41a979e6d5d894b45c05ca0',1,'SensorData::timestamp'],['../struct_sensor_cache.html#ab5ba28cf93b91b1560a5d26926b74a61',1,'SensorCache::timestamp']]],
   ['topic_5fbuffer_5fsize_17',['TOPIC_BUFFER_SIZE',['../jxct__constants_8h.html#abec57d3cf3642697f86a7d58af6fbf21',1,'jxct_constants.h']]],
-  ['tostring_18',['TOSTRING',['../version_8h.html#a9063e80f8777300c93afde6e6f4c9cea',1,'version.h']]],
-  ['tx_5fpin_19',['TX_PIN',['../modbus__sensor_8cpp.html#a3bb17f5daa2b1eaef58c8aa2d989e27e',1,'modbus_sensor.cpp']]]
+  ['tostring_18',['TOSTRING',['../version_8h.html#a9063e80f8777300c93afde6e6f4c9cea',1,'version.h']]]
 ];
