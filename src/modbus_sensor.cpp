@@ -57,7 +57,7 @@ void testSP3485E()
     
     // Проверяем состояние
     if (digitalRead(MODBUS_DE_PIN) == LOW && digitalRead(MODBUS_RE_PIN) == LOW)
-    {
+        {
         logSuccess("SP3485E DE/RE пины работают корректно");
     }
     else
@@ -88,7 +88,7 @@ void setupModbus()
     
     logSystem("DE пин: %d, RE пин: %d", MODBUS_DE_PIN, MODBUS_RE_PIN);
     logSuccess("Пины SP3485E настроены");
-    
+
     // Инициализация UART для Modbus
     Serial2.begin(9600, SERIAL_8N1, MODBUS_RX_PIN, MODBUS_TX_PIN);
     
@@ -204,7 +204,7 @@ bool testModbusConnection()
     pinMode(MODBUS_DE_PIN, OUTPUT);
     pinMode(MODBUS_RE_PIN, OUTPUT);
     if (digitalRead(MODBUS_DE_PIN) == LOW && digitalRead(MODBUS_RE_PIN) == LOW)
-    {
+{
         logSuccess("Пины в правильном начальном состоянии (прием)");
     }
     else
@@ -212,7 +212,7 @@ bool testModbusConnection()
         logError("Неверное начальное состояние пинов");
         return false;
     }
-    
+
     // Тест 2: Проверка временных задержек
     logSystem("Тест 2: Проверка временных задержек...");
     unsigned long start_time = micros();
@@ -234,7 +234,7 @@ bool testModbusConnection()
     {
         logWarn("Временные задержки меньше рекомендованных (50 мкс)");
     }
-    
+
     // Тест 3: Проверка конфигурации UART
     logSystem("Тест 3: Проверка конфигурации UART...");
     if (Serial2.baudRate() == 9600)
@@ -246,7 +246,7 @@ bool testModbusConnection()
         logError("Неверная скорость UART: %d", Serial2.baudRate());
         return false;
     }
-    
+
     // Тест 4: Попытка чтения регистра версии прошивки
     logSystem("Тест 4: Чтение версии прошивки...");
     uint8_t result = modbus.readHoldingRegisters(0x00, 1);
@@ -262,7 +262,7 @@ bool testModbusConnection()
     
     logSuccess("=== ТЕСТ MODBUS ЗАВЕРШЕН УСПЕШНО ===");
     return true;
-}
+    }
 
 // ============================================================================
 // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ СНИЖЕНИЯ ЦИКЛОМАТИЧЕСКОЙ СЛОЖНОСТИ
@@ -291,9 +291,9 @@ bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplie
             float* float_target = static_cast<float*>(target);
             *float_target = convertRegisterToFloat(raw_value, multiplier);
             logDebug("%s: %.2f", reg_name, *float_target);
-        }
-        else
-        {
+    }
+    else
+    {
             uint16_t* int_target = static_cast<uint16_t*>(target);
             *int_target = raw_value;
             logDebug("%s: %d", reg_name, *int_target);
@@ -349,7 +349,7 @@ int readNPKParameters()
     if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0f, &sensorData.potassium, true)) success_count++;
 
     return success_count;
-}
+    }
 
 /**
  * @brief Финализация данных датчика (валидация, кэширование, скользящее среднее)
@@ -370,7 +370,7 @@ void finalizeSensorData(bool success)
         if (validateSensorData(sensorData))
         {
             logSuccess("✅ Все параметры прочитаны и валидны");
-
+            
             // Обновляем кэш
             sensorCache.data = sensorData;
             sensorCache.timestamp = millis();
@@ -445,12 +445,12 @@ void realSensorTask(void* pvParameters)
     logPrintHeader("ПРОСТОЕ ЧТЕНИЕ ДАТЧИКА JXCT", COLOR_CYAN);
     logSystem("🔥 Использую РАБОЧИЕ параметры: 9600 bps, 8N1, адрес 1");
     logSystem("📊 Функция: периодическое чтение всех регистров датчика");
-
+    
     for (;;)
     {
         // Простое чтение всех параметров датчика с рабочими настройками
-        readSensorData();
-
+        readSensorData(); 
+        
         // Пауза между чтениями (настраиваемая в config в миллисекундах)
         vTaskDelay(pdMS_TO_TICKS(config.sensorReadInterval));
     }
@@ -526,7 +526,7 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
     uint8_t window_size = config.movingAverageWindow;
     if (window_size < 5) window_size = 5;    // Минимум 5
     if (window_size > 15) window_size = 15;  // Максимум 15
-
+    
     // Добавляем новые значения в кольцевые буферы
     data.temp_buffer[data.buffer_index] = temp;
     data.hum_buffer[data.buffer_index] = hum;
@@ -535,22 +535,22 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
     data.n_buffer[data.buffer_index] = n;
     data.p_buffer[data.buffer_index] = p;
     data.k_buffer[data.buffer_index] = k;
-
+    
     // Обновляем индекс (кольцевой буфер)
     data.buffer_index = (data.buffer_index + 1) % window_size;
-
+    
     // Обновляем количество заполненных элементов
     if (data.buffer_filled < window_size)
     {
         data.buffer_filled++;
     }
-
+    
     // Вычисляем скользящее среднее только если буфер достаточно заполнен (минимум 3 значения)
     if (data.buffer_filled >= 3)
     {
         // Используем реальный размер заполненных данных для расчета
         uint8_t effective_window = (data.buffer_filled < window_size) ? data.buffer_filled : window_size;
-
+        
         data.temperature = calculateMovingAverage(data.temp_buffer, effective_window, data.buffer_filled);
         data.humidity = calculateMovingAverage(data.hum_buffer, effective_window, data.buffer_filled);
         data.ec = calculateMovingAverage(data.ec_buffer, effective_window, data.buffer_filled);
@@ -558,7 +558,7 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
         data.nitrogen = calculateMovingAverage(data.n_buffer, effective_window, data.buffer_filled);
         data.phosphorus = calculateMovingAverage(data.p_buffer, effective_window, data.buffer_filled);
         data.potassium = calculateMovingAverage(data.k_buffer, effective_window, data.buffer_filled);
-
+        
         DEBUG_PRINTF("[MOVING_AVG] Окно=%d, заполнено=%d, Темп=%.1f°C\n", effective_window, data.buffer_filled,
                      data.temperature);
     }
@@ -572,7 +572,7 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
         data.nitrogen = n;
         data.phosphorus = p;
         data.potassium = k;
-
+        
         DEBUG_PRINTF("[MOVING_AVG] Накопление данных: %d/%d\n", data.buffer_filled, window_size);
     }
 }
@@ -580,13 +580,13 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
 float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
 {
     if (filled == 0) return 0.0;
-
+    
     // Берем последние filled элементов (или window_size, если filled >= window_size)
     uint8_t elements_to_use = (filled < window_size) ? filled : window_size;
-
+    
     // v2.4.1: Используем настраиваемый алгоритм (среднее или медиана)
     extern Config config;
-
+    
     if (config.filterAlgorithm == 1)
     {  // FILTER_ALGORITHM_MEDIAN
         // Создаем временный массив для медианы
@@ -595,7 +595,7 @@ float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
         {
             temp_values[i] = buffer[i];
         }
-
+        
         // Простая сортировка для медианы
         for (uint8_t i = 0; i < elements_to_use - 1; i++)
         {
@@ -609,7 +609,7 @@ float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
                 }
             }
         }
-
+        
         // Возвращаем медиану
         if (elements_to_use % 2 == 0)
         {

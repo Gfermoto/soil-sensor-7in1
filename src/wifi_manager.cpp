@@ -19,15 +19,13 @@
 
 // Константы
 #define RESET_BUTTON_PIN 0  // GPIO0 для кнопки сброса
-#define WIFI_RETRY_DELAY_MS 500
-#define WIFI_CONNECTION_ATTEMPTS 20
-#define WIFI_CONNECTION_TIMEOUT 10000
+#define WIFI_RETRY_DELAY_MS LED_BLINK_NORMAL  // Используем существующую константу для индикации
 #define WIFI_RECONNECT_INTERVAL 30000  // Интервал между попытками переподключения (30 секунд)
 
 // Глобальные переменные
 bool wifiConnected = false;
 WiFiMode currentWiFiMode = WiFiMode::AP;
-WebServer webServer(80);
+WebServer webServer(DEFAULT_WEB_SERVER_PORT);  // Используем константу из jxct_constants.h
 DNSServer dnsServer;
 
 // Переменные для светодиода
@@ -92,6 +90,7 @@ String navHtml()
         html += "<a href='/intervals'>" UI_ICON_INTERVALS " Интервалы</a>";  // v2.3.0
     
         html += "<a href='/config_manager'>" UI_ICON_FOLDER " Конфигурация</a>";  // v2.3.0
+        html += "<a href='/calibration'>⚙️ Калибровка</a>";  // v2.5.1
         html += "<a href='/service'>" UI_ICON_SERVICE " Сервис</a>";
     }
     html += "</div>";
@@ -104,7 +103,12 @@ void setupWiFi()
 
     pinMode(STATUS_LED_PIN, OUTPUT);
     setLedBlink(500);
-    WiFi.mode(WIFI_AP_STA);
+    
+    // Сначала отключаем WiFi и очищаем настройки
+    WiFi.disconnect(true);
+    WiFi.mode(WIFI_OFF);
+    delay(100);
+    
     loadConfig();
 
     logSystem("SSID: %s", config.ssid);
@@ -142,22 +146,46 @@ void handleWiFi()
     else if (currentWiFiMode == WiFiMode::STA)
     {
         static unsigned long lastReconnectAttempt = 0;
+        static int reconnectAttempts = 0;
+        const int MAX_RECONNECT_ATTEMPTS = 3;  // Максимальное количество попыток переподключения перед переходом в AP
+
         if (WiFi.status() != WL_CONNECTED)
         {
             if (!wifiConnected || (millis() - lastReconnectAttempt >= WIFI_RECONNECT_INTERVAL))
-            {
-                wifiConnected = false;
+        {
+            wifiConnected = false;
                 setLedBlink(WIFI_RETRY_DELAY_MS);
-                logWarn("Потеряно соединение с WiFi, переход в AP");
-                lastReconnectAttempt = millis();
-                startAPMode();
+                
+                if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS)
+                {
+                    logWarn("Потеряно соединение с WiFi, попытка переподключения %d из %d", 
+                           reconnectAttempts + 1, MAX_RECONNECT_ATTEMPTS);
+                    
+                    WiFi.disconnect(true);
+                    delay(100);
+                    WiFi.begin(config.ssid, config.password);
+                    
+                    lastReconnectAttempt = millis();
+                    reconnectAttempts++;
+                }
+                else
+                {
+                    logError("Не удалось восстановить соединение после %d попыток, переход в AP", 
+                            MAX_RECONNECT_ATTEMPTS);
+            startAPMode();
+                    reconnectAttempts = 0;  // Сбрасываем счетчик для следующей сессии
+                }
             }
         }
-        else if (!wifiConnected)
+        else 
+        {
+            if (!wifiConnected)
         {
             wifiConnected = true;
+                reconnectAttempts = 0;  // Сбрасываем счетчик при успешном подключении
             setLedOn();
             logSuccess("Подключено к WiFi, IP: %s", WiFi.localIP().toString().c_str());
+            }
         }
         webServer.handleClient();
     }
@@ -179,7 +207,7 @@ void startAPMode()
     WiFi.disconnect();
     WiFi.mode(WIFI_AP);
     String apSsid = getApSsid();
-    WiFi.softAP(apSsid.c_str(), WIFI_AP_PASS);
+    WiFi.softAP(apSsid.c_str(), JXCT_WIFI_AP_PASS);
     dnsServer.start(53, "*", WiFi.softAPIP());
     setupWebServer();
     setLedBlink(500);
@@ -191,15 +219,22 @@ void startAPMode()
 void startSTAMode()
 {
     currentWiFiMode = WiFiMode::STA;
+    WiFi.disconnect(true);  // Полное отключение с очисткой настроек
     WiFi.mode(WIFI_STA);
+    delay(100);  // Даем время на применение режима
+    
     String hostname = getApSsid();
     WiFi.setHostname(hostname.c_str());
+    
     if (strlen(config.ssid) > 0)
     {
         logWiFi("Подключение к WiFi...");
+        WiFi.begin(config.ssid, config.password);  // Явно вызываем подключение
+        
         int attempts = 0;
         setLedBlink(WIFI_RETRY_DELAY_MS);
         unsigned long startTime = millis();
+        
         while (WiFi.status() != WL_CONNECTED && 
                attempts < WIFI_CONNECTION_ATTEMPTS && 
                (millis() - startTime) < WIFI_CONNECTION_TIMEOUT)
@@ -207,18 +242,31 @@ void startSTAMode()
             delay(WIFI_RETRY_DELAY_MS);
             updateLed();
             attempts++;
+            logDebug("Попытка подключения %d из %d", attempts, WIFI_CONNECTION_ATTEMPTS);
+            
+            // Проверяем кнопку сброса во время подключения
+            if (checkResetButton())
+            {
+                logWarn("Обнаружено длительное нажатие кнопки во время подключения");
+                startAPMode();
+                return;
+            }
         }
+        
         if (WiFi.status() == WL_CONNECTED)
         {
             wifiConnected = true;
             setLedOn();
             logSuccess("Подключено к WiFi: %s", config.ssid);
             logSystem("IP адрес: %s", WiFi.localIP().toString().c_str());
+            logSystem("MAC адрес: %s", WiFi.macAddress().c_str());
+            logSystem("Hostname: %s", hostname.c_str());
+            logSystem("RSSI: %d dBm", WiFi.RSSI());
             setupWebServer();
         }
         else
         {
-            logError("Не удалось подключиться к WiFi");
+            logError("Не удалось подключиться к WiFi после %d попыток", attempts);
             startAPMode();
         }
     }
@@ -298,6 +346,7 @@ void setupWebServer()
 
     setupMainRoutes();     // Основные маршруты (/, /save, /status)
     setupDataRoutes();     // Данные датчика (/readings, /sensor_json, /api/sensor)
+    setupCalibrationRoutes(); // Калибровка (/calibration)
     setupConfigRoutes();   // Конфигурация (/intervals, /config_manager, /api/config/*)
     setupServiceRoutes();  // Сервис (/health, /service_status, /reset, /reboot, /ota)
 
