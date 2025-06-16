@@ -366,6 +366,15 @@ void finalizeSensorData(bool success)
         // ---------------- КОМПЕНСАЦИЯ ПОКАЗАНИЙ ----------------
         if (config.flags.calibrationEnabled)
         {
+            // Сохраняем исходные значения
+            sensorData.raw_temperature = sensorData.temperature;
+            sensorData.raw_humidity = sensorData.humidity;
+            sensorData.raw_ec = sensorData.ec;
+            sensorData.raw_ph = sensorData.ph;
+            sensorData.raw_nitrogen = sensorData.nitrogen;
+            sensorData.raw_phosphorus = sensorData.phosphorus;
+            sensorData.raw_potassium = sensorData.potassium;
+
             // Температурная компенсация EC и pH
             sensorData.ec = compensateEcByTemperature(sensorData.ec, sensorData.temperature);
             sensorData.ph = compensatePhByTemperature(sensorData.ph, sensorData.temperature);

@@ -49,13 +49,27 @@ void setupDataRoutes()
                      html += navHtml();
                      html += "<h1>" UI_ICON_DATA " Показания датчика</h1>";
                      html += "<div class='section'><ul>";
-                     html += "<li>🌡️ Температура: <span id='temp'></span> °C</li>";
-                     html += "<li>💧 Влажность: <span id='hum'></span> %</li>";
-                     html += "<li>⚡ EC: <span id='ec'></span> µS/cm</li>";
-                     html += "<li>⚗️ pH: <span id='ph'></span></li>";
-                     html += "<li>🔴 Азот (N): <span id='n'></span> мг/кг</li>";
-                     html += "<li>🟡 Фосфор (P): <span id='p'></span> мг/кг</li>";
-                     html += "<li>🔵 Калий (K): <span id='k'></span> мг/кг</li>";
+                     html += "<li>🌡️ Температура: <span id='temp'></span> °C";
+                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='temp_raw'></span>)";
+                     html += "</li>";
+                     html += "<li>💧 Влажность: <span id='hum'></span> %";
+                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='hum_raw'></span>)";
+                     html += "</li>";
+                     html += "<li>⚡ EC: <span id='ec'></span> µS/cm";
+                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='ec_raw'></span>)";
+                     html += "</li>";
+                     html += "<li>⚗️ pH: <span id='ph'></span>";
+                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='ph_raw'></span>)";
+                     html += "</li>";
+                     html += "<li>🔴 Азот (N): <span id='n'></span> мг/кг";
+                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='n_raw'></span>)";
+                     html += "</li>";
+                     html += "<li>🟡 Фосфор (P): <span id='p'></span> мг/кг";
+                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='p_raw'></span>)";
+                     html += "</li>";
+                     html += "<li>🔵 Калий (K): <span id='k'></span> мг/кг";
+                     if(config.flags.calibrationEnabled) html += " (сырое: <span id='k_raw'></span>)";
+                     html += "</li>";
                      html += "</ul></div>";
                      html +=
                          "<div style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='/api/sensor' "
@@ -70,6 +84,15 @@ void setupDataRoutes()
                      html += "document.getElementById('n').textContent=d.nitrogen;";
                      html += "document.getElementById('p').textContent=d.phosphorus;";
                      html += "document.getElementById('k').textContent=d.potassium;";
+                     html += "if(d.raw_temperature!==undefined){";
+                     html += "document.getElementById('temp_raw').textContent=d.raw_temperature;";
+                     html += "document.getElementById('hum_raw').textContent=d.raw_humidity;";
+                     html += "document.getElementById('ec_raw').textContent=d.raw_ec;";
+                     html += "document.getElementById('ph_raw').textContent=d.raw_ph;";
+                     html += "document.getElementById('n_raw').textContent=d.raw_nitrogen;";
+                     html += "document.getElementById('p_raw').textContent=d.raw_phosphorus;";
+                     html += "document.getElementById('k_raw').textContent=d.raw_potassium;";
+                     html += "}}";
                      html += "});";
                      html += "}";
                      html += "setInterval(updateSensor,3000);";
@@ -99,6 +122,16 @@ void setupDataRoutes()
                      doc["nitrogen"] = format_npk(sensorData.nitrogen);
                      doc["phosphorus"] = format_npk(sensorData.phosphorus);
                      doc["potassium"] = format_npk(sensorData.potassium);
+                     if (config.flags.calibrationEnabled)
+                     {
+                         doc["raw_temperature"] = format_temperature(sensorData.raw_temperature);
+                         doc["raw_humidity"] = format_moisture(sensorData.raw_humidity);
+                         doc["raw_ec"] = format_ec(sensorData.raw_ec);
+                         doc["raw_ph"] = format_ph(sensorData.raw_ph);
+                         doc["raw_nitrogen"] = format_npk(sensorData.raw_nitrogen);
+                         doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
+                         doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
+                     }
                      doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
 
                      String json;
@@ -126,6 +159,16 @@ void setupDataRoutes()
                      doc["nitrogen"] = format_npk(sensorData.nitrogen);
                      doc["phosphorus"] = format_npk(sensorData.phosphorus);
                      doc["potassium"] = format_npk(sensorData.potassium);
+                     if (config.flags.calibrationEnabled)
+                     {
+                         doc["raw_temperature"] = format_temperature(sensorData.raw_temperature);
+                         doc["raw_humidity"] = format_moisture(sensorData.raw_humidity);
+                         doc["raw_ec"] = format_ec(sensorData.raw_ec);
+                         doc["raw_ph"] = format_ph(sensorData.raw_ph);
+                         doc["raw_nitrogen"] = format_npk(sensorData.raw_nitrogen);
+                         doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
+                         doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
+                     }
                      doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
 
                      String json;
