@@ -54,6 +54,11 @@ void setupMainRoutes()
                 strlcpy(config.thingSpeakChannelId, webServer.arg("ts_channel_id").c_str(),
                         sizeof(config.thingSpeakChannelId));
                 config.flags.useRealSensor = (uint8_t)webServer.hasArg("real_sensor");
+                config.flags.calibrationEnabled = (uint8_t)webServer.hasArg("cal_enabled");
+                if (webServer.hasArg("soil_profile_sel"))
+                {
+                    config.soilProfile = webServer.arg("soil_profile_sel").toInt();
+                }
                 strlcpy(config.ntpServer, webServer.arg("ntp_server").c_str(), sizeof(config.ntpServer));
                 config.ntpUpdateInterval = webServer.arg("ntp_interval").toInt();
                 // Сохраняем пароль веб-интерфейса

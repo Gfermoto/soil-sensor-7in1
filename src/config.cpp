@@ -54,6 +54,7 @@ void loadConfig()
     config.flags.useRealSensor = preferences.getBool("useRealSensor", false);
     config.flags.mqttEnabled = preferences.getBool("mqttEnabled", false);
     config.flags.thingSpeakEnabled = preferences.getBool("tsEnabled", false);
+    config.flags.calibrationEnabled = preferences.getBool("calEnabled", false);
 
     config.mqttQos = preferences.getUChar("mqttQos", 0);
     config.thingspeakInterval = preferences.getUShort("tsInterval", 60);
@@ -94,6 +95,9 @@ void loadConfig()
     config.filterAlgorithm = preferences.getUChar("filterAlgo", 0);          // 0=среднее
     config.outlierFilterEnabled = preferences.getUChar("outlierFilter", 0);  // отключен для минимальной фильтрации
 
+    // Soil profile
+    config.soilProfile = preferences.getUChar("soilProfile", 0);
+
     preferences.end();
     // Значения по умолчанию для новых полей
     if (strlen(config.mqttDeviceName) == 0)
@@ -129,6 +133,7 @@ void saveConfig()
     preferences.putBool("useRealSensor", config.flags.useRealSensor);
     preferences.putBool("mqttEnabled", config.flags.mqttEnabled);
     preferences.putBool("tsEnabled", config.flags.thingSpeakEnabled);
+    preferences.putBool("calEnabled", config.flags.calibrationEnabled);
 
     preferences.putUChar("mqttQos", config.mqttQos);
     preferences.putUShort("tsInterval", config.thingspeakInterval);
@@ -168,6 +173,9 @@ void saveConfig()
     preferences.putUChar("filterAlgo", config.filterAlgorithm);
     preferences.putUChar("outlierFilter", config.outlierFilterEnabled);
 
+    // Soil profile
+    preferences.putUChar("soilProfile", config.soilProfile);
+
     preferences.end();
 
     // ✅ Инвалидируем кэш MQTT конфигураций при изменении настроек
@@ -198,6 +206,7 @@ void resetConfig()
     config.flags.thingSpeakEnabled = 0;
     config.flags.hassEnabled = 0;
     config.flags.useRealSensor = 0;
+    config.flags.calibrationEnabled = 0;
     config.flags.reserved = 0;
 
     // ✅ Очистка всех строковых полей
@@ -239,6 +248,9 @@ void resetConfig()
     config.forcePublishCycles = FORCE_PUBLISH_CYCLES;
     config.filterAlgorithm = 0;       // среднее
     config.outlierFilterEnabled = 0;  // отключен для минимальной фильтрации
+
+    // Soil profile
+    config.soilProfile = 0;
 
     logSuccess("Все настройки сброшены к значениям по умолчанию");
     DEBUG_PRINT("[resetConfig] config.thingspeakInterval: ");

@@ -11,6 +11,7 @@
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "logger.h"
 #include "jxct_constants.h"  // ✅ Централизованные константы
+#include "sensor_compensation.h"
 
 ModbusMaster modbus;
 SensorData sensorData;
@@ -362,6 +363,27 @@ void finalizeSensorData(bool success)
 
     if (success)
     {
+        // ---------------- КОМПЕНСАЦИЯ ПОКАЗАНИЙ ----------------
+        if (config.flags.calibrationEnabled)
+        {
+            // Температурная компенсация EC и pH
+            sensorData.ec = compensateEcByTemperature(sensorData.ec, sensorData.temperature);
+            sensorData.ph = compensatePhByTemperature(sensorData.ph, sensorData.temperature);
+
+            // Влажностная и pH/EC зависимая коррекция NPK
+            sensorData.nitrogen = compensateNpkByMoisture(sensorData.nitrogen, sensorData.humidity);
+            sensorData.phosphorus = compensateNpkByMoisture(sensorData.phosphorus, sensorData.humidity);
+            sensorData.potassium = compensateNpkByMoisture(sensorData.potassium, sensorData.humidity);
+
+            sensorData.nitrogen = compensateNpkByPh(sensorData.nitrogen, sensorData.ph);
+            sensorData.phosphorus = compensateNpkByPh(sensorData.phosphorus, sensorData.ph);
+            sensorData.potassium = compensateNpkByPh(sensorData.potassium, sensorData.ph);
+
+            sensorData.nitrogen = compensateNpkByEc(sensorData.nitrogen, sensorData.ec);
+            sensorData.phosphorus = compensateNpkByEc(sensorData.phosphorus, sensorData.ec);
+            sensorData.potassium = compensateNpkByEc(sensorData.potassium, sensorData.ec);
+        }
+
         // Добавляем данные в буферы скользящего среднего
         addToMovingAverage(sensorData, sensorData.temperature, sensorData.humidity, sensorData.ec, sensorData.ph,
                            sensorData.nitrogen, sensorData.phosphorus, sensorData.potassium);

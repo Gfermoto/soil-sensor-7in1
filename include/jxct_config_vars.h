@@ -96,6 +96,9 @@ struct __attribute__((packed)) Config
     uint8_t filterAlgorithm;       // 0=среднее, 1=медиана
     uint8_t outlierFilterEnabled;  // 0=отключен, 1=включен (>2σ)
 
+    // v2.5.1: Настройки калибровки
+    uint8_t soilProfile;          // 0 = sand, 1 = loam, 2 = peat
+
     // Битовые поля для boolean флагов (экономия 4 байта)
     struct __attribute__((packed))
     {
@@ -103,7 +106,8 @@ struct __attribute__((packed)) Config
         uint8_t useRealSensor : 1;      // 1 бит вместо 1 байта
         uint8_t mqttEnabled : 1;        // 1 бит вместо 1 байта
         uint8_t thingSpeakEnabled : 1;  // 1 бит вместо 1 байта
-        uint8_t reserved : 4;           // Резерв для будущих флагов
+        uint8_t calibrationEnabled : 1; // Включена ли компенсация
+        uint8_t reserved : 3;           // Оставшиеся биты резерва
     } flags;
 };
 

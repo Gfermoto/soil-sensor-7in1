@@ -432,7 +432,23 @@ void handleRoot()
         html +=
             "<div class='form-group'><label for='real_sensor'>Реальный датчик:</label><input type='checkbox' "
             "id='real_sensor' name='real_sensor'" +
-            realSensorChecked + "></div></div>";
+            realSensorChecked + "></div>";
+
+        // Калибровка
+        String calibChecked = config.flags.calibrationEnabled ? " checked" : "";
+        html += "<div class='form-group'><label for='cal_enabled'>Включить компенсацию:</label><input type='checkbox' id='cal_enabled' name='cal_enabled'" + calibChecked + "></div>";
+
+        // Профиль почвы
+        html += "<div class='form-group'><label for='soil_profile_sel'>Профиль почвы:</label><select id='soil_profile_sel' name='soil_profile_sel'>";
+        const char* selectedSand = config.soilProfile == 0 ? " selected" : "";
+        const char* selectedLoam = config.soilProfile == 1 ? " selected" : "";
+        const char* selectedPeat = config.soilProfile == 2 ? " selected" : "";
+        html += String("<option value='0'" ) + selectedSand + ">Песок</option>";
+        html += String("<option value='1'") + selectedLoam + ">Суглинок</option>";
+        html += String("<option value='2'") + selectedPeat + ">Торф</option>";
+        html += "</select></div>";
+
+        html += "</div>"; // конец секции датчика
         html += "<div class='section'><h2>NTP</h2>";
         html +=
             "<div class='form-group'><label for='ntp_server'>NTP сервер:</label><input type='text' id='ntp_server' "

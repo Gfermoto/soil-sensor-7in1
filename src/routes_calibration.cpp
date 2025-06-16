@@ -5,6 +5,7 @@
 #include "validation_utils.h"
 #include "calibration_manager.h"
 #include <vector>
+#include <LittleFS.h>
 
 // Экземпляр веб-сервера объявлен во внешнем модуле
 extern WebServer webServer;
