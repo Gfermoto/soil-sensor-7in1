@@ -7,6 +7,7 @@ var wifi__manager_8h =
     ] ],
     [ "checkResetButton", "wifi__manager_8h.html#ac90eb7c31515447a075eee8f395ac02f", null ],
     [ "handleWiFi", "wifi__manager_8h.html#aef11d16b4d8e760671e3487b2106b6b2", null ],
+    [ "parseAndApplyConfig", "wifi__manager_8h.html#a62a0f48d52173eca4f1a069c96840851", null ],
     [ "resetConfig", "wifi__manager_8h.html#a6fa5204bcafe1db397da4a87b1690061", null ],
     [ "restartESP", "wifi__manager_8h.html#a40cec05f995ed2024366761fa28604a7", null ],
     [ "setLedBlink", "wifi__manager_8h.html#a5f70031f46d0339f5c544c194dfe7ed7", null ],

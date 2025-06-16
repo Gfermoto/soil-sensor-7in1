@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['development_5froadmap_5f2025_2emd_0',['DEVELOPMENT_ROADMAP_2025.md',['../_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025_8md.html',1,'']]]
+  ['debug_2eh_0',['debug.h',['../debug_8h.html',1,'']]],
+  ['debug_5foptimized_2eh_1',['debug_optimized.h',['../debug__optimized_8h.html',1,'']]]
 ];

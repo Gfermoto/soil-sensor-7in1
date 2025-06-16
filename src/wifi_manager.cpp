@@ -86,7 +86,7 @@ String navHtml()
     {
         html += "<a href='/readings'>" UI_ICON_DATA " Показания</a>";
         html += "<a href='/intervals'>" UI_ICON_INTERVALS " Интервалы</a>";  // v2.3.0
-
+    
         html += "<a href='/config_manager'>" UI_ICON_FOLDER " Конфигурация</a>";  // v2.3.0
         html += "<a href='/service'>" UI_ICON_SERVICE " Сервис</a>";
     }
@@ -226,15 +226,15 @@ bool checkResetButton()
     if (isPressed && !wasPressed)
     {
         pressStart = millis();
-        wasPressed = true;
+            wasPressed = true;
         setLedFastBlink();
-    }
+        }
     else if (!isPressed && wasPressed)
-    {
-        wasPressed = false;
+        {
+            wasPressed = false;
         setLedBlink(500);
         return false;
-    }
+        }
     else if (isPressed && wasPressed)
     {
         if (millis() - pressStart >= 5000)
@@ -253,11 +253,11 @@ void restartESP()
 }
 
 void handleStatus()
-{
-    String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'>";
+                     {
+                         String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'>";
     html += "<title>" UI_ICON_STATUS " Статус JXCT</title>";
-    html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
-    html += navHtml();
+                     html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+                     html += navHtml();
     html += "<h1>" UI_ICON_STATUS " Статус системы</h1>";
     html += "<div class='section'><h2>WiFi</h2><ul>";
     html += "<li>Режим: " + String(currentWiFiMode == WiFiMode::AP ? "Точка доступа" : "Клиент") + "</li>";
@@ -267,14 +267,14 @@ void handleStatus()
         html += "<li>IP: " + WiFi.localIP().toString() + "</li>";
         html += "<li>RSSI: " + String(WiFi.RSSI()) + " dBm</li>";
     }
-    html += "</ul></div>";
+                     html += "</ul></div>";
     html += "<div class='section'><h2>Система</h2><ul>";
     html += "<li>Версия: " + String(DEVICE_SW_VERSION) + "</li>";
     html += "<li>Время работы: " + String(millis() / 1000) + " сек</li>";
     html += "<li>Свободная память: " + String(ESP.getFreeHeap()) + " байт</li>";
     html += "</ul></div>";
-    html += "</div>" + String(getToastHTML()) + "</body></html>";
-    webServer.send(200, "text/html; charset=utf-8", html);
+                     html += "</div>" + String(getToastHTML()) + "</body></html>";
+                     webServer.send(200, "text/html; charset=utf-8", html);
 }
 
 void setupWebServer()
@@ -295,7 +295,7 @@ void setupWebServer()
     // ============================================================================
     // ЗАПУСК СЕРВЕРА
     // ============================================================================
-
+     
     webServer.begin();
     logSuccess("🏗️ Модульный веб-сервер v2.4.5 запущен. Режим: %s", currentWiFiMode == WiFiMode::AP ? "AP" : "STA");
     logSystem("✅ Активные модули: main_routes, data_routes, config_routes, service_routes, error_handlers");

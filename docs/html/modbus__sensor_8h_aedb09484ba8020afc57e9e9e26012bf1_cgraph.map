@@ -1,0 +1,15 @@
+<map id="testModbusConnection" name="testModbusConnection">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,78,161,104"/>
+<area shape="rect" id="Node000002" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="388,40,455,67"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="99,75,145,42,176,25,208,12,241,5,269,3,330,12,382,31,381,36,328,18,268,8,242,10,209,18,178,30,148,46,102,79"/>
+<area shape="rect" id="Node000003" href="$logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="229,27,308,54"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="134,74,214,52,215,58,136,80"/>
+<area shape="rect" id="Node000004" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="377,116,466,143"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="102,103,148,136,178,152,209,164,242,172,268,174,328,164,380,147,381,152,330,170,269,179,241,177,208,170,176,157,145,140,99,107"/>
+<area shape="rect" id="Node000005" href="$logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="227,128,310,155"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="136,102,213,124,212,129,134,108"/>
+<area shape="rect" id="Node000006" href="$modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="209,78,329,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="161,88,193,88,193,94,161,94"/>
+<area shape="poly" id="edge6_Node000006_Node000002" title=" " alt="" coords="325,75,372,63,374,68,327,80"/>
+<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="325,102,363,112,361,117,324,108"/>
+</map>

@@ -1,8 +1,23 @@
 var searchData=
 [
-  ['data_0',['data',['../struct_sensor_cache.html#a6bd2db19de6e4e64d0c3dbef2a220dd6',1,'SensorCache']]],
-  ['device_5fmanufacturer_1',['DEVICE_MANUFACTURER',['../jxct__device__info_8h.html#a83f77c2317b3d28560f91fffca64efea',1,'jxct_device_info.h']]],
-  ['device_5fmodel_2',['DEVICE_MODEL',['../jxct__device__info_8h.html#acd8d2dccf471a5d0cbd070ff1bef8887',1,'jxct_device_info.h']]],
-  ['device_5fsw_5fversion_3',['DEVICE_SW_VERSION',['../jxct__device__info_8h.html#aa6399036840a604f6b3bbbf93f7ecd3c',1,'jxct_device_info.h']]],
-  ['dnsserver_4',['dnsServer',['../wifi__manager_8cpp.html#a52c5394c861b62875409604eedc0fcd7',1,'wifi_manager.cpp']]]
+  ['cacheddeviceid_0',['cachedDeviceId',['../struct_home_assistant_config_cache.html#a2d5d312008a4fa8fbc674b42b0e4c2cc',1,'HomeAssistantConfigCache']]],
+  ['cachedip_1',['cachedIP',['../struct_d_n_s_cache.html#aef2f96806af2f6e3c4c0fb520bab9341',1,'DNSCache']]],
+  ['cachedsensorjson_2',['cachedSensorJson',['../mqtt__client_8cpp.html#a94c11a6002324e3c3e09a2f30945618f',1,'mqtt_client.cpp']]],
+  ['cachedtopicprefix_3',['cachedTopicPrefix',['../struct_home_assistant_config_cache.html#a5895a7786d5c296e0a32e6f4b427d511',1,'HomeAssistantConfigCache']]],
+  ['cachetime_4',['cacheTime',['../struct_d_n_s_cache.html#a6e4d95230b1e83b9875e24b5c7ef34c5',1,'DNSCache']]],
+  ['client_5fid_5fbuffer_5fsize_5',['CLIENT_ID_BUFFER_SIZE',['../jxct__constants_8h.html#aab222817f60c41262eab017e380eb8c6',1,'jxct_constants.h']]],
+  ['clientidbuffer_6',['clientIdBuffer',['../mqtt__client_8cpp.html#a311e9f4b51804c96c53dc8951148c34e',1,'mqtt_client.cpp']]],
+  ['commandtopicbuffer_7',['commandTopicBuffer',['../mqtt__client_8cpp.html#a91e8c5486997693c709911d497356754',1,'mqtt_client.cpp']]],
+  ['conductivity_8',['conductivity',['../struct_sensor_data.html#aba644ee83b3bceceea0b6325fe00257e',1,'SensorData']]],
+  ['config_9',['config',['../config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5',1,'config:&#160;config.cpp'],['../jxct__config__vars_8h.html#a4a8dd3a2de125b72d4fe6251a0a271b5',1,'config:&#160;config.cpp']]],
+  ['config_5finterval_5fmax_10',['CONFIG_INTERVAL_MAX',['../jxct__constants_8h.html#ae156491e40c3833e81591602342fc662',1,'jxct_constants.h']]],
+  ['config_5finterval_5fmin_11',['CONFIG_INTERVAL_MIN',['../jxct__constants_8h.html#ad542d64e38a669ebab31fb960826587d',1,'jxct_constants.h']]],
+  ['config_5fmqtt_5fport_5fmax_12',['CONFIG_MQTT_PORT_MAX',['../jxct__constants_8h.html#a22b1acb57336de46f5c97d12fabf2c24',1,'jxct_constants.h']]],
+  ['config_5fmqtt_5fport_5fmin_13',['CONFIG_MQTT_PORT_MIN',['../jxct__constants_8h.html#a89c9a6f88510749f53f0c2a090dbb8bf',1,'jxct_constants.h']]],
+  ['config_5fthingspeak_5fmax_14',['CONFIG_THINGSPEAK_MAX',['../jxct__constants_8h.html#ae68374e6458fafd3f4863b0daff52477',1,'jxct_constants.h']]],
+  ['config_5fthingspeak_5fmin_15',['CONFIG_THINGSPEAK_MIN',['../jxct__constants_8h.html#aa3e55f930da43f8218d6bfd0677f6b60',1,'jxct_constants.h']]],
+  ['config_5fversion_5fcurrent_16',['CONFIG_VERSION_CURRENT',['../jxct__constants_8h.html#af73711cc1a28115c48b1312705ac164a',1,'jxct_constants.h']]],
+  ['config_5fversion_5fmin_5fsupported_17',['CONFIG_VERSION_MIN_SUPPORTED',['../jxct__constants_8h.html#abc736911b242f167449b14cf593b6096',1,'jxct_constants.h']]],
+  ['currentloglevel_18',['currentLogLevel',['../logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5',1,'currentLogLevel:&#160;logger.cpp'],['../logger_8h.html#a16cca5b581e7f50a9cc5e838510ae6f5',1,'currentLogLevel:&#160;logger.cpp']]],
+  ['currentwifimode_19',['currentWiFiMode',['../routes__config_8cpp.html#afd1ea40c3b78acfa354aed81da58e582',1,'currentWiFiMode:&#160;wifi_manager.cpp'],['../routes__service_8cpp.html#afd1ea40c3b78acfa354aed81da58e582',1,'currentWiFiMode:&#160;wifi_manager.cpp'],['../wifi__manager_8cpp.html#afd1ea40c3b78acfa354aed81da58e582',1,'currentWiFiMode:&#160;wifi_manager.cpp'],['../wifi__manager_8h.html#afd1ea40c3b78acfa354aed81da58e582',1,'currentWiFiMode:&#160;wifi_manager.cpp']]]
 ];

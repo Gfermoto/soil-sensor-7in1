@@ -1,11 +1,13 @@
 <map id="logSensor" name="logSensor">
-<area shape="rect" id="Node000001" title=" " alt="" coords="649,31,728,57"/>
-<area shape="rect" id="Node000002" href="$modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8" title=" " alt="" coords="457,5,601,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="633,38,601,33,601,27,634,33"/>
-<area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="471,56,587,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="634,55,587,63,587,58,633,50"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="661,56,740,83"/>
+<area shape="rect" id="Node000002" href="$modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8" title=" " alt="" coords="463,5,607,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="645,55,580,35,582,30,647,50"/>
+<area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="477,56,593,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="645,72,593,72,593,67,645,67"/>
+<area shape="rect" id="Node000007" href="$modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="457,107,613,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="647,88,582,109,580,104,645,83"/>
 <area shape="rect" id="Node000004" href="$modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,56,409,83"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="456,72,410,72,410,67,456,67"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="462,72,410,72,410,67,462,67"/>
 <area shape="rect" id="Node000005" href="$modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,56,250,83"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="283,72,250,72,250,67,283,67"/>
 <area shape="rect" id="Node000006" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,56,59,83"/>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['config_0',['Config',['../struct_config.html',1,'']]]
+  ['configdata_0',['ConfigData',['../struct_config_data.html',1,'']]],
+  ['configvalidationresult_1',['ConfigValidationResult',['../struct_config_validation_result.html',1,'']]]
 ];

@@ -1,10 +1,23 @@
 var searchData=
 [
-  ['implementation_20details_3a_0',['Implementation Details:',['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025.html#autotoc_md98',1,'']]],
-  ['implementation_20v2_202_1',['🔐 SPRINT 3: HTTPS Implementation (v2.2)',['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025.html#autotoc_md99',1,'']]],
-  ['initpreferences_2',['initPreferences',['../main_8cpp.html#abb0ddf3422a587580e789235c0503668',1,'main.cpp']]],
-  ['integration_3',['Integration',['../md_docs_2_q_a___r_e_p_o_r_t__2025.html#autotoc_md47',1,'3.2 MQTT Integration'],['../md_docs_2_q_a___r_e_p_o_r_t__2025.html#autotoc_md48',1,'3.3 ThingSpeak Integration']]],
-  ['iot_20platform_3a_4',['v4.0 - IoT Platform:',['../md_docs_2_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025.html#autotoc_md120',1,'']]],
-  ['is_5fvalid_5',['is_valid',['../struct_sensor_cache.html#add741c7682063714899826a20fe363f8',1,'SensorCache']]],
-  ['isconfigvalid_6',['isConfigValid',['../config_8cpp.html#aeb61f04cd3b4b68e8146d85c447d70d1',1,'isConfigValid():&#160;config.cpp'],['../jxct__config__vars_8h.html#aeb61f04cd3b4b68e8146d85c447d70d1',1,'isConfigValid():&#160;config.cpp']]]
+  ['temp_5fbuffer_0',['temp_buffer',['../struct_sensor_data.html#aaf53e2b2f0d5c70294c365f0d3990a9b',1,'SensorData']]],
+  ['tempconfig_1',['tempConfig',['../struct_home_assistant_config_cache.html#a29a9286975d876607f560c70fd12facd',1,'HomeAssistantConfigCache']]],
+  ['temperature_2',['temperature',['../struct_sensor_data.html#a0a1593ad64f79756c14d208ce7b17adb',1,'SensorData']]],
+  ['testmax485_3',['testMAX485',['../modbus__sensor_8cpp.html#a1449e844a2772a9b0fe1f3927ab14ad7',1,'modbus_sensor.cpp']]],
+  ['testmodbusconnection_4',['testModbusConnection',['../modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1',1,'testModbusConnection():&#160;modbus_sensor.cpp'],['../modbus__sensor_8h.html#aedb09484ba8020afc57e9e9e26012bf1',1,'testModbusConnection():&#160;modbus_sensor.cpp']]],
+  ['testserialconfigurations_5',['testSerialConfigurations',['../modbus__sensor_8h.html#a372e89ffe0abcaf103578a478d3b4b12',1,'modbus_sensor.h']]],
+  ['thingspeak_5fapi_5furl_6',['THINGSPEAK_API_URL',['../thingspeak__client_8cpp.html#af914716ab642c858bca6b31ae976d15e',1,'thingspeak_client.cpp']]],
+  ['thingspeak_5fclient_2ecpp_7',['thingspeak_client.cpp',['../thingspeak__client_8cpp.html',1,'']]],
+  ['thingspeak_5fclient_2eh_8',['thingspeak_client.h',['../thingspeak__client_8h.html',1,'']]],
+  ['thingspeak_5finterval_9',['THINGSPEAK_INTERVAL',['../jxct__config__vars_8h.html#afdd40eb3ab6faed1dd66ff50cec060f9',1,'jxct_config_vars.h']]],
+  ['thingspeakapikey_10',['thingSpeakAPIKey',['../struct_config_data.html#a38d97f1bfec0f08c3b4ffd4177866660',1,'ConfigData']]],
+  ['thingspeakenabled_11',['thingSpeakEnabled',['../struct_config_data.html#a0297efbded709e911c6a26ec58b4d16f',1,'ConfigData']]],
+  ['thingspeakinterval_12',['thingspeakInterval',['../struct_config_data.html#adb6ae912fb0f894f37e86eaeaf964800',1,'ConfigData']]],
+  ['thingspeaklasterrorbuffer_13',['thingSpeakLastErrorBuffer',['../thingspeak__client_8cpp.html#a8c731a0fe7f1eaaad5c96a1a7a62c001',1,'thingspeak_client.cpp']]],
+  ['thingspeaklastpublishbuffer_14',['thingSpeakLastPublishBuffer',['../thingspeak__client_8cpp.html#aaf5c36e5da6f7c1b8394f1545ddee8c3',1,'thingspeak_client.cpp']]],
+  ['timeclient_15',['timeClient',['../main_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../mqtt__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../thingspeak__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../routes__data_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../wifi__manager_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp']]],
+  ['timestamp_16',['timestamp',['../struct_sensor_data.html#ac3cf8281a41a979e6d5d894b45c05ca0',1,'SensorData::timestamp'],['../struct_sensor_cache.html#ab5ba28cf93b91b1560a5d26926b74a61',1,'SensorCache::timestamp']]],
+  ['topic_5fbuffer_5fsize_17',['TOPIC_BUFFER_SIZE',['../jxct__constants_8h.html#abec57d3cf3642697f86a7d58af6fbf21',1,'jxct_constants.h']]],
+  ['tostring_18',['TOSTRING',['../version_8h.html#a9063e80f8777300c93afde6e6f4c9cea',1,'version.h']]],
+  ['tx_5fpin_19',['TX_PIN',['../modbus__sensor_8cpp.html#a3bb17f5daa2b1eaef58c8aa2d989e27e',1,'modbus_sensor.cpp']]]
 ];

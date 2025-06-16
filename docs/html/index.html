@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: JXCT Soil Sensor v2.0 (ESP32, PlatformIO)</title>
+<title>JXCT Soil Sensor v2.0: 🌱 JXCT Soil Sensor</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -103,276 +103,117 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">JXCT Soil Sensor v2.0 (ESP32, PlatformIO) </div></div>
+  <div class="headertitle"><div class="title">🌱 JXCT Soil Sensor </div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
-<p><b>Версия:</b> 2.0 <br  />
- <b>Последнее обновление:</b> Июнь 2025 <br  />
- <b>Статус:</b> Stable Production</p>
-<p>Профессиональная IoT-система для работы с многофункциональным почвенным датчиком JXCT 7-in-1 на базе ESP32 с поддержкой Modbus RTU, WiFi, MQTT, ThingSpeak и современным веб-интерфейсом.</p>
+<p>Умная система мониторинга почвы для энтузиастов и садоводов. Отслеживайте здоровье ваших растений в реальном времени с помощью профессионального датчика JXCT 7-в-1.</p>
 <h1><a class="anchor" id="autotoc_md1"></a>
-🚀 Возможности v2.0</h1>
+🌟 Возможности</h1>
+<h2><a class="anchor" id="autotoc_md2"></a>
+📊 Комплексный мониторинг</h2>
 <ul>
-<li>✅ <b>Полная поддержка датчика JXCT 7-в-1</b> (все 7 параметров) по Modbus RTU <br  />
-</li>
-<li>✅ <b>Современный адаптивный веб-интерфейс</b> с AJAX обновлениями</li>
-<li>✅ <b>Публикация данных</b> в MQTT и ThingSpeak с обработкой ошибок</li>
-<li>✅ <b>Интеграция с Home Assistant</b> (MQTT Discovery)</li>
-<li>✅ <b>Профессиональная система логирования</b> с цветным выводом</li>
-<li>✅ <b>Watchdog Timer</b> для стабильной работы (30 сек)</li>
-<li>✅ <b>Кэширование данных</b> для оптимизации производительности</li>
-<li>✅ <b>Toast-уведомления</b> и статус-индикаторы</li>
-<li>✅ <b>Подробная документация</b> (Doxygen + QA отчеты)</li>
+<li>🌡️ <b>Температура почвы</b> (-10°C до +50°C)</li>
+<li>💧 <b>Влажность почвы</b> (0-100%)</li>
+<li>⚡ <b>Электропроводность (EC)</b> (0-20,000 µS/cm)</li>
+<li>⚗️ <b>pH уровень</b> (0-14)</li>
+<li>🔴 <b>Азот (N)</b> (0-2000 мг/кг)</li>
+<li>🟡 <b>Фосфор (P)</b> (0-2000 мг/кг)</li>
+<li>🔵 <b>Калий (K)</b> (0-2000 мг/kг)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md2"></a>
-📁 Структура проекта</h1>
-<div class="fragment"><div class="line">JXCT/</div>
-<div class="line">├── src/                    # Исходный код</div>
-<div class="line">│   ├── main.cpp           # Главный файл проекта</div>
-<div class="line">│   ├── modbus_sensor.cpp  # Работа с датчиком по Modbus</div>
-<div class="line">│   ├── wifi_manager.cpp   # WiFi и веб-интерфейс</div>
-<div class="line">│   ├── mqtt_client.cpp    # MQTT клиент и Home Assistant</div>
-<div class="line">│   └── ...</div>
-<div class="line">├── include/               # Заголовочные файлы</div>
-<div class="line">├── docs/                  # Документация</div>
-<div class="line">│   ├── QA_REPORT_2025.md         # Отчет по качеству</div>
-<div class="line">│   ├── DEVELOPMENT_ROADMAP_2025.md # План развития</div>
-<div class="line">│   └── html/              # Doxygen документация</div>
-<div class="line">├── scripts/               # Скрипты сборки и документации</div>
-<div class="line">└── platformio.ini         # Конфигурация проекта</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md3"></a>
-📊 Датчик JXCT 7-в-1 - Официальные адреса регистров</h1>
+<h2><a class="anchor" id="autotoc_md3"></a>
+🚀 Умные функции</h2>
+<ul>
+<li><b>Мгновенные обновления</b> - данные каждую секунду</li>
+<li><b>Умная фильтрация</b> - скользящее среднее и дельта-фильтр</li>
+<li><b>Точные измерения</b> - профессиональный датчик</li>
+<li><b>Надежная связь</b> - протокол MODBUS RTU</li>
+</ul>
 <h2><a class="anchor" id="autotoc_md4"></a>
-✅ <b>Правильные Modbus адреса (из официальной документации JXCT):</b></h2>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Параметр   </th><th class="markdownTableHeadNone">Modbus адрес   </th><th class="markdownTableHeadNone">Коэффициент   </th><th class="markdownTableHeadNone">Единицы   </th><th class="markdownTableHeadNone">Диапазон   </th><th class="markdownTableHeadNone">Описание    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>PH</b>   </td><td class="markdownTableBodyNone"><code>0x0006</code>   </td><td class="markdownTableBodyNone">÷100   </td><td class="markdownTableBodyNone">pH   </td><td class="markdownTableBodyNone">0-14   </td><td class="markdownTableBodyNone">Кислотность почвы    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>Влажность</b>   </td><td class="markdownTableBodyNone"><code>0x0012</code>   </td><td class="markdownTableBodyNone">÷10   </td><td class="markdownTableBodyNone">%   </td><td class="markdownTableBodyNone">0-100   </td><td class="markdownTableBodyNone">Влажность почвы    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>Температура</b>   </td><td class="markdownTableBodyNone"><code>0x0013</code>   </td><td class="markdownTableBodyNone">÷10   </td><td class="markdownTableBodyNone">°C   </td><td class="markdownTableBodyNone">-10...+50   </td><td class="markdownTableBodyNone">Температура почвы    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>Проводимость</b>   </td><td class="markdownTableBodyNone"><code>0x0015</code>   </td><td class="markdownTableBodyNone">как есть   </td><td class="markdownTableBodyNone">µS/cm   </td><td class="markdownTableBodyNone">0-20000   </td><td class="markdownTableBodyNone">Электропроводность    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>Азот (N)</b>   </td><td class="markdownTableBodyNone"><code>0x001E</code>   </td><td class="markdownTableBodyNone">как есть   </td><td class="markdownTableBodyNone">mg/kg   </td><td class="markdownTableBodyNone">0-2000   </td><td class="markdownTableBodyNone">Содержание азота    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>Фосфор (P)</b>   </td><td class="markdownTableBodyNone"><code>0x001F</code>   </td><td class="markdownTableBodyNone">как есть   </td><td class="markdownTableBodyNone">mg/kg   </td><td class="markdownTableBodyNone">0-2000   </td><td class="markdownTableBodyNone">Содержание фосфора    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>Калий (K)</b>   </td><td class="markdownTableBodyNone"><code>0x0020</code>   </td><td class="markdownTableBodyNone">как есть   </td><td class="markdownTableBodyNone">mg/kg   </td><td class="markdownTableBodyNone">0-2000   </td><td class="markdownTableBodyNone">Содержание калия   </td></tr>
-</table>
-<h2><a class="anchor" id="autotoc_md5"></a>
-📋 <b>Технические характеристики:</b></h2>
+🌐 Интеграции</h2>
 <ul>
-<li><b>Протокол:</b> Modbus RTU <br  />
-</li>
-<li><b>Скорость:</b> 9600 bps, 8N1</li>
-<li><b>Адрес устройства:</b> 1 (настраивается)</li>
-<li><b>Интерфейс:</b> RS485 с MAX485</li>
-<li><b>Напряжение:</b> 12V DC ±10%</li>
-<li><b>Потребление:</b> &lt;50mA в активном режиме</li>
+<li><b>Home Assistant</b> - полная интеграция с умным домом</li>
+<li><b>MQTT</b> - отправка данных в любую систему</li>
+<li><b>ThingSpeak</b> - облачное хранение и графики</li>
+<li><b>REST API</b> - доступ к данным из любого приложения</li>
+<li><b>Массовое развертывание</b> - шаблоны конфигурации для множества устройств</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md6"></a>
-📖 **Документация:**</h2>
+<h1><a class="anchor" id="autotoc_md5"></a>
+🎯 Для кого этот проект?</h1>
 <ul>
-<li>**Официальная документация JXCT:** [Modbus Protocol Manual](<a href="https://www.jxct.net/">https://www.jxct.net/</a>)</li>
-<li>**QA Отчет v2.0:** [<a class="el" href="_q_a___r_e_p_o_r_t__2025_8md.html">docs/QA_REPORT_2025.md</a>](<a class="el" href="_q_a___r_e_p_o_r_t__2025_8md.html">docs/QA_REPORT_2025.md</a>)</li>
-<li>**План развития:** [<a class="el" href="_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025_8md.html">docs/DEVELOPMENT_ROADMAP_2025.md</a>](<a class="el" href="_d_e_v_e_l_o_p_m_e_n_t___r_o_a_d_m_a_p__2025_8md.html">docs/DEVELOPMENT_ROADMAP_2025.md</a>)</li>
+<li>🌿 <b>Садоводы-любители</b> - следите за здоровьем растений</li>
+<li>🌱 <b>Гидропоника</b> - точный контроль питательной среды</li>
+<li>🏡 <b>Умный дом</b> - автоматизация полива и ухода</li>
+<li>🔬 <b>Исследователи</b> - сбор данных для экспериментов</li>
+<li>🎮 <b>Энтузиасты</b> - создание собственных проектов</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md7"></a>
-⚡ **Пример чтения:**</h2>
-<div class="fragment"><div class="line"><span class="comment">// Чтение PH (адрес 0x0006)</span></div>
-<div class="line">uint8_t result = <a class="code hl_variable" href="modbus__sensor_8cpp.html#a9f7da14569cf54a5633c163642e97dff">modbus</a>.readHoldingRegisters(0x0006, 1);</div>
-<div class="line"><span class="keywordflow">if</span> (result == <a class="code hl_variable" href="modbus__sensor_8cpp.html#a9f7da14569cf54a5633c163642e97dff">modbus</a>.ku8MBSuccess) {</div>
-<div class="line">    uint16_t ph_raw = <a class="code hl_variable" href="modbus__sensor_8cpp.html#a9f7da14569cf54a5633c163642e97dff">modbus</a>.getResponseBuffer(0);</div>
-<div class="line">    <span class="keywordtype">float</span> ph_value = ph_raw / 100.0; <span class="comment">// pH = 676 → 6.76</span></div>
-<div class="line">}</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// Чтение влажности (адрес 0x0012)  </span></div>
-<div class="line">result = <a class="code hl_variable" href="modbus__sensor_8cpp.html#a9f7da14569cf54a5633c163642e97dff">modbus</a>.readHoldingRegisters(0x0012, 1);</div>
-<div class="line"><span class="keywordflow">if</span> (result == <a class="code hl_variable" href="modbus__sensor_8cpp.html#a9f7da14569cf54a5633c163642e97dff">modbus</a>.ku8MBSuccess) {</div>
-<div class="line">    uint16_t humidity_raw = <a class="code hl_variable" href="modbus__sensor_8cpp.html#a9f7da14569cf54a5633c163642e97dff">modbus</a>.getResponseBuffer(0);</div>
-<div class="line">    <span class="keywordtype">float</span> humidity = humidity_raw / 10.0; <span class="comment">// 303 → 30.3%</span></div>
-<div class="line">}</div>
-<div class="ttc" id="amodbus__sensor_8cpp_html_a9f7da14569cf54a5633c163642e97dff"><div class="ttname"><a href="modbus__sensor_8cpp.html#a9f7da14569cf54a5633c163642e97dff">modbus</a></div><div class="ttdeci">ModbusMaster modbus</div><div class="ttdef"><b>Определения</b> modbus_sensor.cpp:13</div></div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
-🚀 Быстрый старт</h1>
+<h1><a class="anchor" id="autotoc_md6"></a>
+💡 Почему JXCT?</h1>
+<ul>
+<li><b>Профессиональный датчик</b> - точность лабораторного уровня</li>
+<li><b>Открытый код</b> - полный контроль над системой</li>
+<li><b>Гибкая настройка</b> - подстройка под ваши нужды</li>
+<li><b>Активное сообщество</b> - поддержка и развитие</li>
+<li><b>Документация</b> - подробные инструкции и примеры</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md7"></a>
+🛠️ Технические детали</h1>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Оборудование</h2>
+<ul>
+<li><b>ESP32</b> - мощный микроконтроллер</li>
+<li><b>JXCT 7-в-1</b> - профессиональный датчик почвы</li>
+<li><b>MAX485</b> - надежная связь по RS485</li>
+</ul>
 <h2><a class="anchor" id="autotoc_md9"></a>
-1. Клонирование и сборка</h2>
-<div class="fragment"><div class="line">git clone https://github.com/Gfermoto/JXCT.git</div>
-<div class="line">cd JXCT</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md10"></a>
-2. Сборка через PlatformIO</h2>
-<div class="fragment"><div class="line"># Установка зависимостей и сборка</div>
-<div class="line">pio run -e esp32dev</div>
-<div class="line"> </div>
-<div class="line"># Загрузка на ESP32</div>
-<div class="line">pio run -e esp32dev -t upload</div>
-<div class="line"> </div>
-<div class="line"># Мониторинг порта</div>
-<div class="line">pio device monitor</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
-3. Первоначальная настройка</h2>
-<ol type="1">
-<li>**Подключитесь к WiFi точке доступа** `jxct-XXXXXX` (пароль будет показан в логах)</li>
-<li>**Откройте браузер** и перейдите на `http://192.168.4.1`</li>
-<li>**Настройте WiFi** и другие параметры через веб-интерфейс</li>
-<li>**Сохраните настройки** и дождитесь подключения к вашей WiFi сети</li>
-</ol>
-<h2><a class="anchor" id="autotoc_md12"></a>
-4. Подключение датчика</h2>
-<div class="fragment"><div class="line">ESP32 &lt;-&gt; MAX485 &lt;-&gt; JXCT Sensor</div>
-<div class="line">GPIO16 (TX) -&gt; DI</div>
-<div class="line">GPIO17 (RX) -&gt; RO  </div>
-<div class="line">GPIO4       -&gt; DE</div>
-<div class="line">GPIO5       -&gt; RE</div>
-<div class="line">3.3V        -&gt; VCC</div>
-<div class="line">GND         -&gt; GND</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md13"></a>
-📚 Генерация документации</h1>
-<div class="fragment"><div class="line"># Windows</div>
-<div class="line">scripts\gen_docs.ps1</div>
-<div class="line"> </div>
-<div class="line"># Linux/Mac</div>
-<div class="line">./scripts/gen_docs.sh</div>
-</div><!-- fragment --><p> Результат: <code>docs/html/index.html</code></p>
-<h1><a class="anchor" id="autotoc_md14"></a>
-🛠️ Требования</h1>
-<h2><a class="anchor" id="autotoc_md15"></a>
-Аппаратные:</h2>
+Производительность</h2>
 <ul>
-<li><b>ESP32</b> (любая DevKit с 4MB Flash)</li>
-<li><b>MAX485</b> модуль для RS485</li>
-<li><b>JXCT 7-in-1</b> почвенный датчик</li>
+<li><b>Частота опроса:</b> 1 раз в секунду</li>
+<li><b>Точность:</b> лабораторный уровень</li>
+<li><b>Стабильность:</b> 24/7 работа</li>
+<li><b>Память:</b> оптимизированное использование</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md16"></a>
-Программные:</h2>
+<h1><a class="anchor" id="autotoc_md10"></a>
+🛠️ Аппаратные требования</h1>
 <ul>
-<li><b>PlatformIO</b> (VSCode расширение или CLI)</li>
-<li><b>Doxygen</b> (для генерации документации)</li>
+<li><b>ESP32</b> - мощный микроконтроллер</li>
+<li><b>RS-485 трансивер</b> - для связи с датчиком:<ul>
+<li><b>SP3485E</b> ⭐ - рекомендуется (3.3V, до 12 Mbps, расширенная защита)</li>
+<li><b>MAX485</b> - классический вариант (5V толерантный)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md17"></a>
-🌐 API v1.0</h1>
-<p>REST API доступен в режиме клиента (STA mode):</p>
-<h2><a class="anchor" id="autotoc_md18"></a>
-Эндпоинты:</h2>
-<ul>
-<li><b>GET <code>/api/sensor</code></b> — текущие показания датчика</li>
-<li><b>GET <code>/status</code></b> — статус системы <br  />
 </li>
-<li><b>GET <code>/</code></b> — веб-интерфейс настроек</li>
+<li><b>JXCT 7-в-1</b> - почвенный датчик с Modbus RTU</li>
+<li><b>Блок питания 12-24V</b> - для датчика (отдельное питание!)</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md19"></a>
-Пример использования:</h2>
-<div class="fragment"><div class="line"># Получение данных датчика</div>
-<div class="line">curl http://192.168.1.100/api/sensor</div>
-<div class="line"> </div>
-<div class="line"># Проверка статуса</div>
-<div class="line">curl http://192.168.1.100/status</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md20"></a>
-Успешный ответ:</h2>
-<div class="fragment"><div class="line">{</div>
-<div class="line">  &quot;temperature&quot;: 23.5,</div>
-<div class="line">  &quot;humidity&quot;: 41.2,</div>
-<div class="line">  &quot;ec&quot;: 1200,</div>
-<div class="line">  &quot;ph&quot;: 6.8,</div>
-<div class="line">  &quot;nitrogen&quot;: 15,</div>
-<div class="line">  &quot;phosphorus&quot;: 8,</div>
-<div class="line">  &quot;potassium&quot;: 20,</div>
-<div class="line">  &quot;timestamp&quot;: 1717920000,</div>
-<div class="line">  &quot;valid&quot;: true,</div>
-<div class="line">  &quot;last_update&quot;: 1717920000</div>
-<div class="line">}</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md21"></a>
-Коды ошибок:</h2>
-<ul>
-<li><b>403</b> — Устройство в режиме точки доступа</li>
-<li><b>500</b> — Ошибка чтения датчика</li>
-<li><b>503</b> — Сервис недоступен</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md22"></a>
-🔒 Безопасность (Планируется в v2.1)</h1>
-<p>⚠️ <b>ВНИМАНИЕ:</b> Текущая версия не имеет встроенной авторизации. Рекомендуется использовать в защищенных сетях.</p>
-<p><b>Планируемые улучшения безопасности:</b></p><ul>
-<li>HTTP Basic Authentication</li>
-<li>HTTPS поддержка</li>
-<li>CSRF защита</li>
-<li>Шифрование паролей</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md23"></a>
-🔄 OTA Обновления</h1>
-<p>OTA функциональность запланирована в версии 2.5. Текущая версия поддерживает:</p><ul>
-<li>Проверку готовности к OTA</li>
-<li>Заглушки для будущей реализации</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md24"></a>
-📈 Мониторинг и диагностика</h1>
-<h2><a class="anchor" id="autotoc_md25"></a>
-Система логирования:</h2>
-<ul>
-<li><b>5 уровней логирования:</b> ERROR, WARN, INFO, DEBUG, TRACE</li>
-<li><b>Цветной вывод</b> в Serial Monitor</li>
-<li><b>Статистика системы</b> каждые 30 секунд</li>
-<li><b>Мониторинг памяти</b> и uptime</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md26"></a>
-Веб-интерфейс:</h2>
-<ul>
-<li><b>Статус-индикаторы</b> всех сервисов</li>
-<li><b>Real-time обновления</b> данных (AJAX)</li>
-<li><b>Toast-уведомления</b> об ошибках</li>
-<li><b>Адаптивный дизайн</b> для мобильных устройств</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md27"></a>
-🧪 Качество и тестирование</h1>
-<ul>
-<li><b>QA Отчет:</b> Общий балл 6.0/10 (Удовлетворительно)</li>
-<li><b>Покрытие тестами:</b> Планируется в v2.3</li>
-<li><b>Статический анализ:</b> Проходит без критических ошибок</li>
-<li><b>Memory leaks:</b> Не обнаружены</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md28"></a>
-🚀 Roadmap</h1>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Версия   </th><th class="markdownTableHeadNone">Срок   </th><th class="markdownTableHeadNone">Описание    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>v2.1</b>   </td><td class="markdownTableBodyNone">Июль 2025   </td><td class="markdownTableBodyNone">Критические исправления безопасности    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>v2.2</b>   </td><td class="markdownTableBodyNone">Август 2025   </td><td class="markdownTableBodyNone">HTTPS и enterprise-безопасность    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>v2.3</b>   </td><td class="markdownTableBodyNone">Сентябрь 2025   </td><td class="markdownTableBodyNone">Система тестирования    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>v2.4</b>   </td><td class="markdownTableBodyNone">Октябрь 2025   </td><td class="markdownTableBodyNone">Мониторинг и observability    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>v2.5</b>   </td><td class="markdownTableBodyNone">Ноябрь 2025   </td><td class="markdownTableBodyNone">OTA и расширенные функции    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>v3.0</b>   </td><td class="markdownTableBodyNone">Q1 2026   </td><td class="markdownTableBodyNone">Новая архитектура   </td></tr>
-</table>
-<h1><a class="anchor" id="autotoc_md29"></a>
-🤝 Участие в разработке</h1>
+<h1><a class="anchor" id="autotoc_md11"></a>
+🚀 Начало работы</h1>
 <ol type="1">
-<li><b>Fork</b> репозитория</li>
-<li>Создайте <b>feature branch</b> (<code>git checkout -b feature/amazing-feature</code>)</li>
-<li><b>Commit</b> изменения (&lsquo;git commit -m 'Add amazing feature&rsquo;<code>)</code></li>
-<li><code>**Push** в branch (</code>git push origin feature/amazing-feature`)</li>
-<li>Создайте <b>Pull Request</b></li>
+<li><b>Сборка</b> - простая инструкция по сборке</li>
+<li><b>Прошивка</b> - загрузка программного обеспечения</li>
+<li><b>Настройка</b> - подключение к вашей сети</li>
+<li><b>Интеграция</b> - подключение к вашим системам</li>
+<li><b>Массовое развертывание</b> - настройка множества устройств одним файлом</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md30"></a>
-📄 Лицензия</h1>
-<p>MIT License - см. [LICENSE](LICENSE) файл для деталей.</p>
-<h1><a class="anchor" id="autotoc_md31"></a>
-📞 Поддержка</h1>
+<h1><a class="anchor" id="autotoc_md12"></a>
+📚 Документация</h1>
 <ul>
-<li><b>Issues:</b> <a href="https://github.com/Gfermoto/JXCT/issues">GitHub Issues</a></li>
-<li><b>Документация:</b> <a href="docs/html/index.html">Doxygen</a></li>
-<li><b>QA Отчеты:</b> <a class="el" href="md_docs_2_q_a___r_e_p_o_r_t__2025.html">docs/QA_REPORT_2025.md</a></li>
+<li>MODBUS протокол</li>
+<li>Схема подключения</li>
+<li>API документация</li>
+<li>План развития</li>
+<li>Управление конфигурацией - импорт/экспорт и массовое развертывание</li>
+<li><a href="docs/examples/test_safe_config.json">Шаблон конфигурации</a> - быстрый старт для массового развертывания</li>
 </ul>
+<h1><a class="anchor" id="autotoc_md13"></a>
+🌟 Сообщество</h1>
+<ul>
+<li><b>Telegram</b> - <a href="https://t.me/DIYIoT_Lab">@DIYIoT_Lab</a> - лайфхаки и гайды по сборке DIY-устройств</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md14"></a>
+📄 Лицензия</h1>
+<p>MIT License - свободное использование для некоммерческих целей</p>
 <hr  />
-<p><b>© 2025 JXCT Soil Sensor Project</b> <br  />
- <b>Версия:</b> 2.0 | <b>Сборка:</b> Stable | <b>Статус:</b> Production Ready </p>
+<p><em>Сделано с ❤️ для энтузиастов и садоводов</em> </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->

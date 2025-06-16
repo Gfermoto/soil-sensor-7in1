@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['hassenabled_0',['hassEnabled',['../struct_config.html#a8ac159953766cb42cb0d49ca7245e127',1,'Config']]],
-  ['humidity_1',['humidity',['../struct_sensor_data.html#a29ce8f1d86589b1c5af915ec961742f2',1,'SensorData']]]
+  ['field_0',['field',['../struct_validation_error.html#afe37331a5cad29591a36872c97118ebe',1,'ValidationError']]],
+  ['firmware_5fversion_1',['FIRMWARE_VERSION',['../jxct__device__info_8h.html#acf025b054301360475a0ec4542f74ff3',1,'FIRMWARE_VERSION:&#160;jxct_device_info.h'],['../version_8h.html#acf025b054301360475a0ec4542f74ff3',1,'FIRMWARE_VERSION:&#160;version.h']]],
+  ['firmware_5fversion_2',['firmware_version',['../struct_sensor_data.html#afde3c50727e3e15ce3850afa8d73eff8',1,'SensorData']]]
 ];

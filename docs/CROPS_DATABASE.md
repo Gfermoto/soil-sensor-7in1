@@ -7,6 +7,8 @@
 {
   "name": "Название культуры",
   "type": "vegetable|fruit|berry|grain|herb",
+  "environment_type": "outdoor|greenhouse|both",
+  "soil_types": ["sand", "loam", "clay", "peat"],
   "stages": ["germination", "vegetative", "flowering", "fruiting"],
   "temperature": {
     "min": 10,
@@ -22,28 +24,63 @@
   "moisture": {
     "min_ppv": 60,
     "optimal_ppv": 70,
-    "max_ppv": 80
+    "max_ppv": 80,
+    "soil_type_adjustments": {
+      "sand": {"min": -5, "optimal": -5, "max": -5},
+      "clay": {"min": +5, "optimal": +5, "max": +5},
+      "peat": {"min": +10, "optimal": +10, "max": +10}
+    }
   },
   "ph": {
-    "min": 6.0,
-    "optimal": 6.5,
-    "max": 7.5
+    "min": 5.5,
+    "optimal": 6.3,
+    "max": 7.0,
+    "sensor_limits": {
+      "absolute_min": 3.0,
+      "absolute_max": 9.0,
+      "accuracy": 0.3
+    }
   },
   "ec": {
-    "min": 0.8,
-    "optimal": 1.3,
-    "max": 1.8,
     "stages": {
-      "vegetative": {"min": 0.8, "optimal": 1.2, "max": 1.6},
-      "flowering": {"min": 1.0, "optimal": 1.4, "max": 1.8},
-      "fruiting": {"min": 1.2, "optimal": 1.6, "max": 2.0}
+      "germination": {"min": 500, "optimal": 800, "max": 1200},
+      "vegetative": {"min": 1000, "optimal": 1500, "max": 2000},
+      "flowering": {"min": 1200, "optimal": 1800, "max": 2200},
+      "fruiting": {"min": 1500, "optimal": 2000, "max": 2500}
+    },
+    "sensor_limits": {
+      "absolute_min": 0,
+      "absolute_max": 10000,
+      "resolution": 10
     }
   },
   "npk": {
     "stages": {
-      "vegetative": {"N": 4, "P": 1, "K": 3},
-      "flowering": {"N": 3, "P": 1, "K": 4},
-      "fruiting": {"N": 2, "P": 1, "K": 4}
+      "germination": {
+        "N": {"min": 100, "optimal": 150, "max": 200},
+        "P": {"min": 50, "optimal": 75, "max": 100},
+        "K": {"min": 50, "optimal": 75, "max": 100}
+      },
+      "vegetative": {
+        "N": {"min": 150, "optimal": 200, "max": 250},
+        "P": {"min": 75, "optimal": 100, "max": 125},
+        "K": {"min": 100, "optimal": 150, "max": 200}
+      },
+      "flowering": {
+        "N": {"min": 125, "optimal": 175, "max": 225},
+        "P": {"min": 100, "optimal": 150, "max": 200},
+        "K": {"min": 150, "optimal": 200, "max": 250}
+      },
+      "fruiting": {
+        "N": {"min": 100, "optimal": 150, "max": 200},
+        "P": {"min": 125, "optimal": 175, "max": 225},
+        "K": {"min": 175, "optimal": 225, "max": 275}
+      }
+    },
+    "sensor_limits": {
+      "absolute_min": 0,
+      "absolute_max": 1999,
+      "accuracy": "2%"
     }
   }
 }
@@ -56,6 +93,8 @@
 {
   "name": "Томаты",
   "type": "vegetable",
+  "environment_type": "both",
+  "soil_types": ["loam", "clay"],
   "stages": ["germination", "vegetative", "flowering", "fruiting"],
   "temperature": {
     "min": 15,
@@ -71,7 +110,12 @@
   "moisture": {
     "min_ppv": 65,
     "optimal_ppv": 75,
-    "max_ppv": 85
+    "max_ppv": 85,
+    "soil_type_adjustments": {
+      "sand": {"min": -5, "optimal": -5, "max": -5},
+      "clay": {"min": +5, "optimal": +5, "max": +5},
+      "peat": {"min": +10, "optimal": +10, "max": +10}
+    }
   },
   "ph": {
     "min": 5.5,
@@ -79,20 +123,11 @@
     "max": 6.8
   },
   "ec": {
-    "min": 1.0,
-    "optimal": 1.5,
-    "max": 2.0,
     "stages": {
+      "germination": {"min": 0.5, "optimal": 0.8, "max": 1.2},
       "vegetative": {"min": 1.0, "optimal": 1.5, "max": 1.8},
       "flowering": {"min": 1.2, "optimal": 1.8, "max": 2.2},
       "fruiting": {"min": 1.5, "optimal": 2.0, "max": 2.5}
-    }
-  },
-  "npk": {
-    "stages": {
-      "vegetative": {"N": 4, "P": 1, "K": 3},
-      "flowering": {"N": 3, "P": 1, "K": 4},
-      "fruiting": {"N": 2, "P": 1, "K": 4}
     }
   }
 }
@@ -103,6 +138,8 @@
 {
   "name": "Огурцы",
   "type": "vegetable",
+  "environment_type": "both",
+  "soil_types": ["loam", "sand"],
   "stages": ["germination", "vegetative", "flowering", "fruiting"],
   "temperature": {
     "min": 18,
@@ -118,32 +155,57 @@
   "moisture": {
     "min_ppv": 70,
     "optimal_ppv": 80,
-    "max_ppv": 85
+    "max_ppv": 85,
+    "soil_type_adjustments": {
+      "sand": {"min": -5, "optimal": -5, "max": -5},
+      "clay": {"min": +5, "optimal": +5, "max": +5},
+      "peat": {"min": +10, "optimal": +10, "max": +10}
+    }
   },
   "ph": {
-    "min": 6.0,
+    "min": 5.5,
     "optimal": 6.5,
     "max": 7.0
   },
   "ec": {
-    "min": 1.2,
-    "optimal": 1.7,
-    "max": 2.2,
     "stages": {
+      "germination": {"min": 0.5, "optimal": 0.8, "max": 1.2},
       "vegetative": {"min": 1.2, "optimal": 1.7, "max": 2.0},
       "flowering": {"min": 1.4, "optimal": 1.9, "max": 2.3},
       "fruiting": {"min": 1.6, "optimal": 2.1, "max": 2.5}
     }
-  },
-  "npk": {
-    "stages": {
-      "vegetative": {"N": 4, "P": 1, "K": 3},
-      "flowering": {"N": 3, "P": 1, "K": 4},
-      "fruiting": {"N": 2, "P": 1, "K": 4}
-    }
   }
 }
 ```
+
+## Типы почв и их характеристики
+
+### Песчаные почвы (sand)
+- Быстро прогреваются
+- Хорошая аэрация
+- Низкая влагоёмкость
+- Быстрое вымывание питательных веществ
+- Требуют частого полива и подкормок
+
+### Суглинистые почвы (loam)
+- Оптимальный водно-воздушный режим
+- Хорошая удержимость питательных веществ
+- Средняя скорость прогрева
+- Универсальны для большинства культур
+
+### Глинистые почвы (clay)
+- Медленно прогреваются
+- Высокая влагоёмкость
+- Склонность к уплотнению
+- Требуют улучшения структуры
+- Риск закисания
+
+### Торфяные почвы (peat)
+- Высокая влагоёмкость
+- Низкая теплопроводность
+- Богаты органикой
+- Требуют известкования
+- Риск пересыхания верхнего слоя
 
 [Продолжение следует... Будут добавлены другие культуры]
 

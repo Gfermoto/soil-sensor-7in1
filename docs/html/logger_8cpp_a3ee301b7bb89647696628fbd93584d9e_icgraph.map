@@ -1,22 +1,26 @@
 <map id="logPrintSeparator" name="logPrintSeparator">
-<area shape="rect" id="Node000001" title=" " alt="" coords="409,116,531,142"/>
-<area shape="rect" id="Node000002" href="$logger_8cpp.html#aef367594259e15c9df8b0caf3dfddba8" title=" " alt="" coords="254,40,361,66"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="425,111,337,69,339,64,427,106"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,90,59,117"/>
-<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="449,105,411,64,387,45,360,30,324,17,291,10,262,8,234,10,177,26,108,54,76,72,50,92,47,88,73,67,106,49,175,21,233,5,262,3,292,5,325,12,362,25,390,40,415,60,453,101"/>
-<area shape="rect" id="Node000004" href="$logger_8cpp.html#a372ab412c03841f6fe08c751c5d44cba" title=" " alt="" coords="254,192,361,218"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="427,152,339,194,337,189,425,147"/>
-<area shape="rect" id="Node000005" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="134,242,179,269"/>
-<area shape="poly" id="edge10_Node000001_Node000005" title=" " alt="" coords="451,156,414,197,389,217,362,233,313,250,262,258,179,260,179,255,261,253,312,244,360,228,386,212,410,193,448,153"/>
-<area shape="rect" id="Node000006" href="$modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title=" " alt="" coords="107,90,206,117"/>
-<area shape="poly" id="edge12_Node000001_Node000006" title=" " alt="" coords="393,125,206,110,206,105,394,120"/>
-<area shape="rect" id="Node000007" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="116,141,196,168"/>
-<area shape="poly" id="edge13_Node000001_Node000007" title=" " alt="" coords="394,138,197,154,197,148,393,132"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="239,61,175,68,107,81,60,96,58,91,106,76,174,63,239,55"/>
-<area shape="poly" id="edge5_Node000004_Node000003" title=" " alt="" coords="238,210,172,203,138,195,105,182,85,168,66,152,40,119,44,116,70,148,88,164,108,177,140,190,173,198,239,205"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="252,226,180,251,178,246,250,221"/>
-<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="277,184,205,131,185,120,188,115,207,127,280,179"/>
-<area shape="poly" id="edge8_Node000004_Node000007" title=" " alt="" coords="250,189,196,170,198,165,252,184"/>
-<area shape="poly" id="edge7_Node000006_Node000003" title=" " alt="" coords="91,106,59,106,59,101,91,101"/>
-<area shape="poly" id="edge9_Node000007_Node000003" title=" " alt="" coords="107,137,58,117,60,112,109,132"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="613,107,734,133"/>
+<area shape="rect" id="Node000002" href="$logger_8cpp.html#aef367594259e15c9df8b0caf3dfddba8" title=" " alt="" coords="125,5,232,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="643,99,607,74,564,53,475,31,384,20,300,16,232,18,232,12,300,11,384,14,476,26,566,48,609,69,646,95"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,183,59,209"/>
+<area shape="poly" id="edge14_Node000001_Node000003" title=" " alt="" coords="597,107,533,97,458,90,378,89,298,97,229,115,163,139,60,185,58,180,161,134,228,110,298,92,377,84,458,84,533,92,598,101"/>
+<area shape="rect" id="Node000004" href="$logger_8cpp.html#a372ab412c03841f6fe08c751c5d44cba" title=" " alt="" coords="457,183,565,209"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="630,143,543,185,540,180,628,138"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="331,107,376,133"/>
+<area shape="poly" id="edge13_Node000001_Node000005" title=" " alt="" coords="597,123,377,123,377,117,597,117"/>
+<area shape="rect" id="Node000009" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="314,309,394,336"/>
+<area shape="poly" id="edge15_Node000001_Node000009" title=" " alt="" coords="652,147,613,185,566,224,521,251,475,276,393,311,391,306,472,271,519,247,563,219,610,181,648,143"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="123,42,109,53,82,85,62,121,39,183,34,181,57,119,78,82,105,49,119,38"/>
+<area shape="poly" id="edge8_Node000004_Node000003" title=" " alt="" coords="442,199,59,199,59,193,442,193"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="466,178,376,133,378,128,469,173"/>
+<area shape="rect" id="Node000006" href="$modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,208,409,235"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="442,210,410,215,409,210,441,204"/>
+<area shape="rect" id="Node000008" href="$modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title=" " alt="" coords="129,259,228,285"/>
+<area shape="poly" id="edge9_Node000004_Node000008" title=" " alt="" coords="476,220,445,236,410,249,363,261,314,268,229,274,228,269,314,263,362,255,409,244,442,231,473,215"/>
+<area shape="poly" id="edge11_Node000004_Node000009" title=" " alt="" coords="488,223,453,257,411,293,383,311,380,307,408,289,450,253,485,219"/>
+<area shape="rect" id="Node000007" href="$modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,208,250,235"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="283,224,250,224,250,219,283,219"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="91,209,59,203,60,198,92,204"/>
+<area shape="poly" id="edge10_Node000008_Node000003" title=" " alt="" coords="118,255,105,249,49,212,52,208,108,244,120,250"/>
+<area shape="poly" id="edge12_Node000009_Node000003" title=" " alt="" coords="298,332,254,333,204,330,153,320,105,300,81,280,61,256,36,211,41,208,65,253,84,276,108,295,155,315,205,325,254,328,298,327"/>
 </map>

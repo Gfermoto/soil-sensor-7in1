@@ -1,18 +1,24 @@
 <map id="src/config.cpp" name="src/config.cpp">
-<area shape="rect" id="Node000001" title="Работа с конфигурацией устройства" alt="" coords="193,5,296,32"/>
+<area shape="rect" id="Node000001" title="Работа с конфигурацией устройства" alt="" coords="242,5,345,32"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,80,65,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="209,35,80,79,78,74,207,30"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="89,80,157,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,35,159,74,156,69,222,30"/>
-<area shape="rect" id="Node000004" href="$jxct__device__info_8h.html" title=" " alt="" coords="181,80,308,107"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="247,33,247,64,242,64,242,33"/>
-<area shape="rect" id="Node000006" href="$jxct__config__vars_8h.html" title=" " alt="" coords="423,80,551,107"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="287,30,431,73,429,78,286,35"/>
-<area shape="rect" id="Node000008" href="$logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="332,80,399,107"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="267,30,333,69,330,74,264,35"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="268,155,344,181"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="257,105,287,141,283,145,253,109"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="436,155,538,181"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="490,107,490,139,484,139,484,107"/>
-<area shape="poly" id="edge8_Node000008_Node000005" title=" " alt="" coords="357,109,328,145,323,141,353,106"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="249,35,80,82,79,77,248,30"/>
+<area shape="rect" id="Node000003" href="$version_8h.html" title=" " alt="" coords="160,155,235,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="242,26,212,32,181,43,152,59,129,81,125,98,131,114,145,130,163,144,160,148,142,134,127,117,119,98,125,79,149,54,178,38,210,27,241,21"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="139,80,206,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="274,35,208,74,205,69,271,30"/>
+<area shape="rect" id="Node000005" href="$jxct__device__info_8h.html" title=" " alt="" coords="230,80,357,107"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="296,33,296,64,291,64,291,33"/>
+<area shape="rect" id="Node000007" href="$jxct__config__vars_8h.html" title=" " alt="" coords="565,80,692,107"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="347,29,556,74,554,79,345,34"/>
+<area shape="rect" id="Node000009" href="$debug_8h.html" title=" " alt="" coords="381,80,449,107"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="316,30,382,69,379,74,313,35"/>
+<area shape="rect" id="Node000010" href="$logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="473,80,541,107"/>
+<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="332,30,460,73,458,78,330,35"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="279,109,228,147,225,143,275,105"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="377,155,453,181"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="316,105,382,144,379,149,313,110"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="577,155,680,181"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="631,107,631,139,626,139,626,107"/>
+<area shape="poly" id="edge10_Node000009_Node000006" title=" " alt="" coords="418,107,418,139,412,139,412,107"/>
+<area shape="poly" id="edge12_Node000010_Node000006" title=" " alt="" coords="493,109,444,147,441,143,489,105"/>
 </map>

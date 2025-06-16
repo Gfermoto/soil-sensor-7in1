@@ -1,0 +1,455 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor v2.0: Файл include/version.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('version_8h.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл version.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><div class="dynheader">
+Граф файлов, в которые включается этот файл:</div>
+<div class="dyncontent">
+<div class="center"><img src="version_8h__dep__incl.png" border="0" usemap="#ainclude_2version_8hdep" alt=""/></div>
+<map name="ainclude_2version_8hdep" id="ainclude_2version_8hdep">
+<area shape="rect" title=" " alt="" coords="411,5,530,32"/>
+<area shape="rect" href="jxct__device__info_8h.html" title=" " alt="" coords="404,80,536,123"/>
+<area shape="poly" title=" " alt="" coords="473,48,473,80,468,80,468,48"/>
+<area shape="rect" href="config_8cpp.html" title="Работа с конфигурацией устройства" alt="" coords="5,171,109,197"/>
+<area shape="poly" title=" " alt="" coords="425,41,90,173,88,168,423,36"/>
+<area shape="rect" href="main_8cpp.html" title="Главный файл проекта JXCT датчика" alt="" coords="561,88,657,115"/>
+<area shape="poly" title=" " alt="" coords="506,38,589,85,586,90,504,42"/>
+<area shape="poly" title=" " alt="" coords="389,121,109,175,108,170,388,116"/>
+<area shape="rect" href="modbus__sensor_8cpp.html" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="133,171,293,197"/>
+<area shape="poly" title=" " alt="" coords="391,130,255,173,253,167,389,125"/>
+<area shape="rect" href="mqtt__client_8cpp.html" title="Взаимодействие с MQTT&#45;брокером и Home Assistant." alt="" coords="318,171,450,197"/>
+<area shape="poly" title=" " alt="" coords="439,136,399,172,395,168,435,132"/>
+<area shape="rect" href="thingspeak__client_8cpp.html" title=" " alt="" coords="474,171,643,197"/>
+<area shape="poly" title=" " alt="" coords="506,132,546,168,543,172,503,136"/>
+<area shape="rect" href="routes__config_8cpp.html" title="Маршруты для управления конфигурацией" alt="" coords="667,171,842,197"/>
+<area shape="poly" title=" " alt="" coords="552,123,710,167,709,173,551,128"/>
+<area shape="rect" href="routes__service_8cpp.html" title="Сервисные маршруты для диагностики и управления" alt="" coords="865,171,1046,197"/>
+<area shape="poly" title=" " alt="" coords="552,120,722,150,865,169,864,175,721,155,551,126"/>
+<area shape="rect" href="wifi__manager_8cpp.html" title="Управление WiFi, веб&#45;интерфейсом и индикацией" alt="" coords="1071,171,1216,197"/>
+<area shape="poly" title=" " alt="" coords="552,120,695,140,806,149,918,155,1059,168,1071,170,1070,175,1058,173,917,160,806,154,694,145,552,126"/>
+</map>
+</div>
+</div>
+<p><a href="version_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a6a112058ddea198337c7a135120d6b21" id="r_a6a112058ddea198337c7a135120d6b21"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a112058ddea198337c7a135120d6b21">JXCT_VERSION_MAJOR</a>&#160;&#160;&#160;2</td></tr>
+<tr class="separator:a6a112058ddea198337c7a135120d6b21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ff229495fbd3dddb40a545ea08dff83" id="r_a6ff229495fbd3dddb40a545ea08dff83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ff229495fbd3dddb40a545ea08dff83">JXCT_VERSION_MINOR</a>&#160;&#160;&#160;4</td></tr>
+<tr class="separator:a6ff229495fbd3dddb40a545ea08dff83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae65128d504d49e3657fdbedeea27f3de" id="r_ae65128d504d49e3657fdbedeea27f3de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae65128d504d49e3657fdbedeea27f3de">JXCT_VERSION_PATCH</a>&#160;&#160;&#160;5</td></tr>
+<tr class="separator:ae65128d504d49e3657fdbedeea27f3de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6df1d22fb5f09eccc23b9f399670cfd7" id="r_a6df1d22fb5f09eccc23b9f399670cfd7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6df1d22fb5f09eccc23b9f399670cfd7">STRINGIFY</a>(x)</td></tr>
+<tr class="separator:a6df1d22fb5f09eccc23b9f399670cfd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9063e80f8777300c93afde6e6f4c9cea" id="r_a9063e80f8777300c93afde6e6f4c9cea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9063e80f8777300c93afde6e6f4c9cea">TOSTRING</a>(x)</td></tr>
+<tr class="separator:a9063e80f8777300c93afde6e6f4c9cea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba3d86f9adebd869f9dabcde75a28eab" id="r_aba3d86f9adebd869f9dabcde75a28eab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba3d86f9adebd869f9dabcde75a28eab">JXCT_VERSION_STRING</a>&#160;&#160;&#160;    <a class="el" href="#a9063e80f8777300c93afde6e6f4c9cea">TOSTRING</a>(<a class="el" href="#a6a112058ddea198337c7a135120d6b21">JXCT_VERSION_MAJOR</a>) &quot;.&quot; <a class="el" href="#a9063e80f8777300c93afde6e6f4c9cea">TOSTRING</a>(<a class="el" href="#a6ff229495fbd3dddb40a545ea08dff83">JXCT_VERSION_MINOR</a>) &quot;.&quot; <a class="el" href="#a9063e80f8777300c93afde6e6f4c9cea">TOSTRING</a>(<a class="el" href="#ae65128d504d49e3657fdbedeea27f3de">JXCT_VERSION_PATCH</a>)</td></tr>
+<tr class="separator:aba3d86f9adebd869f9dabcde75a28eab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfca905ae033e33cf0310e0d283552e9" id="r_abfca905ae033e33cf0310e0d283552e9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfca905ae033e33cf0310e0d283552e9">JXCT_VERSION_CODE</a>&#160;&#160;&#160;(<a class="el" href="#a6a112058ddea198337c7a135120d6b21">JXCT_VERSION_MAJOR</a> * 10000 + <a class="el" href="#a6ff229495fbd3dddb40a545ea08dff83">JXCT_VERSION_MINOR</a> * 100 + <a class="el" href="#ae65128d504d49e3657fdbedeea27f3de">JXCT_VERSION_PATCH</a>)</td></tr>
+<tr class="separator:abfca905ae033e33cf0310e0d283552e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3500b43e0da5d3814772835fa8f92963" id="r_a3500b43e0da5d3814772835fa8f92963"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3500b43e0da5d3814772835fa8f92963">JXCT_VERSION_AT_LEAST</a>(major,  minor,  patch)</td></tr>
+<tr class="separator:a3500b43e0da5d3814772835fa8f92963"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54c102c9bd71e3382ce683efe7b3407b" id="r_a54c102c9bd71e3382ce683efe7b3407b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54c102c9bd71e3382ce683efe7b3407b">JXCT_BUILD_DATE</a>&#160;&#160;&#160;__DATE__</td></tr>
+<tr class="separator:a54c102c9bd71e3382ce683efe7b3407b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa02b5d2d03e3dbdfc2a4a0bcc8ce2818" id="r_aa02b5d2d03e3dbdfc2a4a0bcc8ce2818"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa02b5d2d03e3dbdfc2a4a0bcc8ce2818">JXCT_BUILD_TIME</a>&#160;&#160;&#160;__TIME__</td></tr>
+<tr class="separator:aa02b5d2d03e3dbdfc2a4a0bcc8ce2818"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0096f2930a233d1d076483aa61c5b94f" id="r_a0096f2930a233d1d076483aa61c5b94f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0096f2930a233d1d076483aa61c5b94f">JXCT_FULL_VERSION_STRING</a>&#160;&#160;&#160;<a class="el" href="#aba3d86f9adebd869f9dabcde75a28eab">JXCT_VERSION_STRING</a> &quot; (built &quot; JXCT_BUILD_DATE &quot; &quot; <a class="el" href="#aa02b5d2d03e3dbdfc2a4a0bcc8ce2818">JXCT_BUILD_TIME</a> &quot;)&quot;</td></tr>
+<tr class="separator:a0096f2930a233d1d076483aa61c5b94f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a83f77c2317b3d28560f91fffca64efea" id="r_a83f77c2317b3d28560f91fffca64efea"><td class="memItemLeft" align="right" valign="top">static const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a83f77c2317b3d28560f91fffca64efea">DEVICE_MANUFACTURER</a> [] = &quot;Eyera&quot;</td></tr>
+<tr class="separator:a83f77c2317b3d28560f91fffca64efea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd8d2dccf471a5d0cbd070ff1bef8887" id="r_acd8d2dccf471a5d0cbd070ff1bef8887"><td class="memItemLeft" align="right" valign="top">static const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd8d2dccf471a5d0cbd070ff1bef8887">DEVICE_MODEL</a> [] = &quot;JXCT-7in1&quot;</td></tr>
+<tr class="separator:acd8d2dccf471a5d0cbd070ff1bef8887"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6399036840a604f6b3bbbf93f7ecd3c" id="r_aa6399036840a604f6b3bbbf93f7ecd3c"><td class="memItemLeft" align="right" valign="top">static const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6399036840a604f6b3bbbf93f7ecd3c">DEVICE_SW_VERSION</a> [] = <a class="el" href="#aba3d86f9adebd869f9dabcde75a28eab">JXCT_VERSION_STRING</a></td></tr>
+<tr class="separator:aa6399036840a604f6b3bbbf93f7ecd3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf025b054301360475a0ec4542f74ff3" id="r_acf025b054301360475a0ec4542f74ff3"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf025b054301360475a0ec4542f74ff3">FIRMWARE_VERSION</a> = <a class="el" href="#aba3d86f9adebd869f9dabcde75a28eab">JXCT_VERSION_STRING</a></td></tr>
+<tr class="separator:acf025b054301360475a0ec4542f74ff3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a54c102c9bd71e3382ce683efe7b3407b" name="a54c102c9bd71e3382ce683efe7b3407b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54c102c9bd71e3382ce683efe7b3407b">&#9670;&#160;</a></span>JXCT_BUILD_DATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define JXCT_BUILD_DATE&#160;&#160;&#160;__DATE__</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa02b5d2d03e3dbdfc2a4a0bcc8ce2818" name="aa02b5d2d03e3dbdfc2a4a0bcc8ce2818"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa02b5d2d03e3dbdfc2a4a0bcc8ce2818">&#9670;&#160;</a></span>JXCT_BUILD_TIME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define JXCT_BUILD_TIME&#160;&#160;&#160;__TIME__</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0096f2930a233d1d076483aa61c5b94f" name="a0096f2930a233d1d076483aa61c5b94f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0096f2930a233d1d076483aa61c5b94f">&#9670;&#160;</a></span>JXCT_FULL_VERSION_STRING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define JXCT_FULL_VERSION_STRING&#160;&#160;&#160;<a class="el" href="#aba3d86f9adebd869f9dabcde75a28eab">JXCT_VERSION_STRING</a> &quot; (built &quot; JXCT_BUILD_DATE &quot; &quot; <a class="el" href="#aa02b5d2d03e3dbdfc2a4a0bcc8ce2818">JXCT_BUILD_TIME</a> &quot;)&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3500b43e0da5d3814772835fa8f92963" name="a3500b43e0da5d3814772835fa8f92963"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3500b43e0da5d3814772835fa8f92963">&#9670;&#160;</a></span>JXCT_VERSION_AT_LEAST</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define JXCT_VERSION_AT_LEAST</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>major</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>minor</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>patch</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">(<a class="code hl_define" href="#abfca905ae033e33cf0310e0d283552e9">JXCT_VERSION_CODE</a> &gt;= ((major) * 10000 + (minor) * 100 + (patch)))</div>
+<div class="ttc" id="aversion_8h_html_abfca905ae033e33cf0310e0d283552e9"><div class="ttname"><a href="#abfca905ae033e33cf0310e0d283552e9">JXCT_VERSION_CODE</a></div><div class="ttdeci">#define JXCT_VERSION_CODE</div><div class="ttdef"><b>Определения</b> version.h:27</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="abfca905ae033e33cf0310e0d283552e9" name="abfca905ae033e33cf0310e0d283552e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfca905ae033e33cf0310e0d283552e9">&#9670;&#160;</a></span>JXCT_VERSION_CODE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define JXCT_VERSION_CODE&#160;&#160;&#160;(<a class="el" href="#a6a112058ddea198337c7a135120d6b21">JXCT_VERSION_MAJOR</a> * 10000 + <a class="el" href="#a6ff229495fbd3dddb40a545ea08dff83">JXCT_VERSION_MINOR</a> * 100 + <a class="el" href="#ae65128d504d49e3657fdbedeea27f3de">JXCT_VERSION_PATCH</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6a112058ddea198337c7a135120d6b21" name="a6a112058ddea198337c7a135120d6b21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a112058ddea198337c7a135120d6b21">&#9670;&#160;</a></span>JXCT_VERSION_MAJOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define JXCT_VERSION_MAJOR&#160;&#160;&#160;2</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6ff229495fbd3dddb40a545ea08dff83" name="a6ff229495fbd3dddb40a545ea08dff83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ff229495fbd3dddb40a545ea08dff83">&#9670;&#160;</a></span>JXCT_VERSION_MINOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define JXCT_VERSION_MINOR&#160;&#160;&#160;4</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae65128d504d49e3657fdbedeea27f3de" name="ae65128d504d49e3657fdbedeea27f3de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae65128d504d49e3657fdbedeea27f3de">&#9670;&#160;</a></span>JXCT_VERSION_PATCH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define JXCT_VERSION_PATCH&#160;&#160;&#160;5</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aba3d86f9adebd869f9dabcde75a28eab" name="aba3d86f9adebd869f9dabcde75a28eab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba3d86f9adebd869f9dabcde75a28eab">&#9670;&#160;</a></span>JXCT_VERSION_STRING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define JXCT_VERSION_STRING&#160;&#160;&#160;    <a class="el" href="#a9063e80f8777300c93afde6e6f4c9cea">TOSTRING</a>(<a class="el" href="#a6a112058ddea198337c7a135120d6b21">JXCT_VERSION_MAJOR</a>) &quot;.&quot; <a class="el" href="#a9063e80f8777300c93afde6e6f4c9cea">TOSTRING</a>(<a class="el" href="#a6ff229495fbd3dddb40a545ea08dff83">JXCT_VERSION_MINOR</a>) &quot;.&quot; <a class="el" href="#a9063e80f8777300c93afde6e6f4c9cea">TOSTRING</a>(<a class="el" href="#ae65128d504d49e3657fdbedeea27f3de">JXCT_VERSION_PATCH</a>)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6df1d22fb5f09eccc23b9f399670cfd7" name="a6df1d22fb5f09eccc23b9f399670cfd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6df1d22fb5f09eccc23b9f399670cfd7">&#9670;&#160;</a></span>STRINGIFY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define STRINGIFY</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><span class="preprocessor">#x</span></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a9063e80f8777300c93afde6e6f4c9cea" name="a9063e80f8777300c93afde6e6f4c9cea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9063e80f8777300c93afde6e6f4c9cea">&#9670;&#160;</a></span>TOSTRING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TOSTRING</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#a6df1d22fb5f09eccc23b9f399670cfd7">STRINGIFY</a>(x)</div>
+<div class="ttc" id="aversion_8h_html_a6df1d22fb5f09eccc23b9f399670cfd7"><div class="ttname"><a href="#a6df1d22fb5f09eccc23b9f399670cfd7">STRINGIFY</a></div><div class="ttdeci">#define STRINGIFY(x)</div><div class="ttdef"><b>Определения</b> version.h:13</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a83f77c2317b3d28560f91fffca64efea" name="a83f77c2317b3d28560f91fffca64efea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a83f77c2317b3d28560f91fffca64efea">&#9670;&#160;</a></span>DEVICE_MANUFACTURER</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char DEVICE_MANUFACTURER[] = &quot;Eyera&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acd8d2dccf471a5d0cbd070ff1bef8887" name="acd8d2dccf471a5d0cbd070ff1bef8887"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd8d2dccf471a5d0cbd070ff1bef8887">&#9670;&#160;</a></span>DEVICE_MODEL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char DEVICE_MODEL[] = &quot;JXCT-7in1&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa6399036840a604f6b3bbbf93f7ecd3c" name="aa6399036840a604f6b3bbbf93f7ecd3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6399036840a604f6b3bbbf93f7ecd3c">&#9670;&#160;</a></span>DEVICE_SW_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char DEVICE_SW_VERSION[] = <a class="el" href="#aba3d86f9adebd869f9dabcde75a28eab">JXCT_VERSION_STRING</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acf025b054301360475a0ec4542f74ff3" name="acf025b054301360475a0ec4542f74ff3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf025b054301360475a0ec4542f74ff3">&#9670;&#160;</a></span>FIRMWARE_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* FIRMWARE_VERSION = <a class="el" href="#aba3d86f9adebd869f9dabcde75a28eab">JXCT_VERSION_STRING</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="version_8h.html">version.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

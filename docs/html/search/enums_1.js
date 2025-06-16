@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wifimode_0',['WiFiMode',['../wifi__manager_8h.html#ae685142b922ea26aa869f6cb5e17a19c',1,'wifi_manager.h']]]
+  ['loglevel_0',['LogLevel',['../logger_8h.html#aca1fd1d8935433e6ba2e3918214e07f9',1,'logger.h']]]
 ];

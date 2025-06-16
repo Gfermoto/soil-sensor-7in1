@@ -109,14 +109,17 @@ $(function(){initNavTree('jxct__format__utils_8h.html',''); initResizable(true);
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
+<code>#include &lt;Arduino.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Граф включаемых заголовочных файлов для jxct_format_utils.h:</div>
 <div class="dyncontent">
 <div class="center"><img src="jxct__format__utils_8h__incl.png" border="0" usemap="#ainclude_2jxct__format__utils_8h" alt=""/></div>
 <map name="ainclude_2jxct__format__utils_8h" id="ainclude_2jxct__format__utils_8h">
-<area shape="rect" title=" " alt="" coords="5,5,137,48"/>
-<area shape="rect" title=" " alt="" coords="44,96,98,123"/>
-<area shape="poly" title=" " alt="" coords="74,49,74,80,68,80,68,49"/>
+<area shape="rect" title=" " alt="" coords="10,5,142,48"/>
+<area shape="rect" title=" " alt="" coords="5,96,59,123"/>
+<area shape="poly" title=" " alt="" coords="67,50,49,83,44,81,62,47"/>
+<area shape="rect" title=" " alt="" coords="83,96,160,123"/>
+<area shape="poly" title=" " alt="" coords="90,47,109,81,104,84,85,50"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -124,15 +127,19 @@ $(function(){initNavTree('jxct__format__utils_8h.html',''); initResizable(true);
 <div class="dyncontent">
 <div class="center"><img src="jxct__format__utils_8h__dep__incl.png" border="0" usemap="#ainclude_2jxct__format__utils_8hdep" alt=""/></div>
 <map name="ainclude_2jxct__format__utils_8hdep" id="ainclude_2jxct__format__utils_8hdep">
-<area shape="rect" title=" " alt="" coords="280,5,412,48"/>
+<area shape="rect" title=" " alt="" coords="463,5,594,48"/>
 <area shape="rect" href="jxct__format__utils_8cpp.html" title=" " alt="" coords="5,96,170,123"/>
-<area shape="poly" title=" " alt="" coords="266,56,129,98,127,93,265,50"/>
+<area shape="poly" title=" " alt="" coords="448,45,158,98,157,93,447,40"/>
 <area shape="rect" href="mqtt__client_8cpp.html" title="Взаимодействие с MQTT&#45;брокером и Home Assistant." alt="" coords="193,96,326,123"/>
-<area shape="poly" title=" " alt="" coords="315,61,275,97,271,93,311,57"/>
+<area shape="poly" title=" " alt="" coords="449,55,303,98,301,93,447,49"/>
 <area shape="rect" href="thingspeak__client_8cpp.html" title=" " alt="" coords="350,96,519,123"/>
-<area shape="poly" title=" " alt="" coords="382,57,422,93,419,97,378,61"/>
-<area shape="rect" href="wifi__manager_8cpp.html" title="Управление WiFi, веб&#45;интерфейсом и индикацией" alt="" coords="543,96,688,123"/>
-<area shape="poly" title=" " alt="" coords="428,49,574,93,572,98,426,55"/>
+<area shape="poly" title=" " alt="" coords="494,61,451,97,447,93,491,56"/>
+<area shape="rect" href="routes__data_8cpp.html" title="Маршруты для работы с данными датчика" alt="" coords="543,96,707,123"/>
+<area shape="poly" title=" " alt="" coords="567,56,611,93,608,98,563,60"/>
+<area shape="rect" href="routes__service_8cpp.html" title="Сервисные маршруты для диагностики и управления" alt="" coords="732,96,913,123"/>
+<area shape="poly" title=" " alt="" coords="610,47,777,93,775,98,609,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html" title="Управление WiFi, веб&#45;интерфейсом и индикацией" alt="" coords="938,96,1083,123"/>
+<area shape="poly" title=" " alt="" coords="610,39,938,93,937,99,609,44"/>
 </map>
 </div>
 </div>
@@ -150,6 +157,8 @@ $(function(){initNavTree('jxct__format__utils_8h.html',''); initResizable(true);
 <tr class="separator:a416ab24406c338058778bbde7c4da152"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdc9f6cdc05f0aa72eec54b3e904ca7b" id="r_abdc9f6cdc05f0aa72eec54b3e904ca7b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abdc9f6cdc05f0aa72eec54b3e904ca7b">format_npk</a> (float value)</td></tr>
 <tr class="separator:abdc9f6cdc05f0aa72eec54b3e904ca7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac78af75db9fe02059342eed69de396e4" id="r_ac78af75db9fe02059342eed69de396e4"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac78af75db9fe02059342eed69de396e4">formatValue</a> (float value, const char *unit, int precision=2)</td></tr>
+<tr class="separator:ac78af75db9fe02059342eed69de396e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
 <a id="a39b2dedc3670adcf20a62a8d113d2483" name="a39b2dedc3670adcf20a62a8d113d2483"></a>
@@ -171,26 +180,31 @@ $(function(){initNavTree('jxct__format__utils_8h.html',''); initResizable(true);
 <div class="dyncontent">
 <div class="center"><img src="jxct__format__utils_8h_a39b2dedc3670adcf20a62a8d113d2483_icgraph.png" border="0" usemap="#ajxct__format__utils_8h_a39b2dedc3670adcf20a62a8d113d2483_icgraph" alt=""/></div>
 <map name="ajxct__format__utils_8h_a39b2dedc3670adcf20a62a8d113d2483_icgraph" id="ajxct__format__utils_8h_a39b2dedc3670adcf20a62a8d113d2483_icgraph">
-<area shape="rect" title=" " alt="" coords="761,68,840,95"/>
-<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="387,5,548,32"/>
-<area shape="poly" title=" " alt="" coords="745,74,542,35,543,30,746,69"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="596,93,713,120"/>
-<area shape="poly" title=" " alt="" coords="746,93,714,99,713,94,745,88"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
-<area shape="poly" title=" " alt="" coords="372,24,235,33,170,43,169,37,235,28,372,19"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="419,93,516,120"/>
-<area shape="poly" title=" " alt="" coords="580,109,517,109,517,104,580,104"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,144,339,171"/>
-<area shape="poly" title=" " alt="" coords="587,127,548,135,437,149,340,157,340,152,436,144,547,129,586,122"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,43,330,69"/>
-<area shape="poly" title=" " alt="" coords="403,91,330,71,332,65,405,86"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
-<area shape="poly" title=" " alt="" coords="403,112,188,121,187,116,403,107"/>
-<area shape="poly" title=" " alt="" coords="405,127,338,146,337,141,403,122"/>
-<area shape="poly" title=" " alt="" coords="228,54,170,49,170,43,229,48"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
-<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
-<area shape="poly" title=" " alt="" coords="219,142,187,133,188,128,221,137"/>
+<area shape="rect" title=" " alt="" coords="928,56,1008,83"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="533,5,693,32"/>
+<area shape="poly" title=" " alt="" coords="913,55,880,47,783,33,693,25,694,20,784,27,881,41,914,49"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="749,56,872,83"/>
+<area shape="poly" title=" " alt="" coords="913,72,873,72,873,67,913,67"/>
+<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="741,107,880,133"/>
+<area shape="poly" title=" " alt="" coords="915,89,855,109,854,104,913,84"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,44,170,71"/>
+<area shape="poly" title=" " alt="" coords="517,25,384,34,235,47,170,56,169,51,235,41,383,28,517,20"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="554,107,672,133"/>
+<area shape="poly" title=" " alt="" coords="742,90,669,109,667,103,740,85"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,107,485,133"/>
+<area shape="poly" title=" " alt="" coords="539,123,485,123,485,117,539,117"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,157,339,184"/>
+<area shape="poly" title=" " alt="" coords="539,138,485,148,340,168,339,162,484,143,539,133"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,56,330,83"/>
+<area shape="poly" title=" " alt="" coords="379,104,328,86,330,81,381,98"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,120,187,147"/>
+<area shape="poly" title=" " alt="" coords="372,126,188,134,187,129,371,120"/>
+<area shape="poly" title=" " alt="" coords="381,142,330,159,328,154,379,136"/>
+<area shape="poly" title=" " alt="" coords="228,67,170,62,170,57,229,62"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,120,59,147"/>
+<area shape="poly" title=" " alt="" coords="91,136,59,136,59,131,91,131"/>
+<area shape="poly" title=" " alt="" coords="219,155,187,147,188,141,221,150"/>
+<area shape="poly" title=" " alt="" coords="726,123,672,123,672,117,726,117"/>
 </map>
 </div>
 
@@ -215,26 +229,31 @@ $(function(){initNavTree('jxct__format__utils_8h.html',''); initResizable(true);
 <div class="dyncontent">
 <div class="center"><img src="jxct__format__utils_8h_a3be478cef555484efe62159216f6d470_icgraph.png" border="0" usemap="#ajxct__format__utils_8h_a3be478cef555484efe62159216f6d470_icgraph" alt=""/></div>
 <map name="ajxct__format__utils_8h_a3be478cef555484efe62159216f6d470_icgraph" id="ajxct__format__utils_8h_a3be478cef555484efe62159216f6d470_icgraph">
-<area shape="rect" title=" " alt="" coords="761,68,876,95"/>
-<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="387,5,548,32"/>
-<area shape="poly" title=" " alt="" coords="745,71,546,35,547,30,746,66"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="596,93,713,120"/>
-<area shape="poly" title=" " alt="" coords="746,95,714,100,713,95,745,90"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
-<area shape="poly" title=" " alt="" coords="372,24,235,33,170,43,169,37,235,28,372,19"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="419,93,516,120"/>
-<area shape="poly" title=" " alt="" coords="580,109,517,109,517,104,580,104"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,144,339,171"/>
-<area shape="poly" title=" " alt="" coords="587,127,548,135,437,149,340,157,340,152,436,144,547,129,586,122"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,43,330,69"/>
-<area shape="poly" title=" " alt="" coords="403,91,330,71,332,65,405,86"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
-<area shape="poly" title=" " alt="" coords="403,112,188,121,187,116,403,107"/>
-<area shape="poly" title=" " alt="" coords="405,127,338,146,337,141,403,122"/>
-<area shape="poly" title=" " alt="" coords="228,54,170,49,170,43,229,48"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
-<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
-<area shape="poly" title=" " alt="" coords="219,142,187,133,188,128,221,137"/>
+<area shape="rect" title=" " alt="" coords="928,56,1044,83"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="533,5,693,32"/>
+<area shape="poly" title=" " alt="" coords="918,54,880,47,783,34,693,26,693,21,784,28,881,41,919,49"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="749,56,872,83"/>
+<area shape="poly" title=" " alt="" coords="913,72,873,72,873,67,913,67"/>
+<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="741,107,880,133"/>
+<area shape="poly" title=" " alt="" coords="923,90,860,109,859,104,922,85"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,44,170,71"/>
+<area shape="poly" title=" " alt="" coords="517,25,384,34,235,47,170,56,169,51,235,41,383,28,517,20"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="554,107,672,133"/>
+<area shape="poly" title=" " alt="" coords="742,90,669,109,667,103,740,85"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,107,485,133"/>
+<area shape="poly" title=" " alt="" coords="539,123,485,123,485,117,539,117"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,157,339,184"/>
+<area shape="poly" title=" " alt="" coords="539,138,485,148,340,168,339,162,484,143,539,133"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,56,330,83"/>
+<area shape="poly" title=" " alt="" coords="379,104,328,86,330,81,381,98"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,120,187,147"/>
+<area shape="poly" title=" " alt="" coords="372,126,188,134,187,129,371,120"/>
+<area shape="poly" title=" " alt="" coords="381,142,330,159,328,154,379,136"/>
+<area shape="poly" title=" " alt="" coords="228,67,170,62,170,57,229,62"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,120,59,147"/>
+<area shape="poly" title=" " alt="" coords="91,136,59,136,59,131,91,131"/>
+<area shape="poly" title=" " alt="" coords="219,155,187,147,188,141,221,150"/>
+<area shape="poly" title=" " alt="" coords="726,123,672,123,672,117,726,117"/>
 </map>
 </div>
 
@@ -259,26 +278,31 @@ $(function(){initNavTree('jxct__format__utils_8h.html',''); initResizable(true);
 <div class="dyncontent">
 <div class="center"><img src="jxct__format__utils_8h_abdc9f6cdc05f0aa72eec54b3e904ca7b_icgraph.png" border="0" usemap="#ajxct__format__utils_8h_abdc9f6cdc05f0aa72eec54b3e904ca7b_icgraph" alt=""/></div>
 <map name="ajxct__format__utils_8h_abdc9f6cdc05f0aa72eec54b3e904ca7b_icgraph" id="ajxct__format__utils_8h_abdc9f6cdc05f0aa72eec54b3e904ca7b_icgraph">
-<area shape="rect" title=" " alt="" coords="761,68,847,95"/>
-<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="387,5,548,32"/>
-<area shape="poly" title=" " alt="" coords="745,73,543,35,544,30,746,68"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="596,93,713,120"/>
-<area shape="poly" title=" " alt="" coords="746,94,714,99,713,94,745,89"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
-<area shape="poly" title=" " alt="" coords="372,24,235,33,170,43,169,37,235,28,372,19"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="419,93,516,120"/>
-<area shape="poly" title=" " alt="" coords="580,109,517,109,517,104,580,104"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,144,339,171"/>
-<area shape="poly" title=" " alt="" coords="587,127,548,135,437,149,340,157,340,152,436,144,547,129,586,122"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,43,330,69"/>
-<area shape="poly" title=" " alt="" coords="403,91,330,71,332,65,405,86"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
-<area shape="poly" title=" " alt="" coords="403,112,188,121,187,116,403,107"/>
-<area shape="poly" title=" " alt="" coords="405,127,338,146,337,141,403,122"/>
-<area shape="poly" title=" " alt="" coords="228,54,170,49,170,43,229,48"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
-<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
-<area shape="poly" title=" " alt="" coords="219,142,187,133,188,128,221,137"/>
+<area shape="rect" title=" " alt="" coords="928,56,1015,83"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="533,5,693,32"/>
+<area shape="poly" title=" " alt="" coords="913,54,880,47,783,33,693,25,694,20,784,28,881,41,914,49"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="749,56,872,83"/>
+<area shape="poly" title=" " alt="" coords="913,72,873,72,873,67,913,67"/>
+<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="741,107,880,133"/>
+<area shape="poly" title=" " alt="" coords="914,90,856,109,855,103,913,85"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,44,170,71"/>
+<area shape="poly" title=" " alt="" coords="517,25,384,34,235,47,170,56,169,51,235,41,383,28,517,20"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="554,107,672,133"/>
+<area shape="poly" title=" " alt="" coords="742,90,669,109,667,103,740,85"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,107,485,133"/>
+<area shape="poly" title=" " alt="" coords="539,123,485,123,485,117,539,117"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,157,339,184"/>
+<area shape="poly" title=" " alt="" coords="539,138,485,148,340,168,339,162,484,143,539,133"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,56,330,83"/>
+<area shape="poly" title=" " alt="" coords="379,104,328,86,330,81,381,98"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,120,187,147"/>
+<area shape="poly" title=" " alt="" coords="372,126,188,134,187,129,371,120"/>
+<area shape="poly" title=" " alt="" coords="381,142,330,159,328,154,379,136"/>
+<area shape="poly" title=" " alt="" coords="228,67,170,62,170,57,229,62"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,120,59,147"/>
+<area shape="poly" title=" " alt="" coords="91,136,59,136,59,131,91,131"/>
+<area shape="poly" title=" " alt="" coords="219,155,187,147,188,141,221,150"/>
+<area shape="poly" title=" " alt="" coords="726,123,672,123,672,117,726,117"/>
 </map>
 </div>
 
@@ -303,26 +327,31 @@ $(function(){initNavTree('jxct__format__utils_8h.html',''); initResizable(true);
 <div class="dyncontent">
 <div class="center"><img src="jxct__format__utils_8h_a416ab24406c338058778bbde7c4da152_icgraph.png" border="0" usemap="#ajxct__format__utils_8h_a416ab24406c338058778bbde7c4da152_icgraph" alt=""/></div>
 <map name="ajxct__format__utils_8h_a416ab24406c338058778bbde7c4da152_icgraph" id="ajxct__format__utils_8h_a416ab24406c338058778bbde7c4da152_icgraph">
-<area shape="rect" title=" " alt="" coords="761,68,840,95"/>
-<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="387,5,548,32"/>
-<area shape="poly" title=" " alt="" coords="745,74,542,35,543,30,746,69"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="596,93,713,120"/>
-<area shape="poly" title=" " alt="" coords="746,93,714,99,713,94,745,88"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
-<area shape="poly" title=" " alt="" coords="372,24,235,33,170,43,169,37,235,28,372,19"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="419,93,516,120"/>
-<area shape="poly" title=" " alt="" coords="580,109,517,109,517,104,580,104"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,144,339,171"/>
-<area shape="poly" title=" " alt="" coords="587,127,548,135,437,149,340,157,340,152,436,144,547,129,586,122"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,43,330,69"/>
-<area shape="poly" title=" " alt="" coords="403,91,330,71,332,65,405,86"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
-<area shape="poly" title=" " alt="" coords="403,112,188,121,187,116,403,107"/>
-<area shape="poly" title=" " alt="" coords="405,127,338,146,337,141,403,122"/>
-<area shape="poly" title=" " alt="" coords="228,54,170,49,170,43,229,48"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
-<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
-<area shape="poly" title=" " alt="" coords="219,142,187,133,188,128,221,137"/>
+<area shape="rect" title=" " alt="" coords="928,56,1008,83"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="533,5,693,32"/>
+<area shape="poly" title=" " alt="" coords="913,55,880,47,783,33,693,25,694,20,784,27,881,41,914,49"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="749,56,872,83"/>
+<area shape="poly" title=" " alt="" coords="913,72,873,72,873,67,913,67"/>
+<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="741,107,880,133"/>
+<area shape="poly" title=" " alt="" coords="915,89,855,109,854,104,913,84"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,44,170,71"/>
+<area shape="poly" title=" " alt="" coords="517,25,384,34,235,47,170,56,169,51,235,41,383,28,517,20"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="554,107,672,133"/>
+<area shape="poly" title=" " alt="" coords="742,90,669,109,667,103,740,85"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,107,485,133"/>
+<area shape="poly" title=" " alt="" coords="539,123,485,123,485,117,539,117"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,157,339,184"/>
+<area shape="poly" title=" " alt="" coords="539,138,485,148,340,168,339,162,484,143,539,133"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,56,330,83"/>
+<area shape="poly" title=" " alt="" coords="379,104,328,86,330,81,381,98"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,120,187,147"/>
+<area shape="poly" title=" " alt="" coords="372,126,188,134,187,129,371,120"/>
+<area shape="poly" title=" " alt="" coords="381,142,330,159,328,154,379,136"/>
+<area shape="poly" title=" " alt="" coords="228,67,170,62,170,57,229,62"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,120,59,147"/>
+<area shape="poly" title=" " alt="" coords="91,136,59,136,59,131,91,131"/>
+<area shape="poly" title=" " alt="" coords="219,155,187,147,188,141,221,150"/>
+<area shape="poly" title=" " alt="" coords="726,123,672,123,672,117,726,117"/>
 </map>
 </div>
 
@@ -347,28 +376,59 @@ $(function(){initNavTree('jxct__format__utils_8h.html',''); initResizable(true);
 <div class="dyncontent">
 <div class="center"><img src="jxct__format__utils_8h_a9a843da2888c9b8014dd9506284f1351_icgraph.png" border="0" usemap="#ajxct__format__utils_8h_a9a843da2888c9b8014dd9506284f1351_icgraph" alt=""/></div>
 <map name="ajxct__format__utils_8h_a9a843da2888c9b8014dd9506284f1351_icgraph" id="ajxct__format__utils_8h_a9a843da2888c9b8014dd9506284f1351_icgraph">
-<area shape="rect" title=" " alt="" coords="761,68,895,95"/>
-<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="387,5,548,32"/>
-<area shape="poly" title=" " alt="" coords="745,70,548,35,549,30,746,64"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="596,93,713,120"/>
-<area shape="poly" title=" " alt="" coords="746,96,714,101,713,95,745,91"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
-<area shape="poly" title=" " alt="" coords="372,24,235,33,170,43,169,37,235,28,372,19"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="419,93,516,120"/>
-<area shape="poly" title=" " alt="" coords="580,109,517,109,517,104,580,104"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,144,339,171"/>
-<area shape="poly" title=" " alt="" coords="587,127,548,135,437,149,340,157,340,152,436,144,547,129,586,122"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,43,330,69"/>
-<area shape="poly" title=" " alt="" coords="403,91,330,71,332,65,405,86"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
-<area shape="poly" title=" " alt="" coords="403,112,188,121,187,116,403,107"/>
-<area shape="poly" title=" " alt="" coords="405,127,338,146,337,141,403,122"/>
-<area shape="poly" title=" " alt="" coords="228,54,170,49,170,43,229,48"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
-<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
-<area shape="poly" title=" " alt="" coords="219,142,187,133,188,128,221,137"/>
+<area shape="rect" title=" " alt="" coords="928,56,1063,83"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="533,5,693,32"/>
+<area shape="poly" title=" " alt="" coords="923,55,880,47,783,34,693,26,693,21,783,29,881,41,924,50"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="749,56,872,83"/>
+<area shape="poly" title=" " alt="" coords="913,72,872,72,872,67,913,67"/>
+<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="741,107,880,133"/>
+<area shape="poly" title=" " alt="" coords="930,90,863,109,861,103,929,85"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,44,170,71"/>
+<area shape="poly" title=" " alt="" coords="517,25,384,34,235,47,170,56,169,51,235,41,383,28,517,20"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="554,107,672,133"/>
+<area shape="poly" title=" " alt="" coords="742,90,669,109,667,103,740,85"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,107,485,133"/>
+<area shape="poly" title=" " alt="" coords="539,123,485,123,485,117,539,117"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,157,339,184"/>
+<area shape="poly" title=" " alt="" coords="539,138,485,148,340,168,339,162,484,143,539,133"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,56,330,83"/>
+<area shape="poly" title=" " alt="" coords="379,104,328,86,330,81,381,98"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,120,187,147"/>
+<area shape="poly" title=" " alt="" coords="372,126,188,134,187,129,371,120"/>
+<area shape="poly" title=" " alt="" coords="381,142,330,159,328,154,379,136"/>
+<area shape="poly" title=" " alt="" coords="228,67,170,62,170,57,229,62"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,120,59,147"/>
+<area shape="poly" title=" " alt="" coords="91,136,59,136,59,131,91,131"/>
+<area shape="poly" title=" " alt="" coords="219,155,187,147,188,141,221,150"/>
+<area shape="poly" title=" " alt="" coords="726,123,672,123,672,117,726,117"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="ac78af75db9fe02059342eed69de396e4" name="ac78af75db9fe02059342eed69de396e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac78af75db9fe02059342eed69de396e4">&#9670;&#160;</a></span>formatValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String formatValue </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>unit</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>precision</em></span><span class="paramdefsep"> = </span><span class="paramdefval">2</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

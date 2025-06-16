@@ -1,4 +1,27 @@
 var searchData=
 [
-  ['_3a_20strong_0',['✅ &lt;strong&gt;Правильные Modbus адреса (из официальной документации JXCT):&lt;/strong&gt;',['../index.html#autotoc_md4',1,'']]]
+  ['json_5fbuffer_5fsize_0',['JSON_BUFFER_SIZE',['../jxct__constants_8h.html#a3ab6698eff150be75250e5066a32c343',1,'jxct_constants.h']]],
+  ['jxct_1',['💡 Почему JXCT?',['../index.html#autotoc_md6',1,'']]],
+  ['jxct_20soil_20sensor_2',['🌱 JXCT Soil Sensor',['../index.html',1,'']]],
+  ['jxct_5fbuild_5fdate_3',['JXCT_BUILD_DATE',['../version_8h.html#a54c102c9bd71e3382ce683efe7b3407b',1,'version.h']]],
+  ['jxct_5fbuild_5ftime_4',['JXCT_BUILD_TIME',['../version_8h.html#aa02b5d2d03e3dbdfc2a4a0bcc8ce2818',1,'version.h']]],
+  ['jxct_5fbutton_5fhold_5ftime_5fms_5',['JXCT_BUTTON_HOLD_TIME_MS',['../jxct__constants_8h.html#ad9caf8aea0daab8f3b8499c43ca27186',1,'jxct_constants.h']]],
+  ['jxct_5fconfig_5fvars_2eh_6',['jxct_config_vars.h',['../jxct__config__vars_8h.html',1,'']]],
+  ['jxct_5fconstants_2eh_7',['jxct_constants.h',['../jxct__constants_8h.html',1,'']]],
+  ['jxct_5fdevice_5finfo_2eh_8',['jxct_device_info.h',['../jxct__device__info_8h.html',1,'']]],
+  ['jxct_5fformat_5futils_2ecpp_9',['jxct_format_utils.cpp',['../jxct__format__utils_8cpp.html',1,'']]],
+  ['jxct_5fformat_5futils_2eh_10',['jxct_format_utils.h',['../jxct__format__utils_8h.html',1,'']]],
+  ['jxct_5ffull_5fversion_5fstring_11',['JXCT_FULL_VERSION_STRING',['../config_8cpp.html#a0096f2930a233d1d076483aa61c5b94f',1,'JXCT_FULL_VERSION_STRING:&#160;config.cpp'],['../version_8h.html#a0096f2930a233d1d076483aa61c5b94f',1,'JXCT_FULL_VERSION_STRING:&#160;version.h']]],
+  ['jxct_5fmodbus_5fid_12',['JXCT_MODBUS_ID',['../jxct__config__vars_8h.html#ab3f5a96fb12247f8fe0f1eb350a32d90',1,'jxct_config_vars.h']]],
+  ['jxct_5fstatus_5fled_5fpin_13',['JXCT_STATUS_LED_PIN',['../jxct__constants_8h.html#a921d1345eebedb569ba46c07be781d2e',1,'jxct_constants.h']]],
+  ['jxct_5fui_5fsystem_2ecpp_14',['jxct_ui_system.cpp',['../jxct__ui__system_8cpp.html',1,'']]],
+  ['jxct_5fui_5fsystem_2eh_15',['jxct_ui_system.h',['../jxct__ui__system_8h.html',1,'']]],
+  ['jxct_5fversion_5fat_5fleast_16',['JXCT_VERSION_AT_LEAST',['../version_8h.html#a3500b43e0da5d3814772835fa8f92963',1,'version.h']]],
+  ['jxct_5fversion_5fcode_17',['JXCT_VERSION_CODE',['../version_8h.html#abfca905ae033e33cf0310e0d283552e9',1,'version.h']]],
+  ['jxct_5fversion_5fmajor_18',['JXCT_VERSION_MAJOR',['../version_8h.html#a6a112058ddea198337c7a135120d6b21',1,'version.h']]],
+  ['jxct_5fversion_5fminor_19',['JXCT_VERSION_MINOR',['../version_8h.html#a6ff229495fbd3dddb40a545ea08dff83',1,'version.h']]],
+  ['jxct_5fversion_5fpatch_20',['JXCT_VERSION_PATCH',['../version_8h.html#ae65128d504d49e3657fdbedeea27f3de',1,'version.h']]],
+  ['jxct_5fversion_5fstring_21',['JXCT_VERSION_STRING',['../version_8h.html#aba3d86f9adebd869f9dabcde75a28eab',1,'version.h']]],
+  ['jxct_5fwatchdog_5ftimeout_5fsec_22',['JXCT_WATCHDOG_TIMEOUT_SEC',['../jxct__constants_8h.html#a7954a4e74b56f782bc40acf8db11b6a9',1,'jxct_constants.h']]],
+  ['jxct_5fwifi_5fap_5fpass_23',['JXCT_WIFI_AP_PASS',['../jxct__constants_8h.html#a4e8fd5f93ab38700d0ef3e9fb0bcc720',1,'jxct_constants.h']]]
 ];

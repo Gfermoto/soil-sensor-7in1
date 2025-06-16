@@ -1,20 +1,27 @@
 <map id="src/modbus_sensor.cpp" name="src/modbus_sensor.cpp">
-<area shape="rect" id="Node000001" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="128,5,288,32"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="109,155,185,181"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="128,26,96,32,65,43,37,59,14,82,9,93,10,104,16,114,27,123,58,140,95,152,93,157,56,145,24,128,12,118,4,106,4,92,10,78,34,55,63,38,95,27,127,20"/>
-<area shape="rect" id="Node000003" href="$modbus__sensor_8h.html" title=" " alt="" coords="266,80,390,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="231,30,296,69,293,74,228,35"/>
-<area shape="rect" id="Node000005" href="$jxct__device__info_8h.html" title=" " alt="" coords="24,80,150,107"/>
-<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="188,35,123,74,120,69,186,30"/>
-<area shape="rect" id="Node000006" href="$jxct__config__vars_8h.html" title=" " alt="" coords="414,80,541,107"/>
-<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="256,30,416,73,415,78,254,35"/>
-<area shape="rect" id="Node000008" href="$logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="175,80,242,107"/>
-<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="211,33,211,64,206,64,206,33"/>
-<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="298,110,194,151,192,146,296,105"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="269,155,387,181"/>
-<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="331,107,331,139,326,139,326,107"/>
-<area shape="poly" id="edge6_Node000005_Node000002" title=" " alt="" coords="99,106,129,141,125,145,95,109"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="426,155,529,181"/>
-<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="480,107,480,139,475,139,475,107"/>
-<area shape="poly" id="edge10_Node000008_Node000002" title=" " alt="" coords="200,109,169,145,165,141,196,105"/>
+<area shape="rect" id="Node000001" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="250,5,410,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="200,155,276,181"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="265,35,225,53,209,66,195,81,191,96,194,112,215,142,211,145,189,114,185,96,190,79,205,62,223,48,262,30"/>
+<area shape="rect" id="Node000003" href="$modbus__sensor_8h.html" title=" " alt="" coords="5,80,130,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="285,35,129,78,128,73,284,30"/>
+<area shape="rect" id="Node000005" href="$jxct__device__info_8h.html" title=" " alt="" coords="388,80,515,107"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="353,30,419,69,416,74,350,35"/>
+<area shape="rect" id="Node000007" href="$jxct__config__vars_8h.html" title=" " alt="" coords="538,80,666,107"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="378,30,540,73,539,78,377,35"/>
+<area shape="rect" id="Node000009" href="$debug_8h.html" title=" " alt="" coords="204,80,272,107"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="316,35,267,73,264,68,312,30"/>
+<area shape="rect" id="Node000010" href="$logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="296,80,364,107"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="333,33,333,64,328,64,328,33"/>
+<area shape="rect" id="Node000011" href="$jxct__constants_8h.html" title="Централизованные константы системы JXCT." alt="" coords="690,80,808,107"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="404,30,675,77,675,82,403,35"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="98,105,195,146,193,151,96,110"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="8,155,127,181"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="70,107,70,139,65,139,65,107"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="415,110,291,152,289,147,413,105"/>
+<area shape="rect" id="Node000006" href="$version_8h.html" title=" " alt="" coords="414,155,489,181"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="454,107,454,139,449,139,449,107"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="551,155,653,181"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="605,107,605,139,600,139,600,107"/>
+<area shape="poly" id="edge11_Node000009_Node000002" title=" " alt="" coords="241,107,241,139,236,139,236,107"/>
+<area shape="poly" id="edge13_Node000010_Node000002" title=" " alt="" coords="316,109,267,147,264,143,312,105"/>
 </map>
