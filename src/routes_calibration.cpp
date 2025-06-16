@@ -20,6 +20,7 @@ static String generateCalibrationPage()
     html += generatePageHeader("Калибровка", UI_ICON_CALIBRATION);
 
     html += "<div class='container'>";
+    html += navHtml();
     html += "<h1>⚙️ Калибровка датчика</h1>";
     html += "<p>Здесь вы сможете выполнить калибровку датчика и настроить компенсацию показаний.";
     html += " В этой версии доступен выбор профиля почвы и загрузка калибровочных таблиц (CSV).</p>";

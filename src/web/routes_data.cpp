@@ -92,7 +92,7 @@ void setupDataRoutes()
                      html += "document.getElementById('n_raw').textContent=d.raw_nitrogen;";
                      html += "document.getElementById('p_raw').textContent=d.raw_phosphorus;";
                      html += "document.getElementById('k_raw').textContent=d.raw_potassium;";
-                     html += "}}";
+                     html += "}";
                      html += "});";
                      html += "}";
                      html += "setInterval(updateSensor,3000);";
