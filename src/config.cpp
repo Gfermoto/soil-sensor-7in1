@@ -5,7 +5,6 @@
  */
 #include <WiFi.h>
 #include "version.h"  // ✅ Централизованное управление версией
-#include "config.h"
 #include "jxct_device_info.h"
 #include "jxct_config_vars.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции

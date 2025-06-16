@@ -37,53 +37,26 @@ void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
     logDebug("%s%s", prefix, hex_str.c_str());
 }
 
-void testMAX485()
+void testSP3485E()
 {
-    logSystem("=== ТЕСТИРОВАНИЕ MAX485 ===");
-
-    // Проверяем состояние пинов
-    logSystem("Состояние пинов до теста:");
-    logSystem("  DE_PIN (%d): %d", DE_PIN, digitalRead(DE_PIN));
-    logSystem("  RE_PIN (%d): %d", RE_PIN, digitalRead(RE_PIN));
-
-    // Режим передачи
-    logSystem("Переключение в режим передачи...");
-    digitalWrite(DE_PIN, HIGH);  // DE=HIGH для передачи
-    digitalWrite(RE_PIN, HIGH);  // RE=HIGH отключает прием (правильно для TX)
-    delay(10);                   // Увеличил задержку
-    logSystem("  DE_PIN (%d): %d", DE_PIN, digitalRead(DE_PIN));
-    logSystem("  RE_PIN (%d): %d", RE_PIN, digitalRead(RE_PIN));
-
-    // Тестовая передача
-    logSystem("Отправка тестового байта 0x55...");
-    Serial2.write(0x55);
-    Serial2.flush();
-    logSystem("Тестовый байт отправлен");
-
-    // Режим приема
-    logSystem("Переключение в режим приема...");
-    digitalWrite(DE_PIN, LOW);  // DE=LOW для приема
-    digitalWrite(RE_PIN, LOW);  // RE=LOW включает прием
-    delay(100);                 // Ждем ответ
-    logSystem("  DE_PIN (%d): %d", DE_PIN, digitalRead(DE_PIN));
-    logSystem("  RE_PIN (%d): %d", RE_PIN, digitalRead(RE_PIN));
-
-    // Проверяем ответ
-    if (Serial2.available())
+    logSystem("=== ТЕСТИРОВАНИЕ SP3485E ===");
+    
+    // Проверяем пины
+    pinMode(MODBUS_DE_RE_PIN, OUTPUT);
+    digitalWrite(MODBUS_DE_RE_PIN, HIGH);
+    delay(10);
+    digitalWrite(MODBUS_DE_RE_PIN, LOW);
+    
+    if (digitalRead(MODBUS_DE_RE_PIN) == LOW)
     {
-        String response = "Получен ответ: ";
-        while (Serial2.available())
-        {
-            response += String(Serial2.read(), HEX) + " ";
-        }
-        logSuccess("%s", response.c_str());
+        logSuccess("SP3485E DE/RE пин работает корректно");
     }
     else
     {
-        logWarn("Нет ответа от MAX485 (это нормально без датчика)");
+        logWarn("Нет ответа от SP3485E (это нормально без датчика)");
     }
-
-    logSystem("=== ТЕСТ MAX485 ЗАВЕРШЕН ===");
+    
+    logSystem("=== ТЕСТ SP3485E ЗАВЕРШЕН ===");
 }
 
 void setupModbus()
@@ -94,36 +67,22 @@ void setupModbus()
     logSystem("RX_PIN: %d, TX_PIN: %d", RX_PIN, TX_PIN);
     logSystem("DE_PIN: %d, RE_PIN: %d", DE_PIN, RE_PIN);
 
-    // Устанавливаем пины управления MAX485
-    logSystem("Настройка пинов MAX485...");
-    pinMode(DE_PIN, OUTPUT);
-    pinMode(RE_PIN, OUTPUT);
-    digitalWrite(DE_PIN, LOW);  // Режим приема
-    digitalWrite(RE_PIN, LOW);  // Режим приема
-    logSuccess("Пины MAX485 настроены");
-
-    // 🔥 ВОССТАНОВЛЕНЫ РАБОЧИЕ ПАРАМЕТРЫ из документации:
-    // Скорость: 9600 bps, Четность: 8N1, Адрес: 1
-    logSystem("🔥 ВОССТАНОВЛЕНИЕ РАБОЧИХ ПАРАМЕТРОВ JXCT:");
-    logSystem("   Документация: 9600 bps, 8N1, адрес 1");
-    Serial2.begin(9600, SERIAL_8N1, RX_PIN, TX_PIN);  // РАБОЧИЕ ПАРАМЕТРЫ!
-    delay(100);                                       // ОТКАТ: Критичный timing для Serial2
-    logSystem("Serial2.available() после инициализации: %d", Serial2.available());
-
-    // Инициализируем ModbusMaster с настройкой таймаутов
-    logSystem("Инициализация ModbusMaster (адрес 1)...");
-    modbus.begin(1, Serial2);
-
-    // НАСТРОЙКА ТАЙМАУТОВ (критично для ESP32!)
-    logSystem("Настройка таймаутов ModbusMaster...");
-
-    // Если библиотека не поддерживает установку таймаутов, используем стандартные
-    logSystem("Используем стандартные таймауты библиотеки ModbusMaster");
-
-    // Устанавливаем функции управления направлением передачи
+    // Устанавливаем пины управления SP3485E
+    logSystem("Настройка пинов SP3485E...");
+    pinMode(MODBUS_DE_RE_PIN, OUTPUT);
+    digitalWrite(MODBUS_DE_RE_PIN, LOW);  // Режим приема
+    
+    logSuccess("Пины SP3485E настроены");
+    
+    // Инициализация UART для Modbus
+    Serial2.begin(9600, SERIAL_8N1, MODBUS_RX_PIN, MODBUS_TX_PIN);
+    
+    // Настройка Modbus
+    modbus.begin(SENSOR_ID, Serial2);
     modbus.preTransmission(preTransmission);
     modbus.postTransmission(postTransmission);
-    logSuccess("ModbusMaster инициализирован на 9600 бод, 8N1");
+    
+    logSuccess("Modbus инициализирован");
 
     logPrintHeader("MODBUS ГОТОВ ДЛЯ ПОЛНОГО ТЕСТИРОВАНИЯ", COLOR_GREEN);
 }

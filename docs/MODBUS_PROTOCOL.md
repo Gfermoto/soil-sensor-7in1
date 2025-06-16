@@ -133,37 +133,31 @@ Hex значение: 0x00ED = 237 (decimal)
 
 ## 🔧 Схема подключения ESP32
 
-### Подключение RS-485 трансивера
+### Физическое подключение
 
-#### Вариант 1: MAX485 (классический)
+#### RS-485 интерфейс
+- Используется трансивер SP3485E
+- Скорость передачи: до 10 Mbps
+- Защита от ESD: ±15kV HBM
+- Питание: 3.3V (оптимально для ESP32)
+
+#### Подключение SP3485E
 ```
-ESP32 GPIO   │ MAX485 Pin │ Функция
-─────────────┼────────────┼─────────────────────
-GPIO16 (RX)  │ RO         │ Receive Output (прием данных)
-GPIO17 (TX)  │ DI         │ Driver Input (передача данных)
-GPIO4        │ DE         │ Driver Enable (управление передачей)
-GPIO5        │ RE         │ Receiver Enable (управление приемом)
-3.3V         │ VCC        │ Питание модуля
+ESP32 GPIO   │ SP3485E Pin │ Функция
+─────────────┼────────────┼──────────────────────
+GPIO16       │ RO         │ UART2 RX (прием)
+GPIO17       │ DI         │ UART2 TX (передача)
+GPIO5        │ DE/RE      │ Управление направлением
+3.3V         │ VCC        │ Питание трансивера
 GND          │ GND        │ Общий провод
 ```
 
-#### ⭐ Вариант 2: SP3485E (рекомендуется)
-```
-ESP32 GPIO   │ SP3485E Pin │ Функция
-─────────────┼─────────────┼─────────────────────
-GPIO16 (RX)  │ RO (Pin 1)  │ Receive Output (прием данных)
-GPIO17 (TX)  │ DI (Pin 4)  │ Driver Input (передача данных)
-GPIO4        │ DE (Pin 3)  │ Driver Enable (управление передачей)
-GPIO4        │ RE (Pin 2)  │ Receiver Enable (соединить с DE)
-3.3V         │ VCC (Pin 8) │ Питание +3.3V
-GND          │ GND (Pin 5) │ Общий провод
-```
-
-**💡 Преимущества SP3485E:**
-- ✅ Нативная 3.3V логика (идеальная совместимость с ESP32)
-- ✅ Высокая скорость до 12 Mbps (vs 2.5 Mbps у MAX485)
-- ✅ Расширенная защита ±15kV ESD
+#### Преимущества SP3485E:
+- ✅ Нативная работа от 3.3V
+- ✅ Высокая скорость до 10 Mbps
+- ✅ Расширенная защита от помех
 - ✅ Низкое энергопотребление
+- ✅ Встроенная защита от перенапряжений
 
 ### Подключение к датчику JXCT
 ```
@@ -183,41 +177,34 @@ GND          │ GND         │ Черный       │ Общий минус
 
 ## ⚙️ Реализация в коде ESP32
 
-### Инициализация порта
-```cpp
-// Настройка пинов MAX485
-#define RX_PIN 16
-#define TX_PIN 17
-#define DE_PIN 4
-#define RE_PIN 5
+### Инициализация UART и SP3485E
 
+```cpp
 void setupModbus() {
-    // Настройка пинов управления MAX485
-    pinMode(DE_PIN, OUTPUT);
-    pinMode(RE_PIN, OUTPUT);
-    digitalWrite(DE_PIN, LOW);  // Режим приема
-    digitalWrite(RE_PIN, LOW);  // Режим приема
+    // Настройка UART2 для Modbus
+    Serial2.begin(9600, SERIAL_8N1, MODBUS_RX_PIN, MODBUS_TX_PIN);
     
-    // Инициализация UART2
-    Serial2.begin(9600, SERIAL_8N1, RX_PIN, TX_PIN);
+    // Настройка пинов SP3485E
+    pinMode(MODBUS_DE_RE_PIN, OUTPUT);
+    digitalWrite(MODBUS_DE_RE_PIN, LOW);  // Режим приема
     
-    // Инициализация ModbusMaster
-    modbus.begin(1, Serial2);  // Адрес устройства 1
-    modbus.preTransmission(preTransmission);
-    modbus.postTransmission(postTransmission);
+    // Инициализация Modbus
+    node.begin(SENSOR_ID, Serial2);
+    
+    // Настройка предварительной обработки
+    node.preTransmission(preTransmission);
+    node.postTransmission(postTransmission);
 }
-```
 
-### Управление направлением передачи
-```cpp
+// Управление направлением передачи SP3485E
 void preTransmission() {
-    digitalWrite(DE_PIN, HIGH);  // Включить передачу
-    digitalWrite(RE_PIN, HIGH);  // Отключить прием
+    digitalWrite(MODBUS_DE_RE_PIN, HIGH);  // Режим передачи
+    delayMicroseconds(50);
 }
 
 void postTransmission() {
-    digitalWrite(DE_PIN, LOW);   // Отключить передачу
-    digitalWrite(RE_PIN, LOW);   // Включить прием
+    delayMicroseconds(50);
+    digitalWrite(MODBUS_DE_RE_PIN, LOW);   // Режим приема
 }
 ```
 

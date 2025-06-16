@@ -13,12 +13,16 @@
 #include "jxct_format_utils.h"
 #include <NTPClient.h>
 #include "thingspeak_client.h"
-#include "config.h"
 #include "logger.h"
 #include "jxct_ui_system.h"  // 🎨 Единая система дизайна v2.3.1
+#include "jxct_constants.h"
 
 // Константы
 #define RESET_BUTTON_PIN 0  // GPIO0 для кнопки сброса
+#define WIFI_RETRY_DELAY_MS 500
+#define WIFI_CONNECTION_ATTEMPTS 20
+#define WIFI_CONNECTION_TIMEOUT 10000
+#define WIFI_RECONNECT_INTERVAL 30000  // Интервал между попытками переподключения (30 секунд)
 
 // Глобальные переменные
 bool wifiConnected = false;
@@ -132,17 +136,22 @@ void handleWiFi()
         }
         else
         {
-            setLedBlink(500);
+            setLedBlink(WIFI_RETRY_DELAY_MS);
         }
     }
     else if (currentWiFiMode == WiFiMode::STA)
     {
+        static unsigned long lastReconnectAttempt = 0;
         if (WiFi.status() != WL_CONNECTED)
         {
-            wifiConnected = false;
-            setLedBlink(500);
-            logWarn("Потеряно соединение с WiFi, переход в AP");
-            startAPMode();
+            if (!wifiConnected || (millis() - lastReconnectAttempt >= WIFI_RECONNECT_INTERVAL))
+            {
+                wifiConnected = false;
+                setLedBlink(WIFI_RETRY_DELAY_MS);
+                logWarn("Потеряно соединение с WiFi, переход в AP");
+                lastReconnectAttempt = millis();
+                startAPMode();
+            }
         }
         else if (!wifiConnected)
         {
@@ -187,13 +196,15 @@ void startSTAMode()
     WiFi.setHostname(hostname.c_str());
     if (strlen(config.ssid) > 0)
     {
-        WiFi.begin(config.ssid, config.password);
         logWiFi("Подключение к WiFi...");
         int attempts = 0;
-        setLedBlink(500);
-        while (WiFi.status() != WL_CONNECTED && attempts < 20)
+        setLedBlink(WIFI_RETRY_DELAY_MS);
+        unsigned long startTime = millis();
+        while (WiFi.status() != WL_CONNECTED && 
+               attempts < WIFI_CONNECTION_ATTEMPTS && 
+               (millis() - startTime) < WIFI_CONNECTION_TIMEOUT)
         {
-            delay(500);
+            delay(WIFI_RETRY_DELAY_MS);
             updateLed();
             attempts++;
         }
@@ -383,7 +394,7 @@ void handleRoot()
             "type='number' id='ntp_interval' name='ntp_interval' min='10000' max='86400000' value='" +
             String(config.ntpUpdateInterval) + "'></div></div>";
     }
-    html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить настройки") + "</form>";
+    html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить настройки", "") + "</form>";
 
     // Добавляем JavaScript для динамического изменения обязательных полей
     if (currentWiFiMode == WiFiMode::STA)

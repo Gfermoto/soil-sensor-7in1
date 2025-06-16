@@ -14,7 +14,6 @@
 #include <WiFiUdp.h>
 #include <NTPClient.h>
 #include <esp_task_wdt.h>
-#include "config.h"
 #include "fake_sensor.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "logger.h"

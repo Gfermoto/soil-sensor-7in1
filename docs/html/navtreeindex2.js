@@ -1,23 +1,24 @@
 var NAVTREEINDEX2 =
 {
 "modbus__sensor_8h.html#a9b707a93013b08d191303ed584a140d7":[2,0,1,9,12],
-"modbus__sensor_8h.html#a9f7da14569cf54a5633c163642e97dff":[2,0,1,9,41],
+"modbus__sensor_8h.html#a9f7da14569cf54a5633c163642e97dff":[2,0,1,9,42],
 "modbus__sensor_8h.html#a9f80ba4d6b98c8b586f32a67189637c9":[2,0,1,9,17],
-"modbus__sensor_8h.html#aa8a3b28ec8c21261d4e467da91a17a67":[2,0,1,9,40],
+"modbus__sensor_8h.html#aa8a3b28ec8c21261d4e467da91a17a67":[2,0,1,9,41],
 "modbus__sensor_8h.html#aaaaed48863426c3f790f977bc04e7b94":[2,0,1,9,24],
 "modbus__sensor_8h.html#aac87bc87eaf0bc01ebda5fe1bb44c88b":[2,0,1,9,25],
+"modbus__sensor_8h.html#ab8a1f5220dc77f33a89d14fe4d82442f":[2,0,1,9,40],
 "modbus__sensor_8h.html#abc7849e08d6e99a7e151cb4366ebc96d":[2,0,1,9,8],
 "modbus__sensor_8h.html#ac264831b378bd2513785f56a63a2cf9a":[2,0,1,9,15],
 "modbus__sensor_8h.html#ac3a37446a712d9ae94e76304361d35d2":[2,0,1,9,35],
 "modbus__sensor_8h.html#ac5080f3f6bf208edce5de49e5117a5f2":[2,0,1,9,11],
 "modbus__sensor_8h.html#ac6595c2759ec7982567a7648cc513465":[2,0,1,9,7],
 "modbus__sensor_8h.html#aca7d239567ef1281e0fd378082fd48ac":[2,0,1,9,26],
-"modbus__sensor_8h.html#acc5319275c2df675d59ff17f862d3e44":[2,0,1,9,44],
+"modbus__sensor_8h.html#acc5319275c2df675d59ff17f862d3e44":[2,0,1,9,45],
 "modbus__sensor_8h.html#ad4ce924e7edbb024c3f5f25c42d64eca":[2,0,1,9,9],
 "modbus__sensor_8h.html#adbf50656913748323cd03274af03c116":[2,0,1,9,32],
 "modbus__sensor_8h.html#ae316f6943acb0b355ff8b0f878b08d04":[2,0,1,9,29],
 "modbus__sensor_8h.html#ae4a11435c54c0c61a370f01ad74783dd":[2,0,1,9,13],
-"modbus__sensor_8h.html#ae6ed671f3036da58a93991fca2a2329c":[2,0,1,9,43],
+"modbus__sensor_8h.html#ae6ed671f3036da58a93991fca2a2329c":[2,0,1,9,44],
 "modbus__sensor_8h.html#ae81f2380d8a1a56150fef81dfff25cfc":[2,0,1,9,21],
 "modbus__sensor_8h.html#aeb31a7b73c962d56d9fca3209a95723e":[2,0,1,9,10],
 "modbus__sensor_8h.html#aedb09484ba8020afc57e9e9e26012bf1":[2,0,1,9,38],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "version_8h.html#a54c102c9bd71e3382ce683efe7b3407b":[2,0,0,9,0],
 "version_8h.html#a6a112058ddea198337c7a135120d6b21":[2,0,0,9,5],
 "version_8h.html#a6df1d22fb5f09eccc23b9f399670cfd7":[2,0,0,9,9],
-"version_8h.html#a6ff229495fbd3dddb40a545ea08dff83":[2,0,0,9,6],
-"version_8h.html#a83f77c2317b3d28560f91fffca64efea":[2,0,0,9,11]
+"version_8h.html#a6ff229495fbd3dddb40a545ea08dff83":[2,0,0,9,6]
 };

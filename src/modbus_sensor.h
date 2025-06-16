@@ -111,10 +111,10 @@ bool getCachedData(SensorData& data);
 // Преобразование значения регистра в число с плавающей точкой
 float convertRegisterToFloat(uint16_t value, float multiplier);
 
-// Функция предварительной передачи для управления MAX485
+// Функция предварительной передачи для управления SP3485E
 void preTransmission();
 
-// Функция после передачи для управления MAX485
+// Функция после передачи для управления SP3485E
 void postTransmission();
 
 // Функция для вывода ошибок Modbus
@@ -127,6 +127,8 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
 float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled);
 void initMovingAverageBuffers(SensorData& data);
 
+// Тестовые функции
+void testSP3485E();              // Тест драйвера SP3485E
 bool testModbusConnection();      // Диагностика Modbus связи
 void testSerialConfigurations();  // Тест конфигураций Serial2
 

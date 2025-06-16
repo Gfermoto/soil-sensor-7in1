@@ -20,10 +20,10 @@
 <area shape="poly" id="edge21_Node000001_Node000012" title=" " alt="" coords="786,329,753,334,556,357,358,369,197,370,197,364,358,363,556,352,753,329,785,324"/>
 <area shape="rect" id="Node000013" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="254,327,358,354"/>
 <area shape="poly" id="edge23_Node000001_Node000013" title=" " alt="" coords="786,321,359,341,359,336,786,315"/>
-<area shape="rect" id="Node000014" href="$modbus__sensor_8cpp.html#a1449e844a2772a9b0fe1f3927ab14ad7" title=" " alt="" coords="629,530,722,557"/>
-<area shape="poly" id="edge24_Node000001_Node000014" title=" " alt="" coords="839,344,830,383,813,430,789,478,755,520,740,530,723,537,721,533,737,526,751,516,785,475,809,428,825,382,834,343"/>
-<area shape="rect" id="Node000015" href="$modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="598,581,753,607"/>
-<area shape="poly" id="edge25_Node000001_Node000015" title=" " alt="" coords="842,344,835,393,821,453,795,516,777,545,755,571,738,582,735,578,751,567,773,542,790,513,816,452,830,392,837,344"/>
+<area shape="rect" id="Node000014" href="$modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="598,530,753,557"/>
+<area shape="poly" id="edge24_Node000001_Node000014" title=" " alt="" coords="839,344,830,383,813,430,789,478,755,520,737,532,734,527,751,516,785,475,809,428,825,382,834,343"/>
+<area shape="rect" id="Node000015" href="$modbus__sensor_8cpp.html#ab8a1f5220dc77f33a89d14fe4d82442f" title=" " alt="" coords="626,581,724,607"/>
+<area shape="poly" id="edge25_Node000001_Node000015" title=" " alt="" coords="842,344,835,393,821,453,795,516,777,545,755,571,726,588,723,583,751,567,773,542,790,513,816,452,830,392,837,344"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="401,135,179,117,180,112,401,129"/>
 <area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="265,60,180,104,178,99,263,55"/>
 <area shape="rect" id="Node000006" href="$modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="406,479,550,506"/>

@@ -40,6 +40,7 @@ var modbus__sensor_8h =
     [ "startRealSensorTask", "modbus__sensor_8h.html#a4f1a431da8f1feb8a64e2c5f887056df", null ],
     [ "testModbusConnection", "modbus__sensor_8h.html#aedb09484ba8020afc57e9e9e26012bf1", null ],
     [ "testSerialConfigurations", "modbus__sensor_8h.html#a372e89ffe0abcaf103578a478d3b4b12", null ],
+    [ "testSP3485E", "modbus__sensor_8h.html#ab8a1f5220dc77f33a89d14fe4d82442f", null ],
     [ "validateSensorData", "modbus__sensor_8h.html#aa8a3b28ec8c21261d4e467da91a17a67", null ],
     [ "modbus", "modbus__sensor_8h.html#a9f7da14569cf54a5633c163642e97dff", null ],
     [ "sensorCache", "modbus__sensor_8h.html#a5a90cc33c11a27aac5f56dcaac387c0d", null ],

@@ -1,6 +1,10 @@
 var wifi__manager_8cpp =
 [
     [ "RESET_BUTTON_PIN", "wifi__manager_8cpp.html#a56b64973bfd6514570671a2607122199", null ],
+    [ "WIFI_CONNECTION_ATTEMPTS", "wifi__manager_8cpp.html#a20a54fb33149a479d66bcb3a342f2dbf", null ],
+    [ "WIFI_CONNECTION_TIMEOUT", "wifi__manager_8cpp.html#a9e764176799ab1864f4e70ecb4f65639", null ],
+    [ "WIFI_RECONNECT_INTERVAL", "wifi__manager_8cpp.html#ad0854f1671654054950c3e17aef87be9", null ],
+    [ "WIFI_RETRY_DELAY_MS", "wifi__manager_8cpp.html#a04b848298b9a35170cd46e8ef3b88464", null ],
     [ "checkResetButton", "wifi__manager_8cpp.html#ac90eb7c31515447a075eee8f395ac02f", null ],
     [ "getApSsid", "wifi__manager_8cpp.html#af857f35623b29612a3b4cc45dd6fff23", null ],
     [ "handleRoot", "wifi__manager_8cpp.html#a8427468f39342a1990703e9f5ce7fd29", null ],

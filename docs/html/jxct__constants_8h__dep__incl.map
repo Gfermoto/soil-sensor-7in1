@@ -1,11 +1,13 @@
 <map id="include/jxct_constants.h" name="include/jxct_constants.h">
-<area shape="rect" id="Node000001" title="Централизованные константы системы JXCT." alt="" coords="289,5,452,32"/>
+<area shape="rect" id="Node000001" title="Централизованные константы системы JXCT." alt="" coords="374,5,537,32"/>
 <area shape="rect" id="Node000002" href="$debug__optimized_8h.html" title="Оптимизированная система отладки с условной компиляцией" alt="" coords="5,80,181,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="308,39,142,82,141,77,307,34"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="378,38,157,82,156,77,377,33"/>
 <area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="205,80,365,107"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="346,44,301,82,298,78,342,40"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="413,41,316,82,314,77,411,36"/>
 <area shape="rect" id="Node000004" href="$mqtt__client_8cpp.html" title="Взаимодействие с MQTT&#45;брокером и Home Assistant." alt="" coords="390,80,522,107"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="398,40,443,78,439,82,395,44"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="458,48,458,80,453,80,453,48"/>
 <area shape="rect" id="Node000005" href="$validation__utils_8cpp.html" title="Утилиты валидации для устранения дублирования кода" alt="" coords="546,80,701,107"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="429,34,580,77,578,82,428,39"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="500,36,595,77,593,82,498,41"/>
+<area shape="rect" id="Node000006" href="$wifi__manager_8cpp.html" title="Управление WiFi, веб&#45;интерфейсом и индикацией" alt="" coords="724,80,870,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="531,33,738,77,737,82,530,38"/>
 </map>
