@@ -143,11 +143,10 @@ constexpr const char* HTTP_CACHE_CONTROL = "no-cache, no-store, must-revalidate"
 constexpr int RESET_BUTTON_PIN = 0;     // GPIO0
 constexpr int JXCT_STATUS_LED_PIN = 2;  // GPIO2 (встроенный LED) - избегаем конфликта
 
-// Modbus RS485 пины (определены в jxct_config_vars.h, но дублируем для ясности)
-constexpr int MODBUS_RX_PIN = 16;  // GPIO16
-constexpr int MODBUS_TX_PIN = 17;  // GPIO17
-constexpr int MODBUS_DE_PIN = 4;   // GPIO4 (Data Enable)
-constexpr int MODBUS_RE_PIN = 5;   // GPIO5 (Receive Enable)
+// Modbus RS485 пины
+constexpr int MODBUS_RX_PIN = 16;      // GPIO16 - прием данных
+constexpr int MODBUS_TX_PIN = 17;      // GPIO17 - передача данных
+constexpr int MODBUS_DE_RE_PIN = 5;    // GPIO5 - общий пин управления приемом/передачей для SP3485E
 
 // ============================================================================
 // ПРОИЗВОДИТЕЛЬНОСТЬ И ПАМЯТЬ

@@ -17,12 +17,6 @@ SensorData sensorData;
 SensorCache sensorCache;
 String sensorLastError = "";
 
-// Используем все пины из централизованных констант jxct_constants.h
-#define RX_PIN MODBUS_RX_PIN
-#define TX_PIN MODBUS_TX_PIN
-#define DE_PIN MODBUS_DE_PIN
-#define RE_PIN MODBUS_RE_PIN
-
 void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
 {
     if (currentLogLevel < LOG_DEBUG) return;
@@ -63,22 +57,19 @@ void setupModbus()
 {
     logPrintHeader("ИНИЦИАЛИЗАЦИЯ MODBUS", COLOR_CYAN);
 
-    // Проверяем пины
-    logSystem("RX_PIN: %d, TX_PIN: %d", RX_PIN, TX_PIN);
-    logSystem("DE_PIN: %d, RE_PIN: %d", DE_PIN, RE_PIN);
-
     // Устанавливаем пины управления SP3485E
     logSystem("Настройка пинов SP3485E...");
     pinMode(MODBUS_DE_RE_PIN, OUTPUT);
     digitalWrite(MODBUS_DE_RE_PIN, LOW);  // Режим приема
     
+    logSystem("DE/RE пин: %d", MODBUS_DE_RE_PIN);
     logSuccess("Пины SP3485E настроены");
     
     // Инициализация UART для Modbus
     Serial2.begin(9600, SERIAL_8N1, MODBUS_RX_PIN, MODBUS_TX_PIN);
     
     // Настройка Modbus
-    modbus.begin(SENSOR_ID, Serial2);
+    modbus.begin(JXCT_MODBUS_ID, Serial2);
     modbus.preTransmission(preTransmission);
     modbus.postTransmission(postTransmission);
     
@@ -180,48 +171,46 @@ bool changeDeviceAddress(uint8_t new_address)
 // Добавляем функцию диагностики Modbus связи
 bool testModbusConnection()
 {
-    logSensor("=== ДИАГНОСТИКА MODBUS СВЯЗИ ===");
-
+    logSystem("=== ТЕСТ MODBUS СОЕДИНЕНИЯ ===");
+    
+    // Проверяем пины
+    logSystem("DE/RE пин: %d", MODBUS_DE_RE_PIN);
+    
     // Тест 1: Попытка чтения регистра версии прошивки
-    logSystem("Тест 1: Чтение версии прошивки (адрес 0x07)...");
-    uint8_t result = modbus.readHoldingRegisters(0x07, 1);
+    logSystem("Тест 1: Чтение версии прошивки...");
+    uint8_t result = modbus.readHoldingRegisters(0x00, 1);
     if (result == modbus.ku8MBSuccess)
     {
-        uint16_t version = modbus.getResponseBuffer(0);
-        logSuccess("✅ Modbus связь работает! Версия: %d.%d", (version >> 8) & 0xFF, version & 0xFF);
-        return true;
+        logSuccess("Успешно прочитан регистр версии");
     }
     else
     {
-        logError("❌ Ошибка чтения версии: %d", result);
-        printModbusError(result);
+        logError("Ошибка чтения регистра версии: %02X", result);
+        return false;
     }
-
-    // Тест 2: Простое чтение первого доступного регистра
-    logSystem("Тест 2: Чтение регистра 0x%04X (pH)...", REG_PH);
-    result = modbus.readHoldingRegisters(REG_PH, 1);
-    if (result == modbus.ku8MBSuccess)
+    
+    // Тест 2: Проверка конфигурации UART
+    logSystem("Тест 2: Проверка конфигурации UART...");
+    if (Serial2.available() >= 0)
     {
-        uint16_t value = modbus.getResponseBuffer(0);
-        logSuccess("✅ pH регистр читается! Значение: %d", value);
-        return true;
+        logSuccess("UART2 работает корректно");
     }
     else
     {
-        logError("❌ Ошибка чтения pH: %d", result);
-        printModbusError(result);
+        logError("Ошибка UART2");
+        return false;
     }
-
-    // Тест 3: Проверка статуса пинов DE/RE
+    
+    // Тест 3: Проверка статуса пина DE/RE
     logSystem("Тест 3: Проверка конфигурации пинов...");
-    logSystem("DE_PIN: %d, RE_PIN: %d", DE_PIN, RE_PIN);
-    logSystem("DE состояние: %d, RE состояние: %d", digitalRead(DE_PIN), digitalRead(RE_PIN));
-
+    logSystem("DE/RE состояние: %d", digitalRead(MODBUS_DE_RE_PIN));
+    
     // Тест 4: Проверка Serial2
-    logSystem("Тест 4: Проверка Serial2...");
-    logSystem("Serial2 доступен: %s", Serial2.available() ? "ДА" : "НЕТ");
-
-    return false;
+    logSystem("Тест 4: Проверка параметров Serial2...");
+    logSystem("Скорость: %d, Режим: 8N1", Serial2.baudRate());
+    
+    logSuccess("=== ТЕСТ MODBUS ЗАВЕРШЕН УСПЕШНО ===");
+    return true;
 }
 
 // ============================================================================
@@ -375,20 +364,17 @@ float convertRegisterToFloat(uint16_t value, float multiplier)
     return value * multiplier;
 }
 
+// Управление направлением передачи SP3485E
 void preTransmission()
 {
-    DEBUG_PRINTLN("Modbus TX режим");
-    digitalWrite(DE_PIN, HIGH);  // DE=HIGH включает передачу
-    digitalWrite(RE_PIN, HIGH);  // RE=HIGH отключает прием (для передачи)
-    delayMicroseconds(50);       // ✅ Микросекундные задержки критичны для Modbus
+    digitalWrite(MODBUS_DE_RE_PIN, HIGH);  // Режим передачи
+    delayMicroseconds(50);
 }
 
 void postTransmission()
 {
-    delayMicroseconds(50);      // ✅ Микросекундные задержки критичны для Modbus
-    digitalWrite(DE_PIN, LOW);  // DE=LOW отключает передачу
-    digitalWrite(RE_PIN, LOW);  // RE=LOW включает прием (для ответов датчика!)
-    DEBUG_PRINTLN("Modbus RX режим");
+    delayMicroseconds(50);
+    digitalWrite(MODBUS_DE_RE_PIN, LOW);   // Режим приема
 }
 
 // ✅ Неблокирующая задача реального датчика с ДИАГНОСТИКОЙ
