@@ -3,6 +3,8 @@
 #include "logger.h"
 #include "jxct_ui_system.h"
 #include "validation_utils.h"
+#include "calibration_manager.h"
+#include <vector>
 
 // Экземпляр веб-сервера объявлен во внешнем модуле
 extern WebServer webServer;
@@ -52,12 +54,46 @@ static void handleCalibrationPage()
     webServer.send(200, "text/html; charset=utf-8", generateCalibrationPage());
 }
 
-static void handleCalibrationSave()
+// Буфер для загрузки файлов
+static File uploadFile;
+static SoilProfile uploadProfile = SoilProfile::SAND;
+
+static void handleCalibrationUpload()
 {
-    // TODO: обработка формы и загрузки CSV (будет реализовано на следующем этапе)
-    logInfo("[CAL] Получены данные формы калибровки");
-    webServer.sendHeader("Location", "/calibration", true);
-    webServer.send(302, "text/plain", "Redirect");
+    HTTPUpload& upload = webServer.upload();
+    if (upload.status == UPLOAD_FILE_START)
+    {
+        // Получаем профиль почвы из аргумента формы
+        String profileStr = webServer.arg("soil_profile");
+        if (profileStr == "sand") uploadProfile = SoilProfile::SAND;
+        else if (profileStr == "loam") uploadProfile = SoilProfile::LOAM;
+        else if (profileStr == "peat") uploadProfile = SoilProfile::PEAT;
+
+        CalibrationManager::init();
+        const char* path = CalibrationManager::profileToFilename(uploadProfile);
+        uploadFile = LittleFS.open(path, "w");
+        if (!uploadFile)
+        {
+            logError("Не удалось создать файл %s", path);
+        }
+    }
+    else if (upload.status == UPLOAD_FILE_WRITE)
+    {
+        if (uploadFile)
+        {
+            uploadFile.write(upload.buf, upload.currentSize);
+        }
+    }
+    else if (upload.status == UPLOAD_FILE_END)
+    {
+        if (uploadFile)
+        {
+            uploadFile.close();
+            logSuccess("Файл калибровки загружен (%u байт)", upload.totalSize);
+        }
+        webServer.sendHeader("Location", "/calibration", true);
+        webServer.send(302, "text/plain", "Redirect");
+    }
 }
 
 // ------------------------------
@@ -67,6 +103,10 @@ static void handleCalibrationSave()
 void setupCalibrationRoutes()
 {
     logInfo("Маршруты калибровки инициализированы");
+    CalibrationManager::init();
+
     webServer.on("/calibration", HTTP_GET, handleCalibrationPage);
-    webServer.on("/calibration/save", HTTP_POST, handleCalibrationSave);
+    webServer.on("/calibration/save", HTTP_POST, []() {
+        // Пустой ack, фактическая обработка в uploadHandler
+    }, handleCalibrationUpload);
 } 
