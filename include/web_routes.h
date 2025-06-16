@@ -226,3 +226,6 @@ bool checkRouteAccess(const String& routeName, const String& icon);
  * @brief Настройка маршрутов калибровки (/calibration)
  */
 void setupCalibrationRoutes();
+
+// HTML навигация
+String navHtml();
