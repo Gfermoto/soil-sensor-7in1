@@ -274,6 +274,23 @@ void startSTAMode()
             logSystem("MAC адрес: %s", WiFi.macAddress().c_str());
             logSystem("Hostname: %s", hostname.c_str());
             logSystem("RSSI: %d dBm", WiFi.RSSI());
+            // --- Первичная синхронизация времени NTP (блок до 5 сек) ---
+            if (timeClient == nullptr)
+            {
+                extern WiFiUDP ntpUDP;
+                timeClient = new NTPClient(ntpUDP, "pool.ntp.org", 0, 3600000);
+                timeClient->begin();
+            }
+            if (timeClient)
+            {
+                unsigned long ntpStart = millis();
+                while (!timeClient->forceUpdate() && millis() - ntpStart < 5000)
+                {
+                    delay(100);
+                }
+                logSystem("NTP синхронизация: %s", timeClient->isTimeSet() ? "OK" : "не удалось");
+            }
+
             setupWebServer();
         }
         else
