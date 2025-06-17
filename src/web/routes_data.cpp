@@ -193,6 +193,7 @@ void setupDataRoutes()
                      html += "</tbody></table></div>";
                      html += "<script>";
                      html += "function set(id,v){if(v!==undefined&&v!==null){document.getElementById(id).textContent=v;}}";
+                     html += "function colorDelta(a,b){var diff=Math.abs(a-b)/b*100;if(diff>25)return 'red';if(diff>10)return 'yellow';return '';}";
                      html += "function updateSensor(){";
                      html += "fetch('/sensor_json').then(r=>r.json()).then(d=>{";
                      html += "set('temp',d.temperature);";
@@ -211,7 +212,19 @@ void setupDataRoutes()
                      html += "set('k_raw',d.raw_potassium);";
                      html += "set('temp_rec',d.rec_temperature);set('hum_rec',d.rec_humidity);set('ec_rec',d.rec_ec);set('ph_rec',d.rec_ph);set('n_rec',d.rec_nitrogen);set('p_rec',d.rec_phosphorus);set('k_rec',d.rec_potassium);";
                      html += "document.getElementById('irrigBadge').style.display = d.irrigation ? 'block' : 'none';";
-                     html += "document.getElementById('statusInfo').textContent = 'Полив: ' + (d.irrigation ? 'Да' : 'Нет') + ' | Сезон: ' + d.season + (d.alerts ? (' | Отклонения: ' + d.alerts) : ' | Датчик в диапазоне измерений');";
+                     html += "var polivHtml=d.irrigation ? '<span class=\"red\">Да</span>' : '<span class=\"green\">Нет</span>';";
+                     html += "var seasonColor={'Лето':'green','Весна':'yellow','Осень':'yellow','Зима':'red','Н/Д':''}[d.season]||'';";
+                     html += "var seasonHtml=seasonColor?('<span class=\\"'+seasonColor+'\\">'+d.season+'</span>'):d.season;";
+                     html += "var statusHtml=d.alerts?('<span class=\\"red\\">Отклонения: '+d.alerts+'</span>'):'<span class=\\"green\\">Датчик в диапазоне</span>';";
+                     html += "document.getElementById('statusInfo').innerHTML='Полив: '+polivHtml+' | Сезон: '+seasonHtml+' | '+statusHtml;";
+                     html += "function applyColor(spanId,cls){var el=document.getElementById(spanId);el.classList.remove('red','yellow');if(cls)el.classList.add(cls);}";
+                     html += "var temp=parseFloat(d.temperature);var tempRec=parseFloat(d.rec_temperature);applyColor('temp',colorDelta(temp,tempRec));";
+                     html += "var hum=parseFloat(d.humidity);var humRec=parseFloat(d.rec_humidity);applyColor('hum',colorDelta(hum,humRec));";
+                     html += "var ec=parseFloat(d.ec);var ecRec=parseFloat(d.rec_ec);applyColor('ec',colorDelta(ec,ecRec));";
+                     html += "var ph=parseFloat(d.ph);var phRec=parseFloat(d.rec_ph);applyColor('ph',colorDelta(ph,phRec));";
+                     html += "var n=parseFloat(d.nitrogen);var nRec=parseFloat(d.rec_nitrogen);applyColor('n',colorDelta(n,nRec));";
+                     html += "var p=parseFloat(d.phosphorus);var pRec=parseFloat(d.rec_phosphorus);applyColor('p',colorDelta(p,pRec));";
+                     html += "var k=parseFloat(d.potassium);var kRec=parseFloat(d.rec_potassium);applyColor('k',colorDelta(k,kRec));";
                      html += "});";
                      html += "}";
                      html += "setInterval(updateSensor,3000);";
@@ -227,7 +240,7 @@ void setupDataRoutes()
                      html += "</form>";
 
                      // CSS для таблицы данных
-                     html += "<style>.data{width:100%;border-collapse:collapse}.data th,.data td{border:1px solid #ccc;padding:6px;text-align:center}.data th{background:#f5f5f5}</style>";
+                     html += "<style>.data{width:100%;border-collapse:collapse}.data th,.data td{border:1px solid #ccc;padding:6px;text-align:center}.data th{background:#f5f5f5}.green{color:#4CAF50}.yellow{color:#FFC107}.red{color:#F44336}</style>";
 
                      // API-ссылка внизу страницы
                      html += "<div style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='/api/sensor' target='_blank'>/api/sensor</a> (JSON, +timestamp)</div>";
