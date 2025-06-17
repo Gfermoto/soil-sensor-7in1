@@ -196,6 +196,7 @@ void setupDataRoutes()
                      html += "function colorDelta(a,b){var diff=Math.abs(a-b)/b*100;if(diff>25)return 'red';if(diff>10)return 'yellow';return '';}";
                      html += "function colorRange(v,min,max){var span=(max-min);if(span<=0)return '';if(v<min+0.25*span||v>max-0.25*span)return 'red';if(v<min+0.10*span||v>max-0.10*span)return 'yellow';return '';}";
                      html += "var limits={temp:{min:-45,max:115},hum:{min:0,max:100},ec:{min:0,max:10000},ph:{min:3,max:9},n:{min:0,max:1999},p:{min:0,max:1999},k:{min:0,max:1999}};";
+                     html += "function applyColor(spanId,cls){var el=document.getElementById(spanId);if(!el)return;el.classList.remove('red','yellow');if(cls)el.classList.add(cls);}";
                      html += "function updateSensor(){";
                      html += "fetch('/sensor_json').then(r=>r.json()).then(d=>{";
                      html += "set('temp',d.temperature);";
