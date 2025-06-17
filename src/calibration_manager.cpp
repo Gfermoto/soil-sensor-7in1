@@ -1,5 +1,6 @@
 #include "calibration_manager.h"
 #include "logger.h"
+#include "sensor_compensation.h"
 
 namespace CalibrationManager
 {

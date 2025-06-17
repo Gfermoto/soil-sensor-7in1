@@ -196,7 +196,7 @@ void setupDataRoutes()
                      html += "function colorDelta(a,b){var diff=Math.abs(a-b)/b*100;if(diff>30)return 'red';if(diff>20)return 'orange';if(diff>10)return 'yellow';return '';}";
                      html += "function colorRange(v,min,max){var span=(max-min);if(span<=0)return '';if(v<min||v>max)return 'red';if(v<min+0.05*span||v>max-0.05*span)return 'orange';if(v<min+0.10*span||v>max-0.10*span)return 'yellow';return '';}";
                      html += "function applyColor(spanId,cls){var el=document.getElementById(spanId);if(!el)return;el.classList.remove('red','orange','yellow','green');if(cls){el.classList.add(cls);}else{el.classList.add('green');}}";
-                     html += "var limits={temp:{min:-45,max:115},hum:{min:0,max:100},ec:{min:0,max:10000},ph:{min:3,max:9},n:{min:0,max:1999},p:{min:0,max:1999},k:{min:0,max:1999}};";
+                     html += "var limits={temp:{min:-45,max:115},hum:{min:0,max:100},ec:{min:0,max:1000},ph:{min:3,max:9},n:{min:0,max:199.9},p:{min:0,max:199.9},k:{min:0,max:199.9}};";
                      html += "function updateSensor(){";
                      html += "fetch('/sensor_json').then(r=>r.json()).then(d=>{";
                      html += "set('temp',d.temperature);";
@@ -218,10 +218,7 @@ void setupDataRoutes()
                      html += "var polivHtml=d.irrigation ? '<span class=\"red\">Да</span>' : '<span class=\"green\">Нет</span>';";
                      html += "var seasonColor={'Лето':'green','Весна':'yellow','Осень':'yellow','Зима':'red','Н/Д':''}[d.season]||'';";
                      html += "var seasonHtml=seasonColor?(`<span class=\\\"${seasonColor}\\\">${d.season}</span>`):d.season;";
-                     html += "var statusHtmlPlaceholder='';";
-                     html += "var hasWarn=false;";
-                     html += "var statusHtmlNew=d.alerts?('<span class=\\\"red\\\">Отклонения: '+d.alerts+'</span>'):(hasWarn?'<span class=\\\"orange\\\">Пограничные значения</span>':'<span class=\\\"green\\\">Датчик в диапазоне</span>');";
-                     html += "document.getElementById('statusInfo').innerHTML='Полив: '+polivHtml+' | Сезон: '+seasonHtml+' | '+statusHtmlPlaceholder;";
+                     html += "document.getElementById('statusInfo').innerHTML='Полив: '+polivHtml+' | Сезон: '+seasonHtml;";
                      html += "var tv=parseFloat(d.temperature);applyColor('temp',colorRange(tv,limits.temp.min,limits.temp.max));";
                      html += "var hv=parseFloat(d.humidity);applyColor('hum',colorRange(hv,limits.hum.min,limits.hum.max));";
                      html += "var ev=parseFloat(d.ec);applyColor('ec',colorRange(ev,limits.ec.min,limits.ec.max));";
@@ -236,7 +233,6 @@ void setupDataRoutes()
                      html += "applyColor('n_rec',colorDelta(nv,parseFloat(d.rec_nitrogen)));";
                      html += "applyColor('p_rec',colorDelta(pv2,parseFloat(d.rec_phosphorus)));";
                      html += "applyColor('k_rec',colorDelta(kv,parseFloat(d.rec_potassium)));";
-                     html += "var hasWarn=document.querySelector('.orange, .yellow')!==null;";
                      html += "});";
                      html += "}";
                      html += "setInterval(updateSensor,3000);";
