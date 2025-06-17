@@ -14,57 +14,14 @@ enum class SoilProfile : uint8_t
 {
     SAND = 0,
     LOAM = 1,
-    PEAT = 2
+    PEAT = 2,
+    CLAY = 3
 };
 
 // Типы почвы
-enum class SoilType { SAND, LOAM, CLAY };
+enum class SoilType { SAND, LOAM, CLAY, PEAT };
 
-// ------------------ Температурная компенсация ------------------
-
-/**
- * @brief Коррекция EC по температуре (классическая формула)
- * @param ecRaw Сырые показания EC (µS/cm)
- * @param temperature Температура °C
- * @return Компенсированное значение EC
- */
-float compensateEcByTemperature(float ecRaw, float temperature);
-
-/**
- * @brief Коррекция pH по температуре (Nernst equation упрощённо)
- */
-float compensatePhByTemperature(float phRaw, float temperature);
-
-// ------------------ Влажностная компенсация ------------------
-
-/**
- * @brief Коррекция NPK по влажности
- */
-float compensateNpkByMoisture(float npkRaw, float moisturePercent);
-
-// ------------------ pH-зависимые коэффициенты ------------------
-
-/**
- * @brief Коррекция NPK по pH (эмпирическая зависимость)
- */
-float compensateNpkByPh(float npkRaw, float ph);
-
-// ------------------ EC-зависимая коррекция ------------------
-
-/**
- * @brief Коррекция NPK по EC
- */
-float compensateNpkByEc(float npkRaw, float ec);
-
-/**
- * @brief Полная компенсация EC (температура + влажность)
- * @param ecRaw Сырые показания EC (µS/cm)
- * @param temperature Температура °C
- * @param moisturePercent Влажность θ (%)
- * @return EC после коррекции
- * @details Для environmentType==INDOOR (2) влажностная компенсация не применяется.
- */
-float compensateEc(float ecRaw, float temperature, float moisturePercent);
+// (устаревшие функции компенсации удалены)
 
 float correctEC(float ecRaw, float T, float theta, SoilType soil);
 float correctPH(float phRaw, float T);

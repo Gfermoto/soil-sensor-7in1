@@ -44,20 +44,33 @@ void fakeSensorTask(void *pvParameters)
             // Применяем компенсацию, если включена
             if (config.flags.calibrationEnabled)
             {
-                sensorData.ec = compensateEcByTemperature(sensorData.ec, sensorData.temperature);
-                sensorData.ph = compensatePhByTemperature(sensorData.ph, sensorData.temperature);
+                SoilType soil;
+                switch (config.soilProfile)
+                {
+                    case 0:  soil = SoilType::SAND; break;
+                    case 1:  soil = SoilType::LOAM; break;
+                    case 2:  soil = SoilType::PEAT; break;
+                    case 3:  soil = SoilType::CLAY; break;
+                    default: soil = SoilType::LOAM; break;
+                }
 
-                sensorData.nitrogen = compensateNpkByMoisture(sensorData.nitrogen, sensorData.humidity);
-                sensorData.phosphorus = compensateNpkByMoisture(sensorData.phosphorus, sensorData.humidity);
-                sensorData.potassium = compensateNpkByMoisture(sensorData.potassium, sensorData.humidity);
+                // 1. EC: температурная компенсация → затем модель Арчи
+                float ec25 = sensorData.ec / (1.0f + 0.021f * (sensorData.temperature - 25.0f));
+                sensorData.ec = correctEC(ec25,
+                                          sensorData.temperature,
+                                          sensorData.humidity,
+                                          soil);
 
-                sensorData.nitrogen = compensateNpkByPh(sensorData.nitrogen, sensorData.ph);
-                sensorData.phosphorus = compensateNpkByPh(sensorData.phosphorus, sensorData.ph);
-                sensorData.potassium = compensateNpkByPh(sensorData.potassium, sensorData.ph);
+                // 2. pH: температурная поправка
+                sensorData.ph = correctPH(sensorData.ph, sensorData.temperature);
 
-                sensorData.nitrogen = compensateNpkByEc(sensorData.nitrogen, sensorData.ec);
-                sensorData.phosphorus = compensateNpkByEc(sensorData.phosphorus, sensorData.ec);
-                sensorData.potassium = compensateNpkByEc(sensorData.potassium, sensorData.ec);
+                // 3. NPK: зависимость от T, θ и типа почвы
+                correctNPK(sensorData.temperature,
+                           sensorData.humidity,
+                           sensorData.nitrogen,
+                           sensorData.phosphorus,
+                           sensorData.potassium,
+                           soil);
             }
 
             DEBUG_PRINTLN("[fakeSensorTask] Сгенерированы тестовые данные датчика");

@@ -374,17 +374,49 @@ void finalizeSensorData(bool success)
 
     if (success)
     {
-        // ---------------- ДЕТЕКТОР ПОЛИВА ----------------
-        float deltaHum = sensorData.humidity - sensorData.prev_humidity;
-        if (deltaHum >= config.irrigationSpikeThreshold)
+        // --------- ОБНОВЛЁННЫЙ ДЕТЕКТОР ПОЛИВА v2.8 (использует сглаженные данные) ---------
+        constexpr uint8_t WIN = 6;
+        static float buf[WIN] = {NAN};
+        static uint8_t idx = 0, filled = 0;
+        static uint8_t persistCount = 0;
+
+        float smoothedHum = sensorData.humidity;
+
+        // baseline = MIN за окно
+        float baseline = smoothedHum;
+        for (uint8_t i = 0; i < filled; ++i)
+            if (buf[i] < baseline) baseline = buf[i];
+
+        bool isCandidate = (filled == WIN) &&
+                           (smoothedHum - baseline >= config.irrigationSpikeThreshold) &&
+                           (smoothedHum > 25.0f);
+
+        persistCount = isCandidate ? persistCount + 1 : 0;
+
+        if (persistCount >= 2)
         {
             lastIrrigationTs = millis();
+            persistCount = 0;
         }
+
+        // обновляем буфер
+        buf[idx] = smoothedHum;
+        idx = (idx + 1) % WIN;
+        if (filled < WIN) filled++;
+
         sensorData.recentIrrigation = (millis() - lastIrrigationTs) <= (unsigned long)config.irrigationHoldMinutes * 60000UL;
 
         if (config.flags.calibrationEnabled)
         {
-            SoilType soil = SoilType::LOAM; // TODO: взять из конфигурации
+            SoilType soil;
+            switch (config.soilProfile)
+            {
+                case 0:  soil = SoilType::SAND; break;
+                case 1:  soil = SoilType::LOAM; break;
+                case 2:  soil = SoilType::PEAT; break;
+                case 3:  soil = SoilType::CLAY; break;
+                default: soil = SoilType::LOAM; break;
+            }
 
             // 1. EC: коррекция температуры → модель Арчи
             float ec25 = sensorData.ec / (1.0f + 0.021f * (sensorData.temperature - 25.0f));

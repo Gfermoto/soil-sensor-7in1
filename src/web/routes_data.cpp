@@ -53,9 +53,10 @@ static RecValues computeRecommendations()
     }
 
     // 2. Коррекция по soilProfile (влажность и pH)
-    int soil=config.soilProfile; // 0 sand,1 loam,2 peat
+    int soil=config.soilProfile; // 0 sand,1 loam,2 peat,3 clay
     if(soil==0){ rec.hum+=-5; /* песок */ }
     else if(soil==2){ rec.hum+=10; rec.ph-=0.3f; }
+    else if(soil==3){ rec.hum+=5; /* глина */ }
     else if(soil==1){ rec.hum+=5; }
 
     // 3. Коррекция по environmentType
@@ -87,6 +88,7 @@ static void handleReadingsUpload()
         if (profileStr == "sand") uploadProfile = SoilProfile::SAND;
         else if (profileStr == "loam") uploadProfile = SoilProfile::LOAM;
         else if (profileStr == "peat") uploadProfile = SoilProfile::PEAT;
+        else if (profileStr == "clay") uploadProfile = SoilProfile::CLAY;
 
         CalibrationManager::init();
         const char* path = CalibrationManager::profileToFilename(uploadProfile);
@@ -123,6 +125,7 @@ static void handleProfileSave()
         if (profileStr == "sand") config.soilProfile = 0;
         else if (profileStr == "loam") config.soilProfile = 1;
         else if (profileStr == "peat") config.soilProfile = 2;
+        else if (profileStr == "clay") config.soilProfile = 3;
 
         saveConfig();
         logSuccess("Профиль почвы изменён на %s", profileStr.c_str());
@@ -158,8 +161,7 @@ void setupDataRoutes()
                      html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
                      html += navHtml();
                      html += "<h1>" UI_ICON_DATA " Показания датчика</h1>";
-                     // Индикатор полива + информационный блок
-                     html += "<div id='irrigBadge' style='display:none;margin:10px 0;font-size:18px;color:#2196F3'>💦 Полив!</div>";
+                     // Информационная строка состояния
                      html += "<div id='statusInfo' style='margin:10px 0;font-size:16px;color:#333'></div>";
                      // Заголовок 4-го столбца: выбранная культура или «Реком.»
                      String recHeader = "Реком.";
@@ -214,25 +216,33 @@ void setupDataRoutes()
                      html += "set('p_raw',d.raw_phosphorus);";
                      html += "set('k_raw',d.raw_potassium);";
                      html += "set('temp_rec',d.rec_temperature);set('hum_rec',d.rec_humidity);set('ec_rec',d.rec_ec);set('ph_rec',d.rec_ph);set('n_rec',d.rec_nitrogen);set('p_rec',d.rec_phosphorus);set('k_rec',d.rec_potassium);";
-                     html += "document.getElementById('irrigBadge').style.display = d.irrigation ? 'block' : 'none';";
-                     html += "var polivHtml=d.irrigation ? '<span class=\"red\">Да</span>' : '<span class=\"green\">Нет</span>';";
+                     html += "var invalid = d.irrigation || d.alerts.length>0 || d.humidity<25 || d.temperature<5 || d.temperature>40;";
+                     html += "var statusHtml = invalid ? '<span class=\\\"red\\\">Данные&nbsp;не&nbsp;валидны</span>' : '<span class=\\\"green\\\">Данные&nbsp;валидны</span>';";
                      html += "var seasonColor={'Лето':'green','Весна':'yellow','Осень':'yellow','Зима':'red','Н/Д':''}[d.season]||'';";
                      html += "var seasonHtml=seasonColor?(`<span class=\\\"${seasonColor}\\\">${d.season}</span>`):d.season;";
-                     html += "document.getElementById('statusInfo').innerHTML='Полив: '+polivHtml+' | Сезон: '+seasonHtml;";
-                     html += "var tv=parseFloat(d.temperature);applyColor('temp',colorRange(tv,limits.temp.min,limits.temp.max));";
-                     html += "var hv=parseFloat(d.humidity);applyColor('hum',colorRange(hv,limits.hum.min,limits.hum.max));";
-                     html += "var ev=parseFloat(d.ec);applyColor('ec',colorRange(ev,limits.ec.min,limits.ec.max));";
-                     html += "var pv=parseFloat(d.ph);applyColor('ph',colorRange(pv,limits.ph.min,limits.ph.max));";
-                     html += "var nv=parseFloat(d.nitrogen);applyColor('n',colorRange(nv,limits.n.min,limits.n.max));";
-                     html += "var pv2=parseFloat(d.phosphorus);applyColor('p',colorRange(pv2,limits.p.min,limits.p.max));";
-                     html += "var kv=parseFloat(d.potassium);applyColor('k',colorRange(kv,limits.k.min,limits.k.max));";
-                     html += "applyColor('temp_rec',colorDelta(tv,parseFloat(d.rec_temperature)));";
-                     html += "applyColor('hum_rec',colorDelta(hv,parseFloat(d.rec_humidity)));";
-                     html += "applyColor('ec_rec',colorDelta(ev,parseFloat(d.rec_ec)));";
-                     html += "applyColor('ph_rec',colorDelta(pv,parseFloat(d.rec_ph)));";
-                     html += "applyColor('n_rec',colorDelta(nv,parseFloat(d.rec_nitrogen)));";
-                     html += "applyColor('p_rec',colorDelta(pv2,parseFloat(d.rec_phosphorus)));";
-                     html += "applyColor('k_rec',colorDelta(kv,parseFloat(d.rec_potassium)));";
+                     html += "document.getElementById('statusInfo').innerHTML=statusHtml+' | Сезон: '+seasonHtml;";
+                     html += "var tvr=parseFloat(d.raw_temperature);applyColor('temp_raw',colorRange(tvr,limits.temp.min,limits.temp.max));";
+                     html += "var hvr=parseFloat(d.raw_humidity);applyColor('hum_raw',colorRange(hvr,limits.hum.min,limits.hum.max));";
+                     html += "var evr=parseFloat(d.raw_ec);applyColor('ec_raw',colorRange(evr,limits.ec.min,limits.ec.max));";
+                     html += "var pvr=parseFloat(d.raw_ph);applyColor('ph_raw',colorRange(pvr,limits.ph.min,limits.ph.max));";
+                     html += "var nvr=parseFloat(d.raw_nitrogen);applyColor('n_raw',colorRange(nvr,limits.n.min,limits.n.max));";
+                     html += "var p2r=parseFloat(d.raw_phosphorus);applyColor('p_raw',colorRange(p2r,limits.p.min,limits.p.max));";
+                     html += "var kvr=parseFloat(d.raw_potassium);applyColor('k_raw',colorRange(kvr,limits.k.min,limits.k.max));";
+                     html += "['temp','hum','ec','ph','n','p','k'].forEach(function(id){var el=document.getElementById(id);if(el){el.classList.remove('red','orange','yellow','green');}});";
+                     html += "var ct=parseFloat(d.temperature);";
+                     html += "var ch=parseFloat(d.humidity);";
+                     html += "var ce=parseFloat(d.ec);";
+                     html += "var cph=parseFloat(d.ph);";
+                     html += "var cn=parseFloat(d.nitrogen);";
+                     html += "var cp=parseFloat(d.phosphorus);";
+                     html += "var ck=parseFloat(d.potassium);";
+                     html += "applyColor('temp_rec', colorDelta(ct, parseFloat(d.rec_temperature)));";
+                     html += "applyColor('hum_rec',  colorDelta(ch, parseFloat(d.rec_humidity)));";
+                     html += "applyColor('ec_rec',   colorDelta(ce, parseFloat(d.rec_ec)));";
+                     html += "applyColor('ph_rec',   colorDelta(cph,parseFloat(d.rec_ph)));";
+                     html += "applyColor('n_rec',    colorDelta(cn, parseFloat(d.rec_nitrogen)));";
+                     html += "applyColor('p_rec',    colorDelta(cp, parseFloat(d.rec_phosphorus)));";
+                     html += "applyColor('k_rec',    colorDelta(ck, parseFloat(d.rec_potassium)));";
                      html += "});";
                      html += "}";
                      html += "setInterval(updateSensor,3000);";

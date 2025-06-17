@@ -16,6 +16,8 @@ namespace CalibrationManager
             return "/calibration/loam.csv";
         case SoilProfile::PEAT:
             return "/calibration/peat.csv";
+        case SoilProfile::CLAY:
+            return "/calibration/clay.csv";
         default:
             return "/calibration/unknown.csv";
         }

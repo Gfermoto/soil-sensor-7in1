@@ -32,6 +32,7 @@ static String generateCalibrationPage()
     html += "<option value='sand'>Песок</option>";
     html += "<option value='loam'>Суглинок</option>";
     html += "<option value='peat'>Торф</option>";
+    html += "<option value='clay'>Глина</option>";
     html += "</select></div></div>";
 
     // Загрузка CSV файла
@@ -70,6 +71,7 @@ static void handleCalibrationUpload()
         if (profileStr == "sand") uploadProfile = SoilProfile::SAND;
         else if (profileStr == "loam") uploadProfile = SoilProfile::LOAM;
         else if (profileStr == "peat") uploadProfile = SoilProfile::PEAT;
+        else if (profileStr == "clay") uploadProfile = SoilProfile::CLAY;
 
         CalibrationManager::init();
         const char* path = CalibrationManager::profileToFilename(uploadProfile);

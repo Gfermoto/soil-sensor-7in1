@@ -513,9 +513,11 @@ void handleRoot()
         const char* selectedSand = config.soilProfile == 0 ? " selected" : "";
         const char* selectedLoam = config.soilProfile == 1 ? " selected" : "";
         const char* selectedPeat = config.soilProfile == 2 ? " selected" : "";
+        const char* selectedClay = config.soilProfile == 3 ? " selected" : "";
         html += String("<option value='0'" ) + selectedSand + ">Песок</option>";
         html += String("<option value='1'") + selectedLoam + ">Суглинок</option>";
         html += String("<option value='2'") + selectedPeat + ">Торф</option>";
+        html += String("<option value='3'") + selectedClay + ">Глина</option>";
         html += "</select></div>";
 
         html += "</div>"; // конец секции датчика
