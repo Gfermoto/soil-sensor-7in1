@@ -346,6 +346,14 @@ void setupDataRoutes()
                      webServer.send(200, "application/json", json);
                  });
 
+    // Алиас /api/sensor – возвращает тот же JSON, что и /sensor_json (для обратной совместимости)
+    webServer.on("/api/sensor", HTTP_GET, [](){
+        // Алиас на /sensor_json для внешних клиентов (без дублирования кода)
+        logWebRequest("GET", "/api/sensor (alias)", webServer.client().remoteIP().toString());
+        webServer.sendHeader("Location", "/sensor_json", true); // 307 Temporary Redirect
+        webServer.send(307, "text/plain", "Redirect");
+    });
+
     // Загрузка калибровочного CSV через вкладку
     webServer.on("/readings/upload", HTTP_POST, [](){}, handleReadingsUpload);
 
