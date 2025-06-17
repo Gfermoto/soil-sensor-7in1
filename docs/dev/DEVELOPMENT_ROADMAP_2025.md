@@ -36,7 +36,7 @@
 - [ ] Веб-интерфейс «Калибровка» с показаниями до/после
 
 **Документация и зависимости:**
-- [SENSOR_COMPENSATION.md](SENSOR_COMPENSATION.md) — Алгоритмы коррекции
+- [COMPENSATION_GUIDE.md](../manuals/COMPENSATION_GUIDE.md) — Алгоритмы компенсации показаний
 - [CALIBRATION_WEB_INTERFACE.md](CALIBRATION_WEB_INTERFACE.md) — Веб-интерфейс калибровки
 - [MODBUS_PROTOCOL.md](MODBUS_PROTOCOL.md) — Протокол обмена данными
 
@@ -71,8 +71,7 @@
   - Аэрация почвы
 
 **Документация и зависимости:**
-- [CROPS_DATABASE.md](CROPS_DATABASE.md) — База данных культур и параметров
-- [RECOMMENDATIONS_SYSTEM.md](RECOMMENDATIONS_SYSTEM.md) — Алгоритмы рекомендаций
+- [AGRO_RECOMMENDATIONS.md](../manuals/AGRO_RECOMMENDATIONS.md) — База культур и система рекомендаций
 - [API.md](API.md) — API для получения рекомендаций
 
 **Технические требования:**

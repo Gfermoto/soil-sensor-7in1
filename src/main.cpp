@@ -245,8 +245,8 @@ void loop()
         lastMqttCheck = currentTime;
     }
 
-    // ✅ Управление WiFi (каждые 1 секунду)
-    if (currentTime - lastWiFiCheck >= 1000)
+    // ✅ Управление WiFi (каждые 20 мс для более высокой отзывчивости веб-интерфейса)
+    if (currentTime - lastWiFiCheck >= 20)
     {
         handleWiFi();
         lastWiFiCheck = currentTime;

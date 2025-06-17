@@ -133,6 +133,19 @@ void handleWiFi()
     {
         dnsServer.processNextRequest();
         webServer.handleClient();
+
+        // Периодическая попытка вернуться в STA-режим, если точка доступа пуста
+        static unsigned long lastStaRetry = 0;
+        if (WiFi.softAPgetStationNum() == 0 &&                      // никого не подключено
+            millis() - lastStaRetry >= WIFI_RECONNECT_INTERVAL &&  // прошло ≥ интервала
+            strlen(config.ssid) > 0 && strlen(config.password) > 0)  // есть сохранённые уч. данные
+        {
+            lastStaRetry = millis();
+            logWiFi("AP режим: пробуем снова подключиться к WiFi \"%s\"", config.ssid);
+            startSTAMode();  // если не получится, функция сама вернёт нас в AP
+            return;          // ждём следующего цикла
+        }
+
         if (WiFi.softAPgetStationNum() > 0)
         {
             setLedOn();
@@ -443,20 +456,30 @@ void handleRoot()
         html += "<div class='form-group'><label for='longitude'>Долгота:</label><input type='number' step='0.0001' id='longitude' name='longitude' value='" + String(config.longitude,4) + "'></div>";
         // Культура
         html += "<div class='form-group'><label for='crop'>Культура:</label><select id='crop' name='crop'>";
-        html += String("<option value='none'") + (strcmp(config.cropId,"none")==0?" selected":"") + ">none</option>";
-        html += String("<option value='tomato'") + (strcmp(config.cropId,"tomato")==0?" selected":"") + ">tomato</option>";
-        html += String("<option value='cucumber'") + (strcmp(config.cropId,"cucumber")==0?" selected":"") + ">cucumber</option>";
-        html += String("<option value='pepper'") + (strcmp(config.cropId,"pepper")==0?" selected":"") + ">pepper</option>";
-        html += String("<option value='lettuce'") + (strcmp(config.cropId,"lettuce")==0?" selected":"") + ">lettuce</option>";
+        html += String("<option value='none'") + (strcmp(config.cropId,"none")==0?" selected":"") + ">нет</option>";
+        html += String("<option value='tomato'") + (strcmp(config.cropId,"tomato")==0?" selected":"") + ">Томат</option>";
+        html += String("<option value='cucumber'") + (strcmp(config.cropId,"cucumber")==0?" selected":"") + ">Огурец</option>";
+        html += String("<option value='pepper'") + (strcmp(config.cropId,"pepper")==0?" selected":"") + ">Перец</option>";
+        html += String("<option value='lettuce'") + (strcmp(config.cropId,"lettuce")==0?" selected":"") + ">Салат</option>";
+        html += String("<option value='strawberry'") + (strcmp(config.cropId,"strawberry")==0?" selected":"") + ">Клубника</option>";
+        html += String("<option value='apple'") + (strcmp(config.cropId,"apple")==0?" selected":"") + ">Яблоня</option>";
+        html += String("<option value='pear'") + (strcmp(config.cropId,"pear")==0?" selected":"") + ">Груша</option>";
+        html += String("<option value='cherry'") + (strcmp(config.cropId,"cherry")==0?" selected":"") + ">Вишня/Черешня</option>";
+        html += String("<option value='raspberry'") + (strcmp(config.cropId,"raspberry")==0?" selected":"") + ">Малина</option>";
+        html += String("<option value='currant'") + (strcmp(config.cropId,"currant")==0?" selected":"") + ">Смородина</option>";
+        html += String("<option value='blueberry'") + (strcmp(config.cropId,"blueberry")==0?" selected":"") + ">Голубика</option>";
+        html += String("<option value='lawn'") + (strcmp(config.cropId,"lawn")==0?" selected":"") + ">Газон</option>";
+        html += String("<option value='grape'") + (strcmp(config.cropId,"grape")==0?" selected":"") + ">Виноград</option>";
+        html += String("<option value='conifer'") + (strcmp(config.cropId,"conifer")==0?" selected":"") + ">Хвойные деревья</option>";
         html += "</select></div>";
         // Тип среды выращивания v2.6.1
         String selectedEnvOutdoor = config.environmentType == 0 ? " selected" : "";
         String selectedEnvGreenhouse = config.environmentType == 1 ? " selected" : "";
         String selectedEnvIndoor = config.environmentType == 2 ? " selected" : "";
         html += "<div class='form-group'><label for='env_type'>Среда:</label><select id='env_type' name='env_type'>";
-        html += String("<option value='0'") + selectedEnvOutdoor + ">outdoor</option>";
-        html += String("<option value='1'") + selectedEnvGreenhouse + ">greenhouse</option>";
-        html += String("<option value='2'") + selectedEnvIndoor + ">indoor</option></select></div>";
+        html += String("<option value='0'") + selectedEnvOutdoor + ">Открытый грунт</option>";
+        html += String("<option value='1'") + selectedEnvGreenhouse + ">Теплица</option>";
+        html += String("<option value='2'") + selectedEnvIndoor + ">Комнатная</option></select></div>";
 
         // Сезонные коэффициенты
         String seasonalChecked = config.flags.seasonalAdjustEnabled ? " checked" : "";

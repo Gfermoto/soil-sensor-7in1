@@ -197,6 +197,16 @@ void setupDataRoutes()
                      else if(strcmp(crop,"cucumber")==0){recTemp=24;recHum=70;recEc=1800;recPh=6.2;recN=35;recP=12;recK=28;}
                      else if(strcmp(crop,"pepper")==0){recTemp=23;recHum=65;recEc=1600;recPh=6.3;recN=38;recP=11;recK=29;}
                      else if(strcmp(crop,"lettuce")==0){recTemp=20;recHum=75;recEc=1000;recPh=6.0;recN=30;recP=8;recK=25;}
+                     else if(strcmp(crop,"blueberry")==0){recTemp=18;recHum=65;recEc=1200;recPh=5.0;recN=30;recP=10;recK=20;}
+                     else if(strcmp(crop,"lawn")==0){recTemp=20;recHum=50;recEc=800;recPh=6.3;recN=25;recP=8;recK=20;}
+                     else if(strcmp(crop,"grape")==0){recTemp=22;recHum=55;recEc=1400;recPh=6.5;recN=35;recP=12;recK=25;}
+                     else if(strcmp(crop,"conifer")==0){recTemp=18;recHum=55;recEc=1000;recPh=5.5;recN=25;recP=8;recK=15;}
+                     else if(strcmp(crop,"strawberry")==0){recTemp=20;recHum=70;recEc=1500;recPh=6.0;recN=35;recP=10;recK=25;}
+                     else if(strcmp(crop,"apple")==0){recTemp=18;recHum=60;recEc=1200;recPh=6.5;recN=25;recP=10;recK=20;}
+                     else if(strcmp(crop,"pear")==0){recTemp=18;recHum=60;recEc=1200;recPh=6.5;recN=25;recP=10;recK=20;}
+                     else if(strcmp(crop,"cherry")==0){recTemp=20;recHum=60;recEc=1300;recPh=6.5;recN=30;recP=10;recK=25;}
+                     else if(strcmp(crop,"raspberry")==0){recTemp=18;recHum=65;recEc=1100;recPh=6.2;recN=30;recP=10;recK=22;}
+                     else if(strcmp(crop,"currant")==0){recTemp=17;recHum=65;recEc=1000;recPh=6.2;recN=25;recP=9;recK=20;}
                      doc["rec_temperature"]=format_temperature(recTemp);
                      doc["rec_humidity"]=format_moisture(recHum);
                      doc["rec_ec"]=format_ec(recEc);
@@ -247,6 +257,16 @@ void setupDataRoutes()
                      else if(strcmp(crop,"cucumber")==0){recTemp=24;recHum=70;recEc=1800;recPh=6.2;recN=35;recP=12;recK=28;}
                      else if(strcmp(crop,"pepper")==0){recTemp=23;recHum=65;recEc=1600;recPh=6.3;recN=38;recP=11;recK=29;}
                      else if(strcmp(crop,"lettuce")==0){recTemp=20;recHum=75;recEc=1000;recPh=6.0;recN=30;recP=8;recK=25;}
+                     else if(strcmp(crop,"blueberry")==0){recTemp=18;recHum=65;recEc=1200;recPh=5.0;recN=30;recP=10;recK=20;}
+                     else if(strcmp(crop,"lawn")==0){recTemp=20;recHum=50;recEc=800;recPh=6.3;recN=25;recP=8;recK=20;}
+                     else if(strcmp(crop,"grape")==0){recTemp=22;recHum=55;recEc=1400;recPh=6.5;recN=35;recP=12;recK=25;}
+                     else if(strcmp(crop,"conifer")==0){recTemp=18;recHum=55;recEc=1000;recPh=5.5;recN=25;recP=8;recK=15;}
+                     else if(strcmp(crop,"strawberry")==0){recTemp=20;recHum=70;recEc=1500;recPh=6.0;recN=35;recP=10;recK=25;}
+                     else if(strcmp(crop,"apple")==0){recTemp=18;recHum=60;recEc=1200;recPh=6.5;recN=25;recP=10;recK=20;}
+                     else if(strcmp(crop,"pear")==0){recTemp=18;recHum=60;recEc=1200;recPh=6.5;recN=25;recP=10;recK=20;}
+                     else if(strcmp(crop,"cherry")==0){recTemp=20;recHum=60;recEc=1300;recPh=6.5;recN=30;recP=10;recK=25;}
+                     else if(strcmp(crop,"raspberry")==0){recTemp=18;recHum=65;recEc=1100;recPh=6.2;recN=30;recP=10;recK=22;}
+                     else if(strcmp(crop,"currant")==0){recTemp=17;recHum=65;recEc=1000;recPh=6.2;recN=25;recP=9;recK=20;}
                      doc["rec_temperature"]=format_temperature(recTemp);
                      doc["rec_humidity"]=format_moisture(recHum);
                      doc["rec_ec"]=format_ec(recEc);
