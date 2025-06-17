@@ -19,15 +19,13 @@
 
 // Константы
 #define RESET_BUTTON_PIN 0  // GPIO0 для кнопки сброса
-#define WIFI_RETRY_DELAY_MS 500
-#define WIFI_CONNECTION_ATTEMPTS 20
-#define WIFI_CONNECTION_TIMEOUT 10000
+#define WIFI_RETRY_DELAY_MS LED_BLINK_NORMAL  // Используем существующую константу для индикации
 #define WIFI_RECONNECT_INTERVAL 30000  // Интервал между попытками переподключения (30 секунд)
 
 // Глобальные переменные
 bool wifiConnected = false;
 WiFiMode currentWiFiMode = WiFiMode::AP;
-WebServer webServer(80);
+WebServer webServer(DEFAULT_WEB_SERVER_PORT);  // Используем константу из jxct_constants.h
 DNSServer dnsServer;
 
 // Переменные для светодиода
@@ -104,7 +102,12 @@ void setupWiFi()
 
     pinMode(STATUS_LED_PIN, OUTPUT);
     setLedBlink(500);
-    WiFi.mode(WIFI_AP_STA);
+    
+    // Сначала отключаем WiFi и очищаем настройки
+    WiFi.disconnect(true);
+    WiFi.mode(WIFI_OFF);
+    delay(100);
+    
     loadConfig();
 
     logSystem("SSID: %s", config.ssid);
@@ -142,22 +145,46 @@ void handleWiFi()
     else if (currentWiFiMode == WiFiMode::STA)
     {
         static unsigned long lastReconnectAttempt = 0;
+        static int reconnectAttempts = 0;
+        const int MAX_RECONNECT_ATTEMPTS = 3;  // Максимальное количество попыток переподключения перед переходом в AP
+
         if (WiFi.status() != WL_CONNECTED)
         {
             if (!wifiConnected || (millis() - lastReconnectAttempt >= WIFI_RECONNECT_INTERVAL))
-            {
-                wifiConnected = false;
+        {
+            wifiConnected = false;
                 setLedBlink(WIFI_RETRY_DELAY_MS);
-                logWarn("Потеряно соединение с WiFi, переход в AP");
-                lastReconnectAttempt = millis();
-                startAPMode();
+                
+                if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS)
+                {
+                    logWarn("Потеряно соединение с WiFi, попытка переподключения %d из %d", 
+                           reconnectAttempts + 1, MAX_RECONNECT_ATTEMPTS);
+                    
+                    WiFi.disconnect(true);
+                    delay(100);
+                    WiFi.begin(config.ssid, config.password);
+                    
+                    lastReconnectAttempt = millis();
+                    reconnectAttempts++;
+                }
+                else
+                {
+                    logError("Не удалось восстановить соединение после %d попыток, переход в AP", 
+                            MAX_RECONNECT_ATTEMPTS);
+            startAPMode();
+                    reconnectAttempts = 0;  // Сбрасываем счетчик для следующей сессии
+                }
             }
         }
-        else if (!wifiConnected)
+        else 
+        {
+            if (!wifiConnected)
         {
             wifiConnected = true;
+                reconnectAttempts = 0;  // Сбрасываем счетчик при успешном подключении
             setLedOn();
             logSuccess("Подключено к WiFi, IP: %s", WiFi.localIP().toString().c_str());
+            }
         }
         webServer.handleClient();
     }
@@ -179,7 +206,7 @@ void startAPMode()
     WiFi.disconnect();
     WiFi.mode(WIFI_AP);
     String apSsid = getApSsid();
-    WiFi.softAP(apSsid.c_str(), WIFI_AP_PASS);
+    WiFi.softAP(apSsid.c_str(), JXCT_WIFI_AP_PASS);
     dnsServer.start(53, "*", WiFi.softAPIP());
     setupWebServer();
     setLedBlink(500);
@@ -191,15 +218,22 @@ void startAPMode()
 void startSTAMode()
 {
     currentWiFiMode = WiFiMode::STA;
+    WiFi.disconnect(true);  // Полное отключение с очисткой настроек
     WiFi.mode(WIFI_STA);
+    delay(100);  // Даем время на применение режима
+    
     String hostname = getApSsid();
     WiFi.setHostname(hostname.c_str());
+    
     if (strlen(config.ssid) > 0)
     {
         logWiFi("Подключение к WiFi...");
+        WiFi.begin(config.ssid, config.password);  // Явно вызываем подключение
+        
         int attempts = 0;
         setLedBlink(WIFI_RETRY_DELAY_MS);
         unsigned long startTime = millis();
+        
         while (WiFi.status() != WL_CONNECTED && 
                attempts < WIFI_CONNECTION_ATTEMPTS && 
                (millis() - startTime) < WIFI_CONNECTION_TIMEOUT)
@@ -207,18 +241,31 @@ void startSTAMode()
             delay(WIFI_RETRY_DELAY_MS);
             updateLed();
             attempts++;
+            logDebug("Попытка подключения %d из %d", attempts, WIFI_CONNECTION_ATTEMPTS);
+            
+            // Проверяем кнопку сброса во время подключения
+            if (checkResetButton())
+            {
+                logWarn("Обнаружено длительное нажатие кнопки во время подключения");
+                startAPMode();
+                return;
+            }
         }
+        
         if (WiFi.status() == WL_CONNECTED)
         {
             wifiConnected = true;
             setLedOn();
             logSuccess("Подключено к WiFi: %s", config.ssid);
             logSystem("IP адрес: %s", WiFi.localIP().toString().c_str());
+            logSystem("MAC адрес: %s", WiFi.macAddress().c_str());
+            logSystem("Hostname: %s", hostname.c_str());
+            logSystem("RSSI: %d dBm", WiFi.RSSI());
             setupWebServer();
         }
         else
         {
-            logError("Не удалось подключиться к WiFi");
+            logError("Не удалось подключиться к WiFi после %d попыток", attempts);
             startAPMode();
         }
     }
@@ -383,7 +430,55 @@ void handleRoot()
         html +=
             "<div class='form-group'><label for='real_sensor'>Реальный датчик:</label><input type='checkbox' "
             "id='real_sensor' name='real_sensor'" +
-            realSensorChecked + "></div></div>";
+            realSensorChecked + "></div>";
+
+        // Калибровка
+        String calibChecked = config.flags.calibrationEnabled ? " checked" : "";
+        html += "<div class='form-group'><label for='cal_enabled'>Включить компенсацию:</label><input type='checkbox' id='cal_enabled' name='cal_enabled'" + calibChecked + "></div>";
+
+        // ----------------- Агро-профиль v2.6.0 -----------------
+        html += "<div class='section'><h2>Агро-профиль</h2>";
+        // Координаты
+        html += "<div class='form-group'><label for='latitude'>Широта:</label><input type='number' step='0.0001' id='latitude' name='latitude' value='" + String(config.latitude,4) + "'></div>";
+        html += "<div class='form-group'><label for='longitude'>Долгота:</label><input type='number' step='0.0001' id='longitude' name='longitude' value='" + String(config.longitude,4) + "'></div>";
+        // Культура
+        html += "<div class='form-group'><label for='crop'>Культура:</label><select id='crop' name='crop'>";
+        html += String("<option value='none'") + (strcmp(config.cropId,"none")==0?" selected":"") + ">none</option>";
+        html += String("<option value='tomato'") + (strcmp(config.cropId,"tomato")==0?" selected":"") + ">tomato</option>";
+        html += String("<option value='cucumber'") + (strcmp(config.cropId,"cucumber")==0?" selected":"") + ">cucumber</option>";
+        html += String("<option value='pepper'") + (strcmp(config.cropId,"pepper")==0?" selected":"") + ">pepper</option>";
+        html += String("<option value='lettuce'") + (strcmp(config.cropId,"lettuce")==0?" selected":"") + ">lettuce</option>";
+        html += "</select></div>";
+        // Тип среды выращивания v2.6.1
+        String selectedEnvOutdoor = config.environmentType == 0 ? " selected" : "";
+        String selectedEnvGreenhouse = config.environmentType == 1 ? " selected" : "";
+        String selectedEnvIndoor = config.environmentType == 2 ? " selected" : "";
+        html += "<div class='form-group'><label for='env_type'>Среда:</label><select id='env_type' name='env_type'>";
+        html += String("<option value='0'") + selectedEnvOutdoor + ">outdoor</option>";
+        html += String("<option value='1'") + selectedEnvGreenhouse + ">greenhouse</option>";
+        html += String("<option value='2'") + selectedEnvIndoor + ">indoor</option></select></div>";
+
+        // Сезонные коэффициенты
+        String seasonalChecked = config.flags.seasonalAdjustEnabled ? " checked" : "";
+        html += "<div class='form-group'><label for='season_adj'>Учитывать сезонность:</label><input type='checkbox' id='season_adj' name='season_adj'" + seasonalChecked + "></div>";
+
+        // Порог детектора полива
+        html += "<div class='form-group'><label for='irrig_th'>Порог ∆влажности (%):</label><input type='number' step='0.1' id='irrig_th' name='irrig_th' value='" + String(config.irrigationSpikeThreshold,1) + "'></div>";
+        html += "<div class='form-group'><label for='irrig_hold'>Удержание (мин):</label><input type='number' id='irrig_hold' name='irrig_hold' value='" + String(config.irrigationHoldMinutes) + "'></div>";
+
+        html += "</div>"; // конец секции агро
+
+        // Профиль почвы
+        html += "<div class='form-group'><label for='soil_profile_sel'>Профиль почвы:</label><select id='soil_profile_sel' name='soil_profile_sel'>";
+        const char* selectedSand = config.soilProfile == 0 ? " selected" : "";
+        const char* selectedLoam = config.soilProfile == 1 ? " selected" : "";
+        const char* selectedPeat = config.soilProfile == 2 ? " selected" : "";
+        html += String("<option value='0'" ) + selectedSand + ">Песок</option>";
+        html += String("<option value='1'") + selectedLoam + ">Суглинок</option>";
+        html += String("<option value='2'") + selectedPeat + ">Торф</option>";
+        html += "</select></div>";
+
+        html += "</div>"; // конец секции датчика
         html += "<div class='section'><h2>NTP</h2>";
         html +=
             "<div class='form-group'><label for='ntp_server'>NTP сервер:</label><input type='text' id='ntp_server' "

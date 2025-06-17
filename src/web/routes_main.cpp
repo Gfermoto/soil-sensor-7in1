@@ -54,10 +54,39 @@ void setupMainRoutes()
                 strlcpy(config.thingSpeakChannelId, webServer.arg("ts_channel_id").c_str(),
                         sizeof(config.thingSpeakChannelId));
                 config.flags.useRealSensor = (uint8_t)webServer.hasArg("real_sensor");
+                config.flags.calibrationEnabled = (uint8_t)webServer.hasArg("cal_enabled");
+                // Тип среды выращивания v2.6.1
+                if (webServer.hasArg("env_type"))
+                    config.environmentType = webServer.arg("env_type").toInt();
+                else
+                    config.environmentType = 0;
+                // Сезонная поправка
+                config.flags.seasonalAdjustEnabled = (uint8_t)webServer.hasArg("season_adj");
+
+                // Обратная совместимость
+                config.flags.isGreenhouse = (config.environmentType == 1);
+
+                if (webServer.hasArg("latitude"))
+                    config.latitude = webServer.arg("latitude").toFloat();
+                if (webServer.hasArg("longitude"))
+                    config.longitude = webServer.arg("longitude").toFloat();
+
+                if (webServer.hasArg("crop"))
+                    strlcpy(config.cropId, webServer.arg("crop").c_str(), sizeof(config.cropId));
+
+                if (webServer.hasArg("soil_profile_sel"))
+                {
+                    config.soilProfile = webServer.arg("soil_profile_sel").toInt();
+                }
                 strlcpy(config.ntpServer, webServer.arg("ntp_server").c_str(), sizeof(config.ntpServer));
                 config.ntpUpdateInterval = webServer.arg("ntp_interval").toInt();
                 // Сохраняем пароль веб-интерфейса
                 strlcpy(config.webPassword, webServer.arg("web_password").c_str(), sizeof(config.webPassword));
+
+                if (webServer.hasArg("irrig_th"))
+                    config.irrigationSpikeThreshold = webServer.arg("irrig_th").toFloat();
+                if (webServer.hasArg("irrig_hold"))
+                    config.irrigationHoldMinutes = webServer.arg("irrig_hold").toInt();
 
                 logInfo("Конфигурация обновлена: MQTT=%s, ThingSpeak=%s, HASS=%s",
                         config.flags.mqttEnabled ? "ON" : "OFF", config.flags.thingSpeakEnabled ? "ON" : "OFF",

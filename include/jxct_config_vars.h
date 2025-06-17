@@ -96,6 +96,22 @@ struct __attribute__((packed)) Config
     uint8_t filterAlgorithm;       // 0=среднее, 1=медиана
     uint8_t outlierFilterEnabled;  // 0=отключен, 1=включен (>2σ)
 
+    // v2.5.1: Настройки калибровки
+    uint8_t soilProfile;          // 0 = sand, 1 = loam, 2 = peat
+
+    // v2.6.0: Агро-профили
+    float latitude;   // Широта устройства (градусы)
+    float longitude;  // Долгота устройства (градусы)
+    char cropId[16];  // Идентификатор культуры ("tomato", ...)
+
+    // v2.6.0: Детектор полива
+    float irrigationSpikeThreshold;    // % прироста влажности
+    uint16_t irrigationHoldMinutes;    // мин удержания повышенной влажности
+    uint16_t postIrrigationHoldMinutes; // мин игнорировать коррекцию после полива
+
+    // v2.6.1: Тип среды выращивания (0=outdoor,1=greenhouse,2=indoor)
+    uint8_t environmentType;
+
     // Битовые поля для boolean флагов (экономия 4 байта)
     struct __attribute__((packed))
     {
@@ -103,7 +119,10 @@ struct __attribute__((packed)) Config
         uint8_t useRealSensor : 1;      // 1 бит вместо 1 байта
         uint8_t mqttEnabled : 1;        // 1 бит вместо 1 байта
         uint8_t thingSpeakEnabled : 1;  // 1 бит вместо 1 байта
-        uint8_t reserved : 4;           // Резерв для будущих флагов
+        uint8_t calibrationEnabled : 1; // Включена ли компенсация
+        uint8_t isGreenhouse : 1;       // 1 = теплица, 0 = открытый грунт (устарело)
+        uint8_t seasonalAdjustEnabled : 1; // Учитывать сезонные коэффициенты
+        uint8_t reserved : 1;           // оставшийся свободный бит
     } flags;
 };
 

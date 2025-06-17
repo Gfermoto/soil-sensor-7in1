@@ -69,6 +69,16 @@ struct SensorData
     float k_buffer[15];     // Буфер калия
     uint8_t buffer_index;   // Текущий индекс в буферах
     uint8_t buffer_filled;  // Количество заполненных элементов (0-15)
+
+    // RAW значения до компенсации (v2.5.1)
+    float raw_temperature;
+    float raw_humidity;
+    float raw_ec;
+    float raw_ph;
+    float raw_nitrogen;
+    float raw_phosphorus;
+    float raw_potassium;
+    bool recentIrrigation;
 };
 
 // Структура для кэширования данных

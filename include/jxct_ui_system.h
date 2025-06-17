@@ -57,6 +57,7 @@
 #define UI_ICON_FOLDER "📁"
 #define UI_ICON_STATUS "📋"
 #define UI_ICON_REFRESH "🔄"
+#define UI_ICON_CALIBRATION "🛠️"
 
 // 📋 ТИПЫ КНОПОК
 enum class ButtonType

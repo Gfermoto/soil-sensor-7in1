@@ -217,3 +217,15 @@ bool isRouteAvailable(const String& uri);
  * @brief Middleware для проверки доступности маршрута
  */
 bool checkRouteAccess(const String& routeName, const String& icon);
+
+// ============================================================================
+// КАЛИБРОВКА ДАТЧИКОВ (routes_calibration.cpp)
+// ============================================================================
+
+/**
+ * @brief Настройка маршрутов калибровки (/calibration)
+ */
+void setupCalibrationRoutes();
+
+// HTML навигация
+String navHtml();

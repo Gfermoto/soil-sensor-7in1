@@ -5,6 +5,8 @@
  */
 #include "fake_sensor.h"
 #include "modbus_sensor.h"
+#include "sensor_compensation.h"
+#include "jxct_config_vars.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include <Arduino.h>
 
@@ -29,6 +31,34 @@ void fakeSensorTask(void *pvParameters)
             sensorData.potassium = 20 + random(-5, 5);               // 15..25
             sensorData.valid = true;
             sensorData.last_update = millis();  // ✅ Обновляем timestamp
+
+            // RAW значения до компенсации
+            sensorData.raw_temperature = sensorData.temperature;
+            sensorData.raw_humidity = sensorData.humidity;
+            sensorData.raw_ec = sensorData.ec;
+            sensorData.raw_ph = sensorData.ph;
+            sensorData.raw_nitrogen = sensorData.nitrogen;
+            sensorData.raw_phosphorus = sensorData.phosphorus;
+            sensorData.raw_potassium = sensorData.potassium;
+
+            // Применяем компенсацию, если включена
+            if (config.flags.calibrationEnabled)
+            {
+                sensorData.ec = compensateEcByTemperature(sensorData.ec, sensorData.temperature);
+                sensorData.ph = compensatePhByTemperature(sensorData.ph, sensorData.temperature);
+
+                sensorData.nitrogen = compensateNpkByMoisture(sensorData.nitrogen, sensorData.humidity);
+                sensorData.phosphorus = compensateNpkByMoisture(sensorData.phosphorus, sensorData.humidity);
+                sensorData.potassium = compensateNpkByMoisture(sensorData.potassium, sensorData.humidity);
+
+                sensorData.nitrogen = compensateNpkByPh(sensorData.nitrogen, sensorData.ph);
+                sensorData.phosphorus = compensateNpkByPh(sensorData.phosphorus, sensorData.ph);
+                sensorData.potassium = compensateNpkByPh(sensorData.potassium, sensorData.ph);
+
+                sensorData.nitrogen = compensateNpkByEc(sensorData.nitrogen, sensorData.ec);
+                sensorData.phosphorus = compensateNpkByEc(sensorData.phosphorus, sensorData.ec);
+                sensorData.potassium = compensateNpkByEc(sensorData.potassium, sensorData.ec);
+            }
 
             DEBUG_PRINTLN("[fakeSensorTask] Сгенерированы тестовые данные датчика");
             iterationCounter = 0;  // Сброс счетчика
