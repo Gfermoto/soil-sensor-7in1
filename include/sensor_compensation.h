@@ -17,6 +17,9 @@ enum class SoilProfile : uint8_t
     PEAT = 2
 };
 
+// Типы почвы
+enum class SoilType { SAND, LOAM, CLAY };
+
 // ------------------ Температурная компенсация ------------------
 
 /**
@@ -61,4 +64,9 @@ float compensateNpkByEc(float npkRaw, float ec);
  * @return EC после коррекции
  * @details Для environmentType==INDOOR (2) влажностная компенсация не применяется.
  */
-float compensateEc(float ecRaw, float temperature, float moisturePercent); 
+float compensateEc(float ecRaw, float temperature, float moisturePercent);
+
+float correctEC(float ecRaw, float T, float theta, SoilType soil);
+float correctPH(float phRaw, float T);
+void  correctNPK(float T, float theta,
+                 float& N, float& P, float& K, SoilType soil); 
