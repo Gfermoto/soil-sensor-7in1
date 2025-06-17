@@ -158,8 +158,9 @@ void setupDataRoutes()
                      html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
                      html += navHtml();
                      html += "<h1>" UI_ICON_DATA " Показания датчика</h1>";
-                     // Индикатор полива
+                     // Индикатор полива + информационный блок
                      html += "<div id='irrigBadge' style='display:none;margin:10px 0;font-size:18px;color:#2196F3'>💦 Полив!</div>";
+                     html += "<div id='statusInfo' style='margin:10px 0;font-size:16px;color:#333'></div>";
                      // Заголовок 4-го столбца: выбранная культура или «Реком.»
                      String recHeader = "Реком.";
                      if (strlen(config.cropId) > 0)
@@ -190,9 +191,6 @@ void setupDataRoutes()
                      html += "<tr><td>🟡 Фосфор (P), мг/кг</td><td><span id='p_raw'></span></td><td><span id='p'></span></td><td><span id='p_rec'></span></td></tr>";
                      html += "<tr><td>🔵 Калий (K), мг/кг</td><td><span id='k_raw'></span></td><td><span id='k'></span></td><td><span id='k_rec'></span></td></tr>";
                      html += "</tbody></table></div>";
-                     html +=
-                         "<div style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='/api/sensor' "
-                         "target='_blank'>/api/sensor</a> (JSON, +timestamp)</div>";
                      html += "<script>";
                      html += "function set(id,v){if(v!==undefined&&v!==null){document.getElementById(id).textContent=v;}}";
                      html += "function updateSensor(){";
@@ -213,6 +211,7 @@ void setupDataRoutes()
                      html += "set('k_raw',d.raw_potassium);";
                      html += "set('temp_rec',d.rec_temperature);set('hum_rec',d.rec_humidity);set('ec_rec',d.rec_ec);set('ph_rec',d.rec_ph);set('n_rec',d.rec_nitrogen);set('p_rec',d.rec_phosphorus);set('k_rec',d.rec_potassium);";
                      html += "document.getElementById('irrigBadge').style.display = d.irrigation ? 'block' : 'none';";
+                     html += "document.getElementById('statusInfo').textContent = 'Полив: ' + (d.irrigation ? 'Да' : 'Нет') + ' | Сезон: ' + d.season + (d.alerts ? (' | Отклонения: ' + d.alerts) : ' | В пределах нормы');";
                      html += "});";
                      html += "}";
                      html += "setInterval(updateSensor,3000);";
@@ -230,6 +229,8 @@ void setupDataRoutes()
                      // CSS для таблицы данных
                      html += "<style>.data{width:100%;border-collapse:collapse}.data th,.data td{border:1px solid #ccc;padding:6px;text-align:center}.data th{background:#f5f5f5}</style>";
 
+                     // API-ссылка внизу страницы
+                     html += "<div style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='/api/sensor' target='_blank'>/api/sensor</a> (JSON, +timestamp)</div>";
                      html += "</div>" + String(getToastHTML()) + "</body></html>";
                      webServer.send(200, "text/html; charset=utf-8", html);
                  });
@@ -264,58 +265,36 @@ void setupDataRoutes()
                      doc["irrigation"] = sensorData.recentIrrigation;
 
                      RecValues rec = computeRecommendations();
-                     doc["rec_temperature"]=format_temperature(rec.t);
-                     doc["rec_humidity"]=format_moisture(rec.hum);
-                     doc["rec_ec"]=format_ec(rec.ec);
-                     doc["rec_ph"]=format_ph(rec.ph);
-                     doc["rec_nitrogen"]=format_npk(rec.n);
-                     doc["rec_phosphorus"]=format_npk(rec.p);
-                     doc["rec_potassium"]=format_npk(rec.k);
+                     doc["rec_temperature"] = format_temperature(rec.t);
+                     doc["rec_humidity"] = format_moisture(rec.hum);
+                     doc["rec_ec"] = format_ec(rec.ec);
+                     doc["rec_ph"] = format_ph(rec.ph);
+                     doc["rec_nitrogen"] = format_npk(rec.n);
+                     doc["rec_phosphorus"] = format_npk(rec.p);
+                     doc["rec_potassium"] = format_npk(rec.k);
 
-                     doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
+                     // ---- Дополнительная информация ----
+                     // Сезон по текущему месяцу
+                     const char* seasonName = [](){
+                         uint8_t m = (timeClient ? ((timeClient->getEpochTime() / 2629746) % 12) + 1 : 1);
+                         if (m==12 || m==1 || m==2) return "Зима";
+                         if (m>=3 && m<=5) return "Весна";
+                         if (m>=6 && m<=8) return "Лето";
+                         return "Осень";
+                     }();
+                     doc["season"] = seasonName;
 
-                     String json;
-                     serializeJson(doc, json);
-                     webServer.send(200, "application/json", json);
-                 });
-
-    // API эндпоинт для интеграции
-    webServer.on("/api/sensor", HTTP_GET,
-                 []()
-                 {
-                     logWebRequest("GET", "/api/sensor", webServer.client().remoteIP().toString());
-
-                     if (currentWiFiMode != WiFiMode::STA)
-                     {
-                         webServer.send(403, "application/json", "{\"error\":\"AP mode\"}");
-                         return;
-                     }
-
-                     StaticJsonDocument<512> doc;
-                     doc["temperature"] = format_temperature(sensorData.temperature);
-                     doc["humidity"] = format_moisture(sensorData.humidity);
-                     doc["ec"] = format_ec(sensorData.ec);
-                     doc["ph"] = format_ph(sensorData.ph);
-                     doc["nitrogen"] = format_npk(sensorData.nitrogen);
-                     doc["phosphorus"] = format_npk(sensorData.phosphorus);
-                     doc["potassium"] = format_npk(sensorData.potassium);
-                     doc["raw_temperature"] = format_temperature(sensorData.raw_temperature);
-                     doc["raw_humidity"] = format_moisture(sensorData.raw_humidity);
-                     doc["raw_ec"] = format_ec(sensorData.raw_ec);
-                     doc["raw_ph"] = format_ph(sensorData.raw_ph);
-                     doc["raw_nitrogen"] = format_npk(sensorData.raw_nitrogen);
-                     doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
-                     doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
-                     doc["irrigation"] = sensorData.recentIrrigation;
-
-                     RecValues rec = computeRecommendations();
-                     doc["rec_temperature"]=format_temperature(rec.t);
-                     doc["rec_humidity"]=format_moisture(rec.hum);
-                     doc["rec_ec"]=format_ec(rec.ec);
-                     doc["rec_ph"]=format_ph(rec.ph);
-                     doc["rec_nitrogen"]=format_npk(rec.n);
-                     doc["rec_phosphorus"]=format_npk(rec.p);
-                     doc["rec_potassium"]=format_npk(rec.k);
+                     // Проверяем отклонения
+                     String alerts="";
+                     auto append=[&](const char* n){ if(alerts.length()) alerts += ", "; alerts += n; };
+                     if (fabs(sensorData.temperature - rec.t) > 2) append("T");
+                     if (fabs(sensorData.humidity - rec.hum) > 10) append("θ");
+                     if (fabs(sensorData.ec - rec.ec) > rec.ec * 0.2f) append("EC");
+                     if (fabs(sensorData.ph - rec.ph) > 0.5f) append("pH");
+                     if (fabs(sensorData.nitrogen - rec.n) > rec.n * 0.15f) append("N");
+                     if (fabs(sensorData.phosphorus - rec.p) > rec.p * 0.15f) append("P");
+                     if (fabs(sensorData.potassium - rec.k) > rec.k * 0.15f) append("K");
+                     doc["alerts"] = alerts;
 
                      doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
 
