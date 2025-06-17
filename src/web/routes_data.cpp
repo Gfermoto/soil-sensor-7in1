@@ -277,8 +277,11 @@ void setupDataRoutes()
                      // Сезон по текущему месяцу
                      const char* seasonName = [](){
                          time_t now = timeClient ? (time_t)timeClient->getEpochTime() : time(nullptr);
+                         // если время < 2000-01-01 считаем, что NTP ещё не синхронизирован
+                         if (now < 946684800) return "Н/Д";
                          struct tm* ti = localtime(&now);
-                         uint8_t m = ti ? (ti->tm_mon + 1) : 1;
+                         if (!ti) return "Н/Д";
+                         uint8_t m = ti->tm_mon + 1;
                          if (m==12 || m==1 || m==2) return "Зима";
                          if (m>=3 && m<=5)           return "Весна";
                          if (m>=6 && m<=8)           return "Лето";
