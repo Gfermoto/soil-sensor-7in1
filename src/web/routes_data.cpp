@@ -109,7 +109,28 @@ void setupDataRoutes()
                      html += "<h1>" UI_ICON_DATA " Показания датчика</h1>";
                      // Индикатор полива
                      html += "<div id='irrigBadge' style='display:none;margin:10px 0;font-size:18px;color:#2196F3'>💦 Полив!</div>";
-                     html += "<div class='section'><table class='data'><thead><tr><th></th><th>RAW</th><th>Компенс.</th><th>Реком.</th></tr></thead><tbody>";
+                     // Заголовок 4-го столбца: выбранная культура или «Реком.»
+                     String recHeader = "Реком.";
+                     if (strlen(config.cropId) > 0)
+                     {
+                         const char* id = config.cropId;
+                         if      (strcmp(id,"tomato")==0)      recHeader = "Томаты";
+                         else if (strcmp(id,"cucumber")==0)    recHeader = "Огурцы";
+                         else if (strcmp(id,"pepper")==0)      recHeader = "Перец";
+                         else if (strcmp(id,"lettuce")==0)     recHeader = "Салат";
+                         else if (strcmp(id,"blueberry")==0)   recHeader = "Голубика";
+                         else if (strcmp(id,"lawn")==0)        recHeader = "Газон";
+                         else if (strcmp(id,"grape")==0)       recHeader = "Виноград";
+                         else if (strcmp(id,"conifer")==0)     recHeader = "Хвойные";
+                         else if (strcmp(id,"strawberry")==0)  recHeader = "Клубника";
+                         else if (strcmp(id,"apple")==0)       recHeader = "Яблоня";
+                         else if (strcmp(id,"pear")==0)        recHeader = "Груша";
+                         else if (strcmp(id,"cherry")==0)      recHeader = "Вишня";
+                         else if (strcmp(id,"raspberry")==0)   recHeader = "Малина";
+                         else if (strcmp(id,"currant")==0)     recHeader = "Смородина";
+                     }
+
+                     html += "<div class='section'><table class='data'><thead><tr><th></th><th>RAW</th><th>Компенс.</th><th>" + recHeader + "</th></tr></thead><tbody>";
                      html += "<tr><td>🌡️ Температура, °C</td><td><span id='temp_raw'></span></td><td><span id='temp'></span></td><td><span id='temp_rec'></span></td></tr>";
                      html += "<tr><td>💧 Влажность, %</td><td><span id='hum_raw'></span></td><td><span id='hum'></span></td><td><span id='hum_rec'></span></td></tr>";
                      html += "<tr><td>⚡ EC, µS/cm</td><td><span id='ec_raw'></span></td><td><span id='ec'></span></td><td><span id='ec_rec'></span></td></tr>";
@@ -207,6 +228,7 @@ void setupDataRoutes()
                      else if(strcmp(crop,"cherry")==0){recTemp=20;recHum=60;recEc=1300;recPh=6.5;recN=30;recP=10;recK=25;}
                      else if(strcmp(crop,"raspberry")==0){recTemp=18;recHum=65;recEc=1100;recPh=6.2;recN=30;recP=10;recK=22;}
                      else if(strcmp(crop,"currant")==0){recTemp=17;recHum=65;recEc=1000;recPh=6.2;recN=25;recP=9;recK=20;}
+                     else { /* усреднённые рекомендации */ recTemp=21;recHum=60;recEc=1200;recPh=6.3;recN=30;recP=10;recK=25; }
                      doc["rec_temperature"]=format_temperature(recTemp);
                      doc["rec_humidity"]=format_moisture(recHum);
                      doc["rec_ec"]=format_ec(recEc);
@@ -267,6 +289,7 @@ void setupDataRoutes()
                      else if(strcmp(crop,"cherry")==0){recTemp=20;recHum=60;recEc=1300;recPh=6.5;recN=30;recP=10;recK=25;}
                      else if(strcmp(crop,"raspberry")==0){recTemp=18;recHum=65;recEc=1100;recPh=6.2;recN=30;recP=10;recK=22;}
                      else if(strcmp(crop,"currant")==0){recTemp=17;recHum=65;recEc=1000;recPh=6.2;recN=25;recP=9;recK=20;}
+                     else { /* усреднённые рекомендации */ recTemp=21;recHum=60;recEc=1200;recPh=6.3;recN=30;recP=10;recK=25; }
                      doc["rec_temperature"]=format_temperature(recTemp);
                      doc["rec_humidity"]=format_moisture(recHum);
                      doc["rec_ec"]=format_ec(recEc);
