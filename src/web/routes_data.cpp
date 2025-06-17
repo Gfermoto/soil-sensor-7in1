@@ -15,6 +15,7 @@
 #include <ArduinoJson.h>
 #include <NTPClient.h>
 #include <LittleFS.h>
+#include <time.h>
 
 extern NTPClient* timeClient;
 
@@ -26,6 +27,56 @@ extern String getApSsid();
 // Буфер для загрузки файлов (калибровка через /readings)
 static File uploadFile;
 static SoilProfile uploadProfile = SoilProfile::SAND;
+
+struct RecValues { float t, hum, ec, ph, n, p, k; };
+
+static RecValues computeRecommendations()
+{
+    // 1. База по культуре или generic
+    RecValues rec{21,60,1200,6.3,30,10,25};
+    const char* id=config.cropId;
+    if(strlen(id)>0){
+        if      (strcmp(id,"tomato")==0)      rec={22,60,1500,6.5,40,10,30};
+        else if (strcmp(id,"cucumber")==0)    rec={24,70,1800,6.2,35,12,28};
+        else if (strcmp(id,"pepper")==0)      rec={23,65,1600,6.3,38,11,29};
+        else if (strcmp(id,"lettuce")==0)     rec={20,75,1000,6.0,30,8,25};
+        else if (strcmp(id,"blueberry")==0)   rec={18,65,1200,5.0,30,10,20};
+        else if (strcmp(id,"lawn")==0)        rec={20,50,800,6.3,25,8,20};
+        else if (strcmp(id,"grape")==0)       rec={22,55,1400,6.5,35,12,25};
+        else if (strcmp(id,"conifer")==0)     rec={18,55,1000,5.5,25,8,15};
+        else if (strcmp(id,"strawberry")==0)  rec={20,70,1500,6.0,35,10,25};
+        else if (strcmp(id,"apple")==0)       rec={18,60,1200,6.5,25,10,20};
+        else if (strcmp(id,"pear")==0)        rec={18,60,1200,6.5,25,10,20};
+        else if (strcmp(id,"cherry")==0)      rec={20,60,1300,6.5,30,10,25};
+        else if (strcmp(id,"raspberry")==0)   rec={18,65,1100,6.2,30,10,22};
+        else if (strcmp(id,"currant")==0)     rec={17,65,1000,6.2,25,9,20};
+    }
+
+    // 2. Коррекция по soilProfile (влажность и pH)
+    int soil=config.soilProfile; // 0 sand,1 loam,2 peat
+    if(soil==0){ rec.hum+=-5; /* песок */ }
+    else if(soil==2){ rec.hum+=10; rec.ph-=0.3f; }
+    else if(soil==1){ rec.hum+=5; }
+
+    // 3. Коррекция по environmentType
+    switch(config.environmentType){
+        case 1: // greenhouse
+            rec.hum+=10; rec.ec+=300; rec.n+=5; rec.k+=5; rec.t+=2; break;
+        case 2: // indoor
+            rec.hum+=-5; rec.ec-=200; rec.t+=1; break;
+    }
+
+    // 4. Сезонная коррекция (только если включена)
+    if(config.flags.seasonalAdjustEnabled){
+        time_t now=time(nullptr); struct tm* ti=localtime(&now);
+        int m=ti?ti->tm_mon+1:1;
+        bool rainy=(m==4||m==5||m==6||m==10);
+        if(rainy){ rec.hum+=5; rec.ec-=100; }
+        else{ rec.hum+=-2; rec.ec+=100; }
+    }
+
+    return rec;
+}
 
 static void handleReadingsUpload()
 {
@@ -212,30 +263,14 @@ void setupDataRoutes()
                      doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
                      doc["irrigation"] = sensorData.recentIrrigation;
 
-                     float recTemp=0, recHum=0,recEc=0,recPh=0,recN=0,recP=0,recK=0;
-                     const char* crop=config.cropId;
-                     if(strcmp(crop,"tomato")==0){recTemp=22;recHum=60;recEc=1500;recPh=6.5;recN=40;recP=10;recK=30;}
-                     else if(strcmp(crop,"cucumber")==0){recTemp=24;recHum=70;recEc=1800;recPh=6.2;recN=35;recP=12;recK=28;}
-                     else if(strcmp(crop,"pepper")==0){recTemp=23;recHum=65;recEc=1600;recPh=6.3;recN=38;recP=11;recK=29;}
-                     else if(strcmp(crop,"lettuce")==0){recTemp=20;recHum=75;recEc=1000;recPh=6.0;recN=30;recP=8;recK=25;}
-                     else if(strcmp(crop,"blueberry")==0){recTemp=18;recHum=65;recEc=1200;recPh=5.0;recN=30;recP=10;recK=20;}
-                     else if(strcmp(crop,"lawn")==0){recTemp=20;recHum=50;recEc=800;recPh=6.3;recN=25;recP=8;recK=20;}
-                     else if(strcmp(crop,"grape")==0){recTemp=22;recHum=55;recEc=1400;recPh=6.5;recN=35;recP=12;recK=25;}
-                     else if(strcmp(crop,"conifer")==0){recTemp=18;recHum=55;recEc=1000;recPh=5.5;recN=25;recP=8;recK=15;}
-                     else if(strcmp(crop,"strawberry")==0){recTemp=20;recHum=70;recEc=1500;recPh=6.0;recN=35;recP=10;recK=25;}
-                     else if(strcmp(crop,"apple")==0){recTemp=18;recHum=60;recEc=1200;recPh=6.5;recN=25;recP=10;recK=20;}
-                     else if(strcmp(crop,"pear")==0){recTemp=18;recHum=60;recEc=1200;recPh=6.5;recN=25;recP=10;recK=20;}
-                     else if(strcmp(crop,"cherry")==0){recTemp=20;recHum=60;recEc=1300;recPh=6.5;recN=30;recP=10;recK=25;}
-                     else if(strcmp(crop,"raspberry")==0){recTemp=18;recHum=65;recEc=1100;recPh=6.2;recN=30;recP=10;recK=22;}
-                     else if(strcmp(crop,"currant")==0){recTemp=17;recHum=65;recEc=1000;recPh=6.2;recN=25;recP=9;recK=20;}
-                     else { /* усреднённые рекомендации */ recTemp=21;recHum=60;recEc=1200;recPh=6.3;recN=30;recP=10;recK=25; }
-                     doc["rec_temperature"]=format_temperature(recTemp);
-                     doc["rec_humidity"]=format_moisture(recHum);
-                     doc["rec_ec"]=format_ec(recEc);
-                     doc["rec_ph"]=format_ph(recPh);
-                     doc["rec_nitrogen"]=format_npk(recN);
-                     doc["rec_phosphorus"]=format_npk(recP);
-                     doc["rec_potassium"]=format_npk(recK);
+                     RecValues rec = computeRecommendations();
+                     doc["rec_temperature"]=format_temperature(rec.t);
+                     doc["rec_humidity"]=format_moisture(rec.hum);
+                     doc["rec_ec"]=format_ec(rec.ec);
+                     doc["rec_ph"]=format_ph(rec.ph);
+                     doc["rec_nitrogen"]=format_npk(rec.n);
+                     doc["rec_phosphorus"]=format_npk(rec.p);
+                     doc["rec_potassium"]=format_npk(rec.k);
 
                      doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
 
@@ -273,30 +308,14 @@ void setupDataRoutes()
                      doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
                      doc["irrigation"] = sensorData.recentIrrigation;
 
-                     float recTemp=0, recHum=0,recEc=0,recPh=0,recN=0,recP=0,recK=0;
-                     const char* crop=config.cropId;
-                     if(strcmp(crop,"tomato")==0){recTemp=22;recHum=60;recEc=1500;recPh=6.5;recN=40;recP=10;recK=30;}
-                     else if(strcmp(crop,"cucumber")==0){recTemp=24;recHum=70;recEc=1800;recPh=6.2;recN=35;recP=12;recK=28;}
-                     else if(strcmp(crop,"pepper")==0){recTemp=23;recHum=65;recEc=1600;recPh=6.3;recN=38;recP=11;recK=29;}
-                     else if(strcmp(crop,"lettuce")==0){recTemp=20;recHum=75;recEc=1000;recPh=6.0;recN=30;recP=8;recK=25;}
-                     else if(strcmp(crop,"blueberry")==0){recTemp=18;recHum=65;recEc=1200;recPh=5.0;recN=30;recP=10;recK=20;}
-                     else if(strcmp(crop,"lawn")==0){recTemp=20;recHum=50;recEc=800;recPh=6.3;recN=25;recP=8;recK=20;}
-                     else if(strcmp(crop,"grape")==0){recTemp=22;recHum=55;recEc=1400;recPh=6.5;recN=35;recP=12;recK=25;}
-                     else if(strcmp(crop,"conifer")==0){recTemp=18;recHum=55;recEc=1000;recPh=5.5;recN=25;recP=8;recK=15;}
-                     else if(strcmp(crop,"strawberry")==0){recTemp=20;recHum=70;recEc=1500;recPh=6.0;recN=35;recP=10;recK=25;}
-                     else if(strcmp(crop,"apple")==0){recTemp=18;recHum=60;recEc=1200;recPh=6.5;recN=25;recP=10;recK=20;}
-                     else if(strcmp(crop,"pear")==0){recTemp=18;recHum=60;recEc=1200;recPh=6.5;recN=25;recP=10;recK=20;}
-                     else if(strcmp(crop,"cherry")==0){recTemp=20;recHum=60;recEc=1300;recPh=6.5;recN=30;recP=10;recK=25;}
-                     else if(strcmp(crop,"raspberry")==0){recTemp=18;recHum=65;recEc=1100;recPh=6.2;recN=30;recP=10;recK=22;}
-                     else if(strcmp(crop,"currant")==0){recTemp=17;recHum=65;recEc=1000;recPh=6.2;recN=25;recP=9;recK=20;}
-                     else { /* усреднённые рекомендации */ recTemp=21;recHum=60;recEc=1200;recPh=6.3;recN=30;recP=10;recK=25; }
-                     doc["rec_temperature"]=format_temperature(recTemp);
-                     doc["rec_humidity"]=format_moisture(recHum);
-                     doc["rec_ec"]=format_ec(recEc);
-                     doc["rec_ph"]=format_ph(recPh);
-                     doc["rec_nitrogen"]=format_npk(recN);
-                     doc["rec_phosphorus"]=format_npk(recP);
-                     doc["rec_potassium"]=format_npk(recK);
+                     RecValues rec = computeRecommendations();
+                     doc["rec_temperature"]=format_temperature(rec.t);
+                     doc["rec_humidity"]=format_moisture(rec.hum);
+                     doc["rec_ec"]=format_ec(rec.ec);
+                     doc["rec_ph"]=format_ph(rec.ph);
+                     doc["rec_nitrogen"]=format_npk(rec.n);
+                     doc["rec_phosphorus"]=format_npk(rec.p);
+                     doc["rec_potassium"]=format_npk(rec.k);
 
                      doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
 
