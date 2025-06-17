@@ -96,4 +96,25 @@ static float selectEcCoeff()
         }
     }
     return coeff;
+}
+
+float compensateEc(float ecRaw, float temperature, float moisturePercent)
+{
+    // 1. Температурная компенсация (универсальна для всех сред)
+    float ecTemp = compensateEcByTemperature(ecRaw, temperature);
+
+    // 2. Влажностная компенсация
+    //   • Не используется для indoor (environmentType == 2)
+    //   • Применяется только если влажность > 20 % во избежание деления на маленькие числа
+    if (config.environmentType == 2) // indoor
+    {
+        return ecTemp; // без θ-коррекции
+    }
+
+    if (moisturePercent > 20.0f)
+    {
+        return ecTemp * (45.0f / moisturePercent);
+    }
+
+    return ecTemp;
 } 

@@ -51,4 +51,14 @@ float compensateNpkByPh(float npkRaw, float ph);
 /**
  * @brief Коррекция NPK по EC
  */
-float compensateNpkByEc(float npkRaw, float ec); 
+float compensateNpkByEc(float npkRaw, float ec);
+
+/**
+ * @brief Полная компенсация EC (температура + влажность)
+ * @param ecRaw Сырые показания EC (µS/cm)
+ * @param temperature Температура °C
+ * @param moisturePercent Влажность θ (%)
+ * @return EC после коррекции
+ * @details Для environmentType==INDOOR (2) влажностная компенсация не применяется.
+ */
+float compensateEc(float ecRaw, float temperature, float moisturePercent); 
