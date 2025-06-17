@@ -67,6 +67,12 @@ static RecValues computeRecommendations()
             rec.hum+=-5; rec.ec-=200; rec.t+=1; break;
     }
 
+    // 3a. Конверсия NPK в мг/кг (датчик выдаёт мг/кг, таблица хранилась в мг/дм³ ~ экстракт 1:5)
+    constexpr float NPK_FACTOR = 6.5f; // пересчёт мг/дм³ → мг/кг (ρ=1.3 г/см³, влажность ≈30%)
+    rec.n *= NPK_FACTOR;
+    rec.p *= NPK_FACTOR;
+    rec.k *= NPK_FACTOR;
+
     // 4. Сезонная коррекция (только если включена)
     if(config.flags.seasonalAdjustEnabled){
         time_t now=time(nullptr); struct tm* ti=localtime(&now);
