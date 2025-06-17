@@ -211,7 +211,7 @@ void setupDataRoutes()
                      html += "set('k_raw',d.raw_potassium);";
                      html += "set('temp_rec',d.rec_temperature);set('hum_rec',d.rec_humidity);set('ec_rec',d.rec_ec);set('ph_rec',d.rec_ph);set('n_rec',d.rec_nitrogen);set('p_rec',d.rec_phosphorus);set('k_rec',d.rec_potassium);";
                      html += "document.getElementById('irrigBadge').style.display = d.irrigation ? 'block' : 'none';";
-                     html += "document.getElementById('statusInfo').textContent = 'Полив: ' + (d.irrigation ? 'Да' : 'Нет') + ' | Сезон: ' + d.season + (d.alerts ? (' | Отклонения: ' + d.alerts) : ' | В пределах нормы');";
+                     html += "document.getElementById('statusInfo').textContent = 'Полив: ' + (d.irrigation ? 'Да' : 'Нет') + ' | Сезон: ' + d.season + (d.alerts ? (' | Отклонения: ' + d.alerts) : ' | Датчик в диапазоне измерений');";
                      html += "});";
                      html += "}";
                      html += "setInterval(updateSensor,3000);";
