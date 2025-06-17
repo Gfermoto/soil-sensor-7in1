@@ -18,6 +18,8 @@ SensorData sensorData;
 SensorCache sensorCache;
 String sensorLastError = "";
 
+static unsigned long lastIrrigationTs = 0;
+
 void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
 {
     if (currentLogLevel < LOG_DEBUG) return;
@@ -361,16 +363,24 @@ void finalizeSensorData(bool success)
     sensorData.valid = success;
     sensorData.last_update = millis();
 
+    // Сохраняем RAW до любых компенсаций
+    sensorData.raw_temperature = sensorData.temperature;
+    sensorData.raw_humidity = sensorData.humidity;
+    sensorData.raw_ec = sensorData.ec;
+    sensorData.raw_ph = sensorData.ph;
+    sensorData.raw_nitrogen = sensorData.nitrogen;
+    sensorData.raw_phosphorus = sensorData.phosphorus;
+    sensorData.raw_potassium = sensorData.potassium;
+
     if (success)
     {
-        // Всегда сохраняем исходные значения
-        sensorData.raw_temperature = sensorData.temperature;
-        sensorData.raw_humidity = sensorData.humidity;
-        sensorData.raw_ec = sensorData.ec;
-        sensorData.raw_ph = sensorData.ph;
-        sensorData.raw_nitrogen = sensorData.nitrogen;
-        sensorData.raw_phosphorus = sensorData.phosphorus;
-        sensorData.raw_potassium = sensorData.potassium;
+        // ---------------- ДЕТЕКТОР ПОЛИВА ----------------
+        float deltaHum = sensorData.humidity - sensorData.prev_humidity;
+        if (deltaHum >= config.irrigationSpikeThreshold)
+        {
+            lastIrrigationTs = millis();
+        }
+        sensorData.recentIrrigation = (millis() - lastIrrigationTs) <= (unsigned long)config.irrigationHoldMinutes * 60000UL;
 
         if (config.flags.calibrationEnabled)
         {

@@ -1,14 +1,25 @@
 #include "sensor_compensation.h"
+#include "jxct_config_vars.h"
 #include <math.h>
+#include <time.h>
 
 // Коэффициенты температурной компенсации (по умолчанию)
-constexpr float EC_TEMP_COEFF = 0.019f;   // 1.9%/°C
+#define DEFAULT_EC_TEMP_COEFF 0.019f
+
+// Значения по умолчанию для разных сред
+static constexpr float EC_TEMP_COEFF_OUTDOOR_DRY = 0.022f;
+static constexpr float EC_TEMP_COEFF_OUTDOOR_RAINY = 0.015f;
+static constexpr float EC_TEMP_COEFF_GREENHOUSE = 0.021f;
+static constexpr float EC_TEMP_COEFF_INDOOR = 0.020f;
+
 constexpr float PH_TEMP_COEFF = -0.03f;    // -0.03 pH/°C
+
+static float selectEcCoeff();
 
 float compensateEcByTemperature(float ecRaw, float temperature)
 {
-    // Стандартная температура 25°C
-    float compensated = ecRaw / (1.0f + EC_TEMP_COEFF * (temperature - 25.0f));
+    float k = selectEcCoeff();
+    float compensated = ecRaw / (1.0f + k * (temperature - 25.0f));
     return compensated;
 }
 
@@ -45,4 +56,44 @@ float compensateNpkByEc(float npkRaw, float ec)
     float factor = 1.0f - 0.0001f * (ec - 1000.0f);  // -1% на каждые 100 µS выше 1000
     if (factor < 0.0f) factor = 0.0f;
     return npkRaw * factor;
+}
+
+static uint8_t getCurrentMonth()
+{
+    time_t now = time(nullptr);
+    struct tm* tinfo = localtime(&now);
+    if (!tinfo) return 1; // январь по умолчанию
+    return tinfo->tm_mon + 1; // 1-12
+}
+
+static float selectEcCoeff()
+{
+    // По умолчанию
+    float coeff = DEFAULT_EC_TEMP_COEFF;
+
+    switch (config.environmentType)
+    {
+        case 1: // greenhouse
+            coeff = EC_TEMP_COEFF_GREENHOUSE;
+            break;
+        case 2: // indoor
+            coeff = EC_TEMP_COEFF_INDOOR;
+            break;
+        case 0: // outdoor
+        default:
+        {
+            if (config.flags.seasonalAdjustEnabled)
+            {
+                uint8_t m = getCurrentMonth();
+                bool rainy = (m == 4 || m == 5 || m == 6 || m == 10);
+                coeff = rainy ? EC_TEMP_COEFF_OUTDOOR_RAINY : EC_TEMP_COEFF_OUTDOOR_DRY;
+            }
+            else
+            {
+                coeff = DEFAULT_EC_TEMP_COEFF;
+            }
+            break;
+        }
+    }
+    return coeff;
 } 

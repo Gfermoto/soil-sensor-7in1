@@ -78,6 +78,7 @@ struct SensorData
     float raw_nitrogen;
     float raw_phosphorus;
     float raw_potassium;
+    bool recentIrrigation;
 };
 
 // Структура для кэширования данных

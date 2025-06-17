@@ -436,6 +436,38 @@ void handleRoot()
         String calibChecked = config.flags.calibrationEnabled ? " checked" : "";
         html += "<div class='form-group'><label for='cal_enabled'>Включить компенсацию:</label><input type='checkbox' id='cal_enabled' name='cal_enabled'" + calibChecked + "></div>";
 
+        // ----------------- Агро-профиль v2.6.0 -----------------
+        html += "<div class='section'><h2>Агро-профиль</h2>";
+        // Координаты
+        html += "<div class='form-group'><label for='latitude'>Широта:</label><input type='number' step='0.0001' id='latitude' name='latitude' value='" + String(config.latitude,4) + "'></div>";
+        html += "<div class='form-group'><label for='longitude'>Долгота:</label><input type='number' step='0.0001' id='longitude' name='longitude' value='" + String(config.longitude,4) + "'></div>";
+        // Культура
+        html += "<div class='form-group'><label for='crop'>Культура:</label><select id='crop' name='crop'>";
+        html += String("<option value='none'") + (strcmp(config.cropId,"none")==0?" selected":"") + ">none</option>";
+        html += String("<option value='tomato'") + (strcmp(config.cropId,"tomato")==0?" selected":"") + ">tomato</option>";
+        html += String("<option value='cucumber'") + (strcmp(config.cropId,"cucumber")==0?" selected":"") + ">cucumber</option>";
+        html += String("<option value='pepper'") + (strcmp(config.cropId,"pepper")==0?" selected":"") + ">pepper</option>";
+        html += String("<option value='lettuce'") + (strcmp(config.cropId,"lettuce")==0?" selected":"") + ">lettuce</option>";
+        html += "</select></div>";
+        // Тип среды выращивания v2.6.1
+        String selectedEnvOutdoor = config.environmentType == 0 ? " selected" : "";
+        String selectedEnvGreenhouse = config.environmentType == 1 ? " selected" : "";
+        String selectedEnvIndoor = config.environmentType == 2 ? " selected" : "";
+        html += "<div class='form-group'><label for='env_type'>Среда:</label><select id='env_type' name='env_type'>";
+        html += String("<option value='0'") + selectedEnvOutdoor + ">outdoor</option>";
+        html += String("<option value='1'") + selectedEnvGreenhouse + ">greenhouse</option>";
+        html += String("<option value='2'") + selectedEnvIndoor + ">indoor</option></select></div>";
+
+        // Сезонные коэффициенты
+        String seasonalChecked = config.flags.seasonalAdjustEnabled ? " checked" : "";
+        html += "<div class='form-group'><label for='season_adj'>Учитывать сезонность:</label><input type='checkbox' id='season_adj' name='season_adj'" + seasonalChecked + "></div>";
+
+        // Порог детектора полива
+        html += "<div class='form-group'><label for='irrig_th'>Порог ∆влажности (%):</label><input type='number' step='0.1' id='irrig_th' name='irrig_th' value='" + String(config.irrigationSpikeThreshold,1) + "'></div>";
+        html += "<div class='form-group'><label for='irrig_hold'>Удержание (мин):</label><input type='number' id='irrig_hold' name='irrig_hold' value='" + String(config.irrigationHoldMinutes) + "'></div>";
+
+        html += "</div>"; // конец секции агро
+
         // Профиль почвы
         html += "<div class='form-group'><label for='soil_profile_sel'>Профиль почвы:</label><select id='soil_profile_sel' name='soil_profile_sel'>";
         const char* selectedSand = config.soilProfile == 0 ? " selected" : "";

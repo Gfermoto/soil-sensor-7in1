@@ -95,8 +95,18 @@ void loadConfig()
     config.filterAlgorithm = preferences.getUChar("filterAlgo", 0);          // 0=среднее
     config.outlierFilterEnabled = preferences.getUChar("outlierFilter", 0);  // отключен для минимальной фильтрации
 
-    // Soil profile
+    // Soil profile и агро-поля
     config.soilProfile = preferences.getUChar("soilProfile", 0);
+    config.latitude = preferences.getFloat("lat", 0.0f);
+    config.longitude = preferences.getFloat("lon", 0.0f);
+    preferences.getString("cropId", config.cropId, sizeof(config.cropId));
+    config.flags.isGreenhouse = preferences.getBool("greenhouse", false);
+    config.irrigationSpikeThreshold = preferences.getFloat("irrigTh", 8.0f);
+    config.irrigationHoldMinutes = preferences.getUShort("irrigHold", 5);
+
+    // v2.6.1: сезонные коэффициенты и тип среды
+    config.environmentType = preferences.getUChar("envType", 0); // 0=outdoor по умолчанию
+    config.flags.seasonalAdjustEnabled = preferences.getBool("seasonAdj", true);
 
     preferences.end();
     // Значения по умолчанию для новых полей
@@ -173,8 +183,18 @@ void saveConfig()
     preferences.putUChar("filterAlgo", config.filterAlgorithm);
     preferences.putUChar("outlierFilter", config.outlierFilterEnabled);
 
-    // Soil profile
+    // Soil profile и агро-поля
     preferences.putUChar("soilProfile", config.soilProfile);
+    preferences.putFloat("lat", config.latitude);
+    preferences.putFloat("lon", config.longitude);
+    preferences.putString("cropId", config.cropId);
+    preferences.putBool("greenhouse", config.flags.isGreenhouse);
+    preferences.putFloat("irrigTh", config.irrigationSpikeThreshold);
+    preferences.putUShort("irrigHold", config.irrigationHoldMinutes);
+
+    // v2.6.1: сохранение новых полей
+    preferences.putUChar("envType", config.environmentType);
+    preferences.putBool("seasonAdj", config.flags.seasonalAdjustEnabled);
 
     preferences.end();
 
@@ -249,8 +269,18 @@ void resetConfig()
     config.filterAlgorithm = 0;       // среднее
     config.outlierFilterEnabled = 0;  // отключен для минимальной фильтрации
 
-    // Soil profile
+    // Soil profile и агро-поля
     config.soilProfile = 0;
+    config.latitude = 0.0f;
+    config.longitude = 0.0f;
+    strlcpy(config.cropId, "", sizeof(config.cropId));
+    config.flags.isGreenhouse = false;
+    config.irrigationSpikeThreshold = 8.0f;
+    config.irrigationHoldMinutes = 5;
+
+    // v2.6.1: сезонные коэффициенты и тип среды
+    config.environmentType = 0; // 0=outdoor по умолчанию
+    config.flags.seasonalAdjustEnabled = true;
 
     logSuccess("Все настройки сброшены к значениям по умолчанию");
     DEBUG_PRINT("[resetConfig] config.thingspeakInterval: ");

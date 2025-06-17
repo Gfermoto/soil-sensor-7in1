@@ -107,15 +107,16 @@ void setupDataRoutes()
                      html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
                      html += navHtml();
                      html += "<h1>" UI_ICON_DATA " Показания датчика</h1>";
-                     // Таблица данных "После / До"
-                     html += "<div class='section'><table class='data'><thead><tr><th></th><th>После</th><th>До</th></tr></thead><tbody>";
-                     html += "<tr><td>🌡️ Температура, °C</td><td><span id='temp'></span></td><td><span id='temp_raw'></span></td></tr>";
-                     html += "<tr><td>💧 Влажность, %</td><td><span id='hum'></span></td><td><span id='hum_raw'></span></td></tr>";
-                     html += "<tr><td>⚡ EC, µS/cm</td><td><span id='ec'></span></td><td><span id='ec_raw'></span></td></tr>";
-                     html += "<tr><td>⚗️ pH</td><td><span id='ph'></span></td><td><span id='ph_raw'></span></td></tr>";
-                     html += "<tr><td>🔴 Азот (N), мг/кг</td><td><span id='n'></span></td><td><span id='n_raw'></span></td></tr>";
-                     html += "<tr><td>🟡 Фосфор (P), мг/кг</td><td><span id='p'></span></td><td><span id='p_raw'></span></td></tr>";
-                     html += "<tr><td>🔵 Калий (K), мг/кг</td><td><span id='k'></span></td><td><span id='k_raw'></span></td></tr>";
+                     // Индикатор полива
+                     html += "<div id='irrigBadge' style='display:none;margin:10px 0;font-size:18px;color:#2196F3'>💦 Полив!</div>";
+                     html += "<div class='section'><table class='data'><thead><tr><th></th><th>RAW</th><th>Компенс.</th><th>Реком.</th></tr></thead><tbody>";
+                     html += "<tr><td>🌡️ Температура, °C</td><td><span id='temp_raw'></span></td><td><span id='temp'></span></td><td><span id='temp_rec'></span></td></tr>";
+                     html += "<tr><td>💧 Влажность, %</td><td><span id='hum_raw'></span></td><td><span id='hum'></span></td><td><span id='hum_rec'></span></td></tr>";
+                     html += "<tr><td>⚡ EC, µS/cm</td><td><span id='ec_raw'></span></td><td><span id='ec'></span></td><td><span id='ec_rec'></span></td></tr>";
+                     html += "<tr><td>⚗️ pH</td><td><span id='ph_raw'></span></td><td><span id='ph'></span></td><td><span id='ph_rec'></span></td></tr>";
+                     html += "<tr><td>🔴 Азот (N), мг/кг</td><td><span id='n_raw'></span></td><td><span id='n'></span></td><td><span id='n_rec'></span></td></tr>";
+                     html += "<tr><td>🟡 Фосфор (P), мг/кг</td><td><span id='p_raw'></span></td><td><span id='p'></span></td><td><span id='p_rec'></span></td></tr>";
+                     html += "<tr><td>🔵 Калий (K), мг/кг</td><td><span id='k_raw'></span></td><td><span id='k'></span></td><td><span id='k_rec'></span></td></tr>";
                      html += "</tbody></table></div>";
                      html +=
                          "<div style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='/api/sensor' "
@@ -138,6 +139,8 @@ void setupDataRoutes()
                      html += "set('n_raw',d.raw_nitrogen);";
                      html += "set('p_raw',d.raw_phosphorus);";
                      html += "set('k_raw',d.raw_potassium);";
+                     html += "set('temp_rec',d.rec_temperature);set('hum_rec',d.rec_humidity);set('ec_rec',d.rec_ec);set('ph_rec',d.rec_ph);set('n_rec',d.rec_nitrogen);set('p_rec',d.rec_phosphorus);set('k_rec',d.rec_potassium);";
+                     html += "document.getElementById('irrigBadge').style.display = d.irrigation ? 'block' : 'none';";
                      html += "});";
                      html += "}";
                      html += "setInterval(updateSensor,3000);";
@@ -146,26 +149,11 @@ void setupDataRoutes()
 
                      // ======= Калибровка =======
                      html += "<div class='section'><h2>⚙️ Калибровка</h2>";
-                     // ----- Форма выбора профиля -----
-                     html += "<form action='/readings/profile' method='post'>";
-                     html += "<div class='section'><h3>Профиль почвы</h3>";
-                     html += "<select name='soil_profile' id='soil_sel'>";
-                     html += "<option value='sand'" + String(config.soilProfile==0?" selected":"") + ">Песок</option>";
-                     html += "<option value='loam'" + String(config.soilProfile==1?" selected":"") + ">Суглинок</option>";
-                     html += "<option value='peat'" + String(config.soilProfile==2?" selected":"") + ">Торф</option>";
-                     html += "</select></div>";
-                     html += generateButton(ButtonType::SECONDARY, UI_ICON_SAVE, "Сохранить профиль", "");
-                     html += "</form>";
-
                      // ----- Форма загрузки CSV -----
                      html += "<form action='/readings/upload' method='post' enctype='multipart/form-data' style='margin-top:10px'>";
-                     html += "<input type='hidden' name='soil_profile' id='upload_hidden' value='sand'>";
                      html += "<div class='section'><h3>Загрузить CSV</h3><input type='file' name='calibration_csv' accept='.csv' required></div>";
                      html += generateButton(ButtonType::PRIMARY, UI_ICON_UPLOAD, "Загрузить CSV", "");
                      html += "</form>";
-
-                     // JS синхронизации селекта с hidden upload
-                     html += "<script>document.getElementById('soil_sel').addEventListener('change',e=>{document.getElementById('upload_hidden').value=e.target.value;});</script>";
 
                      // CSS для таблицы данных
                      html += "<style>.data{width:100%;border-collapse:collapse}.data th,.data td{border:1px solid #ccc;padding:6px;text-align:center}.data th{background:#f5f5f5}</style>";
@@ -186,7 +174,7 @@ void setupDataRoutes()
                          return;
                      }
 
-                     StaticJsonDocument<384> doc;
+                     StaticJsonDocument<512> doc;
                      doc["temperature"] = format_temperature(sensorData.temperature);
                      doc["humidity"] = format_moisture(sensorData.humidity);
                      doc["ec"] = format_ec(sensorData.ec);
@@ -201,6 +189,22 @@ void setupDataRoutes()
                      doc["raw_nitrogen"] = format_npk(sensorData.raw_nitrogen);
                      doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
                      doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
+                     doc["irrigation"] = sensorData.recentIrrigation;
+
+                     float recTemp=0, recHum=0,recEc=0,recPh=0,recN=0,recP=0,recK=0;
+                     const char* crop=config.cropId;
+                     if(strcmp(crop,"tomato")==0){recTemp=22;recHum=60;recEc=1500;recPh=6.5;recN=40;recP=10;recK=30;}
+                     else if(strcmp(crop,"cucumber")==0){recTemp=24;recHum=70;recEc=1800;recPh=6.2;recN=35;recP=12;recK=28;}
+                     else if(strcmp(crop,"pepper")==0){recTemp=23;recHum=65;recEc=1600;recPh=6.3;recN=38;recP=11;recK=29;}
+                     else if(strcmp(crop,"lettuce")==0){recTemp=20;recHum=75;recEc=1000;recPh=6.0;recN=30;recP=8;recK=25;}
+                     doc["rec_temperature"]=format_temperature(recTemp);
+                     doc["rec_humidity"]=format_moisture(recHum);
+                     doc["rec_ec"]=format_ec(recEc);
+                     doc["rec_ph"]=format_ph(recPh);
+                     doc["rec_nitrogen"]=format_npk(recN);
+                     doc["rec_phosphorus"]=format_npk(recP);
+                     doc["rec_potassium"]=format_npk(recK);
+
                      doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
 
                      String json;
@@ -220,7 +224,7 @@ void setupDataRoutes()
                          return;
                      }
 
-                     StaticJsonDocument<384> doc;
+                     StaticJsonDocument<512> doc;
                      doc["temperature"] = format_temperature(sensorData.temperature);
                      doc["humidity"] = format_moisture(sensorData.humidity);
                      doc["ec"] = format_ec(sensorData.ec);
@@ -235,6 +239,22 @@ void setupDataRoutes()
                      doc["raw_nitrogen"] = format_npk(sensorData.raw_nitrogen);
                      doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
                      doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
+                     doc["irrigation"] = sensorData.recentIrrigation;
+
+                     float recTemp=0, recHum=0,recEc=0,recPh=0,recN=0,recP=0,recK=0;
+                     const char* crop=config.cropId;
+                     if(strcmp(crop,"tomato")==0){recTemp=22;recHum=60;recEc=1500;recPh=6.5;recN=40;recP=10;recK=30;}
+                     else if(strcmp(crop,"cucumber")==0){recTemp=24;recHum=70;recEc=1800;recPh=6.2;recN=35;recP=12;recK=28;}
+                     else if(strcmp(crop,"pepper")==0){recTemp=23;recHum=65;recEc=1600;recPh=6.3;recN=38;recP=11;recK=29;}
+                     else if(strcmp(crop,"lettuce")==0){recTemp=20;recHum=75;recEc=1000;recPh=6.0;recN=30;recP=8;recK=25;}
+                     doc["rec_temperature"]=format_temperature(recTemp);
+                     doc["rec_humidity"]=format_moisture(recHum);
+                     doc["rec_ec"]=format_ec(recEc);
+                     doc["rec_ph"]=format_ph(recPh);
+                     doc["rec_nitrogen"]=format_npk(recN);
+                     doc["rec_phosphorus"]=format_npk(recP);
+                     doc["rec_potassium"]=format_npk(recK);
+
                      doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
 
                      String json;
