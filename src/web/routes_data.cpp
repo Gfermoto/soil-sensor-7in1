@@ -276,10 +276,12 @@ void setupDataRoutes()
                      // ---- Дополнительная информация ----
                      // Сезон по текущему месяцу
                      const char* seasonName = [](){
-                         uint8_t m = (timeClient ? ((timeClient->getEpochTime() / 2629746) % 12) + 1 : 1);
+                         time_t now = timeClient ? (time_t)timeClient->getEpochTime() : time(nullptr);
+                         struct tm* ti = localtime(&now);
+                         uint8_t m = ti ? (ti->tm_mon + 1) : 1;
                          if (m==12 || m==1 || m==2) return "Зима";
-                         if (m>=3 && m<=5) return "Весна";
-                         if (m>=6 && m<=8) return "Лето";
+                         if (m>=3 && m<=5)           return "Весна";
+                         if (m>=6 && m<=8)           return "Лето";
                          return "Осень";
                      }();
                      doc["season"] = seasonName;
@@ -287,13 +289,14 @@ void setupDataRoutes()
                      // Проверяем отклонения
                      String alerts="";
                      auto append=[&](const char* n){ if(alerts.length()) alerts += ", "; alerts += n; };
-                     if (fabs(sensorData.temperature - rec.t) > 2) append("T");
-                     if (fabs(sensorData.humidity - rec.hum) > 10) append("θ");
-                     if (fabs(sensorData.ec - rec.ec) > rec.ec * 0.2f) append("EC");
-                     if (fabs(sensorData.ph - rec.ph) > 0.5f) append("pH");
-                     if (fabs(sensorData.nitrogen - rec.n) > rec.n * 0.15f) append("N");
-                     if (fabs(sensorData.phosphorus - rec.p) > rec.p * 0.15f) append("P");
-                     if (fabs(sensorData.potassium - rec.k) > rec.k * 0.15f) append("K");
+                     // Физические пределы датчика
+                     if (sensorData.temperature < -45 || sensorData.temperature > 115) append("T");
+                     if (sensorData.humidity    <   0 || sensorData.humidity    > 100) append("θ");
+                     if (sensorData.ec          <   0 || sensorData.ec          > 10000) append("EC");
+                     if (sensorData.ph          <   3 || sensorData.ph          > 9) append("pH");
+                     if (sensorData.nitrogen    <   0 || sensorData.nitrogen    > 1999) append("N");
+                     if (sensorData.phosphorus  <   0 || sensorData.phosphorus  > 1999) append("P");
+                     if (sensorData.potassium   <   0 || sensorData.potassium   > 1999) append("K");
                      doc["alerts"] = alerts;
 
                      doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
