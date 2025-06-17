@@ -384,22 +384,22 @@ void finalizeSensorData(bool success)
 
         if (config.flags.calibrationEnabled)
         {
-            // Температурная компенсация EC и pH
-            sensorData.ec = compensateEcByTemperature(sensorData.ec, sensorData.temperature);
-            sensorData.ph = compensatePhByTemperature(sensorData.ph, sensorData.temperature);
+            SoilType soil = SoilType::LOAM; // TODO: взять из конфигурации
 
-            // Влажностная и pH/EC зависимая коррекция NPK
-            sensorData.nitrogen = compensateNpkByMoisture(sensorData.nitrogen, sensorData.humidity);
-            sensorData.phosphorus = compensateNpkByMoisture(sensorData.phosphorus, sensorData.humidity);
-            sensorData.potassium = compensateNpkByMoisture(sensorData.potassium, sensorData.humidity);
+            // 1. EC: коррекция температуры → модель Арчи
+            float ec25 = sensorData.ec / (1.0f + 0.021f * (sensorData.temperature - 25.0f));
+            sensorData.ec = correctEC(ec25, sensorData.temperature, sensorData.humidity, soil);
 
-            sensorData.nitrogen = compensateNpkByPh(sensorData.nitrogen, sensorData.ph);
-            sensorData.phosphorus = compensateNpkByPh(sensorData.phosphorus, sensorData.ph);
-            sensorData.potassium = compensateNpkByPh(sensorData.potassium, sensorData.ph);
+            // 2. pH: только температурная поправка
+            sensorData.ph = correctPH(sensorData.ph, sensorData.temperature);
 
-            sensorData.nitrogen = compensateNpkByEc(sensorData.nitrogen, sensorData.ec);
-            sensorData.phosphorus = compensateNpkByEc(sensorData.phosphorus, sensorData.ec);
-            sensorData.potassium = compensateNpkByEc(sensorData.potassium, sensorData.ec);
+            // 3. NPK: T + θ + тип почвы
+            correctNPK(sensorData.temperature,
+                       sensorData.humidity,
+                       sensorData.nitrogen,
+                       sensorData.phosphorus,
+                       sensorData.potassium,
+                       soil);
         }
 
         // Добавляем данные в буферы скользящего среднего
