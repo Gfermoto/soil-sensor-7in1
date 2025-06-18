@@ -462,12 +462,16 @@ void handleRoot()
             "id='real_sensor' name='real_sensor'" +
             realSensorChecked + "></div>";
 
-        // Калибровка
+        // ----------------- ⚙️ Компенсация датчиков -----------------
+        html += "<div class='section'><h2>⚙️ Компенсация датчиков</h2>";
         String calibChecked = config.flags.calibrationEnabled ? " checked" : "";
         html += "<div class='form-group'><label for='cal_enabled'>Включить компенсацию:</label><input type='checkbox' id='cal_enabled' name='cal_enabled'" + calibChecked + "></div>";
+        html += "<div class='form-group'><label for='irrig_th'>Порог ∆влажности (%):</label><input type='number' step='0.1' id='irrig_th' name='irrig_th' value='" + String(config.irrigationSpikeThreshold,1) + "'></div>";
+        html += "<div class='form-group'><label for='irrig_hold'>Удержание (мин):</label><input type='number' id='irrig_hold' name='irrig_hold' value='" + String(config.irrigationHoldMinutes) + "'></div>";
+        html += "</div>"; // конец секции компенсации
 
-        // ----------------- Агро-профиль v2.6.0 -----------------
-        html += "<div class='section'><h2>Агро-профиль</h2>";
+        // ----------------- 🌱 Агрорекомендации -----------------
+        html += "<div class='section'><h2>🌱 Агрорекомендации</h2>";
         // Координаты
         html += "<div class='form-group'><label for='latitude'>Широта:</label><input type='number' step='0.0001' id='latitude' name='latitude' value='" + String(config.latitude,4) + "'></div>";
         html += "<div class='form-group'><label for='longitude'>Долгота:</label><input type='number' step='0.0001' id='longitude' name='longitude' value='" + String(config.longitude,4) + "'></div>";
@@ -502,23 +506,19 @@ void handleRoot()
         String seasonalChecked = config.flags.seasonalAdjustEnabled ? " checked" : "";
         html += "<div class='form-group'><label for='season_adj'>Учитывать сезонность:</label><input type='checkbox' id='season_adj' name='season_adj'" + seasonalChecked + "></div>";
 
-        // Порог детектора полива
-        html += "<div class='form-group'><label for='irrig_th'>Порог ∆влажности (%):</label><input type='number' step='0.1' id='irrig_th' name='irrig_th' value='" + String(config.irrigationSpikeThreshold,1) + "'></div>";
-        html += "<div class='form-group'><label for='irrig_hold'>Удержание (мин):</label><input type='number' id='irrig_hold' name='irrig_hold' value='" + String(config.irrigationHoldMinutes) + "'></div>";
-
-        html += "</div>"; // конец секции агро
-
         // Профиль почвы
-        html += "<div class='form-group'><label for='soil_profile_sel'>Профиль почвы:</label><select id='soil_profile_sel' name='soil_profile_sel'>";
         const char* selectedSand = config.soilProfile == 0 ? " selected" : "";
         const char* selectedLoam = config.soilProfile == 1 ? " selected" : "";
         const char* selectedPeat = config.soilProfile == 2 ? " selected" : "";
         const char* selectedClay = config.soilProfile == 3 ? " selected" : "";
-        html += String("<option value='0'" ) + selectedSand + ">Песок</option>";
+        html += "<div class='form-group'><label for='soil_profile_sel'>Профиль почвы:</label><select id='soil_profile_sel' name='soil_profile_sel'>";
+        html += String("<option value='0'") + selectedSand + ">Песок</option>";
         html += String("<option value='1'") + selectedLoam + ">Суглинок</option>";
         html += String("<option value='2'") + selectedPeat + ">Торф</option>";
         html += String("<option value='3'") + selectedClay + ">Глина</option>";
         html += "</select></div>";
+
+        html += "</div>"; // конец секции агрорекомендаций
 
         html += "</div>"; // конец секции датчика
         html += "<div class='section'><h2>NTP</h2>";
