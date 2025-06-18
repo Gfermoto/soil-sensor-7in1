@@ -188,6 +188,94 @@ static void handleProfileSave()
     webServer.send(302, "text/plain", "Redirect");
 }
 
+static void sendSensorJson()
+{
+    // unified JSON response for sensor data
+    logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
+    if (currentWiFiMode != WiFiMode::STA)
+    {
+        webServer.send(403, "application/json", "{\"error\":\"AP mode\"}");
+        return;
+    }
+
+    StaticJsonDocument<512> doc;
+    doc["temperature"] = format_temperature(sensorData.temperature);
+    doc["humidity"] = format_moisture(sensorData.humidity);
+    doc["ec"] = format_ec(sensorData.ec);
+    doc["ph"] = format_ph(sensorData.ph);
+    doc["nitrogen"] = format_npk(sensorData.nitrogen);
+    doc["phosphorus"] = format_npk(sensorData.phosphorus);
+    doc["potassium"] = format_npk(sensorData.potassium);
+    doc["raw_temperature"] = format_temperature(sensorData.raw_temperature);
+    doc["raw_humidity"] = format_moisture(sensorData.raw_humidity);
+    doc["raw_ec"] = format_ec(sensorData.raw_ec);
+    doc["raw_ph"] = format_ph(sensorData.raw_ph);
+    doc["raw_nitrogen"] = format_npk(sensorData.raw_nitrogen);
+    doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
+    doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
+    doc["irrigation"] = sensorData.recentIrrigation;
+
+    RecValues rec = computeRecommendations();
+    doc["rec_temperature"] = format_temperature(rec.t);
+    doc["rec_humidity"] = format_moisture(rec.hum);
+    doc["rec_ec"] = format_ec(rec.ec);
+    doc["rec_ph"] = format_ph(rec.ph);
+    doc["rec_nitrogen"] = format_npk(rec.n);
+    doc["rec_phosphorus"] = format_npk(rec.p);
+    doc["rec_potassium"] = format_npk(rec.k);
+
+    // ---- Дополнительная информация ----
+    // Сезон по текущему месяцу
+    const char* seasonName = [](){
+        // Проверяем инициализацию NTP
+        if (timeClient == nullptr) {
+            extern WiFiUDP ntpUDP;
+            timeClient = new NTPClient(ntpUDP, "pool.ntp.org", 0, 3600000);
+            timeClient->begin();
+        }
+        
+        time_t now = timeClient ? (time_t)timeClient->getEpochTime() : time(nullptr);
+        // если время < 2000-01-01 считаем, что NTP ещё не синхронизирован
+        if (now < 946684800) {
+            // Пробуем обновить NTP
+            if (timeClient) {
+                timeClient->forceUpdate();
+                now = (time_t)timeClient->getEpochTime();
+                if (now < 946684800) return "Н/Д";
+            } else {
+                return "Н/Д";
+            }
+        }
+        struct tm* ti = localtime(&now);
+        if (!ti) return "Н/Д";
+        uint8_t m = ti->tm_mon + 1;
+        if (m==12 || m==1 || m==2) return "Зима";
+        if (m>=3 && m<=5)           return "Весна";
+        if (m>=6 && m<=8)           return "Лето";
+        return "Осень";
+    }();
+    doc["season"] = seasonName;
+
+    // Проверяем отклонения
+    String alerts="";
+    auto append=[&](const char* n){ if(alerts.length()) alerts += ", "; alerts += n; };
+    // Физические пределы датчика
+    if (sensorData.temperature < -45 || sensorData.temperature > 115) append("T");
+    if (sensorData.humidity    <   0 || sensorData.humidity    > 100) append("θ");
+    if (sensorData.ec          <   0 || sensorData.ec          > 10000) append("EC");
+    if (sensorData.ph          <   3 || sensorData.ph          > 9) append("pH");
+    if (sensorData.nitrogen    <   0 || sensorData.nitrogen    > 1999) append("N");
+    if (sensorData.phosphorus  <   0 || sensorData.phosphorus  > 1999) append("P");
+    if (sensorData.potassium   <   0 || sensorData.potassium   > 1999) append("K");
+    doc["alerts"] = alerts;
+
+    doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
+
+    String json;
+    serializeJson(doc, json);
+    webServer.send(200, "application/json", json);
+}
+
 void setupDataRoutes()
 {
     // Красивая страница показаний с иконками (оригинальный дизайн)
@@ -369,102 +457,10 @@ void setupDataRoutes()
                  });
 
     // AJAX эндпоинт для обновления показаний
-    webServer.on("/sensor_json", HTTP_GET,
-                 []()
-                 {
-                     logWebRequest("GET", "/sensor_json", webServer.client().remoteIP().toString());
+    webServer.on("/sensor_json", HTTP_GET, sendSensorJson);
 
-                     if (currentWiFiMode != WiFiMode::STA)
-                     {
-                         webServer.send(403, "application/json", "{\"error\":\"AP mode\"}");
-                         return;
-                     }
-
-                     StaticJsonDocument<512> doc;
-                     doc["temperature"] = format_temperature(sensorData.temperature);
-                     doc["humidity"] = format_moisture(sensorData.humidity);
-                     doc["ec"] = format_ec(sensorData.ec);
-                     doc["ph"] = format_ph(sensorData.ph);
-                     doc["nitrogen"] = format_npk(sensorData.nitrogen);
-                     doc["phosphorus"] = format_npk(sensorData.phosphorus);
-                     doc["potassium"] = format_npk(sensorData.potassium);
-                     doc["raw_temperature"] = format_temperature(sensorData.raw_temperature);
-                     doc["raw_humidity"] = format_moisture(sensorData.raw_humidity);
-                     doc["raw_ec"] = format_ec(sensorData.raw_ec);
-                     doc["raw_ph"] = format_ph(sensorData.raw_ph);
-                     doc["raw_nitrogen"] = format_npk(sensorData.raw_nitrogen);
-                     doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
-                     doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
-                     doc["irrigation"] = sensorData.recentIrrigation;
-
-                     RecValues rec = computeRecommendations();
-                     doc["rec_temperature"] = format_temperature(rec.t);
-                     doc["rec_humidity"] = format_moisture(rec.hum);
-                     doc["rec_ec"] = format_ec(rec.ec);
-                     doc["rec_ph"] = format_ph(rec.ph);
-                     doc["rec_nitrogen"] = format_npk(rec.n);
-                     doc["rec_phosphorus"] = format_npk(rec.p);
-                     doc["rec_potassium"] = format_npk(rec.k);
-
-                     // ---- Дополнительная информация ----
-                     // Сезон по текущему месяцу
-                     const char* seasonName = [](){
-                         // Проверяем инициализацию NTP
-                         if (timeClient == nullptr) {
-                             extern WiFiUDP ntpUDP;
-                             timeClient = new NTPClient(ntpUDP, "pool.ntp.org", 0, 3600000);
-                             timeClient->begin();
-                         }
-                         
-                         time_t now = timeClient ? (time_t)timeClient->getEpochTime() : time(nullptr);
-                         // если время < 2000-01-01 считаем, что NTP ещё не синхронизирован
-                         if (now < 946684800) {
-                             // Пробуем обновить NTP
-                             if (timeClient) {
-                                 timeClient->forceUpdate();
-                                 now = (time_t)timeClient->getEpochTime();
-                                 if (now < 946684800) return "Н/Д";
-                             } else {
-                                 return "Н/Д";
-                             }
-                         }
-                         struct tm* ti = localtime(&now);
-                         if (!ti) return "Н/Д";
-                         uint8_t m = ti->tm_mon + 1;
-                         if (m==12 || m==1 || m==2) return "Зима";
-                         if (m>=3 && m<=5)           return "Весна";
-                         if (m>=6 && m<=8)           return "Лето";
-                         return "Осень";
-                     }();
-                     doc["season"] = seasonName;
-
-                     // Проверяем отклонения
-                     String alerts="";
-                     auto append=[&](const char* n){ if(alerts.length()) alerts += ", "; alerts += n; };
-                     // Физические пределы датчика
-                     if (sensorData.temperature < -45 || sensorData.temperature > 115) append("T");
-                     if (sensorData.humidity    <   0 || sensorData.humidity    > 100) append("θ");
-                     if (sensorData.ec          <   0 || sensorData.ec          > 10000) append("EC");
-                     if (sensorData.ph          <   3 || sensorData.ph          > 9) append("pH");
-                     if (sensorData.nitrogen    <   0 || sensorData.nitrogen    > 1999) append("N");
-                     if (sensorData.phosphorus  <   0 || sensorData.phosphorus  > 1999) append("P");
-                     if (sensorData.potassium   <   0 || sensorData.potassium   > 1999) append("K");
-                     doc["alerts"] = alerts;
-
-                     doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
-
-                     String json;
-                     serializeJson(doc, json);
-                     webServer.send(200, "application/json", json);
-                 });
-
-    // Алиас /api/sensor – возвращает тот же JSON, что и /sensor_json (для обратной совместимости)
-    webServer.on("/api/sensor", HTTP_GET, [](){
-        // Алиас на /sensor_json для внешних клиентов (без дублирования кода)
-        logWebRequest("GET", "/api/sensor (alias)", webServer.client().remoteIP().toString());
-        webServer.sendHeader("Location", "/sensor_json", true); // 307 Temporary Redirect
-        webServer.send(307, "text/plain", "Redirect");
-    });
+    // Primary API v1 endpoint
+    webServer.on("/api/v1/sensor", HTTP_GET, sendSensorJson);
 
     // Загрузка калибровочного CSV через вкладку
     webServer.on("/readings/upload", HTTP_POST, [](){}, handleReadingsUpload);
@@ -472,7 +468,14 @@ void setupDataRoutes()
     // Форма для сохранения профиля
     webServer.on("/readings/profile", HTTP_POST, [](){}, handleProfileSave);
 
-    logDebug("Маршруты данных настроены: /readings, /sensor_json, /api/sensor");
+    // DEPRECATED alias – будет удалён в v2.7.0
+    webServer.on("/api/sensor", HTTP_GET, [](){
+        logWebRequest("GET", "/api/sensor (deprecated)", webServer.client().remoteIP().toString());
+        webServer.sendHeader("Location", "/api/v1/sensor", true); // 307 Temporary Redirect
+        webServer.send(307, "text/plain", "Redirect");
+                 });
+
+    logDebug("Маршруты данных настроены: /readings, /api/v1/sensor (json), /sensor_json [legacy]");
 }
 
 // Вспомогательная функция для получения SSID точки доступа
