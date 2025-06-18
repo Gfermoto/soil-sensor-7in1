@@ -3,8 +3,11 @@ IndentWidth: 4
 TabWidth: 4
 UseTab: Never
 ColumnLimit: 120
-AllowShortFunctionsOnASingleLine: Inline
+AllowShortFunctionsOnASingleLine: Empty
+DerivePointerAlignment: false
+PointerAlignment: Left
+SpacesInAngles:  false
+SpaceBeforeCpp11BracedList: false
 BreakBeforeBraces: Allman
-SortIncludes: false
-SpaceBeforeParens: ControlStatements
-PointerAlignment: Left 
+SortIncludes:    true
+IncludeBlocks:   Preserve 

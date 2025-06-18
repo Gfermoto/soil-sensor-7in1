@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# Автоформатирование всех C/C++ файлов перед коммитом
+pwsh -NoProfile -ExecutionPolicy Bypass -File scripts/format_all.ps1 || exit 1
+
+git add -u 
