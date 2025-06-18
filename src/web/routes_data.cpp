@@ -78,8 +78,56 @@ static RecValues computeRecommendations()
         time_t now=time(nullptr); struct tm* ti=localtime(&now);
         int m=ti?ti->tm_mon+1:1;
         bool rainy=(m==4||m==5||m==6||m==10);
+        
+        // Коррекция влажности и EC
         if(rainy){ rec.hum+=5; rec.ec-=100; }
         else{ rec.hum+=-2; rec.ec+=100; }
+        
+        // Коррекция NPK по сезону
+        if(config.environmentType == 0) { // Outdoor
+            if(m >= 3 && m <= 5) { // Весна
+                rec.n *= 1.20f; // +20%
+                rec.p *= 1.15f; // +15%
+                rec.k *= 1.10f; // +10%
+            }
+            else if(m >= 6 && m <= 8) { // Лето
+                rec.n *= 0.90f; // -10%
+                rec.p *= 1.05f; // +5%
+                rec.k *= 1.25f; // +25%
+            }
+            else if(m >= 9 && m <= 11) { // Осень
+                rec.n *= 0.80f; // -20%
+                rec.p *= 1.10f; // +10%
+                rec.k *= 1.15f; // +15%
+            }
+            else { // Зима
+                rec.n *= 0.70f; // -30%
+                rec.p *= 1.05f; // +5%
+                rec.k *= 1.05f; // +5%
+            }
+        }
+        else if(config.environmentType == 1) { // Greenhouse
+            if(m >= 3 && m <= 5) { // Весна
+                rec.n *= 1.25f; // +25%
+                rec.p *= 1.20f; // +20%
+                rec.k *= 1.15f; // +15%
+            }
+            else if(m >= 6 && m <= 8) { // Лето
+                rec.n *= 1.10f; // +10%
+                rec.p *= 1.10f; // +10%
+                rec.k *= 1.30f; // +30%
+            }
+            else if(m >= 9 && m <= 11) { // Осень
+                rec.n *= 1.15f; // +15%
+                rec.p *= 1.15f; // +15%
+                rec.k *= 1.20f; // +20%
+            }
+            else { // Зима
+                rec.n *= 1.05f; // +5%
+                rec.p *= 1.10f; // +10%
+                rec.k *= 1.15f; // +15%
+            }
+        }
     }
 
     return rec;
@@ -195,10 +243,15 @@ void setupDataRoutes()
                      html += "<tr><td>💧 Влажность, %</td><td><span id='hum_raw'></span></td><td><span id='hum'></span></td><td><span id='hum_rec'></span></td></tr>";
                      html += "<tr><td>⚡ EC, µS/cm</td><td><span id='ec_raw'></span></td><td><span id='ec'></span></td><td><span id='ec_rec'></span></td></tr>";
                      html += "<tr><td>⚗️ pH</td><td><span id='ph_raw'></span></td><td><span id='ph'></span></td><td><span id='ph_rec'></span></td></tr>";
-                     html += "<tr><td>🔴 Азот (N), мг/кг</td><td><span id='n_raw'></span></td><td><span id='n'></span></td><td><span id='n_rec'></span></td></tr>";
-                     html += "<tr><td>🟡 Фосфор (P), мг/кг</td><td><span id='p_raw'></span></td><td><span id='p'></span></td><td><span id='p_rec'></span></td></tr>";
-                     html += "<tr><td>🔵 Калий (K), мг/кг</td><td><span id='k_raw'></span></td><td><span id='k'></span></td><td><span id='k_rec'></span></td></tr>";
+                     html += "<tr><td>🔴 Азот (N), мг/кг</td><td><span id='n_raw'></span></td><td><span id='n'></span></td><td><span id='n_rec'></span><span id='n_season' class='season-adj'></span></td></tr>";
+                     html += "<tr><td>🟡 Фосфор (P), мг/кг</td><td><span id='p_raw'></span></td><td><span id='p'></span></td><td><span id='p_rec'></span><span id='p_season' class='season-adj'></span></td></tr>";
+                     html += "<tr><td>🔵 Калий (K), мг/кг</td><td><span id='k_raw'></span></td><td><span id='k'></span></td><td><span id='k_rec'></span><span id='k_season' class='season-adj'></span></td></tr>";
                      html += "</tbody></table></div>";
+                     html += "<style>";
+                     html += ".season-adj { font-size: 0.8em; margin-left: 5px; }";
+                     html += ".season-adj.up { color: #2ecc71; }";
+                     html += ".season-adj.down { color: #e74c3c; }";
+                     html += "</style>";
                      html += "<script>";
                      html += "function set(id,v){if(v!==undefined&&v!==null){document.getElementById(id).textContent=v;}}";
                      html += "function colorDelta(a,b){var diff=Math.abs(a-b)/b*100;if(diff>30)return 'red';if(diff>20)return 'orange';if(diff>10)return 'yellow';return '';}";
@@ -207,13 +260,6 @@ void setupDataRoutes()
                      html += "var limits={temp:{min:-45,max:115},hum:{min:0,max:100},ec:{min:0,max:10000},ph:{min:3,max:9},n:{min:0,max:1999},p:{min:0,max:1999},k:{min:0,max:1999}};";
                      html += "function updateSensor(){";
                      html += "fetch('/sensor_json').then(r=>r.json()).then(d=>{";
-                     html += "set('temp',d.temperature);";
-                     html += "set('hum',d.humidity);";
-                     html += "set('ec',d.ec);";
-                     html += "set('ph',d.ph);";
-                     html += "set('n',d.nitrogen);";
-                     html += "set('p',d.phosphorus);";
-                     html += "set('k',d.potassium);";
                      html += "set('temp_raw',d.raw_temperature);";
                      html += "set('hum_raw',d.raw_humidity);";
                      html += "set('ec_raw',d.raw_ec);";
@@ -222,11 +268,61 @@ void setupDataRoutes()
                      html += "set('p_raw',d.raw_phosphorus);";
                      html += "set('k_raw',d.raw_potassium);";
                      html += "set('temp_rec',d.rec_temperature);set('hum_rec',d.rec_humidity);set('ec_rec',d.rec_ec);set('ph_rec',d.rec_ph);set('n_rec',d.rec_nitrogen);set('p_rec',d.rec_phosphorus);set('k_rec',d.rec_potassium);";
+                     // === Arrow indicators block ===
+                     html += "const tol={temp:0.2,hum:0.5,ec:20,ph:0.05,n:5,p:3,k:3};";
+                     html += "function arrowSign(base,val,thr){base=parseFloat(base);val=parseFloat(val);if(isNaN(base)||isNaN(val))return '';if(val>base+thr)return '↑ ';if(val<base-thr)return '↓ ';return '';};";
+                     html += "function showWithArrow(id,sign,value){document.getElementById(id).textContent=sign+value;}";
+
+                     // Compensated vs RAW arrows
+                     html += "showWithArrow('temp', arrowSign(d.raw_temperature ,d.temperature ,tol.temp), d.temperature);";
+                     html += "showWithArrow('hum',  arrowSign(d.raw_humidity    ,d.humidity    ,tol.hum ), d.humidity);";
+                     html += "showWithArrow('ec',   arrowSign(d.raw_ec          ,d.ec          ,tol.ec  ), d.ec);";
+                     html += "showWithArrow('ph',   arrowSign(d.raw_ph          ,d.ph          ,tol.ph  ), d.ph);";
+                     html += "showWithArrow('n',    arrowSign(d.raw_nitrogen    ,d.nitrogen    ,tol.n   ), d.nitrogen);";
+                     html += "showWithArrow('p',    arrowSign(d.raw_phosphorus  ,d.phosphorus  ,tol.p   ), d.phosphorus);";
+                     html += "showWithArrow('k',    arrowSign(d.raw_potassium   ,d.potassium   ,tol.k   ), d.potassium);";
+
+                     // Recommendation arrows (target vs current)
+                     html += "showWithArrow('temp_rec', arrowSign(d.temperature ,d.rec_temperature ,tol.temp), d.rec_temperature);";
+                     html += "showWithArrow('hum_rec',  arrowSign(d.humidity    ,d.rec_humidity    ,tol.hum ), d.rec_humidity);";
+                     html += "showWithArrow('ec_rec',   arrowSign(d.ec          ,d.rec_ec          ,tol.ec  ), d.rec_ec);";
+                     html += "showWithArrow('ph_rec',   arrowSign(d.ph          ,d.rec_ph          ,tol.ph  ), d.rec_ph);";
+                     html += "showWithArrow('n_rec',    arrowSign(d.nitrogen    ,d.rec_nitrogen    ,tol.n   ), d.rec_nitrogen);";
+                     html += "showWithArrow('p_rec',    arrowSign(d.phosphorus  ,d.rec_phosphorus  ,tol.p   ), d.rec_phosphorus);";
+                     html += "showWithArrow('k_rec',    arrowSign(d.potassium   ,d.rec_potassium   ,tol.k   ), d.rec_potassium);";
+                     // === End arrow indicators ===
+                     
+                     // Добавляем индикацию сезонных корректировок
+                     html += "function updateSeasonalAdjustments(season) {";
+                     html += "  const adjustments = {";
+                     html += "    'Весна': { n: '+20%', p: '+15%', k: '+10%' },";
+                     html += "    'Лето': { n: '-10%', p: '+5%', k: '+25%' },";
+                     html += "    'Осень': { n: '-20%', p: '+10%', k: '+15%' },";
+                     html += "    'Зима': { n: '-30%', p: '+5%', k: '+5%' }";
+                     html += "  };";
+                     html += "  const envType = " + String(config.environmentType) + ";";
+                     html += "  if(envType === 1) {"; // Теплица
+                     html += "    adjustments['Весна'] = { n: '+25%', p: '+20%', k: '+15%' };";
+                     html += "    adjustments['Лето'] = { n: '+10%', p: '+10%', k: '+30%' };";
+                     html += "    adjustments['Осень'] = { n: '+15%', p: '+15%', k: '+20%' };";
+                     html += "    adjustments['Зима'] = { n: '+5%', p: '+10%', k: '+15%' };";
+                     html += "  }";
+                     html += "  const adj = adjustments[season] || { n: '', p: '', k: '' };";
+                     html += "  ['n', 'p', 'k'].forEach(elem => {";
+                     html += "    const span = document.getElementById(elem + '_season');";
+                     html += "    if(span) {";
+                     html += "      span.textContent = adj[elem] ? ` (${adj[elem]})` : '';";
+                     html += "      span.className = 'season-adj ' + (adj[elem].startsWith('+') ? 'up' : 'down');";
+                     html += "    }";
+                     html += "  });";
+                     html += "}";
+                     
                      html += "var invalid = d.irrigation || d.alerts.length>0 || d.humidity<25 || d.temperature<5 || d.temperature>40;";
                      html += "var statusHtml = invalid ? '<span class=\\\"red\\\">Данные&nbsp;не&nbsp;валидны</span>' : '<span class=\\\"green\\\">Данные&nbsp;валидны</span>';";
                      html += "var seasonColor={'Лето':'green','Весна':'yellow','Осень':'yellow','Зима':'red','Н/Д':''}[d.season]||'';";
                      html += "var seasonHtml=seasonColor?(`<span class=\\\"${seasonColor}\\\">${d.season}</span>`):d.season;";
                      html += "document.getElementById('statusInfo').innerHTML=statusHtml+' | Сезон: '+seasonHtml;";
+                     html += "updateSeasonalAdjustments(d.season);";
                      html += "var tvr=parseFloat(d.raw_temperature);applyColor('temp_raw',colorRange(tvr,limits.temp.min,limits.temp.max));";
                      html += "var hvr=parseFloat(d.raw_humidity);applyColor('hum_raw',colorRange(hvr,limits.hum.min,limits.hum.max));";
                      html += "var evr=parseFloat(d.raw_ec);applyColor('ec_raw',colorRange(evr,limits.ec.min,limits.ec.max));";
@@ -313,9 +409,25 @@ void setupDataRoutes()
                      // ---- Дополнительная информация ----
                      // Сезон по текущему месяцу
                      const char* seasonName = [](){
+                         // Проверяем инициализацию NTP
+                         if (timeClient == nullptr) {
+                             extern WiFiUDP ntpUDP;
+                             timeClient = new NTPClient(ntpUDP, "pool.ntp.org", 0, 3600000);
+                             timeClient->begin();
+                         }
+                         
                          time_t now = timeClient ? (time_t)timeClient->getEpochTime() : time(nullptr);
                          // если время < 2000-01-01 считаем, что NTP ещё не синхронизирован
-                         if (now < 946684800) return "Н/Д";
+                         if (now < 946684800) {
+                             // Пробуем обновить NTP
+                             if (timeClient) {
+                                 timeClient->forceUpdate();
+                                 now = (time_t)timeClient->getEpochTime();
+                                 if (now < 946684800) return "Н/Д";
+                             } else {
+                                 return "Н/Д";
+                             }
+                         }
                          struct tm* ti = localtime(&now);
                          if (!ti) return "Н/Д";
                          uint8_t m = ti->tm_mon + 1;
