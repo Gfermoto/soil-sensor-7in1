@@ -80,6 +80,8 @@ void resetButtonTask(void* parameter)
     }
 }
 
+#ifndef PIO_UNIT_TESTING
+
 void setup()
 {
     Serial.begin(115200);
@@ -255,3 +257,5 @@ void loop()
     // ✅ Минимальная задержка для стабильности (10мс вместо 100мс)
     vTaskDelay(10 / portTICK_PERIOD_MS);
 }
+
+#endif // PIO_UNIT_TESTING

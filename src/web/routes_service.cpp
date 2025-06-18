@@ -14,6 +14,7 @@
 #include "../modbus_sensor.h"
 #include "../mqtt_client.h"
 #include <ArduinoJson.h>
+#include "../../include/jxct_strings.h"
 
 extern WebServer webServer;
 extern WiFiMode currentWiFiMode;
@@ -42,11 +43,11 @@ void setupServiceRoutes()
 
     // Health endpoint (legacy) and API v1
     webServer.on("/health", HTTP_GET, sendHealthJson);
-    webServer.on("/api/v1/system/health", HTTP_GET, sendHealthJson);
+    webServer.on(API_SYSTEM_HEALTH, HTTP_GET, sendHealthJson);
 
     // Service status endpoint legacy + API v1
     webServer.on("/service_status", HTTP_GET, sendServiceStatusJson);
-    webServer.on("/api/v1/system/status", HTTP_GET, sendServiceStatusJson);
+    webServer.on(API_SYSTEM_STATUS, HTTP_GET, sendServiceStatusJson);
 
     // Красивая страница сервисов (оригинальный дизайн)
     webServer.on(
@@ -148,7 +149,7 @@ void setupServiceRoutes()
                      ESP.restart();
                  });
 
-    webServer.on("/api/v1/system/reset", HTTP_POST, [](){ webServer.sendHeader("Location", "/reset", true); webServer.send(307, "text/plain", "Redirect"); });
+    webServer.on(API_SYSTEM_RESET, HTTP_POST, [](){ webServer.sendHeader("Location", "/reset", true); webServer.send(307, "text/plain", "Redirect"); });
 
     webServer.on("/reboot", HTTP_POST,
                  []()
@@ -171,7 +172,7 @@ void setupServiceRoutes()
                      ESP.restart();
                  });
 
-    webServer.on("/api/v1/system/reboot", HTTP_POST, [](){ webServer.sendHeader("Location", "/reboot", true); webServer.send(307, "text/plain", "Redirect"); });
+    webServer.on(API_SYSTEM_REBOOT, HTTP_POST, [](){ webServer.sendHeader("Location", "/reboot", true); webServer.send(307, "text/plain", "Redirect"); });
 
     webServer.on("/ota", HTTP_POST,
                  []()

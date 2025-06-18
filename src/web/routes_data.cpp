@@ -16,6 +16,7 @@
 #include <NTPClient.h>
 #include <LittleFS.h>
 #include <time.h>
+#include "../../include/jxct_strings.h"
 
 extern NTPClient* timeClient;
 
@@ -451,7 +452,7 @@ void setupDataRoutes()
                      html += "<style>.data{width:100%;border-collapse:collapse}.data th,.data td{border:1px solid #ccc;padding:6px;text-align:center}.data th{background:#f5f5f5}.green{color:#4CAF50}.yellow{color:#FFC107}.orange{color:#FF9800}.red{color:#F44336}</style>";
 
                      // API-ссылка внизу страницы
-                     html += "<div style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='/api/sensor' target='_blank'>/api/sensor</a> (JSON, +timestamp)</div>";
+                     html += "<div style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='" + String(API_SENSOR) + "' target='_blank'>" + String(API_SENSOR) + "</a> (JSON, +timestamp)</div>";
                      html += "</div>" + String(getToastHTML()) + "</body></html>";
                      webServer.send(200, "text/html; charset=utf-8", html);
                  });
@@ -460,7 +461,7 @@ void setupDataRoutes()
     webServer.on("/sensor_json", HTTP_GET, sendSensorJson);
 
     // Primary API v1 endpoint
-    webServer.on("/api/v1/sensor", HTTP_GET, sendSensorJson);
+    webServer.on(API_SENSOR, HTTP_GET, sendSensorJson);
 
     // Загрузка калибровочного CSV через вкладку
     webServer.on("/readings/upload", HTTP_POST, [](){}, handleReadingsUpload);
@@ -468,12 +469,7 @@ void setupDataRoutes()
     // Форма для сохранения профиля
     webServer.on("/readings/profile", HTTP_POST, [](){}, handleProfileSave);
 
-    // DEPRECATED alias – будет удалён в v2.7.0
-    webServer.on("/api/sensor", HTTP_GET, [](){
-        logWebRequest("GET", "/api/sensor (deprecated)", webServer.client().remoteIP().toString());
-        webServer.sendHeader("Location", "/api/v1/sensor", true); // 307 Temporary Redirect
-        webServer.send(307, "text/plain", "Redirect");
-                 });
+    // Deprecated alias удалён в v2.7.0
 
     logDebug("Маршруты данных настроены: /readings, /api/v1/sensor (json), /sensor_json [legacy]");
 }

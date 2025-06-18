@@ -3,6 +3,7 @@
 #include "../../include/jxct_config_vars.h"
 #include "../../include/jxct_ui_system.h"
 #include "../wifi_manager.h"
+#include "../../include/jxct_strings.h"
 
 void setupErrorHandlers()
 {
@@ -151,7 +152,7 @@ bool isFeatureAvailable()
 void logWebRequest(const String& method, const String& uri, const String& clientIP)
 {
     // Логирование только важных запросов, исключаем служебные
-    if (uri.startsWith("/sensor_json") || uri.startsWith("/api/sensor"))
+    if (uri.startsWith("/sensor_json") || uri.startsWith(API_SENSOR))
     {
         // API запросы логируем на уровне DEBUG
         logDebug("%s %s from %s", method.c_str(), uri.c_str(), clientIP.c_str());

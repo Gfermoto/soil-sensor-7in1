@@ -11,6 +11,7 @@
 #include "../../include/logger.h"
 #include "../wifi_manager.h"
 #include <ArduinoJson.h>
+#include "../../include/jxct_strings.h"
 
 extern WebServer webServer;
 extern WiFiMode currentWiFiMode;
@@ -288,11 +289,7 @@ void setupConfigRoutes()
                  });
 
     // API v1 конфигурация
-    webServer.on("/api/v1/config/export", HTTP_GET, sendConfigExportJson);
-    webServer.on("/api/config/export", HTTP_GET, [](){
-        webServer.sendHeader("Location", "/api/v1/config/export", true);
-        webServer.send(307, "text/plain", "Redirect");
-    });
+    webServer.on(API_CONFIG_EXPORT, HTTP_GET, sendConfigExportJson);
 
     logDebug("Маршруты конфигурации настроены: /intervals, /config_manager, /api/v1/config/export");
 }

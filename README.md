@@ -76,7 +76,7 @@
 - [MODBUS протокол](docs/MODBUS_PROTOCOL.md)
 - [Схема подключения](docs/WIRING_DIAGRAM.md)
 - [API документация](docs/API.md)
-- [План развития](docs/DEVELOPMENT_ROADMAP_2025.md)
+- [Дорожная карта (H2-2025)](docs/dev/REFRACTORING_EPICS_2025H2.md)
 - [Управление конфигурацией](docs/CONFIG_MANAGEMENT.md) - импорт/экспорт и массовое развертывание
 - [Шаблон конфигурации](docs/examples/test_safe_config.json) - быстрый старт для массового развертывания
 

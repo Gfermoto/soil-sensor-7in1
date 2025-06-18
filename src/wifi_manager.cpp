@@ -19,7 +19,6 @@
 
 // Константы
 #define RESET_BUTTON_PIN 0  // GPIO0 для кнопки сброса
-#define WIFI_RETRY_DELAY_MS LED_BLINK_NORMAL  // Используем существующую константу для индикации
 #define WIFI_RECONNECT_INTERVAL 30000  // Интервал между попытками переподключения (30 секунд)
 
 // Глобальные переменные
