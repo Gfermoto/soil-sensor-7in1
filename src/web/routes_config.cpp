@@ -20,6 +20,9 @@ extern String navHtml();
 extern void loadConfig();
 extern void saveConfig();
 
+// --- API v1 helpers ---
+static void sendConfigExportJson();
+
 void setupConfigRoutes()
 {
     // Красивая страница интервалов и фильтров (оригинальный дизайн)
@@ -284,69 +287,74 @@ void setupConfigRoutes()
                      webServer.send(200, "text/html; charset=utf-8", html);
                  });
 
-    // API для экспорта конфигурации в JSON
-    webServer.on(
-        "/api/config/export", HTTP_GET,
-        []()
-        {
-            logWebRequest("GET", "/api/config/export", webServer.client().remoteIP().toString());
+    // API v1 конфигурация
+    webServer.on("/api/v1/config/export", HTTP_GET, sendConfigExportJson);
+    webServer.on("/api/config/export", HTTP_GET, [](){
+        webServer.sendHeader("Location", "/api/v1/config/export", true);
+        webServer.send(307, "text/plain", "Redirect");
+    });
 
-            if (currentWiFiMode == WiFiMode::AP)
-            {
-                webServer.send(403, "application/json", "{\"error\":\"Недоступно в режиме точки доступа\"}");
-                return;
-            }
+    logDebug("Маршруты конфигурации настроены: /intervals, /config_manager, /api/v1/config/export");
+}
 
-            // Создаем JSON с конфигурацией (с заглушками для чувствительных данных)
-            String json = "{";
-            json += "\"mqtt\":{";
-            json += "\"enabled\":" + String(config.flags.mqttEnabled ? "true" : "false") + ",";
-            json +=
-                "\"server\":\"" +
-                (strlen(config.mqttServer) > 0 ? String("YOUR_MQTT_SERVER_HERE") : String("YOUR_MQTT_SERVER_HERE")) +
-                "\",";
-            json += "\"port\":" + String(config.mqttPort) + ",";
-            json += "\"user\":\"" +
-                    (strlen(config.mqttUser) > 0 ? String("YOUR_MQTT_USER_HERE") : String("YOUR_MQTT_USER_HERE")) +
-                    "\",";
-            json += "\"password\":\"YOUR_MQTT_PASSWORD_HERE\"";
-            json += "},";
-            json += "\"thingspeak\":{";
-            json += "\"enabled\":" + String(config.flags.thingSpeakEnabled ? "true" : "false") + ",";
-            json += "\"channel_id\":\"" +
-                    (strlen(config.thingSpeakChannelId) > 0 ? String("YOUR_CHANNEL_ID_HERE")
-                                                            : String("YOUR_CHANNEL_ID_HERE")) +
-                    "\",";
-            json += "\"api_key\":\"YOUR_API_KEY_HERE\"";
-            json += "},";
-            json += "\"intervals\":{";
-            json += "\"sensor_read\":" + String(config.sensorReadInterval) + ",";
-            json += "\"mqtt_publish\":" + String(config.mqttPublishInterval) + ",";
-            json += "\"thingspeak\":" + String(config.thingSpeakInterval) + ",";
-            json += "\"web_update\":" + String(config.webUpdateInterval);
-            json += "},";
-            json += "\"filters\":{";
-            json += "\"delta_temperature\":" + String(config.deltaTemperature) + ",";
-            json += "\"delta_humidity\":" + String(config.deltaHumidity) + ",";
-            json += "\"delta_ph\":" + String(config.deltaPh) + ",";
-            json += "\"delta_ec\":" + String(config.deltaEc) + ",";
-            json += "\"delta_npk\":" + String(config.deltaNpk) + ",";
-            json += "\"moving_average_window\":" + String(config.movingAverageWindow) + ",";
-            json += "\"force_publish_cycles\":" + String(config.forcePublishCycles) + ",";
-            json += "\"filter_algorithm\":" + String(config.filterAlgorithm) + ",";
-            json += "\"outlier_filter_enabled\":" + String(config.outlierFilterEnabled);
-            json += "},";
-            json += "\"device\":{";
-            json += "\"use_real_sensor\":" + String(config.flags.useRealSensor ? "true" : "false") + ",";
-            json += "\"hass_enabled\":" + String(config.flags.hassEnabled ? "true" : "false");
-            json += "},";
-            json += "\"export_timestamp\":\"" + String(millis()) + "\"";
-            json += "}";
+// ---------------------------------------------------------------------------
+// API v1: /api/v1/config/export
+// ---------------------------------------------------------------------------
+static void sendConfigExportJson()
+{
+    logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
 
-            webServer.sendHeader("Content-Disposition",
-                                 "attachment; filename=\"jxct_config_" + String(millis()) + ".json\"");
-            webServer.send(200, "application/json", json);
-        });
+    if (currentWiFiMode == WiFiMode::AP)
+    {
+        webServer.send(403, "application/json", "{\"error\":\"Недоступно в режиме точки доступа\"}");
+        return;
+    }
 
-    logDebug("Маршруты конфигурации настроены: /intervals, /config_manager, /api/config/*");
+    StaticJsonDocument<1024> root;
+
+    // MQTT
+    JsonObject mqtt = root.createNestedObject("mqtt");
+    mqtt["enabled"] = (bool)config.flags.mqttEnabled;
+    mqtt["server"] = "YOUR_MQTT_SERVER_HERE";
+    mqtt["port"] = config.mqttPort;
+    mqtt["user"] = "YOUR_MQTT_USER_HERE";
+    mqtt["password"] = "YOUR_MQTT_PASSWORD_HERE";
+
+    // ThingSpeak
+    JsonObject ts = root.createNestedObject("thingspeak");
+    ts["enabled"] = (bool)config.flags.thingSpeakEnabled;
+    ts["channel_id"] = "YOUR_CHANNEL_ID_HERE";
+    ts["api_key"] = "YOUR_API_KEY_HERE";
+
+    // Intervals
+    JsonObject intervals = root.createNestedObject("intervals");
+    intervals["sensor_read"] = config.sensorReadInterval;
+    intervals["mqtt_publish"] = config.mqttPublishInterval;
+    intervals["thingspeak"] = config.thingSpeakInterval;
+    intervals["web_update"] = config.webUpdateInterval;
+
+    // Filters
+    JsonObject filters = root.createNestedObject("filters");
+    filters["delta_temperature"] = config.deltaTemperature;
+    filters["delta_humidity"] = config.deltaHumidity;
+    filters["delta_ph"] = config.deltaPh;
+    filters["delta_ec"] = config.deltaEc;
+    filters["delta_npk"] = config.deltaNpk;
+    filters["moving_average_window"] = config.movingAverageWindow;
+    filters["force_publish_cycles"] = config.forcePublishCycles;
+    filters["filter_algorithm"] = config.filterAlgorithm;
+    filters["outlier_filter_enabled"] = config.outlierFilterEnabled;
+
+    // Device flags
+    JsonObject device = root.createNestedObject("device");
+    device["use_real_sensor"] = (bool)config.flags.useRealSensor;
+    device["hass_enabled"] = (bool)config.flags.hassEnabled;
+
+    root["export_timestamp"] = millis();
+
+    String json;
+    serializeJson(root, json);
+
+    webServer.sendHeader("Content-Disposition", "attachment; filename=\"jxct_config_" + String(millis()) + ".json\"");
+    webServer.send(200, "application/json", json);
 }
