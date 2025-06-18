@@ -17,6 +17,7 @@
 #include "fake_sensor.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "logger.h"
+#include "sensor_factory.h"
 
 // Переменные для отслеживания времени
 unsigned long lastDataPublishTime = 0;
@@ -128,24 +129,15 @@ void setup()
         logSuccess("MQTT инициализирован");
     }
 
-    // Инициализация Modbus (если используется реальный датчик)
-    if (config.flags.useRealSensor)
-    {
-        setupModbus();
-    }
+    // Создаём экземпляр абстрактного сенсора
+    static std::unique_ptr<ISensor> gSensor = createSensorInstance();
+    gSensor->begin();
 
-    // Запуск задач
+    // Legacy: оставляем старые задачи для поточного обновления sensorData
     if (config.flags.useRealSensor)
-    {
         startRealSensorTask();
-        logSuccess("Запущена задача реального датчика");
-    }
     else
-    {
         startFakeSensorTask();
-        logSuccess("Запущена задача эмулятора датчика");
-        logWarn("Включите 'useRealSensor' в настройках для работы с реальным датчиком");
-    }
 
     // Запуск задачи мониторинга кнопки сброса
     xTaskCreate(resetButtonTask, "ResetButton", 2048, NULL, 1, NULL);
@@ -171,6 +163,14 @@ void loop()
 
     // Сброс watchdog
     esp_task_wdt_reset();
+
+    // Обновление NTP каждые 6 часов
+    if (timeClient && millis() - lastNtpUpdate > 6 * 3600 * 1000)
+    {
+        timeClient->forceUpdate();
+        lastNtpUpdate = millis();
+        logSystem("NTP обновление: %s", timeClient->isTimeSet() ? "OK" : "не удалось");
+    }
 
     // ✅ Вывод статуса системы каждые 30 секунд (неблокирующий)
     if (currentTime - lastStatusPrint >= STATUS_PRINT_INTERVAL)
