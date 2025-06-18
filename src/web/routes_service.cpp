@@ -29,6 +29,10 @@ extern String sensorLastError;
 extern const char* getThingSpeakLastPublish();
 extern const char* getThingSpeakLastError();
 
+// --- API v1 helpers ---
+static void sendHealthJson();
+static void sendServiceStatusJson();
+
 // Локальные функции
 String formatUptime(unsigned long milliseconds);
 
@@ -36,117 +40,13 @@ void setupServiceRoutes()
 {
     logDebug("Настройка сервисных маршрутов");
 
-    // Health endpoint - подробная диагностика системы
-    webServer.on("/health", HTTP_GET,
-                 []()
-                 {
-                     logWebRequest("GET", "/health", webServer.client().remoteIP().toString());
+    // Health endpoint (legacy) and API v1
+    webServer.on("/health", HTTP_GET, sendHealthJson);
+    webServer.on("/api/v1/system/health", HTTP_GET, sendHealthJson);
 
-                     StaticJsonDocument<1024> doc;
-
-                     // System info
-                     doc["device"]["manufacturer"] = DEVICE_MANUFACTURER;
-                     doc["device"]["model"] = DEVICE_MODEL;
-                     doc["device"]["version"] = FIRMWARE_VERSION;
-                     doc["device"]["uptime"] = millis() / 1000;
-                     doc["device"]["free_heap"] = ESP.getFreeHeap();
-                     doc["device"]["chip_model"] = ESP.getChipModel();
-                     doc["device"]["chip_revision"] = ESP.getChipRevision();
-                     doc["device"]["cpu_freq"] = ESP.getCpuFreqMHz();
-
-                     // Memory info
-                     doc["memory"]["free_heap"] = ESP.getFreeHeap();
-                     doc["memory"]["largest_free_block"] = ESP.getMaxAllocHeap();
-                     doc["memory"]["heap_size"] = ESP.getHeapSize();
-                     doc["memory"]["psram_size"] = ESP.getPsramSize();
-                     doc["memory"]["free_psram"] = ESP.getFreePsram();
-
-                     // WiFi status
-                     doc["wifi"]["connected"] = wifiConnected;
-                     if (wifiConnected)
-                     {
-                         doc["wifi"]["ssid"] = WiFi.SSID();
-                         doc["wifi"]["ip"] = WiFi.localIP().toString();
-                         doc["wifi"]["rssi"] = WiFi.RSSI();
-                         doc["wifi"]["mac"] = WiFi.macAddress();
-                         doc["wifi"]["gateway"] = WiFi.gatewayIP().toString();
-                         doc["wifi"]["dns"] = WiFi.dnsIP().toString();
-                     }
-
-                     // MQTT status
-                     doc["mqtt"]["enabled"] = (bool)config.flags.mqttEnabled;
-                     if (config.flags.mqttEnabled)
-                     {
-                         doc["mqtt"]["connected"] = mqttClient.connected();
-                         doc["mqtt"]["server"] = config.mqttServer;
-                         doc["mqtt"]["port"] = config.mqttPort;
-                         doc["mqtt"]["last_error"] = getMqttLastError();
-                     }
-
-                     // ThingSpeak status
-                     doc["thingspeak"]["enabled"] = (bool)config.flags.thingSpeakEnabled;
-                     if (config.flags.thingSpeakEnabled)
-                     {
-                         doc["thingspeak"]["last_publish"] = getThingSpeakLastPublish();
-                         doc["thingspeak"]["last_error"] = getThingSpeakLastError();
-                         doc["thingspeak"]["interval"] = config.thingSpeakInterval;
-                     }
-
-                     // Home Assistant status
-                     doc["homeassistant"]["enabled"] = (bool)config.flags.hassEnabled;
-
-                     // Sensor status
-                     doc["sensor"]["enabled"] = (bool)config.flags.useRealSensor;
-                     doc["sensor"]["valid"] = sensorData.valid;
-                     doc["sensor"]["last_read"] = sensorData.last_update;
-                     if (sensorLastError.length() > 0)
-                     {
-                         doc["sensor"]["last_error"] = sensorLastError;
-                     }
-
-                     // Current readings
-                     doc["readings"]["temperature"] = format_temperature(sensorData.temperature);
-                     doc["readings"]["humidity"] = format_moisture(sensorData.humidity);
-                     doc["readings"]["ec"] = format_ec(sensorData.ec);
-                     doc["readings"]["ph"] = format_ph(sensorData.ph);
-                     doc["readings"]["nitrogen"] = format_npk(sensorData.nitrogen);
-                     doc["readings"]["phosphorus"] = format_npk(sensorData.phosphorus);
-                     doc["readings"]["potassium"] = format_npk(sensorData.potassium);
-
-                     // Timestamps
-                     doc["timestamp"] = millis();
-                     doc["boot_time"] = millis();
-
-                     String json;
-                     serializeJson(doc, json);
-                     webServer.send(200, "application/json", json);
-                 });
-
-    // AJAX статусы для страницы сервисов
-    webServer.on("/service_status", HTTP_GET,
-                 []()
-                 {
-                     logWebRequest("GET", "/service_status", webServer.client().remoteIP().toString());
-
-                     StaticJsonDocument<512> doc;
-                     doc["wifi_connected"] = wifiConnected;
-                     doc["wifi_ip"] = WiFi.localIP().toString();
-                     doc["wifi_ssid"] = WiFi.SSID();
-                     doc["wifi_rssi"] = WiFi.RSSI();
-                     doc["mqtt_enabled"] = (bool)config.flags.mqttEnabled;
-                     doc["mqtt_connected"] = (bool)config.flags.mqttEnabled && mqttClient.connected();
-                     doc["mqtt_last_error"] = getMqttLastError();
-                     doc["thingspeak_enabled"] = (bool)config.flags.thingSpeakEnabled;
-                     doc["thingspeak_last_pub"] = getThingSpeakLastPublish();
-                     doc["thingspeak_last_error"] = getThingSpeakLastError();
-                     doc["hass_enabled"] = (bool)config.flags.hassEnabled;
-                     doc["sensor_ok"] = sensorData.valid;
-                     doc["sensor_last_error"] = sensorLastError;
-
-                     String json;
-                     serializeJson(doc, json);
-                     webServer.send(200, "application/json", json);
-                 });
+    // Service status endpoint legacy + API v1
+    webServer.on("/service_status", HTTP_GET, sendServiceStatusJson);
+    webServer.on("/api/v1/system/status", HTTP_GET, sendServiceStatusJson);
 
     // Красивая страница сервисов (оригинальный дизайн)
     webServer.on(
@@ -228,7 +128,7 @@ void setupServiceRoutes()
     webServer.on("/reset", HTTP_POST,
                  []()
                  {
-                     logWebRequest("POST", "/reset", webServer.client().remoteIP().toString());
+                     logWebRequest("POST", webServer.uri(), webServer.client().remoteIP().toString());
 
                      if (currentWiFiMode != WiFiMode::STA)
                      {
@@ -248,10 +148,12 @@ void setupServiceRoutes()
                      ESP.restart();
                  });
 
+    webServer.on("/api/v1/system/reset", HTTP_POST, [](){ webServer.sendHeader("Location", "/reset", true); webServer.send(307, "text/plain", "Redirect"); });
+
     webServer.on("/reboot", HTTP_POST,
                  []()
                  {
-                     logWebRequest("POST", "/reboot", webServer.client().remoteIP().toString());
+                     logWebRequest("POST", webServer.uri(), webServer.client().remoteIP().toString());
 
                      if (currentWiFiMode != WiFiMode::STA)
                      {
@@ -268,6 +170,8 @@ void setupServiceRoutes()
                      delay(2000);
                      ESP.restart();
                  });
+
+    webServer.on("/api/v1/system/reboot", HTTP_POST, [](){ webServer.sendHeader("Location", "/reboot", true); webServer.send(307, "text/plain", "Redirect"); });
 
     webServer.on("/ota", HTTP_POST,
                  []()
@@ -311,4 +215,108 @@ String formatUptime(unsigned long milliseconds)
     uptime += String(seconds) + "с";
 
     return uptime;
+}
+
+void sendHealthJson() {
+    logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
+    StaticJsonDocument<1024> doc;
+
+    // System info
+    doc["device"]["manufacturer"] = DEVICE_MANUFACTURER;
+    doc["device"]["model"] = DEVICE_MODEL;
+    doc["device"]["version"] = FIRMWARE_VERSION;
+    doc["device"]["uptime"] = millis() / 1000;
+    doc["device"]["free_heap"] = ESP.getFreeHeap();
+    doc["device"]["chip_model"] = ESP.getChipModel();
+    doc["device"]["chip_revision"] = ESP.getChipRevision();
+    doc["device"]["cpu_freq"] = ESP.getCpuFreqMHz();
+
+    // Memory info
+    doc["memory"]["free_heap"] = ESP.getFreeHeap();
+    doc["memory"]["largest_free_block"] = ESP.getMaxAllocHeap();
+    doc["memory"]["heap_size"] = ESP.getHeapSize();
+    doc["memory"]["psram_size"] = ESP.getPsramSize();
+    doc["memory"]["free_psram"] = ESP.getFreePsram();
+
+    // WiFi status
+    doc["wifi"]["connected"] = wifiConnected;
+    if (wifiConnected)
+    {
+        doc["wifi"]["ssid"] = WiFi.SSID();
+        doc["wifi"]["ip"] = WiFi.localIP().toString();
+        doc["wifi"]["rssi"] = WiFi.RSSI();
+        doc["wifi"]["mac"] = WiFi.macAddress();
+        doc["wifi"]["gateway"] = WiFi.gatewayIP().toString();
+        doc["wifi"]["dns"] = WiFi.dnsIP().toString();
+    }
+
+    // MQTT status
+    doc["mqtt"]["enabled"] = (bool)config.flags.mqttEnabled;
+    if (config.flags.mqttEnabled)
+    {
+        doc["mqtt"]["connected"] = mqttClient.connected();
+        doc["mqtt"]["server"] = config.mqttServer;
+        doc["mqtt"]["port"] = config.mqttPort;
+        doc["mqtt"]["last_error"] = getMqttLastError();
+    }
+
+    // ThingSpeak status
+    doc["thingspeak"]["enabled"] = (bool)config.flags.thingSpeakEnabled;
+    if (config.flags.thingSpeakEnabled)
+    {
+        doc["thingspeak"]["last_publish"] = getThingSpeakLastPublish();
+        doc["thingspeak"]["last_error"] = getThingSpeakLastError();
+        doc["thingspeak"]["interval"] = config.thingSpeakInterval;
+    }
+
+    // Home Assistant status
+    doc["homeassistant"]["enabled"] = (bool)config.flags.hassEnabled;
+
+    // Sensor status
+    doc["sensor"]["enabled"] = (bool)config.flags.useRealSensor;
+    doc["sensor"]["valid"] = sensorData.valid;
+    doc["sensor"]["last_read"] = sensorData.last_update;
+    if (sensorLastError.length() > 0)
+    {
+        doc["sensor"]["last_error"] = sensorLastError;
+    }
+
+    // Current readings
+    doc["readings"]["temperature"] = format_temperature(sensorData.temperature);
+    doc["readings"]["humidity"] = format_moisture(sensorData.humidity);
+    doc["readings"]["ec"] = format_ec(sensorData.ec);
+    doc["readings"]["ph"] = format_ph(sensorData.ph);
+    doc["readings"]["nitrogen"] = format_npk(sensorData.nitrogen);
+    doc["readings"]["phosphorus"] = format_npk(sensorData.phosphorus);
+    doc["readings"]["potassium"] = format_npk(sensorData.potassium);
+
+    // Timestamps
+    doc["timestamp"] = millis();
+    doc["boot_time"] = millis();
+
+    String json;
+    serializeJson(doc, json);
+    webServer.send(200, "application/json", json);
+}
+
+void sendServiceStatusJson() {
+    logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
+    StaticJsonDocument<512> doc;
+    doc["wifi_connected"] = wifiConnected;
+    doc["wifi_ip"] = WiFi.localIP().toString();
+    doc["wifi_ssid"] = WiFi.SSID();
+    doc["wifi_rssi"] = WiFi.RSSI();
+    doc["mqtt_enabled"] = (bool)config.flags.mqttEnabled;
+    doc["mqtt_connected"] = (bool)config.flags.mqttEnabled && mqttClient.connected();
+    doc["mqtt_last_error"] = getMqttLastError();
+    doc["thingspeak_enabled"] = (bool)config.flags.thingSpeakEnabled;
+    doc["thingspeak_last_pub"] = getThingSpeakLastPublish();
+    doc["thingspeak_last_error"] = getThingSpeakLastError();
+    doc["hass_enabled"] = (bool)config.flags.hassEnabled;
+    doc["sensor_ok"] = sensorData.valid;
+    doc["sensor_last_error"] = sensorLastError;
+
+    String json;
+    serializeJson(doc, json);
+    webServer.send(200, "application/json", json);
 }
