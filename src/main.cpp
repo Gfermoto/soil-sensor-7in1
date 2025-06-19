@@ -3,6 +3,7 @@
  * @brief Главный файл проекта JXCT датчика
  */
 
+#include <WiFiClientSecure.h>
 #include <WiFiClient.h>
 #include <Arduino.h>
 #include "version.h"  // ✅ Централизованное управление версией
@@ -133,8 +134,9 @@ void setup()
         logSuccess("MQTT инициализирован");
     }
 
-    // Инициализация OTA 2.0 (проверка манифеста раз в час)
-    static WiFiClient otaClient;
+    // Инициализация OTA 2.0 (проверка манифеста раз в час) через HTTPS
+    static WiFiClientSecure otaClient;
+    otaClient.setInsecure(); // временно отключаем проверку сертификата
     if (config.flags.autoOtaEnabled)
         setupOTA("https://updates.jxct.io/esp32/manifest.json", otaClient);
 
