@@ -99,6 +99,11 @@ bool sendDataToThingSpeak()
         logError("ThingSpeak: ошибка подключения");
         strlcpy(thingSpeakLastErrorBuffer, "Ошибка подключения", sizeof(thingSpeakLastErrorBuffer));
     }
+    else if (res == 400)
+    {
+        logError("ThingSpeak: HTTP 400 – неверный запрос (проверьте API Key/Channel)");
+        strlcpy(thingSpeakLastErrorBuffer, "HTTP 400 – неверный запрос (API/Channel)", sizeof(thingSpeakLastErrorBuffer));
+    }
     else
     {
         logError("ThingSpeak: ошибка %d", res);
