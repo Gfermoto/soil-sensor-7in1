@@ -49,6 +49,14 @@ bool sendDataToThingSpeak()
 
     unsigned long channelId = strtoul(config.thingSpeakChannelId, nullptr, 10);
 
+    // Проверяем корректность ID и API ключа до отправки
+    if (channelId == 0 || strlen(config.thingSpeakApiKey) < 16)
+    {
+        logError("ThingSpeak: некорректный Channel ID или API ключ");
+        strlcpy(thingSpeakLastErrorBuffer, "Неверный Channel ID или API Key", sizeof(thingSpeakLastErrorBuffer));
+        return false;
+    }
+
     // ✅ Используем прямую передачу данных без String объектов
     // Отправка (убираем timestamp для избежания ошибок)
     ThingSpeak.setField(1, format_temperature(sensorData.temperature).c_str());
