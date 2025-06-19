@@ -52,7 +52,7 @@ jobs:
           cat > dist/manifest.json <<EOF
           {
             "version": "${VERSION}",
-            "url": "https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/firmware.bin",
+            "url": "https://github.com/Gfermoto/soil-sensor-7in1/releases/download/${GITHUB_REF_NAME}/firmware.bin",
             "sha256": "${HASH}"
           }
           EOF
