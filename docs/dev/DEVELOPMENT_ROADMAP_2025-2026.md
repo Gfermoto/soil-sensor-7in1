@@ -12,18 +12,17 @@
 | 2025 Q4 | **v2.8.0** | Plug-in sensors (I2C), Prometheus exporter | API-стабильность |
 | 2026 Q1 | **v3.0.0** | Dual-core pipeline, BLE Companion App | Power-consumption |
 | 2026 Q2 | **v3.1.0** | AI-predictive irrigation (TinyML) | ML-accuracy |
-| 2026 Q3 | **v3.2.0** | LoRaWAN telemetry, low-power framework (deep-sleep) | Radio-certification |
-| 2026 Q4 | **v3.3.0** | Multi-sensor hub (4+ RS485/I2C), adaptive power scheduling | Complexity |
+| 2026 H2 | — TBD | (уточняется) | Roadmap-review |
 
 ---
 
 ## 2. Перекрёстные направления
 1. **Надёжность** — code-coverage ≥ 85 %, CI: build + lint + unit + integration.
 2. **Документация** — 100 % public API с примерами, live-docs в Github Pages.
-3. **Масштабируемость** — модульный UI, plug-in протоколы (MODBUS, I2C, BLE, LoRaWAN).
-4. **Сопровождаемость** — clang-tidy, clang-format, Tech Debt SLO ≤ 60 дней.
-5. **Сообщество** — monthly release-notes, Telegram AMA, Hacktoberfest tasks.
-6. **Энергоэффективность** — deep-sleep cycles, adaptive duty-cycle, батарея ≥ 1 год.
+3. **Масштабируемость** — модульный UI, plug-in протоколы (MODBUS, I2C, BLE).
+4. **Размер прошивки** — flash ≤ 1 MB, RAM ≤ 320 KB (production).
+5. **Сопровождаемость** — clang-tidy, clang-format, Tech Debt SLO ≤ 60 дней.
+6. **Сообщество** — monthly release-notes, Telegram AMA, Hacktoberfest tasks.
 
 ---
 
