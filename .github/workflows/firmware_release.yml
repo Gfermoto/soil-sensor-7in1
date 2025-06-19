@@ -1,0 +1,48 @@
+name: Build & Release Firmware
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python & PlatformIO
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+      - name: Install PlatformIO CLI
+        run: pip install --upgrade platformio
+
+      - name: Build firmware (production)
+        run: pio run -e esp32dev-production
+
+      - name: Prepare artifacts (firmware.bin & manifest.json)
+        shell: bash
+        run: |
+          mkdir dist
+          cp .pio/build/esp32dev-production/firmware.bin dist/
+          HASH=$(sha256sum dist/firmware.bin | cut -d ' ' -f1)
+          VERSION=${GITHUB_REF_NAME#v}
+          cat > dist/manifest.json <<EOF
+          {
+            "version": "${VERSION}",
+            "url": "https://github.com/${GITHUB_REPOSITORY}/releases/download/${GITHUB_REF_NAME}/firmware.bin",
+            "sha256": "${HASH}"
+          }
+          EOF
+          echo "SHA256: $HASH"
+
+      - name: Create GitHub Release & upload assets
+        uses: softprops/action-gh-release@v1
+        with:
+          files: |
+            dist/firmware.bin
+            dist/manifest.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
