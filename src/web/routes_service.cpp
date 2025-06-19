@@ -58,21 +58,11 @@ void setupServiceRoutes()
 
             if (currentWiFiMode == WiFiMode::AP)
             {
-                String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'>";
-                html += "<title>" UI_ICON_SERVICE " Сервис</title>";
-                html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
-                html += "<h1>" UI_ICON_SERVICE " Сервис</h1>";
-                html += "<div class='msg msg-error'>" UI_ICON_ERROR
-                        " Недоступно в режиме точки доступа</div></div></body></html>";
-                webServer.send(200, "text/html; charset=utf-8", html);
+                webServer.send(200, "text/html; charset=utf-8", generateApModeUnavailablePage("Сервис", UI_ICON_SERVICE));
                 return;
             }
 
-            String html =
-                "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, "
-                "initial-scale=1.0'>";
-            html += "<title>" UI_ICON_SERVICE " Сервис JXCT</title>";
-            html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+            String html = generatePageHeader("Сервис", UI_ICON_SERVICE);
             html += navHtml();
             html += "<h1>" UI_ICON_SERVICE " Сервис</h1>";
             html += "<div class='info-block' id='status-block'>Загрузка статусов...</div>";
@@ -84,8 +74,7 @@ void setupServiceRoutes()
             html += generateButton(ButtonType::DANGER, UI_ICON_RESET, "Сбросить настройки", "") + "</form>";
             html += "<form method='post' action='/reboot' style='margin-bottom:10px'>";
             html += generateButton(ButtonType::SECONDARY, "🔄", "Перезагрузить", "") + "</form>";
-            html += "<form method='post' action='/ota'>";
-            html += generateButton(ButtonType::OUTLINE, "🚀", "OTA (заглушка)", "") + "</form></div>";
+            html += "</div>";
             html +=
                 "<div class='section' style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a "
                 "href='/service_status' target='_blank'>/service_status</a> (JSON, статусы сервисов) | <a "
@@ -121,7 +110,7 @@ void setupServiceRoutes()
             html += "document.getElementById('status-block').innerHTML=html;";
             html += "});}setInterval(updateStatus," + String(config.webUpdateInterval) + ");updateStatus();";
             html += "</script>";
-            html += "</div>" + String(getToastHTML()) + "</body></html>";
+            html += generatePageFooter();
             webServer.send(200, "text/html; charset=utf-8", html);
         });
 
@@ -174,25 +163,8 @@ void setupServiceRoutes()
 
     webServer.on(API_SYSTEM_REBOOT, HTTP_POST, [](){ webServer.sendHeader("Location", "/reboot", true); webServer.send(307, "text/plain", "Redirect"); });
 
-    webServer.on("/ota", HTTP_POST,
-                 []()
-                 {
-                     logWebRequest("POST", "/ota", webServer.client().remoteIP().toString());
-
-                     if (currentWiFiMode != WiFiMode::STA)
-                     {
-                         webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
-                         return;
-                     }
-
-                     String html =
-                         "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' "
-                         "content='2;url=/service'><title>OTA</title></head><body "
-                         "style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'><h2>OTA пока не "
-                         "реализовано</h2><p>Сейчас вы будете перенаправлены на страницу сервисов.</p></body></html>";
-                     webServer.send(200, "text/html; charset=utf-8", html);
-                     delay(2000);
-                 });
+    // Старый маршрут /ota более не нужен – сделаем редирект на новую страницу
+    webServer.on("/ota", HTTP_ANY, []() { webServer.sendHeader("Location", "/updates", true); webServer.send(302, "text/plain", "Redirect"); });
 
     logSuccess("Сервисные маршруты настроены");
 }
