@@ -58,11 +58,8 @@ bool sendDataToThingSpeak()
     if (!sensorData.valid) return false;
 
     unsigned long now = millis();
-    if (now - lastTsPublish < config.thingSpeakInterval)  // thingSpeakInterval уже в миллисекундах
-    {
-        return false;  // Слишком часто
-    }
-    lastTsPublish = now;
+    if (now - lastTsPublish < config.thingSpeakInterval)  // too frequent
+        return false;
 
     char apiKeyBuf[25];
     char channelBuf[16];
@@ -99,7 +96,8 @@ bool sendDataToThingSpeak()
     if (res == 200)
     {
         logSuccess("ThingSpeak: данные отправлены");
-        snprintf(thingSpeakLastPublishBuffer, sizeof(thingSpeakLastPublishBuffer), "%lu", millis());
+        lastTsPublish = millis();
+        snprintf(thingSpeakLastPublishBuffer, sizeof(thingSpeakLastPublishBuffer), "%lu", lastTsPublish);
         thingSpeakLastErrorBuffer[0] = '\0';  // Очистка ошибки
         return true;
     }
