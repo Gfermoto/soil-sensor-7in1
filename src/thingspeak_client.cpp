@@ -102,7 +102,8 @@ bool sendDataToThingSpeak()
     else
     {
         logError("ThingSpeak: ошибка %d", res);
-        strlcpy(thingSpeakLastErrorBuffer, "Ошибка публикации ThingSpeak", sizeof(thingSpeakLastErrorBuffer));
+        // Сохраняем числовой код для быстрой диагностики в UI/логах
+        snprintf(thingSpeakLastErrorBuffer, sizeof(thingSpeakLastErrorBuffer), "Ошибка %d", res);
     }
     return false;
 }
