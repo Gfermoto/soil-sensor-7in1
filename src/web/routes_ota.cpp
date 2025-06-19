@@ -206,38 +206,71 @@ static void sendOtaStatusJson()
 static void handleFirmwareUpload()
 {
     HTTPUpload& upload = webServer.upload();
+    static size_t totalReceived = 0; // отслеживаем общий размер
+    
     if (upload.status == UPLOAD_FILE_START)
     {
+        totalReceived = 0; // сброс при начале загрузки
         logSystem("[OTA] Приём файла %s (%u байт)", upload.filename.c_str(), upload.totalSize);
-        triggerOtaCheck(); // для статуса
+        
         if (!Update.begin(upload.totalSize == 0 ? UPDATE_SIZE_UNKNOWN : upload.totalSize))
         {
-            logError("[OTA] Update.begin error (no space?)");
-            webServer.send(200, "application/json", "{\"ok\":false,\"error\":\"begin\"}");
-            return;
+            logError("[OTA] Update.begin() failed");
+            Update.printError(Serial);
+            // НЕ отправляем ответ здесь - это приведёт к обрыву загрузки
         }
     }
     else if (upload.status == UPLOAD_FILE_WRITE)
     {
         if (Update.write(upload.buf, upload.currentSize) != upload.currentSize)
         {
-            logError("[OTA] Write error");
+            logError("[OTA] Write error: %d байт", upload.currentSize);
+            Update.printError(Serial);
+        }
+        else
+        {
+            totalReceived += upload.currentSize;
+            
+            // Логируем прогресс каждые 64KB
+            static size_t lastLogged = 0;
+            if (totalReceived - lastLogged > 65536)
+            {
+                logSystem("[OTA] Загружено: %u байт", totalReceived);
+                lastLogged = totalReceived;
+            }
         }
     }
     else if (upload.status == UPLOAD_FILE_END)
     {
-        if (Update.end() && Update.isFinished())
+        logSystem("[OTA] Загрузка завершена: %u байт", totalReceived);
+        
+        if (Update.end(true)) // true = устанавливать как boot partition
         {
-            logSuccess("[OTA] Файл принят, перезагрузка");
-            webServer.send(200, "application/json", "{\"ok\":true}");
-            delay(1000);
-            ESP.restart();
+            if (Update.isFinished())
+            {
+                logSuccess("[OTA] Файл принят успешно, перезагрузка через 2 сек");
+                webServer.send(200, "application/json", "{\"ok\":true}");
+                delay(2000);
+                ESP.restart();
+            }
+            else
+            {
+                logError("[OTA] Update не завершён");
+                Update.printError(Serial);
+                webServer.send(200, "application/json", "{\"ok\":false,\"error\":\"not_finished\"}");
+            }
         }
         else
         {
+            logError("[OTA] Update.end() failed");
             Update.printError(Serial);
-            logError("[OTA] Update end error");
-            webServer.send(200, "application/json", "{\"ok\":false,\"error\":\"update\"}");
+            webServer.send(200, "application/json", "{\"ok\":false,\"error\":\"end_failed\"}");
         }
+    }
+    else if (upload.status == UPLOAD_FILE_ABORTED)
+    {
+        logError("[OTA] Загрузка прервана");
+        Update.abort();
+        webServer.send(200, "application/json", "{\"ok\":false,\"error\":\"aborted\"}");
     }
 } 

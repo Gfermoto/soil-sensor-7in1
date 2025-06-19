@@ -215,29 +215,55 @@ void handleOTA()
 {
     // Сброс watchdog перед началом проверки
     esp_task_wdt_reset();
-    if (millis() - lastCheckTs < 3600000UL) return; // 1 раз в час
+    
+    logSystem("[OTA] handleOTA() вызван, lastCheckTs=%lu, millis=%lu, diff=%lu", 
+              lastCheckTs, millis(), millis() - lastCheckTs);
+    
+    if (millis() - lastCheckTs < 3600000UL) 
+    {
+        logSystem("[OTA] Слишком рано для проверки (< 1 час), пропускаем");
+        return; // 1 раз в час
+    }
+    
     lastCheckTs = millis();
 
-    if (!manifestUrlGlobal) return;
+    if (!manifestUrlGlobal) 
+    {
+        logError("[OTA] manifestUrlGlobal не задан");
+        return;
+    }
 
+    logSystem("[OTA] Начинаем проверку обновлений: %s", manifestUrlGlobal);
     strcpy(statusBuf, "chk");
 
     HTTPClient http;
     http.begin(*clientPtr, manifestUrlGlobal);
     int code = http.GET();
-    esp_task_wdt_reset(); // 🔄 после блокирующего http.GET
+    esp_task_wdt_reset();
+    
+    logSystem("[OTA] Ответ манифеста: HTTP %d", code);
+    
     if (code != HTTP_CODE_OK)
     {
         snprintf(statusBuf, sizeof(statusBuf), "mf %d", code);
+        logError("[OTA] Ошибка загрузки манифеста: HTTP %d", code);
+        http.end();
         return;
     }
 
+    String manifestContent = http.getString();
+    http.end();
+    
+    logSystem("[OTA] Манифест получен: %d символов", manifestContent.length());
+    logDebug("[OTA] Содержимое манифеста: %s", manifestContent.c_str());
+
     const size_t capacity = JSON_OBJECT_SIZE(3) + 200;
     StaticJsonDocument<capacity> doc;
-    DeserializationError err = deserializeJson(doc, http.getString());
+    DeserializationError err = deserializeJson(doc, manifestContent);
     if (err)
     {
         strcpy(statusBuf, "json err");
+        logError("[OTA] Ошибка парсинга JSON: %s", err.c_str());
         return;
     }
 
@@ -245,20 +271,26 @@ void handleOTA()
     const char* binUrl = doc["url"] | "";
     const char* sha256 = doc["sha256"] | "";
 
+    logSystem("[OTA] Версия в манифесте: '%s', текущая: '%s'", newVersion, JXCT_VERSION_STRING);
+    logSystem("[OTA] URL: %s", binUrl);
+    logSystem("[OTA] SHA256: %.16s...", sha256);
+
     if (strlen(newVersion) == 0 || strlen(binUrl) == 0 || strlen(sha256) != 64)
     {
         strcpy(statusBuf, "manifest bad");
+        logError("[OTA] Некорректный манифест: version=%d, url=%d, sha256=%d", 
+                 strlen(newVersion), strlen(binUrl), strlen(sha256));
         return;
     }
 
     if (strcmp(newVersion, JXCT_VERSION_STRING) == 0)
     {
         strcpy(statusBuf, "up-to-date");
+        logSystem("[OTA] Версия актуальна, обновление не требуется");
         return;
     }
 
-    // Можно добавить сравнение >, но пока достаточно !=
-
+    logSystem("[OTA] Найдено обновление %s -> %s, начинаем загрузку", JXCT_VERSION_STRING, newVersion);
     downloadAndUpdate(String(binUrl), sha256);
 }
 
