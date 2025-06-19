@@ -8,6 +8,7 @@
 #include <esp_ota_ops.h>
 #include <strings.h>
 #include "version.h"
+#include <Arduino.h>
 
 static char statusBuf[64] = "idle";
 static const char* manifestUrlGlobal = nullptr;

@@ -8,7 +8,7 @@
 #include "../ota_manager.h"
 #include <ArduinoJson.h>
 #include <Update.h>
-#include <ESP.h>
+#include <Arduino.h>
 
 extern WebServer webServer;
 extern WiFiMode currentWiFiMode;
