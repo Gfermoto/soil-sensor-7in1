@@ -9,6 +9,7 @@
 #include <strings.h>
 #include "version.h"
 #include <Arduino.h>
+#include <esp_task_wdt.h>
 
 static char statusBuf[64] = "idle";
 static const char* manifestUrlGlobal = nullptr;
@@ -35,73 +36,145 @@ static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)
 
 static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
 {
-    strcpy(statusBuf, "dl");
+    esp_task_wdt_reset();
+    strcpy(statusBuf, "connecting");
+    logSystem("[OTA] Загрузка: %s", binUrl.c_str());
 
     HTTPClient http;
     http.begin(*clientPtr, binUrl);
+    http.setTimeout(30000); // 30 сек таймаут
+    
     int code = http.GET();
+    esp_task_wdt_reset();
+    
     if (code != HTTP_CODE_OK)
     {
         snprintf(statusBuf, sizeof(statusBuf), "http %d", code);
+        logError("[OTA] HTTP ошибка %d", code);
+        http.end();
         return false;
     }
 
     int contentLen = http.getSize();
-    if (contentLen <= 0)
+    bool isChunked = (contentLen == -1);
+    
+    if (isChunked)
     {
-        // Сервер ответил chunked Transfer-Encoding – длина неизвестна
+        logSystem("[OTA] Chunked transfer, размер неизвестен");
         contentLen = UPDATE_SIZE_UNKNOWN;
     }
+    else
+    {
+        logSystem("[OTA] Размер файла: %d байт", contentLen);
+    }
 
-    if (!Update.begin(contentLen)) // автоматически выберет следующую OTA партицию
+    if (!Update.begin(contentLen))
     {
         strcpy(statusBuf, "no space");
+        logError("[OTA] Update.begin() failed");
+        Update.printError(Serial);
+        http.end();
         return false;
     }
 
+    strcpy(statusBuf, "downloading");
+    
     mbedtls_sha256_context shaCtx;
     mbedtls_sha256_init(&shaCtx);
-    mbedtls_sha256_starts_ret(&shaCtx, 0); // 0 = SHA-256
+    mbedtls_sha256_starts_ret(&shaCtx, 0);
 
     WiFiClient* stream = http.getStreamPtr();
     uint8_t buf[1024];
-    int remaining = contentLen;
+    size_t totalDownloaded = 0;
     unsigned long lastProgress = millis();
+    unsigned long lastActivity = millis();
+    const unsigned long TIMEOUT_MS = 30000; // 30 сек без данных = таймаут
 
-    while (http.connected() && remaining > 0)
+    while (http.connected())
     {
         size_t avail = stream->available();
-        if (avail)
+        if (avail > 0)
         {
-            size_t toRead = avail > sizeof(buf) ? sizeof(buf) : avail;
+            lastActivity = millis();
+            size_t toRead = (avail > sizeof(buf)) ? sizeof(buf) : avail;
             int readBytes = stream->readBytes(buf, toRead);
+            
             if (readBytes <= 0)
             {
-                strcpy(statusBuf, "read err");
+                strcpy(statusBuf, "read error");
+                logError("[OTA] Ошибка чтения данных");
                 Update.abort();
+                http.end();
                 return false;
             }
 
             if (Update.write(buf, readBytes) != (size_t)readBytes)
             {
-                strcpy(statusBuf, "write err");
+                strcpy(statusBuf, "write error");
+                logError("[OTA] Ошибка записи во flash");
+                Update.printError(Serial);
                 Update.abort();
+                http.end();
                 return false;
             }
 
             mbedtls_sha256_update_ret(&shaCtx, buf, readBytes);
-            remaining -= readBytes;
+            totalDownloaded += readBytes;
 
-            // простейший прогресс ~1 раз/5с
-            if (millis() - lastProgress > 5000)
+            // Прогресс каждые 3 секунды
+            if (millis() - lastProgress > 3000)
             {
-                snprintf(statusBuf, sizeof(statusBuf), "down %d%%", 100 - (remaining * 100 / contentLen));
+                if (isChunked)
+                {
+                    snprintf(statusBuf, sizeof(statusBuf), "dl %dKB", (int)(totalDownloaded / 1024));
+                }
+                else
+                {
+                    int percent = (totalDownloaded * 100) / contentLen;
+                    snprintf(statusBuf, sizeof(statusBuf), "dl %d%%", percent);
+                }
+                logSystem("[OTA] Загружено: %d байт", totalDownloaded);
                 lastProgress = millis();
             }
+            
+            esp_task_wdt_reset();
         }
-        delay(1);
+        else
+        {
+            // Проверяем таймаут бездействия
+            if (millis() - lastActivity > TIMEOUT_MS)
+            {
+                strcpy(statusBuf, "timeout");
+                logError("[OTA] Таймаут загрузки (нет данных %lu мс)", TIMEOUT_MS);
+                Update.abort();
+                http.end();
+                return false;
+            }
+            
+            // Для chunked проверяем завершение
+            if (isChunked && !http.connected())
+            {
+                logSystem("[OTA] Chunked transfer завершён, загружено %d байт", totalDownloaded);
+                break;
+            }
+            
+            esp_task_wdt_reset();
+            delay(10);
+        }
     }
 
+    http.end();
+    
+    if (!isChunked && totalDownloaded != (size_t)contentLen)
+    {
+        snprintf(statusBuf, sizeof(statusBuf), "incomplete %d/%d", totalDownloaded, contentLen);
+        logError("[OTA] Неполная загрузка: %d из %d байт", totalDownloaded, contentLen);
+        Update.abort();
+        return false;
+    }
+
+    strcpy(statusBuf, "verifying");
+    
     uint8_t digest[32];
     mbedtls_sha256_finish_ret(&shaCtx, digest);
     mbedtls_sha256_free(&shaCtx);
@@ -109,34 +182,39 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
     if (!verifySha256(digest, expectedSha256))
     {
         strcpy(statusBuf, "sha mismatch");
+        logError("[OTA] SHA256 не совпадает");
         Update.abort();
         return false;
     }
 
-    strcpy(statusBuf, "finishing");
-
-    if (!Update.end())
+    strcpy(statusBuf, "finalizing");
+    
+    if (!Update.end(true)) // true = устанавливать как boot partition
     {
-        strcpy(statusBuf, "upd end err");
+        strcpy(statusBuf, "finalize error");
+        logError("[OTA] Ошибка финализации");
+        Update.printError(Serial);
         return false;
     }
 
     if (!Update.isFinished())
     {
         strcpy(statusBuf, "not finished");
+        logError("[OTA] Update не завершён");
         return false;
     }
 
-    // Partition переключится автоматически; откат возможен, ожидаем подтверждения после перезагрузки
-
-    strcpy(statusBuf, "reboot");
-    delay(1000);
+    logSuccess("[OTA] Обновление завершено успешно, перезагрузка...");
+    strcpy(statusBuf, "success, rebooting");
+    delay(2000);
     ESP.restart();
     return true;
 }
 
 void handleOTA()
 {
+    // Сброс watchdog перед началом проверки
+    esp_task_wdt_reset();
     if (millis() - lastCheckTs < 3600000UL) return; // 1 раз в час
     lastCheckTs = millis();
 
@@ -147,6 +225,7 @@ void handleOTA()
     HTTPClient http;
     http.begin(*clientPtr, manifestUrlGlobal);
     int code = http.GET();
+    esp_task_wdt_reset(); // 🔄 после блокирующего http.GET
     if (code != HTTP_CODE_OK)
     {
         snprintf(statusBuf, sizeof(statusBuf), "mf %d", code);

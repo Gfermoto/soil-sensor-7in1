@@ -15,6 +15,7 @@ extern NTPClient* timeClient;
 const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";
 
 static unsigned long lastTsPublish = 0;
+static int consecutiveFailCount = 0; // счётчик подряд неудач
 
 // Утилита для обрезки пробелов в начале/конце строки C
 static void trim(char* s)
@@ -70,16 +71,20 @@ bool sendDataToThingSpeak()
 
     unsigned long channelId = strtoul(channelBuf, nullptr, 10);
 
-    // Проверяем корректность ID и API ключа до отправки
+    // Проверяем корректность ID и API ключа - если неверные, молча пропускаем
     if (channelId == 0 || strlen(apiKeyBuf) < 16)
     {
-        logError("ThingSpeak: некорректный Channel ID или API ключ");
-        strlcpy(thingSpeakLastErrorBuffer, "Неверный Channel ID или API Key", sizeof(thingSpeakLastErrorBuffer));
+        // Не логируем ошибку каждый раз, просто пропускаем отправку
+        if (strlen(thingSpeakLastErrorBuffer) == 0) // логируем только первый раз
+        {
+            logWarn("ThingSpeak: настройки не заданы (Channel ID: %s, API Key: %d символов)", 
+                    channelBuf, strlen(apiKeyBuf));
+            strlcpy(thingSpeakLastErrorBuffer, "Настройки не заданы", sizeof(thingSpeakLastErrorBuffer));
+        }
         return false;
     }
 
-    // ✅ Используем прямую передачу данных без String объектов
-    // Отправка (убираем timestamp для избежания ошибок)
+    // Отправка данных
     ThingSpeak.setField(1, format_temperature(sensorData.temperature).c_str());
     ThingSpeak.setField(2, format_moisture(sensorData.humidity).c_str());
     ThingSpeak.setField(3, format_ec(sensorData.ec).c_str());
@@ -88,8 +93,8 @@ bool sendDataToThingSpeak()
     ThingSpeak.setField(6, format_npk(sensorData.phosphorus).c_str());
     ThingSpeak.setField(7, format_npk(sensorData.potassium).c_str());
 
-    logData("Отправка в ThingSpeak: T=%.1f°C, H=%.1f%%, PH=%.2f", sensorData.temperature, sensorData.humidity,
-            sensorData.ph);
+    logData("Отправка в ThingSpeak: T=%.1f°C, H=%.1f%%, PH=%.2f", 
+            sensorData.temperature, sensorData.humidity, sensorData.ph);
 
     int res = ThingSpeak.writeFields(channelId, apiKeyBuf);
 
@@ -99,13 +104,13 @@ bool sendDataToThingSpeak()
         lastTsPublish = millis();
         snprintf(thingSpeakLastPublishBuffer, sizeof(thingSpeakLastPublishBuffer), "%lu", lastTsPublish);
         thingSpeakLastErrorBuffer[0] = '\0';  // Очистка ошибки
+        consecutiveFailCount = 0; // обнуляем при успехе
         return true;
     }
     else if (res == -301)
     {
         logWarn("ThingSpeak: таймаут (-301), повторим позже");
         strlcpy(thingSpeakLastErrorBuffer, "Timeout -301", sizeof(thingSpeakLastErrorBuffer));
-        return false; // do not treat as success
     }
     else if (res == -401)
     {
@@ -135,8 +140,19 @@ bool sendDataToThingSpeak()
     else
     {
         logError("ThingSpeak: ошибка %d", res);
-        // Сохраняем числовой код для быстрой диагностики в UI/логах
         snprintf(thingSpeakLastErrorBuffer, sizeof(thingSpeakLastErrorBuffer), "Ошибка %d", res);
     }
+
+    consecutiveFailCount++;
+    
+    // Если слишком много ошибок подряд, временно отключаем на 1 час
+    if (consecutiveFailCount >= 10)
+    {
+        logWarn("ThingSpeak: %d ошибок подряд, отключаем на 1 час", consecutiveFailCount);
+        lastTsPublish = millis(); // устанавливаем время последней попытки
+        consecutiveFailCount = 0; // сбрасываем счётчик
+        strlcpy(thingSpeakLastErrorBuffer, "Отключён на 1 час (много ошибок)", sizeof(thingSpeakLastErrorBuffer));
+    }
+
     return false;
 }
