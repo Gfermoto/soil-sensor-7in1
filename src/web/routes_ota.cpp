@@ -151,6 +151,7 @@ static void handleFirmwareUpload()
         }
         else
         {
+            Update.printError(Serial);
             logError("[OTA] Update end error");
             webServer.send(200, "application/json", "{\"ok\":false,\"error\":\"update\"}");
         }

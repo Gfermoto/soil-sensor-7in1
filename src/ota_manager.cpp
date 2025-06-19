@@ -49,8 +49,8 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
     int contentLen = http.getSize();
     if (contentLen <= 0)
     {
-        strcpy(statusBuf, "size 0");
-        return false;
+        // Сервер ответил chunked Transfer-Encoding – длина неизвестна
+        contentLen = UPDATE_SIZE_UNKNOWN;
     }
 
     if (!Update.begin(contentLen)) // автоматически выберет следующую OTA партицию
