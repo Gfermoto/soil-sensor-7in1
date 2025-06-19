@@ -50,6 +50,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
     HTTPClient http;
     http.begin(*clientPtr, binUrl);
     http.setTimeout(30000); // 30 сек таймаут
+    http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS); // Автоматически следуем редиректам
     
     int code = http.GET();
     esp_task_wdt_reset();
@@ -289,6 +290,7 @@ void handleOTA()
 
     HTTPClient http;
     http.begin(*clientPtr, manifestUrlGlobal);
+    http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS); // Автоматически следуем редиректам
     int code = http.GET();
     esp_task_wdt_reset();
     
