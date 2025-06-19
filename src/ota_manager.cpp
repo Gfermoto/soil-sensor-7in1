@@ -11,10 +11,17 @@
 #include <Arduino.h>
 #include <esp_task_wdt.h>
 
-static char statusBuf[64] = "idle";
+// Глобальные переменные для OTA 2.0
 static const char* manifestUrlGlobal = nullptr;
 static WiFiClient* clientPtr = nullptr;
-static unsigned long lastCheckTs = 0; // таймер проверки OTA
+static unsigned long lastCheckTs = 0;
+static char statusBuf[32] = "idle";
+
+// Переменные для двухэтапного OTA (проверка -> установка)
+static bool updateAvailable = false;
+static String pendingUpdateUrl = "";
+static String pendingUpdateSha256 = "";
+static String pendingUpdateVersion = "";
 
 const char* getOtaStatus() { return statusBuf; }
 
@@ -211,21 +218,71 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
     return true;
 }
 
+// Принудительная проверка OTA (игнорирует таймер)
+void triggerOtaCheck()
+{
+    logSystem("[OTA] Принудительная проверка OTA запущена");
+    lastCheckTs = 0; // Сбрасываем таймер для принудительной проверки
+}
+
+// Принудительная установка найденного обновления
+void triggerOtaInstall()
+{
+    if (!updateAvailable || pendingUpdateUrl.isEmpty())
+    {
+        logError("[OTA] Нет доступных обновлений для установки");
+        strcpy(statusBuf, "no update");
+        return;
+    }
+    
+    logSystem("[OTA] Принудительная установка обновления %s", pendingUpdateVersion.c_str());
+    downloadAndUpdate(pendingUpdateUrl, pendingUpdateSha256.c_str());
+}
+
 void handleOTA()
 {
     // Сброс watchdog перед началом проверки
     esp_task_wdt_reset();
     
-    logSystem("[OTA] handleOTA() вызван, lastCheckTs=%lu, millis=%lu, diff=%lu", 
-              lastCheckTs, millis(), millis() - lastCheckTs);
-    
-    if (millis() - lastCheckTs < 3600000UL) 
+    // Инициализируем lastCheckTs при первом вызове
+    if (lastCheckTs == 0)
     {
-        logSystem("[OTA] Слишком рано для проверки (< 1 час), пропускаем");
+        lastCheckTs = millis();
+        logSystem("[OTA] Первый вызов handleOTA(), устанавливаем lastCheckTs=%lu", lastCheckTs);
+        
+        // Если это НЕ принудительная проверка, выходим
+        static bool isFirstCall = true;
+        if (isFirstCall)
+        {
+            isFirstCall = false;
+            return;
+        }
+    }
+    
+    unsigned long currentTime = millis();
+    unsigned long timeDiff = currentTime - lastCheckTs;
+    
+    logSystem("[OTA] handleOTA() вызван, lastCheckTs=%lu, millis=%lu, diff=%lu", 
+              lastCheckTs, currentTime, timeDiff);
+    
+    // Проверяем таймер только если это НЕ принудительная проверка
+    if (timeDiff < 3600000UL && lastCheckTs != 0) 
+    {
+        // Логируем только первые несколько раз, чтобы не спамить
+        static int spamCount = 0;
+        if (spamCount < 3)
+        {
+            logSystem("[OTA] Слишком рано для проверки (< 1 час), пропускаем");
+            spamCount++;
+            if (spamCount == 3)
+            {
+                logSystem("[OTA] Дальнейшие сообщения о раннем вызове будут подавлены");
+            }
+        }
         return; // 1 раз в час
     }
     
-    lastCheckTs = millis();
+    lastCheckTs = currentTime;
 
     if (!manifestUrlGlobal) 
     {
@@ -286,17 +343,27 @@ void handleOTA()
     if (strcmp(newVersion, JXCT_VERSION_STRING) == 0)
     {
         strcpy(statusBuf, "up-to-date");
+        updateAvailable = false;
+        pendingUpdateUrl = "";
+        pendingUpdateSha256 = "";
+        pendingUpdateVersion = "";
         logSystem("[OTA] Версия актуальна, обновление не требуется");
         return;
     }
 
-    logSystem("[OTA] Найдено обновление %s -> %s, начинаем загрузку", JXCT_VERSION_STRING, newVersion);
-    downloadAndUpdate(String(binUrl), sha256);
-}
-
-void triggerOtaCheck()
-{
-    // Смещаем таймер так, будто последний чек был час назад
-    // (handleOTA запускается, если прошло >=1 часа).
-    lastCheckTs = (millis() > 3600000UL) ? millis() - 3600000UL : 0;
+    // Сохраняем информацию об обновлении для двухэтапного процесса
+    updateAvailable = true;
+    pendingUpdateUrl = String(binUrl);
+    pendingUpdateSha256 = String(sha256);
+    pendingUpdateVersion = String(newVersion);
+    
+    snprintf(statusBuf, sizeof(statusBuf), "update available: %s", newVersion);
+    logSystem("[OTA] Найдено обновление %s -> %s, ожидаем подтверждения установки", JXCT_VERSION_STRING, newVersion);
+    
+    // В автоматическом режиме сразу устанавливаем
+    if (config.flags.autoOtaEnabled)
+    {
+        logSystem("[OTA] Автоматический режим - начинаем установку");
+        downloadAndUpdate(pendingUpdateUrl, pendingUpdateSha256.c_str());
+    }
 } 

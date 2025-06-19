@@ -15,5 +15,8 @@ void handleOTA();
 // Принудительный запуск проверки (сброс таймера)
 void triggerOtaCheck();
 
+// Принудительная установка найденного обновления
+void triggerOtaInstall();
+
 // Текстовый статус для UI / MQTT
 const char* getOtaStatus(); 
