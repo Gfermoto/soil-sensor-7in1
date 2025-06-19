@@ -15,7 +15,7 @@
 static const char* manifestUrlGlobal = nullptr;
 static WiFiClient* clientPtr = nullptr;
 static unsigned long lastCheckTs = 0;
-static char statusBuf[32] = "idle";
+static char statusBuf[64] = "Ожидание";
 
 // Переменные для двухэтапного OTA (проверка -> установка)
 static bool updateAvailable = false;
@@ -29,7 +29,7 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
 {
     manifestUrlGlobal = manifestUrl;
     clientPtr = &client;
-    strlcpy(statusBuf, "ready", sizeof(statusBuf));
+    strlcpy(statusBuf, "Готов", sizeof(statusBuf));
     logSystem("[OTA] Initialized, manifest: %s", manifestUrl);
 }
 
@@ -44,7 +44,7 @@ static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)
 static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
 {
     esp_task_wdt_reset();
-    strcpy(statusBuf, "connecting");
+    strcpy(statusBuf, "Подключение");
     logSystem("[OTA] Загрузка: %s", binUrl.c_str());
 
     HTTPClient http;
@@ -56,7 +56,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
     
     if (code != HTTP_CODE_OK)
     {
-        snprintf(statusBuf, sizeof(statusBuf), "http %d", code);
+        snprintf(statusBuf, sizeof(statusBuf), "Ошибка HTTP %d", code);
         logError("[OTA] HTTP ошибка %d", code);
         http.end();
         return false;
@@ -77,14 +77,14 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
 
     if (!Update.begin(contentLen))
     {
-        strcpy(statusBuf, "no space");
+        strcpy(statusBuf, "Нет места");
         logError("[OTA] Update.begin() failed");
         Update.printError(Serial);
         http.end();
         return false;
     }
 
-    strcpy(statusBuf, "downloading");
+    strcpy(statusBuf, "Загрузка");
     
     mbedtls_sha256_context shaCtx;
     mbedtls_sha256_init(&shaCtx);
@@ -108,7 +108,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
             
             if (readBytes <= 0)
             {
-                strcpy(statusBuf, "read error");
+                strcpy(statusBuf, "Ошибка чтения");
                 logError("[OTA] Ошибка чтения данных");
                 Update.abort();
                 http.end();
@@ -117,7 +117,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
 
             if (Update.write(buf, readBytes) != (size_t)readBytes)
             {
-                strcpy(statusBuf, "write error");
+                strcpy(statusBuf, "Ошибка записи");
                 logError("[OTA] Ошибка записи во flash");
                 Update.printError(Serial);
                 Update.abort();
@@ -133,12 +133,12 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
             {
                 if (isChunked)
                 {
-                    snprintf(statusBuf, sizeof(statusBuf), "dl %dKB", (int)(totalDownloaded / 1024));
+                    snprintf(statusBuf, sizeof(statusBuf), "Загружено %dКБ", (int)(totalDownloaded / 1024));
                 }
                 else
                 {
                     int percent = (totalDownloaded * 100) / contentLen;
-                    snprintf(statusBuf, sizeof(statusBuf), "dl %d%%", percent);
+                    snprintf(statusBuf, sizeof(statusBuf), "Загружено %d%%", percent);
                 }
                 logSystem("[OTA] Загружено: %d байт", totalDownloaded);
                 lastProgress = millis();
@@ -151,7 +151,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
             // Проверяем таймаут бездействия
             if (millis() - lastActivity > TIMEOUT_MS)
             {
-                strcpy(statusBuf, "timeout");
+                strcpy(statusBuf, "Таймаут");
                 logError("[OTA] Таймаут загрузки (нет данных %lu мс)", TIMEOUT_MS);
                 Update.abort();
                 http.end();
@@ -174,13 +174,13 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
     
     if (!isChunked && totalDownloaded != (size_t)contentLen)
     {
-        snprintf(statusBuf, sizeof(statusBuf), "incomplete %d/%d", totalDownloaded, contentLen);
+        snprintf(statusBuf, sizeof(statusBuf), "Неполная загрузка %d/%d", totalDownloaded, contentLen);
         logError("[OTA] Неполная загрузка: %d из %d байт", totalDownloaded, contentLen);
         Update.abort();
         return false;
     }
 
-    strcpy(statusBuf, "verifying");
+    strcpy(statusBuf, "Проверка");
     
     uint8_t digest[32];
     mbedtls_sha256_finish_ret(&shaCtx, digest);
@@ -188,17 +188,17 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
 
     if (!verifySha256(digest, expectedSha256))
     {
-        strcpy(statusBuf, "sha mismatch");
+        strcpy(statusBuf, "Ошибка подписи");
         logError("[OTA] SHA256 не совпадает");
         Update.abort();
         return false;
     }
 
-    strcpy(statusBuf, "finalizing");
+    strcpy(statusBuf, "Завершение");
     
     if (!Update.end(true)) // true = устанавливать как boot partition
     {
-        strcpy(statusBuf, "finalize error");
+        strcpy(statusBuf, "Ошибка установки");
         logError("[OTA] Ошибка финализации");
         Update.printError(Serial);
         return false;
@@ -206,13 +206,13 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
 
     if (!Update.isFinished())
     {
-        strcpy(statusBuf, "not finished");
+        strcpy(statusBuf, "Не завершено");
         logError("[OTA] Update не завершён");
         return false;
     }
 
     logSuccess("[OTA] Обновление завершено успешно, перезагрузка...");
-    strcpy(statusBuf, "success, rebooting");
+    strcpy(statusBuf, "Успешно, перезагрузка");
     delay(2000);
     ESP.restart();
     return true;
@@ -231,7 +231,7 @@ void triggerOtaInstall()
     if (!updateAvailable || pendingUpdateUrl.isEmpty())
     {
         logError("[OTA] Нет доступных обновлений для установки");
-        strcpy(statusBuf, "no update");
+        strcpy(statusBuf, "Нет обновлений");
         return;
     }
     
@@ -285,7 +285,7 @@ void handleOTA()
     }
 
     logSystem("[OTA] Начинаем проверку обновлений: %s", manifestUrlGlobal);
-    strcpy(statusBuf, "chk");
+    strcpy(statusBuf, "Проверка обновлений");
 
     HTTPClient http;
     http.begin(*clientPtr, manifestUrlGlobal);
@@ -296,7 +296,7 @@ void handleOTA()
     
     if (code != HTTP_CODE_OK)
     {
-        snprintf(statusBuf, sizeof(statusBuf), "mf %d", code);
+        snprintf(statusBuf, sizeof(statusBuf), "Ошибка манифеста %d", code);
         logError("[OTA] Ошибка загрузки манифеста: HTTP %d", code);
         http.end();
         return;
@@ -313,7 +313,7 @@ void handleOTA()
     DeserializationError err = deserializeJson(doc, manifestContent);
     if (err)
     {
-        strcpy(statusBuf, "json err");
+        strcpy(statusBuf, "Ошибка JSON");
         logError("[OTA] Ошибка парсинга JSON: %s", err.c_str());
         return;
     }
@@ -328,7 +328,7 @@ void handleOTA()
 
     if (strlen(newVersion) == 0 || strlen(binUrl) == 0 || strlen(sha256) != 64)
     {
-        strcpy(statusBuf, "manifest bad");
+        strcpy(statusBuf, "Неверный манифест");
         logError("[OTA] Некорректный манифест: version=%d, url=%d, sha256=%d", 
                  strlen(newVersion), strlen(binUrl), strlen(sha256));
         return;
@@ -336,7 +336,7 @@ void handleOTA()
 
     if (strcmp(newVersion, JXCT_VERSION_STRING) == 0)
     {
-        strcpy(statusBuf, "up-to-date");
+        strcpy(statusBuf, "Актуальная версия");
         updateAvailable = false;
         pendingUpdateUrl = "";
         pendingUpdateSha256 = "";
@@ -351,7 +351,7 @@ void handleOTA()
     pendingUpdateSha256 = String(sha256);
     pendingUpdateVersion = String(newVersion);
     
-    snprintf(statusBuf, sizeof(statusBuf), "update available: %s", newVersion);
+    snprintf(statusBuf, sizeof(statusBuf), "Доступно обновление: %s", newVersion);
     logSystem("[OTA] Найдено обновление %s -> %s, ожидаем подтверждения установки", JXCT_VERSION_STRING, newVersion);
     
     // В автоматическом режиме сразу устанавливаем
