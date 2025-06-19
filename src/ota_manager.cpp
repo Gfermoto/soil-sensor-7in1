@@ -222,7 +222,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
 void triggerOtaCheck()
 {
     logSystem("[OTA] Принудительная проверка OTA запущена");
-    lastCheckTs = 0; // Сбрасываем таймер для принудительной проверки
+    lastCheckTs = millis() - 3600001UL; // Устанавливаем время в прошлое для принудительной проверки
 }
 
 // Принудительная установка найденного обновления
@@ -244,44 +244,38 @@ void handleOTA()
     // Сброс watchdog перед началом проверки
     esp_task_wdt_reset();
     
+    unsigned long currentTime = millis();
+    
     // Инициализируем lastCheckTs при первом вызове
     if (lastCheckTs == 0)
     {
-        lastCheckTs = millis();
+        lastCheckTs = currentTime;
         logSystem("[OTA] Первый вызов handleOTA(), устанавливаем lastCheckTs=%lu", lastCheckTs);
-        
-        // Если это НЕ принудительная проверка, выходим
-        static bool isFirstCall = true;
-        if (isFirstCall)
-        {
-            isFirstCall = false;
-            return;
-        }
+        return; // При первом вызове просто устанавливаем время и выходим
     }
     
-    unsigned long currentTime = millis();
     unsigned long timeDiff = currentTime - lastCheckTs;
     
-    logSystem("[OTA] handleOTA() вызван, lastCheckTs=%lu, millis=%lu, diff=%lu", 
-              lastCheckTs, currentTime, timeDiff);
-    
-    // Проверяем таймер только если это НЕ принудительная проверка
-    if (timeDiff < 3600000UL && lastCheckTs != 0) 
+    // Логируем только первые несколько раз, чтобы не спамить
+    static int spamCount = 0;
+    if (spamCount < 3)
     {
-        // Логируем только первые несколько раз, чтобы не спамить
-        static int spamCount = 0;
-        if (spamCount < 3)
+        logSystem("[OTA] handleOTA() вызван, lastCheckTs=%lu, millis=%lu, diff=%lu", 
+                  lastCheckTs, currentTime, timeDiff);
+        spamCount++;
+        if (spamCount == 3)
         {
-            logSystem("[OTA] Слишком рано для проверки (< 1 час), пропускаем");
-            spamCount++;
-            if (spamCount == 3)
-            {
-                logSystem("[OTA] Дальнейшие сообщения о раннем вызове будут подавлены");
-            }
+            logSystem("[OTA] Дальнейшие отладочные сообщения handleOTA будут подавлены");
         }
-        return; // 1 раз в час
     }
     
+    // Проверяем таймер - должен пройти час (3600000 мс)
+    if (timeDiff < 3600000UL) 
+    {
+        return; // Слишком рано, выходим без логирования
+    }
+    
+    // Обновляем время последней проверки
     lastCheckTs = currentTime;
 
     if (!manifestUrlGlobal) 
