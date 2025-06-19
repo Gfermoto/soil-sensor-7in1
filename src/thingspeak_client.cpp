@@ -8,12 +8,29 @@
 #include "jxct_format_utils.h"
 #include "logger.h"
 #include <NTPClient.h>
+#include <ctype.h>
 extern NTPClient* timeClient;
 
 // URL для отправки данных в ThingSpeak
 const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";
 
 static unsigned long lastTsPublish = 0;
+
+// Утилита для обрезки пробелов в начале/конце строки C
+static void trim(char* s)
+{
+    if (!s) return;
+    // Trim leading
+    char* p = s;
+    while (*p && isspace((unsigned char)*p)) ++p;
+    if (p != s) memmove(s, p, strlen(p) + 1);
+
+    // Trim trailing
+    size_t len = strlen(s);
+    while (len > 0 && isspace((unsigned char)s[len - 1]))
+        s[--len] = '\0';
+}
+
 // ✅ Заменяем String на статические буферы
 static char thingSpeakLastPublishBuffer[32] = "0";
 static char thingSpeakLastErrorBuffer[64] = "";
@@ -47,10 +64,17 @@ bool sendDataToThingSpeak()
     }
     lastTsPublish = now;
 
-    unsigned long channelId = strtoul(config.thingSpeakChannelId, nullptr, 10);
+    char apiKeyBuf[25];
+    char channelBuf[16];
+    strlcpy(apiKeyBuf, config.thingSpeakApiKey, sizeof(apiKeyBuf));
+    strlcpy(channelBuf, config.thingSpeakChannelId, sizeof(channelBuf));
+    trim(apiKeyBuf);
+    trim(channelBuf);
+
+    unsigned long channelId = strtoul(channelBuf, nullptr, 10);
 
     // Проверяем корректность ID и API ключа до отправки
-    if (channelId == 0 || strlen(config.thingSpeakApiKey) < 16)
+    if (channelId == 0 || strlen(apiKeyBuf) < 16)
     {
         logError("ThingSpeak: некорректный Channel ID или API ключ");
         strlcpy(thingSpeakLastErrorBuffer, "Неверный Channel ID или API Key", sizeof(thingSpeakLastErrorBuffer));
@@ -70,7 +94,7 @@ bool sendDataToThingSpeak()
     logData("Отправка в ThingSpeak: T=%.1f°C, H=%.1f%%, PH=%.2f", sensorData.temperature, sensorData.humidity,
             sensorData.ph);
 
-    int res = ThingSpeak.writeFields(channelId, config.thingSpeakApiKey);
+    int res = ThingSpeak.writeFields(channelId, apiKeyBuf);
 
     if (res == 200)
     {
