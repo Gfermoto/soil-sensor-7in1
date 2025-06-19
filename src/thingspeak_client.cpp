@@ -105,11 +105,9 @@ bool sendDataToThingSpeak()
     }
     else if (res == -301)
     {
-        // Ошибка -301 часто возникает при таймауте, но данные могут быть отправлены
-        logWarn("ThingSpeak: таймаут ответа (данные могли быть отправлены)");
-        snprintf(thingSpeakLastPublishBuffer, sizeof(thingSpeakLastPublishBuffer), "%lu", millis());
-        strlcpy(thingSpeakLastErrorBuffer, "Таймаут ответа (возможно успешно)", sizeof(thingSpeakLastErrorBuffer));
-        return true;  // Считаем успешным для избежания повторных отправок
+        logWarn("ThingSpeak: таймаут (-301), повторим позже");
+        strlcpy(thingSpeakLastErrorBuffer, "Timeout -301", sizeof(thingSpeakLastErrorBuffer));
+        return false; // do not treat as success
     }
     else if (res == -401)
     {
