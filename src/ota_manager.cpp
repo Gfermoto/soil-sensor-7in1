@@ -14,7 +14,6 @@
 // Глобальные переменные для OTA 2.0
 static const char* manifestUrlGlobal = nullptr;
 static WiFiClient* clientPtr = nullptr;
-static unsigned long lastCheckTs = 0;
 static char statusBuf[64] = "Ожидание";
 
 // Переменные для двухэтапного OTA (проверка -> установка)
@@ -92,7 +91,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
     mbedtls_sha256_starts_ret(&shaCtx, 0);
 
     WiFiClient* stream = http.getStreamPtr();
-    uint8_t buf[1024];
+    uint8_t buf[512];
     size_t totalDownloaded = 0;
     unsigned long lastProgress = millis();
     unsigned long lastActivity = millis();
@@ -100,6 +99,8 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
 
     while (http.connected())
     {
+        esp_task_wdt_reset();
+        
         size_t avail = stream->available();
         if (avail > 0)
         {
@@ -223,7 +224,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
 void triggerOtaCheck()
 {
     logSystem("[OTA] Принудительная проверка OTA запущена");
-    lastCheckTs = millis() - 3600001UL; // Устанавливаем время в прошлое для принудительной проверки
+    handleOTA(); // Просто вызываем проверку напрямую
 }
 
 // Принудительная установка найденного обновления
@@ -245,40 +246,6 @@ void handleOTA()
     // Сброс watchdog перед началом проверки
     esp_task_wdt_reset();
     
-    unsigned long currentTime = millis();
-    
-    // Инициализируем lastCheckTs при первом вызове
-    if (lastCheckTs == 0)
-    {
-        lastCheckTs = currentTime;
-        logSystem("[OTA] Первый вызов handleOTA(), устанавливаем lastCheckTs=%lu", lastCheckTs);
-        return; // При первом вызове просто устанавливаем время и выходим
-    }
-    
-    unsigned long timeDiff = currentTime - lastCheckTs;
-    
-    // Логируем только первые несколько раз, чтобы не спамить
-    static int spamCount = 0;
-    if (spamCount < 3)
-    {
-        logSystem("[OTA] handleOTA() вызван, lastCheckTs=%lu, millis=%lu, diff=%lu", 
-                  lastCheckTs, currentTime, timeDiff);
-        spamCount++;
-        if (spamCount == 3)
-        {
-            logSystem("[OTA] Дальнейшие отладочные сообщения handleOTA будут подавлены");
-        }
-    }
-    
-    // Проверяем таймер - должен пройти час (3600000 мс)
-    if (timeDiff < 3600000UL) 
-    {
-        return; // Слишком рано, выходим без логирования
-    }
-    
-    // Обновляем время последней проверки
-    lastCheckTs = currentTime;
-
     if (!manifestUrlGlobal) 
     {
         logError("[OTA] manifestUrlGlobal не задан");
@@ -308,7 +275,6 @@ void handleOTA()
     http.end();
     
     logSystem("[OTA] Манифест получен: %d символов", manifestContent.length());
-    logDebug("[OTA] Содержимое манифеста: %s", manifestContent.c_str());
 
     const size_t capacity = JSON_OBJECT_SIZE(3) + 200;
     StaticJsonDocument<capacity> doc;

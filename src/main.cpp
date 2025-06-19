@@ -275,9 +275,13 @@ void loop()
         lastWiFiCheck = currentTime;
     }
 
-    // Проверяем OTA (внутри функция сама ограничит частоту)
-    if (config.flags.autoOtaEnabled)
+    // ✅ Проверяем OTA только раз в час (или при принудительной проверке)
+    static unsigned long lastOtaCheck = 0;
+    if (config.flags.autoOtaEnabled && (currentTime - lastOtaCheck >= 3600000UL)) // 1 час
+    {
         handleOTA();
+        lastOtaCheck = currentTime;
+    }
 
     // ✅ Минимальная задержка для стабильности (10мс вместо 100мс)
     vTaskDelay(10 / portTICK_PERIOD_MS);
