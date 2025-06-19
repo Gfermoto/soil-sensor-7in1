@@ -1,7 +1,7 @@
 # Auto-generate include/version.h from VERSION file before build.
 # Works as a PlatformIO extra_script (pre).
 
-import os, re, sys
+import os, re, sys, subprocess
 from datetime import datetime
 
 Import("env")
@@ -10,11 +10,30 @@ PROJECT_DIR = env["PROJECT_DIR"]
 VERSION_FILE = os.path.join(PROJECT_DIR, "VERSION")
 HEADER_PATH = os.path.join(PROJECT_DIR, "include", "version.h")
 
-if not os.path.exists(VERSION_FILE):
-    sys.stderr.write("VERSION file not found\n")
-    sys.exit(1)
+# -----------------------------
+# Определяем строку версии
+# 1) пытаемся взять последний git-тег (`git describe --tags --abbrev=0`)
+# 2) если git недоступен или тегов нет – читаем fallback-файл VERSION
+# -----------------------------
 
-version_str = open(VERSION_FILE).read().strip()
+def read_version_from_git() -> str:
+    try:
+        tag = subprocess.check_output(
+            ["git", "describe", "--tags", "--abbrev=0"], cwd=PROJECT_DIR
+        ).decode().strip()
+        return tag.lstrip("v")  # допускаем теги вида v2.8.0
+    except Exception:
+        return ""
+
+
+def read_version_from_file() -> str:
+    if not os.path.exists(VERSION_FILE):
+        return "0.0.0"
+    return open(VERSION_FILE).read().strip()
+
+
+version_str = read_version_from_git() or read_version_from_file()
+
 match = re.match(r"(\d+)\.(\d+)\.(\d+)", version_str)
 if not match:
     sys.stderr.write(f"Invalid version format: {version_str}\n")
