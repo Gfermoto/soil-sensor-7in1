@@ -25,6 +25,18 @@ jobs:
       - name: Sync VERSION file with tag
         run: echo "${GITHUB_REF_NAME#v}" > VERSION
 
+      - name: Commit updated VERSION back to repo
+        env:
+          TAG_VERSION: ${{ github.ref_name }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet VERSION; then
+            git add VERSION
+            git commit -m "chore: bump VERSION to $TAG_VERSION"
+            git push origin HEAD:main
+          fi
+
       - name: Build firmware (production)
         run: pio run -e esp32dev-production
 
