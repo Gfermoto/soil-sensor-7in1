@@ -1,20 +1,13 @@
 #pragma once
-#include "ISensor.h"
+#include "basic_sensor_adapter.h"
 #include "fake_sensor.h"
 #include "modbus_sensor.h"
 
-class FakeSensorAdapter : public ISensor {
+class FakeSensorAdapter : public BasicSensorAdapter {
 public:
-    bool begin() override {
-        startFakeSensorTask();
-        return true;
-    }
-
-    bool read(SensorData &out) override {
-        // данные обновляются задачей fake sensor
-        out = sensorData;
-        return sensorData.valid;
-    }
-
-    const char *name() const override { return "FakeSensor"; }
+    FakeSensorAdapter()
+        : BasicSensorAdapter("FakeSensor",
+                             []() { startFakeSensorTask(); },
+                             []() { /* данные генерируются в задаче */ },
+                             &sensorData) {}
 }; 

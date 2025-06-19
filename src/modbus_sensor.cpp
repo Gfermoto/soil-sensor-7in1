@@ -354,109 +354,99 @@ int readNPKParameters()
     return success_count;
     }
 
+// ------------------------------------------------------------
+// 🔽 Helper functions to reduce cyclomatic complexity
+// ------------------------------------------------------------
+
+static void saveRawSnapshot(SensorData& d)
+{
+    d.raw_temperature = d.temperature;
+    d.raw_humidity    = d.humidity;
+    d.raw_ec          = d.ec;
+    d.raw_ph          = d.ph;
+    d.raw_nitrogen    = d.nitrogen;
+    d.raw_phosphorus  = d.phosphorus;
+    d.raw_potassium   = d.potassium;
+}
+
+static void updateIrrigationFlag(SensorData& d)
+{
+    constexpr uint8_t WIN = 6;
+    static float buf[WIN] = {NAN};
+    static uint8_t idx = 0, filled = 0, persist = 0;
+
+    float baseline = d.humidity;
+    for (uint8_t i = 0; i < filled; ++i)
+        baseline = (buf[i] < baseline) ? buf[i] : baseline;
+
+    bool spike = (filled == WIN) &&
+                 (d.humidity - baseline >= config.irrigationSpikeThreshold) &&
+                 (d.humidity > 25.0f);
+    persist = spike ? persist + 1 : 0;
+    if (persist >= 2) {
+        lastIrrigationTs = millis();
+        persist = 0;
+    }
+
+    buf[idx] = d.humidity;
+    idx = (idx + 1) % WIN;
+    if (filled < WIN) ++filled;
+
+    d.recentIrrigation = (millis() - lastIrrigationTs) <= (unsigned long)config.irrigationHoldMinutes * 60000UL;
+}
+
+static void applyCompensationIfEnabled(SensorData& d)
+{
+    if (!config.flags.calibrationEnabled) return;
+
+    SoilType soil = SoilType::LOAM;
+    switch (config.soilProfile) {
+        case 0: soil = SoilType::SAND; break;
+        case 1: soil = SoilType::LOAM; break;
+        case 2: soil = SoilType::PEAT; break;
+        case 3: soil = SoilType::CLAY; break;
+    }
+
+    float ec25 = d.ec / (1.0f + 0.021f * (d.temperature - 25.0f));
+    d.ec = correctEC(ec25, d.temperature, d.humidity, soil);
+
+    d.ph = correctPH(d.ph, d.temperature);
+
+    correctNPK(d.temperature, d.humidity, d.nitrogen, d.phosphorus, d.potassium, soil);
+}
+
 /**
  * @brief Финализация данных датчика (валидация, кэширование, скользящее среднее)
  * @param success Флаг успешности чтения всех параметров
  */
 void finalizeSensorData(bool success)
 {
-    sensorData.valid = success;
+    sensorData.valid       = success;
     sensorData.last_update = millis();
 
-    // Сохраняем RAW до любых компенсаций
-    sensorData.raw_temperature = sensorData.temperature;
-    sensorData.raw_humidity = sensorData.humidity;
-    sensorData.raw_ec = sensorData.ec;
-    sensorData.raw_ph = sensorData.ph;
-    sensorData.raw_nitrogen = sensorData.nitrogen;
-    sensorData.raw_phosphorus = sensorData.phosphorus;
-    sensorData.raw_potassium = sensorData.potassium;
+    if (!success) {
+        logError("❌ Не удалось прочитать один или несколько параметров");
+        return;
+    }
 
-    if (success)
-    {
-        // --------- ОБНОВЛЁННЫЙ ДЕТЕКТОР ПОЛИВА v2.8 (использует сглаженные данные) ---------
-        constexpr uint8_t WIN = 6;
-        static float buf[WIN] = {NAN};
-        static uint8_t idx = 0, filled = 0;
-        static uint8_t persistCount = 0;
+    saveRawSnapshot(sensorData);
+    updateIrrigationFlag(sensorData);
+    applyCompensationIfEnabled(sensorData);
 
-        float smoothedHum = sensorData.humidity;
-
-        // baseline = MIN за окно
-        float baseline = smoothedHum;
-        for (uint8_t i = 0; i < filled; ++i)
-            if (buf[i] < baseline) baseline = buf[i];
-
-        bool isCandidate = (filled == WIN) &&
-                           (smoothedHum - baseline >= config.irrigationSpikeThreshold) &&
-                           (smoothedHum > 25.0f);
-
-        persistCount = isCandidate ? persistCount + 1 : 0;
-
-        if (persistCount >= 2)
-        {
-            lastIrrigationTs = millis();
-            persistCount = 0;
-        }
-
-        // обновляем буфер
-        buf[idx] = smoothedHum;
-        idx = (idx + 1) % WIN;
-        if (filled < WIN) filled++;
-
-        sensorData.recentIrrigation = (millis() - lastIrrigationTs) <= (unsigned long)config.irrigationHoldMinutes * 60000UL;
-
-        if (config.flags.calibrationEnabled)
-        {
-            SoilType soil;
-            switch (config.soilProfile)
-            {
-                case 0:  soil = SoilType::SAND; break;
-                case 1:  soil = SoilType::LOAM; break;
-                case 2:  soil = SoilType::PEAT; break;
-                case 3:  soil = SoilType::CLAY; break;
-                default: soil = SoilType::LOAM; break;
-            }
-
-            // 1. EC: коррекция температуры → модель Арчи
-            float ec25 = sensorData.ec / (1.0f + 0.021f * (sensorData.temperature - 25.0f));
-            sensorData.ec = correctEC(ec25, sensorData.temperature, sensorData.humidity, soil);
-
-            // 2. pH: только температурная поправка
-            sensorData.ph = correctPH(sensorData.ph, sensorData.temperature);
-
-            // 3. NPK: T + θ + тип почвы
-            correctNPK(sensorData.temperature,
+    addToMovingAverage(sensorData,
+                       sensorData.temperature,
                        sensorData.humidity,
+                       sensorData.ec,
+                       sensorData.ph,
                        sensorData.nitrogen,
                        sensorData.phosphorus,
-                       sensorData.potassium,
-                       soil);
-        }
+                       sensorData.potassium);
 
-        // Добавляем данные в буферы скользящего среднего
-        addToMovingAverage(sensorData, sensorData.temperature, sensorData.humidity, sensorData.ec, sensorData.ph,
-                           sensorData.nitrogen, sensorData.phosphorus, sensorData.potassium);
-
-        // Валидация данных
-        if (validateSensorData(sensorData))
-        {
-            logSuccess("✅ Все параметры прочитаны и валидны");
-            
-            // Обновляем кэш
-            sensorCache.data = sensorData;
-            sensorCache.timestamp = millis();
-            sensorCache.is_valid = true;
-        }
-        else
-        {
-            logWarn("⚠️ Данные прочитаны, но не прошли валидацию");
-            sensorData.valid = false;
-        }
-    }
-    else
-    {
-        logError("❌ Не удалось прочитать один или несколько параметров");
+    if (validateSensorData(sensorData)) {
+        logSuccess("✅ Все параметры прочитаны и валидны");
+        sensorCache = {sensorData, true, millis()};
+    } else {
+        logWarn("⚠️ Данные прочитаны, но не прошли валидацию");
         sensorData.valid = false;
     }
 }
@@ -596,56 +586,68 @@ void initMovingAverageBuffers(SensorData& data)
 void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float ph, float n, float p, float k)
 {
     uint8_t window_size = config.movingAverageWindow;
-    if (window_size < 5) window_size = 5;    // Минимум 5
-    if (window_size > 15) window_size = 15;  // Максимум 15
-    
-    // Добавляем новые значения в кольцевые буферы
-    data.temp_buffer[data.buffer_index] = temp;
-    data.hum_buffer[data.buffer_index] = hum;
-    data.ec_buffer[data.buffer_index] = ec;
-    data.ph_buffer[data.buffer_index] = ph;
-    data.n_buffer[data.buffer_index] = n;
-    data.p_buffer[data.buffer_index] = p;
-    data.k_buffer[data.buffer_index] = k;
-    
-    // Обновляем индекс (кольцевой буфер)
+    if (window_size < 5) window_size = 5;
+    if (window_size > 15) window_size = 15;
+
+    // ---------- O(1) running sum для каждого параметра ----------
+    static float sum_temp = 0, sum_hum = 0, sum_ec = 0, sum_ph = 0, sum_n = 0, sum_p = 0, sum_k = 0;
+
+    // Если буфер заполнен – вычитаем значение, которое покинет окно
+    if (data.buffer_filled >= window_size) {
+        sum_temp -= data.temp_buffer[data.buffer_index];
+        sum_hum  -= data.hum_buffer[data.buffer_index];
+        sum_ec   -= data.ec_buffer[data.buffer_index];
+        sum_ph   -= data.ph_buffer[data.buffer_index];
+        sum_n    -= data.n_buffer[data.buffer_index];
+        sum_p    -= data.p_buffer[data.buffer_index];
+        sum_k    -= data.k_buffer[data.buffer_index];
+    }
+
+    // Записываем новые значения в буфер и добавляем их к сумме
+    data.temp_buffer[data.buffer_index] = temp; sum_temp += temp;
+    data.hum_buffer[data.buffer_index]  = hum;  sum_hum  += hum;
+    data.ec_buffer[data.buffer_index]   = ec;   sum_ec   += ec;
+    data.ph_buffer[data.buffer_index]   = ph;   sum_ph   += ph;
+    data.n_buffer[data.buffer_index]    = n;    sum_n    += n;
+    data.p_buffer[data.buffer_index]    = p;    sum_p    += p;
+    data.k_buffer[data.buffer_index]    = k;    sum_k    += k;
+
+    // Обновляем индексы кольцевого буфера
     data.buffer_index = (data.buffer_index + 1) % window_size;
-    
-    // Обновляем количество заполненных элементов
-    if (data.buffer_filled < window_size)
-    {
-        data.buffer_filled++;
+    if (data.buffer_filled < window_size) data.buffer_filled++;
+
+    uint8_t effective_window = (data.buffer_filled < window_size) ? data.buffer_filled : window_size;
+
+    if (effective_window >= 3 && config.filterAlgorithm == 0) {
+        // Среднее (O(1))
+        data.temperature = sum_temp / effective_window;
+        data.humidity    = sum_hum  / effective_window;
+        data.ec          = sum_ec   / effective_window;
+        data.ph          = sum_ph   / effective_window;
+        data.nitrogen    = sum_n    / effective_window;
+        data.phosphorus  = sum_p    / effective_window;
+        data.potassium   = sum_k    / effective_window;
+
+        DEBUG_PRINTF("[AVG O1] win=%d temp=%.1f\n", effective_window, data.temperature);
     }
-    
-    // Вычисляем скользящее среднее только если буфер достаточно заполнен (минимум 3 значения)
-    if (data.buffer_filled >= 3)
-    {
-        // Используем реальный размер заполненных данных для расчета
-        uint8_t effective_window = (data.buffer_filled < window_size) ? data.buffer_filled : window_size;
-        
-        data.temperature = calculateMovingAverage(data.temp_buffer, effective_window, data.buffer_filled);
-        data.humidity = calculateMovingAverage(data.hum_buffer, effective_window, data.buffer_filled);
-        data.ec = calculateMovingAverage(data.ec_buffer, effective_window, data.buffer_filled);
-        data.ph = calculateMovingAverage(data.ph_buffer, effective_window, data.buffer_filled);
-        data.nitrogen = calculateMovingAverage(data.n_buffer, effective_window, data.buffer_filled);
-        data.phosphorus = calculateMovingAverage(data.p_buffer, effective_window, data.buffer_filled);
-        data.potassium = calculateMovingAverage(data.k_buffer, effective_window, data.buffer_filled);
-        
-        DEBUG_PRINTF("[MOVING_AVG] Окно=%d, заполнено=%d, Темп=%.1f°C\n", effective_window, data.buffer_filled,
-                     data.temperature);
-    }
-    else
-    {
-        // Если данных мало, используем последние значения без усреднения
+    else if (effective_window >= 3) {
+        // Оставляем старый алгоритм для медианы и др.
+        data.temperature = calculateMovingAverage(data.temp_buffer, window_size, data.buffer_filled);
+        data.humidity    = calculateMovingAverage(data.hum_buffer, window_size, data.buffer_filled);
+        data.ec          = calculateMovingAverage(data.ec_buffer, window_size, data.buffer_filled);
+        data.ph          = calculateMovingAverage(data.ph_buffer, window_size, data.buffer_filled);
+        data.nitrogen    = calculateMovingAverage(data.n_buffer, window_size, data.buffer_filled);
+        data.phosphorus  = calculateMovingAverage(data.p_buffer, window_size, data.buffer_filled);
+        data.potassium   = calculateMovingAverage(data.k_buffer, window_size, data.buffer_filled);
+    } else {
+        // Пока мало данных – возвращаем последние значения
         data.temperature = temp;
-        data.humidity = hum;
-        data.ec = ec;
-        data.ph = ph;
-        data.nitrogen = n;
-        data.phosphorus = p;
-        data.potassium = k;
-        
-        DEBUG_PRINTF("[MOVING_AVG] Накопление данных: %d/%d\n", data.buffer_filled, window_size);
+        data.humidity    = hum;
+        data.ec          = ec;
+        data.ph          = ph;
+        data.nitrogen    = n;
+        data.phosphorus  = p;
+        data.potassium   = k;
     }
 }
 
