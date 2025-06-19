@@ -16,6 +16,7 @@
 #include "debug.h"           // ✅ Добавляем систему условной компиляции
 #include "jxct_constants.h"  // ✅ Централизованные константы
 #include <NTPClient.h>
+#include "ota_manager.h"
 extern NTPClient* timeClient;
 
 WiFiClient espClient;
@@ -33,6 +34,8 @@ const char* getMqttLastError()
 static char clientIdBuffer[32] = "";
 static char statusTopicBuffer[128] = "";
 static char commandTopicBuffer[128] = "";
+static char otaStatusTopicBuffer[128] = "";
+static char otaCommandTopicBuffer[128] = "";
 
 // ✅ НОВОЕ: Кэш Home Assistant конфигураций
 struct HomeAssistantConfigCache
@@ -117,6 +120,21 @@ const char* getCommandTopic()
         snprintf(commandTopicBuffer, sizeof(commandTopicBuffer), "%s/command", config.mqttTopicPrefix);
     }
     return commandTopicBuffer;
+}
+
+// OTA статус topic
+static const char* getOtaStatusTopic()
+{
+    if (otaStatusTopicBuffer[0] == '\0')
+        snprintf(otaStatusTopicBuffer, sizeof(otaStatusTopicBuffer), "%s/ota/status", config.mqttTopicPrefix);
+    return otaStatusTopicBuffer;
+}
+
+static const char* getOtaCommandTopic()
+{
+    if (otaCommandTopicBuffer[0] == '\0')
+        snprintf(otaCommandTopicBuffer, sizeof(otaCommandTopicBuffer), "%s/ota/command", config.mqttTopicPrefix);
+    return otaCommandTopicBuffer;
 }
 
 void publishAvailability(bool online)
@@ -272,6 +290,10 @@ bool connectMQTT()
         mqttClient.subscribe(commandTopic);
         DEBUG_PRINTF("[MQTT] Подписались на топик команд: %s\n", commandTopic);
 
+        const char* otaCmdTopic = getOtaCommandTopic();
+        mqttClient.subscribe(otaCmdTopic);
+        DEBUG_PRINTF("[MQTT] Подписались на OTA команды: %s\n", otaCmdTopic);
+
         // Публикуем статус availability
         publishAvailability(true);
 
@@ -319,6 +341,21 @@ void handleMQTT()
     else
     {
         mqttClient.loop();
+
+        // Публикуем статус OTA, если изменился (не чаще 5 сек)
+        static char lastOtaStatus[64] = "";
+        static unsigned long lastOtaPublish = 0;
+        const unsigned long OTA_STATUS_INTERVAL = 5000;
+        if (millis() - lastOtaPublish > OTA_STATUS_INTERVAL)
+        {
+            const char* cur = getOtaStatus();
+            if (strcmp(cur, lastOtaStatus) != 0)
+            {
+                mqttClient.publish(getOtaStatusTopic(), cur, true);
+                strlcpy(lastOtaStatus, cur, sizeof(lastOtaStatus));
+            }
+            lastOtaPublish = millis();
+        }
     }
 }
 
@@ -658,6 +695,23 @@ void handleMqttCommand(const String& cmd)
     {
         removeHomeAssistantConfig();
     }
+    else if (cmd == "ota_check")
+    {
+        triggerOtaCheck();
+        handleOTA();
+    }
+    else if (cmd == "ota_auto_on")
+    {
+        config.flags.autoOtaEnabled = 1;
+        saveConfig();
+        publishAvailability(true);
+    }
+    else if (cmd == "ota_auto_off")
+    {
+        config.flags.autoOtaEnabled = 0;
+        saveConfig();
+        publishAvailability(true);
+    }
     else
     {
         DEBUG_PRINTLN("[MQTT] Неизвестная команда");
@@ -670,7 +724,7 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)
     String message;
     for (unsigned int i = 0; i < length; i++) message += (char)payload[i];
     DEBUG_PRINTF("[mqttCallback] Получено сообщение: %s = %s\n", t.c_str(), message.c_str());
-    if (t == getCommandTopic())
+    if (t == getCommandTopic() || t == getOtaCommandTopic())
     {
         handleMqttCommand(message);
     }

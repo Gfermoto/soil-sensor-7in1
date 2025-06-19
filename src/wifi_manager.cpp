@@ -89,6 +89,7 @@ String navHtml()
         html += "<a href='/intervals'>" UI_ICON_INTERVALS " Интервалы</a>";  // v2.3.0
     
         html += "<a href='/config_manager'>" UI_ICON_FOLDER " Конфигурация</a>";  // v2.3.0
+        html += "<a href='/updates'>🚀 Обновления</a>";
         html += "<a href='/service'>" UI_ICON_SERVICE " Сервис</a>";
     }
     html += "</div>";
@@ -375,7 +376,8 @@ void setupWebServer()
     setupMainRoutes();     // Основные маршруты (/, /save, /status)
     setupDataRoutes();     // Данные датчика (/readings, /sensor_json, /api/sensor)
     setupConfigRoutes();   // Конфигурация (/intervals, /config_manager, /api/config/*)
-    setupServiceRoutes();  // Сервис (/health, /service_status, /reset, /reboot, /ota)
+    setupServiceRoutes();  // Сервис
+    setupOtaRoutes();      // OTA (/updates, api)
 
     setupErrorHandlers();  // Обработчики ошибок (404, 500) - должны быть последними
 
@@ -385,7 +387,7 @@ void setupWebServer()
      
     webServer.begin();
     logSuccess("🏗️ Модульный веб-сервер v2.4.5 запущен. Режим: %s", currentWiFiMode == WiFiMode::AP ? "AP" : "STA");
-    logSystem("✅ Активные модули: main_routes, data_routes, config_routes, service_routes, error_handlers");
+    logSystem("✅ Активные модули: main, data, config, service, ota, error_handlers");
     logSystem("📋 Полный набор маршрутов готов к использованию");
 }
 

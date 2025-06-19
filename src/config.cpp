@@ -107,6 +107,7 @@ void loadConfig()
     // v2.6.1: сезонные коэффициенты и тип среды
     config.environmentType = preferences.getUChar("envType", 0); // 0=outdoor по умолчанию
     config.flags.seasonalAdjustEnabled = preferences.getBool("seasonAdj", true);
+    config.flags.autoOtaEnabled = preferences.getBool("autoOTA", false);
 
     preferences.end();
     // Значения по умолчанию для новых полей
@@ -195,6 +196,7 @@ void saveConfig()
     // v2.6.1: сохранение новых полей
     preferences.putUChar("envType", config.environmentType);
     preferences.putBool("seasonAdj", config.flags.seasonalAdjustEnabled);
+    preferences.putBool("autoOTA", config.flags.autoOtaEnabled);
 
     preferences.end();
 
@@ -227,7 +229,6 @@ void resetConfig()
     config.flags.hassEnabled = 0;
     config.flags.useRealSensor = 0;
     config.flags.calibrationEnabled = 0;
-    config.flags.reserved = 0;
 
     // ✅ Очистка всех строковых полей
     strlcpy(config.thingSpeakChannelId, "", sizeof(config.thingSpeakChannelId));
@@ -280,7 +281,8 @@ void resetConfig()
 
     // v2.6.1: сезонные коэффициенты и тип среды
     config.environmentType = 0; // 0=outdoor по умолчанию
-    config.flags.seasonalAdjustEnabled = true;
+    config.flags.seasonalAdjustEnabled = 0;
+    config.flags.autoOtaEnabled = 0;
 
     logSuccess("Все настройки сброшены к значениям по умолчанию");
     DEBUG_PRINT("[resetConfig] config.thingspeakInterval: ");

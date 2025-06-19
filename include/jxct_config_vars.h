@@ -122,7 +122,7 @@ struct __attribute__((packed)) Config
         uint8_t calibrationEnabled : 1; // Включена ли компенсация
         uint8_t isGreenhouse : 1;       // 1 = теплица, 0 = открытый грунт (устарело)
         uint8_t seasonalAdjustEnabled : 1; // Учитывать сезонные коэффициенты
-        uint8_t reserved : 1;           // оставшийся свободный бит
+        uint8_t autoOtaEnabled : 1;     // автоматическое OTA разрешено
     } flags;
 };
 

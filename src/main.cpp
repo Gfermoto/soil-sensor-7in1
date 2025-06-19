@@ -18,6 +18,8 @@
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "logger.h"
 #include "sensor_factory.h"
+#include "ota_manager.h"
+#include <esp_ota_ops.h>
 
 // Переменные для отслеживания времени
 unsigned long lastDataPublishTime = 0;
@@ -131,6 +133,11 @@ void setup()
         logSuccess("MQTT инициализирован");
     }
 
+    // Инициализация OTA 2.0 (проверка манифеста раз в час)
+    static WiFiClient otaClient;
+    if (config.flags.autoOtaEnabled)
+        setupOTA("https://updates.jxct.io/esp32/manifest.json", otaClient);
+
     // Создаём экземпляр абстрактного сенсора
     static std::unique_ptr<ISensor> gSensor = createSensorInstance();
     gSensor->begin();
@@ -143,6 +150,18 @@ void setup()
 
     // Запуск задачи мониторинга кнопки сброса
     xTaskCreate(resetButtonTask, "ResetButton", 2048, NULL, 1, NULL);
+
+    // Если мы загружаемся после OTA и система ждёт подтверждения, отменяем откат после успешного старта
+    const esp_partition_t* running = esp_ota_get_running_partition();
+    esp_ota_img_states_t ota_state;
+    if (esp_ota_get_state_partition(running, &ota_state) == ESP_OK && ota_state == ESP_OTA_IMG_PENDING_VERIFY)
+    {
+        logSystem("OTA image pending verify → помечаем как valid");
+        if (esp_ota_mark_app_valid_cancel_rollback() == ESP_OK)
+            logSuccess("OTA image подтверждена, откат отменён");
+        else
+            logError("Не удалось подтвердить OTA image!");
+    }
 
     logSuccess("Инициализация завершена успешно!");
     logPrintSeparator("─", 60);
@@ -253,6 +272,10 @@ void loop()
         handleWiFi();
         lastWiFiCheck = currentTime;
     }
+
+    // Проверяем OTA (внутри функция сама ограничит частоту)
+    if (config.flags.autoOtaEnabled)
+        handleOTA();
 
     // ✅ Минимальная задержка для стабильности (10мс вместо 100мс)
     vTaskDelay(10 / portTICK_PERIOD_MS);

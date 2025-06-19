@@ -35,21 +35,11 @@ void setupConfigRoutes()
 
             if (currentWiFiMode == WiFiMode::AP)
             {
-                String html =
-                    "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>" UI_ICON_INTERVALS " Интервалы</title>";
-                html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
-                html += "<h1>" UI_ICON_INTERVALS " Интервалы</h1>";
-                html += "<div class='msg msg-error'>" UI_ICON_ERROR
-                        " Недоступно в режиме точки доступа</div></div></body></html>";
-                webServer.send(200, "text/html; charset=utf-8", html);
+                webServer.send(200, "text/html; charset=utf-8", generateApModeUnavailablePage("Интервалы", UI_ICON_INTERVALS));
                 return;
             }
 
-            String html =
-                "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' content='width=device-width, "
-                "initial-scale=1.0'>";
-            html += "<title>" UI_ICON_INTERVALS " Интервалы и фильтры JXCT</title>";
-            html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+            String html = generatePageHeader("Интервалы и фильтры", UI_ICON_INTERVALS);
             html += navHtml();
             html += "<h1>" UI_ICON_INTERVALS " Настройка интервалов и фильтров</h1>";
             html += "<form action='/save_intervals' method='post'>";
@@ -143,7 +133,8 @@ void setupConfigRoutes()
             html +=
                 generateButton(ButtonType::SECONDARY, UI_ICON_RESET, "Сбросить к умолчанию (1 сек + мин. фильтрация)",
                                "location.href='/reset_intervals'");
-            html += "</form></div>" + String(getToastHTML()) + "</body></html>";
+            html += "</form>";
+            html += generatePageFooter();
 
             webServer.send(200, "text/html; charset=utf-8", html);
         });

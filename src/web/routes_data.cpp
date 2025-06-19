@@ -287,21 +287,11 @@ void setupDataRoutes()
 
                      if (currentWiFiMode == WiFiMode::AP)
                      {
-                         String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'>";
-                         html += "<title>" UI_ICON_DATA " Показания</title>";
-                         html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
-                         html += "<h1>" UI_ICON_DATA " Показания</h1>";
-                         html += "<div class='msg msg-error'>" UI_ICON_ERROR
-                                 " Недоступно в режиме точки доступа</div></div></body></html>";
-                         webServer.send(200, "text/html; charset=utf-8", html);
+                         webServer.send(200, "text/html; charset=utf-8", generateApModeUnavailablePage("Показания", UI_ICON_DATA));
                          return;
                      }
 
-                     String html =
-                         "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta name='viewport' "
-                         "content='width=device-width, initial-scale=1.0'>";
-                     html += "<title>" UI_ICON_DATA " Показания датчика JXCT</title>";
-                     html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+                     String html = generatePageHeader("Показания датчика", UI_ICON_DATA);
                      html += navHtml();
                      html += "<h1>" UI_ICON_DATA " Показания датчика</h1>";
                      // Информационная строка состояния
@@ -453,7 +443,7 @@ void setupDataRoutes()
 
                      // API-ссылка внизу страницы
                      html += "<div style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='" + String(API_SENSOR) + "' target='_blank'>" + String(API_SENSOR) + "</a> (JSON, +timestamp)</div>";
-                     html += "</div>" + String(getToastHTML()) + "</body></html>";
+                     html += generatePageFooter();
                      webServer.send(200, "text/html; charset=utf-8", html);
                  });
 
