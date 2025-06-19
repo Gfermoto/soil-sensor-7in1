@@ -185,5 +185,7 @@ void handleOTA()
 
 void triggerOtaCheck()
 {
-    lastCheckTs = 0; // сброс, чтобы handleOTA выполнилась сразу
+    // Смещаем таймер так, будто последний чек был час назад
+    // (handleOTA запускается, если прошло >=1 часа).
+    lastCheckTs = (millis() > 3600000UL) ? millis() - 3600000UL : 0;
 } 
