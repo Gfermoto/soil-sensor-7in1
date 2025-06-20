@@ -168,8 +168,10 @@ void setupOtaRoutes()
                      html += "    // Определяем цвет статуса\n";
                      html += "    if (status.includes('Ошибка') || status.includes('Таймаут')) {\n";
                      html += "      statusEl.style.color = '#dc3545';\n";
-                     html += "    } else if (status.includes('Успешно') || status === 'Готов') {\n";
+                     html += "    } else if (status.includes('Успешно') || status.includes('завершено') || status.includes('✅') || status === 'Готов') {\n";
                      html += "      statusEl.style.color = '#28a745';\n";
+                     html += "    } else if (status.includes('Перезагрузка') || status.includes('🔄')) {\n";
+                     html += "      statusEl.style.color = '#007bff';\n";
                      html += "    } else if (status.includes('Доступно обновление')) {\n";
                      html += "      statusEl.style.color = '#007bff';\n";
                      html += "    } else {\n";
@@ -195,9 +197,9 @@ void setupOtaRoutes()
                      html += "      // Удаленная загрузка без размера\n";
                      html += "      showProgress('Загрузка обновления: ' + status, 50);\n";
                      html += "      isOtaActive = true;\n";
-                     html += "    } else if (['Подключение', 'Загрузка', 'Проверка', 'Завершение', 'Проверка обновлений'].includes(status)) {\n";
+                     html += "    } else if (['Подключение', 'Загрузка', 'Проверка', 'Завершение', 'Завершение установки', 'Проверка обновлений'].includes(status)) {\n";
                      html += "      // Этапы OTA\n";
-                     html += "      const stages = {'Подключение': 25, 'Загрузка': 50, 'Проверка': 75, 'Завершение': 90, 'Проверка обновлений': 30};\n";
+                     html += "      const stages = {'Подключение': 25, 'Загрузка': 50, 'Проверка': 75, 'Завершение': 90, 'Завершение установки': 95, 'Проверка обновлений': 30};\n";
                      html += "      showProgress(status + '...', stages[status] || 25);\n";
                      html += "      isOtaActive = true;\n";
                      html += "    } else {\n";
@@ -207,8 +209,10 @@ void setupOtaRoutes()
                      html += "      if (isOtaActive) {\n";
                      html += "        if (status.includes('Ошибка') || status.includes('Таймаут')) {\n";
                      html += "          showToast('❌ ' + status, 'error');\n";
-                     html += "        } else if (status.includes('Успешно')) {\n";
-                     html += "          showToast('✅ Обновление успешно! Перезагрузка...', 'success');\n";
+                     html += "        } else if (status.includes('Успешно') || status.includes('завершено') || status.includes('✅')) {\n";
+                     html += "          showToast('✅ Обновление успешно завершено!', 'success');\n";
+                     html += "        } else if (status.includes('Перезагрузка') || status.includes('🔄')) {\n";
+                     html += "          showToast('🔄 Система перезагружается...', 'info');\n";
                      html += "        }\n";
                      html += "        isOtaActive = false;\n";
                      html += "      }\n";
