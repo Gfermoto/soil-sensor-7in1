@@ -18,8 +18,8 @@ def run_command(cmd, check=True):
     """Выполняет команду и возвращает результат"""
     print(f"🔧 Выполняю: {cmd}")
     try:
-        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, check=check)
-        if result.stdout.strip():
+        result = subprocess.run(cmd, shell=True, capture_output=True, text=True, check=check, encoding='utf-8', errors='ignore')
+        if result and result.stdout and result.stdout.strip():
             print(f"✅ {result.stdout.strip()}")
         return result
     except subprocess.CalledProcessError as e:
@@ -106,15 +106,15 @@ def create_git_release(version):
         return False
     
     # Создаем коммит
-    commit_msg = f"""🚀 РЕЛИЗ v{version}: Автоматическое повышение версии
+    commit_msg = f"""RELEASE v{version}: Automatic version bump
 
-- ✅ ВЕРСИЯ: Повышена до {version}
-- ✅ СБОРКА: Проект собран успешно
-- ✅ ФАЙЛЫ: VERSION и manifest.json обновлены
-- 🤖 АВТОМАТИЧЕСКИ: Создано скриптом release_cycle.py
+- VERSION: Updated to {version}
+- BUILD: Project built successfully  
+- FILES: VERSION and manifest.json updated
+- AUTO: Created by release_cycle.py script
 
-Дата: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-Версия: {version}"""
+Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+Version: {version}"""
     
     result = run_command(f'git commit -m "{commit_msg}"')
     if not result:
