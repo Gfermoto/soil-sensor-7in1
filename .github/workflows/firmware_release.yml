@@ -33,7 +33,7 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           if ! git diff --quiet VERSION; then
             git add VERSION
-            git commit -m "chore: bump VERSION to $TAG_VERSION"
+            git commit -m "chore: bump VERSION to $TAG_VERSION [skip ci]"
             git fetch origin main
             git rebase origin/main
             git push origin HEAD:main
