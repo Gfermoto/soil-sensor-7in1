@@ -291,7 +291,7 @@ void handleOTA()
 
     HTTPClient http;
     http.begin(*clientPtr, manifestUrlGlobal);
-    http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS); // Автоматически следуем редиректам
+    http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
     int code = http.GET();
     esp_task_wdt_reset();
     
@@ -310,7 +310,7 @@ void handleOTA()
     
     logSystem("[OTA] Манифест получен: %d символов", manifestContent.length());
 
-    const size_t capacity = JSON_OBJECT_SIZE(3) + 200;
+    const size_t capacity = JSON_OBJECT_SIZE(3) + 150;
     StaticJsonDocument<capacity> doc;
     DeserializationError err = deserializeJson(doc, manifestContent);
     if (err)
@@ -331,8 +331,7 @@ void handleOTA()
     if (strlen(newVersion) == 0 || strlen(binUrl) == 0 || strlen(sha256) != 64)
     {
         strcpy(statusBuf, "Неверный манифест");
-        logError("[OTA] Некорректный манифест: version=%d, url=%d, sha256=%d", 
-                 strlen(newVersion), strlen(binUrl), strlen(sha256));
+        logError("[OTA] Некорректный манифест");
         return;
     }
 
@@ -347,7 +346,7 @@ void handleOTA()
         return;
     }
 
-    // Сохраняем информацию об обновлении для двухэтапного процесса
+    // Сохраняем информацию об обновлении
     updateAvailable = true;
     pendingUpdateUrl = String(binUrl);
     pendingUpdateSha256 = String(sha256);
@@ -355,8 +354,4 @@ void handleOTA()
     
     snprintf(statusBuf, sizeof(statusBuf), "Доступно обновление: %s", newVersion);
     logSystem("[OTA] Найдено обновление %s -> %s, ожидаем подтверждения установки", JXCT_VERSION_STRING, newVersion);
-    
-    // ИЗМЕНЕНО: убрана автоматическая установка
-    // Чекбокс "Автообновление" теперь управляет только периодической ПРОВЕРКОЙ,
-    // а не автоматической УСТАНОВКОЙ. Установка происходит только по кнопке "Установить"
 } 
