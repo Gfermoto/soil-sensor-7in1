@@ -3,19 +3,19 @@
 #   .\scripts\release.ps1           - patch версия (3.2.7 -> 3.2.8)
 #   .\scripts\release.ps1 minor     - minor версия (3.2.7 -> 3.3.0)  
 #   .\scripts\release.ps1 major     - major версия (3.2.7 -> 4.0.0)
-#   .\scripts\release.ps1 patch --auto  - без подтверждения
+#   .\scripts\release.ps1 patch -Auto  - без подтверждения
 
 param(
     [string]$IncrementType = "patch",
     [switch]$Auto
 )
 
-Write-Host "🚀 АВТОМАТИЧЕСКИЙ ЦИКЛ РЕЛИЗА JXCT" -ForegroundColor Green
+Write-Host "RELEASE CYCLE JXCT" -ForegroundColor Green
 Write-Host "=" * 50
 
 # Проверяем, что мы в корневой директории проекта
 if (-not (Test-Path "VERSION")) {
-    Write-Host "❌ Запустите скрипт из корневой директории проекта!" -ForegroundColor Red
+    Write-Host "ERROR: Run script from project root directory!" -ForegroundColor Red
     exit 1
 }
 
@@ -30,13 +30,13 @@ try {
     python scripts/release_cycle.py @args
     if ($LASTEXITCODE -eq 0) {
         Write-Host ""
-        Write-Host "🎉 РЕЛИЗ СОЗДАН УСПЕШНО!" -ForegroundColor Green
-        Write-Host "💡 Теперь можете прошить устройство командой: pio run --target upload" -ForegroundColor Yellow
+        Write-Host "RELEASE CREATED SUCCESSFULLY!" -ForegroundColor Green
+        Write-Host "TIP: You can now flash device with: pio run --target upload" -ForegroundColor Yellow
     } else {
-        Write-Host "❌ Ошибка создания релиза" -ForegroundColor Red
+        Write-Host "ERROR: Release creation failed" -ForegroundColor Red
         exit 1
     }
 } catch {
-    Write-Host "❌ Ошибка запуска скрипта: $_" -ForegroundColor Red
+    Write-Host "ERROR: Script execution failed: $_" -ForegroundColor Red
     exit 1
 } 
