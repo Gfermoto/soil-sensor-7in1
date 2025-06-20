@@ -12,7 +12,7 @@
 #include <esp_task_wdt.h>
 
 // Глобальные переменные для OTA 2.0
-static const char* manifestUrlGlobal = nullptr;
+static char manifestUrlGlobal[256] = "";  // ИСПРАВЛЕНО: статический буфер вместо указателя
 static WiFiClient* clientPtr = nullptr;
 static char statusBuf[64] = "Ожидание";
 
@@ -32,16 +32,35 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
     logSystem("[OTA] [SETUP DEBUG]   manifestUrl: %s", manifestUrl ? manifestUrl : "NULL");
     logSystem("[OTA] [SETUP DEBUG]   client: %s", &client ? "OK" : "NULL");
     
-    manifestUrlGlobal = manifestUrl;
+    // КРИТИЧЕСКАЯ ДИАГНОСТИКА: HEX-дамп входной строки
+    if (manifestUrl) {
+        logSystem("[OTA] [HEX DEBUG] Длина строки: %d", strlen(manifestUrl));
+        logSystem("[OTA] [HEX DEBUG] Первые 20 символов в HEX:");
+        for (int i = 0; i < 20 && manifestUrl[i]; i++) {
+            logSystem("[OTA] [HEX DEBUG]   [%d] = 0x%02X ('%c')", i, (unsigned char)manifestUrl[i], 
+                     isprint(manifestUrl[i]) ? manifestUrl[i] : '?');
+        }
+    }
+    
+    // ИСПРАВЛЕНО: Копируем URL в статический буфер вместо указателя
+    strlcpy(manifestUrlGlobal, manifestUrl, sizeof(manifestUrlGlobal));
     clientPtr = &client;
     strlcpy(statusBuf, "Готов", sizeof(statusBuf));
     
-    // ИСПРАВЛЕНО: Защита от повреждения памяти - копируем URL в локальный буфер
+    // КРИТИЧЕСКАЯ ДИАГНОСТИКА: HEX-дамп ПОСЛЕ копирования
+    logSystem("[OTA] [HEX DEBUG] ПОСЛЕ strlcpy - длина: %d", strlen(manifestUrlGlobal));
+    logSystem("[OTA] [HEX DEBUG] Первые 20 символов manifestUrlGlobal в HEX:");
+    for (int i = 0; i < 20 && manifestUrlGlobal[i]; i++) {
+        logSystem("[OTA] [HEX DEBUG]   [%d] = 0x%02X ('%c')", i, (unsigned char)manifestUrlGlobal[i], 
+                 isprint(manifestUrlGlobal[i]) ? manifestUrlGlobal[i] : '?');
+    }
+    
+    // Локальный буфер для безопасного логирования
     char urlBuffer[256];
     strlcpy(urlBuffer, manifestUrl, sizeof(urlBuffer));
     
     logSystem("[OTA] [SETUP DEBUG] Глобальные переменные установлены:");
-    logSystem("[OTA] [SETUP DEBUG]   manifestUrlGlobal: %s", manifestUrlGlobal ? manifestUrlGlobal : "NULL");
+    logSystem("[OTA] [SETUP DEBUG]   manifestUrlGlobal: %s", manifestUrlGlobal);
     logSystem("[OTA] [SETUP DEBUG]   clientPtr: %p", clientPtr);
     logSystem("[OTA] [SETUP DEBUG]   statusBuf: '%s'", statusBuf);
     

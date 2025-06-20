@@ -38,7 +38,8 @@ static char otaStatusTopicBuffer[128] = "";
 static char otaCommandTopicBuffer[128] = "";
 
 // ✅ НОВОЕ: Кэш Home Assistant конфигураций
-struct HomeAssistantConfigCache
+// ИСПРАВЛЕНО: Перенос больших структур в статическую память для предотвращения переполнения стека
+static struct HomeAssistantConfigCache
 {
     char tempConfig[512];
     char humConfig[512];
@@ -52,11 +53,11 @@ struct HomeAssistantConfigCache
     char cachedTopicPrefix[64];
 } haConfigCache = {"", "", "", "", "", "", "", false, "", ""};
 
-// ✅ НОВОЕ: Кэш топиков публикации
+// ✅ НОВОЕ: Кэш топиков публикации (перенесен в статическую память)
 static char pubTopicCache[7][128] = {"", "", "", "", "", "", ""};
 static bool pubTopicCacheValid = false;
 
-// ✅ НОВОЕ: Кэш данных датчика JSON
+// ✅ НОВОЕ: Кэш данных датчика JSON (перенесен в статическую память)
 static char cachedSensorJson[256] = "";
 static unsigned long lastCachedSensorTime = 0;
 static bool sensorJsonCacheValid = false;
