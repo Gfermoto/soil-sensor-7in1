@@ -88,17 +88,39 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
     esp_task_wdt_reset();
     strcpy(statusBuf, "Подключение");
     
+    // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем память перед началом
+    size_t freeHeap = ESP.getFreeHeap();
+    logSystem("[OTA] Свободная память перед HTTP: %d байт", freeHeap);
+    
+    if (freeHeap < 50000) {
+        strcpy(statusBuf, "Мало памяти");
+        logError("[OTA] Недостаточно памяти для HTTP: %d байт", freeHeap);
+        return false;
+    }
+    
     // ИСПРАВЛЕНО: Защита от повреждения памяти - копируем URL в локальный буфер
     char urlBuffer[256];
     strlcpy(urlBuffer, binUrl.c_str(), sizeof(urlBuffer));
     logSystem("[OTA] Загрузка: %s", urlBuffer);
 
-    http.begin(*clientPtr, binUrl);
-    http.setTimeout(30000);
+    // ИСПРАВЛЕНО: Добавляем проверку инициализации HTTP
+    logSystem("[OTA] Инициализация HTTP клиента...");
+    if (!http.begin(*clientPtr, binUrl)) {
+        strcpy(statusBuf, "Ошибка HTTP init");
+        logError("[OTA] Не удалось инициализировать HTTP клиент");
+        return false;
+    }
+    
+    http.setTimeout(45000);  // Увеличиваем таймаут
     http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
+    
+    logSystem("[OTA] Выполняем HTTP GET запрос...");
+    esp_task_wdt_reset();
     
     int code = http.GET();
     esp_task_wdt_reset();
+    
+    logSystem("[OTA] HTTP ответ: %d", code);
     
     if (code != HTTP_CODE_OK)
     {
@@ -134,8 +156,25 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
 {
     strcpy(statusBuf, "Загрузка");
     
+    // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем память перед загрузкой
+    size_t heapBeforeDownload = ESP.getFreeHeap();
+    logSystem("[OTA] Память перед загрузкой: %d байт", heapBeforeDownload);
+    
+    if (heapBeforeDownload < 40000) {
+        strcpy(statusBuf, "Мало памяти для загрузки");
+        logError("[OTA] Недостаточно памяти для загрузки: %d байт", heapBeforeDownload);
+        return false;
+    }
+    
     WiFiClient* stream = http.getStreamPtr();
-    uint8_t buf[512];
+    if (!stream) {
+        strcpy(statusBuf, "Ошибка потока");
+        logError("[OTA] Не удалось получить поток данных");
+        return false;
+    }
+    
+    // ИСПРАВЛЕНО: Уменьшаем размер буфера для экономии стека
+    uint8_t buf[256];  // Было 512, стало 256
     size_t totalDownloaded = 0;
     unsigned long lastProgress = millis();
     unsigned long lastActivity = millis();
@@ -224,15 +263,31 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
 // Основная функция загрузки и обновления (упрощенная)
 static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
 {
+    logSystem("[OTA] Начинаем загрузку и обновление");
+    
+    // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем общее состояние системы
+    size_t initialHeap = ESP.getFreeHeap();
+    logSystem("[OTA] Начальная память: %d байт", initialHeap);
+    
+    if (initialHeap < 60000) {
+        strcpy(statusBuf, "Критически мало памяти");
+        logError("[OTA] Критически мало памяти: %d байт", initialHeap);
+        return false;
+    }
+    
     HTTPClient http;
     int contentLen;
     
-    // Инициализация загрузки
+    // Инициализация загрузки с дополнительными проверками
+    logSystem("[OTA] Инициализация загрузки...");
     if (!initializeDownload(http, binUrl, contentLen))
     {
+        logError("[OTA] Ошибка инициализации загрузки");
         http.end();
         return false;
     }
+    
+    logSystem("[OTA] Инициализация успешна, размер контента: %d", contentLen);
     
     // Инициализация SHA256
     mbedtls_sha256_context shaCtx;
