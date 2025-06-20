@@ -262,6 +262,13 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
         }
         else
         {
+            // Если весь файл уже получен, прекращаем ожидание доп.данных
+            if (!isChunked && totalDownloaded == (size_t)contentLen)
+            {
+                logSystem("[OTA] Загрузка завершена, получено %d байт", totalDownloaded);
+                break;
+            }
+
             if (millis() - lastActivity > TIMEOUT_MS)
             {
                 strcpy(statusBuf, "Таймаут");
