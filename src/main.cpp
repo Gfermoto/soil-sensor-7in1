@@ -139,7 +139,8 @@ void setup()
     otaClient.setInsecure(); // временно отключаем проверку сертификата
     // Всегда устанавливаем URL манифеста для ручной и автоматической проверки
     // ИСПРАВЛЕНО - используем правильный URL манифеста
-    setupOTA("https://github.com/Gfermoto/soil-sensor-7in1/releases/download/v3.1.5/manifest.json", otaClient);
+    // ВОЗВРАЩАЮ КАК РАБОТАЛО - /latest/download/
+    setupOTA("https://github.com/Gfermoto/soil-sensor-7in1/releases/latest/download/manifest.json", otaClient);
 
     // Создаём экземпляр абстрактного сенсора
     static std::unique_ptr<ISensor> gSensor = createSensorInstance();
@@ -278,10 +279,45 @@ void loop()
 
     // ✅ Проверяем OTA только раз в час (или при принудительной проверке)
     static unsigned long lastOtaCheck = 0;
-    if (config.flags.autoOtaEnabled && (currentTime - lastOtaCheck >= 3600000UL)) // 1 час
-    {
-        handleOTA();
-        lastOtaCheck = currentTime;
+    static bool otaDebugLogged = false; // Для однократного вывода отладочной информации
+    
+    // ДОБАВЛЕНО: Отладочная информация один раз при старте
+    if (!otaDebugLogged) {
+        logSystem("[OTA] [MAIN DEBUG] Конфигурация автообновления:");
+        logSystem("[OTA] [MAIN DEBUG]   autoOtaEnabled: %s", config.flags.autoOtaEnabled ? "ДА" : "НЕТ");
+        logSystem("[OTA] [MAIN DEBUG]   интервал проверки: 1 час (3600000 мс)");
+        logSystem("[OTA] [MAIN DEBUG]   lastOtaCheck: %lu", lastOtaCheck);
+        logSystem("[OTA] [MAIN DEBUG]   currentTime: %lu", currentTime);
+        otaDebugLogged = true;
+    }
+    
+    if (config.flags.autoOtaEnabled) {
+        unsigned long timeSinceLastCheck = currentTime - lastOtaCheck;
+        
+        // Выводим статус каждые 10 минут для диагностики
+        static unsigned long lastOtaStatusLog = 0;
+        if (currentTime - lastOtaStatusLog >= 600000UL) { // 10 минут
+            logSystem("[OTA] [MAIN DEBUG] Статус автопроверки:");
+            logSystem("[OTA] [MAIN DEBUG]   время с последней проверки: %lu мс (%.1f мин)", 
+                      timeSinceLastCheck, timeSinceLastCheck / 60000.0);
+            logSystem("[OTA] [MAIN DEBUG]   до следующей проверки: %lu мс (%.1f мин)", 
+                      3600000UL - timeSinceLastCheck, (3600000UL - timeSinceLastCheck) / 60000.0);
+            lastOtaStatusLog = currentTime;
+        }
+        
+        if (timeSinceLastCheck >= 3600000UL) { // 1 час
+            logSystem("[OTA] [MAIN DEBUG] ⏰ Время автопроверки! Запускаем handleOTA()...");
+            handleOTA();
+            lastOtaCheck = currentTime;
+            logSystem("[OTA] [MAIN DEBUG] ✅ handleOTA() завершен, следующая проверка через 1 час");
+        }
+    } else {
+        // Выводим предупреждение каждые 30 минут если автообновление выключено
+        static unsigned long lastDisabledWarning = 0;
+        if (currentTime - lastDisabledWarning >= 1800000UL) { // 30 минут
+            logWarn("[OTA] [MAIN DEBUG] ⚠️ Автообновление ОТКЛЮЧЕНО в настройках");
+            lastDisabledWarning = currentTime;
+        }
     }
 
     // ✅ Минимальная задержка для стабильности (10мс вместо 100мс)

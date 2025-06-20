@@ -26,6 +26,12 @@ const char* getOtaStatus() { return statusBuf; }
 
 void setupOTA(const char* manifestUrl, WiFiClient& client)
 {
+    // ДОБАВЛЕНО: Детальная диагностика инициализации
+    logSystem("[OTA] [SETUP DEBUG] Инициализация OTA 2.0...");
+    logSystem("[OTA] [SETUP DEBUG] Входные параметры:");
+    logSystem("[OTA] [SETUP DEBUG]   manifestUrl: %s", manifestUrl ? manifestUrl : "NULL");
+    logSystem("[OTA] [SETUP DEBUG]   client: %s", &client ? "OK" : "NULL");
+    
     manifestUrlGlobal = manifestUrl;
     clientPtr = &client;
     strlcpy(statusBuf, "Готов", sizeof(statusBuf));
@@ -33,7 +39,20 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
     // ИСПРАВЛЕНО: Защита от повреждения памяти - копируем URL в локальный буфер
     char urlBuffer[256];
     strlcpy(urlBuffer, manifestUrl, sizeof(urlBuffer));
-    logSystem("[OTA] Initialized, manifest: %s", urlBuffer);
+    
+    logSystem("[OTA] [SETUP DEBUG] Глобальные переменные установлены:");
+    logSystem("[OTA] [SETUP DEBUG]   manifestUrlGlobal: %s", manifestUrlGlobal ? manifestUrlGlobal : "NULL");
+    logSystem("[OTA] [SETUP DEBUG]   clientPtr: %p", clientPtr);
+    logSystem("[OTA] [SETUP DEBUG]   statusBuf: '%s'", statusBuf);
+    
+    // Сброс состояния обновлений
+    updateAvailable = false;
+    pendingUpdateUrl = "";
+    pendingUpdateSha256 = "";
+    pendingUpdateVersion = "";
+    
+    logSystem("[OTA] [SETUP DEBUG] Состояние обновлений сброшено");
+    logSuccess("[OTA] [SETUP DEBUG] ✅ OTA инициализирован успешно: %s", urlBuffer);
 }
 
 static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)
@@ -294,46 +313,90 @@ void triggerOtaInstall()
 
 void handleOTA()
 {
+    // ДОБАВЛЕНО: Детальная диагностика для отладки
+    static unsigned long debugCallCount = 0;
+    debugCallCount++;
+    
     // Сброс watchdog перед началом проверки
     esp_task_wdt_reset();
     
+    logSystem("[OTA] [DEBUG] handleOTA() вызов #%lu, manifestUrlGlobal=%s", 
+              debugCallCount, manifestUrlGlobal ? manifestUrlGlobal : "NULL");
+    
     if (!manifestUrlGlobal) 
     {
-        logError("[OTA] manifestUrlGlobal не задан");
+        logError("[OTA] [DEBUG] manifestUrlGlobal не задан - выходим");
         return;
     }
 
-    logSystem("[OTA] Начинаем проверку обновлений: %s", manifestUrlGlobal);
+    if (!clientPtr)
+    {
+        logError("[OTA] [DEBUG] clientPtr не задан - выходим");
+        return;
+    }
+
+    logSystem("[OTA] [DEBUG] Начинаем проверку обновлений...");
+    logSystem("[OTA] [DEBUG] URL манифеста: %s", manifestUrlGlobal);
     strcpy(statusBuf, "Проверка обновлений");
 
     HTTPClient http;
+    logSystem("[OTA] [DEBUG] Инициализируем HTTP клиент...");
     http.begin(*clientPtr, manifestUrlGlobal);
     http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
+    http.setTimeout(15000); // 15 секунд таймаут
+    
+    logSystem("[OTA] [DEBUG] Отправляем GET запрос...");
     int code = http.GET();
     esp_task_wdt_reset();
     
-    logSystem("[OTA] Ответ манифеста: HTTP %d", code);
+    logSystem("[OTA] [DEBUG] HTTP ответ: %d", code);
     
     if (code != HTTP_CODE_OK)
     {
         snprintf(statusBuf, sizeof(statusBuf), "Ошибка манифеста %d", code);
-        logError("[OTA] Ошибка загрузки манифеста: HTTP %d", code);
+        logError("[OTA] [DEBUG] Ошибка загрузки манифеста: HTTP %d", code);
+        
+        // Дополнительная диагностика для популярных ошибок
+        if (code == HTTP_CODE_NOT_FOUND) {
+            logError("[OTA] [DEBUG] 404 - файл манифеста не найден на сервере");
+        } else if (code == HTTP_CODE_MOVED_PERMANENTLY || code == HTTP_CODE_FOUND) {
+            logError("[OTA] [DEBUG] %d - редирект, но followRedirects включен", code);
+        } else if (code == -1) {
+            logError("[OTA] [DEBUG] -1 - ошибка подключения/DNS");
+        } else if (code == -11) {
+            logError("[OTA] [DEBUG] -11 - таймаут подключения");
+        }
+        
         http.end();
         return;
     }
 
     String manifestContent = http.getString();
+    int contentLength = manifestContent.length();
     http.end();
     
-    logSystem("[OTA] Манифест получен: %d символов", manifestContent.length());
+    logSystem("[OTA] [DEBUG] Манифест получен: %d байт", contentLength);
+    
+    // Показываем первые 200 символов для диагностики
+    String preview = manifestContent.substring(0, min(200, contentLength));
+    logSystem("[OTA] [DEBUG] Начало манифеста: '%s'%s", 
+              preview.c_str(), contentLength > 200 ? "..." : "");
 
-    const size_t capacity = JSON_OBJECT_SIZE(3) + 150;
+    // Проверяем что это JSON
+    if (!manifestContent.startsWith("{")) {
+        logError("[OTA] [DEBUG] Манифест не начинается с '{' - возможно HTML ошибка");
+        strcpy(statusBuf, "Неверный формат");
+        return;
+    }
+
+    const size_t capacity = JSON_OBJECT_SIZE(3) + 300; // Увеличиваем буфер
     StaticJsonDocument<capacity> doc;
     DeserializationError err = deserializeJson(doc, manifestContent);
     if (err)
     {
         strcpy(statusBuf, "Ошибка JSON");
-        logError("[OTA] Ошибка парсинга JSON: %s", err.c_str());
+        logError("[OTA] [DEBUG] Ошибка парсинга JSON: %s", err.c_str());
+        logError("[OTA] [DEBUG] JSON содержимое: '%s'", manifestContent.c_str());
         return;
     }
 
@@ -341,17 +404,32 @@ void handleOTA()
     const char* binUrl = doc["url"] | "";
     const char* sha256 = doc["sha256"] | "";
 
-    logSystem("[OTA] Версия в манифесте: '%s', текущая: '%s'", newVersion, JXCT_VERSION_STRING);
-    logSystem("[OTA] URL: %s", binUrl);
-    logSystem("[OTA] SHA256: %.16s...", sha256);
+    logSystem("[OTA] [DEBUG] Парсинг JSON успешен:");
+    logSystem("[OTA] [DEBUG]   version: '%s'", newVersion);
+    logSystem("[OTA] [DEBUG]   url: '%s'", binUrl);
+    logSystem("[OTA] [DEBUG]   sha256: '%s'", sha256);
+    logSystem("[OTA] [DEBUG]   текущая версия: '%s'", JXCT_VERSION_STRING);
 
-    if (strlen(newVersion) == 0 || strlen(binUrl) == 0 || strlen(sha256) != 64)
-    {
-        strcpy(statusBuf, "Неверный манифест");
-        logError("[OTA] Некорректный манифест");
+    // Детальная валидация полей
+    if (strlen(newVersion) == 0) {
+        logError("[OTA] [DEBUG] Поле 'version' пустое или отсутствует");
+        strcpy(statusBuf, "Нет версии в манифесте");
+        return;
+    }
+    if (strlen(binUrl) == 0) {
+        logError("[OTA] [DEBUG] Поле 'url' пустое или отсутствует");
+        strcpy(statusBuf, "Нет URL в манифесте");
+        return;
+    }
+    if (strlen(sha256) != 64) {
+        logError("[OTA] [DEBUG] Поле 'sha256' неверной длины: %d (ожидается 64)", strlen(sha256));
+        strcpy(statusBuf, "Неверная подпись");
         return;
     }
 
+    // Проверка версий
+    logSystem("[OTA] [DEBUG] Сравниваем версии: '%s' vs '%s'", newVersion, JXCT_VERSION_STRING);
+    
     if (strcmp(newVersion, JXCT_VERSION_STRING) == 0)
     {
         strcpy(statusBuf, "Актуальная версия");
@@ -359,7 +437,7 @@ void handleOTA()
         pendingUpdateUrl = "";
         pendingUpdateSha256 = "";
         pendingUpdateVersion = "";
-        logSystem("[OTA] Версия актуальна, обновление не требуется");
+        logSystem("[OTA] [DEBUG] Версии совпадают - обновление не требуется");
         return;
     }
 
@@ -370,5 +448,10 @@ void handleOTA()
     pendingUpdateVersion = String(newVersion);
     
     snprintf(statusBuf, sizeof(statusBuf), "Доступно обновление: %s", newVersion);
-    logSystem("[OTA] Найдено обновление %s -> %s, ожидаем подтверждения установки", JXCT_VERSION_STRING, newVersion);
+    logSystem("[OTA] [DEBUG] ✅ ОБНОВЛЕНИЕ НАЙДЕНО!");
+    logSystem("[OTA] [DEBUG]   Текущая: %s", JXCT_VERSION_STRING);
+    logSystem("[OTA] [DEBUG]   Доступна: %s", newVersion);
+    logSystem("[OTA] [DEBUG]   URL: %s", binUrl);
+    logSystem("[OTA] [DEBUG]   SHA256: %.16s...", sha256);
+    logSystem("[OTA] [DEBUG] Ожидаем подтверждения установки через веб-интерфейс");
 } 
