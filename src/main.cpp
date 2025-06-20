@@ -3,6 +3,9 @@
  * @brief Главный файл проекта JXCT датчика
  */
 
+// *** УНИКАЛЬНЫЙ ИДЕНТИФИКАТОР СБОРКИ v3.1.7-DEBUG-20250620-1501 ***
+// *** ЕСЛИ ВЫ ВИДИТЕ ЭТО СООБЩЕНИЕ, ПРОШИВКА ОБНОВИЛАСЬ ***
+
 #include <WiFiClientSecure.h>
 #include <WiFiClient.h>
 #include <Arduino.h>
@@ -88,6 +91,10 @@ void resetButtonTask(void* parameter)
 void setup()
 {
     Serial.begin(115200);
+
+    // *** КРИТИЧЕСКОЕ ОТЛАДОЧНОЕ СООБЩЕНИЕ ***
+    Serial.println("*** УНИКАЛЬНЫЙ ИДЕНТИФИКАТОР СБОРКИ v3.1.7-DEBUG-20250620-1501 ***");
+    Serial.println("*** ЕСЛИ ВЫ ВИДИТЕ ЭТО СООБЩЕНИЕ, ПРОШИВКА ОБНОВИЛАСЬ УСПЕШНО ***");
 
     // Красивый баннер запуска
     logPrintBanner("JXCT 7-в-1 Датчик v" JXCT_VERSION_STRING " - Запуск системы");
