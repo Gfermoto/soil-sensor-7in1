@@ -44,21 +44,6 @@ void setupOtaRoutes()
                      webServer.send(200, "application/json", "{\"ok\":true}");
                  });
 
-    // API: включить/выключить авто
-    webServer.on("/api/ota/auto", HTTP_POST, []()
-                 {
-                     logWebRequest("POST", "/api/ota/auto", webServer.client().remoteIP().toString());
-                     if (currentWiFiMode != WiFiMode::STA)
-                     {
-                         webServer.send(403, "application/json", "{\"error\":\"unavailable\"}");
-                         return;
-                     }
-                     bool enable = webServer.arg("enable") == "1";
-                     config.flags.autoOtaEnabled = enable ? 1 : 0;
-                     saveConfig();
-                     webServer.send(200, "application/json", "{\"ok\":true}");
-                 });
-
     // API: установить найденное обновление
     webServer.on("/api/ota/install", HTTP_POST, []()
                  {
@@ -107,14 +92,6 @@ void setupOtaRoutes()
                      html += "<div class='section' style='background:white;padding:20px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1);margin-bottom:20px;'>";
                      html += "<h3 style='margin-top:0;color:#495057;'>🌐 Обновление с сервера</h3>";
                      
-                     // Авто-обновление
-                     String checked = config.flags.autoOtaEnabled ? " checked" : "";
-                     html += "<div style='margin-bottom:15px;'>";
-                     html += "<label style='display:flex;align-items:center;cursor:pointer;'>";
-                     html += "<input type='checkbox' id='auto_ota'" + checked + " style='margin-right:8px;'> ";
-                     html += "<span>Автоматическая проверка</span>";
-                     html += "</label></div>";
-
                      // Кнопки проверки и установки
                      html += "<div style='display:flex;gap:10px;flex-wrap:wrap;'>";
                      {
@@ -163,20 +140,6 @@ void setupOtaRoutes()
                      html += "    const status = j.status;\n";
                      html += "    const statusEl = document.getElementById('otaStatus');\n";
                      html += "    statusEl.textContent = status;\n";
-                     html += "    document.getElementById('auto_ota').checked = j.auto;\n";
-                     html += "    \n";
-                     html += "    // Определяем цвет статуса\n";
-                     html += "    if (status.includes('Ошибка') || status.includes('Таймаут')) {\n";
-                     html += "      statusEl.style.color = '#dc3545';\n";
-                     html += "    } else if (status.includes('Успешно') || status.includes('завершено') || status.includes('✅') || status === 'Готов') {\n";
-                     html += "      statusEl.style.color = '#28a745';\n";
-                     html += "    } else if (status.includes('Перезагрузка') || status.includes('🔄')) {\n";
-                     html += "      statusEl.style.color = '#007bff';\n";
-                     html += "    } else if (status.includes('Доступно обновление')) {\n";
-                     html += "      statusEl.style.color = '#007bff';\n";
-                     html += "    } else {\n";
-                     html += "      statusEl.style.color = '#6c757d';\n";
-                     html += "    }\n";
                      html += "    \n";
                      html += "    // Обработка прогресса\n";
                      html += "    if (j.localUpload) {\n";
@@ -280,12 +243,6 @@ void setupOtaRoutes()
                      html += "\n";
                      html += "document.getElementById('btnInstall').addEventListener('click', installUpdate);\n";
                      html += "\n";
-                     html += "document.getElementById('auto_ota').addEventListener('change', e => {\n";
-                     html += "  fetch('/api/ota/auto?enable=' + (e.target.checked ? 1 : 0), {method: 'POST'})\n";
-                     html += "    .then(() => showToast('⚙️ Настройка сохранена', 'success'))\n";
-                     html += "    .catch(e => showToast('❌ Ошибка сохранения', 'error'));\n";
-                     html += "});\n";
-                     html += "\n";
                      html += "document.getElementById('uploadForm').addEventListener('submit', e => {\n";
                      html += "  e.preventDefault();\n";
                      html += "  const fileInput = document.querySelector('input[name=\"firmware\"]');\n";
@@ -374,7 +331,6 @@ static void sendOtaStatusJson()
         doc["localUpload"] = false;
     }
     
-    doc["auto"] = (bool)config.flags.autoOtaEnabled;
     doc["version"] = JXCT_VERSION_STRING;
     String json;
     serializeJson(doc, json);

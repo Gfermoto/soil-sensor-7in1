@@ -67,4 +67,17 @@ void logUptime();
 void logMemoryUsage();
 void logWiFiStatus();
 
+#ifdef NO_EMOJI
+#undef LOG_SYMBOL_ERROR
+#undef LOG_SYMBOL_WARN
+#undef LOG_SYMBOL_INFO
+#undef LOG_SYMBOL_DEBUG
+#undef LOG_SYMBOL_SUCCESS
+#define LOG_SYMBOL_ERROR ""
+#define LOG_SYMBOL_WARN  ""
+#define LOG_SYMBOL_INFO  ""
+#define LOG_SYMBOL_DEBUG ""
+#define LOG_SYMBOL_SUCCESS ""
+#endif
+
 #endif  // LOGGER_H
