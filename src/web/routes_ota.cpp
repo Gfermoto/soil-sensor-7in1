@@ -135,7 +135,7 @@ void setupOtaRoutes()
                      html += "</div>";
                      html += "<form id='uploadForm' enctype='multipart/form-data'>";
                      {
-                         String uploadBtn = generateButton(ButtonType::PRIMARY, "⬆️", "Загрузить прошивку", "");
+                         String uploadBtn = generateButton(ButtonType::SECONDARY, "⬆️", "Загрузить прошивку", "");
                          html += uploadBtn;
                      }
                      html += "</form></div>";
