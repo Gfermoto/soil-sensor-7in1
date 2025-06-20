@@ -138,8 +138,8 @@ void setup()
     static WiFiClientSecure otaClient;
     otaClient.setInsecure(); // временно отключаем проверку сертификата
     // Всегда устанавливаем URL манифеста для ручной и автоматической проверки
-    // ВРЕМЕННО ОТКЛЮЧЕНО - GitHub Actions не работает
-    setupOTA("", otaClient);
+    // ИСПРАВЛЕНО - используем правильный URL манифеста
+    setupOTA("https://github.com/Gfermoto/soil-sensor-7in1/releases/download/v3.1.4/manifest.json", otaClient);
 
     // Создаём экземпляр абстрактного сенсора
     static std::unique_ptr<ISensor> gSensor = createSensorInstance();
