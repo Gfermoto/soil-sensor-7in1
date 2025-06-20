@@ -29,7 +29,11 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
     manifestUrlGlobal = manifestUrl;
     clientPtr = &client;
     strlcpy(statusBuf, "Готов", sizeof(statusBuf));
-    logSystem("[OTA] Initialized, manifest: %s", manifestUrl);
+    
+    // ИСПРАВЛЕНО: Защита от повреждения памяти - копируем URL в локальный буфер
+    char urlBuffer[256];
+    strlcpy(urlBuffer, manifestUrl, sizeof(urlBuffer));
+    logSystem("[OTA] Initialized, manifest: %s", urlBuffer);
 }
 
 static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)
@@ -45,7 +49,11 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
 {
     esp_task_wdt_reset();
     strcpy(statusBuf, "Подключение");
-    logSystem("[OTA] Загрузка: %s", binUrl.c_str());
+    
+    // ИСПРАВЛЕНО: Защита от повреждения памяти - копируем URL в локальный буфер
+    char urlBuffer[256];
+    strlcpy(urlBuffer, binUrl.c_str(), sizeof(urlBuffer));
+    logSystem("[OTA] Загрузка: %s", urlBuffer);
 
     http.begin(*clientPtr, binUrl);
     http.setTimeout(30000);
@@ -258,9 +266,18 @@ void triggerOtaInstall()
         return;
     }
     
-    logSystem("[OTA] Принудительная установка обновления %s", pendingUpdateVersion.c_str());
-    logSystem("[OTA] URL: %s", pendingUpdateUrl.c_str());
-    logSystem("[OTA] SHA256: %.16s...", pendingUpdateSha256.c_str());
+    // ИСПРАВЛЕНО: Защита от повреждения памяти - копируем данные в локальные буферы
+    char versionBuffer[32];
+    char urlBuffer[256];
+    char sha256Buffer[80];
+    
+    strlcpy(versionBuffer, pendingUpdateVersion.c_str(), sizeof(versionBuffer));
+    strlcpy(urlBuffer, pendingUpdateUrl.c_str(), sizeof(urlBuffer));
+    strlcpy(sha256Buffer, pendingUpdateSha256.c_str(), sizeof(sha256Buffer));
+    
+    logSystem("[OTA] Принудительная установка обновления %s", versionBuffer);
+    logSystem("[OTA] URL: %s", urlBuffer);
+    logSystem("[OTA] SHA256: %.16s...", sha256Buffer);
     
     bool result = downloadAndUpdate(pendingUpdateUrl, pendingUpdateSha256.c_str());
     if (!result)
@@ -286,7 +303,10 @@ void handleOTA()
         return;
     }
 
-    logSystem("[OTA] Начинаем проверку обновлений: %s", manifestUrlGlobal);
+    // ИСПРАВЛЕНО: Защита от повреждения памяти - копируем URL в локальный буфер
+    char manifestBuffer[256];
+    strlcpy(manifestBuffer, manifestUrlGlobal, sizeof(manifestBuffer));
+    logSystem("[OTA] Начинаем проверку обновлений: %s", manifestBuffer);
     strcpy(statusBuf, "Проверка обновлений");
 
     HTTPClient http;
@@ -324,18 +344,27 @@ void handleOTA()
     const char* binUrl = doc["url"] | "";
     const char* sha256 = doc["sha256"] | "";
 
-    logSystem("[OTA] Версия в манифесте: '%s', текущая: '%s'", newVersion, JXCT_VERSION_STRING);
-    logSystem("[OTA] URL: %s", binUrl);
-    logSystem("[OTA] SHA256: %.16s...", sha256);
+    // ИСПРАВЛЕНО: Защита от повреждения памяти - копируем данные в локальные буферы
+    char versionBuffer[32];
+    char urlBuffer[256];
+    char sha256Buffer[80];
+    
+    strlcpy(versionBuffer, newVersion, sizeof(versionBuffer));
+    strlcpy(urlBuffer, binUrl, sizeof(urlBuffer));
+    strlcpy(sha256Buffer, sha256, sizeof(sha256Buffer));
 
-    if (strlen(newVersion) == 0 || strlen(binUrl) == 0 || strlen(sha256) != 64)
+    logSystem("[OTA] Версия в манифесте: '%s', текущая: '%s'", versionBuffer, JXCT_VERSION_STRING);
+    logSystem("[OTA] URL: %s", urlBuffer);
+    logSystem("[OTA] SHA256: %.16s...", sha256Buffer);
+
+    if (strlen(versionBuffer) == 0 || strlen(urlBuffer) == 0 || strlen(sha256Buffer) != 64)
     {
         strcpy(statusBuf, "Неверный манифест");
         logError("[OTA] Некорректный манифест");
         return;
     }
 
-    if (strcmp(newVersion, JXCT_VERSION_STRING) == 0)
+    if (strcmp(versionBuffer, JXCT_VERSION_STRING) == 0)
     {
         strcpy(statusBuf, "Актуальная версия");
         updateAvailable = false;
@@ -346,12 +375,12 @@ void handleOTA()
         return;
     }
 
-    // Сохраняем информацию об обновлении
+    // Сохраняем информацию об обновлении (используем защищенные буферы)
     updateAvailable = true;
-    pendingUpdateUrl = String(binUrl);
-    pendingUpdateSha256 = String(sha256);
-    pendingUpdateVersion = String(newVersion);
+    pendingUpdateUrl = String(urlBuffer);
+    pendingUpdateSha256 = String(sha256Buffer);
+    pendingUpdateVersion = String(versionBuffer);
     
-    snprintf(statusBuf, sizeof(statusBuf), "Доступно обновление: %s", newVersion);
-    logSystem("[OTA] Найдено обновление %s -> %s, ожидаем подтверждения установки", JXCT_VERSION_STRING, newVersion);
+    snprintf(statusBuf, sizeof(statusBuf), "Доступно обновление: %s", versionBuffer);
+    logSystem("[OTA] Найдено обновление %s -> %s, ожидаем подтверждения установки", JXCT_VERSION_STRING, versionBuffer);
 } 
