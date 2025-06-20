@@ -9,6 +9,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Пропускаем CI если коммит от GitHub Actions (релизы)
+    if: github.actor != 'github-actions[bot]'
     steps:
       - uses: actions/checkout@v4
       - name: Set up Python

@@ -12,9 +12,11 @@
 #include <esp_task_wdt.h>
 
 // Глобальные переменные для OTA 2.0
-static char manifestUrlGlobal[256] = "";  // ИСПРАВЛЕНО: статический буфер вместо указателя
+// КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Делаем буфер константным после инициализации
+static char manifestUrlGlobal[512] = "";  // Увеличиваем размер буфера
 static WiFiClient* clientPtr = nullptr;
 static char statusBuf[64] = "Ожидание";
+static bool urlInitialized = false;  // Флаг инициализации для защиты от перезаписи
 
 // Переменные для двухэтапного OTA (проверка -> установка)
 static bool updateAvailable = false;
@@ -26,43 +28,39 @@ const char* getOtaStatus() { return statusBuf; }
 
 void setupOTA(const char* manifestUrl, WiFiClient& client)
 {
+    // КРИТИЧЕСКАЯ ЗАЩИТА: Проверяем повторную инициализацию
+    if (urlInitialized) {
+        logWarn("[OTA] [SETUP DEBUG] ⚠️ OTA уже инициализирован, пропускаем повторную инициализацию");
+        return;
+    }
+    
     // ДОБАВЛЕНО: Детальная диагностика инициализации
     logSystem("[OTA] [SETUP DEBUG] Инициализация OTA 2.0...");
     logSystem("[OTA] [SETUP DEBUG] Входные параметры:");
     logSystem("[OTA] [SETUP DEBUG]   manifestUrl: %s", manifestUrl ? manifestUrl : "NULL");
     logSystem("[OTA] [SETUP DEBUG]   client: %s", &client ? "OK" : "NULL");
     
-    // КРИТИЧЕСКАЯ ДИАГНОСТИКА: HEX-дамп входной строки
-    if (manifestUrl) {
-        logSystem("[OTA] [HEX DEBUG] Длина строки: %d", strlen(manifestUrl));
-        logSystem("[OTA] [HEX DEBUG] Первые 20 символов в HEX:");
-        for (int i = 0; i < 20 && manifestUrl[i]; i++) {
-            logSystem("[OTA] [HEX DEBUG]   [%d] = 0x%02X ('%c')", i, (unsigned char)manifestUrl[i], 
-                     isprint(manifestUrl[i]) ? manifestUrl[i] : '?');
-        }
+    // КРИТИЧЕСКАЯ ПРОВЕРКА: Валидация входного URL
+    if (!manifestUrl || strlen(manifestUrl) < 20 || strstr(manifestUrl, "github.com") == nullptr) {
+        logError("[OTA] [SETUP DEBUG] ❌ Неверный URL манифеста!");
+        return;
     }
     
-    // ИСПРАВЛЕНО: Копируем URL в статический буфер вместо указателя
+    // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Защищенное копирование с проверкой целостности
+    memset(manifestUrlGlobal, 0, sizeof(manifestUrlGlobal));  // Очищаем буфер
     strlcpy(manifestUrlGlobal, manifestUrl, sizeof(manifestUrlGlobal));
+    
+    // ПРОВЕРКА ЦЕЛОСТНОСТИ после копирования
+    if (strlen(manifestUrlGlobal) != strlen(manifestUrl) || 
+        strstr(manifestUrlGlobal, "github.com") == nullptr) {
+        logError("[OTA] [SETUP DEBUG] ❌ URL поврежден при копировании!");
+        memset(manifestUrlGlobal, 0, sizeof(manifestUrlGlobal));
+        return;
+    }
+    
     clientPtr = &client;
     strlcpy(statusBuf, "Готов", sizeof(statusBuf));
-    
-    // КРИТИЧЕСКАЯ ДИАГНОСТИКА: HEX-дамп ПОСЛЕ копирования
-    logSystem("[OTA] [HEX DEBUG] ПОСЛЕ strlcpy - длина: %d", strlen(manifestUrlGlobal));
-    logSystem("[OTA] [HEX DEBUG] Первые 20 символов manifestUrlGlobal в HEX:");
-    for (int i = 0; i < 20 && manifestUrlGlobal[i]; i++) {
-        logSystem("[OTA] [HEX DEBUG]   [%d] = 0x%02X ('%c')", i, (unsigned char)manifestUrlGlobal[i], 
-                 isprint(manifestUrlGlobal[i]) ? manifestUrlGlobal[i] : '?');
-    }
-    
-    // Локальный буфер для безопасного логирования
-    char urlBuffer[256];
-    strlcpy(urlBuffer, manifestUrl, sizeof(urlBuffer));
-    
-    logSystem("[OTA] [SETUP DEBUG] Глобальные переменные установлены:");
-    logSystem("[OTA] [SETUP DEBUG]   manifestUrlGlobal: %s", manifestUrlGlobal);
-    logSystem("[OTA] [SETUP DEBUG]   clientPtr: %p", clientPtr);
-    logSystem("[OTA] [SETUP DEBUG]   statusBuf: '%s'", statusBuf);
+    urlInitialized = true;  // Защищаем от повторной инициализации
     
     // Сброс состояния обновлений
     updateAvailable = false;
@@ -70,8 +68,13 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
     pendingUpdateSha256 = "";
     pendingUpdateVersion = "";
     
-    logSystem("[OTA] [SETUP DEBUG] Состояние обновлений сброшено");
-    logSuccess("[OTA] [SETUP DEBUG] ✅ OTA инициализирован успешно: %s", urlBuffer);
+    logSystem("[OTA] [SETUP DEBUG] Глобальные переменные установлены:");
+    logSystem("[OTA] [SETUP DEBUG]   manifestUrlGlobal: %s", manifestUrlGlobal);
+    logSystem("[OTA] [SETUP DEBUG]   clientPtr: %p", clientPtr);
+    logSystem("[OTA] [SETUP DEBUG]   statusBuf: '%s'", statusBuf);
+    logSystem("[OTA] [SETUP DEBUG]   urlInitialized: %s", urlInitialized ? "ДА" : "НЕТ");
+    
+    logSuccess("[OTA] [SETUP DEBUG] ✅ OTA инициализирован успешно с защитой памяти");
 }
 
 static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)
@@ -417,14 +420,22 @@ void handleOTA()
     // Сброс watchdog перед началом проверки
     esp_task_wdt_reset();
     
-    logSystem("[OTA] [DEBUG] handleOTA() вызов #%lu, manifestUrlGlobal=%s", 
-              debugCallCount, manifestUrlGlobal ? manifestUrlGlobal : "NULL");
-    
-    if (!manifestUrlGlobal) 
-    {
-        logError("[OTA] [DEBUG] manifestUrlGlobal не задан - выходим");
+    // КРИТИЧЕСКАЯ ПРОВЕРКА: Проверяем инициализацию и целостность URL
+    if (!urlInitialized || strlen(manifestUrlGlobal) == 0) {
+        logError("[OTA] [DEBUG] OTA не инициализирован или URL пуст - выходим");
         return;
     }
+    
+    // КРИТИЧЕСКАЯ ПРОВЕРКА: Проверяем целостность URL перед использованием
+    if (strstr(manifestUrlGlobal, "github.com") == nullptr) {
+        logError("[OTA] [DEBUG] ❌ URL поврежден в памяти: %s", manifestUrlGlobal);
+        logError("[OTA] [DEBUG] Переинициализируем OTA...");
+        urlInitialized = false;  // Сбрасываем флаг для переинициализации
+        return;
+    }
+    
+    logSystem("[OTA] [DEBUG] handleOTA() вызов #%lu, URL проверен: %.50s...", 
+              debugCallCount, manifestUrlGlobal);
 
     if (!clientPtr)
     {
