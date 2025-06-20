@@ -26,7 +26,7 @@
 #include <esp_ota_ops.h>
 
 // Переменные для отслеживания времени
-unsigned long lastDataPublishTime = 0;
+unsigned long lastDataPublish = 0;
 unsigned long lastNtpUpdate = 0;
 
 // Объявления функций
@@ -98,6 +98,21 @@ void setup()
 
     // Красивый баннер запуска
     logPrintBanner("JXCT 7-в-1 Датчик v" JXCT_VERSION_STRING " - Запуск системы");
+
+    /*-----------------------------------------------------------
+     *  Подтверждаем OTA-образ ДО тяжёлой инициализации Wi-Fi/FS.
+     *  Нужно успеть до истечения тайм-аутa загрузчика (~5 с).
+     *----------------------------------------------------------*/
+    const esp_partition_t* runningNow = esp_ota_get_running_partition();
+    esp_ota_img_states_t otaStateNow;
+    if (esp_ota_get_state_partition(runningNow, &otaStateNow) == ESP_OK && otaStateNow == ESP_OTA_IMG_PENDING_VERIFY)
+    {
+        logSystem("OTA image pending verify → подтверждаем (ранний этап)");
+        if (esp_ota_mark_app_valid_cancel_rollback() == ESP_OK)
+            logSuccess("OTA image подтверждена, откат отменён");
+        else
+            logError("Не удалось подтвердить OTA image (ранний этап)!");
+    }
 
     logPrintHeader("ИНИЦИАЛИЗАЦИЯ СИСТЕМЫ", COLOR_CYAN);
 
@@ -186,10 +201,6 @@ bool initPreferences()
 // ✅ Неблокирующий главный цикл с оптимизированными интервалами
 void loop()
 {
-    static unsigned long lastDataPublish = 0;
-    static unsigned long lastMqttCheck = 0;
-    static unsigned long lastWiFiCheck = 0;
-
     // Текущее время
     unsigned long currentTime = millis();
 
@@ -271,6 +282,7 @@ void loop()
     }
 
     // ✅ Управление MQTT (каждые 100мс)
+    static unsigned long lastMqttCheck = 0;
     if (currentTime - lastMqttCheck >= 100)
     {
         handleMQTT();
@@ -278,53 +290,19 @@ void loop()
     }
 
     // ✅ Управление WiFi (каждые 20 мс для более высокой отзывчивости веб-интерфейса)
+    static unsigned long lastWiFiCheck = 0;
     if (currentTime - lastWiFiCheck >= 20)
     {
         handleWiFi();
         lastWiFiCheck = currentTime;
     }
 
-    // ✅ Проверяем OTA только раз в час (или при принудительной проверке)
+    // Проверяем OTA раз в час (или при принудительной проверке)
     static unsigned long lastOtaCheck = 0;
-    static bool otaDebugLogged = false; // Для однократного вывода отладочной информации
-    
-    // ДОБАВЛЕНО: Отладочная информация один раз при старте
-    if (!otaDebugLogged) {
-        logSystem("[OTA] [MAIN DEBUG] Конфигурация автообновления:");
-        logSystem("[OTA] [MAIN DEBUG]   autoOtaEnabled: %s", config.flags.autoOtaEnabled ? "ДА" : "НЕТ");
-        logSystem("[OTA] [MAIN DEBUG]   интервал проверки: 1 час (3600000 мс)");
-        logSystem("[OTA] [MAIN DEBUG]   lastOtaCheck: %lu", lastOtaCheck);
-        logSystem("[OTA] [MAIN DEBUG]   currentTime: %lu", currentTime);
-        otaDebugLogged = true;
-    }
-    
-    if (config.flags.autoOtaEnabled) {
-        unsigned long timeSinceLastCheck = currentTime - lastOtaCheck;
-        
-        // Выводим статус каждые 10 минут для диагностики
-        static unsigned long lastOtaStatusLog = 0;
-        if (currentTime - lastOtaStatusLog >= 600000UL) { // 10 минут
-            logSystem("[OTA] [MAIN DEBUG] Статус автопроверки:");
-            logSystem("[OTA] [MAIN DEBUG]   время с последней проверки: %lu мс (%.1f мин)", 
-                      timeSinceLastCheck, timeSinceLastCheck / 60000.0);
-            logSystem("[OTA] [MAIN DEBUG]   до следующей проверки: %lu мс (%.1f мин)", 
-                      3600000UL - timeSinceLastCheck, (3600000UL - timeSinceLastCheck) / 60000.0);
-            lastOtaStatusLog = currentTime;
-        }
-        
-        if (timeSinceLastCheck >= 3600000UL) { // 1 час
-            logSystem("[OTA] [MAIN DEBUG] ⏰ Время автопроверки! Запускаем handleOTA()...");
-            handleOTA();
-            lastOtaCheck = currentTime;
-            logSystem("[OTA] [MAIN DEBUG] ✅ handleOTA() завершен, следующая проверка через 1 час");
-        }
-    } else {
-        // Выводим предупреждение каждые 30 минут если автообновление выключено
-        static unsigned long lastDisabledWarning = 0;
-        if (currentTime - lastDisabledWarning >= 1800000UL) { // 30 минут
-            logWarn("[OTA] [MAIN DEBUG] ⚠️ Автообновление ОТКЛЮЧЕНО в настройках");
-            lastDisabledWarning = currentTime;
-        }
+    if (config.flags.autoOtaEnabled && (currentTime - lastOtaCheck >= 3600000UL))
+    {
+        handleOTA();
+        lastOtaCheck = currentTime;
     }
 
     // ✅ Минимальная задержка для стабильности (10мс вместо 100мс)

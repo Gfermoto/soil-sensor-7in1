@@ -5,7 +5,7 @@
 #include "../../include/version.h"
 #include "../../include/jxct_strings.h"
 #include "../wifi_manager.h"
-#include "../ota_manager.h"
+#include "ota_manager.h"
 #include <ArduinoJson.h>
 #include <Update.h>
 #include <Arduino.h>

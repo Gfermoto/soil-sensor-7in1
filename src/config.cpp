@@ -34,6 +34,8 @@ String getDefaultTopic()
 Config config;
 Preferences preferences;
 
+#define KEY_NTP_INTERVAL "ntpIntvl"   // ≤15 bytes, иначе NVS выдаёт KEY_TOO_LONG
+
 void loadConfig()
 {
     preferences.begin("jxct-sensor", false);
@@ -74,7 +76,7 @@ void loadConfig()
     // NTP настройки
     String ntpServer = preferences.getString("ntpServer", "pool.ntp.org");
     ntpServer.toCharArray(config.ntpServer, sizeof(config.ntpServer));
-    config.ntpUpdateInterval = preferences.getUInt("ntpUpdateInterval", 60000);
+    config.ntpUpdateInterval = preferences.getUInt(KEY_NTP_INTERVAL, 60000);
 
     // v2.3.0: Настраиваемые интервалы (с дефолтными значениями из v2.2.1)
     config.sensorReadInterval = preferences.getUInt("sensorInterval", SENSOR_READ_INTERVAL);
@@ -163,7 +165,7 @@ void saveConfig()
 
     // NTP настройки
     preferences.putString("ntpServer", config.ntpServer);
-    preferences.putUInt("ntpUpdateInterval", config.ntpUpdateInterval);
+    preferences.putUInt(KEY_NTP_INTERVAL, config.ntpUpdateInterval);
 
     // v2.3.0: Настраиваемые интервалы
     preferences.putUInt("sensorInterval", config.sensorReadInterval);
