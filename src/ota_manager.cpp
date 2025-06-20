@@ -12,10 +12,11 @@
 #include <esp_task_wdt.h>
 
 // Глобальные переменные для OTA 2.0
-// КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Делаем буфер константным после инициализации
-static char manifestUrlGlobal[512] = "";  // Увеличиваем размер буфера
+// Сначала статусный буфер (расширен до 128 байт), чтобы возможное переполнение НЕ затирало URL.
+static char statusBuf[128] = "Ожидание";
+static char guardGap[8] = "BEFORE";       // часовой между statusBuf и URL
+static char manifestUrlGlobal[512] = "";  // Буфер URL манифеста (512 байт)
 static WiFiClient* clientPtr = nullptr;
-static char statusBuf[64] = "Ожидание";
 static bool urlInitialized = false;  // Флаг инициализации для защиты от перезаписи
 
 // Переменные для двухэтапного OTA (проверка -> установка)
@@ -24,10 +25,28 @@ static String pendingUpdateUrl = "";
 static String pendingUpdateSha256 = "";
 static String pendingUpdateVersion = "";
 
+static char guardSentinel[8] = "GUARD!";  // часовой после URL, как раньше
+
+static void _printGuard(const char* name, const char* tag, const char* current) {
+    logError("[GUARD] Повреждение (%s) после %s: '%s'", name, tag, current);
+}
+
+void checkGuard(const char* tag) {
+    if (strncmp(guardGap, "BEFORE", 6) != 0) {
+        _printGuard("GAP", tag, guardGap);
+        strncpy(guardGap, "BEFORE", 7);
+    }
+    if (strncmp(guardSentinel, "GUARD!", 6) != 0) {
+        _printGuard("AFTER", tag, guardSentinel);
+        strncpy(guardSentinel, "GUARD!", 7);
+    }
+}
+
 const char* getOtaStatus() { return statusBuf; }
 
 void setupOTA(const char* manifestUrl, WiFiClient& client)
 {
+    checkGuard("setupOTA:entry");
     // КРИТИЧЕСКАЯ ЗАЩИТА: Проверяем повторную инициализацию
     if (urlInitialized) {
         logWarn("[OTA] [SETUP DEBUG] ⚠️ OTA уже инициализирован, пропускаем повторную инициализацию");
@@ -75,6 +94,7 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
     logSystem("[OTA] [SETUP DEBUG]   urlInitialized: %s", urlInitialized ? "ДА" : "НЕТ");
     
     logSuccess("[OTA] [SETUP DEBUG] ✅ OTA инициализирован успешно с защитой памяти");
+    checkGuard("setupOTA:exit");
 }
 
 static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)
@@ -122,7 +142,7 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
         return false;
     }
     
-    http.setTimeout(60000);  // Увеличиваем таймаут до 60 секунд
+    http.setTimeout(65000);  // Максимум для uint16_t ~65 секунд
     http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
     
     logSystem("[OTA] Выполняем HTTP GET запрос...");
@@ -190,7 +210,7 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
     size_t totalDownloaded = 0;
     unsigned long lastProgress = millis();
     unsigned long lastActivity = millis();
-    const unsigned long TIMEOUT_MS = 60000;  // Увеличиваем таймаут загрузки до 60 секунд
+    const unsigned long TIMEOUT_MS = 120000;  // 2 минуты паузы между пакетами допускаются
     bool isChunked = (contentLen == UPDATE_SIZE_UNKNOWN);
 
     while (http.connected())
