@@ -113,7 +113,7 @@ void setupOtaRoutes()
                      html += "<div style='margin-bottom:15px;'>";
                      html += "<label style='display:flex;align-items:center;cursor:pointer;'>";
                      html += "<input type='checkbox' id='auto_ota'" + checked + " style='margin-right:8px;'> ";
-                     html += "<span>🔄 Автоматическое обновление</span>";
+                     html += "<span>🔄 Автоматическая проверка обновлений (раз в час)</span>";
                      html += "</label></div>";
 
                      // Кнопки проверки и установки

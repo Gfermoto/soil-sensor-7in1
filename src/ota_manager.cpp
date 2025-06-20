@@ -322,10 +322,7 @@ void handleOTA()
     snprintf(statusBuf, sizeof(statusBuf), "Доступно обновление: %s", newVersion);
     logSystem("[OTA] Найдено обновление %s -> %s, ожидаем подтверждения установки", JXCT_VERSION_STRING, newVersion);
     
-    // В автоматическом режиме сразу устанавливаем
-    if (config.flags.autoOtaEnabled)
-    {
-        logSystem("[OTA] Автоматический режим - начинаем установку");
-        downloadAndUpdate(pendingUpdateUrl, pendingUpdateSha256.c_str());
-    }
+    // ИЗМЕНЕНО: убрана автоматическая установка
+    // Чекбокс "Автообновление" теперь управляет только периодической ПРОВЕРКОЙ,
+    // а не автоматической УСТАНОВКОЙ. Установка происходит только по кнопке "Установить"
 } 
