@@ -88,7 +88,10 @@ def update_version_files(new_version):
 def build_project():
     """Собирает проект с PlatformIO"""
     print("🔨 Собираю проект...")
-    result = run_command("pio run")
+    # Сборка production-окружения, чтобы раннее обнаружить ошибки, которые проявляются
+    # только при строгих флагах оптимизации/NO_ANSI_COLORS и т.п.
+    prod_env = "esp32dev-production"
+    result = run_command(f"pio run -e {prod_env}")
     if result and result.returncode == 0:
         print("✅ Проект собран успешно")
         return True
