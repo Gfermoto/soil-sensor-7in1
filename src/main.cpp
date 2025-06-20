@@ -139,7 +139,7 @@ void setup()
     otaClient.setInsecure(); // временно отключаем проверку сертификата
     // Всегда устанавливаем URL манифеста для ручной и автоматической проверки
     // ИСПРАВЛЕНО - используем правильный URL манифеста
-    setupOTA("https://github.com/Gfermoto/soil-sensor-7in1/releases/download/v3.1.4/manifest.json", otaClient);
+    setupOTA("https://github.com/Gfermoto/soil-sensor-7in1/releases/download/v3.1.5/manifest.json", otaClient);
 
     // Создаём экземпляр абстрактного сенсора
     static std::unique_ptr<ISensor> gSensor = createSensorInstance();
