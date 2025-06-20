@@ -40,8 +40,7 @@ void setupOtaRoutes()
                          webServer.send(403, "application/json", "{\"error\":\"unavailable\"}");
                          return;
                      }
-                     triggerOtaCheck();
-                     handleOTA();
+                     triggerOtaCheck(); // уже включает handleOTA()
                      webServer.send(200, "application/json", "{\"ok\":true}");
                  });
 
