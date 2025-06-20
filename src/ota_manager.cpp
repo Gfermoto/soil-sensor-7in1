@@ -40,16 +40,16 @@ static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)
     return strcasecmp(calcHex, expectedHex) == 0;
 }
 
-static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
+// Вспомогательная функция для инициализации загрузки
+static bool initializeDownload(HTTPClient& http, const String& binUrl, int& contentLen)
 {
     esp_task_wdt_reset();
     strcpy(statusBuf, "Подключение");
     logSystem("[OTA] Загрузка: %s", binUrl.c_str());
 
-    HTTPClient http;
     http.begin(*clientPtr, binUrl);
-    http.setTimeout(30000); // 30 сек таймаут
-    http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS); // Автоматически следуем редиректам
+    http.setTimeout(30000);
+    http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
     
     int code = http.GET();
     esp_task_wdt_reset();
@@ -58,14 +58,11 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
     {
         snprintf(statusBuf, sizeof(statusBuf), "Ошибка HTTP %d", code);
         logError("[OTA] HTTP ошибка %d", code);
-        http.end();
         return false;
     }
 
-    int contentLen = http.getSize();
-    bool isChunked = (contentLen == -1);
-    
-    if (isChunked)
+    contentLen = http.getSize();
+    if (contentLen == -1)
     {
         logSystem("[OTA] Chunked transfer, размер неизвестен");
         contentLen = UPDATE_SIZE_UNKNOWN;
@@ -80,22 +77,24 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
         strcpy(statusBuf, "Нет места");
         logError("[OTA] Update.begin() failed");
         Update.printError(Serial);
-        http.end();
         return false;
     }
 
+    return true;
+}
+
+// Вспомогательная функция для загрузки данных
+static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_context& shaCtx)
+{
     strcpy(statusBuf, "Загрузка");
     
-    mbedtls_sha256_context shaCtx;
-    mbedtls_sha256_init(&shaCtx);
-    mbedtls_sha256_starts_ret(&shaCtx, 0);
-
     WiFiClient* stream = http.getStreamPtr();
     uint8_t buf[512];
     size_t totalDownloaded = 0;
     unsigned long lastProgress = millis();
     unsigned long lastActivity = millis();
-    const unsigned long TIMEOUT_MS = 30000; // 30 сек без данных = таймаут
+    const unsigned long TIMEOUT_MS = 30000;
+    bool isChunked = (contentLen == UPDATE_SIZE_UNKNOWN);
 
     while (http.connected())
     {
@@ -113,7 +112,6 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
                 strcpy(statusBuf, "Ошибка чтения");
                 logError("[OTA] Ошибка чтения данных");
                 Update.abort();
-                http.end();
                 return false;
             }
 
@@ -123,7 +121,6 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
                 logError("[OTA] Ошибка записи во flash");
                 Update.printError(Serial);
                 Update.abort();
-                http.end();
                 return false;
             }
 
@@ -145,22 +142,17 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
                 logSystem("[OTA] Загружено: %d байт", totalDownloaded);
                 lastProgress = millis();
             }
-            
-            esp_task_wdt_reset();
         }
         else
         {
-            // Проверяем таймаут бездействия
             if (millis() - lastActivity > TIMEOUT_MS)
             {
                 strcpy(statusBuf, "Таймаут");
                 logError("[OTA] Таймаут загрузки (нет данных %lu мс)", TIMEOUT_MS);
                 Update.abort();
-                http.end();
                 return false;
             }
             
-            // Для chunked проверяем завершение
             if (isChunked && !http.connected())
             {
                 logSystem("[OTA] Chunked transfer завершён, загружено %d байт", totalDownloaded);
@@ -172,8 +164,6 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
         }
     }
 
-    http.end();
-    
     if (!isChunked && totalDownloaded != (size_t)contentLen)
     {
         snprintf(statusBuf, sizeof(statusBuf), "Неполная загрузка %d/%d", totalDownloaded, contentLen);
@@ -182,8 +172,39 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
         return false;
     }
 
-    strcpy(statusBuf, "Проверка");
+    return true;
+}
+
+// Основная функция загрузки и обновления (упрощенная)
+static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
+{
+    HTTPClient http;
+    int contentLen;
     
+    // Инициализация загрузки
+    if (!initializeDownload(http, binUrl, contentLen))
+    {
+        http.end();
+        return false;
+    }
+    
+    // Инициализация SHA256
+    mbedtls_sha256_context shaCtx;
+    mbedtls_sha256_init(&shaCtx);
+    mbedtls_sha256_starts_ret(&shaCtx, 0);
+    
+    // Загрузка данных
+    bool downloadSuccess = downloadData(http, contentLen, shaCtx);
+    http.end();
+    
+    if (!downloadSuccess)
+    {
+        mbedtls_sha256_free(&shaCtx);
+        return false;
+    }
+
+    // Проверка SHA256
+    strcpy(statusBuf, "Проверка");
     uint8_t digest[32];
     mbedtls_sha256_finish_ret(&shaCtx, digest);
     mbedtls_sha256_free(&shaCtx);
@@ -196,9 +217,9 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
         return false;
     }
 
+    // Финализация
     strcpy(statusBuf, "Завершение");
-    
-    if (!Update.end(true)) // true = устанавливать как boot partition
+    if (!Update.end(true))
     {
         strcpy(statusBuf, "Ошибка установки");
         logError("[OTA] Ошибка финализации");

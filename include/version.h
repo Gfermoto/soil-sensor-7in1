@@ -5,7 +5,7 @@
 
 #define JXCT_VERSION_MAJOR 3
 #define JXCT_VERSION_MINOR 0
-#define JXCT_VERSION_PATCH 7
+#define JXCT_VERSION_PATCH 8
 
 #define STRINGIFY(x) #x
 #define TOSTRING(x) STRINGIFY(x)
