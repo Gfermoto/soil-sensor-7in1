@@ -119,7 +119,7 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
         return false;
     }
     
-    http.setTimeout(45000);  // Увеличиваем таймаут
+    http.setTimeout(60000);  // Увеличиваем таймаут до 60 секунд
     http.setFollowRedirects(HTTPC_STRICT_FOLLOW_REDIRECTS);
     
     logSystem("[OTA] Выполняем HTTP GET запрос...");
@@ -182,12 +182,12 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
         return false;
     }
     
-    // ИСПРАВЛЕНО: Уменьшаем размер буфера для экономии стека
-    uint8_t buf[256];  // Было 512, стало 256
+    // ИСПРАВЛЕНО: Оптимальный размер буфера для стабильной загрузки
+    uint8_t buf[512];  // Увеличиваем буфер для более быстрой загрузки
     size_t totalDownloaded = 0;
     unsigned long lastProgress = millis();
     unsigned long lastActivity = millis();
-    const unsigned long TIMEOUT_MS = 30000;
+    const unsigned long TIMEOUT_MS = 60000;  // Увеличиваем таймаут загрузки до 60 секунд
     bool isChunked = (contentLen == UPDATE_SIZE_UNKNOWN);
 
     while (http.connected())
