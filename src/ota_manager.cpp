@@ -92,16 +92,24 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
     size_t freeHeap = ESP.getFreeHeap();
     logSystem("[OTA] Свободная память перед HTTP: %d байт", freeHeap);
     
-    if (freeHeap < 50000) {
+    // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
+    if (freeHeap < 70000) {
         strcpy(statusBuf, "Мало памяти");
         logError("[OTA] Недостаточно памяти для HTTP: %d байт", freeHeap);
         return false;
     }
     
-    // ИСПРАВЛЕНО: Защита от повреждения памяти - копируем URL в локальный буфер
-    char urlBuffer[256];
+    // ИСПРАВЛЕНО: Защита от повреждения памяти - копируем URL в статический буфер
+    static char urlBuffer[256];
     strlcpy(urlBuffer, binUrl.c_str(), sizeof(urlBuffer));
     logSystem("[OTA] Загрузка: %s", urlBuffer);
+    
+    // ДОПОЛНИТЕЛЬНАЯ ЗАЩИТА: Проверяем целостность URL
+    if (strlen(urlBuffer) < 10 || strstr(urlBuffer, "github.com") == nullptr) {
+        strcpy(statusBuf, "Поврежденный URL");
+        logError("[OTA] URL поврежден или некорректен: %s", urlBuffer);
+        return false;
+    }
 
     // ИСПРАВЛЕНО: Добавляем проверку инициализации HTTP
     logSystem("[OTA] Инициализация HTTP клиента...");
@@ -160,7 +168,8 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
     size_t heapBeforeDownload = ESP.getFreeHeap();
     logSystem("[OTA] Память перед загрузкой: %d байт", heapBeforeDownload);
     
-    if (heapBeforeDownload < 40000) {
+    // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
+    if (heapBeforeDownload < 60000) {
         strcpy(statusBuf, "Мало памяти для загрузки");
         logError("[OTA] Недостаточно памяти для загрузки: %d байт", heapBeforeDownload);
         return false;
@@ -269,75 +278,89 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
     size_t initialHeap = ESP.getFreeHeap();
     logSystem("[OTA] Начальная память: %d байт", initialHeap);
     
-    if (initialHeap < 60000) {
+    // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
+    if (initialHeap < 80000) {
         strcpy(statusBuf, "Критически мало памяти");
         logError("[OTA] Критически мало памяти: %d байт", initialHeap);
         return false;
     }
     
-    HTTPClient http;
+    // ИСПРАВЛЕНО: Создаем HTTP клиент в куче для экономии стека
+    HTTPClient* http = new HTTPClient();
+    if (!http) {
+        strcpy(statusBuf, "Ошибка создания HTTP клиента");
+        logError("[OTA] Не удалось создать HTTP клиент");
+        return false;
+    }
+    
     int contentLen;
     
     // Инициализация загрузки с дополнительными проверками
     logSystem("[OTA] Инициализация загрузки...");
-    if (!initializeDownload(http, binUrl, contentLen))
+    if (!initializeDownload(*http, binUrl, contentLen))
     {
         logError("[OTA] Ошибка инициализации загрузки");
-        http.end();
+        http->end();
+        delete http;
         return false;
     }
     
     logSystem("[OTA] Инициализация успешна, размер контента: %d", contentLen);
     
-    // Инициализация SHA256
-    mbedtls_sha256_context shaCtx;
-    mbedtls_sha256_init(&shaCtx);
-    mbedtls_sha256_starts_ret(&shaCtx, 0);
+    // ИСПРАВЛЕНО: Создаем SHA256 контекст в куче
+    mbedtls_sha256_context* shaCtx = new mbedtls_sha256_context();
+    if (!shaCtx) {
+        strcpy(statusBuf, "Ошибка создания SHA256 контекста");
+        logError("[OTA] Не удалось создать SHA256 контекст");
+        http->end();
+        delete http;
+        return false;
+    }
+    
+    mbedtls_sha256_init(shaCtx);
+    mbedtls_sha256_starts_ret(shaCtx, 0);
     
     // Загрузка данных
-    bool downloadSuccess = downloadData(http, contentLen, shaCtx);
-    http.end();
+    bool downloadSuccess = downloadData(*http, contentLen, *shaCtx);
+    http->end();
+    delete http;
     
     if (!downloadSuccess)
     {
-        mbedtls_sha256_free(&shaCtx);
+        mbedtls_sha256_free(shaCtx);
+        delete shaCtx;
         return false;
     }
 
     // Проверка SHA256
     strcpy(statusBuf, "Проверка");
     uint8_t digest[32];
-    mbedtls_sha256_finish_ret(&shaCtx, digest);
-    mbedtls_sha256_free(&shaCtx);
+    mbedtls_sha256_finish_ret(shaCtx, digest);
+    mbedtls_sha256_free(shaCtx);
+    delete shaCtx;
 
+    // Проверяем SHA256
     if (!verifySha256(digest, expectedSha256))
     {
-        strcpy(statusBuf, "Ошибка подписи");
+        strcpy(statusBuf, "Неверная контрольная сумма");
         logError("[OTA] SHA256 не совпадает");
         Update.abort();
         return false;
     }
 
-    // Финализация
+    // Завершение обновления
     strcpy(statusBuf, "Завершение");
     if (!Update.end(true))
     {
-        strcpy(statusBuf, "Ошибка установки");
-        logError("[OTA] Ошибка финализации");
+        strcpy(statusBuf, "Ошибка завершения");
+        logError("[OTA] Update.end() failed");
         Update.printError(Serial);
         return false;
     }
 
-    if (!Update.isFinished())
-    {
-        strcpy(statusBuf, "Не завершено");
-        logError("[OTA] Update не завершён");
-        return false;
-    }
-
-    logSuccess("[OTA] Обновление завершено успешно, перезагрузка...");
-    strcpy(statusBuf, "Успешно, перезагрузка");
-    delay(2000);
+    strcpy(statusBuf, "Перезагрузка");
+    logSystem("[OTA] Обновление успешно завершено. Перезагрузка через 3 секунды...");
+    delay(3000);
     ESP.restart();
     return true;
 }
