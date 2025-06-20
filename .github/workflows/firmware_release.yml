@@ -22,21 +22,16 @@ jobs:
       - name: Install PlatformIO CLI
         run: pip install --upgrade platformio
 
-      - name: Sync VERSION file with tag
-        run: echo "${GITHUB_REF_NAME#v}" > VERSION
-
-      - name: Commit updated VERSION back to repo
-        env:
-          TAG_VERSION: ${{ github.ref_name }}
+      - name: Verify VERSION file matches tag
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          if ! git diff --quiet VERSION; then
-            git add VERSION
-            git commit -m "chore: bump VERSION to $TAG_VERSION [skip ci]"
-            git fetch origin main
-            git rebase origin/main
-            git push origin HEAD:main
+          TAG_VERSION="${GITHUB_REF_NAME#v}"
+          FILE_VERSION=$(cat VERSION)
+          if [ "$TAG_VERSION" != "$FILE_VERSION" ]; then
+            echo "❌ VERSION file ($FILE_VERSION) doesn't match tag ($TAG_VERSION)"
+            echo "This should not happen if release_cycle.py worked correctly"
+            exit 1
+          else
+            echo "✅ VERSION file matches tag: $TAG_VERSION"
           fi
 
       - name: Build firmware (production)
