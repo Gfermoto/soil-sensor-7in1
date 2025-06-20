@@ -238,7 +238,20 @@ void triggerOtaInstall()
     }
     
     logSystem("[OTA] Принудительная установка обновления %s", pendingUpdateVersion.c_str());
-    downloadAndUpdate(pendingUpdateUrl, pendingUpdateSha256.c_str());
+    logSystem("[OTA] URL: %s", pendingUpdateUrl.c_str());
+    logSystem("[OTA] SHA256: %.16s...", pendingUpdateSha256.c_str());
+    
+    bool result = downloadAndUpdate(pendingUpdateUrl, pendingUpdateSha256.c_str());
+    if (!result)
+    {
+        logError("[OTA] Установка обновления не удалась");
+        strcpy(statusBuf, "Ошибка установки");
+        // Сбрасываем информацию об обновлении при ошибке
+        updateAvailable = false;
+        pendingUpdateUrl = "";
+        pendingUpdateSha256 = "";
+        pendingUpdateVersion = "";
+    }
 }
 
 void handleOTA()

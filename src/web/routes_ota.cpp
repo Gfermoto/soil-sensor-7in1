@@ -113,7 +113,7 @@ void setupOtaRoutes()
                      html += "<div style='margin-bottom:15px;'>";
                      html += "<label style='display:flex;align-items:center;cursor:pointer;'>";
                      html += "<input type='checkbox' id='auto_ota'" + checked + " style='margin-right:8px;'> ";
-                     html += "<span>🔄 Автоматическая проверка обновлений (раз в час)</span>";
+                     html += "<span>Автоматическая проверка</span>";
                      html += "</label></div>";
 
                      // Кнопки проверки и установки
@@ -123,21 +123,20 @@ void setupOtaRoutes()
                          btnCheck.replace("<button ", "<button id='btnCheck' ");
                          html += btnCheck;
                      }
-                     html += "<button id='btnInstall' style='display:none;' class='btn btn-success'>⬇️ Установить</button>";
+                     html += "<button id='btnInstall' style='display:none;' class='btn btn-success'>⬇️ Скачать и установить</button>";
                      html += "</div></div>";
 
                      // Блок локального обновления
                      html += "<div class='section' style='background:white;padding:20px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,0.1);'>";
                      html += "<h3 style='margin-top:0;color:#495057;'>📁 Локальное обновление</h3>";
                      html += "<p style='color:#6c757d;margin-bottom:15px;'>Загрузите файл прошивки (.bin) с вашего компьютера</p>";
-                     html += "<form id='uploadForm' enctype='multipart/form-data' style='display:flex;align-items:end;gap:15px;flex-wrap:wrap;'>";
-                     html += "<div style='flex:1;min-width:200px;'>";
+                     html += "<div style='margin-bottom:15px;'>";
                      html += "<input type='file' name='firmware' accept='.bin' required style='width:100%;padding:10px;border:2px dashed #dee2e6;border-radius:6px;background:#f8f9fa;'>";
                      html += "</div>";
+                     html += "<form id='uploadForm' enctype='multipart/form-data'>";
                      {
-                         String uploadBtn = generateButton(ButtonType::PRIMARY, "⬆️", "Загрузить", "");
-                         uploadBtn.replace("class='btn btn-primary'", "class='btn btn-primary' style='white-space:nowrap;'");
-                         html += "<div>" + uploadBtn + "</div>";
+                         String uploadBtn = generateButton(ButtonType::PRIMARY, "⬆️", "Загрузить прошивку", "");
+                         html += uploadBtn;
                      }
                      html += "</form></div>";
 
@@ -250,7 +249,7 @@ void setupOtaRoutes()
                      html += "    .catch(e => {\n";
                      html += "      showToast('❌ Ошибка установки', 'error');\n";
                      html += "      btn.disabled = false;\n";
-                     html += "      btn.textContent = '⬇️ Установить';\n";
+                     html += "      btn.textContent = '⬇️ Скачать и установить';\n";
                      html += "    });\n";
                      html += "}\n";
                      html += "\n";
@@ -286,7 +285,7 @@ void setupOtaRoutes()
                      html += "\n";
                      html += "document.getElementById('uploadForm').addEventListener('submit', e => {\n";
                      html += "  e.preventDefault();\n";
-                     html += "  const fileInput = e.target.firmware;\n";
+                     html += "  const fileInput = document.querySelector('input[name=\"firmware\"]');\n";
                      html += "  const file = fileInput.files[0];\n";
                      html += "  \n";
                      html += "  if (!file) {\n";
