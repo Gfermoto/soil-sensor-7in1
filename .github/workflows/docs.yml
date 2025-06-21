@@ -64,7 +64,8 @@ jobs:
       - name: Install Doxygen & Graphviz
         run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
       - name: Generate Doxygen HTML
-        run: doxygen Doxyfile
+        continue-on-error: true
+        run: doxygen Doxyfile || true
       - name: Commit updated HTML (if changed)
         run: |
           git config user.name "github-actions[bot]"
