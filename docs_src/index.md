@@ -46,11 +46,7 @@ Welcome to the complete documentation portal of the ESP32-based **JXCT Soil Sens
 
 <div class="card">
   <h3>📂 Examples</h3>
-  <p>Полезные файлы:</p>
-  <ul>
-    <li><a href="examples/soil_loam_calibration.csv">CSV-калибровка</a></li>
-    <li><a href="examples/test_safe_config.json">Шаблон конфигурации</a></li>
-  </ul>
+  <p>Примеры файлов конфигурации и калибровок.</p>
   <a class="md-button" href="examples/">Каталог</a>
 </div>
 
