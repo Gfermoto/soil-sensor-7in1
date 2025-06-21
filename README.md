@@ -1,4 +1,4 @@
-# �� JXCT Soil Sensor
+# JXCT Soil Sensor
 
 [![CI](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml/badge.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml)
 [![Docs](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/docs.yml/badge.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/docs.yml)
