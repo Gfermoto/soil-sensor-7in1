@@ -28,8 +28,8 @@ jobs:
           key: pio-${{ runner.os }}-${{ hashFiles('platformio.ini') }}
       - name: Build firmware (dev & prod)
         run: pio run -e esp32dev -e esp32dev-production
-      - name: Run unit tests (esp32dev)
-        run: pio test -e esp32dev -vv --without-upload
+      - name: Run unit tests (native)
+        run: pio test -e native -vv
       - name: Route presence tests
         run: python -m unittest discover -s test -p "test_routes.py"
 
