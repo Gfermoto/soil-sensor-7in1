@@ -36,8 +36,10 @@ jobs:
         continue-on-error: true
         run: |
           pip install compiledb
-          # Генерируем базу компиляции для всех PlatformIO окружений
-          pio run -e esp32dev -e esp32dev-production -e native --target compiledb || true
+          # Базу достаточно сгенерировать для одного окружения, чтобы получить полный список исходников
+          pio run -e esp32dev --target compiledb || true
+          # Копируем compile_commands.json в корень репозитория – так её увидят clang-tidy и IWYU
+          if [ -f .pio/build/esp32dev/compile_commands.json ]; then cp .pio/build/esp32dev/compile_commands.json ./ ; fi
       - name: Locate compile_commands.json
         id: cc
         run: |
