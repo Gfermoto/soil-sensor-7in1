@@ -42,6 +42,7 @@ nav:
       - QA & Refactoring: development/QA_REFACTORING_PLAN_2025H2.md
       - Tech-debt report: development/TECH_DEBT_REPORT_2025-06.md
       - Static pages migration: development/STATIC_PAGES_MIGRATION_PLAN.md
+      - Static analysis report: development/static_analysis_summary.md
 
 markdown_extensions:
   - admonition
