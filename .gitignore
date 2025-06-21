@@ -11,7 +11,9 @@ libdeps/
 
 # Generated documentation
 docs_src/_doxygen/**
-!docs_src/_doxygen/html/index.html
+!docs_src/_doxygen/
+!docs_src/_doxygen/html/
+!docs_src/_doxygen/html/**
 
 # Build artifacts & logs
 *.log
