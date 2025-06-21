@@ -33,9 +33,12 @@ jobs:
       - name: Route presence tests
         run: python -m unittest discover -s test -p "test_routes.py"
       - name: Generate compile_commands database
-        run: pio run -e native --target compiledb
+        continue-on-error: true
+        run: |
+          pip install compiledb && pio run -e native --target compiledb || true
       - name: Install clang-tidy & IWYU
-        run: sudo apt-get update && sudo apt-get install -y clang-tidy include-what-you-use
+        run: |
+          sudo apt-get update && sudo apt-get install -y clang-tidy clang-tools iwyu
       - name: Run clang-tidy (baseline)
         continue-on-error: true
         run: |
@@ -53,6 +56,7 @@ jobs:
           path: |
             clang_tidy_fixes.yaml
             iwyu_report.txt
+          if-no-files-found: warn
       - name: Install analysis tools (lizard, cloc)
         run: pip install lizard && sudo apt-get install -y cloc
       - name: Run lizard complexity report
@@ -69,5 +73,6 @@ jobs:
           path: |
             lizard_report.txt
             cloc_dup.txt
+          if-no-files-found: warn
 
       # конец job 
