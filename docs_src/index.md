@@ -12,5 +12,6 @@
 * 📡 MQTT / ThingSpeak / HTTP API
 * 🛠️ Fully open-source firmware (C++17, PlatformIO)
 * 📚 Comprehensive documentation — you are here!
+* 📰 C++ API reference: [Doxygen HTML](_doxygen/html/index.html){ .md-button }
 
 > Tip: use the side navigation to explore firmware, hardware and API docs. 
