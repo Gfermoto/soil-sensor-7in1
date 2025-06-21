@@ -41,6 +41,7 @@ nav:
       - Architecture: development/ARCH_OVERALL.md
       - QA & Refactoring: development/QA_REFACTORING_PLAN_2025H2.md
       - Tech-debt report: development/TECH_DEBT_REPORT_2025-06.md
+      - Tech-debt report (auto): development/tech_debt_auto.md
       - Static pages migration: development/STATIC_PAGES_MIGRATION_PLAN.md
       - Static analysis report: development/static_analysis_summary.md
 

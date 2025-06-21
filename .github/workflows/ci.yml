@@ -106,5 +106,17 @@ jobs:
           git add $SUMMARY_FILE
           git commit -m "docs: обновлён отчёт статического анализа (CI)" || echo "No changes to commit"
           git push
+      - name: Generate detailed tech-debt report (Markdown)
+        run: |
+          pip install pyyaml
+          python scripts/gen_tech_debt_issues.py --artifacts . --out-md docs_src/development/tech_debt_auto.md
+      - name: Commit tech-debt report into docs
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config --global user.email "ci-bot@users.noreply.github.com"
+          git config --global user.name "ci-bot"
+          git add docs_src/development/tech_debt_auto.md
+          git commit -m "docs: авто-апдейт tech-debt отчёта (CI)" || echo "No changes"
+          git push
 
       # конец job 
