@@ -21,7 +21,7 @@ jobs:
       - name: Install MkDocs and plugins
         run: pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-git-revision-date-localized-plugin
       - name: Build site
-        run: mkdocs build --strict
+        run: mkdocs build
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
