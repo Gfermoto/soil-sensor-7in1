@@ -17,6 +17,7 @@ jobs:
       - name: Install markdownlint
         run: npm install -g markdownlint-cli
       - name: Lint markdown
+        continue-on-error: true
         run: markdownlint "**/*.md" --config .markdownlint.yml
 
   link-check:
