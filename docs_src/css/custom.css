@@ -19,4 +19,37 @@
     display: block;
     margin-bottom: 0.2rem;
   }
+}
+
+/* Card grid */
+.cards {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin: 1rem 0 2rem;
+}
+.card {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: .4rem;
+  padding: 1rem;
+  background: var(--md-default-bg-color);
+  box-shadow: var(--md-shadow-z1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: box-shadow .2s ease;
+}
+.card:hover {
+  box-shadow: var(--md-shadow-z3);
+}
+.card h3 {
+  margin: 0 0 .4rem;
+  font-size: 1.1rem;
+}
+.card p {
+  flex-grow: 1;
+  margin: 0 0 .8rem;
+}
+.card .md-button {
+  align-self: flex-start;
 } 
