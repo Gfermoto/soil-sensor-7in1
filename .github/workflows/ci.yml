@@ -32,5 +32,26 @@ jobs:
         run: pio test -e native -vv
       - name: Route presence tests
         run: python -m unittest discover -s test -p "test_routes.py"
+      - name: Generate compile_commands database
+        run: pio run -e native --target compiledb
+      - name: Install clang-tidy & IWYU
+        run: sudo apt-get update && sudo apt-get install -y clang-tidy include-what-you-use
+      - name: Run clang-tidy (baseline)
+        continue-on-error: true
+        run: |
+          run-clang-tidy -p . -quiet -export-fixes clang_tidy_fixes.yaml || true
+      - name: Run include-what-you-use (baseline)
+        continue-on-error: true
+        run: |
+          python3 -m pip install iwyu
+          iwyu_tool.py -p . src | tee iwyu_report.txt || true
+      - name: Upload analysis artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: static-analysis-reports
+          path: |
+            clang_tidy_fixes.yaml
+            iwyu_report.txt
 
       # конец job 
