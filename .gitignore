@@ -10,7 +10,8 @@ libdeps/
 .vscode/ipch
 
 # Generated documentation
-docs_src/_doxygen/
+docs_src/_doxygen/**
+!docs_src/_doxygen/html/index.html
 
 # Build artifacts & logs
 *.log
