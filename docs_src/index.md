@@ -6,12 +6,12 @@ Welcome to the complete documentation portal of the ESP32-based **JXCT Soil Sens
 
 | Раздел | Описание |
 |--------|----------|
-| Getting started | Пошаговое руководство по подключению и первому запуску прошивки |
-| Firmware | Конфигурация, OTA-обновления, компенсации датчиков и Modbus-протокол |
-| Hardware | Схема, BOM и монтажные рекомендации |
-| API | REST/OpenAPI спецификация |
-| Agro | Агрономические рекомендации и таблицы норм внесения |
-| Development | Архитектура, план рефакторинга, отчёты по tech-debt |
+| Getting started | [Перейти →](getting-started.md) Пошаговое руководство по подключению и первому запуску прошивки |
+| Firmware | [Перейти →](firmware/config.md) Конфигурация, OTA-обновления, компенсации датчиков и Modbus-протокол |
+| Hardware | [Перейти →](hardware/schematic.md) Схема, BOM и монтажные рекомендации |
+| API | [Перейти →](api/index.md) REST/OpenAPI спецификация |
+| Agro | [Перейти →](agro/recommendations.md) Агрономические рекомендации и таблицы норм внесения |
+| Development | [Перейти →](development/ARCH_OVERALL.md) Архитектура, план рефакторинга, отчёты по tech-debt |
 | C++ API | <a class="md-button" href="_doxygen/html/index.html">Doxygen HTML</a> |
 
 <details>
