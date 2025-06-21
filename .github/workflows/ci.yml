@@ -157,7 +157,7 @@ jobs:
       - name: Install MkDocs Material
         if: github.ref == 'refs/heads/main'
         run: |
-          pip install mkdocs-material
+          pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-git-revision-date-localized-plugin
 
       - name: Build MkDocs site
         if: github.ref == 'refs/heads/main'
