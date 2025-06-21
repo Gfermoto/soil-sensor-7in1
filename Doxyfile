@@ -12,7 +12,7 @@ RECURSIVE              = YES
 USE_MDFILE_AS_MAINPAGE = README.md
 
 # Каталог для вывода документации
-OUTPUT_DIRECTORY       = docs
+OUTPUT_DIRECTORY       = docs_src/_doxygen
 
 # Язык документации
 OUTPUT_LANGUAGE        = Russian

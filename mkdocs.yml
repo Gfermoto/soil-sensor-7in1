@@ -31,6 +31,7 @@ nav:
   - Hardware:
       - Schematic: hardware/schematic.md
       - Bill of materials: hardware/bill-of-materials.md
+  - Examples: examples/index.md
   - API:
       - REST API (OpenAPI): api/index.md
       - Overview: api/overview.md
@@ -38,6 +39,11 @@ nav:
   - Changelog: changelog.md
   - Agro:
       - General recommendations: agro/recommendations.md
+  - Development:
+      - Architecture: development/ARCH_OVERALL.md
+      - QA & Refactoring: development/QA_REFACTORING_PLAN_2025H2.md
+      - Tech-debt report: development/TECH_DEBT_REPORT_2025-06.md
+      - Static pages migration: development/STATIC_PAGES_MIGRATION_PLAN.md
 
 markdown_extensions:
   - admonition
@@ -52,4 +58,7 @@ plugins:
   - git-revision-date-localized:
       fallback_to_build_date: true
 extra_css:
-  - css/custom.css 
+  - css/custom.css
+extra_static_dirs:
+  - docs_src/_doxygen/html
+  - docs_src/examples 
