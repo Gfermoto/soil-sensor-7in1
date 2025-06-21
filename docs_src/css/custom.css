@@ -52,4 +52,12 @@
 }
 .card .md-button {
   align-self: flex-start;
+}
+.card ul {
+  margin: 0 0 .8rem 1.2rem;
+  padding-left: 0;
+}
+.card ul li {
+  list-style: disc;
+  margin: 0.1rem 0;
 } 

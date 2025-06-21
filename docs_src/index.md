@@ -14,20 +14,44 @@ Welcome to the complete documentation portal of the ESP32-based **JXCT Soil Sens
 
 <div class="card">
   <h3>🔧 Firmware</h3>
-  <p>OTA, конфигурация, компенсации, Modbus.</p>
+  <p>Документация по прошивке:</p>
+  <ul>
+    <li><a href="firmware/ota/">OTA</a></li>
+    <li><a href="firmware/config/">Configuration</a></li>
+    <li><a href="firmware/compensation/">Compensation</a></li>
+    <li><a href="firmware/modbus/">Modbus</a></li>
+  </ul>
   <a class="md-button" href="firmware/config/">Подробнее</a>
 </div>
 
 <div class="card">
   <h3>💡 Hardware</h3>
-  <p>Схема, BOM и монтажные рекомендации.</p>
+  <p>Аппаратная часть:</p>
+  <ul>
+    <li><a href="hardware/schematic/">Схема</a></li>
+    <li><a href="hardware/bill-of-materials/">BOM</a></li>
+  </ul>
   <a class="md-button" href="hardware/schematic/">Открыть</a>
 </div>
 
 <div class="card">
   <h3>🌐 API</h3>
-  <p>OpenAPI/REST спецификация.</p>
+  <p>Интерфейсы:</p>
+  <ul>
+    <li><a href="api/">OpenAPI</a></li>
+    <li><a href="api/overview/">Overview</a></li>
+  </ul>
   <a class="md-button" href="api/">Документация</a>
+</div>
+
+<div class="card">
+  <h3>📂 Examples</h3>
+  <p>Полезные файлы:</p>
+  <ul>
+    <li><a href="examples/soil_loam_calibration.csv">CSV-калибровка</a></li>
+    <li><a href="examples/test_safe_config.json">Шаблон конфигурации</a></li>
+  </ul>
+  <a class="md-button" href="examples/">Каталог</a>
 </div>
 
 <div class="card">
@@ -38,7 +62,13 @@ Welcome to the complete documentation portal of the ESP32-based **JXCT Soil Sens
 
 <div class="card">
   <h3>🛠️ Development</h3>
-  <p>Архитектура, планы, техдолг.</p>
+  <p>Разработка:</p>
+  <ul>
+    <li><a href="development/ARCH_OVERALL/">Architecture</a></li>
+    <li><a href="development/QA_REFACTORING_PLAN_2025H2/">QA Plan</a></li>
+    <li><a href="development/TECH_DEBT_REPORT_2025-06/">Tech-Debt</a></li>
+    <li><a href="development/STATIC_PAGES_MIGRATION_PLAN/">Static pages</a></li>
+  </ul>
   <a class="md-button" href="development/ARCH_OVERALL/">Подробнее</a>
 </div>
 
