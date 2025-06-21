@@ -35,7 +35,9 @@ jobs:
       - name: Generate compile_commands database
         continue-on-error: true
         run: |
-          pip install compiledb && pio run -e native --target compiledb || true
+          pip install compiledb
+          # Генерируем базу компиляции для всех PlatformIO окружений
+          pio run -e esp32dev -e esp32dev-production -e native --target compiledb || true
       - name: Locate compile_commands.json
         id: cc
         run: |
@@ -47,6 +49,7 @@ jobs:
       - name: Run clang-tidy (baseline)
         continue-on-error: true
         run: |
+          # run-clang-tidy возвращает 1, если нашёл предупреждения; подавляем код возврата
           run-clang-tidy -p "${{ steps.cc.outputs.dir }}" -export-fixes clang_tidy_fixes.yaml || true
       - name: Run include-what-you-use (baseline)
         continue-on-error: true
