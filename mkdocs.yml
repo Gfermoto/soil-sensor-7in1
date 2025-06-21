@@ -21,7 +21,7 @@ theme:
     - content.code.copy
 
 nav:
-  - Home: index.md
+  - Home: index.html
   - Getting started: getting-started.md
   - Firmware:
       - OTA: firmware/ota.md
