@@ -1,5 +1,0 @@
-<map id="generateApModeUnavailablePage" name="generateApModeUnavailablePage">
-<area shape="rect" id="Node000001" title="Генерация страницы &quot;Недоступно в AP режиме&quot;." alt="" coords="189,5,406,32"/>
-<area shape="rect" id="Node000002" href="$error__handlers_8cpp.html#a6d52ae788bd99342b84e28a1af12392b" title="Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP ..." alt="" coords="5,5,141,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,21,141,21,141,16,173,16"/>
-</map>
