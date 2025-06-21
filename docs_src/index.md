@@ -6,12 +6,12 @@ Welcome to the complete documentation portal of the ESP32-based **JXCT Soil Sens
 
 | Раздел | Описание |
 |--------|----------|
-| Getting started | [Перейти →](getting-started.md) Пошаговое руководство по подключению и первому запуску прошивки |
-| Firmware | [Перейти →](firmware/config.md) Конфигурация, OTA-обновления, компенсации датчиков и Modbus-протокол |
-| Hardware | [Перейти →](hardware/schematic.md) Схема, BOM и монтажные рекомендации |
-| API | [Перейти →](api/index.md) REST/OpenAPI спецификация |
-| Agro | [Перейти →](agro/recommendations.md) Агрономические рекомендации и таблицы норм внесения |
-| Development | [Перейти →](development/ARCH_OVERALL.md) Архитектура, план рефакторинга, отчёты по tech-debt |
+| Getting started | [Перейти →](getting-started.md) Пошаговое руководство по подключению и первому запуску |
+| Firmware | Конфигурация, OTA, компенсации, Modbus:<br/>• [OTA](firmware/ota.md) · [Config](firmware/config.md) · [Compensation](firmware/compensation.md) · [Modbus](firmware/modbus.md) |
+| Hardware | Аппаратная часть: [Схема](hardware/schematic.md) · [BOM](hardware/bill-of-materials.md) |
+| API | [OpenAPI](api/index.md) · [Overview](api/overview.md) |
+| Agro | [Рекомендации](agro/recommendations.md) |
+| Development | Архитектура, планы, отчёты:<br/>• [Architecture](development/ARCH_OVERALL.md) · [QA Plan](development/QA_REFACTORING_PLAN_2025H2.md) · [Tech-Debt](development/TECH_DEBT_REPORT_2025-06.md) · [Static pages](development/STATIC_PAGES_MIGRATION_PLAN.md) |
 | C++ API | <a class="md-button" href="_doxygen/html/index.html">Doxygen HTML</a> |
 
 <details>
