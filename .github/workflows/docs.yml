@@ -4,10 +4,16 @@ on:
   pull_request:
     paths:
       - '**.md'
+      - '**.h'
+      - '**.cpp'
+      - Doxyfile
   push:
     branches: [ main ]
     paths:
       - '**.md'
+      - '**.h'
+      - '**.cpp'
+      - Doxyfile
 
 jobs:
   markdown-lint:
@@ -47,4 +53,29 @@ jobs:
       - name: Install swagger-cli
         run: npm install -g @apidevtools/swagger-cli
       - name: Validate OpenAPI spec
-        run: swagger-cli validate docs/api/openapi.yaml 
+        run: swagger-cli validate docs/api/openapi.yaml
+
+  doxygen-generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Install Doxygen & Graphviz
+        run: sudo apt-get update && sudo apt-get install -y doxygen graphviz
+      - name: Generate Doxygen HTML
+        run: doxygen Doxyfile
+      - name: Commit updated HTML (if changed)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if [ -n "$(git status --porcelain docs/html)" ]; then
+            git add docs/html
+            git commit -m "docs(auto): regenerate Doxygen HTML" || echo "Nothing to commit"
+            git push origin ${GITHUB_REF}
+          fi
+      - name: Upload HTML artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: doxygen-html
+          path: docs/html 
