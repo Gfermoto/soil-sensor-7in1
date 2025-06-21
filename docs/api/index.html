@@ -6,10 +6,15 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.css" />
   <style>
     body { margin: 0; padding: 0; }
+    header { background:#0b3d91; color:#fff; padding:12px 20px; font-family:sans-serif; }
+    header h1 { margin:0; font-size:20px; }
   </style>
 </head>
 <body>
-  <redoc spec-url="openapi.yaml"></redoc>
+  <header>
+    <h1>JXCT Soil Sensor — REST API</h1>
+  </header>
+  <redoc spec-url="openapi.yaml" hide-download-button="false" expand-responses="200,400"></redoc>
   <script src="https://cdn.jsdelivr.net/npm/redoc@next/bundles/redoc.standalone.js"></script>
 </body>
 </html> 
