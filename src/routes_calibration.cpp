@@ -1,11 +1,11 @@
-#include "web_routes.h"
-#include "sensor_compensation.h"
-#include "logger.h"
-#include "jxct_ui_system.h"
-#include "validation_utils.h"
-#include "calibration_manager.h"
-#include <vector>
 #include <LittleFS.h>
+#include <vector>
+#include "calibration_manager.h"
+#include "jxct_ui_system.h"
+#include "logger.h"
+#include "sensor_compensation.h"
+#include "validation_utils.h"
+#include "web_routes.h"
 
 // Экземпляр веб-сервера объявлен во внешнем модуле
 extern WebServer webServer;
@@ -28,7 +28,9 @@ static String generateCalibrationPage()
     // Форма выбора профиля почвы
     html += "<form action='/calibration/save' method='post' enctype='multipart/form-data'>";
     html += "<div class='section'><h2>Профиль почвы</h2>";
-    html += "<div class='form-group'><label for='soil_profile'>Тип почвы:</label><select id='soil_profile' name='soil_profile'>";
+    html +=
+        "<div class='form-group'><label for='soil_profile'>Тип почвы:</label><select id='soil_profile' "
+        "name='soil_profile'>";
     html += "<option value='sand'>Песок</option>";
     html += "<option value='sandpeat'>Песчано-торфяной</option>";
     html += "<option value='loam'>Суглинок</option>";
@@ -45,12 +47,14 @@ static String generateCalibrationPage()
     bool hasClay = CalibrationManager::hasTable(SoilProfile::CLAY);
     bool hasPeat = CalibrationManager::hasTable(SoilProfile::PEAT);
     html += " <span style='font-size:14px;color:#888'>(";
-    html += "Песок:" + String(hasSand?"✅":"❌") + ", ";
-    html += "Песч.-торф:" + String(hasSandPeat?"✅":"❌") + ", ";
-    html += "Суглинок:" + String(hasLoam?"✅":"❌") + ", ";
-    html += "Глина:" + String(hasClay?"✅":"❌") + ", ";
-    html += "Торф:" + String(hasPeat?"✅":"❌") + ")</span></h2>";
-    html += "<div class='form-group'><label for='calibration_csv'>Файл CSV:</label><input type='file' id='calibration_csv' name='calibration_csv' accept='.csv' required></div></div>";
+    html += "Песок:" + String(hasSand ? "✅" : "❌") + ", ";
+    html += "Песч.-торф:" + String(hasSandPeat ? "✅" : "❌") + ", ";
+    html += "Суглинок:" + String(hasLoam ? "✅" : "❌") + ", ";
+    html += "Глина:" + String(hasClay ? "✅" : "❌") + ", ";
+    html += "Торф:" + String(hasPeat ? "✅" : "❌") + ")</span></h2>";
+    html +=
+        "<div class='form-group'><label for='calibration_csv'>Файл CSV:</label><input type='file' id='calibration_csv' "
+        "name='calibration_csv' accept='.csv' required></div></div>";
 
     html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить", "");
     html += "</form>";
@@ -70,7 +74,8 @@ static void handleCalibrationPage()
     String html = generateCalibrationPage();
     if (webServer.hasArg("ok"))
     {
-        html.replace("<div class='container'>", "<div class='container'><div class='msg msg-success'>✅ Калибровочная таблица сохранена</div>");
+        html.replace("<div class='container'>",
+                     "<div class='container'><div class='msg msg-success'>✅ Калибровочная таблица сохранена</div>");
     }
     webServer.send(200, "text/html; charset=utf-8", html);
 }
@@ -86,11 +91,16 @@ static void handleCalibrationUpload()
     {
         // Получаем профиль почвы из аргумента формы
         String profileStr = webServer.arg("soil_profile");
-        if (profileStr == "sand") uploadProfile = SoilProfile::SAND;
-        else if (profileStr == "sandpeat") uploadProfile = SoilProfile::SANDPEAT;
-        else if (profileStr == "loam") uploadProfile = SoilProfile::LOAM;
-        else if (profileStr == "peat") uploadProfile = SoilProfile::PEAT;
-        else if (profileStr == "clay") uploadProfile = SoilProfile::CLAY;
+        if (profileStr == "sand")
+            uploadProfile = SoilProfile::SAND;
+        else if (profileStr == "sandpeat")
+            uploadProfile = SoilProfile::SANDPEAT;
+        else if (profileStr == "loam")
+            uploadProfile = SoilProfile::LOAM;
+        else if (profileStr == "peat")
+            uploadProfile = SoilProfile::PEAT;
+        else if (profileStr == "clay")
+            uploadProfile = SoilProfile::CLAY;
 
         CalibrationManager::init();
         const char* path = CalibrationManager::profileToFilename(uploadProfile);
@@ -129,7 +139,11 @@ void setupCalibrationRoutes()
     CalibrationManager::init();
 
     webServer.on("/calibration", HTTP_GET, handleCalibrationPage);
-    webServer.on("/calibration/save", HTTP_POST, []() {
-        // Пустой ack, фактическая обработка в uploadHandler
-    }, handleCalibrationUpload);
-} 
+    webServer.on(
+        "/calibration/save", HTTP_POST,
+        []()
+        {
+            // Пустой ack, фактическая обработка в uploadHandler
+        },
+        handleCalibrationUpload);
+}

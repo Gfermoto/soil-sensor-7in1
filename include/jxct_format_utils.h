@@ -1,6 +1,6 @@
 #pragma once
-#include <string>
 #include <Arduino.h>
+#include <string>
 
 std::string format_moisture(float value);     // "65.8"
 std::string format_temperature(float value);  // "23.4"

@@ -4,11 +4,11 @@
  * @details Загрузка, сохранение, сброс и валидация настроек устройства через NVS (Preferences).
  */
 #include <WiFi.h>
-#include "version.h"  // ✅ Централизованное управление версией
-#include "jxct_device_info.h"
-#include "jxct_config_vars.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
+#include "jxct_config_vars.h"
+#include "jxct_device_info.h"
 #include "logger.h"
+#include "version.h"  // ✅ Централизованное управление версией
 
 // Firmware version definition - теперь берется из централизованного файла version.h
 // const char* FIRMWARE_VERSION уже определена в version.h
@@ -34,7 +34,7 @@ String getDefaultTopic()
 Config config;
 Preferences preferences;
 
-#define KEY_NTP_INTERVAL "ntpIntvl"   // ≤15 bytes, иначе NVS выдаёт KEY_TOO_LONG
+#define KEY_NTP_INTERVAL "ntpIntvl"  // ≤15 bytes, иначе NVS выдаёт KEY_TOO_LONG
 
 void loadConfig()
 {
@@ -107,7 +107,7 @@ void loadConfig()
     config.irrigationHoldMinutes = preferences.getUShort("irrigHold", 5);
 
     // v2.6.1: сезонные коэффициенты и тип среды
-    config.environmentType = preferences.getUChar("envType", 0); // 0=outdoor по умолчанию
+    config.environmentType = preferences.getUChar("envType", 0);  // 0=outdoor по умолчанию
     config.flags.seasonalAdjustEnabled = preferences.getBool("seasonAdj", true);
     config.flags.autoOtaEnabled = preferences.getBool("autoOTA", false);
 
@@ -282,7 +282,7 @@ void resetConfig()
     config.irrigationHoldMinutes = 5;
 
     // v2.6.1: сезонные коэффициенты и тип среды
-    config.environmentType = 0; // 0=outdoor по умолчанию
+    config.environmentType = 0;  // 0=outdoor по умолчанию
     config.flags.seasonalAdjustEnabled = 0;
     config.flags.autoOtaEnabled = 0;
 

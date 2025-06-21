@@ -1,21 +1,21 @@
-#include <WiFiClient.h>
 #include "thingspeak_client.h"
-#include "modbus_sensor.h"
-#include "wifi_manager.h"
+#include <NTPClient.h>
 #include <ThingSpeak.h>
-#include "jxct_device_info.h"
+#include <WiFiClient.h>
+#include <ctype.h>
 #include "jxct_config_vars.h"
+#include "jxct_device_info.h"
 #include "jxct_format_utils.h"
 #include "logger.h"
-#include <NTPClient.h>
-#include <ctype.h>
+#include "modbus_sensor.h"
+#include "wifi_manager.h"
 extern NTPClient* timeClient;
 
 // URL для отправки данных в ThingSpeak
 const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";
 
 static unsigned long lastTsPublish = 0;
-static int consecutiveFailCount = 0; // счётчик подряд неудач
+static int consecutiveFailCount = 0;  // счётчик подряд неудач
 
 // Утилита для обрезки пробелов в начале/конце строки C
 static void trim(char* s)
@@ -28,8 +28,7 @@ static void trim(char* s)
 
     // Trim trailing
     size_t len = strlen(s);
-    while (len > 0 && isspace((unsigned char)s[len - 1]))
-        s[--len] = '\0';
+    while (len > 0 && isspace((unsigned char)s[len - 1])) s[--len] = '\0';
 }
 
 // ✅ Заменяем String на статические буферы
@@ -75,10 +74,10 @@ bool sendDataToThingSpeak()
     if (channelId == 0 || strlen(apiKeyBuf) < 16)
     {
         // Не логируем ошибку каждый раз, просто пропускаем отправку
-        if (strlen(thingSpeakLastErrorBuffer) == 0) // логируем только первый раз
+        if (strlen(thingSpeakLastErrorBuffer) == 0)  // логируем только первый раз
         {
-            logWarn("ThingSpeak: настройки не заданы (Channel ID: %s, API Key: %d символов)", 
-                    channelBuf, strlen(apiKeyBuf));
+            logWarn("ThingSpeak: настройки не заданы (Channel ID: %s, API Key: %d символов)", channelBuf,
+                    strlen(apiKeyBuf));
             strlcpy(thingSpeakLastErrorBuffer, "Настройки не заданы", sizeof(thingSpeakLastErrorBuffer));
         }
         return false;
@@ -93,8 +92,8 @@ bool sendDataToThingSpeak()
     ThingSpeak.setField(6, format_npk(sensorData.phosphorus).c_str());
     ThingSpeak.setField(7, format_npk(sensorData.potassium).c_str());
 
-    logData("Отправка в ThingSpeak: T=%.1f°C, H=%.1f%%, PH=%.2f", 
-            sensorData.temperature, sensorData.humidity, sensorData.ph);
+    logData("Отправка в ThingSpeak: T=%.1f°C, H=%.1f%%, PH=%.2f", sensorData.temperature, sensorData.humidity,
+            sensorData.ph);
 
     int res = ThingSpeak.writeFields(channelId, apiKeyBuf);
 
@@ -104,7 +103,7 @@ bool sendDataToThingSpeak()
         lastTsPublish = millis();
         snprintf(thingSpeakLastPublishBuffer, sizeof(thingSpeakLastPublishBuffer), "%lu", lastTsPublish);
         thingSpeakLastErrorBuffer[0] = '\0';  // Очистка ошибки
-        consecutiveFailCount = 0; // обнуляем при успехе
+        consecutiveFailCount = 0;             // обнуляем при успехе
         return true;
     }
     else if (res == -301)
@@ -135,7 +134,8 @@ bool sendDataToThingSpeak()
     else if (res == 400)
     {
         logError("ThingSpeak: HTTP 400 – неверный запрос (проверьте API Key/Channel)");
-        strlcpy(thingSpeakLastErrorBuffer, "HTTP 400 – неверный запрос (API/Channel)", sizeof(thingSpeakLastErrorBuffer));
+        strlcpy(thingSpeakLastErrorBuffer, "HTTP 400 – неверный запрос (API/Channel)",
+                sizeof(thingSpeakLastErrorBuffer));
     }
     else
     {
@@ -144,13 +144,13 @@ bool sendDataToThingSpeak()
     }
 
     consecutiveFailCount++;
-    
+
     // Если слишком много ошибок подряд, временно отключаем на 1 час
     if (consecutiveFailCount >= 10)
     {
         logWarn("ThingSpeak: %d ошибок подряд, отключаем на 1 час", consecutiveFailCount);
-        lastTsPublish = millis(); // устанавливаем время последней попытки
-        consecutiveFailCount = 0; // сбрасываем счётчик
+        lastTsPublish = millis();  // устанавливаем время последней попытки
+        consecutiveFailCount = 0;  // сбрасываем счётчик
         strlcpy(thingSpeakLastErrorBuffer, "Отключён на 1 час (много ошибок)", sizeof(thingSpeakLastErrorBuffer));
     }
 

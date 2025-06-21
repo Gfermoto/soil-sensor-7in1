@@ -1,14 +1,14 @@
+#include <math.h>
 #include <unity.h>
 #include "sensor_compensation.h"
-#include <math.h>
 
 static void test_correctEC()
 {
-    const float ecRaw = 1.5f;          // мС/см
-    const float T = 20.0f;             // °C
-    const float theta = 30.0f;         // %
-    const float ec25   = ecRaw / (1.0f + 0.021f * (T - 25.0f));
-    const float k      = 0.30f; // LOAM коэффициент
+    const float ecRaw = 1.5f;   // мС/см
+    const float T = 20.0f;      // °C
+    const float theta = 30.0f;  // %
+    const float ec25 = ecRaw / (1.0f + 0.021f * (T - 25.0f));
+    const float k = 0.30f;  // LOAM коэффициент
     const float expected = ec25 * powf(45.0f / theta, 1.0f + k);
 
     const float actual = correctEC(ecRaw, T, theta, SoilType::LOAM);
@@ -58,4 +58,4 @@ void setup()
     UNITY_END();
 }
 
-void loop() {} 
+void loop() {}

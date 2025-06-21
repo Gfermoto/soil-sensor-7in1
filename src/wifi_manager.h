@@ -2,10 +2,10 @@
 #define WIFI_MANAGER_H
 
 #include <Arduino.h>
-#include <WiFi.h>
 #include <DNSServer.h>
-#include <WebServer.h>
 #include <Preferences.h>
+#include <WebServer.h>
+#include <WiFi.h>
 
 // Перечисление для режимов WiFi
 enum class WiFiMode
