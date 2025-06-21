@@ -4,6 +4,7 @@ site_description: ESP32-based IoT soil sensor firmware — docs & API
 repo_url: https://github.com/Gfermoto/soil-sensor-7in1
 repo_name: Gfermoto/soil-sensor-7in1
 copyright: "© 2025 Gfermoto"
+docs_dir: docs_src
 
 theme:
   name: material
@@ -57,5 +58,5 @@ plugins:
 extra_css:
   - css/custom.css
 extra_static_dirs:
-  - docs_src/_doxygen/html
-  - docs_src/examples 
+  - _doxygen/html
+  - examples 
