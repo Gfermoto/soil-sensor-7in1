@@ -140,6 +140,8 @@ void setupOtaRoutes()
                      html += "    const status = j.status;\n";
                      html += "    const statusEl = document.getElementById('otaStatus');\n";
                      html += "    statusEl.textContent = status;\n";
+                     html += "    // Сброс цвета: по-умолчанию серый, перезаписываем только при ошибке\n";
+                     html += "    statusEl.style.color = '#666';\n";
                      html += "    \n";
                      html += "    // Обработка прогресса\n";
                      html += "    if (j.localUpload) {\n";

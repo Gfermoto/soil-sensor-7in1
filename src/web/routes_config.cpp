@@ -282,6 +282,75 @@ void setupConfigRoutes()
     // API v1 конфигурация
     webServer.on(API_CONFIG_EXPORT, HTTP_GET, sendConfigExportJson);
 
+    // Импорт конфигурации через multipart/form-data (файл JSON)
+    static String importedJson;
+    webServer.on(
+        "/api/config/import", HTTP_POST,
+        // Финальный обработчик после загрузки
+        []()
+        {
+            logWebRequest("POST", "/api/config/import", webServer.client().remoteIP().toString());
+
+            if (currentWiFiMode == WiFiMode::AP)
+            {
+                webServer.send(403, "application/json", "{\"error\":\"Недоступно в режиме AP\"}");
+                importedJson = "";
+                return;
+            }
+
+            // Парсим накопленный JSON
+            StaticJsonDocument<2048> doc;
+            DeserializationError err = deserializeJson(doc, importedJson);
+            if (err)
+            {
+                String resp = String("{\"error\":\"Ошибка JSON: ") + err.c_str() + "\"}";
+                webServer.send(400, "application/json", resp);
+                importedJson = "";
+                return;
+            }
+
+            // --- Применяем конфигурацию --- (минимальный набор, расширяйте по необходимости)
+            if (doc.containsKey("wifi"))
+            {
+                JsonObject wifi = doc["wifi"];
+                strlcpy(config.ssid, wifi["ssid"].as<const char*>(), sizeof(config.ssid));
+                strlcpy(config.password, wifi["password"].as<const char*>(), sizeof(config.password));
+            }
+
+            if (doc.containsKey("mqtt"))
+            {
+                JsonObject mqtt = doc["mqtt"];
+                config.flags.mqttEnabled = mqtt["enabled"].as<bool>();
+                strlcpy(config.mqttServer, mqtt["server"].as<const char*>(), sizeof(config.mqttServer));
+                config.mqttPort = mqtt["port"].as<int>();
+                strlcpy(config.mqttUser, mqtt["user"].as<const char*>(), sizeof(config.mqttUser));
+                strlcpy(config.mqttPassword, mqtt["password"].as<const char*>(), sizeof(config.mqttPassword));
+            }
+
+            // TODO: обработать intervals, filters, device и др.
+
+            saveConfig();
+            importedJson = "";
+            webServer.send(200, "application/json", "{\"ok\":true}");
+        },
+        // uploadHandler: накапливаем файл
+        []()
+        {
+            HTTPUpload& up = webServer.upload();
+            if (up.status == UPLOAD_FILE_START)
+            {
+                importedJson = "";
+            }
+            else if (up.status == UPLOAD_FILE_WRITE)
+            {
+                importedJson += String((const char*)up.buf, up.currentSize);
+            }
+            else if (up.status == UPLOAD_FILE_END)
+            {
+                // ничего, финальное действие в основном хендлере
+            }
+        });
+
     logDebug("Маршруты конфигурации настроены: /intervals, /config_manager, /api/v1/config/export");
 }
 

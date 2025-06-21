@@ -30,5 +30,7 @@ jobs:
         run: pio run -e esp32dev -e esp32dev-production
       - name: Run unit tests (esp32dev)
         run: pio test -e esp32dev -vv
+      - name: Route presence tests
+        run: python -m unittest discover -s test -p "test_routes.py"
 
       # конец job 
