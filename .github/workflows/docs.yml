@@ -38,4 +38,13 @@ jobs:
           for f in $files; do
             echo "▶ checking $f";
             markdown-link-check -q "$f";
-          done 
+          done
+
+  api-validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install swagger-cli
+        run: npm install -g @apidevtools/swagger-cli
+      - name: Validate OpenAPI spec
+        run: swagger-cli validate docs/api/openapi.yaml 
