@@ -2,8 +2,8 @@
 # Конфигурация для генерации документации JXCT Soil Sensor v2.0
 
 # Основная информация о проекте
-PROJECT_NAME           = "JXCT Soil Sensor v2.0"
-PROJECT_NUMBER         = "v2.0 (June 2025)"
+PROJECT_NAME           = "JXCT Soil Sensor"
+PROJECT_NUMBER         = "v3.2.29 (June 2025)"
 PROJECT_BRIEF          = "Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration"
 
 # Каталоги для поиска исходников
