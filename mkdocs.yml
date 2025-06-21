@@ -1,0 +1,50 @@
+site_name: JXCT Soil Sensor
+site_url: https://gfermoto.github.io/soil-sensor-7in1/
+site_description: ESP32-based IoT soil sensor firmware — docs & API
+repo_url: https://github.com/Gfermoto/soil-sensor-7in1
+repo_name: Gfermoto/soil-sensor-7in1
+copyright: "© 2025 Gfermoto"
+
+theme:
+  name: material
+  logo: img/logo.svg
+  favicon: img/favicon.ico
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: amber
+  features:
+    - navigation.tabs
+    - navigation.top
+    - navigation.tracking
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Getting started: getting-started.md
+  - Firmware:
+      - Build: firmware/build.md
+      - OTA: firmware/ota.md
+      - Configuration: firmware/config.md
+  - Hardware:
+      - Schematic: hardware/schematic.md
+      - Bill of materials: hardware/bill-of-materials.md
+  - API:
+      - REST API (OpenAPI): api/index.md
+  - Contributing: contributing/guidelines.md
+  - Changelog: changelog.md
+
+markdown_extensions:
+  - admonition
+  - toc:
+      permalink: true
+  - attr_list
+  - pymdownx.superfences
+  - pymdownx.emoji
+plugins:
+  - search
+  - awesome-pages
+  - git-revision-date-localized:
+      fallback_to_build_date: true
+extra_css:
+  - css/custom.css 

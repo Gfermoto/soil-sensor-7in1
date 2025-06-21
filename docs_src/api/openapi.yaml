@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: JXCT Soil Sensor API
+  description: |-
+    REST API endpoints exposed by the ESP32-based firmware.
+    Документ описывает текущую реализацию конфигурационного энд-пойнта.
+  version: "3.2.29"
+servers:
+  - url: http://{deviceIp}
+    description: Device local IP
+    variables:
+      deviceIp:
+        default: 192.168.4.1
+        description: IP-адрес устройства
+paths:
+  /api/v1/config/export:
+    get:
+      summary: Export configuration
+      description: Returns current device configuration in JSON format (passwords masked).
+      operationId: exportConfig
+      tags: [Config]
+      responses:
+        "200":
+          description: Successful export
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConfigExport'
+              examples:
+                default:
+                  value:
+                    mqtt:
+                      enabled: true
+                      server: YOUR_MQTT_SERVER_HERE
+                      port: 1883
+                      user: YOUR_MQTT_USER_HERE
+                      password: YOUR_MQTT_PASSWORD_HERE
+                    thingspeak:
+                      enabled: false
+                      channel_id: YOUR_CHANNEL_ID_HERE
+                      api_key: YOUR_API_KEY_HERE
+                    intervals:
+                      sensor_read: 1000
+                      mqtt_publish: 60000
+                      thingspeak: 900000
+                      web_update: 5000
+                    filters:
+                      delta_temperature: 0.1
+                      delta_humidity: 0.5
+                      delta_ph: 0.01
+                      delta_ec: 10
+                      delta_npk: 1
+                      moving_average_window: 5
+                      force_publish_cycles: 5
+                      filter_algorithm: 0
+                      outlier_filter_enabled: 0
+                    device:
+                      use_real_sensor: true
+                      hass_enabled: false
+                    export_timestamp: 123456789
+components:
+  schemas:
+    MqttConfig:
+      type: object
+      properties:
+        enabled: { type: boolean }
+        server: { type: string }
+        port:
+          type: integer
+          minimum: 1
+          maximum: 65535
+        user: { type: string }
+        password: { type: string }
+      required: [enabled, server, port]
+    ThingSpeakConfig:
+      type: object
+      properties:
+        enabled: { type: boolean }
+        channel_id: { type: string }
+        api_key: { type: string }
+    Intervals:
+      type: object
+      properties:
+        sensor_read: { type: integer, description: Interval in milliseconds }
+        mqtt_publish: { type: integer }
+        thingspeak: { type: integer }
+        web_update: { type: integer }
+    Filters:
+      type: object
+      properties:
+        delta_temperature: { type: number }
+        delta_humidity: { type: number }
+        delta_ph: { type: number }
+        delta_ec: { type: number }
+        delta_npk: { type: number }
+        moving_average_window: { type: integer }
+        force_publish_cycles: { type: integer }
+        filter_algorithm: { type: integer, enum: [0, 1] }
+        outlier_filter_enabled: { type: integer, enum: [0, 1] }
+    DeviceFlags:
+      type: object
+      properties:
+        use_real_sensor: { type: boolean }
+        hass_enabled: { type: boolean }
+    ConfigExport:
+      type: object
+      properties:
+        mqtt:
+          $ref: '#/components/schemas/MqttConfig'
+        thingspeak:
+          $ref: '#/components/schemas/ThingSpeakConfig'
+        intervals:
+          $ref: '#/components/schemas/Intervals'
+        filters:
+          $ref: '#/components/schemas/Filters'
+        device:
+          $ref: '#/components/schemas/DeviceFlags'
+        export_timestamp: { type: integer }
+      required: [intervals, filters, export_timestamp] 

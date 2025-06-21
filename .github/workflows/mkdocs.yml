@@ -1,0 +1,29 @@
+name: MkDocs
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'docs_src/**'
+      - 'mkdocs.yml'
+      - '.github/workflows/mkdocs.yml'
+  workflow_dispatch:
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install MkDocs and plugins
+        run: pip install mkdocs-material mkdocs-awesome-pages-plugin mkdocs-git-revision-date-localized-plugin
+      - name: Build site
+        run: mkdocs build --strict
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site 
