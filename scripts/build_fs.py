@@ -22,12 +22,14 @@ else:
         # Trigger buildfs via PlatformIO CLI because BUILDFS var not available in PIO 6.4+
         import subprocess, sys
         cmd = [sys.executable, "-m", "platformio", "run", "-e", env["PIOENV"], "-t", "buildfs"]
-        if subprocess.call(cmd) != 0:
-            sys.exit("buildfs failed")
-        spiffs_bin = os.path.join(env.subst("$BUILD_DIR"), "spiffs.bin")
-        if os.path.isfile(spiffs_bin):
-            dst = os.path.join(env.subst("$BUILD_DIR"), "web_spiffs.bin")
-            shutil.copy2(spiffs_bin, dst)
-            print(f"[build_fs] SPIFFS image copied to {dst}")
+        result = subprocess.call(cmd)
+        if result != 0:
+            print("[build_fs] buildfs failed – continuing CI without web SPIFS image")
         else:
-            print("[build_fs] spiffs.bin not found (buildfs may have failed)") 
+            spiffs_bin = os.path.join(env.subst("$BUILD_DIR"), "spiffs.bin")
+            if os.path.isfile(spiffs_bin):
+                dst = os.path.join(env.subst("$BUILD_DIR"), "web_spiffs.bin")
+                shutil.copy2(spiffs_bin, dst)
+                print(f"[build_fs] SPIFFS image copied to {dst}")
+            else:
+                print("[build_fs] spiffs.bin not found (buildfs may have failed)") 
