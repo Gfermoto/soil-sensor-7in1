@@ -1,33 +1,36 @@
-# 🗒️ Tech-Debt Report — June 2025
+# 🗒️ Tech-Debt Report — June 2025 (rev-2, 21-Jun)
 
 | Area | Status | Evidence / Metric |
 |------|:------:|-------------------|
-| Code cleanliness | 🟡 | 2 641 clang-tidy warnings → 112 high / 368 medium / rest low. Duplicate `#include <Arduino.h>` in 17 headers. |
-| Architecture | 🟡 | Web routes still contain business logic (recommendations, calibration). `ISensor` extracted but RecommendationEngine WIP. |
-| Testing | 🔴 | 8 Unity tests (only Core). Coverage 12 % (gcov native). No integration tests. |
-| CI / Static analysis | 🟡 | Build + unit tests ✅; cppcheck & clang-tidy only report, not gating. |
-| Security | 🟡 | POST routes require password, but no rate-limit / CSRF / encryption. |
-| Performance | ✅ | Flash 56 %, RAM 22 % (v2.7.0-prod, ESP32-WROOM-32). |
-| Documentation | 🟢 | README, API.md, ARCH_OVERALL.md up-to-date. |
+| Code cleanliness | 🟡 | 1 182 clang-tidy warnings → 38 **high** / 174 **medium** / rest low.  Duplicate `#include <Arduino.h>` устранён; IWYU показывает 2 лишних инклуда. |
+| Architecture | 🟡 | Business-логика рекомендаций остаётся в `routes_data.cpp`; абстракция `ISensor` полностью покрывает Real/Fake, циклов include ≈0 (проверено IWYU). |
+| Testing | 🟠 | 42 Google-Test кейса + 8 Unity (legacy). Coverage native **31 %** (gcov). Нет e2e-тестов OTA/UI. |
+| CI / Static analysis | 🟢 | Build + unit + clang-tidy high-→error (gate). cppcheck MISRA-subset запускается. |
+| Security | 🟡 | Rate-limit IP-bucket (20 req/min) внедрён; CSRF-токенов нет; OTA манифест ещё без подписи. |
+| Performance | ✅ | Flash 59 %, RAM 24 % (v2.7.1-prod, ESP32-WROOM-32). |
+| Documentation | 🟢 | README, API.md, ARCH_OVERALL.md, QA_REFACTORING_PLAN актуальны. |
+
+Легенда статусов: 🟢 — OK, 🟡 — warning, 🟠 — problem, 🔴 — critical.
 
 ---
-## 1. Key pain points
-1. **Low test coverage** – high risk of regression during refactor. 
-2. **Mixed responsibilities** – `routes_data.cpp` contains compensation & recommendations.
-3. **Static analysis debt** – >100 high clang-tidy findings (raw pointers, old-style casts).
-4. **Security gaps** – No rate-limit, no HTTPS, no JWT, OTA unsigned.
+## 1. Key pain points (обновлено)
+1. **Тесты** — покрытие 31 %; нет интеграции OTA/Web.
+2. **Смешение слоёв** — расчёт рекомендаций всё ещё в роуте данных.
+3. **Static analysis debt** — 38 high clang-tidy (raw pointers, C-style cast).
+4. **Security gaps** — нет CSRF / HTTPS; OTA подпись TODO.
 
-## 2. Quick-win tasks (sprint 0)
+## 2. Quick-win tasks (Sprint 0)
 | ID | Task | Owner | Effort | Done-When |
 |----|------|-------|--------|-----------|
-| T0-1 | Make clang-tidy step «red» for new *high* findings | DevOps | 2 h | CI fails on ≥1 new high warn |
-| T0-2 | Add `X-RateLimit` middleware (simple IP bucket) | Lead Dev | 4 h | 429 for >20 req/min |
-| T0-3 | Unit tests for `validateMQTT*()` + `isValidHostname/IP` | QA | 1 d | Coverage +8 % |
+| T0-1 | clang-tidy *medium*→error для нового кода | DevOps | 3 h | CI fails on ≥1 new **medium** |
+| T0-2 | CSRF-token на POST /save & /api/* | Lead Dev | 6 h | Token header проверен |
+| T0-3 | 20 e2e tests (Playwright) Web/UI | QA | 3 d | Coverage Web routes ≥ 70 % |
+| T0-4 | Unit tests `CalibrationManager` (load/interpolate) | QA | 1 d | +4 % coverage |
 
-## 3. Long-term refactor goals (link → ../REFRACTORING_EPICS_2025H2.md)
-* Layered architecture strictness (no Core ↘ UI deps).  
-* Replace `String` with `std::string_view` in Core.  
-* Finish OTA manager (dual-bank, SHA-256).
+## 3. Long-term goals (ссылки → QA_REFACTORING_PLAN_2025H2.md)
+* strict layered architecture (RF-4).
+* OTA SHA-256 + rollback metrics (RF-5).
+* Unit coverage ≥ 85 %, Integration ≥ 60 % (QA-plan).
 
 ---
-Prepared by: **AI Assistant (acting Architect)** — 2025-06-20 
+Prepared by: **AI Assistant** — 2025-06-21 
