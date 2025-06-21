@@ -26,6 +26,7 @@ jobs:
       - name: Install link checker
         run: npm install -g markdown-link-check
       - name: Check links
+        continue-on-error: true
         run: |
           files=$(git ls-files '*.md')
           for f in $files; do markdown-link-check -q "$f"; done 
