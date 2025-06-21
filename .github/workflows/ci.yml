@@ -36,13 +36,18 @@ jobs:
         continue-on-error: true
         run: |
           pip install compiledb && pio run -e native --target compiledb || true
+      - name: Locate compile_commands.json
+        id: cc
+        run: |
+          FILE=$(find . -name compile_commands.json | head -n1 || true)
+          if [ -z "$FILE" ]; then echo "dir=." >> $GITHUB_OUTPUT; else echo "dir=$(dirname $FILE)" >> $GITHUB_OUTPUT; fi
       - name: Install clang-tidy & IWYU
         run: |
           sudo apt-get update && sudo apt-get install -y clang-tidy clang-tools iwyu
       - name: Run clang-tidy (baseline)
         continue-on-error: true
         run: |
-          run-clang-tidy -p . -export-fixes clang_tidy_fixes.yaml || true
+          run-clang-tidy -p "${{ steps.cc.outputs.dir }}" -export-fixes clang_tidy_fixes.yaml || true
       - name: Run include-what-you-use (baseline)
         continue-on-error: true
         run: |
