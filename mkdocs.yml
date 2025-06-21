@@ -8,7 +8,7 @@ copyright: "© 2025 Gfermoto"
 theme:
   name: material
   logo: img/logo.svg
-  favicon: img/favicon.ico
+  # favicon: img/favicon.ico
   palette:
     - scheme: default
       primary: indigo
@@ -23,7 +23,6 @@ nav:
   - Home: index.md
   - Getting started: getting-started.md
   - Firmware:
-      - Build: firmware/build.md
       - OTA: firmware/ota.md
       - Configuration: firmware/config.md
       - Compensation: firmware/compensation.md
@@ -35,8 +34,6 @@ nav:
   - API:
       - REST API (OpenAPI): api/index.md
       - Overview: api/overview.md
-  - Contributing: contributing/guidelines.md
-  - Changelog: changelog.md
   - Agro:
       - General recommendations: agro/recommendations.md
   - Development:
