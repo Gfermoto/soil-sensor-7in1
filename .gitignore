@@ -8,3 +8,17 @@ libdeps/
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+
+# Generated documentation
+docs_src/_doxygen/
+
+# Build artifacts & logs
+*.log
+monitor_capture.txt
+compile_commands.json
+serial_output.log
+serial_watch.log
+build.log
+
+# Ignore placeholder docs if re-generated
+docs/
