@@ -53,5 +53,21 @@ jobs:
           path: |
             clang_tidy_fixes.yaml
             iwyu_report.txt
+      - name: Install analysis tools (lizard, cloc)
+        run: pip install lizard && sudo apt-get install -y cloc
+      - name: Run lizard complexity report
+        continue-on-error: true
+        run: lizard -l cpp src include -C 15 -w -o lizard_report.txt || true
+      - name: Run cloc duplication (copy-paste)
+        continue-on-error: true
+        run: cloc --by-file --duplicates src include | tee cloc_dup.txt || true
+      - name: Upload metrics artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: metrics-reports
+          path: |
+            lizard_report.txt
+            cloc_dup.txt
 
       # конец job 
