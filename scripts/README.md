@@ -88,3 +88,22 @@ pio device monitor
 - `release_cycle.py` - основной Python скрипт
 - `release.ps1` - PowerShell обертка для удобства
 - `auto_version.py` - автоматическое обновление version.h при сборке 
+
+# 📜 Скрипты проекта
+
+| Скрипт | Назначение |
+|--------|------------|
+| `release.ps1` | Автоматический релиз (patch/minor/major) + production build |
+| `release_cycle.py` | Логика инкремента SemVer, правка `VERSION`, `manifest.json` |
+| `auto_version.py` | Генерация build meta для CI (Git hash, дата) |
+| `build_fs.ps1` | Сборка `web_spiffs.bin` из `web/` (генерируется Vite) |
+| `gen_docs.ps1` | Запуск Doxygen + копирование HTML в `docs/html` |
+
+Запуск примеров:
+```powershell
+# Патч-релиз (vX.Y.Z -> vX.Y.Z+1)
+./scripts/release.ps1 -Auto
+
+# Сборка образа UI
+./scripts/build_fs.ps1
+``` 

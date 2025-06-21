@@ -1,4 +1,7 @@
-# 🌱 JXCT Soil Sensor
+# �� JXCT Soil Sensor
+
+[![CI](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml/badge.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml)
+[![Docs](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/docs.yml/badge.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/docs.yml)
 
 Умная система мониторинга почвы для энтузиастов и садоводов. Отслеживайте здоровье ваших растений в реальном времени с помощью профессионального датчика JXCT 7-в-1.
 
@@ -76,7 +79,7 @@
 - [MODBUS протокол](docs/manuals/MODBUS_PROTOCOL.md)
 - [Схема подключения](docs/manuals/WIRING_DIAGRAM.md)
 - [API документация](docs/manuals/API.md)
-- [Дорожная карта (H2-2025)](docs/dev/DEVELOPMENT_ROADMAP_2025-2026.md)
+- [QA & Refactoring Plan (H2-2025)](docs/dev/QA_REFACTORING_PLAN_2025H2.md)
 - [Управление конфигурацией](docs/manuals/CONFIG_MANAGEMENT.md) - импорт/экспорт и массовое развертывание
 - [Шаблон конфигурации](docs/examples/test_safe_config.json) - быстрый старт для массового развертывания
 

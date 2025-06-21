@@ -1,0 +1,31 @@
+name: Docs CI
+
+on:
+  pull_request:
+    paths:
+      - '**.md'
+  push:
+    branches: [ main ]
+    paths:
+      - '**.md'
+
+jobs:
+  markdown-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+      - name: Lint markdown
+        run: markdownlint "**/*.md" --config .markdownlint.yml
+
+  link-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install link checker
+        run: npm install -g markdown-link-check
+      - name: Check links
+        run: |
+          files=$(git ls-files '*.md')
+          for f in $files; do markdown-link-check -q "$f"; done 

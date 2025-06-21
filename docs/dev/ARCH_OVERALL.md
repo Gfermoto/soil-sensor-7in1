@@ -1,6 +1,39 @@
-# 🏗️ JXCT Soil Sensor – Architecture Overview (H2-2025)
+# 🏛️ Архитектура JXCT (v2.7.1)
 
-> Version: v2.7.0 (production) – generated 2025-06-20
+```mermaid
+graph TD
+  subgraph Core
+    A[main.cpp] --> B[modbus_sensor]
+    A --> C[wifi_manager]
+    B --> D[ISensor]
+    D -->|Real| E[ModbusAdapter]
+    D -->|Fake| F[FakeAdapter]
+  end
+
+  subgraph Web
+    G[routes_main] --> H[routes_data]
+    G --> I[routes_config]
+    G --> J[routes_ota]
+  end
+
+  B --> G
+  C --> G
+  C --> MQTT[MQTT Client]
+
+  subgraph Storage
+    NVS
+    LittleFS
+  end
+  I --> NVS
+  H --> LittleFS
+```
+
+**Слои:**
+1. Core (C++) — бизнес-логика, драйверы датчика, OTA, задачи FreeRTOS.
+2. Web (ESPAsyncWebServer) — UI + REST API.
+3. Storage — NVS key/value, LittleFS (CSV, web_spiffs).
+
+Все зависимости направлены сверху вниз; Web не вызывает Core напрямую, кроме публичного API в `jxct_ui_system.h`.
 
 ## 1. Layered view
 ```
