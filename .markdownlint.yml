@@ -1,3 +1,5 @@
 default: true
 MD013: false  # line length
 MD033: false  # embedded HTML 
+MD004: false  # unordered list style
+MD022: false  # blank lines around headings 
