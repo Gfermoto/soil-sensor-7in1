@@ -59,4 +59,6 @@ extra_css:
   - css/custom.css
 extra_static_dirs:
   - _doxygen/html
-  - examples 
+  - examples
+extra_javascript:
+  - https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.min.js 
