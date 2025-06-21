@@ -1,0 +1,9 @@
+Checks: >
+  modernize-*,
+  readability-*,
+  performance-*,
+  -hicpp-*,
+  -cppcoreguidelines-*
+WarningsAsErrors: ''
+HeaderFilterRegex: '^(include|src)/'
+FormatStyle:  file 
