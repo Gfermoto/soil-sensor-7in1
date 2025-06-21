@@ -51,11 +51,10 @@ jobs:
       - name: Run clang-tidy (baseline)
         continue-on-error: true
         run: |
-          set +e
-          # run-clang-tidy возвращает 1, если нашёл предупреждения; подавляем код возврата
+          # run-clang-tidy может вернуть 1 — не считаем это ошибкой
           run-clang-tidy -p "${{ steps.cc.outputs.dir }}" -export-fixes clang_tidy_fixes.yaml || true
-          # Если файл не создался (нет предупреждений) — создадим пустой, чтобы upload-artifact не падал
-          [ -f clang_tidy_fixes.yaml ] || echo "# no warnings" > clang_tidy_fixes.yaml
+          # Если файл не создался (нет предупреждений) — создадим пустой
+          if [ ! -f clang_tidy_fixes.yaml ]; then echo "# no warnings" > clang_tidy_fixes.yaml; fi
       - name: Run include-what-you-use (baseline)
         continue-on-error: true
         run: |
@@ -170,5 +169,7 @@ jobs:
           publish_branch: gh-pages
           commit_message: "docs: deploy MkDocs (CI)"
           force_orphan: true
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
 
       # конец job 
