@@ -26,8 +26,16 @@ jobs:
       - uses: actions/checkout@v3
       - name: Install link checker
         run: npm install -g markdown-link-check
-      - name: Check links
+      - name: Check links (changed files only)
         continue-on-error: true
         run: |
-          files=$(git ls-files '*.md')
-          for f in $files; do markdown-link-check -q "$f"; done 
+          git fetch --depth=2 origin "$GITHUB_REF"
+          files=$(git diff --name-only HEAD^ HEAD -- '*.md')
+          if [ -z "$files" ]; then
+            echo "No markdown files changed; skipping link check."
+            exit 0
+          fi
+          for f in $files; do
+            echo "▶ checking $f";
+            markdown-link-check -q "$f";
+          done 

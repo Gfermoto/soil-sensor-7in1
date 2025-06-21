@@ -1,7 +1,7 @@
 # JXCT Soil Sensor
 
 [![CI](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml/badge.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml)
-[![Docs](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/docs.yml/badge.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/docs.yml)
+[![Docs](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/docs.yml/badge.svg?branch=main)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/docs.yml)
 
 Умная система мониторинга почвы для энтузиастов и садоводов. Отслеживайте здоровье ваших растений в реальном времени с помощью профессионального датчика JXCT 7-в-1.
 
