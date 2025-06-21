@@ -1,0 +1,129 @@
+<map id="logError" name="logError">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1681,618,1748,645"/>
+<area shape="rect" id="Node000002" href="$ota__manager_8cpp.html#a72ad34ba3d7f6c942662509e8a11781f" title=" " alt="" coords="1512,314,1600,341"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1710,602,1705,552,1693,487,1669,420,1652,389,1631,361,1617,349,1599,340,1602,336,1620,345,1635,357,1657,386,1674,418,1698,486,1710,551,1715,602"/>
+<area shape="rect" id="Node000004" href="$ota__manager_8cpp.html#a8061d13b589bae87956ec09e4ea7fef5" title=" " alt="" coords="1098,314,1178,341"/>
+<area shape="poly" id="edge76_Node000001_Node000004" title=" " alt="" coords="1708,603,1702,562,1689,513,1666,464,1650,442,1632,423,1587,391,1545,372,1504,363,1464,361,1375,364,1325,363,1267,355,1178,338,1179,332,1268,350,1325,358,1375,359,1464,356,1505,358,1546,367,1589,386,1635,419,1654,438,1671,461,1694,511,1707,561,1714,602"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,257,59,283"/>
+<area shape="poly" id="edge75_Node000001_Node000005" title=" " alt="" coords="1710,603,1708,494,1697,345,1687,270,1673,202,1655,147,1644,126,1631,111,1599,84,1568,68,1537,62,1505,61,1435,70,1350,77,377,77,322,83,270,99,219,122,173,151,96,211,47,258,44,255,92,207,170,146,217,118,268,94,321,77,377,71,1350,71,1435,64,1505,56,1538,56,1569,63,1602,80,1635,107,1648,123,1660,145,1678,200,1692,269,1702,344,1713,493,1716,603"/>
+<area shape="rect" id="Node000006" href="$ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463" title=" " alt="" coords="1278,517,1420,543"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1692,608,1666,580,1632,558,1579,540,1523,530,1469,526,1420,526,1420,521,1469,521,1524,524,1580,535,1635,553,1669,576,1696,604"/>
+<area shape="rect" id="Node000007" href="$ota__manager_8cpp.html#a2463eda06898e53e0ca3b3a819c995ae" title=" " alt="" coords="1081,567,1195,594"/>
+<area shape="poly" id="edge79_Node000001_Node000007" title=" " alt="" coords="1667,651,1634,659,1555,671,1520,670,1477,659,1462,651,1452,642,1443,633,1429,624,1368,605,1306,593,1195,583,1195,578,1306,588,1370,600,1431,620,1446,628,1456,638,1465,647,1479,654,1521,664,1555,666,1633,654,1666,646"/>
+<area shape="rect" id="Node000011" href="$wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="135,669,222,695"/>
+<area shape="poly" id="edge43_Node000001_Node000011" title=" " alt="" coords="1715,660,1710,758,1697,887,1686,952,1673,1011,1656,1060,1635,1093,1602,1123,1571,1142,1539,1154,1507,1159,1436,1158,1350,1154,554,1154,510,1150,469,1137,431,1118,396,1093,364,1063,334,1029,284,954,244,875,213,800,180,696,186,695,218,798,248,872,288,951,338,1026,367,1059,399,1089,434,1114,471,1132,511,1144,554,1149,1350,1149,1436,1152,1506,1153,1538,1148,1568,1137,1599,1118,1631,1090,1651,1058,1668,1010,1681,951,1691,886,1704,757,1710,660"/>
+<area shape="rect" id="Node000014" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="326,567,430,594"/>
+<area shape="poly" id="edge77_Node000001_Node000014" title=" " alt="" coords="1699,605,1673,561,1654,540,1632,523,1605,510,1581,503,1536,500,1489,505,1430,507,1349,505,1268,507,1174,514,1101,522,1028,529,934,533,729,533,647,537,566,546,431,571,430,566,565,541,647,531,729,527,934,527,1028,524,1101,517,1174,508,1268,502,1349,500,1430,502,1489,500,1536,495,1581,497,1607,505,1635,518,1658,536,1677,558,1704,602"/>
+<area shape="rect" id="Node000015" href="$ota__manager_8cpp.html#a6bfd77aa7f122e508ece81a6f6cfbb88" title=" " alt="" coords="1504,567,1608,594"/>
+<area shape="poly" id="edge18_Node000001_Node000015" title=" " alt="" coords="1665,619,1599,597,1601,592,1667,614"/>
+<area shape="rect" id="Node000016" href="$modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="1072,263,1204,290"/>
+<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="1708,603,1699,531,1684,440,1661,356,1647,324,1632,304,1601,288,1556,276,1501,269,1439,266,1313,267,1204,273,1204,268,1312,262,1440,260,1501,264,1557,271,1602,283,1635,300,1652,322,1667,354,1689,439,1705,530,1713,602"/>
+<area shape="rect" id="Node000020" href="$routes__calibration_8cpp.html#aed6e69f4d063fc5d8248e2c7a3b9ca0d" title=" " alt="" coords="1268,1087,1430,1114"/>
+<area shape="poly" id="edge25_Node000001_Node000020" title=" " alt="" coords="1713,661,1705,741,1689,844,1666,943,1652,982,1635,1009,1614,1029,1590,1046,1538,1072,1482,1089,1431,1098,1430,1093,1481,1084,1536,1067,1588,1042,1611,1025,1631,1006,1647,980,1661,942,1684,843,1699,740,1708,660"/>
+<area shape="rect" id="Node000022" href="$error__handlers_8cpp.html#a200ff078a206ee5a0b44bc0c5411f3f5" title="Обработка критических ошибок сервера" alt="" coords="1492,1239,1620,1266"/>
+<area shape="poly" id="edge27_Node000001_Node000022" title=" " alt="" coords="1716,660,1712,780,1701,947,1691,1032,1677,1111,1659,1176,1635,1222,1612,1241,1609,1237,1631,1219,1654,1174,1672,1110,1686,1031,1696,946,1707,779,1710,660"/>
+<area shape="rect" id="Node000023" href="$routes__ota_8cpp.html#aa15bea881a160885a361e129a35c07e7" title=" " alt="" coords="1061,618,1215,645"/>
+<area shape="poly" id="edge28_Node000001_Node000023" title=" " alt="" coords="1695,659,1668,683,1634,703,1591,717,1556,722,1520,717,1477,703,1461,693,1452,681,1443,669,1429,659,1376,641,1320,631,1265,627,1215,628,1215,622,1265,622,1320,626,1377,636,1431,654,1447,665,1456,677,1465,689,1479,698,1521,712,1556,716,1590,712,1632,698,1665,679,1691,655"/>
+<area shape="rect" id="Node000024" href="$ota__manager_8cpp.html#a3caeaca3fcbd288827f42df9af8b7f08" title=" " alt="" coords="1306,415,1392,442"/>
+<area shape="poly" id="edge30_Node000001_Node000024" title=" " alt="" coords="1706,603,1698,570,1683,531,1662,493,1632,463,1604,446,1573,434,1508,422,1445,420,1392,424,1392,419,1445,415,1508,416,1574,429,1606,441,1635,459,1666,490,1688,529,1703,568,1711,602"/>
+<area shape="rect" id="Node000029" href="$routes__data_8cpp.html#a750e7ca088cd32f9490048becd8d8c70" title=" " alt="" coords="1271,669,1426,695"/>
+<area shape="poly" id="edge39_Node000001_Node000029" title=" " alt="" coords="1706,661,1680,710,1660,735,1635,754,1593,771,1557,776,1520,769,1477,754,1461,744,1451,732,1442,721,1429,710,1404,698,1406,694,1431,705,1446,717,1455,729,1464,740,1479,749,1522,764,1557,770,1592,766,1632,749,1656,731,1675,707,1701,658"/>
+<area shape="rect" id="Node000031" href="$error__handlers_8cpp.html#a72ddd36cf01d539c0b2575750fa997dc" title="Обработка ошибок загрузки файлов" alt="" coords="1492,1290,1620,1317"/>
+<area shape="poly" id="edge42_Node000001_Node000031" title=" " alt="" coords="1716,660,1715,791,1706,976,1696,1070,1682,1157,1662,1229,1650,1258,1635,1280,1621,1292,1618,1288,1631,1276,1645,1255,1657,1228,1677,1156,1691,1070,1701,975,1710,791,1711,660"/>
+<area shape="rect" id="Node000032" href="$namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613" title=" " alt="" coords="1489,845,1622,887"/>
+<area shape="poly" id="edge44_Node000001_Node000032" title=" " alt="" coords="1707,661,1680,729,1660,767,1635,804,1614,827,1591,846,1587,842,1610,823,1631,800,1655,765,1675,726,1702,659"/>
+<area shape="rect" id="Node000038" href="$namespace_calibration_manager.html#ade735ff876ef578fafeb7c46676bcf82" title=" " alt="" coords="1282,1021,1416,1063"/>
+<area shape="poly" id="edge72_Node000001_Node000038" title=" " alt="" coords="1715,660,1709,710,1696,773,1673,840,1656,872,1635,901,1612,925,1586,947,1529,983,1470,1009,1417,1028,1415,1023,1468,1004,1526,978,1583,943,1609,921,1631,898,1651,869,1668,838,1691,772,1704,709,1709,660"/>
+<area shape="rect" id="Node000039" href="$ota__manager_8cpp.html#a95a87e1e1d6cd503264f609ff0d1834c" title=" " alt="" coords="1492,618,1619,645"/>
+<area shape="poly" id="edge58_Node000001_Node000039" title=" " alt="" coords="1666,634,1619,634,1619,629,1666,629"/>
+<area shape="rect" id="Node000040" href="$validation__utils_8cpp.html#a5b0b5f3adf97cc7910641d046b3e292c" title="Логирование результата валидации конфигурации" alt="" coords="1490,1341,1622,1367"/>
+<area shape="poly" id="edge60_Node000001_Node000040" title=" " alt="" coords="1714,661,1705,811,1689,1022,1665,1220,1651,1291,1636,1330,1622,1342,1618,1338,1631,1327,1646,1289,1660,1219,1683,1022,1700,810,1709,660"/>
+<area shape="rect" id="Node000041" href="$modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="1496,162,1616,189"/>
+<area shape="poly" id="edge61_Node000001_Node000041" title=" " alt="" coords="1709,603,1701,513,1686,396,1663,284,1648,240,1631,209,1608,191,1611,187,1635,206,1653,237,1668,282,1691,395,1706,513,1714,602"/>
+<area shape="rect" id="Node000042" href="$modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8" title=" " alt="" coords="1277,111,1420,138"/>
+<area shape="poly" id="edge68_Node000001_Node000042" title=" " alt="" coords="1710,603,1706,501,1695,364,1685,296,1671,234,1653,185,1631,152,1608,134,1582,122,1553,113,1524,108,1465,107,1411,113,1411,108,1464,102,1524,103,1554,108,1584,117,1611,130,1635,148,1658,182,1676,233,1690,295,1700,364,1712,501,1715,602"/>
+<area shape="rect" id="Node000043" href="$modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="1283,187,1414,214"/>
+<area shape="poly" id="edge69_Node000001_Node000043" title=" " alt="" coords="1708,603,1700,523,1686,420,1663,322,1648,285,1631,260,1617,250,1596,241,1540,226,1415,208,1415,203,1541,221,1598,236,1620,245,1635,256,1653,282,1668,321,1691,419,1706,522,1714,603"/>
+<area shape="rect" id="Node000046" href="$main_8cpp.html#a7086f14b298ca33663ff4c10ff47cb4f" title=" " alt="" coords="320,10,436,37"/>
+<area shape="poly" id="edge70_Node000001_Node000046" title=" " alt="" coords="1711,603,1710,483,1701,318,1691,235,1677,159,1657,98,1645,74,1631,57,1599,31,1568,16,1537,9,1505,9,1435,19,1395,24,1350,26,729,26,436,26,436,21,729,21,1350,21,1395,18,1435,13,1505,4,1538,4,1570,11,1602,26,1635,53,1649,72,1662,96,1682,158,1696,234,1706,318,1715,483,1716,603"/>
+<area shape="rect" id="Node000047" href="$thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="298,1189,458,1215"/>
+<area shape="poly" id="edge73_Node000001_Node000047" title=" " alt="" coords="1716,660,1714,773,1704,927,1694,1004,1680,1075,1660,1133,1649,1155,1635,1172,1602,1199,1569,1215,1537,1221,1505,1222,1435,1212,1395,1207,1350,1205,729,1205,459,1205,459,1199,729,1199,1350,1199,1395,1202,1435,1207,1505,1216,1537,1216,1568,1210,1599,1194,1631,1168,1644,1152,1655,1131,1674,1074,1688,1004,1698,926,1708,772,1711,660"/>
+<area shape="rect" id="Node000048" href="$modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="1478,1391,1633,1418"/>
+<area shape="poly" id="edge78_Node000001_Node000048" title=" " alt="" coords="1715,660,1706,820,1690,1047,1667,1262,1652,1338,1644,1364,1635,1381,1622,1393,1618,1389,1631,1378,1639,1362,1647,1337,1662,1261,1685,1047,1701,819,1709,660"/>
+<area shape="rect" id="Node000003" href="$ota__manager_8cpp.html#ace424db218f3dfab484ebd7f61d44fcf" title=" " alt="" coords="1303,314,1394,341"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1496,330,1395,330,1395,325,1496,325"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1288,330,1178,330,1178,325,1288,325"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1083,329,732,323,377,323,241,318,106,295,58,282,60,277,107,290,241,313,377,318,732,318,1083,323"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1276,550,1196,570,1195,564,1275,545"/>
+<area shape="rect" id="Node000008" href="$routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="874,579,991,606"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="1066,588,992,592,991,587,1065,582"/>
+<area shape="rect" id="Node000009" href="$wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="672,593,789,619"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="860,600,790,605,789,599,859,595"/>
+<area shape="rect" id="Node000010" href="$wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="506,618,604,645"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="656,619,604,627,604,622,656,614"/>
+<area shape="poly" id="edge17_Node000009_Node000014" title=" " alt="" coords="656,603,430,587,431,582,656,598"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="491,647,459,653,330,670,222,681,222,676,329,664,458,647,490,642"/>
+<area shape="rect" id="Node000013" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="138,567,218,594"/>
+<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="491,630,399,622,298,609,218,593,219,588,298,603,400,616,491,624"/>
+<area shape="poly" id="edge14_Node000010_Node000014" title=" " alt="" coords="491,616,426,597,428,592,493,611"/>
+<area shape="rect" id="Node000012" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,669,55,695"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="119,685,55,685,55,679,119,679"/>
+<area shape="poly" id="edge13_Node000013_Node000005" title=" " alt="" coords="162,554,37,285,42,283,167,552"/>
+<area shape="poly" id="edge15_Node000014_Node000011" title=" " alt="" coords="338,604,208,671,205,666,335,599"/>
+<area shape="poly" id="edge16_Node000014_Node000013" title=" " alt="" coords="311,583,219,583,219,578,311,578"/>
+<area shape="poly" id="edge19_Node000015_Node000006" title=" " alt="" coords="1488,567,1406,546,1407,541,1489,562"/>
+<area shape="rect" id="Node000017" href="$modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="875,214,990,241"/>
+<area shape="poly" id="edge21_Node000016_Node000017" title=" " alt="" coords="1064,262,990,244,992,239,1066,257"/>
+<area shape="rect" id="Node000018" href="$modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="675,217,786,243"/>
+<area shape="poly" id="edge22_Node000017_Node000018" title=" " alt="" coords="860,231,786,232,786,227,860,226"/>
+<area shape="rect" id="Node000019" href="$modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,254,250,281"/>
+<area shape="poly" id="edge23_Node000018_Node000019" title=" " alt="" coords="660,237,251,265,250,260,659,232"/>
+<area shape="poly" id="edge24_Node000019_Node000005" title=" " alt="" coords="91,272,59,272,59,267,91,266"/>
+<area shape="rect" id="Node000021" href="$routes__calibration_8cpp.html#a74cbd7893b5cf9b3fa5fd34a4fb985ba" title="Настройка маршрутов калибровки (/calibration)" alt="" coords="652,970,809,997"/>
+<area shape="poly" id="edge26_Node000020_Node000021" title=" " alt="" coords="1259,1087,805,1000,806,995,1260,1081"/>
+<area shape="poly" id="edge29_Node000023_Node000008" title=" " alt="" coords="1048,617,991,606,992,601,1049,612"/>
+<area shape="poly" id="edge35_Node000024_Node000012" title=" " alt="" coords="1291,431,934,431,377,431,331,433,293,438,260,448,230,461,173,500,109,557,84,585,65,616,40,669,36,667,60,613,80,582,105,553,170,496,227,456,258,443,292,433,331,428,377,426,934,426,1291,426"/>
+<area shape="rect" id="Node000025" href="$mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="860,365,1005,391"/>
+<area shape="poly" id="edge31_Node000024_Node000025" title=" " alt="" coords="1290,423,1219,413,1005,388,1006,383,1220,407,1291,417"/>
+<area shape="rect" id="Node000028" href="$ota__manager_8cpp.html#aab62f74691b98553d395b694e0807ae4" title=" " alt="" coords="1080,466,1196,493"/>
+<area shape="poly" id="edge36_Node000024_Node000028" title=" " alt="" coords="1292,445,1197,468,1196,463,1291,440"/>
+<area shape="rect" id="Node000026" href="$mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="681,365,780,391"/>
+<area shape="poly" id="edge32_Node000025_Node000026" title=" " alt="" coords="845,381,780,381,780,375,845,375"/>
+<area shape="rect" id="Node000027" href="$mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="510,365,600,391"/>
+<area shape="poly" id="edge33_Node000026_Node000027" title=" " alt="" coords="666,381,601,381,601,375,666,375"/>
+<area shape="poly" id="edge34_Node000027_Node000005" title=" " alt="" coords="494,387,415,392,315,389,209,374,156,361,106,342,85,330,67,315,41,285,45,282,71,311,88,326,108,337,157,356,210,369,316,384,414,386,494,382"/>
+<area shape="poly" id="edge38_Node000028_Node000008" title=" " alt="" coords="1100,503,960,581,957,577,1098,498"/>
+<area shape="poly" id="edge37_Node000028_Node000025" title=" " alt="" coords="1094,461,960,394,963,389,1097,456"/>
+<area shape="rect" id="Node000030" href="$routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="1076,727,1200,754"/>
+<area shape="poly" id="edge40_Node000029_Node000030" title=" " alt="" coords="1284,703,1189,729,1188,724,1283,697"/>
+<area shape="poly" id="edge41_Node000030_Node000009" title=" " alt="" coords="1079,724,772,622,774,617,1081,719"/>
+<area shape="poly" id="edge47_Node000032_Node000020" title=" " alt="" coords="1545,903,1528,943,1504,990,1472,1037,1432,1077,1412,1089,1409,1085,1428,1073,1467,1034,1499,987,1523,941,1540,901"/>
+<area shape="poly" id="edge56_Node000032_Node000021" title=" " alt="" coords="1519,899,1471,936,1431,960,1378,973,1308,982,1136,991,957,992,809,989,809,984,957,987,1136,986,1307,977,1377,968,1429,956,1468,932,1516,895"/>
+<area shape="poly" id="edge48_Node000032_Node000029" title=" " alt="" coords="1509,837,1476,804,1461,777,1454,753,1446,731,1428,709,1410,698,1413,694,1432,705,1451,728,1459,751,1466,775,1480,800,1513,833"/>
+<area shape="poly" id="edge57_Node000032_Node000030" title=" " alt="" coords="1473,874,1373,868,1319,859,1267,843,1230,824,1197,801,1150,756,1153,752,1201,797,1233,820,1269,838,1320,854,1373,863,1474,868"/>
+<area shape="rect" id="Node000033" href="$namespace_calibration_manager.html#a14e21e7fb1aa46aa781c20ee07271d12" title=" " alt="" coords="1282,719,1416,762"/>
+<area shape="poly" id="edge45_Node000032_Node000033" title=" " alt="" coords="1516,837,1475,806,1429,776,1406,765,1408,760,1431,772,1478,802,1519,833"/>
+<area shape="rect" id="Node000034" href="$namespace_calibration_manager.html#a1ee0f1f244cb68eaa7e47a79deb452b6" title=" " alt="" coords="1282,903,1416,946"/>
+<area shape="poly" id="edge49_Node000032_Node000034" title=" " alt="" coords="1475,892,1417,908,1415,903,1473,886"/>
+<area shape="rect" id="Node000037" href="$namespace_calibration_manager.html#a15db87f3fcb09c7f4c5abc69009cef89" title=" " alt="" coords="1282,786,1416,829"/>
+<area shape="poly" id="edge54_Node000032_Node000037" title=" " alt="" coords="1473,846,1415,829,1417,824,1475,840"/>
+<area shape="poly" id="edge55_Node000032_Node000038" title=" " alt="" coords="1532,901,1488,953,1432,1004,1402,1022,1399,1018,1428,1000,1484,949,1528,898"/>
+<area shape="poly" id="edge46_Node000033_Node000030" title=" " alt="" coords="1267,743,1200,743,1200,738,1267,738"/>
+<area shape="poly" id="edge53_Node000034_Node000030" title=" " alt="" coords="1282,898,1266,887,1228,853,1194,817,1147,756,1151,753,1198,813,1232,850,1269,883,1285,893"/>
+<area shape="rect" id="Node000035" href="$routes__calibration_8cpp.html#af44b5a1840fa2c2199b0a9fab38a629f" title=" " alt="" coords="1056,915,1220,942"/>
+<area shape="poly" id="edge50_Node000034_Node000035" title=" " alt="" coords="1267,929,1220,930,1220,924,1267,924"/>
+<area shape="rect" id="Node000036" href="$routes__calibration_8cpp.html#a40c5c8aef0a9770a13455e9868b1eda2" title=" " alt="" coords="857,917,1008,943"/>
+<area shape="poly" id="edge51_Node000035_Node000036" title=" " alt="" coords="1041,932,1009,932,1008,927,1041,927"/>
+<area shape="poly" id="edge52_Node000036_Node000021" title=" " alt="" coords="865,950,785,972,783,967,864,945"/>
+<area shape="poly" id="edge59_Node000039_Node000006" title=" " alt="" coords="1487,614,1477,608,1462,597,1452,586,1442,575,1429,564,1392,546,1394,541,1431,560,1446,571,1456,583,1465,593,1479,604,1490,609"/>
+<area shape="poly" id="edge62_Node000041_Node000042" title=" " alt="" coords="1483,160,1406,141,1407,136,1484,155"/>
+<area shape="poly" id="edge63_Node000041_Node000043" title=" " alt="" coords="1480,187,1415,195,1414,190,1480,182"/>
+<area shape="rect" id="Node000044" href="$modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="1065,213,1211,239"/>
+<area shape="poly" id="edge64_Node000043_Node000044" title=" " alt="" coords="1268,213,1212,220,1211,215,1267,208"/>
+<area shape="rect" id="Node000045" href="$modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="1067,162,1209,189"/>
+<area shape="poly" id="edge66_Node000043_Node000045" title=" " alt="" coords="1267,194,1209,186,1209,181,1268,188"/>
+<area shape="poly" id="edge65_Node000044_Node000017" title=" " alt="" coords="1050,229,991,230,990,224,1050,224"/>
+<area shape="poly" id="edge67_Node000045_Node000017" title=" " alt="" coords="1068,196,989,216,988,211,1067,190"/>
+<area shape="poly" id="edge71_Node000046_Node000005" title=" " alt="" coords="304,15,256,13,204,18,153,32,130,43,108,57,87,79,71,104,49,161,39,216,36,256,31,256,34,215,44,160,66,102,83,76,105,53,127,38,152,27,203,13,256,8,305,10"/>
+<area shape="poly" id="edge74_Node000047_Node000012" title=" " alt="" coords="312,1183,296,1172,239,1113,189,1045,147,975,111,904,60,777,35,697,40,695,65,775,116,901,152,972,194,1042,243,1109,300,1168,315,1179"/>
+</map>

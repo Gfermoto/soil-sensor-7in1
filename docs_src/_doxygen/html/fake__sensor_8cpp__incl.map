@@ -1,0 +1,22 @@
+<map id="src/fake_sensor.cpp" name="src/fake_sensor.cpp">
+<area shape="rect" id="Node000001" title="Эмуляция работы датчика для тестирования" alt="" coords="215,5,355,32"/>
+<area shape="rect" id="Node000002" href="$fake__sensor_8h.html" title=" " alt="" coords="5,80,109,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="246,35,112,77,111,72,244,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="248,155,324,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="243,35,212,48,186,64,171,84,170,94,174,105,186,120,200,132,235,150,232,155,198,137,182,124,169,108,164,95,166,82,182,60,210,43,241,30"/>
+<area shape="rect" id="Node000004" href="$debug_8h.html" title=" " alt="" coords="183,80,251,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="275,34,241,70,237,67,271,31"/>
+<area shape="rect" id="Node000005" href="$jxct__config__vars_8h.html" title=" " alt="" coords="605,80,733,107"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="353,30,591,75,590,80,352,35"/>
+<area shape="rect" id="Node000007" href="$modbus__sensor_8h.html" title=" " alt="" coords="458,80,582,107"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="327,30,465,72,463,78,325,35"/>
+<area shape="rect" id="Node000009" href="$sensor__compensation_8h.html" title="Алгоритмы коррекции показаний датчиков" alt="" coords="275,80,434,107"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="299,31,334,67,330,70,295,34"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="231,105,266,141,262,145,227,109"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="618,155,720,181"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="672,107,672,139,666,139,666,107"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="480,110,340,153,338,148,478,105"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="460,155,579,181"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="522,107,522,139,517,139,517,107"/>
+<area shape="poly" id="edge11_Node000009_Node000003" title=" " alt="" coords="344,109,310,145,307,141,341,105"/>
+</map>

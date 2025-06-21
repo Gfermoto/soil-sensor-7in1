@@ -10,7 +10,9 @@ libdeps/
 .vscode/ipch
 
 # Generated documentation
+# Ignore all Doxygen output by default
 docs_src/_doxygen/**
+# Then allow HTML output to be committed
 !docs_src/_doxygen/
 !docs_src/_doxygen/html/
 !docs_src/_doxygen/html/**

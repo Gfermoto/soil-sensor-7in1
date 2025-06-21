@@ -1,0 +1,33 @@
+<map id="finalizeSensorData" name="finalizeSensorData">
+<area shape="rect" id="Node000001" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="5,208,137,235"/>
+<area shape="rect" id="Node000002" href="$modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b" title=" " alt="" coords="207,19,354,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,206,116,141,147,102,183,67,213,49,216,54,186,71,151,105,120,144,81,209"/>
+<area shape="rect" id="Node000004" href="$modbus__sensor_8cpp.html#a4cff8e34908a2deb0691e3809224685a" title=" " alt="" coords="185,81,376,108"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="82,206,123,162,152,138,183,118,196,112,198,116,186,122,155,143,127,166,86,209"/>
+<area shape="rect" id="Node000011" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="247,132,314,159"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="99,205,184,168,231,154,233,159,186,173,101,210"/>
+<area shape="rect" id="Node000012" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="236,183,325,209"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="137,211,220,201,221,206,137,216"/>
+<area shape="rect" id="Node000013" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="246,233,314,260"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="137,227,231,238,230,243,137,232"/>
+<area shape="rect" id="Node000014" href="$modbus__sensor_8cpp.html#a7a820fe61fb2c2163f98e3a273af4b55" title=" " alt="" coords="215,284,346,311"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="101,233,186,270,208,277,206,282,184,274,99,238"/>
+<area shape="rect" id="Node000015" href="$modbus__sensor_8cpp.html#a7dfe5a231d563e4498f0217c486af795" title=" " alt="" coords="213,335,348,361"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="86,233,127,276,155,300,186,320,199,327,197,331,183,325,152,304,123,280,82,237"/>
+<area shape="rect" id="Node000016" href="$modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67" title=" " alt="" coords="213,385,348,412"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="81,234,119,300,149,339,186,371,200,379,197,383,183,376,145,342,114,303,76,236"/>
+<area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94" title=" " alt="" coords="424,5,587,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="354,25,408,22,409,27,354,30"/>
+<area shape="rect" id="Node000005" href="$sensor__compensation_8cpp.html#af586e2e5563baee2b53964aff0e1467d" title=" " alt="" coords="466,56,546,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="376,81,450,73,451,78,376,87"/>
+<area shape="rect" id="Node000006" href="$sensor__compensation_8cpp.html#aa9d6b97073bca78fb526c17bdbf816a6" title=" " alt="" coords="461,107,550,133"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="376,103,446,111,445,116,376,108"/>
+<area shape="rect" id="Node000010" href="$sensor__compensation_8cpp.html#aec93dd728b4450e4078a1e26954478e5" title=" " alt="" coords="466,157,546,184"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="343,106,377,118,401,130,425,143,452,153,450,158,423,148,399,135,375,122,341,111"/>
+<area shape="rect" id="Node000007" href="$sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a" title=" " alt="" coords="636,56,694,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="550,104,587,92,620,81,622,86,588,97,552,109"/>
+<area shape="rect" id="Node000008" href="$sensor__compensation_8cpp.html#adf2ddb83f2189c9159aa7fe534217ea4" title=" " alt="" coords="635,107,695,133"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="551,117,620,117,620,123,551,123"/>
+<area shape="rect" id="Node000009" href="$sensor__compensation_8cpp.html#ae64bff1823ab30991e51b8d57c23be39" title=" " alt="" coords="636,157,694,184"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="552,131,588,143,622,154,620,159,587,148,550,136"/>
+</map>

@@ -1,0 +1,32 @@
+<map id="src/ota_manager.cpp" name="src/ota_manager.cpp">
+<area shape="rect" id="Node000001" title=" " alt="" coords="587,5,731,32"/>
+<area shape="rect" id="Node000002" href="$ota__manager_8h.html" title=" " alt="" coords="5,80,113,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="587,30,382,51,131,83,129,83,128,78,131,77,381,46,586,24"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="588,155,664,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="587,26,343,46,233,62,196,72,177,82,172,93,177,105,196,115,232,124,341,141,572,161,572,166,340,146,231,130,194,120,173,108,166,93,173,78,194,67,232,57,343,41,587,21"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="187,80,291,107"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="587,34,307,82,306,77,587,29"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="315,80,416,107"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="608,35,432,78,431,73,607,30"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="440,80,515,107"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="628,35,525,76,523,71,626,30"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="539,80,646,107"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="649,34,616,70,612,67,645,31"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="669,80,782,107"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="673,31,706,67,702,70,669,34"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="806,80,930,107"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="696,30,818,72,816,77,695,35"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="954,80,1025,107"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="723,30,939,77,938,82,722,35"/>
+<area shape="rect" id="Node000012" href="$jxct__config__vars_8h.html" title=" " alt="" coords="1141,80,1268,107"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="731,26,1126,77,1125,82,731,31"/>
+<area shape="rect" id="Node000014" href="$logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="1049,80,1117,107"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="732,27,868,47,1035,77,1034,82,868,52,731,32"/>
+<area shape="rect" id="Node000015" href="$version_8h.html" title=" " alt="" coords="1292,80,1367,107"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="731,21,970,39,1122,55,1278,77,1277,82,1121,60,970,44,731,26"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="12,155,106,181"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="62,107,62,139,56,139,56,107"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1153,155,1256,181"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="1207,107,1207,139,1202,139,1202,107"/>
+<area shape="poly" id="edge14_Node000014_Node000004" title=" " alt="" coords="1050,107,1038,109,841,143,680,163,679,158,840,138,1037,104,1048,102"/>
+</map>

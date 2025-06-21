@@ -1,0 +1,22 @@
+<map id="generateValidationErrorResponse" name="generateValidationErrorResponse">
+<area shape="rect" id="Node000001" title="Генерация HTML ответа с ошибкой валидации" alt="" coords="875,31,1090,57"/>
+<area shape="rect" id="Node000002" href="$routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="704,31,827,57"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="860,47,828,47,828,41,860,41"/>
+<area shape="rect" id="Node000003" href="$wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="689,47,657,47,657,41,689,41"/>
+<area shape="rect" id="Node000004" href="$wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" id="Node000009" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" id="edge11_Node000003_Node000009" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" id="Node000005" href="$wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" id="Node000007" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" id="Node000008" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" id="edge9_Node000009_Node000005" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" id="edge10_Node000009_Node000007" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
+</map>

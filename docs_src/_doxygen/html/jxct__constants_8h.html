@@ -1,0 +1,2516 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor: Файл include/jxct_constants.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor<span id="projectnumber">&#160;v3.2.29 (June 2025)</span>
+   </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('jxct__constants_8h.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл jxct_constants.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Централизованные константы системы JXCT.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><div class="dynheader">
+Граф файлов, в которые включается этот файл:</div>
+<div class="dyncontent">
+<div class="center"><img src="jxct__constants_8h__dep__incl.png" border="0" usemap="#ainclude_2jxct__constants_8hdep" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div>
+<p><a href="jxct__constants_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a6434b7a387ed20c9f364ba4761763d37" id="r_a6434b7a387ed20c9f364ba4761763d37"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6434b7a387ed20c9f364ba4761763d37">DEFAULT_SENSOR_READ_INTERVAL</a> = 5000</td></tr>
+<tr class="separator:a6434b7a387ed20c9f364ba4761763d37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67dcd3564182a15e00496b2cf2227ed7" id="r_a67dcd3564182a15e00496b2cf2227ed7"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67dcd3564182a15e00496b2cf2227ed7">DEFAULT_MQTT_PUBLISH_INTERVAL</a> = 30000</td></tr>
+<tr class="separator:a67dcd3564182a15e00496b2cf2227ed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af693c003b6fde3f116c5fd46e4c487f2" id="r_af693c003b6fde3f116c5fd46e4c487f2"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af693c003b6fde3f116c5fd46e4c487f2">DEFAULT_THINGSPEAK_INTERVAL</a> = 60000</td></tr>
+<tr class="separator:af693c003b6fde3f116c5fd46e4c487f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a3bbfdcb5c25d9f893585031128e1f2" id="r_a4a3bbfdcb5c25d9f893585031128e1f2"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a3bbfdcb5c25d9f893585031128e1f2">DEFAULT_NTP_UPDATE_INTERVAL</a> = 3600000</td></tr>
+<tr class="separator:a4a3bbfdcb5c25d9f893585031128e1f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fbd8c67fb5bfd659802a9a054798e9e" id="r_a2fbd8c67fb5bfd659802a9a054798e9e"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2fbd8c67fb5bfd659802a9a054798e9e">MODBUS_CACHE_TIMEOUT</a> = 5000</td></tr>
+<tr class="separator:a2fbd8c67fb5bfd659802a9a054798e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64d07c204cd0c8b744644a91dd935c07" id="r_a64d07c204cd0c8b744644a91dd935c07"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a64d07c204cd0c8b744644a91dd935c07">MODBUS_RETRY_DELAY</a> = 1000</td></tr>
+<tr class="separator:a64d07c204cd0c8b744644a91dd935c07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a564c8f2937d070bba56544f0b63d8842" id="r_a564c8f2937d070bba56544f0b63d8842"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a564c8f2937d070bba56544f0b63d8842">DNS_CACHE_TTL</a> = 300000</td></tr>
+<tr class="separator:a564c8f2937d070bba56544f0b63d8842"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7f737a725f45e5a262a28e54944ca6b" id="r_ae7f737a725f45e5a262a28e54944ca6b"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7f737a725f45e5a262a28e54944ca6b">MQTT_RECONNECT_INTERVAL</a> = 5000</td></tr>
+<tr class="separator:ae7f737a725f45e5a262a28e54944ca6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5885b1438361c2ca1510f82f0824b7f1" id="r_a5885b1438361c2ca1510f82f0824b7f1"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5885b1438361c2ca1510f82f0824b7f1">SENSOR_JSON_CACHE_TTL</a> = 1000</td></tr>
+<tr class="separator:a5885b1438361c2ca1510f82f0824b7f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a59058d2a77bd18a8eb3a5618713b5c05" id="r_a59058d2a77bd18a8eb3a5618713b5c05"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a59058d2a77bd18a8eb3a5618713b5c05">STATUS_PRINT_INTERVAL</a> = 30000</td></tr>
+<tr class="separator:a59058d2a77bd18a8eb3a5618713b5c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7954a4e74b56f782bc40acf8db11b6a9" id="r_a7954a4e74b56f782bc40acf8db11b6a9"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7954a4e74b56f782bc40acf8db11b6a9">JXCT_WATCHDOG_TIMEOUT_SEC</a> = 30</td></tr>
+<tr class="separator:a7954a4e74b56f782bc40acf8db11b6a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9caf8aea0daab8f3b8499c43ca27186" id="r_ad9caf8aea0daab8f3b8499c43ca27186"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9caf8aea0daab8f3b8499c43ca27186">JXCT_BUTTON_HOLD_TIME_MS</a> = 2000</td></tr>
+<tr class="separator:ad9caf8aea0daab8f3b8499c43ca27186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fc48c41ab4e2ebc54d84ab9471f0970" id="r_a3fc48c41ab4e2ebc54d84ab9471f0970"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fc48c41ab4e2ebc54d84ab9471f0970">LED_BLINK_SLOW</a> = 1000</td></tr>
+<tr class="separator:a3fc48c41ab4e2ebc54d84ab9471f0970"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15af2a0475ee85df700484308c2647a5" id="r_a15af2a0475ee85df700484308c2647a5"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15af2a0475ee85df700484308c2647a5">LED_BLINK_NORMAL</a> = 500</td></tr>
+<tr class="separator:a15af2a0475ee85df700484308c2647a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1008fcce664752a9154bab72546d34af" id="r_a1008fcce664752a9154bab72546d34af"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1008fcce664752a9154bab72546d34af">LED_BLINK_FAST</a> = 100</td></tr>
+<tr class="separator:a1008fcce664752a9154bab72546d34af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e987a55f2a52382b2e444e1e658eee9" id="r_a4e987a55f2a52382b2e444e1e658eee9"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e987a55f2a52382b2e444e1e658eee9">DEFAULT_WEB_SERVER_PORT</a> = 80</td></tr>
+<tr class="separator:a4e987a55f2a52382b2e444e1e658eee9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58f999d62665a9f819c76ab357c9733f" id="r_a58f999d62665a9f819c76ab357c9733f"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58f999d62665a9f819c76ab357c9733f">DEFAULT_MQTT_PORT</a> = 1883</td></tr>
+<tr class="separator:a58f999d62665a9f819c76ab357c9733f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ddacb1e739582239933c267e104d702" id="r_a0ddacb1e739582239933c267e104d702"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0ddacb1e739582239933c267e104d702">DEFAULT_DNS_PORT</a> = 53</td></tr>
+<tr class="separator:a0ddacb1e739582239933c267e104d702"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7849788c3400d733d2d535754d28168a" id="r_a7849788c3400d733d2d535754d28168a"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7849788c3400d733d2d535754d28168a">DEFAULT_MODBUS_ADDRESS</a> = 1</td></tr>
+<tr class="separator:a7849788c3400d733d2d535754d28168a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7e41f8ea7923417d3f459ae63b5c2d8" id="r_ae7e41f8ea7923417d3f459ae63b5c2d8"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae7e41f8ea7923417d3f459ae63b5c2d8">MQTT_BUFFER_SIZE</a> = 512</td></tr>
+<tr class="separator:ae7e41f8ea7923417d3f459ae63b5c2d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ab6698eff150be75250e5066a32c343" id="r_a3ab6698eff150be75250e5066a32c343"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ab6698eff150be75250e5066a32c343">JSON_BUFFER_SIZE</a> = 256</td></tr>
+<tr class="separator:a3ab6698eff150be75250e5066a32c343"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec57d3cf3642697f86a7d58af6fbf21" id="r_abec57d3cf3642697f86a7d58af6fbf21"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abec57d3cf3642697f86a7d58af6fbf21">TOPIC_BUFFER_SIZE</a> = 128</td></tr>
+<tr class="separator:abec57d3cf3642697f86a7d58af6fbf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab222817f60c41262eab017e380eb8c6" id="r_aab222817f60c41262eab017e380eb8c6"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab222817f60c41262eab017e380eb8c6">CLIENT_ID_BUFFER_SIZE</a> = 32</td></tr>
+<tr class="separator:aab222817f60c41262eab017e380eb8c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec991a26cb2aa3678ef2c898d73c233" id="r_abec991a26cb2aa3678ef2c898d73c233"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abec991a26cb2aa3678ef2c898d73c233">HOSTNAME_BUFFER_SIZE</a> = 64</td></tr>
+<tr class="separator:abec991a26cb2aa3678ef2c898d73c233"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6f86c92de338fa423acd76cdffc2e1d" id="r_ad6f86c92de338fa423acd76cdffc2e1d"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6f86c92de338fa423acd76cdffc2e1d">WIFI_CONNECTION_ATTEMPTS</a> = 20</td></tr>
+<tr class="separator:ad6f86c92de338fa423acd76cdffc2e1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a630aeb24f56d2f3f127fb27936875c9f" id="r_a630aeb24f56d2f3f127fb27936875c9f"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a630aeb24f56d2f3f127fb27936875c9f">MQTT_CONNECTION_ATTEMPTS</a> = 3</td></tr>
+<tr class="separator:a630aeb24f56d2f3f127fb27936875c9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1991b2b4038578f7511c9c38f8620a9" id="r_ab1991b2b4038578f7511c9c38f8620a9"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1991b2b4038578f7511c9c38f8620a9">WIFI_CONNECTION_TIMEOUT</a> = 10000</td></tr>
+<tr class="separator:ab1991b2b4038578f7511c9c38f8620a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6c697e400afc274c87fdee739c88ab9" id="r_ab6c697e400afc274c87fdee739c88ab9"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6c697e400afc274c87fdee739c88ab9">MODBUS_BAUD_RATE</a> = 9600</td></tr>
+<tr class="separator:ab6c697e400afc274c87fdee739c88ab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2d13ba33d7829a01539892112c36d55" id="r_ac2d13ba33d7829a01539892112c36d55"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2d13ba33d7829a01539892112c36d55">MODBUS_DATA_BITS</a> = 8</td></tr>
+<tr class="separator:ac2d13ba33d7829a01539892112c36d55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8e91ac73efbebaf84c496121248e76d" id="r_ac8e91ac73efbebaf84c496121248e76d"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8e91ac73efbebaf84c496121248e76d">MODBUS_STOP_BITS</a> = 1</td></tr>
+<tr class="separator:ac8e91ac73efbebaf84c496121248e76d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b3a318da7b009b1f31acac87ed4b651" id="r_a1b3a318da7b009b1f31acac87ed4b651"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b3a318da7b009b1f31acac87ed4b651">MODBUS_PARITY</a> = 0</td></tr>
+<tr class="separator:a1b3a318da7b009b1f31acac87ed4b651"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ac0d3aaefc2ee9dcae39fbf3f274e2a" id="r_a5ac0d3aaefc2ee9dcae39fbf3f274e2a"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ac0d3aaefc2ee9dcae39fbf3f274e2a">MODBUS_MAX_RETRIES</a> = 3</td></tr>
+<tr class="separator:a5ac0d3aaefc2ee9dcae39fbf3f274e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afadcc38ac652f71edb1585ed8bb147b6" id="r_afadcc38ac652f71edb1585ed8bb147b6"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afadcc38ac652f71edb1585ed8bb147b6">MODBUS_RESPONSE_TIMEOUT</a> = 2000</td></tr>
+<tr class="separator:afadcc38ac652f71edb1585ed8bb147b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90f31c1e93e5de5be24a37b91f33e2f7" id="r_a90f31c1e93e5de5be24a37b91f33e2f7"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90f31c1e93e5de5be24a37b91f33e2f7">MODBUS_FRAME_DELAY</a> = 100</td></tr>
+<tr class="separator:a90f31c1e93e5de5be24a37b91f33e2f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba092fd1c7310e40134f0bc95ae6547e" id="r_aba092fd1c7310e40134f0bc95ae6547e"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba092fd1c7310e40134f0bc95ae6547e">SENSOR_TEMP_MIN</a> = -40.0f</td></tr>
+<tr class="separator:aba092fd1c7310e40134f0bc95ae6547e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31024a54806ee2efe49cd2c99fd5a78a" id="r_a31024a54806ee2efe49cd2c99fd5a78a"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31024a54806ee2efe49cd2c99fd5a78a">SENSOR_TEMP_MAX</a> = 80.0f</td></tr>
+<tr class="separator:a31024a54806ee2efe49cd2c99fd5a78a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c63ed1a23642df5d6aba976397be257" id="r_a9c63ed1a23642df5d6aba976397be257"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c63ed1a23642df5d6aba976397be257">SENSOR_HUMIDITY_MIN</a> = 0.0f</td></tr>
+<tr class="separator:a9c63ed1a23642df5d6aba976397be257"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa79f30db9ff75390e0254a848dd0bbc3" id="r_aa79f30db9ff75390e0254a848dd0bbc3"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa79f30db9ff75390e0254a848dd0bbc3">SENSOR_HUMIDITY_MAX</a> = 100.0f</td></tr>
+<tr class="separator:aa79f30db9ff75390e0254a848dd0bbc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaea5e75d8ed5103a895ab69345e51f8e" id="r_aaea5e75d8ed5103a895ab69345e51f8e"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaea5e75d8ed5103a895ab69345e51f8e">SENSOR_PH_MIN</a> = 0.0f</td></tr>
+<tr class="separator:aaea5e75d8ed5103a895ab69345e51f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a66cabb5a09a885dfe9c920415a899f25" id="r_a66cabb5a09a885dfe9c920415a899f25"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a66cabb5a09a885dfe9c920415a899f25">SENSOR_PH_MAX</a> = 14.0f</td></tr>
+<tr class="separator:a66cabb5a09a885dfe9c920415a899f25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a246f7e543a4fed75fdbcde68614299b5" id="r_a246f7e543a4fed75fdbcde68614299b5"><td class="memItemLeft" align="right" valign="top">constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a246f7e543a4fed75fdbcde68614299b5">SENSOR_EC_MIN</a> = 0</td></tr>
+<tr class="separator:a246f7e543a4fed75fdbcde68614299b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f7c84a54d65caeac7c47ba0a2b5bf30" id="r_a9f7c84a54d65caeac7c47ba0a2b5bf30"><td class="memItemLeft" align="right" valign="top">constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f7c84a54d65caeac7c47ba0a2b5bf30">SENSOR_EC_MAX</a> = 20000</td></tr>
+<tr class="separator:a9f7c84a54d65caeac7c47ba0a2b5bf30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89872d4abc1e4808f175cdbfc032f4ce" id="r_a89872d4abc1e4808f175cdbfc032f4ce"><td class="memItemLeft" align="right" valign="top">constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89872d4abc1e4808f175cdbfc032f4ce">SENSOR_NPK_MIN</a> = 0</td></tr>
+<tr class="separator:a89872d4abc1e4808f175cdbfc032f4ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3c1dd8bdfb0337a839aed6c24c4d929" id="r_ac3c1dd8bdfb0337a839aed6c24c4d929"><td class="memItemLeft" align="right" valign="top">constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3c1dd8bdfb0337a839aed6c24c4d929">SENSOR_NPK_MAX</a> = 9999</td></tr>
+<tr class="separator:ac3c1dd8bdfb0337a839aed6c24c4d929"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad542d64e38a669ebab31fb960826587d" id="r_ad542d64e38a669ebab31fb960826587d"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad542d64e38a669ebab31fb960826587d">CONFIG_INTERVAL_MIN</a> = 1000</td></tr>
+<tr class="separator:ad542d64e38a669ebab31fb960826587d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae156491e40c3833e81591602342fc662" id="r_ae156491e40c3833e81591602342fc662"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae156491e40c3833e81591602342fc662">CONFIG_INTERVAL_MAX</a> = 3600000</td></tr>
+<tr class="separator:ae156491e40c3833e81591602342fc662"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3e55f930da43f8218d6bfd0677f6b60" id="r_aa3e55f930da43f8218d6bfd0677f6b60"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3e55f930da43f8218d6bfd0677f6b60">CONFIG_THINGSPEAK_MIN</a> = 15000</td></tr>
+<tr class="separator:aa3e55f930da43f8218d6bfd0677f6b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae68374e6458fafd3f4863b0daff52477" id="r_ae68374e6458fafd3f4863b0daff52477"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae68374e6458fafd3f4863b0daff52477">CONFIG_THINGSPEAK_MAX</a> = 7200000</td></tr>
+<tr class="separator:ae68374e6458fafd3f4863b0daff52477"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a89c9a6f88510749f53f0c2a090dbb8bf" id="r_a89c9a6f88510749f53f0c2a090dbb8bf"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a89c9a6f88510749f53f0c2a090dbb8bf">CONFIG_MQTT_PORT_MIN</a> = 1</td></tr>
+<tr class="separator:a89c9a6f88510749f53f0c2a090dbb8bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22b1acb57336de46f5c97d12fabf2c24" id="r_a22b1acb57336de46f5c97d12fabf2c24"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22b1acb57336de46f5c97d12fabf2c24">CONFIG_MQTT_PORT_MAX</a> = 65535</td></tr>
+<tr class="separator:a22b1acb57336de46f5c97d12fabf2c24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab31422414dd55a2921ef60ae0d16b819" id="r_ab31422414dd55a2921ef60ae0d16b819"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab31422414dd55a2921ef60ae0d16b819">MOVING_AVERAGE_WINDOW_MIN</a> = 1</td></tr>
+<tr class="separator:ab31422414dd55a2921ef60ae0d16b819"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a744db6b73c6e71a1e0d24eec6bca17d6" id="r_a744db6b73c6e71a1e0d24eec6bca17d6"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a744db6b73c6e71a1e0d24eec6bca17d6">MOVING_AVERAGE_WINDOW_MAX</a> = 20</td></tr>
+<tr class="separator:a744db6b73c6e71a1e0d24eec6bca17d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a931af3b2c8e7dd75cda910630888cb47" id="r_a931af3b2c8e7dd75cda910630888cb47"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a931af3b2c8e7dd75cda910630888cb47">MOVING_AVERAGE_WINDOW_DEFAULT</a> = 5</td></tr>
+<tr class="separator:a931af3b2c8e7dd75cda910630888cb47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad33de8864e9f7d13f8b336133258c16f" id="r_ad33de8864e9f7d13f8b336133258c16f"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad33de8864e9f7d13f8b336133258c16f">DEFAULT_DELTA_TEMPERATURE</a> = 0.5f</td></tr>
+<tr class="separator:ad33de8864e9f7d13f8b336133258c16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a149120cf7777cfaaf9bbd9414e35d63b" id="r_a149120cf7777cfaaf9bbd9414e35d63b"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a149120cf7777cfaaf9bbd9414e35d63b">DEFAULT_DELTA_HUMIDITY</a> = 2.0f</td></tr>
+<tr class="separator:a149120cf7777cfaaf9bbd9414e35d63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac19a75d9666ffe574bfe2f6e7b080460" id="r_ac19a75d9666ffe574bfe2f6e7b080460"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac19a75d9666ffe574bfe2f6e7b080460">DEFAULT_DELTA_PH</a> = 0.1f</td></tr>
+<tr class="separator:ac19a75d9666ffe574bfe2f6e7b080460"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0664f8861561dcdd9aa7ade1acf4f7d2" id="r_a0664f8861561dcdd9aa7ade1acf4f7d2"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0664f8861561dcdd9aa7ade1acf4f7d2">DEFAULT_DELTA_EC</a> = 50.0f</td></tr>
+<tr class="separator:a0664f8861561dcdd9aa7ade1acf4f7d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d9929193780ad252d25a8263d03ca88" id="r_a7d9929193780ad252d25a8263d03ca88"><td class="memItemLeft" align="right" valign="top">constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d9929193780ad252d25a8263d03ca88">DEFAULT_DELTA_NPK</a> = 10.0f</td></tr>
+<tr class="separator:a7d9929193780ad252d25a8263d03ca88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2dc8534888b887068b82794f37b21374" id="r_a2dc8534888b887068b82794f37b21374"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2dc8534888b887068b82794f37b21374">DEFAULT_FORCE_PUBLISH_CYCLES</a> = 10</td></tr>
+<tr class="separator:a2dc8534888b887068b82794f37b21374"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e8fd5f93ab38700d0ef3e9fb0bcc720" id="r_a4e8fd5f93ab38700d0ef3e9fb0bcc720"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e8fd5f93ab38700d0ef3e9fb0bcc720">JXCT_WIFI_AP_PASS</a> = &quot;12345678&quot;</td></tr>
+<tr class="separator:a4e8fd5f93ab38700d0ef3e9fb0bcc720"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0b400fec6319db5f57919b2bb6db8f2" id="r_ae0b400fec6319db5f57919b2bb6db8f2"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0b400fec6319db5f57919b2bb6db8f2">WIFI_HOSTNAME_PREFIX</a> = &quot;jxct-&quot;</td></tr>
+<tr class="separator:ae0b400fec6319db5f57919b2bb6db8f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65e0800e07fae7240df7fae6c86c1055" id="r_a65e0800e07fae7240df7fae6c86c1055"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65e0800e07fae7240df7fae6c86c1055">MQTT_TOPIC_STATE</a> = &quot;/state&quot;</td></tr>
+<tr class="separator:a65e0800e07fae7240df7fae6c86c1055"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc0a72b67aebd88dd6ca9655e6a90c99" id="r_acc0a72b67aebd88dd6ca9655e6a90c99"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc0a72b67aebd88dd6ca9655e6a90c99">MQTT_TOPIC_STATUS</a> = &quot;/status&quot;</td></tr>
+<tr class="separator:acc0a72b67aebd88dd6ca9655e6a90c99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03f32a6f6160cac902093b418cc8fcb5" id="r_a03f32a6f6160cac902093b418cc8fcb5"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03f32a6f6160cac902093b418cc8fcb5">MQTT_TOPIC_COMMAND</a> = &quot;/command&quot;</td></tr>
+<tr class="separator:a03f32a6f6160cac902093b418cc8fcb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78d06aa7d1d0d0c5a305667281f8f0dd" id="r_a78d06aa7d1d0d0c5a305667281f8f0dd"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78d06aa7d1d0d0c5a305667281f8f0dd">MQTT_TOPIC_AVAILABILITY</a> = &quot;/availability&quot;</td></tr>
+<tr class="separator:a78d06aa7d1d0d0c5a305667281f8f0dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29476cce48d3c057ff38741926ac71db" id="r_a29476cce48d3c057ff38741926ac71db"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29476cce48d3c057ff38741926ac71db">HASS_DISCOVERY_PREFIX</a> = &quot;homeassistant/sensor/&quot;</td></tr>
+<tr class="separator:a29476cce48d3c057ff38741926ac71db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bae8e2361c67765c52dee65bad786ec" id="r_a4bae8e2361c67765c52dee65bad786ec"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4bae8e2361c67765c52dee65bad786ec">HASS_CONFIG_SUFFIX</a> = &quot;/config&quot;</td></tr>
+<tr class="separator:a4bae8e2361c67765c52dee65bad786ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae50f04cb8a3d316eb61afdb47ccb6470" id="r_ae50f04cb8a3d316eb61afdb47ccb6470"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae50f04cb8a3d316eb61afdb47ccb6470">HTTP_CONTENT_TYPE_JSON</a> = &quot;application/json&quot;</td></tr>
+<tr class="separator:ae50f04cb8a3d316eb61afdb47ccb6470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f358c4e2a454d1cc017d4af0dd9c3a8" id="r_a9f358c4e2a454d1cc017d4af0dd9c3a8"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f358c4e2a454d1cc017d4af0dd9c3a8">HTTP_CONTENT_TYPE_HTML</a> = &quot;text/html; charset=utf-8&quot;</td></tr>
+<tr class="separator:a9f358c4e2a454d1cc017d4af0dd9c3a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb72e92dcf23f4d68c0d96ff54a22794" id="r_aeb72e92dcf23f4d68c0d96ff54a22794"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb72e92dcf23f4d68c0d96ff54a22794">HTTP_CACHE_CONTROL</a> = &quot;no-cache, no-store, must-revalidate&quot;</td></tr>
+<tr class="separator:aeb72e92dcf23f4d68c0d96ff54a22794"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a3aea0890a9c7d81ed2b359ee3ae200" id="r_a4a3aea0890a9c7d81ed2b359ee3ae200"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a3aea0890a9c7d81ed2b359ee3ae200">RESET_BUTTON_PIN</a> = 0</td></tr>
+<tr class="separator:a4a3aea0890a9c7d81ed2b359ee3ae200"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a921d1345eebedb569ba46c07be781d2e" id="r_a921d1345eebedb569ba46c07be781d2e"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a921d1345eebedb569ba46c07be781d2e">JXCT_STATUS_LED_PIN</a> = 2</td></tr>
+<tr class="separator:a921d1345eebedb569ba46c07be781d2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ec072189e916c49b5dde8db1440b000" id="r_a2ec072189e916c49b5dde8db1440b000"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2ec072189e916c49b5dde8db1440b000">MODBUS_RX_PIN</a> = 16</td></tr>
+<tr class="separator:a2ec072189e916c49b5dde8db1440b000"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e4eb49e6611973f5b59be908fe81587" id="r_a8e4eb49e6611973f5b59be908fe81587"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e4eb49e6611973f5b59be908fe81587">MODBUS_TX_PIN</a> = 17</td></tr>
+<tr class="separator:a8e4eb49e6611973f5b59be908fe81587"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaddc26fdd8f6a829c412fa7944605132" id="r_aaddc26fdd8f6a829c412fa7944605132"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaddc26fdd8f6a829c412fa7944605132">MODBUS_DE_PIN</a> = 4</td></tr>
+<tr class="separator:aaddc26fdd8f6a829c412fa7944605132"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebc5c5d6e17f3fdbe17604e645e0a55b" id="r_aebc5c5d6e17f3fdbe17604e645e0a55b"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebc5c5d6e17f3fdbe17604e645e0a55b">MODBUS_RE_PIN</a> = 5</td></tr>
+<tr class="separator:aebc5c5d6e17f3fdbe17604e645e0a55b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a531be895ada8bdeaed8eba22d2648973" id="r_a531be895ada8bdeaed8eba22d2648973"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a531be895ada8bdeaed8eba22d2648973">SENSOR_TASK_STACK_SIZE</a> = 4096</td></tr>
+<tr class="separator:a531be895ada8bdeaed8eba22d2648973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5ae137d7081e66e1cd43e5c8df7de05" id="r_af5ae137d7081e66e1cd43e5c8df7de05"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af5ae137d7081e66e1cd43e5c8df7de05">RESET_BUTTON_TASK_STACK_SIZE</a> = 2048</td></tr>
+<tr class="separator:af5ae137d7081e66e1cd43e5c8df7de05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6cd27ccf48b9e8ab2d17ac4074d4465" id="r_ab6cd27ccf48b9e8ab2d17ac4074d4465"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab6cd27ccf48b9e8ab2d17ac4074d4465">WEB_SERVER_TASK_STACK_SIZE</a> = 8192</td></tr>
+<tr class="separator:ab6cd27ccf48b9e8ab2d17ac4074d4465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1c81fb9d3a4331389d1c13c7f972694" id="r_ab1c81fb9d3a4331389d1c13c7f972694"><td class="memItemLeft" align="right" valign="top">constexpr UBaseType_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab1c81fb9d3a4331389d1c13c7f972694">SENSOR_TASK_PRIORITY</a> = 2</td></tr>
+<tr class="separator:ab1c81fb9d3a4331389d1c13c7f972694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2748e3aebe921d6d2f1965fb7b71bbfa" id="r_a2748e3aebe921d6d2f1965fb7b71bbfa"><td class="memItemLeft" align="right" valign="top">constexpr UBaseType_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2748e3aebe921d6d2f1965fb7b71bbfa">RESET_BUTTON_TASK_PRIORITY</a> = 1</td></tr>
+<tr class="separator:a2748e3aebe921d6d2f1965fb7b71bbfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab03a887f37e8650b369c91aef844be7b" id="r_ab03a887f37e8650b369c91aef844be7b"><td class="memItemLeft" align="right" valign="top">constexpr UBaseType_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab03a887f37e8650b369c91aef844be7b">WEB_SERVER_TASK_PRIORITY</a> = 1</td></tr>
+<tr class="separator:ab03a887f37e8650b369c91aef844be7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab07b4a0d65d4caffeae5920dd9df117a" id="r_ab07b4a0d65d4caffeae5920dd9df117a"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab07b4a0d65d4caffeae5920dd9df117a">MAX_CONFIG_JSON_SIZE</a> = 2048</td></tr>
+<tr class="separator:ab07b4a0d65d4caffeae5920dd9df117a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb9d4de13f8e8475454a6c23f1bee8c3" id="r_acb9d4de13f8e8475454a6c23f1bee8c3"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb9d4de13f8e8475454a6c23f1bee8c3">MAX_SENSOR_JSON_SIZE</a> = 512</td></tr>
+<tr class="separator:acb9d4de13f8e8475454a6c23f1bee8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc3619785e6cc8734fabbda92533ab63" id="r_abc3619785e6cc8734fabbda92533ab63"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc3619785e6cc8734fabbda92533ab63">MAX_LOG_MESSAGE_SIZE</a> = 256</td></tr>
+<tr class="separator:abc3619785e6cc8734fabbda92533ab63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09dc0bc5945818a5777cc2e52a211640" id="r_a09dc0bc5945818a5777cc2e52a211640"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09dc0bc5945818a5777cc2e52a211640">LOG_LEVEL_ERROR</a> = 0</td></tr>
+<tr class="separator:a09dc0bc5945818a5777cc2e52a211640"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d1ce14731a1a1d260a9b7be4e082613" id="r_a6d1ce14731a1a1d260a9b7be4e082613"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d1ce14731a1a1d260a9b7be4e082613">LOG_LEVEL_WARN</a> = 1</td></tr>
+<tr class="separator:a6d1ce14731a1a1d260a9b7be4e082613"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae482be3541ac13284ca3ac530eca44e4" id="r_ae482be3541ac13284ca3ac530eca44e4"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae482be3541ac13284ca3ac530eca44e4">LOG_LEVEL_INFO</a> = 2</td></tr>
+<tr class="separator:ae482be3541ac13284ca3ac530eca44e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b03dd1b6198155aa8fb66f3f0dc1413" id="r_a0b03dd1b6198155aa8fb66f3f0dc1413"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b03dd1b6198155aa8fb66f3f0dc1413">LOG_LEVEL_DEBUG</a> = 3</td></tr>
+<tr class="separator:a0b03dd1b6198155aa8fb66f3f0dc1413"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62792f4d036bd170077004ddc2289e90" id="r_a62792f4d036bd170077004ddc2289e90"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62792f4d036bd170077004ddc2289e90">DEBUG_MODBUS_ENABLED</a> = false</td></tr>
+<tr class="separator:a62792f4d036bd170077004ddc2289e90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab844366d6d3f7b1115fa744eacc40157" id="r_ab844366d6d3f7b1115fa744eacc40157"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab844366d6d3f7b1115fa744eacc40157">DEBUG_MQTT_ENABLED</a> = false</td></tr>
+<tr class="separator:ab844366d6d3f7b1115fa744eacc40157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb71d0269023668dbd7b642e71513a15" id="r_afb71d0269023668dbd7b642e71513a15"><td class="memItemLeft" align="right" valign="top">constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb71d0269023668dbd7b642e71513a15">DEBUG_WIFI_ENABLED</a> = false</td></tr>
+<tr class="separator:afb71d0269023668dbd7b642e71513a15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9736db8fbca9550722fc197649a7b05d" id="r_a9736db8fbca9550722fc197649a7b05d"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9736db8fbca9550722fc197649a7b05d">API_VERSION_V1</a> = &quot;v1&quot;</td></tr>
+<tr class="separator:a9736db8fbca9550722fc197649a7b05d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae67763a474ed770ac17a07c9f40ed318" id="r_ae67763a474ed770ac17a07c9f40ed318"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae67763a474ed770ac17a07c9f40ed318">API_VERSION_CURRENT</a> = <a class="el" href="#a9736db8fbca9550722fc197649a7b05d">API_VERSION_V1</a></td></tr>
+<tr class="separator:ae67763a474ed770ac17a07c9f40ed318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af73711cc1a28115c48b1312705ac164a" id="r_af73711cc1a28115c48b1312705ac164a"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af73711cc1a28115c48b1312705ac164a">CONFIG_VERSION_CURRENT</a> = 1</td></tr>
+<tr class="separator:af73711cc1a28115c48b1312705ac164a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc736911b242f167449b14cf593b6096" id="r_abc736911b242f167449b14cf593b6096"><td class="memItemLeft" align="right" valign="top">constexpr int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc736911b242f167449b14cf593b6096">CONFIG_VERSION_MIN_SUPPORTED</a> = 1</td></tr>
+<tr class="separator:abc736911b242f167449b14cf593b6096"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22264a27d455a1be8245280540e34650" id="r_a22264a27d455a1be8245280540e34650"><td class="memItemLeft" align="right" valign="top">constexpr size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22264a27d455a1be8245280540e34650">OTA_BUFFER_SIZE</a> = 1024</td></tr>
+<tr class="separator:a22264a27d455a1be8245280540e34650"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e82d246ba3af051580c6dc37dcaf8a3" id="r_a4e82d246ba3af051580c6dc37dcaf8a3"><td class="memItemLeft" align="right" valign="top">constexpr unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e82d246ba3af051580c6dc37dcaf8a3">OTA_TIMEOUT</a> = 300000</td></tr>
+<tr class="separator:a4e82d246ba3af051580c6dc37dcaf8a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2eb6652b9b3a0b6a91cf51ae6141291" id="r_ac2eb6652b9b3a0b6a91cf51ae6141291"><td class="memItemLeft" align="right" valign="top">constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac2eb6652b9b3a0b6a91cf51ae6141291">OTA_UPDATE_URL_TEMPLATE</a> = &quot;https://api.github.com/repos/%s/%s/releases/latest&quot;</td></tr>
+<tr class="separator:ac2eb6652b9b3a0b6a91cf51ae6141291"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Централизованные константы системы JXCT. </p>
+<p>Все магические числа и конфигурационные константы в одном месте </p>
+</div><h2 class="groupheader">Переменные</h2>
+<a id="ae67763a474ed770ac17a07c9f40ed318" name="ae67763a474ed770ac17a07c9f40ed318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae67763a474ed770ac17a07c9f40ed318">&#9670;&#160;</a></span>API_VERSION_CURRENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* API_VERSION_CURRENT = <a class="el" href="#a9736db8fbca9550722fc197649a7b05d">API_VERSION_V1</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9736db8fbca9550722fc197649a7b05d" name="a9736db8fbca9550722fc197649a7b05d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9736db8fbca9550722fc197649a7b05d">&#9670;&#160;</a></span>API_VERSION_V1</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* API_VERSION_V1 = &quot;v1&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab222817f60c41262eab017e380eb8c6" name="aab222817f60c41262eab017e380eb8c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab222817f60c41262eab017e380eb8c6">&#9670;&#160;</a></span>CLIENT_ID_BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t CLIENT_ID_BUFFER_SIZE = 32</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae156491e40c3833e81591602342fc662" name="ae156491e40c3833e81591602342fc662"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae156491e40c3833e81591602342fc662">&#9670;&#160;</a></span>CONFIG_INTERVAL_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long CONFIG_INTERVAL_MAX = 3600000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad542d64e38a669ebab31fb960826587d" name="ad542d64e38a669ebab31fb960826587d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad542d64e38a669ebab31fb960826587d">&#9670;&#160;</a></span>CONFIG_INTERVAL_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long CONFIG_INTERVAL_MIN = 1000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22b1acb57336de46f5c97d12fabf2c24" name="a22b1acb57336de46f5c97d12fabf2c24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22b1acb57336de46f5c97d12fabf2c24">&#9670;&#160;</a></span>CONFIG_MQTT_PORT_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CONFIG_MQTT_PORT_MAX = 65535</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a89c9a6f88510749f53f0c2a090dbb8bf" name="a89c9a6f88510749f53f0c2a090dbb8bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89c9a6f88510749f53f0c2a090dbb8bf">&#9670;&#160;</a></span>CONFIG_MQTT_PORT_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CONFIG_MQTT_PORT_MIN = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae68374e6458fafd3f4863b0daff52477" name="ae68374e6458fafd3f4863b0daff52477"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae68374e6458fafd3f4863b0daff52477">&#9670;&#160;</a></span>CONFIG_THINGSPEAK_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long CONFIG_THINGSPEAK_MAX = 7200000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa3e55f930da43f8218d6bfd0677f6b60" name="aa3e55f930da43f8218d6bfd0677f6b60"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3e55f930da43f8218d6bfd0677f6b60">&#9670;&#160;</a></span>CONFIG_THINGSPEAK_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long CONFIG_THINGSPEAK_MIN = 15000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af73711cc1a28115c48b1312705ac164a" name="af73711cc1a28115c48b1312705ac164a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af73711cc1a28115c48b1312705ac164a">&#9670;&#160;</a></span>CONFIG_VERSION_CURRENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CONFIG_VERSION_CURRENT = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abc736911b242f167449b14cf593b6096" name="abc736911b242f167449b14cf593b6096"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc736911b242f167449b14cf593b6096">&#9670;&#160;</a></span>CONFIG_VERSION_MIN_SUPPORTED</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int CONFIG_VERSION_MIN_SUPPORTED = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a62792f4d036bd170077004ddc2289e90" name="a62792f4d036bd170077004ddc2289e90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62792f4d036bd170077004ddc2289e90">&#9670;&#160;</a></span>DEBUG_MODBUS_ENABLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DEBUG_MODBUS_ENABLED = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab844366d6d3f7b1115fa744eacc40157" name="ab844366d6d3f7b1115fa744eacc40157"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab844366d6d3f7b1115fa744eacc40157">&#9670;&#160;</a></span>DEBUG_MQTT_ENABLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DEBUG_MQTT_ENABLED = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afb71d0269023668dbd7b642e71513a15" name="afb71d0269023668dbd7b642e71513a15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb71d0269023668dbd7b642e71513a15">&#9670;&#160;</a></span>DEBUG_WIFI_ENABLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool DEBUG_WIFI_ENABLED = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0664f8861561dcdd9aa7ade1acf4f7d2" name="a0664f8861561dcdd9aa7ade1acf4f7d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0664f8861561dcdd9aa7ade1acf4f7d2">&#9670;&#160;</a></span>DEFAULT_DELTA_EC</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DEFAULT_DELTA_EC = 50.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a149120cf7777cfaaf9bbd9414e35d63b" name="a149120cf7777cfaaf9bbd9414e35d63b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a149120cf7777cfaaf9bbd9414e35d63b">&#9670;&#160;</a></span>DEFAULT_DELTA_HUMIDITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DEFAULT_DELTA_HUMIDITY = 2.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7d9929193780ad252d25a8263d03ca88" name="a7d9929193780ad252d25a8263d03ca88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d9929193780ad252d25a8263d03ca88">&#9670;&#160;</a></span>DEFAULT_DELTA_NPK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DEFAULT_DELTA_NPK = 10.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac19a75d9666ffe574bfe2f6e7b080460" name="ac19a75d9666ffe574bfe2f6e7b080460"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac19a75d9666ffe574bfe2f6e7b080460">&#9670;&#160;</a></span>DEFAULT_DELTA_PH</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DEFAULT_DELTA_PH = 0.1f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad33de8864e9f7d13f8b336133258c16f" name="ad33de8864e9f7d13f8b336133258c16f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad33de8864e9f7d13f8b336133258c16f">&#9670;&#160;</a></span>DEFAULT_DELTA_TEMPERATURE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float DEFAULT_DELTA_TEMPERATURE = 0.5f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0ddacb1e739582239933c267e104d702" name="a0ddacb1e739582239933c267e104d702"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ddacb1e739582239933c267e104d702">&#9670;&#160;</a></span>DEFAULT_DNS_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DEFAULT_DNS_PORT = 53</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2dc8534888b887068b82794f37b21374" name="a2dc8534888b887068b82794f37b21374"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2dc8534888b887068b82794f37b21374">&#9670;&#160;</a></span>DEFAULT_FORCE_PUBLISH_CYCLES</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t DEFAULT_FORCE_PUBLISH_CYCLES = 10</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7849788c3400d733d2d535754d28168a" name="a7849788c3400d733d2d535754d28168a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7849788c3400d733d2d535754d28168a">&#9670;&#160;</a></span>DEFAULT_MODBUS_ADDRESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t DEFAULT_MODBUS_ADDRESS = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58f999d62665a9f819c76ab357c9733f" name="a58f999d62665a9f819c76ab357c9733f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58f999d62665a9f819c76ab357c9733f">&#9670;&#160;</a></span>DEFAULT_MQTT_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DEFAULT_MQTT_PORT = 1883</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a67dcd3564182a15e00496b2cf2227ed7" name="a67dcd3564182a15e00496b2cf2227ed7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67dcd3564182a15e00496b2cf2227ed7">&#9670;&#160;</a></span>DEFAULT_MQTT_PUBLISH_INTERVAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long DEFAULT_MQTT_PUBLISH_INTERVAL = 30000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a3bbfdcb5c25d9f893585031128e1f2" name="a4a3bbfdcb5c25d9f893585031128e1f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a3bbfdcb5c25d9f893585031128e1f2">&#9670;&#160;</a></span>DEFAULT_NTP_UPDATE_INTERVAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long DEFAULT_NTP_UPDATE_INTERVAL = 3600000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6434b7a387ed20c9f364ba4761763d37" name="a6434b7a387ed20c9f364ba4761763d37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6434b7a387ed20c9f364ba4761763d37">&#9670;&#160;</a></span>DEFAULT_SENSOR_READ_INTERVAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long DEFAULT_SENSOR_READ_INTERVAL = 5000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af693c003b6fde3f116c5fd46e4c487f2" name="af693c003b6fde3f116c5fd46e4c487f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af693c003b6fde3f116c5fd46e4c487f2">&#9670;&#160;</a></span>DEFAULT_THINGSPEAK_INTERVAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long DEFAULT_THINGSPEAK_INTERVAL = 60000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e987a55f2a52382b2e444e1e658eee9" name="a4e987a55f2a52382b2e444e1e658eee9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e987a55f2a52382b2e444e1e658eee9">&#9670;&#160;</a></span>DEFAULT_WEB_SERVER_PORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DEFAULT_WEB_SERVER_PORT = 80</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a564c8f2937d070bba56544f0b63d8842" name="a564c8f2937d070bba56544f0b63d8842"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a564c8f2937d070bba56544f0b63d8842">&#9670;&#160;</a></span>DNS_CACHE_TTL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long DNS_CACHE_TTL = 300000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4bae8e2361c67765c52dee65bad786ec" name="a4bae8e2361c67765c52dee65bad786ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4bae8e2361c67765c52dee65bad786ec">&#9670;&#160;</a></span>HASS_CONFIG_SUFFIX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* HASS_CONFIG_SUFFIX = &quot;/config&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a29476cce48d3c057ff38741926ac71db" name="a29476cce48d3c057ff38741926ac71db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29476cce48d3c057ff38741926ac71db">&#9670;&#160;</a></span>HASS_DISCOVERY_PREFIX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* HASS_DISCOVERY_PREFIX = &quot;homeassistant/sensor/&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abec991a26cb2aa3678ef2c898d73c233" name="abec991a26cb2aa3678ef2c898d73c233"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abec991a26cb2aa3678ef2c898d73c233">&#9670;&#160;</a></span>HOSTNAME_BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t HOSTNAME_BUFFER_SIZE = 64</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeb72e92dcf23f4d68c0d96ff54a22794" name="aeb72e92dcf23f4d68c0d96ff54a22794"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb72e92dcf23f4d68c0d96ff54a22794">&#9670;&#160;</a></span>HTTP_CACHE_CONTROL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* HTTP_CACHE_CONTROL = &quot;no-cache, no-store, must-revalidate&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f358c4e2a454d1cc017d4af0dd9c3a8" name="a9f358c4e2a454d1cc017d4af0dd9c3a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f358c4e2a454d1cc017d4af0dd9c3a8">&#9670;&#160;</a></span>HTTP_CONTENT_TYPE_HTML</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* HTTP_CONTENT_TYPE_HTML = &quot;text/html; charset=utf-8&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae50f04cb8a3d316eb61afdb47ccb6470" name="ae50f04cb8a3d316eb61afdb47ccb6470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae50f04cb8a3d316eb61afdb47ccb6470">&#9670;&#160;</a></span>HTTP_CONTENT_TYPE_JSON</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* HTTP_CONTENT_TYPE_JSON = &quot;application/json&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3ab6698eff150be75250e5066a32c343" name="a3ab6698eff150be75250e5066a32c343"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ab6698eff150be75250e5066a32c343">&#9670;&#160;</a></span>JSON_BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t JSON_BUFFER_SIZE = 256</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9caf8aea0daab8f3b8499c43ca27186" name="ad9caf8aea0daab8f3b8499c43ca27186"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9caf8aea0daab8f3b8499c43ca27186">&#9670;&#160;</a></span>JXCT_BUTTON_HOLD_TIME_MS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long JXCT_BUTTON_HOLD_TIME_MS = 2000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a921d1345eebedb569ba46c07be781d2e" name="a921d1345eebedb569ba46c07be781d2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a921d1345eebedb569ba46c07be781d2e">&#9670;&#160;</a></span>JXCT_STATUS_LED_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int JXCT_STATUS_LED_PIN = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7954a4e74b56f782bc40acf8db11b6a9" name="a7954a4e74b56f782bc40acf8db11b6a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7954a4e74b56f782bc40acf8db11b6a9">&#9670;&#160;</a></span>JXCT_WATCHDOG_TIMEOUT_SEC</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long JXCT_WATCHDOG_TIMEOUT_SEC = 30</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e8fd5f93ab38700d0ef3e9fb0bcc720" name="a4e8fd5f93ab38700d0ef3e9fb0bcc720"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e8fd5f93ab38700d0ef3e9fb0bcc720">&#9670;&#160;</a></span>JXCT_WIFI_AP_PASS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* JXCT_WIFI_AP_PASS = &quot;12345678&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1008fcce664752a9154bab72546d34af" name="a1008fcce664752a9154bab72546d34af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1008fcce664752a9154bab72546d34af">&#9670;&#160;</a></span>LED_BLINK_FAST</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long LED_BLINK_FAST = 100</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a15af2a0475ee85df700484308c2647a5" name="a15af2a0475ee85df700484308c2647a5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15af2a0475ee85df700484308c2647a5">&#9670;&#160;</a></span>LED_BLINK_NORMAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long LED_BLINK_NORMAL = 500</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3fc48c41ab4e2ebc54d84ab9471f0970" name="a3fc48c41ab4e2ebc54d84ab9471f0970"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fc48c41ab4e2ebc54d84ab9471f0970">&#9670;&#160;</a></span>LED_BLINK_SLOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long LED_BLINK_SLOW = 1000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b03dd1b6198155aa8fb66f3f0dc1413" name="a0b03dd1b6198155aa8fb66f3f0dc1413"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b03dd1b6198155aa8fb66f3f0dc1413">&#9670;&#160;</a></span>LOG_LEVEL_DEBUG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LOG_LEVEL_DEBUG = 3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a09dc0bc5945818a5777cc2e52a211640" name="a09dc0bc5945818a5777cc2e52a211640"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09dc0bc5945818a5777cc2e52a211640">&#9670;&#160;</a></span>LOG_LEVEL_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LOG_LEVEL_ERROR = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae482be3541ac13284ca3ac530eca44e4" name="ae482be3541ac13284ca3ac530eca44e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae482be3541ac13284ca3ac530eca44e4">&#9670;&#160;</a></span>LOG_LEVEL_INFO</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LOG_LEVEL_INFO = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6d1ce14731a1a1d260a9b7be4e082613" name="a6d1ce14731a1a1d260a9b7be4e082613"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d1ce14731a1a1d260a9b7be4e082613">&#9670;&#160;</a></span>LOG_LEVEL_WARN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int LOG_LEVEL_WARN = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab07b4a0d65d4caffeae5920dd9df117a" name="ab07b4a0d65d4caffeae5920dd9df117a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab07b4a0d65d4caffeae5920dd9df117a">&#9670;&#160;</a></span>MAX_CONFIG_JSON_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t MAX_CONFIG_JSON_SIZE = 2048</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abc3619785e6cc8734fabbda92533ab63" name="abc3619785e6cc8734fabbda92533ab63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc3619785e6cc8734fabbda92533ab63">&#9670;&#160;</a></span>MAX_LOG_MESSAGE_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t MAX_LOG_MESSAGE_SIZE = 256</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acb9d4de13f8e8475454a6c23f1bee8c3" name="acb9d4de13f8e8475454a6c23f1bee8c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb9d4de13f8e8475454a6c23f1bee8c3">&#9670;&#160;</a></span>MAX_SENSOR_JSON_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t MAX_SENSOR_JSON_SIZE = 512</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab6c697e400afc274c87fdee739c88ab9" name="ab6c697e400afc274c87fdee739c88ab9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6c697e400afc274c87fdee739c88ab9">&#9670;&#160;</a></span>MODBUS_BAUD_RATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long MODBUS_BAUD_RATE = 9600</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2fbd8c67fb5bfd659802a9a054798e9e" name="a2fbd8c67fb5bfd659802a9a054798e9e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fbd8c67fb5bfd659802a9a054798e9e">&#9670;&#160;</a></span>MODBUS_CACHE_TIMEOUT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long MODBUS_CACHE_TIMEOUT = 5000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac2d13ba33d7829a01539892112c36d55" name="ac2d13ba33d7829a01539892112c36d55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2d13ba33d7829a01539892112c36d55">&#9670;&#160;</a></span>MODBUS_DATA_BITS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t MODBUS_DATA_BITS = 8</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaddc26fdd8f6a829c412fa7944605132" name="aaddc26fdd8f6a829c412fa7944605132"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaddc26fdd8f6a829c412fa7944605132">&#9670;&#160;</a></span>MODBUS_DE_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MODBUS_DE_PIN = 4</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a90f31c1e93e5de5be24a37b91f33e2f7" name="a90f31c1e93e5de5be24a37b91f33e2f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90f31c1e93e5de5be24a37b91f33e2f7">&#9670;&#160;</a></span>MODBUS_FRAME_DELAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long MODBUS_FRAME_DELAY = 100</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5ac0d3aaefc2ee9dcae39fbf3f274e2a" name="a5ac0d3aaefc2ee9dcae39fbf3f274e2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ac0d3aaefc2ee9dcae39fbf3f274e2a">&#9670;&#160;</a></span>MODBUS_MAX_RETRIES</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t MODBUS_MAX_RETRIES = 3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1b3a318da7b009b1f31acac87ed4b651" name="a1b3a318da7b009b1f31acac87ed4b651"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b3a318da7b009b1f31acac87ed4b651">&#9670;&#160;</a></span>MODBUS_PARITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t MODBUS_PARITY = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aebc5c5d6e17f3fdbe17604e645e0a55b" name="aebc5c5d6e17f3fdbe17604e645e0a55b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebc5c5d6e17f3fdbe17604e645e0a55b">&#9670;&#160;</a></span>MODBUS_RE_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MODBUS_RE_PIN = 5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afadcc38ac652f71edb1585ed8bb147b6" name="afadcc38ac652f71edb1585ed8bb147b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afadcc38ac652f71edb1585ed8bb147b6">&#9670;&#160;</a></span>MODBUS_RESPONSE_TIMEOUT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long MODBUS_RESPONSE_TIMEOUT = 2000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a64d07c204cd0c8b744644a91dd935c07" name="a64d07c204cd0c8b744644a91dd935c07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a64d07c204cd0c8b744644a91dd935c07">&#9670;&#160;</a></span>MODBUS_RETRY_DELAY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long MODBUS_RETRY_DELAY = 1000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ec072189e916c49b5dde8db1440b000" name="a2ec072189e916c49b5dde8db1440b000"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ec072189e916c49b5dde8db1440b000">&#9670;&#160;</a></span>MODBUS_RX_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MODBUS_RX_PIN = 16</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac8e91ac73efbebaf84c496121248e76d" name="ac8e91ac73efbebaf84c496121248e76d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8e91ac73efbebaf84c496121248e76d">&#9670;&#160;</a></span>MODBUS_STOP_BITS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t MODBUS_STOP_BITS = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8e4eb49e6611973f5b59be908fe81587" name="a8e4eb49e6611973f5b59be908fe81587"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e4eb49e6611973f5b59be908fe81587">&#9670;&#160;</a></span>MODBUS_TX_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MODBUS_TX_PIN = 17</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a931af3b2c8e7dd75cda910630888cb47" name="a931af3b2c8e7dd75cda910630888cb47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a931af3b2c8e7dd75cda910630888cb47">&#9670;&#160;</a></span>MOVING_AVERAGE_WINDOW_DEFAULT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t MOVING_AVERAGE_WINDOW_DEFAULT = 5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a744db6b73c6e71a1e0d24eec6bca17d6" name="a744db6b73c6e71a1e0d24eec6bca17d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a744db6b73c6e71a1e0d24eec6bca17d6">&#9670;&#160;</a></span>MOVING_AVERAGE_WINDOW_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t MOVING_AVERAGE_WINDOW_MAX = 20</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab31422414dd55a2921ef60ae0d16b819" name="ab31422414dd55a2921ef60ae0d16b819"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab31422414dd55a2921ef60ae0d16b819">&#9670;&#160;</a></span>MOVING_AVERAGE_WINDOW_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t MOVING_AVERAGE_WINDOW_MIN = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7e41f8ea7923417d3f459ae63b5c2d8" name="ae7e41f8ea7923417d3f459ae63b5c2d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7e41f8ea7923417d3f459ae63b5c2d8">&#9670;&#160;</a></span>MQTT_BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t MQTT_BUFFER_SIZE = 512</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a630aeb24f56d2f3f127fb27936875c9f" name="a630aeb24f56d2f3f127fb27936875c9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a630aeb24f56d2f3f127fb27936875c9f">&#9670;&#160;</a></span>MQTT_CONNECTION_ATTEMPTS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int MQTT_CONNECTION_ATTEMPTS = 3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae7f737a725f45e5a262a28e54944ca6b" name="ae7f737a725f45e5a262a28e54944ca6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7f737a725f45e5a262a28e54944ca6b">&#9670;&#160;</a></span>MQTT_RECONNECT_INTERVAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long MQTT_RECONNECT_INTERVAL = 5000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78d06aa7d1d0d0c5a305667281f8f0dd" name="a78d06aa7d1d0d0c5a305667281f8f0dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78d06aa7d1d0d0c5a305667281f8f0dd">&#9670;&#160;</a></span>MQTT_TOPIC_AVAILABILITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MQTT_TOPIC_AVAILABILITY = &quot;/availability&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a03f32a6f6160cac902093b418cc8fcb5" name="a03f32a6f6160cac902093b418cc8fcb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03f32a6f6160cac902093b418cc8fcb5">&#9670;&#160;</a></span>MQTT_TOPIC_COMMAND</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MQTT_TOPIC_COMMAND = &quot;/command&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65e0800e07fae7240df7fae6c86c1055" name="a65e0800e07fae7240df7fae6c86c1055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65e0800e07fae7240df7fae6c86c1055">&#9670;&#160;</a></span>MQTT_TOPIC_STATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MQTT_TOPIC_STATE = &quot;/state&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc0a72b67aebd88dd6ca9655e6a90c99" name="acc0a72b67aebd88dd6ca9655e6a90c99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc0a72b67aebd88dd6ca9655e6a90c99">&#9670;&#160;</a></span>MQTT_TOPIC_STATUS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* MQTT_TOPIC_STATUS = &quot;/status&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22264a27d455a1be8245280540e34650" name="a22264a27d455a1be8245280540e34650"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22264a27d455a1be8245280540e34650">&#9670;&#160;</a></span>OTA_BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t OTA_BUFFER_SIZE = 1024</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4e82d246ba3af051580c6dc37dcaf8a3" name="a4e82d246ba3af051580c6dc37dcaf8a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e82d246ba3af051580c6dc37dcaf8a3">&#9670;&#160;</a></span>OTA_TIMEOUT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long OTA_TIMEOUT = 300000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac2eb6652b9b3a0b6a91cf51ae6141291" name="ac2eb6652b9b3a0b6a91cf51ae6141291"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2eb6652b9b3a0b6a91cf51ae6141291">&#9670;&#160;</a></span>OTA_UPDATE_URL_TEMPLATE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* OTA_UPDATE_URL_TEMPLATE = &quot;https://api.github.com/repos/%s/%s/releases/latest&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4a3aea0890a9c7d81ed2b359ee3ae200" name="a4a3aea0890a9c7d81ed2b359ee3ae200"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a3aea0890a9c7d81ed2b359ee3ae200">&#9670;&#160;</a></span>RESET_BUTTON_PIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int RESET_BUTTON_PIN = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2748e3aebe921d6d2f1965fb7b71bbfa" name="a2748e3aebe921d6d2f1965fb7b71bbfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2748e3aebe921d6d2f1965fb7b71bbfa">&#9670;&#160;</a></span>RESET_BUTTON_TASK_PRIORITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UBaseType_t RESET_BUTTON_TASK_PRIORITY = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af5ae137d7081e66e1cd43e5c8df7de05" name="af5ae137d7081e66e1cd43e5c8df7de05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5ae137d7081e66e1cd43e5c8df7de05">&#9670;&#160;</a></span>RESET_BUTTON_TASK_STACK_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t RESET_BUTTON_TASK_STACK_SIZE = 2048</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f7c84a54d65caeac7c47ba0a2b5bf30" name="a9f7c84a54d65caeac7c47ba0a2b5bf30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f7c84a54d65caeac7c47ba0a2b5bf30">&#9670;&#160;</a></span>SENSOR_EC_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SENSOR_EC_MAX = 20000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a246f7e543a4fed75fdbcde68614299b5" name="a246f7e543a4fed75fdbcde68614299b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a246f7e543a4fed75fdbcde68614299b5">&#9670;&#160;</a></span>SENSOR_EC_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SENSOR_EC_MIN = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa79f30db9ff75390e0254a848dd0bbc3" name="aa79f30db9ff75390e0254a848dd0bbc3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa79f30db9ff75390e0254a848dd0bbc3">&#9670;&#160;</a></span>SENSOR_HUMIDITY_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SENSOR_HUMIDITY_MAX = 100.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9c63ed1a23642df5d6aba976397be257" name="a9c63ed1a23642df5d6aba976397be257"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c63ed1a23642df5d6aba976397be257">&#9670;&#160;</a></span>SENSOR_HUMIDITY_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SENSOR_HUMIDITY_MIN = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5885b1438361c2ca1510f82f0824b7f1" name="a5885b1438361c2ca1510f82f0824b7f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5885b1438361c2ca1510f82f0824b7f1">&#9670;&#160;</a></span>SENSOR_JSON_CACHE_TTL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long SENSOR_JSON_CACHE_TTL = 1000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac3c1dd8bdfb0337a839aed6c24c4d929" name="ac3c1dd8bdfb0337a839aed6c24c4d929"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3c1dd8bdfb0337a839aed6c24c4d929">&#9670;&#160;</a></span>SENSOR_NPK_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SENSOR_NPK_MAX = 9999</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a89872d4abc1e4808f175cdbfc032f4ce" name="a89872d4abc1e4808f175cdbfc032f4ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89872d4abc1e4808f175cdbfc032f4ce">&#9670;&#160;</a></span>SENSOR_NPK_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SENSOR_NPK_MIN = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a66cabb5a09a885dfe9c920415a899f25" name="a66cabb5a09a885dfe9c920415a899f25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66cabb5a09a885dfe9c920415a899f25">&#9670;&#160;</a></span>SENSOR_PH_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SENSOR_PH_MAX = 14.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaea5e75d8ed5103a895ab69345e51f8e" name="aaea5e75d8ed5103a895ab69345e51f8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaea5e75d8ed5103a895ab69345e51f8e">&#9670;&#160;</a></span>SENSOR_PH_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SENSOR_PH_MIN = 0.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1c81fb9d3a4331389d1c13c7f972694" name="ab1c81fb9d3a4331389d1c13c7f972694"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1c81fb9d3a4331389d1c13c7f972694">&#9670;&#160;</a></span>SENSOR_TASK_PRIORITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UBaseType_t SENSOR_TASK_PRIORITY = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a531be895ada8bdeaed8eba22d2648973" name="a531be895ada8bdeaed8eba22d2648973"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a531be895ada8bdeaed8eba22d2648973">&#9670;&#160;</a></span>SENSOR_TASK_STACK_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t SENSOR_TASK_STACK_SIZE = 4096</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a31024a54806ee2efe49cd2c99fd5a78a" name="a31024a54806ee2efe49cd2c99fd5a78a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31024a54806ee2efe49cd2c99fd5a78a">&#9670;&#160;</a></span>SENSOR_TEMP_MAX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SENSOR_TEMP_MAX = 80.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aba092fd1c7310e40134f0bc95ae6547e" name="aba092fd1c7310e40134f0bc95ae6547e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba092fd1c7310e40134f0bc95ae6547e">&#9670;&#160;</a></span>SENSOR_TEMP_MIN</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SENSOR_TEMP_MIN = -40.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a59058d2a77bd18a8eb3a5618713b5c05" name="a59058d2a77bd18a8eb3a5618713b5c05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59058d2a77bd18a8eb3a5618713b5c05">&#9670;&#160;</a></span>STATUS_PRINT_INTERVAL</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long STATUS_PRINT_INTERVAL = 30000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abec57d3cf3642697f86a7d58af6fbf21" name="abec57d3cf3642697f86a7d58af6fbf21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abec57d3cf3642697f86a7d58af6fbf21">&#9670;&#160;</a></span>TOPIC_BUFFER_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t TOPIC_BUFFER_SIZE = 128</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab03a887f37e8650b369c91aef844be7b" name="ab03a887f37e8650b369c91aef844be7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab03a887f37e8650b369c91aef844be7b">&#9670;&#160;</a></span>WEB_SERVER_TASK_PRIORITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">UBaseType_t WEB_SERVER_TASK_PRIORITY = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab6cd27ccf48b9e8ab2d17ac4074d4465" name="ab6cd27ccf48b9e8ab2d17ac4074d4465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6cd27ccf48b9e8ab2d17ac4074d4465">&#9670;&#160;</a></span>WEB_SERVER_TASK_STACK_SIZE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t WEB_SERVER_TASK_STACK_SIZE = 8192</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad6f86c92de338fa423acd76cdffc2e1d" name="ad6f86c92de338fa423acd76cdffc2e1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6f86c92de338fa423acd76cdffc2e1d">&#9670;&#160;</a></span>WIFI_CONNECTION_ATTEMPTS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int WIFI_CONNECTION_ATTEMPTS = 20</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1991b2b4038578f7511c9c38f8620a9" name="ab1991b2b4038578f7511c9c38f8620a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1991b2b4038578f7511c9c38f8620a9">&#9670;&#160;</a></span>WIFI_CONNECTION_TIMEOUT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long WIFI_CONNECTION_TIMEOUT = 10000</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae0b400fec6319db5f57919b2bb6db8f2" name="ae0b400fec6319db5f57919b2bb6db8f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0b400fec6319db5f57919b2bb6db8f2">&#9670;&#160;</a></span>WIFI_HOSTNAME_PREFIX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* WIFI_HOSTNAME_PREFIX = &quot;jxct-&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="jxct__constants_8h.html">jxct_constants.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

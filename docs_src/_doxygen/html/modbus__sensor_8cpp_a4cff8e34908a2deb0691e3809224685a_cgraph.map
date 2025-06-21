@@ -1,0 +1,15 @@
+<map id="applyCompensationIfEnabled" name="applyCompensationIfEnabled">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,197,83"/>
+<area shape="rect" id="Node000002" href="$sensor__compensation_8cpp.html#af586e2e5563baee2b53964aff0e1467d" title=" " alt="" coords="249,5,330,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="153,53,233,31,235,36,154,58"/>
+<area shape="rect" id="Node000003" href="$sensor__compensation_8cpp.html#aa9d6b97073bca78fb526c17bdbf816a6" title=" " alt="" coords="245,56,334,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="197,67,229,67,229,72,197,72"/>
+<area shape="rect" id="Node000007" href="$sensor__compensation_8cpp.html#aec93dd728b4450e4078a1e26954478e5" title=" " alt="" coords="249,107,330,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="154,81,235,103,233,108,153,86"/>
+<area shape="rect" id="Node000004" href="$sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a" title=" " alt="" coords="382,5,441,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="322,53,367,34,369,39,324,58"/>
+<area shape="rect" id="Node000005" href="$sensor__compensation_8cpp.html#adf2ddb83f2189c9159aa7fe534217ea4" title=" " alt="" coords="382,56,441,83"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="335,67,366,67,366,72,335,72"/>
+<area shape="rect" id="Node000006" href="$sensor__compensation_8cpp.html#ae64bff1823ab30991e51b8d57c23be39" title=" " alt="" coords="382,107,441,133"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="324,81,369,100,367,105,322,86"/>
+</map>

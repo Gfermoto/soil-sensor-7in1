@@ -1,0 +1,26 @@
+var dir_68267d1309a1af8e8297ef4c3efbcdba =
+[
+    [ "web", "dir_0d4dde2834ed44e47b6207c19e4aac26.html", "dir_0d4dde2834ed44e47b6207c19e4aac26" ],
+    [ "calibration_manager.cpp", "calibration__manager_8cpp.html", "calibration__manager_8cpp" ],
+    [ "config.cpp", "config_8cpp.html", "config_8cpp" ],
+    [ "fake_sensor.cpp", "fake__sensor_8cpp.html", "fake__sensor_8cpp" ],
+    [ "fake_sensor.h", "fake__sensor_8h.html", "fake__sensor_8h" ],
+    [ "fake_sensor_adapter.h", "fake__sensor__adapter_8h.html", "fake__sensor__adapter_8h" ],
+    [ "jxct_format_utils.cpp", "jxct__format__utils_8cpp.html", "jxct__format__utils_8cpp" ],
+    [ "jxct_ui_system.cpp", "jxct__ui__system_8cpp.html", "jxct__ui__system_8cpp" ],
+    [ "logger.cpp", "logger_8cpp.html", "logger_8cpp" ],
+    [ "main.cpp", "main_8cpp.html", "main_8cpp" ],
+    [ "modbus_sensor.cpp", "modbus__sensor_8cpp.html", "modbus__sensor_8cpp" ],
+    [ "modbus_sensor.h", "modbus__sensor_8h.html", "modbus__sensor_8h" ],
+    [ "modbus_sensor_adapter.h", "modbus__sensor__adapter_8h.html", "modbus__sensor__adapter_8h" ],
+    [ "mqtt_client.cpp", "mqtt__client_8cpp.html", "mqtt__client_8cpp" ],
+    [ "mqtt_client.h", "mqtt__client_8h.html", "mqtt__client_8h" ],
+    [ "ota_manager.cpp", "ota__manager_8cpp.html", "ota__manager_8cpp" ],
+    [ "routes_calibration.cpp", "routes__calibration_8cpp.html", "routes__calibration_8cpp" ],
+    [ "sensor_compensation.cpp", "sensor__compensation_8cpp.html", "sensor__compensation_8cpp" ],
+    [ "thingspeak_client.cpp", "thingspeak__client_8cpp.html", "thingspeak__client_8cpp" ],
+    [ "thingspeak_client.h", "thingspeak__client_8h.html", "thingspeak__client_8h" ],
+    [ "validation_utils.cpp", "validation__utils_8cpp.html", "validation__utils_8cpp" ],
+    [ "wifi_manager.cpp", "wifi__manager_8cpp.html", "wifi__manager_8cpp" ],
+    [ "wifi_manager.h", "wifi__manager_8h.html", "wifi__manager_8h" ]
+];

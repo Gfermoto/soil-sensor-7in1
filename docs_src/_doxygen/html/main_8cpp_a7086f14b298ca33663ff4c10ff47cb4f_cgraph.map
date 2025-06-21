@@ -1,0 +1,16 @@
+<map id="resetButtonTask" name="resetButtonTask">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,122,83"/>
+<area shape="rect" id="Node000002" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="181,5,247,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="105,53,165,32,167,37,106,58"/>
+<area shape="rect" id="Node000003" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="328,56,396,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="122,67,312,67,312,72,122,72"/>
+<area shape="rect" id="Node000004" href="$config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="170,107,258,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="106,81,159,99,157,104,105,86"/>
+<area shape="poly" id="edge7_Node000004_Node000003" title=" " alt="" coords="254,104,312,83,314,88,256,109"/>
+<area shape="rect" id="Node000005" href="$config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="306,107,418,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="258,117,290,117,290,123,258,123"/>
+<area shape="rect" id="Node000006" href="$config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="316,157,408,184"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="256,131,307,149,305,154,254,136"/>
+<area shape="rect" id="Node000007" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="318,208,407,235"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="231,132,265,162,307,194,315,198,312,203,305,198,261,166,227,136"/>
+</map>

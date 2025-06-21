@@ -1,0 +1,27 @@
+<map id="handleCalibrationPage" name="handleCalibrationPage">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,107,157,133"/>
+<area shape="rect" id="Node000002" href="$routes__calibration_8cpp.html#af44b5a1840fa2c2199b0a9fab38a629f" title=" " alt="" coords="205,107,368,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="157,117,189,117,189,123,157,123"/>
+<area shape="rect" id="Node000003" href="$jxct__ui__system_8cpp.html#a7834ec4c73014039a2aeeedadff41141" title=" " alt="" coords="433,5,542,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="307,104,355,74,415,42,429,36,431,40,417,46,358,78,310,108"/>
+<area shape="rect" id="Node000004" href="$web__templates_8cpp.html#ad4f3a6e85baef9b2d3e2aec977c3a321" title="Генерация футера HTML страницы" alt="" coords="418,56,557,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="342,103,416,84,418,90,343,109"/>
+<area shape="rect" id="Node000006" href="$web__templates_8cpp.html#ac4502db1ad8d9e08830f7eb784d62600" title="Генерация заголовка HTML страницы" alt="" coords="416,107,559,133"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="368,117,400,117,400,123,368,123"/>
+<area shape="rect" id="Node000008" href="$namespace_calibration_manager.html#a1ee0f1f244cb68eaa7e47a79deb452b6" title=" " alt="" coords="421,157,554,200"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="336,131,407,152,405,158,334,136"/>
+<area shape="rect" id="Node000013" href="$wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9" title=" " alt="" coords="452,224,523,251"/>
+<area shape="poly" id="edge12_Node000002_Node000013" title=" " alt="" coords="305,132,354,169,417,210,439,219,437,224,415,214,351,174,302,136"/>
+<area shape="rect" id="Node000005" href="$jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="620,56,728,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="557,67,605,67,605,72,557,72"/>
+<area shape="rect" id="Node000007" href="$jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="620,107,728,133"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="559,117,604,117,604,123,559,123"/>
+<area shape="rect" id="Node000009" href="$namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613" title=" " alt="" coords="607,157,741,200"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="555,176,591,176,591,181,555,181"/>
+<area shape="rect" id="Node000012" href="$namespace_calibration_manager.html#a24c0b11ea08e757ae404289fa38e33b3" title=" " alt="" coords="607,224,741,267"/>
+<area shape="poly" id="edge11_Node000008_Node000012" title=" " alt="" coords="550,198,599,216,597,221,548,203"/>
+<area shape="rect" id="Node000010" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="800,140,866,167"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="741,165,785,158,785,164,742,171"/>
+<area shape="rect" id="Node000011" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="789,191,878,217"/>
+<area shape="poly" id="edge10_Node000009_Node000011" title=" " alt="" coords="742,187,774,192,773,197,741,192"/>
+</map>
