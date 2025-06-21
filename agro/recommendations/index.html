@@ -1,0 +1,2399 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="ESP32-based IoT soil sensor firmware — docs & API">
+      
+      
+      
+        <link rel="canonical" href="https://gfermoto.github.io/soil-sensor-7in1/agro/recommendations/">
+      
+      
+        <link rel="prev" href="../../api/overview/">
+      
+      
+        <link rel="next" href="../../development/ARCH_OVERALL/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Агрономические рекомендации - JXCT Soil Sensor</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/custom.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#v30" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="JXCT Soil Sensor" class="md-header__button md-logo" aria-label="JXCT Soil Sensor" data-md-component="logo">
+      
+  <img src="../../img/logo.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            JXCT Soil Sensor
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Агрономические рекомендации
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Gfermoto/soil-sensor-7in1
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../getting-started/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Getting started
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../firmware/ota/" class="md-tabs__link">
+          
+  
+  
+  Firmware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../hardware/schematic/" class="md-tabs__link">
+          
+  
+  
+  Hardware
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../examples/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Examples
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api/" class="md-tabs__link">
+          
+  
+  
+  API
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  Agro
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../development/ARCH_OVERALL/" class="md-tabs__link">
+          
+  
+  
+  Development
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="JXCT Soil Sensor" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor" data-md-component="logo">
+      
+  <img src="../../img/logo.svg" alt="logo">
+
+    </a>
+    JXCT Soil Sensor
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Gfermoto/soil-sensor-7in1
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Getting started
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Firmware
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Firmware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firmware/ota/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OTA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firmware/config/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Configuration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firmware/compensation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Compensation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../firmware/modbus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modbus protocol
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Hardware
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Hardware
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/schematic/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Schematic
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../hardware/bill-of-materials/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bill of materials
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Examples
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    REST API (OpenAPI)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api/overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Agro
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Agro
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    General recommendations
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    General recommendations
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Алгоритмы компенсации
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Алгоритмы компенсации">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Физически корректные модели
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Физически корректные модели">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ec" class="md-nav__link">
+    <span class="md-ellipsis">
+      EC – модель Арчи
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ph" class="md-nav__link">
+    <span class="md-ellipsis">
+      pH – только температурная компенсация
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npk-t-" class="md-nav__link">
+    <span class="md-ellipsis">
+      NPK – T- и θ-зависимость + тип почвы
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Архитектура
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Рекомендации – динамические и адаптивные
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Рекомендации – динамические и адаптивные">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Оптимумы, зависящие от стадии и температуры
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Почвенно-адаптивные поправки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Ограничения достоверности
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Протоколы калибровки
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Протоколы калибровки">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ec" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 EC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-ph" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 pH
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Система предупреждений
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. План внедрения
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Научные источники
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Development
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Development
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/ARCH_OVERALL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Architecture
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/QA_REFACTORING_PLAN_2025H2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    QA & Refactoring
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/TECH_DEBT_REPORT_2025-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tech-debt report
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/tech_debt_auto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tech-debt report (auto)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/STATIC_PAGES_MIGRATION_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Static pages migration
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/static_analysis_summary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Static analysis report
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/auto_reports_summary.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Auto reports summary (auto)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../development/auto_reports" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Raw auto reports (auto)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Алгоритмы компенсации
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Алгоритмы компенсации">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 Физически корректные модели
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 Физически корректные модели">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ec" class="md-nav__link">
+    <span class="md-ellipsis">
+      EC – модель Арчи
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ph" class="md-nav__link">
+    <span class="md-ellipsis">
+      pH – только температурная компенсация
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#npk-t-" class="md-nav__link">
+    <span class="md-ellipsis">
+      NPK – T- и θ-зависимость + тип почвы
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 Архитектура
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Рекомендации – динамические и адаптивные
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Рекомендации – динамические и адаптивные">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Оптимумы, зависящие от стадии и температуры
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Почвенно-адаптивные поправки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Ограничения достоверности
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Протоколы калибровки
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Протоколы калибровки">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-ec" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 EC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-ph" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 pH
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Система предупреждений
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. План внедрения
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Научные источники
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="v30">Научно обоснованная ревизия системы компенсации и рекомендаций (v3.0)<a class="headerlink" href="#v30" title="Permanent link">&para;</a></h1>
+<blockquote>
+<p>Издание заменяет предыдущий <code>AGRO_RECOMMENDATIONS.md</code>. Ключевая цель — обеспечить согласованность с обновлённым руководством по компенсации v2.6.0 и устранить эмпирические допущения, не подтверждённые литературой.</p>
+</blockquote>
+<hr />
+<h2 id="1">1. Алгоритмы компенсации<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 Физически корректные модели<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<h4 id="ec">EC – модель Арчи<a class="headerlink" href="#ec" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">correct_ec</span><span class="p">(</span><span class="n">ec_25</span><span class="p">,</span> <span class="n">θ</span><span class="p">,</span> <span class="n">soil</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Пересчёт EC (25 °C) к стандартной влажности с учётом типа почвы.</span>
+<span class="sd">    ec_25 – EC, скорректированная по температуре, µS/cm</span>
+<span class="sd">    θ – текущая влажность почвы, %</span>
+<span class="sd">    soil – &#39;sand&#39; | &#39;loam&#39; | &#39;clay&#39; | &#39;peat&#39;&quot;&quot;&quot;</span>
+    <span class="n">porosity</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;sand&#39;</span><span class="p">:</span><span class="mf">0.35</span><span class="p">,</span><span class="s1">&#39;loam&#39;</span><span class="p">:</span><span class="mf">0.45</span><span class="p">,</span><span class="s1">&#39;clay&#39;</span><span class="p">:</span><span class="mf">0.50</span><span class="p">,</span><span class="s1">&#39;peat&#39;</span><span class="p">:</span><span class="mf">0.85</span><span class="p">}</span>
+    <span class="n">m</span>        <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;sand&#39;</span><span class="p">:</span><span class="mf">1.3</span> <span class="p">,</span><span class="s1">&#39;loam&#39;</span><span class="p">:</span><span class="mf">1.8</span> <span class="p">,</span><span class="s1">&#39;clay&#39;</span><span class="p">:</span><span class="mf">2.2</span> <span class="p">,</span><span class="s1">&#39;peat&#39;</span><span class="p">:</span><span class="mf">1.9</span><span class="p">}</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="n">porosity</span><span class="p">[</span><span class="n">soil</span><span class="p">]</span> <span class="o">**</span> <span class="o">-</span><span class="n">m</span><span class="p">[</span><span class="n">soil</span><span class="p">]</span>           <span class="c1"># formation-factor</span>
+    <span class="k">return</span> <span class="n">ec_25</span> <span class="o">*</span> <span class="p">(</span><span class="n">θ</span><span class="o">/</span><span class="mi">100</span><span class="p">)</span> <span class="o">*</span> <span class="n">F</span>
+</code></pre></div>
+<h4 id="ph">pH – только температурная компенсация<a class="headerlink" href="#ph" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">pH_final</span> <span class="o">=</span> <span class="n">pH_raw</span> <span class="o">-</span> <span class="mf">0.003</span> <span class="o">*</span> <span class="p">(</span><span class="n">T</span> <span class="o">-</span> <span class="mi">25</span><span class="p">)</span>  <span class="c1"># 0.059/20≈0.003</span>
+</code></pre></div>
+<h4 id="npk-t-">NPK – T- и θ-зависимость + тип почвы<a class="headerlink" href="#npk-t-" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="n">TEMP_K</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;sand&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span><span class="mf">0.0041</span><span class="p">,</span><span class="s1">&#39;P&#39;</span><span class="p">:</span><span class="mf">0.0053</span><span class="p">,</span><span class="s1">&#39;K&#39;</span><span class="p">:</span><span class="mf">0.0032</span><span class="p">},</span>
+  <span class="s1">&#39;loam&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span><span class="mf">0.0038</span><span class="p">,</span><span class="s1">&#39;P&#39;</span><span class="p">:</span><span class="mf">0.0049</span><span class="p">,</span><span class="s1">&#39;K&#39;</span><span class="p">:</span><span class="mf">0.0029</span><span class="p">},</span>
+  <span class="s1">&#39;clay&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span><span class="mf">0.0032</span><span class="p">,</span><span class="s1">&#39;P&#39;</span><span class="p">:</span><span class="mf">0.0042</span><span class="p">,</span><span class="s1">&#39;K&#39;</span><span class="p">:</span><span class="mf">0.0024</span><span class="p">},</span>
+  <span class="s1">&#39;peat&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;N&#39;</span><span class="p">:</span><span class="mf">0.0028</span><span class="p">,</span><span class="s1">&#39;P&#39;</span><span class="p">:</span><span class="mf">0.0035</span><span class="p">,</span><span class="s1">&#39;K&#39;</span><span class="p">:</span><span class="mf">0.0018</span><span class="p">}</span>
+<span class="p">}</span>
+<span class="n">HUM_K</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="s1">&#39;N&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">θ</span><span class="p">:</span> <span class="mf">1.8</span> <span class="o">-</span> <span class="mf">0.024</span><span class="o">*</span><span class="n">θ</span><span class="p">,</span>
+  <span class="s1">&#39;P&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">θ</span><span class="p">:</span> <span class="mf">1.6</span> <span class="o">-</span> <span class="mf">0.018</span><span class="o">*</span><span class="n">θ</span><span class="p">,</span>
+  <span class="s1">&#39;K&#39;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">θ</span><span class="p">:</span> <span class="mf">1.9</span> <span class="o">-</span> <span class="mf">0.021</span><span class="o">*</span><span class="n">θ</span>
+<span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">correct_npk</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">θ</span><span class="p">,</span> <span class="n">el</span><span class="p">,</span> <span class="n">soil</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">raw</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">TEMP_K</span><span class="p">[</span><span class="n">soil</span><span class="p">][</span><span class="n">el</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">T</span><span class="o">-</span><span class="mi">25</span><span class="p">))</span> <span class="o">*</span> <span class="n">HUM_K</span><span class="p">[</span><span class="n">el</span><span class="p">](</span><span class="n">θ</span><span class="p">)</span>
+</code></pre></div>
+<h3 id="13">1.3 Архитектура<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>graph TD
+    R[RAW data] --&gt; |soil type| EC[EC-Archie]
+    R --&gt; |soil type| NPK[NPK-T/θ]
+    R --&gt; pH[pH-T]
+    EC --&gt; EC_f(EC_final)
+    pH --&gt; pH_f(pH_final)
+    NPK --&gt; NPK_f(NPK_final)
+</code></pre></div>
+<hr />
+<h2 id="2">2. Рекомендации – динамические и адаптивные<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1 Оптимумы, зависящие от стадии и температуры<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>{
+  &quot;tomato&quot;: {
+    &quot;fruiting&quot;: {
+      &quot;npk&quot;: {
+        &quot;N&quot;: {&quot;min&quot;:80, &quot;optimal&quot;:&quot;110 + 0.2*(T-22)&quot;, &quot;max&quot;:140}
+      }
+    }
+  }
+}
+</code></pre></div>
+<h3 id="22-">2.2 Почвенно-адаптивные поправки<a class="headerlink" href="#22-" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">soil_adjustment</span><span class="p">(</span><span class="n">param</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">soil</span><span class="p">):</span>
+    <span class="n">rules</span><span class="o">=</span><span class="p">{</span>
+      <span class="s1">&#39;sand&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;moisture&#39;</span><span class="p">:</span><span class="mf">0.85</span><span class="p">,</span><span class="s1">&#39;N&#39;</span><span class="p">:</span><span class="mf">1.15</span><span class="p">},</span>
+      <span class="s1">&#39;clay&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;moisture&#39;</span><span class="p">:</span><span class="mf">1.25</span><span class="p">,</span><span class="s1">&#39;P&#39;</span><span class="p">:</span><span class="mf">0.85</span><span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">factor</span><span class="o">=</span><span class="n">rules</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">soil</span><span class="p">,{})</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">param</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">v</span><span class="o">*</span><span class="n">factor</span>
+</code></pre></div>
+<h3 id="23">2.3 Ограничения достоверности<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Условие</th>
+<th>Действие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pH</td>
+<td>20 % &lt; θ &lt; 60 %</td>
+<td>иначе warning E201</td>
+</tr>
+<tr>
+<td>NPK</td>
+<td>θ ≥ 25 %</td>
+<td>иначе измерения недостоверны</td>
+</tr>
+<tr>
+<td>EC</td>
+<td>EC_raw &gt; 3000 µS/см</td>
+<td>риски засоления</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="3">3. Протоколы калибровки<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
+<h3 id="31-ec">3.1 EC<a class="headerlink" href="#31-ec" title="Permanent link">&para;</a></h3>
+<ul>
+<li>3-точечная: 1.413 → 12.88 → 80 mS/см.  </li>
+<li>Температурная коррекция: <code>EC25 = EC_T / (1+0.019·ΔT)</code>.</li>
+</ul>
+<h3 id="32-ph">3.2 pH<a class="headerlink" href="#32-ph" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Буферы 4.01 и 7.01.  </li>
+<li>ΔpH = 0.003 · (25 − T).</li>
+</ul>
+<hr />
+<h2 id="4">4. Система предупреждений<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>EC &gt; 3000 µS/см</strong> — «Риск засоления».  </li>
+<li><strong>θ &lt; 20 %</strong> — «Недостоверно для NPK».  </li>
+<li><strong>pH вне 3–9</strong> — «За пределами датчика».</li>
+</ul>
+<hr />
+<h2 id="5">5. План внедрения<a class="headerlink" href="#5" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Переписать компенсационные функции (готово в <code>sensor_compensation.cpp</code>).</li>
+<li>Пересчитать оптимумы культур с динамическими формулами.</li>
+<li>Внедрить soil-adaptive поправки и предупреждения в API/UI.</li>
+</ol>
+<hr />
+<h2 id="6">6. Научные источники<a class="headerlink" href="#6" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Archie G.E. (1942) <em>Electrical resistivity log as an aid in determining some reservoir characteristics</em>.</li>
+<li>USDA Handbook 60 <em>Diagnosis and Improvement of Saline and Alkali Soils</em>.</li>
+<li>Allen R.G. et al. (1998) <em>FAO Irrigation Paper 56</em>.</li>
+<li>SSSA Journal (2021) <em>Temperature effects on nutrient availability</em>.</li>
+</ol>
+<hr />
+<p>© JXCT, 2025 </p>
+<h1 id="_1">База данных сельскохозяйственных культур<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">Структура данных<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Каждая культура описывается следующими параметрами:
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Название культуры&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vegetable|fruit|berry|grain|herb&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;environment_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;outdoor|greenhouse|both&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;soil_types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;sand&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;loam&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;clay&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;peat&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;stages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;germination&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;vegetative&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;flowering&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;fruiting&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;stages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;germination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;vegetative&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;flowering&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;fruiting&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;moisture&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;min_ppv&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;optimal_ppv&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max_ppv&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;soil_type_adjustments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;sand&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;clay&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">5</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;peat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">10</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ph&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5.5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">7.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;sensor_limits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;absolute_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">3.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;absolute_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">9.0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;accuracy&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.3</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;stages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;germination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">800</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;vegetative&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;flowering&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1800</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2200</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;fruiting&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2500</span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;sensor_limits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;absolute_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;absolute_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10000</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;resolution&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;npk&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;stages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;germination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;N&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;P&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;K&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;vegetative&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;N&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;P&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;K&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;flowering&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;N&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">175</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">225</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;P&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;K&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">250</span><span class="p">}</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;fruiting&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;N&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;P&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">125</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">175</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">225</span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;K&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">175</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">225</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">275</span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;sensor_limits&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;absolute_min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;absolute_max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1999</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">&quot;accuracy&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2%&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></p>
+<h2 id="_3">Овощные культуры<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h3 id="_4">Томаты<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Томаты&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vegetable&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;environment_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;soil_types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;loam&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;clay&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;stages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;germination&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;vegetative&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;flowering&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;fruiting&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;stages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;germination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;vegetative&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;flowering&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;fruiting&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;moisture&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;min_ppv&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;optimal_ppv&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max_ppv&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;soil_type_adjustments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;sand&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;clay&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">5</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;peat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">10</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ph&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5.5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.3</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.8</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;stages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;germination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;vegetative&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;flowering&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.8</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.2</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;fruiting&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="_5">Огурцы<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Огурцы&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vegetable&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;environment_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;both&quot;</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">&quot;soil_types&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;loam&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sand&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;stages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;germination&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;vegetative&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;flowering&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;fruiting&quot;</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;stages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;germination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">22</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;vegetative&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;flowering&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;fruiting&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;moisture&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;min_ppv&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;optimal_ppv&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max_ppv&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">85</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;soil_type_adjustments&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;sand&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-5</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;clay&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">5</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;peat&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="err">+</span><span class="mi">10</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ph&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">5.5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">7.0</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">&quot;ec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;stages&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">&quot;germination&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">0.8</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;vegetative&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.7</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.0</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;flowering&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.4</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.9</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.3</span><span class="p">},</span>
+<span class="w">      </span><span class="nt">&quot;fruiting&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">1.6</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">2.5</span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="_6">Типы почв и их характеристики<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="sand">Песчаные почвы (sand)<a class="headerlink" href="#sand" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Быстро прогреваются</li>
+<li>Хорошая аэрация</li>
+<li>Низкая влагоёмкость</li>
+<li>Быстрое вымывание питательных веществ</li>
+<li>Требуют частого полива и подкормок</li>
+</ul>
+<h3 id="loam">Суглинистые почвы (loam)<a class="headerlink" href="#loam" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Оптимальный водно-воздушный режим</li>
+<li>Хорошая удержимость питательных веществ</li>
+<li>Средняя скорость прогрева</li>
+<li>Универсальны для большинства культур</li>
+</ul>
+<h3 id="clay">Глинистые почвы (clay)<a class="headerlink" href="#clay" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Медленно прогреваются</li>
+<li>Высокая влагоёмкость</li>
+<li>Склонность к уплотнению</li>
+<li>Требуют улучшения структуры</li>
+<li>Риск закисания</li>
+</ul>
+<h3 id="peat">Торфяные почвы (peat)<a class="headerlink" href="#peat" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Высокая влагоёмкость</li>
+<li>Низкая теплопроводность</li>
+<li>Богаты органикой</li>
+<li>Требуют известкования</li>
+<li>Риск пересыхания верхнего слоя</li>
+</ul>
+<p>[Продолжение следует... Будут добавлены другие культуры]</p>
+<h2 id="_7">Использование базы данных<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<ol>
+<li>База данных хранится в формате JSON</li>
+<li>Для каждой культуры определены оптимальные диапазоны всех измеряемых параметров</li>
+<li>Учитываются стадии развития растения</li>
+<li>Все значения основаны на научных исследованиях и практическом опыте</li>
+</ol>
+<h2 id="_8">Обновление базы<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ol>
+<li>Регулярное обновление значений на основе новых исследований</li>
+<li>Добавление новых культур</li>
+<li>Уточнение параметров на основе обратной связи от пользователей</li>
+<li>Версионирование базы данных для поддержки обратной совместимости </li>
+</ol>
+<h1 id="jxct">Система рекомендаций JXCT<a class="headerlink" href="#jxct" title="Permanent link">&para;</a></h1>
+<h2 id="_9">Общие принципы<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Цель системы:</strong> Предоставление точных и практических рекомендаций по уходу за растениями на основе показаний датчика JXCT 1-in-7</p>
+</li>
+<li>
+<p><strong>Характеристики датчика:</strong></p>
+</li>
+<li>Питание: 12-24V DC</li>
+<li>Интерфейс: RS485</li>
+<li>Класс защиты: IP68</li>
+<li>Диапазоны измерений:<ul>
+<li>Температура: -45°C до +115°C (±0.5°C)</li>
+<li>Влажность: 0-100% (±3% в 0-53%, ±5% в 53-100%)</li>
+<li>pH: 3-9 pH (±0.3 pH)</li>
+<li>NPK: 0-1999 мг/кг (±2% полной шкалы)</li>
+<li>EC: 0-10000 мкСм/см (разрешение 10 мкСм/см)</li>
+</ul>
+</li>
+<li>
+<p>Время отклика: &lt;1с</p>
+</li>
+<li>
+<p><strong>Оптимальное время замера:</strong></p>
+</li>
+<li>Температура и влажность: <ul>
+<li>Открытый грунт: за 30 мин до восхода и через 3 часа после полудня</li>
+<li>Теплица: 6:00 и 14:00</li>
+</ul>
+</li>
+<li>pH и EC: <ul>
+<li>После полива: через 2 часа (теплица), через 3 часа (открытый грунт)</li>
+<li>В обычном режиме: утром через 2-3 часа после восхода</li>
+</ul>
+</li>
+<li>
+<p>NPK: через 2-3 часа после восхода (период максимальной активности корней)</p>
+</li>
+<li>
+<p><strong>Достоверность показаний:</strong></p>
+</li>
+<li>Усреднение 3-5 последовательных измерений (интервал 1 секунда)</li>
+<li>Отбраковка аномальных значений:<ul>
+<li>Температура: отклонение более ±2°C от среднего</li>
+<li>Влажность: отклонение более ±10% от среднего</li>
+<li>pH: отклонение более ±0.5 от среднего</li>
+<li>EC: отклонение более ±20% от среднего</li>
+<li>NPK: отклонение более ±15% от среднего</li>
+</ul>
+</li>
+<li>Учет времени последнего полива</li>
+<li>Проверка стабильности показаний</li>
+</ol>
+<h2 id="_10">Калибровка измерений<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">1. Пересчет влажности в ППВ<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">moisture_to_ppv</span><span class="p">(</span><span class="n">raw_moisture</span><span class="p">,</span> <span class="n">soil_type</span><span class="p">):</span>
+    <span class="c1"># Учитываем точность датчика ±3% в диапазоне 0-53%</span>
+    <span class="c1"># и ±5% в диапазоне 53-100%</span>
+    <span class="n">coefficients</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;sand&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mf">0.68</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mf">0.12</span><span class="p">},</span>
+        <span class="s2">&quot;loam&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mf">0.72</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mf">0.15</span><span class="p">},</span>
+        <span class="s2">&quot;clay&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mf">0.75</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mf">0.18</span><span class="p">},</span>
+        <span class="s2">&quot;peat&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;a&quot;</span><span class="p">:</span> <span class="mf">0.82</span><span class="p">,</span> <span class="s2">&quot;b&quot;</span><span class="p">:</span> <span class="mf">0.20</span><span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">coef</span> <span class="o">=</span> <span class="n">coefficients</span><span class="p">[</span><span class="n">soil_type</span><span class="p">]</span>
+    <span class="n">ppv</span> <span class="o">=</span> <span class="n">raw_moisture</span> <span class="o">*</span> <span class="n">coef</span><span class="p">[</span><span class="s2">&quot;a&quot;</span><span class="p">]</span> <span class="o">+</span> <span class="n">coef</span><span class="p">[</span><span class="s2">&quot;b&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Добавляем погрешность датчика</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="mf">0.03</span> <span class="k">if</span> <span class="n">raw_moisture</span> <span class="o">&lt;=</span> <span class="mi">53</span> <span class="k">else</span> <span class="mf">0.05</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">ppv</span><span class="p">,</span>
+        <span class="s2">&quot;min&quot;</span><span class="p">:</span> <span class="n">ppv</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">error</span><span class="p">),</span>
+        <span class="s2">&quot;max&quot;</span><span class="p">:</span> <span class="n">ppv</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">error</span><span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div>
+<h3 id="2-ec">2. Температурная компенсация EC<a class="headerlink" href="#2-ec" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">compensate_ec</span><span class="p">(</span><span class="n">ec_value</span><span class="p">,</span> <span class="n">temp</span><span class="p">):</span>
+    <span class="c1"># Учитываем разрешение датчика 10 мкСм/см</span>
+    <span class="n">reference_temp</span> <span class="o">=</span> <span class="mf">25.0</span>  <span class="c1"># °C</span>
+    <span class="n">compensated</span> <span class="o">=</span> <span class="n">ec_value</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mf">0.02</span> <span class="o">*</span> <span class="p">(</span><span class="n">temp</span> <span class="o">-</span> <span class="n">reference_temp</span><span class="p">))</span>
+    <span class="c1"># Округляем до разрешения датчика</span>
+    <span class="k">return</span> <span class="nb">round</span><span class="p">(</span><span class="n">compensated</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span> <span class="o">*</span> <span class="mi">10</span>
+</code></pre></div>
+<h3 id="3-npk">3. Валидация NPK<a class="headerlink" href="#3-npk" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">validate_npk</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="c1"># Проверяем, что значения в пределах диапазона датчика</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">all</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mi">1999</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="n">n</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">k</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># Проверяем соотношения</span>
+    <span class="n">npk_sum</span> <span class="o">=</span> <span class="n">n</span> <span class="o">+</span> <span class="n">p</span> <span class="o">+</span> <span class="n">k</span>
+    <span class="k">if</span> <span class="n">npk_sum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span>
+
+    <span class="c1"># Проверяем типичные соотношения</span>
+    <span class="n">n_ratio</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="n">npk_sum</span>
+    <span class="n">p_ratio</span> <span class="o">=</span> <span class="n">p</span> <span class="o">/</span> <span class="n">npk_sum</span>
+    <span class="n">k_ratio</span> <span class="o">=</span> <span class="n">k</span> <span class="o">/</span> <span class="n">npk_sum</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;valid&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
+        <span class="s2">&quot;ratios&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;N&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">n_ratio</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="s2">&quot;P&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">p_ratio</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+            <span class="s2">&quot;K&quot;</span><span class="p">:</span> <span class="nb">round</span><span class="p">(</span><span class="n">k_ratio</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</code></pre></div>
+<h2 id="_11">Определение времени полива<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="1_2">1. Детектирование полива<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">detect_watering</span><span class="p">(</span><span class="n">moisture_readings</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Определяет момент полива по резкому изменению влажности</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        moisture_readings: список последних показаний влажности</span>
+<span class="sd">        timestamp: временная метка текущего измерения</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: информация о поливе или None если полив не обнаружен</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Минимальное изменение влажности для детектирования полива</span>
+    <span class="n">MOISTURE_THRESHOLD</span> <span class="o">=</span> <span class="mi">15</span>  <span class="c1"># % </span>
+    <span class="c1"># Минимальная продолжительность повышенной влажности</span>
+    <span class="n">MIN_DURATION</span> <span class="o">=</span> <span class="mi">300</span>  <span class="c1"># секунд (5 минут)</span>
+
+    <span class="c1"># Проверяем резкое повышение влажности</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">moisture_readings</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="n">current</span> <span class="o">=</span> <span class="n">moisture_readings</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+    <span class="n">previous</span> <span class="o">=</span> <span class="n">moisture_readings</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="s2">&quot;value&quot;</span><span class="p">]</span>
+    <span class="n">moisture_change</span> <span class="o">=</span> <span class="n">current</span> <span class="o">-</span> <span class="n">previous</span>
+
+    <span class="k">if</span> <span class="n">moisture_change</span> <span class="o">&gt;=</span> <span class="n">MOISTURE_THRESHOLD</span><span class="p">:</span>
+        <span class="c1"># Проверяем, держится ли влажность на повышенном уровне</span>
+        <span class="n">high_moisture_duration</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">reading</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">moisture_readings</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">current</span> <span class="o">-</span> <span class="n">reading</span><span class="p">[</span><span class="s2">&quot;value&quot;</span><span class="p">])</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">MOISTURE_THRESHOLD</span> <span class="o">*</span> <span class="mf">0.7</span><span class="p">):</span>  <span class="c1"># 70% от порога</span>
+                <span class="n">high_moisture_duration</span> <span class="o">+=</span> <span class="n">reading</span><span class="p">[</span><span class="s2">&quot;interval&quot;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">high_moisture_duration</span> <span class="o">&gt;=</span> <span class="n">MIN_DURATION</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">{</span>
+                <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">timestamp</span><span class="p">,</span>
+                <span class="s2">&quot;moisture_before&quot;</span><span class="p">:</span> <span class="n">previous</span><span class="p">,</span>
+                <span class="s2">&quot;moisture_after&quot;</span><span class="p">:</span> <span class="n">current</span><span class="p">,</span>
+                <span class="s2">&quot;change&quot;</span><span class="p">:</span> <span class="n">moisture_change</span>
+            <span class="p">}</span>
+
+    <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">update_watering_history</span><span class="p">(</span><span class="n">moisture_data</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Обновляет историю поливов на основе данных влажности</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">watering_events</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">moisture_readings</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">for</span> <span class="n">data</span> <span class="ow">in</span> <span class="n">moisture_data</span><span class="p">:</span>
+        <span class="n">moisture_readings</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;moisture&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;timestamp&quot;</span><span class="p">:</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">],</span>
+            <span class="s2">&quot;interval&quot;</span><span class="p">:</span> <span class="n">data</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;interval&quot;</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>  <span class="c1"># интервал между измерениями в секундах</span>
+        <span class="p">})</span>
+
+        <span class="c1"># Храним историю только за последний час</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">moisture_readings</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">60</span><span class="p">:</span>
+            <span class="n">moisture_readings</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">watering</span> <span class="o">=</span> <span class="n">detect_watering</span><span class="p">(</span><span class="n">moisture_readings</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;timestamp&quot;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">watering</span><span class="p">:</span>
+            <span class="n">watering_events</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">watering</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">watering_events</span>
+</code></pre></div>
+<h3 id="2_1">2. Использование информации о поливе<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">should_measure_nutrients</span><span class="p">(</span><span class="n">last_watering</span><span class="p">,</span> <span class="n">current_time</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Определяет, можно ли измерять параметры почвы после полива</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        last_watering: временная метка последнего полива</span>
+<span class="sd">        current_time: текущее время</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        dict: рекомендации по измерениям</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">last_watering</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;can_measure&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;reason&quot;</span><span class="p">:</span> <span class="s2">&quot;Нет данных о последнем поливе&quot;</span><span class="p">}</span>
+
+    <span class="n">time_since_watering</span> <span class="o">=</span> <span class="n">current_time</span> <span class="o">-</span> <span class="n">last_watering</span>
+
+    <span class="n">recommendations</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;can_measure&quot;</span><span class="p">:</span> <span class="kc">False</span><span class="p">,</span>
+        <span class="s2">&quot;wait_time&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+        <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">[]</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Время стабилизации для разных параметров</span>
+    <span class="n">stabilization_times</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;moisture&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>      <span class="c1"># Можно измерять сразу</span>
+        <span class="s2">&quot;temperature&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span>  <span class="c1"># 30 минут</span>
+        <span class="s2">&quot;ph&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>         <span class="c1"># 2 часа</span>
+        <span class="s2">&quot;ec&quot;</span><span class="p">:</span> <span class="mi">120</span><span class="p">,</span>         <span class="c1"># 2 часа</span>
+        <span class="s2">&quot;npk&quot;</span><span class="p">:</span> <span class="mi">180</span>         <span class="c1"># 3 часа</span>
+    <span class="p">}</span>
+
+    <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">wait_time</span> <span class="ow">in</span> <span class="n">stabilization_times</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">minutes_passed</span> <span class="o">=</span> <span class="n">time_since_watering</span> <span class="o">/</span> <span class="mi">60</span>
+        <span class="k">if</span> <span class="n">minutes_passed</span> <span class="o">&gt;=</span> <span class="n">wait_time</span><span class="p">:</span>
+            <span class="n">recommendations</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">param</span><span class="p">)</span>
+
+    <span class="n">recommendations</span><span class="p">[</span><span class="s2">&quot;can_measure&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">recommendations</span><span class="p">[</span><span class="s2">&quot;parameters&quot;</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">recommendations</span><span class="p">[</span><span class="s2">&quot;can_measure&quot;</span><span class="p">]:</span>
+        <span class="c1"># Находим минимальное оставшееся время ожидания</span>
+        <span class="n">min_wait</span> <span class="o">=</span> <span class="nb">min</span><span class="p">([</span><span class="n">wait</span> <span class="o">-</span> <span class="n">time_since_watering</span><span class="o">/</span><span class="mi">60</span> 
+                       <span class="k">for</span> <span class="n">param</span><span class="p">,</span> <span class="n">wait</span> <span class="ow">in</span> <span class="n">stabilization_times</span><span class="o">.</span><span class="n">items</span><span class="p">()])</span>
+        <span class="n">recommendations</span><span class="p">[</span><span class="s2">&quot;wait_time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">min_wait</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">recommendations</span>
+</code></pre></div>
+<h2 id="_12">Алгоритм анализа<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<h3 id="1_3">1. Сбор и валидация данных<a class="headerlink" href="#1_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">collect_data</span><span class="p">():</span>
+    <span class="n">readings</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="c1"># Собираем 5 последовательных измерений</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+        <span class="n">reading</span> <span class="o">=</span> <span class="n">get_sensor_reading</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">is_valid_reading</span><span class="p">(</span><span class="n">reading</span><span class="p">):</span>
+            <span class="n">readings</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reading</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>  <span class="c1"># 30 секунд между измерениями</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;current&quot;</span><span class="p">:</span> <span class="n">calculate_reliable_reading</span><span class="p">(</span><span class="n">readings</span><span class="p">),</span>
+        <span class="s2">&quot;crop&quot;</span><span class="p">:</span> <span class="n">get_crop_parameters</span><span class="p">(),</span>
+        <span class="s2">&quot;stage&quot;</span><span class="p">:</span> <span class="n">get_growth_stage</span><span class="p">(),</span>
+        <span class="s2">&quot;environment&quot;</span><span class="p">:</span> <span class="n">get_environment_type</span><span class="p">(),</span>
+        <span class="s2">&quot;last_watering&quot;</span><span class="p">:</span> <span class="n">get_last_watering_time</span><span class="p">()</span>
+    <span class="p">}</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">is_valid_reading</span><span class="p">(</span><span class="n">reading</span><span class="p">):</span>
+    <span class="c1"># Проверка на аномальные значения</span>
+    <span class="k">return</span> <span class="p">(</span>
+        <span class="n">is_within_physical_limits</span><span class="p">(</span><span class="n">reading</span><span class="p">)</span> <span class="ow">and</span>
+        <span class="ow">not</span> <span class="n">is_rapid_change</span><span class="p">(</span><span class="n">reading</span><span class="p">)</span> <span class="ow">and</span>
+        <span class="n">is_sensor_stable</span><span class="p">(</span><span class="n">reading</span><span class="p">)</span>
+    <span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">calculate_reliable_reading</span><span class="p">(</span><span class="n">readings</span><span class="p">):</span>
+    <span class="c1"># Отбрасываем крайние значения и усредняем остальные</span>
+    <span class="n">readings</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">statistics</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">readings</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+</code></pre></div>
+<h3 id="2_2">2. Анализ отклонений<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">analyze_deviations</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="n">deviations</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Проверяем время замера</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_optimal_measurement_time</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;param_type&quot;</span><span class="p">]):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;status&quot;</span><span class="p">:</span> <span class="s2">&quot;wait&quot;</span><span class="p">,</span> <span class="s2">&quot;next_window&quot;</span><span class="p">:</span> <span class="n">get_next_measurement_window</span><span class="p">()}</span>
+
+    <span class="c1"># Проверка каждого параметра</span>
+    <span class="k">for</span> <span class="n">param</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;moisture&quot;</span><span class="p">,</span> <span class="s2">&quot;ph&quot;</span><span class="p">,</span> <span class="s2">&quot;ec&quot;</span><span class="p">,</span> <span class="s2">&quot;npk&quot;</span><span class="p">]:</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="s2">&quot;current&quot;</span><span class="p">][</span><span class="n">param</span><span class="p">]</span>
+        <span class="n">optimal</span> <span class="o">=</span> <span class="n">get_optimal_range</span><span class="p">(</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;crop&quot;</span><span class="p">],</span> 
+            <span class="n">param</span><span class="p">,</span> 
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;stage&quot;</span><span class="p">],</span>
+            <span class="n">data</span><span class="p">[</span><span class="s2">&quot;environment&quot;</span><span class="p">]</span>
+        <span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">current</span> <span class="o">&lt;</span> <span class="n">optimal</span><span class="p">[</span><span class="s2">&quot;min&quot;</span><span class="p">]:</span>
+            <span class="n">deviations</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;param&quot;</span><span class="p">:</span> <span class="n">param</span><span class="p">,</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;low&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">current</span><span class="p">,</span>
+                <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">optimal</span><span class="p">[</span><span class="s2">&quot;optimal&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="n">calculate_severity</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">optimal</span><span class="p">)</span>
+            <span class="p">})</span>
+        <span class="k">elif</span> <span class="n">current</span> <span class="o">&gt;</span> <span class="n">optimal</span><span class="p">[</span><span class="s2">&quot;max&quot;</span><span class="p">]:</span>
+            <span class="n">deviations</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;param&quot;</span><span class="p">:</span> <span class="n">param</span><span class="p">,</span>
+                <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;high&quot;</span><span class="p">,</span>
+                <span class="s2">&quot;value&quot;</span><span class="p">:</span> <span class="n">current</span><span class="p">,</span>
+                <span class="s2">&quot;target&quot;</span><span class="p">:</span> <span class="n">optimal</span><span class="p">[</span><span class="s2">&quot;optimal&quot;</span><span class="p">],</span>
+                <span class="s2">&quot;severity&quot;</span><span class="p">:</span> <span class="n">calculate_severity</span><span class="p">(</span><span class="n">current</span><span class="p">,</span> <span class="n">optimal</span><span class="p">)</span>
+            <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">deviations</span>
+</code></pre></div>
+<h2 id="_13">Визуализация<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<h3 id="_14">Цветовая индикация текущих показаний<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<ul>
+<li>🟢 В пределах нормы (отклонение &lt; 10%)</li>
+<li>🟡 Легкое отклонение (10-20%)</li>
+<li>🟠 Среднее отклонение (20-30%)</li>
+<li>🔴 Критическое отклонение (&gt;30%)</li>
+</ul>
+<h3 id="_15">Формат вывода показаний<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2024-03-20T08:15:00&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;measurement_quality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;reliable|waiting|unstable&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;readings&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">23.5</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;normal&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">22.0</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;deviation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;+1.5°C&quot;</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">&quot;moisture&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">65</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;warning&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;deviation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;-10%&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;recommendations&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;parameter&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;moisture&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;increase&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;details&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Требуется полив: 2л/м²&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;priority&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;high&quot;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="_16">Форматы рекомендаций<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<h3 id="1_4">1. Срочные рекомендации<a class="headerlink" href="#1_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;urgent&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Низкая влажность почвы&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Требуется полив&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;current_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;optimal_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;watering&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2л/м²&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;urgency&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;immediate&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="2_3">2. Плановые рекомендации<a class="headerlink" href="#2_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;planned&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;title&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Оптимизация pH&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;description&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Рекомендуется постепенное снижение pH&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;current_value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">7.8</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">&quot;optimal_range&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;min&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;optimal&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.5</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;max&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">7.0</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">    </span><span class="nt">&quot;action&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ph_adjustment&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;method&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;add_sulfur&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;amount&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30г/м²&quot;</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">&quot;period&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;7 дней&quot;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="api-endpoints">API Endpoints<a class="headerlink" href="#api-endpoints" title="Permanent link">&para;</a></h2>
+<h3 id="1_5">1. Получение рекомендаций<a class="headerlink" href="#1_5" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="err">GET /api/v1/recommendations</span>
+<span class="err">Query parameters:</span>
+<span class="err">  - crop_id: string</span>
+<span class="err">  - growth_stage: string</span>
+<span class="err">  - readings: object</span>
+</code></pre></div>
+<h3 id="2_4">2. Подтверждение выполнения<a class="headerlink" href="#2_4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="err">POST /api/v1/recommendations/{id}/complete</span>
+<span class="err">Body:</span>
+<span class="err">  - action_taken: string</span>
+<span class="err">  - notes: string (optional)</span>
+</code></pre></div>
+<h2 id="_17">Кэширование и производительность<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Локальное кэширование:</strong></li>
+<li>База данных культур</li>
+<li>История рекомендаций</li>
+<li>
+<p>Шаблоны рекомендаций</p>
+</li>
+<li>
+<p><strong>Периодичность обновления:</strong></p>
+</li>
+<li>Показания датчиков: каждые 5 минут</li>
+<li>Анализ трендов: каждый час</li>
+<li>
+<p>Генерация рекомендаций: при изменении показаний</p>
+</li>
+<li>
+<p><strong>Приоритизация:</strong></p>
+</li>
+<li>Критические отклонения: немедленное уведомление</li>
+<li>Плановые рекомендации: раз в сутки</li>
+<li>Профилактические советы: еженедельно</li>
+</ol>
+<h2 id="_18">Расширение системы<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>Добавление новых параметров:</strong></li>
+<li>Освещенность</li>
+<li>Содержание CO₂</li>
+<li>
+<p>Микроэлементы</p>
+</li>
+<li>
+<p><strong>Интеграция с внешними системами:</strong></p>
+</li>
+<li>Метеоданные</li>
+<li>Системы полива</li>
+<li>
+<p>Календарь агротехнических мероприятий</p>
+</li>
+<li>
+<p><strong>Машинное обучение:</strong></p>
+</li>
+<li>Прогнозирование трендов</li>
+<li>Оптимизация рекомендаций</li>
+<li>Анализ эффективности мероприятий </li>
+</ol>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="June 21, 2025 17:25:57 UTC">June 21, 2025</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 2025 Gfermoto
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "navigation.tracking", "content.code.copy"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.redoc.ly/redoc/latest/bundles/redoc.standalone.min.js"></script>
+      
+    
+  </body>
+</html>

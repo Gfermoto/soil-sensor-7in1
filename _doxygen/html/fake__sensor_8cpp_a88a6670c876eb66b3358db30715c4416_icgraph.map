@@ -1,0 +1,9 @@
+<map id="fakeSensorTask" name="fakeSensorTask">
+<area shape="rect" id="Node000001" title=" " alt="" coords="391,43,506,69"/>
+<area shape="rect" id="Node000002" href="$fake__sensor_8cpp.html#abd277e18147efb1103e91eac01627612" title=" " alt="" coords="198,43,343,69"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="376,59,344,59,344,53,376,53"/>
+<area shape="rect" id="Node000003" href="$class_fake_sensor_adapter.html#af18b89449d9a289d773170c66787bd23" title=" " alt="" coords="5,5,150,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="182,45,150,40,151,35,183,40"/>
+<area shape="rect" id="Node000004" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="51,72,104,99"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="182,72,105,84,104,79,182,67"/>
+</map>

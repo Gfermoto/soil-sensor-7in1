@@ -1,0 +1,11 @@
+<map id="include/ota_manager.h" name="include/ota_manager.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="196,5,348,32"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html" title="Главный файл проекта JXCT датчика" alt="" coords="5,80,102,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,40,93,82,91,77,219,35"/>
+<area shape="rect" id="Node000003" href="$mqtt__client_8cpp.html" title="Взаимодействие с MQTT&#45;брокером и Home Assistant." alt="" coords="126,80,258,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="249,44,208,82,204,78,245,41"/>
+<area shape="rect" id="Node000004" href="$ota__manager_8cpp.html" title=" " alt="" coords="282,80,425,107"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="299,41,341,78,338,82,296,44"/>
+<area shape="rect" id="Node000005" href="$routes__ota_8cpp.html" title=" " alt="" coords="450,80,607,107"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="332,34,484,77,483,82,330,39"/>
+</map>

@@ -1,0 +1,22 @@
+<map id="src/config.cpp" name="src/config.cpp">
+<area shape="rect" id="Node000001" title="Работа с конфигурацией устройства" alt="" coords="267,5,371,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,65,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="267,35,81,82,79,77,266,30"/>
+<area shape="rect" id="Node000003" href="$debug_8h.html" title=" " alt="" coords="240,80,307,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="313,34,292,68,287,65,309,31"/>
+<area shape="rect" id="Node000005" href="$jxct__config__vars_8h.html" title=" " alt="" coords="89,80,216,107"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="291,35,196,76,194,71,289,30"/>
+<area shape="rect" id="Node000007" href="$jxct__device__info_8h.html" title=" " alt="" coords="424,80,550,107"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="349,30,445,71,443,76,347,35"/>
+<area shape="rect" id="Node000008" href="$version_8h.html" title=" " alt="" coords="499,155,574,181"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="372,23,482,42,532,58,551,67,564,78,571,94,570,111,557,142,552,140,565,110,565,95,560,82,548,72,530,63,481,47,371,28"/>
+<area shape="rect" id="Node000009" href="$logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="332,80,399,107"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="329,31,352,66,347,68,325,34"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="328,155,404,181"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="291,105,340,143,336,147,288,109"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="101,155,204,181"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="155,107,155,139,150,139,150,107"/>
+<area shape="poly" id="edge8_Node000007_Node000004" title=" " alt="" coords="467,110,401,149,399,144,465,105"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="498,106,521,140,517,143,493,109"/>
+<area shape="poly" id="edge10_Node000009_Node000004" title=" " alt="" coords="368,107,368,139,363,139,363,107"/>
+</map>

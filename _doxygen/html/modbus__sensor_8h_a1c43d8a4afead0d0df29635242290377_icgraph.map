@@ -1,0 +1,9 @@
+<map id="preTransmission" name="preTransmission">
+<area shape="rect" id="Node000001" title="Подготовка к передаче данных" alt="" coords="418,39,535,65"/>
+<area shape="rect" id="Node000002" href="$modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="243,13,342,40"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="402,44,342,36,343,31,403,39"/>
+<area shape="rect" id="Node000004" href="$modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="215,64,370,91"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="403,65,371,69,370,64,402,60"/>
+<area shape="rect" id="Node000003" href="$class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084" title=" " alt="" coords="5,5,167,48"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="227,29,167,29,167,24,227,24"/>
+</map>

@@ -1,0 +1,45 @@
+<map id="CalibrationManager::init" name="CalibrationManager::init">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1213,182,1346,224"/>
+<area shape="rect" id="Node000002" href="$namespace_calibration_manager.html#a14e21e7fb1aa46aa781c20ee07271d12" title=" " alt="" coords="1020,35,1154,78"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1249,171,1210,131,1163,92,1144,80,1146,76,1166,87,1214,127,1253,168"/>
+<area shape="rect" id="Node000003" href="$routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="818,72,941,99"/>
+<area shape="poly" id="edge25_Node000001_Node000003" title=" " alt="" coords="1265,168,1250,131,1229,91,1200,54,1163,25,1129,12,1093,8,1056,11,1019,20,952,46,903,74,901,69,950,42,1018,15,1055,6,1093,3,1130,7,1166,21,1204,50,1233,89,1255,129,1270,166"/>
+<area shape="rect" id="Node000011" href="$routes__calibration_8cpp.html#aed6e69f4d063fc5d8248e2c7a3b9ca0d" title=" " alt="" coords="798,219,961,246"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="1198,211,962,229,961,224,1197,206"/>
+<area shape="rect" id="Node000012" href="$routes__calibration_8cpp.html#a74cbd7893b5cf9b3fa5fd34a4fb985ba" title="Настройка маршрутов калибровки (/calibration)" alt="" coords="393,219,551,246"/>
+<area shape="poly" id="edge24_Node000001_Node000012" title=" " alt="" coords="1198,224,1165,231,1063,249,983,259,902,262,798,260,667,252,551,243,552,237,668,247,798,255,902,257,982,254,1062,243,1164,226,1197,219"/>
+<area shape="rect" id="Node000013" href="$routes__data_8cpp.html#a750e7ca088cd32f9490048becd8d8c70" title=" " alt="" coords="1009,102,1165,128"/>
+<area shape="poly" id="edge15_Node000001_Node000013" title=" " alt="" coords="1228,176,1164,143,1134,131,1136,126,1166,138,1231,171"/>
+<area shape="rect" id="Node000014" href="$namespace_calibration_manager.html#a1ee0f1f244cb68eaa7e47a79deb452b6" title=" " alt="" coords="1020,152,1154,195"/>
+<area shape="poly" id="edge17_Node000001_Node000014" title=" " alt="" coords="1197,193,1154,186,1154,181,1198,188"/>
+<area shape="rect" id="Node000017" href="$namespace_calibration_manager.html#a15db87f3fcb09c7f4c5abc69009cef89" title=" " alt="" coords="1020,320,1154,363"/>
+<area shape="poly" id="edge22_Node000001_Node000017" title=" " alt="" coords="1247,237,1210,270,1166,304,1136,322,1133,317,1163,299,1206,266,1244,233"/>
+<area shape="rect" id="Node000018" href="$namespace_calibration_manager.html#ade735ff876ef578fafeb7c46676bcf82" title=" " alt="" coords="1020,387,1154,430"/>
+<area shape="poly" id="edge23_Node000001_Node000018" title=" " alt="" coords="1265,240,1226,308,1198,345,1166,377,1149,389,1146,384,1163,373,1194,341,1221,305,1260,237"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1005,70,942,79,942,74,1004,65"/>
+<area shape="rect" id="Node000004" href="$wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="616,72,733,99"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="803,88,734,88,734,83,803,83"/>
+<area shape="rect" id="Node000005" href="$wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="423,98,521,124"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="600,97,521,107,521,102,600,92"/>
+<area shape="rect" id="Node000010" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,47,345,74"/>
+<area shape="poly" id="edge12_Node000004_Node000010" title=" " alt="" coords="600,83,346,66,346,61,600,78"/>
+<area shape="rect" id="Node000006" href="$wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,123,193,150"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="409,124,346,132,193,139,193,133,345,127,408,119"/>
+<area shape="rect" id="Node000008" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,72,190,99"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="407,109,190,91,190,86,408,103"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="408,96,342,77,344,72,409,90"/>
+<area shape="rect" id="Node000007" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,123,55,150"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="91,139,55,139,55,134,91,134"/>
+<area shape="rect" id="Node000009" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,72,59,99"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="94,88,59,88,59,83,94,83"/>
+<area shape="poly" id="edge10_Node000010_Node000006" title=" " alt="" coords="254,84,178,125,176,120,251,79"/>
+<area shape="poly" id="edge11_Node000010_Node000008" title=" " alt="" coords="226,75,191,81,190,76,225,69"/>
+<area shape="poly" id="edge14_Node000011_Node000012" title=" " alt="" coords="783,235,551,235,551,230,783,230"/>
+<area shape="poly" id="edge16_Node000013_Node000003" title=" " alt="" coords="994,104,941,97,942,92,994,99"/>
+<area shape="poly" id="edge21_Node000014_Node000003" title=" " alt="" coords="1020,148,912,102,914,97,1022,143"/>
+<area shape="rect" id="Node000015" href="$routes__calibration_8cpp.html#af44b5a1840fa2c2199b0a9fab38a629f" title=" " alt="" coords="798,164,961,191"/>
+<area shape="poly" id="edge18_Node000014_Node000015" title=" " alt="" coords="1005,178,962,179,962,173,1005,172"/>
+<area shape="rect" id="Node000016" href="$routes__calibration_8cpp.html#a40c5c8aef0a9770a13455e9868b1eda2" title=" " alt="" coords="599,166,750,192"/>
+<area shape="poly" id="edge19_Node000015_Node000016" title=" " alt="" coords="782,181,750,181,750,176,782,175"/>
+<area shape="poly" id="edge20_Node000016_Node000012" title=" " alt="" coords="607,199,526,221,525,216,606,194"/>
+</map>

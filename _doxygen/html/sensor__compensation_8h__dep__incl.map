@@ -1,0 +1,19 @@
+<map id="include/sensor_compensation.h" name="include/sensor_compensation.h">
+<area shape="rect" id="Node000001" title="Алгоритмы коррекции показаний датчиков" alt="" coords="347,5,552,32"/>
+<area shape="rect" id="Node000002" href="$calibration__manager_8h.html" title=" " alt="" coords="234,80,359,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="413,42,337,82,334,77,411,37"/>
+<area shape="rect" id="Node000003" href="$calibration__manager_8cpp.html" title=" " alt="" coords="5,171,190,197"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="354,38,288,56,223,82,188,103,157,128,111,172,107,168,153,124,185,99,220,78,286,51,353,33"/>
+<area shape="rect" id="Node000004" href="$routes__calibration_8cpp.html" title=" " alt="" coords="403,171,573,197"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="436,46,421,83,420,103,424,122,443,148,468,168,465,172,439,152,419,124,414,103,416,82,431,44"/>
+<area shape="rect" id="Node000006" href="$fake__sensor_8cpp.html" title="Эмуляция работы датчика для тестирования" alt="" coords="433,88,572,115"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="468,44,497,86,493,89,464,46"/>
+<area shape="rect" id="Node000007" href="$modbus__sensor_8cpp.html" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="596,88,756,115"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="500,35,642,85,640,90,498,40"/>
+<area shape="rect" id="Node000008" href="$sensor__compensation_8cpp.html" title=" " alt="" coords="780,88,975,115"/>
+<area shape="poly" id="edge9_Node000001_Node000008" title=" " alt="" coords="532,33,810,85,809,90,531,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="232,131,130,173,128,168,230,126"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="360,127,459,168,457,173,358,131"/>
+<area shape="rect" id="Node000005" href="$routes__data_8cpp.html" title="Маршруты для работы с данными датчика" alt="" coords="214,171,378,197"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="299,139,299,170,294,170,294,139"/>
+</map>

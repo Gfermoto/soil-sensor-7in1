@@ -1,0 +1,12 @@
+<map id="src/fake_sensor.h" name="src/fake_sensor.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="194,5,319,32"/>
+<area shape="rect" id="Node000002" href="$fake__sensor_8cpp.html" title="Эмуляция работы датчика для тестирования" alt="" coords="5,80,145,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="212,41,108,82,106,77,210,36"/>
+<area shape="rect" id="Node000003" href="$fake__sensor__adapter_8h.html" title=" " alt="" coords="169,80,344,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="259,48,259,80,254,80,254,48"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html" title="Главный файл проекта JXCT датчика" alt="" coords="271,229,367,256"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="311,37,338,54,359,79,363,93,365,116,364,147,356,182,345,209,331,230,326,227,340,206,351,181,358,146,360,117,358,94,354,81,334,58,308,41"/>
+<area shape="rect" id="Node000004" href="$sensor__factory_8h.html" title=" " alt="" coords="179,155,342,181"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="261,122,262,154,257,154,255,123"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="282,192,311,227,307,231,278,195"/>
+</map>

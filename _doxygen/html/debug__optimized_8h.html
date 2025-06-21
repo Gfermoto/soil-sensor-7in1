@@ -1,0 +1,955 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor: Файл include/debug_optimized.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor<span id="projectnumber">&#160;v3.2.29 (June 2025)</span>
+   </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл debug_optimized.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Оптимизированная система отладки с условной компиляцией  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">jxct_constants.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Граф включаемых заголовочных файлов для debug_optimized.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="debug__optimized_8h__incl.png" border="0" usemap="#ainclude_2debug__optimized_8h" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div>
+<p><a href="debug__optimized_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a7d2ae674cad5299a52b0e7dceac10087" id="r_a7d2ae674cad5299a52b0e7dceac10087"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7d2ae674cad5299a52b0e7dceac10087">DEBUG_ENABLED</a>&#160;&#160;&#160;false</td></tr>
+<tr class="separator:a7d2ae674cad5299a52b0e7dceac10087"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6551f0b4c3964c3128f808e7bf987c7" id="r_af6551f0b4c3964c3128f808e7bf987c7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6551f0b4c3964c3128f808e7bf987c7">DEBUG_PRINT</a>(x)</td></tr>
+<tr class="separator:af6551f0b4c3964c3128f808e7bf987c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e30ff0704664fcb13dabf0c4dc5c8f5" id="r_a8e30ff0704664fcb13dabf0c4dc5c8f5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8e30ff0704664fcb13dabf0c4dc5c8f5">DEBUG_PRINTLN</a>(x)</td></tr>
+<tr class="separator:a8e30ff0704664fcb13dabf0c4dc5c8f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa97e8dc28005a1241103bef65128944b" id="r_aa97e8dc28005a1241103bef65128944b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa97e8dc28005a1241103bef65128944b">DEBUG_PRINTF</a>(fmt, ...)</td></tr>
+<tr class="separator:aa97e8dc28005a1241103bef65128944b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54fbc5700cffd26a61494ed6a400cc45" id="r_a54fbc5700cffd26a61494ed6a400cc45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54fbc5700cffd26a61494ed6a400cc45">DEBUG_MODBUS_PRINT</a>(x)</td></tr>
+<tr class="separator:a54fbc5700cffd26a61494ed6a400cc45"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae53267bde79e149c80877da5ae362867" id="r_ae53267bde79e149c80877da5ae362867"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae53267bde79e149c80877da5ae362867">DEBUG_MODBUS_PRINTLN</a>(x)</td></tr>
+<tr class="separator:ae53267bde79e149c80877da5ae362867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4d36024b895e5f526ef89071605badb" id="r_ae4d36024b895e5f526ef89071605badb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4d36024b895e5f526ef89071605badb">DEBUG_MODBUS_PRINTF</a>(fmt, ...)</td></tr>
+<tr class="separator:ae4d36024b895e5f526ef89071605badb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97da1769619ef98d76b61c44d397f9e3" id="r_a97da1769619ef98d76b61c44d397f9e3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97da1769619ef98d76b61c44d397f9e3">DEBUG_MQTT_PRINT</a>(x)</td></tr>
+<tr class="separator:a97da1769619ef98d76b61c44d397f9e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5b6145964771adcf15eabf41b7e3e01" id="r_ad5b6145964771adcf15eabf41b7e3e01"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5b6145964771adcf15eabf41b7e3e01">DEBUG_MQTT_PRINTLN</a>(x)</td></tr>
+<tr class="separator:ad5b6145964771adcf15eabf41b7e3e01"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa225a0f27c84d8f7eb7747758be4732" id="r_aaa225a0f27c84d8f7eb7747758be4732"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa225a0f27c84d8f7eb7747758be4732">DEBUG_MQTT_PRINTF</a>(fmt, ...)</td></tr>
+<tr class="separator:aaa225a0f27c84d8f7eb7747758be4732"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2408c7052942f2a0ac696db06146ef10" id="r_a2408c7052942f2a0ac696db06146ef10"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2408c7052942f2a0ac696db06146ef10">DEBUG_WIFI_PRINT</a>(x)</td></tr>
+<tr class="separator:a2408c7052942f2a0ac696db06146ef10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a63cac6dc284968cd7eba8e2f7c28f052" id="r_a63cac6dc284968cd7eba8e2f7c28f052"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a63cac6dc284968cd7eba8e2f7c28f052">DEBUG_WIFI_PRINTLN</a>(x)</td></tr>
+<tr class="separator:a63cac6dc284968cd7eba8e2f7c28f052"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad77ad7c975f7f577f0f69b2207f28b68" id="r_ad77ad7c975f7f577f0f69b2207f28b68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad77ad7c975f7f577f0f69b2207f28b68">DEBUG_WIFI_PRINTF</a>(fmt, ...)</td></tr>
+<tr class="separator:ad77ad7c975f7f577f0f69b2207f28b68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8423cfacd2a82de4ee8647dae55f10c5" id="r_a8423cfacd2a82de4ee8647dae55f10c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8423cfacd2a82de4ee8647dae55f10c5">DEBUG_MQTT_DELTA</a>(fmt, ...)</td></tr>
+<tr class="separator:a8423cfacd2a82de4ee8647dae55f10c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a78185c8405fcd043bb18acaf5373de41" id="r_a78185c8405fcd043bb18acaf5373de41"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a78185c8405fcd043bb18acaf5373de41">DEBUG_MQTT_DNS</a>(fmt, ...)</td></tr>
+<tr class="separator:a78185c8405fcd043bb18acaf5373de41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6cdde71e1eb3d615f0c74da6ea3e625c" id="r_a6cdde71e1eb3d615f0c74da6ea3e625c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6cdde71e1eb3d615f0c74da6ea3e625c">DEBUG_MQTT_HA</a>(fmt, ...)</td></tr>
+<tr class="separator:a6cdde71e1eb3d615f0c74da6ea3e625c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a374ac3552d0860c64fdc74a97b543b4e" id="r_a374ac3552d0860c64fdc74a97b543b4e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a374ac3552d0860c64fdc74a97b543b4e">DEBUG_MODBUS_TX</a>()</td></tr>
+<tr class="separator:a374ac3552d0860c64fdc74a97b543b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac8300f6f06573e98f788bd79619c046" id="r_aac8300f6f06573e98f788bd79619c046"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac8300f6f06573e98f788bd79619c046">DEBUG_MODBUS_RX</a>()</td></tr>
+<tr class="separator:aac8300f6f06573e98f788bd79619c046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab166ebe03f665d58b3593ddce59bb560" id="r_ab166ebe03f665d58b3593ddce59bb560"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab166ebe03f665d58b3593ddce59bb560">DEBUG_MODBUS_MOVING_AVG</a>(fmt, ...)</td></tr>
+<tr class="separator:ab166ebe03f665d58b3593ddce59bb560"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a447445ef4f51447616d082dce0033497" id="r_a447445ef4f51447616d082dce0033497"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a447445ef4f51447616d082dce0033497">DEBUG_MAIN_BATCH</a>(msg)</td></tr>
+<tr class="separator:a447445ef4f51447616d082dce0033497"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a839e542538d5bd02cba6778be55a6eb9" id="r_a839e542538d5bd02cba6778be55a6eb9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a839e542538d5bd02cba6778be55a6eb9">DEBUG_MAIN_BUTTON</a>(msg)</td></tr>
+<tr class="separator:a839e542538d5bd02cba6778be55a6eb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a10b2de8934fb63e17b4d31b54febf824" id="r_a10b2de8934fb63e17b4d31b54febf824"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a10b2de8934fb63e17b4d31b54febf824">MIGRATE_DEBUG_PRINTF</a>(fmt, ...)</td></tr>
+<tr class="separator:a10b2de8934fb63e17b4d31b54febf824"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21afe95f02a9a06fc9854864a1a9d4bd" id="r_a21afe95f02a9a06fc9854864a1a9d4bd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21afe95f02a9a06fc9854864a1a9d4bd">MIGRATE_DEBUG_PRINTLN</a>(msg)</td></tr>
+<tr class="separator:a21afe95f02a9a06fc9854864a1a9d4bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5bf4ca35d3d5283648b65b646a9d4710" id="r_a5bf4ca35d3d5283648b65b646a9d4710"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5bf4ca35d3d5283648b65b646a9d4710">CRITICAL_DEBUG_PRINT</a>(x)</td></tr>
+<tr class="separator:a5bf4ca35d3d5283648b65b646a9d4710"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca5049ad9737772e69632c4ffde5661b" id="r_aca5049ad9737772e69632c4ffde5661b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca5049ad9737772e69632c4ffde5661b">CRITICAL_DEBUG_PRINTLN</a>(x)</td></tr>
+<tr class="separator:aca5049ad9737772e69632c4ffde5661b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd5d375337ca9d6bebf6b03bc3b7af43" id="r_afd5d375337ca9d6bebf6b03bc3b7af43"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd5d375337ca9d6bebf6b03bc3b7af43">CRITICAL_DEBUG_PRINTF</a>(fmt, ...)</td></tr>
+<tr class="separator:afd5d375337ca9d6bebf6b03bc3b7af43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a3b1c1240a45bf11367e496c24a1c354d" id="r_a3b1c1240a45bf11367e496c24a1c354d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b1c1240a45bf11367e496c24a1c354d">debugConditionalPrint</a> (int level, const char *format,...)</td></tr>
+<tr class="memdesc:a3b1c1240a45bf11367e496c24a1c354d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Условная отладочная печать с проверкой уровня логирования  <br /></td></tr>
+<tr class="separator:a3b1c1240a45bf11367e496c24a1c354d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a106b655aa8faea8942757638731ebf0d" id="r_a106b655aa8faea8942757638731ebf0d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a106b655aa8faea8942757638731ebf0d">debugPrintHexBuffer</a> (const char *prefix, const uint8_t *buffer, size_t length)</td></tr>
+<tr class="memdesc:a106b655aa8faea8942757638731ebf0d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отладочная печать буфера в HEX формате (оптимизированная)  <br /></td></tr>
+<tr class="separator:a106b655aa8faea8942757638731ebf0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4002fe059558510a239058a9dda387a6" id="r_a4002fe059558510a239058a9dda387a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4002fe059558510a239058a9dda387a6">debugPrintStatus</a> (const char *module, bool status, const char *details=nullptr)</td></tr>
+<tr class="memdesc:a4002fe059558510a239058a9dda387a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отладочная печать состояния системы (компактная)  <br /></td></tr>
+<tr class="separator:a4002fe059558510a239058a9dda387a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3aab77ba55ab7c94378c6110d9a3050" id="r_ae3aab77ba55ab7c94378c6110d9a3050"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3aab77ba55ab7c94378c6110d9a3050">debugStatsInit</a> ()</td></tr>
+<tr class="separator:ae3aab77ba55ab7c94378c6110d9a3050"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a795c0e9d5464893e565a264b0fb6e75e" id="r_a795c0e9d5464893e565a264b0fb6e75e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a795c0e9d5464893e565a264b0fb6e75e">debugStatsIncrement</a> (const char *category)</td></tr>
+<tr class="separator:a795c0e9d5464893e565a264b0fb6e75e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a748fe53bf9a9627f05f3d3697ff26971" id="r_a748fe53bf9a9627f05f3d3697ff26971"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a748fe53bf9a9627f05f3d3697ff26971">debugStatsPrint</a> ()</td></tr>
+<tr class="separator:a748fe53bf9a9627f05f3d3697ff26971"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Оптимизированная система отладки с условной компиляцией </p>
+<p>Заменяет избыточные DEBUG_PRINTF/DEBUG_PRINTLN на условные макросы </p>
+</div><h2 class="groupheader">Макросы</h2>
+<a id="a5bf4ca35d3d5283648b65b646a9d4710" name="a5bf4ca35d3d5283648b65b646a9d4710"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5bf4ca35d3d5283648b65b646a9d4710">&#9670;&#160;</a></span>CRITICAL_DEBUG_PRINT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CRITICAL_DEBUG_PRINT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    Serial.print(<span class="stringliteral">&quot;[CRITICAL] &quot;</span>); \</div>
+<div class="line">    Serial.print(x)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="afd5d375337ca9d6bebf6b03bc3b7af43" name="afd5d375337ca9d6bebf6b03bc3b7af43"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd5d375337ca9d6bebf6b03bc3b7af43">&#9670;&#160;</a></span>CRITICAL_DEBUG_PRINTF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CRITICAL_DEBUG_PRINTF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">Serial.printf(<span class="stringliteral">&quot;[CRITICAL] &quot;</span> fmt, ##__VA_ARGS__)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aca5049ad9737772e69632c4ffde5661b" name="aca5049ad9737772e69632c4ffde5661b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca5049ad9737772e69632c4ffde5661b">&#9670;&#160;</a></span>CRITICAL_DEBUG_PRINTLN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define CRITICAL_DEBUG_PRINTLN</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    Serial.print(<span class="stringliteral">&quot;[CRITICAL] &quot;</span>);  \</div>
+<div class="line">    Serial.println(x)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a7d2ae674cad5299a52b0e7dceac10087" name="a7d2ae674cad5299a52b0e7dceac10087"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d2ae674cad5299a52b0e7dceac10087">&#9670;&#160;</a></span>DEBUG_ENABLED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_ENABLED&#160;&#160;&#160;false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a447445ef4f51447616d082dce0033497" name="a447445ef4f51447616d082dce0033497"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a447445ef4f51447616d082dce0033497">&#9670;&#160;</a></span>DEBUG_MAIN_BATCH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MAIN_BATCH</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="debug_8h.html#a8e30ff0704664fcb13dabf0c4dc5c8f5">DEBUG_PRINTLN</a>(<span class="stringliteral">&quot;[BATCH] &quot;</span> msg)</div>
+<div class="ttc" id="adebug_8h_html_a8e30ff0704664fcb13dabf0c4dc5c8f5"><div class="ttname"><a href="debug_8h.html#a8e30ff0704664fcb13dabf0c4dc5c8f5">DEBUG_PRINTLN</a></div><div class="ttdeci">#define DEBUG_PRINTLN(x)</div><div class="ttdef"><b>Определения</b> debug.h:18</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a839e542538d5bd02cba6778be55a6eb9" name="a839e542538d5bd02cba6778be55a6eb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a839e542538d5bd02cba6778be55a6eb9">&#9670;&#160;</a></span>DEBUG_MAIN_BUTTON</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MAIN_BUTTON</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="debug_8h.html#a8e30ff0704664fcb13dabf0c4dc5c8f5">DEBUG_PRINTLN</a>(<span class="stringliteral">&quot;[BUTTON] &quot;</span> msg)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ab166ebe03f665d58b3593ddce59bb560" name="ab166ebe03f665d58b3593ddce59bb560"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab166ebe03f665d58b3593ddce59bb560">&#9670;&#160;</a></span>DEBUG_MODBUS_MOVING_AVG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MODBUS_MOVING_AVG</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#ae4d36024b895e5f526ef89071605badb">DEBUG_MODBUS_PRINTF</a>(<span class="stringliteral">&quot;[MOVING_AVG] &quot;</span> fmt <span class="stringliteral">&quot;\n&quot;</span>, ##__VA_ARGS__)</div>
+<div class="ttc" id="adebug__optimized_8h_html_ae4d36024b895e5f526ef89071605badb"><div class="ttname"><a href="#ae4d36024b895e5f526ef89071605badb">DEBUG_MODBUS_PRINTF</a></div><div class="ttdeci">#define DEBUG_MODBUS_PRINTF(fmt,...)</div><div class="ttdef"><b>Определения</b> debug_optimized.h:63</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a54fbc5700cffd26a61494ed6a400cc45" name="a54fbc5700cffd26a61494ed6a400cc45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54fbc5700cffd26a61494ed6a400cc45">&#9670;&#160;</a></span>DEBUG_MODBUS_PRINT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MODBUS_PRINT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                        \</div>
+<div class="line">    {                         \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae4d36024b895e5f526ef89071605badb" name="ae4d36024b895e5f526ef89071605badb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4d36024b895e5f526ef89071605badb">&#9670;&#160;</a></span>DEBUG_MODBUS_PRINTF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MODBUS_PRINTF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                                \</div>
+<div class="line">    {                                 \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae53267bde79e149c80877da5ae362867" name="ae53267bde79e149c80877da5ae362867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae53267bde79e149c80877da5ae362867">&#9670;&#160;</a></span>DEBUG_MODBUS_PRINTLN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MODBUS_PRINTLN</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                          \</div>
+<div class="line">    {                           \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aac8300f6f06573e98f788bd79619c046" name="aac8300f6f06573e98f788bd79619c046"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac8300f6f06573e98f788bd79619c046">&#9670;&#160;</a></span>DEBUG_MODBUS_RX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MODBUS_RX</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#ae53267bde79e149c80877da5ae362867">DEBUG_MODBUS_PRINTLN</a>(<span class="stringliteral">&quot;RX режим&quot;</span>)</div>
+<div class="ttc" id="adebug__optimized_8h_html_ae53267bde79e149c80877da5ae362867"><div class="ttname"><a href="#ae53267bde79e149c80877da5ae362867">DEBUG_MODBUS_PRINTLN</a></div><div class="ttdeci">#define DEBUG_MODBUS_PRINTLN(x)</div><div class="ttdef"><b>Определения</b> debug_optimized.h:59</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a374ac3552d0860c64fdc74a97b543b4e" name="a374ac3552d0860c64fdc74a97b543b4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a374ac3552d0860c64fdc74a97b543b4e">&#9670;&#160;</a></span>DEBUG_MODBUS_TX</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MODBUS_TX</td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#ae53267bde79e149c80877da5ae362867">DEBUG_MODBUS_PRINTLN</a>(<span class="stringliteral">&quot;TX режим&quot;</span>)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a8423cfacd2a82de4ee8647dae55f10c5" name="a8423cfacd2a82de4ee8647dae55f10c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8423cfacd2a82de4ee8647dae55f10c5">&#9670;&#160;</a></span>DEBUG_MQTT_DELTA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MQTT_DELTA</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#aaa225a0f27c84d8f7eb7747758be4732">DEBUG_MQTT_PRINTF</a>(<span class="stringliteral">&quot;[DELTA] &quot;</span> fmt <span class="stringliteral">&quot;\n&quot;</span>, ##__VA_ARGS__)</div>
+<div class="ttc" id="adebug__optimized_8h_html_aaa225a0f27c84d8f7eb7747758be4732"><div class="ttname"><a href="#aaa225a0f27c84d8f7eb7747758be4732">DEBUG_MQTT_PRINTF</a></div><div class="ttdeci">#define DEBUG_MQTT_PRINTF(fmt,...)</div><div class="ttdef"><b>Определения</b> debug_optimized.h:86</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a78185c8405fcd043bb18acaf5373de41" name="a78185c8405fcd043bb18acaf5373de41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78185c8405fcd043bb18acaf5373de41">&#9670;&#160;</a></span>DEBUG_MQTT_DNS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MQTT_DNS</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#aaa225a0f27c84d8f7eb7747758be4732">DEBUG_MQTT_PRINTF</a>(<span class="stringliteral">&quot;[DNS] &quot;</span> fmt <span class="stringliteral">&quot;\n&quot;</span>, ##__VA_ARGS__)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a6cdde71e1eb3d615f0c74da6ea3e625c" name="a6cdde71e1eb3d615f0c74da6ea3e625c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6cdde71e1eb3d615f0c74da6ea3e625c">&#9670;&#160;</a></span>DEBUG_MQTT_HA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MQTT_HA</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#aaa225a0f27c84d8f7eb7747758be4732">DEBUG_MQTT_PRINTF</a>(<span class="stringliteral">&quot;[HA] &quot;</span> fmt <span class="stringliteral">&quot;\n&quot;</span>, ##__VA_ARGS__)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a97da1769619ef98d76b61c44d397f9e3" name="a97da1769619ef98d76b61c44d397f9e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97da1769619ef98d76b61c44d397f9e3">&#9670;&#160;</a></span>DEBUG_MQTT_PRINT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MQTT_PRINT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                      \</div>
+<div class="line">    {                       \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aaa225a0f27c84d8f7eb7747758be4732" name="aaa225a0f27c84d8f7eb7747758be4732"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa225a0f27c84d8f7eb7747758be4732">&#9670;&#160;</a></span>DEBUG_MQTT_PRINTF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MQTT_PRINTF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                              \</div>
+<div class="line">    {                               \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad5b6145964771adcf15eabf41b7e3e01" name="ad5b6145964771adcf15eabf41b7e3e01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5b6145964771adcf15eabf41b7e3e01">&#9670;&#160;</a></span>DEBUG_MQTT_PRINTLN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_MQTT_PRINTLN</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                        \</div>
+<div class="line">    {                         \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="af6551f0b4c3964c3128f808e7bf987c7" name="af6551f0b4c3964c3128f808e7bf987c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6551f0b4c3964c3128f808e7bf987c7">&#9670;&#160;</a></span>DEBUG_PRINT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_PRINT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                 \</div>
+<div class="line">    {                  \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="aa97e8dc28005a1241103bef65128944b" name="aa97e8dc28005a1241103bef65128944b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa97e8dc28005a1241103bef65128944b">&#9670;&#160;</a></span>DEBUG_PRINTF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_PRINTF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                         \</div>
+<div class="line">    {                          \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a8e30ff0704664fcb13dabf0c4dc5c8f5" name="a8e30ff0704664fcb13dabf0c4dc5c8f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e30ff0704664fcb13dabf0c4dc5c8f5">&#9670;&#160;</a></span>DEBUG_PRINTLN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_PRINTLN</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                   \</div>
+<div class="line">    {                    \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a2408c7052942f2a0ac696db06146ef10" name="a2408c7052942f2a0ac696db06146ef10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2408c7052942f2a0ac696db06146ef10">&#9670;&#160;</a></span>DEBUG_WIFI_PRINT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_WIFI_PRINT</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                      \</div>
+<div class="line">    {                       \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ad77ad7c975f7f577f0f69b2207f28b68" name="ad77ad7c975f7f577f0f69b2207f28b68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad77ad7c975f7f577f0f69b2207f28b68">&#9670;&#160;</a></span>DEBUG_WIFI_PRINTF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_WIFI_PRINTF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                              \</div>
+<div class="line">    {                               \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a63cac6dc284968cd7eba8e2f7c28f052" name="a63cac6dc284968cd7eba8e2f7c28f052"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63cac6dc284968cd7eba8e2f7c28f052">&#9670;&#160;</a></span>DEBUG_WIFI_PRINTLN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEBUG_WIFI_PRINTLN</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>x</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line">    <span class="keywordflow">do</span>                        \</div>
+<div class="line">    {                         \</div>
+<div class="line">    } <span class="keywordflow">while</span> (0)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a10b2de8934fb63e17b4d31b54febf824" name="a10b2de8934fb63e17b4d31b54febf824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a10b2de8934fb63e17b4d31b54febf824">&#9670;&#160;</a></span>MIGRATE_DEBUG_PRINTF</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIGRATE_DEBUG_PRINTF</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>fmt</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em></em></span>...&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="debug_8h.html#aa97e8dc28005a1241103bef65128944b">DEBUG_PRINTF</a>(fmt, ##__VA_ARGS__)</div>
+<div class="ttc" id="adebug_8h_html_aa97e8dc28005a1241103bef65128944b"><div class="ttname"><a href="debug_8h.html#aa97e8dc28005a1241103bef65128944b">DEBUG_PRINTF</a></div><div class="ttdeci">#define DEBUG_PRINTF(fmt,...)</div><div class="ttdef"><b>Определения</b> debug.h:19</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a21afe95f02a9a06fc9854864a1a9d4bd" name="a21afe95f02a9a06fc9854864a1a9d4bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21afe95f02a9a06fc9854864a1a9d4bd">&#9670;&#160;</a></span>MIGRATE_DEBUG_PRINTLN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIGRATE_DEBUG_PRINTLN</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>msg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="debug_8h.html#a8e30ff0704664fcb13dabf0c4dc5c8f5">DEBUG_PRINTLN</a>(msg)</div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a3b1c1240a45bf11367e496c24a1c354d" name="a3b1c1240a45bf11367e496c24a1c354d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b1c1240a45bf11367e496c24a1c354d">&#9670;&#160;</a></span>debugConditionalPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void debugConditionalPrint </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>level</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Условная отладочная печать с проверкой уровня логирования </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">level</td><td>Минимальный уровень логирования для вывода </td></tr>
+    <tr><td class="paramname">format</td><td>Формат строки </td></tr>
+    <tr><td class="paramname">...</td><td>Аргументы форматирования </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a106b655aa8faea8942757638731ebf0d" name="a106b655aa8faea8942757638731ebf0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a106b655aa8faea8942757638731ebf0d">&#9670;&#160;</a></span>debugPrintHexBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void debugPrintHexBuffer </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>prefix</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const uint8_t *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Отладочная печать буфера в HEX формате (оптимизированная) </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">prefix</td><td>Префикс сообщения </td></tr>
+    <tr><td class="paramname">buffer</td><td>Буфер данных </td></tr>
+    <tr><td class="paramname">length</td><td>Длина буфера </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4002fe059558510a239058a9dda387a6" name="a4002fe059558510a239058a9dda387a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4002fe059558510a239058a9dda387a6">&#9670;&#160;</a></span>debugPrintStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void debugPrintStatus </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>module</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>status</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>details</em></span><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Отладочная печать состояния системы (компактная) </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">module</td><td>Название модуля </td></tr>
+    <tr><td class="paramname">status</td><td>Статус (true/false) </td></tr>
+    <tr><td class="paramname">details</td><td>Дополнительная информация </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a795c0e9d5464893e565a264b0fb6e75e" name="a795c0e9d5464893e565a264b0fb6e75e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a795c0e9d5464893e565a264b0fb6e75e">&#9670;&#160;</a></span>debugStatsIncrement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void debugStatsIncrement </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>category</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae3aab77ba55ab7c94378c6110d9a3050" name="ae3aab77ba55ab7c94378c6110d9a3050"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3aab77ba55ab7c94378c6110d9a3050">&#9670;&#160;</a></span>debugStatsInit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void debugStatsInit </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a748fe53bf9a9627f05f3d3697ff26971" name="a748fe53bf9a9627f05f3d3697ff26971"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a748fe53bf9a9627f05f3d3697ff26971">&#9670;&#160;</a></span>debugStatsPrint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void debugStatsPrint </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="debug__optimized_8h.html">debug_optimized.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

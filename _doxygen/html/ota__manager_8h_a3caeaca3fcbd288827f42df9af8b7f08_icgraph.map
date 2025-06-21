@@ -1,0 +1,33 @@
+<map id="handleOTA" name="handleOTA">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1062,132,1147,159"/>
+<area shape="rect" id="Node000002" href="$mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="704,81,849,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1046,130,1013,123,928,110,849,102,850,97,929,104,1014,117,1047,125"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,183,55,209"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="1054,167,999,185,930,204,855,218,778,224,292,224,224,222,157,216,55,202,55,197,157,210,224,216,292,219,778,219,854,213,929,199,997,180,1053,162"/>
+<area shape="rect" id="Node000007" href="$ota__manager_8cpp.html#aab62f74691b98553d395b694e0807ae4" title=" " alt="" coords="897,132,1014,159"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="1046,148,1014,148,1014,143,1046,143"/>
+<area shape="rect" id="Node000003" href="$mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="548,69,646,96"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="688,91,647,89,647,83,689,86"/>
+<area shape="rect" id="Node000004" href="$mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="248,5,338,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="532,72,338,31,339,25,533,67"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,31,59,57"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="233,27,59,44,59,39,232,22"/>
+<area shape="poly" id="edge7_Node000007_Node000002" title=" " alt="" coords="890,130,826,111,827,106,892,125"/>
+<area shape="rect" id="Node000008" href="$routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="718,132,835,159"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="882,148,835,148,835,143,882,143"/>
+<area shape="rect" id="Node000009" href="$wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,132,656,159"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="703,148,656,148,656,143,703,143"/>
+<area shape="rect" id="Node000010" href="$wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,107,491,133"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="523,136,491,131,492,125,524,131"/>
+<area shape="rect" id="Node000013" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,157,345,184"/>
+<area shape="poly" id="edge18_Node000009_Node000013" title=" " alt="" coords="523,154,346,169,345,164,523,149"/>
+<area shape="rect" id="Node000011" href="$wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,157,193,184"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="378,128,242,148,194,160,193,155,240,143,377,123"/>
+<area shape="rect" id="Node000012" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,56,190,83"/>
+<area shape="poly" id="edge13_Node000010_Node000012" title=" " alt="" coords="377,112,190,79,191,74,378,106"/>
+<area shape="poly" id="edge15_Node000010_Node000013" title=" " alt="" coords="387,142,336,159,334,154,385,136"/>
+<area shape="poly" id="edge12_Node000011_Node000006" title=" " alt="" coords="92,186,55,194,54,189,91,181"/>
+<area shape="poly" id="edge14_Node000012_Node000005" title=" " alt="" coords="94,60,59,52,60,47,95,55"/>
+<area shape="poly" id="edge16_Node000013_Node000011" title=" " alt="" coords="225,173,193,173,193,168,225,168"/>
+<area shape="poly" id="edge17_Node000013_Node000012" title=" " alt="" coords="259,150,169,85,172,81,262,146"/>
+</map>

@@ -1,0 +1,1421 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor: Файл include/web_routes.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor<span id="projectnumber">&#160;v3.2.29 (June 2025)</span>
+   </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл web_routes.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;WebServer.h&gt;</code><br />
+<code>#include &lt;WiFi.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">../src/wifi_manager.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Граф включаемых заголовочных файлов для web_routes.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h__incl.png" border="0" usemap="#ainclude_2web__routes_8h" alt=""/></div>
+<!-- MAP 0 -->
+</div>
+</div><div class="textblock"><div class="dynheader">
+Граф файлов, в которые включается этот файл:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h__dep__incl.png" border="0" usemap="#ainclude_2web__routes_8hdep" alt=""/></div>
+<!-- MAP 1 -->
+</div>
+</div>
+<p><a href="web__routes_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a6a7cf6b6ba01d34721e1a47ea65af867" id="r_a6a7cf6b6ba01d34721e1a47ea65af867"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a7cf6b6ba01d34721e1a47ea65af867">setupMainRoutes</a> ()</td></tr>
+<tr class="memdesc:a6a7cf6b6ba01d34721e1a47ea65af867"><td class="mdescLeft">&#160;</td><td class="mdescRight">Настройка основных маршрутов (/, /save, /status)  <br /></td></tr>
+<tr class="separator:a6a7cf6b6ba01d34721e1a47ea65af867"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8427468f39342a1990703e9f5ce7fd29" id="r_a8427468f39342a1990703e9f5ce7fd29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8427468f39342a1990703e9f5ce7fd29">handleRoot</a> ()</td></tr>
+<tr class="memdesc:a8427468f39342a1990703e9f5ce7fd29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик главной страницы (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>)  <br /></td></tr>
+<tr class="separator:a8427468f39342a1990703e9f5ce7fd29"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e811785ccbaccda2e3e3457971720cb" id="r_a1e811785ccbaccda2e3e3457971720cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e811785ccbaccda2e3e3457971720cb">handleStatus</a> ()</td></tr>
+<tr class="memdesc:a1e811785ccbaccda2e3e3457971720cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик статуса (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>)  <br /></td></tr>
+<tr class="separator:a1e811785ccbaccda2e3e3457971720cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed1136f683a386e56678e05fc3747972" id="r_aed1136f683a386e56678e05fc3747972"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed1136f683a386e56678e05fc3747972">setupDataRoutes</a> ()</td></tr>
+<tr class="memdesc:aed1136f683a386e56678e05fc3747972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)  <br /></td></tr>
+<tr class="separator:aed1136f683a386e56678e05fc3747972"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e7c19a3399afd6ceae18c4512cca24c" id="r_a0e7c19a3399afd6ceae18c4512cca24c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e7c19a3399afd6ceae18c4512cca24c">setupConfigRoutes</a> ()</td></tr>
+<tr class="memdesc:a0e7c19a3399afd6ceae18c4512cca24c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)  <br /></td></tr>
+<tr class="separator:a0e7c19a3399afd6ceae18c4512cca24c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32c74f47a23de058ee90a43af2dff066" id="r_a32c74f47a23de058ee90a43af2dff066"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32c74f47a23de058ee90a43af2dff066">setupServiceRoutes</a> ()</td></tr>
+<tr class="memdesc:a32c74f47a23de058ee90a43af2dff066"><td class="mdescLeft">&#160;</td><td class="mdescRight">Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)  <br /></td></tr>
+<tr class="separator:a32c74f47a23de058ee90a43af2dff066"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0518ce62fefc0ff55e7cd72e75db70d" id="r_ad0518ce62fefc0ff55e7cd72e75db70d"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0518ce62fefc0ff55e7cd72e75db70d">generatePageHeader</a> (const String &amp;title, const String &amp;icon=&quot;&quot;)</td></tr>
+<tr class="memdesc:ad0518ce62fefc0ff55e7cd72e75db70d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация заголовка HTML страницы  <br /></td></tr>
+<tr class="separator:ad0518ce62fefc0ff55e7cd72e75db70d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4f3a6e85baef9b2d3e2aec977c3a321" id="r_ad4f3a6e85baef9b2d3e2aec977c3a321"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4f3a6e85baef9b2d3e2aec977c3a321">generatePageFooter</a> ()</td></tr>
+<tr class="memdesc:ad4f3a6e85baef9b2d3e2aec977c3a321"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация футера HTML страницы  <br /></td></tr>
+<tr class="separator:ad4f3a6e85baef9b2d3e2aec977c3a321"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a104303f7b44cf43e481a713261d52457" id="r_a104303f7b44cf43e481a713261d52457"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a104303f7b44cf43e481a713261d52457">generateErrorPage</a> (int errorCode, const String &amp;errorMessage)</td></tr>
+<tr class="memdesc:a104303f7b44cf43e481a713261d52457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация страницы ошибки  <br /></td></tr>
+<tr class="separator:a104303f7b44cf43e481a713261d52457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc502267a202aba9171c0d593fbfac17" id="r_acc502267a202aba9171c0d593fbfac17"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc502267a202aba9171c0d593fbfac17">generateSuccessPage</a> (const String &amp;title, const String &amp;message, const String &amp;redirectUrl=&quot;&quot;, int redirectDelay=2)</td></tr>
+<tr class="memdesc:acc502267a202aba9171c0d593fbfac17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация страницы успеха  <br /></td></tr>
+<tr class="separator:acc502267a202aba9171c0d593fbfac17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03709c52c03116ff221a501c3f0c69b2" id="r_a03709c52c03116ff221a501c3f0c69b2"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03709c52c03116ff221a501c3f0c69b2">generateBasePage</a> (const String &amp;title, const String &amp;content, const String &amp;icon=&quot;&quot;)</td></tr>
+<tr class="memdesc:a03709c52c03116ff221a501c3f0c69b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация базовой HTML структуры с навигацией  <br /></td></tr>
+<tr class="separator:a03709c52c03116ff221a501c3f0c69b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a833be2e68cb85aa95168dae9c9b128ef" id="r_a833be2e68cb85aa95168dae9c9b128ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a833be2e68cb85aa95168dae9c9b128ef">setupErrorHandlers</a> ()</td></tr>
+<tr class="memdesc:a833be2e68cb85aa95168dae9c9b128ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Настройка обработчиков ошибок (404, 500, и т.  <br /></td></tr>
+<tr class="separator:a833be2e68cb85aa95168dae9c9b128ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad738b39272f7fc383f5bb83814fb1a67" id="r_ad738b39272f7fc383f5bb83814fb1a67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad738b39272f7fc383f5bb83814fb1a67">validateConfigInput</a> (bool checkRequired=true)</td></tr>
+<tr class="memdesc:ad738b39272f7fc383f5bb83814fb1a67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Валидация входных данных конфигурации  <br /></td></tr>
+<tr class="separator:ad738b39272f7fc383f5bb83814fb1a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a72ddd36cf01d539c0b2575750fa997dc" id="r_a72ddd36cf01d539c0b2575750fa997dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72ddd36cf01d539c0b2575750fa997dc">handleUploadError</a> (const String &amp;error)</td></tr>
+<tr class="memdesc:a72ddd36cf01d539c0b2575750fa997dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработка ошибок загрузки файлов  <br /></td></tr>
+<tr class="separator:a72ddd36cf01d539c0b2575750fa997dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a195ba09880daef6ce6c14eeceb61feec" id="r_a195ba09880daef6ce6c14eeceb61feec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a195ba09880daef6ce6c14eeceb61feec">isFeatureAvailable</a> (const String &amp;feature)</td></tr>
+<tr class="memdesc:a195ba09880daef6ce6c14eeceb61feec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверка доступности функции в текущем режиме WiFi.  <br /></td></tr>
+<tr class="separator:a195ba09880daef6ce6c14eeceb61feec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef0848857422724f7d825dd8a33421b9" id="r_aef0848857422724f7d825dd8a33421b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef0848857422724f7d825dd8a33421b9">isFeatureAvailable</a> ()</td></tr>
+<tr class="memdesc:aef0848857422724f7d825dd8a33421b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверка доступности функции в текущем режиме WiFi (без параметров)  <br /></td></tr>
+<tr class="separator:aef0848857422724f7d825dd8a33421b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a62e7c40bff885d97f6018743bec642" id="r_a1a62e7c40bff885d97f6018743bec642"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a62e7c40bff885d97f6018743bec642">logWebRequest</a> (const String &amp;method, const String &amp;uri, const String &amp;clientIP)</td></tr>
+<tr class="memdesc:a1a62e7c40bff885d97f6018743bec642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Логирование веб-запросов  <br /></td></tr>
+<tr class="separator:a1a62e7c40bff885d97f6018743bec642"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6e617b3350bd617099ba38b52cd3076" id="r_ad6e617b3350bd617099ba38b52cd3076"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6e617b3350bd617099ba38b52cd3076">generateForm</a> (const String &amp;action, const String &amp;method, const String &amp;formContent, const String &amp;buttonText, const String &amp;buttonIcon)</td></tr>
+<tr class="memdesc:ad6e617b3350bd617099ba38b52cd3076"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация формы с общими элементами  <br /></td></tr>
+<tr class="separator:ad6e617b3350bd617099ba38b52cd3076"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ea1f07e47da42a04aa3dbf1829ceb61" id="r_a6ea1f07e47da42a04aa3dbf1829ceb61"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6ea1f07e47da42a04aa3dbf1829ceb61">generateConfigSection</a> (const String &amp;title, const String &amp;content, const String &amp;helpText=&quot;&quot;)</td></tr>
+<tr class="memdesc:a6ea1f07e47da42a04aa3dbf1829ceb61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация секции конфигурации  <br /></td></tr>
+<tr class="separator:a6ea1f07e47da42a04aa3dbf1829ceb61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3bf8c4a6f5d5755121de67cf17ff422" id="r_aa3bf8c4a6f5d5755121de67cf17ff422"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3bf8c4a6f5d5755121de67cf17ff422">generateInputField</a> (const String &amp;id, const String &amp;name, const String &amp;label, const String &amp;value, const String &amp;type=&quot;text&quot;, bool required=false, const String &amp;placeholder=&quot;&quot;)</td></tr>
+<tr class="memdesc:aa3bf8c4a6f5d5755121de67cf17ff422"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация поля ввода  <br /></td></tr>
+<tr class="separator:aa3bf8c4a6f5d5755121de67cf17ff422"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae920cb227a775afac1415bab5339c623" id="r_ae920cb227a775afac1415bab5339c623"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae920cb227a775afac1415bab5339c623">generateCheckboxField</a> (const String &amp;id, const String &amp;name, const String &amp;label, bool checked)</td></tr>
+<tr class="memdesc:ae920cb227a775afac1415bab5339c623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация поля чекбокса  <br /></td></tr>
+<tr class="separator:ae920cb227a775afac1415bab5339c623"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8588b654fd55604bdb4fc112191c195f" id="r_a8588b654fd55604bdb4fc112191c195f"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8588b654fd55604bdb4fc112191c195f">generateNumberField</a> (const String &amp;id, const String &amp;name, const String &amp;label, int value, int min, int max, int step=1)</td></tr>
+<tr class="memdesc:a8588b654fd55604bdb4fc112191c195f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация числового поля с валидацией  <br /></td></tr>
+<tr class="separator:a8588b654fd55604bdb4fc112191c195f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af68ca26d269d5d8ea7fa42fc78a5a919" id="r_af68ca26d269d5d8ea7fa42fc78a5a919"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af68ca26d269d5d8ea7fa42fc78a5a919">generateFormError</a> (const String &amp;message)</td></tr>
+<tr class="memdesc:af68ca26d269d5d8ea7fa42fc78a5a919"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация сообщения об ошибке в форме  <br /></td></tr>
+<tr class="separator:af68ca26d269d5d8ea7fa42fc78a5a919"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d57b5edf50f600cc5d02641cb4510a0" id="r_a1d57b5edf50f600cc5d02641cb4510a0"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d57b5edf50f600cc5d02641cb4510a0">generateApModeUnavailablePage</a> (const String &amp;title, const String &amp;icon)</td></tr>
+<tr class="memdesc:a1d57b5edf50f600cc5d02641cb4510a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация страницы "Недоступно в AP режиме".  <br /></td></tr>
+<tr class="separator:a1d57b5edf50f600cc5d02641cb4510a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fe24c5dc21b012791aecd16ab4dad96" id="r_a6fe24c5dc21b012791aecd16ab4dad96"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fe24c5dc21b012791aecd16ab4dad96">generateValidationErrorResponse</a> (const String &amp;errorMsg)</td></tr>
+<tr class="memdesc:a6fe24c5dc21b012791aecd16ab4dad96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация HTML ответа с ошибкой валидации  <br /></td></tr>
+<tr class="separator:a6fe24c5dc21b012791aecd16ab4dad96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a200ff078a206ee5a0b44bc0c5411f3f5" id="r_a200ff078a206ee5a0b44bc0c5411f3f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a200ff078a206ee5a0b44bc0c5411f3f5">handleCriticalError</a> (const String &amp;error)</td></tr>
+<tr class="memdesc:a200ff078a206ee5a0b44bc0c5411f3f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработка критических ошибок сервера  <br /></td></tr>
+<tr class="separator:a200ff078a206ee5a0b44bc0c5411f3f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a195f4874889e332e6f540a518d6c51fe" id="r_a195f4874889e332e6f540a518d6c51fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a195f4874889e332e6f540a518d6c51fe">isRouteAvailable</a> (const String &amp;uri)</td></tr>
+<tr class="memdesc:a195f4874889e332e6f540a518d6c51fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверка доступности маршрута в текущем режиме  <br /></td></tr>
+<tr class="separator:a195f4874889e332e6f540a518d6c51fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d52ae788bd99342b84e28a1af12392b" id="r_a6d52ae788bd99342b84e28a1af12392b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d52ae788bd99342b84e28a1af12392b">checkRouteAccess</a> (const String &amp;routeName, const String &amp;icon)</td></tr>
+<tr class="memdesc:a6d52ae788bd99342b84e28a1af12392b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Middleware для проверки доступности маршрута  <br /></td></tr>
+<tr class="separator:a6d52ae788bd99342b84e28a1af12392b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a74cbd7893b5cf9b3fa5fd34a4fb985ba" id="r_a74cbd7893b5cf9b3fa5fd34a4fb985ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74cbd7893b5cf9b3fa5fd34a4fb985ba">setupCalibrationRoutes</a> ()</td></tr>
+<tr class="memdesc:a74cbd7893b5cf9b3fa5fd34a4fb985ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Настройка маршрутов калибровки (/calibration)  <br /></td></tr>
+<tr class="separator:a74cbd7893b5cf9b3fa5fd34a4fb985ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad30c0b8b33e60ccdb13f2e1cc08157c9" id="r_ad30c0b8b33e60ccdb13f2e1cc08157c9"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad30c0b8b33e60ccdb13f2e1cc08157c9">navHtml</a> ()</td></tr>
+<tr class="separator:ad30c0b8b33e60ccdb13f2e1cc08157c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae58a54419ee068a06deeb05bf1e771f4" id="r_ae58a54419ee068a06deeb05bf1e771f4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae58a54419ee068a06deeb05bf1e771f4">setupOtaRoutes</a> ()</td></tr>
+<tr class="memdesc:ae58a54419ee068a06deeb05bf1e771f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)  <br /></td></tr>
+<tr class="separator:ae58a54419ee068a06deeb05bf1e771f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a6385fd6a6118223757bf00a8ba828562" id="r_a6385fd6a6118223757bf00a8ba828562"><td class="memItemLeft" align="right" valign="top">WebServer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6385fd6a6118223757bf00a8ba828562">webServer</a></td></tr>
+<tr class="separator:a6385fd6a6118223757bf00a8ba828562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Функции</h2>
+<a id="a6d52ae788bd99342b84e28a1af12392b" name="a6d52ae788bd99342b84e28a1af12392b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d52ae788bd99342b84e28a1af12392b">&#9670;&#160;</a></span>checkRouteAccess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool checkRouteAccess </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>routeName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Middleware для проверки доступности маршрута </p>
+<p>Middleware для проверки доступности маршрута </p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a6d52ae788bd99342b84e28a1af12392b_cgraph.png" border="0" usemap="#aweb__routes_8h_a6d52ae788bd99342b84e28a1af12392b_cgraph" alt=""/></div>
+<!-- MAP 2 -->
+</div>
+
+</div>
+</div>
+<a id="a1d57b5edf50f600cc5d02641cb4510a0" name="a1d57b5edf50f600cc5d02641cb4510a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d57b5edf50f600cc5d02641cb4510a0">&#9670;&#160;</a></span>generateApModeUnavailablePage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateApModeUnavailablePage </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация страницы "Недоступно в AP режиме". </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Заголовок страницы </td></tr>
+    <tr><td class="paramname">icon</td><td>Иконка страницы </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a1d57b5edf50f600cc5d02641cb4510a0_cgraph.png" border="0" usemap="#aweb__routes_8h_a1d57b5edf50f600cc5d02641cb4510a0_cgraph" alt=""/></div>
+<!-- MAP 3 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a1d57b5edf50f600cc5d02641cb4510a0_icgraph.png" border="0" usemap="#aweb__routes_8h_a1d57b5edf50f600cc5d02641cb4510a0_icgraph" alt=""/></div>
+<!-- MAP 4 -->
+</div>
+
+</div>
+</div>
+<a id="a03709c52c03116ff221a501c3f0c69b2" name="a03709c52c03116ff221a501c3f0c69b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03709c52c03116ff221a501c3f0c69b2">&#9670;&#160;</a></span>generateBasePage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateBasePage </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>content</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация базовой HTML структуры с навигацией </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Заголовок страницы </td></tr>
+    <tr><td class="paramname">content</td><td>Содержимое страницы </td></tr>
+    <tr><td class="paramname">icon</td><td>Иконка страницы (опционально) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a03709c52c03116ff221a501c3f0c69b2_cgraph.png" border="0" usemap="#aweb__routes_8h_a03709c52c03116ff221a501c3f0c69b2_cgraph" alt=""/></div>
+<!-- MAP 5 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a03709c52c03116ff221a501c3f0c69b2_icgraph.png" border="0" usemap="#aweb__routes_8h_a03709c52c03116ff221a501c3f0c69b2_icgraph" alt=""/></div>
+<!-- MAP 6 -->
+</div>
+
+</div>
+</div>
+<a id="ae920cb227a775afac1415bab5339c623" name="ae920cb227a775afac1415bab5339c623"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae920cb227a775afac1415bab5339c623">&#9670;&#160;</a></span>generateCheckboxField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateCheckboxField </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>checked</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация поля чекбокса </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID элемента </td></tr>
+    <tr><td class="paramname">name</td><td>Имя элемента </td></tr>
+    <tr><td class="paramname">label</td><td>Подпись </td></tr>
+    <tr><td class="paramname">checked</td><td>Состояние чекбокса </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML чекбокс </dd></dl>
+
+</div>
+</div>
+<a id="a6ea1f07e47da42a04aa3dbf1829ceb61" name="a6ea1f07e47da42a04aa3dbf1829ceb61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ea1f07e47da42a04aa3dbf1829ceb61">&#9670;&#160;</a></span>generateConfigSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateConfigSection </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>content</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>helpText</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация секции конфигурации </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Заголовок секции </td></tr>
+    <tr><td class="paramname">content</td><td>Содержимое секции </td></tr>
+    <tr><td class="paramname">helpText</td><td>Текст подсказки (опционально) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML секция </dd></dl>
+
+</div>
+</div>
+<a id="a104303f7b44cf43e481a713261d52457" name="a104303f7b44cf43e481a713261d52457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a104303f7b44cf43e481a713261d52457">&#9670;&#160;</a></span>generateErrorPage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateErrorPage </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>errorCode</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>errorMessage</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация страницы ошибки </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorCode</td><td>Код ошибки </td></tr>
+    <tr><td class="paramname">errorMessage</td><td>Сообщение об ошибке </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница с ошибкой </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a104303f7b44cf43e481a713261d52457_cgraph.png" border="0" usemap="#aweb__routes_8h_a104303f7b44cf43e481a713261d52457_cgraph" alt=""/></div>
+<!-- MAP 7 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a104303f7b44cf43e481a713261d52457_icgraph.png" border="0" usemap="#aweb__routes_8h_a104303f7b44cf43e481a713261d52457_icgraph" alt=""/></div>
+<!-- MAP 8 -->
+</div>
+
+</div>
+</div>
+<a id="ad6e617b3350bd617099ba38b52cd3076" name="ad6e617b3350bd617099ba38b52cd3076"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6e617b3350bd617099ba38b52cd3076">&#9670;&#160;</a></span>generateForm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateForm </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>method</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>formContent</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>buttonText</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>buttonIcon</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация формы с общими элементами </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">action</td><td>URL для отправки формы </td></tr>
+    <tr><td class="paramname">method</td><td>HTTP метод (GET/POST) </td></tr>
+    <tr><td class="paramname">formContent</td><td>Содержимое формы </td></tr>
+    <tr><td class="paramname">buttonText</td><td>Текст кнопки отправки </td></tr>
+    <tr><td class="paramname">buttonIcon</td><td>Иконка кнопки </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML форма </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_ad6e617b3350bd617099ba38b52cd3076_cgraph.png" border="0" usemap="#aweb__routes_8h_ad6e617b3350bd617099ba38b52cd3076_cgraph" alt=""/></div>
+<!-- MAP 9 -->
+</div>
+
+</div>
+</div>
+<a id="af68ca26d269d5d8ea7fa42fc78a5a919" name="af68ca26d269d5d8ea7fa42fc78a5a919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af68ca26d269d5d8ea7fa42fc78a5a919">&#9670;&#160;</a></span>generateFormError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateFormError </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация сообщения об ошибке в форме </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Текст сообщения </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML блок с ошибкой </dd></dl>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_af68ca26d269d5d8ea7fa42fc78a5a919_icgraph.png" border="0" usemap="#aweb__routes_8h_af68ca26d269d5d8ea7fa42fc78a5a919_icgraph" alt=""/></div>
+<!-- MAP 10 -->
+</div>
+
+</div>
+</div>
+<a id="aa3bf8c4a6f5d5755121de67cf17ff422" name="aa3bf8c4a6f5d5755121de67cf17ff422"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3bf8c4a6f5d5755121de67cf17ff422">&#9670;&#160;</a></span>generateInputField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateInputField </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>required</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>placeholder</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация поля ввода </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID элемента </td></tr>
+    <tr><td class="paramname">name</td><td>Имя элемента </td></tr>
+    <tr><td class="paramname">label</td><td>Подпись </td></tr>
+    <tr><td class="paramname">value</td><td>Значение по умолчанию </td></tr>
+    <tr><td class="paramname">type</td><td>Тип поля (text, password, email, number) </td></tr>
+    <tr><td class="paramname">required</td><td>Обязательно ли поле </td></tr>
+    <tr><td class="paramname">placeholder</td><td>Placeholder текст </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML поле ввода </dd></dl>
+
+</div>
+</div>
+<a id="a8588b654fd55604bdb4fc112191c195f" name="a8588b654fd55604bdb4fc112191c195f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8588b654fd55604bdb4fc112191c195f">&#9670;&#160;</a></span>generateNumberField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateNumberField </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>min</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>max</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>step</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация числового поля с валидацией </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID элемента </td></tr>
+    <tr><td class="paramname">name</td><td>Имя элемента </td></tr>
+    <tr><td class="paramname">label</td><td>Подпись </td></tr>
+    <tr><td class="paramname">value</td><td>Значение по умолчанию </td></tr>
+    <tr><td class="paramname">min</td><td>Минимальное значение </td></tr>
+    <tr><td class="paramname">max</td><td>Максимальное значение </td></tr>
+    <tr><td class="paramname">step</td><td>Шаг изменения </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML числовое поле </dd></dl>
+
+</div>
+</div>
+<a id="ad4f3a6e85baef9b2d3e2aec977c3a321" name="ad4f3a6e85baef9b2d3e2aec977c3a321"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4f3a6e85baef9b2d3e2aec977c3a321">&#9670;&#160;</a></span>generatePageFooter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generatePageFooter </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация футера HTML страницы </p>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML футер </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_ad4f3a6e85baef9b2d3e2aec977c3a321_cgraph.png" border="0" usemap="#aweb__routes_8h_ad4f3a6e85baef9b2d3e2aec977c3a321_cgraph" alt=""/></div>
+<!-- MAP 11 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_ad4f3a6e85baef9b2d3e2aec977c3a321_icgraph.png" border="0" usemap="#aweb__routes_8h_ad4f3a6e85baef9b2d3e2aec977c3a321_icgraph" alt=""/></div>
+<!-- MAP 12 -->
+</div>
+
+</div>
+</div>
+<a id="ad0518ce62fefc0ff55e7cd72e75db70d" name="ad0518ce62fefc0ff55e7cd72e75db70d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0518ce62fefc0ff55e7cd72e75db70d">&#9670;&#160;</a></span>generatePageHeader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generatePageHeader </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация заголовка HTML страницы </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Заголовок страницы </td></tr>
+    <tr><td class="paramname">icon</td><td>Иконка страницы (опционально) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML заголовок </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_ad0518ce62fefc0ff55e7cd72e75db70d_cgraph.png" border="0" usemap="#aweb__routes_8h_ad0518ce62fefc0ff55e7cd72e75db70d_cgraph" alt=""/></div>
+<!-- MAP 13 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_ad0518ce62fefc0ff55e7cd72e75db70d_icgraph.png" border="0" usemap="#aweb__routes_8h_ad0518ce62fefc0ff55e7cd72e75db70d_icgraph" alt=""/></div>
+<!-- MAP 14 -->
+</div>
+
+</div>
+</div>
+<a id="acc502267a202aba9171c0d593fbfac17" name="acc502267a202aba9171c0d593fbfac17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc502267a202aba9171c0d593fbfac17">&#9670;&#160;</a></span>generateSuccessPage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateSuccessPage </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>redirectUrl</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>redirectDelay</em></span><span class="paramdefsep"> = </span><span class="paramdefval">2</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация страницы успеха </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Заголовок </td></tr>
+    <tr><td class="paramname">message</td><td>Сообщение об успехе </td></tr>
+    <tr><td class="paramname">redirectUrl</td><td>URL для перенаправления (опционально) </td></tr>
+    <tr><td class="paramname">redirectDelay</td><td>Задержка перенаправления в секундах (по умолчанию 2) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница с сообщением об успехе </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_acc502267a202aba9171c0d593fbfac17_cgraph.png" border="0" usemap="#aweb__routes_8h_acc502267a202aba9171c0d593fbfac17_cgraph" alt=""/></div>
+<!-- MAP 15 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_acc502267a202aba9171c0d593fbfac17_icgraph.png" border="0" usemap="#aweb__routes_8h_acc502267a202aba9171c0d593fbfac17_icgraph" alt=""/></div>
+<!-- MAP 16 -->
+</div>
+
+</div>
+</div>
+<a id="a6fe24c5dc21b012791aecd16ab4dad96" name="a6fe24c5dc21b012791aecd16ab4dad96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fe24c5dc21b012791aecd16ab4dad96">&#9670;&#160;</a></span>generateValidationErrorResponse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateValidationErrorResponse </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>errorMsg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация HTML ответа с ошибкой валидации </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorMsg</td><td>Сообщение об ошибке </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML ответ с ошибкой </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a6fe24c5dc21b012791aecd16ab4dad96_cgraph.png" border="0" usemap="#aweb__routes_8h_a6fe24c5dc21b012791aecd16ab4dad96_cgraph" alt=""/></div>
+<!-- MAP 17 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a6fe24c5dc21b012791aecd16ab4dad96_icgraph.png" border="0" usemap="#aweb__routes_8h_a6fe24c5dc21b012791aecd16ab4dad96_icgraph" alt=""/></div>
+<!-- MAP 18 -->
+</div>
+
+</div>
+</div>
+<a id="a200ff078a206ee5a0b44bc0c5411f3f5" name="a200ff078a206ee5a0b44bc0c5411f3f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a200ff078a206ee5a0b44bc0c5411f3f5">&#9670;&#160;</a></span>handleCriticalError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleCriticalError </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>error</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработка критических ошибок сервера </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">error</td><td>Описание ошибки </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a200ff078a206ee5a0b44bc0c5411f3f5_cgraph.png" border="0" usemap="#aweb__routes_8h_a200ff078a206ee5a0b44bc0c5411f3f5_cgraph" alt=""/></div>
+<!-- MAP 19 -->
+</div>
+
+</div>
+</div>
+<a id="a8427468f39342a1990703e9f5ce7fd29" name="a8427468f39342a1990703e9f5ce7fd29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8427468f39342a1990703e9f5ce7fd29">&#9670;&#160;</a></span>handleRoot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleRoot </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик главной страницы (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>) </p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a8427468f39342a1990703e9f5ce7fd29_cgraph.png" border="0" usemap="#aweb__routes_8h_a8427468f39342a1990703e9f5ce7fd29_cgraph" alt=""/></div>
+<!-- MAP 20 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a8427468f39342a1990703e9f5ce7fd29_icgraph.png" border="0" usemap="#aweb__routes_8h_a8427468f39342a1990703e9f5ce7fd29_icgraph" alt=""/></div>
+<!-- MAP 21 -->
+</div>
+
+</div>
+</div>
+<a id="a1e811785ccbaccda2e3e3457971720cb" name="a1e811785ccbaccda2e3e3457971720cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e811785ccbaccda2e3e3457971720cb">&#9670;&#160;</a></span>handleStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик статуса (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>) </p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a1e811785ccbaccda2e3e3457971720cb_cgraph.png" border="0" usemap="#aweb__routes_8h_a1e811785ccbaccda2e3e3457971720cb_cgraph" alt=""/></div>
+<!-- MAP 22 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a1e811785ccbaccda2e3e3457971720cb_icgraph.png" border="0" usemap="#aweb__routes_8h_a1e811785ccbaccda2e3e3457971720cb_icgraph" alt=""/></div>
+<!-- MAP 23 -->
+</div>
+
+</div>
+</div>
+<a id="a72ddd36cf01d539c0b2575750fa997dc" name="a72ddd36cf01d539c0b2575750fa997dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72ddd36cf01d539c0b2575750fa997dc">&#9670;&#160;</a></span>handleUploadError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleUploadError </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>error</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработка ошибок загрузки файлов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">error</td><td>Описание ошибки </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a72ddd36cf01d539c0b2575750fa997dc_cgraph.png" border="0" usemap="#aweb__routes_8h_a72ddd36cf01d539c0b2575750fa997dc_cgraph" alt=""/></div>
+<!-- MAP 24 -->
+</div>
+
+</div>
+</div>
+<a id="aef0848857422724f7d825dd8a33421b9" name="aef0848857422724f7d825dd8a33421b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef0848857422724f7d825dd8a33421b9">&#9670;&#160;</a></span>isFeatureAvailable() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isFeatureAvailable </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверка доступности функции в текущем режиме WiFi (без параметров) </p>
+<dl class="section return"><dt>Возвращает</dt><dd>true если функция доступна в текущем режиме </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_aef0848857422724f7d825dd8a33421b9_cgraph.png" border="0" usemap="#aweb__routes_8h_aef0848857422724f7d825dd8a33421b9_cgraph" alt=""/></div>
+<!-- MAP 25 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_aef0848857422724f7d825dd8a33421b9_icgraph.png" border="0" usemap="#aweb__routes_8h_aef0848857422724f7d825dd8a33421b9_icgraph" alt=""/></div>
+<!-- MAP 26 -->
+</div>
+
+</div>
+</div>
+<a id="a195ba09880daef6ce6c14eeceb61feec" name="a195ba09880daef6ce6c14eeceb61feec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a195ba09880daef6ce6c14eeceb61feec">&#9670;&#160;</a></span>isFeatureAvailable() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isFeatureAvailable </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>feature</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверка доступности функции в текущем режиме WiFi. </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">feature</td><td>Название функции для проверки </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true если функция доступна в текущем режиме </dd></dl>
+
+</div>
+</div>
+<a id="a195f4874889e332e6f540a518d6c51fe" name="a195f4874889e332e6f540a518d6c51fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a195f4874889e332e6f540a518d6c51fe">&#9670;&#160;</a></span>isRouteAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isRouteAvailable </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>uri</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверка доступности маршрута в текущем режиме </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uri</td><td>URI запроса </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true если маршрут доступен </dd></dl>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a195f4874889e332e6f540a518d6c51fe_icgraph.png" border="0" usemap="#aweb__routes_8h_a195f4874889e332e6f540a518d6c51fe_icgraph" alt=""/></div>
+<!-- MAP 27 -->
+</div>
+
+</div>
+</div>
+<a id="a1a62e7c40bff885d97f6018743bec642" name="a1a62e7c40bff885d97f6018743bec642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a62e7c40bff885d97f6018743bec642">&#9670;&#160;</a></span>logWebRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logWebRequest </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>method</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>uri</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>clientIP</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Логирование веб-запросов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>HTTP метод </td></tr>
+    <tr><td class="paramname">uri</td><td>URI запроса </td></tr>
+    <tr><td class="paramname">clientIP</td><td>IP клиента </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a1a62e7c40bff885d97f6018743bec642_cgraph.png" border="0" usemap="#aweb__routes_8h_a1a62e7c40bff885d97f6018743bec642_cgraph" alt=""/></div>
+<!-- MAP 28 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a1a62e7c40bff885d97f6018743bec642_icgraph.png" border="0" usemap="#aweb__routes_8h_a1a62e7c40bff885d97f6018743bec642_icgraph" alt=""/></div>
+<!-- MAP 29 -->
+</div>
+
+</div>
+</div>
+<a id="ad30c0b8b33e60ccdb13f2e1cc08157c9" name="ad30c0b8b33e60ccdb13f2e1cc08157c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad30c0b8b33e60ccdb13f2e1cc08157c9">&#9670;&#160;</a></span>navHtml()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String navHtml </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_ad30c0b8b33e60ccdb13f2e1cc08157c9_icgraph.png" border="0" usemap="#aweb__routes_8h_ad30c0b8b33e60ccdb13f2e1cc08157c9_icgraph" alt=""/></div>
+<!-- MAP 30 -->
+</div>
+
+</div>
+</div>
+<a id="a74cbd7893b5cf9b3fa5fd34a4fb985ba" name="a74cbd7893b5cf9b3fa5fd34a4fb985ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74cbd7893b5cf9b3fa5fd34a4fb985ba">&#9670;&#160;</a></span>setupCalibrationRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupCalibrationRoutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Настройка маршрутов калибровки (/calibration) </p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a74cbd7893b5cf9b3fa5fd34a4fb985ba_cgraph.png" border="0" usemap="#aweb__routes_8h_a74cbd7893b5cf9b3fa5fd34a4fb985ba_cgraph" alt=""/></div>
+<!-- MAP 31 -->
+</div>
+
+</div>
+</div>
+<a id="a0e7c19a3399afd6ceae18c4512cca24c" name="a0e7c19a3399afd6ceae18c4512cca24c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e7c19a3399afd6ceae18c4512cca24c">&#9670;&#160;</a></span>setupConfigRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupConfigRoutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*) </p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a0e7c19a3399afd6ceae18c4512cca24c_cgraph.png" border="0" usemap="#aweb__routes_8h_a0e7c19a3399afd6ceae18c4512cca24c_cgraph" alt=""/></div>
+<!-- MAP 32 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a0e7c19a3399afd6ceae18c4512cca24c_icgraph.png" border="0" usemap="#aweb__routes_8h_a0e7c19a3399afd6ceae18c4512cca24c_icgraph" alt=""/></div>
+<!-- MAP 33 -->
+</div>
+
+</div>
+</div>
+<a id="aed1136f683a386e56678e05fc3747972" name="aed1136f683a386e56678e05fc3747972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed1136f683a386e56678e05fc3747972">&#9670;&#160;</a></span>setupDataRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupDataRoutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor) </p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_aed1136f683a386e56678e05fc3747972_cgraph.png" border="0" usemap="#aweb__routes_8h_aed1136f683a386e56678e05fc3747972_cgraph" alt=""/></div>
+<!-- MAP 34 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_aed1136f683a386e56678e05fc3747972_icgraph.png" border="0" usemap="#aweb__routes_8h_aed1136f683a386e56678e05fc3747972_icgraph" alt=""/></div>
+<!-- MAP 35 -->
+</div>
+
+</div>
+</div>
+<a id="a833be2e68cb85aa95168dae9c9b128ef" name="a833be2e68cb85aa95168dae9c9b128ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a833be2e68cb85aa95168dae9c9b128ef">&#9670;&#160;</a></span>setupErrorHandlers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupErrorHandlers </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Настройка обработчиков ошибок (404, 500, и т. </p>
+<p>д.) </p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a833be2e68cb85aa95168dae9c9b128ef_cgraph.png" border="0" usemap="#aweb__routes_8h_a833be2e68cb85aa95168dae9c9b128ef_cgraph" alt=""/></div>
+<!-- MAP 36 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a833be2e68cb85aa95168dae9c9b128ef_icgraph.png" border="0" usemap="#aweb__routes_8h_a833be2e68cb85aa95168dae9c9b128ef_icgraph" alt=""/></div>
+<!-- MAP 37 -->
+</div>
+
+</div>
+</div>
+<a id="a6a7cf6b6ba01d34721e1a47ea65af867" name="a6a7cf6b6ba01d34721e1a47ea65af867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a7cf6b6ba01d34721e1a47ea65af867">&#9670;&#160;</a></span>setupMainRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupMainRoutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Настройка основных маршрутов (/, /save, /status) </p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a6a7cf6b6ba01d34721e1a47ea65af867_cgraph.png" border="0" usemap="#aweb__routes_8h_a6a7cf6b6ba01d34721e1a47ea65af867_cgraph" alt=""/></div>
+<!-- MAP 38 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a6a7cf6b6ba01d34721e1a47ea65af867_icgraph.png" border="0" usemap="#aweb__routes_8h_a6a7cf6b6ba01d34721e1a47ea65af867_icgraph" alt=""/></div>
+<!-- MAP 39 -->
+</div>
+
+</div>
+</div>
+<a id="ae58a54419ee068a06deeb05bf1e771f4" name="ae58a54419ee068a06deeb05bf1e771f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae58a54419ee068a06deeb05bf1e771f4">&#9670;&#160;</a></span>setupOtaRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupOtaRoutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*) </p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_ae58a54419ee068a06deeb05bf1e771f4_cgraph.png" border="0" usemap="#aweb__routes_8h_ae58a54419ee068a06deeb05bf1e771f4_cgraph" alt=""/></div>
+<!-- MAP 40 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_ae58a54419ee068a06deeb05bf1e771f4_icgraph.png" border="0" usemap="#aweb__routes_8h_ae58a54419ee068a06deeb05bf1e771f4_icgraph" alt=""/></div>
+<!-- MAP 41 -->
+</div>
+
+</div>
+</div>
+<a id="a32c74f47a23de058ee90a43af2dff066" name="a32c74f47a23de058ee90a43af2dff066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32c74f47a23de058ee90a43af2dff066">&#9670;&#160;</a></span>setupServiceRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupServiceRoutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota) </p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a32c74f47a23de058ee90a43af2dff066_cgraph.png" border="0" usemap="#aweb__routes_8h_a32c74f47a23de058ee90a43af2dff066_cgraph" alt=""/></div>
+<!-- MAP 42 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_a32c74f47a23de058ee90a43af2dff066_icgraph.png" border="0" usemap="#aweb__routes_8h_a32c74f47a23de058ee90a43af2dff066_icgraph" alt=""/></div>
+<!-- MAP 43 -->
+</div>
+
+</div>
+</div>
+<a id="ad738b39272f7fc383f5bb83814fb1a67" name="ad738b39272f7fc383f5bb83814fb1a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad738b39272f7fc383f5bb83814fb1a67">&#9670;&#160;</a></span>validateConfigInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool validateConfigInput </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>checkRequired</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Валидация входных данных конфигурации </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">checkRequired</td><td>Проверять ли обязательные поля </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true если валидация прошла успешно </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_ad738b39272f7fc383f5bb83814fb1a67_cgraph.png" border="0" usemap="#aweb__routes_8h_ad738b39272f7fc383f5bb83814fb1a67_cgraph" alt=""/></div>
+<!-- MAP 44 -->
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__routes_8h_ad738b39272f7fc383f5bb83814fb1a67_icgraph.png" border="0" usemap="#aweb__routes_8h_ad738b39272f7fc383f5bb83814fb1a67_icgraph" alt=""/></div>
+<!-- MAP 45 -->
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a6385fd6a6118223757bf00a8ba828562" name="a6385fd6a6118223757bf00a8ba828562"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6385fd6a6118223757bf00a8ba828562">&#9670;&#160;</a></span>webServer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WebServer webServer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="web__routes_8h.html">web_routes.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

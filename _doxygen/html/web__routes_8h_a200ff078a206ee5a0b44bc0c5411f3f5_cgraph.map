@@ -1,0 +1,19 @@
+<map id="handleCriticalError" name="handleCriticalError">
+<area shape="rect" id="Node000001" title="Обработка критических ошибок сервера" alt="" coords="5,81,134,108"/>
+<area shape="rect" id="Node000002" href="$web__templates_8cpp.html#a104303f7b44cf43e481a713261d52457" title="Генерация страницы ошибки" alt="" coords="182,56,311,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="134,83,166,78,167,83,135,88"/>
+<area shape="rect" id="Node000009" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="213,107,280,133"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="135,101,198,111,197,116,134,107"/>
+<area shape="rect" id="Node000003" href="$web__templates_8cpp.html#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" title="Генерация базовой HTML структуры с навигацией" alt="" coords="359,56,490,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="312,67,344,67,344,72,312,72"/>
+<area shape="rect" id="Node000004" href="$web__templates_8cpp.html#ad4f3a6e85baef9b2d3e2aec977c3a321" title="Генерация футера HTML страницы" alt="" coords="541,5,679,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="476,53,543,34,545,39,477,58"/>
+<area shape="rect" id="Node000006" href="$web__templates_8cpp.html#ac4502db1ad8d9e08830f7eb784d62600" title="Генерация заголовка HTML страницы" alt="" coords="538,56,682,83"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="491,67,523,67,523,72,491,72"/>
+<area shape="rect" id="Node000008" href="$wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9" title=" " alt="" coords="575,107,645,133"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="477,81,561,104,559,109,476,86"/>
+<area shape="rect" id="Node000005" href="$jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="730,5,838,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="679,16,715,16,715,21,679,21"/>
+<area shape="rect" id="Node000007" href="$jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="730,56,838,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="682,67,714,67,714,72,682,72"/>
+</map>

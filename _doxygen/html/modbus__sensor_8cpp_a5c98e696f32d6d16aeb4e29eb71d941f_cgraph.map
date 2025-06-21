@@ -1,0 +1,16 @@
+<map id="readNPKParameters" name="readNPKParameters">
+<area shape="rect" id="Node000001" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="5,81,147,108"/>
+<area shape="rect" id="Node000002" href="$modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="195,81,326,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,92,179,92,179,97,147,97"/>
+<area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="374,5,530,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="289,78,373,42,391,35,393,40,375,46,291,83"/>
+<area shape="rect" id="Node000004" href="$logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="414,56,490,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="326,83,398,74,399,79,327,89"/>
+<area shape="rect" id="Node000005" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="590,107,656,133"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="327,97,574,114,574,119,326,102"/>
+<area shape="rect" id="Node000006" href="$modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="392,157,512,184"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="297,106,403,149,401,154,295,111"/>
+<area shape="poly" id="edge6_Node000006_Node000005" title=" " alt="" coords="499,154,574,132,575,137,501,159"/>
+<area shape="rect" id="Node000007" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="578,157,668,184"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="513,168,563,168,563,173,513,173"/>
+</map>
