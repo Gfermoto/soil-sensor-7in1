@@ -405,6 +405,7 @@ static void applyCompensationIfEnabled(SensorData& d)
         case 1: soil = SoilType::LOAM; break;
         case 2: soil = SoilType::PEAT; break;
         case 3: soil = SoilType::CLAY; break;
+        case 4: soil = SoilType::SANDPEAT; break;
     }
 
     float ec25 = d.ec / (1.0f + 0.021f * (d.temperature - 25.0f));

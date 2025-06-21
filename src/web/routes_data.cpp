@@ -139,14 +139,8 @@ static void handleReadingsUpload()
     HTTPUpload& upload = webServer.upload();
     if (upload.status == UPLOAD_FILE_START)
     {
-        String profileStr = webServer.arg("soil_profile");
-        if (profileStr == "sand") uploadProfile = SoilProfile::SAND;
-        else if (profileStr == "loam") uploadProfile = SoilProfile::LOAM;
-        else if (profileStr == "peat") uploadProfile = SoilProfile::PEAT;
-        else if (profileStr == "clay") uploadProfile = SoilProfile::CLAY;
-
         CalibrationManager::init();
-        const char* path = CalibrationManager::profileToFilename(uploadProfile);
+        const char* path = CalibrationManager::profileToFilename(SoilProfile::SAND); // custom.csv
         uploadFile = LittleFS.open(path, "w");
         if (!uploadFile)
         {
@@ -431,12 +425,28 @@ void setupDataRoutes()
                      html += "</script>";
 
                      // ======= Калибровка =======
-                     html += "<div class='section'><h2>⚙️ Калибровка</h2>";
+                     bool csvPresent = CalibrationManager::hasTable(SoilProfile::SAND); // custom.csv
+
+                     html += "<div class='section'><h2>⚙️ Калибровка";
+                     if (!config.flags.calibrationEnabled) {
+                         html += " <span style='font-size:14px;color:#9E9E9E'>(выключена)</span>";
+                     } else if (csvPresent) {
+                         html += " <span style='font-size:14px;color:#4CAF50'>(CSV загружен)</span>";
+                     } else {
+                         html += " <span style='font-size:14px;color:#2196F3'>(CSV не загружен)</span>";
+                     }
+                     html += "</h2>";
                      // ----- Форма загрузки CSV -----
                      html += "<form action='/readings/upload' method='post' enctype='multipart/form-data' style='margin-top:10px'>";
                      html += "<div class='section'><h3>Загрузить CSV</h3><input type='file' name='calibration_csv' accept='.csv' required></div>";
                      html += generateButton(ButtonType::PRIMARY, UI_ICON_UPLOAD, "Загрузить CSV", "");
                      html += "</form>";
+                     // Кнопка сброса CSV, если файл существует
+                     if(csvPresent){
+                         html += "<form action='/readings/csv_reset' method='post' style='margin-top:10px'>";
+                         html += generateButton(ButtonType::SECONDARY, "🗑️", "Удалить CSV", "");
+                         html += "</form>";
+                     }
 
                      // CSS для таблицы данных
                      html += "<style>.data{width:100%;border-collapse:collapse}.data th,.data td{border:1px solid #ccc;padding:6px;text-align:center}.data th{background:#f5f5f5}.green{color:#4CAF50}.yellow{color:#FFC107}.orange{color:#FF9800}.red{color:#F44336}</style>";
@@ -455,6 +465,17 @@ void setupDataRoutes()
 
     // Загрузка калибровочного CSV через вкладку
     webServer.on("/readings/upload", HTTP_POST, [](){}, handleReadingsUpload);
+
+    // Сброс пользовательских CSV (удаляем все *.csv)
+    webServer.on("/readings/csv_reset", HTTP_POST,
+                 []() {
+                     logWebRequest("POST","/readings/csv_reset", webServer.client().remoteIP().toString());
+                     CalibrationManager::init();
+                     bool removed = CalibrationManager::deleteTable(SoilProfile::SAND);
+                     String toast = removed?"CSV+удален":"CSV+не+найден";
+                     webServer.sendHeader("Location", String("/readings?toast=") + toast, true);
+                     webServer.send(302,"text/plain","Redirect");
+                 });
 
     // Форма для сохранения профиля
     webServer.on("/readings/profile", HTTP_POST, [](){}, handleProfileSave);

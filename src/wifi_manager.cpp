@@ -512,11 +512,13 @@ void handleRoot()
         const char* selectedLoam = config.soilProfile == 1 ? " selected" : "";
         const char* selectedPeat = config.soilProfile == 2 ? " selected" : "";
         const char* selectedClay = config.soilProfile == 3 ? " selected" : "";
+        const char* selectedSandPeat = config.soilProfile == 4 ? " selected" : "";
         html += "<div class='form-group'><label for='soil_profile_sel'>Профиль почвы:</label><select id='soil_profile_sel' name='soil_profile_sel'>";
         html += String("<option value='0'") + selectedSand + ">Песок</option>";
         html += String("<option value='1'") + selectedLoam + ">Суглинок</option>";
         html += String("<option value='2'") + selectedPeat + ">Торф</option>";
         html += String("<option value='3'") + selectedClay + ">Глина</option>";
+        html += String("<option value='4'") + selectedSandPeat + ">Песчано-торфяной</option>";
         html += "</select></div>";
 
         html += "</div>"; // конец секции агрорекомендаций

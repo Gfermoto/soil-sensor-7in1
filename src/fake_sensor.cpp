@@ -61,6 +61,7 @@ void fakeSensorTask(void *pvParameters)
                     case 1:  soil = SoilType::LOAM; break;
                     case 2:  soil = SoilType::PEAT; break;
                     case 3:  soil = SoilType::CLAY; break;
+                    case 4:  soil = SoilType::SANDPEAT; break;
                     default: soil = SoilType::LOAM; break;
                 }
 

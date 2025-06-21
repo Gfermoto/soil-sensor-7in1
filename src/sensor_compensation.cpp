@@ -7,13 +7,14 @@
 static constexpr struct { float k; } SOIL_EC[] = {
     {0.15f},   // SAND
     {0.30f},   // LOAM
+    {0.10f},   // PEAT
     {0.45f},   // CLAY
-    {0.10f}    // PEAT (более пористая, ниже k)
+    {0.18f}    // SANDPEAT
 };
 
-static constexpr float k_t_N[4] = {0.0041f, 0.0038f, 0.0032f, 0.0028f};
-static constexpr float k_t_P[4] = {0.0053f, 0.0049f, 0.0042f, 0.0035f};
-static constexpr float k_t_K[4] = {0.0032f, 0.0029f, 0.0024f, 0.0018f};
+static constexpr float k_t_N[5] = {0.0041f, 0.0038f, 0.0028f, 0.0032f, 0.0040f};
+static constexpr float k_t_P[5] = {0.0053f, 0.0049f, 0.0035f, 0.0042f, 0.0051f};
+static constexpr float k_t_K[5] = {0.0032f, 0.0029f, 0.0018f, 0.0024f, 0.0031f};
 
 // влажностные коэффициенты (λ-функции заменить не можем, считаем прямо)
 static inline float k_h_N(float th){ return 1.8f - 0.024f*th; }

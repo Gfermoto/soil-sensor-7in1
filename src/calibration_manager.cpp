@@ -6,21 +6,9 @@ namespace CalibrationManager
 {
     static bool _initialized = false;
 
-    const char* profileToFilename(SoilProfile profile)
+    const char* profileToFilename(SoilProfile /*profile*/)
     {
-        switch (profile)
-        {
-        case SoilProfile::SAND:
-            return "/calibration/sand.csv";
-        case SoilProfile::LOAM:
-            return "/calibration/loam.csv";
-        case SoilProfile::PEAT:
-            return "/calibration/peat.csv";
-        case SoilProfile::CLAY:
-            return "/calibration/clay.csv";
-        default:
-            return "/calibration/unknown.csv";
-        }
+        return "/calibration/custom.csv"; // единый файл
     }
 
     bool init()

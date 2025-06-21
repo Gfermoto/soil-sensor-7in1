@@ -15,11 +15,12 @@ enum class SoilProfile : uint8_t
     SAND = 0,
     LOAM = 1,
     PEAT = 2,
-    CLAY = 3
+    CLAY = 3,
+    SANDPEAT = 4
 };
 
 // Типы почвы
-enum class SoilType { SAND, LOAM, CLAY, PEAT };
+enum class SoilType { SAND, LOAM, PEAT, CLAY, SANDPEAT };
 
 // (устаревшие функции компенсации удалены)
 

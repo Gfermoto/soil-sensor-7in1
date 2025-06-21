@@ -259,11 +259,15 @@ void setupConfigRoutes()
                      html += navHtml();
                      html += "<h1>" UI_ICON_FOLDER " Управление конфигурацией</h1>";
 
+                     if (webServer.hasArg("import_ok")) {
+                         html += "<div class='msg msg-success'>✅ Конфигурация успешно импортирована и сохранена</div>";
+                     }
+
                      html += "<div class='section'>";
                      html += "<h2>📤 Экспорт конфигурации</h2>";
                      html += "<p>Скачайте текущую конфигурацию в формате JSON (пароли заменены на заглушки):</p>";
                      html += generateButton(ButtonType::PRIMARY, "📥", "Скачать конфигурацию",
-                                            "location.href='/api/config/export'");
+                                            "location.href='/api/v1/config/export'");
                      html += "</div>";
 
                      html += "<div class='section'>";
@@ -331,7 +335,10 @@ void setupConfigRoutes()
 
             saveConfig();
             importedJson = "";
-            webServer.send(200, "application/json", "{\"ok\":true}");
+
+            // Отправляем 303 Redirect, чтобы браузер вернулся к менеджеру конфигурации
+            webServer.sendHeader("Location", "/config_manager?import_ok=1", true);
+            webServer.send(303, "text/plain", "Redirect");
         },
         // uploadHandler: накапливаем файл
         []()
