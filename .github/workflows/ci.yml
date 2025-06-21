@@ -53,11 +53,15 @@ jobs:
         run: |
           # run-clang-tidy возвращает 1, если нашёл предупреждения; подавляем код возврата
           run-clang-tidy -p "${{ steps.cc.outputs.dir }}" -export-fixes clang_tidy_fixes.yaml || true
+          # Если файл не создался (нет предупреждений) — создадим пустой, чтобы upload-artifact не падал
+          test -f clang_tidy_fixes.yaml || echo "# no warnings" > clang_tidy_fixes.yaml
       - name: Run include-what-you-use (baseline)
         continue-on-error: true
         run: |
           python3 -m pip install iwyu
           iwyu_tool.py -p . src | tee iwyu_report.txt || true
+          # Создадим файл, если IWYU ничего не вывело
+          test -f iwyu_report.txt || touch iwyu_report.txt
       - name: Upload analysis artifacts
         if: always()
         uses: actions/upload-artifact@v4
