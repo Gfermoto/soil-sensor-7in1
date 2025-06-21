@@ -1,5 +1,6 @@
 # 🐞 Tech-Debt Auto-Report
+Generated: 2025-06-21T14:57:46 UTC
 
-_Этот файл будет автоматически генерироваться CI-скриптом `gen_tech_debt_issues.py`._
-
-> Пока отчёт не создан, отображается заглушка. 
+| Tool | File | Message | Severity |
+|------|------|---------|----------|
+| ✅ | No issues found | | |
