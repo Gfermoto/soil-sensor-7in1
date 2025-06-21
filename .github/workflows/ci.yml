@@ -117,5 +117,12 @@ jobs:
           git commit -m "docs: авто-апдейт статических отчётов (CI)" || echo "No changes"
           git pull --rebase https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main || true
+      - name: Upload web_spiffs.bin
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: webfs
+          path: .pio/build/**/web_spiffs.bin
+          if-no-files-found: warn
 
       # конец job 

@@ -13,8 +13,11 @@ if env['PIOPLATFORM'] != 'espressif32':
     print("[build_fs] Skipped (non-ESP32 env)")
 else:
     print("[build_fs] Building SPIFFS image with UI static files ...")
-    # Trigger buildfs
-    env.Execute("$BUILDFS")
+    # Trigger buildfs via PlatformIO CLI because BUILDFS var not available in PIO 6.4+
+    import subprocess, sys
+    cmd = [sys.executable, "-m", "platformio", "run", "-e", env["PIOENV"], "-t", "buildfs"]
+    if subprocess.call(cmd) != 0:
+        sys.exit("buildfs failed")
     spiffs_bin = os.path.join(env.subst("$BUILD_DIR"), "spiffs.bin")
     if os.path.isfile(spiffs_bin):
         dst = os.path.join(env.subst("$BUILD_DIR"), "web_spiffs.bin")
