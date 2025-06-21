@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="ru">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="refresh" content="0; url=_doxygen/html/index.html" />
-    <title>Redirecting…</title>
-  </head>
-  <body>
-    <p>Перенаправляем на <a href="_doxygen/html/index.html">Doxygen HTML API</a>…</p>
-  </body>
-</html> 
+<!-----------------------------------------------------------------------------
+Это Markdown-файл, который MkDocs обрабатывает как страницу. Чтобы выполнить
+мгновенный редирект на Doxygen HTML, используем JavaScript, т.к. meta-refresh
+в <head> недоступен.
+----------------------------------------------------------------------------->
+
+<script>
+  window.location.replace('_doxygen/html/index.html');
+</script>
+
+[Открыть C++ API](_doxygen/html/index.html) 
