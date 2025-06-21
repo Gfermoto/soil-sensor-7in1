@@ -169,6 +169,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git config --global user.name "github-actions[bot]"
           export GH_TOKEN="${{ secrets.GITHUB_TOKEN }}"
+          git config --global url."https://x-access-token:${GH_TOKEN}@github.com/".insteadOf "https://github.com/"
           mkdocs gh-deploy --force --clean --verbose --message "docs: deploy MkDocs (CI)"
 
       # конец job 
