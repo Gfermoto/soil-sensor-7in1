@@ -110,6 +110,7 @@ jobs:
         run: |
           git add docs_src/development/static_analysis_summary.md docs_src/development/tech_debt_auto.md
           git commit -m "docs: авто-апдейт статических отчётов (CI)" || echo "No changes"
-          git push
+          git pull --rebase https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true
+          git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main
 
       # конец job 
