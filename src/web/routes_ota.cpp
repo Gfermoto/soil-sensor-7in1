@@ -61,6 +61,12 @@ void setupOtaRoutes()
                      webServer.send(200, "application/json", "{\"ok\":true}");
                  });
 
+    // API: веб-статик OTA
+    webServer.on("/api/ota/web_only", HTTP_POST, [](){
+        logWebRequest("POST", "/api/ota/web_only", webServer.client().remoteIP().toString());
+        webServer.send(200, "application/json", "{\"ok\":true,\"msg\":\"stub - web OTA not implemented yet\"}");
+    });
+
     // HTML страница обновлений
     webServer.on(
         "/updates", HTTP_GET,
