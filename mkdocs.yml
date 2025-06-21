@@ -44,6 +44,8 @@ nav:
       - Tech-debt report (auto): development/tech_debt_auto.md
       - Static pages migration: development/STATIC_PAGES_MIGRATION_PLAN.md
       - Static analysis report: development/static_analysis_summary.md
+      - Auto reports summary (auto): development/auto_reports_summary.md
+      - Raw auto reports (auto): development/auto_reports
 
 markdown_extensions:
   - admonition
