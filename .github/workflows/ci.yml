@@ -42,7 +42,7 @@ jobs:
       - name: Run clang-tidy (baseline)
         continue-on-error: true
         run: |
-          run-clang-tidy -p . -quiet -export-fixes clang_tidy_fixes.yaml || true
+          run-clang-tidy -p . -export-fixes clang_tidy_fixes.yaml || true
       - name: Run include-what-you-use (baseline)
         continue-on-error: true
         run: |
