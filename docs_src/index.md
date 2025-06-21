@@ -64,6 +64,7 @@ Welcome to the complete documentation portal of the ESP32-based **JXCT Soil Sens
     <li><a href="development/QA_REFACTORING_PLAN_2025H2/">QA Plan</a></li>
     <li><a href="development/TECH_DEBT_REPORT_2025-06/">Tech-Debt</a></li>
     <li><a href="development/STATIC_PAGES_MIGRATION_PLAN/">Static pages</a></li>
+    <li><a href="development/tech_debt_auto/">Tech-Debt Auto</a></li>
   </ul>
   <a class="md-button" href="development/ARCH_OVERALL/">Подробнее</a>
 </div>
