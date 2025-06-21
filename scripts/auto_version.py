@@ -34,10 +34,20 @@ def read_version_from_file() -> str:
 
 version_str = read_version_from_git() or read_version_from_file()
 
-match = re.match(r"(\d+)\.(\d+)\.(\d+)", version_str)
+# Поддержка тегов вида `checkpoint-3.2.29`, `v3.2.29-rc1`, etc.
+# Выцепляем первую подстроку, похожую на X.Y.Z; если не найдено — пробуем fallback-файл.
+semver_pattern = r"(\d+)\.(\d+)\.(\d+)"
+match = re.search(semver_pattern, version_str)
+
 if not match:
-    sys.stderr.write(f"Invalid version format: {version_str}\n")
-    sys.exit(1)
+    # Попробуем прочитать из VERSION как запасной вариант, даже если git-тег некорректен
+    version_str_fallback = read_version_from_file()
+    match = re.search(semver_pattern, version_str_fallback)
+    if match:
+        version_str = version_str_fallback
+    else:
+        sys.stderr.write(f"[auto_version] ERROR: cannot parse version from '{version_str}'. Fallback also failed.\n")
+        sys.exit(1)
 
 major, minor, patch = match.groups()
 
