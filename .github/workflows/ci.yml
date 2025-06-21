@@ -74,5 +74,26 @@ jobs:
             lizard_report.txt
             cloc_dup.txt
           if-no-files-found: warn
+      - name: Generate static analysis summary
+        if: always()
+        continue-on-error: true
+        run: |
+          echo "## 📊 Static Analysis Summary" >> $GITHUB_STEP_SUMMARY
+          if [ -f clang_tidy_fixes.yaml ]; then
+            CT_WARN=$(grep -c "DiagnosticName:" clang_tidy_fixes.yaml || true)
+            echo "- clang-tidy warnings: **$CT_WARN**" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f iwyu_report.txt ]; then
+            IWYU_WARN=$(grep -c "^\[" iwyu_report.txt || true)
+            echo "- IWYU suggestions: **$IWYU_WARN**" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f lizard_report.txt ]; then
+            CCN_HIGH=$(awk '$4 > 15 {c++} END {print c+0}' lizard_report.txt)
+            echo "- Functions with CCN>15: **$CCN_HIGH**" >> $GITHUB_STEP_SUMMARY
+          fi
+          if [ -f cloc_dup.txt ]; then
+            DUP_FILES=$(grep -c "DUPE" cloc_dup.txt || true)
+            echo "- Duplicate file groups (cloc): **$DUP_FILES**" >> $GITHUB_STEP_SUMMARY
+          fi
 
       # конец job 
