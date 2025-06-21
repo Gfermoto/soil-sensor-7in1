@@ -26,13 +26,18 @@ nav:
       - Build: firmware/build.md
       - OTA: firmware/ota.md
       - Configuration: firmware/config.md
+      - Compensation: firmware/compensation.md
+      - Modbus protocol: firmware/modbus.md
   - Hardware:
       - Schematic: hardware/schematic.md
       - Bill of materials: hardware/bill-of-materials.md
   - API:
       - REST API (OpenAPI): api/index.md
+      - Overview: api/overview.md
   - Contributing: contributing/guidelines.md
   - Changelog: changelog.md
+  - Agro:
+      - General recommendations: agro/recommendations.md
 
 markdown_extensions:
   - admonition
