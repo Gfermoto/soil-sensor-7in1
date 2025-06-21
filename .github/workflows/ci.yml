@@ -138,7 +138,7 @@ jobs:
       - name: Commit tech-debt report into docs
         if: github.ref == 'refs/heads/main'
         run: |
-          git add docs_src/development/static_analysis_summary.md docs_src/development/tech_debt_auto.md docs_src/development/auto_reports
+          git add docs_src/development/static_analysis_summary.md docs_src/development/tech_debt_auto.md docs_src/development/auto_reports docs_src/development/auto_reports_summary.md
           git commit -m "docs: авто-апдейт статических отчётов (CI)" || echo "No changes"
           git pull --rebase https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git main || true
           git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:main || true
@@ -149,5 +149,23 @@ jobs:
           name: webfs
           path: .pio/build/**/web_spiffs.bin
           if-no-files-found: warn
+
+      # -------- MkDocs site build & deploy --------
+      - name: Install MkDocs Material
+        if: github.ref == 'refs/heads/main'
+        run: |
+          pip install mkdocs-material
+
+      - name: Build MkDocs site
+        if: github.ref == 'refs/heads/main'
+        run: mkdocs build --strict
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main'
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          publish_branch: gh-pages
 
       # конец job 
