@@ -115,7 +115,7 @@ graph TD
 
 ---
 
-## 📚 Источники
+## 📖 Источники
 
 1. Allen R.G. (1998) *FAO Irrigation Paper 56*.  
 2. *European Journal of Soil Science* 73 (2): e13221 (2022).  
