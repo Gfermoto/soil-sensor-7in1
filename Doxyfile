@@ -15,7 +15,7 @@ USE_MDFILE_AS_MAINPAGE = docs/index.md
 OUTPUT_DIRECTORY       = docs
 
 # Язык документации
-OUTPUT_LANGUAGE        = English
+OUTPUT_LANGUAGE        = Russian
 
 # Генерировать HTML
 GENERATE_HTML          = YES
