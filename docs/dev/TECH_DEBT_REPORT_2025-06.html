@@ -3,6 +3,494 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏗️ Общая архитектура JXCT v3.4.9</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header .meta {
+            margin-top: 1rem;
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .nav a {
+            color: #2e7d32;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 2rem;
+        }
+        h2 {
+            color: #2e7d32;
+            border-bottom: 2px solid #4caf50;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #388e3c;
+            margin-top: 1.5rem;
+        }
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .highlight {
+            background: #e8f5e8;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #4caf50;
+            margin: 1rem 0;
+        }
+        .architecture-diagram {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            margin-top: 3rem;
+        }
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏗️ Общая архитектура JXCT v3.4.9</h1>
+            <div class="meta">
+                <strong>Версия документа:</strong> 3.4.9<br>
+                <strong>Дата обновления:</strong> 2025-06-24<br>
+                <strong>Статус:</strong> Актуальная архитектура с фокусом на стабильность
+            </div>
+        </div>
+        
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a>
+            <a href="../manuals/USER_GUIDE.html">📖 Руководство пользователя</a>
+            <a href="../manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+            <a href="../html/index.html">📚 Doxygen API</a>
+        </div>
+        
+        <div class="content">
+            <h2>🎯 ПРИНЦИПЫ АРХИТЕКТУРЫ</h2>
+            
+            <h3>1. Стабильность превыше всего</h3>
+            <ul>
+                <li>Эволюционное развитие без революционных изменений</li>
+                <li>Приоритет качества кода над архитектурными экспериментами</li>
+                <li>Тщательное тестирование перед внедрением изменений</li>
+            </ul>
+            
+            <h3>2. Модульность и переиспользование</h3>
+            <ul>
+                <li>Четкое разделение ответственности между модулями</li>
+                <li>Минимизация циклических зависимостей</li>
+                <li>Использование интерфейсов для абстракции</li>
+            </ul>
+            
+            <h3>3. Производительность и эффективность</h3>
+            <ul>
+                <li>Оптимизация использования памяти и Flash</li>
+                <li>Эффективные алгоритмы обработки данных</li>
+                <li>Минимизация накладных расходов</li>
+            </ul>
+            
+            <h2>🔧 ОСНОВНЫЕ КОМПОНЕНТЫ</h2>
+            
+            <h3>📡 СИСТЕМА ДАТЧИКОВ</h3>
+            
+            <h4>🔌 Абстракция датчиков</h4>
+            <div class="code-block">
+<pre>// Файл: include/ISensor.h
+
+class ISensor {
+public:
+    virtual ~ISensor() = default;
+    virtual bool initialize() = 0;
+    virtual SensorData read() = 0;
+    virtual bool isConnected() const = 0;
+    virtual String getSensorInfo() const = 0;
+};</pre>
+            </div>
+            
+            <h4>🎭 Адаптеры датчиков</h4>
+            <div class="code-block">
+<pre>// Файл: src/modbus_sensor.h
+
+class ModbusSensorAdapter : public ISensor {
+private:
+    ModbusSensor* sensor;
+    
+public:
+    ModbusSensorAdapter(ModbusSensor* s) : sensor(s) {}
+    
+    bool initialize() override {
+        return sensor->begin();
+    }
+    
+    SensorData read() override {
+        return sensor->getData();
+    }
+    
+    bool isConnected() const override {
+        return sensor->isConnected();
+    }
+    
+    String getSensorInfo() const override {
+        return "Modbus Sensor v" + String(sensor->getVersion());
+    }
+};</pre>
+            </div>
+            
+            <h3>🧮 СИСТЕМА КОМПЕНСАЦИИ</h3>
+            
+            <div class="highlight">
+                <h4>✅ ИСПРАВЛЕННАЯ ДВУХЭТАПНАЯ КОМПЕНСАЦИЯ</h4>
+            </div>
+            
+            <div class="code-block">
+<pre>// Файл: src/modbus_sensor.cpp
+
+void applyCompensationIfEnabled(SensorData& d, const SoilProfile& profile) {
+    // ШАГ 1: Применяем калибровочную таблицу CSV (лабораторная поверка)
+    float tempCalibrated = CalibrationManager::applyCalibration(d.temperature, profile);
+    float humCalibrated = CalibrationManager::applyCalibration(d.humidity, profile);
+    float ecCalibrated = CalibrationManager::applyCalibration(d.ec, profile);
+    float phCalibrated = CalibrationManager::applyCalibration(d.ph, profile);
+    float nCalibrated = CalibrationManager::applyCalibration(d.nitrogen, profile);
+    float pCalibrated = CalibrationManager::applyCalibration(d.phosphorus, profile);
+    float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);
+
+    // ШАГ 2: Применяем математическую компенсацию (температурная, влажностная)
+    float ec25 = ecCalibrated / (1.0f + 0.021f * (tempCalibrated - 25.0f));
+    d.ec = correctEC(ec25, tempCalibrated, humCalibrated, profile.soilType);
+    d.ph = correctPH(phCalibrated, tempCalibrated);
+    correctNPK(tempCalibrated, humCalibrated, d.nitrogen, d.phosphorus, d.potassium, profile.soilType);
+}</pre>
+            </div>
+            
+            <h4>🔧 Калибровочный менеджер</h4>
+            <div class="code-block">
+<pre>// Файл: src/calibration_manager.cpp
+
+class CalibrationManager {
+public:
+    // Применение калибровочной таблицы с линейной интерполяцией
+    static float applyCalibration(float rawValue, const CalibrationProfile& profile) {
+        if (!profile.isLoaded()) {
+            return rawValue; // Возвращаем исходное значение если таблица не загружена
+        }
+        
+        // Поиск ближайших точек калибровки
+        CalibrationPoint lower, upper;
+        if (profile.findInterpolationPoints(rawValue, lower, upper)) {
+            // Линейная интерполяция
+            float ratio = (rawValue - lower.raw) / (upper.raw - lower.raw);
+            return lower.calibrated + ratio * (upper.calibrated - lower.calibrated);
+        }
+        
+        return rawValue; // Вне диапазона калибровки
+    }
+};</pre>
+            </div>
+            
+            <h4>1️⃣ Модель Арчи - EC компенсация</h4>
+            <div class="code-block">
+<pre>float correctEC(float ec25, float temperature, float humidity, SoilType soilType) {
+    // Температурная компенсация (Archie, 1942)
+    float tempFactor = 1.0f + 0.021f * (temperature - 25.0f);
+    
+    // Влажностная компенсация по модели Арчи
+    float porosity = getPorosity(soilType);
+    float archieCoeff = getArchieCoefficient(soilType);
+    float humFactor = pow(humidity / 100.0f, archieCoeff);
+    
+    return ec25 * tempFactor * humFactor;
+}
+
+float getArchieCoefficient(SoilType soilType) {
+    switch (soilType) {
+        case SAND: return 0.15f;      // Песок
+        case LOAM: return 0.30f;      // Суглинок
+        case CLAY: return 0.45f;      // Глина
+        case PEAT: return 0.10f;      // Торф
+        case SANDY_PEAT: return 0.18f; // Песчано-торфяной
+        default: return 0.30f;
+    }
+}</pre>
+            </div>
+            
+            <h4>2️⃣ Уравнение Нернста - pH компенсация</h4>
+            <div class="code-block">
+<pre>float correctPH(float phRaw, float temperature) {
+    // Температурная поправка pH по уравнению Нернста
+    // dE/dT = -0.003 V/°C для pH электрода
+    return phRaw - 0.003f * (temperature - 25.0f);
+}</pre>
+            </div>
+            
+            <h4>3️⃣ FAO 56 + Eur. J. Soil Sci. - NPK компенсация</h4>
+            <div class="code-block">
+<pre>void correctNPK(float temperature, float humidity, 
+                float& nitrogen, float& phosphorus, float& potassium, 
+                SoilType soilType) {
+    // Температурная компенсация NPK
+    float tempFactor = 1.0f - 0.02f * (temperature - 25.0f);
+    
+    // Влажностная компенсация по FAO 56
+    float humFactor = 1.0f + 0.05f * (humidity - 50.0f) / 50.0f;
+    
+    // Применение компенсации
+    nitrogen *= tempFactor * humFactor;
+    phosphorus *= tempFactor * humFactor;
+    potassium *= tempFactor * humFactor;
+}</pre>
+            </div>
+            
+            <h2>🌐 ВЕБ-ИНТЕРФЕЙС</h2>
+            
+            <h3>📱 Архитектура веб-интерфейса</h3>
+            <div class="architecture-diagram">
+<pre>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Web Browser   │    │   ESP32 Web     │    │   Data Storage  │
+│   (Frontend)    │◄──►│   Server        │◄──►│   (NVS/Flash)   │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                              │
+                              ▼
+                       ┌─────────────────┐
+                       │   Sensor Data   │
+                       │   Processing    │
+                       └─────────────────┘</pre>
+            </div>
+            
+            <h3>🛣️ Маршрутизация</h3>
+            <div class="code-block">
+<pre>// Файл: src/web/routes_data.cpp
+
+void setupDataRoutes() {
+    // Основные маршруты данных
+    server.on("/readings", HTTP_GET, handleReadings);
+    server.on("/intervals", HTTP_GET, handleIntervals);
+    server.on("/config_manager", HTTP_GET, handleConfigManager);
+    server.on("/updates", HTTP_GET, handleUpdates);
+    server.on("/service", HTTP_GET, handleService);
+}</pre>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 JXCT Development Team | <a href="../index.html">🏠 Главная</a> | <a href="../html/index.html">📚 API</a></p>
+        </div>
+    </div>
+</body>
+</html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📋 План рефакторинга QA 2025 H2</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .nav a {
+            color: #1976d2;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 2rem;
+        }
+        h2 {
+            color: #1976d2;
+            border-bottom: 2px solid #2196f3;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #1565c0;
+            margin-top: 1.5rem;
+        }
+        .priority-high {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .priority-medium {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .priority-low {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            margin-top: 3rem;
+        }
+        .footer a {
+            color: #1976d2;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 План рефакторинга QA 2025 H2</h1>
+        </div>
+        
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a>
+            <a href="../manuals/USER_GUIDE.html">📖 Руководство пользователя</a>
+            <a href="../manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+            <a href="../html/index.html">📚 Doxygen API</a>
+        </div>
+        
+        <div class="content">
+            <h2>🎯 Цели рефакторинга</h2>
+            <ul>
+                <li>Улучшение качества кода</li>
+                <li>Повышение стабильности</li>
+                <li>Оптимизация производительности</li>
+                <li>Упрощение поддержки</li>
+            </ul>
+            
+            <h2>🔧 Приоритетные задачи</h2>
+            
+            <div class="priority-high">
+                <h3>🔥 Высокий приоритет</h3>
+                <ul>
+                    <li>Исправление критических багов</li>
+                    <li>Оптимизация памяти</li>
+                    <li>Улучшение обработки ошибок</li>
+                </ul>
+            </div>
+            
+            <div class="priority-medium">
+                <h3>⚡ Средний приоритет</h3>
+                <ul>
+                    <li>Рефакторинг устаревшего кода</li>
+                    <li>Улучшение документации</li>
+                    <li>Оптимизация алгоритмов</li>
+                </ul>
+            </div>
+            
+            <div class="priority-low">
+                <h3>📈 Низкий приоритет</h3>
+                <ul>
+                    <li>Косметические улучшения</li>
+                    <li>Дополнительные функции</li>
+                    <li>Расширенная документация</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 JXCT Development Team | <a href="../index.html">🏠 Главная</a> | <a href="../html/index.html">📚 API</a></p>
+        </div>
+    </div>
+</body>
+</html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>📊 Отчет о техническом долге 2025-06</title>
     <style>
         body {
@@ -99,10 +587,10 @@
         </div>
         
         <div class="nav">
-            <a href="../../index.html">🏠 Главная</a>
+            <a href="../index.html">🏠 Главная</a>
             <a href="../manuals/USER_GUIDE.html">📖 Руководство пользователя</a>
             <a href="../manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
-            <a href="../../html/index.html">📚 Doxygen API</a>
+            <a href="../html/index.html">📚 Doxygen API</a>
         </div>
         
         <div class="content">
@@ -145,7 +633,1287 @@
         </div>
         
         <div class="footer">
-            <p>© 2025 JXCT Development Team | <a href="../../index.html">🏠 Главная</a> | <a href="../../html/index.html">📚 API</a></p>
+            <p>© 2025 JXCT Development Team | <a href="../index.html">🏠 Главная</a> | <a href="../html/index.html">📚 API</a></p>
+        </div>
+    </div>
+</body>
+</html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏗️ Общая архитектура JXCT v3.4.9</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header .meta {
+            margin-top: 1rem;
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .nav a {
+            color: #2e7d32;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 2rem;
+        }
+        h2 {
+            color: #2e7d32;
+            border-bottom: 2px solid #4caf50;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #388e3c;
+            margin-top: 1.5rem;
+        }
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .highlight {
+            background: #e8f5e8;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #4caf50;
+            margin: 1rem 0;
+        }
+        .architecture-diagram {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            margin-top: 3rem;
+        }
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏗️ Общая архитектура JXCT v3.4.9</h1>
+            <div class="meta">
+                <strong>Версия документа:</strong> 3.4.9<br>
+                <strong>Дата обновления:</strong> 2025-06-24<br>
+                <strong>Статус:</strong> Актуальная архитектура с фокусом на стабильность
+            </div>
+        </div>
+        
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a>
+            <a href="../manuals/USER_GUIDE.html">📖 Руководство пользователя</a>
+            <a href="../manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+            <a href="../html/index.html">📚 Doxygen API</a>
+        </div>
+        
+        <div class="content">
+            <h2>🎯 ПРИНЦИПЫ АРХИТЕКТУРЫ</h2>
+            
+            <h3>1. Стабильность превыше всего</h3>
+            <ul>
+                <li>Эволюционное развитие без революционных изменений</li>
+                <li>Приоритет качества кода над архитектурными экспериментами</li>
+                <li>Тщательное тестирование перед внедрением изменений</li>
+            </ul>
+            
+            <h3>2. Модульность и переиспользование</h3>
+            <ul>
+                <li>Четкое разделение ответственности между модулями</li>
+                <li>Минимизация циклических зависимостей</li>
+                <li>Использование интерфейсов для абстракции</li>
+            </ul>
+            
+            <h3>3. Производительность и эффективность</h3>
+            <ul>
+                <li>Оптимизация использования памяти и Flash</li>
+                <li>Эффективные алгоритмы обработки данных</li>
+                <li>Минимизация накладных расходов</li>
+            </ul>
+            
+            <h2>🔧 ОСНОВНЫЕ КОМПОНЕНТЫ</h2>
+            
+            <h3>📡 СИСТЕМА ДАТЧИКОВ</h3>
+            
+            <h4>🔌 Абстракция датчиков</h4>
+            <div class="code-block">
+<pre>// Файл: include/ISensor.h
+
+class ISensor {
+public:
+    virtual ~ISensor() = default;
+    virtual bool initialize() = 0;
+    virtual SensorData read() = 0;
+    virtual bool isConnected() const = 0;
+    virtual String getSensorInfo() const = 0;
+};</pre>
+            </div>
+            
+            <h4>🎭 Адаптеры датчиков</h4>
+            <div class="code-block">
+<pre>// Файл: src/modbus_sensor.h
+
+class ModbusSensorAdapter : public ISensor {
+private:
+    ModbusSensor* sensor;
+    
+public:
+    ModbusSensorAdapter(ModbusSensor* s) : sensor(s) {}
+    
+    bool initialize() override {
+        return sensor->begin();
+    }
+    
+    SensorData read() override {
+        return sensor->getData();
+    }
+    
+    bool isConnected() const override {
+        return sensor->isConnected();
+    }
+    
+    String getSensorInfo() const override {
+        return "Modbus Sensor v" + String(sensor->getVersion());
+    }
+};</pre>
+            </div>
+            
+            <h3>🧮 СИСТЕМА КОМПЕНСАЦИИ</h3>
+            
+            <div class="highlight">
+                <h4>✅ ИСПРАВЛЕННАЯ ДВУХЭТАПНАЯ КОМПЕНСАЦИЯ</h4>
+            </div>
+            
+            <div class="code-block">
+<pre>// Файл: src/modbus_sensor.cpp
+
+void applyCompensationIfEnabled(SensorData& d, const SoilProfile& profile) {
+    // ШАГ 1: Применяем калибровочную таблицу CSV (лабораторная поверка)
+    float tempCalibrated = CalibrationManager::applyCalibration(d.temperature, profile);
+    float humCalibrated = CalibrationManager::applyCalibration(d.humidity, profile);
+    float ecCalibrated = CalibrationManager::applyCalibration(d.ec, profile);
+    float phCalibrated = CalibrationManager::applyCalibration(d.ph, profile);
+    float nCalibrated = CalibrationManager::applyCalibration(d.nitrogen, profile);
+    float pCalibrated = CalibrationManager::applyCalibration(d.phosphorus, profile);
+    float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);
+
+    // ШАГ 2: Применяем математическую компенсацию (температурная, влажностная)
+    float ec25 = ecCalibrated / (1.0f + 0.021f * (tempCalibrated - 25.0f));
+    d.ec = correctEC(ec25, tempCalibrated, humCalibrated, profile.soilType);
+    d.ph = correctPH(phCalibrated, tempCalibrated);
+    correctNPK(tempCalibrated, humCalibrated, d.nitrogen, d.phosphorus, d.potassium, profile.soilType);
+}</pre>
+            </div>
+            
+            <h4>🔧 Калибровочный менеджер</h4>
+            <div class="code-block">
+<pre>// Файл: src/calibration_manager.cpp
+
+class CalibrationManager {
+public:
+    // Применение калибровочной таблицы с линейной интерполяцией
+    static float applyCalibration(float rawValue, const CalibrationProfile& profile) {
+        if (!profile.isLoaded()) {
+            return rawValue; // Возвращаем исходное значение если таблица не загружена
+        }
+        
+        // Поиск ближайших точек калибровки
+        CalibrationPoint lower, upper;
+        if (profile.findInterpolationPoints(rawValue, lower, upper)) {
+            // Линейная интерполяция
+            float ratio = (rawValue - lower.raw) / (upper.raw - lower.raw);
+            return lower.calibrated + ratio * (upper.calibrated - lower.calibrated);
+        }
+        
+        return rawValue; // Вне диапазона калибровки
+    }
+};</pre>
+            </div>
+            
+            <h4>1️⃣ Модель Арчи - EC компенсация</h4>
+            <div class="code-block">
+<pre>float correctEC(float ec25, float temperature, float humidity, SoilType soilType) {
+    // Температурная компенсация (Archie, 1942)
+    float tempFactor = 1.0f + 0.021f * (temperature - 25.0f);
+    
+    // Влажностная компенсация по модели Арчи
+    float porosity = getPorosity(soilType);
+    float archieCoeff = getArchieCoefficient(soilType);
+    float humFactor = pow(humidity / 100.0f, archieCoeff);
+    
+    return ec25 * tempFactor * humFactor;
+}
+
+float getArchieCoefficient(SoilType soilType) {
+    switch (soilType) {
+        case SAND: return 0.15f;      // Песок
+        case LOAM: return 0.30f;      // Суглинок
+        case CLAY: return 0.45f;      // Глина
+        case PEAT: return 0.10f;      // Торф
+        case SANDY_PEAT: return 0.18f; // Песчано-торфяной
+        default: return 0.30f;
+    }
+}</pre>
+            </div>
+            
+            <h4>2️⃣ Уравнение Нернста - pH компенсация</h4>
+            <div class="code-block">
+<pre>float correctPH(float phRaw, float temperature) {
+    // Температурная поправка pH по уравнению Нернста
+    // dE/dT = -0.003 V/°C для pH электрода
+    return phRaw - 0.003f * (temperature - 25.0f);
+}</pre>
+            </div>
+            
+            <h4>3️⃣ FAO 56 + Eur. J. Soil Sci. - NPK компенсация</h4>
+            <div class="code-block">
+<pre>void correctNPK(float temperature, float humidity, 
+                float& nitrogen, float& phosphorus, float& potassium, 
+                SoilType soilType) {
+    // Температурная компенсация NPK
+    float tempFactor = 1.0f - 0.02f * (temperature - 25.0f);
+    
+    // Влажностная компенсация по FAO 56
+    float humFactor = 1.0f + 0.05f * (humidity - 50.0f) / 50.0f;
+    
+    // Применение компенсации
+    nitrogen *= tempFactor * humFactor;
+    phosphorus *= tempFactor * humFactor;
+    potassium *= tempFactor * humFactor;
+}</pre>
+            </div>
+            
+            <h2>🌐 ВЕБ-ИНТЕРФЕЙС</h2>
+            
+            <h3>📱 Архитектура веб-интерфейса</h3>
+            <div class="architecture-diagram">
+<pre>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Web Browser   │    │   ESP32 Web     │    │   Data Storage  │
+│   (Frontend)    │◄──►│   Server        │◄──►│   (NVS/Flash)   │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                              │
+                              ▼
+                       ┌─────────────────┐
+                       │   Sensor Data   │
+                       │   Processing    │
+                       └─────────────────┘</pre>
+            </div>
+            
+            <h3>🛣️ Маршрутизация</h3>
+            <div class="code-block">
+<pre>// Файл: src/web/routes_data.cpp
+
+void setupDataRoutes() {
+    // Основные маршруты данных
+    server.on("/readings", HTTP_GET, handleReadings);
+    server.on("/intervals", HTTP_GET, handleIntervals);
+    server.on("/config_manager", HTTP_GET, handleConfigManager);
+    server.on("/updates", HTTP_GET, handleUpdates);
+    server.on("/service", HTTP_GET, handleService);
+}</pre>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 JXCT Development Team | <a href="../index.html">🏠 Главная</a> | <a href="../html/index.html">📚 API</a></p>
+        </div>
+    </div>
+</body>
+</html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📋 План рефакторинга QA 2025 H2</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .nav a {
+            color: #1976d2;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 2rem;
+        }
+        h2 {
+            color: #1976d2;
+            border-bottom: 2px solid #2196f3;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #1565c0;
+            margin-top: 1.5rem;
+        }
+        .priority-high {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .priority-medium {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .priority-low {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            margin-top: 3rem;
+        }
+        .footer a {
+            color: #1976d2;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 План рефакторинга QA 2025 H2</h1>
+        </div>
+        
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a>
+            <a href="../manuals/USER_GUIDE.html">📖 Руководство пользователя</a>
+            <a href="../manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+            <a href="../html/index.html">📚 Doxygen API</a>
+        </div>
+        
+        <div class="content">
+            <h2>🎯 Цели рефакторинга</h2>
+            <ul>
+                <li>Улучшение качества кода</li>
+                <li>Повышение стабильности</li>
+                <li>Оптимизация производительности</li>
+                <li>Упрощение поддержки</li>
+            </ul>
+            
+            <h2>🔧 Приоритетные задачи</h2>
+            
+            <div class="priority-high">
+                <h3>🔥 Высокий приоритет</h3>
+                <ul>
+                    <li>Исправление критических багов</li>
+                    <li>Оптимизация памяти</li>
+                    <li>Улучшение обработки ошибок</li>
+                </ul>
+            </div>
+            
+            <div class="priority-medium">
+                <h3>⚡ Средний приоритет</h3>
+                <ul>
+                    <li>Рефакторинг устаревшего кода</li>
+                    <li>Улучшение документации</li>
+                    <li>Оптимизация алгоритмов</li>
+                </ul>
+            </div>
+            
+            <div class="priority-low">
+                <h3>📈 Низкий приоритет</h3>
+                <ul>
+                    <li>Косметические улучшения</li>
+                    <li>Дополнительные функции</li>
+                    <li>Расширенная документация</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 JXCT Development Team | <a href="../index.html">🏠 Главная</a> | <a href="../html/index.html">📚 API</a></p>
+        </div>
+    </div>
+</body>
+</html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Отчет о техническом долге 2025-06</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #f57c00 0%, #ef6c00 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .nav a {
+            color: #f57c00;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 2rem;
+        }
+        h2 {
+            color: #f57c00;
+            border-bottom: 2px solid #ff9800;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #ef6c00;
+            margin-top: 1.5rem;
+        }
+        .debt-high {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .debt-medium {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .debt-low {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            margin-top: 3rem;
+        }
+        .footer a {
+            color: #f57c00;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Отчет о техническом долге 2025-06</h1>
+        </div>
+        
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a>
+            <a href="../manuals/USER_GUIDE.html">📖 Руководство пользователя</a>
+            <a href="../manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+            <a href="../html/index.html">📚 Doxygen API</a>
+        </div>
+        
+        <div class="content">
+            <h2>📈 Общая оценка</h2>
+            <p>Технический долг проекта находится на приемлемом уровне. Основные области для улучшения:</p>
+            
+            <div class="debt-high">
+                <h3>🔴 Высокий технический долг</h3>
+                <ul>
+                    <li>Устаревшие алгоритмы компенсации</li>
+                    <li>Неоптимальное использование памяти</li>
+                    <li>Отсутствие полного покрытия тестами</li>
+                </ul>
+            </div>
+            
+            <div class="debt-medium">
+                <h3>🟡 Средний технический долг</h3>
+                <ul>
+                    <li>Дублирование кода в некоторых модулях</li>
+                    <li>Недостаточная документация API</li>
+                    <li>Сложность некоторых функций</li>
+                </ul>
+            </div>
+            
+            <div class="debt-low">
+                <h3>🟢 Низкий технический долг</h3>
+                <ul>
+                    <li>Хорошая архитектура в целом</li>
+                    <li>Консистентное именование</li>
+                    <li>Понятная структура проекта</li>
+                </ul>
+            </div>
+            
+            <h2>🎯 Рекомендации</h2>
+            <ul>
+                <li>Приоритет на исправление критических проблем</li>
+                <li>Постепенное улучшение качества кода</li>
+                <li>Регулярные рефакторинги</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 JXCT Development Team | <a href="../index.html">🏠 Главная</a> | <a href="../html/index.html">📚 API</a></p>
+        </div>
+    </div>
+</body>
+</html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏗️ Общая архитектура JXCT v3.4.9</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header .meta {
+            margin-top: 1rem;
+            opacity: 0.9;
+            font-size: 0.9em;
+        }
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .nav a {
+            color: #2e7d32;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 2rem;
+        }
+        h2 {
+            color: #2e7d32;
+            border-bottom: 2px solid #4caf50;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #388e3c;
+            margin-top: 1.5rem;
+        }
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            padding: 1rem;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        .highlight {
+            background: #e8f5e8;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid #4caf50;
+            margin: 1rem 0;
+        }
+        .architecture-diagram {
+            text-align: center;
+            margin: 2rem 0;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            margin-top: 3rem;
+        }
+        .footer a {
+            color: #2e7d32;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏗️ Общая архитектура JXCT v3.4.9</h1>
+            <div class="meta">
+                <strong>Версия документа:</strong> 3.4.9<br>
+                <strong>Дата обновления:</strong> 2025-06-24<br>
+                <strong>Статус:</strong> Актуальная архитектура с фокусом на стабильность
+            </div>
+        </div>
+        
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a>
+            <a href="../manuals/USER_GUIDE.html">📖 Руководство пользователя</a>
+            <a href="../manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+            <a href="../html/index.html">📚 Doxygen API</a>
+        </div>
+        
+        <div class="content">
+            <h2>🎯 ПРИНЦИПЫ АРХИТЕКТУРЫ</h2>
+            
+            <h3>1. Стабильность превыше всего</h3>
+            <ul>
+                <li>Эволюционное развитие без революционных изменений</li>
+                <li>Приоритет качества кода над архитектурными экспериментами</li>
+                <li>Тщательное тестирование перед внедрением изменений</li>
+            </ul>
+            
+            <h3>2. Модульность и переиспользование</h3>
+            <ul>
+                <li>Четкое разделение ответственности между модулями</li>
+                <li>Минимизация циклических зависимостей</li>
+                <li>Использование интерфейсов для абстракции</li>
+            </ul>
+            
+            <h3>3. Производительность и эффективность</h3>
+            <ul>
+                <li>Оптимизация использования памяти и Flash</li>
+                <li>Эффективные алгоритмы обработки данных</li>
+                <li>Минимизация накладных расходов</li>
+            </ul>
+            
+            <h2>🔧 ОСНОВНЫЕ КОМПОНЕНТЫ</h2>
+            
+            <h3>📡 СИСТЕМА ДАТЧИКОВ</h3>
+            
+            <h4>🔌 Абстракция датчиков</h4>
+            <div class="code-block">
+<pre>// Файл: include/ISensor.h
+
+class ISensor {
+public:
+    virtual ~ISensor() = default;
+    virtual bool initialize() = 0;
+    virtual SensorData read() = 0;
+    virtual bool isConnected() const = 0;
+    virtual String getSensorInfo() const = 0;
+};</pre>
+            </div>
+            
+            <h4>🎭 Адаптеры датчиков</h4>
+            <div class="code-block">
+<pre>// Файл: src/modbus_sensor.h
+
+class ModbusSensorAdapter : public ISensor {
+private:
+    ModbusSensor* sensor;
+    
+public:
+    ModbusSensorAdapter(ModbusSensor* s) : sensor(s) {}
+    
+    bool initialize() override {
+        return sensor->begin();
+    }
+    
+    SensorData read() override {
+        return sensor->getData();
+    }
+    
+    bool isConnected() const override {
+        return sensor->isConnected();
+    }
+    
+    String getSensorInfo() const override {
+        return "Modbus Sensor v" + String(sensor->getVersion());
+    }
+};</pre>
+            </div>
+            
+            <h3>🧮 СИСТЕМА КОМПЕНСАЦИИ</h3>
+            
+            <div class="highlight">
+                <h4>✅ ИСПРАВЛЕННАЯ ДВУХЭТАПНАЯ КОМПЕНСАЦИЯ</h4>
+            </div>
+            
+            <div class="code-block">
+<pre>// Файл: src/modbus_sensor.cpp
+
+void applyCompensationIfEnabled(SensorData& d, const SoilProfile& profile) {
+    // ШАГ 1: Применяем калибровочную таблицу CSV (лабораторная поверка)
+    float tempCalibrated = CalibrationManager::applyCalibration(d.temperature, profile);
+    float humCalibrated = CalibrationManager::applyCalibration(d.humidity, profile);
+    float ecCalibrated = CalibrationManager::applyCalibration(d.ec, profile);
+    float phCalibrated = CalibrationManager::applyCalibration(d.ph, profile);
+    float nCalibrated = CalibrationManager::applyCalibration(d.nitrogen, profile);
+    float pCalibrated = CalibrationManager::applyCalibration(d.phosphorus, profile);
+    float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);
+
+    // ШАГ 2: Применяем математическую компенсацию (температурная, влажностная)
+    float ec25 = ecCalibrated / (1.0f + 0.021f * (tempCalibrated - 25.0f));
+    d.ec = correctEC(ec25, tempCalibrated, humCalibrated, profile.soilType);
+    d.ph = correctPH(phCalibrated, tempCalibrated);
+    correctNPK(tempCalibrated, humCalibrated, d.nitrogen, d.phosphorus, d.potassium, profile.soilType);
+}</pre>
+            </div>
+            
+            <h4>🔧 Калибровочный менеджер</h4>
+            <div class="code-block">
+<pre>// Файл: src/calibration_manager.cpp
+
+class CalibrationManager {
+public:
+    // Применение калибровочной таблицы с линейной интерполяцией
+    static float applyCalibration(float rawValue, const CalibrationProfile& profile) {
+        if (!profile.isLoaded()) {
+            return rawValue; // Возвращаем исходное значение если таблица не загружена
+        }
+        
+        // Поиск ближайших точек калибровки
+        CalibrationPoint lower, upper;
+        if (profile.findInterpolationPoints(rawValue, lower, upper)) {
+            // Линейная интерполяция
+            float ratio = (rawValue - lower.raw) / (upper.raw - lower.raw);
+            return lower.calibrated + ratio * (upper.calibrated - lower.calibrated);
+        }
+        
+        return rawValue; // Вне диапазона калибровки
+    }
+};</pre>
+            </div>
+            
+            <h4>1️⃣ Модель Арчи - EC компенсация</h4>
+            <div class="code-block">
+<pre>float correctEC(float ec25, float temperature, float humidity, SoilType soilType) {
+    // Температурная компенсация (Archie, 1942)
+    float tempFactor = 1.0f + 0.021f * (temperature - 25.0f);
+    
+    // Влажностная компенсация по модели Арчи
+    float porosity = getPorosity(soilType);
+    float archieCoeff = getArchieCoefficient(soilType);
+    float humFactor = pow(humidity / 100.0f, archieCoeff);
+    
+    return ec25 * tempFactor * humFactor;
+}
+
+float getArchieCoefficient(SoilType soilType) {
+    switch (soilType) {
+        case SAND: return 0.15f;      // Песок
+        case LOAM: return 0.30f;      // Суглинок
+        case CLAY: return 0.45f;      // Глина
+        case PEAT: return 0.10f;      // Торф
+        case SANDY_PEAT: return 0.18f; // Песчано-торфяной
+        default: return 0.30f;
+    }
+}</pre>
+            </div>
+            
+            <h4>2️⃣ Уравнение Нернста - pH компенсация</h4>
+            <div class="code-block">
+<pre>float correctPH(float phRaw, float temperature) {
+    // Температурная поправка pH по уравнению Нернста
+    // dE/dT = -0.003 V/°C для pH электрода
+    return phRaw - 0.003f * (temperature - 25.0f);
+}</pre>
+            </div>
+            
+            <h4>3️⃣ FAO 56 + Eur. J. Soil Sci. - NPK компенсация</h4>
+            <div class="code-block">
+<pre>void correctNPK(float temperature, float humidity, 
+                float& nitrogen, float& phosphorus, float& potassium, 
+                SoilType soilType) {
+    // Температурная компенсация NPK
+    float tempFactor = 1.0f - 0.02f * (temperature - 25.0f);
+    
+    // Влажностная компенсация по FAO 56
+    float humFactor = 1.0f + 0.05f * (humidity - 50.0f) / 50.0f;
+    
+    // Применение компенсации
+    nitrogen *= tempFactor * humFactor;
+    phosphorus *= tempFactor * humFactor;
+    potassium *= tempFactor * humFactor;
+}</pre>
+            </div>
+            
+            <h2>🌐 ВЕБ-ИНТЕРФЕЙС</h2>
+            
+            <h3>📱 Архитектура веб-интерфейса</h3>
+            <div class="architecture-diagram">
+<pre>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Web Browser   │    │   ESP32 Web     │    │   Data Storage  │
+│   (Frontend)    │◄──►│   Server        │◄──►│   (NVS/Flash)   │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                              │
+                              ▼
+                       ┌─────────────────┐
+                       │   Sensor Data   │
+                       │   Processing    │
+                       └─────────────────┘</pre>
+            </div>
+            
+            <h3>🛣️ Маршрутизация</h3>
+            <div class="code-block">
+<pre>// Файл: src/web/routes_data.cpp
+
+void setupDataRoutes() {
+    // Основные маршруты данных
+    server.on("/readings", HTTP_GET, handleReadings);
+    server.on("/intervals", HTTP_GET, handleIntervals);
+    server.on("/config_manager", HTTP_GET, handleConfigManager);
+    server.on("/updates", HTTP_GET, handleUpdates);
+    server.on("/service", HTTP_GET, handleService);
+}</pre>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 JXCT Development Team | <a href="../index.html">🏠 Главная</a> | <a href="../html/index.html">📚 API</a></p>
+        </div>
+    </div>
+</body>
+</html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📋 План рефакторинга QA 2025 H2</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #1976d2 0%, #1565c0 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .nav a {
+            color: #1976d2;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 2rem;
+        }
+        h2 {
+            color: #1976d2;
+            border-bottom: 2px solid #2196f3;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #1565c0;
+            margin-top: 1.5rem;
+        }
+        .priority-high {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .priority-medium {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .priority-low {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            margin-top: 3rem;
+        }
+        .footer a {
+            color: #1976d2;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📋 План рефакторинга QA 2025 H2</h1>
+        </div>
+        
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a>
+            <a href="../manuals/USER_GUIDE.html">📖 Руководство пользователя</a>
+            <a href="../manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+            <a href="../html/index.html">📚 Doxygen API</a>
+        </div>
+        
+        <div class="content">
+            <h2>🎯 Цели рефакторинга</h2>
+            <ul>
+                <li>Улучшение качества кода</li>
+                <li>Повышение стабильности</li>
+                <li>Оптимизация производительности</li>
+                <li>Упрощение поддержки</li>
+            </ul>
+            
+            <h2>🔧 Приоритетные задачи</h2>
+            
+            <div class="priority-high">
+                <h3>🔥 Высокий приоритет</h3>
+                <ul>
+                    <li>Исправление критических багов</li>
+                    <li>Оптимизация памяти</li>
+                    <li>Улучшение обработки ошибок</li>
+                </ul>
+            </div>
+            
+            <div class="priority-medium">
+                <h3>⚡ Средний приоритет</h3>
+                <ul>
+                    <li>Рефакторинг устаревшего кода</li>
+                    <li>Улучшение документации</li>
+                    <li>Оптимизация алгоритмов</li>
+                </ul>
+            </div>
+            
+            <div class="priority-low">
+                <h3>📈 Низкий приоритет</h3>
+                <ul>
+                    <li>Косметические улучшения</li>
+                    <li>Дополнительные функции</li>
+                    <li>Расширенная документация</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 JXCT Development Team | <a href="../index.html">🏠 Главная</a> | <a href="../html/index.html">📚 API</a></p>
+        </div>
+    </div>
+</body>
+</html> 
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 Отчет о техническом долге 2025-06</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+        .header {
+            background: linear-gradient(135deg, #f57c00 0%, #ef6c00 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .nav a {
+            color: #f57c00;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .content {
+            padding: 2rem;
+        }
+        h2 {
+            color: #f57c00;
+            border-bottom: 2px solid #ff9800;
+            padding-bottom: 0.5rem;
+            margin-top: 2rem;
+        }
+        h3 {
+            color: #ef6c00;
+            margin-top: 1.5rem;
+        }
+        .debt-high {
+            background: #ffebee;
+            border-left: 4px solid #f44336;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .debt-medium {
+            background: #fff3e0;
+            border-left: 4px solid #ff9800;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .debt-low {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .footer {
+            background: #f8f9fa;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e9ecef;
+            margin-top: 3rem;
+        }
+        .footer a {
+            color: #f57c00;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📊 Отчет о техническом долге 2025-06</h1>
+        </div>
+        
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a>
+            <a href="../manuals/USER_GUIDE.html">📖 Руководство пользователя</a>
+            <a href="../manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+            <a href="../html/index.html">📚 Doxygen API</a>
+        </div>
+        
+        <div class="content">
+            <h2>📈 Общая оценка</h2>
+            <p>Технический долг проекта находится на приемлемом уровне. Основные области для улучшения:</p>
+            
+            <div class="debt-high">
+                <h3>🔴 Высокий технический долг</h3>
+                <ul>
+                    <li>Устаревшие алгоритмы компенсации</li>
+                    <li>Неоптимальное использование памяти</li>
+                    <li>Отсутствие полного покрытия тестами</li>
+                </ul>
+            </div>
+            
+            <div class="debt-medium">
+                <h3>🟡 Средний технический долг</h3>
+                <ul>
+                    <li>Дублирование кода в некоторых модулях</li>
+                    <li>Недостаточная документация API</li>
+                    <li>Сложность некоторых функций</li>
+                </ul>
+            </div>
+            
+            <div class="debt-low">
+                <h3>🟢 Низкий технический долг</h3>
+                <ul>
+                    <li>Хорошая архитектура в целом</li>
+                    <li>Консистентное именование</li>
+                    <li>Понятная структура проекта</li>
+                </ul>
+            </div>
+            
+            <h2>🎯 Рекомендации</h2>
+            <ul>
+                <li>Приоритет на исправление критических проблем</li>
+                <li>Постепенное улучшение качества кода</li>
+                <li>Регулярные рефакторинги</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 JXCT Development Team | <a href="../index.html">🏠 Главная</a> | <a href="../html/index.html">📚 API</a></p>
         </div>
     </div>
 </body>
