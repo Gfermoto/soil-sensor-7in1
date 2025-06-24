@@ -45,53 +45,54 @@ theme:
 plugins:
   - search:
       lang: ru
-      separator: '[\s\-\.]+'
+  - minify:
+      minify_html: true
   - git-revision-date-localized:
-      type: datetime
-      timezone: Europe/Moscow
+      type: date
+      fallback_to_build_date: true
       locale: ru
-      enable_creation_date: true
-  - mike:
-      version_selector: true
-      canonical_version: latest
+  - social
 
 markdown_extensions:
   - toc:
       permalink: true
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.tabbed:
-      alternate_style: true
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
   - attr_list
   - md_in_html
-  - def_list
   - footnotes
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 nav:
-  - 🏠 Главная: index.md
-  - 📚 Документация:
-    - 📖 Руководства:
-      - 👤 Руководство пользователя: manuals/USER_GUIDE.md
-      - 🔧 Техническая документация: manuals/TECHNICAL_DOCS.md
-      - 🌐 API: manuals/API.md
-    - 🌱 Агрономия:
-      - 🌿 Рекомендации: manuals/AGRO_RECOMMENDATIONS.md
-      - 🔬 Компенсация: manuals/COMPENSATION_GUIDE.md
-    - 🛠️ Установка:
-      - 📋 Схема подключения: manuals/WIRING_DIAGRAM.md
-      - 🔧 Конфигурация: manuals/CONFIG_MANAGEMENT.md
-      - 📡 Modbus протокол: manuals/MODBUS_PROTOCOL.md
-      - 🔄 Управление версиями: manuals/VERSION_MANAGEMENT.md
-  - 📖 API Документация: html/index.html
-  - 🤝 Участие в разработке: CONTRIBUTING_DOCS.md
+  - Главная: index.md
+  - Руководства:
+    - Руководство пользователя: manuals/USER_GUIDE.md
+    - Установка и настройка: manuals/INSTALLATION.md
+    - Калибровка датчиков: manuals/CALIBRATION.md
+    - Устранение неисправностей: manuals/TROUBLESHOOTING.md
+    - Техническое обслуживание: manuals/MAINTENANCE.md
+  - Интеграции:
+    - Настройка MQTT: manuals/MQTT_SETUP.md
+    - Настройка ThingSpeak: manuals/THINGSPEAK_SETUP.md
+    - Настройка WiFi: manuals/WIFI_SETUP.md
+  - Техническая документация:
+    - API: manuals/API.md
+    - Протокол Modbus: manuals/MODBUS_PROTOCOL.md
+    - Управление конфигурацией: manuals/CONFIG_MANAGEMENT.md
+    - Управление версиями: manuals/VERSION_MANAGEMENT.md
+    - Схема подключения: manuals/WIRING_DIAGRAM.md
+  - Дополнительно:
+    - Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
+    - Компенсация показаний: manuals/COMPENSATION_GUIDE.md
+    - Техническая документация: manuals/TECHNICAL_DOCS.md
 
 extra:
   version:

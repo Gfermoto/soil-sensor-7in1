@@ -1,85 +1,38 @@
-name: Публикация документации
+name: Deploy Documentation
 
 on:
   push:
     branches:
       - main
-    paths:
-      - 'docs/**'
-      - 'include/**'
-      - 'src/**'
-      - 'mkdocs.yml'
-      - '.github/workflows/docs.yml'
-      - 'Doxyfile'
   pull_request:
     branches:
       - main
-    paths:
-      - 'docs/**'
-      - 'include/**'
-      - 'src/**'
-      - 'mkdocs.yml'
-      - '.github/workflows/docs.yml'
-      - 'Doxyfile'
-  workflow_dispatch:
 
 permissions:
   contents: write
-  pages: write
-  id-token: write
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Настройка Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: 3.x
 
-      - name: Установка Doxygen
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y doxygen graphviz
-
-      - name: Установка зависимостей
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r docs/requirements.txt
-
-      - name: Генерация Doxygen документации
-        run: doxygen Doxyfile
-
-      - name: Настройка Git для mike
+          pip install -r requirements.txt
+          
+      - name: Setup Git
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Сборка и публикация документации
+      - name: Build and deploy documentation
         run: |
-          mike deploy --push --update-aliases ${{ github.ref_name }} latest
-          mike set-default --push latest
-
-      - name: Загрузка артефактов
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./site
-
-  deploy:
-    needs: build
-    if: github.ref == 'refs/heads/main'
-    runs-on: ubuntu-latest
-    
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    
-    steps:
-      - name: Публикация на GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4 
+          mkdocs gh-deploy --force 

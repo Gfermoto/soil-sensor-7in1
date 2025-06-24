@@ -282,4 +282,48 @@
   <p style="margin: 5px 0; color: #666;">Made with ❤️ for the agricultural community</p>
 </div>
 
+Dобро пожаловать в документацию по датчику почвы JXCT 7-в-1! Здесь вы найдете всю необходимую информацию по установке, настройке и использованию датчика.
+
+## Возможности датчика
+
+JXCT 7-в-1 - это многофункциональный датчик почвы, который измеряет:
+
+- Температуру почвы
+- Влажность почвы
+- Электропроводность (EC)
+- pH почвы
+- Содержание азота (N)
+- Содержание фосфора (P)
+- Содержание калия (K)
+
+## Быстрый старт
+
+1. [Установка и подключение](manuals/INSTALLATION.md)
+2. [Настройка WiFi](manuals/WIFI_SETUP.md)
+3. [Калибровка датчиков](manuals/CALIBRATION.md)
+4. [Руководство пользователя](manuals/USER_GUIDE.md)
+
+## Интеграции
+
+Датчик поддерживает различные способы интеграции:
+
+- [MQTT](manuals/MQTT_SETUP.md) для IoT проектов
+- [ThingSpeak](manuals/THINGSPEAK_SETUP.md) для визуализации данных
+- [Modbus](manuals/MODBUS_PROTOCOL.md) для промышленных систем
+- [REST API](manuals/API.md) для веб-приложений
+
+## Техническая поддержка
+
+Если у вас возникли проблемы:
+
+1. Проверьте раздел [Устранение неисправностей](manuals/TROUBLESHOOTING.md)
+2. Изучите [Техническую документацию](manuals/TECHNICAL_DOCS.md)
+3. Создайте issue в [GitHub репозитории](https://github.com/Gfermoto/soil-sensor-7in1/issues)
+
+## Дополнительные материалы
+
+- [Агрономические рекомендации](manuals/AGRO_RECOMMENDATIONS.md)
+- [Компенсация показаний](manuals/COMPENSATION_GUIDE.md)
+- [Схема подключения](manuals/WIRING_DIAGRAM.md)
+
  

@@ -1,0 +1,4 @@
+mkdocs-material>=9.5.0
+mkdocs-minify-plugin>=0.7.0
+mkdocs-git-revision-date-localized-plugin>=1.2.0
+mkdocs-social-plugin>=0.1.0 
