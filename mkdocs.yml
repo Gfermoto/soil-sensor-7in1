@@ -47,11 +47,6 @@ plugins:
       lang: ru
   - minify:
       minify_html: true
-  - git-revision-date-localized:
-      type: date
-      fallback_to_build_date: true
-      locale: ru
-  - social
 
 markdown_extensions:
   - toc:
@@ -63,7 +58,6 @@ markdown_extensions:
   - pymdownx.superfences
   - admonition
   - pymdownx.details
-  - pymdownx.superfences
   - attr_list
   - md_in_html
   - footnotes
@@ -90,17 +84,10 @@ nav:
     - Технический долг: dev/TECH_DEBT_REPORT_2025-06.md
 
 extra:
-  version:
-    provider: mike
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/Gfermoto/soil-sensor-7in1
       name: GitHub
     - icon: fontawesome/brands/telegram
       link: https://t.me/jxct_support
-      name: Telegram Support
-    - icon: fontawesome/brands/discord
-      link: https://discord.gg/jxct
-  analytics:
-    provider: google
-    property: G-XXXXXXXXXX 
+      name: Telegram Support 
