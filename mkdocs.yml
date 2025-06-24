@@ -3,6 +3,9 @@ site_url: https://gfermoto.github.io/soil-sensor-7in1/
 repo_url: https://github.com/Gfermoto/soil-sensor-7in1
 edit_uri: edit/main/docs/
 
+docs_dir: docs
+site_dir: site
+
 theme:
   name: material
   language: ru
@@ -29,8 +32,7 @@ theme:
         name: Переключить на светлую тему
 
 plugins:
-  - search:
-      lang: ru
+  - search
   - minify:
       minify_html: true
       minify_js: true
@@ -53,26 +55,38 @@ markdown_extensions:
   - toc:
       permalink: true
   - pymdownx.emoji:
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 nav:
   - 🏠 Главная: index.md
-  - 📚 Руководства:
-    - 👤 Руководство пользователя: manuals/USER_GUIDE.md
-    - 🔧 Техническая документация: manuals/TECHNICAL_DOCS.md
-    - 🌐 API: manuals/API.md
-    - 🌿 Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
-    - 📊 Калибровка: manuals/CALIBRATION.md
-    - 📋 Схема подключения: manuals/WIRING_DIAGRAM.md
+  - 📚 Документация:
+    - 📖 Руководства:
+      - 👤 Руководство пользователя: manuals/USER_GUIDE.md
+      - 🔧 Техническая документация: manuals/TECHNICAL_DOCS.md
+      - 🌐 API: manuals/API.md
+    - 🌱 Агрономия:
+      - 🌿 Рекомендации: manuals/AGRO_RECOMMENDATIONS.md
+      - 🔬 Компенсация: manuals/COMPENSATION_GUIDE.md
+      - 📊 Калибровка: manuals/CALIBRATION.md
+    - 🛠️ Установка:
+      - 📋 Схема подключения: manuals/WIRING_DIAGRAM.md
+      - ⚡ Быстрый старт: manuals/QUICK_START.md
+      - 🔧 Настройка: manuals/SETUP.md
   - 💻 Разработка:
     - 🏗️ Архитектура: dev/ARCH_OVERALL.md
     - 📋 План рефакторинга: dev/QA_REFACTORING_PLAN_2025H2.md
     - 📊 Технический долг: dev/TECH_DEBT_REPORT_2025-06.md
+  - 📖 API Документация: html/index.html
   - 🤝 Участие в разработке: CONTRIBUTING_DOCS.md
 
 extra:
