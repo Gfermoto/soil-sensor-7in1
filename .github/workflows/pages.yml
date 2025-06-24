@@ -47,14 +47,12 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build with MkDocs
-        run: |
-          cd docs
-          mkdocs build -f mkdocs.yml -v
+        run: mkdocs build -f docs/mkdocs.yml -v
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/site
+          path: site
 
   deploy:
     environment:
