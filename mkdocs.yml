@@ -74,13 +74,14 @@ markdown_extensions:
 nav:
   - Главная: index.md
   - Руководства:
-    - Установка: manuals/INSTALLATION.md
-    - Калибровка: manuals/CALIBRATION.md
-    - Настройка WiFi: manuals/WIFI_SETUP.md
-    - Настройка MQTT: manuals/MQTT_SETUP.md
-    - Интеграция с ThingSpeak: manuals/THINGSPEAK_SETUP.md
-    - Устранение неисправностей: manuals/TROUBLESHOOTING.md
-    - Техническое обслуживание: manuals/MAINTENANCE.md
+    - Руководство пользователя: manuals/USER_GUIDE.md
+    - Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
+    - Компенсация показаний: manuals/COMPENSATION_GUIDE.md
+    - Протокол Modbus: manuals/MODBUS_PROTOCOL.md
+    - Управление конфигурацией: manuals/CONFIG_MANAGEMENT.md
+    - Управление версиями: manuals/VERSION_MANAGEMENT.md
+    - Схема подключения: manuals/WIRING_DIAGRAM.md
+    - Техническая документация: manuals/TECHNICAL_DOCS.md
   - API Документация:
     - Обзор API: api-overview.md
     - "📚 API Reference": html/index.html

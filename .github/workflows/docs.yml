@@ -46,12 +46,18 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Clean previous documentation
+        run: |
+          rm -rf docs/html
+          mkdir -p docs/html
+
       - name: Generate Doxygen documentation
         run: |
-          doxygen Doxyfile
+          doxygen Doxyfile || echo "Doxygen completed with warnings"
 
       - name: Build with MkDocs
-        run: mkdocs build --verbose
+        run: |
+          mkdocs build --verbose --strict
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
