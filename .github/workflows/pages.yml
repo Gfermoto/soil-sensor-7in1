@@ -124,34 +124,35 @@ jobs:
             echo "✅ Found docs/manuals directory"
             echo "=== Contents of docs/manuals ==="
             ls -la docs/manuals/
-            
-            # Копируем папку manuals в docs/html
             cp -r docs/manuals docs/html/
             echo "✅ Manuals copied to docs/html/manuals"
-            
             echo "=== Contents of docs/html/manuals ==="
             ls -la docs/html/manuals/
           else
             echo "❌ docs/manuals directory not found"
           fi
-          
-          # Копируем HTML файлы из dev
           if [ -d "docs/dev" ]; then
             echo "✅ Found docs/dev directory"
             echo "=== Contents of docs/dev ==="
             ls -la docs/dev/
-            
-            # Копируем папку dev в docs/html
             cp -r docs/dev docs/html/
             echo "✅ Dev docs copied to docs/html/dev"
-            
             echo "=== Contents of docs/html/dev ==="
             ls -la docs/html/dev/
           else
             echo "❌ docs/dev directory not found"
           fi
-          
-          # Копируем HTML файлы из корневой папки docs
+          if [ -d "docs/examples" ]; then
+            echo "✅ Found docs/examples directory"
+            echo "=== Contents of docs/examples ==="
+            ls -la docs/examples/
+            cp -r docs/examples docs/html/
+            echo "✅ Examples copied to docs/html/examples"
+            echo "=== Contents of docs/html/examples ==="
+            ls -la docs/html/examples/
+          else
+            echo "❌ docs/examples directory not found"
+          fi
           echo "=== Copying HTML files from docs root ==="
           if [ -f "docs/CONTRIBUTING_DOCS.html" ]; then
             cp docs/CONTRIBUTING_DOCS.html docs/html/
