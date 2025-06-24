@@ -199,7 +199,7 @@ JXCT/
 ## 🤝 **ПОДДЕРЖКА**
 
 ### 📞 **Связь с разработчиками**
-- **Telegram:** [@jxct_support](https://t.me/jxct_support)
+- **Telegram:** [@Gfermoto](https://t.me/Gfermoto)
 - **GitHub Issues:** [Сообщить о проблеме](https://github.com/Gfermoto/soil-sensor-7in1/issues)
 - **Документация:** [GitHub Pages](https://gfermoto.github.io/soil-sensor-7in1/)
 
