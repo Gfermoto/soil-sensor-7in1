@@ -280,5 +280,6 @@
 <div style="text-align: center; margin: 40px 0; padding: 20px; background: #f8f9fa; border-radius: 10px;">
   <p style="margin: 5px 0; color: #666;">© 2025 JXCT Development Team</p>
   <p style="margin: 5px 0; color: #666;">Made with ❤️ for the agricultural community</p>
-</div> #   1=>2;5=85:   2A5  AAK;:8  8A?@02;5=K 
+</div>
+
  
