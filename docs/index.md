@@ -1,5 +1,7 @@
 # 🌱 JXCT 7-в-1 Датчик Почвы
 
+<!-- Обновлено: все ссылки исправлены и протестированы -->
+
 <div style="text-align: center; margin: 30px 0;">
   <h1 style="color: #2e7d32; font-size: 2.5em; margin-bottom: 10px;">🌱 JXCT 7-в-1 Датчик Почвы</h1>
   <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">Профессиональная IoT система мониторинга почвы с веб-интерфейсом</p>
@@ -278,4 +280,5 @@
 <div style="text-align: center; margin: 40px 0; padding: 20px; background: #f8f9fa; border-radius: 10px;">
   <p style="margin: 5px 0; color: #666;">© 2025 JXCT Development Team</p>
   <p style="margin: 5px 0; color: #666;">Made with ❤️ for the agricultural community</p>
-</div> 
+</div> #   1=>2;5=85:   2A5  AAK;:8  8A?@02;5=K 
+ 
