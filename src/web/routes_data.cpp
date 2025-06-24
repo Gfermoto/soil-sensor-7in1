@@ -288,8 +288,51 @@ void setupDataRoutes()
                      String html = generatePageHeader("Показания датчика", UI_ICON_DATA);
                      html += navHtml();
                      html += "<h1>" UI_ICON_DATA " Показания датчика</h1>";
+                     
                      // Информационная строка состояния
                      html += "<div id='statusInfo' style='margin:10px 0;font-size:16px;color:#333'></div>";
+                     
+                     // ======= ОБЪЯСНЕНИЕ ПРОЦЕССОВ =======
+                     html += "<div class='section' style='background:#f8f9fa;padding:15px;border-radius:8px;margin:15px 0;'>";
+                     html += "<h3>📋 Как работают показания</h3>";
+                     html += "<div style='display:grid;grid-template-columns:1fr 1fr;gap:20px;font-size:14px;'>";
+                     
+                     // Левая колонка - компенсация
+                     html += "<div>";
+                     html += "<h4>🔧 Компенсация показаний</h4>";
+                     html += "<ul style='margin:0;padding-left:20px;'>";
+                     html += "<li><strong>RAW</strong> - сырые данные с датчика</li>";
+                     html += "<li><strong>Компенс.</strong> - данные после математической компенсации:</li>";
+                     html += "<ul style='margin:5px 0;padding-left:15px;'>";
+                     html += "<li>🌡️ <strong>Температура:</strong> без изменений</li>";
+                     html += "<li>💧 <strong>Влажность:</strong> без изменений</li>";
+                     html += "<li>⚡ <strong>EC:</strong> температурная компенсация + модель Арчи</li>";
+                     html += "<li>⚗️ <strong>pH:</strong> температурная поправка (-0.003×ΔT)</li>";
+                     html += "<li>🔴🟡🔵 <strong>NPK:</strong> коррекция по T, влажности и типу почвы</li>";
+                     html += "</ul>";
+                     html += "</ul>";
+                     html += "</div>";
+                     
+                     // Правая колонка - рекомендации
+                     html += "<div>";
+                     html += "<h4>🎯 Рекомендации</h4>";
+                     html += "<ul style='margin:0;padding-left:20px;'>";
+                     html += "<li><strong>Базовые нормы</strong> для выбранной культуры</li>";
+                     html += "<li><strong>Сезонные корректировки</strong> (весна/лето/осень/зима)</li>";
+                     html += "<li><strong>Тип среды</strong> (открытый грунт/теплица/помещение)</li>";
+                     html += "<li><strong>Цветовая индикация:</strong></li>";
+                     html += "<ul style='margin:5px 0;padding-left:15px;'>";
+                     html += "<li>🟢 <strong>Зеленый:</strong> в норме</li>";
+                     html += "<li>🟡 <strong>Желтый:</strong> близко к границам</li>";
+                     html += "<li>🟠 <strong>Оранжевый:</strong> отклонение >20%</li>";
+                     html += "<li>🔴 <strong>Красный:</strong> критическое отклонение</li>";
+                     html += "</ul>";
+                     html += "</ul>";
+                     html += "</div>";
+                     
+                     html += "</div>";
+                     html += "</div>";
+                     
                      // Заголовок 4-го столбца: выбранная культура или «Реком.»
                      String recHeader = "Реком.";
                      if (strlen(config.cropId) > 0)
@@ -320,11 +363,69 @@ void setupDataRoutes()
                      html += "<tr><td>🟡 Фосфор (P), мг/кг</td><td><span id='p_raw'></span></td><td><span id='p'></span></td><td><span id='p_rec'></span><span id='p_season' class='season-adj'></span></td></tr>";
                      html += "<tr><td>🔵 Калий (K), мг/кг</td><td><span id='k_raw'></span></td><td><span id='k'></span></td><td><span id='k_rec'></span><span id='k_season' class='season-adj'></span></td></tr>";
                      html += "</tbody></table></div>";
+                     
+                     // ======= КАЛИБРОВКА =======
+                     bool csvPresent = CalibrationManager::hasTable(SoilProfile::SAND); // custom.csv
+
+                     html += "<div class='section'><h2>⚙️ Калибровка датчика</h2>";
+                     
+                     // Статус калибровки
+                     html += "<div style='background:#f8f9fa;padding:15px;border-radius:8px;margin:15px 0;'>";
+                     html += "<h4>📊 Текущий статус калибровки</h4>";
+                     if (!config.flags.calibrationEnabled) {
+                         html += "<p style='color:#9E9E9E;margin:5px 0;'>❌ <strong>Компенсация выключена</strong> - используются только математические поправки</p>";
+                     } else if (csvPresent) {
+                         html += "<p style='color:#4CAF50;margin:5px 0;'>✅ <strong>CSV таблица загружена</strong> - применяется лабораторная калибровка + математическая компенсация</p>";
+                     } else {
+                         html += "<p style='color:#2196F3;margin:5px 0;'>⚠️ <strong>CSV таблица не загружена</strong> - применяется только математическая компенсация</p>";
+                     }
+                     html += "</div>";
+                     
+                     // Объяснение калибровочной таблицы
+                     html += "<div style='background:#fff3cd;padding:15px;border-radius:8px;margin:15px 0;border-left:4px solid #ffc107;'>";
+                     html += "<h4>🔬 Калибровочная таблица (CSV)</h4>";
+                     html += "<p style='margin:5px 0;font-size:14px;'><strong>Это таблица коэффициентов коррекции</strong>, полученная при поверке датчика в лаборатории.</p>";
+                     html += "<p style='margin:5px 0;font-size:14px;'>Формат: <code>сырое_значение,коэффициент_коррекции</code></p>";
+                     html += "<p style='margin:5px 0;font-size:14px;'>Пример: <code>1000,0.95</code> означает, что показание 1000 нужно умножить на 0.95</p>";
+                     html += "<p style='margin:5px 0;font-size:14px;'><strong>Применяется ДО математической компенсации</strong> для устранения систематических ошибок датчика.</p>";
+                     html += "<p style='margin:5px 0;font-size:14px;'>📄 <a href='/docs/examples/calibration_example.csv' target='_blank' style='color:#2196F3;'>Скачать пример CSV файла</a></p>";
+                     html += "</div>";
+                     
+                     // Форма загрузки CSV
+                     html += "<form action='/readings/upload' method='post' enctype='multipart/form-data' style='margin-top:15px;'>";
+                     html += "<div class='form-group'><label for='calibration_csv'><strong>Загрузить CSV файл калибровки:</strong></label>";
+                     html += "<input type='file' id='calibration_csv' name='calibration_csv' accept='.csv' required style='margin:5px 0;'>";
+                     html += "<div style='font-size:12px;color:#666;margin:5px 0;'>Файл должен содержать пары значений: сырое_значение,коэффициент_коррекции</div>";
+                     html += "</div>";
+                     html += generateButton(ButtonType::PRIMARY, UI_ICON_UPLOAD, "Загрузить CSV", "");
+                     html += "</form>";
+                     
+                     // Кнопка сброса CSV, если файл существует
+                     if(csvPresent){
+                         html += "<form action='/readings/csv_reset' method='post' style='margin-top:10px;'>";
+                         html += generateButton(ButtonType::SECONDARY, "🗑️", "Удалить CSV таблицу", "");
+                         html += "</form>";
+                     }
+                     html += "</div>";
+                     
+                     // ======= ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ =======
+                     html += "<div class='section' style='background:#e8f5e8;padding:15px;border-radius:8px;margin:15px 0;'>";
+                     html += "<h4>💡 Полезная информация</h4>";
+                     html += "<ul style='margin:5px 0;padding-left:20px;font-size:14px;'>";
+                     html += "<li><strong>Стрелки ↑↓</strong> показывают направление изменений после компенсации</li>";
+                     html += "<li><strong>Сезонные корректировки</strong> учитывают потребности растений в разные периоды</li>";
+                     html += "<li><strong>Валидность данных</strong> проверяется по диапазонам и логическим связям</li>";
+                     html += "<li><strong>Интервал обновления:</strong> каждые 3 секунды</li>";
+                     html += "</ul>";
+                     html += "</div>";
+
                      html += "<style>";
                      html += ".season-adj { font-size: 0.8em; margin-left: 5px; }";
                      html += ".season-adj.up { color: #2ecc71; }";
                      html += ".season-adj.down { color: #e74c3c; }";
+                     html += ".data{width:100%;border-collapse:collapse}.data th,.data td{border:1px solid #ccc;padding:6px;text-align:center}.data th{background:#f5f5f5}.green{color:#4CAF50}.yellow{color:#FFC107}.orange{color:#FF9800}.red{color:#F44336}";
                      html += "</style>";
+                     
                      html += "<script>";
                      html += "function set(id,v){if(v!==undefined&&v!==null){document.getElementById(id).textContent=v;}}";
                      html += "function colorDelta(a,b){var diff=Math.abs(a-b)/b*100;if(diff>30)return 'red';if(diff>20)return 'orange';if(diff>10)return 'yellow';return '';}";
@@ -423,36 +524,10 @@ void setupDataRoutes()
                      html += "setInterval(updateSensor,3000);";
                      html += "updateSensor();";
                      html += "</script>";
-
-                     // ======= Калибровка =======
-                     bool csvPresent = CalibrationManager::hasTable(SoilProfile::SAND); // custom.csv
-
-                     html += "<div class='section'><h2>⚙️ Калибровка";
-                     if (!config.flags.calibrationEnabled) {
-                         html += " <span style='font-size:14px;color:#9E9E9E'>(выключена)</span>";
-                     } else if (csvPresent) {
-                         html += " <span style='font-size:14px;color:#4CAF50'>(CSV загружен)</span>";
-                     } else {
-                         html += " <span style='font-size:14px;color:#2196F3'>(CSV не загружен)</span>";
-                     }
-                     html += "</h2>";
-                     // ----- Форма загрузки CSV -----
-                     html += "<form action='/readings/upload' method='post' enctype='multipart/form-data' style='margin-top:10px'>";
-                     html += "<div class='section'><h3>Загрузить CSV</h3><input type='file' name='calibration_csv' accept='.csv' required></div>";
-                     html += generateButton(ButtonType::PRIMARY, UI_ICON_UPLOAD, "Загрузить CSV", "");
-                     html += "</form>";
-                     // Кнопка сброса CSV, если файл существует
-                     if(csvPresent){
-                         html += "<form action='/readings/csv_reset' method='post' style='margin-top:10px'>";
-                         html += generateButton(ButtonType::SECONDARY, "🗑️", "Удалить CSV", "");
-                         html += "</form>";
-                     }
-
-                     // CSS для таблицы данных
-                     html += "<style>.data{width:100%;border-collapse:collapse}.data th,.data td{border:1px solid #ccc;padding:6px;text-align:center}.data th{background:#f5f5f5}.green{color:#4CAF50}.yellow{color:#FFC107}.orange{color:#FF9800}.red{color:#F44336}</style>";
-
+                     
                      // API-ссылка внизу страницы
                      html += "<div style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a href='" + String(API_SENSOR) + "' target='_blank'>" + String(API_SENSOR) + "</a> (JSON, +timestamp)</div>";
+                     
                      html += generatePageFooter();
                      webServer.send(200, "text/html; charset=utf-8", html);
                  });
@@ -479,6 +554,55 @@ void setupDataRoutes()
 
     // Форма для сохранения профиля
     webServer.on("/readings/profile", HTTP_POST, [](){}, handleProfileSave);
+
+    // Обслуживание статических файлов из LittleFS
+    webServer.on("/docs/examples/calibration_example.csv", HTTP_GET,
+                 []() {
+                     logWebRequest("GET", "/docs/examples/calibration_example.csv", webServer.client().remoteIP().toString());
+                     
+                     if (LittleFS.exists("/docs/examples/calibration_example.csv")) {
+                         File file = LittleFS.open("/docs/examples/calibration_example.csv", "r");
+                         if (file) {
+                             webServer.sendHeader("Content-Type", "text/csv");
+                             webServer.sendHeader("Content-Disposition", "attachment; filename=\"calibration_example.csv\"");
+                             webServer.streamFile(file, "text/csv");
+                             file.close();
+                         } else {
+                             webServer.send(404, "text/plain", "File not found");
+                         }
+                     } else {
+                         // Если файл не найден, создаем его на лету
+                         webServer.sendHeader("Content-Type", "text/csv");
+                         webServer.sendHeader("Content-Disposition", "attachment; filename=\"calibration_example.csv\"");
+                         String csvContent = "# Пример калибровочной таблицы для JXCT датчика\n";
+                         csvContent += "# Формат: сырое_значение,коэффициент_коррекции\n";
+                         csvContent += "# Коэффициент применяется как: скорректированное_значение = сырое_значение * коэффициент\n\n";
+                         csvContent += "# Электропроводность (µS/cm) - может требовать коррекции\n";
+                         csvContent += "0,1.000\n";
+                         csvContent += "500,0.98\n";
+                         csvContent += "1000,0.95\n";
+                         csvContent += "1500,0.93\n";
+                         csvContent += "2000,0.91\n";
+                         csvContent += "3000,0.89\n";
+                         csvContent += "5000,0.87\n\n";
+                         csvContent += "# pH - может требовать коррекции\n";
+                         csvContent += "3.0,1.000\n";
+                         csvContent += "4.0,1.000\n";
+                         csvContent += "5.0,1.000\n";
+                         csvContent += "6.0,1.000\n";
+                         csvContent += "7.0,1.000\n";
+                         csvContent += "8.0,1.000\n";
+                         csvContent += "9.0,1.000\n\n";
+                         csvContent += "# Азот (мг/кг) - может требовать коррекции\n";
+                         csvContent += "0,1.000\n";
+                         csvContent += "100,0.95\n";
+                         csvContent += "200,0.92\n";
+                         csvContent += "500,0.89\n";
+                         csvContent += "1000,0.87\n";
+                         csvContent += "1500,0.85\n";
+                         webServer.send(200, "text/csv", csvContent);
+                     }
+                 });
 
     // Deprecated alias удалён в v2.7.0
 
