@@ -1,14 +1,11 @@
 var searchData=
 [
-  ['ec_0',['ec',['../struct_sensor_data.html#aa990acd0e7ae2bdc99a54069ffe36e41',1,'SensorData']]],
-  ['ec_5fbuffer_1',['ec_buffer',['../struct_sensor_data.html#a43150919a4c14d363c38a617bb1ff12b',1,'SensorData']]],
-  ['ecconfig_2',['ecConfig',['../struct_home_assistant_config_cache.html#a3621375cd9178b1c9eb9cfa7eda98310',1,'HomeAssistantConfigCache']]],
-  ['error_3',['ERROR',['../jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013abb1ca97ec761fc37101737ba0aa2e7c5',1,'jxct_ui_system.h']]],
-  ['error_5fhandlers_2ecpp_4',['error_handlers.cpp',['../error__handlers_8cpp.html',1,'']]],
-  ['error_5fprint_5',['ERROR_PRINT',['../debug_8h.html#aefd58cef04351b40871f9aa0c84a895a',1,'debug.h']]],
-  ['error_5fprintf_6',['ERROR_PRINTF',['../debug_8h.html#aa7ede35711728c53eb42c1c5c0def9e7',1,'debug.h']]],
-  ['error_5fprintln_7',['ERROR_PRINTLN',['../debug_8h.html#aab934c3f2345fdd7f8ca02ff2c332f60',1,'debug.h']]],
-  ['error_5fstatus_8',['error_status',['../struct_sensor_data.html#ac4ca11b4574092a5d653f9c3a838e218',1,'SensorData']]],
-  ['errors_9',['errors',['../struct_config_validation_result.html#adfe9c7666685cd227d3a2c4d0e10efe1',1,'ConfigValidationResult::errors'],['../struct_sensor_validation_result.html#a41444c647d77a9f5f7b4c7d38e2abb8a',1,'SensorValidationResult::errors']]],
-  ['espclient_10',['espClient',['../mqtt__client_8cpp.html#abd77e757e4b3bb6f1e4b42b21ea9e040',1,'espClient:&#160;mqtt_client.cpp'],['../mqtt__client_8h.html#abd77e757e4b3bb6f1e4b42b21ea9e040',1,'espClient:&#160;mqtt_client.cpp'],['../thingspeak__client_8h.html#abd77e757e4b3bb6f1e4b42b21ea9e040',1,'espClient:&#160;mqtt_client.cpp']]]
+  ['basic_5fsensor_5fadapter_2eh_0',['basic_sensor_adapter.h',['../basic__sensor__adapter_8h.html',1,'']]],
+  ['basicsensoradapter_1',['BasicSensorAdapter',['../class_basic_sensor_adapter.html',1,'BasicSensorAdapter'],['../class_basic_sensor_adapter.html#a773a58c9867d8bb60dbad596505d10ed',1,'BasicSensorAdapter::BasicSensorAdapter(const char *n, InitFn initFn, AcquireFn acquireFn, SensorData *shared)']]],
+  ['begin_2',['begin',['../class_basic_sensor_adapter.html#aae826d03be1e4a98ebefe19e32839636',1,'BasicSensorAdapter::begin()'],['../class_i_sensor.html#ad1404839a8965f45f6c2659dcb4333ba',1,'ISensor::begin()']]],
+  ['boot_5fbutton_3',['BOOT_BUTTON',['../jxct__config__vars_8h.html#ac1268edc13ca85789628d69528560051',1,'jxct_config_vars.h']]],
+  ['buffer_5ffilled_4',['buffer_filled',['../struct_sensor_data.html#acf88a59ba1b4c48bcbe74e853e3ab7e7',1,'SensorData']]],
+  ['buffer_5findex_5',['buffer_index',['../struct_sensor_data.html#a0b41fc80d82705a0a7adc521795623d7',1,'SensorData']]],
+  ['button_5fhold_5ftime_5fms_6',['BUTTON_HOLD_TIME_MS',['../jxct__config__vars_8h.html#a21bfc357c536666cbacb163b043d27ec',1,'jxct_config_vars.h']]],
+  ['buttontype_7',['ButtonType',['../jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943',1,'jxct_ui_system.h']]]
 ];

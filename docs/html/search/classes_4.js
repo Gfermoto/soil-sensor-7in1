@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['validationerror_0',['ValidationError',['../struct_validation_error.html',1,'']]],
-  ['validationresult_1',['ValidationResult',['../struct_validation_result.html',1,'']]]
+  ['homeassistantconfigcache_0',['HomeAssistantConfigCache',['../struct_home_assistant_config_cache.html',1,'']]]
 ];

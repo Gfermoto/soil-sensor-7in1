@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['homeassistantconfigcache_0',['HomeAssistantConfigCache',['../struct_home_assistant_config_cache.html',1,'']]]
+  ['dnscache_0',['DNSCache',['../struct_d_n_s_cache.html',1,'']]]
 ];

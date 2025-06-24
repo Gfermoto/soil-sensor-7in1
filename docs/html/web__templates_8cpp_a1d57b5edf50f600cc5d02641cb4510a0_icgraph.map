@@ -1,5 +1,33 @@
 <map id="generateApModeUnavailablePage" name="generateApModeUnavailablePage">
-<area shape="rect" id="Node000001" title="Генерация страницы &quot;Недоступно в AP режиме&quot;." alt="" coords="189,5,406,32"/>
-<area shape="rect" id="Node000002" href="$error__handlers_8cpp.html#a6d52ae788bd99342b84e28a1af12392b" title="Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP ..." alt="" coords="5,5,141,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,21,141,21,141,16,173,16"/>
+<area shape="rect" id="Node000001" title="Генерация страницы &quot;Недоступно в AP режиме&quot;." alt="" coords="891,107,1109,133"/>
+<area shape="rect" id="Node000002" href="$error__handlers_8cpp.html#a6d52ae788bd99342b84e28a1af12392b" title="Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP ..." alt="" coords="706,5,841,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="958,102,842,46,814,35,816,30,844,42,961,97"/>
+<area shape="rect" id="Node000003" href="$routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c" title="Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)" alt="" coords="707,208,840,235"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="961,143,844,198,816,210,814,205,842,194,958,138"/>
+<area shape="rect" id="Node000011" href="$routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="712,56,835,83"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="922,105,835,86,836,80,923,100"/>
+<area shape="rect" id="Node000012" href="$routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="716,107,832,133"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="876,123,832,123,832,117,876,117"/>
+<area shape="rect" id="Node000013" href="$routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="704,157,843,184"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="923,140,837,159,836,154,922,135"/>
+<area shape="rect" id="Node000004" href="$wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,132,656,159"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="718,204,703,198,624,162,627,157,705,194,720,200"/>
+<area shape="rect" id="Node000005" href="$wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,157,491,184"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="524,160,492,165,491,160,523,155"/>
+<area shape="rect" id="Node000010" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,107,345,133"/>
+<area shape="poly" id="edge12_Node000004_Node000010" title=" " alt="" coords="523,142,345,127,346,122,523,137"/>
+<area shape="rect" id="Node000006" href="$wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,183,193,209"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="378,187,346,192,265,198,193,199,193,194,264,192,345,187,378,182"/>
+<area shape="rect" id="Node000008" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,120,190,147"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="378,165,241,148,190,141,191,136,241,143,378,160"/>
+<area shape="poly" id="edge9_Node000005_Node000010" title=" " alt="" coords="385,154,334,136,336,131,387,149"/>
+<area shape="rect" id="Node000007" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,183,55,209"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="91,199,55,199,55,193,91,193"/>
+<area shape="rect" id="Node000009" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,120,59,147"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="94,136,59,136,59,131,94,131"/>
+<area shape="poly" id="edge10_Node000010_Node000006" title=" " alt="" coords="254,144,178,184,176,180,251,139"/>
+<area shape="poly" id="edge11_Node000010_Node000008" title=" " alt="" coords="226,129,191,132,190,127,225,124"/>
+<area shape="poly" id="edge14_Node000011_Node000004" title=" " alt="" coords="720,91,705,97,627,134,624,129,703,92,718,86"/>
+<area shape="poly" id="edge16_Node000012_Node000004" title=" " alt="" coords="701,133,657,140,656,134,700,128"/>
+<area shape="poly" id="edge18_Node000013_Node000004" title=" " alt="" coords="688,161,656,156,657,151,689,156"/>
 </map>

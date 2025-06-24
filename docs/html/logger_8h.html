@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: Файл include/logger.h</title>
+<title>JXCT Soil Sensor 7-in-1: Файл include/logger.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,11 +18,6 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,22 +27,10 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
    </div>
-   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -64,6 +47,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -130,33 +124,41 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
 <div class="dyncontent">
 <div class="center"><img src="logger_8h__dep__incl.png" border="0" usemap="#ainclude_2logger_8hdep" alt=""/></div>
 <map name="ainclude_2logger_8hdep" id="ainclude_2logger_8hdep">
-<area shape="rect" title="Система логгирования с красивым форматированием" alt="" coords="936,5,1048,32"/>
-<area shape="rect" href="config_8cpp.html" title="Работа с конфигурацией устройства" alt="" coords="5,80,109,107"/>
-<area shape="poly" title=" " alt="" coords="920,25,575,41,350,58,121,83,110,84,109,79,121,77,349,53,575,36,920,19"/>
-<area shape="rect" href="logger_8cpp.html" title="Реализация системы логгирования" alt="" coords="133,80,237,107"/>
-<area shape="poly" title=" " alt="" coords="920,26,627,44,439,61,249,83,238,84,237,79,249,77,438,56,626,39,920,21"/>
-<area shape="rect" href="main_8cpp.html" title="Главный файл проекта JXCT датчика" alt="" coords="261,80,357,107"/>
-<area shape="poly" title=" " alt="" coords="920,27,676,47,523,63,369,83,358,85,357,79,369,77,522,57,675,42,920,22"/>
-<area shape="rect" href="modbus__sensor_8cpp.html" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="381,80,541,107"/>
-<area shape="poly" title=" " alt="" coords="920,32,542,84,541,78,919,27"/>
-<area shape="rect" href="mqtt__client_8cpp.html" title="Взаимодействие с MQTT&#45;брокером и Home Assistant." alt="" coords="566,80,698,107"/>
-<area shape="poly" title=" " alt="" coords="921,37,695,82,694,77,920,32"/>
-<area shape="rect" href="thingspeak__client_8cpp.html" title=" " alt="" coords="722,80,891,107"/>
-<area shape="poly" title=" " alt="" coords="946,40,840,82,838,77,944,35"/>
-<area shape="rect" href="validation__utils_8cpp.html" title="Утилиты валидации для устранения дублирования кода" alt="" coords="914,80,1069,107"/>
-<area shape="poly" title=" " alt="" coords="994,48,994,80,989,80,989,48"/>
-<area shape="rect" href="error__handlers_8cpp.html" title=" " alt="" coords="1093,80,1272,107"/>
-<area shape="poly" title=" " alt="" coords="1040,35,1150,77,1148,82,1038,40"/>
-<area shape="rect" href="routes__config_8cpp.html" title="Маршруты для управления конфигурацией" alt="" coords="1295,80,1470,107"/>
-<area shape="poly" title=" " alt="" coords="1064,31,1314,77,1313,82,1063,36"/>
-<area shape="rect" href="routes__data_8cpp.html" title="Маршруты для работы с данными датчика" alt="" coords="1494,80,1658,107"/>
-<area shape="poly" title=" " alt="" coords="1064,26,1481,77,1493,79,1493,84,1481,83,1063,31"/>
-<area shape="rect" href="routes__main_8cpp.html" title=" " alt="" coords="1681,80,1849,107"/>
-<area shape="poly" title=" " alt="" coords="1064,23,1331,45,1671,77,1681,79,1681,84,1670,83,1330,50,1063,28"/>
-<area shape="rect" href="routes__service_8cpp.html" title="Сервисные маршруты для диагностики и управления" alt="" coords="1873,80,2054,107"/>
-<area shape="poly" title=" " alt="" coords="1063,21,1407,42,1861,77,1873,78,1872,84,1861,83,1407,47,1063,26"/>
-<area shape="rect" href="wifi__manager_8cpp.html" title="Управление WiFi, веб&#45;интерфейсом и индикацией" alt="" coords="2079,80,2224,107"/>
-<area shape="poly" title=" " alt="" coords="1063,19,1488,36,1775,53,2067,77,2079,79,2078,84,2066,83,1775,59,1488,42,1063,25"/>
+<area shape="rect" title="Система логгирования с красивым форматированием" alt="" coords="1320,5,1432,32"/>
+<area shape="rect" href="calibration__manager_8cpp.html" title=" " alt="" coords="5,80,190,107"/>
+<area shape="poly" title=" " alt="" coords="1305,25,841,43,524,60,202,83,190,84,190,78,201,77,524,54,841,37,1305,19"/>
+<area shape="rect" href="config_8cpp.html" title="Работа с конфигурацией устройства" alt="" coords="214,80,317,107"/>
+<area shape="poly" title=" " alt="" coords="1305,24,1132,28,890,38,612,55,330,83,318,84,317,79,329,77,612,50,890,32,1132,22,1305,18"/>
+<area shape="rect" href="logger_8cpp.html" title="Реализация системы логгирования" alt="" coords="342,80,445,107"/>
+<area shape="poly" title=" " alt="" coords="1304,24,941,40,701,58,458,83,446,84,445,79,457,77,700,52,940,35,1304,19"/>
+<area shape="rect" href="main_8cpp.html" title="Главный файл проекта JXCT датчика" alt="" coords="469,80,566,107"/>
+<area shape="poly" title=" " alt="" coords="1305,25,989,42,784,59,578,83,566,84,565,79,577,77,784,54,989,37,1305,20"/>
+<area shape="rect" href="modbus__sensor_8cpp.html" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="589,80,750,107"/>
+<area shape="poly" title=" " alt="" coords="1305,29,1064,51,762,83,751,84,750,79,761,77,1063,46,1304,24"/>
+<area shape="rect" href="mqtt__client_8cpp.html" title="Взаимодействие с MQTT&#45;брокером и Home Assistant." alt="" coords="774,80,906,107"/>
+<area shape="poly" title=" " alt="" coords="1305,31,918,83,907,84,906,79,917,77,1304,26"/>
+<area shape="rect" href="ota__manager_8cpp.html" title=" " alt="" coords="930,80,1073,107"/>
+<area shape="poly" title=" " alt="" coords="1305,36,1068,82,1067,77,1304,31"/>
+<area shape="rect" href="routes__calibration_8cpp.html" title=" " alt="" coords="1098,80,1268,107"/>
+<area shape="poly" title=" " alt="" coords="1329,40,1218,82,1216,77,1327,35"/>
+<area shape="rect" href="thingspeak__client_8cpp.html" title=" " alt="" coords="1292,80,1461,107"/>
+<area shape="poly" title=" " alt="" coords="1379,48,1379,80,1374,80,1374,48"/>
+<area shape="rect" href="validation__utils_8cpp.html" title="Утилиты валидации для устранения дублирования кода" alt="" coords="1484,80,1639,107"/>
+<area shape="poly" title=" " alt="" coords="1423,35,1530,77,1528,82,1421,40"/>
+<area shape="rect" href="error__handlers_8cpp.html" title=" " alt="" coords="1663,80,1841,107"/>
+<area shape="poly" title=" " alt="" coords="1448,31,1687,77,1686,82,1447,36"/>
+<area shape="rect" href="routes__config_8cpp.html" title="Маршруты для управления конфигурацией" alt="" coords="1865,80,2039,107"/>
+<area shape="poly" title=" " alt="" coords="1448,26,1865,78,1864,84,1448,32"/>
+<area shape="rect" href="routes__data_8cpp.html" title="Маршруты для работы с данными датчика" alt="" coords="2063,80,2228,107"/>
+<area shape="poly" title=" " alt="" coords="1448,23,1713,45,2051,77,2063,79,2063,84,2051,83,1713,50,1447,28"/>
+<area shape="rect" href="routes__main_8cpp.html" title=" " alt="" coords="2251,80,2418,107"/>
+<area shape="poly" title=" " alt="" coords="1448,21,1790,41,2240,77,2251,78,2250,84,2240,83,1789,47,1448,26"/>
+<area shape="rect" href="routes__ota_8cpp.html" title=" " alt="" coords="2443,80,2600,107"/>
+<area shape="poly" title=" " alt="" coords="1448,20,1865,38,2146,54,2431,77,2443,79,2442,84,2431,83,2146,60,1865,43,1448,25"/>
+<area shape="rect" href="routes__service_8cpp.html" title="Сервисные маршруты для диагностики и управления" alt="" coords="2624,80,2806,107"/>
+<area shape="poly" title=" " alt="" coords="1448,19,1936,36,2271,54,2612,77,2624,78,2623,84,2612,83,2271,59,1936,42,1448,24"/>
+<area shape="rect" href="wifi__manager_8cpp.html" title="Управление WiFi, веб&#45;интерфейсом и индикацией" alt="" coords="2830,80,2976,107"/>
+<area shape="poly" title=" " alt="" coords="1448,18,1677,21,2015,30,2412,48,2818,77,2830,79,2830,84,2817,83,2412,54,2015,36,1677,27,1448,23"/>
 </map>
 </div>
 </div>
@@ -254,6 +256,8 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Система логгирования с красивым форматированием </p>
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a></p>
 </div><h2 class="groupheader">Макросы</h2>
 <a id="a23c70d699a5a775bc2e1ebeb8603f630" name="a23c70d699a5a775bc2e1ebeb8603f630"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a23c70d699a5a775bc2e1ebeb8603f630">&#9670;&#160;</a></span>COLOR_BLUE</h2>
@@ -266,6 +270,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00040">40</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00095">logInfo()</a>.</p>
 
 </div>
 </div>
@@ -281,6 +289,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00044">44</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00048">logPrintBanner()</a> и <a class="el" href="logger_8cpp_source.html#l00026">logPrintHeader()</a>.</p>
+
 </div>
 </div>
 <a id="a82573859711fce56f1aa0a76b18a9b18" name="a82573859711fce56f1aa0a76b18a9b18"></a>
@@ -294,6 +306,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00042">42</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00048">logPrintBanner()</a>, <a class="el" href="logger_8cpp_source.html#l00145">logSensor()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00525">realSensorTask()</a>, <a class="el" href="main_8cpp_source.html#l00091">setup()</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00080">setupModbus()</a>.</p>
 
 </div>
 </div>
@@ -309,6 +325,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00038">38</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>, <a class="el" href="logger_8cpp_source.html#l00162">logWiFi()</a>, <a class="el" href="main_8cpp_source.html#l00202">loop()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00080">setupModbus()</a> и <a class="el" href="wifi__manager_8cpp_source.html#l00099">setupWiFi()</a>.</p>
+
 </div>
 </div>
 <a id="a8deb0beccea721b35bdb1b4f7264fe75" name="a8deb0beccea721b35bdb1b4f7264fe75"></a>
@@ -322,6 +342,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00041">41</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00112">logDebug()</a> и <a class="el" href="logger_8cpp_source.html#l00179">logMQTT()</a>.</p>
 
 </div>
 </div>
@@ -337,6 +361,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00037">37</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>.</p>
+
 </div>
 </div>
 <a id="a17f760256046df23dd0ab46602f04d02" name="a17f760256046df23dd0ab46602f04d02"></a>
@@ -350,6 +378,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00036">36</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00196">logData()</a>, <a class="el" href="logger_8cpp_source.html#l00112">logDebug()</a>, <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>, <a class="el" href="logger_8cpp_source.html#l00095">logInfo()</a>, <a class="el" href="logger_8cpp_source.html#l00179">logMQTT()</a>, <a class="el" href="logger_8cpp_source.html#l00048">logPrintBanner()</a>, <a class="el" href="logger_8cpp_source.html#l00026">logPrintHeader()</a>, <a class="el" href="logger_8cpp_source.html#l00145">logSensor()</a>, <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>, <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>, <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a> и <a class="el" href="logger_8cpp_source.html#l00162">logWiFi()</a>.</p>
 
 </div>
 </div>
@@ -365,6 +397,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00043">43</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>.</p>
+
 </div>
 </div>
 <a id="a4534b577b74a58b0f4b7be027af664e0" name="a4534b577b74a58b0f4b7be027af664e0"></a>
@@ -378,6 +414,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00039">39</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00196">logData()</a> и <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a>.</p>
 
 </div>
 </div>
@@ -393,6 +433,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00032">32</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00196">logData()</a>.</p>
+
 </div>
 </div>
 <a id="a20a52a9bc99086288ae7984b9a4ebc2b" name="a20a52a9bc99086288ae7984b9a4ebc2b"></a>
@@ -406,6 +450,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00027">27</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00112">logDebug()</a>.</p>
 
 </div>
 </div>
@@ -421,6 +469,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00024">24</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>.</p>
+
 </div>
 </div>
 <a id="a29ad49893877cde0893a8a0fef27fe90" name="a29ad49893877cde0893a8a0fef27fe90"></a>
@@ -434,6 +486,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00026">26</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00095">logInfo()</a>.</p>
 
 </div>
 </div>
@@ -449,6 +505,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00031">31</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00179">logMQTT()</a>.</p>
+
 </div>
 </div>
 <a id="a88747f65ea7adeeda31222acace5fc11" name="a88747f65ea7adeeda31222acace5fc11"></a>
@@ -462,6 +522,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00029">29</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00145">logSensor()</a>.</p>
 
 </div>
 </div>
@@ -477,6 +541,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00028">28</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>.</p>
+
 </div>
 </div>
 <a id="a0c7e0aa41ab5cb38235c908e87aeb5ea" name="a0c7e0aa41ab5cb38235c908e87aeb5ea"></a>
@@ -490,6 +558,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00033">33</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>.</p>
 
 </div>
 </div>
@@ -505,6 +577,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00025">25</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a>.</p>
+
 </div>
 </div>
 <a id="a9b85a144155d4ee001653d25ce7a8ba6" name="a9b85a144155d4ee001653d25ce7a8ba6"></a>
@@ -518,6 +594,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00030">30</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00162">logWiFi()</a>.</p>
 
 </div>
 </div>
@@ -540,6 +620,8 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
 <tr><td class="fieldname"><a id="aca1fd1d8935433e6ba2e3918214e07f9ab9f002c6ffbfd511da8090213227454e" name="aca1fd1d8935433e6ba2e3918214e07f9ab9f002c6ffbfd511da8090213227454e"></a>LOG_DEBUG&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
+<p class="definition">См. определение в файле <a class="el" href="logger_8h_source.html">logger.h</a> строка <a class="el" href="logger_8h_source.html#l00012">12</a></p>
+
 </div>
 </div>
 <h2 class="groupheader">Функции</h2>
@@ -561,6 +643,12 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00196">196</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a>, <a class="el" href="logger_8h_source.html#l00039">COLOR_YELLOW</a>, <a class="el" href="logger_8cpp_source.html#l00011">currentLogLevel</a>, <a class="el" href="logger_8h_source.html#l00016">LOG_INFO</a> и <a class="el" href="logger_8h_source.html#l00032">LOG_SYMBOL_DATA</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00202">loop()</a> и <a class="el" href="thingspeak__client_8cpp_source.html#l00054">sendDataToThingSpeak()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -595,75 +683,99 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00112">112</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00041">COLOR_MAGENTA</a>, <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a>, <a class="el" href="logger_8cpp_source.html#l00011">currentLogLevel</a>, <a class="el" href="logger_8h_source.html#l00017">LOG_DEBUG</a> и <a class="el" href="logger_8h_source.html#l00027">LOG_SYMBOL_DEBUG</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00024">debugPrintBuffer()</a>, <a class="el" href="config_8cpp_source.html#l00039">loadConfig()</a>, <a class="el" href="error__handlers_8cpp_source.html#l00152">logWebRequest()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00284">readSingleRegister()</a>, <a class="el" href="thingspeak__client_8cpp_source.html#l00054">sendDataToThingSpeak()</a>, <a class="el" href="routes__config_8cpp_source.html#l00027">setupConfigRoutes()</a>, <a class="el" href="routes__data_8cpp_source.html#l00274">setupDataRoutes()</a>, <a class="el" href="routes__main_8cpp_source.html#l00007">setupMainRoutes()</a>, <a class="el" href="routes__ota_8cpp_source.html#l00027">setupOtaRoutes()</a>, <a class="el" href="routes__service_8cpp_source.html#l00040">setupServiceRoutes()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00099">setupWiFi()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00231">startSTAMode()</a> и <a class="el" href="error__handlers_8cpp_source.html#l00030">validateConfigInput()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="logger_8h_a1e536b98344ba271bbfc484cca848dbe_icgraph.png" border="0" usemap="#alogger_8h_a1e536b98344ba271bbfc484cca848dbe_icgraph" alt=""/></div>
 <map name="alogger_8h_a1e536b98344ba271bbfc484cca848dbe_icgraph" id="alogger_8h_a1e536b98344ba271bbfc484cca848dbe_icgraph">
-<area shape="rect" title=" " alt="" coords="1194,259,1270,285"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a2f7382dca34cb8bc9e1c80da26865a0a" title=" " alt="" coords="1020,5,1138,32"/>
-<area shape="poly" title=" " alt="" coords="1224,244,1215,203,1200,152,1177,99,1144,53,1119,35,1122,30,1148,49,1181,97,1205,150,1220,201,1229,243"/>
-<area shape="rect" href="config_8cpp.html#ad5ed6ddd9940c0097cc91774056df1c2" title=" " alt="" coords="308,56,392,83"/>
-<area shape="poly" title=" " alt="" coords="1222,244,1213,210,1197,172,1175,134,1144,103,1112,83,1082,71,1054,65,1027,63,967,68,893,72,688,72,392,72,392,67,688,67,892,67,967,62,1027,58,1055,60,1084,66,1114,79,1147,99,1179,131,1202,169,1218,209,1228,243"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="138,145,218,172"/>
-<area shape="poly" title=" " alt="" coords="1210,248,1182,215,1144,185,1079,151,1024,132,967,124,892,123,505,123,425,126,346,134,219,154,219,148,345,129,425,121,505,117,893,117,967,119,1026,127,1081,146,1147,180,1185,211,1214,244"/>
-<area shape="rect" href="error__handlers_8cpp.html#a1a62e7c40bff885d97f6018743bec642" title="Логирование веб&#45;запросов" alt="" coords="1022,259,1136,285"/>
-<area shape="poly" title=" " alt="" coords="1178,275,1136,275,1136,269,1178,269"/>
-<area shape="rect" href="routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c" title="Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)" alt="" coords="824,157,958,184"/>
-<area shape="poly" title=" " alt="" coords="1199,252,1173,235,1145,221,1097,205,1048,193,958,179,959,174,1049,188,1099,200,1147,216,1176,231,1202,247"/>
-<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="830,208,953,235"/>
-<area shape="poly" title=" " alt="" coords="1178,257,1145,249,1044,234,953,227,954,222,1045,229,1146,244,1180,252"/>
-<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="830,309,953,336"/>
-<area shape="poly" title=" " alt="" coords="1213,299,1184,328,1147,350,1118,359,1088,363,1029,362,974,352,929,339,930,334,975,347,1030,356,1088,358,1117,354,1145,346,1181,324,1209,296"/>
-<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="822,360,961,387"/>
-<area shape="poly" title=" " alt="" coords="1217,300,1188,338,1169,355,1147,369,1101,384,1052,391,1004,392,961,388,962,383,1004,387,1051,386,1099,379,1145,364,1166,351,1185,334,1213,297"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="1013,512,1145,539"/>
-<area shape="poly" title=" " alt="" coords="1229,301,1220,343,1205,394,1181,447,1148,495,1122,514,1119,509,1144,491,1177,445,1200,392,1215,341,1224,300"/>
-<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="610,404,770,431"/>
-<area shape="poly" title=" " alt="" coords="1222,301,1194,352,1173,377,1147,397,1098,419,1047,434,994,443,940,447,840,445,757,434,758,429,840,439,940,442,993,438,1046,429,1097,414,1144,392,1169,373,1190,349,1218,299"/>
-<area shape="rect" href="error__handlers_8cpp.html#a15eab9f9a3dc97d41a860ab966800fa6" title="Валидация входных данных конфигурации" alt="" coords="1012,309,1146,336"/>
-<area shape="poly" title=" " alt="" coords="1180,292,1123,311,1121,306,1178,287"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,145,59,172"/>
-<area shape="poly" title=" " alt="" coords="294,85,107,136,60,152,58,147,106,131,293,80"/>
-<area shape="poly" title=" " alt="" coords="310,93,207,147,205,142,308,88"/>
-<area shape="poly" title=" " alt="" coords="122,161,59,161,59,156,122,156"/>
-<area shape="poly" title=" " alt="" coords="1047,251,1008,224,963,198,937,187,939,182,966,194,1011,220,1050,247"/>
-<area shape="poly" title=" " alt="" coords="1011,257,943,238,944,233,1013,252"/>
-<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="824,259,958,285"/>
-<area shape="poly" title=" " alt="" coords="1007,275,958,275,958,269,1007,269"/>
-<area shape="poly" title=" " alt="" coords="1013,292,944,311,943,306,1011,287"/>
-<area shape="poly" title=" " alt="" coords="1021,295,1014,299,1000,312,991,324,981,337,966,350,943,362,941,357,963,346,977,334,986,321,996,308,1011,295,1019,290"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="631,233,748,260"/>
-<area shape="poly" title=" " alt="" coords="836,192,819,198,726,235,724,230,817,194,834,187"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="457,233,555,260"/>
-<area shape="poly" title=" " alt="" coords="615,249,555,249,555,244,615,244"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="298,183,402,209"/>
-<area shape="poly" title=" " alt="" coords="616,234,561,224,402,204,403,198,562,219,617,229"/>
-<area shape="poly" title=" " alt="" coords="441,248,371,240,297,224,243,200,199,175,201,170,245,196,299,219,372,235,442,242"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="307,291,393,317"/>
-<area shape="poly" title=" " alt="" coords="454,268,390,293,388,288,453,263"/>
-<area shape="poly" title=" " alt="" coords="447,231,393,212,394,207,449,225"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="156,321,201,348"/>
-<area shape="poly" title=" " alt="" coords="292,317,202,333,201,328,291,312"/>
-<area shape="poly" title=" " alt="" coords="282,184,218,170,219,165,284,179"/>
-<area shape="poly" title=" " alt="" coords="815,234,749,242,749,237,814,228"/>
-<area shape="poly" title=" " alt="" coords="809,264,748,257,749,251,809,259"/>
-<area shape="poly" title=" " alt="" coords="834,306,817,300,724,263,726,258,819,295,836,301"/>
-<area shape="poly" title=" " alt="" coords="828,356,817,350,751,305,703,263,707,259,755,301,819,346,830,351"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="818,512,964,539"/>
-<area shape="poly" title=" " alt="" coords="998,528,964,528,964,523,998,523"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="820,563,962,589"/>
-<area shape="poly" title=" " alt="" coords="1013,546,944,565,943,559,1011,541"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="632,512,748,539"/>
-<area shape="poly" title=" " alt="" coords="802,528,748,528,748,523,802,523"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="450,480,562,507"/>
-<area shape="poly" title=" " alt="" coords="616,515,562,506,563,500,617,510"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,397,250,424"/>
-<area shape="poly" title=" " alt="" coords="435,478,234,427,235,422,436,473"/>
-<area shape="poly" title=" " alt="" coords="136,390,105,362,75,311,53,257,33,173,38,172,59,255,79,309,109,358,139,387"/>
-<area shape="poly" title=" " alt="" coords="820,561,745,542,746,537,821,556"/>
-<area shape="poly" title=" " alt="" coords="594,405,201,341,202,336,595,399"/>
-<area shape="poly" title=" " alt="" coords="997,325,953,325,953,320,997,320"/>
+<area shape="rect" title=" " alt="" coords="1369,309,1445,336"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a2f7382dca34cb8bc9e1c80da26865a0a" title=" " alt="" coords="1196,5,1313,32"/>
+<area shape="poly" title=" " alt="" coords="1402,294,1397,242,1384,176,1359,107,1341,75,1319,46,1304,35,1307,30,1323,42,1346,72,1364,104,1389,174,1403,241,1408,294"/>
+<area shape="rect" href="config_8cpp.html#ad5ed6ddd9940c0097cc91774056df1c2" title=" " alt="" coords="252,107,335,133"/>
+<area shape="poly" title=" " alt="" coords="1398,295,1388,261,1373,222,1350,185,1319,154,1286,134,1256,121,1227,115,1199,113,1138,118,1061,123,664,123,335,123,335,117,664,117,1061,117,1137,113,1199,108,1228,110,1258,116,1289,129,1323,150,1354,181,1378,220,1393,259,1403,293"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,157,190,184"/>
+<area shape="poly" title=" " alt="" coords="1386,298,1357,264,1320,233,1253,199,1197,181,1137,174,1061,173,464,173,191,173,191,168,464,168,1061,168,1138,169,1198,176,1255,194,1322,228,1361,260,1390,294"/>
+<area shape="rect" href="error__handlers_8cpp.html#a1a62e7c40bff885d97f6018743bec642" title="Логирование веб&#45;запросов" alt="" coords="1198,512,1311,539"/>
+<area shape="poly" title=" " alt="" coords="1390,351,1323,444,1269,513,1265,510,1319,441,1386,347"/>
+<area shape="rect" href="routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c" title="Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)" alt="" coords="796,791,929,817"/>
+<area shape="poly" title=" " alt="" coords="1405,352,1387,456,1369,525,1344,599,1309,673,1265,741,1238,772,1209,799,1177,823,1141,842,1108,853,1074,858,1039,858,1005,854,942,839,893,820,895,815,944,833,1006,849,1039,853,1073,853,1107,848,1139,838,1174,819,1206,795,1235,768,1261,738,1305,670,1339,597,1364,523,1382,455,1400,351"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,275,345,301"/>
+<area shape="poly" title=" " alt="" coords="1375,303,1349,286,1320,272,1250,246,1194,232,1136,225,1061,224,664,224,574,229,485,243,342,277,341,271,484,238,573,224,663,219,1061,219,1136,220,1195,227,1252,241,1322,267,1352,281,1378,298"/>
+<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="793,411,932,437"/>
+<area shape="poly" title=" " alt="" coords="1366,345,1322,361,1227,381,1152,387,1076,390,981,401,923,413,922,408,980,396,1076,385,1152,381,1226,375,1320,356,1364,340"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="801,575,924,601"/>
+<area shape="poly" title=" " alt="" coords="1405,352,1398,395,1383,449,1359,504,1342,530,1323,553,1283,588,1245,613,1207,629,1168,637,1127,639,1083,636,980,623,904,605,905,599,981,617,1083,631,1127,633,1167,632,1205,624,1242,608,1280,584,1319,549,1338,526,1354,501,1378,447,1392,394,1400,351"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="998,259,1122,285"/>
+<area shape="poly" title=" " alt="" coords="1354,308,1320,300,1216,285,1122,277,1122,272,1216,280,1322,295,1355,303"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="1002,309,1118,336"/>
+<area shape="poly" title=" " alt="" coords="1354,343,1321,351,1254,356,1187,351,1118,339,1119,334,1188,345,1254,351,1321,345,1353,338"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="1189,56,1320,83"/>
+<area shape="poly" title=" " alt="" coords="1399,295,1390,253,1375,203,1352,150,1319,103,1294,85,1297,81,1323,99,1357,147,1380,201,1396,252,1404,294"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="585,659,745,685"/>
+<area shape="poly" title=" " alt="" coords="1407,352,1401,454,1387,592,1376,662,1362,725,1345,778,1323,814,1263,870,1201,907,1138,928,1074,933,1007,924,938,904,866,872,792,832,749,798,714,757,687,718,670,687,675,684,692,715,718,754,753,794,794,827,869,867,940,899,1008,919,1074,928,1137,923,1199,902,1260,865,1319,810,1340,775,1357,724,1371,661,1382,591,1396,453,1402,351"/>
+<area shape="rect" href="error__handlers_8cpp.html#a15eab9f9a3dc97d41a860ab966800fa6" title="Валидация входных данных конфигурации" alt="" coords="1188,309,1321,336"/>
+<area shape="poly" title=" " alt="" coords="1354,325,1322,325,1322,320,1354,320"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
+<area shape="poly" title=" " alt="" coords="236,123,59,123,59,117,236,117"/>
+<area shape="poly" title=" " alt="" coords="240,142,191,159,189,154,238,137"/>
+<area shape="poly" title=" " alt="" coords="102,153,58,134,60,129,104,148"/>
+<area shape="rect" href="routes__config_8cpp.html#a08204d6e0087ca3676433990aad58a76" title=" " alt="" coords="983,765,1137,792"/>
+<area shape="poly" title=" " alt="" coords="1239,554,1197,620,1142,698,1078,767,1074,763,1138,694,1193,617,1235,551"/>
+<area shape="poly" title=" " alt="" coords="1254,555,1246,611,1228,681,1213,717,1194,751,1171,781,1141,806,1113,821,1083,831,1051,836,1019,837,959,832,907,821,909,815,959,826,1020,832,1051,830,1082,826,1111,816,1138,802,1167,777,1190,748,1209,714,1223,679,1241,610,1249,554"/>
+<area shape="rect" href="routes__service_8cpp.html#a5440f3fe57b2f75c0268091ff4dcda9a" title=" " alt="" coords="1002,411,1118,437"/>
+<area shape="poly" title=" " alt="" coords="1219,505,1138,458,1098,440,1100,435,1141,454,1221,501"/>
+<area shape="poly" title=" " alt="" coords="1184,510,916,440,918,435,1185,505"/>
+<area shape="rect" href="routes__data_8cpp.html#a7cb04ca38fc8e4b768a2ef6ae67bc573" title=" " alt="" coords="1001,563,1119,589"/>
+<area shape="poly" title=" " alt="" coords="1186,546,1115,565,1113,559,1185,541"/>
+<area shape="poly" title=" " alt="" coords="1229,551,1189,581,1141,604,1083,615,1025,617,969,612,921,605,922,599,970,607,1025,611,1083,610,1139,599,1187,576,1226,547"/>
+<area shape="rect" href="routes__service_8cpp.html#abc1bf10984b7953347571c6edf5af696" title=" " alt="" coords="980,512,1140,539"/>
+<area shape="poly" title=" " alt="" coords="1182,528,1140,528,1140,523,1182,523"/>
+<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="796,651,929,677"/>
+<area shape="poly" title=" " alt="" coords="1232,552,1192,589,1168,608,1141,622,1087,642,1032,655,930,666,929,661,1031,649,1086,637,1139,618,1165,603,1189,585,1229,549"/>
+<area shape="poly" title=" " alt="" coords="1244,498,1231,454,1210,401,1179,346,1160,321,1138,299,1120,288,1123,284,1141,295,1164,318,1183,343,1214,398,1236,452,1249,496"/>
+<area shape="poly" title=" " alt="" coords="1229,502,1138,401,1074,338,1078,334,1142,397,1233,498"/>
+<area shape="poly" title=" " alt="" coords="968,793,930,798,929,793,968,788"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="606,380,724,407"/>
+<area shape="poly" title=" " alt="" coords="842,779,791,691,716,526,669,408,674,406,721,524,795,688,847,776"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="416,351,514,377"/>
+<area shape="poly" title=" " alt="" coords="590,385,514,374,515,369,591,380"/>
+<area shape="poly" title=" " alt="" coords="621,375,536,341,435,315,345,298,346,293,436,310,537,336,623,371"/>
+<area shape="poly" title=" " alt="" coords="401,365,362,360,320,351,278,337,239,315,207,285,182,249,153,186,158,183,187,246,211,281,243,311,280,332,321,346,363,355,401,360"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,376,193,403"/>
+<area shape="poly" title=" " alt="" coords="401,372,194,389,193,383,401,366"/>
+<area shape="poly" title=" " alt="" coords="418,346,324,304,326,299,420,341"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,401,55,428"/>
+<area shape="poly" title=" " alt="" coords="92,404,55,413,54,407,91,399"/>
+<area shape="poly" title=" " alt="" coords="262,266,166,187,170,183,265,262"/>
+<area shape="poly" title=" " alt="" coords="262,313,172,378,169,373,259,308"/>
+<area shape="poly" title=" " alt="" coords="987,427,933,427,933,421,987,421"/>
+<area shape="poly" title=" " alt="" coords="777,413,724,405,724,400,778,408"/>
+<area shape="poly" title=" " alt="" coords="985,583,925,587,925,582,985,578"/>
+<area shape="poly" title=" " alt="" coords="835,565,678,409,682,405,839,562"/>
+<area shape="poly" title=" " alt="" coords="1006,508,979,496,884,440,886,435,982,491,1009,503"/>
+<area shape="poly" title=" " alt="" coords="824,643,791,615,748,559,713,500,669,408,674,406,718,497,753,556,795,612,827,639"/>
+<area shape="poly" title=" " alt="" coords="983,290,892,312,794,341,696,382,694,377,792,336,891,307,982,285"/>
+<area shape="poly" title=" " alt="" coords="987,338,724,386,723,380,986,333"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="987,5,1133,32"/>
+<area shape="poly" title=" " alt="" coords="1185,54,1113,35,1115,30,1186,49"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="989,56,1131,83"/>
+<area shape="poly" title=" " alt="" coords="1173,72,1131,72,1131,67,1173,67"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="805,56,920,83"/>
+<area shape="poly" title=" " alt="" coords="991,39,918,58,917,53,989,34"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="609,56,720,83"/>
+<area shape="poly" title=" " alt="" coords="789,72,721,72,721,67,789,67"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="393,56,537,83"/>
+<area shape="poly" title=" " alt="" coords="594,72,537,72,537,67,594,67"/>
+<area shape="poly" title=" " alt="" coords="378,76,250,86,107,104,60,115,59,110,106,99,249,80,378,71"/>
+<area shape="poly" title=" " alt="" coords="974,72,920,72,920,67,974,67"/>
+<area shape="poly" title=" " alt="" coords="615,655,54,426,56,421,617,650"/>
+<area shape="poly" title=" " alt="" coords="1185,307,1113,289,1115,283,1186,302"/>
 </map>
 </div>
 
@@ -687,57 +799,150 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00061">61</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00037">COLOR_RED</a>, <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a>, <a class="el" href="logger_8cpp_source.html#l00011">currentLogLevel</a>, <a class="el" href="logger_8h_source.html#l00014">LOG_ERROR</a> и <a class="el" href="logger_8h_source.html#l00024">LOG_SYMBOL_ERROR</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00030">_printGuard()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00303">downloadAndUpdate()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00186">downloadData()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00442">finalizeSensorData()</a>, <a class="el" href="routes__calibration_8cpp_source.html#l00082">handleCalibrationUpload()</a>, <a class="el" href="error__handlers_8cpp_source.html#l00188">handleCriticalError()</a>, <a class="el" href="routes__ota_8cpp_source.html#l00342">handleFirmwareUpload()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a>, <a class="el" href="routes__data_8cpp_source.html#l00137">handleReadingsUpload()</a>, <a class="el" href="error__handlers_8cpp_source.html#l00123">handleUploadError()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00129">handleWiFi()</a>, <a class="el" href="calibration__manager_8cpp_source.html#l00014">CalibrationManager::init()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00109">initializeDownload()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00395">logValidationResult()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00547">printModbusError()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00153">readFirmwareVersion()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00284">readSingleRegister()</a>, <a class="el" href="main_8cpp_source.html#l00053">resetButtonTask()</a>, <a class="el" href="calibration__manager_8cpp_source.html#l00035">CalibrationManager::saveCsv()</a>, <a class="el" href="thingspeak__client_8cpp_source.html#l00054">sendDataToThingSpeak()</a>, <a class="el" href="main_8cpp_source.html#l00091">setup()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00231">startSTAMode()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00199">testModbusConnection()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00423">triggerOtaInstall()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="logger_8h_a60baa11f08afed73f5a7bc5d31f698ce_icgraph.png" border="0" usemap="#alogger_8h_a60baa11f08afed73f5a7bc5d31f698ce_icgraph" alt=""/></div>
 <map name="alogger_8h_a60baa11f08afed73f5a7bc5d31f698ce_icgraph" id="alogger_8h_a60baa11f08afed73f5a7bc5d31f698ce_icgraph">
-<area shape="rect" title=" " alt="" coords="1216,279,1282,306"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="629,355,760,382"/>
-<area shape="poly" title=" " alt="" coords="1201,309,1168,317,1057,336,945,351,761,367,761,362,945,345,1056,331,1167,311,1200,304"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,318,59,345"/>
-<area shape="poly" title=" " alt="" coords="1244,264,1239,219,1227,163,1204,107,1187,82,1166,60,1132,35,1100,20,1070,11,1039,8,972,12,889,17,352,17,321,19,291,27,262,39,235,55,185,96,142,145,105,196,76,246,41,319,36,317,72,243,101,194,137,141,181,92,232,51,259,35,289,22,320,14,352,11,889,11,972,7,1039,3,1071,6,1102,15,1135,31,1169,56,1191,78,1208,104,1232,161,1245,218,1249,264"/>
-<area shape="rect" href="error__handlers_8cpp.html#a200ff078a206ee5a0b44bc0c5411f3f5" title="Обработка критических ошибок сервера" alt="" coords="1023,102,1152,129"/>
-<area shape="poly" title=" " alt="" coords="1237,265,1212,203,1192,171,1166,143,1148,131,1151,127,1169,139,1196,167,1217,201,1242,263"/>
-<area shape="rect" href="error__handlers_8cpp.html#a72ddd36cf01d539c0b2575750fa997dc" title="Обработка ошибок загрузки файлов" alt="" coords="1023,153,1152,179"/>
-<area shape="poly" title=" " alt="" coords="1230,267,1203,229,1166,194,1145,182,1148,178,1169,189,1207,226,1235,264"/>
-<area shape="rect" href="validation__utils_8cpp.html#a5b0b5f3adf97cc7910641d046b3e292c" title="Логирование результата валидации конфигурации" alt="" coords="1021,203,1154,230"/>
-<area shape="poly" title=" " alt="" coords="1215,272,1167,244,1138,233,1140,228,1169,240,1217,268"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="1027,254,1148,281"/>
-<area shape="poly" title=" " alt="" coords="1200,288,1148,280,1149,274,1201,283"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8" title=" " alt="" coords="816,305,959,331"/>
-<area shape="poly" title=" " alt="" coords="1200,299,960,316,960,310,1200,293"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="822,254,953,281"/>
-<area shape="poly" title=" " alt="" coords="1243,264,1237,224,1224,176,1201,129,1186,109,1166,92,1126,71,1089,65,1051,73,1009,92,985,108,965,128,932,174,909,220,896,255,891,253,904,218,927,171,961,124,982,104,1006,88,1050,68,1089,60,1127,66,1169,88,1189,105,1206,126,1229,174,1243,222,1248,264"/>
-<area shape="rect" href="main_8cpp.html#a7086f14b298ca33663ff4c10ff47cb4f" title=" " alt="" coords="457,394,574,421"/>
-<area shape="poly" title=" " alt="" coords="1221,318,1196,334,1169,347,1088,372,1004,391,919,403,837,411,687,417,574,414,574,409,687,411,836,406,919,398,1003,385,1086,367,1167,342,1194,329,1218,313"/>
-<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="1007,457,1168,483"/>
-<area shape="poly" title=" " alt="" coords="1241,322,1215,381,1195,412,1169,440,1139,458,1137,454,1166,436,1190,409,1210,378,1236,320"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="1035,507,1140,534"/>
-<area shape="poly" title=" " alt="" coords="1247,322,1239,361,1225,408,1202,456,1169,497,1141,514,1139,509,1166,493,1198,453,1220,406,1234,360,1241,321"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="1010,558,1165,585"/>
-<area shape="poly" title=" " alt="" coords="1249,322,1244,370,1232,431,1208,493,1191,522,1169,548,1153,560,1150,555,1166,544,1187,519,1203,491,1227,429,1239,370,1244,322"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="458,311,573,338"/>
-<area shape="poly" title=" " alt="" coords="622,354,572,341,574,336,623,349"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,314,409,341"/>
-<area shape="poly" title=" " alt="" coords="442,329,410,329,410,324,442,323"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,315,250,342"/>
-<area shape="poly" title=" " alt="" coords="283,331,250,331,250,326,282,325"/>
-<area shape="poly" title=" " alt="" coords="91,333,59,334,59,328,91,328"/>
-<area shape="poly" title=" " alt="" coords="1018,288,944,307,943,302,1016,283"/>
-<area shape="poly" title=" " alt="" coords="1012,270,954,270,954,265,1012,265"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="622,305,768,331"/>
-<area shape="poly" title=" " alt="" coords="820,288,749,307,748,302,818,283"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="624,254,766,281"/>
-<area shape="poly" title=" " alt="" coords="806,270,766,270,766,265,806,265"/>
-<area shape="poly" title=" " alt="" coords="606,324,574,325,574,320,606,319"/>
-<area shape="poly" title=" " alt="" coords="637,289,561,313,559,308,635,283"/>
-<area shape="poly" title=" " alt="" coords="442,404,287,387,196,374,106,357,58,343,60,338,107,351,197,369,287,382,442,399"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="865,457,910,483"/>
-<area shape="poly" title=" " alt="" coords="992,473,911,473,911,467,992,467"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="314,457,394,483"/>
-<area shape="poly" title=" " alt="" coords="1020,519,394,475,395,470,1020,513"/>
-<area shape="poly" title=" " alt="" coords="298,465,205,444,154,426,105,403,69,375,42,347,46,343,73,371,108,398,156,421,207,439,299,460"/>
+<area shape="rect" title=" " alt="" coords="1740,830,1807,857"/>
+<area shape="rect" href="ota__manager_8cpp.html#a72ad34ba3d7f6c942662509e8a11781f" title=" " alt="" coords="1570,331,1659,358"/>
+<area shape="poly" title=" " alt="" coords="1767,815,1758,723,1742,601,1719,482,1706,435,1690,401,1669,378,1644,361,1647,356,1673,374,1695,398,1711,433,1725,481,1748,600,1763,723,1772,814"/>
+<area shape="rect" href="ota__manager_8cpp.html#a8061d13b589bae87956ec09e4ea7fef5" title=" " alt="" coords="1157,310,1237,337"/>
+<area shape="poly" title=" " alt="" coords="1770,815,1767,705,1756,556,1746,481,1733,413,1714,357,1703,337,1690,321,1665,301,1638,285,1609,273,1578,264,1513,256,1447,258,1383,268,1324,282,1232,312,1231,307,1322,277,1382,263,1447,253,1514,251,1579,259,1611,268,1640,280,1668,297,1694,318,1707,334,1719,355,1738,411,1752,480,1762,555,1772,705,1775,815"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,453,59,479"/>
+<area shape="poly" title=" " alt="" coords="1769,815,1762,648,1747,408,1737,288,1724,183,1708,104,1700,78,1690,62,1659,35,1628,18,1597,10,1566,8,1495,16,1409,22,355,22,316,26,280,37,247,55,217,78,189,106,164,138,122,209,88,283,64,354,39,453,33,452,59,352,83,281,117,206,160,135,185,103,213,74,244,51,278,32,315,21,355,17,1409,17,1494,10,1565,3,1598,5,1630,13,1662,30,1694,59,1704,76,1713,103,1729,183,1742,288,1753,408,1767,647,1774,814"/>
+<area shape="rect" href="ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463" title=" " alt="" coords="1337,982,1478,1009"/>
+<area shape="poly" title=" " alt="" coords="1765,873,1739,925,1719,951,1694,972,1641,995,1585,1007,1529,1010,1479,1008,1479,1003,1529,1005,1584,1002,1640,990,1691,968,1715,948,1735,922,1761,870"/>
+<area shape="rect" href="ota__manager_8cpp.html#a2463eda06898e53e0ca3b3a819c995ae" title=" " alt="" coords="1140,931,1254,958"/>
+<area shape="poly" title=" " alt="" coords="1726,862,1693,871,1571,896,1449,917,1254,942,1254,936,1448,911,1570,891,1692,866,1725,857"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="135,1007,222,1034"/>
+<area shape="poly" title=" " alt="" coords="1772,873,1763,942,1747,1029,1725,1108,1711,1139,1694,1159,1664,1174,1623,1183,1571,1188,1511,1189,1372,1181,1220,1164,930,1122,820,1106,751,1099,541,1099,449,1093,360,1077,280,1056,218,1037,220,1032,281,1051,361,1071,450,1087,541,1094,751,1094,820,1100,931,1117,1221,1159,1373,1176,1511,1184,1571,1183,1622,1178,1662,1169,1691,1155,1706,1136,1720,1106,1742,1027,1758,941,1767,872"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="304,945,408,971"/>
+<area shape="poly" title=" " alt="" coords="1775,872,1770,918,1758,974,1748,1002,1734,1029,1716,1053,1694,1074,1673,1086,1654,1092,1619,1092,1582,1082,1537,1074,1463,1064,1407,1050,1351,1036,1278,1023,1126,1004,973,998,748,998,654,995,560,988,408,969,409,963,561,982,654,990,748,993,973,993,1127,998,1279,1018,1352,1031,1408,1045,1464,1058,1537,1069,1583,1077,1620,1086,1654,1087,1671,1081,1691,1069,1712,1050,1730,1027,1743,1000,1753,973,1765,918,1769,872"/>
+<area shape="rect" href="ota__manager_8cpp.html#a6bfd77aa7f122e508ece81a6f6cfbb88" title=" " alt="" coords="1562,1033,1667,1059"/>
+<area shape="poly" title=" " alt="" coords="1768,873,1743,943,1722,982,1694,1016,1666,1034,1663,1030,1691,1012,1718,979,1738,941,1763,871"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="684,209,815,235"/>
+<area shape="poly" title=" " alt="" coords="1770,815,1768,696,1759,532,1749,449,1735,373,1715,312,1704,288,1690,271,1658,243,1627,225,1597,216,1565,214,1495,219,1409,225,1196,225,816,225,816,219,1196,219,1409,219,1495,214,1565,208,1598,211,1629,220,1661,238,1694,267,1708,285,1720,310,1740,372,1754,448,1764,532,1774,696,1775,815"/>
+<area shape="rect" href="routes__calibration_8cpp.html#aed6e69f4d063fc5d8248e2c7a3b9ca0d" title=" " alt="" coords="1327,427,1489,454"/>
+<area shape="poly" title=" " alt="" coords="1767,816,1760,769,1746,711,1724,649,1708,620,1690,593,1666,567,1639,543,1578,505,1517,476,1462,457,1464,452,1519,471,1581,500,1642,539,1670,563,1694,590,1713,617,1729,647,1751,709,1765,768,1772,815"/>
+<area shape="rect" href="error__handlers_8cpp.html#a200ff078a206ee5a0b44bc0c5411f3f5" title="Обработка критических ошибок сервера" alt="" coords="1550,1286,1679,1313"/>
+<area shape="poly" title=" " alt="" coords="1773,873,1765,962,1750,1079,1727,1192,1712,1237,1694,1269,1670,1288,1667,1283,1690,1266,1707,1235,1722,1191,1745,1078,1760,961,1768,872"/>
+<area shape="rect" href="routes__ota_8cpp.html#aa15bea881a160885a361e129a35c07e7" title=" " alt="" coords="1120,881,1274,907"/>
+<area shape="poly" title=" " alt="" coords="1725,850,1275,890,1275,885,1725,845"/>
+<area shape="rect" href="ota__manager_8cpp.html#a3caeaca3fcbd288827f42df9af8b7f08" title=" " alt="" coords="1365,1109,1450,1135"/>
+<area shape="poly" title=" " alt="" coords="1771,872,1760,933,1744,1007,1722,1075,1709,1100,1694,1117,1665,1135,1634,1146,1601,1152,1568,1154,1504,1149,1451,1138,1452,1132,1505,1144,1568,1149,1601,1147,1633,1141,1663,1130,1691,1113,1704,1097,1717,1073,1739,1006,1755,932,1765,871"/>
+<area shape="rect" href="routes__data_8cpp.html#a750e7ca088cd32f9490048becd8d8c70" title=" " alt="" coords="1330,779,1486,806"/>
+<area shape="poly" title=" " alt="" coords="1750,820,1724,796,1691,777,1661,768,1629,763,1564,762,1504,770,1454,781,1453,776,1503,765,1564,757,1629,757,1662,762,1693,772,1727,791,1754,816"/>
+<area shape="rect" href="error__handlers_8cpp.html#a72ddd36cf01d539c0b2575750fa997dc" title="Обработка ошибок загрузки файлов" alt="" coords="1550,1337,1679,1363"/>
+<area shape="poly" title=" " alt="" coords="1774,872,1768,973,1755,1108,1745,1176,1732,1239,1715,1290,1694,1326,1680,1338,1677,1334,1690,1323,1710,1288,1726,1237,1740,1175,1750,1107,1763,972,1769,872"/>
+<area shape="rect" href="namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613" title=" " alt="" coords="1548,603,1681,646"/>
+<area shape="poly" title=" " alt="" coords="1753,818,1690,725,1632,648,1636,645,1694,722,1757,815"/>
+<area shape="rect" href="namespace_calibration_manager.html#ade735ff876ef578fafeb7c46676bcf82" title=" " alt="" coords="1341,361,1474,403"/>
+<area shape="poly" title=" " alt="" coords="1770,815,1768,755,1757,678,1747,636,1733,595,1714,555,1690,520,1668,496,1643,475,1586,440,1528,415,1474,399,1475,393,1529,410,1589,435,1646,470,1672,492,1694,516,1719,553,1738,593,1752,635,1762,677,1773,755,1775,815"/>
+<area shape="rect" href="ota__manager_8cpp.html#a95a87e1e1d6cd503264f609ff0d1834c" title=" " alt="" coords="1552,931,1678,958"/>
+<area shape="poly" title=" " alt="" coords="1750,870,1724,893,1694,915,1657,933,1655,928,1691,910,1721,889,1746,866"/>
+<area shape="rect" href="validation__utils_8cpp.html#a5b0b5f3adf97cc7910641d046b3e292c" title="Логирование результата валидации конфигурации" alt="" coords="1548,1387,1681,1414"/>
+<area shape="poly" title=" " alt="" coords="1774,872,1770,982,1758,1132,1748,1209,1734,1279,1717,1337,1694,1377,1680,1389,1677,1385,1690,1374,1712,1335,1729,1277,1743,1208,1753,1132,1765,981,1769,872"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="1554,107,1675,134"/>
+<area shape="poly" title=" " alt="" coords="1770,815,1769,677,1760,480,1751,379,1736,285,1716,208,1704,178,1690,154,1668,137,1672,133,1694,151,1709,175,1721,206,1742,284,1756,378,1766,480,1774,677,1775,815"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8" title=" " alt="" coords="1336,158,1480,185"/>
+<area shape="poly" title=" " alt="" coords="1768,815,1759,676,1743,481,1720,301,1706,238,1698,217,1690,205,1669,188,1644,175,1589,160,1532,156,1479,160,1479,155,1532,151,1590,154,1646,170,1671,183,1694,202,1703,215,1711,237,1725,300,1748,481,1765,675,1773,815"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="1342,107,1474,134"/>
+<area shape="poly" title=" " alt="" coords="1769,814,1762,653,1748,424,1738,310,1724,210,1709,136,1700,111,1690,97,1662,79,1629,69,1594,66,1559,69,1490,87,1437,109,1435,104,1489,82,1558,64,1594,61,1630,63,1664,74,1694,94,1705,109,1714,134,1730,209,1743,309,1753,424,1768,653,1774,814"/>
+<area shape="rect" href="main_8cpp.html#a7086f14b298ca33663ff4c10ff47cb4f" title=" " alt="" coords="298,737,414,763"/>
+<area shape="poly" title=" " alt="" coords="1725,842,1692,841,1408,842,1198,846,748,846,697,844,644,837,544,816,456,790,391,767,393,762,458,785,545,811,645,832,697,838,748,841,1198,841,1408,837,1692,835,1725,837"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="462,1222,623,1249"/>
+<area shape="poly" title=" " alt="" coords="1773,872,1765,953,1751,1057,1728,1155,1712,1193,1694,1219,1660,1245,1627,1260,1595,1267,1563,1267,1493,1258,1409,1251,970,1251,783,1248,623,1242,623,1237,784,1243,970,1246,1409,1246,1494,1253,1563,1262,1595,1262,1625,1255,1657,1240,1690,1215,1708,1191,1723,1154,1746,1056,1760,953,1768,872"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="1537,1438,1692,1465"/>
+<area shape="poly" title=" " alt="" coords="1775,872,1772,991,1761,1156,1751,1241,1737,1319,1719,1383,1707,1408,1694,1428,1680,1440,1677,1436,1690,1424,1703,1406,1714,1381,1732,1317,1746,1240,1756,1156,1767,991,1769,872"/>
+<area shape="rect" href="ota__manager_8cpp.html#ace424db218f3dfab484ebd7f61d44fcf" title=" " alt="" coords="1362,310,1454,337"/>
+<area shape="poly" title=" " alt="" coords="1555,341,1454,331,1454,325,1555,336"/>
+<area shape="poly" title=" " alt="" coords="1347,326,1237,326,1237,321,1347,321"/>
+<area shape="poly" title=" " alt="" coords="1142,336,969,362,860,372,751,377,355,377,312,379,269,386,185,407,113,433,60,456,58,451,111,428,184,402,268,380,311,374,355,371,751,371,860,367,968,357,1142,331"/>
+<area shape="poly" title=" " alt="" coords="1334,980,1254,961,1255,956,1335,975"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="914,931,1030,958"/>
+<area shape="poly" title=" " alt="" coords="1125,947,1030,947,1030,942,1125,942"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="691,906,808,933"/>
+<area shape="poly" title=" " alt="" coords="898,939,808,929,809,923,899,934"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="494,881,591,907"/>
+<area shape="poly" title=" " alt="" coords="675,913,591,903,592,897,675,908"/>
+<area shape="poly" title=" " alt="" coords="676,929,409,956,408,950,675,924"/>
+<area shape="poly" title=" " alt="" coords="479,898,391,909,344,920,299,935,268,951,239,971,195,1009,192,1005,236,967,265,947,297,930,343,915,390,904,478,893"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="138,843,218,870"/>
+<area shape="poly" title=" " alt="" coords="478,890,219,863,219,858,479,885"/>
+<area shape="poly" title=" " alt="" coords="488,915,398,947,396,942,486,910"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,1134,55,1161"/>
+<area shape="poly" title=" " alt="" coords="152,1046,51,1136,47,1132,149,1042"/>
+<area shape="poly" title=" " alt="" coords="160,831,133,777,104,712,60,578,34,480,39,479,65,576,109,710,137,775,165,829"/>
+<area shape="poly" title=" " alt="" coords="303,980,219,1009,218,1004,301,975"/>
+<area shape="poly" title=" " alt="" coords="316,939,202,873,205,868,319,934"/>
+<area shape="poly" title=" " alt="" coords="1547,1032,1465,1012,1466,1007,1548,1027"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="485,183,600,210"/>
+<area shape="poly" title=" " alt="" coords="668,215,600,206,601,201,669,210"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="300,259,412,286"/>
+<area shape="poly" title=" " alt="" coords="494,219,392,261,390,256,492,214"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,285,250,311"/>
+<area shape="poly" title=" " alt="" coords="285,286,251,290,250,285,284,280"/>
+<area shape="poly" title=" " alt="" coords="147,323,109,357,70,409,43,454,38,451,65,406,105,354,143,319"/>
+<area shape="rect" href="routes__calibration_8cpp.html#a74cbd7893b5cf9b3fa5fd34a4fb985ba" title="Настройка маршрутов калибровки (/calibration)" alt="" coords="671,553,828,579"/>
+<area shape="poly" title=" " alt="" coords="1311,447,1216,455,1116,469,1024,488,934,511,792,555,791,550,933,506,1023,483,1115,463,1216,450,1311,442"/>
+<area shape="poly" title=" " alt="" coords="1120,914,1031,934,1030,929,1119,909"/>
+<area shape="poly" title=" " alt="" coords="1350,1130,1181,1143,973,1150,355,1150,55,1150,55,1145,355,1145,973,1145,1181,1138,1349,1125"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="899,1033,1044,1059"/>
+<area shape="poly" title=" " alt="" coords="1349,1115,1115,1074,1044,1062,1045,1056,1116,1069,1350,1110"/>
+<area shape="rect" href="ota__manager_8cpp.html#aab62f74691b98553d395b694e0807ae4" title=" " alt="" coords="1139,1033,1255,1059"/>
+<area shape="poly" title=" " alt="" coords="1353,1105,1236,1063,1238,1058,1355,1100"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="700,1033,798,1059"/>
+<area shape="poly" title=" " alt="" coords="883,1049,799,1049,799,1043,883,1043"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="311,1007,401,1034"/>
+<area shape="poly" title=" " alt="" coords="684,1045,401,1026,402,1021,685,1039"/>
+<area shape="poly" title=" " alt="" coords="295,1007,248,988,196,962,146,928,124,907,104,884,88,849,73,801,51,680,38,561,32,480,37,480,43,560,57,680,78,799,92,847,109,881,128,903,149,924,198,958,250,984,297,1002"/>
+<area shape="poly" title=" " alt="" coords="1150,1028,1002,961,1005,956,1152,1023"/>
+<area shape="poly" title=" " alt="" coords="1123,1049,1045,1049,1045,1043,1123,1043"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="1135,721,1259,747"/>
+<area shape="poly" title=" " alt="" coords="1342,777,1247,751,1248,745,1343,772"/>
+<area shape="poly" title=" " alt="" coords="1149,756,785,908,783,903,1147,751"/>
+<area shape="poly" title=" " alt="" coords="1586,593,1529,517,1487,468,1466,457,1469,452,1491,464,1533,514,1591,589"/>
+<area shape="poly" title=" " alt="" coords="1532,628,1242,622,1059,612,876,594,809,583,810,577,876,589,1060,606,1242,616,1532,622"/>
+<area shape="poly" title=" " alt="" coords="1590,660,1538,723,1512,751,1490,770,1468,781,1465,776,1488,765,1508,747,1534,719,1585,657"/>
+<area shape="poly" title=" " alt="" coords="1534,648,1252,723,1251,718,1532,643"/>
+<area shape="rect" href="namespace_calibration_manager.html#a14e21e7fb1aa46aa781c20ee07271d12" title=" " alt="" coords="1341,713,1474,755"/>
+<area shape="poly" title=" " alt="" coords="1563,657,1490,696,1455,715,1452,710,1488,692,1560,652"/>
+<area shape="rect" href="namespace_calibration_manager.html#a1ee0f1f244cb68eaa7e47a79deb452b6" title=" " alt="" coords="1341,545,1474,587"/>
+<area shape="poly" title=" " alt="" coords="1532,604,1474,588,1476,582,1534,599"/>
+<area shape="rect" href="namespace_calibration_manager.html#a15db87f3fcb09c7f4c5abc69009cef89" title=" " alt="" coords="1341,478,1474,521"/>
+<area shape="poly" title=" " alt="" coords="1575,596,1534,565,1488,535,1465,524,1467,519,1490,530,1537,560,1578,591"/>
+<area shape="poly" title=" " alt="" coords="1598,590,1581,551,1556,505,1525,458,1487,417,1471,406,1474,402,1491,413,1529,455,1561,502,1586,548,1603,588"/>
+<area shape="poly" title=" " alt="" coords="1326,737,1259,737,1259,731,1326,731"/>
+<area shape="poly" title=" " alt="" coords="1369,599,1217,722,1214,718,1366,595"/>
+<area shape="rect" href="namespace_calibration_manager.html#abb872938a17efb733eaf531bb5c0a1dc" title=" " alt="" coords="1130,478,1264,521"/>
+<area shape="poly" title=" " alt="" coords="1326,543,1263,523,1265,518,1327,538"/>
+<area shape="rect" href="routes__calibration_8cpp.html#af44b5a1840fa2c2199b0a9fab38a629f" title=" " alt="" coords="1115,553,1279,579"/>
+<area shape="poly" title=" " alt="" coords="1326,569,1279,569,1279,563,1326,563"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4cff8e34908a2deb0691e3809224685a" title=" " alt="" coords="876,293,1067,319"/>
+<area shape="poly" title=" " alt="" coords="1158,470,987,322,991,318,1161,466"/>
+<area shape="poly" title=" " alt="" coords="919,289,786,238,788,233,921,284"/>
+<area shape="rect" href="routes__calibration_8cpp.html#a40c5c8aef0a9770a13455e9868b1eda2" title=" " alt="" coords="896,553,1047,579"/>
+<area shape="poly" title=" " alt="" coords="1100,569,1048,569,1048,563,1100,563"/>
+<area shape="poly" title=" " alt="" coords="880,569,828,569,828,563,880,563"/>
+<area shape="poly" title=" " alt="" coords="1325,502,1264,502,1264,497,1325,497"/>
+<area shape="poly" title=" " alt="" coords="1543,965,1466,984,1465,979,1542,960"/>
+<area shape="poly" title=" " alt="" coords="1543,141,1466,160,1465,155,1542,136"/>
+<area shape="poly" title=" " alt="" coords="1539,123,1474,123,1474,118,1539,118"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="676,158,822,185"/>
+<area shape="poly" title=" " alt="" coords="1327,130,823,168,823,163,1327,124"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="901,107,1042,134"/>
+<area shape="poly" title=" " alt="" coords="1326,123,1043,123,1043,118,1326,118"/>
+<area shape="poly" title=" " alt="" coords="662,185,601,192,600,187,661,180"/>
+<area shape="poly" title=" " alt="" coords="885,124,782,131,671,149,618,166,573,185,571,180,616,161,670,143,782,125,885,119"/>
+<area shape="poly" title=" " alt="" coords="326,728,47,482,51,478,330,724"/>
+<area shape="poly" title=" " alt="" coords="447,1226,287,1202,106,1169,54,1156,56,1151,107,1163,288,1196,447,1220"/>
 </map>
 </div>
 
@@ -761,46 +966,85 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00095">95</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00040">COLOR_BLUE</a>, <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a>, <a class="el" href="logger_8cpp_source.html#l00011">currentLogLevel</a>, <a class="el" href="logger_8h_source.html#l00016">LOG_INFO</a> и <a class="el" href="logger_8h_source.html#l00026">LOG_SYMBOL_INFO</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="calibration__manager_8cpp_source.html#l00058">CalibrationManager::loadTable()</a>, <a class="el" href="error__handlers_8cpp_source.html#l00152">logWebRequest()</a>, <a class="el" href="routes__calibration_8cpp_source.html#l00126">setupCalibrationRoutes()</a>, <a class="el" href="routes__main_8cpp_source.html#l00007">setupMainRoutes()</a> и <a class="el" href="wifi__manager_8cpp_source.html#l00368">setupWebServer()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="logger_8h_ab9b4ed01ba7a88bb5e22d1c84e0f0abf_icgraph.png" border="0" usemap="#alogger_8h_ab9b4ed01ba7a88bb5e22d1c84e0f0abf_icgraph" alt=""/></div>
 <map name="alogger_8h_ab9b4ed01ba7a88bb5e22d1c84e0f0abf_icgraph" id="alogger_8h_ab9b4ed01ba7a88bb5e22d1c84e0f0abf_icgraph">
-<area shape="rect" title=" " alt="" coords="1047,208,1107,235"/>
-<area shape="rect" href="error__handlers_8cpp.html#a1a62e7c40bff885d97f6018743bec642" title="Логирование веб&#45;запросов" alt="" coords="885,132,999,159"/>
-<area shape="poly" title=" " alt="" coords="1037,202,966,161,969,157,1039,197"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,132,650,159"/>
-<area shape="poly" title=" " alt="" coords="1033,239,966,256,881,269,834,272,788,270,741,263,697,249,665,231,637,207,600,161,604,158,641,203,668,227,699,244,743,258,788,265,834,267,880,264,965,251,1031,234"/>
-<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="706,208,829,235"/>
-<area shape="poly" title=" " alt="" coords="1031,224,830,224,830,219,1031,219"/>
-<area shape="rect" href="routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c" title="Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)" alt="" coords="701,5,834,32"/>
-<area shape="poly" title=" " alt="" coords="919,122,882,83,836,46,814,35,816,30,839,42,886,80,922,118"/>
-<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="706,56,829,83"/>
-<area shape="poly" title=" " alt="" coords="900,127,836,97,808,86,810,81,838,92,902,122"/>
-<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="701,107,834,133"/>
-<area shape="poly" title=" " alt="" coords="869,138,834,132,835,127,870,132"/>
-<area shape="poly" title=" " alt="" coords="902,169,838,198,810,210,808,205,836,194,900,164"/>
-<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="698,157,837,184"/>
-<area shape="poly" title=" " alt="" coords="870,158,838,163,837,158,870,153"/>
-<area shape="poly" title=" " alt="" coords="708,41,699,46,671,67,645,91,606,133,602,130,641,87,668,63,697,42,706,37"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,107,485,133"/>
-<area shape="poly" title=" " alt="" coords="517,136,485,131,486,125,518,131"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,157,339,184"/>
-<area shape="poly" title=" " alt="" coords="517,154,340,169,339,164,517,149"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,56,330,83"/>
-<area shape="poly" title=" " alt="" coords="379,104,328,86,330,81,381,98"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,132,187,159"/>
-<area shape="poly" title=" " alt="" coords="372,128,188,145,187,139,371,123"/>
-<area shape="poly" title=" " alt="" coords="381,142,330,159,328,154,379,136"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,56,170,83"/>
-<area shape="poly" title=" " alt="" coords="228,72,170,72,170,67,228,67"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,132,59,159"/>
-<area shape="poly" title=" " alt="" coords="91,148,59,148,59,143,91,143"/>
-<area shape="poly" title=" " alt="" coords="219,161,187,155,188,150,220,156"/>
-<area shape="poly" title=" " alt="" coords="714,91,699,97,621,134,618,129,697,92,712,86"/>
-<area shape="poly" title=" " alt="" coords="686,134,651,140,650,134,685,129"/>
-<area shape="poly" title=" " alt="" coords="712,204,697,198,618,162,621,157,699,194,714,200"/>
-<area shape="poly" title=" " alt="" coords="682,161,650,156,651,151,683,156"/>
+<area shape="rect" title=" " alt="" coords="1452,419,1512,445"/>
+<area shape="rect" href="namespace_calibration_manager.html#a15db87f3fcb09c7f4c5abc69009cef89" title=" " alt="" coords="1259,469,1392,512"/>
+<area shape="poly" title=" " alt="" coords="1438,451,1385,471,1383,466,1436,446"/>
+<area shape="rect" href="error__handlers_8cpp.html#a1a62e7c40bff885d97f6018743bec642" title="Логирование веб&#45;запросов" alt="" coords="1269,292,1382,319"/>
+<area shape="poly" title=" " alt="" coords="1451,411,1342,321,1345,317,1454,407"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="628,267,745,293"/>
+<area shape="poly" title=" " alt="" coords="1469,405,1437,327,1412,278,1381,225,1345,173,1302,125,1253,83,1197,50,1140,27,1088,14,1039,8,993,12,948,23,902,42,854,70,802,105,780,122,761,143,730,189,708,234,695,267,690,265,703,231,725,186,757,140,777,119,798,100,851,65,900,38,946,18,993,6,1039,3,1089,8,1142,22,1200,45,1256,78,1306,121,1349,170,1386,223,1417,275,1442,325,1474,403"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="1057,495,1181,521"/>
+<area shape="poly" title=" " alt="" coords="1437,436,1348,442,1247,460,1155,496,1153,491,1246,455,1348,437,1436,430"/>
+<area shape="rect" href="routes__calibration_8cpp.html#a74cbd7893b5cf9b3fa5fd34a4fb985ba" title="Настройка маршрутов калибровки (/calibration)" alt="" coords="1247,536,1404,563"/>
+<area shape="poly" title=" " alt="" coords="1467,460,1440,494,1406,526,1383,538,1381,533,1402,522,1437,491,1462,457"/>
+<area shape="rect" href="namespace_calibration_manager.html#abb872938a17efb733eaf531bb5c0a1dc" title=" " alt="" coords="1052,545,1186,588"/>
+<area shape="poly" title=" " alt="" coords="1252,520,1180,547,1178,542,1250,515"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4cff8e34908a2deb0691e3809224685a" title=" " alt="" coords="800,539,991,565"/>
+<area shape="poly" title=" " alt="" coords="1037,564,992,561,992,555,1037,558"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="621,504,752,531"/>
+<area shape="poly" title=" " alt="" coords="796,538,752,531,753,525,797,533"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="457,432,573,459"/>
+<area shape="poly" title=" " alt="" coords="638,500,548,461,550,457,640,495"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,396,409,423"/>
+<area shape="poly" title=" " alt="" coords="442,432,409,424,410,419,443,426"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,377,250,404"/>
+<area shape="poly" title=" " alt="" coords="282,404,250,401,251,396,283,399"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,331,59,357"/>
+<area shape="poly" title=" " alt="" coords="119,375,58,355,60,350,121,369"/>
+<area shape="rect" href="routes__config_8cpp.html#a08204d6e0087ca3676433990aad58a76" title=" " alt="" coords="1042,343,1196,369"/>
+<area shape="poly" title=" " alt="" coords="1254,325,1177,345,1176,339,1253,320"/>
+<area shape="rect" href="routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c" title="Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)" alt="" coords="829,292,962,319"/>
+<area shape="poly" title=" " alt="" coords="1253,308,963,308,963,303,1253,303"/>
+<area shape="rect" href="routes__service_8cpp.html#a5440f3fe57b2f75c0268091ff4dcda9a" title=" " alt="" coords="1061,140,1177,167"/>
+<area shape="poly" title=" " alt="" coords="1301,282,1256,235,1197,187,1162,170,1164,165,1200,183,1259,231,1305,278"/>
+<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="826,115,965,141"/>
+<area shape="poly" title=" " alt="" coords="1316,278,1302,232,1279,176,1245,122,1223,98,1197,79,1162,65,1124,59,1085,60,1046,67,975,91,922,116,920,111,973,86,1045,62,1084,55,1124,53,1163,59,1200,75,1226,94,1249,118,1284,174,1307,230,1321,277"/>
+<area shape="rect" href="routes__data_8cpp.html#a7cb04ca38fc8e4b768a2ef6ae67bc573" title=" " alt="" coords="1060,393,1178,420"/>
+<area shape="poly" title=" " alt="" coords="1293,330,1250,357,1200,384,1170,395,1169,390,1198,379,1247,353,1290,325"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="834,393,957,420"/>
+<area shape="poly" title=" " alt="" coords="1310,333,1265,388,1235,414,1200,434,1165,445,1128,451,1055,450,987,438,934,423,935,418,989,433,1055,445,1128,446,1164,440,1198,429,1232,410,1262,384,1305,330"/>
+<area shape="rect" href="routes__service_8cpp.html#abc1bf10984b7953347571c6edf5af696" title=" " alt="" coords="1039,89,1199,116"/>
+<area shape="poly" title=" " alt="" coords="1309,279,1291,245,1266,205,1235,164,1197,130,1177,119,1179,114,1200,126,1239,161,1271,202,1296,242,1314,276"/>
+<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="829,191,962,217"/>
+<area shape="poly" title=" " alt="" coords="1277,288,1198,261,1073,233,962,215,963,210,1074,228,1199,256,1279,283"/>
+<area shape="poly" title=" " alt="" coords="1307,333,1200,478,1168,496,1165,492,1197,474,1303,330"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="838,241,954,268"/>
+<area shape="poly" title=" " alt="" coords="1253,297,1198,289,954,263,955,257,1199,284,1254,292"/>
+<area shape="poly" title=" " alt="" coords="1041,341,957,322,958,317,1042,336"/>
+<area shape="poly" title=" " alt="" coords="813,298,745,290,746,284,814,293"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="466,267,564,293"/>
+<area shape="poly" title=" " alt="" coords="612,283,564,283,564,277,612,277"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="302,317,406,344"/>
+<area shape="poly" title=" " alt="" coords="615,300,573,308,407,329,406,323,572,303,614,294"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="135,255,222,281"/>
+<area shape="poly" title=" " alt="" coords="451,269,409,264,309,261,222,266,222,261,309,256,410,259,451,264"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="138,317,218,344"/>
+<area shape="poly" title=" " alt="" coords="451,288,298,308,219,324,218,319,298,303,450,283"/>
+<area shape="poly" title=" " alt="" coords="456,301,399,319,398,314,454,296"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,255,55,281"/>
+<area shape="poly" title=" " alt="" coords="119,271,55,271,55,265,119,265"/>
+<area shape="poly" title=" " alt="" coords="123,338,59,344,59,339,123,333"/>
+<area shape="poly" title=" " alt="" coords="299,314,217,284,219,279,301,309"/>
+<area shape="poly" title=" " alt="" coords="286,333,219,333,219,328,286,328"/>
+<area shape="poly" title=" " alt="" coords="1045,148,966,138,966,133,1046,142"/>
+<area shape="poly" title=" " alt="" coords="852,151,802,181,745,227,703,268,699,264,742,223,798,176,849,146"/>
+<area shape="poly" title=" " alt="" coords="1044,409,958,409,958,404,1044,404"/>
+<area shape="poly" title=" " alt="" coords="858,387,709,296,712,291,860,383"/>
+<area shape="poly" title=" " alt="" coords="1025,116,966,123,965,117,1024,111"/>
+<area shape="poly" title=" " alt="" coords="823,224,801,232,716,268,714,263,799,227,821,219"/>
+<area shape="poly" title=" " alt="" coords="1042,507,985,500,922,486,858,465,799,434,760,401,730,362,706,324,691,295,696,293,711,322,734,359,764,397,801,430,860,460,924,481,986,494,1043,502"/>
+<area shape="poly" title=" " alt="" coords="822,266,746,275,745,270,822,261"/>
 </map>
 </div>
 
@@ -820,6 +1064,12 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00236">236</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00202">loop()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -861,6 +1111,12 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00179">179</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00041">COLOR_MAGENTA</a>, <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a>, <a class="el" href="logger_8cpp_source.html#l00011">currentLogLevel</a>, <a class="el" href="logger_8h_source.html#l00016">LOG_INFO</a> и <a class="el" href="logger_8h_source.html#l00031">LOG_SYMBOL_MQTT</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00311">handleMQTT()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -890,6 +1146,12 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00048">48</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00044">COLOR_BOLD</a>, <a class="el" href="logger_8h_source.html#l00042">COLOR_CYAN</a>, <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a> и <a class="el" href="logger_8cpp_source.html#l00038">logPrintSeparator()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00091">setup()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -931,6 +1193,12 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00026">26</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00044">COLOR_BOLD</a>, <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a> и <a class="el" href="logger_8cpp_source.html#l00038">logPrintSeparator()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00202">loop()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00525">realSensorTask()</a>, <a class="el" href="main_8cpp_source.html#l00091">setup()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00080">setupModbus()</a> и <a class="el" href="wifi__manager_8cpp_source.html#l00099">setupWiFi()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -946,22 +1214,23 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
 <div class="dyncontent">
 <div class="center"><img src="logger_8h_a573f0d6e1b4dff871cf401471622a3d4_icgraph.png" border="0" usemap="#alogger_8h_a573f0d6e1b4dff871cf401471622a3d4_icgraph" alt=""/></div>
 <map name="alogger_8h_a573f0d6e1b4dff871cf401471622a3d4_icgraph" id="alogger_8h_a573f0d6e1b4dff871cf401471622a3d4_icgraph">
-<area shape="rect" title=" " alt="" coords="457,107,565,133"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="331,5,376,32"/>
-<area shape="poly" title=" " alt="" coords="481,99,408,46,375,30,378,25,411,42,484,94"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,56,409,83"/>
-<area shape="poly" title=" " alt="" coords="452,104,397,86,398,81,454,99"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,132,59,159"/>
-<area shape="poly" title=" " alt="" coords="442,126,59,147,59,141,442,121"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="129,157,228,184"/>
-<area shape="poly" title=" " alt="" coords="443,136,410,141,229,167,228,162,409,136,442,130"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="138,208,218,235"/>
-<area shape="poly" title=" " alt="" coords="464,142,410,163,308,193,220,215,218,210,306,188,408,157,462,137"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,56,250,83"/>
-<area shape="poly" title=" " alt="" coords="283,72,250,72,250,67,283,67"/>
-<area shape="poly" title=" " alt="" coords="132,92,108,104,56,134,53,129,105,99,130,87"/>
-<area shape="poly" title=" " alt="" coords="113,162,59,153,60,147,114,157"/>
-<area shape="poly" title=" " alt="" coords="122,206,105,198,49,161,52,157,108,194,124,201"/>
+<area shape="rect" title=" " alt="" coords="475,107,583,133"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="349,5,394,32"/>
+<area shape="poly" title=" " alt="" coords="499,99,426,46,393,30,396,25,429,42,502,94"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="316,56,427,83"/>
+<area shape="poly" title=" " alt="" coords="470,104,415,86,416,81,472,99"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
+<area shape="poly" title=" " alt="" coords="459,123,59,123,59,117,459,117"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="322,161,421,188"/>
+<area shape="poly" title=" " alt="" coords="475,141,413,163,411,158,473,136"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="147,224,228,251"/>
+<area shape="poly" title=" " alt="" coords="506,146,471,176,428,202,376,220,322,232,228,240,228,235,321,226,375,215,426,198,468,172,503,142"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="116,56,259,83"/>
+<area shape="poly" title=" " alt="" coords="300,72,260,72,260,67,300,67"/>
+<area shape="poly" title=" " alt="" coords="130,91,60,114,58,109,128,86"/>
+<area shape="rect" href="class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084" title=" " alt="" coords="107,157,268,200"/>
+<area shape="poly" title=" " alt="" coords="307,179,268,180,268,174,306,173"/>
+<area shape="poly" title=" " alt="" coords="131,227,105,214,83,196,65,174,39,135,43,133,69,171,87,192,108,210,134,223"/>
 </map>
 </div>
 
@@ -985,35 +1254,40 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00038">38</a></p>
+
+<p class="reference">Используется в <a class="el" href="logger_8cpp_source.html#l00048">logPrintBanner()</a>, <a class="el" href="logger_8cpp_source.html#l00026">logPrintHeader()</a>, <a class="el" href="main_8cpp_source.html#l00202">loop()</a>, <a class="el" href="main_8cpp_source.html#l00091">setup()</a> и <a class="el" href="wifi__manager_8cpp_source.html#l00099">setupWiFi()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="logger_8h_af0851b3565de2c7c6a23b5d3d30a8fcd_icgraph.png" border="0" usemap="#alogger_8h_af0851b3565de2c7c6a23b5d3d30a8fcd_icgraph" alt=""/></div>
 <map name="alogger_8h_af0851b3565de2c7c6a23b5d3d30a8fcd_icgraph" id="alogger_8h_af0851b3565de2c7c6a23b5d3d30a8fcd_icgraph">
-<area shape="rect" title=" " alt="" coords="613,107,734,133"/>
-<area shape="rect" href="logger_8cpp.html#aef367594259e15c9df8b0caf3dfddba8" title=" " alt="" coords="125,5,232,32"/>
-<area shape="poly" title=" " alt="" coords="643,99,607,74,564,53,475,31,384,20,300,16,232,18,232,12,300,11,384,14,476,26,566,48,609,69,646,95"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,183,59,209"/>
-<area shape="poly" title=" " alt="" coords="597,107,533,97,458,90,378,89,298,97,229,115,163,139,60,185,58,180,161,134,228,110,298,92,377,84,458,84,533,92,598,101"/>
-<area shape="rect" href="logger_8cpp.html#a372ab412c03841f6fe08c751c5d44cba" title=" " alt="" coords="457,183,565,209"/>
-<area shape="poly" title=" " alt="" coords="630,143,543,185,540,180,628,138"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="331,107,376,133"/>
-<area shape="poly" title=" " alt="" coords="597,123,377,123,377,117,597,117"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="314,309,394,336"/>
-<area shape="poly" title=" " alt="" coords="652,147,613,185,566,224,521,251,475,276,393,311,391,306,472,271,519,247,563,219,610,181,648,143"/>
-<area shape="poly" title=" " alt="" coords="123,42,109,53,82,85,62,121,39,183,34,181,57,119,78,82,105,49,119,38"/>
-<area shape="poly" title=" " alt="" coords="442,199,59,199,59,193,442,193"/>
-<area shape="poly" title=" " alt="" coords="466,178,376,133,378,128,469,173"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,208,409,235"/>
-<area shape="poly" title=" " alt="" coords="442,210,410,215,409,210,441,204"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="129,259,228,285"/>
-<area shape="poly" title=" " alt="" coords="476,220,445,236,410,249,363,261,314,268,229,274,228,269,314,263,362,255,409,244,442,231,473,215"/>
-<area shape="poly" title=" " alt="" coords="488,223,453,257,411,293,383,311,380,307,408,289,450,253,485,219"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,208,250,235"/>
-<area shape="poly" title=" " alt="" coords="283,224,250,224,250,219,283,219"/>
-<area shape="poly" title=" " alt="" coords="91,209,59,203,60,198,92,204"/>
-<area shape="poly" title=" " alt="" coords="118,255,105,249,49,212,52,208,108,244,120,250"/>
-<area shape="poly" title=" " alt="" coords="298,332,254,333,204,330,153,320,105,300,81,280,61,256,36,211,41,208,65,253,84,276,108,295,155,315,205,325,254,328,298,327"/>
+<area shape="rect" title=" " alt="" coords="631,116,752,142"/>
+<area shape="rect" href="logger_8cpp.html#aef367594259e15c9df8b0caf3dfddba8" title=" " alt="" coords="476,14,582,41"/>
+<area shape="poly" title=" " alt="" coords="654,109,581,62,552,44,555,39,584,57,657,104"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,166,59,193"/>
+<area shape="poly" title=" " alt="" coords="615,117,582,113,449,99,391,99,316,106,242,120,170,138,60,173,58,168,169,133,241,114,316,101,391,94,449,94,583,108,615,112"/>
+<area shape="rect" href="logger_8cpp.html#a372ab412c03841f6fe08c751c5d44cba" title=" " alt="" coords="475,192,583,218"/>
+<area shape="poly" title=" " alt="" coords="648,152,561,194,558,189,646,147"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="349,116,394,142"/>
+<area shape="poly" title=" " alt="" coords="615,132,395,132,395,126,615,126"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="332,318,412,345"/>
+<area shape="poly" title=" " alt="" coords="670,156,631,194,584,232,543,258,508,275,428,309,404,320,402,315,426,304,506,270,540,254,581,228,628,190,666,152"/>
+<area shape="poly" title=" " alt="" coords="460,18,383,10,291,10,244,15,196,25,151,41,108,62,82,85,62,114,40,167,35,165,58,111,78,81,105,57,149,36,195,20,243,10,291,5,383,5,460,12"/>
+<area shape="poly" title=" " alt="" coords="459,204,59,184,59,178,460,199"/>
+<area shape="poly" title=" " alt="" coords="484,187,394,142,396,137,487,182"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="316,217,427,244"/>
+<area shape="poly" title=" " alt="" coords="460,219,428,224,427,219,459,213"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="322,268,421,294"/>
+<area shape="poly" title=" " alt="" coords="489,228,429,258,404,270,402,265,426,253,486,223"/>
+<area shape="poly" title=" " alt="" coords="509,232,474,270,429,309,409,320,406,316,426,304,470,267,505,229"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="116,217,259,244"/>
+<area shape="poly" title=" " alt="" coords="300,233,260,233,260,228,300,228"/>
+<area shape="poly" title=" " alt="" coords="128,214,58,191,60,186,130,209"/>
+<area shape="rect" href="class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084" title=" " alt="" coords="107,268,268,310"/>
+<area shape="poly" title=" " alt="" coords="307,286,268,288,268,283,306,281"/>
+<area shape="poly" title=" " alt="" coords="317,347,269,354,214,355,157,347,130,338,105,325,89,311,74,295,53,259,40,223,33,194,38,193,45,221,58,257,79,292,92,308,108,320,132,333,159,342,214,350,268,349,316,342"/>
 </map>
 </div>
 
@@ -1037,6 +1311,12 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00145">145</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00042">COLOR_CYAN</a>, <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a>, <a class="el" href="logger_8cpp_source.html#l00011">currentLogLevel</a>, <a class="el" href="logger_8h_source.html#l00016">LOG_INFO</a> и <a class="el" href="logger_8h_source.html#l00029">LOG_SYMBOL_SENSOR</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00153">readFirmwareVersion()</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00478">readSensorData()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -1076,99 +1356,152 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00129">129</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00038">COLOR_GREEN</a>, <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a> и <a class="el" href="logger_8h_source.html#l00028">LOG_SYMBOL_SUCCESS</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00442">finalizeSensorData()</a>, <a class="el" href="routes__calibration_8cpp_source.html#l00082">handleCalibrationUpload()</a>, <a class="el" href="routes__ota_8cpp_source.html#l00342">handleFirmwareUpload()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00311">handleMQTT()</a>, <a class="el" href="routes__data_8cpp_source.html#l00169">handleProfileSave()</a>, <a class="el" href="routes__data_8cpp_source.html#l00137">handleReadingsUpload()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00129">handleWiFi()</a>, <a class="el" href="calibration__manager_8cpp_source.html#l00014">CalibrationManager::init()</a>, <a class="el" href="config_8cpp_source.html#l00039">loadConfig()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00411">logSensorValidationResult()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00395">logValidationResult()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00547">printModbusError()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00153">readFirmwareVersion()</a>, <a class="el" href="config_8cpp_source.html#l00212">resetConfig()</a>, <a class="el" href="config_8cpp_source.html#l00128">saveConfig()</a>, <a class="el" href="calibration__manager_8cpp_source.html#l00035">CalibrationManager::saveCsv()</a>, <a class="el" href="thingspeak__client_8cpp_source.html#l00054">sendDataToThingSpeak()</a>, <a class="el" href="main_8cpp_source.html#l00091">setup()</a>, <a class="el" href="routes__main_8cpp_source.html#l00007">setupMainRoutes()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00080">setupModbus()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a>, <a class="el" href="routes__ota_8cpp_source.html#l00027">setupOtaRoutes()</a>, <a class="el" href="routes__service_8cpp_source.html#l00040">setupServiceRoutes()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00368">setupWebServer()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00231">startSTAMode()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00199">testModbusConnection()</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00045">testSP3485E()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="logger_8h_a54dab32db32234798ff063ccc0dde695_icgraph.png" border="0" usemap="#alogger_8h_a54dab32db32234798ff063ccc0dde695_icgraph" alt=""/></div>
 <map name="alogger_8h_a54dab32db32234798ff063ccc0dde695_icgraph" id="alogger_8h_a54dab32db32234798ff063ccc0dde695_icgraph">
-<area shape="rect" title=" " alt="" coords="1275,565,1364,592"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="673,160,804,187"/>
-<area shape="poly" title=" " alt="" coords="1313,551,1303,468,1286,362,1260,262,1244,225,1225,201,1194,185,1150,173,1097,166,1036,163,912,164,805,170,805,165,912,159,1037,158,1097,161,1151,168,1196,180,1228,197,1248,222,1265,261,1291,361,1309,467,1318,550"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,312,59,339"/>
-<area shape="poly" title=" " alt="" coords="1313,550,1305,461,1288,344,1276,286,1261,233,1244,191,1225,163,1190,136,1158,120,1126,113,1093,111,1022,119,934,125,352,125,311,127,277,134,248,144,222,157,170,195,108,245,72,280,45,313,41,310,68,276,105,241,167,191,219,153,246,139,276,129,311,122,352,120,934,120,1021,114,1093,106,1127,107,1160,115,1193,132,1229,160,1249,189,1267,232,1281,284,1293,343,1310,460,1319,550"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="306,768,402,795"/>
-<area shape="poly" title=" " alt="" coords="1312,608,1299,637,1282,671,1258,704,1228,731,1189,755,1154,771,1122,781,1089,786,1020,786,934,784,738,784,402,784,402,779,738,779,934,779,1020,781,1089,781,1120,776,1153,767,1187,751,1225,727,1254,701,1277,668,1295,635,1307,606"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="310,717,397,744"/>
-<area shape="poly" title=" " alt="" coords="1298,605,1267,634,1228,661,1151,699,1087,720,1020,731,934,733,738,733,397,733,397,728,738,728,934,728,1019,725,1085,715,1149,694,1225,656,1264,630,1295,601"/>
-<area shape="rect" href="config_8cpp.html#ad5ed6ddd9940c0097cc91774056df1c2" title=" " alt="" coords="312,312,395,339"/>
-<area shape="poly" title=" " alt="" coords="1309,551,1298,517,1281,477,1257,437,1225,403,1188,376,1154,356,1123,343,1091,335,1022,328,934,328,738,328,396,328,396,323,738,323,934,323,1022,323,1092,329,1124,338,1157,352,1191,372,1228,399,1261,434,1285,474,1303,515,1314,550"/>
-<area shape="rect" href="validation__utils_8cpp.html#a90392289dbf6077016cdb0ce0cdc34f8" title="Логирование результата валидации датчика" alt="" coords="1053,869,1227,896"/>
-<area shape="poly" title=" " alt="" coords="1319,608,1312,660,1297,725,1270,792,1252,824,1228,853,1201,871,1198,867,1225,849,1247,821,1266,790,1292,723,1307,659,1314,607"/>
-<area shape="rect" href="validation__utils_8cpp.html#a5b0b5f3adf97cc7910641d046b3e292c" title="Логирование результата валидации конфигурации" alt="" coords="1074,920,1206,947"/>
-<area shape="poly" title=" " alt="" coords="1321,608,1319,670,1306,751,1295,794,1278,836,1257,875,1228,910,1208,924,1205,919,1225,906,1252,872,1274,833,1290,792,1301,749,1313,669,1316,608"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="1080,211,1200,237"/>
-<area shape="poly" title=" " alt="" coords="1315,550,1312,490,1299,412,1287,371,1271,330,1251,292,1225,258,1199,240,1202,236,1229,254,1255,289,1276,328,1292,369,1304,411,1317,490,1321,550"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8" title=" " alt="" coords="861,261,1004,288"/>
-<area shape="poly" title=" " alt="" coords="1315,550,1311,497,1297,431,1286,396,1270,364,1250,334,1225,309,1201,292,1174,280,1116,266,1058,262,1005,265,1005,260,1058,257,1117,261,1176,275,1203,288,1228,305,1254,331,1275,361,1291,394,1302,429,1316,496,1320,550"/>
-<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="1096,413,1184,440"/>
-<area shape="poly" title=" " alt="" coords="1301,553,1270,506,1249,482,1225,461,1205,449,1183,440,1186,435,1207,444,1228,457,1253,478,1274,503,1306,550"/>
-<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="863,464,1002,491"/>
-<area shape="poly" title=" " alt="" coords="1292,557,1262,532,1226,512,1169,494,1110,484,1053,479,1003,477,1003,472,1053,473,1111,479,1170,489,1228,507,1265,528,1296,553"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="680,565,798,592"/>
-<area shape="poly" title=" " alt="" coords="1262,563,1226,556,1124,544,1044,541,963,546,860,556,795,567,794,562,860,551,963,540,1044,536,1124,539,1227,551,1263,558"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="302,577,406,604"/>
-<area shape="poly" title=" " alt="" coords="1287,603,1259,619,1228,632,1167,648,1118,654,1005,657,920,660,833,657,663,643,514,623,406,604,407,599,515,618,663,638,833,652,920,654,1005,652,1118,649,1166,643,1226,627,1257,614,1285,598"/>
-<area shape="rect" href="config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae" title=" " alt="" coords="1096,565,1184,592"/>
-<area shape="poly" title=" " alt="" coords="1259,581,1184,581,1184,576,1259,576"/>
-<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="871,616,994,643"/>
-<area shape="poly" title=" " alt="" coords="1260,599,1227,607,1104,623,995,630,995,625,1103,617,1226,601,1259,594"/>
-<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="457,819,618,845"/>
-<area shape="poly" title=" " alt="" coords="1318,608,1311,652,1296,706,1269,759,1251,783,1228,802,1207,814,1180,824,1114,839,1034,848,946,852,767,850,618,841,618,836,767,844,946,846,1034,842,1113,834,1179,819,1205,809,1225,798,1247,779,1265,756,1291,704,1306,651,1313,607"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="488,59,587,85"/>
-<area shape="poly" title=" " alt="" coords="1314,550,1308,450,1293,315,1281,247,1266,186,1248,138,1225,106,1188,78,1149,56,1106,39,1063,26,971,11,878,9,789,17,707,30,582,61,581,55,706,25,788,11,878,4,971,6,1064,20,1108,34,1151,51,1191,74,1229,102,1252,135,1271,185,1287,246,1298,314,1313,449,1320,550"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="1062,971,1218,997"/>
-<area shape="poly" title=" " alt="" coords="1317,608,1307,689,1288,794,1262,894,1246,933,1229,961,1213,972,1210,968,1225,957,1242,931,1257,893,1283,793,1301,688,1312,607"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#ab8a1f5220dc77f33a89d14fe4d82442f" title="Тестирование работы SP3485E." alt="" coords="1091,1021,1189,1048"/>
-<area shape="poly" title=" " alt="" coords="1318,608,1309,699,1292,819,1265,934,1248,980,1229,1011,1211,1024,1191,1032,1189,1027,1208,1020,1225,1008,1244,977,1260,933,1286,818,1304,698,1313,607"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="480,223,595,249"/>
-<area shape="poly" title=" " alt="" coords="680,194,584,225,582,220,678,189"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,248,409,275"/>
-<area shape="poly" title=" " alt="" coords="465,249,410,256,409,251,464,243"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,255,250,281"/>
-<area shape="poly" title=" " alt="" coords="283,267,250,268,250,263,282,261"/>
-<area shape="poly" title=" " alt="" coords="129,290,60,318,58,313,127,285"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="156,768,201,795"/>
-<area shape="poly" title=" " alt="" coords="290,784,202,784,202,779,290,779"/>
-<area shape="poly" title=" " alt="" coords="296,750,202,778,201,772,295,745"/>
-<area shape="poly" title=" " alt="" coords="297,328,59,328,59,323,297,323"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="138,515,218,541"/>
-<area shape="poly" title=" " alt="" coords="334,353,252,454,195,516,191,512,248,450,330,350"/>
-<area shape="poly" title=" " alt="" coords="150,506,105,454,65,392,38,341,42,338,70,389,109,450,154,502"/>
-<area shape="poly" title=" " alt="" coords="1068,244,991,263,990,258,1067,239"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="867,211,998,237"/>
-<area shape="poly" title=" " alt="" coords="1064,227,999,227,999,221,1064,221"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="666,261,812,288"/>
-<area shape="poly" title=" " alt="" coords="865,244,793,263,792,258,864,239"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="668,211,810,237"/>
-<area shape="poly" title=" " alt="" coords="851,227,810,227,810,221,851,221"/>
-<area shape="poly" title=" " alt="" coords="650,260,595,250,596,244,651,255"/>
-<area shape="poly" title=" " alt="" coords="653,232,596,235,595,230,653,226"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="860,413,1005,440"/>
-<area shape="poly" title=" " alt="" coords="1080,429,1006,429,1006,424,1080,424"/>
-<area shape="rect" href="main_8cpp.html#a7086f14b298ca33663ff4c10ff47cb4f" title=" " alt="" coords="120,363,236,389"/>
-<area shape="poly" title=" " alt="" coords="1080,417,927,392,834,383,740,379,536,379,237,379,237,373,536,373,740,373,834,377,928,387,1081,412"/>
-<area shape="poly" title=" " alt="" coords="1081,444,991,466,990,461,1080,438"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="690,413,788,440"/>
-<area shape="poly" title=" " alt="" coords="844,429,788,429,788,424,844,424"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="133,413,224,440"/>
-<area shape="poly" title=" " alt="" coords="674,429,224,429,224,424,674,424"/>
-<area shape="poly" title=" " alt="" coords="118,411,105,404,68,372,41,341,45,337,72,368,108,399,120,406"/>
-<area shape="poly" title=" " alt="" coords="123,360,58,337,60,332,124,355"/>
-<area shape="poly" title=" " alt="" coords="886,500,861,512,764,567,761,563,859,507,884,495"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="489,667,586,693"/>
-<area shape="poly" title=" " alt="" coords="698,602,567,669,565,664,696,597"/>
-<area shape="poly" title=" " alt="" coords="665,584,406,592,406,586,665,578"/>
-<area shape="poly" title=" " alt="" coords="475,700,398,721,397,716,473,695"/>
-<area shape="poly" title=" " alt="" coords="473,672,388,652,341,637,297,618,237,581,193,544,196,540,240,577,299,614,343,632,389,647,474,667"/>
-<area shape="poly" title=" " alt="" coords="485,663,456,650,376,607,379,602,459,646,487,658"/>
-<area shape="poly" title=" " alt="" coords="299,574,217,544,219,539,301,569"/>
-<area shape="rect" href="routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c" title="Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)" alt="" coords="866,565,999,592"/>
-<area shape="poly" title=" " alt="" coords="1081,581,1000,581,1000,576,1081,576"/>
-<area shape="poly" title=" " alt="" coords="1082,596,991,618,990,613,1080,590"/>
-<area shape="poly" title=" " alt="" coords="850,581,798,581,798,576,850,576"/>
-<area shape="poly" title=" " alt="" coords="864,614,792,595,793,590,865,609"/>
-<area shape="poly" title=" " alt="" coords="442,827,298,809,201,789,202,784,298,804,442,822"/>
-<area shape="poly" title=" " alt="" coords="472,59,392,48,295,45,245,51,197,62,150,80,108,106,86,128,69,154,56,183,47,213,38,270,36,312,30,311,33,269,42,212,51,181,65,152,82,125,105,102,148,75,195,57,245,45,295,40,392,42,473,54"/>
+<area shape="rect" title=" " alt="" coords="1747,938,1837,965"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="678,165,810,192"/>
+<area shape="poly" title=" " alt="" coords="1787,923,1777,764,1758,537,1746,424,1732,325,1715,251,1706,226,1697,212,1663,184,1630,168,1597,161,1563,162,1489,173,1446,178,1398,181,1185,181,810,181,810,176,1185,176,1398,176,1446,173,1488,167,1563,156,1598,156,1632,163,1666,180,1701,209,1711,224,1720,249,1737,324,1751,424,1764,537,1782,764,1792,923"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,450,59,477"/>
+<area shape="poly" title=" " alt="" coords="1787,923,1779,746,1761,490,1749,362,1734,250,1717,165,1707,137,1697,120,1663,91,1631,73,1598,65,1564,64,1489,72,1398,80,355,80,319,83,286,93,255,108,226,128,175,179,131,239,97,303,70,364,40,451,35,449,65,362,92,300,127,236,170,175,223,124,252,103,284,88,318,78,355,74,1398,74,1489,67,1564,59,1599,60,1632,69,1666,87,1701,117,1712,134,1722,163,1739,249,1754,361,1767,490,1784,746,1792,922"/>
+<area shape="rect" href="routes__calibration_8cpp.html#aed6e69f4d063fc5d8248e2c7a3b9ca0d" title=" " alt="" coords="1316,266,1478,293"/>
+<area shape="poly" title=" " alt="" coords="1789,923,1787,843,1776,732,1765,670,1749,608,1726,547,1697,490,1671,454,1639,421,1604,391,1567,365,1494,323,1434,296,1436,291,1497,319,1570,360,1607,387,1643,417,1675,450,1702,488,1731,545,1754,606,1770,669,1782,731,1793,843,1794,923"/>
+<area shape="rect" href="routes__ota_8cpp.html#aa15bea881a160885a361e129a35c07e7" title=" " alt="" coords="1536,888,1690,914"/>
+<area shape="poly" title=" " alt="" coords="1732,938,1662,918,1664,912,1733,932"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="1339,888,1455,914"/>
+<area shape="poly" title=" " alt="" coords="1732,950,1635,942,1526,929,1455,916,1456,911,1526,924,1635,937,1732,945"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="902,888,1019,914"/>
+<area shape="poly" title=" " alt="" coords="1768,929,1738,901,1698,878,1604,852,1505,838,1406,835,1309,839,1218,849,1136,862,1012,890,1011,884,1135,857,1217,843,1309,834,1406,829,1506,833,1605,847,1700,873,1741,896,1772,925"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="313,1040,399,1066"/>
+<area shape="poly" title=" " alt="" coords="1793,981,1789,1036,1776,1104,1764,1140,1748,1174,1728,1205,1701,1231,1663,1256,1627,1271,1593,1277,1559,1276,1487,1266,1445,1261,1398,1258,742,1258,706,1252,660,1235,554,1181,450,1118,376,1069,379,1065,453,1113,556,1176,662,1230,707,1247,743,1253,1398,1253,1446,1255,1487,1261,1560,1271,1593,1271,1626,1266,1660,1252,1698,1227,1723,1201,1744,1171,1759,1138,1771,1103,1784,1035,1788,980"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="490,837,595,864"/>
+<area shape="poly" title=" " alt="" coords="1786,923,1778,811,1761,655,1749,575,1735,502,1717,441,1697,397,1666,353,1636,318,1606,289,1573,267,1538,251,1497,240,1451,234,1398,232,959,232,905,237,856,254,811,279,771,313,734,353,701,399,672,448,647,500,606,605,577,704,558,785,548,837,543,836,553,784,571,703,601,604,642,498,668,446,697,396,730,350,767,309,808,275,854,249,904,232,959,226,1398,226,1452,228,1498,234,1539,246,1576,262,1609,285,1640,314,1671,350,1702,394,1722,439,1740,501,1754,574,1766,654,1783,810,1792,923"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="912,1344,1009,1370"/>
+<area shape="poly" title=" " alt="" coords="1791,981,1781,1062,1763,1167,1737,1265,1721,1302,1701,1327,1677,1342,1646,1355,1568,1372,1473,1381,1369,1384,1163,1377,1009,1365,1009,1359,1164,1372,1369,1379,1473,1376,1567,1367,1645,1349,1675,1337,1698,1323,1716,1299,1732,1263,1758,1166,1776,1062,1785,980"/>
+<area shape="rect" href="routes__data_8cpp.html#abbd29afd9c684d507a0787906872c9d9" title=" " alt="" coords="1334,938,1460,965"/>
+<area shape="poly" title=" " alt="" coords="1732,968,1700,973,1613,978,1526,973,1460,965,1461,960,1526,968,1613,973,1699,968,1732,963"/>
+<area shape="rect" href="routes__data_8cpp.html#a750e7ca088cd32f9490048becd8d8c70" title=" " alt="" coords="1319,685,1474,712"/>
+<area shape="poly" title=" " alt="" coords="1786,924,1779,878,1764,824,1738,770,1720,746,1698,726,1672,710,1645,699,1586,686,1526,683,1472,687,1472,682,1526,678,1586,680,1646,693,1675,705,1701,722,1724,742,1742,767,1769,822,1784,877,1791,923"/>
+<area shape="rect" href="namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613" title=" " alt="" coords="1546,501,1679,544"/>
+<area shape="poly" title=" " alt="" coords="1784,923,1774,866,1757,791,1732,707,1697,626,1667,582,1635,546,1639,542,1671,578,1702,624,1737,705,1762,789,1780,865,1789,922"/>
+<area shape="rect" href="namespace_calibration_manager.html#ade735ff876ef578fafeb7c46676bcf82" title=" " alt="" coords="1330,618,1464,661"/>
+<area shape="poly" title=" " alt="" coords="1787,923,1782,871,1769,806,1757,772,1742,740,1722,711,1698,686,1672,668,1643,654,1582,638,1520,632,1464,634,1464,628,1520,627,1583,632,1645,649,1674,663,1701,682,1726,707,1746,738,1762,770,1774,804,1788,870,1793,923"/>
+<area shape="rect" href="config_8cpp.html#ad5ed6ddd9940c0097cc91774056df1c2" title=" " alt="" coords="501,425,584,452"/>
+<area shape="poly" title=" " alt="" coords="1787,923,1778,755,1760,514,1747,393,1733,288,1716,208,1707,182,1697,167,1663,138,1630,121,1598,114,1564,113,1489,123,1446,128,1398,130,959,130,874,124,806,115,774,115,743,120,709,133,672,155,640,184,614,219,593,258,577,297,556,372,548,425,543,424,551,371,572,296,588,255,609,216,636,180,669,151,707,128,741,115,774,109,806,110,875,118,959,125,1398,125,1446,123,1488,117,1564,108,1598,108,1632,116,1666,134,1701,163,1712,180,1721,207,1738,287,1753,393,1765,513,1783,754,1792,922"/>
+<area shape="rect" href="validation__utils_8cpp.html#a90392289dbf6077016cdb0ce0cdc34f8" title="Логирование результата валидации датчика" alt="" coords="1526,1394,1699,1421"/>
+<area shape="poly" title=" " alt="" coords="1791,981,1781,1071,1763,1188,1736,1301,1720,1346,1701,1377,1676,1396,1673,1392,1697,1374,1715,1344,1731,1300,1757,1187,1775,1070,1785,981"/>
+<area shape="rect" href="validation__utils_8cpp.html#a5b0b5f3adf97cc7910641d046b3e292c" title="Логирование результата валидации конфигурации" alt="" coords="1546,1445,1679,1472"/>
+<area shape="poly" title=" " alt="" coords="1792,981,1784,1081,1768,1217,1756,1285,1741,1348,1723,1399,1701,1435,1681,1450,1678,1445,1697,1431,1718,1397,1736,1346,1750,1284,1762,1216,1778,1081,1786,980"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="1552,736,1673,762"/>
+<area shape="poly" title=" " alt="" coords="1780,924,1751,854,1727,816,1698,783,1667,765,1670,761,1701,779,1732,813,1755,852,1785,922"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8" title=" " alt="" coords="1325,786,1468,813"/>
+<area shape="poly" title=" " alt="" coords="1776,926,1745,877,1724,853,1698,834,1642,811,1581,798,1522,794,1469,795,1469,789,1522,788,1582,793,1643,806,1701,829,1727,849,1749,874,1780,923"/>
+<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="1568,1141,1657,1168"/>
+<area shape="poly" title=" " alt="" coords="1785,981,1755,1052,1732,1090,1701,1124,1681,1138,1658,1147,1656,1142,1678,1133,1698,1120,1727,1087,1751,1049,1780,979"/>
+<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="1327,1192,1466,1218"/>
+<area shape="poly" title=" " alt="" coords="1791,980,1784,1026,1769,1081,1742,1137,1724,1161,1701,1182,1674,1198,1645,1210,1583,1223,1522,1226,1467,1221,1467,1216,1522,1220,1582,1218,1643,1205,1672,1193,1698,1178,1720,1158,1738,1134,1764,1079,1779,1025,1786,980"/>
+<area shape="rect" href="config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae" title=" " alt="" coords="1569,1040,1656,1066"/>
+<area shape="poly" title=" " alt="" coords="1766,977,1735,1001,1701,1023,1658,1042,1656,1037,1698,1019,1732,997,1762,973"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="1335,1040,1458,1066"/>
+<area shape="poly" title=" " alt="" coords="1782,980,1752,1034,1729,1060,1701,1081,1655,1097,1615,1097,1575,1089,1526,1081,1455,1070,1456,1064,1526,1076,1576,1084,1616,1092,1654,1092,1698,1076,1725,1056,1748,1031,1778,978"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="462,1293,623,1320"/>
+<area shape="poly" title=" " alt="" coords="1789,981,1778,1052,1759,1140,1733,1223,1718,1255,1701,1276,1664,1303,1629,1318,1595,1325,1560,1326,1487,1316,1445,1311,1398,1309,959,1309,623,1309,623,1304,959,1304,1398,1304,1446,1306,1488,1311,1561,1320,1594,1320,1627,1313,1661,1298,1697,1272,1713,1252,1728,1221,1754,1139,1772,1051,1784,980"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="1563,1496,1662,1522"/>
+<area shape="poly" title=" " alt="" coords="1792,981,1786,1090,1771,1241,1759,1318,1744,1388,1725,1445,1701,1485,1684,1499,1664,1507,1662,1502,1681,1494,1697,1482,1720,1443,1739,1386,1754,1317,1766,1241,1781,1090,1787,980"/>
+<area shape="rect" href="ota__manager_8cpp.html#a8061d13b589bae87956ec09e4ea7fef5" title=" " alt="" coords="139,13,218,40"/>
+<area shape="poly" title=" " alt="" coords="1787,923,1780,735,1764,459,1752,321,1737,200,1718,108,1708,78,1697,60,1663,32,1630,16,1598,9,1564,9,1489,21,1446,26,1398,29,541,29,218,29,218,24,541,24,1398,24,1446,21,1488,15,1563,4,1598,4,1632,11,1666,27,1701,57,1713,76,1724,107,1742,199,1757,321,1769,459,1785,735,1792,923"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="1535,1546,1690,1573"/>
+<area shape="poly" title=" " alt="" coords="1793,980,1788,1100,1774,1266,1762,1350,1747,1428,1727,1492,1715,1517,1701,1536,1687,1548,1684,1544,1697,1533,1710,1514,1722,1490,1742,1426,1757,1349,1769,1265,1782,1099,1787,980"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ab8a1f5220dc77f33a89d14fe4d82442f" title="Тестирование работы SP3485E." alt="" coords="1564,1597,1662,1624"/>
+<area shape="poly" title=" " alt="" coords="1793,981,1790,1109,1777,1290,1766,1383,1750,1468,1729,1538,1716,1566,1701,1587,1684,1600,1663,1608,1661,1603,1681,1596,1697,1583,1711,1563,1724,1536,1744,1467,1760,1382,1772,1290,1784,1109,1788,981"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="485,476,600,502"/>
+<area shape="poly" title=" " alt="" coords="683,202,673,212,654,244,646,276,647,307,651,338,655,369,655,401,646,433,625,466,602,481,599,477,621,462,641,431,650,400,650,370,646,339,642,308,641,275,649,242,669,209,679,198"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="300,476,412,502"/>
+<area shape="poly" title=" " alt="" coords="470,492,412,492,412,486,470,486"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,476,250,502"/>
+<area shape="poly" title=" " alt="" coords="285,492,251,492,251,486,285,486"/>
+<area shape="poly" title=" " alt="" coords="91,476,59,471,60,466,92,471"/>
+<area shape="rect" href="routes__calibration_8cpp.html#a74cbd7893b5cf9b3fa5fd34a4fb985ba" title="Настройка маршрутов калибровки (/calibration)" alt="" coords="1107,292,1265,318"/>
+<area shape="poly" title=" " alt="" coords="1300,294,1266,298,1265,293,1300,289"/>
+<area shape="poly" title=" " alt="" coords="1520,904,1456,904,1456,898,1520,898"/>
+<area shape="poly" title=" " alt="" coords="1323,904,1020,904,1020,898,1323,898"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="695,837,792,864"/>
+<area shape="poly" title=" " alt="" coords="886,886,792,864,794,859,887,881"/>
+<area shape="poly" title=" " alt="" coords="886,899,784,891,670,878,594,864,595,859,671,873,784,886,887,894"/>
+<area shape="poly" title=" " alt="" coords="704,873,385,1042,382,1037,702,869"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="316,590,396,617"/>
+<area shape="poly" title=" " alt="" coords="706,830,378,620,381,615,709,826"/>
+<area shape="poly" title=" " alt="" coords="680,853,595,853,595,848,680,848"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="156,1293,201,1320"/>
+<area shape="poly" title=" " alt="" coords="327,1078,300,1105,263,1157,230,1211,188,1294,183,1291,226,1208,258,1154,296,1102,323,1074"/>
+<area shape="poly" title=" " alt="" coords="300,591,208,561,105,517,49,480,52,475,108,512,210,556,302,586"/>
+<area shape="poly" title=" " alt="" coords="521,877,372,1041,368,1038,517,873"/>
+<area shape="poly" title=" " alt="" coords="520,826,366,619,370,616,524,823"/>
+<area shape="poly" title=" " alt="" coords="897,1357,703,1348,462,1334,201,1311,202,1306,463,1329,703,1343,897,1352"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="1124,626,1248,653"/>
+<area shape="poly" title=" " alt="" coords="1319,932,1314,928,1283,896,1258,859,1237,819,1220,779,1198,705,1187,654,1192,653,1203,704,1225,777,1242,817,1262,856,1288,892,1317,924,1322,928"/>
+<area shape="poly" title=" " alt="" coords="1165,667,976,889,972,886,1161,663"/>
+<area shape="poly" title=" " alt="" coords="1331,683,1236,656,1237,651,1332,678"/>
+<area shape="poly" title=" " alt="" coords="1586,489,1524,392,1503,349,1493,332,1476,314,1446,296,1449,291,1480,310,1498,329,1508,347,1528,389,1591,486"/>
+<area shape="poly" title=" " alt="" coords="1591,489,1572,457,1546,421,1514,386,1477,358,1425,334,1370,319,1315,310,1265,307,1265,301,1316,305,1371,314,1427,329,1479,353,1517,382,1550,417,1576,454,1596,486"/>
+<area shape="poly" title=" " alt="" coords="1532,547,1238,628,1237,623,1530,542"/>
+<area shape="poly" title=" " alt="" coords="1591,558,1544,618,1514,649,1479,675,1456,687,1454,682,1477,671,1510,645,1540,614,1587,555"/>
+<area shape="rect" href="namespace_calibration_manager.html#a14e21e7fb1aa46aa781c20ee07271d12" title=" " alt="" coords="1330,501,1464,544"/>
+<area shape="poly" title=" " alt="" coords="1531,525,1464,525,1464,520,1531,520"/>
+<area shape="rect" href="namespace_calibration_manager.html#a1ee0f1f244cb68eaa7e47a79deb452b6" title=" " alt="" coords="1330,434,1464,477"/>
+<area shape="poly" title=" " alt="" coords="1531,500,1463,479,1465,474,1532,495"/>
+<area shape="rect" href="namespace_calibration_manager.html#a15db87f3fcb09c7f4c5abc69009cef89" title=" " alt="" coords="1330,368,1464,410"/>
+<area shape="poly" title=" " alt="" coords="1573,493,1528,458,1477,425,1454,413,1457,409,1479,420,1531,454,1576,489"/>
+<area shape="poly" title=" " alt="" coords="1563,554,1479,602,1444,620,1442,615,1477,597,1560,550"/>
+<area shape="poly" title=" " alt="" coords="1338,553,1317,565,1211,628,1208,623,1314,560,1336,549"/>
+<area shape="poly" title=" " alt="" coords="1323,487,1317,491,1278,525,1244,563,1198,627,1194,624,1240,560,1275,521,1314,487,1320,483"/>
+<area shape="rect" href="namespace_calibration_manager.html#abb872938a17efb733eaf531bb5c0a1dc" title=" " alt="" coords="1119,368,1253,410"/>
+<area shape="poly" title=" " alt="" coords="1315,433,1252,413,1254,408,1316,428"/>
+<area shape="rect" href="routes__calibration_8cpp.html#af44b5a1840fa2c2199b0a9fab38a629f" title=" " alt="" coords="1104,442,1268,469"/>
+<area shape="poly" title=" " alt="" coords="1315,458,1268,458,1268,453,1315,453"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4cff8e34908a2deb0691e3809224685a" title=" " alt="" coords="865,321,1056,348"/>
+<area shape="poly" title=" " alt="" coords="1104,372,1018,351,1019,346,1105,367"/>
+<area shape="poly" title=" " alt="" coords="927,314,762,194,765,190,930,309"/>
+<area shape="poly" title=" " alt="" coords="1314,392,1253,392,1253,386,1314,386"/>
+<area shape="poly" title=" " alt="" coords="485,444,59,465,59,460,485,438"/>
+<area shape="poly" title=" " alt="" coords="488,453,464,466,442,488,415,523,368,591,364,588,410,520,438,485,461,461,485,449"/>
+<area shape="poly" title=" " alt="" coords="1538,769,1457,788,1456,783,1537,764"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="895,526,1026,553"/>
+<area shape="poly" title=" " alt="" coords="1537,754,1445,751,1334,739,1274,728,1215,713,1158,693,1103,667,1062,641,1025,610,972,555,976,552,1029,606,1065,636,1106,663,1160,688,1217,708,1276,723,1334,734,1445,746,1537,749"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="671,526,817,553"/>
+<area shape="poly" title=" " alt="" coords="879,542,818,542,818,537,879,537"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="673,476,814,502"/>
+<area shape="poly" title=" " alt="" coords="885,525,803,506,805,500,886,520"/>
+<area shape="poly" title=" " alt="" coords="672,524,598,505,599,500,674,519"/>
+<area shape="poly" title=" " alt="" coords="658,492,600,492,600,486,658,486"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="1324,1090,1470,1117"/>
+<area shape="poly" title=" " alt="" coords="1553,1143,1456,1120,1458,1115,1554,1138"/>
+<area shape="rect" href="main_8cpp.html#a7086f14b298ca33663ff4c10ff47cb4f" title=" " alt="" coords="298,1116,414,1142"/>
+<area shape="poly" title=" " alt="" coords="1553,1157,1187,1157,742,1157,563,1150,415,1138,415,1132,563,1145,743,1152,1187,1152,1553,1152"/>
+<area shape="poly" title=" " alt="" coords="1554,1171,1458,1194,1456,1188,1553,1165"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="1137,1090,1235,1117"/>
+<area shape="poly" title=" " alt="" coords="1309,1106,1236,1106,1236,1101,1309,1101"/>
+<area shape="poly" title=" " alt="" coords="322,1108,296,1080,241,995,192,905,150,813,114,724,61,571,34,478,39,477,66,570,119,723,155,811,197,903,246,993,300,1077,326,1104"/>
+<area shape="poly" title=" " alt="" coords="1312,1202,1261,1194,1207,1181,1152,1160,1103,1131,1074,1107,1049,1078,1009,1016,980,958,964,916,969,914,985,956,1013,1014,1054,1075,1078,1103,1106,1127,1155,1155,1208,1176,1262,1189,1312,1197"/>
+<area shape="poly" title=" " alt="" coords="1553,1037,1525,1023,1500,1005,1477,986,1438,968,1441,963,1479,981,1504,1000,1527,1019,1556,1032"/>
+<area shape="poly" title=" " alt="" coords="1555,1069,1457,1092,1456,1087,1553,1064"/>
+<area shape="rect" href="routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c" title="Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)" alt="" coords="1119,964,1253,990"/>
+<area shape="poly" title=" " alt="" coords="1553,1044,1478,1030,1253,991,1254,986,1478,1025,1554,1039"/>
+<area shape="poly" title=" " alt="" coords="1554,1056,1459,1056,1459,1050,1554,1050"/>
+<area shape="poly" title=" " alt="" coords="1129,961,1002,917,1004,912,1130,956"/>
+<area shape="poly" title=" " alt="" coords="1319,1052,1215,1037,1158,1024,1103,1005,1064,985,1028,961,975,917,978,913,1032,957,1067,980,1105,1000,1160,1019,1216,1032,1320,1046"/>
+<area shape="poly" title=" " alt="" coords="447,1309,202,1309,202,1304,447,1304"/>
+<area shape="rect" href="class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084" title=" " alt="" coords="1316,1488,1478,1530"/>
+<area shape="poly" title=" " alt="" coords="1547,1512,1478,1512,1478,1506,1547,1506"/>
+<area shape="poly" title=" " alt="" coords="126,45,109,60,92,92,78,138,56,255,43,371,37,450,31,450,38,371,51,254,72,137,87,90,105,57,123,41"/>
 </map>
 </div>
 
@@ -1192,51 +1525,94 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00213">213</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a>, <a class="el" href="logger_8h_source.html#l00043">COLOR_WHITE</a>, <a class="el" href="logger_8cpp_source.html#l00011">currentLogLevel</a>, <a class="el" href="logger_8h_source.html#l00016">LOG_INFO</a> и <a class="el" href="logger_8h_source.html#l00033">LOG_SYMBOL_SYSTEM</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00303">downloadAndUpdate()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00186">downloadData()</a>, <a class="el" href="routes__ota_8cpp_source.html#l00342">handleFirmwareUpload()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00109">initializeDownload()</a>, <a class="el" href="logger_8cpp_source.html#l00236">logMemoryUsage()</a>, <a class="el" href="logger_8cpp_source.html#l00231">logUptime()</a>, <a class="el" href="main_8cpp_source.html#l00202">loop()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00525">realSensorTask()</a>, <a class="el" href="main_8cpp_source.html#l00091">setup()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00080">setupModbus()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00368">setupWebServer()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00099">setupWiFi()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00216">startAPMode()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00231">startSTAMode()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00199">testModbusConnection()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00045">testSP3485E()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00407">triggerOtaCheck()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00423">triggerOtaInstall()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="logger_8h_a6673a3ba037fc4ceda09f36e43cd7f14_icgraph.png" border="0" usemap="#alogger_8h_a6673a3ba037fc4ceda09f36e43cd7f14_icgraph" alt=""/></div>
 <map name="alogger_8h_a6673a3ba037fc4ceda09f36e43cd7f14_icgraph" id="alogger_8h_a6673a3ba037fc4ceda09f36e43cd7f14_icgraph">
-<area shape="rect" title=" " alt="" coords="801,302,884,329"/>
-<area shape="rect" href="logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d" title=" " alt="" coords="416,125,540,151"/>
-<area shape="poly" title=" " alt="" coords="830,288,819,260,802,228,780,197,752,172,700,148,644,136,589,132,540,133,540,128,589,127,645,131,702,143,754,168,784,193,807,225,824,258,835,286"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="134,99,179,126"/>
-<area shape="poly" title=" " alt="" coords="834,288,825,251,809,209,785,167,770,149,751,134,716,112,677,95,637,81,596,72,511,62,427,63,348,71,278,84,180,108,179,103,277,78,348,66,427,58,512,57,597,67,639,76,679,90,718,107,755,129,773,145,789,164,814,206,830,250,839,287"/>
-<area shape="rect" href="logger_8cpp.html#a07e106e3f19501a64fde4b0c6fa8d73a" title=" " alt="" coords="266,23,346,50"/>
-<area shape="poly" title=" " alt="" coords="838,287,833,238,819,178,808,148,793,119,775,93,751,71,703,42,649,23,593,12,536,8,480,10,429,15,347,29,346,24,428,9,480,4,536,3,593,7,650,18,705,37,755,67,779,89,798,116,813,146,824,177,838,237,843,286"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="620,479,731,506"/>
-<area shape="poly" title=" " alt="" coords="833,345,803,403,781,435,755,463,724,481,722,476,751,459,777,432,799,401,828,342"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,378,59,405"/>
-<area shape="poly" title=" " alt="" coords="807,339,747,371,667,405,575,433,527,442,479,445,305,445,234,440,165,429,59,402,60,397,166,424,235,435,305,439,479,439,527,436,574,428,665,400,745,366,805,334"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="107,201,206,227"/>
-<area shape="poly" title=" " alt="" coords="820,292,790,262,752,236,679,210,603,194,525,185,449,183,376,185,310,191,207,206,206,201,310,186,376,180,449,177,526,180,604,189,681,205,754,232,793,258,824,288"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="617,277,734,303"/>
-<area shape="poly" title=" " alt="" coords="786,309,734,302,735,296,786,304"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="429,226,527,253"/>
-<area shape="poly" title=" " alt="" coords="809,295,782,280,752,267,693,253,632,245,527,240,527,235,632,239,694,248,754,262,784,275,812,291"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="116,353,196,379"/>
-<area shape="poly" title=" " alt="" coords="786,329,753,334,556,357,358,369,197,370,197,364,358,363,556,352,753,329,785,324"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="254,327,358,354"/>
-<area shape="poly" title=" " alt="" coords="786,321,359,341,359,336,786,315"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="598,530,753,557"/>
-<area shape="poly" title=" " alt="" coords="839,344,830,383,813,430,789,478,755,520,737,532,734,527,751,516,785,475,809,428,825,382,834,343"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#ab8a1f5220dc77f33a89d14fe4d82442f" title="Тестирование работы SP3485E." alt="" coords="626,581,724,607"/>
-<area shape="poly" title=" " alt="" coords="842,344,835,393,821,453,795,516,777,545,755,571,726,588,723,583,751,567,773,542,790,513,816,452,830,392,837,344"/>
-<area shape="poly" title=" " alt="" coords="401,135,179,117,180,112,401,129"/>
-<area shape="poly" title=" " alt="" coords="265,60,180,104,178,99,263,55"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="406,479,550,506"/>
-<area shape="poly" title=" " alt="" coords="604,495,550,495,550,490,604,490"/>
-<area shape="poly" title=" " alt="" coords="391,504,326,505,253,500,178,487,106,463,85,451,67,436,41,407,45,403,71,432,88,447,108,458,179,482,254,495,326,499,391,498"/>
-<area shape="poly" title=" " alt="" coords="139,242,45,379,41,376,135,239"/>
-<area shape="poly" title=" " alt="" coords="605,275,526,254,528,249,606,270"/>
-<area shape="poly" title=" " alt="" coords="602,300,407,325,359,333,358,328,406,319,601,295"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="263,226,349,253"/>
-<area shape="poly" title=" " alt="" coords="414,242,350,242,350,237,414,237"/>
-<area shape="poly" title=" " alt="" coords="415,260,338,286,255,318,183,354,180,350,253,313,336,281,413,255"/>
-<area shape="poly" title=" " alt="" coords="430,262,408,274,384,292,360,311,332,329,329,325,357,307,380,287,405,269,427,257"/>
-<area shape="poly" title=" " alt="" coords="276,218,172,129,175,125,279,214"/>
-<area shape="poly" title=" " alt="" coords="102,380,60,389,58,383,100,375"/>
-<area shape="poly" title=" " alt="" coords="239,355,197,362,196,357,238,349"/>
+<area shape="rect" title=" " alt="" coords="1558,486,1642,512"/>
+<area shape="rect" href="ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463" title=" " alt="" coords="1156,410,1297,436"/>
+<area shape="poly" title=" " alt="" coords="1542,490,1295,439,1296,434,1543,485"/>
+<area shape="rect" href="ota__manager_8cpp.html#a2463eda06898e53e0ca3b3a819c995ae" title=" " alt="" coords="964,410,1077,436"/>
+<area shape="poly" title=" " alt="" coords="1543,500,1454,497,1355,488,1249,472,1145,451,1077,437,1078,432,1146,446,1250,467,1355,483,1455,491,1543,495"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="585,536,702,563"/>
+<area shape="poly" title=" " alt="" coords="1544,520,1481,538,1402,557,1315,572,1228,578,1019,578,846,571,702,559,703,553,846,566,1019,572,1228,572,1315,566,1401,552,1479,533,1543,515"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="416,562,514,588"/>
+<area shape="poly" title=" " alt="" coords="1576,525,1546,549,1512,569,1436,601,1374,619,1310,627,1228,628,821,628,736,624,651,614,514,589,515,584,652,609,736,619,821,623,1228,623,1309,621,1373,614,1434,596,1509,565,1543,544,1572,521"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,106,55,132"/>
+<area shape="poly" title=" " alt="" coords="1594,470,1587,376,1572,253,1560,191,1546,135,1529,91,1508,61,1475,34,1444,18,1413,10,1382,8,1313,14,1228,20,292,20,238,23,197,32,157,48,108,71,77,88,51,107,48,103,74,84,105,66,155,43,195,27,237,18,292,15,1228,15,1312,9,1382,3,1414,5,1446,13,1478,30,1512,57,1533,88,1551,134,1565,190,1577,252,1592,376,1600,470"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,638,190,664"/>
+<area shape="poly" title=" " alt="" coords="1589,528,1559,579,1538,605,1512,626,1474,649,1440,664,1408,674,1377,679,1311,680,1228,679,464,679,312,672,190,659,191,654,313,666,464,674,1228,674,1311,675,1376,673,1407,668,1438,659,1471,644,1509,622,1534,601,1555,576,1585,525"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,714,59,740"/>
+<area shape="poly" title=" " alt="" coords="1603,528,1601,587,1589,662,1578,701,1562,738,1540,773,1512,802,1477,827,1444,841,1412,847,1380,847,1311,838,1228,831,292,831,256,828,220,821,152,797,93,768,52,743,54,738,96,764,154,792,221,816,256,823,292,826,1228,826,1312,833,1380,842,1411,842,1442,836,1474,822,1509,798,1536,770,1557,736,1573,699,1584,661,1595,586,1597,528"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,511,345,538"/>
+<area shape="poly" title=" " alt="" coords="1592,471,1584,432,1568,387,1544,344,1528,325,1509,309,1483,295,1459,287,1437,285,1415,287,1367,296,1307,302,1146,302,1055,307,985,315,915,321,824,324,642,324,587,330,533,347,482,372,435,401,358,463,309,512,305,508,354,460,432,397,480,367,531,342,586,325,642,319,824,319,914,316,985,309,1055,302,1146,296,1307,296,1366,291,1414,282,1437,280,1460,282,1485,290,1512,305,1532,321,1548,341,1573,385,1589,431,1598,470"/>
+<area shape="rect" href="ota__manager_8cpp.html#a6bfd77aa7f122e508ece81a6f6cfbb88" title=" " alt="" coords="1380,359,1485,386"/>
+<area shape="poly" title=" " alt="" coords="1580,475,1549,436,1509,400,1484,387,1487,383,1512,395,1553,432,1584,471"/>
+<area shape="rect" href="routes__ota_8cpp.html#aa15bea881a160885a361e129a35c07e7" title=" " alt="" coords="943,359,1098,386"/>
+<area shape="poly" title=" " alt="" coords="1589,471,1578,441,1562,406,1539,374,1509,349,1451,324,1388,311,1323,307,1260,311,1199,321,1143,334,1058,361,1056,356,1142,329,1198,316,1259,306,1323,302,1389,305,1452,319,1512,345,1543,371,1566,404,1583,439,1594,470"/>
+<area shape="rect" href="ota__manager_8cpp.html#a3caeaca3fcbd288827f42df9af8b7f08" title=" " alt="" coords="1184,156,1269,183"/>
+<area shape="poly" title=" " alt="" coords="1597,471,1595,413,1583,340,1572,302,1556,265,1536,232,1509,204,1482,185,1452,172,1420,164,1387,159,1323,158,1270,164,1269,159,1323,153,1387,154,1421,159,1453,167,1484,181,1512,200,1540,229,1561,263,1577,300,1588,339,1600,412,1602,470"/>
+<area shape="rect" href="ota__manager_8cpp.html#aab62f74691b98553d395b694e0807ae4" title=" " alt="" coords="962,258,1079,284"/>
+<area shape="poly" title=" " alt="" coords="1596,470,1591,421,1578,361,1566,330,1552,301,1533,276,1509,254,1476,241,1430,233,1374,231,1312,234,1185,247,1079,263,1079,258,1184,241,1312,228,1374,226,1431,228,1478,235,1512,250,1537,272,1556,299,1571,328,1583,359,1596,420,1601,470"/>
+<area shape="rect" href="ota__manager_8cpp.html#a95a87e1e1d6cd503264f609ff0d1834c" title=" " alt="" coords="1370,410,1496,436"/>
+<area shape="poly" title=" " alt="" coords="1557,481,1509,457,1467,439,1469,434,1511,452,1559,476"/>
+<area shape="rect" href="logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d" title=" " alt="" coords="761,55,884,82"/>
+<area shape="poly" title=" " alt="" coords="1594,470,1586,384,1570,272,1558,217,1544,167,1528,128,1509,102,1488,89,1462,78,1394,62,1311,53,1219,49,1033,54,885,65,885,59,1033,48,1219,44,1311,47,1395,57,1464,73,1491,84,1512,98,1532,125,1550,166,1564,216,1575,272,1591,384,1599,470"/>
+<area shape="rect" href="logger_8cpp.html#a07e106e3f19501a64fde4b0c6fa8d73a" title=" " alt="" coords="253,106,333,132"/>
+<area shape="poly" title=" " alt="" coords="1593,470,1582,397,1564,304,1539,217,1525,184,1508,162,1475,136,1443,121,1412,113,1381,110,1312,116,1228,122,642,122,334,122,334,116,642,116,1228,116,1312,111,1381,105,1413,107,1445,116,1478,132,1512,158,1529,181,1544,215,1569,302,1587,396,1598,470"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="1377,714,1488,740"/>
+<area shape="poly" title=" " alt="" coords="1595,528,1585,565,1568,610,1544,656,1512,697,1484,715,1481,711,1509,693,1540,653,1564,608,1580,564,1590,527"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="1383,866,1482,892"/>
+<area shape="poly" title=" " alt="" coords="1602,528,1600,592,1588,677,1577,722,1561,767,1540,810,1512,849,1499,860,1484,869,1481,864,1496,856,1508,845,1535,807,1556,765,1572,721,1583,676,1595,592,1597,528"/>
+<area shape="rect" href="ota__manager_8cpp.html#a8061d13b589bae87956ec09e4ea7fef5" title=" " alt="" coords="604,764,683,791"/>
+<area shape="poly" title=" " alt="" coords="1601,528,1596,579,1582,640,1571,672,1556,703,1536,731,1512,754,1476,778,1443,791,1411,797,1379,797,1311,787,1228,780,1019,780,683,780,683,775,1019,775,1228,775,1311,782,1379,791,1410,792,1441,786,1474,773,1509,750,1532,727,1551,700,1566,670,1577,639,1591,578,1595,528"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="1355,916,1510,943"/>
+<area shape="poly" title=" " alt="" coords="1599,528,1589,614,1572,726,1547,834,1531,876,1512,906,1498,918,1494,914,1508,902,1526,874,1541,832,1567,725,1584,613,1593,527"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ab8a1f5220dc77f33a89d14fe4d82442f" title="Тестирование работы SP3485E." alt="" coords="1384,967,1482,994"/>
+<area shape="poly" title=" " alt="" coords="1600,528,1591,623,1575,751,1564,815,1549,874,1533,923,1512,957,1499,968,1483,975,1481,970,1496,963,1508,953,1528,921,1544,873,1558,814,1570,750,1586,623,1594,527"/>
+<area shape="poly" title=" " alt="" coords="1140,426,1078,426,1078,420,1140,420"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="764,384,881,411"/>
+<area shape="poly" title=" " alt="" coords="948,416,881,408,882,402,949,411"/>
+<area shape="poly" title=" " alt="" coords="796,423,662,538,659,534,792,419"/>
+<area shape="poly" title=" " alt="" coords="570,563,514,571,514,565,569,557"/>
+<area shape="poly" title=" " alt="" coords="569,547,345,531,346,525,569,542"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,511,193,538"/>
+<area shape="poly" title=" " alt="" coords="401,573,324,565,240,552,193,540,194,535,242,547,325,560,401,568"/>
+<area shape="poly" title=" " alt="" coords="402,593,191,644,190,639,400,588"/>
+<area shape="poly" title=" " alt="" coords="402,559,340,541,342,536,403,554"/>
+<area shape="poly" title=" " alt="" coords="138,497,35,134,40,132,143,495"/>
+<area shape="poly" title=" " alt="" coords="116,675,56,715,53,711,113,671"/>
+<area shape="poly" title=" " alt="" coords="225,527,193,527,193,522,225,522"/>
+<area shape="poly" title=" " alt="" coords="267,550,168,639,165,635,264,546"/>
+<area shape="poly" title=" " alt="" coords="1366,391,1284,412,1283,406,1365,386"/>
+<area shape="poly" title=" " alt="" coords="928,387,882,393,881,387,928,381"/>
+<area shape="poly" title=" " alt="" coords="1168,172,824,172,292,172,223,167,156,156,54,129,56,124,157,151,224,162,292,167,824,167,1168,167"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="750,258,895,284"/>
+<area shape="poly" title=" " alt="" coords="1169,186,880,259,879,254,1168,181"/>
+<area shape="poly" title=" " alt="" coords="1172,192,1147,204,1123,222,1099,241,1061,259,1059,255,1096,237,1120,218,1144,199,1169,187"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="594,258,692,284"/>
+<area shape="poly" title=" " alt="" coords="735,274,693,274,693,268,735,268"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="248,308,338,335"/>
+<area shape="poly" title=" " alt="" coords="579,281,394,306,339,315,338,310,393,300,579,275"/>
+<area shape="poly" title=" " alt="" coords="261,346,185,410,144,453,109,500,80,559,59,620,38,714,33,712,54,619,75,557,104,498,140,450,181,406,258,342"/>
+<area shape="poly" title=" " alt="" coords="987,295,847,386,844,382,984,291"/>
+<area shape="poly" title=" " alt="" coords="947,274,896,274,896,268,947,268"/>
+<area shape="poly" title=" " alt="" coords="1354,426,1297,426,1297,420,1354,420"/>
+<area shape="poly" title=" " alt="" coords="745,71,466,71,292,71,224,76,157,87,56,114,54,109,156,82,223,70,292,66,466,66,745,66"/>
+<area shape="poly" title=" " alt="" coords="237,122,55,122,55,116,237,116"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="393,714,537,740"/>
+<area shape="poly" title=" " alt="" coords="1361,730,1022,730,821,730,537,730,537,724,821,724,1022,724,1361,724"/>
+<area shape="poly" title=" " alt="" coords="378,730,59,730,59,724,378,724"/>
+<area shape="rect" href="class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084" title=" " alt="" coords="1146,866,1307,908"/>
+<area shape="poly" title=" " alt="" coords="1368,884,1308,886,1307,881,1368,879"/>
+<area shape="poly" title=" " alt="" coords="588,776,59,732,59,726,589,770"/>
 </map>
 </div>
 
@@ -1256,6 +1632,12 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00231">231</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8cpp_source.html#l00014">getUptimeString()</a> и <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00202">loop()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -1299,81 +1681,103 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00078">78</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a>, <a class="el" href="logger_8h_source.html#l00039">COLOR_YELLOW</a>, <a class="el" href="logger_8cpp_source.html#l00011">currentLogLevel</a>, <a class="el" href="logger_8h_source.html#l00025">LOG_SYMBOL_WARN</a> и <a class="el" href="logger_8h_source.html#l00015">LOG_WARN</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00442">finalizeSensorData()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00311">handleMQTT()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00129">handleWiFi()</a>, <a class="el" href="calibration__manager_8cpp_source.html#l00058">CalibrationManager::loadTable()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00411">logSensorValidationResult()</a>, <a class="el" href="logger_8cpp_source.html#l00241">logWiFiStatus()</a>, <a class="el" href="main_8cpp_source.html#l00202">loop()</a>, <a class="el" href="main_8cpp_source.html#l00053">resetButtonTask()</a>, <a class="el" href="config_8cpp_source.html#l00212">resetConfig()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00336">restartESP()</a>, <a class="el" href="thingspeak__client_8cpp_source.html#l00054">sendDataToThingSpeak()</a>, <a class="el" href="error__handlers_8cpp_source.html#l00008">setupErrorHandlers()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00231">startSTAMode()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00199">testModbusConnection()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00045">testSP3485E()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00407">triggerOtaCheck()</a> и <a class="el" href="error__handlers_8cpp_source.html#l00030">validateConfigInput()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="logger_8h_a34f49079ccda568e5054918ae4354431_icgraph.png" border="0" usemap="#alogger_8h_a34f49079ccda568e5054918ae4354431_icgraph" alt=""/></div>
 <map name="alogger_8h_a34f49079ccda568e5054918ae4354431_icgraph" id="alogger_8h_a34f49079ccda568e5054918ae4354431_icgraph">
-<area shape="rect" title=" " alt="" coords="1225,441,1293,467"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="1024,67,1156,94"/>
-<area shape="poly" title=" " alt="" coords="1255,425,1253,365,1242,287,1232,244,1217,203,1199,163,1175,126,1156,109,1134,97,1136,92,1159,105,1179,123,1203,160,1222,201,1237,243,1247,286,1258,365,1261,425"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,111,59,138"/>
-<area shape="poly" title=" " alt="" coords="1253,425,1246,339,1232,228,1222,173,1209,123,1193,83,1175,57,1140,31,1108,16,1076,9,1043,9,972,18,930,24,884,26,324,26,261,29,213,40,166,58,108,83,54,113,52,108,105,78,164,53,212,35,260,24,324,21,884,21,930,18,971,13,1043,3,1076,4,1109,10,1143,26,1179,53,1198,81,1214,122,1227,172,1238,227,1252,339,1259,425"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="477,466,573,493"/>
-<area shape="poly" title=" " alt="" coords="1209,458,574,480,573,475,1209,453"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="129,466,174,493"/>
-<area shape="poly" title=" " alt="" coords="1209,451,1064,438,884,431,524,431,421,437,321,449,176,477,175,471,320,444,421,431,524,426,884,426,1064,433,1209,446"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="282,365,368,391"/>
-<area shape="poly" title=" " alt="" coords="1211,472,1147,491,1066,511,976,526,884,533,702,533,574,538,518,531,452,507,413,482,379,450,333,393,337,390,383,447,416,478,455,502,520,526,574,532,702,527,884,527,975,521,1065,506,1146,486,1209,467"/>
-<area shape="rect" href="validation__utils_8cpp.html#a90392289dbf6077016cdb0ce0cdc34f8" title="Логирование результата валидации датчика" alt="" coords="1003,669,1177,695"/>
-<area shape="poly" title=" " alt="" coords="1256,483,1247,521,1232,566,1210,612,1178,652,1150,670,1147,666,1175,648,1205,609,1227,564,1242,519,1250,482"/>
-<area shape="rect" href="logger_8cpp.html#abf70e1b094519276f0363ac763f100ab" title=" " alt="" coords="652,567,755,594"/>
-<area shape="poly" title=" " alt="" coords="1245,482,1218,519,1199,537,1178,551,1123,573,1065,589,1006,598,948,603,840,601,755,592,756,587,840,596,948,597,1006,593,1064,584,1121,568,1175,546,1196,533,1214,515,1241,479"/>
-<area shape="rect" href="main_8cpp.html#a7086f14b298ca33663ff4c10ff47cb4f" title=" " alt="" coords="824,111,941,138"/>
-<area shape="poly" title=" " alt="" coords="1255,425,1251,375,1239,313,1215,250,1197,221,1175,196,1149,176,1121,160,1059,138,996,128,941,125,941,120,997,123,1060,133,1123,155,1152,171,1178,192,1201,218,1219,247,1244,312,1256,375,1260,425"/>
-<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="1046,206,1134,233"/>
-<area shape="poly" title=" " alt="" coords="1250,426,1241,389,1226,345,1204,300,1175,260,1156,245,1134,234,1136,229,1158,240,1179,256,1209,297,1231,343,1246,387,1255,424"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="273,314,377,341"/>
-<area shape="poly" title=" " alt="" coords="1223,434,1176,412,1096,391,1032,382,967,380,884,381,702,381,612,377,523,366,377,341,378,336,524,361,612,371,702,375,884,375,967,375,1033,377,1097,386,1178,407,1225,430"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a40cec05f995ed2024366761fa28604a7" title=" " alt="" coords="1047,719,1133,746"/>
-<area shape="poly" title=" " alt="" coords="1259,483,1254,532,1242,592,1218,655,1200,684,1178,709,1158,723,1134,731,1132,726,1155,718,1175,705,1196,680,1213,652,1237,591,1249,531,1254,482"/>
-<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="245,618,405,645"/>
-<area shape="poly" title=" " alt="" coords="1253,483,1243,512,1228,545,1206,577,1178,603,1139,625,1104,638,1071,645,1038,646,969,639,884,634,702,634,406,634,406,629,702,629,884,629,970,634,1039,640,1070,639,1103,633,1137,620,1175,598,1202,573,1223,543,1238,510,1248,481"/>
-<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="816,263,949,290"/>
-<area shape="poly" title=" " alt="" coords="1249,426,1239,396,1224,362,1203,330,1175,304,1149,290,1121,279,1061,267,1002,264,950,268,949,263,1002,259,1062,262,1122,274,1151,285,1178,300,1207,326,1229,360,1244,394,1254,424"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="1012,770,1168,797"/>
-<area shape="poly" title=" " alt="" coords="1261,483,1259,541,1248,615,1238,654,1224,692,1204,728,1179,760,1163,771,1160,767,1175,756,1199,725,1219,690,1233,652,1243,614,1254,540,1256,483"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#ab8a1f5220dc77f33a89d14fe4d82442f" title="Тестирование работы SP3485E." alt="" coords="1041,821,1139,847"/>
-<area shape="poly" title=" " alt="" coords="1257,483,1248,559,1232,657,1209,749,1195,785,1179,810,1161,824,1141,831,1139,826,1158,819,1175,807,1190,783,1204,747,1227,656,1243,559,1252,483"/>
-<area shape="rect" href="error__handlers_8cpp.html#a15eab9f9a3dc97d41a860ab966800fa6" title="Валидация входных данных конфигурации" alt="" coords="1023,314,1157,341"/>
-<area shape="poly" title=" " alt="" coords="1239,429,1211,394,1175,361,1140,344,1142,339,1178,357,1215,391,1243,426"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="825,61,940,87"/>
-<area shape="poly" title=" " alt="" coords="1009,81,941,78,941,73,1009,75"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="648,61,759,87"/>
-<area shape="poly" title=" " alt="" coords="809,77,760,77,760,71,809,71"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="453,61,597,87"/>
-<area shape="poly" title=" " alt="" coords="632,77,597,77,597,71,632,71"/>
-<area shape="poly" title=" " alt="" coords="438,79,283,88,107,109,60,119,59,114,106,103,283,83,437,74"/>
-<area shape="poly" title=" " alt="" coords="461,482,175,482,175,477,461,477"/>
-<area shape="poly" title=" " alt="" coords="271,400,246,412,204,440,170,468,167,464,201,436,244,408,268,395"/>
-<area shape="poly" title=" " alt="" coords="636,577,453,551,292,517,174,488,176,482,294,512,454,546,637,571"/>
-<area shape="poly" title=" " alt="" coords="809,127,526,127,324,127,59,127,59,122,324,122,526,122,809,122"/>
-<area shape="poly" title=" " alt="" coords="1050,200,954,152,925,141,927,136,956,147,1053,196"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="810,162,955,189"/>
-<area shape="poly" title=" " alt="" coords="1030,209,948,192,949,187,1031,204"/>
-<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="813,213,952,239"/>
-<area shape="poly" title=" " alt="" coords="1030,224,953,226,953,221,1030,218"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="654,162,752,189"/>
-<area shape="poly" title=" " alt="" coords="795,178,753,178,753,173,795,173"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="107,162,197,189"/>
-<area shape="poly" title=" " alt="" coords="639,178,198,178,198,173,639,173"/>
-<area shape="poly" title=" " alt="" coords="104,158,58,138,60,133,106,153"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="645,263,762,290"/>
-<area shape="poly" title=" " alt="" coords="819,247,754,265,753,260,817,241"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="476,263,574,290"/>
-<area shape="poly" title=" " alt="" coords="629,279,574,279,574,274,629,274"/>
-<area shape="poly" title=" " alt="" coords="636,297,597,305,479,319,378,327,377,322,479,314,596,299,635,291"/>
-<area shape="poly" title=" " alt="" coords="494,302,454,329,406,355,370,369,368,364,404,350,451,324,491,297"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="112,263,192,290"/>
-<area shape="poly" title=" " alt="" coords="461,279,192,279,192,274,461,274"/>
-<area shape="poly" title=" " alt="" coords="462,295,379,317,377,311,460,290"/>
-<area shape="poly" title=" " alt="" coords="129,253,42,140,46,137,133,249"/>
-<area shape="poly" title=" " alt="" coords="262,312,192,291,193,286,263,307"/>
-<area shape="poly" title=" " alt="" coords="263,613,243,601,215,575,191,546,158,494,163,492,195,542,219,572,247,597,265,609"/>
-<area shape="poly" title=" " alt="" coords="801,279,762,279,762,274,801,274"/>
-<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="821,314,944,341"/>
-<area shape="poly" title=" " alt="" coords="1008,330,945,330,945,325,1008,325"/>
-<area shape="poly" title=" " alt="" coords="817,312,753,293,754,288,819,307"/>
+<area shape="rect" title=" " alt="" coords="1454,511,1522,538"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="621,131,752,158"/>
+<area shape="poly" title=" " alt="" coords="1481,496,1471,427,1455,341,1432,260,1419,230,1404,209,1384,195,1356,182,1286,162,1199,149,1103,141,908,138,752,144,752,138,908,133,1103,136,1200,144,1287,157,1358,177,1386,190,1408,206,1424,227,1437,258,1460,339,1476,426,1486,496"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="467,689,563,715"/>
+<area shape="poly" title=" " alt="" coords="1482,554,1472,583,1457,615,1435,647,1408,672,1369,695,1333,708,1300,715,1268,716,1199,710,1113,705,894,705,563,705,563,699,894,699,1113,699,1199,705,1268,711,1300,709,1332,703,1366,690,1404,668,1431,643,1452,613,1467,581,1477,552"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="156,587,201,614"/>
+<area shape="poly" title=" " alt="" coords="1440,544,1407,554,1262,591,1197,600,1113,603,514,603,202,603,202,598,514,598,1113,598,1196,595,1261,585,1405,549,1438,539"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="310,537,397,563"/>
+<area shape="poly" title=" " alt="" coords="1474,553,1447,590,1428,608,1407,622,1367,641,1331,653,1297,659,1265,661,1198,658,1113,654,685,654,640,652,595,644,509,621,434,592,380,566,382,562,436,587,510,616,596,639,641,646,685,649,1113,649,1198,652,1265,656,1297,654,1329,648,1365,636,1405,617,1425,603,1443,586,1470,550"/>
+<area shape="rect" href="namespace_calibration_manager.html#a15db87f3fcb09c7f4c5abc69009cef89" title=" " alt="" coords="1253,65,1386,107"/>
+<area shape="poly" title=" " alt="" coords="1482,496,1473,412,1457,303,1434,198,1420,156,1404,128,1383,110,1387,106,1408,124,1425,154,1439,196,1462,302,1478,412,1487,496"/>
+<area shape="rect" href="validation__utils_8cpp.html#a90392289dbf6077016cdb0ce0cdc34f8" title="Логирование результата валидации датчика" alt="" coords="1233,790,1406,817"/>
+<area shape="poly" title=" " alt="" coords="1488,554,1482,601,1469,659,1445,720,1428,748,1408,773,1381,792,1378,787,1404,770,1424,745,1440,717,1464,658,1477,600,1483,553"/>
+<area shape="rect" href="logger_8cpp.html#abf70e1b094519276f0363ac763f100ab" title=" " alt="" coords="635,739,738,766"/>
+<area shape="poly" title=" " alt="" coords="1487,554,1480,594,1466,640,1443,686,1427,706,1408,723,1384,736,1353,747,1277,763,1186,771,1087,775,889,770,738,760,739,755,889,765,1087,769,1186,766,1277,757,1352,742,1381,731,1404,719,1423,702,1439,683,1461,638,1475,592,1482,553"/>
+<area shape="rect" href="main_8cpp.html#a7086f14b298ca33663ff4c10ff47cb4f" title=" " alt="" coords="1054,182,1170,209"/>
+<area shape="poly" title=" " alt="" coords="1484,496,1481,445,1469,381,1459,348,1445,316,1427,286,1404,260,1379,241,1350,225,1288,205,1226,196,1170,194,1171,189,1226,191,1289,200,1352,220,1382,236,1408,256,1431,283,1450,313,1464,346,1474,380,1486,445,1490,496"/>
+<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="1275,270,1364,297"/>
+<area shape="poly" title=" " alt="" coords="1480,497,1471,459,1457,413,1435,366,1404,324,1385,309,1363,298,1365,293,1388,304,1408,320,1439,363,1462,411,1476,457,1485,496"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="463,537,567,563"/>
+<area shape="poly" title=" " alt="" coords="1439,533,1293,546,1113,553,894,553,568,553,568,547,894,547,1113,547,1293,540,1438,528"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a40cec05f995ed2024366761fa28604a7" title=" " alt="" coords="1277,841,1362,867"/>
+<area shape="poly" title=" " alt="" coords="1491,554,1488,612,1478,685,1467,725,1453,763,1433,799,1408,831,1387,845,1363,853,1362,848,1385,840,1404,827,1429,796,1448,761,1462,723,1473,684,1483,611,1485,554"/>
+<area shape="rect" href="thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="816,385,976,411"/>
+<area shape="poly" title=" " alt="" coords="1471,499,1444,459,1426,440,1405,426,1371,414,1325,405,1210,396,1086,394,977,397,976,392,1086,389,1211,390,1326,400,1372,409,1407,421,1429,436,1448,456,1476,496"/>
+<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="1045,486,1179,513"/>
+<area shape="poly" title=" " alt="" coords="1438,524,1179,507,1179,501,1439,519"/>
+<area shape="rect" href="ota__manager_8cpp.html#a8061d13b589bae87956ec09e4ea7fef5" title=" " alt="" coords="475,30,555,57"/>
+<area shape="poly" title=" " alt="" coords="1484,496,1479,396,1467,262,1457,195,1443,135,1426,87,1404,55,1370,29,1337,14,1305,9,1273,10,1201,22,1160,28,1113,30,894,30,704,35,555,43,555,38,704,30,894,25,1113,25,1159,22,1200,16,1272,4,1306,3,1339,9,1373,24,1408,51,1431,84,1448,134,1462,194,1473,262,1485,396,1489,496"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="1242,891,1397,918"/>
+<area shape="poly" title=" " alt="" coords="1487,554,1477,630,1461,728,1438,820,1424,856,1408,881,1393,893,1389,889,1404,878,1419,854,1433,818,1456,727,1472,630,1481,553"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ab8a1f5220dc77f33a89d14fe4d82442f" title="Тестирование работы SP3485E." alt="" coords="1270,942,1368,969"/>
+<area shape="poly" title=" " alt="" coords="1488,554,1480,640,1465,752,1441,860,1426,903,1408,932,1390,945,1370,953,1368,948,1388,941,1404,928,1421,900,1436,859,1460,751,1474,639,1482,553"/>
+<area shape="rect" href="ota__manager_8cpp.html#aab62f74691b98553d395b694e0807ae4" title=" " alt="" coords="1261,334,1378,361"/>
+<area shape="poly" title=" " alt="" coords="1475,498,1449,439,1429,408,1404,382,1374,364,1377,359,1408,377,1433,405,1454,437,1480,496"/>
+<area shape="rect" href="error__handlers_8cpp.html#a15eab9f9a3dc97d41a860ab966800fa6" title="Валидация входных данных конфигурации" alt="" coords="1253,435,1386,462"/>
+<area shape="poly" title=" " alt="" coords="1449,506,1405,483,1361,465,1363,460,1407,478,1451,501"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="457,131,573,158"/>
+<area shape="poly" title=" " alt="" coords="605,147,573,147,573,142,605,142"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,131,409,158"/>
+<area shape="poly" title=" " alt="" coords="442,147,410,147,410,142,442,142"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,131,250,158"/>
+<area shape="poly" title=" " alt="" coords="283,147,250,147,250,142,283,142"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,182,59,209"/>
+<area shape="poly" title=" " alt="" coords="124,166,60,189,58,184,123,161"/>
+<area shape="poly" title=" " alt="" coords="452,686,201,610,202,605,454,681"/>
+<area shape="poly" title=" " alt="" coords="296,569,202,597,201,592,295,564"/>
+<area shape="rect" href="namespace_calibration_manager.html#abb872938a17efb733eaf531bb5c0a1dc" title=" " alt="" coords="1045,65,1179,107"/>
+<area shape="poly" title=" " alt="" coords="1237,89,1179,89,1179,83,1237,83"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4cff8e34908a2deb0691e3809224685a" title=" " alt="" coords="800,77,991,103"/>
+<area shape="poly" title=" " alt="" coords="1030,90,992,91,992,86,1029,85"/>
+<area shape="poly" title=" " alt="" coords="828,111,741,133,740,128,826,105"/>
+<area shape="poly" title=" " alt="" coords="619,752,541,744,457,730,375,709,297,677,242,646,198,617,200,613,245,642,299,672,377,704,458,725,542,739,620,747"/>
+<area shape="poly" title=" " alt="" coords="1038,198,688,198,352,198,59,198,59,193,352,193,688,193,1038,193"/>
+<area shape="poly" title=" " alt="" coords="1276,265,1184,223,1154,212,1156,207,1186,218,1278,261"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="1039,283,1185,310"/>
+<area shape="poly" title=" " alt="" coords="1260,290,1185,295,1185,289,1260,285"/>
+<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="1042,233,1182,259"/>
+<area shape="poly" title=" " alt="" coords="1259,275,1182,261,1183,256,1260,270"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="846,258,945,285"/>
+<area shape="poly" title=" " alt="" coords="1024,289,945,280,946,275,1024,284"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="133,233,224,259"/>
+<area shape="poly" title=" " alt="" coords="831,272,224,250,224,245,831,267"/>
+<area shape="poly" title=" " alt="" coords="123,230,58,207,60,202,124,225"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="837,435,954,462"/>
+<area shape="poly" title=" " alt="" coords="1044,270,1041,273,1028,292,1021,310,1019,348,1016,387,1008,406,993,425,975,438,956,445,954,440,973,433,990,422,1004,404,1011,386,1013,348,1016,309,1023,289,1037,270,1041,267"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="638,435,735,462"/>
+<area shape="poly" title=" " alt="" coords="822,451,736,451,736,446,822,446"/>
+<area shape="poly" title=" " alt="" coords="828,469,568,539,567,534,827,464"/>
+<area shape="poly" title=" " alt="" coords="626,470,398,540,397,535,624,465"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="314,435,394,462"/>
+<area shape="poly" title=" " alt="" coords="622,451,394,451,394,446,622,446"/>
+<area shape="poly" title=" " alt="" coords="642,472,622,483,598,501,574,520,544,539,541,534,571,516,595,497,619,479,639,467"/>
+<area shape="poly" title=" " alt="" coords="316,429,219,362,105,273,43,211,47,207,108,269,222,358,319,424"/>
+<area shape="poly" title=" " alt="" coords="447,553,397,553,397,547,447,547"/>
+<area shape="poly" title=" " alt="" coords="478,531,375,465,378,460,481,526"/>
+<area shape="poly" title=" " alt="" coords="820,384,712,367,647,362,577,361,506,365,434,377,364,396,299,426,276,442,256,462,223,507,200,553,187,588,182,586,195,551,218,505,252,458,273,438,297,421,363,391,433,371,505,360,577,356,647,357,713,362,821,379"/>
+<area shape="poly" title=" " alt="" coords="1036,485,954,465,955,460,1038,479"/>
+<area shape="poly" title=" " alt="" coords="460,46,387,50,297,62,200,84,153,101,108,122,88,135,71,152,45,183,40,180,67,148,85,131,105,117,151,96,198,79,296,56,386,45,460,41"/>
+<area shape="poly" title=" " alt="" coords="1246,332,1169,313,1170,308,1247,327"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="1054,334,1170,361"/>
+<area shape="poly" title=" " alt="" coords="1246,350,1171,350,1171,345,1246,345"/>
+<area shape="poly" title=" " alt="" coords="1082,372,1041,400,992,426,956,439,954,434,990,421,1038,395,1079,368"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="1050,435,1174,462"/>
+<area shape="poly" title=" " alt="" coords="1237,451,1174,451,1174,446,1237,446"/>
+<area shape="poly" title=" " alt="" coords="1035,451,955,451,955,446,1035,446"/>
 </map>
 </div>
 
@@ -1397,30 +1801,38 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00162">162</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8h_source.html#l00038">COLOR_GREEN</a>, <a class="el" href="logger_8h_source.html#l00036">COLOR_RESET</a>, <a class="el" href="logger_8cpp_source.html#l00011">currentLogLevel</a>, <a class="el" href="logger_8h_source.html#l00016">LOG_INFO</a> и <a class="el" href="logger_8h_source.html#l00030">LOG_SYMBOL_WIFI</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="wifi__manager_8cpp_source.html#l00129">handleWiFi()</a>, <a class="el" href="logger_8cpp_source.html#l00241">logWiFiStatus()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00099">setupWiFi()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00216">startAPMode()</a> и <a class="el" href="wifi__manager_8cpp_source.html#l00231">startSTAMode()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="logger_8h_a8a220d54e17d73c281bb715f70bf6df9_icgraph.png" border="0" usemap="#alogger_8h_a8a220d54e17d73c281bb715f70bf6df9_icgraph" alt=""/></div>
 <map name="alogger_8h_a8a220d54e17d73c281bb715f70bf6df9_icgraph" id="alogger_8h_a8a220d54e17d73c281bb715f70bf6df9_icgraph">
 <area shape="rect" title=" " alt="" coords="539,107,604,133"/>
-<area shape="rect" href="logger_8cpp.html#abf70e1b094519276f0363ac763f100ab" title=" " alt="" coords="387,5,491,32"/>
-<area shape="poly" title=" " alt="" coords="539,99,456,35,460,30,542,95"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,132,187,159"/>
-<area shape="poly" title=" " alt="" coords="524,138,467,154,394,169,315,177,235,173,186,162,188,157,235,168,315,172,393,163,465,149,523,133"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="390,81,488,108"/>
-<area shape="poly" title=" " alt="" coords="523,114,488,107,489,101,524,108"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,132,339,159"/>
-<area shape="poly" title=" " alt="" coords="524,127,340,143,339,138,523,122"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
-<area shape="poly" title=" " alt="" coords="372,21,170,21,170,16,372,16"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,132,59,159"/>
-<area shape="poly" title=" " alt="" coords="91,148,59,148,59,143,91,143"/>
-<area shape="poly" title=" " alt="" coords="375,103,308,110,236,123,188,135,187,130,234,117,307,105,375,97"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,31,330,57"/>
-<area shape="poly" title=" " alt="" coords="381,78,329,60,330,55,383,73"/>
-<area shape="poly" title=" " alt="" coords="383,116,330,134,329,129,381,111"/>
-<area shape="poly" title=" " alt="" coords="228,36,169,25,170,20,229,31"/>
-<area shape="poly" title=" " alt="" coords="219,148,187,148,187,143,219,143"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="523,110,490,104,408,96,326,93,193,95,193,90,326,88,409,91,491,99,524,105"/>
+<area shape="rect" href="logger_8cpp.html#abf70e1b094519276f0363ac763f100ab" title=" " alt="" coords="242,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="547,97,521,73,489,53,453,39,415,30,345,22,345,17,416,25,455,34,492,48,524,69,551,93"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,208,190,235"/>
+<area shape="poly" title=" " alt="" coords="553,147,526,175,492,198,453,214,411,224,328,235,251,235,190,230,191,224,251,229,328,229,410,219,451,209,489,194,523,171,549,143"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,157,491,184"/>
+<area shape="poly" title=" " alt="" coords="525,141,479,159,477,154,523,136"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,107,345,133"/>
+<area shape="poly" title=" " alt="" coords="523,123,346,123,346,117,523,117"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,56,55,83"/>
+<area shape="poly" title=" " alt="" coords="91,85,54,77,55,71,92,80"/>
+<area shape="poly" title=" " alt="" coords="227,34,56,68,55,62,226,29"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,208,59,235"/>
+<area shape="poly" title=" " alt="" coords="94,224,59,224,59,219,94,219"/>
+<area shape="poly" title=" " alt="" coords="377,172,310,164,240,148,201,130,169,111,172,106,204,126,242,143,311,159,378,166"/>
+<area shape="poly" title=" " alt="" coords="378,186,346,192,191,218,190,213,345,187,377,181"/>
+<area shape="poly" title=" " alt="" coords="385,154,334,136,336,131,387,149"/>
+<area shape="poly" title=" " alt="" coords="225,111,193,105,194,100,226,105"/>
+<area shape="poly" title=" " alt="" coords="262,145,172,210,169,205,259,140"/>
 </map>
 </div>
 
@@ -1440,6 +1852,12 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00241">241</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a> и <a class="el" href="logger_8cpp_source.html#l00162">logWiFi()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00202">loop()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -1486,6 +1904,10 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00011">11</a></p>
+
+<p class="reference">Используется в <a class="el" href="debug__optimized_8h_source.html#l00125">debugConditionalPrint()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00024">debugPrintBuffer()</a>, <a class="el" href="debug__optimized_8h_source.html#l00145">debugPrintHexBuffer()</a>, <a class="el" href="logger_8cpp_source.html#l00196">logData()</a>, <a class="el" href="logger_8cpp_source.html#l00112">logDebug()</a>, <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>, <a class="el" href="logger_8cpp_source.html#l00095">logInfo()</a>, <a class="el" href="logger_8cpp_source.html#l00179">logMQTT()</a>, <a class="el" href="logger_8cpp_source.html#l00145">logSensor()</a>, <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>, <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a> и <a class="el" href="logger_8cpp_source.html#l00162">logWiFi()</a>.</p>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -1494,7 +1916,7 @@ $(function(){initNavTree('logger_8h.html',''); initResizable(true); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="logger_8h.html">logger.h</a></li>
-    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:10. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

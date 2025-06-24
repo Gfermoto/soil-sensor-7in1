@@ -1,6 +1,6 @@
 var config_8cpp =
 [
-    [ "JXCT_FULL_VERSION_STRING", "config_8cpp.html#a0096f2930a233d1d076483aa61c5b94f", null ],
+    [ "KEY_NTP_INTERVAL", "config_8cpp.html#a9ccd2b50755f4e9983b7f4773a19469f", null ],
     [ "getDefaultTopic", "config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023", null ],
     [ "getDeviceId", "config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa", null ],
     [ "isConfigValid", "config_8cpp.html#aeb61f04cd3b4b68e8146d85c447d70d1", null ],

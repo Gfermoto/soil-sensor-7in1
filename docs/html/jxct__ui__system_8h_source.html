@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: Исходный файл include/jxct_ui_system.h</title>
+<title>JXCT Soil Sensor 7-in-1: Исходный файл include/jxct_ui_system.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,11 +18,6 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,22 +27,10 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
    </div>
-   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -64,6 +47,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -165,56 +159,57 @@ $(function(){initNavTree('jxct__ui__system_8h_source.html',''); initResizable(tr
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ab15f127830853b50a5c2f2f333794d5c">   57</a></span><span class="preprocessor">#define UI_ICON_FOLDER &quot;📁&quot;</span></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#a5e83bf7a8415b41233dc51591952e5eb">   58</a></span><span class="preprocessor">#define UI_ICON_STATUS &quot;📋&quot;</span></div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#a68dbe729790d93b9811c800511aa01e8">   59</a></span><span class="preprocessor">#define UI_ICON_REFRESH &quot;🔄&quot;</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">// 📋 ТИПЫ КНОПОК</span></div>
-<div class="foldopen" id="foldopen00062" data-start="{" data-end="};">
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943">   62</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943">ButtonType</a></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>{</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a428429ba9ea83e4841036fb0508fd6dc">   64</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a428429ba9ea83e4841036fb0508fd6dc">PRIMARY</a>,    <span class="comment">// Основная зеленая кнопка</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a371b09d93ca01e09a42fbd5a2a423f8e">   65</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a371b09d93ca01e09a42fbd5a2a423f8e">SECONDARY</a>,  <span class="comment">// Синяя кнопка</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a707e893c1db5175432f341eb5d6d1ca7">   66</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a707e893c1db5175432f341eb5d6d1ca7">DANGER</a>,     <span class="comment">// Красная кнопка</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c">   67</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c">SUCCESS</a>,    <span class="comment">// Зеленая кнопка успеха</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a6a656275b77dd69c1cc1f49c58859151">   68</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a6a656275b77dd69c1cc1f49c58859151">OUTLINE</a>     <span class="comment">// Кнопка с контуром</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>};</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#a9af26217e5d651fb664f6e3891e610b9">   60</a></span><span class="preprocessor">#define UI_ICON_CALIBRATION &quot;🛠️&quot;</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">// 📋 ТИПЫ КНОПОК</span></div>
+<div class="foldopen" id="foldopen00063" data-start="{" data-end="};">
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943">   63</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943">ButtonType</a></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>{</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a428429ba9ea83e4841036fb0508fd6dc">   65</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a428429ba9ea83e4841036fb0508fd6dc">PRIMARY</a>,    <span class="comment">// Основная зеленая кнопка</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a371b09d93ca01e09a42fbd5a2a423f8e">   66</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a371b09d93ca01e09a42fbd5a2a423f8e">SECONDARY</a>,  <span class="comment">// Синяя кнопка</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a707e893c1db5175432f341eb5d6d1ca7">   67</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a707e893c1db5175432f341eb5d6d1ca7">DANGER</a>,     <span class="comment">// Красная кнопка</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c">   68</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c">SUCCESS</a>,    <span class="comment">// Зеленая кнопка успеха</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a6a656275b77dd69c1cc1f49c58859151">   69</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a6a656275b77dd69c1cc1f49c58859151">OUTLINE</a>     <span class="comment">// Кнопка с контуром</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
 </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// 🎨 ТИПЫ СООБЩЕНИЙ</span></div>
-<div class="foldopen" id="foldopen00072" data-start="{" data-end="};">
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">   72</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">MessageType</a></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>{</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad0749aaba8b833466dfcbb0428e4f89c">   74</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c">SUCCESS</a>,</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013abb1ca97ec761fc37101737ba0aa2e7c5">   75</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013abb1ca97ec761fc37101737ba0aa2e7c5">ERROR</a>,</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a059e9861e0400dfbe05c98a841f3f96b">   76</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a059e9861e0400dfbe05c98a841f3f96b">WARNING</a>,</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a551b723eafd6a31d444fcb2f5920fbd3">   77</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a551b723eafd6a31d444fcb2f5920fbd3">INFO</a></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// 🎨 ТИПЫ СООБЩЕНИЙ</span></div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="};">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">   73</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">MessageType</a></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>{</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad0749aaba8b833466dfcbb0428e4f89c">   75</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c">SUCCESS</a>,</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013abb1ca97ec761fc37101737ba0aa2e7c5">   76</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013abb1ca97ec761fc37101737ba0aa2e7c5">ERROR</a>,</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a059e9861e0400dfbe05c98a841f3f96b">   77</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a059e9861e0400dfbe05c98a841f3f96b">WARNING</a>,</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a551b723eafd6a31d444fcb2f5920fbd3">   78</a></span>    <a class="code hl_enumvalue" href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a551b723eafd6a31d444fcb2f5920fbd3">INFO</a></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>};</div>
 </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">// 🎯 ФУНКЦИИ ДЛЯ ГЕНЕРАЦИИ CSS И HTML</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="jxct__ui__system_8h.html#a303ae6cee9693130ac22414e47140a1e">getUnifiedCSS</a>();</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="jxct__ui__system_8h.html#afbda6d57dd082e7767c2c5e823951472">getToastHTML</a>();</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="jxct__ui__system_8h.html#a3a0ab8552fa88451ee4451e40d2058b3">getLoaderHTML</a>();</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>String <a class="code hl_function" href="jxct__ui__system_8h.html#af67d399d8034386a7a70ae4b0b08a972">generateButton</a>(<a class="code hl_enumeration" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943">ButtonType</a> type, <span class="keyword">const</span> <span class="keywordtype">char</span>* icon, <span class="keyword">const</span> <span class="keywordtype">char</span>* text, <span class="keyword">const</span> <span class="keywordtype">char</span>* action = <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="ttc" id="ajxct__ui__system_8h_html_a303ae6cee9693130ac22414e47140a1e"><div class="ttname"><a href="jxct__ui__system_8h.html#a303ae6cee9693130ac22414e47140a1e">getUnifiedCSS</a></div><div class="ttdeci">const char * getUnifiedCSS()</div><div class="ttdef"><b>Определения</b> jxct_ui_system.cpp:4</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_a3a0ab8552fa88451ee4451e40d2058b3"><div class="ttname"><a href="jxct__ui__system_8h.html#a3a0ab8552fa88451ee4451e40d2058b3">getLoaderHTML</a></div><div class="ttdeci">const char * getLoaderHTML()</div><div class="ttdef"><b>Определения</b> jxct_ui_system.cpp:360</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013"><div class="ttname"><a href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">MessageType</a></div><div class="ttdeci">MessageType</div><div class="ttdef"><b>Определения</b> jxct_ui_system.h:73</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a059e9861e0400dfbe05c98a841f3f96b"><div class="ttname"><a href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a059e9861e0400dfbe05c98a841f3f96b">MessageType::WARNING</a></div><div class="ttdeci">@ WARNING</div><div class="ttdef"><b>Определения</b> jxct_ui_system.h:76</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a551b723eafd6a31d444fcb2f5920fbd3"><div class="ttname"><a href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a551b723eafd6a31d444fcb2f5920fbd3">MessageType::INFO</a></div><div class="ttdeci">@ INFO</div><div class="ttdef"><b>Определения</b> jxct_ui_system.h:77</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013abb1ca97ec761fc37101737ba0aa2e7c5"><div class="ttname"><a href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013abb1ca97ec761fc37101737ba0aa2e7c5">MessageType::ERROR</a></div><div class="ttdeci">@ ERROR</div><div class="ttdef"><b>Определения</b> jxct_ui_system.h:75</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943">ButtonType</a></div><div class="ttdeci">ButtonType</div><div class="ttdef"><b>Определения</b> jxct_ui_system.h:63</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943a371b09d93ca01e09a42fbd5a2a423f8e"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a371b09d93ca01e09a42fbd5a2a423f8e">ButtonType::SECONDARY</a></div><div class="ttdeci">@ SECONDARY</div><div class="ttdef"><b>Определения</b> jxct_ui_system.h:65</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943a428429ba9ea83e4841036fb0508fd6dc"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a428429ba9ea83e4841036fb0508fd6dc">ButtonType::PRIMARY</a></div><div class="ttdeci">@ PRIMARY</div><div class="ttdef"><b>Определения</b> jxct_ui_system.h:64</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943a6a656275b77dd69c1cc1f49c58859151"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a6a656275b77dd69c1cc1f49c58859151">ButtonType::OUTLINE</a></div><div class="ttdeci">@ OUTLINE</div><div class="ttdef"><b>Определения</b> jxct_ui_system.h:68</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943a707e893c1db5175432f341eb5d6d1ca7"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a707e893c1db5175432f341eb5d6d1ca7">ButtonType::DANGER</a></div><div class="ttdeci">@ DANGER</div><div class="ttdef"><b>Определения</b> jxct_ui_system.h:66</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c">ButtonType::SUCCESS</a></div><div class="ttdeci">@ SUCCESS</div><div class="ttdef"><b>Определения</b> jxct_ui_system.h:67</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_af67d399d8034386a7a70ae4b0b08a972"><div class="ttname"><a href="jxct__ui__system_8h.html#af67d399d8034386a7a70ae4b0b08a972">generateButton</a></div><div class="ttdeci">String generateButton(ButtonType type, const char *icon, const char *text, const char *action=&quot;&quot;)</div><div class="ttdef"><b>Определения</b> jxct_ui_system.cpp:286</div></div>
-<div class="ttc" id="ajxct__ui__system_8h_html_afbda6d57dd082e7767c2c5e823951472"><div class="ttname"><a href="jxct__ui__system_8h.html#afbda6d57dd082e7767c2c5e823951472">getToastHTML</a></div><div class="ttdeci">const char * getToastHTML()</div><div class="ttdef"><b>Определения</b> jxct_ui_system.cpp:320</div></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">// 🎯 ФУНКЦИИ ДЛЯ ГЕНЕРАЦИИ CSS И HTML</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="jxct__ui__system_8h.html#a303ae6cee9693130ac22414e47140a1e">getUnifiedCSS</a>();</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="jxct__ui__system_8h.html#afbda6d57dd082e7767c2c5e823951472">getToastHTML</a>();</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="jxct__ui__system_8h.html#a3a0ab8552fa88451ee4451e40d2058b3">getLoaderHTML</a>();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>String <a class="code hl_function" href="jxct__ui__system_8h.html#af67d399d8034386a7a70ae4b0b08a972">generateButton</a>(<a class="code hl_enumeration" href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943">ButtonType</a> type, <span class="keyword">const</span> <span class="keywordtype">char</span>* icon, <span class="keyword">const</span> <span class="keywordtype">char</span>* text, <span class="keyword">const</span> <span class="keywordtype">char</span>* action = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="ttc" id="ajxct__ui__system_8h_html_a303ae6cee9693130ac22414e47140a1e"><div class="ttname"><a href="jxct__ui__system_8h.html#a303ae6cee9693130ac22414e47140a1e">getUnifiedCSS</a></div><div class="ttdeci">const char * getUnifiedCSS()</div><div class="ttdef"><b>Определения</b> <a href="jxct__ui__system_8cpp_source.html#l00004">jxct_ui_system.cpp:4</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_a3a0ab8552fa88451ee4451e40d2058b3"><div class="ttname"><a href="jxct__ui__system_8h.html#a3a0ab8552fa88451ee4451e40d2058b3">getLoaderHTML</a></div><div class="ttdeci">const char * getLoaderHTML()</div><div class="ttdef"><b>Определения</b> <a href="jxct__ui__system_8cpp_source.html#l00360">jxct_ui_system.cpp:360</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013"><div class="ttname"><a href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013">MessageType</a></div><div class="ttdeci">MessageType</div><div class="ttdef"><b>Определения</b> <a href="#l00073">jxct_ui_system.h:74</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a059e9861e0400dfbe05c98a841f3f96b"><div class="ttname"><a href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a059e9861e0400dfbe05c98a841f3f96b">MessageType::WARNING</a></div><div class="ttdeci">@ WARNING</div><div class="ttdef"><b>Определения</b> <a href="#l00077">jxct_ui_system.h:77</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013a551b723eafd6a31d444fcb2f5920fbd3"><div class="ttname"><a href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a551b723eafd6a31d444fcb2f5920fbd3">MessageType::INFO</a></div><div class="ttdeci">@ INFO</div><div class="ttdef"><b>Определения</b> <a href="#l00078">jxct_ui_system.h:78</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_ac6606ebe91c8ac66a2c314c79f5ab013abb1ca97ec761fc37101737ba0aa2e7c5"><div class="ttname"><a href="jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013abb1ca97ec761fc37101737ba0aa2e7c5">MessageType::ERROR</a></div><div class="ttdeci">@ ERROR</div><div class="ttdef"><b>Определения</b> <a href="#l00076">jxct_ui_system.h:76</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943">ButtonType</a></div><div class="ttdeci">ButtonType</div><div class="ttdef"><b>Определения</b> <a href="#l00063">jxct_ui_system.h:64</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943a371b09d93ca01e09a42fbd5a2a423f8e"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a371b09d93ca01e09a42fbd5a2a423f8e">ButtonType::SECONDARY</a></div><div class="ttdeci">@ SECONDARY</div><div class="ttdef"><b>Определения</b> <a href="#l00066">jxct_ui_system.h:66</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943a428429ba9ea83e4841036fb0508fd6dc"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a428429ba9ea83e4841036fb0508fd6dc">ButtonType::PRIMARY</a></div><div class="ttdeci">@ PRIMARY</div><div class="ttdef"><b>Определения</b> <a href="#l00065">jxct_ui_system.h:65</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943a6a656275b77dd69c1cc1f49c58859151"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a6a656275b77dd69c1cc1f49c58859151">ButtonType::OUTLINE</a></div><div class="ttdeci">@ OUTLINE</div><div class="ttdef"><b>Определения</b> <a href="#l00069">jxct_ui_system.h:69</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943a707e893c1db5175432f341eb5d6d1ca7"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a707e893c1db5175432f341eb5d6d1ca7">ButtonType::DANGER</a></div><div class="ttdeci">@ DANGER</div><div class="ttdef"><b>Определения</b> <a href="#l00067">jxct_ui_system.h:67</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c"><div class="ttname"><a href="jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c">ButtonType::SUCCESS</a></div><div class="ttdeci">@ SUCCESS</div><div class="ttdef"><b>Определения</b> <a href="#l00068">jxct_ui_system.h:68</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_af67d399d8034386a7a70ae4b0b08a972"><div class="ttname"><a href="jxct__ui__system_8h.html#af67d399d8034386a7a70ae4b0b08a972">generateButton</a></div><div class="ttdeci">String generateButton(ButtonType type, const char *icon, const char *text, const char *action=&quot;&quot;)</div><div class="ttdef"><b>Определения</b> <a href="jxct__ui__system_8cpp_source.html#l00286">jxct_ui_system.cpp:286</a></div></div>
+<div class="ttc" id="ajxct__ui__system_8h_html_afbda6d57dd082e7767c2c5e823951472"><div class="ttname"><a href="jxct__ui__system_8h.html#afbda6d57dd082e7767c2c5e823951472">getToastHTML</a></div><div class="ttdeci">const char * getToastHTML()</div><div class="ttdef"><b>Определения</b> <a href="jxct__ui__system_8cpp_source.html#l00320">jxct_ui_system.cpp:320</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="jxct__ui__system_8h.html">jxct_ui_system.h</a></li>
-    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:09. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

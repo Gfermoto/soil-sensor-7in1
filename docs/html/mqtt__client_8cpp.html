@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: Файл src/mqtt_client.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/mqtt_client.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,11 +18,6 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,22 +27,10 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
    </div>
-   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -64,6 +47,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -126,38 +120,41 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 <code>#include &quot;<a class="el" href="debug_8h_source.html">debug.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">jxct_constants.h</a>&quot;</code><br />
 <code>#include &lt;NTPClient.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="ota__manager_8h_source.html">ota_manager.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Граф включаемых заголовочных файлов для mqtt_client.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp__incl.png" border="0" usemap="#asrc_2mqtt__client_8cpp" alt=""/></div>
 <map name="asrc_2mqtt__client_8cpp" id="asrc_2mqtt__client_8cpp">
-<area shape="rect" title="Взаимодействие с MQTT&#45;брокером и Home Assistant." alt="" coords="817,5,949,32"/>
+<area shape="rect" title="Взаимодействие с MQTT&#45;брокером и Home Assistant." alt="" coords="893,5,1025,32"/>
 <area shape="rect" title=" " alt="" coords="632,155,708,181"/>
-<area shape="poly" title=" " alt="" coords="817,29,762,36,704,47,656,63,638,72,627,82,621,96,624,111,633,127,646,142,642,145,629,130,619,113,616,95,622,78,635,67,654,58,703,42,761,31,816,23"/>
+<area shape="poly" title=" " alt="" coords="893,25,819,30,739,40,669,57,643,68,627,82,621,96,624,111,633,127,646,142,642,146,629,131,619,113,616,95,622,78,641,64,667,52,738,35,818,25,892,20"/>
 <area shape="rect" title=" " alt="" coords="1123,80,1235,107"/>
-<area shape="poly" title=" " alt="" coords="936,30,1113,73,1112,78,934,35"/>
+<area shape="poly" title=" " alt="" coords="998,30,1127,72,1125,77,997,35"/>
 <area shape="rect" title=" " alt="" coords="1259,80,1363,107"/>
-<area shape="poly" title=" " alt="" coords="950,28,1244,77,1243,82,949,33"/>
+<area shape="poly" title=" " alt="" coords="1021,30,1244,76,1243,81,1020,35"/>
 <area shape="rect" href="modbus__sensor_8h.html" title=" " alt="" coords="152,80,276,107"/>
-<area shape="poly" title=" " alt="" coords="817,28,589,49,292,82,291,77,588,44,816,23"/>
+<area shape="poly" title=" " alt="" coords="893,27,634,47,292,82,291,77,633,42,892,22"/>
 <area shape="rect" href="wifi__manager_8h.html" title=" " alt="" coords="300,80,410,107"/>
-<area shape="poly" title=" " alt="" coords="817,30,644,52,426,82,425,77,643,46,816,25"/>
-<area shape="rect" title=" " alt="" coords="1387,80,1480,107"/>
-<area shape="poly" title=" " alt="" coords="950,24,1136,44,1372,77,1371,82,1135,50,950,29"/>
+<area shape="poly" title=" " alt="" coords="893,29,688,49,426,82,425,77,687,44,892,23"/>
+<area shape="rect" title=" " alt="" coords="1399,155,1492,181"/>
+<area shape="poly" title=" " alt="" coords="1026,21,1217,39,1311,56,1348,66,1376,78,1395,91,1410,107,1434,139,1430,143,1406,110,1391,95,1374,82,1347,71,1310,61,1217,45,1026,26"/>
 <area shape="rect" href="jxct__device__info_8h.html" title=" " alt="" coords="820,80,946,107"/>
-<area shape="poly" title=" " alt="" coords="886,33,886,64,880,64,880,33"/>
+<area shape="poly" title=" " alt="" coords="948,34,909,71,905,67,944,31"/>
 <area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="434,80,562,107"/>
-<area shape="poly" title=" " alt="" coords="817,35,577,80,576,75,816,30"/>
+<area shape="poly" title=" " alt="" coords="893,33,577,82,576,77,892,28"/>
 <area shape="rect" href="jxct__format__utils_8h.html" title=" " alt="" coords="971,80,1099,107"/>
-<area shape="poly" title=" " alt="" coords="911,30,996,70,994,75,909,35"/>
+<area shape="poly" title=" " alt="" coords="974,31,1013,67,1009,71,971,34"/>
 <area shape="rect" href="logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="636,80,704,107"/>
-<area shape="poly" title=" " alt="" coords="847,35,719,78,717,73,845,30"/>
+<area shape="poly" title=" " alt="" coords="908,35,719,82,718,77,907,30"/>
 <area shape="rect" href="debug_8h.html" title=" " alt="" coords="728,80,796,107"/>
-<area shape="poly" title=" " alt="" coords="863,35,798,74,795,69,861,30"/>
-<area shape="rect" href="jxct__constants_8h.html" title="Централизованные константы системы JXCT." alt="" coords="1504,80,1622,107"/>
-<area shape="poly" title=" " alt="" coords="950,22,1184,43,1489,77,1489,82,1184,48,949,28"/>
-<area shape="rect" title=" " alt="" coords="1646,80,1739,107"/>
-<area shape="poly" title=" " alt="" coords="950,20,1241,37,1433,54,1630,77,1630,82,1432,59,1241,42,950,25"/>
+<area shape="poly" title=" " alt="" coords="926,35,811,77,809,72,924,30"/>
+<area shape="rect" href="jxct__constants_8h.html" title="Централизованные константы системы JXCT." alt="" coords="1568,80,1686,107"/>
+<area shape="poly" title=" " alt="" coords="1026,23,1255,43,1553,77,1553,82,1255,48,1025,28"/>
+<area shape="rect" title=" " alt="" coords="1710,80,1803,107"/>
+<area shape="poly" title=" " alt="" coords="1026,20,1312,37,1501,54,1694,77,1694,82,1500,59,1312,43,1026,25"/>
+<area shape="rect" href="ota__manager_8h.html" title=" " alt="" coords="1438,80,1545,107"/>
+<area shape="poly" title=" " alt="" coords="1026,25,1420,77,1422,78,1421,83,1419,83,1026,31"/>
 <area shape="poly" title=" " alt="" coords="277,102,289,104,617,156,616,161,288,109,276,107"/>
 <area shape="rect" title=" " alt="" coords="5,155,124,181"/>
 <area shape="poly" title=" " alt="" coords="189,110,106,150,103,145,187,105"/>
@@ -179,9 +176,12 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 <area shape="poly" title=" " alt="" coords="1038,107,1038,139,1032,139,1032,107"/>
 <area shape="poly" title=" " alt="" coords="672,107,672,139,667,139,667,107"/>
 <area shape="poly" title=" " alt="" coords="747,109,699,147,696,143,744,105"/>
+<area shape="poly" title=" " alt="" coords="1486,109,1464,143,1460,140,1481,106"/>
 </map>
 </div>
-</div><table class="memberdecls">
+</div>
+<p><a href="mqtt__client_8cpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Классы</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_home_assistant_config_cache.html">HomeAssistantConfigCache</a></td></tr>
@@ -211,6 +211,10 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 <tr class="separator:ad887808331ac88cd82959c00efdacb77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa0880332a55ab7205d86dfabc8d22b35" id="r_aa0880332a55ab7205d86dfabc8d22b35"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0880332a55ab7205d86dfabc8d22b35">getCommandTopic</a> ()</td></tr>
 <tr class="separator:aa0880332a55ab7205d86dfabc8d22b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9939b7e00bc562d6b183d61b06d5cfc2" id="r_a9939b7e00bc562d6b183d61b06d5cfc2"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9939b7e00bc562d6b183d61b06d5cfc2">getOtaStatusTopic</a> ()</td></tr>
+<tr class="separator:a9939b7e00bc562d6b183d61b06d5cfc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c700b1b75b5d57c38437e39370f2181" id="r_a0c700b1b75b5d57c38437e39370f2181"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c700b1b75b5d57c38437e39370f2181">getOtaCommandTopic</a> ()</td></tr>
+<tr class="separator:a0c700b1b75b5d57c38437e39370f2181"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaa9510911ee8e47743efa916df00c13b" id="r_aaa9510911ee8e47743efa916df00c13b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa9510911ee8e47743efa916df00c13b">publishAvailability</a> (bool online)</td></tr>
 <tr class="separator:aaa9510911ee8e47743efa916df00c13b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3cff6686f09444558b7c9436e082e73c" id="r_a3cff6686f09444558b7c9436e082e73c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cff6686f09444558b7c9436e082e73c">setupMQTT</a> ()</td></tr>
@@ -244,7 +248,11 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 <tr class="separator:abbce218884367d7d814067d0b63442bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91e8c5486997693c709911d497356754" id="r_a91e8c5486997693c709911d497356754"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91e8c5486997693c709911d497356754">commandTopicBuffer</a> [128] = &quot;&quot;</td></tr>
 <tr class="separator:a91e8c5486997693c709911d497356754"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3916b4db3b3f9bf7151faffc9e9b3f93" id="r_a3916b4db3b3f9bf7151faffc9e9b3f93"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_home_assistant_config_cache.html">HomeAssistantConfigCache</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3916b4db3b3f9bf7151faffc9e9b3f93">haConfigCache</a> = {&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, false, &quot;&quot;, &quot;&quot;}</td></tr>
+<tr class="memitem:a97077e8e77af0bddb223979d23764f9b" id="r_a97077e8e77af0bddb223979d23764f9b"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97077e8e77af0bddb223979d23764f9b">otaStatusTopicBuffer</a> [128] = &quot;&quot;</td></tr>
+<tr class="separator:a97077e8e77af0bddb223979d23764f9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35f256d87608b13739929b96361be87d" id="r_a35f256d87608b13739929b96361be87d"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a35f256d87608b13739929b96361be87d">otaCommandTopicBuffer</a> [128] = &quot;&quot;</td></tr>
+<tr class="separator:a35f256d87608b13739929b96361be87d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3916b4db3b3f9bf7151faffc9e9b3f93" id="r_a3916b4db3b3f9bf7151faffc9e9b3f93"><td class="memItemLeft" align="right" valign="top">static struct <a class="el" href="struct_home_assistant_config_cache.html">HomeAssistantConfigCache</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3916b4db3b3f9bf7151faffc9e9b3f93">haConfigCache</a> = {&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, false, &quot;&quot;, &quot;&quot;}</td></tr>
 <tr class="separator:a3916b4db3b3f9bf7151faffc9e9b3f93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7293ad76efe28a615e5ace2b275e975f" id="r_a7293ad76efe28a615e5ace2b275e975f"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7293ad76efe28a615e5ace2b275e975f">pubTopicCache</a> [7][128] = {&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;}</td></tr>
 <tr class="separator:a7293ad76efe28a615e5ace2b275e975f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -262,6 +270,8 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Взаимодействие с MQTT-брокером и Home Assistant. </p>
 <p>Реализация подключения, публикации данных, обработки команд и интеграции с Home Assistant через discovery. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a></p>
 </div><h2 class="groupheader">Функции</h2>
 <a id="ab5a788a03971cae1e5e641ae9b1d7fe0" name="ab5a788a03971cae1e5e641ae9b1d7fe0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab5a788a03971cae1e5e641ae9b1d7fe0">&#9670;&#160;</a></span>connectMQTT()</h2>
@@ -277,27 +287,35 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00191">191</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="debug_8h_source.html#l00019">DEBUG_PRINTF</a>, <a class="el" href="debug_8h_source.html#l00018">DEBUG_PRINTLN</a>, <a class="el" href="debug_8h_source.html#l00027">ERROR_PRINTLN</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00117">getCommandTopic()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00094">getMqttClientName()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00134">getOtaCommandTopic()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00107">getStatusTopic()</a>, <a class="el" href="debug_8h_source.html#l00037">INFO_PRINTLN</a>, <a class="el" href="mqtt__client_8h.html#a86d63f481644da70f063c2593fcafe19">mqttClient</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00027">mqttLastErrorBuffer</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00141">publishAvailability()</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00521">publishHomeAssistantConfig()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00311">handleMQTT()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_cgraph.png" border="0" usemap="#amqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_cgraph" alt=""/></div>
 <map name="amqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_cgraph" id="amqtt__client_8cpp_ab5a788a03971cae1e5e641ae9b1d7fe0_cgraph">
-<area shape="rect" title=" " alt="" coords="5,107,110,133"/>
+<area shape="rect" title=" " alt="" coords="5,132,110,159"/>
 <area shape="rect" href="mqtt__client_8cpp.html#aa0880332a55ab7205d86dfabc8d22b35" title=" " alt="" coords="188,5,318,32"/>
-<area shape="poly" title=" " alt="" coords="71,104,108,73,156,42,172,35,174,40,159,46,111,77,75,108"/>
+<area shape="poly" title=" " alt="" coords="66,130,102,86,128,62,156,42,172,34,174,39,159,46,131,66,106,90,70,133"/>
 <area shape="rect" href="mqtt__client_8cpp.html#a5013707c0bb5fd2228d371b7df94ce6f" title=" " alt="" coords="186,56,320,83"/>
-<area shape="poly" title=" " alt="" coords="109,104,183,85,184,90,111,109"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ad887808331ac88cd82959c00efdacb77" title=" " alt="" coords="396,132,504,159"/>
-<area shape="poly" title=" " alt="" coords="110,121,380,138,380,144,110,126"/>
-<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="190,157,316,184"/>
-<area shape="poly" title=" " alt="" coords="111,131,184,150,183,155,109,136"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="158,208,348,235"/>
-<area shape="poly" title=" " alt="" coords="75,132,111,163,159,194,173,200,171,205,156,198,108,167,71,136"/>
+<area shape="poly" title=" " alt="" coords="81,129,157,92,177,85,179,90,159,97,84,134"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a0c700b1b75b5d57c38437e39370f2181" title=" " alt="" coords="177,107,328,133"/>
+<area shape="poly" title=" " alt="" coords="110,136,161,129,162,134,110,141"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ad887808331ac88cd82959c00efdacb77" title=" " alt="" coords="396,183,504,209"/>
+<area shape="poly" title=" " alt="" coords="111,149,381,185,380,190,110,155"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="190,208,316,235"/>
+<area shape="poly" title=" " alt="" coords="89,157,159,187,195,200,193,205,157,192,87,162"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="158,259,348,285"/>
+<area shape="poly" title=" " alt="" coords="70,157,106,201,131,224,159,244,170,250,167,255,156,249,128,228,102,204,66,161"/>
 <area shape="rect" href="mqtt__client_8cpp.html#acfd28a961b10e3b67e21fdd9c9bfa050" title=" " alt="" coords="408,56,492,83"/>
 <area shape="poly" title=" " alt="" coords="321,67,393,67,393,72,321,72"/>
-<area shape="poly" title=" " alt="" coords="315,160,380,152,381,157,316,165"/>
-<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="404,208,496,235"/>
-<area shape="poly" title=" " alt="" coords="349,219,389,219,389,224,349,224"/>
+<area shape="poly" title=" " alt="" coords="315,211,380,202,381,208,316,216"/>
+<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="404,259,496,285"/>
+<area shape="poly" title=" " alt="" coords="349,269,389,269,389,275,349,275"/>
 </map>
 </div>
 <div class="dynheader">
@@ -329,6 +347,12 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00752">752</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="debug_8h_source.html#l00019">DEBUG_PRINTF</a>, <a class="el" href="jxct__constants_8h_source.html#l00022">DNS_CACHE_TTL</a> и <a class="el" href="#acb28a5a07d3f507386781a4629dfdeef">dnsCacheMqtt</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00149">setupMQTT()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -358,6 +382,12 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00081">81</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="mqtt__client_8cpp_source.html#l00034">clientIdBuffer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00094">getMqttClientName()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -391,6 +421,12 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00117">117</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="mqtt__client_8cpp_source.html#l00036">commandTopicBuffer</a> и <a class="el" href="config_8cpp_source.html#l00034">config</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00191">connectMQTT()</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00722">mqttCallback()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -428,6 +464,12 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00094">94</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00081">getClientId()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00191">connectMQTT()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -469,30 +511,136 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00028">28</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="mqtt__client_8cpp_source.html#l00027">mqttLastErrorBuffer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="routes__service_8cpp_source.html#l00193">sendHealthJson()</a> и <a class="el" href="routes__service_8cpp_source.html#l00275">sendServiceStatusJson()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_ae7138b08148b127ef0202b5cc7ad389e_icgraph.png" border="0" usemap="#amqtt__client_8cpp_ae7138b08148b127ef0202b5cc7ad389e_icgraph" alt=""/></div>
 <map name="amqtt__client_8cpp_ae7138b08148b127ef0202b5cc7ad389e_icgraph" id="amqtt__client_8cpp_ae7138b08148b127ef0202b5cc7ad389e_icgraph">
-<area shape="rect" title=" " alt="" coords="885,81,1004,108"/>
-<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="698,81,837,108"/>
-<area shape="poly" title=" " alt="" coords="870,97,838,97,838,92,870,92"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,81,650,108"/>
-<area shape="poly" title=" " alt="" coords="682,97,650,97,650,92,682,92"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,56,485,83"/>
-<area shape="poly" title=" " alt="" coords="517,85,485,80,486,75,518,80"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,107,339,133"/>
-<area shape="poly" title=" " alt="" coords="517,103,340,118,339,113,517,98"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,5,330,32"/>
-<area shape="poly" title=" " alt="" coords="379,53,328,35,330,30,381,48"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,81,187,108"/>
-<area shape="poly" title=" " alt="" coords="372,78,188,94,187,89,371,72"/>
-<area shape="poly" title=" " alt="" coords="381,91,330,109,328,104,379,86"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
-<area shape="poly" title=" " alt="" coords="228,21,170,21,170,16,228,16"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,81,59,108"/>
-<area shape="poly" title=" " alt="" coords="91,97,59,97,59,92,91,92"/>
-<area shape="poly" title=" " alt="" coords="219,110,187,105,188,99,220,105"/>
+<area shape="rect" title=" " alt="" coords="1099,31,1217,57"/>
+<area shape="rect" href="routes__service_8cpp.html#a5440f3fe57b2f75c0268091ff4dcda9a" title=" " alt="" coords="913,5,1029,32"/>
+<area shape="poly" title=" " alt="" coords="1083,37,1029,29,1029,24,1084,31"/>
+<area shape="rect" href="routes__service_8cpp.html#abc1bf10984b7953347571c6edf5af696" title=" " alt="" coords="891,56,1051,83"/>
+<area shape="poly" title=" " alt="" coords="1083,57,1051,61,1051,56,1083,51"/>
+<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="704,31,843,57"/>
+<area shape="poly" title=" " alt="" coords="898,31,844,38,844,32,897,25"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="688,47,656,47,656,41,688,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
+<area shape="poly" title=" " alt="" coords="876,60,844,56,844,50,876,54"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0c700b1b75b5d57c38437e39370f2181" name="a0c700b1b75b5d57c38437e39370f2181"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c700b1b75b5d57c38437e39370f2181">&#9670;&#160;</a></span>getOtaCommandTopic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const char * getOtaCommandTopic </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00134">134</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00038">otaCommandTopicBuffer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00191">connectMQTT()</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00722">mqttCallback()</a>.</p>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a0c700b1b75b5d57c38437e39370f2181_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a0c700b1b75b5d57c38437e39370f2181_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a0c700b1b75b5d57c38437e39370f2181_icgraph" id="amqtt__client_8cpp_a0c700b1b75b5d57c38437e39370f2181_icgraph">
+<area shape="rect" title=" " alt="" coords="403,31,555,57"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="251,5,355,32"/>
+<area shape="poly" title=" " alt="" coords="387,33,355,29,356,24,388,28"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="254,56,352,83"/>
+<area shape="poly" title=" " alt="" coords="388,60,353,65,352,60,388,54"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="107,5,203,32"/>
+<area shape="poly" title=" " alt="" coords="235,21,204,21,204,16,235,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,5,55,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,55,21,55,16,91,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="110,56,200,83"/>
+<area shape="poly" title=" " alt="" coords="239,72,200,72,200,67,239,67"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,56,59,83"/>
+<area shape="poly" title=" " alt="" coords="94,72,59,72,59,67,94,67"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9939b7e00bc562d6b183d61b06d5cfc2" name="a9939b7e00bc562d6b183d61b06d5cfc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9939b7e00bc562d6b183d61b06d5cfc2">&#9670;&#160;</a></span>getOtaStatusTopic()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const char * getOtaStatusTopic </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00127">127</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00037">otaStatusTopicBuffer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00311">handleMQTT()</a>.</p>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="mqtt__client_8cpp_a9939b7e00bc562d6b183d61b06d5cfc2_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a9939b7e00bc562d6b183d61b06d5cfc2_icgraph" alt=""/></div>
+<map name="amqtt__client_8cpp_a9939b7e00bc562d6b183d61b06d5cfc2_icgraph" id="amqtt__client_8cpp_a9939b7e00bc562d6b183d61b06d5cfc2_icgraph">
+<area shape="rect" title=" " alt="" coords="243,5,372,32"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="99,5,195,32"/>
+<area shape="poly" title=" " alt="" coords="227,21,195,21,195,16,227,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
+<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
 </map>
 </div>
 
@@ -512,21 +660,35 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00107">107</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00035">statusTopicBuffer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00191">connectMQTT()</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00141">publishAvailability()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_ad887808331ac88cd82959c00efdacb77_icgraph.png" border="0" usemap="#amqtt__client_8cpp_ad887808331ac88cd82959c00efdacb77_icgraph" alt=""/></div>
 <map name="amqtt__client_8cpp_ad887808331ac88cd82959c00efdacb77_icgraph" id="amqtt__client_8cpp_ad887808331ac88cd82959c00efdacb77_icgraph">
-<area shape="rect" title=" " alt="" coords="569,5,677,32"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="243,5,347,32"/>
-<area shape="poly" title=" " alt="" coords="553,21,348,21,348,16,553,16"/>
-<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="395,31,521,57"/>
-<area shape="poly" title=" " alt="" coords="554,32,521,37,521,32,553,27"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="99,5,195,32"/>
-<area shape="poly" title=" " alt="" coords="227,21,196,21,196,16,227,16"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
-<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
-<area shape="poly" title=" " alt="" coords="379,34,347,29,348,24,380,29"/>
+<area shape="rect" title=" " alt="" coords="758,31,866,57"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="412,5,516,32"/>
+<area shape="poly" title=" " alt="" coords="742,42,516,25,517,20,743,36"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="585,56,710,83"/>
+<area shape="poly" title=" " alt="" coords="743,57,711,62,710,57,742,52"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="246,5,342,32"/>
+<area shape="poly" title=" " alt="" coords="396,21,343,21,343,16,396,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="129,5,174,32"/>
+<area shape="poly" title=" " alt="" coords="231,21,175,21,175,16,231,16"/>
+<area shape="poly" title=" " alt="" coords="581,54,514,35,516,30,582,49"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="391,56,537,83"/>
+<area shape="poly" title=" " alt="" coords="569,72,537,72,537,67,569,67"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="245,56,343,83"/>
+<area shape="poly" title=" " alt="" coords="376,72,344,72,344,67,376,67"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="107,56,197,83"/>
+<area shape="poly" title=" " alt="" coords="229,72,197,72,197,67,229,67"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,56,59,83"/>
+<area shape="poly" title=" " alt="" coords="91,72,59,72,59,67,91,67"/>
 </map>
 </div>
 
@@ -546,35 +708,47 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00311">311</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00191">connectMQTT()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00045">getOtaStatus()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00127">getOtaStatusTopic()</a>, <a class="el" href="logger_8cpp_source.html#l00179">logMQTT()</a>, <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>, <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a> и <a class="el" href="mqtt__client_8h.html#a86d63f481644da70f063c2593fcafe19">mqttClient</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00202">loop()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_cgraph" alt=""/></div>
 <map name="amqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_cgraph" id="amqtt__client_8cpp_a926aeaa7d52ebd60e289af8d6ef98600_cgraph">
-<area shape="rect" title=" " alt="" coords="5,183,102,209"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="150,107,254,133"/>
-<area shape="poly" title=" " alt="" coords="79,180,148,143,158,138,160,143,151,148,82,184"/>
-<area shape="rect" href="logger_8cpp.html#ace461ff84ce50a76653ec959a2436320" title=" " alt="" coords="164,157,240,184"/>
-<area shape="poly" title=" " alt="" coords="102,185,148,177,149,182,103,190"/>
-<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="157,208,246,235"/>
-<area shape="poly" title=" " alt="" coords="103,202,142,209,141,214,102,207"/>
-<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="168,259,236,285"/>
-<area shape="poly" title=" " alt="" coords="82,208,151,244,160,249,158,254,148,249,79,212"/>
-<area shape="rect" href="mqtt__client_8cpp.html#aa0880332a55ab7205d86dfabc8d22b35" title=" " alt="" coords="332,5,462,32"/>
-<area shape="poly" title=" " alt="" coords="216,104,252,73,301,42,316,35,318,40,303,46,256,77,219,108"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a5013707c0bb5fd2228d371b7df94ce6f" title=" " alt="" coords="330,56,464,83"/>
-<area shape="poly" title=" " alt="" coords="254,104,327,85,329,90,255,109"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ad887808331ac88cd82959c00efdacb77" title=" " alt="" coords="540,132,649,159"/>
-<area shape="poly" title=" " alt="" coords="255,121,525,138,524,144,254,126"/>
-<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="334,157,460,184"/>
-<area shape="poly" title=" " alt="" coords="255,131,329,150,327,155,254,136"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="302,208,492,235"/>
-<area shape="poly" title=" " alt="" coords="237,132,256,143,270,157,280,170,289,182,303,194,314,199,312,204,301,198,285,186,275,173,266,161,252,147,234,136"/>
-<area shape="rect" href="mqtt__client_8cpp.html#acfd28a961b10e3b67e21fdd9c9bfa050" title=" " alt="" coords="552,56,637,83"/>
-<area shape="poly" title=" " alt="" coords="465,67,537,67,537,72,465,72"/>
-<area shape="poly" title=" " alt="" coords="460,160,525,152,525,157,460,165"/>
-<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="549,208,640,235"/>
-<area shape="poly" title=" " alt="" coords="493,219,533,219,533,224,493,224"/>
+<area shape="rect" title=" " alt="" coords="5,259,102,285"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="162,132,266,159"/>
+<area shape="poly" title=" " alt="" coords="63,256,97,214,121,190,148,168,156,164,159,168,151,173,125,194,101,217,67,260"/>
+<area shape="rect" href="ota__manager_8cpp.html#a51f9f9bafeb2f56a3456ebf48a76c7b9" title=" " alt="" coords="165,183,264,209"/>
+<area shape="poly" title=" " alt="" coords="78,256,149,219,161,213,163,218,151,224,80,260"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a9939b7e00bc562d6b183d61b06d5cfc2" title=" " alt="" coords="150,233,279,260"/>
+<area shape="poly" title=" " alt="" coords="102,262,134,257,135,262,103,267"/>
+<area shape="rect" href="logger_8cpp.html#ace461ff84ce50a76653ec959a2436320" title=" " alt="" coords="177,284,252,311"/>
+<area shape="poly" title=" " alt="" coords="103,277,162,286,161,292,102,282"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="170,335,259,361"/>
+<area shape="poly" title=" " alt="" coords="80,284,151,320,163,326,161,331,149,325,78,288"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="180,385,248,412"/>
+<area shape="poly" title=" " alt="" coords="67,284,101,327,125,350,151,371,168,380,165,385,148,376,121,354,97,330,63,288"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aa0880332a55ab7205d86dfabc8d22b35" title=" " alt="" coords="357,5,487,32"/>
+<area shape="poly" title=" " alt="" coords="225,130,266,86,294,62,326,42,341,34,343,39,328,46,298,67,270,90,229,133"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a5013707c0bb5fd2228d371b7df94ce6f" title=" " alt="" coords="355,56,489,83"/>
+<area shape="poly" title=" " alt="" coords="242,129,326,92,348,85,350,90,328,97,244,134"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a0c700b1b75b5d57c38437e39370f2181" title=" " alt="" coords="346,107,498,133"/>
+<area shape="poly" title=" " alt="" coords="267,136,331,128,331,134,267,142"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ad887808331ac88cd82959c00efdacb77" title=" " alt="" coords="565,183,674,209"/>
+<area shape="poly" title=" " alt="" coords="267,149,551,185,550,190,267,154"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="360,208,485,235"/>
+<area shape="poly" title=" " alt="" coords="251,157,328,187,365,200,364,205,326,192,249,162"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="327,259,517,285"/>
+<area shape="poly" title=" " alt="" coords="262,157,281,169,297,189,305,208,313,227,329,245,336,249,333,254,325,249,308,230,300,210,293,191,277,173,259,161"/>
+<area shape="rect" href="mqtt__client_8cpp.html#acfd28a961b10e3b67e21fdd9c9bfa050" title=" " alt="" coords="577,56,662,83"/>
+<area shape="poly" title=" " alt="" coords="490,67,562,67,562,72,490,72"/>
+<area shape="poly" title=" " alt="" coords="485,211,550,202,550,208,485,216"/>
+<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="574,259,665,285"/>
+<area shape="poly" title=" " alt="" coords="518,269,558,269,558,275,518,275"/>
 </map>
 </div>
 <div class="dynheader">
@@ -604,32 +778,58 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00674">674</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="debug_8h_source.html#l00017">DEBUG_PRINT</a>, <a class="el" href="debug_8h_source.html#l00018">DEBUG_PRINTLN</a>, <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00141">publishAvailability()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00521">publishHomeAssistantConfig()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00440">publishSensorData()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00658">removeHomeAssistantConfig()</a>, <a class="el" href="config_8cpp_source.html#l00212">resetConfig()</a>, <a class="el" href="config_8cpp_source.html#l00128">saveConfig()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00407">triggerOtaCheck()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00722">mqttCallback()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_cgraph" alt=""/></div>
 <map name="amqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_cgraph" id="amqtt__client_8cpp_a58d6760f5e7f2aaf28fbb2155942d579_cgraph">
-<area shape="rect" title=" " alt="" coords="5,81,151,108"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="200,5,390,32"/>
-<area shape="poly" title=" " alt="" coords="108,78,198,41,220,34,222,39,200,47,110,83"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a9d23c1c2b3b5f9613a2215945494badb" title=" " alt="" coords="229,183,360,209"/>
-<area shape="poly" title=" " alt="" coords="110,106,252,173,250,178,108,111"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a7a9b6d18074276b45340af02c443924a" title=" " alt="" coords="199,56,391,83"/>
-<area shape="poly" title=" " alt="" coords="151,84,183,80,183,85,152,89"/>
-<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="251,107,339,133"/>
-<area shape="poly" title=" " alt="" coords="152,101,235,110,235,116,151,106"/>
-<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="458,5,549,32"/>
-<area shape="poly" title=" " alt="" coords="391,16,442,16,442,21,391,21"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ae52ddcd06cd95e01b1484fdff31ec40e" title=" " alt="" coords="439,208,567,235"/>
-<area shape="poly" title=" " alt="" coords="361,201,424,209,423,214,360,207"/>
-<area shape="poly" title=" " alt="" coords="352,53,442,31,443,36,354,58"/>
-<area shape="poly" title=" " alt="" coords="338,111,365,104,390,92,404,81,413,68,422,55,437,42,445,37,448,42,441,46,426,59,418,71,408,84,392,97,367,109,340,116"/>
-<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="447,56,559,83"/>
-<area shape="poly" title=" " alt="" coords="339,107,431,84,433,89,340,112"/>
-<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="458,107,548,133"/>
-<area shape="poly" title=" " alt="" coords="339,117,443,117,443,123,339,123"/>
-<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="469,157,537,184"/>
-<area shape="poly" title=" " alt="" coords="340,128,455,156,454,162,339,133"/>
+<area shape="rect" title=" " alt="" coords="5,183,151,210"/>
+<area shape="rect" href="ota__manager_8cpp.html#a3caeaca3fcbd288827f42df9af8b7f08" title=" " alt="" coords="482,6,567,32"/>
+<area shape="poly" title=" " alt="" coords="83,182,98,151,123,112,156,73,197,42,231,27,266,16,339,5,408,3,467,8,466,13,408,9,339,10,267,21,233,32,200,47,160,77,127,115,103,154,88,184"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="232,335,358,362"/>
+<area shape="poly" title=" " alt="" coords="95,208,141,249,200,295,252,325,249,330,197,300,137,253,92,212"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="200,107,390,134"/>
+<area shape="poly" title=" " alt="" coords="108,180,198,143,220,136,222,141,200,148,110,185"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a9d23c1c2b3b5f9613a2215945494badb" title=" " alt="" coords="229,398,360,424"/>
+<area shape="poly" title=" " alt="" coords="87,209,103,241,127,285,160,331,200,372,229,389,226,393,197,376,156,335,123,288,98,244,83,211"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a7a9b6d18074276b45340af02c443924a" title=" " alt="" coords="199,158,391,184"/>
+<area shape="poly" title=" " alt="" coords="151,185,183,181,183,187,152,190"/>
+<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="251,208,339,235"/>
+<area shape="poly" title=" " alt="" coords="152,202,235,212,235,217,151,208"/>
+<area shape="rect" href="config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae" title=" " alt="" coords="251,259,338,286"/>
+<area shape="poly" title=" " alt="" coords="110,208,200,245,237,256,235,261,198,250,108,213"/>
+<area shape="rect" href="ota__manager_8cpp.html#aab62f74691b98553d395b694e0807ae4" title=" " alt="" coords="237,56,353,83"/>
+<area shape="poly" title=" " alt="" coords="90,181,134,137,164,113,197,93,221,83,223,88,200,97,168,118,138,141,93,185"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="667,6,733,32"/>
+<area shape="poly" title=" " alt="" coords="568,16,651,16,651,22,568,22"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="658,56,742,83"/>
+<area shape="poly" title=" " alt="" coords="569,29,644,51,642,56,567,34"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ad887808331ac88cd82959c00efdacb77" title=" " alt="" coords="470,360,579,387"/>
+<area shape="poly" title=" " alt="" coords="358,353,455,363,454,369,357,358"/>
+<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="479,158,570,184"/>
+<area shape="poly" title=" " alt="" coords="359,132,464,155,463,160,358,137"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ae52ddcd06cd95e01b1484fdff31ec40e" title=" " alt="" coords="460,411,589,438"/>
+<area shape="poly" title=" " alt="" coords="361,412,445,417,444,422,360,417"/>
+<area shape="poly" title=" " alt="" coords="391,168,464,168,464,174,391,174"/>
+<area shape="poly" title=" " alt="" coords="339,209,463,182,464,187,340,215"/>
+<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="468,208,581,235"/>
+<area shape="poly" title=" " alt="" coords="339,219,453,219,453,224,339,224"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="480,259,569,286"/>
+<area shape="poly" title=" " alt="" coords="340,229,465,257,464,262,339,234"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="490,107,559,134"/>
+<area shape="poly" title=" " alt="" coords="338,213,365,205,390,194,404,182,413,170,422,156,438,143,474,128,476,133,440,148,426,160,417,173,408,186,392,199,367,210,340,218"/>
+<area shape="poly" title=" " alt="" coords="339,270,465,270,465,275,339,275"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a78b590745e792368420169e642494895" title=" " alt="" coords="439,310,610,336"/>
+<area shape="poly" title=" " alt="" coords="339,279,446,303,445,308,338,284"/>
+<area shape="poly" title=" " alt="" coords="353,54,466,29,467,34,354,60"/>
+<area shape="poly" title=" " alt="" coords="353,67,643,67,643,72,353,72"/>
+<area shape="poly" title=" " alt="" coords="354,80,476,107,475,112,353,85"/>
 </map>
 </div>
 <div class="dynheader">
@@ -663,35 +863,54 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00734">734</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="#a3916b4db3b3f9bf7151faffc9e9b3f93">haConfigCache</a>, <a class="el" href="debug_8h_source.html#l00037">INFO_PRINTLN</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00027">mqttLastErrorBuffer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="config_8cpp_source.html#l00128">saveConfig()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a78b590745e792368420169e642494895_icgraph.png" border="0" usemap="#amqtt__client_8cpp_a78b590745e792368420169e642494895_icgraph" alt=""/></div>
 <map name="amqtt__client_8cpp_a78b590745e792368420169e642494895_icgraph" id="amqtt__client_8cpp_a78b590745e792368420169e642494895_icgraph">
-<area shape="rect" title=" " alt="" coords="1015,81,1186,108"/>
-<area shape="rect" href="config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae" title=" " alt="" coords="879,81,967,108"/>
-<area shape="poly" title=" " alt="" coords="999,97,967,97,967,92,999,92"/>
-<area shape="rect" href="routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c" title="Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)" alt="" coords="698,56,831,83"/>
-<area shape="poly" title=" " alt="" coords="863,88,831,83,832,77,864,83"/>
-<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="703,107,826,133"/>
-<area shape="poly" title=" " alt="" coords="864,107,827,113,826,107,863,101"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,81,650,108"/>
-<area shape="poly" title=" " alt="" coords="683,84,651,89,650,83,682,79"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,56,485,83"/>
-<area shape="poly" title=" " alt="" coords="517,85,485,80,486,75,518,80"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,107,339,133"/>
-<area shape="poly" title=" " alt="" coords="517,103,340,118,339,113,517,98"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,5,330,32"/>
-<area shape="poly" title=" " alt="" coords="379,53,328,35,330,30,381,48"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,81,187,108"/>
-<area shape="poly" title=" " alt="" coords="372,78,188,94,187,89,371,72"/>
-<area shape="poly" title=" " alt="" coords="381,91,330,109,328,104,379,86"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
-<area shape="poly" title=" " alt="" coords="228,21,170,21,170,16,228,16"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,81,59,108"/>
-<area shape="poly" title=" " alt="" coords="91,97,59,97,59,92,91,92"/>
-<area shape="poly" title=" " alt="" coords="219,110,187,105,188,99,220,105"/>
-<area shape="poly" title=" " alt="" coords="687,111,650,106,651,101,688,106"/>
+<area shape="rect" title=" " alt="" coords="1214,81,1385,108"/>
+<area shape="rect" href="config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae" title=" " alt="" coords="1079,81,1166,108"/>
+<area shape="poly" title=" " alt="" coords="1198,97,1166,97,1166,92,1198,92"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="885,157,1031,184"/>
+<area shape="poly" title=" " alt="" coords="1087,118,1032,148,1003,159,1001,154,1030,143,1085,114"/>
+<area shape="rect" href="routes__data_8cpp.html#abbd29afd9c684d507a0787906872c9d9" title=" " alt="" coords="895,5,1021,32"/>
+<area shape="poly" title=" " alt="" coords="1079,77,1030,53,990,35,992,30,1032,48,1081,72"/>
+<area shape="rect" href="routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c" title="Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)" alt="" coords="704,56,837,83"/>
+<area shape="poly" title=" " alt="" coords="1063,93,838,77,838,71,1063,88"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="896,107,1020,133"/>
+<area shape="poly" title=" " alt="" coords="1064,106,1020,113,1020,108,1063,101"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="722,157,820,184"/>
+<area shape="poly" title=" " alt="" coords="870,173,820,173,820,168,870,168"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="397,157,487,184"/>
+<area shape="poly" title=" " alt="" coords="706,173,487,173,487,168,706,168"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,120,59,147"/>
+<area shape="poly" title=" " alt="" coords="381,170,254,162,106,148,59,141,59,135,107,143,255,157,381,165"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="709,5,832,32"/>
+<area shape="poly" title=" " alt="" coords="879,21,833,21,833,16,879,16"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,56,656,83"/>
+<area shape="poly" title=" " alt="" coords="709,40,646,58,645,53,707,34"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="523,72,491,72,491,67,523,67"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="528,55,490,47,346,26,346,21,491,41,529,49"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,44,193,71"/>
+<area shape="poly" title=" " alt="" coords="378,69,193,62,193,56,378,64"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,107,190,133"/>
+<area shape="poly" title=" " alt="" coords="378,83,191,116,190,110,377,78"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,44,55,71"/>
+<area shape="poly" title=" " alt="" coords="91,60,55,60,55,55,91,55"/>
+<area shape="poly" title=" " alt="" coords="95,129,60,133,59,128,94,124"/>
+<area shape="poly" title=" " alt="" coords="227,39,194,48,193,43,226,34"/>
+<area shape="poly" title=" " alt="" coords="262,43,172,108,169,104,259,39"/>
+<area shape="poly" title=" " alt="" coords="688,72,656,72,656,67,688,67"/>
+<area shape="poly" title=" " alt="" coords="881,118,795,110,704,97,650,86,651,81,704,92,796,105,881,112"/>
 </map>
 </div>
 
@@ -720,36 +939,64 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00722">722</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="debug_8h_source.html#l00019">DEBUG_PRINTF</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00117">getCommandTopic()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00134">getOtaCommandTopic()</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00674">handleMqttCommand()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00149">setupMQTT()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_cgraph" alt=""/></div>
 <map name="amqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_cgraph" id="amqtt__client_8cpp_a6f06b273defaebb581fdf1adc8969f40_cgraph">
-<area shape="rect" title=" " alt="" coords="5,56,104,83"/>
-<area shape="rect" href="mqtt__client_8cpp.html#aa0880332a55ab7205d86dfabc8d22b35" title=" " alt="" coords="159,31,290,57"/>
-<area shape="poly" title=" " alt="" coords="104,59,143,53,144,59,105,65"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="152,81,297,108"/>
-<area shape="poly" title=" " alt="" coords="105,74,137,79,136,84,104,79"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="346,5,536,32"/>
-<area shape="poly" title=" " alt="" coords="267,78,296,67,320,54,344,42,364,34,366,39,346,46,322,59,298,72,269,83"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a9d23c1c2b3b5f9613a2215945494badb" title=" " alt="" coords="376,183,507,209"/>
-<area shape="poly" title=" " alt="" coords="256,106,398,173,396,178,254,111"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a7a9b6d18074276b45340af02c443924a" title=" " alt="" coords="345,56,537,83"/>
-<area shape="poly" title=" " alt="" coords="297,84,329,80,330,85,298,89"/>
-<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="397,107,485,133"/>
-<area shape="poly" title=" " alt="" coords="298,101,382,110,381,116,297,106"/>
-<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="604,5,695,32"/>
-<area shape="poly" title=" " alt="" coords="537,16,589,16,589,21,537,21"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ae52ddcd06cd95e01b1484fdff31ec40e" title=" " alt="" coords="585,208,714,235"/>
-<area shape="poly" title=" " alt="" coords="507,201,570,209,570,214,507,207"/>
-<area shape="poly" title=" " alt="" coords="499,53,588,31,589,36,500,58"/>
-<area shape="poly" title=" " alt="" coords="485,111,511,104,536,92,551,81,560,68,569,55,584,42,591,37,594,42,587,46,573,59,564,71,554,84,539,97,513,109,486,116"/>
-<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="593,56,706,83"/>
-<area shape="poly" title=" " alt="" coords="485,107,578,84,579,89,486,112"/>
-<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="605,107,694,133"/>
-<area shape="poly" title=" " alt="" coords="486,117,589,117,589,123,486,123"/>
-<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="615,157,684,184"/>
-<area shape="poly" title=" " alt="" coords="486,128,601,156,600,162,485,133"/>
+<area shape="rect" title=" " alt="" coords="5,140,104,167"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aa0880332a55ab7205d86dfabc8d22b35" title=" " alt="" coords="162,90,292,116"/>
+<area shape="poly" title=" " alt="" coords="102,137,164,119,166,124,104,142"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a0c700b1b75b5d57c38437e39370f2181" title=" " alt="" coords="152,140,303,167"/>
+<area shape="poly" title=" " alt="" coords="104,151,136,151,136,156,104,156"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="155,191,300,218"/>
+<area shape="poly" title=" " alt="" coords="104,165,166,184,164,189,102,170"/>
+<area shape="rect" href="ota__manager_8cpp.html#a3caeaca3fcbd288827f42df9af8b7f08" title=" " alt="" coords="634,14,720,40"/>
+<area shape="poly" title=" " alt="" coords="285,188,301,177,313,162,319,146,323,113,327,81,335,65,349,50,381,31,415,18,451,9,488,4,558,5,619,12,619,17,558,10,488,10,452,14,417,23,383,36,353,54,339,68,332,82,328,114,325,147,318,164,305,181,288,193"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="384,343,510,370"/>
+<area shape="poly" title=" " alt="" coords="245,216,292,257,352,304,404,334,402,338,350,308,288,261,242,220"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="352,115,542,142"/>
+<area shape="poly" title=" " alt="" coords="272,188,302,177,326,164,350,151,370,144,372,149,352,156,328,168,304,181,274,193"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a9d23c1c2b3b5f9613a2215945494badb" title=" " alt="" coords="382,406,513,432"/>
+<area shape="poly" title=" " alt="" coords="237,217,278,293,312,339,353,380,382,397,379,402,349,384,308,343,274,296,232,219"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a7a9b6d18074276b45340af02c443924a" title=" " alt="" coords="351,166,543,192"/>
+<area shape="poly" title=" " alt="" coords="300,193,335,189,336,195,301,199"/>
+<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="403,216,491,243"/>
+<area shape="poly" title=" " alt="" coords="301,210,388,220,387,226,300,215"/>
+<area shape="rect" href="config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae" title=" " alt="" coords="404,267,491,294"/>
+<area shape="poly" title=" " alt="" coords="260,216,352,253,389,264,387,269,350,258,258,221"/>
+<area shape="rect" href="ota__manager_8cpp.html#aab62f74691b98553d395b694e0807ae4" title=" " alt="" coords="389,64,505,91"/>
+<area shape="poly" title=" " alt="" coords="282,188,301,177,317,159,324,140,332,120,349,101,373,88,376,93,353,105,337,123,329,142,321,161,305,181,285,193"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="819,14,886,40"/>
+<area shape="poly" title=" " alt="" coords="720,24,804,24,804,30,720,30"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="811,64,894,91"/>
+<area shape="poly" title=" " alt="" coords="721,37,796,59,795,64,719,42"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ad887808331ac88cd82959c00efdacb77" title=" " alt="" coords="623,368,731,395"/>
+<area shape="poly" title=" " alt="" coords="510,361,607,371,607,377,510,366"/>
+<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="631,166,723,192"/>
+<area shape="poly" title=" " alt="" coords="512,140,617,163,616,168,511,145"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ae52ddcd06cd95e01b1484fdff31ec40e" title=" " alt="" coords="613,419,741,446"/>
+<area shape="poly" title=" " alt="" coords="513,420,597,425,597,430,513,426"/>
+<area shape="poly" title=" " alt="" coords="544,176,616,176,616,182,544,182"/>
+<area shape="poly" title=" " alt="" coords="491,217,616,190,617,195,492,223"/>
+<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="621,216,733,243"/>
+<area shape="poly" title=" " alt="" coords="492,227,606,227,606,232,492,232"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="632,267,722,294"/>
+<area shape="poly" title=" " alt="" coords="492,237,617,265,616,270,491,242"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="643,115,711,142"/>
+<area shape="poly" title=" " alt="" coords="491,221,517,213,542,202,556,190,565,178,574,164,590,151,627,136,629,141,593,156,578,168,570,181,560,194,545,207,519,219,492,226"/>
+<area shape="poly" title=" " alt="" coords="491,278,617,278,617,283,491,283"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a78b590745e792368420169e642494895" title=" " alt="" coords="591,318,763,344"/>
+<area shape="poly" title=" " alt="" coords="492,287,599,311,597,316,491,293"/>
+<area shape="poly" title=" " alt="" coords="505,62,619,37,620,42,506,68"/>
+<area shape="poly" title=" " alt="" coords="506,75,795,75,795,80,506,80"/>
+<area shape="poly" title=" " alt="" coords="506,88,628,115,627,120,505,93"/>
 </map>
 </div>
 <div class="dynheader">
@@ -782,6 +1029,8 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="reference">Перекрестные ссылки <a class="el" href="mqtt__client_8cpp_source.html#l00022">espClient</a>.</p>
+
 </div>
 </div>
 <a id="aaa9510911ee8e47743efa916df00c13b" name="aaa9510911ee8e47743efa916df00c13b"></a>
@@ -798,6 +1047,12 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00141">141</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="debug_8h_source.html#l00019">DEBUG_PRINTF</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00107">getStatusTopic()</a> и <a class="el" href="mqtt__client_8h.html#a86d63f481644da70f063c2593fcafe19">mqttClient</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00191">connectMQTT()</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00674">handleMqttCommand()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -813,13 +1068,21 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_icgraph.png" border="0" usemap="#amqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_icgraph" alt=""/></div>
 <map name="amqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_icgraph" id="amqtt__client_8cpp_aaa9510911ee8e47743efa916df00c13b_icgraph">
-<area shape="rect" title=" " alt="" coords="395,5,521,32"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="243,5,347,32"/>
-<area shape="poly" title=" " alt="" coords="380,21,348,21,348,16,380,16"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="99,5,195,32"/>
-<area shape="poly" title=" " alt="" coords="227,21,196,21,196,16,227,16"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
-<area shape="poly" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+<area shape="rect" title=" " alt="" coords="585,31,710,57"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="412,5,516,32"/>
+<area shape="poly" title=" " alt="" coords="569,36,516,28,517,23,570,31"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="391,56,537,83"/>
+<area shape="poly" title=" " alt="" coords="570,57,538,62,537,57,569,52"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="246,5,342,32"/>
+<area shape="poly" title=" " alt="" coords="396,21,343,21,343,16,396,16"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="129,5,174,32"/>
+<area shape="poly" title=" " alt="" coords="231,21,175,21,175,16,231,16"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="245,56,343,83"/>
+<area shape="poly" title=" " alt="" coords="376,72,344,72,344,67,376,67"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="107,56,197,83"/>
+<area shape="poly" title=" " alt="" coords="229,72,197,72,197,67,229,67"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,56,59,83"/>
+<area shape="poly" title=" " alt="" coords="91,72,59,72,59,67,91,67"/>
 </map>
 </div>
 
@@ -839,6 +1102,12 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00521">521</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="debug_8h_source.html#l00018">DEBUG_PRINTLN</a>, <a class="el" href="version_8h_source.html#l00014">DEVICE_MANUFACTURER</a>, <a class="el" href="version_8h_source.html#l00015">DEVICE_MODEL</a>, <a class="el" href="version_8h_source.html#l00016">DEVICE_SW_VERSION</a>, <a class="el" href="config_8cpp_source.html#l00016">getDeviceId()</a>, <a class="el" href="#a3916b4db3b3f9bf7151faffc9e9b3f93">haConfigCache</a>, <a class="el" href="debug_8h_source.html#l00037">INFO_PRINTLN</a>, <a class="el" href="mqtt__client_8h.html#a86d63f481644da70f063c2593fcafe19">mqttClient</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00027">mqttLastErrorBuffer</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00057">pubTopicCache</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00058">pubTopicCacheValid</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00191">connectMQTT()</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00674">handleMqttCommand()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -888,6 +1157,12 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00440">440</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="mqtt__client_8cpp_source.html#l00061">cachedSensorJson</a>, <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="debug_8h_source.html#l00018">DEBUG_PRINTLN</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00062">lastCachedSensorTime</a>, <a class="el" href="mqtt__client_8h.html#a86d63f481644da70f063c2593fcafe19">mqttClient</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00027">mqttLastErrorBuffer</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00018">sensorData</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00063">sensorJsonCacheValid</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00364">shouldPublishMqtt()</a> и <a class="el" href="main_8cpp_source.html#l00043">timeClient</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00674">handleMqttCommand()</a> и <a class="el" href="main_8cpp_source.html#l00202">loop()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -933,6 +1208,12 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00658">658</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00016">getDeviceId()</a>, <a class="el" href="debug_8h_source.html#l00037">INFO_PRINTLN</a>, <a class="el" href="mqtt__client_8h.html#a86d63f481644da70f063c2593fcafe19">mqttClient</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00027">mqttLastErrorBuffer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00674">handleMqttCommand()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -976,40 +1257,68 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00149">149</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="debug_8h_source.html#l00019">DEBUG_PRINTF</a>, <a class="el" href="debug_8h_source.html#l00018">DEBUG_PRINTLN</a>, <a class="el" href="debug_8h_source.html#l00028">ERROR_PRINTF</a>, <a class="el" href="debug_8h_source.html#l00027">ERROR_PRINTLN</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00752">getCachedIP()</a>, <a class="el" href="debug_8h_source.html#l00037">INFO_PRINTLN</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00722">mqttCallback()</a>, <a class="el" href="mqtt__client_8h.html#a86d63f481644da70f063c2593fcafe19">mqttClient</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00027">mqttLastErrorBuffer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00091">setup()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="mqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_cgraph.png" border="0" usemap="#amqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_cgraph" alt=""/></div>
 <map name="amqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_cgraph" id="amqtt__client_8cpp_a3cff6686f09444558b7c9436e082e73c_cgraph">
-<area shape="rect" title=" " alt="" coords="5,31,96,57"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ac3ef407f9b30563c25a94d6307e63323" title=" " alt="" coords="144,5,242,32"/>
-<area shape="poly" title=" " alt="" coords="96,33,128,27,129,33,97,39"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="144,56,242,83"/>
-<area shape="poly" title=" " alt="" coords="97,49,129,55,128,60,96,55"/>
-<area shape="rect" href="mqtt__client_8cpp.html#aa0880332a55ab7205d86dfabc8d22b35" title=" " alt="" coords="298,31,428,57"/>
-<area shape="poly" title=" " alt="" coords="242,59,281,53,282,59,243,65"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="290,81,435,108"/>
-<area shape="poly" title=" " alt="" coords="243,74,275,79,274,84,242,79"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="484,5,675,32"/>
-<area shape="poly" title=" " alt="" coords="405,78,434,67,458,54,482,42,503,34,504,39,484,46,460,59,436,72,407,83"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a9d23c1c2b3b5f9613a2215945494badb" title=" " alt="" coords="514,183,645,209"/>
-<area shape="poly" title=" " alt="" coords="394,106,537,173,534,178,392,111"/>
-<area shape="rect" href="mqtt__client_8cpp.html#a7a9b6d18074276b45340af02c443924a" title=" " alt="" coords="483,56,676,83"/>
-<area shape="poly" title=" " alt="" coords="436,84,467,80,468,85,436,89"/>
-<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="535,107,624,133"/>
-<area shape="poly" title=" " alt="" coords="436,101,520,110,520,116,436,106"/>
-<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="742,5,834,32"/>
-<area shape="poly" title=" " alt="" coords="675,16,727,16,727,21,675,21"/>
-<area shape="rect" href="mqtt__client_8cpp.html#ae52ddcd06cd95e01b1484fdff31ec40e" title=" " alt="" coords="724,208,852,235"/>
-<area shape="poly" title=" " alt="" coords="646,201,709,209,708,214,645,207"/>
-<area shape="poly" title=" " alt="" coords="637,53,726,31,728,36,638,58"/>
-<area shape="poly" title=" " alt="" coords="623,111,649,104,674,92,689,81,698,68,707,55,722,42,730,37,733,42,725,46,711,59,702,71,693,84,677,97,651,109,625,116"/>
-<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="732,56,844,83"/>
-<area shape="poly" title=" " alt="" coords="623,107,716,84,717,89,625,112"/>
-<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="743,107,832,133"/>
-<area shape="poly" title=" " alt="" coords="624,117,728,117,728,123,624,123"/>
-<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="754,157,822,184"/>
-<area shape="poly" title=" " alt="" coords="625,128,740,156,738,162,623,133"/>
+<area shape="rect" title=" " alt="" coords="5,115,96,142"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ac3ef407f9b30563c25a94d6307e63323" title=" " alt="" coords="144,90,242,116"/>
+<area shape="poly" title=" " alt="" coords="96,118,128,112,129,117,97,123"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="144,140,242,167"/>
+<area shape="poly" title=" " alt="" coords="97,134,129,140,128,145,96,139"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aa0880332a55ab7205d86dfabc8d22b35" title=" " alt="" coords="300,90,431,116"/>
+<area shape="poly" title=" " alt="" coords="240,137,302,119,304,124,242,142"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a0c700b1b75b5d57c38437e39370f2181" title=" " alt="" coords="290,140,441,167"/>
+<area shape="poly" title=" " alt="" coords="242,151,275,151,275,156,242,156"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="293,191,438,218"/>
+<area shape="poly" title=" " alt="" coords="242,165,304,184,302,189,240,170"/>
+<area shape="rect" href="ota__manager_8cpp.html#a3caeaca3fcbd288827f42df9af8b7f08" title=" " alt="" coords="773,14,858,40"/>
+<area shape="poly" title=" " alt="" coords="424,188,439,177,452,162,458,146,461,113,465,81,473,65,488,50,519,31,553,18,589,9,626,4,697,5,758,12,757,17,696,10,626,10,590,14,555,23,521,36,491,54,477,68,470,82,466,114,463,147,456,164,443,181,427,193"/>
+<area shape="rect" href="mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="523,343,648,370"/>
+<area shape="poly" title=" " alt="" coords="383,216,430,257,491,304,543,334,540,338,488,308,427,261,380,220"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="490,115,681,142"/>
+<area shape="poly" title=" " alt="" coords="411,188,440,177,464,164,488,151,509,144,510,149,490,156,466,168,442,181,412,193"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a9d23c1c2b3b5f9613a2215945494badb" title=" " alt="" coords="520,406,651,432"/>
+<area shape="poly" title=" " alt="" coords="375,217,417,293,450,339,491,380,520,397,518,402,488,384,446,343,412,296,371,219"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a7a9b6d18074276b45340af02c443924a" title=" " alt="" coords="489,166,682,192"/>
+<area shape="poly" title=" " alt="" coords="438,193,474,189,474,195,439,199"/>
+<area shape="rect" href="config_8cpp.html#a6fa5204bcafe1db397da4a87b1690061" title=" " alt="" coords="541,216,630,243"/>
+<area shape="poly" title=" " alt="" coords="439,210,526,220,526,226,438,215"/>
+<area shape="rect" href="config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae" title=" " alt="" coords="542,267,629,294"/>
+<area shape="poly" title=" " alt="" coords="398,216,490,253,527,264,526,269,488,258,396,221"/>
+<area shape="rect" href="ota__manager_8cpp.html#aab62f74691b98553d395b694e0807ae4" title=" " alt="" coords="527,64,644,91"/>
+<area shape="poly" title=" " alt="" coords="421,188,440,177,455,159,463,140,470,120,488,101,511,88,514,93,491,105,475,123,468,142,460,161,443,181,423,193"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="958,14,1024,40"/>
+<area shape="poly" title=" " alt="" coords="858,24,942,24,942,30,858,30"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="949,64,1032,91"/>
+<area shape="poly" title=" " alt="" coords="859,37,935,59,933,64,858,42"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ad887808331ac88cd82959c00efdacb77" title=" " alt="" coords="761,368,870,395"/>
+<area shape="poly" title=" " alt="" coords="649,361,746,371,745,377,648,366"/>
+<area shape="rect" href="config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="770,166,861,192"/>
+<area shape="poly" title=" " alt="" coords="650,140,755,163,754,168,649,145"/>
+<area shape="rect" href="mqtt__client_8cpp.html#ae52ddcd06cd95e01b1484fdff31ec40e" title=" " alt="" coords="751,419,880,446"/>
+<area shape="poly" title=" " alt="" coords="651,420,735,425,735,430,651,426"/>
+<area shape="poly" title=" " alt="" coords="682,176,755,176,755,182,682,182"/>
+<area shape="poly" title=" " alt="" coords="630,217,754,190,755,195,631,223"/>
+<area shape="rect" href="config_8cpp.html#a74bdf2231a5ebe05de0f3a0b4c538023" title=" " alt="" coords="759,216,872,243"/>
+<area shape="poly" title=" " alt="" coords="630,227,744,227,744,232,630,232"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="771,267,860,294"/>
+<area shape="poly" title=" " alt="" coords="631,237,756,265,755,270,630,242"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="781,115,850,142"/>
+<area shape="poly" title=" " alt="" coords="629,221,655,213,680,202,695,190,704,178,713,164,728,151,765,136,767,141,731,156,717,168,708,181,699,194,683,207,657,219,631,226"/>
+<area shape="poly" title=" " alt="" coords="630,278,755,278,755,283,630,283"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a78b590745e792368420169e642494895" title=" " alt="" coords="730,318,901,344"/>
+<area shape="poly" title=" " alt="" coords="630,287,737,311,736,316,629,293"/>
+<area shape="poly" title=" " alt="" coords="644,62,757,37,758,42,645,68"/>
+<area shape="poly" title=" " alt="" coords="644,75,933,75,933,80,644,80"/>
+<area shape="poly" title=" " alt="" coords="645,88,766,115,765,120,644,93"/>
 </map>
 </div>
 <div class="dynheader">
@@ -1039,6 +1348,12 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00364">364</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="debug_8h_source.html#l00019">DEBUG_PRINTF</a>, <a class="el" href="debug_8h_source.html#l00018">DEBUG_PRINTLN</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00018">sensorData</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00440">publishSensorData()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -1083,6 +1398,10 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00061">61</a></p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00440">publishSensorData()</a>.</p>
+
 </div>
 </div>
 <a id="a311e9f4b51804c96c53dc8951148c34e" name="a311e9f4b51804c96c53dc8951148c34e"></a>
@@ -1104,6 +1423,10 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00034">34</a></p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00081">getClientId()</a>.</p>
 
 </div>
 </div>
@@ -1127,6 +1450,10 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00036">36</a></p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00117">getCommandTopic()</a>.</p>
+
 </div>
 </div>
 <a id="acb28a5a07d3f507386781a4629dfdeef" name="acb28a5a07d3f507386781a4629dfdeef"></a>
@@ -1140,6 +1467,8 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00752">getCachedIP()</a>.</p>
 
 </div>
 </div>
@@ -1155,6 +1484,10 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00022">22</a></p>
+
+<p class="reference">Используется в <a class="el" href="#a717105311582e81f1c9c6bb2238a00d2">mqttClient()</a> и <a class="el" href="main_8cpp_source.html#l00091">setup()</a>.</p>
+
 </div>
 </div>
 <a id="a3916b4db3b3f9bf7151faffc9e9b3f93" name="a3916b4db3b3f9bf7151faffc9e9b3f93"></a>
@@ -1162,12 +1495,22 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">struct <a class="el" href="struct_home_assistant_config_cache.html">HomeAssistantConfigCache</a> haConfigCache = {&quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, &quot;&quot;, false, &quot;&quot;, &quot;&quot;}</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00734">invalidateHAConfigCache()</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00521">publishHomeAssistantConfig()</a>.</p>
 
 </div>
 </div>
@@ -1191,6 +1534,10 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00062">62</a></p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00440">publishSensorData()</a>.</p>
+
 </div>
 </div>
 <a id="a1da8e8d4c027f4c08db8b493b99e12da" name="a1da8e8d4c027f4c08db8b493b99e12da"></a>
@@ -1204,6 +1551,8 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00024">24</a></p>
 
 </div>
 </div>
@@ -1227,6 +1576,62 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00027">27</a></p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00191">connectMQTT()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00028">getMqttLastError()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00734">invalidateHAConfigCache()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00521">publishHomeAssistantConfig()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00440">publishSensorData()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00658">removeHomeAssistantConfig()</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00149">setupMQTT()</a>.</p>
+
+</div>
+</div>
+<a id="a35f256d87608b13739929b96361be87d" name="a35f256d87608b13739929b96361be87d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35f256d87608b13739929b96361be87d">&#9670;&#160;</a></span>otaCommandTopicBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char otaCommandTopicBuffer[128] = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00038">38</a></p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00134">getOtaCommandTopic()</a>.</p>
+
+</div>
+</div>
+<a id="a97077e8e77af0bddb223979d23764f9b" name="a97077e8e77af0bddb223979d23764f9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97077e8e77af0bddb223979d23764f9b">&#9670;&#160;</a></span>otaStatusTopicBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char otaStatusTopicBuffer[128] = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00037">37</a></p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00127">getOtaStatusTopic()</a>.</p>
+
 </div>
 </div>
 <a id="a7293ad76efe28a615e5ace2b275e975f" name="a7293ad76efe28a615e5ace2b275e975f"></a>
@@ -1248,6 +1653,10 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00057">57</a></p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00521">publishHomeAssistantConfig()</a>.</p>
 
 </div>
 </div>
@@ -1271,6 +1680,10 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00058">58</a></p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00521">publishHomeAssistantConfig()</a>.</p>
+
 </div>
 </div>
 <a id="aed1a0558cf2083f5f470feddef4d829d" name="aed1a0558cf2083f5f470feddef4d829d"></a>
@@ -1292,6 +1705,10 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00063">63</a></p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00440">publishSensorData()</a>.</p>
 
 </div>
 </div>
@@ -1315,6 +1732,10 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00035">35</a></p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00107">getStatusTopic()</a>.</p>
+
 </div>
 </div>
 <a id="ab4cd0eb2684ad54d1d0782f4ff75e07f" name="ab4cd0eb2684ad54d1d0782f4ff75e07f"></a>
@@ -1337,6 +1758,8 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00043">43</a></p>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -1345,7 +1768,7 @@ $(function(){initNavTree('mqtt__client_8cpp.html',''); initResizable(true); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="mqtt__client_8cpp.html">mqtt_client.cpp</a></li>
-    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:10. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

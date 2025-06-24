@@ -1,0 +1,1241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor 7-in-1: Файл src/ota_manager.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
+   </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('ota__manager_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл ota_manager.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="ota__manager_8h_source.html">ota_manager.h</a>&quot;</code><br />
+<code>#include &lt;Update.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
+<code>#include &lt;HTTPClient.h&gt;</code><br />
+<code>#include &lt;ArduinoJson.h&gt;</code><br />
+<code>#include &lt;mbedtls/sha256.h&gt;</code><br />
+<code>#include &lt;esp_ota_ops.h&gt;</code><br />
+<code>#include &lt;strings.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="version_8h_source.html">version.h</a>&quot;</code><br />
+<code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &lt;esp_task_wdt.h&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Граф включаемых заголовочных файлов для ota_manager.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp__incl.png" border="0" usemap="#asrc_2ota__manager_8cpp" alt=""/></div>
+<map name="asrc_2ota__manager_8cpp" id="asrc_2ota__manager_8cpp">
+<area shape="rect" title=" " alt="" coords="570,5,713,32"/>
+<area shape="rect" href="ota__manager_8h.html" title=" " alt="" coords="5,80,113,107"/>
+<area shape="poly" title=" " alt="" coords="570,29,375,50,128,82,128,77,374,45,569,24"/>
+<area shape="rect" title=" " alt="" coords="136,80,211,107"/>
+<area shape="poly" title=" " alt="" coords="570,31,416,51,227,82,226,77,415,46,569,26"/>
+<area shape="rect" href="logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="235,80,302,107"/>
+<area shape="poly" title=" " alt="" coords="570,35,321,83,318,83,316,78,320,77,569,30"/>
+<area shape="rect" title=" " alt="" coords="260,155,336,181"/>
+<area shape="poly" title=" " alt="" coords="570,25,522,30,469,41,415,57,366,82,335,111,313,143,308,140,331,107,363,78,413,53,468,35,521,25,570,19"/>
+<area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="377,80,504,107"/>
+<area shape="poly" title=" " alt="" coords="607,35,491,77,489,72,606,30"/>
+<area shape="rect" title=" " alt="" coords="528,80,630,107"/>
+<area shape="poly" title=" " alt="" coords="633,34,602,70,598,66,629,31"/>
+<area shape="rect" title=" " alt="" coords="654,80,758,107"/>
+<area shape="poly" title=" " alt="" coords="655,31,686,66,683,70,651,34"/>
+<area shape="rect" title=" " alt="" coords="782,80,906,107"/>
+<area shape="poly" title=" " alt="" coords="678,30,795,72,794,77,676,35"/>
+<area shape="rect" title=" " alt="" coords="931,80,1038,107"/>
+<area shape="poly" title=" " alt="" coords="702,30,916,75,915,80,701,35"/>
+<area shape="rect" title=" " alt="" coords="1062,80,1133,107"/>
+<area shape="poly" title=" " alt="" coords="714,26,864,46,1047,77,1046,82,863,51,714,31"/>
+<area shape="rect" href="version_8h.html" title=" " alt="" coords="1158,80,1232,107"/>
+<area shape="poly" title=" " alt="" coords="714,23,904,43,1143,77,1142,82,903,48,714,28"/>
+<area shape="rect" title=" " alt="" coords="1256,80,1369,107"/>
+<area shape="poly" title=" " alt="" coords="714,23,945,43,1241,77,1240,82,944,48,714,28"/>
+<area shape="rect" title=" " alt="" coords="12,155,106,181"/>
+<area shape="poly" title=" " alt="" coords="62,107,62,139,56,139,56,107"/>
+<area shape="poly" title=" " alt="" coords="276,106,289,139,284,141,271,108"/>
+<area shape="rect" title=" " alt="" coords="389,155,492,181"/>
+<area shape="poly" title=" " alt="" coords="443,107,443,139,438,139,438,107"/>
+</map>
+</div>
+</div>
+<p><a href="ota__manager_8cpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a72ad34ba3d7f6c942662509e8a11781f" id="r_a72ad34ba3d7f6c942662509e8a11781f"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72ad34ba3d7f6c942662509e8a11781f">_printGuard</a> (const char *name, const char *tag, const char *current)</td></tr>
+<tr class="separator:a72ad34ba3d7f6c942662509e8a11781f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace424db218f3dfab484ebd7f61d44fcf" id="r_ace424db218f3dfab484ebd7f61d44fcf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace424db218f3dfab484ebd7f61d44fcf">checkGuard</a> (const char *tag)</td></tr>
+<tr class="separator:ace424db218f3dfab484ebd7f61d44fcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51f9f9bafeb2f56a3456ebf48a76c7b9" id="r_a51f9f9bafeb2f56a3456ebf48a76c7b9"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a51f9f9bafeb2f56a3456ebf48a76c7b9">getOtaStatus</a> ()</td></tr>
+<tr class="separator:a51f9f9bafeb2f56a3456ebf48a76c7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8061d13b589bae87956ec09e4ea7fef5" id="r_a8061d13b589bae87956ec09e4ea7fef5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8061d13b589bae87956ec09e4ea7fef5">setupOTA</a> (const char *manifestUrl, WiFiClient &amp;client)</td></tr>
+<tr class="separator:a8061d13b589bae87956ec09e4ea7fef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b7fa9588e9d775a9058925bb170f465" id="r_a2b7fa9588e9d775a9058925bb170f465"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b7fa9588e9d775a9058925bb170f465">verifySha256</a> (const uint8_t *calcDigest, const char *expectedHex)</td></tr>
+<tr class="separator:a2b7fa9588e9d775a9058925bb170f465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95a87e1e1d6cd503264f609ff0d1834c" id="r_a95a87e1e1d6cd503264f609ff0d1834c"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95a87e1e1d6cd503264f609ff0d1834c">initializeDownload</a> (HTTPClient &amp;http, const String &amp;binUrl, int &amp;contentLen)</td></tr>
+<tr class="separator:a95a87e1e1d6cd503264f609ff0d1834c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bfd77aa7f122e508ece81a6f6cfbb88" id="r_a6bfd77aa7f122e508ece81a6f6cfbb88"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6bfd77aa7f122e508ece81a6f6cfbb88">downloadData</a> (HTTPClient &amp;http, int contentLen, mbedtls_sha256_context &amp;shaCtx)</td></tr>
+<tr class="separator:a6bfd77aa7f122e508ece81a6f6cfbb88"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79a35cc6faa209f36bab011a327fb463" id="r_a79a35cc6faa209f36bab011a327fb463"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a79a35cc6faa209f36bab011a327fb463">downloadAndUpdate</a> (const String &amp;binUrl, const char *expectedSha256)</td></tr>
+<tr class="separator:a79a35cc6faa209f36bab011a327fb463"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab62f74691b98553d395b694e0807ae4" id="r_aab62f74691b98553d395b694e0807ae4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab62f74691b98553d395b694e0807ae4">triggerOtaCheck</a> ()</td></tr>
+<tr class="separator:aab62f74691b98553d395b694e0807ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2463eda06898e53e0ca3b3a819c995ae" id="r_a2463eda06898e53e0ca3b3a819c995ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2463eda06898e53e0ca3b3a819c995ae">triggerOtaInstall</a> ()</td></tr>
+<tr class="separator:a2463eda06898e53e0ca3b3a819c995ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3caeaca3fcbd288827f42df9af8b7f08" id="r_a3caeaca3fcbd288827f42df9af8b7f08"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3caeaca3fcbd288827f42df9af8b7f08">handleOTA</a> ()</td></tr>
+<tr class="separator:a3caeaca3fcbd288827f42df9af8b7f08"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a6299a956b91060e72f87a22c4ce7b8a1" id="r_a6299a956b91060e72f87a22c4ce7b8a1"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6299a956b91060e72f87a22c4ce7b8a1">statusBuf</a> [128] = &quot;Ожидание&quot;</td></tr>
+<tr class="separator:a6299a956b91060e72f87a22c4ce7b8a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa22fe362b6cde180014a47ed59203f23" id="r_aa22fe362b6cde180014a47ed59203f23"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa22fe362b6cde180014a47ed59203f23">guardGap</a> [8] = &quot;BEFORE&quot;</td></tr>
+<tr class="separator:aa22fe362b6cde180014a47ed59203f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ee992e0f9ec4a62dc180476220001b8" id="r_a5ee992e0f9ec4a62dc180476220001b8"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5ee992e0f9ec4a62dc180476220001b8">manifestUrlGlobal</a> [512] = &quot;&quot;</td></tr>
+<tr class="separator:a5ee992e0f9ec4a62dc180476220001b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71d96e0fb96efe93a3f1878956d0853c" id="r_a71d96e0fb96efe93a3f1878956d0853c"><td class="memItemLeft" align="right" valign="top">static WiFiClient *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71d96e0fb96efe93a3f1878956d0853c">clientPtr</a> = nullptr</td></tr>
+<tr class="separator:a71d96e0fb96efe93a3f1878956d0853c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2b296c9a53db21d4f32a065eab66241" id="r_af2b296c9a53db21d4f32a065eab66241"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2b296c9a53db21d4f32a065eab66241">urlInitialized</a> = false</td></tr>
+<tr class="separator:af2b296c9a53db21d4f32a065eab66241"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e63e50c659164484f1fa90343720cdd" id="r_a0e63e50c659164484f1fa90343720cdd"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e63e50c659164484f1fa90343720cdd">updateAvailable</a> = false</td></tr>
+<tr class="separator:a0e63e50c659164484f1fa90343720cdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0fae7c5bcf359bad7f81018af25e1b0" id="r_ac0fae7c5bcf359bad7f81018af25e1b0"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0fae7c5bcf359bad7f81018af25e1b0">pendingUpdateUrl</a> = &quot;&quot;</td></tr>
+<tr class="separator:ac0fae7c5bcf359bad7f81018af25e1b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4abcaff55c038d23026aed546501bdcc" id="r_a4abcaff55c038d23026aed546501bdcc"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4abcaff55c038d23026aed546501bdcc">pendingUpdateSha256</a> = &quot;&quot;</td></tr>
+<tr class="separator:a4abcaff55c038d23026aed546501bdcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a399bf080c6adae346423af82171da485" id="r_a399bf080c6adae346423af82171da485"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a399bf080c6adae346423af82171da485">pendingUpdateVersion</a> = &quot;&quot;</td></tr>
+<tr class="separator:a399bf080c6adae346423af82171da485"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8e7c506bfb8da1bbf9dcbea3962813d" id="r_ae8e7c506bfb8da1bbf9dcbea3962813d"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae8e7c506bfb8da1bbf9dcbea3962813d">guardSentinel</a> [8] = &quot;GUARD!&quot;</td></tr>
+<tr class="separator:ae8e7c506bfb8da1bbf9dcbea3962813d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Функции</h2>
+<a id="a72ad34ba3d7f6c942662509e8a11781f" name="a72ad34ba3d7f6c942662509e8a11781f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72ad34ba3d7f6c942662509e8a11781f">&#9670;&#160;</a></span>_printGuard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void _printGuard </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>current</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00030">30</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00034">checkGuard()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a72ad34ba3d7f6c942662509e8a11781f_cgraph.png" border="0" usemap="#aota__manager_8cpp_a72ad34ba3d7f6c942662509e8a11781f_cgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a72ad34ba3d7f6c942662509e8a11781f_cgraph" id="aota__manager_8cpp_a72ad34ba3d7f6c942662509e8a11781f_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,94,32"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="142,5,208,32"/>
+<area shape="poly" title=" " alt="" coords="94,16,126,16,126,21,94,21"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a72ad34ba3d7f6c942662509e8a11781f_icgraph.png" border="0" usemap="#aota__manager_8cpp_a72ad34ba3d7f6c942662509e8a11781f_icgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a72ad34ba3d7f6c942662509e8a11781f_icgraph" id="aota__manager_8cpp_a72ad34ba3d7f6c942662509e8a11781f_icgraph">
+<area shape="rect" title=" " alt="" coords="373,5,462,32"/>
+<area shape="rect" href="ota__manager_8cpp.html#ace424db218f3dfab484ebd7f61d44fcf" title=" " alt="" coords="234,5,325,32"/>
+<area shape="poly" title=" " alt="" coords="358,21,326,21,326,16,358,16"/>
+<area shape="rect" href="ota__manager_8cpp.html#a8061d13b589bae87956ec09e4ea7fef5" title=" " alt="" coords="107,5,186,32"/>
+<area shape="poly" title=" " alt="" coords="218,21,187,21,187,16,218,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ace424db218f3dfab484ebd7f61d44fcf" name="ace424db218f3dfab484ebd7f61d44fcf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace424db218f3dfab484ebd7f61d44fcf">&#9670;&#160;</a></span>checkGuard()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void checkGuard </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>tag</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00034">34</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="ota__manager_8cpp_source.html#l00030">_printGuard()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00017">guardGap</a> и <a class="el" href="ota__manager_8cpp_source.html#l00028">guardSentinel</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_ace424db218f3dfab484ebd7f61d44fcf_cgraph.png" border="0" usemap="#aota__manager_8cpp_ace424db218f3dfab484ebd7f61d44fcf_cgraph" alt=""/></div>
+<map name="aota__manager_8cpp_ace424db218f3dfab484ebd7f61d44fcf_cgraph" id="aota__manager_8cpp_ace424db218f3dfab484ebd7f61d44fcf_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,97,32"/>
+<area shape="rect" href="ota__manager_8cpp.html#a72ad34ba3d7f6c942662509e8a11781f" title=" " alt="" coords="145,5,233,32"/>
+<area shape="poly" title=" " alt="" coords="97,16,129,16,129,21,97,21"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="281,5,347,32"/>
+<area shape="poly" title=" " alt="" coords="233,16,265,16,265,21,233,21"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_ace424db218f3dfab484ebd7f61d44fcf_icgraph.png" border="0" usemap="#aota__manager_8cpp_ace424db218f3dfab484ebd7f61d44fcf_icgraph" alt=""/></div>
+<map name="aota__manager_8cpp_ace424db218f3dfab484ebd7f61d44fcf_icgraph" id="aota__manager_8cpp_ace424db218f3dfab484ebd7f61d44fcf_icgraph">
+<area shape="rect" title=" " alt="" coords="234,5,325,32"/>
+<area shape="rect" href="ota__manager_8cpp.html#a8061d13b589bae87956ec09e4ea7fef5" title=" " alt="" coords="107,5,186,32"/>
+<area shape="poly" title=" " alt="" coords="218,21,187,21,187,16,218,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a79a35cc6faa209f36bab011a327fb463" name="a79a35cc6faa209f36bab011a327fb463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79a35cc6faa209f36bab011a327fb463">&#9670;&#160;</a></span>downloadAndUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool downloadAndUpdate </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>binUrl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>expectedSha256</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00303">303</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="ota__manager_8cpp_source.html#l00186">downloadData()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00109">initializeDownload()</a>, <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>, <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00016">statusBuf</a> и <a class="el" href="ota__manager_8cpp_source.html#l00100">verifySha256()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00423">triggerOtaInstall()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a79a35cc6faa209f36bab011a327fb463_cgraph.png" border="0" usemap="#aota__manager_8cpp_a79a35cc6faa209f36bab011a327fb463_cgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a79a35cc6faa209f36bab011a327fb463_cgraph" id="aota__manager_8cpp_a79a35cc6faa209f36bab011a327fb463_cgraph">
+<area shape="rect" title=" " alt="" coords="5,76,147,103"/>
+<area shape="rect" href="ota__manager_8cpp.html#a6bfd77aa7f122e508ece81a6f6cfbb88" title=" " alt="" coords="206,76,310,103"/>
+<area shape="poly" title=" " alt="" coords="147,87,191,87,191,92,147,92"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="378,26,444,52"/>
+<area shape="poly" title=" " alt="" coords="91,74,134,40,163,23,194,11,238,4,283,5,326,11,363,20,362,25,325,16,283,10,239,9,195,16,165,28,137,45,94,78"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="369,76,452,103"/>
+<area shape="poly" title=" " alt="" coords="131,101,195,112,258,117,321,112,355,105,356,110,321,118,258,123,194,118,130,106"/>
+<area shape="rect" href="ota__manager_8cpp.html#a95a87e1e1d6cd503264f609ff0d1834c" title=" " alt="" coords="195,26,321,52"/>
+<area shape="poly" title=" " alt="" coords="126,73,192,54,193,60,127,78"/>
+<area shape="rect" href="ota__manager_8cpp.html#a2b7fa9588e9d775a9058925bb170f465" title=" " alt="" coords="209,178,306,204"/>
+<area shape="poly" title=" " alt="" coords="101,101,196,157,217,168,215,173,193,161,99,106"/>
+<area shape="poly" title=" " alt="" coords="300,73,362,52,363,57,301,78"/>
+<area shape="poly" title=" " alt="" coords="310,87,354,87,354,92,310,92"/>
+<area shape="poly" title=" " alt="" coords="322,36,362,36,362,42,322,42"/>
+<area shape="poly" title=" " alt="" coords="301,50,355,68,353,74,300,55"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a79a35cc6faa209f36bab011a327fb463_icgraph.png" border="0" usemap="#aota__manager_8cpp_a79a35cc6faa209f36bab011a327fb463_icgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a79a35cc6faa209f36bab011a327fb463_icgraph" id="aota__manager_8cpp_a79a35cc6faa209f36bab011a327fb463_icgraph">
+<area shape="rect" title=" " alt="" coords="1030,31,1171,57"/>
+<area shape="rect" href="ota__manager_8cpp.html#a2463eda06898e53e0ca3b3a819c995ae" title=" " alt="" coords="868,31,982,57"/>
+<area shape="poly" title=" " alt="" coords="1014,47,982,47,982,41,1014,41"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="704,31,820,57"/>
+<area shape="poly" title=" " alt="" coords="853,47,821,47,821,41,853,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,656,47,656,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6bfd77aa7f122e508ece81a6f6cfbb88" name="a6bfd77aa7f122e508ece81a6f6cfbb88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bfd77aa7f122e508ece81a6f6cfbb88">&#9670;&#160;</a></span>downloadData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool downloadData </td>
+          <td>(</td>
+          <td class="paramtype">HTTPClient &amp;</td>          <td class="paramname"><span class="paramname"><em>http</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>contentLen</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">mbedtls_sha256_context &amp;</td>          <td class="paramname"><span class="paramname"><em>shaCtx</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00186">186</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>, <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00016">statusBuf</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00303">downloadAndUpdate()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a6bfd77aa7f122e508ece81a6f6cfbb88_cgraph.png" border="0" usemap="#aota__manager_8cpp_a6bfd77aa7f122e508ece81a6f6cfbb88_cgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a6bfd77aa7f122e508ece81a6f6cfbb88_cgraph" id="aota__manager_8cpp_a6bfd77aa7f122e508ece81a6f6cfbb88_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,110,57"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="166,5,232,32"/>
+<area shape="poly" title=" " alt="" coords="110,32,151,25,152,30,111,37"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="158,56,241,83"/>
+<area shape="poly" title=" " alt="" coords="111,51,143,57,142,62,110,56"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a6bfd77aa7f122e508ece81a6f6cfbb88_icgraph.png" border="0" usemap="#aota__manager_8cpp_a6bfd77aa7f122e508ece81a6f6cfbb88_icgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a6bfd77aa7f122e508ece81a6f6cfbb88_icgraph" id="aota__manager_8cpp_a6bfd77aa7f122e508ece81a6f6cfbb88_icgraph">
+<area shape="rect" title=" " alt="" coords="1219,31,1323,57"/>
+<area shape="rect" href="ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463" title=" " alt="" coords="1030,31,1171,57"/>
+<area shape="poly" title=" " alt="" coords="1203,47,1171,47,1171,41,1203,41"/>
+<area shape="rect" href="ota__manager_8cpp.html#a2463eda06898e53e0ca3b3a819c995ae" title=" " alt="" coords="868,31,982,57"/>
+<area shape="poly" title=" " alt="" coords="1014,47,982,47,982,41,1014,41"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="704,31,820,57"/>
+<area shape="poly" title=" " alt="" coords="853,47,821,47,821,41,853,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,656,47,656,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a51f9f9bafeb2f56a3456ebf48a76c7b9" name="a51f9f9bafeb2f56a3456ebf48a76c7b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a51f9f9bafeb2f56a3456ebf48a76c7b9">&#9670;&#160;</a></span>getOtaStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * getOtaStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00045">45</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="ota__manager_8cpp_source.html#l00016">statusBuf</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00311">handleMQTT()</a> и <a class="el" href="routes__ota_8cpp_source.html#l00310">sendOtaStatusJson()</a>.</p>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a51f9f9bafeb2f56a3456ebf48a76c7b9_icgraph.png" border="0" usemap="#aota__manager_8cpp_a51f9f9bafeb2f56a3456ebf48a76c7b9_icgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a51f9f9bafeb2f56a3456ebf48a76c7b9_icgraph" id="aota__manager_8cpp_a51f9f9bafeb2f56a3456ebf48a76c7b9_icgraph">
+<area shape="rect" title=" " alt="" coords="1053,101,1151,128"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="714,151,810,177"/>
+<area shape="poly" title=" " alt="" coords="1037,127,811,160,810,154,1037,121"/>
+<area shape="rect" href="routes__ota_8cpp.html#a5f391e260218b4827e75c958f389decc" title=" " alt="" coords="868,63,1005,89"/>
+<area shape="poly" title=" " alt="" coords="1037,102,996,93,997,87,1038,97"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,120,55,147"/>
+<area shape="poly" title=" " alt="" coords="699,169,443,173,292,173,224,170,157,161,55,141,56,136,157,156,224,164,292,168,443,168,698,163"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="704,59,820,85"/>
+<area shape="poly" title=" " alt="" coords="853,77,821,76,821,71,853,71"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,56,656,83"/>
+<area shape="poly" title=" " alt="" coords="689,73,656,73,656,68,689,68"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="523,72,491,72,491,67,523,67"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="528,55,490,47,346,26,346,21,491,41,529,49"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,107,193,133"/>
+<area shape="poly" title=" " alt="" coords="378,83,194,115,193,110,377,78"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,44,190,71"/>
+<area shape="poly" title=" " alt="" coords="377,69,191,62,191,56,378,64"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="poly" title=" " alt="" coords="92,129,55,133,55,128,91,124"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,44,59,71"/>
+<area shape="poly" title=" " alt="" coords="94,60,59,60,59,55,94,55"/>
+<area shape="poly" title=" " alt="" coords="262,43,172,108,169,104,259,39"/>
+<area shape="poly" title=" " alt="" coords="227,39,191,49,190,44,226,34"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3caeaca3fcbd288827f42df9af8b7f08" name="a3caeaca3fcbd288827f42df9af8b7f08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3caeaca3fcbd288827f42df9af8b7f08">&#9670;&#160;</a></span>handleOTA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleOTA </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00455">455</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="ota__manager_8cpp_source.html#l00019">clientPtr</a>, <a class="el" href="version_8h_source.html#l00012">JXCT_VERSION_STRING</a>, <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>, <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00018">manifestUrlGlobal</a>, <a class="el" href="ota__manager_8cpp_source.html#l00025">pendingUpdateSha256</a>, <a class="el" href="ota__manager_8cpp_source.html#l00024">pendingUpdateUrl</a>, <a class="el" href="ota__manager_8cpp_source.html#l00026">pendingUpdateVersion</a>, <a class="el" href="ota__manager_8cpp_source.html#l00016">statusBuf</a>, <a class="el" href="ota__manager_8cpp_source.html#l00023">updateAvailable</a> и <a class="el" href="ota__manager_8cpp_source.html#l00020">urlInitialized</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00674">handleMqttCommand()</a>, <a class="el" href="main_8cpp_source.html#l00202">loop()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00407">triggerOtaCheck()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a3caeaca3fcbd288827f42df9af8b7f08_cgraph.png" border="0" usemap="#aota__manager_8cpp_a3caeaca3fcbd288827f42df9af8b7f08_cgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a3caeaca3fcbd288827f42df9af8b7f08_cgraph" id="aota__manager_8cpp_a3caeaca3fcbd288827f42df9af8b7f08_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,91,57"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="147,5,214,32"/>
+<area shape="poly" title=" " alt="" coords="91,33,131,25,132,31,92,38"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="139,56,222,83"/>
+<area shape="poly" title=" " alt="" coords="92,50,124,56,123,61,91,55"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a3caeaca3fcbd288827f42df9af8b7f08_icgraph.png" border="0" usemap="#aota__manager_8cpp_a3caeaca3fcbd288827f42df9af8b7f08_icgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a3caeaca3fcbd288827f42df9af8b7f08_icgraph" id="aota__manager_8cpp_a3caeaca3fcbd288827f42df9af8b7f08_icgraph">
+<area shape="rect" title=" " alt="" coords="1062,132,1147,159"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="704,81,849,108"/>
+<area shape="poly" title=" " alt="" coords="1046,130,1013,123,928,110,849,102,850,97,929,104,1014,117,1047,125"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,183,55,209"/>
+<area shape="poly" title=" " alt="" coords="1054,167,999,185,930,204,855,218,778,224,292,224,224,222,157,216,55,202,55,197,157,210,224,216,292,219,778,219,854,213,929,199,997,180,1053,162"/>
+<area shape="rect" href="ota__manager_8cpp.html#aab62f74691b98553d395b694e0807ae4" title=" " alt="" coords="897,132,1014,159"/>
+<area shape="poly" title=" " alt="" coords="1046,148,1014,148,1014,143,1046,143"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="548,69,646,96"/>
+<area shape="poly" title=" " alt="" coords="688,91,647,89,647,83,689,86"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="248,5,338,32"/>
+<area shape="poly" title=" " alt="" coords="532,72,338,31,339,25,533,67"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,31,59,57"/>
+<area shape="poly" title=" " alt="" coords="233,27,59,44,59,39,232,22"/>
+<area shape="poly" title=" " alt="" coords="890,130,826,111,827,106,892,125"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="718,132,835,159"/>
+<area shape="poly" title=" " alt="" coords="882,148,835,148,835,143,882,143"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,132,656,159"/>
+<area shape="poly" title=" " alt="" coords="703,148,656,148,656,143,703,143"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,107,491,133"/>
+<area shape="poly" title=" " alt="" coords="523,136,491,131,492,125,524,131"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,157,345,184"/>
+<area shape="poly" title=" " alt="" coords="523,154,346,169,345,164,523,149"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,157,193,184"/>
+<area shape="poly" title=" " alt="" coords="378,128,242,148,194,160,193,155,240,143,377,123"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,56,190,83"/>
+<area shape="poly" title=" " alt="" coords="377,112,190,79,191,74,378,106"/>
+<area shape="poly" title=" " alt="" coords="387,142,336,159,334,154,385,136"/>
+<area shape="poly" title=" " alt="" coords="92,186,55,194,54,189,91,181"/>
+<area shape="poly" title=" " alt="" coords="94,60,59,52,60,47,95,55"/>
+<area shape="poly" title=" " alt="" coords="225,173,193,173,193,168,225,168"/>
+<area shape="poly" title=" " alt="" coords="259,150,169,85,172,81,262,146"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a95a87e1e1d6cd503264f609ff0d1834c" name="a95a87e1e1d6cd503264f609ff0d1834c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95a87e1e1d6cd503264f609ff0d1834c">&#9670;&#160;</a></span>initializeDownload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool initializeDownload </td>
+          <td>(</td>
+          <td class="paramtype">HTTPClient &amp;</td>          <td class="paramname"><span class="paramname"><em>http</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>binUrl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int &amp;</td>          <td class="paramname"><span class="paramname"><em>contentLen</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00109">109</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="ota__manager_8cpp_source.html#l00019">clientPtr</a>, <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>, <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00016">statusBuf</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00303">downloadAndUpdate()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a95a87e1e1d6cd503264f609ff0d1834c_cgraph.png" border="0" usemap="#aota__manager_8cpp_a95a87e1e1d6cd503264f609ff0d1834c_cgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a95a87e1e1d6cd503264f609ff0d1834c_cgraph" id="aota__manager_8cpp_a95a87e1e1d6cd503264f609ff0d1834c_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,132,57"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="188,5,254,32"/>
+<area shape="poly" title=" " alt="" coords="132,31,172,24,173,29,133,36"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="180,56,263,83"/>
+<area shape="poly" title=" " alt="" coords="133,52,165,57,164,63,132,57"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a95a87e1e1d6cd503264f609ff0d1834c_icgraph.png" border="0" usemap="#aota__manager_8cpp_a95a87e1e1d6cd503264f609ff0d1834c_icgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a95a87e1e1d6cd503264f609ff0d1834c_icgraph" id="aota__manager_8cpp_a95a87e1e1d6cd503264f609ff0d1834c_icgraph">
+<area shape="rect" title=" " alt="" coords="1219,31,1345,57"/>
+<area shape="rect" href="ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463" title=" " alt="" coords="1030,31,1171,57"/>
+<area shape="poly" title=" " alt="" coords="1204,47,1171,47,1171,41,1204,41"/>
+<area shape="rect" href="ota__manager_8cpp.html#a2463eda06898e53e0ca3b3a819c995ae" title=" " alt="" coords="868,31,982,57"/>
+<area shape="poly" title=" " alt="" coords="1014,47,982,47,982,41,1014,41"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="704,31,820,57"/>
+<area shape="poly" title=" " alt="" coords="853,47,821,47,821,41,853,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,656,47,656,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8061d13b589bae87956ec09e4ea7fef5" name="a8061d13b589bae87956ec09e4ea7fef5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8061d13b589bae87956ec09e4ea7fef5">&#9670;&#160;</a></span>setupOTA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupOTA </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>manifestUrl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">WiFiClient &amp;</td>          <td class="paramname"><span class="paramname"><em>client</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00047">47</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="ota__manager_8cpp_source.html#l00034">checkGuard()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00019">clientPtr</a>, <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>, <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>, <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>, <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00018">manifestUrlGlobal</a>, <a class="el" href="ota__manager_8cpp_source.html#l00025">pendingUpdateSha256</a>, <a class="el" href="ota__manager_8cpp_source.html#l00024">pendingUpdateUrl</a>, <a class="el" href="ota__manager_8cpp_source.html#l00026">pendingUpdateVersion</a>, <a class="el" href="ota__manager_8cpp_source.html#l00016">statusBuf</a>, <a class="el" href="ota__manager_8cpp_source.html#l00023">updateAvailable</a> и <a class="el" href="ota__manager_8cpp_source.html#l00020">urlInitialized</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="main_8cpp_source.html#l00091">setup()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a8061d13b589bae87956ec09e4ea7fef5_cgraph.png" border="0" usemap="#aota__manager_8cpp_a8061d13b589bae87956ec09e4ea7fef5_cgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a8061d13b589bae87956ec09e4ea7fef5_cgraph" id="aota__manager_8cpp_a8061d13b589bae87956ec09e4ea7fef5_cgraph">
+<area shape="rect" title=" " alt="" coords="5,107,85,133"/>
+<area shape="rect" href="ota__manager_8cpp.html#ace424db218f3dfab484ebd7f61d44fcf" title=" " alt="" coords="133,5,224,32"/>
+<area shape="poly" title=" " alt="" coords="61,104,131,49,144,39,147,44,134,53,64,109"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="408,31,475,57"/>
+<area shape="poly" title=" " alt="" coords="84,105,132,92,274,65,393,47,393,53,275,70,133,97,86,110"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="134,107,223,133"/>
+<area shape="poly" title=" " alt="" coords="85,117,118,117,118,123,85,123"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="137,157,220,184"/>
+<area shape="poly" title=" " alt="" coords="83,131,128,149,126,154,81,136"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="144,208,212,235"/>
+<area shape="poly" title=" " alt="" coords="62,132,94,162,134,194,140,198,137,202,131,198,91,166,58,136"/>
+<area shape="rect" href="ota__manager_8cpp.html#a72ad34ba3d7f6c942662509e8a11781f" title=" " alt="" coords="272,5,360,32"/>
+<area shape="poly" title=" " alt="" coords="224,16,257,16,257,21,224,21"/>
+<area shape="poly" title=" " alt="" coords="361,25,393,32,392,37,360,30"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a8061d13b589bae87956ec09e4ea7fef5_icgraph.png" border="0" usemap="#aota__manager_8cpp_a8061d13b589bae87956ec09e4ea7fef5_icgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a8061d13b589bae87956ec09e4ea7fef5_icgraph" id="aota__manager_8cpp_a8061d13b589bae87956ec09e4ea7fef5_icgraph">
+<area shape="rect" title=" " alt="" coords="107,5,186,32"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aab62f74691b98553d395b694e0807ae4" name="aab62f74691b98553d395b694e0807ae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab62f74691b98553d395b694e0807ae4">&#9670;&#160;</a></span>triggerOtaCheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void triggerOtaCheck </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00407">407</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a>, <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a> и <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="mqtt__client_8cpp_source.html#l00674">handleMqttCommand()</a> и <a class="el" href="routes__ota_8cpp_source.html#l00027">setupOtaRoutes()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_aab62f74691b98553d395b694e0807ae4_cgraph.png" border="0" usemap="#aota__manager_8cpp_aab62f74691b98553d395b694e0807ae4_cgraph" alt=""/></div>
+<map name="aota__manager_8cpp_aab62f74691b98553d395b694e0807ae4_cgraph" id="aota__manager_8cpp_aab62f74691b98553d395b694e0807ae4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,56,122,83"/>
+<area shape="rect" href="ota__manager_8cpp.html#a3caeaca3fcbd288827f42df9af8b7f08" title=" " alt="" coords="170,5,255,32"/>
+<area shape="poly" title=" " alt="" coords="104,53,155,35,157,40,106,58"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="303,56,386,83"/>
+<area shape="poly" title=" " alt="" coords="122,67,288,67,288,72,122,72"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="178,107,246,133"/>
+<area shape="poly" title=" " alt="" coords="106,81,164,101,162,106,104,86"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="312,5,378,32"/>
+<area shape="poly" title=" " alt="" coords="255,16,296,16,296,21,255,21"/>
+<area shape="poly" title=" " alt="" coords="250,30,294,47,293,52,248,35"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_aab62f74691b98553d395b694e0807ae4_icgraph.png" border="0" usemap="#aota__manager_8cpp_aab62f74691b98553d395b694e0807ae4_icgraph" alt=""/></div>
+<map name="aota__manager_8cpp_aab62f74691b98553d395b694e0807ae4_icgraph" id="aota__manager_8cpp_aab62f74691b98553d395b694e0807ae4_icgraph">
+<area shape="rect" title=" " alt="" coords="897,99,1014,125"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a58d6760f5e7f2aaf28fbb2155942d579" title=" " alt="" coords="704,136,849,163"/>
+<area shape="poly" title=" " alt="" coords="883,130,844,138,843,133,882,125"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="718,60,835,87"/>
+<area shape="poly" title=" " alt="" coords="882,99,834,88,835,83,883,94"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a6f06b273defaebb581fdf1adc8969f40" title=" " alt="" coords="548,148,646,175"/>
+<area shape="poly" title=" " alt="" coords="689,158,647,161,647,155,688,153"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a3cff6686f09444558b7c9436e082e73c" title=" " alt="" coords="248,157,338,184"/>
+<area shape="poly" title=" " alt="" coords="532,166,339,172,339,167,532,161"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,120,59,147"/>
+<area shape="poly" title=" " alt="" coords="232,166,106,148,59,140,60,135,107,143,233,160"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,56,656,83"/>
+<area shape="poly" title=" " alt="" coords="703,74,656,73,656,68,703,69"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="523,72,491,72,491,67,523,67"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="528,55,490,47,346,26,346,21,491,41,529,49"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,44,193,71"/>
+<area shape="poly" title=" " alt="" coords="378,69,193,62,193,56,378,64"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,107,190,133"/>
+<area shape="poly" title=" " alt="" coords="378,83,191,116,190,110,377,78"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,44,55,71"/>
+<area shape="poly" title=" " alt="" coords="91,60,55,60,55,55,91,55"/>
+<area shape="poly" title=" " alt="" coords="95,129,60,133,59,128,94,124"/>
+<area shape="poly" title=" " alt="" coords="227,39,194,48,193,43,226,34"/>
+<area shape="poly" title=" " alt="" coords="262,43,172,108,169,104,259,39"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2463eda06898e53e0ca3b3a819c995ae" name="a2463eda06898e53e0ca3b3a819c995ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2463eda06898e53e0ca3b3a819c995ae">&#9670;&#160;</a></span>triggerOtaInstall()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void triggerOtaInstall </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00423">423</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="ota__manager_8cpp_source.html#l00303">downloadAndUpdate()</a>, <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>, <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00025">pendingUpdateSha256</a>, <a class="el" href="ota__manager_8cpp_source.html#l00024">pendingUpdateUrl</a>, <a class="el" href="ota__manager_8cpp_source.html#l00026">pendingUpdateVersion</a>, <a class="el" href="ota__manager_8cpp_source.html#l00016">statusBuf</a> и <a class="el" href="ota__manager_8cpp_source.html#l00023">updateAvailable</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="routes__ota_8cpp_source.html#l00027">setupOtaRoutes()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a2463eda06898e53e0ca3b3a819c995ae_cgraph.png" border="0" usemap="#aota__manager_8cpp_a2463eda06898e53e0ca3b3a819c995ae_cgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a2463eda06898e53e0ca3b3a819c995ae_cgraph" id="aota__manager_8cpp_a2463eda06898e53e0ca3b3a819c995ae_cgraph">
+<area shape="rect" title=" " alt="" coords="5,100,119,126"/>
+<area shape="rect" href="ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463" title=" " alt="" coords="167,100,308,126"/>
+<area shape="poly" title=" " alt="" coords="119,110,152,110,152,116,119,116"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="539,49,605,76"/>
+<area shape="poly" title=" " alt="" coords="93,96,206,52,280,29,356,12,419,3,448,4,483,12,514,23,541,38,538,43,511,28,482,17,447,10,420,8,356,17,281,34,208,57,95,101"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="530,176,614,202"/>
+<area shape="poly" title=" " alt="" coords="96,124,210,167,282,188,356,204,419,209,482,204,515,199,516,204,483,209,419,214,356,209,281,193,208,172,95,129"/>
+<area shape="rect" href="ota__manager_8cpp.html#a6bfd77aa7f122e508ece81a6f6cfbb88" title=" " alt="" coords="367,100,471,126"/>
+<area shape="poly" title=" " alt="" coords="308,110,352,110,352,116,308,116"/>
+<area shape="poly" title=" " alt="" coords="252,97,296,63,324,47,355,34,400,27,445,28,487,34,524,43,523,49,486,40,444,33,400,32,357,39,327,52,299,68,255,101"/>
+<area shape="poly" title=" " alt="" coords="255,125,299,158,327,174,357,186,397,195,439,198,515,195,515,200,439,203,396,200,355,191,324,179,296,162,252,129"/>
+<area shape="rect" href="ota__manager_8cpp.html#a95a87e1e1d6cd503264f609ff0d1834c" title=" " alt="" coords="356,150,482,177"/>
+<area shape="poly" title=" " alt="" coords="289,124,355,143,353,148,287,129"/>
+<area shape="rect" href="ota__manager_8cpp.html#a2b7fa9588e9d775a9058925bb170f465" title=" " alt="" coords="370,49,468,76"/>
+<area shape="poly" title=" " alt="" coords="287,96,356,77,357,82,289,101"/>
+<area shape="poly" title=" " alt="" coords="461,96,523,75,525,81,463,101"/>
+<area shape="poly" title=" " alt="" coords="458,124,484,136,536,165,534,169,481,141,456,129"/>
+<area shape="poly" title=" " alt="" coords="459,147,481,136,516,111,545,84,549,88,519,115,484,140,461,152"/>
+<area shape="poly" title=" " alt="" coords="483,171,515,177,514,182,482,177"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a2463eda06898e53e0ca3b3a819c995ae_icgraph.png" border="0" usemap="#aota__manager_8cpp_a2463eda06898e53e0ca3b3a819c995ae_icgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a2463eda06898e53e0ca3b3a819c995ae_icgraph" id="aota__manager_8cpp_a2463eda06898e53e0ca3b3a819c995ae_icgraph">
+<area shape="rect" title=" " alt="" coords="868,31,982,57"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="704,31,820,57"/>
+<area shape="poly" title=" " alt="" coords="853,47,821,47,821,41,853,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,656,47,656,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2b7fa9588e9d775a9058925bb170f465" name="a2b7fa9588e9d775a9058925bb170f465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b7fa9588e9d775a9058925bb170f465">&#9670;&#160;</a></span>verifySha256()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool verifySha256 </td>
+          <td>(</td>
+          <td class="paramtype">const uint8_t *</td>          <td class="paramname"><span class="paramname"><em>calcDigest</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>expectedHex</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00100">100</a></p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00303">downloadAndUpdate()</a>.</p>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="ota__manager_8cpp_a2b7fa9588e9d775a9058925bb170f465_icgraph.png" border="0" usemap="#aota__manager_8cpp_a2b7fa9588e9d775a9058925bb170f465_icgraph" alt=""/></div>
+<map name="aota__manager_8cpp_a2b7fa9588e9d775a9058925bb170f465_icgraph" id="aota__manager_8cpp_a2b7fa9588e9d775a9058925bb170f465_icgraph">
+<area shape="rect" title=" " alt="" coords="1219,31,1316,57"/>
+<area shape="rect" href="ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463" title=" " alt="" coords="1030,31,1171,57"/>
+<area shape="poly" title=" " alt="" coords="1204,47,1171,47,1171,41,1204,41"/>
+<area shape="rect" href="ota__manager_8cpp.html#a2463eda06898e53e0ca3b3a819c995ae" title=" " alt="" coords="868,31,982,57"/>
+<area shape="poly" title=" " alt="" coords="1014,47,982,47,982,41,1014,41"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="704,31,820,57"/>
+<area shape="poly" title=" " alt="" coords="853,47,821,47,821,41,853,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,656,47,656,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a71d96e0fb96efe93a3f1878956d0853c" name="a71d96e0fb96efe93a3f1878956d0853c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71d96e0fb96efe93a3f1878956d0853c">&#9670;&#160;</a></span>clientPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WiFiClient* clientPtr = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00019">19</a></p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00109">initializeDownload()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a>.</p>
+
+</div>
+</div>
+<a id="aa22fe362b6cde180014a47ed59203f23" name="aa22fe362b6cde180014a47ed59203f23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa22fe362b6cde180014a47ed59203f23">&#9670;&#160;</a></span>guardGap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char guardGap[8] = &quot;BEFORE&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00017">17</a></p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00034">checkGuard()</a>.</p>
+
+</div>
+</div>
+<a id="ae8e7c506bfb8da1bbf9dcbea3962813d" name="ae8e7c506bfb8da1bbf9dcbea3962813d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae8e7c506bfb8da1bbf9dcbea3962813d">&#9670;&#160;</a></span>guardSentinel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char guardSentinel[8] = &quot;GUARD!&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00028">28</a></p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00034">checkGuard()</a>.</p>
+
+</div>
+</div>
+<a id="a5ee992e0f9ec4a62dc180476220001b8" name="a5ee992e0f9ec4a62dc180476220001b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ee992e0f9ec4a62dc180476220001b8">&#9670;&#160;</a></span>manifestUrlGlobal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char manifestUrlGlobal[512] = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00018">18</a></p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a>.</p>
+
+</div>
+</div>
+<a id="a4abcaff55c038d23026aed546501bdcc" name="a4abcaff55c038d23026aed546501bdcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4abcaff55c038d23026aed546501bdcc">&#9670;&#160;</a></span>pendingUpdateSha256</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String pendingUpdateSha256 = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00025">25</a></p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00423">triggerOtaInstall()</a>.</p>
+
+</div>
+</div>
+<a id="ac0fae7c5bcf359bad7f81018af25e1b0" name="ac0fae7c5bcf359bad7f81018af25e1b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0fae7c5bcf359bad7f81018af25e1b0">&#9670;&#160;</a></span>pendingUpdateUrl</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String pendingUpdateUrl = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00024">24</a></p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00423">triggerOtaInstall()</a>.</p>
+
+</div>
+</div>
+<a id="a399bf080c6adae346423af82171da485" name="a399bf080c6adae346423af82171da485"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a399bf080c6adae346423af82171da485">&#9670;&#160;</a></span>pendingUpdateVersion</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String pendingUpdateVersion = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00026">26</a></p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00423">triggerOtaInstall()</a>.</p>
+
+</div>
+</div>
+<a id="a6299a956b91060e72f87a22c4ce7b8a1" name="a6299a956b91060e72f87a22c4ce7b8a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6299a956b91060e72f87a22c4ce7b8a1">&#9670;&#160;</a></span>statusBuf</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char statusBuf[128] = &quot;Ожидание&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00016">16</a></p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00303">downloadAndUpdate()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00186">downloadData()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00045">getOtaStatus()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00109">initializeDownload()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00423">triggerOtaInstall()</a>.</p>
+
+</div>
+</div>
+<a id="a0e63e50c659164484f1fa90343720cdd" name="a0e63e50c659164484f1fa90343720cdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e63e50c659164484f1fa90343720cdd">&#9670;&#160;</a></span>updateAvailable</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool updateAvailable = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00023">23</a></p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a>, <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00423">triggerOtaInstall()</a>.</p>
+
+</div>
+</div>
+<a id="af2b296c9a53db21d4f32a065eab66241" name="af2b296c9a53db21d4f32a065eab66241"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2b296c9a53db21d4f32a065eab66241">&#9670;&#160;</a></span>urlInitialized</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool urlInitialized = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00020">20</a></p>
+
+<p class="reference">Используется в <a class="el" href="ota__manager_8cpp_source.html#l00455">handleOTA()</a> и <a class="el" href="ota__manager_8cpp_source.html#l00047">setupOTA()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="ota__manager_8cpp.html">ota_manager.cpp</a></li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:10. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

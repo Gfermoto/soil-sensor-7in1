@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['buffer_5ffilled_0',['buffer_filled',['../struct_sensor_data.html#acf88a59ba1b4c48bcbe74e853e3ab7e7',1,'SensorData']]],
-  ['buffer_5findex_1',['buffer_index',['../struct_sensor_data.html#a0b41fc80d82705a0a7adc521795623d7',1,'SensorData']]]
+  ['api_5fversion_5fcurrent_0',['API_VERSION_CURRENT',['../jxct__constants_8h.html#ae67763a474ed770ac17a07c9f40ed318',1,'jxct_constants.h']]],
+  ['api_5fversion_5fv1_1',['API_VERSION_V1',['../jxct__constants_8h.html#a9736db8fbca9550722fc197649a7b05d',1,'jxct_constants.h']]]
 ];

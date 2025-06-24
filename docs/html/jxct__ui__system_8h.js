@@ -20,6 +20,7 @@ var jxct__ui__system_8h =
     [ "UI_FONT_SIZE_H1", "jxct__ui__system_8h.html#aa9a8129049fc76d5692aa8da7f4f7074", null ],
     [ "UI_FONT_SIZE_H2", "jxct__ui__system_8h.html#a3ea379062bdc4de13202178bda5f0e9a", null ],
     [ "UI_FONT_SIZE_SMALL", "jxct__ui__system_8h.html#a20d9342cc444148594d8903ec79f055a", null ],
+    [ "UI_ICON_CALIBRATION", "jxct__ui__system_8h.html#a9af26217e5d651fb664f6e3891e610b9", null ],
     [ "UI_ICON_CONFIG", "jxct__ui__system_8h.html#ad08f44bfaadcd205bb7c3aace2131f25", null ],
     [ "UI_ICON_DATA", "jxct__ui__system_8h.html#a075f0130a6ec13e19f3da60e46f893ef", null ],
     [ "UI_ICON_DOWNLOAD", "jxct__ui__system_8h.html#aa6d659466477b3945ad48dd79bb453d3", null ],

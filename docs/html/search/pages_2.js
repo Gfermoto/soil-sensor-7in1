@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🌱_20jxct_20soil_20sensor_0',['🌱 JXCT Soil Sensor',['../index.html',1,'']]]
+  ['documentation_0',['JXCT Soil Sensor 7-in-1 Documentation',['../index.html',1,'']]]
 ];

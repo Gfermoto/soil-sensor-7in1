@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['danger_0',['DANGER',['../jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a707e893c1db5175432f341eb5d6d1ca7',1,'jxct_ui_system.h']]]
+  ['clay_0',['CLAY',['../sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155da062285f4ae598699cec7d4b2e3a7fac2',1,'CLAY:&#160;sensor_compensation.h'],['../sensor__compensation_8h.html#a32f5636a03443547a8c316772610c4c1a062285f4ae598699cec7d4b2e3a7fac2',1,'CLAY:&#160;sensor_compensation.h']]]
 ];

@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['jxct_5fconfig_5fvars_2eh_0',['jxct_config_vars.h',['../jxct__config__vars_8h.html',1,'']]],
-  ['jxct_5fconstants_2eh_1',['jxct_constants.h',['../jxct__constants_8h.html',1,'']]],
-  ['jxct_5fdevice_5finfo_2eh_2',['jxct_device_info.h',['../jxct__device__info_8h.html',1,'']]],
-  ['jxct_5fformat_5futils_2ecpp_3',['jxct_format_utils.cpp',['../jxct__format__utils_8cpp.html',1,'']]],
-  ['jxct_5fformat_5futils_2eh_4',['jxct_format_utils.h',['../jxct__format__utils_8h.html',1,'']]],
-  ['jxct_5fui_5fsystem_2ecpp_5',['jxct_ui_system.cpp',['../jxct__ui__system_8cpp.html',1,'']]],
-  ['jxct_5fui_5fsystem_2eh_6',['jxct_ui_system.h',['../jxct__ui__system_8h.html',1,'']]]
+  ['fake_5fsensor_2ecpp_0',['fake_sensor.cpp',['../fake__sensor_8cpp.html',1,'']]],
+  ['fake_5fsensor_2eh_1',['fake_sensor.h',['../fake__sensor_8h.html',1,'']]],
+  ['fake_5fsensor_5fadapter_2eh_2',['fake_sensor_adapter.h',['../fake__sensor__adapter_8h.html',1,'']]]
 ];

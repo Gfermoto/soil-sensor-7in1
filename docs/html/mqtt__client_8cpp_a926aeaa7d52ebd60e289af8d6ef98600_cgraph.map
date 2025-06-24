@@ -1,26 +1,32 @@
 <map id="handleMQTT" name="handleMQTT">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,183,102,209"/>
-<area shape="rect" id="Node000002" href="$mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="150,107,254,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="79,180,148,143,158,138,160,143,151,148,82,184"/>
-<area shape="rect" id="Node000010" href="$logger_8cpp.html#ace461ff84ce50a76653ec959a2436320" title=" " alt="" coords="164,157,240,184"/>
-<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="102,185,148,177,149,182,103,190"/>
-<area shape="rect" id="Node000011" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="157,208,246,235"/>
-<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="103,202,142,209,141,214,102,207"/>
-<area shape="rect" id="Node000012" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="168,259,236,285"/>
-<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="82,208,151,244,160,249,158,254,148,249,79,212"/>
-<area shape="rect" id="Node000003" href="$mqtt__client_8cpp.html#aa0880332a55ab7205d86dfabc8d22b35" title=" " alt="" coords="332,5,462,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="216,104,252,73,301,42,316,35,318,40,303,46,256,77,219,108"/>
-<area shape="rect" id="Node000004" href="$mqtt__client_8cpp.html#a5013707c0bb5fd2228d371b7df94ce6f" title=" " alt="" coords="330,56,464,83"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="254,104,327,85,329,90,255,109"/>
-<area shape="rect" id="Node000006" href="$mqtt__client_8cpp.html#ad887808331ac88cd82959c00efdacb77" title=" " alt="" coords="540,132,649,159"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="255,121,525,138,524,144,254,126"/>
-<area shape="rect" id="Node000007" href="$mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="334,157,460,184"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="255,131,329,150,327,155,254,136"/>
-<area shape="rect" id="Node000008" href="$mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="302,208,492,235"/>
-<area shape="poly" id="edge8_Node000002_Node000008" title=" " alt="" coords="237,132,256,143,270,157,280,170,289,182,303,194,314,199,312,204,301,198,285,186,275,173,266,161,252,147,234,136"/>
-<area shape="rect" id="Node000005" href="$mqtt__client_8cpp.html#acfd28a961b10e3b67e21fdd9c9bfa050" title=" " alt="" coords="552,56,637,83"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="465,67,537,67,537,72,465,72"/>
-<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="460,160,525,152,525,157,460,165"/>
-<area shape="rect" id="Node000009" href="$config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="549,208,640,235"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="493,219,533,219,533,224,493,224"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,259,102,285"/>
+<area shape="rect" id="Node000002" href="$mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0" title=" " alt="" coords="162,132,266,159"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="63,256,97,214,121,190,148,168,156,164,159,168,151,173,125,194,101,217,67,260"/>
+<area shape="rect" id="Node000011" href="$ota__manager_8cpp.html#a51f9f9bafeb2f56a3456ebf48a76c7b9" title=" " alt="" coords="165,183,264,209"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="78,256,149,219,161,213,163,218,151,224,80,260"/>
+<area shape="rect" id="Node000012" href="$mqtt__client_8cpp.html#a9939b7e00bc562d6b183d61b06d5cfc2" title=" " alt="" coords="150,233,279,260"/>
+<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="102,262,134,257,135,262,103,267"/>
+<area shape="rect" id="Node000013" href="$logger_8cpp.html#ace461ff84ce50a76653ec959a2436320" title=" " alt="" coords="177,284,252,311"/>
+<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="103,277,162,286,161,292,102,282"/>
+<area shape="rect" id="Node000014" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="170,335,259,361"/>
+<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="80,284,151,320,163,326,161,331,149,325,78,288"/>
+<area shape="rect" id="Node000015" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="180,385,248,412"/>
+<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="67,284,101,327,125,350,151,371,168,380,165,385,148,376,121,354,97,330,63,288"/>
+<area shape="rect" id="Node000003" href="$mqtt__client_8cpp.html#aa0880332a55ab7205d86dfabc8d22b35" title=" " alt="" coords="357,5,487,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="225,130,266,86,294,62,326,42,341,34,343,39,328,46,298,67,270,90,229,133"/>
+<area shape="rect" id="Node000004" href="$mqtt__client_8cpp.html#a5013707c0bb5fd2228d371b7df94ce6f" title=" " alt="" coords="355,56,489,83"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="242,129,326,92,348,85,350,90,328,97,244,134"/>
+<area shape="rect" id="Node000006" href="$mqtt__client_8cpp.html#a0c700b1b75b5d57c38437e39370f2181" title=" " alt="" coords="346,107,498,133"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="267,136,331,128,331,134,267,142"/>
+<area shape="rect" id="Node000007" href="$mqtt__client_8cpp.html#ad887808331ac88cd82959c00efdacb77" title=" " alt="" coords="565,183,674,209"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="267,149,551,185,550,190,267,154"/>
+<area shape="rect" id="Node000008" href="$mqtt__client_8cpp.html#aaa9510911ee8e47743efa916df00c13b" title=" " alt="" coords="360,208,485,235"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="251,157,328,187,365,200,364,205,326,192,249,162"/>
+<area shape="rect" id="Node000009" href="$mqtt__client_8cpp.html#ac49364afe5be3cf4e718ab09d67017da" title=" " alt="" coords="327,259,517,285"/>
+<area shape="poly" id="edge9_Node000002_Node000009" title=" " alt="" coords="262,157,281,169,297,189,305,208,313,227,329,245,336,249,333,254,325,249,308,230,300,210,293,191,277,173,259,161"/>
+<area shape="rect" id="Node000005" href="$mqtt__client_8cpp.html#acfd28a961b10e3b67e21fdd9c9bfa050" title=" " alt="" coords="577,56,662,83"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="490,67,562,67,562,72,490,72"/>
+<area shape="poly" id="edge8_Node000008_Node000007" title=" " alt="" coords="485,211,550,202,550,208,485,216"/>
+<area shape="rect" id="Node000010" href="$config_8cpp.html#aa1f35b9688dbf1109436ad91c42901aa" title=" " alt="" coords="574,259,665,285"/>
+<area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="518,269,558,269,558,275,518,275"/>
 </map>

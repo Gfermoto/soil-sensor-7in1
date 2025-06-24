@@ -28,7 +28,7 @@ REST API для интеграции с JXCT Soil Sensor v2.2.0.
 
 ### GET /api/sensor - Данные датчика
 ```bash
-curl http://192.168.1.100/api/sensor
+curl http://192.168.4.1/api/sensor
 ```
 
 **Ответ:**
@@ -81,7 +81,7 @@ curl http://192.168.1.100/api/sensor
 
 ### GET /health - Системная информация
 ```bash
-curl http://192.168.1.100/health
+curl http://192.168.4.1/health
 ```
 
 **Ответ:**
@@ -100,7 +100,7 @@ curl http://192.168.1.100/health
     "connected": true,
     "mode": "STA",
     "ssid": "MyWiFi",
-    "ip": "192.168.1.100",
+    "ip": "192.168.4.1",
     "rssi": -63
   },
   "services": {
@@ -134,7 +134,7 @@ curl http://192.168.1.100/health
 
 ### POST /save - Сохранение настроек
 ```bash
-curl -X POST http://192.168.1.100/save \
+curl -X POST http://192.168.4.1/save \
   -d "wifi_ssid=MyWiFi" \
   -d "wifi_password=mypass" \
   -d "mqtt_server=mqtt.local" \
@@ -196,7 +196,7 @@ mosquitto_pub -h mqtt.local -t "jxct/command" -m "publish_test"
 
 API поддерживает CORS для локальных сетей:
 ```javascript
-fetch('http://192.168.1.100/api/sensor')
+fetch('http://192.168.4.1/api/sensor')
   .then(response => response.json())
   .then(data => console.log(data));
 ```
@@ -208,7 +208,7 @@ fetch('http://192.168.1.100/api/sensor')
 import requests
 
 # Получить данные датчика
-response = requests.get('http://192.168.1.100/api/sensor')
+response = requests.get('http://192.168.4.1/api/sensor')
 data = response.json()
 print(f"Температура: {data['temperature']}°C")
 ```
@@ -218,7 +218,7 @@ print(f"Температура: {data['temperature']}°C")
 const axios = require('axios');
 
 async function getSensorData() {
-  const response = await axios.get('http://192.168.1.100/api/sensor');
+  const response = await axios.get('http://192.168.4.1/api/sensor');
   return response.data;
 }
 ```
@@ -228,7 +228,7 @@ async function getSensorData() {
 # configuration.yaml
 sensor:
   - platform: rest
-    resource: http://192.168.1.100/api/sensor
+    resource: http://192.168.4.1/api/sensor
     name: "JXCT Soil Sensor"
     json_attributes:
       - temperature

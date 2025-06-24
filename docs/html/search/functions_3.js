@@ -1,10 +1,16 @@
 var searchData=
 [
-  ['debugconditionalprint_0',['debugConditionalPrint',['../debug__optimized_8h.html#a3b1c1240a45bf11367e496c24a1c354d',1,'debug_optimized.h']]],
-  ['debugprintbuffer_1',['debugPrintBuffer',['../modbus__sensor_8cpp.html#a2f7382dca34cb8bc9e1c80da26865a0a',1,'modbus_sensor.cpp']]],
-  ['debugprinthexbuffer_2',['debugPrintHexBuffer',['../debug__optimized_8h.html#a106b655aa8faea8942757638731ebf0d',1,'debug_optimized.h']]],
-  ['debugprintstatus_3',['debugPrintStatus',['../debug__optimized_8h.html#a4002fe059558510a239058a9dda387a6',1,'debug_optimized.h']]],
-  ['debugstatsincrement_4',['debugStatsIncrement',['../debug__optimized_8h.html#a795c0e9d5464893e565a264b0fb6e75e',1,'debug_optimized.h']]],
-  ['debugstatsinit_5',['debugStatsInit',['../debug__optimized_8h.html#ae3aab77ba55ab7c94378c6110d9a3050',1,'debug_optimized.h']]],
-  ['debugstatsprint_6',['debugStatsPrint',['../debug__optimized_8h.html#a748fe53bf9a9627f05f3d3697ff26971',1,'debug_optimized.h']]]
+  ['calculatecrc16_0',['calculateCRC16',['../modbus__sensor_8cpp.html#a0e1b4f2813957877a5ac0ab90787f0e5',1,'modbus_sensor.cpp']]],
+  ['calculatemovingaverage_1',['calculateMovingAverage',['../modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94',1,'calculateMovingAverage(float *buffer, uint8_t window_size, uint8_t filled):&#160;modbus_sensor.cpp'],['../modbus__sensor_8h.html#aaaaed48863426c3f790f977bc04e7b94',1,'calculateMovingAverage(float *buffer, uint8_t window_size, uint8_t filled):&#160;modbus_sensor.cpp']]],
+  ['changedeviceaddress_2',['changeDeviceAddress',['../modbus__sensor_8cpp.html#aac87bc87eaf0bc01ebda5fe1bb44c88b',1,'changeDeviceAddress(uint8_t new_address):&#160;modbus_sensor.cpp'],['../modbus__sensor_8h.html#aac87bc87eaf0bc01ebda5fe1bb44c88b',1,'changeDeviceAddress(uint8_t new_address):&#160;modbus_sensor.cpp']]],
+  ['checkguard_3',['checkGuard',['../ota__manager_8cpp.html#ace424db218f3dfab484ebd7f61d44fcf',1,'checkGuard(const char *tag):&#160;ota_manager.cpp'],['../ota__manager_8h.html#ace424db218f3dfab484ebd7f61d44fcf',1,'checkGuard(const char *tag):&#160;ota_manager.cpp']]],
+  ['checkresetbutton_4',['checkResetButton',['../wifi__manager_8cpp.html#ac90eb7c31515447a075eee8f395ac02f',1,'checkResetButton():&#160;wifi_manager.cpp'],['../wifi__manager_8h.html#ac90eb7c31515447a075eee8f395ac02f',1,'checkResetButton():&#160;wifi_manager.cpp']]],
+  ['checkrouteaccess_5',['checkRouteAccess',['../error__handlers_8cpp.html#a6d52ae788bd99342b84e28a1af12392b',1,'checkRouteAccess(const String &amp;routeName, const String &amp;icon):&#160;error_handlers.cpp'],['../web__routes_8h.html#a6d52ae788bd99342b84e28a1af12392b',1,'checkRouteAccess(const String &amp;routeName, const String &amp;icon):&#160;error_handlers.cpp']]],
+  ['computerecommendations_6',['computeRecommendations',['../routes__data_8cpp.html#adc74086c185759ebabfbcd18b0abd9bd',1,'routes_data.cpp']]],
+  ['connectmqtt_7',['connectMQTT',['../mqtt__client_8cpp.html#ab5a788a03971cae1e5e641ae9b1d7fe0',1,'connectMQTT():&#160;mqtt_client.cpp'],['../mqtt__client_8h.html#ab5a788a03971cae1e5e641ae9b1d7fe0',1,'connectMQTT():&#160;mqtt_client.cpp']]],
+  ['convertregistertofloat_8',['convertRegisterToFloat',['../modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac',1,'convertRegisterToFloat(uint16_t value, float multiplier):&#160;modbus_sensor.cpp'],['../modbus__sensor_8h.html#aca7d239567ef1281e0fd378082fd48ac',1,'convertRegisterToFloat(uint16_t value, float multiplier):&#160;modbus_sensor.cpp']]],
+  ['correctec_9',['correctEC',['../sensor__compensation_8cpp.html#af586e2e5563baee2b53964aff0e1467d',1,'correctEC(float ecRaw, float T, float theta, SoilType soil):&#160;sensor_compensation.cpp'],['../sensor__compensation_8h.html#af586e2e5563baee2b53964aff0e1467d',1,'correctEC(float ecRaw, float T, float theta, SoilType soil):&#160;sensor_compensation.cpp']]],
+  ['correctnpk_10',['correctNPK',['../sensor__compensation_8cpp.html#aa9d6b97073bca78fb526c17bdbf816a6',1,'correctNPK(float T, float theta, float &amp;N, float &amp;P, float &amp;K, SoilType soil):&#160;sensor_compensation.cpp'],['../sensor__compensation_8h.html#aa9d6b97073bca78fb526c17bdbf816a6',1,'correctNPK(float T, float theta, float &amp;N, float &amp;P, float &amp;K, SoilType soil):&#160;sensor_compensation.cpp']]],
+  ['correctph_11',['correctPH',['../sensor__compensation_8cpp.html#aec93dd728b4450e4078a1e26954478e5',1,'correctPH(float phRaw, float T):&#160;sensor_compensation.cpp'],['../sensor__compensation_8h.html#aec93dd728b4450e4078a1e26954478e5',1,'correctPH(float phRaw, float T):&#160;sensor_compensation.cpp']]],
+  ['createsensorinstance_12',['createSensorInstance',['../sensor__factory_8h.html#a1a894ffc1fd37d020b3e91a9fe65fcab',1,'sensor_factory.h']]]
 ];

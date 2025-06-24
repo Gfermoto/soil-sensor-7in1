@@ -1,21 +1,23 @@
 <map id="logWiFi" name="logWiFi">
 <area shape="rect" id="Node000001" title=" " alt="" coords="539,107,604,133"/>
-<area shape="rect" id="Node000002" href="$logger_8cpp.html#abf70e1b094519276f0363ac763f100ab" title=" " alt="" coords="387,5,491,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="539,99,456,35,460,30,542,95"/>
-<area shape="rect" id="Node000004" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,132,187,159"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="524,138,467,154,394,169,315,177,235,173,186,162,188,157,235,168,315,172,393,163,465,149,523,133"/>
-<area shape="rect" id="Node000006" href="$wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="390,81,488,108"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="523,114,488,107,489,101,524,108"/>
-<area shape="rect" id="Node000008" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,132,339,159"/>
-<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="524,127,340,143,339,138,523,122"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="372,21,170,21,170,16,372,16"/>
-<area shape="rect" id="Node000005" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,132,59,159"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="91,148,59,148,59,143,91,143"/>
-<area shape="poly" id="edge8_Node000006_Node000004" title=" " alt="" coords="375,103,308,110,236,123,188,135,187,130,234,117,307,105,375,97"/>
-<area shape="rect" id="Node000007" href="$wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,31,330,57"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="381,78,329,60,330,55,383,73"/>
-<area shape="poly" id="edge9_Node000006_Node000008" title=" " alt="" coords="383,116,330,134,329,129,381,111"/>
-<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="228,36,169,25,170,20,229,31"/>
-<area shape="poly" id="edge10_Node000008_Node000004" title=" " alt="" coords="219,148,187,148,187,143,219,143"/>
+<area shape="rect" id="Node000002" href="$wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="523,110,490,104,408,96,326,93,193,95,193,90,326,88,409,91,491,99,524,105"/>
+<area shape="rect" id="Node000004" href="$logger_8cpp.html#abf70e1b094519276f0363ac763f100ab" title=" " alt="" coords="242,5,345,32"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="547,97,521,73,489,53,453,39,415,30,345,22,345,17,416,25,455,34,492,48,524,69,551,93"/>
+<area shape="rect" id="Node000005" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,208,190,235"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="553,147,526,175,492,198,453,214,411,224,328,235,251,235,190,230,191,224,251,229,328,229,410,219,451,209,489,194,523,171,549,143"/>
+<area shape="rect" id="Node000007" href="$wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,157,491,184"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="525,141,479,159,477,154,523,136"/>
+<area shape="rect" id="Node000008" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,107,345,133"/>
+<area shape="poly" id="edge13_Node000001_Node000008" title=" " alt="" coords="523,123,346,123,346,117,523,117"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,56,55,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,85,54,77,55,71,92,80"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="227,34,56,68,55,62,226,29"/>
+<area shape="rect" id="Node000006" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,208,59,235"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="94,224,59,224,59,219,94,219"/>
+<area shape="poly" id="edge8_Node000007_Node000002" title=" " alt="" coords="377,172,310,164,240,148,201,130,169,111,172,106,204,126,242,143,311,159,378,166"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="378,186,346,192,191,218,190,213,345,187,377,181"/>
+<area shape="poly" id="edge10_Node000007_Node000008" title=" " alt="" coords="385,154,334,136,336,131,387,149"/>
+<area shape="poly" id="edge11_Node000008_Node000002" title=" " alt="" coords="225,111,193,105,194,100,226,105"/>
+<area shape="poly" id="edge12_Node000008_Node000005" title=" " alt="" coords="262,145,172,210,169,205,259,140"/>
 </map>

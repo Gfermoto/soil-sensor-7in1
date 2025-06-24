@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: Файл include/validation_utils.h</title>
+<title>JXCT Soil Sensor 7-in-1: Файл include/validation_utils.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,11 +18,6 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,22 +27,10 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
    </div>
-   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -64,6 +47,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -131,9 +125,11 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
 <div class="dyncontent">
 <div class="center"><img src="validation__utils_8h__dep__incl.png" border="0" usemap="#ainclude_2validation__utils_8hdep" alt=""/></div>
 <map name="ainclude_2validation__utils_8hdep" id="ainclude_2validation__utils_8hdep">
-<area shape="rect" title="Заголовочный файл утилит валидации" alt="" coords="22,5,143,48"/>
-<area shape="rect" href="validation__utils_8cpp.html" title="Утилиты валидации для устранения дублирования кода" alt="" coords="5,96,160,123"/>
-<area shape="poly" title=" " alt="" coords="85,64,85,95,80,95,80,64"/>
+<area shape="rect" title="Заголовочный файл утилит валидации" alt="" coords="123,5,244,48"/>
+<area shape="rect" href="routes__calibration_8cpp.html" title=" " alt="" coords="5,96,176,123"/>
+<area shape="poly" title=" " alt="" coords="150,61,107,97,103,93,147,56"/>
+<area shape="rect" href="validation__utils_8cpp.html" title="Утилиты валидации для устранения дублирования кода" alt="" coords="200,96,354,123"/>
+<area shape="poly" title=" " alt="" coords="221,56,264,93,261,97,218,61"/>
 </map>
 </div>
 </div>
@@ -233,6 +229,8 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Заголовочный файл утилит валидации </p>
 <p>Объявления функций валидации конфигурации и данных датчика </p>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8h_source.html">validation_utils.h</a></p>
 </div><h2 class="groupheader">Функции</h2>
 <a id="aecb050d7cbd49c3a3cb0dadcb72360c3" name="aecb050d7cbd49c3a3cb0dadcb72360c3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aecb050d7cbd49c3a3cb0dadcb72360c3">&#9670;&#160;</a></span>formatSensorValidationErrors()</h2>
@@ -257,6 +255,10 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Отформатированная строка с ошибками </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00379">379</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="validation__utils_8h_source.html#l00049">SensorValidationResult::errors</a> и <a class="el" href="validation__utils_8h_source.html#l00048">SensorValidationResult::isValid</a>.</p>
 
 </div>
 </div>
@@ -284,6 +286,10 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Отформатированная строка с ошибками </dd></dl>
 
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00367">367</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="validation__utils_8h_source.html#l00040">ConfigValidationResult::errors</a> и <a class="el" href="validation__utils_8h_source.html#l00039">ConfigValidationResult::isValid</a>.</p>
+
 </div>
 </div>
 <a id="abf0e43fe7c5fd9b3439d01e4a0557259" name="abf0e43fe7c5fd9b3439d01e4a0557259"></a>
@@ -310,6 +316,8 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>true если hostname валиден </dd></dl>
 
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00345">345</a></p>
+
 </div>
 </div>
 <a id="a15290a120cd4c378e64893f11adbb4fd" name="a15290a120cd4c378e64893f11adbb4fd"></a>
@@ -335,6 +343,8 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>true если IP адрес валиден </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00320">320</a></p>
 
 </div>
 </div>
@@ -365,6 +375,10 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </table>
   </dd>
 </dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00411">411</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="validation__utils_8h_source.html#l00049">SensorValidationResult::errors</a>, <a class="el" href="validation__utils_8h_source.html#l00048">SensorValidationResult::isValid</a>, <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a> и <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -407,6 +421,10 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </table>
   </dd>
 </dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00395">395</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="validation__utils_8h_source.html#l00040">ConfigValidationResult::errors</a>, <a class="el" href="validation__utils_8h_source.html#l00039">ConfigValidationResult::isValid</a>, <a class="el" href="logger_8cpp_source.html#l00061">logError()</a> и <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -445,6 +463,12 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00151">151</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00085">SENSOR_EC_MAX</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00259">validateFullSensorData()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -486,6 +510,10 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации с списком ошибок </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00174">174</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="validation__utils_8h_source.html#l00040">ConfigValidationResult::errors</a>, <a class="el" href="validation__utils_8h_source.html#l00039">ConfigValidationResult::isValid</a>, <a class="el" href="validation__utils_8cpp_source.html#l00059">validateMQTTPort()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00105">validateMQTTPublishInterval()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00041">validateMQTTServer()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00115">validateNTPInterval()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00028">validatePassword()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00100">validateSensorReadInterval()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00015">validateSSID()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00068">validateThingSpeakAPIKey()</a> и <a class="el" href="validation__utils_8cpp_source.html#l00110">validateThingSpeakInterval()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -543,6 +571,10 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации с списком ошибок </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00259">259</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="modbus__sensor_8h_source.html#l00038">SensorData::ec</a>, <a class="el" href="validation__utils_8h_source.html#l00049">SensorValidationResult::errors</a>, <a class="el" href="modbus__sensor_8h_source.html#l00037">SensorData::humidity</a>, <a class="el" href="validation__utils_8h_source.html#l00048">SensorValidationResult::isValid</a>, <a class="el" href="modbus__sensor_8h_source.html#l00040">SensorData::nitrogen</a>, <a class="el" href="modbus__sensor_8h_source.html#l00039">SensorData::ph</a>, <a class="el" href="modbus__sensor_8h_source.html#l00041">SensorData::phosphorus</a>, <a class="el" href="modbus__sensor_8h_source.html#l00042">SensorData::potassium</a>, <a class="el" href="modbus__sensor_8h_source.html#l00036">SensorData::temperature</a>, <a class="el" href="validation__utils_8cpp_source.html#l00151">validateEC()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00133">validateHumidity()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00160">validateNPK()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00142">validatePH()</a> и <a class="el" href="validation__utils_8cpp_source.html#l00124">validateTemperature()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -587,6 +619,12 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00133">133</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00081">SENSOR_HUMIDITY_MAX</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00259">validateFullSensorData()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -640,6 +678,10 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00089">89</a></p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00105">validateMQTTPublishInterval()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00115">validateNTPInterval()</a>, <a class="el" href="validation__utils_8cpp_source.html#l00100">validateSensorReadInterval()</a> и <a class="el" href="validation__utils_8cpp_source.html#l00110">validateThingSpeakInterval()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -687,6 +729,12 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00059">59</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00095">CONFIG_MQTT_PORT_MAX</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00174">validateFullConfig()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -723,6 +771,12 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00105">105</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00091">CONFIG_INTERVAL_MAX</a>, <a class="el" href="jxct__constants_8h_source.html#l00090">CONFIG_INTERVAL_MIN</a> и <a class="el" href="validation__utils_8cpp_source.html#l00089">validateInterval()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00174">validateFullConfig()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -769,6 +823,10 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00041">41</a></p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00174">validateFullConfig()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -810,6 +868,12 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00160">160</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00087">SENSOR_NPK_MAX</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00259">validateFullSensorData()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -846,6 +910,12 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00115">115</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="validation__utils_8cpp_source.html#l00089">validateInterval()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00174">validateFullConfig()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -892,6 +962,10 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00028">28</a></p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00174">validateFullConfig()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -928,6 +1002,12 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00142">142</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00083">SENSOR_PH_MAX</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00259">validateFullSensorData()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -964,6 +1044,12 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00100">100</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00091">CONFIG_INTERVAL_MAX</a>, <a class="el" href="jxct__constants_8h_source.html#l00090">CONFIG_INTERVAL_MIN</a> и <a class="el" href="validation__utils_8cpp_source.html#l00089">validateInterval()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00174">validateFullConfig()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -1010,6 +1096,10 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00015">15</a></p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00174">validateFullConfig()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -1046,6 +1136,12 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00124">124</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00079">SENSOR_TEMP_MAX</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00259">validateFullSensorData()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -1082,6 +1178,10 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00068">68</a></p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00174">validateFullConfig()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -1118,6 +1218,12 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Результат валидации </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="validation__utils_8cpp_source.html">validation_utils.cpp</a> строка <a class="el" href="validation__utils_8cpp_source.html#l00110">110</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00093">CONFIG_THINGSPEAK_MAX</a>, <a class="el" href="jxct__constants_8h_source.html#l00092">CONFIG_THINGSPEAK_MIN</a> и <a class="el" href="validation__utils_8cpp_source.html#l00089">validateInterval()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="validation__utils_8cpp_source.html#l00174">validateFullConfig()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -1147,7 +1253,7 @@ $(function(){initNavTree('validation__utils_8h.html',''); initResizable(true); }
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="validation__utils_8h.html">validation_utils.h</a></li>
-    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:10. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

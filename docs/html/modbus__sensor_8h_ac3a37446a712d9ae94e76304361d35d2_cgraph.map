@@ -1,35 +1,70 @@
 <map id="readSensorData" name="readSensorData">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,183,121,209"/>
-<area shape="rect" id="Node000002" href="$modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="555,107,686,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="85,180,123,160,168,143,267,124,367,114,461,111,539,112,539,118,461,116,367,119,268,129,169,148,125,165,87,185"/>
-<area shape="rect" id="Node000009" href="$logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="202,259,282,285"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="92,208,170,244,189,252,187,257,168,249,90,212"/>
-<area shape="rect" id="Node000010" href="$modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="169,157,315,184"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="121,185,153,181,154,186,121,190"/>
-<area shape="rect" id="Node000015" href="$modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="171,208,312,235"/>
-<area shape="poly" id="edge17_Node000001_Node000015" title=" " alt="" coords="121,202,156,207,156,212,121,207"/>
-<area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b" title=" " alt="" coords="747,5,893,32"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="640,104,687,73,745,42,759,36,761,40,748,46,690,78,643,108"/>
-<area shape="rect" id="Node000005" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="787,208,853,235"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="677,131,700,143,716,156,725,169,734,181,748,194,773,206,771,211,745,198,730,185,721,172,712,160,697,148,674,136"/>
-<area shape="rect" id="Node000006" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="775,157,864,184"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="677,131,761,153,760,158,675,137"/>
-<area shape="rect" id="Node000007" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="786,56,854,83"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="675,103,770,79,771,84,677,109"/>
-<area shape="rect" id="Node000008" href="$modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67" title=" " alt="" coords="752,107,888,133"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="687,117,737,117,737,123,687,123"/>
-<area shape="rect" id="Node000004" href="$modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94" title=" " alt="" coords="941,5,1104,32"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="893,16,925,16,925,21,893,21"/>
-<area shape="rect" id="Node000011" href="$modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="363,208,494,235"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="295,182,363,201,362,206,293,187"/>
-<area shape="poly" id="edge13_Node000011_Node000005" title=" " alt="" coords="481,233,543,244,620,250,698,244,771,231,772,236,699,249,620,255,542,249,480,238"/>
-<area shape="rect" id="Node000012" href="$modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="542,208,699,235"/>
-<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="495,219,527,219,527,224,495,224"/>
-<area shape="rect" id="Node000013" href="$logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="582,309,659,336"/>
-<area shape="poly" id="edge12_Node000011_Node000013" title=" " alt="" coords="452,233,544,288,570,301,567,305,541,293,449,237"/>
-<area shape="rect" id="Node000014" href="$modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="560,157,681,184"/>
-<area shape="poly" id="edge14_Node000011_Node000014" title=" " alt="" coords="482,205,552,186,553,191,483,210"/>
-<area shape="poly" id="edge15_Node000014_Node000005" title=" " alt="" coords="677,182,773,207,771,212,675,187"/>
-<area shape="poly" id="edge16_Node000014_Node000006" title=" " alt="" coords="681,168,759,168,759,173,681,173"/>
-<area shape="poly" id="edge18_Node000015_Node000011" title=" " alt="" coords="313,219,347,219,347,224,313,224"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,312,121,339"/>
+<area shape="rect" id="Node000002" href="$modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="176,337,308,364"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,331,161,337,161,342,121,336"/>
+<area shape="rect" id="Node000024" href="$logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="202,388,282,415"/>
+<area shape="poly" id="edge28_Node000001_Node000024" title=" " alt="" coords="92,337,170,374,189,381,187,386,168,378,90,342"/>
+<area shape="rect" id="Node000025" href="$modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="169,223,315,249"/>
+<area shape="poly" id="edge29_Node000001_Node000025" title=" " alt="" coords="91,309,199,254,201,259,93,314"/>
+<area shape="rect" id="Node000030" href="$modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="171,140,312,167"/>
+<area shape="poly" id="edge37_Node000001_Node000030" title=" " alt="" coords="74,310,113,264,167,209,208,174,211,178,170,213,117,267,78,313"/>
+<area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b" title=" " alt="" coords="386,312,532,339"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="308,340,370,333,370,338,308,346"/>
+<area shape="rect" id="Node000005" href="$modbus__sensor_8cpp.html#a4cff8e34908a2deb0691e3809224685a" title=" " alt="" coords="363,427,554,453"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="287,362,316,374,364,399,408,418,406,423,362,404,314,378,285,367"/>
+<area shape="rect" id="Node000009" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="1211,183,1277,209"/>
+<area shape="poly" id="edge22_Node000002_Node000009" title=" " alt="" coords="256,335,301,299,330,280,362,264,448,235,519,222,591,218,683,219,882,219,1055,212,1195,199,1196,204,1055,217,882,224,683,224,591,224,519,227,450,240,364,269,333,284,304,303,259,339"/>
+<area shape="rect" id="Node000010" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="1199,469,1289,496"/>
+<area shape="poly" id="edge23_Node000002_Node000010" title=" " alt="" coords="298,362,317,374,335,397,342,419,349,441,365,464,441,530,474,555,508,574,544,588,584,598,629,604,683,605,882,605,960,609,1021,613,1050,612,1080,607,1113,597,1150,580,1173,566,1193,547,1225,508,1229,511,1197,551,1176,570,1153,585,1115,602,1081,612,1051,617,1021,618,959,614,882,611,683,611,629,609,583,603,542,593,506,579,472,559,437,535,361,467,344,444,337,421,330,399,313,378,296,367"/>
+<area shape="rect" id="Node000014" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="1039,309,1107,336"/>
+<area shape="poly" id="edge24_Node000002_Node000014" title=" " alt="" coords="267,334,310,314,362,297,450,281,525,271,591,267,654,267,783,277,947,295,1025,308,1024,313,947,300,782,282,653,272,591,272,525,277,451,286,364,303,312,319,269,339"/>
+<area shape="rect" id="Node000021" href="$modbus__sensor_8cpp.html#a7a820fe61fb2c2163f98e3a273af4b55" title=" " alt="" coords="393,363,524,389"/>
+<area shape="poly" id="edge25_Node000002_Node000021" title=" " alt="" coords="308,356,378,364,377,369,308,361"/>
+<area shape="rect" id="Node000022" href="$modbus__sensor_8cpp.html#a7dfe5a231d563e4498f0217c486af795" title=" " alt="" coords="391,645,526,672"/>
+<area shape="poly" id="edge26_Node000002_Node000022" title=" " alt="" coords="303,362,317,374,338,407,346,439,346,471,341,502,337,533,337,563,345,594,365,625,379,637,376,641,361,628,340,596,332,564,332,532,336,501,340,470,341,440,333,409,313,378,299,367"/>
+<area shape="rect" id="Node000023" href="$modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67" title=" " alt="" coords="391,696,526,723"/>
+<area shape="poly" id="edge27_Node000002_Node000023" title=" " alt="" coords="303,363,317,374,341,415,349,454,347,493,340,532,333,570,332,607,340,645,350,663,365,682,379,693,375,697,361,686,346,666,336,646,326,608,328,569,335,531,342,493,344,455,336,417,313,378,300,367"/>
+<area shape="rect" id="Node000004" href="$modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94" title=" " alt="" coords="602,312,766,339"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="532,323,587,323,587,328,532,328"/>
+<area shape="rect" id="Node000006" href="$namespace_calibration_manager.html#abb872938a17efb733eaf531bb5c0a1dc" title=" " alt="" coords="617,419,751,461"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="554,437,602,437,602,443,554,443"/>
+<area shape="rect" id="Node000015" href="$sensor__compensation_8cpp.html#af586e2e5563baee2b53964aff0e1467d" title=" " alt="" coords="644,485,724,512"/>
+<area shape="poly" id="edge16_Node000005_Node000015" title=" " alt="" coords="513,451,630,482,628,487,512,456"/>
+<area shape="rect" id="Node000016" href="$sensor__compensation_8cpp.html#aa9d6b97073bca78fb526c17bdbf816a6" title=" " alt="" coords="639,364,729,391"/>
+<area shape="poly" id="edge17_Node000005_Node000016" title=" " alt="" coords="509,424,624,391,625,396,510,429"/>
+<area shape="rect" id="Node000020" href="$sensor__compensation_8cpp.html#aec93dd728b4450e4078a1e26954478e5" title=" " alt="" coords="644,536,724,563"/>
+<area shape="poly" id="edge21_Node000005_Node000020" title=" " alt="" coords="481,452,535,486,603,522,630,532,628,537,601,526,533,490,479,456"/>
+<area shape="rect" id="Node000007" href="$namespace_calibration_manager.html#a1ee0f1f244cb68eaa7e47a79deb452b6" title=" " alt="" coords="814,528,947,571"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="746,459,767,471,792,492,815,514,821,517,818,522,812,518,788,496,764,476,743,464"/>
+<area shape="rect" id="Node000012" href="$namespace_calibration_manager.html#a15db87f3fcb09c7f4c5abc69009cef89" title=" " alt="" coords="814,461,947,504"/>
+<area shape="poly" id="edge11_Node000006_Node000012" title=" " alt="" coords="751,452,799,462,798,468,750,457"/>
+<area shape="rect" id="Node000008" href="$namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613" title=" " alt="" coords="1006,461,1140,504"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="943,525,994,507,996,512,945,530"/>
+<area shape="rect" id="Node000011" href="$namespace_calibration_manager.html#a24c0b11ea08e757ae404289fa38e33b3" title=" " alt="" coords="1006,528,1140,571"/>
+<area shape="poly" id="edge10_Node000007_Node000011" title=" " alt="" coords="948,547,991,547,991,552,948,552"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1136,459,1149,447,1170,422,1188,393,1213,331,1229,272,1237,224,1242,225,1234,273,1218,333,1192,395,1175,425,1153,451,1139,463"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="1140,480,1184,480,1184,485,1140,485"/>
+<area shape="poly" id="edge12_Node000012_Node000008" title=" " alt="" coords="948,480,991,480,991,485,948,485"/>
+<area shape="poly" id="edge15_Node000012_Node000011" title=" " alt="" coords="945,502,996,520,994,525,943,507"/>
+<area shape="rect" id="Node000013" href="$logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf" title=" " alt="" coords="1043,411,1103,437"/>
+<area shape="poly" id="edge13_Node000012_Node000013" title=" " alt="" coords="947,460,1028,435,1029,440,948,465"/>
+<area shape="poly" id="edge14_Node000012_Node000014" title=" " alt="" coords="928,459,945,447,970,424,993,397,1045,345,1049,349,997,400,974,427,949,451,931,463"/>
+<area shape="rect" id="Node000017" href="$sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a" title=" " alt="" coords="851,309,910,336"/>
+<area shape="poly" id="edge18_Node000016_Node000017" title=" " alt="" coords="729,362,836,332,837,337,730,367"/>
+<area shape="rect" id="Node000018" href="$sensor__compensation_8cpp.html#adf2ddb83f2189c9159aa7fe534217ea4" title=" " alt="" coords="851,360,910,387"/>
+<area shape="poly" id="edge19_Node000016_Node000018" title=" " alt="" coords="729,374,835,372,835,377,729,379"/>
+<area shape="rect" id="Node000019" href="$sensor__compensation_8cpp.html#ae64bff1823ab30991e51b8d57c23be39" title=" " alt="" coords="851,411,910,437"/>
+<area shape="poly" id="edge20_Node000016_Node000019" title=" " alt="" coords="730,385,837,411,836,416,729,391"/>
+<area shape="rect" id="Node000026" href="$modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="815,107,946,133"/>
+<area shape="poly" id="edge30_Node000025_Node000026" title=" " alt="" coords="288,220,362,200,475,178,563,164,765,136,799,131,800,136,766,141,564,170,476,183,364,205,289,225"/>
+<area shape="poly" id="edge33_Node000026_Node000009" title=" " alt="" coords="916,104,964,89,1024,78,1089,76,1122,82,1152,92,1177,107,1198,127,1230,167,1225,171,1194,130,1174,111,1150,97,1120,87,1089,82,1025,83,965,94,917,109"/>
+<area shape="rect" id="Node000027" href="$modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="995,107,1151,133"/>
+<area shape="poly" id="edge31_Node000026_Node000027" title=" " alt="" coords="947,117,979,117,979,123,947,123"/>
+<area shape="rect" id="Node000028" href="$logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="1035,5,1111,32"/>
+<area shape="poly" id="edge32_Node000026_Node000028" title=" " alt="" coords="901,104,994,48,1020,36,1023,41,996,53,903,109"/>
+<area shape="rect" id="Node000029" href="$modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="1013,157,1133,184"/>
+<area shape="poly" id="edge34_Node000026_Node000029" title=" " alt="" coords="935,131,1005,150,1004,155,933,137"/>
+<area shape="poly" id="edge35_Node000029_Node000009" title=" " alt="" coords="1134,177,1196,186,1195,191,1133,182"/>
+<area shape="poly" id="edge36_Node000029_Node000010" title=" " alt="" coords="1086,183,1154,296,1232,454,1228,456,1149,299,1081,186"/>
+<area shape="poly" id="edge38_Node000030_Node000026" title=" " alt="" coords="313,147,799,122,799,127,313,152"/>
 </map>

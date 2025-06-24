@@ -1,15 +1,16 @@
 var searchData=
 [
-  ['reg_5fcalibration_0',['REG_CALIBRATION',['../modbus__sensor_8h.html#a9b707a93013b08d191303ed584a140d7',1,'modbus_sensor.h']]],
-  ['reg_5fconductivity_1',['REG_CONDUCTIVITY',['../modbus__sensor_8h.html#ae4a11435c54c0c61a370f01ad74783dd',1,'modbus_sensor.h']]],
-  ['reg_5fdevice_5faddress_2',['REG_DEVICE_ADDRESS',['../modbus__sensor_8h.html#a9261d699774c32e6612b86d5ff383120',1,'modbus_sensor.h']]],
-  ['reg_5ferror_5fstatus_3',['REG_ERROR_STATUS',['../modbus__sensor_8h.html#ac264831b378bd2513785f56a63a2cf9a',1,'modbus_sensor.h']]],
-  ['reg_5ffirmware_5fversion_4',['REG_FIRMWARE_VERSION',['../modbus__sensor_8h.html#a149baf37365c4dd67e8c37e211fe5afc',1,'modbus_sensor.h']]],
-  ['reg_5fnitrogen_5',['REG_NITROGEN',['../modbus__sensor_8h.html#a9f80ba4d6b98c8b586f32a67189637c9',1,'modbus_sensor.h']]],
-  ['reg_5fph_6',['REG_PH',['../modbus__sensor_8h.html#a1f0d81a7889405dddfd0740779103c1c',1,'modbus_sensor.h']]],
-  ['reg_5fphosphorus_7',['REG_PHOSPHORUS',['../modbus__sensor_8h.html#a6aa33492b3c99407fab5717bf51f3c58',1,'modbus_sensor.h']]],
-  ['reg_5fpotassium_8',['REG_POTASSIUM',['../modbus__sensor_8h.html#a2f35ba14a2dedd4527dadfe5df270ecc',1,'modbus_sensor.h']]],
-  ['reg_5fsoil_5fmoisture_9',['REG_SOIL_MOISTURE',['../modbus__sensor_8h.html#ae81f2380d8a1a56150fef81dfff25cfc',1,'modbus_sensor.h']]],
-  ['reg_5fsoil_5ftemp_10',['REG_SOIL_TEMP',['../modbus__sensor_8h.html#a183e5bdeda520ac205c6fa93a52e1ef4',1,'modbus_sensor.h']]],
-  ['reset_5fbutton_5fpin_11',['RESET_BUTTON_PIN',['../wifi__manager_8cpp.html#a56b64973bfd6514570671a2607122199',1,'wifi_manager.cpp']]]
+  ['max_5fec_0',['MAX_EC',['../modbus__sensor_8h.html#a8060470295f959c8f0f60905d04691c1',1,'modbus_sensor.h']]],
+  ['max_5fhumidity_1',['MAX_HUMIDITY',['../modbus__sensor_8h.html#a4ae8ae01ff5a5ce2e90eca5fbc669d81',1,'modbus_sensor.h']]],
+  ['max_5fnpk_2',['MAX_NPK',['../modbus__sensor_8h.html#a0db0c07c73c5ce97b292e0ff8414da3d',1,'modbus_sensor.h']]],
+  ['max_5fph_3',['MAX_PH',['../modbus__sensor_8h.html#a6035bff843569e704debcabd15c481d6',1,'modbus_sensor.h']]],
+  ['max_5ftemperature_4',['MAX_TEMPERATURE',['../modbus__sensor_8h.html#af900a8b6b1e1763dd0e90e48fc2fb317',1,'modbus_sensor.h']]],
+  ['migrate_5fdebug_5fprintf_5',['MIGRATE_DEBUG_PRINTF',['../debug__optimized_8h.html#a10b2de8934fb63e17b4d31b54febf824',1,'debug_optimized.h']]],
+  ['migrate_5fdebug_5fprintln_6',['MIGRATE_DEBUG_PRINTLN',['../debug__optimized_8h.html#a21afe95f02a9a06fc9854864a1a9d4bd',1,'debug_optimized.h']]],
+  ['min_5fec_7',['MIN_EC',['../modbus__sensor_8h.html#ac6595c2759ec7982567a7648cc513465',1,'modbus_sensor.h']]],
+  ['min_5fhumidity_8',['MIN_HUMIDITY',['../modbus__sensor_8h.html#abc7849e08d6e99a7e151cb4366ebc96d',1,'modbus_sensor.h']]],
+  ['min_5fnpk_9',['MIN_NPK',['../modbus__sensor_8h.html#ad4ce924e7edbb024c3f5f25c42d64eca',1,'modbus_sensor.h']]],
+  ['min_5fph_10',['MIN_PH',['../modbus__sensor_8h.html#aeb31a7b73c962d56d9fca3209a95723e',1,'modbus_sensor.h']]],
+  ['min_5ftemperature_11',['MIN_TEMPERATURE',['../modbus__sensor_8h.html#ac5080f3f6bf208edce5de49e5117a5f2',1,'modbus_sensor.h']]],
+  ['mqtt_5fpublish_5finterval_12',['MQTT_PUBLISH_INTERVAL',['../jxct__config__vars_8h.html#a5d391ac9f5a18b48d867fe5de3e6e73b',1,'jxct_config_vars.h']]]
 ];

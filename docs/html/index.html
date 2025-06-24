@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: 🌱 JXCT Soil Sensor</title>
+<title>JXCT Soil Sensor 7-in-1: JXCT Soil Sensor 7-in-1 Documentation</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,11 +18,6 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,22 +27,10 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
    </div>
-   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -64,6 +47,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -103,116 +97,116 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">🌱 JXCT Soil Sensor </div></div>
+  <div class="headertitle"><div class="title">JXCT Soil Sensor 7-in-1 Documentation </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__r_e_a_d_m_e"></a></p>
-<p>Умная система мониторинга почвы для энтузиастов и садоводов. Отслеживайте здоровье ваших растений в реальном времени с помощью профессионального датчика JXCT 7-в-1.</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
-🌟 Возможности</h1>
-<h2><a class="anchor" id="autotoc_md2"></a>
-📊 Комплексный мониторинг</h2>
+<div class="textblock"><p><a class="anchor" id="md_docs_2index"></a></p>
+<p>Welcome to the complete documentation portal of the ESP32-based <b>JXCT Soil Sensor 7-in-1</b> firmware.</p>
+<h1><a class="anchor" id="autotoc_md36"></a>
+📖 Quick Navigation</h1>
+<h2><a class="anchor" id="autotoc_md37"></a>
+🔧 <b>Firmware Documentation</b></h2>
 <ul>
-<li>🌡️ <b>Температура почвы</b> (-10°C до +50°C)</li>
-<li>💧 <b>Влажность почвы</b> (0-100%)</li>
-<li>⚡ <b>Электропроводность (EC)</b> (0-20,000 µS/cm)</li>
-<li>⚗️ <b>pH уровень</b> (0-14)</li>
-<li>🔴 <b>Азот (N)</b> (0-2000 мг/кг)</li>
-<li>🟡 <b>Фосфор (P)</b> (0-2000 мг/кг)</li>
-<li>🔵 <b>Калий (K)</b> (0-2000 мг/kг)</li>
+<li>Architecture Overview - Общая архитектура системы</li>
+<li>QA &amp; Refactoring Plan - План рефакторинга</li>
+<li>Tech Debt Report - Отчет о техническом долге</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md3"></a>
-🚀 Умные функции</h2>
+<h2><a class="anchor" id="autotoc_md38"></a>
+🌱 <b>Agro Recommendations</b></h2>
 <ul>
-<li><b>Мгновенные обновления</b> - данные каждую секунду</li>
-<li><b>Умная фильтрация</b> - скользящее среднее и дельта-фильтр</li>
-<li><b>Точные измерения</b> - профессиональный датчик</li>
-<li><b>Надежная связь</b> - протокол MODBUS RTU</li>
+<li>General Recommendations - Агрономические рекомендации</li>
+<li>Compensation Guide - Руководство по компенсации</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md4"></a>
-🌐 Интеграции</h2>
+<h2><a class="anchor" id="autotoc_md39"></a>
+📚 <b>API Documentation</b></h2>
 <ul>
-<li><b>Home Assistant</b> - полная интеграция с умным домом</li>
-<li><b>MQTT</b> - отправка данных в любую систему</li>
-<li><b>ThingSpeak</b> - облачное хранение и графики</li>
-<li><b>REST API</b> - доступ к данным из любого приложения</li>
-<li><b>Массовое развертывание</b> - шаблоны конфигурации для множества устройств</li>
+<li><a href="html/index.html">C++ API Documentation</a> - Автоматически сгенерированная документация кода</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md5"></a>
-🎯 Для кого этот проект?</h1>
+<h2><a class="anchor" id="autotoc_md40"></a>
+📋 <b>Examples</b></h2>
 <ul>
-<li>🌿 <b>Садоводы-любители</b> - следите за здоровьем растений</li>
-<li>🌱 <b>Гидропоника</b> - точный контроль питательной среды</li>
-<li>🏡 <b>Умный дом</b> - автоматизация полива и ухода</li>
-<li>🔬 <b>Исследователи</b> - сбор данных для экспериментов</li>
-<li>🎮 <b>Энтузиасты</b> - создание собственных проектов</li>
+<li><a href="examples/calibration_example.csv">Calibration Example</a> - Пример калибровочной таблицы</li>
+<li><a href="examples/test_safe_config.json">Test Safe Config</a> - Безопасная конфигурация для тестов</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md6"></a>
-💡 Почему JXCT?</h1>
+<h1><a class="anchor" id="autotoc_md41"></a>
+🚀 <b>Key Features</b></h1>
+<h2><a class="anchor" id="autotoc_md42"></a>
+🌡️ <b>Real-time Monitoring</b></h2>
 <ul>
-<li><b>Профессиональный датчик</b> - точность лабораторного уровня</li>
-<li><b>Открытый код</b> - полный контроль над системой</li>
-<li><b>Гибкая настройка</b> - подстройка под ваши нужды</li>
-<li><b>Активное сообщество</b> - поддержка и развитие</li>
-<li><b>Документация</b> - подробные инструкции и примеры</li>
+<li>pH, EC, NPK, влажность и температура</li>
+<li>Двухэтапная компенсация: CSV калибровка + математические модели</li>
+<li>Научно обоснованные алгоритмы (Арчи, Нернст, FAO 56)</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md7"></a>
-🛠️ Технические детали</h1>
-<h2><a class="anchor" id="autotoc_md8"></a>
-Оборудование</h2>
+<h2><a class="anchor" id="autotoc_md43"></a>
+🔄 <b>OTA Updates</b></h2>
 <ul>
-<li><b>ESP32</b> - мощный микроконтроллер</li>
-<li><b>JXCT 7-в-1</b> - профессиональный датчик почвы</li>
-<li><b>SP3485E</b> - надежная связь по RS485 (3.3V, улучшенная защита)</li>
+<li>OTA 2.x с дифф-загрузками</li>
+<li>Проверка SHA-256</li>
+<li>Автоматические обновления</li>
 </ul>
-<h2><a class="anchor" id="autotoc_md9"></a>
-Производительность</h2>
+<h2><a class="anchor" id="autotoc_md44"></a>
+📡 <b>Integrations</b></h2>
 <ul>
-<li><b>Частота опроса:</b> 1 раз в секунду</li>
-<li><b>Точность:</b> лабораторный уровень</li>
-<li><b>Стабильность:</b> 24/7 работа</li>
-<li><b>Память:</b> оптимизированное использование</li>
+<li>MQTT клиент</li>
+<li>ThingSpeak интеграция</li>
+<li>HTTP REST API</li>
+<li>Веб-интерфейс</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md10"></a>
-🛠️ Аппаратные требования</h1>
+<h2><a class="anchor" id="autotoc_md45"></a>
+🛠️ <b>Development</b></h2>
 <ul>
-<li><b>ESP32</b> - мощный микроконтроллер</li>
-<li><b>RS-485 трансивер</b> - для связи с датчиком:<ul>
-<li><b>SP3485E</b> - рекомендуемый трансивер (3.3V, до 10 Mbps, расширенная защита от ESD ±15kV)</li>
+<li>Полностью open-source (C++17, PlatformIO)</li>
+<li>Автоматизированные тесты</li>
+<li>CI/CD pipeline</li>
+<li>Статический анализ кода</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md46"></a>
+📊 <b>Current Status</b></h1>
+<p><b>Version:</b> 3.4.9 <br  />
+ <b>Last Updated:</b> 2025-06-24 <br  />
+ <b>Status:</b> ✅ Stable with improved calibration system</p>
+<h2><a class="anchor" id="autotoc_md47"></a>
+✅ <b>Recent Improvements</b></h2>
+<ul>
+<li>Исправлена логика применения калибровочной таблицы</li>
+<li>Двухэтапная компенсация: CSV + математическая</li>
+<li>Объединены агрономические рекомендации</li>
+<li>Обновлена документация с фокусом на стабильность</li>
+<li>Отменена рискованная миграция статических страниц</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md48"></a>
+🔗 <b>Quick Links</b></h1>
+<ul>
+<li><a href="https://github.com/Gfermoto/soil-sensor-7in1">GitHub Repository</a></li>
+<li><a href="https://github.com/Gfermoto/soil-sensor-7in1/releases/latest">Latest Release</a></li>
+<li><a href="https://github.com/Gfermoto/soil-sensor-7in1/issues">Issues</a></li>
+<li><a href="https://github.com/Gfermoto/soil-sensor-7in1/discussions">Discussions</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md49"></a>
+📝 <b>Getting Started</b></h1>
+<ol type="1">
+<li><b>Clone the repository:</b> <div class="fragment"><div class="line">git clone https://github.com/Gfermoto/soil-sensor-7in1.git</div>
+<div class="line">cd soil-sensor-7in1</div>
+</div><!-- fragment --></li>
+<li><b>Install PlatformIO:</b> <div class="fragment"><div class="line">pip install platformio</div>
+</div><!-- fragment --></li>
+<li><b>Build the firmware:</b> <div class="fragment"><div class="line">pio run</div>
+</div><!-- fragment --></li>
+<li><b>Upload to ESP32:</b> <div class="fragment"><div class="line">pio run --target upload</div>
+</div><!-- fragment --></li>
+<li><b>Access web interface:</b><ul>
+<li>Connect to WiFi network "JXCT_Setup"</li>
+<li>Navigate to <a href="http://192.168.4.1">http://192.168.4.1</a></li>
+<li>Configure your settings</li>
 </ul>
 </li>
-<li><b>JXCT 7-в-1</b> - почвенный датчик с Modbus RTU</li>
-<li><b>Блок питания 12-24V</b> - для датчика (отдельное питание!)</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md11"></a>
-🚀 Начало работы</h1>
-<ol type="1">
-<li><b>Сборка</b> - простая инструкция по сборке</li>
-<li><b>Прошивка</b> - загрузка программного обеспечения</li>
-<li><b>Настройка</b> - подключение к вашей сети</li>
-<li><b>Интеграция</b> - подключение к вашим системам</li>
-<li><b>Массовое развертывание</b> - настройка множества устройств одним файлом</li>
 </ol>
-<h1><a class="anchor" id="autotoc_md12"></a>
-📚 Документация</h1>
-<ul>
-<li>MODBUS протокол</li>
-<li>Схема подключения</li>
-<li>API документация</li>
-<li>План развития</li>
-<li>Управление конфигурацией - импорт/экспорт и массовое развертывание</li>
-<li><a href="docs/examples/test_safe_config.json">Шаблон конфигурации</a> - быстрый старт для массового развертывания</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md13"></a>
-🌟 Сообщество</h1>
-<ul>
-<li><b>Telegram</b> - <a href="https://t.me/DIYIoT_Lab">@DIYIoT_Lab</a> - лайфхаки и гайды по сборке DIY-устройств</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md14"></a>
-📄 Лицензия</h1>
-<p>MIT License - свободное использование для некоммерческих целей</p>
+<h1><a class="anchor" id="autotoc_md50"></a>
+🤝 <b>Contributing</b></h1>
+<p>We welcome contributions! Please see our Contributing Guide for details.</p>
 <hr  />
-<p><em>Сделано с ❤️ для энтузиастов и садоводов</em> </p>
+<p><b>© 2025 JXCT Development Team</b> <br  />
+ <em>Made with ❤️ for the agricultural community</em> </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"></a>
 </div><!-- contents -->
@@ -220,7 +214,7 @@ $(function(){initNavTree('index.html',''); initResizable(true); });
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:11. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

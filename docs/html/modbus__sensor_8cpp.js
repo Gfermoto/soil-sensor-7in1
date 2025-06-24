@@ -1,6 +1,7 @@
 var modbus__sensor_8cpp =
 [
     [ "addToMovingAverage", "modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b", null ],
+    [ "applyCompensationIfEnabled", "modbus__sensor_8cpp.html#a4cff8e34908a2deb0691e3809224685a", null ],
     [ "calculateCRC16", "modbus__sensor_8cpp.html#a0e1b4f2813957877a5ac0ab90787f0e5", null ],
     [ "calculateMovingAverage", "modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94", null ],
     [ "changeDeviceAddress", "modbus__sensor_8cpp.html#aac87bc87eaf0bc01ebda5fe1bb44c88b", null ],
@@ -20,11 +21,14 @@ var modbus__sensor_8cpp =
     [ "readSensorData", "modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2", null ],
     [ "readSingleRegister", "modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d", null ],
     [ "realSensorTask", "modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4", null ],
+    [ "saveRawSnapshot", "modbus__sensor_8cpp.html#a7a820fe61fb2c2163f98e3a273af4b55", null ],
     [ "setupModbus", "modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520", null ],
     [ "startRealSensorTask", "modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df", null ],
     [ "testModbusConnection", "modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1", null ],
     [ "testSP3485E", "modbus__sensor_8cpp.html#ab8a1f5220dc77f33a89d14fe4d82442f", null ],
+    [ "updateIrrigationFlag", "modbus__sensor_8cpp.html#a7dfe5a231d563e4498f0217c486af795", null ],
     [ "validateSensorData", "modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67", null ],
+    [ "lastIrrigationTs", "modbus__sensor_8cpp.html#a70303ff3ef95ccb720e4ef57475b36d4", null ],
     [ "modbus", "modbus__sensor_8cpp.html#a9f7da14569cf54a5633c163642e97dff", null ],
     [ "sensorCache", "modbus__sensor_8cpp.html#a5a90cc33c11a27aac5f56dcaac387c0d", null ],
     [ "sensorData", "modbus__sensor_8cpp.html#ae6ed671f3036da58a93991fca2a2329c", null ],

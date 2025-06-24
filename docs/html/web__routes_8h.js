@@ -22,10 +22,13 @@ var web__routes_8h =
     [ "isFeatureAvailable", "web__routes_8h.html#a195ba09880daef6ce6c14eeceb61feec", null ],
     [ "isRouteAvailable", "web__routes_8h.html#a195f4874889e332e6f540a518d6c51fe", null ],
     [ "logWebRequest", "web__routes_8h.html#a1a62e7c40bff885d97f6018743bec642", null ],
+    [ "navHtml", "web__routes_8h.html#ad30c0b8b33e60ccdb13f2e1cc08157c9", null ],
+    [ "setupCalibrationRoutes", "web__routes_8h.html#a74cbd7893b5cf9b3fa5fd34a4fb985ba", null ],
     [ "setupConfigRoutes", "web__routes_8h.html#a0e7c19a3399afd6ceae18c4512cca24c", null ],
     [ "setupDataRoutes", "web__routes_8h.html#aed1136f683a386e56678e05fc3747972", null ],
     [ "setupErrorHandlers", "web__routes_8h.html#a833be2e68cb85aa95168dae9c9b128ef", null ],
     [ "setupMainRoutes", "web__routes_8h.html#a6a7cf6b6ba01d34721e1a47ea65af867", null ],
+    [ "setupOtaRoutes", "web__routes_8h.html#ae58a54419ee068a06deeb05bf1e771f4", null ],
     [ "setupServiceRoutes", "web__routes_8h.html#a32c74f47a23de058ee90a43af2dff066", null ],
     [ "validateConfigInput", "web__routes_8h.html#ad738b39272f7fc383f5bb83814fb1a67", null ],
     [ "webServer", "web__routes_8h.html#a6385fd6a6118223757bf00a8ba828562", null ]

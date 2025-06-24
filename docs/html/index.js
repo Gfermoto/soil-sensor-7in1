@@ -1,19 +1,21 @@
 var index =
 [
-    [ "🌟 Возможности", "index.html#autotoc_md1", [
-      [ "📊 Комплексный мониторинг", "index.html#autotoc_md2", null ],
-      [ "🚀 Умные функции", "index.html#autotoc_md3", null ],
-      [ "🌐 Интеграции", "index.html#autotoc_md4", null ]
+    [ "📖 Quick Navigation", "index.html#autotoc_md36", [
+      [ "🔧 Firmware Documentation", "index.html#autotoc_md37", null ],
+      [ "🌱 Agro Recommendations", "index.html#autotoc_md38", null ],
+      [ "📚 API Documentation", "index.html#autotoc_md39", null ],
+      [ "📋 Examples", "index.html#autotoc_md40", null ]
     ] ],
-    [ "🎯 Для кого этот проект?", "index.html#autotoc_md5", null ],
-    [ "💡 Почему JXCT?", "index.html#autotoc_md6", null ],
-    [ "🛠️ Технические детали", "index.html#autotoc_md7", [
-      [ "Оборудование", "index.html#autotoc_md8", null ],
-      [ "Производительность", "index.html#autotoc_md9", null ]
+    [ "🚀 Key Features", "index.html#autotoc_md41", [
+      [ "🌡️ Real-time Monitoring", "index.html#autotoc_md42", null ],
+      [ "🔄 OTA Updates", "index.html#autotoc_md43", null ],
+      [ "📡 Integrations", "index.html#autotoc_md44", null ],
+      [ "🛠️ Development", "index.html#autotoc_md45", null ]
     ] ],
-    [ "🛠️ Аппаратные требования", "index.html#autotoc_md10", null ],
-    [ "🚀 Начало работы", "index.html#autotoc_md11", null ],
-    [ "📚 Документация", "index.html#autotoc_md12", null ],
-    [ "🌟 Сообщество", "index.html#autotoc_md13", null ],
-    [ "📄 Лицензия", "index.html#autotoc_md14", null ]
+    [ "📊 Current Status", "index.html#autotoc_md46", [
+      [ "✅ Recent Improvements", "index.html#autotoc_md47", null ]
+    ] ],
+    [ "🔗 Quick Links", "index.html#autotoc_md48", null ],
+    [ "📝 Getting Started", "index.html#autotoc_md49", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md50", null ]
 ];

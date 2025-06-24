@@ -1,15 +1,15 @@
 var searchData=
 [
-  ['temp_5fbuffer_0',['temp_buffer',['../struct_sensor_data.html#aaf53e2b2f0d5c70294c365f0d3990a9b',1,'SensorData']]],
-  ['tempconfig_1',['tempConfig',['../struct_home_assistant_config_cache.html#a29a9286975d876607f560c70fd12facd',1,'HomeAssistantConfigCache']]],
-  ['temperature_2',['temperature',['../struct_sensor_data.html#a0a1593ad64f79756c14d208ce7b17adb',1,'SensorData']]],
-  ['thingspeak_5fapi_5furl_3',['THINGSPEAK_API_URL',['../thingspeak__client_8cpp.html#af914716ab642c858bca6b31ae976d15e',1,'thingspeak_client.cpp']]],
-  ['thingspeakapikey_4',['thingSpeakAPIKey',['../struct_config_data.html#a38d97f1bfec0f08c3b4ffd4177866660',1,'ConfigData']]],
-  ['thingspeakenabled_5',['thingSpeakEnabled',['../struct_config_data.html#a0297efbded709e911c6a26ec58b4d16f',1,'ConfigData']]],
-  ['thingspeakinterval_6',['thingspeakInterval',['../struct_config_data.html#adb6ae912fb0f894f37e86eaeaf964800',1,'ConfigData']]],
-  ['thingspeaklasterrorbuffer_7',['thingSpeakLastErrorBuffer',['../thingspeak__client_8cpp.html#a8c731a0fe7f1eaaad5c96a1a7a62c001',1,'thingspeak_client.cpp']]],
-  ['thingspeaklastpublishbuffer_8',['thingSpeakLastPublishBuffer',['../thingspeak__client_8cpp.html#aaf5c36e5da6f7c1b8394f1545ddee8c3',1,'thingspeak_client.cpp']]],
-  ['timeclient_9',['timeClient',['../main_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../mqtt__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../thingspeak__client_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../routes__data_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp'],['../wifi__manager_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f',1,'timeClient:&#160;main.cpp']]],
-  ['timestamp_10',['timestamp',['../struct_sensor_data.html#ac3cf8281a41a979e6d5d894b45c05ca0',1,'SensorData::timestamp'],['../struct_sensor_cache.html#ab5ba28cf93b91b1560a5d26926b74a61',1,'SensorCache::timestamp']]],
-  ['topic_5fbuffer_5fsize_11',['TOPIC_BUFFER_SIZE',['../jxct__constants_8h.html#abec57d3cf3642697f86a7d58af6fbf21',1,'jxct_constants.h']]]
+  ['raw_0',['raw',['../struct_calibration_entry.html#abf1254be84455b3cc41e4bb9e1e9dd16',1,'CalibrationEntry']]],
+  ['raw_5fec_1',['raw_ec',['../struct_sensor_data.html#ac3f0a2a0fdf1fc1f1ccd9da06bf1aaff',1,'SensorData']]],
+  ['raw_5fhumidity_2',['raw_humidity',['../struct_sensor_data.html#a03cdd5ca84b4a315fc15b2053a976c44',1,'SensorData']]],
+  ['raw_5fnitrogen_3',['raw_nitrogen',['../struct_sensor_data.html#a6c18579c1d8089ae77459f3ff81a3c33',1,'SensorData']]],
+  ['raw_5fph_4',['raw_ph',['../struct_sensor_data.html#a52fa7ffba8c0e5a3177f77e3b2583b20',1,'SensorData']]],
+  ['raw_5fphosphorus_5',['raw_phosphorus',['../struct_sensor_data.html#ab84101974d645fbb4e64be1ac4f57ccb',1,'SensorData']]],
+  ['raw_5fpotassium_6',['raw_potassium',['../struct_sensor_data.html#a6918481c09e8ca124cce3d630ccc1f4e',1,'SensorData']]],
+  ['raw_5ftemperature_7',['raw_temperature',['../struct_sensor_data.html#ad4f2c5ac6721efbfb394d394e74cc369',1,'SensorData']]],
+  ['recentirrigation_8',['recentIrrigation',['../struct_sensor_data.html#a209057037cdfa0f908f128c11a581f4a',1,'SensorData']]],
+  ['reset_5fbutton_5fpin_9',['RESET_BUTTON_PIN',['../main_8cpp.html#aaef35518e8271022cf7cfca55d8c86d4',1,'RESET_BUTTON_PIN:&#160;main.cpp'],['../jxct__constants_8h.html#a4a3aea0890a9c7d81ed2b359ee3ae200',1,'RESET_BUTTON_PIN:&#160;jxct_constants.h']]],
+  ['reset_5fbutton_5ftask_5fpriority_10',['RESET_BUTTON_TASK_PRIORITY',['../jxct__constants_8h.html#a2748e3aebe921d6d2f1965fb7b71bbfa',1,'jxct_constants.h']]],
+  ['reset_5fbutton_5ftask_5fstack_5fsize_11',['RESET_BUTTON_TASK_STACK_SIZE',['../jxct__constants_8h.html#af5ae137d7081e66e1cd43e5c8df7de05',1,'jxct_constants.h']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: Файл src/web/error_handlers.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/web/error_handlers.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,11 +18,6 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,22 +27,10 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
    </div>
-   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -64,6 +47,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -104,6 +98,7 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 
 <div class="header">
   <div class="summary">
+<a href="#define-members">Макросы</a> &#124;
 <a href="#func-members">Функции</a>  </div>
   <div class="headertitle"><div class="title">Файл error_handlers.cpp</div></div>
 </div><!--header-->
@@ -113,41 +108,51 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">../../include/jxct_config_vars.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__ui__system_8h_source.html">../../include/jxct_ui_system.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">../wifi_manager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__strings_8h_source.html">../../include/jxct_strings.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Граф включаемых заголовочных файлов для error_handlers.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="error__handlers_8cpp__incl.png" border="0" usemap="#asrc_2web_2error__handlers_8cpp" alt=""/></div>
 <map name="asrc_2web_2error__handlers_8cpp" id="asrc_2web_2error__handlers_8cpp">
-<area shape="rect" title=" " alt="" coords="282,5,460,32"/>
-<area shape="rect" href="web__routes_8h.html" title=" " alt="" coords="69,88,238,115"/>
-<area shape="poly" title=" " alt="" coords="338,35,203,85,201,80,336,30"/>
-<area shape="rect" href="wifi__manager_8h.html" title=" " alt="" coords="190,179,333,205"/>
-<area shape="poly" title=" " alt="" coords="354,34,329,55,305,82,283,124,270,164,265,163,279,121,301,78,325,51,351,30"/>
-<area shape="rect" href="logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="408,179,544,205"/>
-<area shape="poly" title=" " alt="" coords="392,31,417,51,441,79,462,121,474,162,468,164,457,123,437,81,413,55,388,35"/>
-<area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="315,80,426,123"/>
-<area shape="poly" title=" " alt="" coords="374,32,374,65,368,65,368,32"/>
-<area shape="rect" href="jxct__ui__system_8h.html" title=" " alt="" coords="568,171,680,213"/>
-<area shape="poly" title=" " alt="" coords="393,30,468,78,585,159,582,164,465,82,390,35"/>
+<area shape="rect" title=" " alt="" coords="332,5,511,32"/>
+<area shape="rect" href="web__routes_8h.html" title=" " alt="" coords="65,88,234,115"/>
+<area shape="poly" title=" " alt="" coords="380,35,207,86,206,81,378,30"/>
+<area shape="rect" href="wifi__manager_8h.html" title=" " alt="" coords="170,179,313,205"/>
+<area shape="poly" title=" " alt="" coords="410,34,267,170,264,166,407,30"/>
+<area shape="rect" href="logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="407,88,543,115"/>
+<area shape="poly" title=" " alt="" coords="432,31,461,74,456,77,428,34"/>
+<area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="338,171,449,213"/>
+<area shape="poly" title=" " alt="" coords="417,34,406,55,397,81,393,119,393,155,388,155,387,118,392,79,401,53,412,31"/>
+<area shape="rect" href="jxct__ui__system_8h.html" title=" " alt="" coords="524,171,636,213"/>
+<area shape="poly" title=" " alt="" coords="478,30,520,48,540,62,557,78,568,96,576,116,583,155,577,156,571,117,563,99,553,82,537,66,518,53,476,35"/>
+<area shape="rect" href="jxct__strings_8h.html" title=" " alt="" coords="618,80,729,123"/>
+<area shape="poly" title=" " alt="" coords="462,30,604,75,602,80,460,35"/>
 <area shape="rect" title=" " alt="" coords="5,261,102,288"/>
-<area shape="poly" title=" " alt="" coords="149,116,71,249,66,246,144,114"/>
+<area shape="poly" title=" " alt="" coords="145,116,70,249,66,246,140,114"/>
 <area shape="rect" title=" " alt="" coords="125,261,184,288"/>
-<area shape="poly" title=" " alt="" coords="156,115,157,246,152,246,151,115"/>
-<area shape="poly" title=" " alt="" coords="171,113,236,166,233,171,167,117"/>
-<area shape="poly" title=" " alt="" coords="230,208,101,258,99,253,228,203"/>
-<area shape="poly" title=" " alt="" coords="246,208,185,254,182,250,243,204"/>
+<area shape="poly" title=" " alt="" coords="153,115,157,246,151,246,147,115"/>
+<area shape="poly" title=" " alt="" coords="165,113,219,166,215,169,161,117"/>
+<area shape="poly" title=" " alt="" coords="213,208,97,258,95,253,211,203"/>
+<area shape="poly" title=" " alt="" coords="230,208,181,253,177,249,226,204"/>
 <area shape="rect" title=" " alt="" coords="459,261,536,288"/>
-<area shape="poly" title=" " alt="" coords="299,203,447,253,445,258,298,208"/>
+<area shape="poly" title=" " alt="" coords="282,203,446,254,444,259,281,208"/>
 <area shape="rect" title=" " alt="" coords="209,261,308,288"/>
-<area shape="poly" title=" " alt="" coords="264,206,262,246,257,246,258,206"/>
+<area shape="poly" title=" " alt="" coords="247,205,256,246,250,247,242,206"/>
 <area shape="rect" title=" " alt="" coords="333,261,435,288"/>
-<area shape="poly" title=" " alt="" coords="282,204,354,251,351,255,279,208"/>
-<area shape="poly" title=" " alt="" coords="482,205,493,246,488,247,477,207"/>
-<area shape="poly" title=" " alt="" coords="375,123,385,246,379,246,370,123"/>
-<area shape="poly" title=" " alt="" coords="593,216,532,255,529,250,590,212"/>
+<area shape="poly" title=" " alt="" coords="265,204,350,251,347,256,262,208"/>
+<area shape="poly" title=" " alt="" coords="479,115,496,245,491,246,474,115"/>
+<area shape="poly" title=" " alt="" coords="394,214,390,246,385,246,388,214"/>
+<area shape="poly" title=" " alt="" coords="561,216,523,252,519,248,557,212"/>
 </map>
 </div>
-</div><table class="memberdecls">
+</div>
+<p><a href="error__handlers_8cpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a279a0c067a8addd61f08d5fd7993ec35" id="r_a279a0c067a8addd61f08d5fd7993ec35"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a279a0c067a8addd61f08d5fd7993ec35">API_CONFIG_EXPORT</a>&#160;&#160;&#160;<a class="el" href="jxct__strings_8h.html#a2658231c913ad33de1f1e34cea47ac12">API_ROOT</a> &quot;/config/export&quot;</td></tr>
+<tr class="separator:a279a0c067a8addd61f08d5fd7993ec35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
 <tr class="memitem:a833be2e68cb85aa95168dae9c9b128ef" id="r_a833be2e68cb85aa95168dae9c9b128ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a833be2e68cb85aa95168dae9c9b128ef">setupErrorHandlers</a> ()</td></tr>
@@ -181,6 +186,23 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <tr class="memdesc:a6d52ae788bd99342b84e28a1af12392b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP режиме  <br /></td></tr>
 <tr class="separator:a6d52ae788bd99342b84e28a1af12392b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a279a0c067a8addd61f08d5fd7993ec35" name="a279a0c067a8addd61f08d5fd7993ec35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a279a0c067a8addd61f08d5fd7993ec35">&#9670;&#160;</a></span>API_CONFIG_EXPORT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define API_CONFIG_EXPORT&#160;&#160;&#160;<a class="el" href="jxct__strings_8h.html#a2658231c913ad33de1f1e34cea47ac12">API_ROOT</a> &quot;/config/export&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="reference">Используется в <a class="el" href="routes__config_8cpp_source.html#l00027">setupConfigRoutes()</a>.</p>
+
+</div>
+</div>
 <h2 class="groupheader">Функции</h2>
 <a id="a6d52ae788bd99342b84e28a1af12392b" name="a6d52ae788bd99342b84e28a1af12392b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6d52ae788bd99342b84e28a1af12392b">&#9670;&#160;</a></span>checkRouteAccess()</h2>
@@ -203,6 +225,10 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 
 <p>Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP режиме </p>
 <p>Middleware для проверки доступности маршрута </p>
+
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00215">215</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="web__templates_8cpp_source.html#l00175">generateApModeUnavailablePage()</a>, <a class="el" href="error__handlers_8cpp_source.html#l00201">isRouteAvailable()</a> и <a class="el" href="routes__calibration_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -253,6 +279,12 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>HTML ответ с ошибкой </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00172">172</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="web__templates_8cpp_source.html#l00024">generateBasePage()</a>, <a class="el" href="web__templates_8cpp_source.html#l00164">generateFormError()</a> и <a class="el" href="jxct__ui__system_8h_source.html#l00046">UI_ICON_CONFIG</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="routes__main_8cpp_source.html#l00007">setupMainRoutes()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -280,25 +312,26 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <div class="dyncontent">
 <div class="center"><img src="error__handlers_8cpp_a6fe24c5dc21b012791aecd16ab4dad96_icgraph.png" border="0" usemap="#aerror__handlers_8cpp_a6fe24c5dc21b012791aecd16ab4dad96_icgraph" alt=""/></div>
 <map name="aerror__handlers_8cpp_a6fe24c5dc21b012791aecd16ab4dad96_icgraph" id="aerror__handlers_8cpp_a6fe24c5dc21b012791aecd16ab4dad96_icgraph">
-<area shape="rect" title="Генерация HTML ответа с ошибкой валидации" alt="" coords="869,81,1084,108"/>
-<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="698,81,821,108"/>
-<area shape="poly" title=" " alt="" coords="854,97,822,97,822,92,854,92"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,81,650,108"/>
-<area shape="poly" title=" " alt="" coords="683,97,651,97,651,92,683,92"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,56,485,83"/>
-<area shape="poly" title=" " alt="" coords="517,85,485,80,486,75,518,80"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,107,339,133"/>
-<area shape="poly" title=" " alt="" coords="517,103,340,118,339,113,517,98"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,5,330,32"/>
-<area shape="poly" title=" " alt="" coords="379,53,328,35,330,30,381,48"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,81,187,108"/>
-<area shape="poly" title=" " alt="" coords="372,78,188,94,187,89,371,72"/>
-<area shape="poly" title=" " alt="" coords="381,91,330,109,328,104,379,86"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
-<area shape="poly" title=" " alt="" coords="228,21,170,21,170,16,228,16"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,81,59,108"/>
-<area shape="poly" title=" " alt="" coords="91,97,59,97,59,92,91,92"/>
-<area shape="poly" title=" " alt="" coords="219,110,187,105,188,99,220,105"/>
+<area shape="rect" title="Генерация HTML ответа с ошибкой валидации" alt="" coords="875,31,1090,57"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="704,31,827,57"/>
+<area shape="poly" title=" " alt="" coords="860,47,828,47,828,41,860,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,657,47,657,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
 </map>
 </div>
 
@@ -326,6 +359,10 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
   </table>
   </dd>
 </dl>
+
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00188">188</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="web__templates_8cpp_source.html#l00033">generateErrorPage()</a>, <a class="el" href="logger_8cpp_source.html#l00061">logError()</a> и <a class="el" href="routes__calibration_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -375,6 +412,10 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
   </table>
   </dd>
 </dl>
+
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00123">123</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="web__templates_8cpp_source.html#l00033">generateErrorPage()</a>, <a class="el" href="logger_8cpp_source.html#l00061">logError()</a> и <a class="el" href="routes__calibration_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -419,6 +460,12 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 
 <p>Проверка доступности функции в текущем режиме WiFi (без параметров) </p>
 <dl class="section return"><dt>Возвращает</dt><dd>true если функция доступна в текущем режиме </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00147">147</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="error__handlers_8cpp_source.html#l00147">isFeatureAvailable()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="error__handlers_8cpp_source.html#l00147">isFeatureAvailable()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -464,6 +511,10 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>true если функция доступна в текущем режиме </dd></dl>
 
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00131">131</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="wifi__manager_8h_source.html#l00013">AP</a> и <a class="el" href="wifi__manager_8cpp_source.html#l00026">currentWiFiMode</a>.</p>
+
 </div>
 </div>
 <a id="a195f4874889e332e6f540a518d6c51fe" name="a195f4874889e332e6f540a518d6c51fe"></a>
@@ -489,6 +540,12 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>true если маршрут доступен </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00201">201</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="wifi__manager_8h_source.html#l00013">AP</a> и <a class="el" href="wifi__manager_8cpp_source.html#l00026">currentWiFiMode</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="error__handlers_8cpp_source.html#l00215">checkRouteAccess()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -535,6 +592,12 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
   </table>
   </dd>
 </dl>
+
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00152">152</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__strings_8h_source.html#l00008">API_SENSOR</a>, <a class="el" href="logger_8cpp_source.html#l00112">logDebug()</a> и <a class="el" href="logger_8cpp_source.html#l00095">logInfo()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="routes__config_8cpp_source.html#l00367">sendConfigExportJson()</a>, <a class="el" href="routes__service_8cpp_source.html#l00193">sendHealthJson()</a>, <a class="el" href="routes__data_8cpp_source.html#l00186">sendSensorJson()</a>, <a class="el" href="routes__service_8cpp_source.html#l00275">sendServiceStatusJson()</a>, <a class="el" href="routes__config_8cpp_source.html#l00027">setupConfigRoutes()</a>, <a class="el" href="routes__data_8cpp_source.html#l00274">setupDataRoutes()</a>, <a class="el" href="error__handlers_8cpp_source.html#l00008">setupErrorHandlers()</a>, <a class="el" href="routes__main_8cpp_source.html#l00007">setupMainRoutes()</a>, <a class="el" href="routes__ota_8cpp_source.html#l00027">setupOtaRoutes()</a> и <a class="el" href="routes__service_8cpp_source.html#l00040">setupServiceRoutes()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -552,37 +615,53 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <div class="dyncontent">
 <div class="center"><img src="error__handlers_8cpp_a1a62e7c40bff885d97f6018743bec642_icgraph.png" border="0" usemap="#aerror__handlers_8cpp_a1a62e7c40bff885d97f6018743bec642_icgraph" alt=""/></div>
 <map name="aerror__handlers_8cpp_a1a62e7c40bff885d97f6018743bec642_icgraph" id="aerror__handlers_8cpp_a1a62e7c40bff885d97f6018743bec642_icgraph">
-<area shape="rect" title="Логирование веб&#45;запросов" alt="" coords="885,107,999,133"/>
-<area shape="rect" href="routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c" title="Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)" alt="" coords="701,5,834,32"/>
-<area shape="poly" title=" " alt="" coords="912,99,877,72,836,46,811,35,813,30,839,42,880,68,915,95"/>
-<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="706,56,829,83"/>
-<area shape="poly" title=" " alt="" coords="878,104,815,86,817,81,879,99"/>
-<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="701,107,834,133"/>
-<area shape="poly" title=" " alt="" coords="870,123,835,123,835,117,870,117"/>
-<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="706,157,829,184"/>
-<area shape="poly" title=" " alt="" coords="879,141,817,159,815,154,878,136"/>
-<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="698,208,837,235"/>
-<area shape="poly" title=" " alt="" coords="915,145,880,172,839,198,813,210,811,205,836,194,877,168,912,141"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,107,650,133"/>
-<area shape="poly" title=" " alt="" coords="710,41,699,46,650,78,611,108,607,104,647,73,697,42,708,36"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,81,485,108"/>
-<area shape="poly" title=" " alt="" coords="517,111,485,105,486,100,518,105"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,132,339,159"/>
-<area shape="poly" title=" " alt="" coords="517,129,340,144,339,138,517,123"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,31,330,57"/>
-<area shape="poly" title=" " alt="" coords="379,78,328,60,330,55,381,73"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
-<area shape="poly" title=" " alt="" coords="372,103,188,119,187,114,371,98"/>
-<area shape="poly" title=" " alt="" coords="381,116,330,134,328,129,379,111"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
-<area shape="poly" title=" " alt="" coords="228,47,170,47,170,41,228,41"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
-<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
-<area shape="poly" title=" " alt="" coords="219,136,187,130,188,125,220,131"/>
-<area shape="poly" title=" " alt="" coords="705,90,641,109,640,104,704,85"/>
-<area shape="poly" title=" " alt="" coords="685,123,650,123,650,117,685,117"/>
-<area shape="poly" title=" " alt="" coords="704,155,640,136,641,131,705,150"/>
-<area shape="poly" title=" " alt="" coords="708,204,697,198,647,167,607,136,611,132,650,162,699,194,710,199"/>
+<area shape="rect" title="Логирование веб&#45;запросов" alt="" coords="1099,218,1212,245"/>
+<area shape="rect" href="routes__config_8cpp.html#a08204d6e0087ca3676433990aad58a76" title=" " alt="" coords="894,41,1048,67"/>
+<area shape="poly" title=" " alt="" coords="1138,205,1102,147,1078,115,1049,88,1017,70,1020,66,1052,84,1082,112,1107,144,1143,202"/>
+<area shape="rect" href="routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c" title="Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)" alt="" coords="707,41,840,67"/>
+<area shape="poly" title=" " alt="" coords="1147,204,1136,162,1117,114,1089,67,1071,47,1049,31,1019,17,987,10,953,8,920,11,856,25,806,43,805,38,855,20,919,6,953,3,988,5,1021,12,1052,26,1074,43,1093,64,1122,112,1141,161,1152,202"/>
+<area shape="rect" href="routes__service_8cpp.html#a5440f3fe57b2f75c0268091ff4dcda9a" title=" " alt="" coords="913,142,1029,169"/>
+<area shape="poly" title=" " alt="" coords="1113,213,1050,183,1018,172,1020,167,1052,178,1116,208"/>
+<area shape="rect" href="routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="704,167,843,194"/>
+<area shape="poly" title=" " alt="" coords="1135,207,1099,166,1076,147,1050,133,1007,119,973,117,937,123,892,133,842,149,800,169,798,164,840,144,891,127,936,118,972,112,1008,114,1052,128,1079,142,1102,162,1139,203"/>
+<area shape="rect" href="routes__data_8cpp.html#a7cb04ca38fc8e4b768a2ef6ae67bc573" title=" " alt="" coords="912,294,1030,321"/>
+<area shape="poly" title=" " alt="" coords="1109,254,1052,278,1008,296,1006,291,1050,273,1107,249"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="712,294,835,321"/>
+<area shape="poly" title=" " alt="" coords="1084,247,892,285,836,296,835,291,891,279,1083,242"/>
+<area shape="rect" href="routes__service_8cpp.html#abc1bf10984b7953347571c6edf5af696" title=" " alt="" coords="891,193,1051,219"/>
+<area shape="poly" title=" " alt="" coords="1083,224,1051,220,1052,214,1083,219"/>
+<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="707,345,840,371"/>
+<area shape="poly" title=" " alt="" coords="1138,259,1102,300,1078,319,1052,335,999,354,943,364,889,367,841,367,841,361,888,362,942,358,997,348,1050,330,1075,315,1098,296,1134,256"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="712,395,835,422"/>
+<area shape="poly" title=" " alt="" coords="1144,260,1109,318,1083,348,1052,372,998,396,941,409,885,415,836,416,836,410,885,410,940,404,997,391,1049,368,1079,344,1105,315,1139,258"/>
+<area shape="rect" href="routes__ota_8cpp.html#ae58a54419ee068a06deeb05bf1e771f4" title="Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)" alt="" coords="913,446,1029,473"/>
+<area shape="poly" title=" " alt="" coords="1148,261,1135,298,1115,343,1088,389,1052,429,1023,448,1020,443,1049,425,1083,386,1110,341,1130,296,1143,259"/>
+<area shape="poly" title=" " alt="" coords="879,57,841,57,841,51,879,51"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,319,656,346"/>
+<area shape="poly" title=" " alt="" coords="756,82,706,157,609,320,604,317,702,154,752,79"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,345,491,371"/>
+<area shape="poly" title=" " alt="" coords="524,347,492,353,491,347,523,342"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,294,345,321"/>
+<area shape="poly" title=" " alt="" coords="523,329,345,314,346,309,523,324"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,370,193,397"/>
+<area shape="poly" title=" " alt="" coords="378,374,346,379,265,385,193,387,193,381,264,380,345,374,378,369"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,307,190,334"/>
+<area shape="poly" title=" " alt="" coords="378,353,241,335,190,329,191,323,241,330,378,348"/>
+<area shape="poly" title=" " alt="" coords="385,342,334,324,336,319,387,337"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,370,55,397"/>
+<area shape="poly" title=" " alt="" coords="91,386,55,386,55,381,91,381"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,307,59,334"/>
+<area shape="poly" title=" " alt="" coords="94,323,59,323,59,318,94,318"/>
+<area shape="poly" title=" " alt="" coords="254,331,178,372,176,367,251,326"/>
+<area shape="poly" title=" " alt="" coords="226,316,191,320,190,314,225,311"/>
+<area shape="poly" title=" " alt="" coords="898,167,844,174,844,169,897,162"/>
+<area shape="poly" title=" " alt="" coords="747,206,616,321,613,317,744,202"/>
+<area shape="poly" title=" " alt="" coords="896,310,836,310,836,305,896,305"/>
+<area shape="poly" title=" " alt="" coords="697,321,657,327,656,322,696,316"/>
+<area shape="poly" title=" " alt="" coords="876,196,844,192,844,187,876,191"/>
+<area shape="poly" title=" " alt="" coords="691,349,656,344,657,339,692,344"/>
+<area shape="poly" title=" " alt="" coords="718,392,703,386,624,349,627,344,705,381,720,387"/>
+<area shape="poly" title=" " alt="" coords="897,468,852,467,802,463,751,453,703,436,672,417,644,393,606,348,610,345,648,390,675,413,705,432,753,448,803,458,853,462,897,462"/>
 </map>
 </div>
 
@@ -605,6 +684,12 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 
 <p>Настройка обработчиков ошибок (404, 500, и т. </p>
 <p>д.) </p>
+
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00008">8</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="web__templates_8cpp_source.html#l00033">generateErrorPage()</a>, <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a>, <a class="el" href="error__handlers_8cpp_source.html#l00152">logWebRequest()</a> и <a class="el" href="routes__calibration_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="wifi__manager_8cpp_source.html#l00368">setupWebServer()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -640,23 +725,24 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <div class="dyncontent">
 <div class="center"><img src="error__handlers_8cpp_a833be2e68cb85aa95168dae9c9b128ef_icgraph.png" border="0" usemap="#aerror__handlers_8cpp_a833be2e68cb85aa95168dae9c9b128ef_icgraph" alt=""/></div>
 <map name="aerror__handlers_8cpp_a833be2e68cb85aa95168dae9c9b128ef_icgraph" id="aerror__handlers_8cpp_a833be2e68cb85aa95168dae9c9b128ef_icgraph">
-<area shape="rect" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="698,81,831,108"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,81,650,108"/>
-<area shape="poly" title=" " alt="" coords="682,97,650,97,650,92,682,92"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,56,485,83"/>
-<area shape="poly" title=" " alt="" coords="517,85,485,80,486,75,518,80"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,107,339,133"/>
-<area shape="poly" title=" " alt="" coords="517,103,340,118,339,113,517,98"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,5,330,32"/>
-<area shape="poly" title=" " alt="" coords="379,53,328,35,330,30,381,48"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,81,187,108"/>
-<area shape="poly" title=" " alt="" coords="372,78,188,94,187,89,371,72"/>
-<area shape="poly" title=" " alt="" coords="381,91,330,109,328,104,379,86"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
-<area shape="poly" title=" " alt="" coords="228,21,170,21,170,16,228,16"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,81,59,108"/>
-<area shape="poly" title=" " alt="" coords="91,97,59,97,59,92,91,92"/>
-<area shape="poly" title=" " alt="" coords="219,110,187,105,188,99,220,105"/>
+<area shape="rect" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="704,31,837,57"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="688,47,656,47,656,41,688,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
 </map>
 </div>
 
@@ -685,6 +771,12 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
   </dd>
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>true если валидация прошла успешно </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00030">30</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="wifi__manager_8cpp_source.html#l00026">currentWiFiMode</a>, <a class="el" href="logger_8cpp_source.html#l00112">logDebug()</a>, <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a>, <a class="el" href="wifi__manager_8h_source.html#l00014">STA</a> и <a class="el" href="routes__calibration_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="routes__main_8cpp_source.html#l00007">setupMainRoutes()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -702,25 +794,26 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <div class="dyncontent">
 <div class="center"><img src="error__handlers_8cpp_a15eab9f9a3dc97d41a860ab966800fa6_icgraph.png" border="0" usemap="#aerror__handlers_8cpp_a15eab9f9a3dc97d41a860ab966800fa6_icgraph" alt=""/></div>
 <map name="aerror__handlers_8cpp_a15eab9f9a3dc97d41a860ab966800fa6_icgraph" id="aerror__handlers_8cpp_a15eab9f9a3dc97d41a860ab966800fa6_icgraph">
-<area shape="rect" title="Валидация входных данных конфигурации" alt="" coords="869,81,1003,108"/>
-<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="698,81,821,108"/>
-<area shape="poly" title=" " alt="" coords="854,97,822,97,822,92,854,92"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,81,650,108"/>
-<area shape="poly" title=" " alt="" coords="683,97,651,97,651,92,683,92"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,56,485,83"/>
-<area shape="poly" title=" " alt="" coords="517,85,485,80,486,75,518,80"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,107,339,133"/>
-<area shape="poly" title=" " alt="" coords="517,103,340,118,339,113,517,98"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,5,330,32"/>
-<area shape="poly" title=" " alt="" coords="379,53,328,35,330,30,381,48"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,81,187,108"/>
-<area shape="poly" title=" " alt="" coords="372,78,188,94,187,89,371,72"/>
-<area shape="poly" title=" " alt="" coords="381,91,330,109,328,104,379,86"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
-<area shape="poly" title=" " alt="" coords="228,21,170,21,170,16,228,16"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,81,59,108"/>
-<area shape="poly" title=" " alt="" coords="91,97,59,97,59,92,91,92"/>
-<area shape="poly" title=" " alt="" coords="219,110,187,105,188,99,220,105"/>
+<area shape="rect" title="Валидация входных данных конфигурации" alt="" coords="875,31,1009,57"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="704,31,827,57"/>
+<area shape="poly" title=" " alt="" coords="860,47,828,47,828,41,860,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,657,47,657,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
 </map>
 </div>
 
@@ -732,7 +825,7 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_0d4dde2834ed44e47b6207c19e4aac26.html">web</a></li><li class="navelem"><a class="el" href="error__handlers_8cpp.html">error_handlers.cpp</a></li>
-    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:11. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

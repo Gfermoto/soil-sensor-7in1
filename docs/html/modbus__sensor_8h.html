@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: Файл src/modbus_sensor.h</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/modbus_sensor.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,11 +18,6 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,22 +27,10 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
    </div>
-   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -64,6 +47,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -130,23 +124,34 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <div class="dyncontent">
 <div class="center"><img src="modbus__sensor_8h__dep__incl.png" border="0" usemap="#asrc_2modbus__sensor_8hdep" alt=""/></div>
 <map name="asrc_2modbus__sensor_8hdep" id="asrc_2modbus__sensor_8hdep">
-<area shape="rect" title=" " alt="" coords="552,5,699,32"/>
-<area shape="rect" href="fake__sensor_8cpp.html" title="Эмуляция работы датчика для тестирования" alt="" coords="5,80,145,107"/>
-<area shape="poly" title=" " alt="" coords="537,33,157,83,145,84,145,79,156,77,536,28"/>
-<area shape="rect" href="main_8cpp.html" title="Главный файл проекта JXCT датчика" alt="" coords="168,80,264,107"/>
-<area shape="poly" title=" " alt="" coords="537,37,277,83,265,85,264,80,276,77,536,32"/>
-<area shape="rect" href="modbus__sensor_8cpp.html" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="288,80,448,107"/>
-<area shape="poly" title=" " alt="" coords="567,39,414,82,413,77,566,34"/>
-<area shape="rect" href="mqtt__client_8cpp.html" title="Взаимодействие с MQTT&#45;брокером и Home Assistant." alt="" coords="473,80,605,107"/>
-<area shape="poly" title=" " alt="" coords="601,44,556,82,552,78,597,40"/>
-<area shape="rect" href="thingspeak__client_8cpp.html" title=" " alt="" coords="629,80,798,107"/>
-<area shape="poly" title=" " alt="" coords="654,40,700,78,697,82,651,44"/>
-<area shape="rect" href="routes__data_8cpp.html" title="Маршруты для работы с данными датчика" alt="" coords="822,80,986,107"/>
-<area shape="poly" title=" " alt="" coords="689,34,856,77,855,82,688,39"/>
-<area shape="rect" href="routes__service_8cpp.html" title="Сервисные маршруты для диагностики и управления" alt="" coords="1011,80,1192,107"/>
-<area shape="poly" title=" " alt="" coords="715,31,1019,77,1018,82,714,36"/>
-<area shape="rect" href="wifi__manager_8cpp.html" title="Управление WiFi, веб&#45;интерфейсом и индикацией" alt="" coords="1217,80,1362,107"/>
-<area shape="poly" title=" " alt="" coords="715,26,937,48,1205,77,1217,79,1216,84,1204,83,937,53,714,31"/>
+<area shape="rect" title=" " alt="" coords="730,5,877,32"/>
+<area shape="rect" href="basic__sensor__adapter_8h.html" title=" " alt="" coords="231,80,374,123"/>
+<area shape="poly" title=" " alt="" coords="715,36,420,83,375,90,374,85,419,77,715,31"/>
+<area shape="rect" href="fake__sensor__adapter_8h.html" title=" " alt="" coords="5,171,181,197"/>
+<area shape="poly" title=" " alt="" coords="715,26,590,32,447,43,313,59,260,70,219,82,184,102,152,126,105,172,102,168,148,122,181,97,217,78,258,65,313,54,446,37,590,26,715,20"/>
+<area shape="rect" href="main_8cpp.html" title="Главный файл проекта JXCT датчика" alt="" coords="322,320,418,347"/>
+<area shape="poly" title=" " alt="" coords="716,28,645,35,571,46,507,62,483,71,465,82,454,96,443,117,425,172,398,273,378,321,373,319,393,271,420,170,438,115,449,93,462,78,480,67,506,57,570,41,644,30,715,23"/>
+<area shape="rect" href="fake__sensor_8cpp.html" title="Эмуляция работы датчика для тестирования" alt="" coords="475,88,615,115"/>
+<area shape="poly" title=" " alt="" coords="750,40,586,90,585,85,748,34"/>
+<area shape="rect" href="modbus__sensor_8cpp.html" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="638,88,798,115"/>
+<area shape="poly" title=" " alt="" coords="781,45,733,90,729,86,778,41"/>
+<area shape="rect" href="mqtt__client_8cpp.html" title="Взаимодействие с MQTT&#45;брокером и Home Assistant." alt="" coords="823,88,955,115"/>
+<area shape="poly" title=" " alt="" coords="830,41,878,86,874,90,826,45"/>
+<area shape="rect" href="thingspeak__client_8cpp.html" title=" " alt="" coords="979,88,1148,115"/>
+<area shape="poly" title=" " alt="" coords="860,34,1024,85,1022,90,858,40"/>
+<area shape="rect" href="routes__data_8cpp.html" title="Маршруты для работы с данными датчика" alt="" coords="1172,88,1336,115"/>
+<area shape="poly" title=" " alt="" coords="893,31,1161,77,1198,85,1197,90,1161,83,892,36"/>
+<area shape="rect" href="routes__service_8cpp.html" title="Сервисные маршруты для диагностики и управления" alt="" coords="1361,88,1542,115"/>
+<area shape="poly" title=" " alt="" coords="892,25,1101,46,1349,77,1392,85,1391,90,1349,83,1100,51,892,30"/>
+<area shape="rect" href="wifi__manager_8cpp.html" title="Управление WiFi, веб&#45;интерфейсом и индикацией" alt="" coords="1567,88,1712,115"/>
+<area shape="poly" title=" " alt="" coords="892,20,1187,37,1371,54,1555,77,1592,85,1591,90,1554,83,1370,59,1187,42,892,25"/>
+<area shape="poly" title=" " alt="" coords="235,131,127,173,125,168,233,126"/>
+<area shape="rect" href="modbus__sensor__adapter_8h.html" title=" " alt="" coords="204,171,400,197"/>
+<area shape="poly" title=" " alt="" coords="305,139,305,170,300,170,300,139"/>
+<area shape="rect" href="sensor__factory_8h.html" title=" " alt="" coords="221,245,384,272"/>
+<area shape="poly" title=" " alt="" coords="145,200,266,242,265,247,143,205"/>
+<area shape="poly" title=" " alt="" coords="327,282,361,318,357,321,323,285"/>
+<area shape="poly" title=" " alt="" coords="305,213,305,245,300,245,300,213"/>
 </map>
 </div>
 </div>
@@ -235,7 +240,7 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <tr class="separator:adbf50656913748323cd03274af03c116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f1a431da8f1feb8a64e2c5f887056df" id="r_a4f1a431da8f1feb8a64e2c5f887056df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f1a431da8f1feb8a64e2c5f887056df">startRealSensorTask</a> ()</td></tr>
 <tr class="separator:a4f1a431da8f1feb8a64e2c5f887056df"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afa3ddec4a6bc8ee0972ab805e02aad6b" id="r_afa3ddec4a6bc8ee0972ab805e02aad6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa3ddec4a6bc8ee0972ab805e02aad6b">addToMovingAverage</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data, float temp, float hum, float ec, float ph, float n, float p, float k)</td></tr>
+<tr class="memitem:afa3ddec4a6bc8ee0972ab805e02aad6b" id="r_afa3ddec4a6bc8ee0972ab805e02aad6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa3ddec4a6bc8ee0972ab805e02aad6b">addToMovingAverage</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data, float temp, float hum, float ec, float ph, float n, float p, float <a class="el" href="sensor__compensation_8cpp.html#a9fc4cca635a26c692681a7071e379aa7">k</a>)</td></tr>
 <tr class="separator:afa3ddec4a6bc8ee0972ab805e02aad6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaaaed48863426c3f790f977bc04e7b94" id="r_aaaaed48863426c3f790f977bc04e7b94"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaaaed48863426c3f790f977bc04e7b94">calculateMovingAverage</a> (float *buffer, uint8_t window_size, uint8_t filled)</td></tr>
 <tr class="separator:aaaaed48863426c3f790f977bc04e7b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -273,6 +278,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00027">27</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00132">validateSensorData()</a>.</p>
+
 </div>
 </div>
 <a id="a4ae8ae01ff5a5ce2e90eca5fbc669d81" name="a4ae8ae01ff5a5ce2e90eca5fbc669d81"></a>
@@ -286,6 +295,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00025">25</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00132">validateSensorData()</a>.</p>
 
 </div>
 </div>
@@ -301,6 +314,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00031">31</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00132">validateSensorData()</a>.</p>
+
 </div>
 </div>
 <a id="a6035bff843569e704debcabd15c481d6" name="a6035bff843569e704debcabd15c481d6"></a>
@@ -314,6 +331,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00029">29</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00132">validateSensorData()</a>.</p>
 
 </div>
 </div>
@@ -329,6 +350,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00023">23</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00132">validateSensorData()</a>.</p>
+
 </div>
 </div>
 <a id="ac6595c2759ec7982567a7648cc513465" name="ac6595c2759ec7982567a7648cc513465"></a>
@@ -342,6 +367,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00026">26</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00132">validateSensorData()</a>.</p>
 
 </div>
 </div>
@@ -357,6 +386,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00024">24</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00132">validateSensorData()</a>.</p>
+
 </div>
 </div>
 <a id="ad4ce924e7edbb024c3f5f25c42d64eca" name="ad4ce924e7edbb024c3f5f25c42d64eca"></a>
@@ -370,6 +403,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00030">30</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00132">validateSensorData()</a>.</p>
 
 </div>
 </div>
@@ -385,6 +422,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00028">28</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00132">validateSensorData()</a>.</p>
+
 </div>
 </div>
 <a id="ac5080f3f6bf208edce5de49e5117a5f2" name="ac5080f3f6bf208edce5de49e5117a5f2"></a>
@@ -398,6 +439,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00022">22</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00132">validateSensorData()</a>.</p>
 
 </div>
 </div>
@@ -413,6 +458,8 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00017">17</a></p>
+
 </div>
 </div>
 <a id="ae4a11435c54c0c61a370f01ad74783dd" name="ae4a11435c54c0c61a370f01ad74783dd"></a>
@@ -426,6 +473,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00012">12</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00319">readBasicParameters()</a>.</p>
 
 </div>
 </div>
@@ -441,6 +492,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00019">19</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00183">changeDeviceAddress()</a>.</p>
+
 </div>
 </div>
 <a id="ac264831b378bd2513785f56a63a2cf9a" name="ac264831b378bd2513785f56a63a2cf9a"></a>
@@ -454,6 +509,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00018">18</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00172">readErrorStatus()</a>.</p>
 
 </div>
 </div>
@@ -469,6 +528,8 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00016">16</a></p>
+
 </div>
 </div>
 <a id="a9f80ba4d6b98c8b586f32a67189637c9" name="a9f80ba4d6b98c8b586f32a67189637c9"></a>
@@ -482,6 +543,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00013">13</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00342">readNPKParameters()</a>.</p>
 
 </div>
 </div>
@@ -497,6 +562,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00009">9</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00319">readBasicParameters()</a>.</p>
+
 </div>
 </div>
 <a id="a6aa33492b3c99407fab5717bf51f3c58" name="a6aa33492b3c99407fab5717bf51f3c58"></a>
@@ -510,6 +579,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00014">14</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00342">readNPKParameters()</a>.</p>
 
 </div>
 </div>
@@ -525,6 +598,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00015">15</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00342">readNPKParameters()</a>.</p>
+
 </div>
 </div>
 <a id="ae81f2380d8a1a56150fef81dfff25cfc" name="ae81f2380d8a1a56150fef81dfff25cfc"></a>
@@ -539,6 +616,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00010">10</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00319">readBasicParameters()</a>.</p>
+
 </div>
 </div>
 <a id="a183e5bdeda520ac205c6fa93a52e1ef4" name="a183e5bdeda520ac205c6fa93a52e1ef4"></a>
@@ -552,6 +633,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a> строка <a class="el" href="modbus__sensor_8h_source.html#l00011">11</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00319">readBasicParameters()</a>.</p>
 
 </div>
 </div>
@@ -604,6 +689,12 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00606">606</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="modbus__sensor_8h_source.html#l00071">SensorData::buffer_filled</a>, <a class="el" href="modbus__sensor_8h_source.html#l00070">SensorData::buffer_index</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00674">calculateMovingAverage()</a>, <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="debug_8h_source.html#l00019">DEBUG_PRINTF</a>, <a class="el" href="modbus__sensor_8h_source.html#l00038">SensorData::ec</a>, <a class="el" href="modbus__sensor_8h_source.html#l00065">SensorData::ec_buffer</a>, <a class="el" href="modbus__sensor_8h_source.html#l00064">SensorData::hum_buffer</a>, <a class="el" href="modbus__sensor_8h_source.html#l00037">SensorData::humidity</a>, <a class="el" href="sensor__compensation_8cpp_source.html#l00007">k</a>, <a class="el" href="modbus__sensor_8h_source.html#l00069">SensorData::k_buffer</a>, <a class="el" href="modbus__sensor_8h_source.html#l00067">SensorData::n_buffer</a>, <a class="el" href="modbus__sensor_8h_source.html#l00040">SensorData::nitrogen</a>, <a class="el" href="modbus__sensor_8h_source.html#l00068">SensorData::p_buffer</a>, <a class="el" href="modbus__sensor_8h_source.html#l00039">SensorData::ph</a>, <a class="el" href="modbus__sensor_8h_source.html#l00066">SensorData::ph_buffer</a>, <a class="el" href="modbus__sensor_8h_source.html#l00041">SensorData::phosphorus</a>, <a class="el" href="modbus__sensor_8h_source.html#l00042">SensorData::potassium</a>, <a class="el" href="modbus__sensor_8h_source.html#l00063">SensorData::temp_buffer</a> и <a class="el" href="modbus__sensor_8h_source.html#l00036">SensorData::temperature</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00442">finalizeSensorData()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -658,6 +749,12 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00674">674</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00606">addToMovingAverage()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -696,6 +793,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00183">183</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="modbus__sensor_8cpp_source.html#l00017">modbus</a> и <a class="el" href="modbus__sensor_8h_source.html#l00019">REG_DEVICE_ADDRESS</a>.</p>
+
 </div>
 </div>
 <a id="aca7d239567ef1281e0fd378082fd48ac" name="aca7d239567ef1281e0fd378082fd48ac"></a>
@@ -716,6 +817,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00495">495</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00284">readSingleRegister()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -757,6 +862,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00144">144</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00020">MODBUS_CACHE_TIMEOUT</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00019">sensorCache</a>.</p>
+
 </div>
 </div>
 <a id="a3fac607750afe2d74837248aeec2cfe0" name="a3fac607750afe2d74837248aeec2cfe0"></a>
@@ -774,6 +883,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00730">730</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="modbus__sensor_8h_source.html#l00044">SensorData::conductivity</a>, <a class="el" href="modbus__sensor_8h_source.html#l00038">SensorData::ec</a>, <a class="el" href="modbus__sensor_8h_source.html#l00037">SensorData::humidity</a>, <a class="el" href="modbus__sensor_8h_source.html#l00048">SensorData::isValid</a>, <a class="el" href="modbus__sensor_8h_source.html#l00049">SensorData::last_update</a>, <a class="el" href="modbus__sensor_8h_source.html#l00043">SensorData::moisture</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00018">sensorData</a>, <a class="el" href="modbus__sensor_8h_source.html#l00050">SensorData::timestamp</a> и <a class="el" href="modbus__sensor_8h_source.html#l00047">SensorData::valid</a>.</p>
+
 </div>
 </div>
 <a id="ae316f6943acb0b355ff8b0f878b08d04" name="ae316f6943acb0b355ff8b0f878b08d04"></a>
@@ -790,6 +903,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00588">588</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="modbus__sensor_8h_source.html#l00071">SensorData::buffer_filled</a>, <a class="el" href="modbus__sensor_8h_source.html#l00070">SensorData::buffer_index</a>, <a class="el" href="debug_8h_source.html#l00018">DEBUG_PRINTLN</a>, <a class="el" href="modbus__sensor_8h_source.html#l00065">SensorData::ec_buffer</a>, <a class="el" href="modbus__sensor_8h_source.html#l00064">SensorData::hum_buffer</a>, <a class="el" href="modbus__sensor_8h_source.html#l00069">SensorData::k_buffer</a>, <a class="el" href="modbus__sensor_8h_source.html#l00067">SensorData::n_buffer</a>, <a class="el" href="modbus__sensor_8h_source.html#l00068">SensorData::p_buffer</a>, <a class="el" href="modbus__sensor_8h_source.html#l00066">SensorData::ph_buffer</a> и <a class="el" href="modbus__sensor_8h_source.html#l00063">SensorData::temp_buffer</a>.</p>
 
 </div>
 </div>
@@ -810,18 +927,24 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 
 <p>Завершение передачи данных </p>
 <p>Выключает передатчик и включает приемник с необходимой задержкой. Важно: Задержка 50 мкс необходима для корректного переключения режимов </p>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00517">517</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00149">MODBUS_DE_PIN</a> и <a class="el" href="jxct__constants_8h_source.html#l00150">MODBUS_RE_PIN</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00080">setupModbus()</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00199">testModbusConnection()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="modbus__sensor_8h_a33b535e84f654e423bb627b25b7b3759_icgraph.png" border="0" usemap="#amodbus__sensor_8h_a33b535e84f654e423bb627b25b7b3759_icgraph" alt=""/></div>
 <map name="amodbus__sensor_8h_a33b535e84f654e423bb627b25b7b3759_icgraph" id="amodbus__sensor_8h_a33b535e84f654e423bb627b25b7b3759_icgraph">
-<area shape="rect" title="Завершение передачи данных" alt="" coords="310,31,434,57"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="135,5,234,32"/>
-<area shape="poly" title=" " alt="" coords="295,36,234,28,235,23,295,31"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="107,56,262,83"/>
-<area shape="poly" title=" " alt="" coords="295,57,263,61,262,56,294,52"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
-<area shape="poly" title=" " alt="" coords="119,21,59,21,59,16,119,16"/>
+<area shape="rect" title="Завершение передачи данных" alt="" coords="418,39,542,65"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="243,13,342,40"/>
+<area shape="poly" title=" " alt="" coords="403,44,342,36,343,31,403,39"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="215,64,370,91"/>
+<area shape="poly" title=" " alt="" coords="403,65,371,69,370,64,402,60"/>
+<area shape="rect" href="class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084" title=" " alt="" coords="5,5,167,48"/>
+<area shape="poly" title=" " alt="" coords="227,29,167,29,167,24,227,24"/>
 </map>
 </div>
 
@@ -844,18 +967,24 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 
 <p>Подготовка к передаче данных </p>
 <p>Включает передатчик и отключает приемник с необходимой задержкой. Важно: Задержка 50 мкс необходима для стабилизации сигналов на шине RS-485 </p>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00505">505</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="jxct__constants_8h_source.html#l00149">MODBUS_DE_PIN</a> и <a class="el" href="jxct__constants_8h_source.html#l00150">MODBUS_RE_PIN</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00080">setupModbus()</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00199">testModbusConnection()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="modbus__sensor_8h_a1c43d8a4afead0d0df29635242290377_icgraph.png" border="0" usemap="#amodbus__sensor_8h_a1c43d8a4afead0d0df29635242290377_icgraph" alt=""/></div>
 <map name="amodbus__sensor_8h_a1c43d8a4afead0d0df29635242290377_icgraph" id="amodbus__sensor_8h_a1c43d8a4afead0d0df29635242290377_icgraph">
-<area shape="rect" title="Подготовка к передаче данных" alt="" coords="310,31,427,57"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="135,5,234,32"/>
-<area shape="poly" title=" " alt="" coords="294,36,234,28,235,23,295,31"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="107,56,262,83"/>
-<area shape="poly" title=" " alt="" coords="295,57,263,61,262,56,294,52"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
-<area shape="poly" title=" " alt="" coords="119,21,59,21,59,16,119,16"/>
+<area shape="rect" title="Подготовка к передаче данных" alt="" coords="418,39,535,65"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="243,13,342,40"/>
+<area shape="poly" title=" " alt="" coords="402,44,342,36,343,31,403,39"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="215,64,370,91"/>
+<area shape="poly" title=" " alt="" coords="403,65,371,69,370,64,402,60"/>
+<area shape="rect" href="class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084" title=" " alt="" coords="5,5,167,48"/>
+<area shape="poly" title=" " alt="" coords="227,29,167,29,167,24,227,24"/>
 </map>
 </div>
 
@@ -875,6 +1004,12 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00547">547</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8cpp_source.html#l00061">logError()</a> и <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00153">readFirmwareVersion()</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00284">readSingleRegister()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -930,6 +1065,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00172">172</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="modbus__sensor_8cpp_source.html#l00017">modbus</a>, <a class="el" href="modbus__sensor_8h_source.html#l00018">REG_ERROR_STATUS</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00018">sensorData</a>.</p>
+
 </div>
 </div>
 <a id="a6444c2d436a57168cc75d4ef8529a6c8" name="a6444c2d436a57168cc75d4ef8529a6c8"></a>
@@ -946,6 +1085,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00153">153</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>, <a class="el" href="logger_8cpp_source.html#l00145">logSensor()</a>, <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00017">modbus</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00547">printModbusError()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -981,44 +1124,85 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00478">478</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="modbus__sensor_8cpp_source.html#l00442">finalizeSensorData()</a>, <a class="el" href="logger_8cpp_source.html#l00145">logSensor()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00319">readBasicParameters()</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00342">readNPKParameters()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00525">realSensorTask()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="modbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_cgraph.png" border="0" usemap="#amodbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_cgraph" alt=""/></div>
 <map name="amodbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_cgraph" id="amodbus__sensor_8h_ac3a37446a712d9ae94e76304361d35d2_cgraph">
-<area shape="rect" title=" " alt="" coords="5,183,121,209"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="555,107,686,133"/>
-<area shape="poly" title=" " alt="" coords="85,180,123,160,168,143,267,124,367,114,461,111,539,112,539,118,461,116,367,119,268,129,169,148,125,165,87,185"/>
-<area shape="rect" href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="202,259,282,285"/>
-<area shape="poly" title=" " alt="" coords="92,208,170,244,189,252,187,257,168,249,90,212"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="169,157,315,184"/>
-<area shape="poly" title=" " alt="" coords="121,185,153,181,154,186,121,190"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="171,208,312,235"/>
-<area shape="poly" title=" " alt="" coords="121,202,156,207,156,212,121,207"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b" title=" " alt="" coords="747,5,893,32"/>
-<area shape="poly" title=" " alt="" coords="640,104,687,73,745,42,759,36,761,40,748,46,690,78,643,108"/>
-<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="787,208,853,235"/>
-<area shape="poly" title=" " alt="" coords="677,131,700,143,716,156,725,169,734,181,748,194,773,206,771,211,745,198,730,185,721,172,712,160,697,148,674,136"/>
-<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="775,157,864,184"/>
-<area shape="poly" title=" " alt="" coords="677,131,761,153,760,158,675,137"/>
-<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="786,56,854,83"/>
-<area shape="poly" title=" " alt="" coords="675,103,770,79,771,84,677,109"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67" title=" " alt="" coords="752,107,888,133"/>
-<area shape="poly" title=" " alt="" coords="687,117,737,117,737,123,687,123"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94" title=" " alt="" coords="941,5,1104,32"/>
-<area shape="poly" title=" " alt="" coords="893,16,925,16,925,21,893,21"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="363,208,494,235"/>
-<area shape="poly" title=" " alt="" coords="295,182,363,201,362,206,293,187"/>
-<area shape="poly" title=" " alt="" coords="481,233,543,244,620,250,698,244,771,231,772,236,699,249,620,255,542,249,480,238"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="542,208,699,235"/>
-<area shape="poly" title=" " alt="" coords="495,219,527,219,527,224,495,224"/>
-<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="582,309,659,336"/>
-<area shape="poly" title=" " alt="" coords="452,233,544,288,570,301,567,305,541,293,449,237"/>
-<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="560,157,681,184"/>
-<area shape="poly" title=" " alt="" coords="482,205,552,186,553,191,483,210"/>
-<area shape="poly" title=" " alt="" coords="677,182,773,207,771,212,675,187"/>
-<area shape="poly" title=" " alt="" coords="681,168,759,168,759,173,681,173"/>
-<area shape="poly" title=" " alt="" coords="313,219,347,219,347,224,313,224"/>
+<area shape="rect" title=" " alt="" coords="5,312,121,339"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="176,337,308,364"/>
+<area shape="poly" title=" " alt="" coords="121,331,161,337,161,342,121,336"/>
+<area shape="rect" href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="202,388,282,415"/>
+<area shape="poly" title=" " alt="" coords="92,337,170,374,189,381,187,386,168,378,90,342"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="169,223,315,249"/>
+<area shape="poly" title=" " alt="" coords="91,309,199,254,201,259,93,314"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="171,140,312,167"/>
+<area shape="poly" title=" " alt="" coords="74,310,113,264,167,209,208,174,211,178,170,213,117,267,78,313"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b" title=" " alt="" coords="386,312,532,339"/>
+<area shape="poly" title=" " alt="" coords="308,340,370,333,370,338,308,346"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4cff8e34908a2deb0691e3809224685a" title=" " alt="" coords="363,427,554,453"/>
+<area shape="poly" title=" " alt="" coords="287,362,316,374,364,399,408,418,406,423,362,404,314,378,285,367"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="1211,183,1277,209"/>
+<area shape="poly" title=" " alt="" coords="256,335,301,299,330,280,362,264,448,235,519,222,591,218,683,219,882,219,1055,212,1195,199,1196,204,1055,217,882,224,683,224,591,224,519,227,450,240,364,269,333,284,304,303,259,339"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="1199,469,1289,496"/>
+<area shape="poly" title=" " alt="" coords="298,362,317,374,335,397,342,419,349,441,365,464,441,530,474,555,508,574,544,588,584,598,629,604,683,605,882,605,960,609,1021,613,1050,612,1080,607,1113,597,1150,580,1173,566,1193,547,1225,508,1229,511,1197,551,1176,570,1153,585,1115,602,1081,612,1051,617,1021,618,959,614,882,611,683,611,629,609,583,603,542,593,506,579,472,559,437,535,361,467,344,444,337,421,330,399,313,378,296,367"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="1039,309,1107,336"/>
+<area shape="poly" title=" " alt="" coords="267,334,310,314,362,297,450,281,525,271,591,267,654,267,783,277,947,295,1025,308,1024,313,947,300,782,282,653,272,591,272,525,277,451,286,364,303,312,319,269,339"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7a820fe61fb2c2163f98e3a273af4b55" title=" " alt="" coords="393,363,524,389"/>
+<area shape="poly" title=" " alt="" coords="308,356,378,364,377,369,308,361"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7dfe5a231d563e4498f0217c486af795" title=" " alt="" coords="391,645,526,672"/>
+<area shape="poly" title=" " alt="" coords="303,362,317,374,338,407,346,439,346,471,341,502,337,533,337,563,345,594,365,625,379,637,376,641,361,628,340,596,332,564,332,532,336,501,340,470,341,440,333,409,313,378,299,367"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67" title=" " alt="" coords="391,696,526,723"/>
+<area shape="poly" title=" " alt="" coords="303,363,317,374,341,415,349,454,347,493,340,532,333,570,332,607,340,645,350,663,365,682,379,693,375,697,361,686,346,666,336,646,326,608,328,569,335,531,342,493,344,455,336,417,313,378,300,367"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94" title=" " alt="" coords="602,312,766,339"/>
+<area shape="poly" title=" " alt="" coords="532,323,587,323,587,328,532,328"/>
+<area shape="rect" href="namespace_calibration_manager.html#abb872938a17efb733eaf531bb5c0a1dc" title=" " alt="" coords="617,419,751,461"/>
+<area shape="poly" title=" " alt="" coords="554,437,602,437,602,443,554,443"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#af586e2e5563baee2b53964aff0e1467d" title=" " alt="" coords="644,485,724,512"/>
+<area shape="poly" title=" " alt="" coords="513,451,630,482,628,487,512,456"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#aa9d6b97073bca78fb526c17bdbf816a6" title=" " alt="" coords="639,364,729,391"/>
+<area shape="poly" title=" " alt="" coords="509,424,624,391,625,396,510,429"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#aec93dd728b4450e4078a1e26954478e5" title=" " alt="" coords="644,536,724,563"/>
+<area shape="poly" title=" " alt="" coords="481,452,535,486,603,522,630,532,628,537,601,526,533,490,479,456"/>
+<area shape="rect" href="namespace_calibration_manager.html#a1ee0f1f244cb68eaa7e47a79deb452b6" title=" " alt="" coords="814,528,947,571"/>
+<area shape="poly" title=" " alt="" coords="746,459,767,471,792,492,815,514,821,517,818,522,812,518,788,496,764,476,743,464"/>
+<area shape="rect" href="namespace_calibration_manager.html#a15db87f3fcb09c7f4c5abc69009cef89" title=" " alt="" coords="814,461,947,504"/>
+<area shape="poly" title=" " alt="" coords="751,452,799,462,798,468,750,457"/>
+<area shape="rect" href="namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613" title=" " alt="" coords="1006,461,1140,504"/>
+<area shape="poly" title=" " alt="" coords="943,525,994,507,996,512,945,530"/>
+<area shape="rect" href="namespace_calibration_manager.html#a24c0b11ea08e757ae404289fa38e33b3" title=" " alt="" coords="1006,528,1140,571"/>
+<area shape="poly" title=" " alt="" coords="948,547,991,547,991,552,948,552"/>
+<area shape="poly" title=" " alt="" coords="1136,459,1149,447,1170,422,1188,393,1213,331,1229,272,1237,224,1242,225,1234,273,1218,333,1192,395,1175,425,1153,451,1139,463"/>
+<area shape="poly" title=" " alt="" coords="1140,480,1184,480,1184,485,1140,485"/>
+<area shape="poly" title=" " alt="" coords="948,480,991,480,991,485,948,485"/>
+<area shape="poly" title=" " alt="" coords="945,502,996,520,994,525,943,507"/>
+<area shape="rect" href="logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf" title=" " alt="" coords="1043,411,1103,437"/>
+<area shape="poly" title=" " alt="" coords="947,460,1028,435,1029,440,948,465"/>
+<area shape="poly" title=" " alt="" coords="928,459,945,447,970,424,993,397,1045,345,1049,349,997,400,974,427,949,451,931,463"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a" title=" " alt="" coords="851,309,910,336"/>
+<area shape="poly" title=" " alt="" coords="729,362,836,332,837,337,730,367"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#adf2ddb83f2189c9159aa7fe534217ea4" title=" " alt="" coords="851,360,910,387"/>
+<area shape="poly" title=" " alt="" coords="729,374,835,372,835,377,729,379"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#ae64bff1823ab30991e51b8d57c23be39" title=" " alt="" coords="851,411,910,437"/>
+<area shape="poly" title=" " alt="" coords="730,385,837,411,836,416,729,391"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="815,107,946,133"/>
+<area shape="poly" title=" " alt="" coords="288,220,362,200,475,178,563,164,765,136,799,131,800,136,766,141,564,170,476,183,364,205,289,225"/>
+<area shape="poly" title=" " alt="" coords="916,104,964,89,1024,78,1089,76,1122,82,1152,92,1177,107,1198,127,1230,167,1225,171,1194,130,1174,111,1150,97,1120,87,1089,82,1025,83,965,94,917,109"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="995,107,1151,133"/>
+<area shape="poly" title=" " alt="" coords="947,117,979,117,979,123,947,123"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="1035,5,1111,32"/>
+<area shape="poly" title=" " alt="" coords="901,104,994,48,1020,36,1023,41,996,53,903,109"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="1013,157,1133,184"/>
+<area shape="poly" title=" " alt="" coords="935,131,1005,150,1004,155,933,137"/>
+<area shape="poly" title=" " alt="" coords="1134,177,1196,186,1195,191,1133,182"/>
+<area shape="poly" title=" " alt="" coords="1086,183,1154,296,1232,454,1228,456,1149,299,1081,186"/>
+<area shape="poly" title=" " alt="" coords="313,147,799,122,799,127,313,152"/>
 </map>
 </div>
 <div class="dynheader">
@@ -1056,6 +1240,8 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <p>Инициализация Modbus и SP3485E. </p>
 <p>Настраивает пины управления SP3485E и инициализирует UART для Modbus. Важно: DE и RE управляются раздельно для лучшего контроля над временем переключения </p>
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00080">80</a></p>
+
 </div>
 </div>
 <a id="a4f1a431da8f1feb8a64e2c5f887056df" name="a4f1a431da8f1feb8a64e2c5f887056df"></a>
@@ -1073,6 +1259,8 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00541">541</a></p>
+
 </div>
 </div>
 <a id="aedb09484ba8020afc57e9e9e26012bf1" name="aedb09484ba8020afc57e9e9e26012bf1"></a>
@@ -1089,6 +1277,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00199">199</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>, <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>, <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>, <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00017">modbus</a>, <a class="el" href="jxct__constants_8h_source.html#l00149">MODBUS_DE_PIN</a>, <a class="el" href="jxct__constants_8h_source.html#l00150">MODBUS_RE_PIN</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00517">postTransmission()</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00505">preTransmission()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -1150,6 +1342,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <li>Проверяет переключение HIGH/LOW</li>
 <li>Проверяет возможность независимого управления передатчиком и приемником </li>
 </ol>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00045">45</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>, <a class="el" href="logger_8cpp_source.html#l00213">logSystem()</a>, <a class="el" href="logger_8cpp_source.html#l00078">logWarn()</a>, <a class="el" href="jxct__constants_8h_source.html#l00149">MODBUS_DE_PIN</a> и <a class="el" href="jxct__constants_8h_source.html#l00150">MODBUS_RE_PIN</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
@@ -1181,6 +1377,12 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00132">132</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="modbus__sensor_8h_source.html#l00038">SensorData::ec</a>, <a class="el" href="modbus__sensor_8h_source.html#l00037">SensorData::humidity</a>, <a class="el" href="modbus__sensor_8h_source.html#l00027">MAX_EC</a>, <a class="el" href="modbus__sensor_8h_source.html#l00025">MAX_HUMIDITY</a>, <a class="el" href="modbus__sensor_8h_source.html#l00031">MAX_NPK</a>, <a class="el" href="modbus__sensor_8h_source.html#l00029">MAX_PH</a>, <a class="el" href="modbus__sensor_8h_source.html#l00023">MAX_TEMPERATURE</a>, <a class="el" href="modbus__sensor_8h_source.html#l00026">MIN_EC</a>, <a class="el" href="modbus__sensor_8h_source.html#l00024">MIN_HUMIDITY</a>, <a class="el" href="modbus__sensor_8h_source.html#l00030">MIN_NPK</a>, <a class="el" href="modbus__sensor_8h_source.html#l00028">MIN_PH</a>, <a class="el" href="modbus__sensor_8h_source.html#l00022">MIN_TEMPERATURE</a>, <a class="el" href="modbus__sensor_8h_source.html#l00040">SensorData::nitrogen</a>, <a class="el" href="modbus__sensor_8h_source.html#l00039">SensorData::ph</a>, <a class="el" href="modbus__sensor_8h_source.html#l00041">SensorData::phosphorus</a>, <a class="el" href="modbus__sensor_8h_source.html#l00042">SensorData::potassium</a> и <a class="el" href="modbus__sensor_8h_source.html#l00036">SensorData::temperature</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00442">finalizeSensorData()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
@@ -1223,6 +1425,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00017">17</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00183">changeDeviceAddress()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00172">readErrorStatus()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00153">readFirmwareVersion()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00284">readSingleRegister()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00080">setupModbus()</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00199">testModbusConnection()</a>.</p>
+
 </div>
 </div>
 <a id="a5a90cc33c11a27aac5f56dcaac387c0d" name="a5a90cc33c11a27aac5f56dcaac387c0d"></a>
@@ -1244,6 +1450,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00019">19</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00442">finalizeSensorData()</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00144">getCachedData()</a>.</p>
 
 </div>
 </div>
@@ -1267,6 +1477,10 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00018">18</a></p>
+
+<p class="reference">Используется в <a class="el" href="fake__sensor_8cpp_source.html#l00014">fakeSensorTask()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00442">finalizeSensorData()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00730">getSensorData()</a>, <a class="el" href="main_8cpp_source.html#l00202">loop()</a>, <a class="el" href="mqtt__client_8cpp_source.html#l00440">publishSensorData()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00319">readBasicParameters()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00172">readErrorStatus()</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00342">readNPKParameters()</a>, <a class="el" href="thingspeak__client_8cpp_source.html#l00054">sendDataToThingSpeak()</a>, <a class="el" href="routes__service_8cpp_source.html#l00193">sendHealthJson()</a>, <a class="el" href="routes__data_8cpp_source.html#l00186">sendSensorJson()</a>, <a class="el" href="routes__service_8cpp_source.html#l00275">sendServiceStatusJson()</a> и <a class="el" href="mqtt__client_8cpp_source.html#l00364">shouldPublishMqtt()</a>.</p>
+
 </div>
 </div>
 <a id="acc5319275c2df675d59ff17f862d3e44" name="acc5319275c2df675d59ff17f862d3e44"></a>
@@ -1289,6 +1503,8 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00020">20</a></p>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -1297,7 +1513,7 @@ $(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="modbus__sensor_8h.html">modbus_sensor.h</a></li>
-    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:10. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

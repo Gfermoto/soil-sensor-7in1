@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: Файл include/debug_optimized.h</title>
+<title>JXCT Soil Sensor 7-in-1: Файл include/debug_optimized.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,11 +18,6 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,22 +27,10 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
    </div>
-   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -64,6 +47,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -202,6 +196,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Оптимизированная система отладки с условной компиляцией </p>
 <p>Заменяет избыточные DEBUG_PRINTF/DEBUG_PRINTLN на условные макросы </p>
+
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a></p>
 </div><h2 class="groupheader">Макросы</h2>
 <a id="a5bf4ca35d3d5283648b65b646a9d4710" name="a5bf4ca35d3d5283648b65b646a9d4710"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5bf4ca35d3d5283648b65b646a9d4710">&#9670;&#160;</a></span>CRITICAL_DEBUG_PRINT</h2>
@@ -220,6 +216,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <b>Макроопределение:</b><div class="fragment"><div class="line">    Serial.print(<span class="stringliteral">&quot;[CRITICAL] &quot;</span>); \</div>
 <div class="line">    Serial.print(x)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00257">257</a></p>
+
 </div>
 </div>
 <a id="afd5d375337ca9d6bebf6b03bc3b7af43" name="afd5d375337ca9d6bebf6b03bc3b7af43"></a>
@@ -242,6 +240,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 </div><div class="memdoc">
 <b>Макроопределение:</b><div class="fragment"><div class="line">Serial.printf(<span class="stringliteral">&quot;[CRITICAL] &quot;</span> fmt, ##__VA_ARGS__)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00263">263</a></p>
+
 </div>
 </div>
 <a id="aca5049ad9737772e69632c4ffde5661b" name="aca5049ad9737772e69632c4ffde5661b"></a>
@@ -261,6 +261,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <b>Макроопределение:</b><div class="fragment"><div class="line">    Serial.print(<span class="stringliteral">&quot;[CRITICAL] &quot;</span>);  \</div>
 <div class="line">    Serial.println(x)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00260">260</a></p>
+
 </div>
 </div>
 <a id="a7d2ae674cad5299a52b0e7dceac10087" name="a7d2ae674cad5299a52b0e7dceac10087"></a>
@@ -274,6 +276,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00018">18</a></p>
 
 </div>
 </div>
@@ -292,8 +296,10 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 <b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="debug_8h.html#a8e30ff0704664fcb13dabf0c4dc5c8f5">DEBUG_PRINTLN</a>(<span class="stringliteral">&quot;[BATCH] &quot;</span> msg)</div>
-<div class="ttc" id="adebug_8h_html_a8e30ff0704664fcb13dabf0c4dc5c8f5"><div class="ttname"><a href="debug_8h.html#a8e30ff0704664fcb13dabf0c4dc5c8f5">DEBUG_PRINTLN</a></div><div class="ttdeci">#define DEBUG_PRINTLN(x)</div><div class="ttdef"><b>Определения</b> debug.h:18</div></div>
+<div class="ttc" id="adebug_8h_html_a8e30ff0704664fcb13dabf0c4dc5c8f5"><div class="ttname"><a href="debug_8h.html#a8e30ff0704664fcb13dabf0c4dc5c8f5">DEBUG_PRINTLN</a></div><div class="ttdeci">#define DEBUG_PRINTLN(x)</div><div class="ttdef"><b>Определения</b> <a href="debug_8h_source.html#l00018">debug.h:18</a></div></div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00196">196</a></p>
+
 </div>
 </div>
 <a id="a839e542538d5bd02cba6778be55a6eb9" name="a839e542538d5bd02cba6778be55a6eb9"></a>
@@ -312,6 +318,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 </div><div class="memdoc">
 <b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="debug_8h.html#a8e30ff0704664fcb13dabf0c4dc5c8f5">DEBUG_PRINTLN</a>(<span class="stringliteral">&quot;[BUTTON] &quot;</span> msg)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00197">197</a></p>
+
 </div>
 </div>
 <a id="ab166ebe03f665d58b3593ddce59bb560" name="ab166ebe03f665d58b3593ddce59bb560"></a>
@@ -333,8 +341,10 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 <b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#ae4d36024b895e5f526ef89071605badb">DEBUG_MODBUS_PRINTF</a>(<span class="stringliteral">&quot;[MOVING_AVG] &quot;</span> fmt <span class="stringliteral">&quot;\n&quot;</span>, ##__VA_ARGS__)</div>
-<div class="ttc" id="adebug__optimized_8h_html_ae4d36024b895e5f526ef89071605badb"><div class="ttname"><a href="#ae4d36024b895e5f526ef89071605badb">DEBUG_MODBUS_PRINTF</a></div><div class="ttdeci">#define DEBUG_MODBUS_PRINTF(fmt,...)</div><div class="ttdef"><b>Определения</b> debug_optimized.h:63</div></div>
+<div class="ttc" id="adebug__optimized_8h_html_ae4d36024b895e5f526ef89071605badb"><div class="ttname"><a href="#ae4d36024b895e5f526ef89071605badb">DEBUG_MODBUS_PRINTF</a></div><div class="ttdeci">#define DEBUG_MODBUS_PRINTF(fmt,...)</div><div class="ttdef"><b>Определения</b> <a href="debug__optimized_8h_source.html#l00063">debug_optimized.h:63</a></div></div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00193">193</a></p>
+
 </div>
 </div>
 <a id="a54fbc5700cffd26a61494ed6a400cc45" name="a54fbc5700cffd26a61494ed6a400cc45"></a>
@@ -355,6 +365,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                         \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00055">55</a></p>
+
 </div>
 </div>
 <a id="ae4d36024b895e5f526ef89071605badb" name="ae4d36024b895e5f526ef89071605badb"></a>
@@ -379,6 +391,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                                 \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00063">63</a></p>
+
 </div>
 </div>
 <a id="ae53267bde79e149c80877da5ae362867" name="ae53267bde79e149c80877da5ae362867"></a>
@@ -399,6 +413,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                           \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00059">59</a></p>
+
 </div>
 </div>
 <a id="aac8300f6f06573e98f788bd79619c046" name="aac8300f6f06573e98f788bd79619c046"></a>
@@ -416,8 +432,10 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 <b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#ae53267bde79e149c80877da5ae362867">DEBUG_MODBUS_PRINTLN</a>(<span class="stringliteral">&quot;RX режим&quot;</span>)</div>
-<div class="ttc" id="adebug__optimized_8h_html_ae53267bde79e149c80877da5ae362867"><div class="ttname"><a href="#ae53267bde79e149c80877da5ae362867">DEBUG_MODBUS_PRINTLN</a></div><div class="ttdeci">#define DEBUG_MODBUS_PRINTLN(x)</div><div class="ttdef"><b>Определения</b> debug_optimized.h:59</div></div>
+<div class="ttc" id="adebug__optimized_8h_html_ae53267bde79e149c80877da5ae362867"><div class="ttname"><a href="#ae53267bde79e149c80877da5ae362867">DEBUG_MODBUS_PRINTLN</a></div><div class="ttdeci">#define DEBUG_MODBUS_PRINTLN(x)</div><div class="ttdef"><b>Определения</b> <a href="debug__optimized_8h_source.html#l00059">debug_optimized.h:59</a></div></div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00192">192</a></p>
+
 </div>
 </div>
 <a id="a374ac3552d0860c64fdc74a97b543b4e" name="a374ac3552d0860c64fdc74a97b543b4e"></a>
@@ -436,6 +454,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 </div><div class="memdoc">
 <b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#ae53267bde79e149c80877da5ae362867">DEBUG_MODBUS_PRINTLN</a>(<span class="stringliteral">&quot;TX режим&quot;</span>)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00191">191</a></p>
+
 </div>
 </div>
 <a id="a8423cfacd2a82de4ee8647dae55f10c5" name="a8423cfacd2a82de4ee8647dae55f10c5"></a>
@@ -457,8 +477,10 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 <b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#aaa225a0f27c84d8f7eb7747758be4732">DEBUG_MQTT_PRINTF</a>(<span class="stringliteral">&quot;[DELTA] &quot;</span> fmt <span class="stringliteral">&quot;\n&quot;</span>, ##__VA_ARGS__)</div>
-<div class="ttc" id="adebug__optimized_8h_html_aaa225a0f27c84d8f7eb7747758be4732"><div class="ttname"><a href="#aaa225a0f27c84d8f7eb7747758be4732">DEBUG_MQTT_PRINTF</a></div><div class="ttdeci">#define DEBUG_MQTT_PRINTF(fmt,...)</div><div class="ttdef"><b>Определения</b> debug_optimized.h:86</div></div>
+<div class="ttc" id="adebug__optimized_8h_html_aaa225a0f27c84d8f7eb7747758be4732"><div class="ttname"><a href="#aaa225a0f27c84d8f7eb7747758be4732">DEBUG_MQTT_PRINTF</a></div><div class="ttdeci">#define DEBUG_MQTT_PRINTF(fmt,...)</div><div class="ttdef"><b>Определения</b> <a href="debug__optimized_8h_source.html#l00086">debug_optimized.h:86</a></div></div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00186">186</a></p>
+
 </div>
 </div>
 <a id="a78185c8405fcd043bb18acaf5373de41" name="a78185c8405fcd043bb18acaf5373de41"></a>
@@ -481,6 +503,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 </div><div class="memdoc">
 <b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#aaa225a0f27c84d8f7eb7747758be4732">DEBUG_MQTT_PRINTF</a>(<span class="stringliteral">&quot;[DNS] &quot;</span> fmt <span class="stringliteral">&quot;\n&quot;</span>, ##__VA_ARGS__)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00187">187</a></p>
+
 </div>
 </div>
 <a id="a6cdde71e1eb3d615f0c74da6ea3e625c" name="a6cdde71e1eb3d615f0c74da6ea3e625c"></a>
@@ -503,6 +527,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 </div><div class="memdoc">
 <b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#aaa225a0f27c84d8f7eb7747758be4732">DEBUG_MQTT_PRINTF</a>(<span class="stringliteral">&quot;[HA] &quot;</span> fmt <span class="stringliteral">&quot;\n&quot;</span>, ##__VA_ARGS__)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00188">188</a></p>
+
 </div>
 </div>
 <a id="a97da1769619ef98d76b61c44d397f9e3" name="a97da1769619ef98d76b61c44d397f9e3"></a>
@@ -523,6 +549,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                       \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00078">78</a></p>
+
 </div>
 </div>
 <a id="aaa225a0f27c84d8f7eb7747758be4732" name="aaa225a0f27c84d8f7eb7747758be4732"></a>
@@ -547,6 +575,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                               \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00086">86</a></p>
+
 </div>
 </div>
 <a id="ad5b6145964771adcf15eabf41b7e3e01" name="ad5b6145964771adcf15eabf41b7e3e01"></a>
@@ -567,6 +597,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                         \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00082">82</a></p>
+
 </div>
 </div>
 <a id="af6551f0b4c3964c3128f808e7bf987c7" name="af6551f0b4c3964c3128f808e7bf987c7"></a>
@@ -587,6 +619,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                  \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00031">31</a></p>
+
 </div>
 </div>
 <a id="aa97e8dc28005a1241103bef65128944b" name="aa97e8dc28005a1241103bef65128944b"></a>
@@ -611,6 +645,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                          \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00039">39</a></p>
+
 </div>
 </div>
 <a id="a8e30ff0704664fcb13dabf0c4dc5c8f5" name="a8e30ff0704664fcb13dabf0c4dc5c8f5"></a>
@@ -631,6 +667,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                    \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00035">35</a></p>
+
 </div>
 </div>
 <a id="a2408c7052942f2a0ac696db06146ef10" name="a2408c7052942f2a0ac696db06146ef10"></a>
@@ -651,6 +689,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                       \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00101">101</a></p>
+
 </div>
 </div>
 <a id="ad77ad7c975f7f577f0f69b2207f28b68" name="ad77ad7c975f7f577f0f69b2207f28b68"></a>
@@ -675,6 +715,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                               \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00109">109</a></p>
+
 </div>
 </div>
 <a id="a63cac6dc284968cd7eba8e2f7c28f052" name="a63cac6dc284968cd7eba8e2f7c28f052"></a>
@@ -695,6 +737,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div class="line">    {                         \</div>
 <div class="line">    } <span class="keywordflow">while</span> (0)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00105">105</a></p>
+
 </div>
 </div>
 <a id="a10b2de8934fb63e17b4d31b54febf824" name="a10b2de8934fb63e17b4d31b54febf824"></a>
@@ -716,8 +760,10 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 <b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="debug_8h.html#aa97e8dc28005a1241103bef65128944b">DEBUG_PRINTF</a>(fmt, ##__VA_ARGS__)</div>
-<div class="ttc" id="adebug_8h_html_aa97e8dc28005a1241103bef65128944b"><div class="ttname"><a href="debug_8h.html#aa97e8dc28005a1241103bef65128944b">DEBUG_PRINTF</a></div><div class="ttdeci">#define DEBUG_PRINTF(fmt,...)</div><div class="ttdef"><b>Определения</b> debug.h:19</div></div>
+<div class="ttc" id="adebug_8h_html_aa97e8dc28005a1241103bef65128944b"><div class="ttname"><a href="debug_8h.html#aa97e8dc28005a1241103bef65128944b">DEBUG_PRINTF</a></div><div class="ttdeci">#define DEBUG_PRINTF(fmt,...)</div><div class="ttdef"><b>Определения</b> <a href="debug_8h_source.html#l00019">debug.h:19</a></div></div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00253">253</a></p>
+
 </div>
 </div>
 <a id="a21afe95f02a9a06fc9854864a1a9d4bd" name="a21afe95f02a9a06fc9854864a1a9d4bd"></a>
@@ -736,6 +782,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 </div><div class="memdoc">
 <b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_define" href="debug_8h.html#a8e30ff0704664fcb13dabf0c4dc5c8f5">DEBUG_PRINTLN</a>(msg)</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00254">254</a></p>
+
 </div>
 </div>
 <h2 class="groupheader">Функции</h2>
@@ -781,6 +829,10 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
   </dd>
 </dl>
 
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00125">125</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8cpp_source.html#l00011">currentLogLevel</a>.</p>
+
 </div>
 </div>
 <a id="a106b655aa8faea8942757638731ebf0d" name="a106b655aa8faea8942757638731ebf0d"></a>
@@ -824,6 +876,10 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
   </table>
   </dd>
 </dl>
+
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00145">145</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="logger_8cpp_source.html#l00011">currentLogLevel</a> и <a class="el" href="jxct__constants_8h_source.html#l00179">LOG_LEVEL_DEBUG</a>.</p>
 
 </div>
 </div>
@@ -869,6 +925,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
   </dd>
 </dl>
 
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00169">169</a></p>
+
 </div>
 </div>
 <a id="a795c0e9d5464893e565a264b0fb6e75e" name="a795c0e9d5464893e565a264b0fb6e75e"></a>
@@ -893,6 +951,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00244">244</a></p>
 
 </div>
 </div>
@@ -919,6 +979,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00243">243</a></p>
+
 </div>
 </div>
 <a id="a748fe53bf9a9627f05f3d3697ff26971" name="a748fe53bf9a9627f05f3d3697ff26971"></a>
@@ -944,6 +1006,8 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="debug__optimized_8h_source.html">debug_optimized.h</a> строка <a class="el" href="debug__optimized_8h_source.html#l00245">245</a></p>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -952,7 +1016,7 @@ $(function(){initNavTree('debug__optimized_8h.html',''); initResizable(true); })
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="debug__optimized_8h.html">debug_optimized.h</a></li>
-    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:10. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

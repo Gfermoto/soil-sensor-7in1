@@ -11,7 +11,7 @@ var main_8cpp =
     [ "setupWiFi", "main_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767", null ],
     [ "startFakeSensorTask", "main_8cpp.html#abd277e18147efb1103e91eac01627612", null ],
     [ "startRealSensorTask", "main_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df", null ],
-    [ "lastDataPublishTime", "main_8cpp.html#a6d9eac2bbb6f1354d8abcc8072978a4e", null ],
+    [ "lastDataPublish", "main_8cpp.html#a45be1f3493abbfa74d29801ba12ec264", null ],
     [ "lastNtpUpdate", "main_8cpp.html#acc1f621a9291ba211ffa0100abe000ca", null ],
     [ "lastStatusPrint", "main_8cpp.html#a3ddd577fce6fb4aace7649231884939e", null ],
     [ "ntpUDP", "main_8cpp.html#a22f33e7e05df58bb6145bb6e543e232a", null ],

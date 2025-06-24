@@ -125,7 +125,7 @@ http://IP_УСТРОЙСТВА/config_manager
 
 ### Пример готового файла для продакшена
 ```json
-{"mqtt":{"enabled":true,"server":"192.168.1.100","port":1883,"user":"sensor_user","password":"secret123"},"thingspeak":{"enabled":true,"channel_id":"1234567","api_key":"ABCD1234EFGH5678"},"intervals":{"sensor_read":5000,"mqtt_publish":60000,"thingspeak":900000,"web_update":5000},"delta_filter":{"temperature":0.10,"humidity":0.50,"ph":0.01,"ec":10.00,"npk":1.00},"moving_average":{"window":5,"force_cycles":5,"algorithm":0,"outlier_filter":0},"flags":{"hass_enabled":true,"real_sensor":true}}
+{"mqtt":{"enabled":true,"server":"192.168.4.1","port":1883,"user":"sensor_user","password":"secret123"},"thingspeak":{"enabled":true,"channel_id":"1234567","api_key":"ABCD1234EFGH5678"},"intervals":{"sensor_read":5000,"mqtt_publish":60000,"thingspeak":900000,"web_update":5000},"delta_filter":{"temperature":0.10,"humidity":0.50,"ph":0.01,"ec":10.00,"npk":1.00},"moving_average":{"window":5,"force_cycles":5,"algorithm":0,"outlier_filter":0},"flags":{"hass_enabled":true,"real_sensor":true}}
 ```
 
 ## 🔧 Технические детали

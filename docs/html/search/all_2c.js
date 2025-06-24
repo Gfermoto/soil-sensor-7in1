@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['📄_20лицензия_0',['📄 Лицензия',['../index.html#autotoc_md14',1,'']]]
+  ['✅_20strong_20recent_20improvements_20strong_0',['✅ &lt;strong&gt;Recent Improvements&lt;/strong&gt;',['../index.html#autotoc_md47',1,'']]]
 ];

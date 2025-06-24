@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: Исходный файл include/jxct_config_vars.h</title>
+<title>JXCT Soil Sensor 7-in-1: Исходный файл include/jxct_config_vars.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,11 +18,6 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,22 +27,10 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
    </div>
-   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -64,6 +47,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -205,40 +199,59 @@ $(function(){initNavTree('jxct__config__vars_8h_source.html',''); initResizable(
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    uint8_t filterAlgorithm;       <span class="comment">// 0=среднее, 1=медиана</span></div>
 <div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    uint8_t outlierFilterEnabled;  <span class="comment">// 0=отключен, 1=включен (&gt;2σ)</span></div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// Битовые поля для boolean флагов (экономия 4 байта)</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keyword">struct </span><a class="code hl_function" href="jxct__config__vars_8h.html#a482c09d923aa8219c0d59569ffe2d231">__attribute__</a>((packed))</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    {</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>        uint8_t hassEnabled : 1;        <span class="comment">// 1 бит вместо 1 байта</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>        uint8_t useRealSensor : 1;      <span class="comment">// 1 бит вместо 1 байта</span></div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>        uint8_t mqttEnabled : 1;        <span class="comment">// 1 бит вместо 1 байта</span></div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>        uint8_t thingSpeakEnabled : 1;  <span class="comment">// 1 бит вместо 1 байта</span></div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>        uint8_t reserved : 4;           <span class="comment">// Резерв для будущих флагов</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    } flags;</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>};</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// v2.5.1: Настройки калибровки</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    uint8_t soilProfile;          <span class="comment">// 0 = sand, 1 = loam, 2 = peat</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// v2.6.0: Агро-профили</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordtype">float</span> latitude;   <span class="comment">// Широта устройства (градусы)</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">float</span> longitude;  <span class="comment">// Долгота устройства (градусы)</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordtype">char</span> cropId[16];  <span class="comment">// Идентификатор культуры (&quot;tomato&quot;, ...)</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// v2.6.0: Детектор полива</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">float</span> irrigationSpikeThreshold;    <span class="comment">// % прироста влажности</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    uint16_t irrigationHoldMinutes;    <span class="comment">// мин удержания повышенной влажности</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    uint16_t postIrrigationHoldMinutes; <span class="comment">// мин игнорировать коррекцию после полива</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="comment">// v2.6.1: Тип среды выращивания (0=outdoor,1=greenhouse,2=indoor)</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    uint8_t environmentType;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="comment">// Битовые поля для boolean флагов (экономия 4 байта)</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">struct </span><a class="code hl_function" href="jxct__config__vars_8h.html#a482c09d923aa8219c0d59569ffe2d231">__attribute__</a>((packed))</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        uint8_t hassEnabled : 1;        <span class="comment">// 1 бит вместо 1 байта</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        uint8_t useRealSensor : 1;      <span class="comment">// 1 бит вместо 1 байта</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        uint8_t mqttEnabled : 1;        <span class="comment">// 1 бит вместо 1 байта</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        uint8_t thingSpeakEnabled : 1;  <span class="comment">// 1 бит вместо 1 байта</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        uint8_t calibrationEnabled : 1; <span class="comment">// Включена ли компенсация</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        uint8_t isGreenhouse : 1;       <span class="comment">// 1 = теплица, 0 = открытый грунт (устарело)</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        uint8_t seasonalAdjustEnabled : 1; <span class="comment">// Учитывать сезонные коэффициенты</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        uint8_t autoOtaEnabled : 1;     <span class="comment">// автоматическое OTA разрешено</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    } flags;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>};</div>
 </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">extern</span> Config <a class="code hl_variable" href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a>;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="keyword">extern</span> Preferences <a class="code hl_variable" href="config_8cpp.html#a6ea06cf7b8092a0adaf07614d7ece59d">preferences</a>;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">// Объявления функций работы с конфигом</span></div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><span class="keywordtype">void</span> <a class="code hl_function" href="jxct__config__vars_8h.html#ad5ed6ddd9940c0097cc91774056df1c2">loadConfig</a>();</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keywordtype">void</span> <a class="code hl_function" href="jxct__config__vars_8h.html#a688d00bbabd28fbaf9e0c50eca3adeae">saveConfig</a>();</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><span class="keywordtype">void</span> <a class="code hl_function" href="jxct__config__vars_8h.html#a6fa5204bcafe1db397da4a87b1690061">resetConfig</a>();</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="keywordtype">bool</span> <a class="code hl_function" href="jxct__config__vars_8h.html#aeb61f04cd3b4b68e8146d85c447d70d1">isConfigValid</a>();</div>
-<div class="ttc" id="aconfig_8cpp_html_a4a8dd3a2de125b72d4fe6251a0a271b5"><div class="ttname"><a href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a></div><div class="ttdeci">Config config</div><div class="ttdef"><b>Определения</b> config.cpp:34</div></div>
-<div class="ttc" id="aconfig_8cpp_html_a6ea06cf7b8092a0adaf07614d7ece59d"><div class="ttname"><a href="config_8cpp.html#a6ea06cf7b8092a0adaf07614d7ece59d">preferences</a></div><div class="ttdeci">Preferences preferences</div><div class="ttdef"><b>Определения</b> config.cpp:35</div></div>
-<div class="ttc" id="ajxct__config__vars_8h_html_a482c09d923aa8219c0d59569ffe2d231"><div class="ttname"><a href="jxct__config__vars_8h.html#a482c09d923aa8219c0d59569ffe2d231">__attribute__</a></div><div class="ttdeci">struct __attribute__((packed)) Config</div><div class="ttdef"><b>Определения</b> jxct_config_vars.h:45</div></div>
-<div class="ttc" id="ajxct__config__vars_8h_html_a688d00bbabd28fbaf9e0c50eca3adeae"><div class="ttname"><a href="jxct__config__vars_8h.html#a688d00bbabd28fbaf9e0c50eca3adeae">saveConfig</a></div><div class="ttdeci">void saveConfig()</div><div class="ttdef"><b>Определения</b> config.cpp:111</div></div>
-<div class="ttc" id="ajxct__config__vars_8h_html_a6fa5204bcafe1db397da4a87b1690061"><div class="ttname"><a href="jxct__config__vars_8h.html#a6fa5204bcafe1db397da4a87b1690061">resetConfig</a></div><div class="ttdeci">void resetConfig()</div><div class="ttdef"><b>Определения</b> config.cpp:180</div></div>
-<div class="ttc" id="ajxct__config__vars_8h_html_ad5ed6ddd9940c0097cc91774056df1c2"><div class="ttname"><a href="jxct__config__vars_8h.html#ad5ed6ddd9940c0097cc91774056df1c2">loadConfig</a></div><div class="ttdeci">void loadConfig()</div><div class="ttdef"><b>Определения</b> config.cpp:37</div></div>
-<div class="ttc" id="ajxct__config__vars_8h_html_aeb61f04cd3b4b68e8146d85c447d70d1"><div class="ttname"><a href="jxct__config__vars_8h.html#aeb61f04cd3b4b68e8146d85c447d70d1">isConfigValid</a></div><div class="ttdeci">bool isConfigValid()</div><div class="ttdef"><b>Определения</b> config.cpp:258</div></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="keyword">extern</span> Config <a class="code hl_variable" href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="keyword">extern</span> Preferences <a class="code hl_variable" href="config_8cpp.html#a6ea06cf7b8092a0adaf07614d7ece59d">preferences</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">// Объявления функций работы с конфигом</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="keywordtype">void</span> <a class="code hl_function" href="jxct__config__vars_8h.html#ad5ed6ddd9940c0097cc91774056df1c2">loadConfig</a>();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keywordtype">void</span> <a class="code hl_function" href="jxct__config__vars_8h.html#a688d00bbabd28fbaf9e0c50eca3adeae">saveConfig</a>();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keywordtype">void</span> <a class="code hl_function" href="jxct__config__vars_8h.html#a6fa5204bcafe1db397da4a87b1690061">resetConfig</a>();</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="keywordtype">bool</span> <a class="code hl_function" href="jxct__config__vars_8h.html#aeb61f04cd3b4b68e8146d85c447d70d1">isConfigValid</a>();</div>
+<div class="ttc" id="aconfig_8cpp_html_a4a8dd3a2de125b72d4fe6251a0a271b5"><div class="ttname"><a href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a></div><div class="ttdeci">Config config</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00034">config.cpp:34</a></div></div>
+<div class="ttc" id="aconfig_8cpp_html_a6ea06cf7b8092a0adaf07614d7ece59d"><div class="ttname"><a href="config_8cpp.html#a6ea06cf7b8092a0adaf07614d7ece59d">preferences</a></div><div class="ttdeci">Preferences preferences</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00035">config.cpp:35</a></div></div>
+<div class="ttc" id="ajxct__config__vars_8h_html_a482c09d923aa8219c0d59569ffe2d231"><div class="ttname"><a href="jxct__config__vars_8h.html#a482c09d923aa8219c0d59569ffe2d231">__attribute__</a></div><div class="ttdeci">struct __attribute__((packed)) Config</div><div class="ttdef"><b>Определения</b> <a href="#l00001">jxct_config_vars.h:45</a></div></div>
+<div class="ttc" id="ajxct__config__vars_8h_html_a688d00bbabd28fbaf9e0c50eca3adeae"><div class="ttname"><a href="jxct__config__vars_8h.html#a688d00bbabd28fbaf9e0c50eca3adeae">saveConfig</a></div><div class="ttdeci">void saveConfig()</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00128">config.cpp:128</a></div></div>
+<div class="ttc" id="ajxct__config__vars_8h_html_a6fa5204bcafe1db397da4a87b1690061"><div class="ttname"><a href="jxct__config__vars_8h.html#a6fa5204bcafe1db397da4a87b1690061">resetConfig</a></div><div class="ttdeci">void resetConfig()</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00212">config.cpp:212</a></div></div>
+<div class="ttc" id="ajxct__config__vars_8h_html_ad5ed6ddd9940c0097cc91774056df1c2"><div class="ttname"><a href="jxct__config__vars_8h.html#ad5ed6ddd9940c0097cc91774056df1c2">loadConfig</a></div><div class="ttdeci">void loadConfig()</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00039">config.cpp:39</a></div></div>
+<div class="ttc" id="ajxct__config__vars_8h_html_aeb61f04cd3b4b68e8146d85c447d70d1"><div class="ttname"><a href="jxct__config__vars_8h.html#aeb61f04cd3b4b68e8146d85c447d70d1">isConfigValid</a></div><div class="ttdeci">bool isConfigValid()</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00304">config.cpp:304</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="jxct__config__vars_8h.html">jxct_config_vars.h</a></li>
-    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:09. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

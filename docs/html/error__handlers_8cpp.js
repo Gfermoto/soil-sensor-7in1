@@ -1,5 +1,6 @@
 var error__handlers_8cpp =
 [
+    [ "API_CONFIG_EXPORT", "error__handlers_8cpp.html#a279a0c067a8addd61f08d5fd7993ec35", null ],
     [ "checkRouteAccess", "error__handlers_8cpp.html#a6d52ae788bd99342b84e28a1af12392b", null ],
     [ "generateValidationErrorResponse", "error__handlers_8cpp.html#a6fe24c5dc21b012791aecd16ab4dad96", null ],
     [ "handleCriticalError", "error__handlers_8cpp.html#a200ff078a206ee5a0b44bc0c5411f3f5", null ],

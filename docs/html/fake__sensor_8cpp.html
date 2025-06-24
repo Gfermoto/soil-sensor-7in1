@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: Файл src/fake_sensor.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/fake_sensor.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,11 +18,6 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,22 +27,10 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
    </div>
-   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -64,6 +47,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -113,6 +107,8 @@ $(function(){initNavTree('fake__sensor_8cpp.html',''); initResizable(true); });
 <a href="#details">Подробнее...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="fake__sensor_8h_source.html">fake_sensor.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sensor__compensation_8h_source.html">sensor_compensation.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="debug_8h_source.html">debug.h</a>&quot;</code><br />
 <code>#include &lt;Arduino.h&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
@@ -120,22 +116,31 @@ $(function(){initNavTree('fake__sensor_8cpp.html',''); initResizable(true); });
 <div class="dyncontent">
 <div class="center"><img src="fake__sensor_8cpp__incl.png" border="0" usemap="#asrc_2fake__sensor_8cpp" alt=""/></div>
 <map name="asrc_2fake__sensor_8cpp" id="asrc_2fake__sensor_8cpp">
-<area shape="rect" title="Эмуляция работы датчика для тестирования" alt="" coords="111,5,251,32"/>
+<area shape="rect" title="Эмуляция работы датчика для тестирования" alt="" coords="262,5,401,32"/>
 <area shape="rect" href="fake__sensor_8h.html" title=" " alt="" coords="5,80,109,107"/>
-<area shape="poly" title=" " alt="" coords="161,35,93,74,90,70,158,30"/>
-<area shape="rect" href="modbus__sensor_8h.html" title=" " alt="" coords="275,80,399,107"/>
-<area shape="poly" title=" " alt="" coords="209,30,297,71,295,75,207,35"/>
-<area shape="rect" title=" " alt="" coords="178,155,254,181"/>
-<area shape="poly" title=" " alt="" coords="179,33,172,67,171,86,174,106,183,125,195,141,191,145,178,127,169,107,165,87,166,66,174,32"/>
-<area shape="rect" href="debug_8h.html" title=" " alt="" coords="183,80,251,107"/>
-<area shape="poly" title=" " alt="" coords="190,31,206,65,202,67,185,34"/>
-<area shape="poly" title=" " alt="" coords="317,110,251,149,249,144,315,105"/>
-<area shape="rect" title=" " alt="" coords="278,155,396,181"/>
-<area shape="poly" title=" " alt="" coords="340,107,340,139,334,139,334,107"/>
-<area shape="poly" title=" " alt="" coords="219,107,219,139,214,139,214,107"/>
+<area shape="poly" title=" " alt="" coords="284,35,121,78,119,73,283,30"/>
+<area shape="rect" href="modbus__sensor_8h.html" title=" " alt="" coords="459,80,583,107"/>
+<area shape="poly" title=" " alt="" coords="366,30,474,71,473,76,364,35"/>
+<area shape="rect" title=" " alt="" coords="294,155,370,181"/>
+<area shape="poly" title=" " alt="" coords="262,31,213,48,191,63,174,81,168,96,170,108,179,119,193,129,234,145,279,156,278,161,232,150,191,134,175,123,165,110,163,95,169,79,188,59,211,44,260,26"/>
+<area shape="rect" href="sensor__compensation_8h.html" title="Алгоритмы коррекции показаний датчиков" alt="" coords="184,80,343,107"/>
+<area shape="poly" title=" " alt="" coords="322,34,288,70,284,67,318,31"/>
+<area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="607,80,734,107"/>
+<area shape="poly" title=" " alt="" coords="392,30,597,74,596,79,390,35"/>
+<area shape="rect" href="debug_8h.html" title=" " alt="" coords="367,80,435,107"/>
+<area shape="poly" title=" " alt="" coords="346,31,380,67,377,70,342,34"/>
+<area shape="poly" title=" " alt="" coords="489,110,380,151,378,146,487,105"/>
+<area shape="rect" title=" " alt="" coords="462,155,580,181"/>
+<area shape="poly" title=" " alt="" coords="524,107,524,139,518,139,518,107"/>
+<area shape="poly" title=" " alt="" coords="277,105,311,141,308,145,274,109"/>
+<area shape="rect" title=" " alt="" coords="619,155,722,181"/>
+<area shape="poly" title=" " alt="" coords="673,107,673,139,668,139,668,107"/>
+<area shape="poly" title=" " alt="" coords="391,109,356,145,352,141,387,105"/>
 </map>
 </div>
-</div><table class="memberdecls">
+</div>
+<p><a href="fake__sensor_8cpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
 <tr class="memitem:a88a6670c876eb66b3358db30715c4416" id="r_a88a6670c876eb66b3358db30715c4416"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88a6670c876eb66b3358db30715c4416">fakeSensorTask</a> (void *pvParameters)</td></tr>
@@ -146,6 +151,8 @@ $(function(){initNavTree('fake__sensor_8cpp.html',''); initResizable(true); });
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Эмуляция работы датчика для тестирования </p>
 <p>Генерация тестовых данных для отладки и демонстрации работы системы без реального оборудования. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="fake__sensor_8cpp_source.html">fake_sensor.cpp</a></p>
 </div><h2 class="groupheader">Функции</h2>
 <a id="a88a6670c876eb66b3358db30715c4416" name="a88a6670c876eb66b3358db30715c4416"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a88a6670c876eb66b3358db30715c4416">&#9670;&#160;</a></span>fakeSensorTask()</h2>
@@ -161,16 +168,44 @@ $(function(){initNavTree('fake__sensor_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fake__sensor_8cpp_source.html">fake_sensor.cpp</a> строка <a class="el" href="fake__sensor_8cpp_source.html#l00014">14</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="sensor__compensation_8h_source.html#l00023">CLAY</a>, <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="sensor__compensation_8cpp_source.html#l00026">correctEC()</a>, <a class="el" href="sensor__compensation_8cpp_source.html#l00045">correctNPK()</a>, <a class="el" href="sensor__compensation_8cpp_source.html#l00038">correctPH()</a>, <a class="el" href="debug_8h_source.html#l00018">DEBUG_PRINTLN</a>, <a class="el" href="sensor__compensation_8cpp_source.html#l00007">k</a>, <a class="el" href="sensor__compensation_8h_source.html#l00023">LOAM</a>, <a class="el" href="sensor__compensation_8h_source.html#l00023">PEAT</a>, <a class="el" href="sensor__compensation_8h_source.html#l00023">SAND</a>, <a class="el" href="sensor__compensation_8h_source.html#l00023">SANDPEAT</a> и <a class="el" href="modbus__sensor_8cpp_source.html#l00018">sensorData</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="fake__sensor_8cpp_source.html#l00098">startFakeSensorTask()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="fake__sensor_8cpp_a88a6670c876eb66b3358db30715c4416_cgraph.png" border="0" usemap="#afake__sensor_8cpp_a88a6670c876eb66b3358db30715c4416_cgraph" alt=""/></div>
+<map name="afake__sensor_8cpp_a88a6670c876eb66b3358db30715c4416_cgraph" id="afake__sensor_8cpp_a88a6670c876eb66b3358db30715c4416_cgraph">
+<area shape="rect" title=" " alt="" coords="5,56,121,83"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#af586e2e5563baee2b53964aff0e1467d" title=" " alt="" coords="173,5,254,32"/>
+<area shape="poly" title=" " alt="" coords="104,53,158,34,159,40,106,58"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#aa9d6b97073bca78fb526c17bdbf816a6" title=" " alt="" coords="169,56,258,83"/>
+<area shape="poly" title=" " alt="" coords="121,67,153,67,153,72,121,72"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#aec93dd728b4450e4078a1e26954478e5" title=" " alt="" coords="173,107,254,133"/>
+<area shape="poly" title=" " alt="" coords="106,81,159,99,158,104,104,86"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a" title=" " alt="" coords="306,5,365,32"/>
+<area shape="poly" title=" " alt="" coords="246,53,291,34,293,39,248,58"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#adf2ddb83f2189c9159aa7fe534217ea4" title=" " alt="" coords="306,56,365,83"/>
+<area shape="poly" title=" " alt="" coords="259,67,290,67,290,72,259,72"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#ae64bff1823ab30991e51b8d57c23be39" title=" " alt="" coords="306,107,365,133"/>
+<area shape="poly" title=" " alt="" coords="248,81,293,100,291,105,246,86"/>
+</map>
+</div>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="fake__sensor_8cpp_a88a6670c876eb66b3358db30715c4416_icgraph.png" border="0" usemap="#afake__sensor_8cpp_a88a6670c876eb66b3358db30715c4416_icgraph" alt=""/></div>
 <map name="afake__sensor_8cpp_a88a6670c876eb66b3358db30715c4416_icgraph" id="afake__sensor_8cpp_a88a6670c876eb66b3358db30715c4416_icgraph">
-<area shape="rect" title=" " alt="" coords="300,5,415,32"/>
-<area shape="rect" href="fake__sensor_8cpp.html#abd277e18147efb1103e91eac01627612" title=" " alt="" coords="107,5,252,32"/>
-<area shape="poly" title=" " alt="" coords="285,21,253,21,253,16,285,16"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
-<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+<area shape="rect" title=" " alt="" coords="391,43,506,69"/>
+<area shape="rect" href="fake__sensor_8cpp.html#abd277e18147efb1103e91eac01627612" title=" " alt="" coords="198,43,343,69"/>
+<area shape="poly" title=" " alt="" coords="376,59,344,59,344,53,376,53"/>
+<area shape="rect" href="class_fake_sensor_adapter.html#af18b89449d9a289d773170c66787bd23" title=" " alt="" coords="5,5,150,48"/>
+<area shape="poly" title=" " alt="" coords="182,45,150,40,151,35,183,40"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="51,72,104,99"/>
+<area shape="poly" title=" " alt="" coords="182,72,105,84,104,79,182,67"/>
 </map>
 </div>
 
@@ -190,14 +225,32 @@ $(function(){initNavTree('fake__sensor_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="fake__sensor_8cpp_source.html">fake_sensor.cpp</a> строка <a class="el" href="fake__sensor_8cpp_source.html#l00098">98</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="fake__sensor_8cpp_source.html#l00014">fakeSensorTask()</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="fake__sensor__adapter_8h_source.html#l00008">FakeSensorAdapter::FakeSensorAdapter()</a> и <a class="el" href="main_8cpp_source.html#l00091">setup()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="fake__sensor_8cpp_abd277e18147efb1103e91eac01627612_cgraph.png" border="0" usemap="#afake__sensor_8cpp_abd277e18147efb1103e91eac01627612_cgraph" alt=""/></div>
 <map name="afake__sensor_8cpp_abd277e18147efb1103e91eac01627612_cgraph" id="afake__sensor_8cpp_abd277e18147efb1103e91eac01627612_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,151,32"/>
-<area shape="rect" href="fake__sensor_8cpp.html#a88a6670c876eb66b3358db30715c4416" title=" " alt="" coords="199,5,314,32"/>
-<area shape="poly" title=" " alt="" coords="151,16,183,16,183,21,151,21"/>
+<area shape="rect" title=" " alt="" coords="5,56,151,83"/>
+<area shape="rect" href="fake__sensor_8cpp.html#a88a6670c876eb66b3358db30715c4416" title=" " alt="" coords="199,56,314,83"/>
+<area shape="poly" title=" " alt="" coords="151,67,183,67,183,72,151,72"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#af586e2e5563baee2b53964aff0e1467d" title=" " alt="" coords="366,5,447,32"/>
+<area shape="poly" title=" " alt="" coords="298,53,351,34,353,40,299,58"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#aa9d6b97073bca78fb526c17bdbf816a6" title=" " alt="" coords="362,56,451,83"/>
+<area shape="poly" title=" " alt="" coords="314,67,346,67,346,72,314,72"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#aec93dd728b4450e4078a1e26954478e5" title=" " alt="" coords="366,107,447,133"/>
+<area shape="poly" title=" " alt="" coords="299,81,353,99,351,104,298,86"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a" title=" " alt="" coords="500,5,558,32"/>
+<area shape="poly" title=" " alt="" coords="440,53,484,34,486,39,442,58"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#adf2ddb83f2189c9159aa7fe534217ea4" title=" " alt="" coords="499,56,559,83"/>
+<area shape="poly" title=" " alt="" coords="452,67,484,67,484,72,452,72"/>
+<area shape="rect" href="sensor__compensation_8cpp.html#ae64bff1823ab30991e51b8d57c23be39" title=" " alt="" coords="500,107,558,133"/>
+<area shape="poly" title=" " alt="" coords="442,81,486,100,484,105,440,86"/>
 </map>
 </div>
 <div class="dynheader">
@@ -205,9 +258,11 @@ $(function(){initNavTree('fake__sensor_8cpp.html',''); initResizable(true); });
 <div class="dyncontent">
 <div class="center"><img src="fake__sensor_8cpp_abd277e18147efb1103e91eac01627612_icgraph.png" border="0" usemap="#afake__sensor_8cpp_abd277e18147efb1103e91eac01627612_icgraph" alt=""/></div>
 <map name="afake__sensor_8cpp_abd277e18147efb1103e91eac01627612_icgraph" id="afake__sensor_8cpp_abd277e18147efb1103e91eac01627612_icgraph">
-<area shape="rect" title=" " alt="" coords="107,5,252,32"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
-<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+<area shape="rect" title=" " alt="" coords="198,43,343,69"/>
+<area shape="rect" href="class_fake_sensor_adapter.html#af18b89449d9a289d773170c66787bd23" title=" " alt="" coords="5,5,150,48"/>
+<area shape="poly" title=" " alt="" coords="182,45,150,40,151,35,183,40"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="51,72,104,99"/>
+<area shape="poly" title=" " alt="" coords="182,72,105,84,104,79,182,67"/>
 </map>
 </div>
 
@@ -219,7 +274,7 @@ $(function(){initNavTree('fake__sensor_8cpp.html',''); initResizable(true); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="fake__sensor_8cpp.html">fake_sensor.cpp</a></li>
-    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:10. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

@@ -198,7 +198,7 @@ void correctNPK(float temperature, float humidity,
 void setupDataRoutes() {
     // Основные маршруты данных
     server.on("/readings", HTTP_GET, handleReadings);
-    server.on("/api/data", HTTP_GET, handleApiData);
+    server.on("/api/sensor", HTTP_GET, handleApiData);
     server.on("/api/calibration", HTTP_POST, handleCalibrationUpload);
     
     // Статические файлы
@@ -285,7 +285,7 @@ private:
 };
 ```
 
-### �� **Валидация данных**
+### 🎯 **Валидация данных**
 ```cpp
 // Файл: src/validation_utils.cpp
 

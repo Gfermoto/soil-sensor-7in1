@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['reset_5fbutton_5fpin_0',['RESET_BUTTON_PIN',['../main_8cpp.html#aaef35518e8271022cf7cfca55d8c86d4',1,'RESET_BUTTON_PIN:&#160;main.cpp'],['../jxct__constants_8h.html#a4a3aea0890a9c7d81ed2b359ee3ae200',1,'RESET_BUTTON_PIN:&#160;jxct_constants.h']]],
-  ['reset_5fbutton_5ftask_5fpriority_1',['RESET_BUTTON_TASK_PRIORITY',['../jxct__constants_8h.html#a2748e3aebe921d6d2f1965fb7b71bbfa',1,'jxct_constants.h']]],
-  ['reset_5fbutton_5ftask_5fstack_5fsize_2',['RESET_BUTTON_TASK_STACK_SIZE',['../jxct__constants_8h.html#af5ae137d7081e66e1cd43e5c8df7de05',1,'jxct_constants.h']]]
+  ['ota_5fbuffer_5fsize_0',['OTA_BUFFER_SIZE',['../jxct__constants_8h.html#a22264a27d455a1be8245280540e34650',1,'jxct_constants.h']]],
+  ['ota_5ftimeout_1',['OTA_TIMEOUT',['../jxct__constants_8h.html#a4e82d246ba3af051580c6dc37dcaf8a3',1,'jxct_constants.h']]],
+  ['ota_5fupdate_5furl_5ftemplate_2',['OTA_UPDATE_URL_TEMPLATE',['../jxct__constants_8h.html#ac2eb6652b9b3a0b6a91cf51ae6141291',1,'jxct_constants.h']]],
+  ['otacommandtopicbuffer_3',['otaCommandTopicBuffer',['../mqtt__client_8cpp.html#a35f256d87608b13739929b96361be87d',1,'mqtt_client.cpp']]],
+  ['otastatustopicbuffer_4',['otaStatusTopicBuffer',['../mqtt__client_8cpp.html#a97077e8e77af0bddb223979d23764f9b',1,'mqtt_client.cpp']]]
 ];

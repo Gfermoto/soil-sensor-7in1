@@ -30,7 +30,7 @@ Welcome to the complete documentation portal of the ESP32-based **JXCT Soil Sens
 ### 🔄 **OTA Updates**
 - OTA 2.x с дифф-загрузками
 - Проверка SHA-256
-- Автоматические обновления
+- Ручные обновления
 
 ### 📡 **Integrations**
 - MQTT клиент

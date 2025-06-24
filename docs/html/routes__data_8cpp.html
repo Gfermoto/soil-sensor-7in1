@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT Soil Sensor v2.0: Файл src/web/routes_data.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/web/routes_data.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -18,11 +18,6 @@
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-  $(function() { init_search(); });
-/* @license-end */
-</script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -32,22 +27,10 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
    </div>
-   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
   </td>
-    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
-        <span class="left">
-          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
-          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
-               onfocus="searchBox.OnSearchFieldFocus(true)" 
-               onblur="searchBox.OnSearchFieldFocus(false)" 
-               onkeyup="searchBox.OnSearchFieldChange(event)"/>
-          </span><span class="right">
-            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
-          </span>
-        </div>
-</td>
  </tr>
  </tbody>
 </table>
@@ -64,6 +47,17 @@ var searchBox = new SearchBox("searchBox", "search/",'.html');
 $(function() { codefold.init(0); });
 /* @license-end */
 </script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
   <div id="nav-tree">
@@ -104,6 +98,7 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
 <a href="#func-members">Функции</a> &#124;
 <a href="#var-members">Переменные</a>  </div>
   <div class="headertitle"><div class="title">Файл routes_data.cpp</div></div>
@@ -119,32 +114,44 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 <code>#include &quot;<a class="el" href="jxct__format__utils_8h_source.html">../../include/jxct_format_utils.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">../wifi_manager.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">../modbus_sensor.h</a>&quot;</code><br />
+<code>#include &quot;calibration_manager.h&quot;</code><br />
 <code>#include &lt;ArduinoJson.h&gt;</code><br />
 <code>#include &lt;NTPClient.h&gt;</code><br />
+<code>#include &lt;LittleFS.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="jxct__strings_8h_source.html">../../include/jxct_strings.h</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Граф включаемых заголовочных файлов для routes_data.cpp:</div>
 <div class="dyncontent">
 <div class="center"><img src="routes__data_8cpp__incl.png" border="0" usemap="#asrc_2web_2routes__data_8cpp" alt=""/></div>
 <map name="asrc_2web_2routes__data_8cpp" id="asrc_2web_2routes__data_8cpp">
-<area shape="rect" title="Маршруты для работы с данными датчика" alt="" coords="555,5,720,32"/>
+<area shape="rect" title="Маршруты для работы с данными датчика" alt="" coords="743,5,908,32"/>
 <area shape="rect" href="web__routes_8h.html" title=" " alt="" coords="104,88,272,115"/>
-<area shape="poly" title=" " alt="" coords="567,35,274,87,274,82,566,30"/>
+<area shape="poly" title=" " alt="" coords="743,32,335,83,288,89,287,84,334,77,743,27"/>
 <area shape="rect" href="wifi__manager_8h.html" title=" " alt="" coords="160,179,304,205"/>
-<area shape="poly" title=" " alt="" coords="600,35,472,82,362,131,272,174,269,169,360,126,470,78,598,30"/>
-<area shape="rect" href="logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="464,179,600,205"/>
-<area shape="poly" title=" " alt="" coords="614,35,585,54,560,82,550,101,543,123,536,164,531,163,537,121,545,99,555,78,582,50,611,30"/>
+<area shape="poly" title=" " alt="" coords="743,29,607,47,530,62,456,83,402,103,350,127,266,173,264,168,348,122,400,98,454,77,529,57,606,42,743,24"/>
+<area shape="rect" href="logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="728,179,864,205"/>
+<area shape="poly" title=" " alt="" coords="799,35,770,54,758,67,748,81,743,103,749,125,760,147,775,165,771,169,756,150,744,127,738,103,743,79,754,63,767,50,796,30"/>
 <area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="328,171,440,213"/>
-<area shape="poly" title=" " alt="" coords="616,35,536,82,424,163,421,159,533,78,613,30"/>
-<area shape="rect" href="jxct__ui__system_8h.html" title=" " alt="" coords="944,171,1056,213"/>
-<area shape="poly" title=" " alt="" coords="713,30,783,48,855,78,882,98,906,121,959,159,956,164,902,125,878,102,852,82,782,54,712,35"/>
-<area shape="rect" href="jxct__format__utils_8h.html" title=" " alt="" coords="730,80,841,123"/>
-<area shape="poly" title=" " alt="" coords="662,30,735,70,733,75,659,35"/>
-<area shape="rect" href="modbus__sensor_8h.html" title=" " alt="" coords="569,88,706,115"/>
-<area shape="poly" title=" " alt="" coords="640,32,640,73,635,73,635,32"/>
-<area shape="rect" title=" " alt="" coords="916,88,1020,115"/>
-<area shape="poly" title=" " alt="" coords="697,30,898,77,911,81,910,86,897,83,695,35"/>
-<area shape="rect" title=" " alt="" coords="1044,88,1138,115"/>
-<area shape="poly" title=" " alt="" coords="720,26,867,45,1033,77,1044,80,1043,86,1032,83,866,50,720,31"/>
+<area shape="poly" title=" " alt="" coords="744,29,638,47,582,62,528,82,496,99,467,120,417,162,413,158,463,116,494,95,526,78,580,57,637,41,743,24"/>
+<area shape="rect" href="jxct__ui__system_8h.html" title=" " alt="" coords="464,171,576,213"/>
+<area shape="poly" title=" " alt="" coords="743,32,636,52,590,66,561,82,547,98,537,117,526,156,521,155,532,115,543,95,557,78,588,61,635,47,742,27"/>
+<area shape="rect" href="jxct__format__utils_8h.html" title=" " alt="" coords="571,80,682,123"/>
+<area shape="poly" title=" " alt="" coords="795,35,693,76,691,71,793,30"/>
+<area shape="rect" href="modbus__sensor_8h.html" title=" " alt="" coords="757,88,894,115"/>
+<area shape="poly" title=" " alt="" coords="828,32,828,73,823,73,823,32"/>
+<area shape="rect" title=" " alt="" coords="918,88,1066,115"/>
+<area shape="poly" title=" " alt="" coords="853,30,954,79,952,84,850,35"/>
+<area shape="rect" title=" " alt="" coords="1091,88,1195,115"/>
+<area shape="poly" title=" " alt="" coords="885,30,1080,77,1090,80,1089,86,1078,83,884,35"/>
+<area shape="rect" title=" " alt="" coords="1219,88,1312,115"/>
+<area shape="poly" title=" " alt="" coords="909,26,1049,46,1207,77,1218,80,1217,85,1206,83,1048,51,908,31"/>
+<area shape="rect" title=" " alt="" coords="1336,88,1414,115"/>
+<area shape="poly" title=" " alt="" coords="909,21,1100,38,1213,54,1325,77,1333,80,1332,85,1324,83,1212,59,1100,43,908,26"/>
+<area shape="rect" title=" " alt="" coords="1438,88,1496,115"/>
+<area shape="poly" title=" " alt="" coords="908,17,1013,19,1144,28,1286,47,1357,60,1426,77,1432,79,1430,84,1425,83,1356,65,1285,52,1143,34,1013,25,908,22"/>
+<area shape="rect" href="jxct__strings_8h.html" title=" " alt="" coords="1519,80,1630,123"/>
+<area shape="poly" title=" " alt="" coords="908,19,1024,24,1171,34,1336,51,1505,77,1504,82,1335,56,1171,39,1023,29,908,25"/>
 <area shape="rect" title=" " alt="" coords="5,261,102,288"/>
 <area shape="poly" title=" " alt="" coords="181,117,75,251,71,247,176,113"/>
 <area shape="rect" title=" " alt="" coords="125,261,184,288"/>
@@ -152,24 +159,31 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 <area shape="poly" title=" " alt="" coords="197,114,222,163,217,166,192,116"/>
 <area shape="poly" title=" " alt="" coords="205,208,96,257,94,252,203,203"/>
 <area shape="poly" title=" " alt="" coords="222,208,179,252,175,249,218,204"/>
-<area shape="rect" title=" " alt="" coords="599,261,676,288"/>
-<area shape="poly" title=" " alt="" coords="284,203,317,211,584,262,583,267,316,216,283,208"/>
+<area shape="rect" title=" " alt="" coords="653,261,729,288"/>
+<area shape="poly" title=" " alt="" coords="283,203,317,211,493,242,638,263,637,269,492,247,316,216,282,209"/>
 <area shape="rect" title=" " alt="" coords="209,261,308,288"/>
 <area shape="poly" title=" " alt="" coords="239,205,253,246,248,248,234,207"/>
 <area shape="rect" title=" " alt="" coords="333,261,435,288"/>
 <area shape="poly" title=" " alt="" coords="257,203,348,251,346,256,255,208"/>
-<area shape="poly" title=" " alt="" coords="550,204,611,250,608,254,547,208"/>
+<area shape="poly" title=" " alt="" coords="781,208,721,254,717,250,778,204"/>
 <area shape="poly" title=" " alt="" coords="387,214,387,245,382,245,382,214"/>
-<area shape="poly" title=" " alt="" coords="945,211,926,216,692,266,691,260,925,211,943,206"/>
-<area shape="poly" title=" " alt="" coords="833,121,861,141,884,169,892,192,890,204,884,215,871,226,852,236,803,251,692,270,691,265,801,246,850,231,868,222,879,212,885,202,886,193,879,172,858,145,830,125"/>
-<area shape="rect" title=" " alt="" coords="816,179,870,205"/>
-<area shape="poly" title=" " alt="" coords="801,122,829,164,824,167,797,125"/>
-<area shape="poly" title=" " alt="" coords="640,115,640,246,635,246,635,115"/>
-<area shape="rect" title=" " alt="" coords="674,179,793,205"/>
-<area shape="poly" title=" " alt="" coords="653,113,711,166,707,170,649,117"/>
+<area shape="poly" title=" " alt="" coords="565,212,651,252,649,257,563,216"/>
+<area shape="poly" title=" " alt="" coords="643,122,668,170,681,209,689,246,684,247,675,211,663,172,638,124"/>
+<area shape="rect" title=" " alt="" coords="600,179,654,205"/>
+<area shape="poly" title=" " alt="" coords="630,123,630,163,624,163,624,123"/>
+<area shape="poly" title=" " alt="" coords="870,113,962,142,1001,157,1021,169,1030,192,1028,204,1021,215,1002,230,974,242,901,259,818,269,745,274,744,269,818,264,900,254,972,237,999,225,1017,212,1023,202,1025,193,1017,172,998,161,960,147,869,118"/>
+<area shape="rect" title=" " alt="" coords="889,179,1007,205"/>
+<area shape="poly" title=" " alt="" coords="845,113,920,167,917,172,842,117"/>
 </map>
 </div>
-</div><table class="memberdecls">
+</div>
+<p><a href="routes__data_8cpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_rec_values.html">RecValues</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
 <tr class="memitem:ad30c0b8b33e60ccdb13f2e1cc08157c9" id="r_ad30c0b8b33e60ccdb13f2e1cc08157c9"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad30c0b8b33e60ccdb13f2e1cc08157c9">navHtml</a> ()</td></tr>
@@ -178,6 +192,14 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 <tr class="separator:adc35370b803782f896c844976a9ad6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af857f35623b29612a3b4cc45dd6fff23" id="r_af857f35623b29612a3b4cc45dd6fff23"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af857f35623b29612a3b4cc45dd6fff23">getApSsid</a> ()</td></tr>
 <tr class="separator:af857f35623b29612a3b4cc45dd6fff23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc74086c185759ebabfbcd18b0abd9bd" id="r_adc74086c185759ebabfbcd18b0abd9bd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_rec_values.html">RecValues</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc74086c185759ebabfbcd18b0abd9bd">computeRecommendations</a> ()</td></tr>
+<tr class="separator:adc74086c185759ebabfbcd18b0abd9bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a750e7ca088cd32f9490048becd8d8c70" id="r_a750e7ca088cd32f9490048becd8d8c70"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a750e7ca088cd32f9490048becd8d8c70">handleReadingsUpload</a> ()</td></tr>
+<tr class="separator:a750e7ca088cd32f9490048becd8d8c70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbd29afd9c684d507a0787906872c9d9" id="r_abbd29afd9c684d507a0787906872c9d9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbd29afd9c684d507a0787906872c9d9">handleProfileSave</a> ()</td></tr>
+<tr class="separator:abbd29afd9c684d507a0787906872c9d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb04ca38fc8e4b768a2ef6ae67bc573" id="r_a7cb04ca38fc8e4b768a2ef6ae67bc573"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7cb04ca38fc8e4b768a2ef6ae67bc573">sendSensorJson</a> ()</td></tr>
+<tr class="separator:a7cb04ca38fc8e4b768a2ef6ae67bc573"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed1136f683a386e56678e05fc3747972" id="r_aed1136f683a386e56678e05fc3747972"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed1136f683a386e56678e05fc3747972">setupDataRoutes</a> ()</td></tr>
 <tr class="memdesc:aed1136f683a386e56678e05fc3747972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)  <br /></td></tr>
 <tr class="separator:aed1136f683a386e56678e05fc3747972"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,11 +208,77 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 Переменные</h2></td></tr>
 <tr class="memitem:ab4cd0eb2684ad54d1d0782f4ff75e07f" id="r_ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memItemLeft" align="right" valign="top">NTPClient *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">timeClient</a></td></tr>
 <tr class="separator:ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75f9cadda2a3d68252ebfeb55df86618" id="r_a75f9cadda2a3d68252ebfeb55df86618"><td class="memItemLeft" align="right" valign="top">static File&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75f9cadda2a3d68252ebfeb55df86618">uploadFile</a></td></tr>
+<tr class="separator:a75f9cadda2a3d68252ebfeb55df86618"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b77c83141abb779c6ed77f346019bc2" id="r_a0b77c83141abb779c6ed77f346019bc2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155d">SoilProfile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b77c83141abb779c6ed77f346019bc2">uploadProfile</a> = <a class="el" href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b">SoilProfile::SAND</a></td></tr>
+<tr class="separator:a0b77c83141abb779c6ed77f346019bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Маршруты для работы с данными датчика </p>
 <p>Обработка запросов показаний датчика, JSON API и веб-интерфейса данных </p>
+
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a></p>
 </div><h2 class="groupheader">Функции</h2>
+<a id="adc74086c185759ebabfbcd18b0abd9bd" name="adc74086c185759ebabfbcd18b0abd9bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc74086c185759ebabfbcd18b0abd9bd">&#9670;&#160;</a></span>computeRecommendations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="struct_rec_values.html">RecValues</a> computeRecommendations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00034">34</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="routes__data_8cpp_source.html#l00186">sendSensorJson()</a>.</p>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="routes__data_8cpp_adc74086c185759ebabfbcd18b0abd9bd_icgraph.png" border="0" usemap="#aroutes__data_8cpp_adc74086c185759ebabfbcd18b0abd9bd_icgraph" alt=""/></div>
+<map name="aroutes__data_8cpp_adc74086c185759ebabfbcd18b0abd9bd_icgraph" id="aroutes__data_8cpp_adc74086c185759ebabfbcd18b0abd9bd_icgraph">
+<area shape="rect" title=" " alt="" coords="1042,31,1222,57"/>
+<area shape="rect" href="routes__data_8cpp.html#a7cb04ca38fc8e4b768a2ef6ae67bc573" title=" " alt="" coords="875,31,994,57"/>
+<area shape="poly" title=" " alt="" coords="1026,47,994,47,994,41,1026,41"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="704,31,827,57"/>
+<area shape="poly" title=" " alt="" coords="860,47,828,47,828,41,860,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,657,47,657,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="adc35370b803782f896c844976a9ad6ce" name="adc35370b803782f896c844976a9ad6ce"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adc35370b803782f896c844976a9ad6ce">&#9670;&#160;</a></span>formatValue()</h2>
 
@@ -223,6 +311,8 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="jxct__format__utils_8cpp_source.html">jxct_format_utils.cpp</a> строка <a class="el" href="jxct__format__utils_8cpp_source.html#l00040">40</a></p>
+
 </div>
 </div>
 <a id="af857f35623b29612a3b4cc45dd6fff23" name="af857f35623b29612a3b4cc45dd6fff23"></a>
@@ -248,6 +338,157 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="wifi__manager_8cpp_source.html">wifi_manager.cpp</a> строка <a class="el" href="wifi__manager_8cpp_source.html#l00206">206</a></p>
+
+</div>
+</div>
+<a id="abbd29afd9c684d507a0787906872c9d9" name="abbd29afd9c684d507a0787906872c9d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbd29afd9c684d507a0787906872c9d9">&#9670;&#160;</a></span>handleProfileSave()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void handleProfileSave </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00169">169</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>, <a class="el" href="config_8cpp_source.html#l00128">saveConfig()</a> и <a class="el" href="routes__calibration_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="routes__data_8cpp_source.html#l00274">setupDataRoutes()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="routes__data_8cpp_abbd29afd9c684d507a0787906872c9d9_cgraph.png" border="0" usemap="#aroutes__data_8cpp_abbd29afd9c684d507a0787906872c9d9_cgraph" alt=""/></div>
+<map name="aroutes__data_8cpp_abbd29afd9c684d507a0787906872c9d9_cgraph" id="aroutes__data_8cpp_abbd29afd9c684d507a0787906872c9d9_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,132,57"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="356,5,445,32"/>
+<area shape="poly" title=" " alt="" coords="132,37,341,21,341,26,132,42"/>
+<area shape="rect" href="config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae" title=" " alt="" coords="180,56,267,83"/>
+<area shape="poly" title=" " alt="" coords="133,52,165,57,164,62,132,57"/>
+<area shape="poly" title=" " alt="" coords="267,54,341,33,342,38,268,59"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a78b590745e792368420169e642494895" title=" " alt="" coords="315,56,486,83"/>
+<area shape="poly" title=" " alt="" coords="267,67,299,67,299,72,267,72"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="routes__data_8cpp_abbd29afd9c684d507a0787906872c9d9_icgraph.png" border="0" usemap="#aroutes__data_8cpp_abbd29afd9c684d507a0787906872c9d9_icgraph" alt=""/></div>
+<map name="aroutes__data_8cpp_abbd29afd9c684d507a0787906872c9d9_icgraph" id="aroutes__data_8cpp_abbd29afd9c684d507a0787906872c9d9_icgraph">
+<area shape="rect" title=" " alt="" coords="875,31,1002,57"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="704,31,827,57"/>
+<area shape="poly" title=" " alt="" coords="860,47,828,47,828,41,860,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,657,47,657,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a750e7ca088cd32f9490048becd8d8c70" name="a750e7ca088cd32f9490048becd8d8c70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a750e7ca088cd32f9490048becd8d8c70">&#9670;&#160;</a></span>handleReadingsUpload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void handleReadingsUpload </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00137">137</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="calibration__manager_8cpp_source.html#l00014">CalibrationManager::init()</a>, <a class="el" href="logger_8cpp_source.html#l00061">logError()</a>, <a class="el" href="logger_8cpp_source.html#l00129">logSuccess()</a>, <a class="el" href="calibration__manager_8cpp_source.html#l00009">CalibrationManager::profileToFilename()</a>, <a class="el" href="sensor__compensation_8h_source.html#l00015">SAND</a>, <a class="el" href="routes__calibration_8cpp_source.html#l00079">uploadFile</a> и <a class="el" href="routes__calibration_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="routes__data_8cpp_source.html#l00274">setupDataRoutes()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="routes__data_8cpp_a750e7ca088cd32f9490048becd8d8c70_cgraph.png" border="0" usemap="#aroutes__data_8cpp_a750e7ca088cd32f9490048becd8d8c70_cgraph" alt=""/></div>
+<map name="aroutes__data_8cpp_a750e7ca088cd32f9490048becd8d8c70_cgraph" id="aroutes__data_8cpp_a750e7ca088cd32f9490048becd8d8c70_cgraph">
+<area shape="rect" title=" " alt="" coords="5,64,161,90"/>
+<area shape="rect" href="namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613" title=" " alt="" coords="209,26,342,69"/>
+<area shape="poly" title=" " alt="" coords="161,62,193,57,194,63,161,68"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="402,8,468,34"/>
+<area shape="poly" title=" " alt="" coords="103,61,149,34,208,12,255,4,303,3,386,10,386,15,303,8,255,10,209,17,152,39,106,65"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="390,62,479,89"/>
+<area shape="poly" title=" " alt="" coords="161,77,342,78,375,77,375,82,342,84,161,83"/>
+<area shape="rect" href="namespace_calibration_manager.html#a24c0b11ea08e757ae404289fa38e33b3" title=" " alt="" coords="209,144,342,186"/>
+<area shape="poly" title=" " alt="" coords="116,88,214,134,212,139,113,93"/>
+<area shape="poly" title=" " alt="" coords="342,34,386,26,387,32,343,39"/>
+<area shape="poly" title=" " alt="" coords="343,57,375,63,374,68,342,62"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="routes__data_8cpp_a750e7ca088cd32f9490048becd8d8c70_icgraph.png" border="0" usemap="#aroutes__data_8cpp_a750e7ca088cd32f9490048becd8d8c70_icgraph" alt=""/></div>
+<map name="aroutes__data_8cpp_a750e7ca088cd32f9490048becd8d8c70_icgraph" id="aroutes__data_8cpp_a750e7ca088cd32f9490048becd8d8c70_icgraph">
+<area shape="rect" title=" " alt="" coords="875,31,1031,57"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="704,31,827,57"/>
+<area shape="poly" title=" " alt="" coords="860,47,827,47,827,41,860,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,657,47,657,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ad30c0b8b33e60ccdb13f2e1cc08157c9" name="ad30c0b8b33e60ccdb13f2e1cc08157c9"></a>
@@ -272,30 +513,119 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="wifi__manager_8cpp_source.html">wifi_manager.cpp</a> строка <a class="el" href="wifi__manager_8cpp_source.html#l00082">82</a></p>
+
+<p class="reference">Используется в <a class="el" href="routes__data_8cpp_source.html#l00274">setupDataRoutes()</a>.</p>
 <div class="dynheader">
 Граф вызова функции:</div>
 <div class="dyncontent">
 <div class="center"><img src="routes__data_8cpp_ad30c0b8b33e60ccdb13f2e1cc08157c9_icgraph.png" border="0" usemap="#aroutes__data_8cpp_ad30c0b8b33e60ccdb13f2e1cc08157c9_icgraph" alt=""/></div>
 <map name="aroutes__data_8cpp_ad30c0b8b33e60ccdb13f2e1cc08157c9_icgraph" id="aroutes__data_8cpp_ad30c0b8b33e60ccdb13f2e1cc08157c9_icgraph">
-<area shape="rect" title=" " alt="" coords="869,81,940,108"/>
-<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="698,81,821,108"/>
-<area shape="poly" title=" " alt="" coords="854,97,822,97,822,92,854,92"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,81,650,108"/>
-<area shape="poly" title=" " alt="" coords="683,97,651,97,651,92,683,92"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,56,485,83"/>
-<area shape="poly" title=" " alt="" coords="517,85,485,80,486,75,518,80"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,107,339,133"/>
-<area shape="poly" title=" " alt="" coords="517,103,340,118,339,113,517,98"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,5,330,32"/>
-<area shape="poly" title=" " alt="" coords="379,53,328,35,330,30,381,48"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,81,187,108"/>
-<area shape="poly" title=" " alt="" coords="372,78,188,94,187,89,371,72"/>
-<area shape="poly" title=" " alt="" coords="381,91,330,109,328,104,379,86"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
-<area shape="poly" title=" " alt="" coords="228,21,170,21,170,16,228,16"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,81,59,108"/>
-<area shape="poly" title=" " alt="" coords="91,97,59,97,59,92,91,92"/>
-<area shape="poly" title=" " alt="" coords="219,110,187,105,188,99,220,105"/>
+<area shape="rect" title=" " alt="" coords="875,31,946,57"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="704,31,827,57"/>
+<area shape="poly" title=" " alt="" coords="860,47,828,47,828,41,860,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,657,47,657,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7cb04ca38fc8e4b768a2ef6ae67bc573" name="a7cb04ca38fc8e4b768a2ef6ae67bc573"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7cb04ca38fc8e4b768a2ef6ae67bc573">&#9670;&#160;</a></span>sendSensorJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void sendSensorJson </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00186">186</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="routes__data_8cpp_source.html#l00034">computeRecommendations()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00026">currentWiFiMode</a>, <a class="el" href="routes__data_8cpp_source.html#l00032">RecValues::ec</a>, <a class="el" href="jxct__format__utils_8cpp_source.html#l00018">format_ec()</a>, <a class="el" href="jxct__format__utils_8cpp_source.html#l00004">format_moisture()</a>, <a class="el" href="jxct__format__utils_8cpp_source.html#l00032">format_npk()</a>, <a class="el" href="jxct__format__utils_8cpp_source.html#l00025">format_ph()</a>, <a class="el" href="jxct__format__utils_8cpp_source.html#l00011">format_temperature()</a>, <a class="el" href="routes__data_8cpp_source.html#l00032">RecValues::hum</a>, <a class="el" href="routes__data_8cpp_source.html#l00032">RecValues::k</a>, <a class="el" href="error__handlers_8cpp_source.html#l00152">logWebRequest()</a>, <a class="el" href="routes__data_8cpp_source.html#l00032">RecValues::n</a>, <a class="el" href="main_8cpp_source.html#l00042">ntpUDP</a>, <a class="el" href="routes__data_8cpp_source.html#l00032">RecValues::p</a>, <a class="el" href="routes__data_8cpp_source.html#l00032">RecValues::ph</a>, <a class="el" href="modbus__sensor_8cpp_source.html#l00018">sensorData</a>, <a class="el" href="wifi__manager_8h_source.html#l00014">STA</a>, <a class="el" href="routes__data_8cpp_source.html#l00032">RecValues::t</a>, <a class="el" href="main_8cpp_source.html#l00043">timeClient</a> и <a class="el" href="routes__calibration_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="routes__data_8cpp_source.html#l00274">setupDataRoutes()</a>.</p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="routes__data_8cpp_a7cb04ca38fc8e4b768a2ef6ae67bc573_cgraph.png" border="0" usemap="#aroutes__data_8cpp_a7cb04ca38fc8e4b768a2ef6ae67bc573_cgraph" alt=""/></div>
+<map name="aroutes__data_8cpp_a7cb04ca38fc8e4b768a2ef6ae67bc573_cgraph" id="aroutes__data_8cpp_a7cb04ca38fc8e4b768a2ef6ae67bc573_cgraph">
+<area shape="rect" title=" " alt="" coords="5,157,124,184"/>
+<area shape="rect" href="routes__data_8cpp.html#adc74086c185759ebabfbcd18b0abd9bd" title=" " alt="" coords="172,5,352,32"/>
+<area shape="poly" title=" " alt="" coords="71,155,109,100,137,69,170,42,179,37,182,41,173,46,141,73,113,104,76,158"/>
+<area shape="rect" href="jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483" title=" " alt="" coords="222,56,302,83"/>
+<area shape="poly" title=" " alt="" coords="80,155,119,124,170,92,206,79,208,84,173,97,122,128,83,159"/>
+<area shape="rect" href="jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470" title=" " alt="" coords="204,107,320,133"/>
+<area shape="poly" title=" " alt="" coords="119,154,191,135,193,140,120,159"/>
+<area shape="rect" href="jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b" title=" " alt="" coords="219,157,305,184"/>
+<area shape="poly" title=" " alt="" coords="124,168,203,168,203,173,124,173"/>
+<area shape="rect" href="jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152" title=" " alt="" coords="222,208,302,235"/>
+<area shape="poly" title=" " alt="" coords="120,182,208,205,206,210,119,187"/>
+<area shape="rect" href="jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351" title=" " alt="" coords="195,259,329,285"/>
+<area shape="poly" title=" " alt="" coords="83,182,122,213,173,244,187,251,185,255,170,249,119,218,80,186"/>
+<area shape="rect" href="error__handlers_8cpp.html#a1a62e7c40bff885d97f6018743bec642" title="Логирование веб&#45;запросов" alt="" coords="205,309,318,336"/>
+<area shape="poly" title=" " alt="" coords="76,183,113,238,141,269,173,295,192,305,190,310,170,300,137,273,109,241,71,186"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="400,284,476,311"/>
+<area shape="poly" title=" " alt="" coords="319,312,384,302,385,308,319,317"/>
+<area shape="rect" href="logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf" title=" " alt="" coords="408,335,468,361"/>
+<area shape="poly" title=" " alt="" coords="319,328,394,339,393,344,319,333"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="routes__data_8cpp_a7cb04ca38fc8e4b768a2ef6ae67bc573_icgraph.png" border="0" usemap="#aroutes__data_8cpp_a7cb04ca38fc8e4b768a2ef6ae67bc573_icgraph" alt=""/></div>
+<map name="aroutes__data_8cpp_a7cb04ca38fc8e4b768a2ef6ae67bc573_icgraph" id="aroutes__data_8cpp_a7cb04ca38fc8e4b768a2ef6ae67bc573_icgraph">
+<area shape="rect" title=" " alt="" coords="875,31,994,57"/>
+<area shape="rect" href="routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="704,31,827,57"/>
+<area shape="poly" title=" " alt="" coords="860,47,828,47,828,41,860,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,657,47,657,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
 </map>
 </div>
 
@@ -317,35 +647,88 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 </div><div class="memdoc">
 
 <p>Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor) </p>
+
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00274">274</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="wifi__manager_8h_source.html#l00013">AP</a>, <a class="el" href="jxct__strings_8h_source.html#l00008">API_SENSOR</a>, <a class="el" href="config_8cpp_source.html#l00034">config</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00026">currentWiFiMode</a>, <a class="el" href="calibration__manager_8cpp_source.html#l00100">CalibrationManager::deleteTable()</a>, <a class="el" href="web__templates_8cpp_source.html#l00175">generateApModeUnavailablePage()</a>, <a class="el" href="jxct__ui__system_8cpp_source.html#l00286">generateButton()</a>, <a class="el" href="web__templates_8cpp_source.html#l00019">generatePageFooter()</a>, <a class="el" href="web__templates_8cpp_source.html#l00008">generatePageHeader()</a>, <a class="el" href="routes__data_8cpp_source.html#l00169">handleProfileSave()</a>, <a class="el" href="routes__data_8cpp_source.html#l00137">handleReadingsUpload()</a>, <a class="el" href="calibration__manager_8cpp_source.html#l00094">CalibrationManager::hasTable()</a>, <a class="el" href="calibration__manager_8cpp_source.html#l00014">CalibrationManager::init()</a>, <a class="el" href="logger_8cpp_source.html#l00112">logDebug()</a>, <a class="el" href="error__handlers_8cpp_source.html#l00152">logWebRequest()</a>, <a class="el" href="wifi__manager_8cpp_source.html#l00082">navHtml()</a>, <a class="el" href="jxct__ui__system_8h_source.html#l00065">PRIMARY</a>, <a class="el" href="sensor__compensation_8h_source.html#l00015">SAND</a>, <a class="el" href="jxct__ui__system_8h_source.html#l00066">SECONDARY</a>, <a class="el" href="routes__data_8cpp_source.html#l00186">sendSensorJson()</a>, <a class="el" href="jxct__ui__system_8h_source.html#l00048">UI_ICON_DATA</a>, <a class="el" href="jxct__ui__system_8h_source.html#l00045">UI_ICON_UPLOAD</a> и <a class="el" href="routes__calibration_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="wifi__manager_8cpp_source.html#l00368">setupWebServer()</a>.</p>
 <div class="dynheader">
 Граф вызовов:</div>
 <div class="dyncontent">
 <div class="center"><img src="routes__data_8cpp_aed1136f683a386e56678e05fc3747972_cgraph.png" border="0" usemap="#aroutes__data_8cpp_aed1136f683a386e56678e05fc3747972_cgraph" alt=""/></div>
 <map name="aroutes__data_8cpp_aed1136f683a386e56678e05fc3747972_cgraph" id="aroutes__data_8cpp_aed1136f683a386e56678e05fc3747972_cgraph">
-<area shape="rect" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="5,233,129,260"/>
-<area shape="rect" href="jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483" title=" " alt="" coords="204,5,284,32"/>
-<area shape="poly" title=" " alt="" coords="70,232,82,195,103,144,134,90,153,65,175,42,188,33,191,37,178,46,157,68,138,93,108,146,87,197,75,234"/>
-<area shape="rect" href="jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470" title=" " alt="" coords="186,56,302,83"/>
-<area shape="poly" title=" " alt="" coords="72,232,110,166,139,127,175,93,181,88,184,92,178,97,143,130,114,169,77,234"/>
-<area shape="rect" href="jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b" title=" " alt="" coords="201,107,287,133"/>
-<area shape="poly" title=" " alt="" coords="78,231,118,188,146,164,175,143,185,137,188,142,178,148,149,169,122,192,82,235"/>
-<area shape="rect" href="jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152" title=" " alt="" coords="204,157,284,184"/>
-<area shape="poly" title=" " alt="" coords="95,230,176,194,190,188,192,193,178,198,98,235"/>
-<area shape="rect" href="jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351" title=" " alt="" coords="177,208,311,235"/>
-<area shape="poly" title=" " alt="" coords="129,235,161,230,162,236,130,240"/>
-<area shape="rect" href="jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="190,259,298,285"/>
-<area shape="poly" title=" " alt="" coords="130,253,176,260,175,265,129,258"/>
-<area shape="rect" href="jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="190,309,298,336"/>
-<area shape="poly" title=" " alt="" coords="98,258,178,295,192,301,190,306,176,300,95,263"/>
-<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="359,360,435,387"/>
-<area shape="poly" title=" " alt="" coords="80,259,119,303,147,327,178,346,219,360,263,369,343,374,343,379,262,374,218,365,176,350,144,331,116,307,76,262"/>
-<area shape="rect" href="error__handlers_8cpp.html#a1a62e7c40bff885d97f6018743bec642" title="Логирование веб&#45;запросов" alt="" coords="187,411,300,437"/>
-<area shape="poly" title=" " alt="" coords="78,259,116,320,145,357,178,390,194,401,191,405,175,394,141,361,112,323,73,262"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9" title=" " alt="" coords="209,461,279,488"/>
-<area shape="poly" title=" " alt="" coords="75,260,87,297,108,347,138,401,157,425,178,447,196,459,193,463,175,451,153,429,134,403,103,349,82,299,70,261"/>
-<area shape="poly" title=" " alt="" coords="286,407,343,388,345,393,288,413"/>
-<area shape="rect" href="logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf" title=" " alt="" coords="367,411,427,437"/>
-<area shape="poly" title=" " alt="" coords="301,421,352,421,352,427,301,427"/>
+<area shape="rect" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="5,357,129,383"/>
+<area shape="rect" href="namespace_calibration_manager.html#a14e21e7fb1aa46aa781c20ee07271d12" title=" " alt="" coords="219,290,352,333"/>
+<area shape="poly" title=" " alt="" coords="119,353,203,331,204,336,120,359"/>
+<area shape="rect" href="namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613" title=" " alt="" coords="466,407,599,450"/>
+<area shape="poly" title=" " alt="" coords="81,382,120,423,147,444,178,459,212,469,248,475,321,476,391,467,453,452,454,457,392,472,322,481,248,480,211,475,176,464,144,448,116,427,77,385"/>
+<area shape="rect" href="web__templates_8cpp.html#a1d57b5edf50f600cc5d02641cb4510a0" title="Генерация страницы &quot;Недоступно в AP режиме&quot;." alt="" coords="177,87,394,114"/>
+<area shape="poly" title=" " alt="" coords="68,356,77,312,97,252,128,187,150,157,175,131,192,119,195,123,178,135,154,160,133,190,102,254,83,314,73,357"/>
+<area shape="rect" href="web__templates_8cpp.html#ad4f3a6e85baef9b2d3e2aec977c3a321" title="Генерация футера HTML страницы" alt="" coords="687,50,825,77"/>
+<area shape="poly" title=" " alt="" coords="66,356,70,301,84,223,98,181,117,140,142,103,175,73,206,54,239,38,308,16,381,5,454,3,525,8,591,18,698,42,696,48,590,23,525,14,454,9,382,10,310,21,241,43,209,58,178,77,146,107,122,143,103,183,89,224,75,302,71,356"/>
+<area shape="rect" href="web__templates_8cpp.html#ac4502db1ad8d9e08830f7eb784d62600" title="Генерация заголовка HTML страницы" alt="" coords="684,113,828,139"/>
+<area shape="poly" title=" " alt="" coords="69,355,81,320,102,272,133,224,153,203,175,185,214,168,267,154,399,135,543,126,669,123,669,128,544,131,400,141,268,159,216,173,178,190,156,207,137,228,107,275,86,321,74,357"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9" title=" " alt="" coords="721,163,791,190"/>
+<area shape="poly" title=" " alt="" coords="72,355,86,327,108,290,138,254,175,225,220,208,280,195,429,180,584,174,705,173,705,179,584,179,429,185,281,201,221,213,178,230,141,258,112,294,90,329,76,358"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#a7834ec4c73014039a2aeeedadff41141" title=" " alt="" coords="231,357,340,383"/>
+<area shape="poly" title=" " alt="" coords="129,367,215,367,215,373,129,373"/>
+<area shape="rect" href="routes__data_8cpp.html#abbd29afd9c684d507a0787906872c9d9" title=" " alt="" coords="222,525,348,551"/>
+<area shape="poly" title=" " alt="" coords="78,382,116,441,144,475,178,504,209,519,206,524,175,508,141,479,111,444,73,385"/>
+<area shape="rect" href="routes__data_8cpp.html#a750e7ca088cd32f9490048becd8d8c70" title=" " alt="" coords="208,239,363,266"/>
+<area shape="poly" title=" " alt="" coords="79,354,119,315,146,294,175,276,192,268,194,273,178,280,149,298,122,319,82,358"/>
+<area shape="rect" href="namespace_calibration_manager.html#a1ee0f1f244cb68eaa7e47a79deb452b6" title=" " alt="" coords="219,407,352,450"/>
+<area shape="poly" title=" " alt="" coords="120,381,204,404,203,409,119,386"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="718,575,794,602"/>
+<area shape="poly" title=" " alt="" coords="74,383,84,421,104,471,135,521,155,543,178,561,220,578,278,589,348,596,425,599,579,597,702,590,702,595,580,602,425,604,348,601,277,594,218,583,175,566,151,547,131,524,99,473,79,423,69,385"/>
+<area shape="rect" href="error__handlers_8cpp.html#a1a62e7c40bff885d97f6018743bec642" title="Логирование веб&#45;запросов" alt="" coords="476,626,589,653"/>
+<area shape="poly" title=" " alt="" coords="73,383,80,428,98,489,112,522,130,553,152,582,178,605,211,624,246,638,283,648,321,653,395,655,460,650,461,655,396,660,321,658,282,653,245,643,208,629,175,609,148,585,125,556,108,524,93,491,75,429,67,384"/>
+<area shape="rect" href="routes__data_8cpp.html#a7cb04ca38fc8e4b768a2ef6ae67bc573" title=" " alt="" coords="226,753,344,779"/>
+<area shape="poly" title=" " alt="" coords="74,383,86,430,107,500,138,580,179,656,217,703,256,741,253,744,213,707,174,659,133,582,102,502,81,432,69,384"/>
+<area shape="poly" title=" " alt="" coords="354,324,395,342,411,355,420,368,429,381,444,393,453,399,450,403,440,397,425,384,416,371,407,359,393,347,351,328"/>
+<area shape="rect" href="namespace_calibration_manager.html#a24c0b11ea08e757ae404289fa38e33b3" title=" " alt="" coords="466,341,599,383"/>
+<area shape="poly" title=" " alt="" coords="353,322,451,343,450,348,352,327"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="723,302,789,329"/>
+<area shape="poly" title=" " alt="" coords="595,404,621,393,674,364,720,335,723,340,677,369,624,398,597,409"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="711,445,801,471"/>
+<area shape="poly" title=" " alt="" coords="600,435,696,448,696,453,599,440"/>
+<area shape="rect" href="web__templates_8cpp.html#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" title="Генерация базовой HTML структуры с навигацией" alt="" coords="466,87,598,114"/>
+<area shape="poly" title=" " alt="" coords="394,98,451,98,451,103,394,103"/>
+<area shape="poly" title=" " alt="" coords="598,87,671,75,672,80,599,92"/>
+<area shape="poly" title=" " alt="" coords="598,105,669,113,668,119,598,111"/>
+<area shape="poly" title=" " alt="" coords="570,112,671,149,707,160,705,165,669,154,568,117"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="890,50,998,77"/>
+<area shape="poly" title=" " alt="" coords="826,61,875,61,875,66,826,66"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="890,113,998,139"/>
+<area shape="poly" title=" " alt="" coords="828,123,874,123,874,129,828,129"/>
+<area shape="poly" title=" " alt="" coords="348,525,696,465,696,471,349,530"/>
+<area shape="rect" href="config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae" title=" " alt="" coords="488,525,576,551"/>
+<area shape="poly" title=" " alt="" coords="349,535,473,535,473,541,349,541"/>
+<area shape="poly" title=" " alt="" coords="571,522,621,503,701,475,703,480,623,508,573,527"/>
+<area shape="rect" href="mqtt__client_8cpp.html#a78b590745e792368420169e642494895" title=" " alt="" coords="670,525,842,551"/>
+<area shape="poly" title=" " alt="" coords="576,535,655,535,655,541,576,541"/>
+<area shape="poly" title=" " alt="" coords="364,259,396,276,409,290,416,305,422,335,426,365,432,379,444,393,454,401,450,406,440,397,428,382,421,366,416,336,411,307,405,293,392,280,362,263"/>
+<area shape="poly" title=" " alt="" coords="364,254,486,265,623,282,708,300,707,305,622,287,485,270,363,260"/>
+<area shape="poly" title=" " alt="" coords="353,264,519,300,623,326,659,349,690,377,738,431,734,434,686,381,655,354,621,331,518,305,352,269"/>
+<area shape="poly" title=" " alt="" coords="364,263,395,276,411,286,421,297,430,308,444,320,463,331,460,336,440,324,426,312,417,301,407,290,393,280,362,268"/>
+<area shape="poly" title=" " alt="" coords="352,426,450,426,450,431,352,431"/>
+<area shape="poly" title=" " alt="" coords="351,408,450,381,451,386,353,413"/>
+<area shape="poly" title=" " alt="" coords="589,624,702,598,703,603,590,629"/>
+<area shape="rect" href="logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf" title=" " alt="" coords="726,626,786,653"/>
+<area shape="poly" title=" " alt="" coords="589,637,710,637,710,642,589,642"/>
+<area shape="poly" title=" " alt="" coords="302,750,362,707,441,662,460,655,462,660,443,667,364,712,305,754"/>
+<area shape="rect" href="routes__data_8cpp.html#adc74086c185759ebabfbcd18b0abd9bd" title=" " alt="" coords="442,677,622,703"/>
+<area shape="poly" title=" " alt="" coords="327,749,441,713,466,705,467,711,443,718,329,755"/>
+<area shape="rect" href="jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483" title=" " alt="" coords="492,727,572,754"/>
+<area shape="poly" title=" " alt="" coords="345,757,477,744,477,749,345,763"/>
+<area shape="rect" href="jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470" title=" " alt="" coords="474,778,590,805"/>
+<area shape="poly" title=" " alt="" coords="345,769,459,781,459,786,345,775"/>
+<area shape="rect" href="jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b" title=" " alt="" coords="489,829,575,855"/>
+<area shape="poly" title=" " alt="" coords="329,777,443,814,475,824,473,829,441,819,327,782"/>
+<area shape="rect" href="jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152" title=" " alt="" coords="492,879,572,906"/>
+<area shape="poly" title=" " alt="" coords="305,777,364,820,443,865,478,878,476,883,441,870,362,825,302,782"/>
+<area shape="rect" href="jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351" title=" " alt="" coords="465,930,599,957"/>
+<area shape="poly" title=" " alt="" coords="299,778,355,844,397,883,443,916,454,921,452,926,441,920,393,887,352,848,295,781"/>
 </map>
 </div>
 <div class="dynheader">
@@ -353,23 +736,24 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 <div class="dyncontent">
 <div class="center"><img src="routes__data_8cpp_aed1136f683a386e56678e05fc3747972_icgraph.png" border="0" usemap="#aroutes__data_8cpp_aed1136f683a386e56678e05fc3747972_icgraph" alt=""/></div>
 <map name="aroutes__data_8cpp_aed1136f683a386e56678e05fc3747972_icgraph" id="aroutes__data_8cpp_aed1136f683a386e56678e05fc3747972_icgraph">
-<area shape="rect" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="698,81,821,108"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,81,650,108"/>
-<area shape="poly" title=" " alt="" coords="683,97,651,97,651,92,683,92"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,56,485,83"/>
-<area shape="poly" title=" " alt="" coords="517,85,485,80,486,75,518,80"/>
-<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,107,339,133"/>
-<area shape="poly" title=" " alt="" coords="517,103,340,118,339,113,517,98"/>
-<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,5,330,32"/>
-<area shape="poly" title=" " alt="" coords="379,53,328,35,330,30,381,48"/>
-<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,81,187,108"/>
-<area shape="poly" title=" " alt="" coords="372,78,188,94,187,89,371,72"/>
-<area shape="poly" title=" " alt="" coords="381,91,330,109,328,104,379,86"/>
-<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
-<area shape="poly" title=" " alt="" coords="228,21,170,21,170,16,228,16"/>
-<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,81,59,108"/>
-<area shape="poly" title=" " alt="" coords="91,97,59,97,59,92,91,92"/>
-<area shape="poly" title=" " alt="" coords="219,110,187,105,188,99,220,105"/>
+<area shape="rect" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="704,31,827,57"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,31,656,57"/>
+<area shape="poly" title=" " alt="" coords="689,47,657,47,657,41,689,41"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,56,491,83"/>
+<area shape="poly" title=" " alt="" coords="524,59,492,64,491,59,523,53"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,5,345,32"/>
+<area shape="poly" title=" " alt="" coords="523,41,345,26,346,20,523,35"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,81,193,108"/>
+<area shape="poly" title=" " alt="" coords="378,86,346,91,265,96,193,98,193,92,264,91,345,85,378,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,19,190,45"/>
+<area shape="poly" title=" " alt="" coords="378,64,241,47,190,40,191,35,241,41,378,59"/>
+<area shape="poly" title=" " alt="" coords="385,53,334,35,336,30,387,48"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,81,55,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,55,97,55,92,91,92"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,19,59,45"/>
+<area shape="poly" title=" " alt="" coords="94,35,59,35,59,29,94,29"/>
+<area shape="poly" title=" " alt="" coords="254,42,178,83,176,78,251,38"/>
+<area shape="poly" title=" " alt="" coords="226,28,191,31,190,26,225,22"/>
 </map>
 </div>
 
@@ -396,6 +780,56 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
+<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00043">43</a></p>
+
+</div>
+</div>
+<a id="a75f9cadda2a3d68252ebfeb55df86618" name="a75f9cadda2a3d68252ebfeb55df86618"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a75f9cadda2a3d68252ebfeb55df86618">&#9670;&#160;</a></span>uploadFile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">File uploadFile</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00029">29</a></p>
+
+</div>
+</div>
+<a id="a0b77c83141abb779c6ed77f346019bc2" name="a0b77c83141abb779c6ed77f346019bc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b77c83141abb779c6ed77f346019bc2">&#9670;&#160;</a></span>uploadProfile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155d">SoilProfile</a> uploadProfile = <a class="el" href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b">SoilProfile::SAND</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00030">30</a></p>
+
 </div>
 </div>
 </div><!-- contents -->
@@ -404,7 +838,7 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_0d4dde2834ed44e47b6207c19e4aac26.html">web</a></li><li class="navelem"><a class="el" href="routes__data_8cpp.html">routes_data.cpp</a></li>
-    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Вт 24 Июн 2025 17:22:11. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

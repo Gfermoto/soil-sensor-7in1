@@ -1,25 +1,26 @@
 <map id="generateErrorPage" name="generateErrorPage">
-<area shape="rect" id="Node000001" title="Генерация страницы ошибки" alt="" coords="879,56,1009,83"/>
-<area shape="rect" id="Node000002" href="$error__handlers_8cpp.html#a200ff078a206ee5a0b44bc0c5411f3f5" title="Обработка критических ошибок сервера" alt="" coords="700,5,829,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="879,54,814,35,815,30,880,49"/>
-<area shape="rect" id="Node000003" href="$error__handlers_8cpp.html#a72ddd36cf01d539c0b2575750fa997dc" title="Обработка ошибок загрузки файлов" alt="" coords="700,56,829,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="864,72,829,72,829,67,864,67"/>
-<area shape="rect" id="Node000004" href="$error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="698,107,831,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="880,90,815,109,814,104,879,85"/>
-<area shape="rect" id="Node000005" href="$wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,107,650,133"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="682,123,650,123,650,117,682,117"/>
-<area shape="rect" id="Node000006" href="$wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,81,485,108"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="517,111,485,105,486,100,518,105"/>
-<area shape="rect" id="Node000011" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,132,339,159"/>
-<area shape="poly" id="edge12_Node000005_Node000011" title=" " alt="" coords="517,129,340,144,339,138,517,123"/>
-<area shape="rect" id="Node000007" href="$wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,31,330,57"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="379,78,328,60,330,55,381,73"/>
-<area shape="rect" id="Node000009" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
-<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="372,103,188,119,187,114,371,98"/>
-<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="381,116,330,134,328,129,379,111"/>
-<area shape="rect" id="Node000008" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="228,47,170,47,170,41,228,41"/>
-<area shape="rect" id="Node000010" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
-<area shape="poly" id="edge11_Node000011_Node000009" title=" " alt="" coords="219,136,187,130,188,125,220,131"/>
+<area shape="rect" id="Node000001" title="Генерация страницы ошибки" alt="" coords="885,56,1015,83"/>
+<area shape="rect" id="Node000002" href="$error__handlers_8cpp.html#a200ff078a206ee5a0b44bc0c5411f3f5" title="Обработка критических ошибок сервера" alt="" coords="706,5,835,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="885,54,820,35,821,30,886,49"/>
+<area shape="rect" id="Node000003" href="$error__handlers_8cpp.html#a72ddd36cf01d539c0b2575750fa997dc" title="Обработка ошибок загрузки файлов" alt="" coords="706,56,835,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="870,72,835,72,835,67,870,67"/>
+<area shape="rect" id="Node000004" href="$error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="704,107,837,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="886,90,821,109,820,104,885,85"/>
+<area shape="rect" id="Node000005" href="$wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="539,107,656,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="688,123,656,123,656,117,688,117"/>
+<area shape="rect" id="Node000006" href="$wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="393,132,491,159"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="524,135,492,140,491,135,523,129"/>
+<area shape="rect" id="Node000011" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="241,81,345,108"/>
+<area shape="poly" id="edge13_Node000005_Node000011" title=" " alt="" coords="523,117,345,102,346,96,523,111"/>
+<area shape="rect" id="Node000007" href="$wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="107,157,193,184"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="378,162,346,167,265,172,193,174,193,168,264,167,345,161,378,156"/>
+<area shape="rect" id="Node000009" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="110,95,190,121"/>
+<area shape="poly" id="edge8_Node000006_Node000009" title=" " alt="" coords="378,140,241,123,190,116,191,111,241,117,378,135"/>
+<area shape="poly" id="edge10_Node000006_Node000011" title=" " alt="" coords="385,129,334,111,336,106,387,124"/>
+<area shape="rect" id="Node000008" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="9,157,55,184"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="91,173,55,173,55,168,91,168"/>
+<area shape="rect" id="Node000010" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,95,59,121"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="94,111,59,111,59,105,94,105"/>
+<area shape="poly" id="edge11_Node000011_Node000007" title=" " alt="" coords="254,118,178,159,176,154,251,114"/>
+<area shape="poly" id="edge12_Node000011_Node000009" title=" " alt="" coords="226,104,191,107,190,102,225,98"/>
 </map>

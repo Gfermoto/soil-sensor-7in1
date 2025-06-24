@@ -24,14 +24,69 @@
 */
 var NAVTREE =
 [
-  [ "JXCT Soil Sensor v2.0", "index.html", [
-    [ "🌱 JXCT Soil Sensor", "index.html", "index" ],
+  [ "JXCT Soil Sensor 7-in-1", "index.html", [
+    [ "JXCT Soil Sensor 7-in-1 Documentation", "index.html", "index" ],
+    [ "JXCT 7-в-1 Датчик Почвы", "md__r_e_a_d_m_e.html", [
+      [ "🎯 ОСНОВНЫЕ ВОЗМОЖНОСТИ", "md__r_e_a_d_m_e.html#autotoc_md1", [
+        [ "📊 7 параметров в одном датчике", "md__r_e_a_d_m_e.html#autotoc_md2", null ],
+        [ "🔬 Научно обоснованная компенсация", "md__r_e_a_d_m_e.html#autotoc_md3", null ],
+        [ "🌐 Современный веб-интерфейс", "md__r_e_a_d_m_e.html#autotoc_md4", null ],
+        [ "🔧 Технические особенности", "md__r_e_a_d_m_e.html#autotoc_md5", null ]
+      ] ],
+      [ "🚀 БЫСТРЫЙ СТАРТ", "md__r_e_a_d_m_e.html#autotoc_md6", [
+        [ "📋 Требования", "md__r_e_a_d_m_e.html#autotoc_md7", null ],
+        [ "⚡ Установка", "md__r_e_a_d_m_e.html#autotoc_md8", null ]
+      ] ],
+      [ "📊 КАЛИБРОВКА И КОМПЕНСАЦИЯ", "md__r_e_a_d_m_e.html#autotoc_md9", [
+        [ "🔬 Двухэтапная система компенсации", "md__r_e_a_d_m_e.html#autotoc_md10", [
+          [ "1️⃣ CSV калибровочная таблица (лабораторная поверка)", "md__r_e_a_d_m_e.html#autotoc_md11", null ],
+          [ "2️⃣ Математическая компенсация (научные модели)", "md__r_e_a_d_m_e.html#autotoc_md12", null ]
+        ] ],
+        [ "📈 Алгоритм применения", "md__r_e_a_d_m_e.html#autotoc_md13", null ]
+      ] ],
+      [ "🌐 ВЕБ-ИНТЕРФЕЙС", "md__r_e_a_d_m_e.html#autotoc_md14", [
+        [ "📱 Основные страницы", "md__r_e_a_d_m_e.html#autotoc_md15", null ],
+        [ "🎨 Особенности интерфейса", "md__r_e_a_d_m_e.html#autotoc_md16", null ]
+      ] ],
+      [ "🔧 КОНФИГУРАЦИЯ", "md__r_e_a_d_m_e.html#autotoc_md17", [
+        [ "📝 Основные параметры", "md__r_e_a_d_m_e.html#autotoc_md18", null ],
+        [ "🌱 Типы почв", "md__r_e_a_d_m_e.html#autotoc_md19", null ]
+      ] ],
+      [ "📚 ДОКУМЕНТАЦИЯ", "md__r_e_a_d_m_e.html#autotoc_md20", [
+        [ "📖 Руководства", "md__r_e_a_d_m_e.html#autotoc_md21", null ],
+        [ "🔬 Научные источники", "md__r_e_a_d_m_e.html#autotoc_md22", null ],
+        [ "📁 Структура проекта", "md__r_e_a_d_m_e.html#autotoc_md23", null ]
+      ] ],
+      [ "🚀 ОБНОВЛЕНИЯ", "md__r_e_a_d_m_e.html#autotoc_md24", [
+        [ "🔄 OTA обновления", "md__r_e_a_d_m_e.html#autotoc_md25", null ],
+        [ "📦 Автоматические обновления", "md__r_e_a_d_m_e.html#autotoc_md26", null ]
+      ] ],
+      [ "🤝 ВКЛАД В ПРОЕКТ", "md__r_e_a_d_m_e.html#autotoc_md27", [
+        [ "📝 Как внести вклад", "md__r_e_a_d_m_e.html#autotoc_md28", null ],
+        [ "🐛 Сообщение об ошибках", "md__r_e_a_d_m_e.html#autotoc_md29", null ],
+        [ "📋 Требования к коду", "md__r_e_a_d_m_e.html#autotoc_md30", null ]
+      ] ],
+      [ "📄 ЛИЦЕНЗИЯ", "md__r_e_a_d_m_e.html#autotoc_md31", null ],
+      [ "🙏 БЛАГОДАРНОСТИ", "md__r_e_a_d_m_e.html#autotoc_md32", null ],
+      [ "📞 ПОДДЕРЖКА", "md__r_e_a_d_m_e.html#autotoc_md33", null ]
+    ] ],
+    [ "Пространства имен", "namespaces.html", [
+      [ "Пространства имен", "namespaces.html", "namespaces_dup" ],
+      [ "Члены пространств имен", "namespacemembers.html", [
+        [ "Указатель", "namespacemembers.html", null ],
+        [ "Функции", "namespacemembers_func.html", null ],
+        [ "Переменные", "namespacemembers_vars.html", null ]
+      ] ]
+    ] ],
     [ "Классы", "annotated.html", [
       [ "Классы", "annotated.html", "annotated_dup" ],
       [ "Алфавитный указатель классов", "classes.html", null ],
+      [ "Иерархия классов", "hierarchy.html", "hierarchy" ],
       [ "Члены классов", "functions.html", [
         [ "Указатель", "functions.html", null ],
-        [ "Переменные", "functions_vars.html", null ]
+        [ "Функции", "functions_func.html", null ],
+        [ "Переменные", "functions_vars.html", null ],
+        [ "Определения типов", "functions_type.html", null ]
       ] ]
     ] ],
     [ "Файлы", "files.html", [
@@ -50,10 +105,11 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"annotated.html",
-"jxct__constants_8h.html#abc736911b242f167449b14cf593b6096",
-"modbus__sensor_8h.html#aaaaed48863426c3f790f977bc04e7b94",
-"version_8h.html#aba3d86f9adebd869f9dabcde75a28eab"
+"_i_sensor_8h.html",
+"jxct__constants_8h.html#a58f999d62665a9f819c76ab357c9733f",
+"main_8cpp_source.html",
+"routes__main_8cpp_source.html",
+"web__routes_8h.html#a1a62e7c40bff885d97f6018743bec642"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

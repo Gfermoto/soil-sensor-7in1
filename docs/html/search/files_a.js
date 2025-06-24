@@ -1,7 +1,10 @@
 var searchData=
 [
-  ['web_5froutes_2eh_0',['web_routes.h',['../web__routes_8h.html',1,'']]],
-  ['web_5ftemplates_2ecpp_1',['web_templates.cpp',['../web__templates_8cpp.html',1,'']]],
-  ['wifi_5fmanager_2ecpp_2',['wifi_manager.cpp',['../wifi__manager_8cpp.html',1,'']]],
-  ['wifi_5fmanager_2eh_3',['wifi_manager.h',['../wifi__manager_8h.html',1,'']]]
+  ['readme_2emd_0',['README.md',['../_r_e_a_d_m_e_8md.html',1,'']]],
+  ['routes_5fcalibration_2ecpp_1',['routes_calibration.cpp',['../routes__calibration_8cpp.html',1,'']]],
+  ['routes_5fconfig_2ecpp_2',['routes_config.cpp',['../routes__config_8cpp.html',1,'']]],
+  ['routes_5fdata_2ecpp_3',['routes_data.cpp',['../routes__data_8cpp.html',1,'']]],
+  ['routes_5fmain_2ecpp_4',['routes_main.cpp',['../routes__main_8cpp.html',1,'']]],
+  ['routes_5fota_2ecpp_5',['routes_ota.cpp',['../routes__ota_8cpp.html',1,'']]],
+  ['routes_5fservice_2ecpp_6',['routes_service.cpp',['../routes__service_8cpp.html',1,'']]]
 ];

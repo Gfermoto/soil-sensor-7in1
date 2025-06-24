@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['error_0',['ERROR',['../jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013abb1ca97ec761fc37101737ba0aa2e7c5',1,'jxct_ui_system.h']]]
+  ['danger_0',['DANGER',['../jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a707e893c1db5175432f341eb5d6d1ca7',1,'jxct_ui_system.h']]]
 ];

@@ -1,14 +1,13 @@
 var searchData=
 [
-  ['fakesensortask_0',['fakeSensorTask',['../fake__sensor_8cpp.html#a88a6670c876eb66b3358db30715c4416',1,'fake_sensor.cpp']]],
-  ['finalizesensordata_1',['finalizeSensorData',['../modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3',1,'modbus_sensor.cpp']]],
-  ['format_5fec_2',['format_ec',['../jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483',1,'format_ec(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a39b2dedc3670adcf20a62a8d113d2483',1,'format_ec(float value):&#160;jxct_format_utils.cpp']]],
-  ['format_5fmoisture_3',['format_moisture',['../jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470',1,'format_moisture(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a3be478cef555484efe62159216f6d470',1,'format_moisture(float value):&#160;jxct_format_utils.cpp']]],
-  ['format_5fnpk_4',['format_npk',['../jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b',1,'format_npk(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#abdc9f6cdc05f0aa72eec54b3e904ca7b',1,'format_npk(float value):&#160;jxct_format_utils.cpp']]],
-  ['format_5fph_5',['format_ph',['../jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152',1,'format_ph(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a416ab24406c338058778bbde7c4da152',1,'format_ph(float value):&#160;jxct_format_utils.cpp']]],
-  ['format_5ftemperature_6',['format_temperature',['../jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351',1,'format_temperature(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a9a843da2888c9b8014dd9506284f1351',1,'format_temperature(float value):&#160;jxct_format_utils.cpp']]],
-  ['formatsensorvalidationerrors_7',['formatSensorValidationErrors',['../validation__utils_8cpp.html#aecb050d7cbd49c3a3cb0dadcb72360c3',1,'formatSensorValidationErrors(const SensorValidationResult &amp;result):&#160;validation_utils.cpp'],['../validation__utils_8h.html#aecb050d7cbd49c3a3cb0dadcb72360c3',1,'formatSensorValidationErrors(const SensorValidationResult &amp;result):&#160;validation_utils.cpp']]],
-  ['formatuptime_8',['formatUptime',['../routes__service_8cpp.html#ab21327c115eef976cb4e8f5f5a94d4c7',1,'routes_service.cpp']]],
-  ['formatvalidationerrors_9',['formatValidationErrors',['../validation__utils_8cpp.html#af447043f0553ccee92c72fb59009b1ec',1,'formatValidationErrors(const ConfigValidationResult &amp;result):&#160;validation_utils.cpp'],['../validation__utils_8h.html#af447043f0553ccee92c72fb59009b1ec',1,'formatValidationErrors(const ConfigValidationResult &amp;result):&#160;validation_utils.cpp']]],
-  ['formatvalue_10',['formatValue',['../jxct__format__utils_8cpp.html#adc35370b803782f896c844976a9ad6ce',1,'formatValue(float value, const char *unit, int precision):&#160;jxct_format_utils.cpp'],['../routes__data_8cpp.html#adc35370b803782f896c844976a9ad6ce',1,'formatValue(float value, const char *unit, int precision):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#ac78af75db9fe02059342eed69de396e4',1,'formatValue(float value, const char *unit, int precision=2):&#160;jxct_format_utils.cpp']]]
+  ['debugconditionalprint_0',['debugConditionalPrint',['../debug__optimized_8h.html#a3b1c1240a45bf11367e496c24a1c354d',1,'debug_optimized.h']]],
+  ['debugprintbuffer_1',['debugPrintBuffer',['../modbus__sensor_8cpp.html#a2f7382dca34cb8bc9e1c80da26865a0a',1,'modbus_sensor.cpp']]],
+  ['debugprinthexbuffer_2',['debugPrintHexBuffer',['../debug__optimized_8h.html#a106b655aa8faea8942757638731ebf0d',1,'debug_optimized.h']]],
+  ['debugprintstatus_3',['debugPrintStatus',['../debug__optimized_8h.html#a4002fe059558510a239058a9dda387a6',1,'debug_optimized.h']]],
+  ['debugstatsincrement_4',['debugStatsIncrement',['../debug__optimized_8h.html#a795c0e9d5464893e565a264b0fb6e75e',1,'debug_optimized.h']]],
+  ['debugstatsinit_5',['debugStatsInit',['../debug__optimized_8h.html#ae3aab77ba55ab7c94378c6110d9a3050',1,'debug_optimized.h']]],
+  ['debugstatsprint_6',['debugStatsPrint',['../debug__optimized_8h.html#a748fe53bf9a9627f05f3d3697ff26971',1,'debug_optimized.h']]],
+  ['deletetable_7',['deleteTable',['../namespace_calibration_manager.html#a14e21e7fb1aa46aa781c20ee07271d12',1,'CalibrationManager']]],
+  ['downloadandupdate_8',['downloadAndUpdate',['../ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463',1,'ota_manager.cpp']]],
+  ['downloaddata_9',['downloadData',['../ota__manager_8cpp.html#a6bfd77aa7f122e508ece81a6f6cfbb88',1,'ota_manager.cpp']]]
 ];
