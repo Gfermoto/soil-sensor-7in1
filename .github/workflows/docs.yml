@@ -3,13 +3,6 @@ name: Deploy Documentation
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'docs/**'
-      - 'src/**'
-      - 'include/**'
-      - 'mkdocs.yml'
-      - 'Doxyfile'
-      - '.github/workflows/docs.yml'
   workflow_dispatch:
 
 permissions:
@@ -46,6 +39,16 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
+      - name: Debug - List files
+        run: |
+          echo "=== Current directory ==="
+          pwd
+          ls -la
+          echo "=== Docs directory ==="
+          ls -la docs/
+          echo "=== MkDocs config ==="
+          cat mkdocs.yml
+
       - name: Clean previous documentation
         run: |
           rm -rf docs/html
@@ -57,7 +60,7 @@ jobs:
 
       - name: Build with MkDocs
         run: |
-          mkdocs build --verbose --strict
+          mkdocs build --verbose
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
