@@ -1,15 +1,15 @@
 # Doxyfile 1.9.8
-# Конфигурация для генерации документации JXCT Soil Sensor v2.0
+# Конфигурация для генерации документации JXCT Soil Sensor v3.4.9
 
 # Основная информация о проекте
-PROJECT_NAME           = "JXCT Soil Sensor v2.0"
-PROJECT_NUMBER         = "v2.0 (June 2025)"
-PROJECT_BRIEF          = "Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration"
+PROJECT_NAME           = "JXCT Soil Sensor 7-in-1"
+PROJECT_NUMBER         = "v3.4.9 (June 2025)"
+PROJECT_BRIEF          = "Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms"
 
 # Каталоги для поиска исходников
-INPUT                  = src include README.md docs/*.md
+INPUT                  = src include README.md docs/index.md docs/manuals/*.md docs/dev/*.md
 RECURSIVE              = YES
-USE_MDFILE_AS_MAINPAGE = README.md
+USE_MDFILE_AS_MAINPAGE = docs/index.md
 
 # Каталог для вывода документации
 OUTPUT_DIRECTORY       = docs
@@ -23,6 +23,7 @@ HTML_OUTPUT            = html
 HTML_HEADER            = 
 HTML_FOOTER            = 
 HTML_EXTRA_STYLESHEET  = 
+HTML_TIMESTAMP         = YES
 
 # Генерировать LaTeX (PDF)
 GENERATE_LATEX         = NO
@@ -48,7 +49,7 @@ INCLUDE_GRAPH          = YES
 INCLUDED_BY_GRAPH      = YES
 
 # Исключить служебные каталоги
-EXCLUDE_PATTERNS       = */.pio/* */libdeps/* */.git/* */.vscode/* */test/*
+EXCLUDE_PATTERNS       = */.pio/* */libdeps/* */.git/* */.vscode/* */test/* */build/* */dist/*
 
 # Настройки генерации
 SHORT_NAMES            = NO
@@ -81,3 +82,77 @@ OPTIMIZE_OUTPUT_VHDL   = NO
 # Включить документацию для всех файлов
 FULL_PATH_NAMES        = YES
 STRIP_FROM_PATH        = 
+
+# Дополнительные настройки для лучшей документации
+GENERATE_TREEVIEW      = YES
+TREEVIEW_WIDTH         = 250
+DISABLE_INDEX          = NO
+GENERATE_HTML          = YES
+HTML_FILE_EXTENSION    = .html
+HTML_HEADER            = 
+HTML_FOOTER            = 
+HTML_STYLESHEET        = 
+HTML_EXTRA_STYLESHEET  = 
+HTML_EXTRA_FILES       = 
+HTML_COLORSTYLE_HUE    = 220
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+HTML_TIMESTAMP         = YES
+HTML_DYNAMIC_MENUS     = YES
+HTML_DYNAMIC_SECTIONS  = NO
+
+# Настройки поиска
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+EXTERNAL_SEARCH        = NO
+SEARCHDATA_FILE        = searchdata.xml
+EXTERNAL_SEARCH_ID     = 
+EXTRA_SEARCH_MAPPINGS  = 
+
+# Настройки для лучшей навигации
+GENERATE_TAGFILE       = 
+GENERATE_DEPENDENCY_GRAPH = YES
+DOT_IMAGE_FORMAT       = png
+INTERACTIVE_SVG        = NO
+DOT_PATH               = 
+DOTFILE_DIRS           = 
+MSCFILE_DIRS           = 
+DIAFILE_DIRS           = 
+PLANTUML_JAR_PATH      = 
+PLANTUML_CFG_FILE      = 
+PLANTUML_INCLUDE_PATH  = 
+DITA_LOCATION          = 
+
+# Настройки для лучшего отображения кода
+SOURCE_BROWSER         = YES
+INLINE_SOURCES         = NO
+STRIP_CODE_COMMENTS    = YES
+REFERENCED_BY_RELATION = YES
+REFERENCES_RELATION    = YES
+REFERENCES_LINK_SOURCE = YES
+SOURCE_TOOLTIPS        = YES
+USE_HTAGS              = NO
+VERBATIM_HEADERS       = YES
+
+# Настройки для лучшей документации
+ALPHABETICAL_INDEX     = YES
+COLS_IN_ALPHA_INDEX    = 5
+IGNORE_PREFIX          = 
+
+# Настройки для групп
+GROUP_GRAPHS           = YES
+UML_LOOK               = NO
+UML_RECORD_SIZE        = 350
+TEMPLATE_RELATIONS     = NO
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+GRAPHICAL_HIERARCHY    = YES
+DIRECTORY_GRAPH        = YES
+DOT_GRAPH_MAX_NODES    = 50
+MAX_DOT_GRAPH_DEPTH    = 0
+DOT_TRANSPARENT        = NO
+DOT_MULTI_TARGETS      = NO
+GENERATE_LEGEND        = YES
+DOT_CLEANUP            = YES 
