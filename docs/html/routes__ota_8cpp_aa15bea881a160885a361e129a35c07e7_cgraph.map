@@ -1,9 +1,0 @@
-<map id="handleFirmwareUpload" name="handleFirmwareUpload">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,56,160,83"/>
-<area shape="rect" id="Node000002" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="219,5,286,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="129,53,204,30,205,35,131,58"/>
-<area shape="rect" id="Node000003" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="208,56,297,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="160,67,192,67,192,72,160,72"/>
-<area shape="rect" id="Node000004" href="$logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="211,107,294,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="131,81,197,101,195,106,129,86"/>
-</map>
