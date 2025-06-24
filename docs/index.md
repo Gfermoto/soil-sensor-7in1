@@ -58,15 +58,15 @@
 <div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
   <h4 style="margin-top: 0; color: #1976d2;">📖 Руководства пользователя</h4>
   <ul style="margin: 10px 0; padding-left: 20px;">
-    <li><a href="manuals/USER_GUIDE.md" style="color: #1976d2; text-decoration: none;">📋 Руководство пользователя</a> - Полное руководство по использованию</li>
-    <li><a href="manuals/TECHNICAL_DOCS.md" style="color: #1976d2; text-decoration: none;">🔧 Техническая документация</a> - Архитектура и API</li>
-    <li><a href="manuals/API.md" style="color: #1976d2; text-decoration: none;">📊 API документация</a> - REST API и интеграции</li>
+    <li><a href="manuals/USER_GUIDE.html" style="color: #1976d2; text-decoration: none;">📋 Руководство пользователя</a> - Полное руководство по использованию</li>
+    <li><a href="manuals/TECHNICAL_DOCS.html" style="color: #1976d2; text-decoration: none;">🔧 Техническая документация</a> - Архитектура и API</li>
+    <li><a href="manuals/API.html" style="color: #1976d2; text-decoration: none;">📊 API документация</a> - REST API и интеграции</li>
   </ul>
   
   <h4 style="color: #1976d2;">🌱 Агрономические рекомендации</h4>
   <ul style="margin: 10px 0; padding-left: 20px;">
-    <li><a href="manuals/AGRO_RECOMMENDATIONS.md" style="color: #1976d2; text-decoration: none;">🌿 Агрономические рекомендации</a> - Рекомендации по культурам</li>
-    <li><a href="manuals/COMPENSATION_GUIDE.md" style="color: #1976d2; text-decoration: none;">🔬 Руководство по компенсации</a> - Научные модели и калибровка</li>
+    <li><a href="manuals/AGRO_RECOMMENDATIONS.html" style="color: #1976d2; text-decoration: none;">🌿 Агрономические рекомендации</a> - Рекомендации по культурам</li>
+    <li><a href="manuals/COMPENSATION_GUIDE.html" style="color: #1976d2; text-decoration: none;">🔬 Руководство по компенсации</a> - Научные модели и калибровка</li>
   </ul>
 </div>
 

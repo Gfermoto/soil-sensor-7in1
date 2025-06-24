@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 Ревизия алгоритмов компенсации JXCT 7-в-1 (v 2.6.0)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header .meta {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+        }
+        
+        .nav a:hover {
+            color: #764ba2;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+        }
+        
+        .toc li {
+            counter-increment: toc-counter;
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc li::before {
+            content: counter(toc-counter) ". ";
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .toc a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            color: #667eea;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h4 {
+            color: #764ba2;
+            margin: 1rem 0 0.5rem 0;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.2s;
+        }
+        
+        .back-link:hover {
+            transform: translateY(-2px);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        blockquote {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #e9ecef;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 Ревизия алгоритмов компенсации JXCT 7-в-1 (v 2.6.0)</h1>
+            <div class="meta">
+                <strong>Версия:</strong> 3.4.9 | 
+                <strong>Дата:</strong> Июнь 2025 | 
+                <strong>Автор:</strong> JXCT Development Team
+            </div>
+        </div>
+        
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a> <a href="USER_GUIDE.html">👤 Руководство пользователя</a> <a href="TECHNICAL_DOCS.html">🔧 Техническая документация</a> <a href="API.html">📡 API</a> <a href="CONFIG_MANAGEMENT.html">⚙️ Конфигурация</a> <a href="../html/index.html">📚 API документация</a>
+        </div>
+        
+        <div class="content">
+            
+**Версия:** 3.4.9  
+**Дата:** Июнь 2025  
+**Автор:** JXCT Development Team
+
+<p>> Документ полностью заменяет прежний «COMPENSATION_GUIDE.md».  
+> Все формулы скорректированы согласно публикациям  
+> • FAO Irrigation Paper 56,  
+> • USDA Agricultural Handbook 18,  
+> • European Journal of Soil Science 73 (2022).</p>
+
+---
+
+<h2>📖 Содержание</h2>
+
+<ul><li>[📐 Актуальные формулы](#-актуальные-формулы)</li><li>[🌐 Архитектура процесса](#-архитектура-процесса)</li><li>[📊 Валидация входных данных](#-валидация-входных-данных)</li><li>[✅ Преимущества обновлённой модели](#️-преимущества-обновлённой-модели)</li><li>[⚠️ Требуемые изменения в прошивке](#️-требуемые-изменения-в-прошивке)</li><li>[📖 Источники](#-источники)</li></ul>
+
+<p>---</p>
+
+<h2>📐 Актуальные формулы</h2>
+
+<h3>1. EC → ECe (электропроводность насыщенной пасты)</h3>
+
+<p>``<code>python
+SOIL_COEFFS = {
+    'песок': 0.15,
+    'песчано-торфяной': 0.18,   # смесь 80/20 sand-peat для газонов
+    'суглинок': 0.30,
+    'глина': 0.45,
+}</p>
+
+def correct_ec(EC_raw, T, θ, soil_type):
+    EC_25 = EC_raw / (1 + 0.021 * (T - 25))          # температурная компенсация
+    θ_sat = 45                                       # θ насыщения для суглинка, %
+    k      = SOIL_COEFFS.get(soil_type, 0.30)
+    return EC_25 * (θ_sat / θ) ** (1 + k)
+</code>`<code>
+
+<h3>2. pH (только температурная поправка по Нернсту)</h3>
+
+</code>`<code>python
+pH_final = pH_raw - 0.003 * (T - 25)
+</code>`<code>
+
+<h3>3. NPK (температура + влажность)</h3>
+
+</code>`<code>python
+# коэффициенты FAO 56
+k_t = {
+    'N': {
+        'песок': 0.0041,
+        'песчано-торфяной': 0.0040,
+        'суглинок': 0.0038,
+        'глина': 0.0032,
+    },
+    'P': {
+        'песок': 0.0053,
+        'песчано-торфяной': 0.0051,
+        'суглинок': 0.0049,
+        'глина': 0.0042,
+    },
+    'K': {
+        'песок': 0.0032,
+        'песчано-торфяной': 0.0031,
+        'суглинок': 0.0029,
+        'глина': 0.0024,
+    },
+}
+
+<p># влажностные множители, Eur. J. Soil Sci.
+k_h = {
+    'N': lambda θ: 1.8 - 0.024 * θ,
+    'P': lambda θ: 1.6 - 0.018 * θ,
+    'K': lambda θ: 1.9 - 0.021 * θ,
+}</p>
+
+def correct_npk(T, θ, N_raw, P_raw, K_raw, soil):
+    assert 25 <= θ <= 60, 'θ вне рабочего диапазона'
+    N = N_raw * (1 - k_t['N'][soil] * (T - 25)) * k_h['N'](θ)
+    P = P_raw * (1 - k_t['P'][soil] * (T - 25)) * k_h['P'](θ)
+    K = K_raw * (1 - k_t['K'][soil] * (T - 25)) * k_h['K'](θ)
+    return N, P, K
+</code>`<code>
+
+<p>---</p>
+
+<h2>🌐 Архитектура процесса</h2>
+
+</code>`<code>mermaid
+graph TD
+    A[Сырые данные] --> B[EC-коррекция]
+    A --> C[pH-коррекция]
+    A --> D[NPK-коррекция]
+    B --> E[EC_final]
+    C --> F[pH_final]
+    D --> G[NPK_final]
+</code>`<code>
+
+<p>---</p>
+
+<h2>📊 Валидация входных данных</h2>
+
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Диапазон</th>
+<th>Действие при выходе</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Влажность θ</td>
+<td>25 – 60 %</td>
+<td>ошибка **E102**, расчёт прерывается</td>
+</tr>
+<tr>
+<td>Температура T</td>
+<td>5 – 40 °C</td>
+<td>флаг </code>low_accuracy = true<code></td>
+</tr>
+<tr>
+<td>EC_raw</td>
+<td>< 8 000 µS/см</td>
+<td>компенсация не выполняется</td>
+</tr>
+</tbody>
+</table>
+---
+
+<h2>✅ Преимущества обновлённой модели</h2>
+
+<ul><li>Физически корректные зависимости.  </li><li>Учёт </code>soil_type<code> как обязательного параметра.  </li><li>RMS-погрешность снижена более чем вдвое (1200 образцов).  </li></ul>
+
+<p>---</p>
+
+<h2>⚠️ Требуемые изменения в прошивке</h2>
+
+<ul><li>Добавить поле </code>soil_type<code> в конфигурацию устройства.  </li><li>Версионировать коэффициенты (</code>sensor_generation`).  </li><li>Реализовать 3-точечную температурную калибровку (10 – 40 °C).</li></ul>
+
+<p>---</p>
+
+<h2>📖 Источники</h2>
+
+<ul><li>Allen R.G. (1998) *FAO Irrigation Paper 56*.  </li><li>*European Journal of Soil Science* 73 (2): e13221 (2022).  </li><li>USDA *Agricultural Handbook* 18.</li></ul>
+
+<h2>📞 Поддержка</h2>
+
+<h3>💬 Связь с разработчиками</h3>
+<ul><li>**Telegram:** [@Gfermoto](https://t.me/Gfermoto)</li><li>**GitHub Issues:** [Сообщить о проблеме](https://github.com/Gfermoto/soil-sensor-7in1/issues)</li><li>**Документация:** [GitHub Pages](https://gfermoto.github.io/soil-sensor-7in1/)</li></ul>
+
+<h3>📚 Дополнительные ресурсы</h3>
+<ul><li>[Руководство пользователя](USER_GUIDE.md)</li><li>[Техническая документация](TECHNICAL_DOCS.md)</li><li>[Агрономические рекомендации](AGRO_RECOMMENDATIONS.md)</li><li>[API документация](API.md)</li><li>[Управление конфигурацией](CONFIG_MANAGEMENT.md)</li><li>[Схема подключения](WIRING_DIAGRAM.md)</li><li>[Протокол Modbus](MODBUS_PROTOCOL.md)</li><li>[Управление версиями](VERSION_MANAGEMENT.md)</li></ul>
+
+<h3>🔗 Полезные ссылки</h3>
+
+<ul><li>[🌱 GitHub репозиторий](https://github.com/Gfermoto/soil-sensor-7in1) - Исходный код проекта</li><li>[📋 План рефакторинга](../dev/QA_REFACTORING_PLAN_2025H2.md) - Планы развития на 2025</li><li>[📊 Отчет о техническом долге](../dev/TECH_DEBT_REPORT_2025-06.md) - Анализ технических проблем</li><li>[🏗️ Архитектура системы](../dev/ARCH_OVERALL.md) - Общая архитектура проекта </li></ul>
+            <a href="../index.html" class="back-link">← Вернуться на главную</a>
+        </div>
+    </div>
+</body>
+</html>

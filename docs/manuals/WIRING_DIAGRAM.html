@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Схема подключения</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header .meta {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+        }
+        
+        .nav a:hover {
+            color: #764ba2;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+        }
+        
+        .toc li {
+            counter-increment: toc-counter;
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc li::before {
+            content: counter(toc-counter) ". ";
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .toc a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            color: #667eea;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h4 {
+            color: #764ba2;
+            margin: 1rem 0 0.5rem 0;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.2s;
+        }
+        
+        .back-link:hover {
+            transform: translateY(-2px);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        blockquote {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #e9ecef;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Схема подключения</h1>
+            <div class="meta">
+                <strong>Версия:</strong> 3.4.9 | 
+                <strong>Дата:</strong> Июнь 2025 | 
+                <strong>Автор:</strong> JXCT Development Team
+            </div>
+        </div>
+        
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a> <a href="USER_GUIDE.html">👤 Руководство пользователя</a> <a href="TECHNICAL_DOCS.html">🔧 Техническая документация</a> <a href="API.html">📡 API</a> <a href="CONFIG_MANAGEMENT.html">⚙️ Конфигурация</a> <a href="../html/index.html">📚 API документация</a>
+        </div>
+        
+        <div class="content">
+            
+**Версия:** 3.4.9  
+**Дата:** Июнь 2025  
+**Автор:** JXCT Development Team
+
+<p>---</p>
+
+<h2>📖 Содержание</h2>
+
+<ul><li>[🔌 RS-485 соединение](#-rs-485-соединение)</li><li>[⚡ Питание датчика](#-питание-датчика)</li><li>[⚠️ Важные замечания](#️-важные-замечания)</li><li>[🔧 Рекомендации по монтажу](#-рекомендации-по-монтажу)</li></ul>
+
+<p>---</p>
+
+<h2>🔌 RS-485 соединение</h2>
+
+<h3>ESP32 → RS-485 Transceiver (SP3485E)</h3>
+
+<h4>SP3485E (3.3V логика)</h4>
+<table>
+<thead>
+<tr>
+<th>ESP32 GPIO</th>
+<th>SP3485E Pin</th>
+<th>Тип сигнала</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GPIO16</td>
+<td>RO</td>
+<td>Цифровой вход</td>
+<td>UART2 RX - прием данных от SP3485E</td>
+</tr>
+<tr>
+<td>GPIO17</td>
+<td>DI</td>
+<td>Цифровой выход</td>
+<td>UART2 TX - передача данных в SP3485E</td>
+</tr>
+<tr>
+<td>GPIO5</td>
+<td>DE/RE</td>
+<td>Цифровой выход</td>
+<td>Управление направлением передачи</td>
+</tr>
+<tr>
+<td>3.3V</td>
+<td>VCC</td>
+<td>Питание</td>
+<td>Питание модуля SP3485E</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+<td>Земля</td>
+<td>Общий провод</td>
+</tr>
+</tbody>
+</table>
+<h4>Преимущества SP3485E:</h4>
+<ul><li>✅ **Питание от 3.3V** - не требует преобразования уровней</li><li>✅ **Высокая скорость** - до 10 Mbps</li><li>✅ **Низкое энергопотребление** - всего 300μA в режиме ожидания</li><li>✅ **Защита от ESD** - до ±15kV HBM</li><li>✅ **Встроенная защита** от перенапряжения на линии RS-485</li></ul>
+
+<h3>Подключение датчика JXCT</h3>
+
+<table>
+<thead>
+<tr>
+<th>SP3485E Pin</th>
+<th>JXCT Pin</th>
+<th>Тип сигнала</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A</td>
+<td>A+</td>
+<td>RS-485 A</td>
+<td>Неинвертирующая линия RS-485</td>
+</tr>
+<tr>
+<td>B</td>
+<td>B-</td>
+<td>RS-485 B</td>
+<td>Инвертирующая линия RS-485</td>
+</tr>
+</tbody>
+</table>
+<h2>⚡ Питание датчика</h2>
+
+<h3>Требования к питанию</h3>
+<ul><li>**SP3485E:** питается от 3.3V ESP32 (оптимально для ESP32)</li><li>**Датчик:** требует отдельное питание 12-24V</li><li>**Общий провод (GND):** соединить все устройства</li><li>**Терминирование:** резистор 120Ω между A и B на концах линии</li></ul>
+
+<h3>Схема подключения питания</h3>
+
+<table>
+<thead>
+<tr>
+<th>Блок питания</th>
+<th>JXCT Pin</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V+</td>
+<td>V+</td>
+<td>12-24V питание датчика</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+<td>Общий провод</td>
+</tr>
+</tbody>
+</table>
+<h2>⚠️ Важные замечания</h2>
+
+<h3>Критические моменты</h3>
+<ul><li>**Полярность:** строго соблюдать подключение A+ и B-</li><li>**Заземление:** обеспечить надежное заземление всех устройств</li><li>**Экранирование:** использовать экранированную витую пару</li><li>**Длина линии:** при длинных линиях использовать терминирующие резисторы</li></ul>
+
+<h2>🔧 Рекомендации по монтажу</h2>
+
+<ul><li>Используйте экранированную витую пару для RS-485</li><li>Соблюдайте полярность подключения A+ и B-</li><li>Обеспечьте надежное заземление</li><li>При длинных линиях используйте терминирующие резисторы</li></ul>
+
+<h2>📞 Поддержка</h2>
+
+<h3>💬 Связь с разработчиками</h3>
+<ul><li>**Telegram:** [@Gfermoto](https://t.me/Gfermoto)</li><li>**GitHub Issues:** [Сообщить о проблеме](https://github.com/Gfermoto/soil-sensor-7in1/issues)</li><li>**Документация:** [GitHub Pages](https://gfermoto.github.io/soil-sensor-7in1/)</li></ul>
+
+<h3>📚 Дополнительные ресурсы</h3>
+<ul><li>[Руководство пользователя](USER_GUIDE.md)</li><li>[Техническая документация](TECHNICAL_DOCS.md)</li><li>[Агрономические рекомендации](AGRO_RECOMMENDATIONS.md)</li><li>[Руководство по компенсации](COMPENSATION_GUIDE.md)</li><li>[API документация](API.md)</li><li>[Управление конфигурацией](CONFIG_MANAGEMENT.md)</li><li>[Протокол Modbus](MODBUS_PROTOCOL.md)</li><li>[Управление версиями](VERSION_MANAGEMENT.md)</li></ul>
+
+<h3>🔗 Полезные ссылки</h3>
+
+<ul><li>[🌱 GitHub репозиторий](https://github.com/Gfermoto/soil-sensor-7in1) - Исходный код проекта</li><li>[📋 План рефакторинга](../dev/QA_REFACTORING_PLAN_2025H2.md) - Планы развития на 2025</li><li>[📊 Отчет о техническом долге](../dev/TECH_DEBT_REPORT_2025-06.md) - Анализ технических проблем</li><li>[🏗️ Архитектура системы](../dev/ARCH_OVERALL.md) - Общая архитектура проекта </li></ul>
+            <a href="../index.html" class="back-link">← Вернуться на главную</a>
+        </div>
+    </div>
+</body>
+</html>

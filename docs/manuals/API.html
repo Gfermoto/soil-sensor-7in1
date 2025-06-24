@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Справочник</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .header .meta {
+            opacity: 0.9;
+            font-size: 1.1rem;
+        }
+        
+        .nav {
+            background: #f8f9fa;
+            padding: 1rem 2rem;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        .nav a {
+            color: #667eea;
+            text-decoration: none;
+            margin-right: 2rem;
+            font-weight: 500;
+        }
+        
+        .nav a:hover {
+            color: #764ba2;
+        }
+        
+        .content {
+            padding: 2rem;
+        }
+        
+        .toc {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+        
+        .toc h2 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .toc ol {
+            list-style: none;
+            counter-reset: toc-counter;
+        }
+        
+        .toc li {
+            counter-increment: toc-counter;
+            margin-bottom: 0.5rem;
+        }
+        
+        .toc li::before {
+            content: counter(toc-counter) ". ";
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .toc a {
+            color: #333;
+            text-decoration: none;
+        }
+        
+        .toc a:hover {
+            color: #667eea;
+        }
+        
+        h2 {
+            color: #667eea;
+            margin: 2rem 0 1rem 0;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e9ecef;
+        }
+        
+        h3 {
+            color: #764ba2;
+            margin: 1.5rem 0 1rem 0;
+        }
+        
+        h4 {
+            color: #764ba2;
+            margin: 1rem 0 0.5rem 0;
+        }
+        
+        p {
+            margin-bottom: 1rem;
+        }
+        
+        ul, ol {
+            margin-bottom: 1rem;
+            padding-left: 2rem;
+        }
+        
+        li {
+            margin-bottom: 0.5rem;
+        }
+        
+        code {
+            background: #f8f9fa;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        pre {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        
+        pre code {
+            background: none;
+            padding: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+        }
+        
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+        
+        th {
+            background: #667eea;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 0.75rem 1.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: transform 0.2s;
+        }
+        
+        .back-link:hover {
+            transform: translateY(-2px);
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        blockquote {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+        }
+        
+        hr {
+            border: none;
+            border-top: 2px solid #e9ecef;
+            margin: 2rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>API Справочник</h1>
+            <div class="meta">
+                <strong>Версия:</strong> 3.4.9 | 
+                <strong>Дата:</strong> Июнь 2025 | 
+                <strong>Автор:</strong> JXCT Development Team
+            </div>
+        </div>
+        
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a> <a href="USER_GUIDE.html">👤 Руководство пользователя</a> <a href="TECHNICAL_DOCS.html">🔧 Техническая документация</a> <a href="CONFIG_MANAGEMENT.html">⚙️ Конфигурация</a> <a href="../html/index.html">📚 API документация</a>
+        </div>
+        
+        <div class="content">
+            
+**Версия:** 3.4.9  
+**Дата:** Июнь 2025  
+**Автор:** JXCT Development Team
+
+<p>REST API для интеграции с JXCT Soil Sensor v2.2.0.</p>
+
+---
+
+<h2>📖 Содержание</h2>
+
+<ul><li>[🌐 Доступ к API](#-доступ-к-api)</li><li>[📊 Основные endpoints](#-основные-endpoints)</li><li>[🌐 Веб-страницы](#-веб-страницы)</li><li>[📝 Настройки](#-настройки)</li><li>[🏠 MQTT интеграция](#-mqtt-интеграция)</li><li>[📡 ThingSpeak интеграция](#-thingspeak-интеграция)</li><li>[🔄 Коды ошибок](#-коды-ошибок)</li><li>[📱 CORS поддержка](#-cors-поддержка)</li></ul>
+
+<p>---</p>
+
+<h2>🌐 Доступ к API</h2>
+
+<p>**Все endpoints открыты** - авторизация не требуется.  
+**Доступные endpoints:**</p>
+
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/sensor</code></td>
+<td>Основные данные датчика (JSON).</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/sensor_json</code></td>
+<td>Те же данные (legacy, будет удалён в v2.7.0).</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/sensor</code></td>
+<td>DEPRECATED alias → <code>/api/v1/sensor</code>.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/system/health</code></td>
+<td>Полная диагностика устройства.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/system/status</code></td>
+<td>Краткий статус сервисов.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/system/reset</code></td>
+<td>Сброс настроек (307 на <code>/reset</code>).</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/v1/system/reboot</code></td>
+<td>Перезагрузка (307 на <code>/reboot</code>).</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/v1/config/export</code></td>
+<td>Скачать конфигурацию (JSON, без паролей).</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/api/config/export</code></td>
+<td>DEPRECATED alias → <code>/api/v1/config/export</code>.</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api/config/import</code></td>
+<td>Импорт конфигурации.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/readings</code></td>
+<td>Веб-страница с показаниями датчика.</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/service</code></td>
+<td>Веб-страница диагностики сервисов.</td>
+</tr>
+</tbody>
+</table>
+Другие страницы UI: <code>/</code>, <code>/intervals</code>, <code>/config_manager</code>.
+
+<h2>📊 Основные endpoints</h2>
+
+<h3>GET /api/sensor - Данные датчика</h3>
+``<code>bash
+curl http://192.168.4.1/api/sensor
+</code>`<code>
+
+<p>**Ответ:**
+</code>`<code>json
+{
+  "temperature": 23.7,
+  "humidity": 54.4,
+  "ec": 1200,
+  "ph": 6.8,
+  "nitrogen": 15,
+  "phosphorus": 8,
+  "potassium": 20,
+  "timestamp": 1717920000,
+  "valid": true,
+  "sensor_enabled": true
+}
+</code>`<code></p>
+
+<h3>GET /sensor_json – Данные датчика (frontend)</h3>
+
+<p>Возвращает идентичный JSON, используется JavaScript на странице </code>/readings<code>. Для внешней интеграции рекомендуется </code>/api/sensor<code>.</p>
+
+<h3>GET /service_status – Состояние сервисов</h3>
+
+<p>Пример ответа:
+</code>`<code>json
+{
+  "wifi_connected": true,
+  "mqtt_enabled": true,
+  "mqtt_connected": true,
+  "mqtt_last_error": "",
+  "thingspeak_enabled": true,
+  "thingspeak_last_pub": "2025-06-11T15:30:00Z",
+  "thingspeak_last_error": "",
+  "hass_enabled": false,
+  "sensor_ok": true
+}
+</code>`<code></p>
+
+<h3>GET /api/config/export – Экспорт настроек</h3>
+
+<p>Скачивает файл </code>jxct_config_TIMESTAMP.json<code> со всеми настройками (чувствительные данные подменены «YOUR_…»).</p>
+
+<h3>POST /api/config/import – Импорт настроек</h3>
+Загрузите JSON, полученный ранее экспортом, чтобы восстановить конфигурацию.
+
+<h3>POST /reset – Legacy сброс (будет удалён в v2.7.0).</h3>
+
+<h3>POST /reboot – Legacy перезагрузка.</h3>
+
+<h3>GET /health - Системная информация</h3>
+</code>`<code>bash
+curl http://192.168.4.1/health
+</code>`<code>
+
+<p>**Ответ:**
+</code>`<code>json
+{
+  "device": {
+    "model": "JXCT-7in1",
+    "version": "2.2.0"
+  },
+  "memory": {
+    "free_heap": 228732,
+    "flash_used": 876701,
+    "flash_total": 4194304
+  },
+  "wifi": {
+    "connected": true,
+    "mode": "STA",
+    "ssid": "MyWiFi",
+    "ip": "192.168.4.1",
+    "rssi": -63
+  },
+  "services": {
+    "mqtt": {
+      "enabled": true,
+      "connected": true,
+      "server": "mqtt.local"
+    },
+    "thingspeak": {
+      "enabled": true,
+      "last_publish": "2025-06-11T15:30:00Z"
+    }
+  },
+  "uptime": 86400,
+  "timestamp": "2025-06-11T15:30:15Z"
+}
+</code>`<code></p>
+
+<h2>🌐 Веб-страницы</h2>
+
+<h3>GET / - Настройки</h3>
+Веб-интерфейс для настройки WiFi, MQTT, ThingSpeak.
+
+<h3>GET /readings - Мониторинг </h3>
+Страница с live данными датчика (обновление каждые 2 сек).
+
+<h3>GET /service - Диагностика</h3>
+Статус WiFi, MQTT, ThingSpeak, датчика, системные метрики.
+
+<h2>📝 Настройки</h2>
+
+<h3>POST /save - Сохранение настроек</h3>
+</code>`<code>bash
+curl -X POST http://192.168.4.1/save \
+  -d "wifi_ssid=MyWiFi" \
+  -d "wifi_password=mypass" \
+  -d "mqtt_server=mqtt.local" \
+  -d "mqtt_port=1883" \
+  -d "thingspeak_api_key=YOUR_KEY"
+</code>`<code>
+
+<p>**Параметры:**
+<ul><li></code>wifi_ssid<code>, </code>wifi_password<code> - WiFi настройки</li><li></code>mqtt_server<code>, </code>mqtt_port<code>, </code>mqtt_user<code>, </code>mqtt_password<code> - MQTT</li><li></code>thingspeak_api_key<code> - ThingSpeak API ключ</li><li></code>homeassistant_discovery<code> - включить HA Discovery (1/0)</li><li></code>web_password<code> - пароль для веб-интерфейса</li></ul></p>
+
+<h2>🏠 MQTT интеграция</h2>
+
+<h3>Топики публикации</h3>
+</code>`<code>
+homeassistant/sensor/jxct_soil/temperature/state
+homeassistant/sensor/jxct_soil/humidity/state  
+homeassistant/sensor/jxct_soil/ec/state
+homeassistant/sensor/jxct_soil/ph/state
+homeassistant/sensor/jxct_soil/nitrogen/state
+homeassistant/sensor/jxct_soil/phosphorus/state
+homeassistant/sensor/jxct_soil/potassium/state
+</code>`<code>
+
+<h3>Команды управления</h3>
+</code>`<code>bash
+# Перезагрузка устройства
+mosquitto_pub -h mqtt.local -t "jxct/command" -m "reboot"
+
+<p># Сброс настроек
+mosquitto_pub -h mqtt.local -t "jxct/command" -m "reset"</p>
+
+# Тестовая публикация
+mosquitto_pub -h mqtt.local -t "jxct/command" -m "publish_test"
+</code>`<code>
+
+<h2>📡 ThingSpeak интеграция</h2>
+
+<p>Автоматическая отправка данных каждые 15 секунд в поля:
+<ul><li>Field1: Температура (°C)</li><li>Field2: Влажность (%)</li><li>Field3: EC (µS/cm)</li><li>Field4: pH</li><li>Field5: Азот (mg/kg)</li><li>Field6: Фосфор (mg/kg)</li><li>Field7: Калий (mg/kg)</li></ul></p>
+
+<h2>🔄 Коды ошибок</h2>
+
+<ul><li>**200** - Успешно</li><li>**400** - Некорректные параметры</li><li>**403** - Доступ запрещен  </li><li>**500** - Внутренняя ошибка сервера</li></ul>
+
+<h2>📱 CORS поддержка</h2>
+
+<p>API поддерживает CORS для локальных сетей:
+</code>`<code>javascript
+fetch('http://192.168.4.1/api/sensor')
+  .then(response => response.json())
+  .then(data => console.log(data));
+</code>`<code></p>
+
+<h2>🔧 Примеры интеграций</h2>
+
+<h3>Python</h3>
+</code>`<code>python
+import requests
+
+<p># Получить данные датчика
+response = requests.get('http://192.168.4.1/api/sensor')
+data = response.json()
+print(f"Температура: {data['temperature']}°C")
+</code>`<code></p>
+
+<h3>Node.js</h3>
+</code>`<code>javascript
+const axios = require('axios');
+
+<p>async function getSensorData() {
+  const response = await axios.get('http://192.168.4.1/api/sensor');
+  return response.data;
+}
+</code>`<code></p>
+
+<h3>Home Assistant</h3>
+</code>`<code>yaml
+# configuration.yaml
+sensor:
+  - platform: rest
+    resource: http://192.168.4.1/api/sensor
+    name: "JXCT Soil Sensor"
+    json_attributes:
+      - temperature
+      - humidity  
+      - ph
+      - ec
+    value_template: "{{ value_json.temperature }}"
+</code>``
+
+<h2>📞 Поддержка</h2>
+
+<h3>💬 Связь с разработчиками</h3>
+<ul><li>**Telegram:** [@Gfermoto](https://t.me/Gfermoto)</li><li>**GitHub Issues:** [Сообщить о проблеме](https://github.com/Gfermoto/soil-sensor-7in1/issues)</li><li>**Документация:** [GitHub Pages](https://gfermoto.github.io/soil-sensor-7in1/)</li></ul>
+
+<h3>📚 Дополнительные ресурсы</h3>
+<ul><li>[Руководство пользователя](USER_GUIDE.md)</li><li>[Техническая документация](TECHNICAL_DOCS.md)</li><li>[Агрономические рекомендации](AGRO_RECOMMENDATIONS.md)</li><li>[Руководство по компенсации](COMPENSATION_GUIDE.md)</li><li>[Управление конфигурацией](CONFIG_MANAGEMENT.md)</li><li>[Схема подключения](WIRING_DIAGRAM.md)</li><li>[Протокол Modbus](MODBUS_PROTOCOL.md)</li><li>[Управление версиями](VERSION_MANAGEMENT.md)</li></ul>
+
+<h3>🔗 Полезные ссылки</h3>
+
+<ul><li>[🌱 GitHub репозиторий](https://github.com/Gfermoto/soil-sensor-7in1) - Исходный код проекта</li><li>[📋 План рефакторинга](../dev/QA_REFACTORING_PLAN_2025H2.md) - Планы развития на 2025</li><li>[📊 Отчет о техническом долге](../dev/TECH_DEBT_REPORT_2025-06.md) - Анализ технических проблем</li><li>[🏗️ Архитектура системы](../dev/ARCH_OVERALL.md) - Общая архитектура проекта </li></ul>
+            <a href="../index.html" class="back-link">← Вернуться на главную</a>
+        </div>
+    </div>
+</body>
+</html>
