@@ -104,92 +104,42 @@ jobs:
           if [ ! -d "docs/html" ]; then
             mkdir -p docs/html
           fi
-          cat > docs/html/index.html << 'EOF'
-          <!DOCTYPE html>
-          <html lang="ru">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <title>JXCT 7-в-1 Датчик Почвы - Документация</title>
-              <style>
-                  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 20px; background: #f6f8fa; }
-                  .container { max-width: 1200px; margin: 0 auto; background: white; padding: 40px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-                  h1 { color: #24292e; border-bottom: 2px solid #0366d6; padding-bottom: 10px; }
-                  .nav { margin: 30px 0; }
-                  .nav a { display: inline-block; margin: 10px 15px 10px 0; padding: 12px 20px; background: #0366d6; color: white; text-decoration: none; border-radius: 6px; transition: background 0.3s; }
-                  .nav a:hover { background: #0256cc; }
-                  .section { margin: 30px 0; }
-                  .section h2 { color: #24292e; margin-bottom: 15px; }
-                  .section p { line-height: 1.6; color: #586069; }
-                  .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 20px 0; }
-                  .feature { padding: 20px; background: #f8f9fa; border-radius: 6px; border-left: 4px solid #0366d6; }
-                  .feature h3 { margin-top: 0; color: #24292e; }
-              </style>
-          </head>
-          <body>
-              <div class="container">
-                  <h1>🌱 JXCT 7-в-1 Датчик Почвы</h1>
-                  <p>Умный датчик почвы с веб-интерфейсом для точного мониторинга параметров почвы</p>
-                  
-                  <div class="nav">
-                      <a href="index.html">📖 Главная</a>
-                      <a href="classes.html">📚 Классы</a>
-                      <a href="files.html">📁 Файлы</a>
-                      <a href="functions.html">⚙️ Функции</a>
-                      <a href="globals.html">🌐 Глобальные переменные</a>
-                      <a href="https://github.com/Gfermoto/soil-sensor-7in1">🔗 GitHub</a>
-                  </div>
-                  
-                  <div class="section">
-                      <h2>📊 Основные возможности</h2>
-                      <div class="features">
-                          <div class="feature">
-                              <h3>🌡️ 7 параметров в одном датчике</h3>
-                              <p>Температура, влажность, EC, pH, азот, фосфор, калий с высокой точностью</p>
-                          </div>
-                          <div class="feature">
-                              <h3>🔬 Научная компенсация</h3>
-                              <p>Модель Арчи, уравнение Нернста, FAO 56 для точных измерений</p>
-                          </div>
-                          <div class="feature">
-                              <h3>🌐 Веб-интерфейс</h3>
-                              <p>Адаптивный дизайн, OTA обновления, экспорт данных в CSV</p>
-                          </div>
-                          <div class="feature">
-                              <h3>🔧 ESP32 + PlatformIO</h3>
-                              <p>Мощный микроконтроллер с WiFi, MQTT, ThingSpeak интеграцией</p>
-                          </div>
-                      </div>
-                  </div>
-                  
-                  <div class="section">
-                      <h2>📚 Документация</h2>
-                      <p>Полная техническая документация проекта с описанием всех классов, функций и API.</p>
-                      <div class="nav">
-                          <a href="classes.html">📖 Классы и интерфейсы</a>
-                          <a href="files.html">📁 Исходные файлы</a>
-                          <a href="functions.html">⚙️ Функции</a>
-                          <a href="globals.html">🌐 Глобальные переменные</a>
-                      </div>
-                  </div>
-                  
-                  <div class="section">
-                      <h2>🔗 Ссылки</h2>
-                      <div class="nav">
-                          <a href="https://github.com/Gfermoto/soil-sensor-7in1">📦 GitHub Repository</a>
-                          <a href="https://github.com/Gfermoto/soil-sensor-7in1/releases">🚀 Releases</a>
-                          <a href="https://github.com/Gfermoto/soil-sensor-7in1/issues">🐛 Issues</a>
-                          <a href="https://t.me/Gfermoto">💬 Telegram Support</a>
-                      </div>
-                  </div>
-                  
-                  <div class="section">
-                      <p><strong>Версия:</strong> 3.4.9 | <strong>Платформа:</strong> ESP32 + PlatformIO | <strong>Лицензия:</strong> MIT</p>
-                  </div>
-              </div>
-          </body>
-          </html>
-          EOF
+          
+          # Копируем наш обновленный index.md вместо создания статического HTML
+          if [ -f "docs/index.md" ]; then
+            echo "✅ Using existing docs/index.md"
+            cp docs/index.md docs/html/index.md
+          else
+            echo "❌ docs/index.md not found, creating fallback"
+            echo "# 🌱 JXCT 7-в-1 Датчик Почвы" > docs/html/index.md
+            echo "" >> docs/html/index.md
+            echo "Умный датчик почвы с веб-интерфейсом для точного мониторинга параметров почвы" >> docs/html/index.md
+            echo "" >> docs/html/index.md
+            echo "## 📊 Основные возможности" >> docs/html/index.md
+            echo "" >> docs/html/index.md
+            echo "### 🌡️ 7 параметров в одном датчике" >> docs/html/index.md
+            echo "Температура, влажность, EC, pH, азот, фосфор, калий с высокой точностью" >> docs/html/index.md
+            echo "" >> docs/html/index.md
+            echo "### 🔬 Научная компенсация" >> docs/html/index.md
+            echo "Модель Арчи, уравнение Нернста, FAO 56 для точных измерений" >> docs/html/index.md
+            echo "" >> docs/html/index.md
+            echo "### 🌐 Веб-интерфейс" >> docs/html/index.md
+            echo "Адаптивный дизайн, OTA обновления, экспорт данных в CSV" >> docs/html/index.md
+            echo "" >> docs/html/index.md
+            echo "### 🔧 ESP32 + PlatformIO" >> docs/html/index.md
+            echo "Мощный микроконтроллер с WiFi, MQTT, ThingSpeak интеграцией" >> docs/html/index.md
+            echo "" >> docs/html/index.md
+            echo "## 📚 Документация" >> docs/html/index.md
+            echo "" >> docs/html/index.md
+            echo "Полная техническая документация проекта с описанием всех классов, функций и API." >> docs/html/index.md
+            echo "" >> docs/html/index.md
+            echo "## 🔗 Ссылки" >> docs/html/index.md
+            echo "" >> docs/html/index.md
+            echo "📦 GitHub Repository 🚀 Releases 🐛 Issues 💬 Telegram Support" >> docs/html/index.md
+            echo "" >> docs/html/index.md
+            echo "**Версия:** 3.4.9 | **Платформа:** ESP32 + PlatformIO | **Лицензия:** MIT" >> docs/html/index.md
+          fi
+          
           echo "✅ Main page created successfully"
           
       - name: Verify documentation structure
@@ -197,7 +147,7 @@ jobs:
           echo "=== Verifying documentation structure ==="
           echo "Checking docs/html directory structure:"
           ls -la docs/html/
-          if [ -f "docs/html/index.html" ]; then
+          if [ -f "docs/html/index.md" ]; then
             echo "✅ Main page exists"
           else
             echo "❌ Main page not found"
