@@ -5,7 +5,10 @@ on:
     branches: [ main ]
     paths:
       - 'docs/**'
+      - 'src/**'
+      - 'include/**'
       - 'mkdocs.yml'
+      - 'Doxyfile'
       - '.github/workflows/docs.yml'
   workflow_dispatch:
 
@@ -35,8 +38,17 @@ jobs:
         run: |
           pip install -r requirements.txt
 
+      - name: Install Doxygen
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
+
+      - name: Generate Doxygen documentation
+        run: |
+          doxygen Doxyfile
 
       - name: Build with MkDocs
         run: mkdocs build --verbose
@@ -44,7 +56,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: ./site
 
   deploy:
     environment:

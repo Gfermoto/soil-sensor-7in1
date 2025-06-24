@@ -1,0 +1,17 @@
+<map id="downloadAndUpdate" name="downloadAndUpdate">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,76,147,103"/>
+<area shape="rect" id="Node000002" href="$ota__manager_8cpp.html#a6bfd77aa7f122e508ece81a6f6cfbb88" title=" " alt="" coords="206,76,310,103"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,87,191,87,191,92,147,92"/>
+<area shape="rect" id="Node000003" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="378,26,444,52"/>
+<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="91,74,134,40,163,23,194,11,238,4,283,5,326,11,363,20,362,25,325,16,283,10,239,9,195,16,165,28,137,45,94,78"/>
+<area shape="rect" id="Node000004" href="$logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="369,76,452,103"/>
+<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="131,101,195,112,258,117,321,112,355,105,356,110,321,118,258,123,194,118,130,106"/>
+<area shape="rect" id="Node000005" href="$ota__manager_8cpp.html#a95a87e1e1d6cd503264f609ff0d1834c" title=" " alt="" coords="195,26,321,52"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="126,73,192,54,193,60,127,78"/>
+<area shape="rect" id="Node000006" href="$ota__manager_8cpp.html#a2b7fa9588e9d775a9058925bb170f465" title=" " alt="" coords="209,178,306,204"/>
+<area shape="poly" id="edge9_Node000001_Node000006" title=" " alt="" coords="101,101,196,157,217,168,215,173,193,161,99,106"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="300,73,362,52,363,57,301,78"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="310,87,354,87,354,92,310,92"/>
+<area shape="poly" id="edge5_Node000005_Node000003" title=" " alt="" coords="322,36,362,36,362,42,322,42"/>
+<area shape="poly" id="edge6_Node000005_Node000004" title=" " alt="" coords="301,50,355,68,353,74,300,55"/>
+</map>

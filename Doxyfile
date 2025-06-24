@@ -2,9 +2,9 @@
 # Конфигурация для генерации документации JXCT Soil Sensor v3.4.9
 
 # Основная информация о проекте
-PROJECT_NAME           = "JXCT Soil Sensor 7-in-1"
-PROJECT_NUMBER         = "v3.4.9 (June 2025)"
-PROJECT_BRIEF          = "Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms"
+PROJECT_NAME           = "JXCT 7-в-1 Датчик Почвы"
+PROJECT_NUMBER         = 1.0
+PROJECT_BRIEF          = "Документация API для датчика почвы JXCT 7-в-1"
 
 # Каталоги для поиска исходников (исключаем README.md)
 INPUT                  = src include docs/index.md docs/manuals/*.md docs/dev/*.md
@@ -12,7 +12,7 @@ RECURSIVE              = YES
 USE_MDFILE_AS_MAINPAGE = docs/index.md
 
 # Каталог для вывода документации
-OUTPUT_DIRECTORY       = docs
+OUTPUT_DIRECTORY       = docs/html
 
 # Язык документации
 OUTPUT_LANGUAGE        = Russian
@@ -50,8 +50,8 @@ EXCLUDE_PATTERNS       = */.pio/* */libdeps/* */.git/* */.vscode/* */test/* */bu
 
 # Настройки генерации
 SHORT_NAMES            = NO
-JAVADOC_AUTOBRIEF      = YES
-QT_AUTOBRIEF           = YES
+JAVADOC_AUTOBRIEF      = NO
+QT_AUTOBRIEF           = NO
 MULTILINE_CPP_IS_BRIEF = NO
 
 # Включить поддержку Markdown
@@ -65,10 +65,10 @@ FULL_PATH_NAMES        = YES
 STRIP_FROM_PATH        = ./
 
 # Предупреждения (упрощено)
-QUIET                  = YES
-WARNINGS               = NO
-WARN_IF_UNDOCUMENTED   = NO
-WARN_IF_DOC_ERROR      = NO
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
 
 # Включить документацию для групп
 OPTIMIZE_OUTPUT_FOR_C  = NO
@@ -80,9 +80,7 @@ OPTIMIZE_OUTPUT_VHDL   = NO
 GENERATE_TREEVIEW      = YES
 TREEVIEW_WIDTH         = 250
 DISABLE_INDEX          = NO
-GENERATE_HTML          = YES
 HTML_FILE_EXTENSION    = .html
-HTML_TIMESTAMP         = YES
 HTML_DYNAMIC_MENUS     = YES
 HTML_DYNAMIC_SECTIONS  = NO
 
@@ -93,34 +91,56 @@ EXTERNAL_SEARCH        = NO
 SEARCHDATA_FILE        = searchdata.xml
 
 # Настройки для лучшей навигации
-GENERATE_TAGFILE       = 
+GENERATE_TAGFILE       =
 GENERATE_DEPENDENCY_GRAPH = NO
 DOT_IMAGE_FORMAT       = png
 INTERACTIVE_SVG        = NO
-DOT_PATH               = 
-DOTFILE_DIRS           = 
-MSCFILE_DIRS           = 
-DIAFILE_DIRS           = 
-PLANTUML_JAR_PATH      = 
-PLANTUML_CFG_FILE      = 
-PLANTUML_INCLUDE_PATH  = 
-DITA_LOCATION          = 
+DOT_PATH               =
+DOTFILE_DIRS           =
+MSCFILE_DIRS           =
+DIAFILE_DIRS           =
+PLANTUML_JAR_PATH      =
+PLANTUML_CFG_FILE      =
+PLANTUML_INCLUDE_PATH  =
+DITA_LOCATION          =
 
 # Настройки для лучшего отображения кода
 SOURCE_BROWSER         = YES
 INLINE_SOURCES         = NO
 STRIP_CODE_COMMENTS    = YES
-REFERENCED_BY_RELATION = YES
-REFERENCES_RELATION    = YES
+REFERENCED_BY_RELATION = NO
+REFERENCES_RELATION    = NO
 REFERENCES_LINK_SOURCE = YES
 SOURCE_TOOLTIPS        = YES
 USE_HTAGS              = NO
 VERBATIM_HEADERS       = YES
 
 # Настройки для лучшей документации
+COLS_IN_ALPHA_INDEX    = 5
+IGNORE_PREFIX          =
+
+# Настройки для групп
+GROUP_GRAPHS           = NO
+UML_LOOK               = NO
+UML_RECORD_SIZE        = 350
+TEMPLATE_RELATIONS     = NO
+INCLUDE_GRAPH          = NO
+INCLUDED_BY_GRAPH      = NO
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+GRAPHICAL_HIERARCHY    = YES
+DIRECTORY_GRAPH        = NO
+DOT_GRAPH_MAX_NODES    = 50
+MAX_DOT_GRAPH_DEPTH    = 0
+DOT_TRANSPARENT        = NO
+DOT_MULTI_TARGETS      = NO
+GENERATE_LEGEND        = YES
+DOT_CLEANUP            = YES
+
+# Настройки для лучшей документации
 ALPHABETICAL_INDEX     = YES
 COLS_IN_ALPHA_INDEX    = 5
-IGNORE_PREFIX          = 
+IGNORE_PREFIX          =
 
 # Настройки для групп
 GROUP_GRAPHS           = NO
