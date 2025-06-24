@@ -1,0 +1,7 @@
+<map id="validateConfigInput" name="validateConfigInput">
+<area shape="rect" id="Node000001" title="Валидация входных данных конфигурации" alt="" coords="5,31,139,57"/>
+<area shape="rect" id="Node000002" href="$logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="187,5,263,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,30,171,25,172,30,140,36"/>
+<area shape="rect" id="Node000003" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="191,56,259,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="140,52,176,59,175,64,139,58"/>
+</map>

@@ -1,0 +1,1080 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor v2.0: Файл src/web/web_templates.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('web__templates_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл web_templates.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="web__routes_8h_source.html">../../include/web_routes.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__ui__system_8h_source.html">../../include/jxct_ui_system.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">../wifi_manager.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Граф включаемых заголовочных файлов для web_templates.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp__incl.png" border="0" usemap="#asrc_2web_2web__templates_8cpp" alt=""/></div>
+<map name="asrc_2web_2web__templates_8cpp" id="asrc_2web_2web__templates_8cpp">
+<area shape="rect" title=" " alt="" coords="181,5,366,32"/>
+<area shape="rect" href="web__routes_8h.html" title=" " alt="" coords="68,80,236,107"/>
+<area shape="poly" title=" " alt="" coords="254,35,188,74,185,69,251,30"/>
+<area shape="rect" href="wifi__manager_8h.html" title=" " alt="" coords="190,163,333,189"/>
+<area shape="poly" title=" " alt="" coords="275,33,266,148,261,147,270,32"/>
+<area shape="rect" href="jxct__ui__system_8h.html" title=" " alt="" coords="400,155,512,197"/>
+<area shape="poly" title=" " alt="" coords="290,31,422,142,419,146,287,35"/>
+<area shape="rect" title=" " alt="" coords="5,245,102,272"/>
+<area shape="poly" title=" " alt="" coords="147,108,71,233,67,231,142,106"/>
+<area shape="rect" title=" " alt="" coords="125,245,184,272"/>
+<area shape="poly" title=" " alt="" coords="155,107,157,230,152,230,150,107"/>
+<area shape="poly" title=" " alt="" coords="171,105,234,151,231,155,168,109"/>
+<area shape="poly" title=" " alt="" coords="230,192,101,242,99,237,228,187"/>
+<area shape="poly" title=" " alt="" coords="246,192,185,238,182,234,243,188"/>
+<area shape="rect" title=" " alt="" coords="459,245,536,272"/>
+<area shape="poly" title=" " alt="" coords="299,187,447,237,445,242,298,192"/>
+<area shape="rect" title=" " alt="" coords="336,245,435,272"/>
+<area shape="poly" title=" " alt="" coords="282,188,355,235,352,239,279,192"/>
+<area shape="rect" title=" " alt="" coords="209,245,311,272"/>
+<area shape="poly" title=" " alt="" coords="264,190,263,230,258,230,259,190"/>
+<area shape="poly" title=" " alt="" coords="469,197,486,230,482,233,464,199"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:ad30c0b8b33e60ccdb13f2e1cc08157c9" id="r_ad30c0b8b33e60ccdb13f2e1cc08157c9"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad30c0b8b33e60ccdb13f2e1cc08157c9">navHtml</a> ()</td></tr>
+<tr class="separator:ad30c0b8b33e60ccdb13f2e1cc08157c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4502db1ad8d9e08830f7eb784d62600" id="r_ac4502db1ad8d9e08830f7eb784d62600"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4502db1ad8d9e08830f7eb784d62600">generatePageHeader</a> (const String &amp;title, const String &amp;icon)</td></tr>
+<tr class="memdesc:ac4502db1ad8d9e08830f7eb784d62600"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация заголовка HTML страницы  <br /></td></tr>
+<tr class="separator:ac4502db1ad8d9e08830f7eb784d62600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4f3a6e85baef9b2d3e2aec977c3a321" id="r_ad4f3a6e85baef9b2d3e2aec977c3a321"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4f3a6e85baef9b2d3e2aec977c3a321">generatePageFooter</a> ()</td></tr>
+<tr class="memdesc:ad4f3a6e85baef9b2d3e2aec977c3a321"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация футера HTML страницы  <br /></td></tr>
+<tr class="separator:ad4f3a6e85baef9b2d3e2aec977c3a321"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" id="r_a4a3cbe6f4d5353ddf606c9f8e1f0c9d1"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1">generateBasePage</a> (const String &amp;title, const String &amp;content, const String &amp;icon)</td></tr>
+<tr class="memdesc:a4a3cbe6f4d5353ddf606c9f8e1f0c9d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация базовой HTML структуры с навигацией  <br /></td></tr>
+<tr class="separator:a4a3cbe6f4d5353ddf606c9f8e1f0c9d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a104303f7b44cf43e481a713261d52457" id="r_a104303f7b44cf43e481a713261d52457"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a104303f7b44cf43e481a713261d52457">generateErrorPage</a> (int errorCode, const String &amp;errorMessage)</td></tr>
+<tr class="memdesc:a104303f7b44cf43e481a713261d52457"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация страницы ошибки  <br /></td></tr>
+<tr class="separator:a104303f7b44cf43e481a713261d52457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a600b7a8061ed8ca2ec409f56bfaf3bcd" id="r_a600b7a8061ed8ca2ec409f56bfaf3bcd"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a600b7a8061ed8ca2ec409f56bfaf3bcd">generateSuccessPage</a> (const String &amp;title, const String &amp;message, const String &amp;redirectUrl, int redirectDelay)</td></tr>
+<tr class="memdesc:a600b7a8061ed8ca2ec409f56bfaf3bcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация страницы успеха  <br /></td></tr>
+<tr class="separator:a600b7a8061ed8ca2ec409f56bfaf3bcd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6e617b3350bd617099ba38b52cd3076" id="r_ad6e617b3350bd617099ba38b52cd3076"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad6e617b3350bd617099ba38b52cd3076">generateForm</a> (const String &amp;action, const String &amp;method, const String &amp;formContent, const String &amp;buttonText, const String &amp;buttonIcon)</td></tr>
+<tr class="memdesc:ad6e617b3350bd617099ba38b52cd3076"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация формы с общими элементами  <br /></td></tr>
+<tr class="separator:ad6e617b3350bd617099ba38b52cd3076"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a461d7ff799d9bc7560fdcf22f973af2f" id="r_a461d7ff799d9bc7560fdcf22f973af2f"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a461d7ff799d9bc7560fdcf22f973af2f">generateConfigSection</a> (const String &amp;title, const String &amp;content, const String &amp;helpText)</td></tr>
+<tr class="memdesc:a461d7ff799d9bc7560fdcf22f973af2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация секции конфигурации  <br /></td></tr>
+<tr class="separator:a461d7ff799d9bc7560fdcf22f973af2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8de49a6a49bcfb1f2a24290ad021355" id="r_ad8de49a6a49bcfb1f2a24290ad021355"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8de49a6a49bcfb1f2a24290ad021355">generateInputField</a> (const String &amp;id, const String &amp;name, const String &amp;label, const String &amp;value, const String &amp;type, bool required, const String &amp;placeholder)</td></tr>
+<tr class="memdesc:ad8de49a6a49bcfb1f2a24290ad021355"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация поля ввода  <br /></td></tr>
+<tr class="separator:ad8de49a6a49bcfb1f2a24290ad021355"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae920cb227a775afac1415bab5339c623" id="r_ae920cb227a775afac1415bab5339c623"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae920cb227a775afac1415bab5339c623">generateCheckboxField</a> (const String &amp;id, const String &amp;name, const String &amp;label, bool checked)</td></tr>
+<tr class="memdesc:ae920cb227a775afac1415bab5339c623"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация поля чекбокса  <br /></td></tr>
+<tr class="separator:ae920cb227a775afac1415bab5339c623"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad09ea384d1204b62eef74788093b847b" id="r_ad09ea384d1204b62eef74788093b847b"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad09ea384d1204b62eef74788093b847b">generateNumberField</a> (const String &amp;id, const String &amp;name, const String &amp;label, int value, int min, int max, int step)</td></tr>
+<tr class="memdesc:ad09ea384d1204b62eef74788093b847b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация числового поля с валидацией  <br /></td></tr>
+<tr class="separator:ad09ea384d1204b62eef74788093b847b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af68ca26d269d5d8ea7fa42fc78a5a919" id="r_af68ca26d269d5d8ea7fa42fc78a5a919"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af68ca26d269d5d8ea7fa42fc78a5a919">generateFormError</a> (const String &amp;message)</td></tr>
+<tr class="memdesc:af68ca26d269d5d8ea7fa42fc78a5a919"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация сообщения об ошибке в форме  <br /></td></tr>
+<tr class="separator:af68ca26d269d5d8ea7fa42fc78a5a919"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1d57b5edf50f600cc5d02641cb4510a0" id="r_a1d57b5edf50f600cc5d02641cb4510a0"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1d57b5edf50f600cc5d02641cb4510a0">generateApModeUnavailablePage</a> (const String &amp;title, const String &amp;icon)</td></tr>
+<tr class="memdesc:a1d57b5edf50f600cc5d02641cb4510a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация страницы "Недоступно в AP режиме".  <br /></td></tr>
+<tr class="separator:a1d57b5edf50f600cc5d02641cb4510a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Функции</h2>
+<a id="a1d57b5edf50f600cc5d02641cb4510a0" name="a1d57b5edf50f600cc5d02641cb4510a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d57b5edf50f600cc5d02641cb4510a0">&#9670;&#160;</a></span>generateApModeUnavailablePage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateApModeUnavailablePage </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация страницы "Недоступно в AP режиме". </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Заголовок страницы </td></tr>
+    <tr><td class="paramname">icon</td><td>Иконка страницы </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_a1d57b5edf50f600cc5d02641cb4510a0_cgraph.png" border="0" usemap="#aweb__templates_8cpp_a1d57b5edf50f600cc5d02641cb4510a0_cgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_a1d57b5edf50f600cc5d02641cb4510a0_cgraph" id="aweb__templates_8cpp_a1d57b5edf50f600cc5d02641cb4510a0_cgraph">
+<area shape="rect" title="Генерация страницы &quot;Недоступно в AP режиме&quot;." alt="" coords="5,56,223,83"/>
+<area shape="rect" href="web__templates_8cpp.html#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" title="Генерация базовой HTML структуры с навигацией" alt="" coords="271,56,402,83"/>
+<area shape="poly" title=" " alt="" coords="223,67,255,67,255,72,223,72"/>
+<area shape="rect" href="web__templates_8cpp.html#ad4f3a6e85baef9b2d3e2aec977c3a321" title="Генерация футера HTML страницы" alt="" coords="452,5,591,32"/>
+<area shape="poly" title=" " alt="" coords="387,53,455,34,457,39,389,58"/>
+<area shape="rect" href="web__templates_8cpp.html#ac4502db1ad8d9e08830f7eb784d62600" title="Генерация заголовка HTML страницы" alt="" coords="450,56,593,83"/>
+<area shape="poly" title=" " alt="" coords="403,67,434,67,434,72,403,72"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9" title=" " alt="" coords="486,107,557,133"/>
+<area shape="poly" title=" " alt="" coords="389,81,473,104,471,109,387,86"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="642,5,749,32"/>
+<area shape="poly" title=" " alt="" coords="591,16,627,16,627,21,591,21"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="641,56,750,83"/>
+<area shape="poly" title=" " alt="" coords="594,67,626,67,626,72,594,72"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_a1d57b5edf50f600cc5d02641cb4510a0_icgraph.png" border="0" usemap="#aweb__templates_8cpp_a1d57b5edf50f600cc5d02641cb4510a0_icgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_a1d57b5edf50f600cc5d02641cb4510a0_icgraph" id="aweb__templates_8cpp_a1d57b5edf50f600cc5d02641cb4510a0_icgraph">
+<area shape="rect" title="Генерация страницы &quot;Недоступно в AP режиме&quot;." alt="" coords="189,5,406,32"/>
+<area shape="rect" href="error__handlers_8cpp.html#a6d52ae788bd99342b84e28a1af12392b" title="Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP ..." alt="" coords="5,5,141,32"/>
+<area shape="poly" title=" " alt="" coords="173,21,141,21,141,16,173,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" name="a4a3cbe6f4d5353ddf606c9f8e1f0c9d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1">&#9670;&#160;</a></span>generateBasePage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateBasePage </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>content</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация базовой HTML структуры с навигацией </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Заголовок страницы </td></tr>
+    <tr><td class="paramname">content</td><td>Содержимое страницы </td></tr>
+    <tr><td class="paramname">icon</td><td>Иконка страницы (опционально) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_a4a3cbe6f4d5353ddf606c9f8e1f0c9d1_cgraph.png" border="0" usemap="#aweb__templates_8cpp_a4a3cbe6f4d5353ddf606c9f8e1f0c9d1_cgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_a4a3cbe6f4d5353ddf606c9f8e1f0c9d1_cgraph" id="aweb__templates_8cpp_a4a3cbe6f4d5353ddf606c9f8e1f0c9d1_cgraph">
+<area shape="rect" title="Генерация базовой HTML структуры с навигацией" alt="" coords="5,56,137,83"/>
+<area shape="rect" href="web__templates_8cpp.html#ad4f3a6e85baef9b2d3e2aec977c3a321" title="Генерация футера HTML страницы" alt="" coords="187,5,326,32"/>
+<area shape="poly" title=" " alt="" coords="122,53,190,34,191,39,123,58"/>
+<area shape="rect" href="web__templates_8cpp.html#ac4502db1ad8d9e08830f7eb784d62600" title="Генерация заголовка HTML страницы" alt="" coords="185,56,328,83"/>
+<area shape="poly" title=" " alt="" coords="137,67,169,67,169,72,137,72"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9" title=" " alt="" coords="221,107,292,133"/>
+<area shape="poly" title=" " alt="" coords="123,81,207,104,206,109,122,86"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="376,5,484,32"/>
+<area shape="poly" title=" " alt="" coords="326,16,361,16,361,21,326,21"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="376,56,484,83"/>
+<area shape="poly" title=" " alt="" coords="328,67,360,67,360,72,328,72"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_a4a3cbe6f4d5353ddf606c9f8e1f0c9d1_icgraph.png" border="0" usemap="#aweb__templates_8cpp_a4a3cbe6f4d5353ddf606c9f8e1f0c9d1_icgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_a4a3cbe6f4d5353ddf606c9f8e1f0c9d1_icgraph" id="aweb__templates_8cpp_a4a3cbe6f4d5353ddf606c9f8e1f0c9d1_icgraph">
+<area shape="rect" title="Генерация базовой HTML структуры с навигацией" alt="" coords="1147,132,1278,159"/>
+<area shape="rect" href="web__templates_8cpp.html#a1d57b5edf50f600cc5d02641cb4510a0" title="Генерация страницы &quot;Недоступно в AP режиме&quot;." alt="" coords="881,31,1099,57"/>
+<area shape="poly" title=" " alt="" coords="1166,128,1020,60,1023,55,1168,123"/>
+<area shape="rect" href="web__templates_8cpp.html#a104303f7b44cf43e481a713261d52457" title="Генерация страницы ошибки" alt="" coords="925,107,1055,133"/>
+<area shape="poly" title=" " alt="" coords="1131,139,1055,130,1056,125,1131,133"/>
+<area shape="rect" href="web__templates_8cpp.html#a600b7a8061ed8ca2ec409f56bfaf3bcd" title="Генерация страницы успеха" alt="" coords="914,157,1066,184"/>
+<area shape="poly" title=" " alt="" coords="1132,157,1067,165,1066,159,1131,152"/>
+<area shape="rect" href="error__handlers_8cpp.html#a6fe24c5dc21b012791aecd16ab4dad96" title="Генерация HTML ответа с ошибкой валидации" alt="" coords="883,208,1097,235"/>
+<area shape="poly" title=" " alt="" coords="1172,168,1100,199,1060,210,1059,205,1098,193,1170,163"/>
+<area shape="rect" href="error__handlers_8cpp.html#a6d52ae788bd99342b84e28a1af12392b" title="Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP ..." alt="" coords="698,5,833,32"/>
+<area shape="poly" title=" " alt="" coords="866,33,834,29,834,24,866,27"/>
+<area shape="rect" href="error__handlers_8cpp.html#a200ff078a206ee5a0b44bc0c5411f3f5" title="Обработка критических ошибок сервера" alt="" coords="702,56,830,83"/>
+<area shape="poly" title=" " alt="" coords="912,105,827,86,829,81,914,100"/>
+<area shape="rect" href="error__handlers_8cpp.html#a72ddd36cf01d539c0b2575750fa997dc" title="Обработка ошибок загрузки файлов" alt="" coords="702,107,830,133"/>
+<area shape="poly" title=" " alt="" coords="910,123,830,123,830,117,910,117"/>
+<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="699,157,832,184"/>
+<area shape="poly" title=" " alt="" coords="914,140,829,159,827,154,912,135"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,183,650,209"/>
+<area shape="poly" title=" " alt="" coords="684,185,651,190,650,185,683,180"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,157,485,184"/>
+<area shape="poly" title=" " alt="" coords="517,187,485,181,486,176,518,181"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,208,339,235"/>
+<area shape="poly" title=" " alt="" coords="517,205,340,220,339,214,517,199"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,107,330,133"/>
+<area shape="poly" title=" " alt="" coords="379,154,328,136,330,131,381,149"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,183,187,209"/>
+<area shape="poly" title=" " alt="" coords="372,179,188,195,187,190,371,174"/>
+<area shape="poly" title=" " alt="" coords="381,192,330,210,328,205,379,187"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,107,170,133"/>
+<area shape="poly" title=" " alt="" coords="228,123,170,123,170,117,228,117"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,183,59,209"/>
+<area shape="poly" title=" " alt="" coords="91,199,59,199,59,193,91,193"/>
+<area shape="poly" title=" " alt="" coords="219,212,187,206,188,201,220,207"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="704,208,827,235"/>
+<area shape="poly" title=" " alt="" coords="914,191,829,210,827,205,912,185"/>
+<area shape="poly" title=" " alt="" coords="688,213,650,207,651,202,689,208"/>
+<area shape="poly" title=" " alt="" coords="867,224,828,224,828,219,867,219"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ae920cb227a775afac1415bab5339c623" name="ae920cb227a775afac1415bab5339c623"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae920cb227a775afac1415bab5339c623">&#9670;&#160;</a></span>generateCheckboxField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateCheckboxField </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>checked</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация поля чекбокса </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID элемента </td></tr>
+    <tr><td class="paramname">name</td><td>Имя элемента </td></tr>
+    <tr><td class="paramname">label</td><td>Подпись </td></tr>
+    <tr><td class="paramname">checked</td><td>Состояние чекбокса </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML чекбокс </dd></dl>
+
+</div>
+</div>
+<a id="a461d7ff799d9bc7560fdcf22f973af2f" name="a461d7ff799d9bc7560fdcf22f973af2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a461d7ff799d9bc7560fdcf22f973af2f">&#9670;&#160;</a></span>generateConfigSection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateConfigSection </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>content</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>helpText</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация секции конфигурации </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Заголовок секции </td></tr>
+    <tr><td class="paramname">content</td><td>Содержимое секции </td></tr>
+    <tr><td class="paramname">helpText</td><td>Текст подсказки (опционально) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML секция </dd></dl>
+
+</div>
+</div>
+<a id="a104303f7b44cf43e481a713261d52457" name="a104303f7b44cf43e481a713261d52457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a104303f7b44cf43e481a713261d52457">&#9670;&#160;</a></span>generateErrorPage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateErrorPage </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>errorCode</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>errorMessage</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация страницы ошибки </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorCode</td><td>Код ошибки </td></tr>
+    <tr><td class="paramname">errorMessage</td><td>Сообщение об ошибке </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница с ошибкой </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_a104303f7b44cf43e481a713261d52457_cgraph.png" border="0" usemap="#aweb__templates_8cpp_a104303f7b44cf43e481a713261d52457_cgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_a104303f7b44cf43e481a713261d52457_cgraph" id="aweb__templates_8cpp_a104303f7b44cf43e481a713261d52457_cgraph">
+<area shape="rect" title="Генерация страницы ошибки" alt="" coords="5,56,135,83"/>
+<area shape="rect" href="web__templates_8cpp.html#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" title="Генерация базовой HTML структуры с навигацией" alt="" coords="183,56,314,83"/>
+<area shape="poly" title=" " alt="" coords="135,67,167,67,167,72,135,72"/>
+<area shape="rect" href="web__templates_8cpp.html#ad4f3a6e85baef9b2d3e2aec977c3a321" title="Генерация футера HTML страницы" alt="" coords="364,5,503,32"/>
+<area shape="poly" title=" " alt="" coords="299,53,367,34,369,39,301,58"/>
+<area shape="rect" href="web__templates_8cpp.html#ac4502db1ad8d9e08830f7eb784d62600" title="Генерация заголовка HTML страницы" alt="" coords="362,56,505,83"/>
+<area shape="poly" title=" " alt="" coords="315,67,346,67,346,72,315,72"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9" title=" " alt="" coords="398,107,469,133"/>
+<area shape="poly" title=" " alt="" coords="301,81,385,104,383,109,299,86"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="554,5,661,32"/>
+<area shape="poly" title=" " alt="" coords="503,16,539,16,539,21,503,21"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="553,56,662,83"/>
+<area shape="poly" title=" " alt="" coords="506,67,538,67,538,72,506,72"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_a104303f7b44cf43e481a713261d52457_icgraph.png" border="0" usemap="#aweb__templates_8cpp_a104303f7b44cf43e481a713261d52457_icgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_a104303f7b44cf43e481a713261d52457_icgraph" id="aweb__templates_8cpp_a104303f7b44cf43e481a713261d52457_icgraph">
+<area shape="rect" title="Генерация страницы ошибки" alt="" coords="879,56,1009,83"/>
+<area shape="rect" href="error__handlers_8cpp.html#a200ff078a206ee5a0b44bc0c5411f3f5" title="Обработка критических ошибок сервера" alt="" coords="700,5,829,32"/>
+<area shape="poly" title=" " alt="" coords="879,54,814,35,815,30,880,49"/>
+<area shape="rect" href="error__handlers_8cpp.html#a72ddd36cf01d539c0b2575750fa997dc" title="Обработка ошибок загрузки файлов" alt="" coords="700,56,829,83"/>
+<area shape="poly" title=" " alt="" coords="864,72,829,72,829,67,864,67"/>
+<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="698,107,831,133"/>
+<area shape="poly" title=" " alt="" coords="880,90,815,109,814,104,879,85"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,107,650,133"/>
+<area shape="poly" title=" " alt="" coords="682,123,650,123,650,117,682,117"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,81,485,108"/>
+<area shape="poly" title=" " alt="" coords="517,111,485,105,486,100,518,105"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,132,339,159"/>
+<area shape="poly" title=" " alt="" coords="517,129,340,144,339,138,517,123"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,31,330,57"/>
+<area shape="poly" title=" " alt="" coords="379,78,328,60,330,55,381,73"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,107,187,133"/>
+<area shape="poly" title=" " alt="" coords="372,103,188,119,187,114,371,98"/>
+<area shape="poly" title=" " alt="" coords="381,116,330,134,328,129,379,111"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,31,170,57"/>
+<area shape="poly" title=" " alt="" coords="228,47,170,47,170,41,228,41"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,107,59,133"/>
+<area shape="poly" title=" " alt="" coords="91,123,59,123,59,117,91,117"/>
+<area shape="poly" title=" " alt="" coords="219,136,187,130,188,125,220,131"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad6e617b3350bd617099ba38b52cd3076" name="ad6e617b3350bd617099ba38b52cd3076"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad6e617b3350bd617099ba38b52cd3076">&#9670;&#160;</a></span>generateForm()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateForm </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>method</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>formContent</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>buttonText</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>buttonIcon</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация формы с общими элементами </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">action</td><td>URL для отправки формы </td></tr>
+    <tr><td class="paramname">method</td><td>HTTP метод (GET/POST) </td></tr>
+    <tr><td class="paramname">formContent</td><td>Содержимое формы </td></tr>
+    <tr><td class="paramname">buttonText</td><td>Текст кнопки отправки </td></tr>
+    <tr><td class="paramname">buttonIcon</td><td>Иконка кнопки </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML форма </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_ad6e617b3350bd617099ba38b52cd3076_cgraph.png" border="0" usemap="#aweb__templates_8cpp_ad6e617b3350bd617099ba38b52cd3076_cgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_ad6e617b3350bd617099ba38b52cd3076_cgraph" id="aweb__templates_8cpp_ad6e617b3350bd617099ba38b52cd3076_cgraph">
+<area shape="rect" title="Генерация формы с общими элементами" alt="" coords="5,5,107,32"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#a7834ec4c73014039a2aeeedadff41141" title=" " alt="" coords="155,5,264,32"/>
+<area shape="poly" title=" " alt="" coords="107,16,139,16,139,21,107,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="af68ca26d269d5d8ea7fa42fc78a5a919" name="af68ca26d269d5d8ea7fa42fc78a5a919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af68ca26d269d5d8ea7fa42fc78a5a919">&#9670;&#160;</a></span>generateFormError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateFormError </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация сообщения об ошибке в форме </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td>Текст сообщения </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML блок с ошибкой </dd></dl>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_af68ca26d269d5d8ea7fa42fc78a5a919_icgraph.png" border="0" usemap="#aweb__templates_8cpp_af68ca26d269d5d8ea7fa42fc78a5a919_icgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_af68ca26d269d5d8ea7fa42fc78a5a919_icgraph" id="aweb__templates_8cpp_af68ca26d269d5d8ea7fa42fc78a5a919_icgraph">
+<area shape="rect" title="Генерация сообщения об ошибке в форме" alt="" coords="1132,81,1261,108"/>
+<area shape="rect" href="error__handlers_8cpp.html#a6fe24c5dc21b012791aecd16ab4dad96" title="Генерация HTML ответа с ошибкой валидации" alt="" coords="869,81,1084,108"/>
+<area shape="poly" title=" " alt="" coords="1116,97,1084,97,1084,92,1116,92"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="698,81,821,108"/>
+<area shape="poly" title=" " alt="" coords="854,97,822,97,822,92,854,92"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,81,650,108"/>
+<area shape="poly" title=" " alt="" coords="683,97,651,97,651,92,683,92"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,56,485,83"/>
+<area shape="poly" title=" " alt="" coords="517,85,485,80,486,75,518,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,107,339,133"/>
+<area shape="poly" title=" " alt="" coords="517,103,340,118,339,113,517,98"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,5,330,32"/>
+<area shape="poly" title=" " alt="" coords="379,53,328,35,330,30,381,48"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,81,187,108"/>
+<area shape="poly" title=" " alt="" coords="372,78,188,94,187,89,371,72"/>
+<area shape="poly" title=" " alt="" coords="381,91,330,109,328,104,379,86"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
+<area shape="poly" title=" " alt="" coords="228,21,170,21,170,16,228,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,81,59,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,59,97,59,92,91,92"/>
+<area shape="poly" title=" " alt="" coords="219,110,187,105,188,99,220,105"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad8de49a6a49bcfb1f2a24290ad021355" name="ad8de49a6a49bcfb1f2a24290ad021355"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8de49a6a49bcfb1f2a24290ad021355">&#9670;&#160;</a></span>generateInputField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateInputField </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>required</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>placeholder</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация поля ввода </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID элемента </td></tr>
+    <tr><td class="paramname">name</td><td>Имя элемента </td></tr>
+    <tr><td class="paramname">label</td><td>Подпись </td></tr>
+    <tr><td class="paramname">value</td><td>Значение по умолчанию </td></tr>
+    <tr><td class="paramname">type</td><td>Тип поля (text, password, email, number) </td></tr>
+    <tr><td class="paramname">required</td><td>Обязательно ли поле </td></tr>
+    <tr><td class="paramname">placeholder</td><td>Placeholder текст </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML поле ввода </dd></dl>
+
+</div>
+</div>
+<a id="ad09ea384d1204b62eef74788093b847b" name="ad09ea384d1204b62eef74788093b847b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad09ea384d1204b62eef74788093b847b">&#9670;&#160;</a></span>generateNumberField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateNumberField </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>min</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>max</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>step</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация числового поля с валидацией </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">id</td><td>ID элемента </td></tr>
+    <tr><td class="paramname">name</td><td>Имя элемента </td></tr>
+    <tr><td class="paramname">label</td><td>Подпись </td></tr>
+    <tr><td class="paramname">value</td><td>Значение по умолчанию </td></tr>
+    <tr><td class="paramname">min</td><td>Минимальное значение </td></tr>
+    <tr><td class="paramname">max</td><td>Максимальное значение </td></tr>
+    <tr><td class="paramname">step</td><td>Шаг изменения </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML числовое поле </dd></dl>
+
+</div>
+</div>
+<a id="ad4f3a6e85baef9b2d3e2aec977c3a321" name="ad4f3a6e85baef9b2d3e2aec977c3a321"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4f3a6e85baef9b2d3e2aec977c3a321">&#9670;&#160;</a></span>generatePageFooter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generatePageFooter </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация футера HTML страницы </p>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML футер </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_ad4f3a6e85baef9b2d3e2aec977c3a321_cgraph.png" border="0" usemap="#aweb__templates_8cpp_ad4f3a6e85baef9b2d3e2aec977c3a321_cgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_ad4f3a6e85baef9b2d3e2aec977c3a321_cgraph" id="aweb__templates_8cpp_ad4f3a6e85baef9b2d3e2aec977c3a321_cgraph">
+<area shape="rect" title="Генерация футера HTML страницы" alt="" coords="5,5,144,32"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="192,5,299,32"/>
+<area shape="poly" title=" " alt="" coords="144,16,176,16,176,21,144,21"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_ad4f3a6e85baef9b2d3e2aec977c3a321_icgraph.png" border="0" usemap="#aweb__templates_8cpp_ad4f3a6e85baef9b2d3e2aec977c3a321_icgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_ad4f3a6e85baef9b2d3e2aec977c3a321_icgraph" id="aweb__templates_8cpp_ad4f3a6e85baef9b2d3e2aec977c3a321_icgraph">
+<area shape="rect" title="Генерация футера HTML страницы" alt="" coords="1326,132,1464,159"/>
+<area shape="rect" href="web__templates_8cpp.html#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" title="Генерация базовой HTML структуры с навигацией" alt="" coords="1147,132,1278,159"/>
+<area shape="poly" title=" " alt="" coords="1311,148,1278,148,1278,143,1311,143"/>
+<area shape="rect" href="web__templates_8cpp.html#a1d57b5edf50f600cc5d02641cb4510a0" title="Генерация страницы &quot;Недоступно в AP режиме&quot;." alt="" coords="881,31,1099,57"/>
+<area shape="poly" title=" " alt="" coords="1166,128,1020,60,1023,55,1168,123"/>
+<area shape="rect" href="web__templates_8cpp.html#a104303f7b44cf43e481a713261d52457" title="Генерация страницы ошибки" alt="" coords="925,107,1055,133"/>
+<area shape="poly" title=" " alt="" coords="1131,139,1055,130,1056,125,1131,133"/>
+<area shape="rect" href="web__templates_8cpp.html#a600b7a8061ed8ca2ec409f56bfaf3bcd" title="Генерация страницы успеха" alt="" coords="914,157,1066,184"/>
+<area shape="poly" title=" " alt="" coords="1132,157,1067,165,1066,159,1131,152"/>
+<area shape="rect" href="error__handlers_8cpp.html#a6fe24c5dc21b012791aecd16ab4dad96" title="Генерация HTML ответа с ошибкой валидации" alt="" coords="883,208,1097,235"/>
+<area shape="poly" title=" " alt="" coords="1172,168,1100,199,1060,210,1059,205,1098,193,1170,163"/>
+<area shape="rect" href="error__handlers_8cpp.html#a6d52ae788bd99342b84e28a1af12392b" title="Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP ..." alt="" coords="698,5,833,32"/>
+<area shape="poly" title=" " alt="" coords="866,33,834,29,834,24,866,27"/>
+<area shape="rect" href="error__handlers_8cpp.html#a200ff078a206ee5a0b44bc0c5411f3f5" title="Обработка критических ошибок сервера" alt="" coords="702,56,830,83"/>
+<area shape="poly" title=" " alt="" coords="912,105,827,86,829,81,914,100"/>
+<area shape="rect" href="error__handlers_8cpp.html#a72ddd36cf01d539c0b2575750fa997dc" title="Обработка ошибок загрузки файлов" alt="" coords="702,107,830,133"/>
+<area shape="poly" title=" " alt="" coords="910,123,830,123,830,117,910,117"/>
+<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="699,157,832,184"/>
+<area shape="poly" title=" " alt="" coords="914,140,829,159,827,154,912,135"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,183,650,209"/>
+<area shape="poly" title=" " alt="" coords="684,185,651,190,650,185,683,180"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,157,485,184"/>
+<area shape="poly" title=" " alt="" coords="517,187,485,181,486,176,518,181"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,208,339,235"/>
+<area shape="poly" title=" " alt="" coords="517,205,340,220,339,214,517,199"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,107,330,133"/>
+<area shape="poly" title=" " alt="" coords="379,154,328,136,330,131,381,149"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,183,187,209"/>
+<area shape="poly" title=" " alt="" coords="372,179,188,195,187,190,371,174"/>
+<area shape="poly" title=" " alt="" coords="381,192,330,210,328,205,379,187"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,107,170,133"/>
+<area shape="poly" title=" " alt="" coords="228,123,170,123,170,117,228,117"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,183,59,209"/>
+<area shape="poly" title=" " alt="" coords="91,199,59,199,59,193,91,193"/>
+<area shape="poly" title=" " alt="" coords="219,212,187,206,188,201,220,207"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="704,208,827,235"/>
+<area shape="poly" title=" " alt="" coords="914,191,829,210,827,205,912,185"/>
+<area shape="poly" title=" " alt="" coords="688,213,650,207,651,202,689,208"/>
+<area shape="poly" title=" " alt="" coords="867,224,828,224,828,219,867,219"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac4502db1ad8d9e08830f7eb784d62600" name="ac4502db1ad8d9e08830f7eb784d62600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4502db1ad8d9e08830f7eb784d62600">&#9670;&#160;</a></span>generatePageHeader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generatePageHeader </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация заголовка HTML страницы </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Заголовок страницы </td></tr>
+    <tr><td class="paramname">icon</td><td>Иконка страницы (опционально) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML заголовок </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_ac4502db1ad8d9e08830f7eb784d62600_cgraph.png" border="0" usemap="#aweb__templates_8cpp_ac4502db1ad8d9e08830f7eb784d62600_cgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_ac4502db1ad8d9e08830f7eb784d62600_cgraph" id="aweb__templates_8cpp_ac4502db1ad8d9e08830f7eb784d62600_cgraph">
+<area shape="rect" title="Генерация заголовка HTML страницы" alt="" coords="5,5,149,32"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="197,5,305,32"/>
+<area shape="poly" title=" " alt="" coords="149,16,181,16,181,21,149,21"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_ac4502db1ad8d9e08830f7eb784d62600_icgraph.png" border="0" usemap="#aweb__templates_8cpp_ac4502db1ad8d9e08830f7eb784d62600_icgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_ac4502db1ad8d9e08830f7eb784d62600_icgraph" id="aweb__templates_8cpp_ac4502db1ad8d9e08830f7eb784d62600_icgraph">
+<area shape="rect" title="Генерация заголовка HTML страницы" alt="" coords="1326,132,1469,159"/>
+<area shape="rect" href="web__templates_8cpp.html#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" title="Генерация базовой HTML структуры с навигацией" alt="" coords="1147,132,1278,159"/>
+<area shape="poly" title=" " alt="" coords="1310,148,1278,148,1278,143,1310,143"/>
+<area shape="rect" href="web__templates_8cpp.html#a1d57b5edf50f600cc5d02641cb4510a0" title="Генерация страницы &quot;Недоступно в AP режиме&quot;." alt="" coords="881,31,1099,57"/>
+<area shape="poly" title=" " alt="" coords="1166,128,1020,60,1023,55,1168,123"/>
+<area shape="rect" href="web__templates_8cpp.html#a104303f7b44cf43e481a713261d52457" title="Генерация страницы ошибки" alt="" coords="925,107,1055,133"/>
+<area shape="poly" title=" " alt="" coords="1131,139,1055,130,1056,125,1131,133"/>
+<area shape="rect" href="web__templates_8cpp.html#a600b7a8061ed8ca2ec409f56bfaf3bcd" title="Генерация страницы успеха" alt="" coords="914,157,1066,184"/>
+<area shape="poly" title=" " alt="" coords="1132,157,1067,165,1066,159,1131,152"/>
+<area shape="rect" href="error__handlers_8cpp.html#a6fe24c5dc21b012791aecd16ab4dad96" title="Генерация HTML ответа с ошибкой валидации" alt="" coords="883,208,1097,235"/>
+<area shape="poly" title=" " alt="" coords="1172,168,1100,199,1060,210,1059,205,1098,193,1170,163"/>
+<area shape="rect" href="error__handlers_8cpp.html#a6d52ae788bd99342b84e28a1af12392b" title="Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP ..." alt="" coords="698,5,833,32"/>
+<area shape="poly" title=" " alt="" coords="866,33,834,29,834,24,866,27"/>
+<area shape="rect" href="error__handlers_8cpp.html#a200ff078a206ee5a0b44bc0c5411f3f5" title="Обработка критических ошибок сервера" alt="" coords="702,56,830,83"/>
+<area shape="poly" title=" " alt="" coords="912,105,827,86,829,81,914,100"/>
+<area shape="rect" href="error__handlers_8cpp.html#a72ddd36cf01d539c0b2575750fa997dc" title="Обработка ошибок загрузки файлов" alt="" coords="702,107,830,133"/>
+<area shape="poly" title=" " alt="" coords="910,123,830,123,830,117,910,117"/>
+<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="699,157,832,184"/>
+<area shape="poly" title=" " alt="" coords="914,140,829,159,827,154,912,135"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,183,650,209"/>
+<area shape="poly" title=" " alt="" coords="684,185,651,190,650,185,683,180"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,157,485,184"/>
+<area shape="poly" title=" " alt="" coords="517,187,485,181,486,176,518,181"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,208,339,235"/>
+<area shape="poly" title=" " alt="" coords="517,205,340,220,339,214,517,199"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,107,330,133"/>
+<area shape="poly" title=" " alt="" coords="379,154,328,136,330,131,381,149"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,183,187,209"/>
+<area shape="poly" title=" " alt="" coords="372,179,188,195,187,190,371,174"/>
+<area shape="poly" title=" " alt="" coords="381,192,330,210,328,205,379,187"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,107,170,133"/>
+<area shape="poly" title=" " alt="" coords="228,123,170,123,170,117,228,117"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,183,59,209"/>
+<area shape="poly" title=" " alt="" coords="91,199,59,199,59,193,91,193"/>
+<area shape="poly" title=" " alt="" coords="219,212,187,206,188,201,220,207"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="704,208,827,235"/>
+<area shape="poly" title=" " alt="" coords="914,191,829,210,827,205,912,185"/>
+<area shape="poly" title=" " alt="" coords="688,213,650,207,651,202,689,208"/>
+<area shape="poly" title=" " alt="" coords="867,224,828,224,828,219,867,219"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a600b7a8061ed8ca2ec409f56bfaf3bcd" name="a600b7a8061ed8ca2ec409f56bfaf3bcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a600b7a8061ed8ca2ec409f56bfaf3bcd">&#9670;&#160;</a></span>generateSuccessPage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateSuccessPage </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>redirectUrl</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>redirectDelay</em></span><span class="paramdefsep"> = </span><span class="paramdefval">2</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация страницы успеха </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Заголовок </td></tr>
+    <tr><td class="paramname">message</td><td>Сообщение об успехе </td></tr>
+    <tr><td class="paramname">redirectUrl</td><td>URL для перенаправления (опционально) </td></tr>
+    <tr><td class="paramname">redirectDelay</td><td>Задержка перенаправления в секундах (по умолчанию 2) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница с сообщением об успехе </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_a600b7a8061ed8ca2ec409f56bfaf3bcd_cgraph.png" border="0" usemap="#aweb__templates_8cpp_a600b7a8061ed8ca2ec409f56bfaf3bcd_cgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_a600b7a8061ed8ca2ec409f56bfaf3bcd_cgraph" id="aweb__templates_8cpp_a600b7a8061ed8ca2ec409f56bfaf3bcd_cgraph">
+<area shape="rect" title="Генерация страницы успеха" alt="" coords="5,56,158,83"/>
+<area shape="rect" href="web__templates_8cpp.html#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" title="Генерация базовой HTML структуры с навигацией" alt="" coords="206,56,337,83"/>
+<area shape="poly" title=" " alt="" coords="158,67,190,67,190,72,158,72"/>
+<area shape="rect" href="web__templates_8cpp.html#ad4f3a6e85baef9b2d3e2aec977c3a321" title="Генерация футера HTML страницы" alt="" coords="388,5,526,32"/>
+<area shape="poly" title=" " alt="" coords="322,53,390,34,392,39,324,58"/>
+<area shape="rect" href="web__templates_8cpp.html#ac4502db1ad8d9e08830f7eb784d62600" title="Генерация заголовка HTML страницы" alt="" coords="385,56,528,83"/>
+<area shape="poly" title=" " alt="" coords="338,67,369,67,369,72,338,72"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9" title=" " alt="" coords="422,107,492,133"/>
+<area shape="poly" title=" " alt="" coords="324,81,408,104,406,109,322,86"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="577,5,684,32"/>
+<area shape="poly" title=" " alt="" coords="526,16,562,16,562,21,526,21"/>
+<area shape="rect" href="jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="576,56,685,83"/>
+<area shape="poly" title=" " alt="" coords="529,67,561,67,561,72,529,72"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_a600b7a8061ed8ca2ec409f56bfaf3bcd_icgraph.png" border="0" usemap="#aweb__templates_8cpp_a600b7a8061ed8ca2ec409f56bfaf3bcd_icgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_a600b7a8061ed8ca2ec409f56bfaf3bcd_icgraph" id="aweb__templates_8cpp_a600b7a8061ed8ca2ec409f56bfaf3bcd_icgraph">
+<area shape="rect" title="Генерация страницы успеха" alt="" coords="869,81,1022,108"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="698,81,821,108"/>
+<area shape="poly" title=" " alt="" coords="854,97,822,97,822,92,854,92"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,81,650,108"/>
+<area shape="poly" title=" " alt="" coords="683,97,651,97,651,92,683,92"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,56,485,83"/>
+<area shape="poly" title=" " alt="" coords="517,85,485,80,486,75,518,80"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,107,339,133"/>
+<area shape="poly" title=" " alt="" coords="517,103,340,118,339,113,517,98"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,5,330,32"/>
+<area shape="poly" title=" " alt="" coords="379,53,328,35,330,30,381,48"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,81,187,108"/>
+<area shape="poly" title=" " alt="" coords="372,78,188,94,187,89,371,72"/>
+<area shape="poly" title=" " alt="" coords="381,91,330,109,328,104,379,86"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,5,170,32"/>
+<area shape="poly" title=" " alt="" coords="228,21,170,21,170,16,228,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,81,59,108"/>
+<area shape="poly" title=" " alt="" coords="91,97,59,97,59,92,91,92"/>
+<area shape="poly" title=" " alt="" coords="219,110,187,105,188,99,220,105"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ad30c0b8b33e60ccdb13f2e1cc08157c9" name="ad30c0b8b33e60ccdb13f2e1cc08157c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad30c0b8b33e60ccdb13f2e1cc08157c9">&#9670;&#160;</a></span>navHtml()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String navHtml </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="web__templates_8cpp_ad30c0b8b33e60ccdb13f2e1cc08157c9_icgraph.png" border="0" usemap="#aweb__templates_8cpp_ad30c0b8b33e60ccdb13f2e1cc08157c9_icgraph" alt=""/></div>
+<map name="aweb__templates_8cpp_ad30c0b8b33e60ccdb13f2e1cc08157c9_icgraph" id="aweb__templates_8cpp_ad30c0b8b33e60ccdb13f2e1cc08157c9_icgraph">
+<area shape="rect" title=" " alt="" coords="1326,233,1396,260"/>
+<area shape="rect" href="web__templates_8cpp.html#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" title="Генерация базовой HTML структуры с навигацией" alt="" coords="1147,132,1278,159"/>
+<area shape="poly" title=" " alt="" coords="1326,226,1232,161,1235,157,1329,222"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a8427468f39342a1990703e9f5ce7fd29" title="Обработчик главной страницы (уже существует в wifi_manager.cpp)" alt="" coords="1169,233,1256,260"/>
+<area shape="poly" title=" " alt="" coords="1310,249,1257,249,1257,244,1310,244"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a1e811785ccbaccda2e3e3457971720cb" title="Обработчик статуса (уже существует в wifi_manager.cpp)" alt="" coords="1164,284,1261,311"/>
+<area shape="poly" title=" " alt="" coords="1312,266,1255,286,1253,281,1310,261"/>
+<area shape="rect" href="web__templates_8cpp.html#a1d57b5edf50f600cc5d02641cb4510a0" title="Генерация страницы &quot;Недоступно в AP режиме&quot;." alt="" coords="881,19,1099,45"/>
+<area shape="poly" title=" " alt="" coords="1180,125,1142,98,1097,72,1039,48,1041,43,1100,67,1145,93,1183,120"/>
+<area shape="rect" href="web__templates_8cpp.html#a104303f7b44cf43e481a713261d52457" title="Генерация страницы ошибки" alt="" coords="925,81,1055,108"/>
+<area shape="poly" title=" " alt="" coords="1135,131,1051,111,1052,106,1136,125"/>
+<area shape="rect" href="web__templates_8cpp.html#a600b7a8061ed8ca2ec409f56bfaf3bcd" title="Генерация страницы успеха" alt="" coords="914,132,1066,159"/>
+<area shape="poly" title=" " alt="" coords="1131,148,1067,148,1067,143,1131,143"/>
+<area shape="rect" href="error__handlers_8cpp.html#a6fe24c5dc21b012791aecd16ab4dad96" title="Генерация HTML ответа с ошибкой валидации" alt="" coords="883,183,1097,209"/>
+<area shape="poly" title=" " alt="" coords="1136,165,1052,185,1051,179,1135,160"/>
+<area shape="rect" href="error__handlers_8cpp.html#a6d52ae788bd99342b84e28a1af12392b" title="Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP ..." alt="" coords="698,5,833,32"/>
+<area shape="poly" title=" " alt="" coords="866,27,834,25,834,20,866,22"/>
+<area shape="rect" href="error__handlers_8cpp.html#a200ff078a206ee5a0b44bc0c5411f3f5" title="Обработка критических ошибок сервера" alt="" coords="702,56,830,83"/>
+<area shape="poly" title=" " alt="" coords="910,88,830,79,830,74,910,83"/>
+<area shape="rect" href="error__handlers_8cpp.html#a72ddd36cf01d539c0b2575750fa997dc" title="Обработка ошибок загрузки файлов" alt="" coords="702,107,830,133"/>
+<area shape="poly" title=" " alt="" coords="910,106,830,115,830,110,910,101"/>
+<area shape="rect" href="error__handlers_8cpp.html#a833be2e68cb85aa95168dae9c9b128ef" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="699,157,832,184"/>
+<area shape="poly" title=" " alt="" coords="911,113,882,122,858,134,834,148,807,159,805,154,832,143,856,130,880,118,909,108"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="533,183,650,209"/>
+<area shape="poly" title=" " alt="" coords="684,185,651,190,650,185,683,180"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,157,485,184"/>
+<area shape="poly" title=" " alt="" coords="517,187,485,181,486,176,518,181"/>
+<area shape="rect" href="wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,208,339,235"/>
+<area shape="poly" title=" " alt="" coords="517,205,340,220,339,214,517,199"/>
+<area shape="rect" href="wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,107,330,133"/>
+<area shape="poly" title=" " alt="" coords="379,154,328,136,330,131,381,149"/>
+<area shape="rect" href="wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,183,187,209"/>
+<area shape="poly" title=" " alt="" coords="372,179,188,195,187,190,371,174"/>
+<area shape="poly" title=" " alt="" coords="381,192,330,210,328,205,379,187"/>
+<area shape="rect" href="main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,107,170,133"/>
+<area shape="poly" title=" " alt="" coords="228,123,170,123,170,117,228,117"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,183,59,209"/>
+<area shape="poly" title=" " alt="" coords="91,199,59,199,59,193,91,193"/>
+<area shape="poly" title=" " alt="" coords="219,212,187,206,188,201,220,207"/>
+<area shape="rect" href="routes__main_8cpp.html#a6a7cf6b6ba01d34721e1a47ea65af867" title="Настройка основных маршрутов (/, /save, /status)" alt="" coords="704,208,827,235"/>
+<area shape="poly" title=" " alt="" coords="904,166,882,173,858,185,834,198,807,210,805,205,832,194,856,180,880,168,903,161"/>
+<area shape="poly" title=" " alt="" coords="688,213,650,207,651,202,689,208"/>
+<area shape="poly" title=" " alt="" coords="868,212,828,217,828,212,867,207"/>
+<area shape="poly" title=" " alt="" coords="1153,246,828,227,828,222,1153,241"/>
+<area shape="poly" title=" " alt="" coords="1148,291,881,248,827,237,828,232,882,243,1149,286"/>
+</map>
+</div>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_0d4dde2834ed44e47b6207c19e4aac26.html">web</a></li><li class="navelem"><a class="el" href="web__templates_8cpp.html">web_templates.cpp</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

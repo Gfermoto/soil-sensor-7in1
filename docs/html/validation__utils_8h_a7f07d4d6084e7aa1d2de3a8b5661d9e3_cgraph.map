@@ -1,0 +1,5 @@
+<map id="validateSensorReadInterval" name="validateSensorReadInterval">
+<area shape="rect" id="Node000001" title="Валидация интервала чтения датчика" alt="" coords="5,5,187,32"/>
+<area shape="rect" id="Node000002" href="$validation__utils_8cpp.html#a497c34deeef98edaac0de3ac1a3e10a8" title="Валидация интервала (общая функция)" alt="" coords="235,5,344,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,16,220,16,220,21,187,21"/>
+</map>
