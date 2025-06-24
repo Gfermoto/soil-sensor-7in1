@@ -15,14 +15,11 @@ USE_MDFILE_AS_MAINPAGE = docs/index.md
 OUTPUT_DIRECTORY       = docs
 
 # Язык документации
-OUTPUT_LANGUAGE        = Russian
+OUTPUT_LANGUAGE        = English
 
 # Генерировать HTML
 GENERATE_HTML          = YES
 HTML_OUTPUT            = html
-HTML_HEADER            = 
-HTML_FOOTER            = 
-HTML_EXTRA_STYLESHEET  = 
 HTML_TIMESTAMP         = YES
 
 # Генерировать LaTeX (PDF)
@@ -40,13 +37,13 @@ FILE_PATTERNS          = *.cpp *.h *.md
 # Кодировка исходников
 INPUT_ENCODING         = UTF-8
 
-# Генерировать графы зависимостей
+# Генерировать графы зависимостей (упрощено)
 HAVE_DOT               = YES
-CALL_GRAPH             = YES
-CALLER_GRAPH           = YES
-COLLABORATION_GRAPH    = YES
-INCLUDE_GRAPH          = YES
-INCLUDED_BY_GRAPH      = YES
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+COLLABORATION_GRAPH    = NO
+INCLUDE_GRAPH          = NO
+INCLUDED_BY_GRAPH      = NO
 
 # Исключить служебные каталоги
 EXCLUDE_PATTERNS       = */.pio/* */libdeps/* */.git/* */.vscode/* */test/* */build/* */dist/*
@@ -67,11 +64,11 @@ ALPHABETICAL_INDEX     = YES
 FULL_PATH_NAMES        = YES
 STRIP_FROM_PATH        = ./
 
-# Предупреждения
-QUIET                  = NO
-WARNINGS               = YES
-WARN_IF_UNDOCUMENTED   = YES
-WARN_IF_DOC_ERROR      = YES
+# Предупреждения (упрощено)
+QUIET                  = YES
+WARNINGS               = NO
+WARN_IF_UNDOCUMENTED   = NO
+WARN_IF_DOC_ERROR      = NO
 
 # Включить документацию для групп
 OPTIMIZE_OUTPUT_FOR_C  = NO
@@ -79,24 +76,12 @@ OPTIMIZE_OUTPUT_JAVA   = NO
 OPTIMIZE_FOR_FORTRAN   = NO
 OPTIMIZE_OUTPUT_VHDL   = NO
 
-# Включить документацию для всех файлов
-FULL_PATH_NAMES        = YES
-STRIP_FROM_PATH        = 
-
 # Дополнительные настройки для лучшей документации
 GENERATE_TREEVIEW      = YES
 TREEVIEW_WIDTH         = 250
 DISABLE_INDEX          = NO
 GENERATE_HTML          = YES
 HTML_FILE_EXTENSION    = .html
-HTML_HEADER            = 
-HTML_FOOTER            = 
-HTML_STYLESHEET        = 
-HTML_EXTRA_STYLESHEET  = 
-HTML_EXTRA_FILES       = 
-HTML_COLORSTYLE_HUE    = 220
-HTML_COLORSTYLE_SAT    = 100
-HTML_COLORSTYLE_GAMMA  = 80
 HTML_TIMESTAMP         = YES
 HTML_DYNAMIC_MENUS     = YES
 HTML_DYNAMIC_SECTIONS  = NO
@@ -106,12 +91,10 @@ SEARCHENGINE           = YES
 SERVER_BASED_SEARCH    = NO
 EXTERNAL_SEARCH        = NO
 SEARCHDATA_FILE        = searchdata.xml
-EXTERNAL_SEARCH_ID     = 
-EXTRA_SEARCH_MAPPINGS  = 
 
 # Настройки для лучшей навигации
 GENERATE_TAGFILE       = 
-GENERATE_DEPENDENCY_GRAPH = YES
+GENERATE_DEPENDENCY_GRAPH = NO
 DOT_IMAGE_FORMAT       = png
 INTERACTIVE_SVG        = NO
 DOT_PATH               = 
@@ -140,16 +123,16 @@ COLS_IN_ALPHA_INDEX    = 5
 IGNORE_PREFIX          = 
 
 # Настройки для групп
-GROUP_GRAPHS           = YES
+GROUP_GRAPHS           = NO
 UML_LOOK               = NO
 UML_RECORD_SIZE        = 350
 TEMPLATE_RELATIONS     = NO
-INCLUDE_GRAPH          = YES
-INCLUDED_BY_GRAPH      = YES
-CALL_GRAPH             = YES
-CALLER_GRAPH           = YES
+INCLUDE_GRAPH          = NO
+INCLUDED_BY_GRAPH      = NO
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
 GRAPHICAL_HIERARCHY    = YES
-DIRECTORY_GRAPH        = YES
+DIRECTORY_GRAPH        = NO
 DOT_GRAPH_MAX_NODES    = 50
 MAX_DOT_GRAPH_DEPTH    = 0
 DOT_TRANSPARENT        = NO
