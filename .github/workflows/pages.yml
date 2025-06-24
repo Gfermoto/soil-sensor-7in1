@@ -6,7 +6,6 @@ on:
     paths:
       - 'docs/**'
       - '.github/workflows/pages.yml'
-      - 'mkdocs.yml'
   workflow_dispatch:
 
 permissions:
@@ -39,6 +38,7 @@ jobs:
           pip install mkdocs-material
           pip install mkdocs-minify-plugin
           pip install mkdocs-git-revision-date-localized-plugin
+          pip install pymdown-extensions
 
       - name: Generate Doxygen documentation
         run: doxygen Doxyfile
@@ -47,7 +47,10 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build with MkDocs
-        run: mkdocs build
+        run: |
+          cd docs
+          mkdocs build
+          mv site ..
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
