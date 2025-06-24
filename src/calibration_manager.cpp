@@ -107,4 +107,54 @@ namespace CalibrationManager
         }
         return false;
     }
+
+    float applyCalibration(float rawValue, SoilProfile profile)
+    {
+        // Если калибровочная таблица не загружена, возвращаем исходное значение
+        if (!hasTable(profile)) {
+            return rawValue;
+        }
+
+        // Загружаем калибровочную таблицу
+        constexpr size_t MAX_ENTRIES = 100;
+        CalibrationEntry entries[MAX_ENTRIES];
+        size_t entryCount;
+        
+        if (!loadTable(profile, entries, MAX_ENTRIES, entryCount) || entryCount == 0) {
+            return rawValue;
+        }
+
+        // Ищем ближайшие значения для интерполяции
+        float lowerRaw = entries[0].raw;
+        float lowerCorr = entries[0].corrected;
+        float upperRaw = entries[entryCount - 1].raw;
+        float upperCorr = entries[entryCount - 1].corrected;
+
+        // Ищем точное совпадение или ближайшие значения
+        for (size_t i = 0; i < entryCount; i++) {
+            if (entries[i].raw == rawValue) {
+                // Точное совпадение - применяем коэффициент
+                return rawValue * entries[i].corrected;
+            }
+            
+            if (entries[i].raw < rawValue) {
+                lowerRaw = entries[i].raw;
+                lowerCorr = entries[i].corrected;
+            } else if (entries[i].raw > rawValue) {
+                upperRaw = entries[i].raw;
+                upperCorr = entries[i].corrected;
+                break;
+            }
+        }
+
+        // Линейная интерполяция между ближайшими значениями
+        if (upperRaw > lowerRaw) {
+            float ratio = (rawValue - lowerRaw) / (upperRaw - lowerRaw);
+            float interpolatedCoeff = lowerCorr + ratio * (upperCorr - lowerCorr);
+            return rawValue * interpolatedCoeff;
+        } else {
+            // Если нет интервала, используем ближайший коэффициент
+            return rawValue * lowerCorr;
+        }
+    }
 } // namespace CalibrationManager 

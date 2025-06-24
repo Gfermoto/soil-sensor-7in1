@@ -12,6 +12,7 @@
 #include "logger.h"
 #include "jxct_constants.h"  // ✅ Централизованные константы
 #include "sensor_compensation.h"
+#include "calibration_manager.h"
 
 ModbusMaster modbus;
 SensorData sensorData;
@@ -400,20 +401,38 @@ static void applyCompensationIfEnabled(SensorData& d)
     if (!config.flags.calibrationEnabled) return;
 
     SoilType soil = SoilType::LOAM;
+    SoilProfile profile = SoilProfile::SAND;
     switch (config.soilProfile) {
-        case 0: soil = SoilType::SAND; break;
-        case 1: soil = SoilType::LOAM; break;
-        case 2: soil = SoilType::PEAT; break;
-        case 3: soil = SoilType::CLAY; break;
-        case 4: soil = SoilType::SANDPEAT; break;
+        case 0: soil = SoilType::SAND; profile = SoilProfile::SAND; break;
+        case 1: soil = SoilType::LOAM; profile = SoilProfile::LOAM; break;
+        case 2: soil = SoilType::PEAT; profile = SoilProfile::PEAT; break;
+        case 3: soil = SoilType::CLAY; profile = SoilProfile::CLAY; break;
+        case 4: soil = SoilType::SANDPEAT; profile = SoilProfile::SANDPEAT; break;
     }
 
-    float ec25 = d.ec / (1.0f + 0.021f * (d.temperature - 25.0f));
-    d.ec = correctEC(ec25, d.temperature, d.humidity, soil);
+    // Шаг 1: Применяем калибровочную таблицу CSV (лабораторная поверка)
+    float tempCalibrated = CalibrationManager::applyCalibration(d.temperature, profile);
+    float humCalibrated = CalibrationManager::applyCalibration(d.humidity, profile);
+    float ecCalibrated = CalibrationManager::applyCalibration(d.ec, profile);
+    float phCalibrated = CalibrationManager::applyCalibration(d.ph, profile);
+    float nCalibrated = CalibrationManager::applyCalibration(d.nitrogen, profile);
+    float pCalibrated = CalibrationManager::applyCalibration(d.phosphorus, profile);
+    float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);
 
-    d.ph = correctPH(d.ph, d.temperature);
+    // Шаг 2: Применяем математическую компенсацию (температурная, влажностная)
+    float ec25 = ecCalibrated / (1.0f + 0.021f * (tempCalibrated - 25.0f));
+    d.ec = correctEC(ec25, tempCalibrated, humCalibrated, soil);
 
-    correctNPK(d.temperature, d.humidity, d.nitrogen, d.phosphorus, d.potassium, soil);
+    d.ph = correctPH(phCalibrated, tempCalibrated);
+
+    d.nitrogen = nCalibrated;
+    d.phosphorus = pCalibrated;
+    d.potassium = kCalibrated;
+    correctNPK(tempCalibrated, humCalibrated, d.nitrogen, d.phosphorus, d.potassium, soil);
+
+    // Обновляем остальные значения
+    d.temperature = tempCalibrated;
+    d.humidity = humCalibrated;
 }
 
 /**
