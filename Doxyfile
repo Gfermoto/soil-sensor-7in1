@@ -6,8 +6,8 @@ PROJECT_NAME           = "JXCT Soil Sensor 7-in-1"
 PROJECT_NUMBER         = "v3.4.9 (June 2025)"
 PROJECT_BRIEF          = "Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms"
 
-# Каталоги для поиска исходников
-INPUT                  = src include README.md docs/index.md docs/manuals/*.md docs/dev/*.md
+# Каталоги для поиска исходников (исключаем README.md)
+INPUT                  = src include docs/index.md docs/manuals/*.md docs/dev/*.md
 RECURSIVE              = YES
 USE_MDFILE_AS_MAINPAGE = docs/index.md
 
@@ -45,8 +45,8 @@ COLLABORATION_GRAPH    = NO
 INCLUDE_GRAPH          = NO
 INCLUDED_BY_GRAPH      = NO
 
-# Исключить служебные каталоги
-EXCLUDE_PATTERNS       = */.pio/* */libdeps/* */.git/* */.vscode/* */test/* */build/* */dist/*
+# Исключить служебные каталоги и README.md
+EXCLUDE_PATTERNS       = */.pio/* */libdeps/* */.git/* */.vscode/* */test/* */build/* */dist/* README.md
 
 # Настройки генерации
 SHORT_NAMES            = NO

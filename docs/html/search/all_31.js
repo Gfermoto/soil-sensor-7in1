@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['🎯_20strong_20основные_20возможности_20strong_0',['🎯 &lt;strong&gt;ОСНОВНЫЕ ВОЗМОЖНОСТИ&lt;/strong&gt;',['../md__r_e_a_d_m_e.html#autotoc_md1',1,'']]]
+  ['📋_20содержание_0',['📋 Содержание',['../index.html#autotoc_md2',1,'']]],
+  ['📋_20требования_20к_20оборудованию_1',['📋 Требования к оборудованию',['../index.html#autotoc_md5',1,'']]],
+  ['📋_20strong_20примеры_20и_20конфигурация_20strong_2',['📋 &lt;strong&gt;Примеры и конфигурация&lt;/strong&gt;',['../index.html#autotoc_md10',1,'']]]
 ];

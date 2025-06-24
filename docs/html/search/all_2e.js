@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['🌡️_20strong_20real_20time_20monitoring_20strong_0',['🌡️ &lt;strong&gt;Real-time Monitoring&lt;/strong&gt;',['../index.html#autotoc_md42',1,'']]]
+  ['🎨_20особенности_20интерфейса_0',['🎨 Особенности интерфейса',['../index.html#autotoc_md26',1,'']]]
 ];

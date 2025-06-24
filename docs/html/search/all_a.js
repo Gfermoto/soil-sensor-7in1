@@ -32,10 +32,9 @@ var searchData=
   ['getstatustopic_29',['getStatusTopic',['../mqtt__client_8cpp.html#ad887808331ac88cd82959c00efdacb77',1,'mqtt_client.cpp']]],
   ['getthingspeaklasterror_30',['getThingSpeakLastError',['../thingspeak__client_8cpp.html#ae3f256ffaf18113d28229c8ae013b1f5',1,'getThingSpeakLastError():&#160;thingspeak_client.cpp'],['../thingspeak__client_8h.html#ae3f256ffaf18113d28229c8ae013b1f5',1,'getThingSpeakLastError():&#160;thingspeak_client.cpp'],['../routes__service_8cpp.html#ae3f256ffaf18113d28229c8ae013b1f5',1,'getThingSpeakLastError():&#160;thingspeak_client.cpp']]],
   ['getthingspeaklastpublish_31',['getThingSpeakLastPublish',['../thingspeak__client_8cpp.html#add7f50ba743d6501c1ad5e2dd4985e53',1,'getThingSpeakLastPublish():&#160;thingspeak_client.cpp'],['../thingspeak__client_8h.html#add7f50ba743d6501c1ad5e2dd4985e53',1,'getThingSpeakLastPublish():&#160;thingspeak_client.cpp'],['../routes__service_8cpp.html#add7f50ba743d6501c1ad5e2dd4985e53',1,'getThingSpeakLastPublish():&#160;thingspeak_client.cpp']]],
-  ['getting_20started_20strong_32',['📝 &lt;strong&gt;Getting Started&lt;/strong&gt;',['../index.html#autotoc_md49',1,'']]],
-  ['gettoasthtml_33',['getToastHTML',['../jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472',1,'getToastHTML():&#160;jxct_ui_system.cpp'],['../jxct__ui__system_8h.html#afbda6d57dd082e7767c2c5e823951472',1,'getToastHTML():&#160;jxct_ui_system.cpp']]],
-  ['getunifiedcss_34',['getUnifiedCSS',['../jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e',1,'getUnifiedCSS():&#160;jxct_ui_system.cpp'],['../jxct__ui__system_8h.html#a303ae6cee9693130ac22414e47140a1e',1,'getUnifiedCSS():&#160;jxct_ui_system.cpp']]],
-  ['getuptimestring_35',['getUptimeString',['../logger_8cpp.html#a9ce43588b680fbf5d2269e785fc39f21',1,'logger.cpp']]],
-  ['guardgap_36',['guardGap',['../ota__manager_8cpp.html#aa22fe362b6cde180014a47ed59203f23',1,'ota_manager.cpp']]],
-  ['guardsentinel_37',['guardSentinel',['../ota__manager_8cpp.html#ae8e7c506bfb8da1bbf9dcbea3962813d',1,'ota_manager.cpp']]]
+  ['gettoasthtml_32',['getToastHTML',['../jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472',1,'getToastHTML():&#160;jxct_ui_system.cpp'],['../jxct__ui__system_8h.html#afbda6d57dd082e7767c2c5e823951472',1,'getToastHTML():&#160;jxct_ui_system.cpp']]],
+  ['getunifiedcss_33',['getUnifiedCSS',['../jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e',1,'getUnifiedCSS():&#160;jxct_ui_system.cpp'],['../jxct__ui__system_8h.html#a303ae6cee9693130ac22414e47140a1e',1,'getUnifiedCSS():&#160;jxct_ui_system.cpp']]],
+  ['getuptimestring_34',['getUptimeString',['../logger_8cpp.html#a9ce43588b680fbf5d2269e785fc39f21',1,'logger.cpp']]],
+  ['guardgap_35',['guardGap',['../ota__manager_8cpp.html#aa22fe362b6cde180014a47ed59203f23',1,'ota_manager.cpp']]],
+  ['guardsentinel_36',['guardSentinel',['../ota__manager_8cpp.html#ae8e7c506bfb8da1bbf9dcbea3962813d',1,'ota_manager.cpp']]]
 ];
