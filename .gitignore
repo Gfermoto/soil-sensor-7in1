@@ -8,3 +8,20 @@ libdeps/
 .vscode/c_cpp_properties.json
 .vscode/launch.json
 .vscode/ipch
+
+# Логи и временные файлы
+*.log
+monitor_capture.txt
+build.log
+compile_commands.json
+
+# Архивы и бэкапы
+*.zip
+*.tar.gz
+*.bak
+
+# Тестовые файлы
+test_manifest.json
+
+# Временные файлы документации
+WEB_INTERFACE_IMPROVEMENTS.md
