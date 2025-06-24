@@ -133,8 +133,21 @@ def build_project():
 def get_changelog_entries(version):
     """Получает записи CHANGELOG для версии"""
     try:
-        with open('CHANGELOG.md', 'r', encoding='utf-8') as f:
-            content = f.read()
+        # Пробуем разные кодировки
+        encodings = ['utf-8-sig', 'utf-8', 'cp1251', 'latin-1']
+        content = None
+        
+        for encoding in encodings:
+            try:
+                with open('CHANGELOG.md', 'r', encoding=encoding) as f:
+                    content = f.read()
+                break
+            except UnicodeDecodeError:
+                continue
+        
+        if content is None:
+            print("⚠️  Не удалось прочитать CHANGELOG.md, используем стандартное описание")
+            return f"Release v{version}\n\n- Automatic version bump\n- Project built successfully"
         
         # Ищем секцию для данной версии
         pattern = rf"## \[{re.escape(version)}\]"
@@ -153,6 +166,9 @@ def get_changelog_entries(version):
         else:
             return f"Release v{version}\n\n- Automatic version bump\n- Project built successfully"
     except FileNotFoundError:
+        return f"Release v{version}\n\n- Automatic version bump\n- Project built successfully"
+    except Exception as e:
+        print(f"⚠️  Ошибка чтения CHANGELOG.md: {e}")
         return f"Release v{version}\n\n- Automatic version bump\n- Project built successfully"
 
 def create_github_release(version):
