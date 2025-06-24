@@ -43,14 +43,16 @@ jobs:
       - name: Generate Doxygen documentation
         run: doxygen Doxyfile
 
-      - name: Copy MkDocs config
-        run: cp docs/mkdocs.yml .
-
       - name: Setup Pages
         uses: actions/configure-pages@v4
 
       - name: Build with MkDocs
-        run: mkdocs build
+        run: |
+          cd docs
+          mkdocs build
+          mv site/* ..
+          cd ..
+          rm -rf docs/site
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
