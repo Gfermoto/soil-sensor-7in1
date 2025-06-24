@@ -5,6 +5,7 @@ on:
     branches: [ main ]
     paths:
       - 'docs/**'
+      - 'mkdocs.yml'
       - '.github/workflows/pages.yml'
   workflow_dispatch:
 
@@ -47,7 +48,7 @@ jobs:
         uses: actions/configure-pages@v4
 
       - name: Build with MkDocs
-        run: mkdocs build -f docs/mkdocs.yml -v
+        run: mkdocs build --verbose
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
