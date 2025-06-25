@@ -1,0 +1,77 @@
+name: 🚨 Emergency GitHub Pages Update
+
+on:
+  workflow_dispatch:
+    inputs:
+      emergency:
+        description: 'Экстренное обновление'
+        required: true
+        default: 'true'
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  emergency-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚨 Emergency Checkout
+        uses: actions/checkout@v4
+
+      - name: 🚨 Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: 🚨 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: 🚨 Generate Doxygen documentation
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
+          doxygen Doxyfile
+
+      - name: 🚨 Build MkDocs site
+        run: |
+          mkdocs build --site-dir site --verbose
+
+      - name: 🚨 Emergency cache busting
+        run: |
+          # Создаем уникальный файл для экстренного обновления
+          echo "<!-- EMERGENCY UPDATE: $(date +%Y%m%d_%H%M%S) -->" > site/emergency-update.html
+          echo "<!-- GIT HASH: $(git rev-parse HEAD) -->" >> site/emergency-update.html
+          echo "<!-- TIMESTAMP: $(date +%s) -->" >> site/emergency-update.html
+          echo "<!-- EMERGENCY: TRUE -->" >> site/emergency-update.html
+          
+          # Добавляем кэш-бюстинг в главную страницу
+          sed -i 's|</head>|<!-- EMERGENCY CACHE BUST: $(date +%s) -->\n</head>|' site/index.html
+          
+          # Создаем файл для проверки
+          echo "🚨 ЭКСТРЕННОЕ ОБНОВЛЕНИЕ УСПЕШНО!" > site/emergency-success.txt
+          echo "Время: $(date)" >> site/emergency-success.txt
+          echo "Git: $(git rev-parse --short HEAD)" >> site/emergency-success.txt
+
+      - name: 🚨 Create .nojekyll file
+        run: |
+          touch site/.nojekyll
+          echo "GitHub Pages без Jekyll - EMERGENCY UPDATE $(date)" > site/.nojekyll
+
+      - name: 🚨 Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: 🚨 Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './site'
+
+      - name: 🚨 Emergency Deploy
+        uses: actions/deploy-pages@v4 

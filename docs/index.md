@@ -2,12 +2,22 @@
 
 <!-- ФИНАЛЬНОЕ ОБНОВЛЕНИЕ: GitHub Pages настроен на GitHub Actions -->
 <!-- НОВЫЙ WORKFLOW: Используется actions/deploy-pages вместо peaceiris/actions-gh-pages -->
-<!-- КРИТИЧЕСКОЕ ОБНОВЛЕНИЕ 4: $(date) - Принудительное обновление GitHub Pages с кэш-бюстингом -->
+<!-- КРИТИЧЕСКОЕ ОБНОВЛЕНИЕ 5: $(date) - ЭКСТРЕННОЕ ОБНОВЛЕНИЕ С КЭШ-БЮСТИНГОМ -->
 <!-- ВЕРСИЯ: $(git rev-parse --short HEAD) - $(date +%s) -->
+<!-- ЭКСТРЕННОЕ ОБНОВЛЕНИЕ: TRUE -->
 
 <div style="text-align: center; margin: 30px 0;">
   <h1 style="color: #2e7d32; font-size: 2.5em; margin-bottom: 10px;">🌱 JXCT 7-в-1 Датчик Почвы</h1>
   <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">Профессиональная IoT система мониторинга почвы с веб-интерфейсом</p>
+  
+  <!-- 🚨 ЭКСТРЕННОЕ СООБЩЕНИЕ -->
+  <div style="background: #ffebee; border: 2px solid #f44336; border-radius: 10px; padding: 15px; margin: 20px 0;">
+    <h3 style="color: #d32f2f; margin: 0;">🚨 ЭКСТРЕННОЕ ОБНОВЛЕНИЕ</h3>
+    <p style="color: #d32f2f; margin: 10px 0;">Если вы видите это сообщение, значит сайт обновился!</p>
+    <p style="color: #d32f2f; margin: 5px 0;"><strong>Время:</strong> $(date)</p>
+    <p style="color: #d32f2f; margin: 5px 0;"><strong>Git:</strong> $(git rev-parse --short HEAD)</p>
+  </div>
+  
   <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 20px 0;">
     <span style="background: #e8f5e8; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; color: #2e7d32;">📊 7 параметров</span>
     <span style="background: #e3f2fd; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; color: #1976d2;">🔬 Научная компенсация</span>
