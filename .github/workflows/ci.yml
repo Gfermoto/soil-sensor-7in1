@@ -12,26 +12,25 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Build firmware
+      - name: Build firmware (development)
         uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
         with:
           args: pio run -e esp32dev
           
-      - name: Run unit tests
+      - name: Build firmware (production)
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: pio run -e esp32dev-production
+          
+      - name: Run unit tests (native)
         uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
         with:
           args: pio test -e native -vv
-
+          
       - name: Route presence tests
         uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
         with:
           args: python -m unittest discover -s test -p "test_routes.py"
-
-      # Временно отключен - проблемы с Docker образом
-      # - name: Static analysis with clang-tidy
-      #   uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
-      #   with:
-      #     args: bash scripts/static_analysis.sh
 
       - name: Technical debt analysis
         uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main

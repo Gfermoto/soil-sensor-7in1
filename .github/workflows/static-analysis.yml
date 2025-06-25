@@ -1,0 +1,17 @@
+name: Static Analysis
+
+on:
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  static-analysis:
+    runs-on: ubuntu-latest
+    continue-on-error: true  # Не блокирует основной CI
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Static analysis with clang-tidy
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: bash scripts/static_analysis.sh 
