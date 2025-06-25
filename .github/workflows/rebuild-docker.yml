@@ -39,5 +39,6 @@ jobs:
       - name: Test Docker image
         run: |
           docker run --rm ghcr.io/gfermoto/soil-sensor-7in1:main which clang-tidy
+          docker run --rm ghcr.io/gfermoto/soil-sensor-7in1:main which include-what-you-use-17
           docker run --rm ghcr.io/gfermoto/soil-sensor-7in1:main which include-what-you-use
-          echo "✅ Docker image rebuilt successfully with clang-tidy & IWYU!" 
+          echo "✅ Docker image rebuilt successfully with clang-tidy & IWYU 17!" 
