@@ -1,4 +1,4 @@
-FROM platformio/platform-espressif32:latest
+FROM platformio/platformio:latest
 
 # Установка дополнительных зависимостей
 RUN apt-get update && apt-get install -y \
