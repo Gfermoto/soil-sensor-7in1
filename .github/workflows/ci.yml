@@ -29,9 +29,25 @@ jobs:
         with:
           args: python -m unittest discover -s test -p "test_routes.py"
 
-      # Временно отключены для отладки CI
-      # - name: Static analysis with clang-tidy
-      # - name: Include dependency analysis (IWYU)
-      # - name: Technical debt analysis
+      - name: Static analysis with clang-tidy
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: |
+            sh -c 'find src include -name "*.cpp" -o -name "*.h" | xargs clang-tidy \
+              -checks=modernize-*,performance-*,readability-*,bugprone-* \
+              -header-filter=".*" \
+              -- -I include -I src -std=c++17'
+
+      - name: Include dependency analysis (IWYU)
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: |
+            sh -c 'find src include -name "*.cpp" -o -name "*.h" | head -5 | xargs include-what-you-use \
+              -I include -I src -std=c++17 2>&1 | grep -E "(should add|should remove|is not used)" || true'
+
+      - name: Technical debt analysis
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: python scripts/analyze_technical_debt.py
 
       # конец job 
