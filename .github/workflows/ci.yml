@@ -3,6 +3,9 @@ name: CI
 on:
   push:
     branches: [ main, master ]
+    paths-ignore:
+      - 'Dockerfile'
+      - '.github/workflows/rebuild-docker.yml'
   pull_request:
     branches: [ main, master ]
 
