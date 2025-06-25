@@ -26,29 +26,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.11'
-
-      - name: Install MkDocs
-        run: |
-          pip install mkdocs-material>=9.5.0
-          pip install mkdocs-minify-plugin>=0.7.0
-          pip install pymdown-extensions
-          pip install python-slugify>=8.0.0
-          pip install mkdocs-awesome-pages-plugin>=2.9.0
-
-      - name: Install Doxygen
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y doxygen graphviz
-
       - name: Generate Doxygen docs
-        run: doxygen Doxyfile
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: doxygen Doxyfile
 
       - name: Build site
-        run: mkdocs build
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: mkdocs build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

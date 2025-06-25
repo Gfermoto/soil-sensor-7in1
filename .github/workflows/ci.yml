@@ -13,24 +13,20 @@ jobs:
     if: github.actor != 'github-actions[bot]'
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      
+      - name: Use Docker image
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
         with:
-          python-version: '3.x'
-      - name: Install PlatformIO
-        run: |
-          python -m pip install --upgrade pip
-          pip install platformio
-      - name: Cache PlatformIO packages
-        uses: actions/cache@v4
-        with:
-          path: ~/.platformio
-          key: pio-${{ runner.os }}-${{ hashFiles('platformio.ini') }}
-      - name: Build firmware (dev & prod)
-        run: pio run -e esp32dev -e esp32dev-production
+          args: pio run -e esp32dev -e esp32dev-production
+          
       - name: Run unit tests (native)
-        run: pio test -e native -vv
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: pio test -e native -vv
+          
       - name: Route presence tests
-        run: python -m unittest discover -s test -p "test_routes.py"
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: python -m unittest discover -s test -p "test_routes.py"
 
       # конец job 
