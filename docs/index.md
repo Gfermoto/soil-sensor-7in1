@@ -1,6 +1,6 @@
 # 🌱 JXCT 7-в-1 Датчик Почвы
 
-[![Version](https://img.shields.io/badge/version-3.4.9-blue.svg)](https://github.com/Gfermoto/soil-sensor-7in1/releases)
+[![Version](https://img.shields.io/badge/version-3.5.0-blue.svg)](https://github.com/Gfermoto/soil-sensor-7in1/releases)
 [![Platform](https://img.shields.io/badge/platform-ESP32-green.svg)](https://www.espressif.com/en/products/socs/esp32)
 [![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions)
@@ -144,4 +144,4 @@ JXCT/
 
 ---
 
-**JXCT Development Team** | Версия 3.4.9 | Июнь 2025 
+**EYERA Development Team** | Версия 3.5.0 | Июнь 2025 
