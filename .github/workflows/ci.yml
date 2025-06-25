@@ -32,12 +32,7 @@ jobs:
       - name: Static analysis with clang-tidy
         uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
         with:
-          args: sh -c 'find src include -name "*.cpp" -o -name "*.h" | xargs clang-tidy -checks=modernize-*,performance-*,readability-*,bugprone-* -header-filter=".*" -- -I include -I src -std=c++17'
-
-      - name: Include dependency analysis (IWYU)
-        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
-        with:
-          args: sh -c 'find src include -name "*.cpp" -o -name "*.h" | head -5 | xargs include-what-you-use -I include -I src -std=c++17 2>&1 | grep -E "(should add|should remove|is not used)" || true'
+          args: bash scripts/static_analysis.sh
 
       - name: Technical debt analysis
         uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
