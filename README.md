@@ -3,11 +3,30 @@
 [![Version](https://img.shields.io/github/v/tag/Gfermoto/soil-sensor-7in1?color=blue&label=version)](https://github.com/Gfermoto/soil-sensor-7in1/releases)
 [![Platform](https://img.shields.io/badge/platform-ESP32-green.svg)](https://www.espressif.com/en/products/socs/esp32)
 [![License](https://img.shields.io/github/license/Gfermoto/soil-sensor-7in1?color=yellow&label=license)](LICENSE)
-[![CI](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml) [![Docs](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/pages.yml) [![Release](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/firmware_release.yml/badge.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/firmware_release.yml)
+[![CI](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml) [![Docs](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/pages.yml) [![Release](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/firmware_release.yml/badge.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/firmware_release.yml) [![Docker](https://img.shields.io/github/v/release/Gfermoto/soil-sensor-7in1?label=docker&color=blue)](https://github.com/Gfermoto/soil-sensor-7in1/packages)
 
 **Профессиональная IoT система мониторинга почвы на базе ESP32 с Modbus RTU, MQTT и продвинутыми алгоритмами компенсации**
 
 ## 🚀 Быстрый старт
+
+### Использование Docker-образа
+
+Для быстрой сборки и разработки используйте готовый Docker-образ:
+
+```bash
+# Скачать образ
+docker pull ghcr.io/gfermoto/soil-sensor-7in1:latest
+
+# Запустить контейнер с вашим кодом
+docker run -v $(pwd):/workspace ghcr.io/gfermoto/soil-sensor-7in1:latest pio run
+
+# Или войти в контейнер для разработки
+docker run -it -v $(pwd):/workspace ghcr.io/gfermoto/soil-sensor-7in1:latest bash
+```
+
+Образ содержит все необходимые инструменты: PlatformIO, Doxygen, MkDocs.
+
+### Локальная разработка
 
 ```bash
 # Клонирование и сборка
