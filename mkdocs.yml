@@ -57,8 +57,6 @@ theme:
 plugins:
   - search:
       lang: ru
-  - git-revision-date-localized:
-      enable_creation_date: true
 
 markdown_extensions:
   - toc:
