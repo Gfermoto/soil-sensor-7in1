@@ -17,12 +17,11 @@ RUN apt-get update && apt-get install -y \
 
 # ---- include-what-you-use ----------------------------------------------------
 # IWYU нет в стандартных репозиториях Debian. Подключаем apt.llvm.org и
-# ставим пакет для LLVM 15.
-RUN echo "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs)-15 main" \
+# ставим пакет без суффикса версии (метапакет).
+RUN echo "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs) main" \
       > /etc/apt/sources.list.d/llvm.list && \
     wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-    apt-get update && apt-get install -y include-what-you-use-15 && \
-    ln -s /usr/bin/include-what-you-use-15 /usr/local/bin/include-what-you-use && \
+    apt-get update && apt-get install -y include-what-you-use && \
     rm -rf /var/lib/apt/lists/*
 
 # ----------------------------------------------------------------------------
