@@ -1,7 +1,8 @@
 site_name: 🌱 JXCT 7-в-1 Датчик Почвы
 site_url: https://gfermoto.github.io/soil-sensor-7in1/
-site_description: Документация для датчика почвы JXCT 7-в-1
-site_author: EYERA Team
+site_description: Документация для датчика почвы JXCT 7-в-1 (v3.5.0) - Профессиональная IoT система мониторинга почвы на базе ESP32
+site_author: EYERA Development Team
+site_version: 3.5.0
 
 repo_name: JXCT
 repo_url: https://github.com/Gfermoto/soil-sensor-7in1
