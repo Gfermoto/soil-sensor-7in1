@@ -1,30 +1,27 @@
 name: CI
 
 on:
-  # Отключен для main ветки - только для PR
-  # push:
-  #   branches: [ main, master ]
+  push:
+    branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    # Пропускаем CI если коммит от GitHub Actions (релизы)
-    if: github.actor != 'github-actions[bot]'
     steps:
       - uses: actions/checkout@v4
       
-      - name: Use Docker image
+      - name: Build firmware
         uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
         with:
-          args: pio run -e esp32dev -e esp32dev-production
+          args: pio run -e esp32dev
           
-      - name: Run unit tests (native)
+      - name: Run unit tests
         uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
         with:
           args: pio test -e native -vv
-          
+
       - name: Route presence tests
         uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
         with:
