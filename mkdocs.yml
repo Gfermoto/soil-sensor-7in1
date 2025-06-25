@@ -90,4 +90,7 @@ extra:
       name: GitHub
     - icon: fontawesome/brands/telegram
       link: https://t.me/jxct_support
-      name: Telegram Support 
+      name: Telegram Support
+
+# Принудительное обновление сайта - исправление кэширования GitHub Pages
+# Время обновления: $(date) 
