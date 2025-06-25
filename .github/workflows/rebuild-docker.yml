@@ -1,0 +1,43 @@
+name: Rebuild Docker Image
+
+on:
+  workflow_dispatch:  # Ручной запуск
+  push:
+    paths:
+      - 'Dockerfile'
+      - 'scripts/rebuild_docker.sh'
+
+jobs:
+  rebuild-docker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/gfermoto/soil-sensor-7in1:main
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Test Docker image
+        run: |
+          docker run --rm ghcr.io/gfermoto/soil-sensor-7in1:main which clang-tidy
+          docker run --rm ghcr.io/gfermoto/soil-sensor-7in1:main which include-what-you-use
+          echo "✅ Docker image rebuilt successfully with static analysis tools!" 
