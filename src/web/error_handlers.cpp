@@ -5,6 +5,22 @@
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
 
+// Вспомогательная функция для валидации интервалов
+bool validateInterval(const String& argName, int minValue, int maxValue, const String& description)
+{
+    if (webServer.hasArg(argName))
+    {
+        int value = webServer.arg(argName).toInt();
+        if (value < minValue || value > maxValue)
+        {
+            logWarn("Валидация: некорректный %s: %d (допустимо %d-%d)", 
+                   description.c_str(), value, minValue, maxValue);
+            return false;
+        }
+    }
+    return true;
+}
+
 void setupErrorHandlers()
 {
     // Обработчик 404 - страница не найдена
@@ -65,56 +81,11 @@ bool validateConfigInput(bool checkRequired)
     }
 
     // Валидация форматов данных
-    if (webServer.hasArg("mqtt_port"))
-    {
-        int port = webServer.arg("mqtt_port").toInt();
-        if (port < 1 || port > 65535)
-        {
-            logWarn("Валидация: некорректный MQTT порт: %d", port);
-            return false;
-        }
-    }
-
-    if (webServer.hasArg("ntp_interval"))
-    {
-        int interval = webServer.arg("ntp_interval").toInt();
-        if (interval < 10000 || interval > 86400000)
-        {  // от 10 сек до 24 часов
-            logWarn("Валидация: некорректный NTP интервал: %d", interval);
-            return false;
-        }
-    }
-
-    // Валидация интервалов датчика
-    if (webServer.hasArg("sensor_read"))
-    {
-        int interval = webServer.arg("sensor_read").toInt();
-        if (interval < 1000 || interval > 300000)
-        {  // от 1 сек до 5 мин
-            logWarn("Валидация: некорректный интервал чтения датчика: %d", interval);
-            return false;
-        }
-    }
-
-    if (webServer.hasArg("mqtt_publish"))
-    {
-        int interval = webServer.arg("mqtt_publish").toInt();
-        if (interval < 1000 || interval > 3600000)
-        {  // от 1 сек до 1 часа
-            logWarn("Валидация: некорректный интервал MQTT публикации: %d", interval);
-            return false;
-        }
-    }
-
-    if (webServer.hasArg("thingspeak_interval"))
-    {
-        int interval = webServer.arg("thingspeak_interval").toInt();
-        if (interval < 15000 || interval > 7200000)
-        {  // от 15 сек до 2 часов (лимит ThingSpeak)
-            logWarn("Валидация: некорректный интервал ThingSpeak: %d", interval);
-            return false;
-        }
-    }
+    if (!validateInterval("mqtt_port", 1, 65535, "MQTT порт")) return false;
+    if (!validateInterval("ntp_interval", 10000, 86400000, "NTP интервал")) return false;
+    if (!validateInterval("sensor_read", 1000, 300000, "интервал чтения датчика")) return false;
+    if (!validateInterval("mqtt_publish", 1000, 3600000, "интервал MQTT публикации")) return false;
+    if (!validateInterval("thingspeak_interval", 15000, 7200000, "интервал ThingSpeak")) return false;
 
     logDebug("Валидация конфигурации прошла успешно");
     return true;
