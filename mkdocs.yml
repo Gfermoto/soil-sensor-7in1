@@ -79,6 +79,7 @@ markdown_extensions:
 
 nav:
   - Главная: index.md
+  - ✅ ФИНАЛЬНЫЙ ТЕСТ: FINAL_TEST.md
   - 🚨 Критическое обновление: CRITICAL_UPDATE.md
   - 🧪 Тест обновления: test-update.md
   - Руководства:
