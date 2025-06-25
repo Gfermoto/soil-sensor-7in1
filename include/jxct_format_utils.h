@@ -2,6 +2,9 @@
 #include <Arduino.h>
 #include <string>
 
+// Универсальная функция форматирования float
+std::string formatFloat(float value, int precision, bool asInt = false);
+
 std::string format_moisture(float value);     // "65.8"
 std::string format_temperature(float value);  // "23.4"
 std::string format_ec(float value);           // "1234"

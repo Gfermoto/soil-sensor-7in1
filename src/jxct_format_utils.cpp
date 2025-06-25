@@ -1,39 +1,41 @@
 #include "jxct_format_utils.h"
 #include <cstdio>
 
-std::string format_moisture(float value)
+// Универсальная функция форматирования float
+std::string formatFloat(float value, int precision, bool asInt)
 {
     char buf[8];
-    snprintf(buf, sizeof(buf), "%.1f", value);
+    if (asInt) {
+        snprintf(buf, sizeof(buf), "%d", (int)(value + 0.5f));
+    } else {
+        snprintf(buf, sizeof(buf), "%.*f", precision, value);
+    }
     return std::string(buf);
+}
+
+std::string format_moisture(float value)
+{
+    return formatFloat(value, 1, false);
 }
 
 std::string format_temperature(float value)
 {
-    char buf[8];
-    snprintf(buf, sizeof(buf), "%.1f", value);
-    return std::string(buf);
+    return formatFloat(value, 1, false);
 }
 
 std::string format_ec(float value)
 {
-    char buf[8];
-    snprintf(buf, sizeof(buf), "%d", (int)(value + 0.5f));
-    return std::string(buf);
+    return formatFloat(value, 0, true);
 }
 
 std::string format_ph(float value)
 {
-    char buf[8];
-    snprintf(buf, sizeof(buf), "%.1f", value);
-    return std::string(buf);
+    return formatFloat(value, 1, false);
 }
 
 std::string format_npk(float value)
 {
-    char buf[8];
-    snprintf(buf, sizeof(buf), "%d", (int)(value + 0.5f));
-    return std::string(buf);
+    return formatFloat(value, 0, true);
 }
 
 // Универсальная функция форматирования для веб-интерфейса

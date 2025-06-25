@@ -164,6 +164,16 @@ ValidationResult validateNTPInterval(unsigned long interval);
 // ============================================================================
 
 /**
+ * @brief Универсальная функция валидации диапазона
+ * @param value Значение для проверки
+ * @param min_val Минимальное значение
+ * @param max_val Максимальное значение
+ * @param field_name Название поля для сообщения об ошибке
+ * @return Результат валидации
+ */
+ValidationResult validateRange(float value, float min_val, float max_val, const char* field_name);
+
+/**
  * @brief Валидация температуры
  * @param temperature Температура для проверки
  * @return Результат валидации

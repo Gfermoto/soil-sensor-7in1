@@ -121,40 +121,35 @@ ValidationResult validateNTPInterval(unsigned long interval)
 // ВАЛИДАЦИЯ ДАННЫХ ДАТЧИКА
 // ============================================================================
 
-ValidationResult validateTemperature(float temperature)
+// Универсальная функция валидации диапазона
+ValidationResult validateRange(float value, float min_val, float max_val, const char* field_name)
 {
-    if (temperature < SENSOR_TEMP_MIN || temperature > SENSOR_TEMP_MAX)
+    if (value < min_val || value > max_val)
     {
-        return {false, "Температура вне допустимого диапазона"};
+        String message = String(field_name) + " вне допустимого диапазона";
+        return {false, message};
     }
     return {true, ""};
+}
+
+ValidationResult validateTemperature(float temperature)
+{
+    return validateRange(temperature, SENSOR_TEMP_MIN, SENSOR_TEMP_MAX, "Температура");
 }
 
 ValidationResult validateHumidity(float humidity)
 {
-    if (humidity < SENSOR_HUMIDITY_MIN || humidity > SENSOR_HUMIDITY_MAX)
-    {
-        return {false, "Влажность вне допустимого диапазона"};
-    }
-    return {true, ""};
+    return validateRange(humidity, SENSOR_HUMIDITY_MIN, SENSOR_HUMIDITY_MAX, "Влажность");
 }
 
 ValidationResult validatePH(float ph)
 {
-    if (ph < SENSOR_PH_MIN || ph > SENSOR_PH_MAX)
-    {
-        return {false, "pH вне допустимого диапазона"};
-    }
-    return {true, ""};
+    return validateRange(ph, SENSOR_PH_MIN, SENSOR_PH_MAX, "pH");
 }
 
 ValidationResult validateEC(float ec)
 {
-    if (ec < SENSOR_EC_MIN || ec > SENSOR_EC_MAX)
-    {
-        return {false, "EC вне допустимого диапазона"};
-    }
-    return {true, ""};
+    return validateRange(ec, SENSOR_EC_MIN, SENSOR_EC_MAX, "EC");
 }
 
 ValidationResult validateNPK(float value, const char* nutrient)
