@@ -7,6 +7,18 @@ repo_name: JXCT
 repo_url: https://github.com/Gfermoto/soil-sensor-7in1
 edit_uri: edit/main/docs/
 
+# Принудительное обновление кэша
+extra:
+  version:
+    provider: mike
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Gfermoto/soil-sensor-7in1
+      name: GitHub
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/jxct_support
+      name: Telegram Support
+
 theme:
   name: material
   language: ru
@@ -45,6 +57,8 @@ theme:
 plugins:
   - search:
       lang: ru
+  - git-revision-date-localized:
+      enable_creation_date: true
 
 markdown_extensions:
   - toc:
@@ -65,6 +79,7 @@ markdown_extensions:
 
 nav:
   - Главная: index.md
+  - 🧪 Тест обновления: test-update.md
   - Руководства:
     - Руководство пользователя: manuals/USER_GUIDE.md
     - Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
@@ -81,14 +96,6 @@ nav:
     - План рефакторинга: dev/QA_REFACTORING_PLAN_2025H2.md
     - Технический долг: dev/TECH_DEBT_REPORT_2025-06.md
 
-extra:
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/Gfermoto/soil-sensor-7in1
-      name: GitHub
-    - icon: fontawesome/brands/telegram
-      link: https://t.me/jxct_support
-      name: Telegram Support
-
 # Принудительное обновление сайта - исправление кэширования GitHub Pages
-# Время обновления: $(date) 
+# Время обновления: $(date)
+# Версия: $(git rev-parse --short HEAD) 
