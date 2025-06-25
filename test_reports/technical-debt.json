@@ -1,0 +1,272 @@
+{
+  "timestamp": "2025-01-22T12:00:00Z",
+  "project": "JXCT Soil Sensor",
+  "version": "3.6.0",
+  "metrics": {
+    "code_smells": 75,
+    "duplicated_lines": 1062,
+    "complexity_issues": 6,
+    "security_hotspots": 134,
+    "maintainability_rating": "D",
+    "reliability_rating": "C",
+    "security_rating": "D",
+    "coverage": 0.0,
+    "debt_ratio": 1.9155381325730576,
+    "total_lines": 11224,
+    "high_complexity_functions": [
+      "modbus_sensor.cpp::validateSensorData (CC=15)",
+      "modbus_sensor.cpp::printModbusError (CC=11)",
+      "mqtt_client.cpp::switch (CC=12)",
+      "routes_calibration.cpp::handleCalibrationUpload (CC=12)",
+      "wifi_manager.cpp::handleRoot (CC=56)",
+      "routes_service.cpp::updateStatus (CC=14)"
+    ],
+    "duplicate_blocks": [
+      {
+        "code": "#include \"calibration_manager.h\"",
+        "occurrences": 4,
+        "files": [
+          "calibration_manager.cpp",
+          "modbus_sensor.cpp",
+          "routes_calibration.cpp",
+          "routes_data.cpp"
+        ]
+      },
+      {
+        "code": "#include \"logger.h\"",
+        "occurrences": 12,
+        "files": [
+          "calibration_manager.cpp",
+          "config.cpp",
+          "logger.cpp",
+          "main.cpp",
+          "modbus_sensor.cpp",
+          "mqtt_client.cpp",
+          "ota_manager.cpp",
+          "routes_calibration.cpp",
+          "thingspeak_client.cpp",
+          "validation_utils.cpp",
+          "wifi_manager.cpp",
+          "logger.cpp"
+        ]
+      },
+      {
+        "code": "#include \"sensor_compensation.h\"",
+        "occurrences": 5,
+        "files": [
+          "calibration_manager.cpp",
+          "fake_sensor.cpp",
+          "modbus_sensor.cpp",
+          "routes_calibration.cpp",
+          "sensor_compensation.cpp"
+        ]
+      },
+      {
+        "code": "return false;",
+        "occurrences": 51,
+        "files": [
+          "calibration_manager.cpp",
+          "calibration_manager.cpp",
+          "calibration_manager.cpp",
+          "calibration_manager.cpp",
+          "config.cpp",
+          "config.cpp",
+          "config.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "mqtt_client.cpp",
+          "mqtt_client.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "thingspeak_client.cpp",
+          "thingspeak_client.cpp",
+          "thingspeak_client.cpp",
+          "validation_utils.cpp",
+          "validation_utils.cpp",
+          "wifi_manager.cpp",
+          "wifi_manager.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp"
+        ]
+      },
+      {
+        "code": "return true;",
+        "occurrences": 27,
+        "files": [
+          "calibration_manager.cpp",
+          "calibration_manager.cpp",
+          "config.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "modbus_sensor.cpp",
+          "mqtt_client.cpp",
+          "mqtt_client.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "ota_manager.cpp",
+          "thingspeak_client.cpp",
+          "validation_utils.cpp",
+          "wifi_manager.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "error_handlers.cpp",
+          "routes_reports.cpp",
+          "routes_reports.cpp",
+          "routes_reports.cpp",
+          "routes_reports.cpp"
+        ]
+      },
+      {
+        "code": "if (!init()) return false;",
+        "occurrences": 4,
+        "files": [
+          "calibration_manager.cpp",
+          "calibration_manager.cpp",
+          "calibration_manager.cpp",
+          "calibration_manager.cpp"
+        ]
+      },
+      {
+        "code": "const char* path = profileToFilename(profile);",
+        "occurrences": 3,
+        "files": [
+          "calibration_manager.cpp",
+          "calibration_manager.cpp",
+          "calibration_manager.cpp"
+        ]
+      },
+      {
+        "code": "return rawValue;",
+        "occurrences": 2,
+        "files": [
+          "calibration_manager.cpp",
+          "calibration_manager.cpp"
+        ]
+      },
+      {
+        "code": "#include <WiFi.h>",
+        "occurrences": 2,
+        "files": [
+          "config.cpp",
+          "logger.cpp"
+        ]
+      },
+      {
+        "code": "#include \"debug.h\"  // ✅ Добавляем систему условной компиляции",
+        "occurrences": 5,
+        "files": [
+          "config.cpp",
+          "fake_sensor.cpp",
+          "main.cpp",
+          "modbus_sensor.cpp",
+          "mqtt_client.cpp"
+        ]
+      }
+    ],
+    "security_issues": [
+      {
+        "file": "logger.cpp",
+        "issue": "Вызов системных команд",
+        "count": 3
+      },
+      {
+        "file": "main.cpp",
+        "issue": "Вызов системных команд",
+        "count": 7
+      },
+      {
+        "file": "modbus_sensor.cpp",
+        "issue": "Вызов системных команд",
+        "count": 14
+      },
+      {
+        "file": "mqtt_client.cpp",
+        "issue": "Использование небезопасной функции strcpy",
+        "count": 14
+      },
+      {
+        "file": "ota_manager.cpp",
+        "issue": "Использование небезопасной функции strcpy",
+        "count": 30
+      },
+      {
+        "file": "ota_manager.cpp",
+        "issue": "Использование небезопасной функции sprintf",
+        "count": 1
+      },
+      {
+        "file": "ota_manager.cpp",
+        "issue": "Вызов системных команд",
+        "count": 50
+      },
+      {
+        "file": "wifi_manager.cpp",
+        "issue": "Вызов системных команд",
+        "count": 10
+      },
+      {
+        "file": "routes_ota.cpp",
+        "issue": "Вызов системных команд",
+        "count": 3
+      },
+      {
+        "file": "test_simple.cpp",
+        "issue": "Вызов системных команд",
+        "count": 1
+      },
+      {
+        "file": "logger.cpp",
+        "issue": "Вызов системных команд",
+        "count": 1
+      }
+    ]
+  },
+  "summary": {
+    "total_issues": 215,
+    "debt_ratio": "1.92%",
+    "maintainability": "D",
+    "reliability": "C",
+    "security": "D"
+  },
+  "recommendations": [
+    "Высокое количество code smells - рекомендуется рефакторинг",
+    "Много дублированного кода - выделить общие функции",
+    "Есть сложные функции - упростить логику и разбить на части",
+    "Обнаружены потенциальные уязвимости - провести аудит безопасности"
+  ]
+}

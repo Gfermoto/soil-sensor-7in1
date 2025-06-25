@@ -377,6 +377,7 @@ void setupWebServer()
     setupConfigRoutes();   // Конфигурация (/intervals, /config_manager, /api/config/*)
     setupServiceRoutes();  // Сервис
     setupOtaRoutes();      // OTA (/updates, api)
+    setupReportsRoutes();  // Отчёты тестирования (/api/reports/*, /reports)
 
     setupErrorHandlers();  // Обработчики ошибок (404, 500) - должны быть последними
 
