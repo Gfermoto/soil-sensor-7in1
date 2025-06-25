@@ -68,6 +68,7 @@ markdown_extensions:
       title: "Содержание"
       permalink_title: "Постоянная ссылка"
       baselevel: 1
+      slugify: !!python/name:slugify_ru.custom
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
