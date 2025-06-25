@@ -12,11 +12,6 @@ RUN apt-get update && apt-get install -y \
     clang-tools \
     && rm -rf /var/lib/apt/lists/*
 
-# Установка include-what-you-use
-RUN apt-get update && apt-get install -y \
-    include-what-you-use \
-    && rm -rf /var/lib/apt/lists/*
-
 # Установка PlatformIO
 RUN pip3 install platformio
 
