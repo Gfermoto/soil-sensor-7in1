@@ -2,6 +2,12 @@
 
 set -e  # Остановка при любой ошибке
 
+# Проверяем наличие clang-tidy
+if ! command -v clang-tidy &> /dev/null; then
+    echo "⚠️  clang-tidy not found - skipping static analysis"
+    exit 0
+fi
+
 # Статический анализ с clang-tidy
 echo "Running clang-tidy analysis..."
 find src include -name "*.cpp" -o -name "*.h" | xargs clang-tidy \
@@ -11,6 +17,12 @@ find src include -name "*.cpp" -o -name "*.h" | xargs clang-tidy \
   echo "⚠️  clang-tidy found issues (this is expected for development)"
   exit 0  # Не считаем это ошибкой CI
 }
+
+# Проверяем наличие include-what-you-use
+if ! command -v include-what-you-use &> /dev/null; then
+    echo "⚠️  include-what-you-use not found - skipping IWYU analysis"
+    exit 0
+fi
 
 # Анализ зависимостей с IWYU
 echo "Running IWYU analysis..."
