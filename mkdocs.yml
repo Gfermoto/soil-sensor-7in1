@@ -29,10 +29,14 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.indexes
+    - navigation.top
     - toc.follow
+    - toc.integrate
     - search.suggest
     - search.highlight
     - content.code.copy
+    - content.action.edit
+    - content.action.view
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -61,6 +65,9 @@ plugins:
 markdown_extensions:
   - toc:
       permalink: true
+      title: "Содержание"
+      permalink_title: "Постоянная ссылка"
+      baselevel: 1
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
