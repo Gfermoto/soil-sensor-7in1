@@ -1,11 +1,17 @@
-FROM platformio/platformio:latest
+FROM python:3.11-slim
 
-# Установка дополнительных зависимостей
+# Установка системных зависимостей
 RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    build-essential \
+    cmake \
     doxygen \
     graphviz \
-    python3-pip \
     && rm -rf /var/lib/apt/lists/*
+
+# Установка PlatformIO
+RUN pip3 install platformio
 
 # Установка Python-зависимостей для документации
 RUN pip3 install mkdocs-material pymdown-extensions
