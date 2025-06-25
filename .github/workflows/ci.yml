@@ -1,8 +1,9 @@
 name: CI
 
 on:
-  push:
-    branches: [ main, master ]
+  # Временно отключаем для main ветки
+  # push:
+  #   branches: [ main, master ]
   pull_request:
     branches: [ main, master ]
 
