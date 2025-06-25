@@ -1,395 +1,147 @@
 # 🌱 JXCT 7-в-1 Датчик Почвы
 
-<!-- ✅ ПРОБЛЕМА РЕШЕНА: GitHub Pages работает корректно -->
-<!-- ✅ WORKFLOW: Используется actions/deploy-pages@v4 -->
-<!-- ✅ СТАТУС: Сайт активно обновляется через GitHub Actions -->
-<!-- ✅ ОБНОВЛЕНИЕ: 25 июня 2025, 11:30 UTC -->
-<!-- ✅ УСПЕХ: TRUE -->
+[![Version](https://img.shields.io/badge/version-3.4.9-blue.svg)](https://github.com/Gfermoto/soil-sensor-7in1/releases)
+[![Platform](https://img.shields.io/badge/platform-ESP32-green.svg)](https://www.espressif.com/en/products/socs/esp32)
+[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions)
 
-<div style="text-align: center; margin: 30px 0;">
-  <h1 style="color: #2e7d32; font-size: 2.5em; margin-bottom: 10px;">🌱 JXCT 7-в-1 Датчик Почвы</h1>
-  <p style="font-size: 1.2em; color: #666; margin-bottom: 20px;">Профессиональная IoT система мониторинга почвы с веб-интерфейсом</p>
-  
-  <!-- ✅ УСПЕШНОЕ ОБНОВЛЕНИЕ -->
-  <div style="background: #e8f5e8; border: 2px solid #4caf50; border-radius: 10px; padding: 15px; margin: 20px 0;">
-    <h3 style="color: #2e7d32; margin: 0;">✅ САЙТ УСПЕШНО ОБНОВЛЯЕТСЯ!</h3>
-    <p style="color: #2e7d32; margin: 10px 0;">GitHub Pages работает корректно. Проблема решена!</p>
-    <p style="color: #2e7d32; margin: 5px 0;"><strong>Статус:</strong> Активно обновляется через GitHub Actions</p>
-    <p style="color: #2e7d32; margin: 5px 0;"><strong>Последнее обновление:</strong> 25 июня 2025, 11:30 UTC</p>
-  </div>
-  
-  <!-- 📊 Статистика проекта -->
-  <div style="background: #f8f9fa; border-radius: 10px; padding: 20px; margin: 20px 0;">
-    <h3 style="color: #495057; margin-top: 0;">📊 Статистика проекта</h3>
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 15px 0;">
-      <div style="text-align: center;">
-        <div style="font-size: 2em; color: #28a745; font-weight: bold;">7</div>
-        <div style="color: #6c757d; font-size: 0.9em;">Параметров почвы</div>
-      </div>
-      <div style="text-align: center;">
-        <div style="font-size: 2em; color: #17a2b8; font-weight: bold;">4</div>
-        <div style="color: #6c757d; font-size: 0.9em;">Научных модели</div>
-      </div>
-      <div style="text-align: center;">
-        <div style="font-size: 2em; color: #ffc107; font-weight: bold;">100+</div>
-        <div style="color: #6c757d; font-size: 0.9em;">Строк документации</div>
-      </div>
-      <div style="text-align: center;">
-        <div style="font-size: 2em; color: #dc3545; font-weight: bold;">ESP32</div>
-        <div style="color: #6c757d; font-size: 0.9em;">Платформа</div>
-      </div>
-    </div>
-  </div>
-  
-  <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 20px 0;">
-    <span style="background: #e8f5e8; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; color: #2e7d32;">📊 7 параметров</span>
-    <span style="background: #e3f2fd; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; color: #1976d2;">🔬 Научная компенсация</span>
-    <span style="background: #fff3e0; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; color: #f57c00;">🌐 Веб-интерфейс</span>
-    <span style="background: #f3e5f5; padding: 8px 16px; border-radius: 20px; font-size: 0.9em; color: #7b1fa2;">🔧 ESP32 + PlatformIO</span>
-  </div>
-</div>
-
----
-
-## 🎯 Быстрая навигация
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
-
-<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 15px; text-align: center;">
-  <h3 style="margin: 0 0 15px 0; font-size: 1.3em;">🚀 Быстрый старт</h3>
-  <p style="margin: 10px 0; opacity: 0.9;">Установка и настройка за 5 минут</p>
-  <a href="#-быстрый-старт" style="background: white; color: #667eea; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px;">Начать →</a>
-</div>
-
-<div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 20px; border-radius: 15px; text-align: center;">
-  <h3 style="margin: 0 0 15px 0; font-size: 1.3em;">📚 Документация</h3>
-  <p style="margin: 10px 0; opacity: 0.9;">Полные руководства и API</p>
-  <a href="html/index.html" style="background: white; color: #f5576c; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px;">Читать →</a>
-</div>
-
-<div style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 20px; border-radius: 15px; text-align: center;">
-  <h3 style="margin: 0 0 15px 0; font-size: 1.3em;">🌱 Агрономия</h3>
-  <p style="margin: 10px 0; opacity: 0.9;">Рекомендации по культурам</p>
-  <a href="manuals/AGRO_RECOMMENDATIONS.html" style="background: white; color: #4facfe; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px;">Изучить →</a>
-</div>
-
-<div style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); color: white; padding: 20px; border-radius: 15px; text-align: center;">
-  <h3 style="margin: 0 0 15px 0; font-size: 1.3em;">🔧 Разработка</h3>
-  <p style="margin: 10px 0; opacity: 0.9;">Архитектура и разработка</p>
-  <a href="dev/ARCH_OVERALL.html" style="background: white; color: #43e97b; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px;">Участвовать →</a>
-</div>
-
-</div>
-
-## 📋 Содержание
-
-- [🚀 Быстрый старт](#-быстрый-старт)
-- [📚 Полная документация](#-полная-документация)
-- [🌟 Основные возможности](#-основные-возможности)
-- [🔬 Научные принципы](#-научные-принципы)
-- [🌐 Веб-интерфейс](#-веб-интерфейс)
-- [📊 Текущий статус](#-текущий-статус)
-- [🔗 Полезные ссылки](#-полезные-ссылки)
-
----
+**Профессиональная IoT система мониторинга почвы на базе ESP32 с Modbus RTU, MQTT и продвинутыми алгоритмами компенсации**
 
 ## 🚀 Быстрый старт
 
-<div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0; border-left: 4px solid #28a745;">
-  <h3 style="margin-top: 0; color: #28a745;">⚡ Установка за 5 минут</h3>
-  <ol style="margin: 10px 0; padding-left: 20px;">
-    <li><strong>Клонируйте репозиторий:</strong><br>
-      <code>git clone https://github.com/Gfermoto/soil-sensor-7in1.git</code></li>
-    <li><strong>Откройте в PlatformIO:</strong><br>
-      <code>cd soil-sensor-7in1 && pio run</code></li>
-    <li><strong>Загрузите на ESP32:</strong><br>
-      <code>pio run --target upload</code></li>
-    <li><strong>Подключитесь к WiFi:</strong><br>
-      Сеть: <code>JXCT_Setup</code> → <code>http://192.168.4.1</code></li>
-  </ol>
-</div>
-
-### 📋 Требования к оборудованию
-
-- **ESP32** (рекомендуется ESP32-WROOM-32)
-- **JXCT 7-в-1 датчик почвы**
-- **USB кабель** для программирования
-- **PlatformIO IDE** или Arduino IDE
-
----
-
-## 📚 Полная документация
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;">
-
-### 🔧 **Техническая документация**
-<div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-  <h4 style="margin-top: 0; color: #1976d2;">📖 Руководства пользователя</h4>
-  <ul style="margin: 10px 0; padding-left: 20px;">
-    <li><a href="manuals/USER_GUIDE.html" style="color: #1976d2; text-decoration: none;">📋 Руководство пользователя</a> - Полное руководство по использованию</li>
-    <li><a href="manuals/TECHNICAL_DOCS.html" style="color: #1976d2; text-decoration: none;">🔧 Техническая документация</a> - Архитектура и API</li>
-    <li><a href="manuals/API.html" style="color: #1976d2; text-decoration: none;">📊 API документация</a> - REST API и интеграции</li>
-  </ul>
-  
-  <h4 style="color: #1976d2;">🌱 Агрономические рекомендации</h4>
-  <ul style="margin: 10px 0; padding-left: 20px;">
-    <li><a href="manuals/AGRO_RECOMMENDATIONS.html" style="color: #1976d2; text-decoration: none;">🌿 Агрономические рекомендации</a> - Рекомендации по культурам</li>
-    <li><a href="manuals/COMPENSATION_GUIDE.html" style="color: #1976d2; text-decoration: none;">🔬 Руководство по компенсации</a> - Научные модели и калибровка</li>
-  </ul>
-</div>
-
-### 💻 **Разработка и код**
-<div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-  <h4 style="margin-top: 0; color: #f57c00;">📚 Документация кода</h4>
-  <ul style="margin: 10px 0; padding-left: 20px;">
-    <li><a href="html/index.html" style="color: #f57c00; text-decoration: none; font-weight: bold;">📖 Doxygen документация</a> - Полная документация C++ кода</li>
-    <li><a href="html/classes.html" style="color: #f57c00; text-decoration: none;">🏗️ Классы и интерфейсы</a> - Архитектура классов</li>
-    <li><a href="html/files.html" style="color: #f57c00; text-decoration: none;">📁 Исходные файлы</a> - Структура проекта</li>
-  </ul>
-  
-  <h4 style="color: #f57c00;">🔧 Разработка</h4>
-  <ul style="margin: 10px 0; padding-left: 20px;">
-    <li><a href="dev/ARCH_OVERALL.html" style="color: #f57c00; text-decoration: none;">🏗️ Архитектура системы</a> - Общая архитектура</li>
-    <li><a href="dev/QA_REFACTORING_PLAN_2025H2.html" style="color: #f57c00; text-decoration: none;">📋 План рефакторинга</a> - Дорожная карта развития</li>
-    <li><a href="dev/TECH_DEBT_REPORT_2025-06.html" style="color: #f57c00; text-decoration: none;">📊 Технический долг</a> - Отчет о качестве кода</li>
-  </ul>
-</div>
-
-### 📋 **Примеры и конфигурация**
-<div style="background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-  <h4 style="margin-top: 0; color: #7b1fa2;">📄 Примеры файлов</h4>
-  <ul style="margin: 10px 0; padding-left: 20px;">
-    <li><a href="examples/calibration_example.csv" style="color: #7b1fa2; text-decoration: none;">📊 Пример калибровки</a> - CSV файл калибровочной таблицы</li>
-    <li><a href="examples/test_safe_config.json" style="color: #7b1fa2; text-decoration: none;">⚙️ Тестовая конфигурация</a> - Безопасные настройки для тестов</li>
-  </ul>
-  
-  <h4 style="color: #7b1fa2;">🤝 Участие в разработке</h4>
-  <ul style="margin: 10px 0; padding-left: 20px;">
-    <li><a href="CONTRIBUTING_DOCS.html" style="color: #7b1fa2; text-decoration: none;">📝 Руководство по участию</a> - Как внести свой вклад</li>
-  </ul>
-</div>
-
-</div>
-
----
-
-## 🌟 Основные возможности
-
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; margin: 30px 0;">
-
-### 🌡️ **7 параметров в одном датчике**
-<div style="background: #e8f5e8; padding: 15px; border-radius: 8px;">
-  <ul style="margin: 5px 0; padding-left: 20px;">
-    <li><strong>Температура:</strong> 0-50°C, ±0.5°C</li>
-    <li><strong>Влажность:</strong> 0-100%, ±3%</li>
-    <li><strong>EC:</strong> 0-5000 µS/cm, ±5%</li>
-    <li><strong>pH:</strong> 3-9 pH, ±0.3 pH</li>
-    <li><strong>Азот (N):</strong> 0-2000 мг/кг, ±10%</li>
-    <li><strong>Фосфор (P):</strong> 0-1000 мг/кг, ±10%</li>
-    <li><strong>Калий (K):</strong> 0-2000 мг/кг, ±10%</li>
-  </ul>
-</div>
-
-### 🔬 **Научная компенсация**
-<div style="background: #e3f2fd; padding: 15px; border-radius: 8px;">
-  <ul style="margin: 5px 0; padding-left: 20px;">
-    <li><strong>Модель Арчи (1942):</strong> Компенсация EC</li>
-    <li><strong>Уравнение Нернста:</strong> Температурная поправка pH</li>
-    <li><strong>FAO 56 + Eur. J. Soil Sci.:</strong> NPK компенсация</li>
-    <li><strong>CSV калибровка:</strong> Лабораторная поверка</li>
-  </ul>
-</div>
-
-### 🌐 **Веб-интерфейс**
-<div style="background: #fff3e0; padding: 15px; border-radius: 8px;">
-  <ul style="margin: 5px 0; padding-left: 20px;">
-    <li><strong>Адаптивный дизайн:</strong> Для всех устройств</li>
-    <li><strong>Цветовая индикация:</strong> Статус измерений</li>
-    <li><strong>OTA обновления:</strong> По воздуху</li>
-    <li><strong>Экспорт CSV:</strong> Данные для анализа</li>
-  </ul>
-</div>
-
-### 🔧 **Технические особенности**
-<div style="background: #f3e5f5; padding: 15px; border-radius: 8px;">
-  <ul style="margin: 5px 0; padding-left: 20px;">
-    <li><strong>ESP32:</strong> Мощный микроконтроллер</li>
-    <li><strong>Modbus RTU:</strong> Надежная связь</li>
-    <li><strong>MQTT:</strong> IoT интеграция</li>
-    <li><strong>ThingSpeak:</strong> Облачное хранение</li>
-  </ul>
-</div>
-
-</div>
-
----
-
-## 🔬 Научные принципы
-
-### 📊 Двухэтапная система компенсации
-
-Наша система использует научно обоснованные методы для обеспечения точности измерений:
-
-#### 1️⃣ **CSV калибровочная таблица (лабораторная поверка)**
-```csv
-# Пример калибровочной таблицы
-# Формат: сырое_значение,коэффициент_коррекции
-
-# Электропроводность (µS/cm)
-0,1.000
-500,0.98
-1000,0.95
-1500,0.93
-2000,0.91
-
-# pH
-3.0,1.000
-4.0,1.000
-5.0,1.000
-6.0,1.000
-7.0,1.000
-8.0,1.000
-9.0,1.000
+```bash
+# Клонирование и сборка
+git clone https://github.com/Gfermoto/soil-sensor-7in1.git
+cd soil-sensor-7in1
+pio run -t upload
 ```
 
-#### 2️⃣ **Математическая компенсация (научные модели)**
-- **EC:** Модель Арчи с коэффициентами по типам почв
-- **pH:** Уравнение Нернста для температурной поправки
-- **NPK:** FAO 56 + Eur. J. Soil Sci. для влажностной компенсации
+## 📊 Основные возможности
 
-### 🧪 Научные источники
+- **7 параметров:** Температура, влажность, EC, pH, NPK (азот, фосфор, калий)
+- **Научная компенсация:** Модель Арчи, уравнение Нернста, FAO 56
+- **Веб-интерфейс:** Адаптивный дизайн, OTA обновления
+- **IoT интеграция:** MQTT, ThingSpeak, Modbus RTU
 
-- **Archie G.E. (1942):** Electrical resistivity log as an aid in determining some reservoir characteristics
-- **FAO Irrigation Paper 56:** Allen R.G. et al. (1998) - Crop evapotranspiration
-- **European Journal of Soil Science 73 (2022):** Temperature effects on nutrient availability
-- **USDA Agricultural Handbook 18:** Diagnosis and improvement of saline and alkali soils
+## 📚 Документация
 
----
+### 📖 Руководства пользователя
+
+- **[📋 Руководство пользователя](manuals/USER_GUIDE.md)** - Полное руководство по установке и использованию
+- **[🌱 Агрономические рекомендации](manuals/AGRO_RECOMMENDATIONS.md)** - Рекомендации по различным культурам
+- **[🔬 Руководство по компенсации](manuals/COMPENSATION_GUIDE.md)** - Научные модели и калибровка
+- **[🔌 Схема подключения](manuals/WIRING_DIAGRAM.md)** - Электрические схемы и подключение
+- **[⚙️ Управление конфигурацией](manuals/CONFIG_MANAGEMENT.md)** - Настройка и конфигурирование
+
+### 🔧 Техническая документация
+
+- **[📖 Техническая документация](manuals/TECHNICAL_DOCS.md)** - Архитектура и принципы работы
+- **[📊 Протокол Modbus](manuals/MODBUS_PROTOCOL.md)** - Спецификация протокола связи
+- **[🔄 Управление версиями](manuals/VERSION_MANAGEMENT.md)** - Система версионирования
+- **[📊 API документация](api-overview.md)** - REST API и интеграции
+
+### 🔨 Документация для разработчиков
+
+- **[🏗️ Архитектура системы](dev/ARCH_OVERALL.md)** - Общая архитектура проекта
+- **[📋 План рефакторинга](dev/QA_REFACTORING_PLAN_2025H2.md)** - Дорожная карта развития
+- **[📊 Отчет о техническом долге](dev/TECH_DEBT_REPORT_2025-06.md)** - Анализ качества кода
+- **[🤝 Руководство для участников](CONTRIBUTING_DOCS.md)** - Как внести свой вклад
+
+### 💻 Документация кода (Doxygen)
+
+- **[📖 Doxygen документация](html/index.html)** - Полная документация C++ кода
+- **[🏗️ Классы и интерфейсы](html/classes.html)** - Архитектура классов
+- **[📁 Исходные файлы](html/files.html)** - Структура проекта
+
+## 🏗️ Архитектура проекта
+
+```
+JXCT/
+├── src/                    # Исходный код
+│   ├── main.cpp           # Основной файл приложения
+│   ├── config.cpp         # Система конфигурации
+│   ├── modbus_sensor.cpp  # Работа с датчиком по Modbus
+│   ├── calibration_manager.cpp # Система калибровки
+│   ├── mqtt_client.cpp    # MQTT клиент
+│   ├── wifi_manager.cpp   # Управление WiFi
+│   └── web/               # Веб-интерфейс
+│       ├── routes_data.cpp    # API маршруты данных
+│       ├── routes_config.cpp  # API конфигурации
+│       └── error_handlers.cpp # Обработка ошибок
+├── include/               # Заголовочные файлы
+│   ├── ISensor.h          # Интерфейс датчика
+│   ├── jxct_config_vars.h # Переменные конфигурации
+│   ├── sensor_factory.h   # Фабрика датчиков
+│   └── validation_utils.h # Утилиты валидации
+├── docs/                  # Документация
+│   ├── manuals/           # Руководства пользователя
+│   ├── dev/               # Документация разработчика
+│   └── examples/          # Примеры конфигураций
+├── test/                  # Тесты
+└── platformio.ini         # Конфигурация PlatformIO
+```
+
+## 🔧 Технические требования
+
+### Аппаратные требования
+- **Микроконтроллер:** ESP32 (рекомендуется ESP32-WROOM-32)
+- **Датчик:** JXCT 7-в-1 датчик почвы
+- **Интерфейс:** RS485 (Modbus RTU)
+- **Питание:** 5V/12V (в зависимости от датчика)
+
+### Программные требования
+- **IDE:** PlatformIO (рекомендуется) или Arduino IDE
+- **Фреймворк:** Arduino Framework для ESP32
+- **Протоколы:** Modbus RTU, MQTT, HTTP/HTTPS
+- **Библиотеки:** См. `platformio.ini`
+
+## 📈 Измеряемые параметры
+
+| Параметр | Диапазон | Точность | Единицы |
+|----------|----------|----------|---------|
+| Температура | -40...+80°C | ±0.5°C | °C |
+| Влажность почвы | 0...100% | ±3% | % |
+| Электропроводность (EC) | 0...5000 | ±5% | μS/cm |
+| pH | 3...9 | ±0.3 | pH |
+| Азот (N) | 0...2000 | ±10% | мг/кг |
+| Фосфор (P) | 0...1000 | ±10% | мг/кг |
+| Калий (K) | 0...2000 | ±10% | мг/кг |
+
+## 🔬 Алгоритмы компенсации
+
+Система использует научно обоснованные методы компенсации:
+
+- **Температурная компенсация EC:** Модель Арчи (1942)
+- **Температурная компенсация pH:** Уравнение Нернста
+- **Компенсация NPK:** Модели FAO 56 + European Journal of Soil Science
+- **Калибровка:** CSV таблицы на основе лабораторных измерений
 
 ## 🌐 Веб-интерфейс
 
-### 📱 Основные страницы
+- Адаптивный дизайн для всех устройств
+- Реальное время обновления данных
+- Цветовая индикация состояния параметров
+- OTA обновления прошивки
+- Экспорт данных в CSV
+- Настройка параметров калибровки
 
-- **📊 /readings** - Текущие показания с объяснениями компенсации
-- **⚙️ /intervals** - Настройка интервалов измерений
-- **📁 /config_manager** - Управление конфигурацией
-- **🚀 /updates** - Обновление прошивки по воздуху
-- **🔧 /service** - Сервисные функции и диагностика
+## 🔗 IoT интеграция
 
-### 🎨 Особенности интерфейса
+- **MQTT:** Публикация данных в брокер
+- **ThingSpeak:** Отправка в облачный сервис
+- **REST API:** HTTP endpoints для интеграции
+- **Modbus TCP:** Сетевой доступ к данным
 
-- **Цветовая индикация:** Статус измерений и калибровки
-- **Стрелки изменений:** Отслеживание динамики параметров
-- **Сезонные корректировки:** Автоматические поправки
-- **Научные источники:** Ссылки на исследования
+## 🤝 Поддержка
 
----
+- **GitHub Issues:** [Сообщить о проблеме](https://github.com/Gfermoto/soil-sensor-7in1/issues)
+- **Telegram:** [@Gfermoto](https://t.me/Gfermoto)
+- **Документация:** [GitHub Pages](https://gfermoto.github.io/soil-sensor-7in1/)
 
-## 📊 Текущий статус
+## 📄 Лицензия
 
-<div style="background: #f8f9fa; padding: 20px; border-radius: 10px; margin: 20px 0;">
-  <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
-    <div>
-      <strong>Версия:</strong> <span style="background: #28a745; color: white; padding: 4px 8px; border-radius: 4px;">3.4.9</span>
-    </div>
-    <div>
-      <strong>Платформа:</strong> <span style="background: #17a2b8; color: white; padding: 4px 8px; border-radius: 4px;">ESP32 + PlatformIO</span>
-    </div>
-    <div>
-      <strong>Статус:</strong> <span style="background: #28a745; color: white; padding: 4px 8px; border-radius: 4px;">✅ Стабильный</span>
-    </div>
-    <div>
-      <strong>Лицензия:</strong> <span style="background: #ffc107; color: #212529; padding: 4px 8px; border-radius: 4px;">MIT</span>
-    </div>
-  </div>
-</div>
-
-### ✅ Последние улучшения
-- 🔧 Исправлена логика применения калибровочной таблицы
-- 🔬 Двухэтапная компенсация: CSV + математическая
-- 🌿 Объединены агрономические рекомендации
-- 📚 **Полная консистентность документации** - все документы имеют единообразную структуру
-- 🚫 Отменена рискованная миграция статических страниц
-
-### 📖 **Консистентность документации**
-<div style="background: #e8f5e8; padding: 15px; border-radius: 8px; margin: 15px 0;">
-  <p style="margin: 5px 0;"><strong>✅ Все документы теперь имеют:</strong></p>
-  <ul style="margin: 5px 0; padding-left: 20px;">
-    <li>Блоки содержания в начале каждого документа</li>
-    <li>Единообразные блоки ссылок в конце</li>
-    <li>Консистентные заголовки и форматирование</li>
-    <li>Профессиональную структуру навигации</li>
-  </ul>
-</div>
+Этот проект распространяется под лицензией MIT. См. файл [LICENSE](https://github.com/Gfermoto/soil-sensor-7in1/blob/main/LICENSE) для подробностей.
 
 ---
 
-## 🔗 Полезные ссылки
-
-<div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin: 30px 0;">
-  <a href="https://github.com/Gfermoto/soil-sensor-7in1" style="background: #24292e; color: white; padding: 12px 20px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 8px;">
-    📦 GitHub Repository
-  </a>
-  <a href="https://github.com/Gfermoto/soil-sensor-7in1/releases/latest" style="background: #28a745; color: white; padding: 12px 20px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 8px;">
-    🚀 Latest Release
-  </a>
-  <a href="https://github.com/Gfermoto/soil-sensor-7in1/issues" style="background: #dc3545; color: white; padding: 12px 20px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 8px;">
-    🐛 Issues
-  </a>
-  <a href="https://t.me/Gfermoto" style="background: #0088cc; color: white; padding: 12px 20px; border-radius: 6px; text-decoration: none; display: flex; align-items: center; gap: 8px;">
-    💬 Telegram Support
-  </a>
-</div>
-
----
-
-<div style="text-align: center; margin: 40px 0; padding: 20px; background: #f8f9fa; border-radius: 10px;">
-  <p style="margin: 5px 0; color: #666;">© 2025 JXCT Development Team</p>
-  <p style="margin: 5px 0; color: #666;">Made with ❤️ for the agricultural community</p>
-</div>
-
-Dобро пожаловать в документацию по датчику почвы JXCT 7-в-1! Здесь вы найдете всю необходимую информацию по установке, настройке и использованию датчика.
-
-## Возможности датчика
-
-JXCT 7-в-1 - это многофункциональный датчик почвы, который измеряет:
-
-- Температуру почвы
-- Влажность почвы
-- Электропроводность (EC)
-- pH почвы
-- Содержание азота (N)
-- Содержание фосфора (P)
-- Содержание калия (K)
-
-## Быстрый старт
-
-1. [Установка и подключение](manuals/INSTALLATION.md)
-2. [Настройка WiFi](manuals/WIFI_SETUP.md)
-3. [Калибровка датчиков](manuals/CALIBRATION.md)
-4. [Руководство пользователя](manuals/USER_GUIDE.md)
-
-## Интеграции
-
-Датчик поддерживает различные способы интеграции:
-
-- [MQTT](manuals/MQTT_SETUP.md) для IoT проектов
-- [ThingSpeak](manuals/THINGSPEAK_SETUP.md) для визуализации данных
-- [Modbus](manuals/MODBUS_PROTOCOL.md) для промышленных систем
-- [REST API](manuals/API.md) для веб-приложений
-
-## Техническая поддержка
-
-Если у вас возникли проблемы:
-
-1. Проверьте раздел [Устранение неисправностей](manuals/TROUBLESHOOTING.md)
-2. Изучите [Техническую документацию](manuals/TECHNICAL_DOCS.md)
-3. Создайте issue в [GitHub репозитории](https://github.com/Gfermoto/soil-sensor-7in1/issues)
-
-## Дополнительные материалы
-
-- [Агрономические рекомендации](manuals/AGRO_RECOMMENDATIONS.md)
-- [Компенсация показаний](manuals/COMPENSATION_GUIDE.md)
-- [Схема подключения](manuals/WIRING_DIAGRAM.md)
-
- 
+**JXCT Development Team** | Версия 3.4.9 | Июнь 2025 
