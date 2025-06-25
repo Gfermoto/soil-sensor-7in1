@@ -16,13 +16,12 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # ---- include-what-you-use ----------------------------------------------------
-# IWYU нет в стандартных репозиториях Debian. Подключаем apt.llvm.org и
-# ставим пакет без суффикса версии (метапакет).
-RUN echo "deb http://apt.llvm.org/$(lsb_release -cs)/ llvm-toolchain-$(lsb_release -cs) main" \
-      > /etc/apt/sources.list.d/llvm.list && \
-    wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
-    apt-get update && apt-get install -y include-what-you-use && \
-    rm -rf /var/lib/apt/lists/*
+# IWYU нет в репозиториях Debian bookworm. Сборка из исходников (~3-4 мин).
+RUN apt-get update && apt-get install -y ninja-build libclang-15-dev git && \
+    git clone --depth 1 https://github.com/include-what-you-use/include-what-you-use /tmp/iwyu && \
+    cd /tmp/iwyu && cmake -GNinja -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang . && \
+    ninja -j$(nproc) && ninja install && \
+    cd / && rm -rf /tmp/iwyu /var/lib/apt/lists/*
 
 # ----------------------------------------------------------------------------
 
