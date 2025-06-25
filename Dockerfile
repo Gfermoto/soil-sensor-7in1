@@ -17,13 +17,7 @@ RUN wget -qO - https://apt.llvm.org/llvm-snapshot.gpg.key | gpg --dearmor | tee 
     echo "deb [signed-by=/usr/share/keyrings/llvm.gpg] http://apt.llvm.org/${DEBIAN_CODENAME}/ llvm-toolchain-${DEBIAN_CODENAME}-17 main" > /etc/apt/sources.list.d/llvm.list && \
     apt-get update && \
     apt-get install -y clang-17 clang-tidy-17 && \
-    # IWYU может называться как include-what-you-use-17, так и просто include-what-you-use
-    (apt-get install -y include-what-you-use-17 || apt-get install -y include-what-you-use) && \
-    # Симлинки в /usr/local/bin для удобного вызова без версии
     ln -s /usr/bin/clang-tidy-17 /usr/local/bin/clang-tidy && \
-    if [ -f /usr/bin/include-what-you-use-17 ]; then \
-        ln -s /usr/bin/include-what-you-use-17 /usr/local/bin/include-what-you-use; \
-    fi && \
     rm -rf /var/lib/apt/lists/*
 
 # ---------------- Python зависимости -----------------------
