@@ -1,9 +1,9 @@
 # 🌱 JXCT 7-в-1 Датчик Почвы
 
-[![Version](https://img.shields.io/badge/version-3.4.9-blue.svg)](https://github.com/Gfermoto/soil-sensor-7in1/releases)
+[![Version](https://img.shields.io/github/v/tag/Gfermoto/soil-sensor-7in1?color=blue&label=version)](https://github.com/Gfermoto/soil-sensor-7in1/releases)
 [![Platform](https://img.shields.io/badge/platform-ESP32-green.svg)](https://www.espressif.com/en/products/socs/esp32)
-[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](LICENSE)
-[![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions)
+[![License](https://img.shields.io/github/license/Gfermoto/soil-sensor-7in1?color=yellow&label=license)](LICENSE)
+[![CI](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml) [![Docs](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/pages.yml/badge.svg?branch=main)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/pages.yml) [![Release](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/firmware_release.yml/badge.svg)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/firmware_release.yml)
 
 **Профессиональная IoT система мониторинга почвы на базе ESP32 с Modbus RTU, MQTT и продвинутыми алгоритмами компенсации**
 
@@ -67,4 +67,4 @@ JXCT/
 
 ---
 
-**JXCT Development Team** | Версия 3.4.9 | Июнь 2025 
+**EYERA Development Team** | Версия 3.5.0 | Июнь 2025 
