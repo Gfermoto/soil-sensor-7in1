@@ -96,3 +96,5 @@ JXCT/
 ---
 
 **EYERA Development Team** | Версия 3.5.0 | Июнь 2025 
+
+<!-- test repo info workflow --> 
