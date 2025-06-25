@@ -14,24 +14,24 @@ struct CalibrationEntry
 
 namespace CalibrationManager
 {
-    // Инициализация файловой системы (LittleFS) и каталога /calibration
-    bool init();
+// Инициализация файловой системы (LittleFS) и каталога /calibration
+bool init();
 
-    // Сохранение CSV-файла, полученного через upload, в каталог /calibration/<profile>.csv
-    bool saveCsv(SoilProfile profile, Stream& fileStream);
+// Сохранение CSV-файла, полученного через upload, в каталог /calibration/<profile>.csv
+bool saveCsv(SoilProfile profile, Stream& fileStream);
 
-    // Загрузка таблицы калибровки в оперативную память
-    bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntries, size_t& outCount);
+// Загрузка таблицы калибровки в оперативную память
+bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntries, size_t& outCount);
 
-    // Проверка существования таблицы
-    bool hasTable(SoilProfile profile);
+// Проверка существования таблицы
+bool hasTable(SoilProfile profile);
 
-    // Удаление таблицы
-    bool deleteTable(SoilProfile profile);
+// Удаление таблицы
+bool deleteTable(SoilProfile profile);
 
-    // Преобразование профиля в имя файла
-    const char* profileToFilename(SoilProfile profile);
+// Преобразование профиля в имя файла
+const char* profileToFilename(SoilProfile profile);
 
-    // Применение калибровочной таблицы к значению датчика
-    float applyCalibration(float rawValue, SoilProfile profile);
-} 
+// Применение калибровочной таблицы к значению датчика
+float applyCalibration(float rawValue, SoilProfile profile);
+}  // namespace CalibrationManager

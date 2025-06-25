@@ -6,18 +6,19 @@
 // Вперёд объявляем структуру, определена в modbus_sensor.h
 struct SensorData;
 
-class ISensor {
-public:
+class ISensor
+{
+   public:
     virtual ~ISensor() = default;
 
     // Подготовка к работе (инициализация шин, буферов и т.п.)
     virtual bool begin() = 0;
 
     // Считать актуальные данные; возвращает true, если данные валидны
-    virtual bool read(SensorData &out) = 0;
+    virtual bool read(SensorData& out) = 0;
 
     // Человеческое имя сенсора (для логов)
-    virtual const char *name() const = 0;
+    virtual const char* name() const = 0;
 };
 
-#endif // I_SENSOR_H 
+#endif  // I_SENSOR_H

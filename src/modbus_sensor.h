@@ -138,7 +138,7 @@ float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
 void initMovingAverageBuffers(SensorData& data);
 
 // Тестовые функции
-void testSP3485E();              // Тест драйвера SP3485E
+void testSP3485E();               // Тест драйвера SP3485E
 bool testModbusConnection();      // Диагностика Modbus связи
 void testSerialConfigurations();  // Тест конфигураций Serial2
 

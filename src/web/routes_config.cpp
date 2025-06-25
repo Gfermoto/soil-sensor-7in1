@@ -4,14 +4,14 @@
  * @details Обработка запросов настройки интервалов, управления конфигурацией и API конфигурации
  */
 
-#include "../../include/web_routes.h"
-#include "../../include/jxct_config_vars.h"
-#include "../../include/jxct_ui_system.h"
-#include "../../include/jxct_device_info.h"
-#include "../../include/logger.h"
-#include "../wifi_manager.h"
 #include <ArduinoJson.h>
+#include "../../include/jxct_config_vars.h"
+#include "../../include/jxct_device_info.h"
 #include "../../include/jxct_strings.h"
+#include "../../include/jxct_ui_system.h"
+#include "../../include/logger.h"
+#include "../../include/web_routes.h"
+#include "../wifi_manager.h"
 
 extern WebServer webServer;
 extern WiFiMode currentWiFiMode;
@@ -35,7 +35,8 @@ void setupConfigRoutes()
 
             if (currentWiFiMode == WiFiMode::AP)
             {
-                webServer.send(200, "text/html; charset=utf-8", generateApModeUnavailablePage("Интервалы", UI_ICON_INTERVALS));
+                webServer.send(200, "text/html; charset=utf-8",
+                               generateApModeUnavailablePage("Интервалы", UI_ICON_INTERVALS));
                 return;
             }
 
@@ -259,7 +260,8 @@ void setupConfigRoutes()
                      html += navHtml();
                      html += "<h1>" UI_ICON_FOLDER " Управление конфигурацией</h1>";
 
-                     if (webServer.hasArg("import_ok")) {
+                     if (webServer.hasArg("import_ok"))
+                     {
                          html += "<div class='msg msg-success'>✅ Конфигурация успешно импортирована и сохранена</div>";
                      }
 

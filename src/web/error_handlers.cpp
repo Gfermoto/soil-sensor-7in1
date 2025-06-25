@@ -1,9 +1,9 @@
-#include "../../include/web_routes.h"
-#include "../../include/logger.h"
 #include "../../include/jxct_config_vars.h"
-#include "../../include/jxct_ui_system.h"
-#include "../wifi_manager.h"
 #include "../../include/jxct_strings.h"
+#include "../../include/jxct_ui_system.h"
+#include "../../include/logger.h"
+#include "../../include/web_routes.h"
+#include "../wifi_manager.h"
 
 void setupErrorHandlers()
 {

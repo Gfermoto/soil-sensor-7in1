@@ -20,11 +20,17 @@ enum class SoilProfile : uint8_t
 };
 
 // Типы почвы
-enum class SoilType { SAND, LOAM, PEAT, CLAY, SANDPEAT };
+enum class SoilType
+{
+    SAND,
+    LOAM,
+    PEAT,
+    CLAY,
+    SANDPEAT
+};
 
 // (устаревшие функции компенсации удалены)
 
 float correctEC(float ecRaw, float T, float theta, SoilType soil);
 float correctPH(float phRaw, float T);
-void  correctNPK(float T, float theta,
-                 float& N, float& P, float& K, SoilType soil); 
+void correctNPK(float T, float theta, float& N, float& P, float& K, SoilType soil);

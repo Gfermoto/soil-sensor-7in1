@@ -4,19 +4,19 @@
  * @details Реализация подключения, публикации данных, обработки команд и интеграции с Home Assistant через discovery.
  */
 #include <Arduino.h>
-#include <PubSubClient.h>
 #include <ArduinoJson.h>
-#include "modbus_sensor.h"
-#include "wifi_manager.h"
+#include <NTPClient.h>
+#include <PubSubClient.h>
 #include <WiFiClient.h>
-#include "jxct_device_info.h"
+#include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "jxct_config_vars.h"
+#include "jxct_constants.h"  // ✅ Централизованные константы
+#include "jxct_device_info.h"
 #include "jxct_format_utils.h"
 #include "logger.h"
-#include "debug.h"           // ✅ Добавляем систему условной компиляции
-#include "jxct_constants.h"  // ✅ Централизованные константы
-#include <NTPClient.h>
+#include "modbus_sensor.h"
 #include "ota_manager.h"
+#include "wifi_manager.h"
 extern NTPClient* timeClient;
 
 WiFiClient espClient;

@@ -4,17 +4,17 @@
  * @details Обработка запросов здоровья системы, статуса сервисов, перезагрузки и OTA обновлений
  */
 
-#include "../../include/web_routes.h"
-#include "../../include/logger.h"
+#include <ArduinoJson.h>
 #include "../../include/jxct_config_vars.h"
-#include "../../include/jxct_ui_system.h"
 #include "../../include/jxct_device_info.h"
 #include "../../include/jxct_format_utils.h"
-#include "../wifi_manager.h"
+#include "../../include/jxct_strings.h"
+#include "../../include/jxct_ui_system.h"
+#include "../../include/logger.h"
+#include "../../include/web_routes.h"
 #include "../modbus_sensor.h"
 #include "../mqtt_client.h"
-#include <ArduinoJson.h>
-#include "../../include/jxct_strings.h"
+#include "../wifi_manager.h"
 
 extern WebServer webServer;
 extern WiFiMode currentWiFiMode;
@@ -58,7 +58,8 @@ void setupServiceRoutes()
 
             if (currentWiFiMode == WiFiMode::AP)
             {
-                webServer.send(200, "text/html; charset=utf-8", generateApModeUnavailablePage("Сервис", UI_ICON_SERVICE));
+                webServer.send(200, "text/html; charset=utf-8",
+                               generateApModeUnavailablePage("Сервис", UI_ICON_SERVICE));
                 return;
             }
 
@@ -138,7 +139,12 @@ void setupServiceRoutes()
                      ESP.restart();
                  });
 
-    webServer.on(API_SYSTEM_RESET, HTTP_POST, [](){ webServer.sendHeader("Location", "/reset", true); webServer.send(307, "text/plain", "Redirect"); });
+    webServer.on(API_SYSTEM_RESET, HTTP_POST,
+                 []()
+                 {
+                     webServer.sendHeader("Location", "/reset", true);
+                     webServer.send(307, "text/plain", "Redirect");
+                 });
 
     webServer.on("/reboot", HTTP_POST,
                  []()
@@ -161,10 +167,20 @@ void setupServiceRoutes()
                      ESP.restart();
                  });
 
-    webServer.on(API_SYSTEM_REBOOT, HTTP_POST, [](){ webServer.sendHeader("Location", "/reboot", true); webServer.send(307, "text/plain", "Redirect"); });
+    webServer.on(API_SYSTEM_REBOOT, HTTP_POST,
+                 []()
+                 {
+                     webServer.sendHeader("Location", "/reboot", true);
+                     webServer.send(307, "text/plain", "Redirect");
+                 });
 
     // Старый маршрут /ota более не нужен – сделаем редирект на новую страницу
-    webServer.on("/ota", HTTP_ANY, []() { webServer.sendHeader("Location", "/updates", true); webServer.send(302, "text/plain", "Redirect"); });
+    webServer.on("/ota", HTTP_ANY,
+                 []()
+                 {
+                     webServer.sendHeader("Location", "/updates", true);
+                     webServer.send(302, "text/plain", "Redirect");
+                 });
 
     logSuccess("Сервисные маршруты настроены");
 }
@@ -190,7 +206,8 @@ String formatUptime(unsigned long milliseconds)
     return uptime;
 }
 
-void sendHealthJson() {
+void sendHealthJson()
+{
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
     StaticJsonDocument<1024> doc;
 
@@ -272,7 +289,8 @@ void sendHealthJson() {
     webServer.send(200, "application/json", json);
 }
 
-void sendServiceStatusJson() {
+void sendServiceStatusJson()
+{
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
     StaticJsonDocument<512> doc;
     doc["wifi_connected"] = wifiConnected;

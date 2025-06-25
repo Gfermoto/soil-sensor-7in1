@@ -6,24 +6,24 @@
 // *** УНИКАЛЬНЫЙ ИДЕНТИФИКАТОР СБОРКИ v3.1.7-DEBUG-20250620-1501 ***
 // *** ЕСЛИ ВЫ ВИДИТЕ ЭТО СООБЩЕНИЕ, ПРОШИВКА ОБНОВИЛАСЬ ***
 
-#include <WiFiClientSecure.h>
-#include <WiFiClient.h>
 #include <Arduino.h>
-#include "version.h"  // ✅ Централизованное управление версией
-#include "wifi_manager.h"
+#include <NTPClient.h>
+#include <WiFiClient.h>
+#include <WiFiClientSecure.h>
+#include <WiFiUdp.h>
+#include <esp_ota_ops.h>
+#include <esp_task_wdt.h>
+#include "debug.h"  // ✅ Добавляем систему условной компиляции
+#include "fake_sensor.h"
+#include "jxct_config_vars.h"
+#include "logger.h"
 #include "modbus_sensor.h"
 #include "mqtt_client.h"
-#include "thingspeak_client.h"
-#include "jxct_config_vars.h"
-#include <WiFiUdp.h>
-#include <NTPClient.h>
-#include <esp_task_wdt.h>
-#include "fake_sensor.h"
-#include "debug.h"  // ✅ Добавляем систему условной компиляции
-#include "logger.h"
-#include "sensor_factory.h"
 #include "ota_manager.h"
-#include <esp_ota_ops.h>
+#include "sensor_factory.h"
+#include "thingspeak_client.h"
+#include "version.h"  // ✅ Централизованное управление версией
+#include "wifi_manager.h"
 
 // Переменные для отслеживания времени
 unsigned long lastDataPublish = 0;
@@ -158,7 +158,7 @@ void setup()
 
     // Инициализация OTA 2.0 (проверка манифеста раз в час) через HTTPS
     static WiFiClientSecure otaClient;
-    otaClient.setInsecure(); // временно отключаем проверку сертификата
+    otaClient.setInsecure();  // временно отключаем проверку сертификата
     // Всегда устанавливаем URL манифеста для ручной и автоматической проверки
     // ИСПРАВЛЕНО - используем правильный URL манифеста
     // ВОЗВРАЩАЮ КАК РАБОТАЛО - /latest/download/
@@ -309,4 +309,4 @@ void loop()
     vTaskDelay(10 / portTICK_PERIOD_MS);
 }
 
-#endif // PIO_UNIT_TESTING
+#endif  // PIO_UNIT_TESTING
