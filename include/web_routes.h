@@ -1,7 +1,7 @@
 #pragma once
 
 #include <WebServer.h>
-#include <WiFi.h>
+// #include <WiFi.h> // удалён как неиспользуемый
 #include "../src/wifi_manager.h"
 
 // Внешние зависимости

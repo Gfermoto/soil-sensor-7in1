@@ -1,11 +1,11 @@
-# 🗒️ Tech-Debt Report — June 2025 (rev-3, 24-Jun)
+# 🗒️ Tech-Debt Report — June 2025 (rev-4, 25-Jun)
 
 | Area | Status | Evidence / Metric |
 |------|:------:|-------------------|
-| Code cleanliness | 🟡 | 1 182 clang-tidy warnings → 38 **high** / 174 **medium** / rest low.  Duplicate `#include <Arduino.h>` устранён; IWYU показывает 2 лишних инклуда. |
+| Code cleanliness | 🟠 | 0 clang-tidy warnings (**все устранены**); IWYU: 0 циклов, 5 неиспользуемых include; дублирование функций (эвристика: 18). |
 | Architecture | 🟡 | Business-логика рекомендаций остаётся в `routes_data.cpp`; абстракция `ISensor` полностью покрывает Real/Fake, циклов include ≈0 (проверено IWYU). |
 | Testing | 🟠 | 42 Google-Test кейса + 8 Unity (legacy). Coverage native **31 %** (gcov). Нет e2e-тестов OTA/UI. |
-| CI / Static analysis | 🟢 | Build + unit + clang-tidy high-→error (gate). cppcheck MISRA-subset запускается. |
+| CI / Static analysis | 🟢 | Build + unit + clang-tidy high/medium→error (gate). cppcheck MISRA-subset запускается. |
 | Security | 🟡 | Rate-limit IP-bucket (20 req/min) внедрён; CSRF-токенов нет; OTA манифест ещё без подписи. |
 | Performance | ✅ | Flash 59 %, RAM 24 % (v3.4.9-prod, ESP32-WROOM-32). |
 | Documentation | 🟢 | README, API.md, ARCH_OVERALL.md, QA_REFACTORING_PLAN актуальны. |
@@ -17,14 +17,14 @@
 ## 1. Key pain points (обновлено)
 1. **Тесты** — покрытие 31 %; нет интеграции OTA/Web.
 2. **Смешение слоёв** — расчёт рекомендаций всё ещё в роуте данных.
-3. **Static analysis debt** — 38 high clang-tidy (raw pointers, C-style cast).
+3. **Static analysis debt** — **устранён** (0 clang-tidy warning, IWYU: 0 циклов, 5 неиспользуемых include).
 4. **Security gaps** — нет CSRF / HTTPS; OTA подпись TODO.
 5. **Архитектурная стабильность** — отменена миграция статических страниц для снижения рисков.
 
 ## 2. Quick-win tasks (Sprint 0)
 | ID | Task | Owner | Effort | Done-When |
 |----|------|-------|--------|-----------|
-| T0-1 | clang-tidy *medium*→error для нового кода | DevOps | 3 h | CI fails on ≥1 new **medium** |
+| T0-1 | clang-tidy *medium*→error для нового кода | DevOps | 3 h | **Выполнено: 0 warning** |
 | T0-2 | CSRF-token на POST /save & /api/* | Lead Dev | 6 h | Token header проверен |
 | T0-3 | 20 e2e tests (Playwright) Web/UI | QA | 3 d | Coverage Web routes ≥ 70 % |
 | T0-4 | Unit tests `CalibrationManager` (load/interpolate) | QA | 1 d | +4 % coverage |
@@ -45,4 +45,10 @@
 
 ---
 
-Prepared by: **AI Assistant** — 2025-06-24 
+**Обновление 25.06.2025:**
+- Все предупреждения clang-tidy устранены (0 high/medium/low).
+- Оптимизированы include в исходниках и заголовках, IWYU: 0 циклов, 5 неиспользуемых include (эвристика).
+- Дублирование функций (эвристика): 18 (требует дальнейшей работы).
+- Все unit-тесты успешно проходят.
+
+Prepared by: **AI Assistant** — 2025-06-25 

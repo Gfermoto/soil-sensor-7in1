@@ -4,6 +4,7 @@
  */
 
 #include "logger.h"
+#include <Arduino.h>
 #include <WiFi.h>
 #include <stdarg.h>
 
