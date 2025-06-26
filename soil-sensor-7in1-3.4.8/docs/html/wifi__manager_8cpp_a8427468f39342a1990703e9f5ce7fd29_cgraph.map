@@ -1,0 +1,11 @@
+<map id="handleRoot" name="handleRoot">
+<area shape="rect" id="Node000001" title="Обработчик главной страницы (уже существует в wifi_manager.cpp)" alt="" coords="5,81,93,108"/>
+<area shape="rect" id="Node000002" href="$jxct__ui__system_8cpp.html#a7834ec4c73014039a2aeeedadff41141" title=" " alt="" coords="141,5,250,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="73,78,139,42,149,37,152,41,142,46,76,83"/>
+<area shape="rect" id="Node000003" href="$jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="142,56,249,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="93,85,125,79,126,84,94,90"/>
+<area shape="rect" id="Node000004" href="$jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="141,107,250,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="94,100,126,105,125,111,93,105"/>
+<area shape="rect" id="Node000005" href="$wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9" title=" " alt="" coords="160,157,230,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="76,106,142,143,152,148,149,153,139,148,73,111"/>
+</map>

@@ -49,6 +49,12 @@ const unsigned long STATUS_PRINT_INTERVAL = 30000;  // 30 секунд
 // Переменные
 unsigned long lastStatusPrint = 0;
 
+// === ОПТИМИЗАЦИЯ 3.2: Интеллектуальный батчинг данных для группировки сетевых отправок ===
+static unsigned long mqttBatchTimer = 0;
+static unsigned long thingspeakBatchTimer = 0;
+static bool pendingMqttPublish = false;
+static bool pendingThingspeakPublish = false;
+
 // ✅ Неблокирующая задача мониторинга кнопки сброса
 void resetButtonTask(void* parameter)
 {
@@ -201,10 +207,7 @@ bool initPreferences()
 // ✅ Неблокирующий главный цикл с оптимизированными интервалами
 void loop()
 {
-    // Текущее время
     unsigned long currentTime = millis();
-
-    // Сброс watchdog
     esp_task_wdt_reset();
 
     // Обновление NTP каждые 6 часов
@@ -239,26 +242,16 @@ void loop()
         lastStatusPrint = currentTime;
     }
 
-    // ✅ ОПТИМИЗАЦИЯ 3.2: Интеллектуальный батчинг данных для группировки сетевых отправок
-    static unsigned long mqttBatchTimer = 0;
-    static unsigned long thingspeakBatchTimer = 0;
-    static bool pendingMqttPublish = false;
-    static bool pendingThingspeakPublish = false;
-
-    // Проверяем наличие новых данных датчика (НАСТРАИВАЕМО v2.3.0)
-    if (sensorData.valid && (currentTime - lastDataPublish >= config.sensorReadInterval))
-    {
-        // Помечаем что есть данные для отправки (не отправляем сразу)
+    // === Проверяем наличие новых данных датчика (НАСТРАИВАЕМО v2.3.0) ===
+    if (sensorData.valid && (currentTime - lastDataPublish >= config.sensorReadInterval)) {
         pendingMqttPublish = true;
         pendingThingspeakPublish = true;
         lastDataPublish = currentTime;
-
         DEBUG_PRINTLN("[BATCH] Новые данные помечены для групповой отправки");
     }
 
     // ✅ Групповая отправка MQTT (настраиваемо v2.3.0)
-    if (pendingMqttPublish && (currentTime - mqttBatchTimer >= config.mqttPublishInterval))
-    {
+    if (pendingMqttPublish && (currentTime - mqttBatchTimer >= config.mqttPublishInterval)) {
         publishSensorData();
         pendingMqttPublish = false;
         mqttBatchTimer = currentTime;
@@ -266,19 +259,15 @@ void loop()
     }
 
     // ✅ Групповая отправка ThingSpeak (настраиваемо v2.3.0)
-    if (pendingThingspeakPublish && (currentTime - thingspeakBatchTimer >= config.thingSpeakInterval))
-    {
+    if (pendingThingspeakPublish && (currentTime - thingspeakBatchTimer >= config.thingSpeakInterval)) {
         bool tsOk = sendDataToThingSpeak();
-        pendingThingspeakPublish = false;
-        if (tsOk)
-        {
+        if (tsOk) {
             thingspeakBatchTimer = currentTime;  // Сбрасываем таймер только при успешной отправке
             DEBUG_PRINTLN("[BATCH] ThingSpeak данные отправлены группой");
-        }
-        else
-        {
+        } else {
             DEBUG_PRINTLN("[BATCH] ThingSpeak отправка не удалась, повтор через следующий интервал");
         }
+        pendingThingspeakPublish = false;
     }
 
     // ✅ Управление MQTT (каждые 100мс)

@@ -13,7 +13,13 @@
 #include <iostream>
 #include <fstream>
 
-// Включаем исходные файлы для тестирования
+// Включаем заголовочные файлы для тестирования
+#include "../include/validation_utils.h"
+#include "../include/sensor_compensation.h"
+#include "../include/jxct_format_utils.h"
+#include "../include/logger.h"
+
+// Включаем реализации для тестирования
 #include "../src/validation_utils.cpp"
 #include "../src/sensor_compensation.cpp"
 #include "../src/jxct_format_utils.cpp"
