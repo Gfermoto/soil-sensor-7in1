@@ -1,0 +1,27 @@
+<map id="format_moisture" name="format_moisture">
+<area shape="rect" id="Node000001" title=" " alt="" coords="928,56,1044,83"/>
+<area shape="rect" id="Node000002" href="$thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="533,5,693,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="918,54,880,47,783,34,693,26,693,21,784,28,881,41,919,49"/>
+<area shape="rect" id="Node000004" href="$routes__data_8cpp.html#aed1136f683a386e56678e05fc3747972" title="Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)" alt="" coords="749,56,872,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="913,72,873,72,873,67,913,67"/>
+<area shape="rect" id="Node000011" href="$routes__service_8cpp.html#a32c74f47a23de058ee90a43af2dff066" title="Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)" alt="" coords="741,107,880,133"/>
+<area shape="poly" id="edge13_Node000001_Node000011" title=" " alt="" coords="923,90,860,109,859,104,922,85"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="124,44,170,71"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="517,25,384,34,235,47,170,56,169,51,235,41,383,28,517,20"/>
+<area shape="rect" id="Node000005" href="$wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="554,107,672,133"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="742,90,669,109,667,103,740,85"/>
+<area shape="rect" id="Node000006" href="$wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="387,107,485,133"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="539,123,485,123,485,117,539,117"/>
+<area shape="rect" id="Node000010" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="235,157,339,184"/>
+<area shape="poly" id="edge12_Node000005_Node000010" title=" " alt="" coords="539,138,485,148,340,168,339,162,484,143,539,133"/>
+<area shape="rect" id="Node000007" href="$wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="244,56,330,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="379,104,328,86,330,81,381,98"/>
+<area shape="rect" id="Node000008" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="107,120,187,147"/>
+<area shape="poly" id="edge8_Node000006_Node000008" title=" " alt="" coords="372,126,188,134,187,129,371,120"/>
+<area shape="poly" id="edge10_Node000006_Node000010" title=" " alt="" coords="381,142,330,159,328,154,379,136"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="228,67,170,62,170,57,229,62"/>
+<area shape="rect" id="Node000009" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,120,59,147"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="91,136,59,136,59,131,91,131"/>
+<area shape="poly" id="edge11_Node000010_Node000008" title=" " alt="" coords="219,155,187,147,188,141,221,150"/>
+<area shape="poly" id="edge14_Node000011_Node000005" title=" " alt="" coords="726,123,672,123,672,117,726,117"/>
+</map>

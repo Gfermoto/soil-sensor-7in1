@@ -1,0 +1,1415 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor v2.0: Файл src/modbus_sensor.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл modbus_sensor.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Работа с Modbus-датчиком JXCT.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__device__info_8h_source.html">jxct_device_info.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="debug_8h_source.html">debug.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">jxct_constants.h</a>&quot;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Граф включаемых заголовочных файлов для modbus_sensor.cpp:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp__incl.png" border="0" usemap="#asrc_2modbus__sensor_8cpp" alt=""/></div>
+<map name="asrc_2modbus__sensor_8cpp" id="asrc_2modbus__sensor_8cpp">
+<area shape="rect" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="250,5,410,32"/>
+<area shape="rect" title=" " alt="" coords="200,155,276,181"/>
+<area shape="poly" title=" " alt="" coords="265,35,225,53,209,66,195,81,191,96,194,112,215,142,211,145,189,114,185,96,190,79,205,62,223,48,262,30"/>
+<area shape="rect" href="modbus__sensor_8h.html" title=" " alt="" coords="5,80,130,107"/>
+<area shape="poly" title=" " alt="" coords="285,35,129,78,128,73,284,30"/>
+<area shape="rect" href="jxct__device__info_8h.html" title=" " alt="" coords="388,80,515,107"/>
+<area shape="poly" title=" " alt="" coords="353,30,419,69,416,74,350,35"/>
+<area shape="rect" href="jxct__config__vars_8h.html" title=" " alt="" coords="538,80,666,107"/>
+<area shape="poly" title=" " alt="" coords="378,30,540,73,539,78,377,35"/>
+<area shape="rect" href="debug_8h.html" title=" " alt="" coords="204,80,272,107"/>
+<area shape="poly" title=" " alt="" coords="316,35,267,73,264,68,312,30"/>
+<area shape="rect" href="logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="296,80,364,107"/>
+<area shape="poly" title=" " alt="" coords="333,33,333,64,328,64,328,33"/>
+<area shape="rect" href="jxct__constants_8h.html" title="Централизованные константы системы JXCT." alt="" coords="690,80,808,107"/>
+<area shape="poly" title=" " alt="" coords="404,30,675,77,675,82,403,35"/>
+<area shape="poly" title=" " alt="" coords="98,105,195,146,193,151,96,110"/>
+<area shape="rect" title=" " alt="" coords="8,155,127,181"/>
+<area shape="poly" title=" " alt="" coords="70,107,70,139,65,139,65,107"/>
+<area shape="poly" title=" " alt="" coords="415,110,291,152,289,147,413,105"/>
+<area shape="rect" href="version_8h.html" title=" " alt="" coords="414,155,489,181"/>
+<area shape="poly" title=" " alt="" coords="454,107,454,139,449,139,449,107"/>
+<area shape="rect" title=" " alt="" coords="551,155,653,181"/>
+<area shape="poly" title=" " alt="" coords="605,107,605,139,600,139,600,107"/>
+<area shape="poly" title=" " alt="" coords="241,107,241,139,236,139,236,107"/>
+<area shape="poly" title=" " alt="" coords="316,109,267,147,264,143,312,105"/>
+</map>
+</div>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a2f7382dca34cb8bc9e1c80da26865a0a" id="r_a2f7382dca34cb8bc9e1c80da26865a0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f7382dca34cb8bc9e1c80da26865a0a">debugPrintBuffer</a> (const char *prefix, uint8_t *buffer, size_t length)</td></tr>
+<tr class="separator:a2f7382dca34cb8bc9e1c80da26865a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8a1f5220dc77f33a89d14fe4d82442f" id="r_ab8a1f5220dc77f33a89d14fe4d82442f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8a1f5220dc77f33a89d14fe4d82442f">testSP3485E</a> ()</td></tr>
+<tr class="memdesc:ab8a1f5220dc77f33a89d14fe4d82442f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Тестирование работы SP3485E.  <br /></td></tr>
+<tr class="separator:ab8a1f5220dc77f33a89d14fe4d82442f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c4410314e55fce67a3c727cb1bf9520" id="r_a0c4410314e55fce67a3c727cb1bf9520"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c4410314e55fce67a3c727cb1bf9520">setupModbus</a> ()</td></tr>
+<tr class="memdesc:a0c4410314e55fce67a3c727cb1bf9520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Инициализация Modbus и SP3485E.  <br /></td></tr>
+<tr class="separator:a0c4410314e55fce67a3c727cb1bf9520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e1b4f2813957877a5ac0ab90787f0e5" id="r_a0e1b4f2813957877a5ac0ab90787f0e5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e1b4f2813957877a5ac0ab90787f0e5">calculateCRC16</a> (uint8_t *data, size_t length)</td></tr>
+<tr class="separator:a0e1b4f2813957877a5ac0ab90787f0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8a3b28ec8c21261d4e467da91a17a67" id="r_aa8a3b28ec8c21261d4e467da91a17a67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8a3b28ec8c21261d4e467da91a17a67">validateSensorData</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data)</td></tr>
+<tr class="separator:aa8a3b28ec8c21261d4e467da91a17a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eb8daa78bacfc8a930012162882aa9c" id="r_a8eb8daa78bacfc8a930012162882aa9c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8eb8daa78bacfc8a930012162882aa9c">getCachedData</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data)</td></tr>
+<tr class="separator:a8eb8daa78bacfc8a930012162882aa9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6444c2d436a57168cc75d4ef8529a6c8" id="r_a6444c2d436a57168cc75d4ef8529a6c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6444c2d436a57168cc75d4ef8529a6c8">readFirmwareVersion</a> ()</td></tr>
+<tr class="separator:a6444c2d436a57168cc75d4ef8529a6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b6b2ad640c9580fa45d8cbad28adf53" id="r_a8b6b2ad640c9580fa45d8cbad28adf53"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b6b2ad640c9580fa45d8cbad28adf53">readErrorStatus</a> ()</td></tr>
+<tr class="separator:a8b6b2ad640c9580fa45d8cbad28adf53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac87bc87eaf0bc01ebda5fe1bb44c88b" id="r_aac87bc87eaf0bc01ebda5fe1bb44c88b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac87bc87eaf0bc01ebda5fe1bb44c88b">changeDeviceAddress</a> (uint8_t new_address)</td></tr>
+<tr class="separator:aac87bc87eaf0bc01ebda5fe1bb44c88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedb09484ba8020afc57e9e9e26012bf1" id="r_aedb09484ba8020afc57e9e9e26012bf1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedb09484ba8020afc57e9e9e26012bf1">testModbusConnection</a> ()</td></tr>
+<tr class="separator:aedb09484ba8020afc57e9e9e26012bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3faa8f7948e57c2c23d36a3a12b1339d" id="r_a3faa8f7948e57c2c23d36a3a12b1339d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3faa8f7948e57c2c23d36a3a12b1339d">readSingleRegister</a> (uint16_t reg_addr, const char *reg_name, float multiplier, void *target, bool is_float)</td></tr>
+<tr class="memdesc:a3faa8f7948e57c2c23d36a3a12b1339d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Чтение одного регистра с обработкой ошибок  <br /></td></tr>
+<tr class="separator:a3faa8f7948e57c2c23d36a3a12b1339d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67111fe72a8b7cc6d742ed0cc8b92246" id="r_a67111fe72a8b7cc6d742ed0cc8b92246"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67111fe72a8b7cc6d742ed0cc8b92246">readBasicParameters</a> ()</td></tr>
+<tr class="memdesc:a67111fe72a8b7cc6d742ed0cc8b92246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Чтение основных параметров (температура, влажность, pH, EC)  <br /></td></tr>
+<tr class="separator:a67111fe72a8b7cc6d742ed0cc8b92246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c98e696f32d6d16aeb4e29eb71d941f" id="r_a5c98e696f32d6d16aeb4e29eb71d941f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c98e696f32d6d16aeb4e29eb71d941f">readNPKParameters</a> ()</td></tr>
+<tr class="memdesc:a5c98e696f32d6d16aeb4e29eb71d941f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Чтение NPK параметров (азот, фосфор, калий)  <br /></td></tr>
+<tr class="separator:a5c98e696f32d6d16aeb4e29eb71d941f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7862d1878b888472d0c1c96fa826ead3" id="r_a7862d1878b888472d0c1c96fa826ead3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7862d1878b888472d0c1c96fa826ead3">finalizeSensorData</a> (bool success)</td></tr>
+<tr class="memdesc:a7862d1878b888472d0c1c96fa826ead3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Финализация данных датчика (валидация, кэширование, скользящее среднее)  <br /></td></tr>
+<tr class="separator:a7862d1878b888472d0c1c96fa826ead3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3a37446a712d9ae94e76304361d35d2" id="r_ac3a37446a712d9ae94e76304361d35d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3a37446a712d9ae94e76304361d35d2">readSensorData</a> ()</td></tr>
+<tr class="separator:ac3a37446a712d9ae94e76304361d35d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7d239567ef1281e0fd378082fd48ac" id="r_aca7d239567ef1281e0fd378082fd48ac"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca7d239567ef1281e0fd378082fd48ac">convertRegisterToFloat</a> (uint16_t value, float multiplier)</td></tr>
+<tr class="separator:aca7d239567ef1281e0fd378082fd48ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c43d8a4afead0d0df29635242290377" id="r_a1c43d8a4afead0d0df29635242290377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c43d8a4afead0d0df29635242290377">preTransmission</a> ()</td></tr>
+<tr class="memdesc:a1c43d8a4afead0d0df29635242290377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Подготовка к передаче данных  <br /></td></tr>
+<tr class="separator:a1c43d8a4afead0d0df29635242290377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33b535e84f654e423bb627b25b7b3759" id="r_a33b535e84f654e423bb627b25b7b3759"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33b535e84f654e423bb627b25b7b3759">postTransmission</a> ()</td></tr>
+<tr class="memdesc:a33b535e84f654e423bb627b25b7b3759"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завершение передачи данных  <br /></td></tr>
+<tr class="separator:a33b535e84f654e423bb627b25b7b3759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54a04fceff1a6b7eef35a680491e19b4" id="r_a54a04fceff1a6b7eef35a680491e19b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54a04fceff1a6b7eef35a680491e19b4">realSensorTask</a> (void *pvParameters)</td></tr>
+<tr class="separator:a54a04fceff1a6b7eef35a680491e19b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f1a431da8f1feb8a64e2c5f887056df" id="r_a4f1a431da8f1feb8a64e2c5f887056df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f1a431da8f1feb8a64e2c5f887056df">startRealSensorTask</a> ()</td></tr>
+<tr class="separator:a4f1a431da8f1feb8a64e2c5f887056df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbf50656913748323cd03274af03c116" id="r_adbf50656913748323cd03274af03c116"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbf50656913748323cd03274af03c116">printModbusError</a> (uint8_t errNum)</td></tr>
+<tr class="separator:adbf50656913748323cd03274af03c116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae316f6943acb0b355ff8b0f878b08d04" id="r_ae316f6943acb0b355ff8b0f878b08d04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae316f6943acb0b355ff8b0f878b08d04">initMovingAverageBuffers</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data)</td></tr>
+<tr class="separator:ae316f6943acb0b355ff8b0f878b08d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa3ddec4a6bc8ee0972ab805e02aad6b" id="r_afa3ddec4a6bc8ee0972ab805e02aad6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa3ddec4a6bc8ee0972ab805e02aad6b">addToMovingAverage</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data, float temp, float hum, float ec, float ph, float n, float p, float k)</td></tr>
+<tr class="separator:afa3ddec4a6bc8ee0972ab805e02aad6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaaed48863426c3f790f977bc04e7b94" id="r_aaaaed48863426c3f790f977bc04e7b94"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaaaed48863426c3f790f977bc04e7b94">calculateMovingAverage</a> (float *buffer, uint8_t window_size, uint8_t filled)</td></tr>
+<tr class="separator:aaaaed48863426c3f790f977bc04e7b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fac607750afe2d74837248aeec2cfe0" id="r_a3fac607750afe2d74837248aeec2cfe0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_sensor_data.html">SensorData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fac607750afe2d74837248aeec2cfe0">getSensorData</a> ()</td></tr>
+<tr class="separator:a3fac607750afe2d74837248aeec2cfe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a9f7da14569cf54a5633c163642e97dff" id="r_a9f7da14569cf54a5633c163642e97dff"><td class="memItemLeft" align="right" valign="top">ModbusMaster&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f7da14569cf54a5633c163642e97dff">modbus</a></td></tr>
+<tr class="separator:a9f7da14569cf54a5633c163642e97dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ed671f3036da58a93991fca2a2329c" id="r_ae6ed671f3036da58a93991fca2a2329c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_sensor_data.html">SensorData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6ed671f3036da58a93991fca2a2329c">sensorData</a></td></tr>
+<tr class="separator:ae6ed671f3036da58a93991fca2a2329c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a90cc33c11a27aac5f56dcaac387c0d" id="r_a5a90cc33c11a27aac5f56dcaac387c0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_sensor_cache.html">SensorCache</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a90cc33c11a27aac5f56dcaac387c0d">sensorCache</a></td></tr>
+<tr class="separator:a5a90cc33c11a27aac5f56dcaac387c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc5319275c2df675d59ff17f862d3e44" id="r_acc5319275c2df675d59ff17f862d3e44"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc5319275c2df675d59ff17f862d3e44">sensorLastError</a> = &quot;&quot;</td></tr>
+<tr class="separator:acc5319275c2df675d59ff17f862d3e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Работа с Modbus-датчиком JXCT. </p>
+<p>Реализация функций и задач для опроса датчика по Modbus RTU, преобразование данных, управление линией передачи. </p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="afa3ddec4a6bc8ee0972ab805e02aad6b" name="afa3ddec4a6bc8ee0972ab805e02aad6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa3ddec4a6bc8ee0972ab805e02aad6b">&#9670;&#160;</a></span>addToMovingAverage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void addToMovingAverage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>temp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>hum</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ph</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>k</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_afa3ddec4a6bc8ee0972ab805e02aad6b_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_afa3ddec4a6bc8ee0972ab805e02aad6b_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_afa3ddec4a6bc8ee0972ab805e02aad6b_cgraph" id="amodbus__sensor_8cpp_afa3ddec4a6bc8ee0972ab805e02aad6b_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,152,32"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94" title=" " alt="" coords="200,5,363,32"/>
+<area shape="poly" title=" " alt="" coords="152,16,184,16,184,21,152,21"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_afa3ddec4a6bc8ee0972ab805e02aad6b_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_afa3ddec4a6bc8ee0972ab805e02aad6b_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_afa3ddec4a6bc8ee0972ab805e02aad6b_icgraph" id="amodbus__sensor_8cpp_afa3ddec4a6bc8ee0972ab805e02aad6b_icgraph">
+<area shape="rect" title=" " alt="" coords="800,5,946,32"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="621,5,752,32"/>
+<area shape="poly" title=" " alt="" coords="784,21,753,21,753,16,784,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="457,5,573,32"/>
+<area shape="poly" title=" " alt="" coords="605,21,573,21,573,16,605,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,5,409,32"/>
+<area shape="poly" title=" " alt="" coords="442,21,410,21,410,16,442,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,5,250,32"/>
+<area shape="poly" title=" " alt="" coords="283,21,250,21,250,16,283,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0e1b4f2813957877a5ac0ab90787f0e5" name="a0e1b4f2813957877a5ac0ab90787f0e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e1b4f2813957877a5ac0ab90787f0e5">&#9670;&#160;</a></span>calculateCRC16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t calculateCRC16 </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaaaed48863426c3f790f977bc04e7b94" name="aaaaed48863426c3f790f977bc04e7b94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaaed48863426c3f790f977bc04e7b94">&#9670;&#160;</a></span>calculateMovingAverage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float calculateMovingAverage </td>
+          <td>(</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>window_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>filled</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_aaaaed48863426c3f790f977bc04e7b94_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_aaaaed48863426c3f790f977bc04e7b94_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_aaaaed48863426c3f790f977bc04e7b94_icgraph" id="amodbus__sensor_8cpp_aaaaed48863426c3f790f977bc04e7b94_icgraph">
+<area shape="rect" title=" " alt="" coords="994,5,1158,32"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b" title=" " alt="" coords="800,5,946,32"/>
+<area shape="poly" title=" " alt="" coords="979,21,947,21,947,16,979,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="621,5,752,32"/>
+<area shape="poly" title=" " alt="" coords="784,21,753,21,753,16,784,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="457,5,573,32"/>
+<area shape="poly" title=" " alt="" coords="605,21,573,21,573,16,605,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,5,409,32"/>
+<area shape="poly" title=" " alt="" coords="442,21,410,21,410,16,442,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,5,250,32"/>
+<area shape="poly" title=" " alt="" coords="283,21,250,21,250,16,283,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aac87bc87eaf0bc01ebda5fe1bb44c88b" name="aac87bc87eaf0bc01ebda5fe1bb44c88b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac87bc87eaf0bc01ebda5fe1bb44c88b">&#9670;&#160;</a></span>changeDeviceAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool changeDeviceAddress </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>new_address</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca7d239567ef1281e0fd378082fd48ac" name="aca7d239567ef1281e0fd378082fd48ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca7d239567ef1281e0fd378082fd48ac">&#9670;&#160;</a></span>convertRegisterToFloat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float convertRegisterToFloat </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>multiplier</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_aca7d239567ef1281e0fd378082fd48ac_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_aca7d239567ef1281e0fd378082fd48ac_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_aca7d239567ef1281e0fd378082fd48ac_icgraph" id="amodbus__sensor_8cpp_aca7d239567ef1281e0fd378082fd48ac_icgraph">
+<area shape="rect" title=" " alt="" coords="994,31,1151,57"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="815,31,946,57"/>
+<area shape="poly" title=" " alt="" coords="979,47,947,47,947,41,979,41"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="621,5,767,32"/>
+<area shape="poly" title=" " alt="" coords="799,36,767,31,767,26,800,30"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="623,56,764,83"/>
+<area shape="poly" title=" " alt="" coords="800,58,766,62,765,57,799,52"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="457,31,573,57"/>
+<area shape="poly" title=" " alt="" coords="606,34,573,38,573,33,605,29"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,31,409,57"/>
+<area shape="poly" title=" " alt="" coords="442,47,410,47,410,41,442,41"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,31,250,57"/>
+<area shape="poly" title=" " alt="" coords="283,47,250,47,250,41,283,41"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,31,59,57"/>
+<area shape="poly" title=" " alt="" coords="91,47,59,47,59,41,91,41"/>
+<area shape="poly" title=" " alt="" coords="608,60,573,55,573,50,608,55"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2f7382dca34cb8bc9e1c80da26865a0a" name="a2f7382dca34cb8bc9e1c80da26865a0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f7382dca34cb8bc9e1c80da26865a0a">&#9670;&#160;</a></span>debugPrintBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void debugPrintBuffer </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>prefix</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a2f7382dca34cb8bc9e1c80da26865a0a_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a2f7382dca34cb8bc9e1c80da26865a0a_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a2f7382dca34cb8bc9e1c80da26865a0a_cgraph" id="amodbus__sensor_8cpp_a2f7382dca34cb8bc9e1c80da26865a0a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,123,32"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="171,5,247,32"/>
+<area shape="poly" title=" " alt="" coords="123,16,155,16,155,21,123,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7862d1878b888472d0c1c96fa826ead3" name="a7862d1878b888472d0c1c96fa826ead3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7862d1878b888472d0c1c96fa826ead3">&#9670;&#160;</a></span>finalizeSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void finalizeSensorData </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>success</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Финализация данных датчика (валидация, кэширование, скользящее среднее) </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">success</td><td>Флаг успешности чтения всех параметров </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a7862d1878b888472d0c1c96fa826ead3_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a7862d1878b888472d0c1c96fa826ead3_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a7862d1878b888472d0c1c96fa826ead3_cgraph" id="amodbus__sensor_8cpp_a7862d1878b888472d0c1c96fa826ead3_cgraph">
+<area shape="rect" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="5,107,137,133"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b" title=" " alt="" coords="185,5,331,32"/>
+<area shape="poly" title=" " alt="" coords="88,104,130,73,183,42,196,36,198,41,186,46,133,78,91,108"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="225,56,291,83"/>
+<area shape="poly" title=" " alt="" coords="122,103,209,80,210,85,124,109"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="213,107,302,133"/>
+<area shape="poly" title=" " alt="" coords="137,117,198,117,198,123,137,123"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="224,157,292,184"/>
+<area shape="poly" title=" " alt="" coords="124,131,209,155,208,160,122,137"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67" title=" " alt="" coords="190,208,326,235"/>
+<area shape="poly" title=" " alt="" coords="91,132,133,162,186,194,198,199,196,204,183,198,130,167,88,136"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94" title=" " alt="" coords="379,5,542,32"/>
+<area shape="poly" title=" " alt="" coords="331,16,363,16,363,21,331,21"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a7862d1878b888472d0c1c96fa826ead3_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a7862d1878b888472d0c1c96fa826ead3_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a7862d1878b888472d0c1c96fa826ead3_icgraph" id="amodbus__sensor_8cpp_a7862d1878b888472d0c1c96fa826ead3_icgraph">
+<area shape="rect" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="621,5,752,32"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="457,5,573,32"/>
+<area shape="poly" title=" " alt="" coords="605,21,573,21,573,16,605,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,5,409,32"/>
+<area shape="poly" title=" " alt="" coords="442,21,410,21,410,16,442,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,5,250,32"/>
+<area shape="poly" title=" " alt="" coords="283,21,250,21,250,16,283,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8eb8daa78bacfc8a930012162882aa9c" name="a8eb8daa78bacfc8a930012162882aa9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eb8daa78bacfc8a930012162882aa9c">&#9670;&#160;</a></span>getCachedData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool getCachedData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3fac607750afe2d74837248aeec2cfe0" name="a3fac607750afe2d74837248aeec2cfe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fac607750afe2d74837248aeec2cfe0">&#9670;&#160;</a></span>getSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_sensor_data.html">SensorData</a> getSensorData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae316f6943acb0b355ff8b0f878b08d04" name="ae316f6943acb0b355ff8b0f878b08d04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae316f6943acb0b355ff8b0f878b08d04">&#9670;&#160;</a></span>initMovingAverageBuffers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initMovingAverageBuffers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33b535e84f654e423bb627b25b7b3759" name="a33b535e84f654e423bb627b25b7b3759"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33b535e84f654e423bb627b25b7b3759">&#9670;&#160;</a></span>postTransmission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void postTransmission </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Завершение передачи данных </p>
+<p>Выключает передатчик и включает приемник с необходимой задержкой. Важно: Задержка 50 мкс необходима для корректного переключения режимов </p>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a33b535e84f654e423bb627b25b7b3759_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a33b535e84f654e423bb627b25b7b3759_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a33b535e84f654e423bb627b25b7b3759_icgraph" id="amodbus__sensor_8cpp_a33b535e84f654e423bb627b25b7b3759_icgraph">
+<area shape="rect" title="Завершение передачи данных" alt="" coords="310,31,434,57"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="135,5,234,32"/>
+<area shape="poly" title=" " alt="" coords="295,36,234,28,235,23,295,31"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="107,56,262,83"/>
+<area shape="poly" title=" " alt="" coords="295,57,263,61,262,56,294,52"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="119,21,59,21,59,16,119,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1c43d8a4afead0d0df29635242290377" name="a1c43d8a4afead0d0df29635242290377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c43d8a4afead0d0df29635242290377">&#9670;&#160;</a></span>preTransmission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void preTransmission </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Подготовка к передаче данных </p>
+<p>Включает передатчик и отключает приемник с необходимой задержкой. Важно: Задержка 50 мкс необходима для стабилизации сигналов на шине RS-485 </p>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a1c43d8a4afead0d0df29635242290377_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a1c43d8a4afead0d0df29635242290377_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a1c43d8a4afead0d0df29635242290377_icgraph" id="amodbus__sensor_8cpp_a1c43d8a4afead0d0df29635242290377_icgraph">
+<area shape="rect" title="Подготовка к передаче данных" alt="" coords="310,31,427,57"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="135,5,234,32"/>
+<area shape="poly" title=" " alt="" coords="294,36,234,28,235,23,295,31"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="107,56,262,83"/>
+<area shape="poly" title=" " alt="" coords="295,57,263,61,262,56,294,52"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="119,21,59,21,59,16,119,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adbf50656913748323cd03274af03c116" name="adbf50656913748323cd03274af03c116"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbf50656913748323cd03274af03c116">&#9670;&#160;</a></span>printModbusError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printModbusError </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>errNum</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_adbf50656913748323cd03274af03c116_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_adbf50656913748323cd03274af03c116_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_adbf50656913748323cd03274af03c116_cgraph" id="amodbus__sensor_8cpp_adbf50656913748323cd03274af03c116_cgraph">
+<area shape="rect" title=" " alt="" coords="5,31,126,57"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="185,5,252,32"/>
+<area shape="poly" title=" " alt="" coords="126,31,169,24,170,29,127,37"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="174,56,263,83"/>
+<area shape="poly" title=" " alt="" coords="127,51,159,57,158,62,126,57"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_adbf50656913748323cd03274af03c116_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_adbf50656913748323cd03274af03c116_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_adbf50656913748323cd03274af03c116_icgraph" id="amodbus__sensor_8cpp_adbf50656913748323cd03274af03c116_icgraph">
+<area shape="rect" title=" " alt="" coords="1006,31,1127,57"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8" title=" " alt="" coords="815,5,958,32"/>
+<area shape="poly" title=" " alt="" coords="990,36,958,31,959,26,991,31"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="821,56,952,83"/>
+<area shape="poly" title=" " alt="" coords="991,57,953,63,952,57,990,52"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="621,31,767,57"/>
+<area shape="poly" title=" " alt="" coords="805,61,767,56,768,51,806,56"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="623,81,764,108"/>
+<area shape="poly" title=" " alt="" coords="806,83,765,88,765,83,805,77"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="457,56,573,83"/>
+<area shape="poly" title=" " alt="" coords="606,59,573,64,573,59,605,54"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,56,409,83"/>
+<area shape="poly" title=" " alt="" coords="442,72,410,72,410,67,442,67"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,56,250,83"/>
+<area shape="poly" title=" " alt="" coords="283,72,250,72,250,67,283,67"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,56,59,83"/>
+<area shape="poly" title=" " alt="" coords="91,72,59,72,59,67,91,67"/>
+<area shape="poly" title=" " alt="" coords="608,85,573,80,573,75,608,80"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a67111fe72a8b7cc6d742ed0cc8b92246" name="a67111fe72a8b7cc6d742ed0cc8b92246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67111fe72a8b7cc6d742ed0cc8b92246">&#9670;&#160;</a></span>readBasicParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int readBasicParameters </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Чтение основных параметров (температура, влажность, pH, EC) </p>
+<dl class="section return"><dt>Возвращает</dt><dd>Количество успешно прочитанных параметров </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a67111fe72a8b7cc6d742ed0cc8b92246_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a67111fe72a8b7cc6d742ed0cc8b92246_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a67111fe72a8b7cc6d742ed0cc8b92246_cgraph" id="amodbus__sensor_8cpp_a67111fe72a8b7cc6d742ed0cc8b92246_cgraph">
+<area shape="rect" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="5,81,152,108"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="200,81,331,108"/>
+<area shape="poly" title=" " alt="" coords="152,92,184,92,184,97,152,97"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="379,5,535,32"/>
+<area shape="poly" title=" " alt="" coords="294,78,378,42,396,35,398,40,380,46,296,83"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="419,56,495,83"/>
+<area shape="poly" title=" " alt="" coords="331,83,403,74,404,79,332,89"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="595,107,661,133"/>
+<area shape="poly" title=" " alt="" coords="332,97,579,114,579,119,331,102"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="397,157,517,184"/>
+<area shape="poly" title=" " alt="" coords="302,106,408,149,406,154,300,111"/>
+<area shape="poly" title=" " alt="" coords="504,154,579,132,580,137,506,159"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="583,157,673,184"/>
+<area shape="poly" title=" " alt="" coords="518,168,568,168,568,173,518,173"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a67111fe72a8b7cc6d742ed0cc8b92246_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a67111fe72a8b7cc6d742ed0cc8b92246_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a67111fe72a8b7cc6d742ed0cc8b92246_icgraph" id="amodbus__sensor_8cpp_a67111fe72a8b7cc6d742ed0cc8b92246_icgraph">
+<area shape="rect" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="621,5,767,32"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="457,5,573,32"/>
+<area shape="poly" title=" " alt="" coords="605,21,573,21,573,16,605,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,5,409,32"/>
+<area shape="poly" title=" " alt="" coords="442,21,410,21,410,16,442,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,5,250,32"/>
+<area shape="poly" title=" " alt="" coords="283,21,250,21,250,16,283,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a8b6b2ad640c9580fa45d8cbad28adf53" name="a8b6b2ad640c9580fa45d8cbad28adf53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b6b2ad640c9580fa45d8cbad28adf53">&#9670;&#160;</a></span>readErrorStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool readErrorStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6444c2d436a57168cc75d4ef8529a6c8" name="a6444c2d436a57168cc75d4ef8529a6c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6444c2d436a57168cc75d4ef8529a6c8">&#9670;&#160;</a></span>readFirmwareVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool readFirmwareVersion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a6444c2d436a57168cc75d4ef8529a6c8_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a6444c2d436a57168cc75d4ef8529a6c8_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a6444c2d436a57168cc75d4ef8529a6c8_cgraph" id="amodbus__sensor_8cpp_a6444c2d436a57168cc75d4ef8529a6c8_cgraph">
+<area shape="rect" title=" " alt="" coords="5,52,149,79"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="376,52,443,79"/>
+<area shape="poly" title=" " alt="" coords="102,49,145,28,196,12,257,3,284,5,318,12,350,24,379,41,376,45,348,29,316,17,283,10,257,8,197,17,147,33,104,54"/>
+<area shape="rect" href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="217,27,296,53"/>
+<area shape="poly" title=" " alt="" coords="148,52,202,45,202,50,149,58"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="365,115,454,141"/>
+<area shape="poly" title=" " alt="" coords="105,77,147,97,197,113,276,125,350,127,350,133,276,130,196,118,145,102,103,82"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="197,77,317,104"/>
+<area shape="poly" title=" " alt="" coords="149,73,182,77,181,83,148,78"/>
+<area shape="poly" title=" " alt="" coords="317,78,361,71,362,76,318,83"/>
+<area shape="poly" title=" " alt="" coords="315,102,351,111,349,116,313,107"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5c98e696f32d6d16aeb4e29eb71d941f" name="a5c98e696f32d6d16aeb4e29eb71d941f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c98e696f32d6d16aeb4e29eb71d941f">&#9670;&#160;</a></span>readNPKParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int readNPKParameters </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Чтение NPK параметров (азот, фосфор, калий) </p>
+<dl class="section return"><dt>Возвращает</dt><dd>Количество успешно прочитанных параметров </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a5c98e696f32d6d16aeb4e29eb71d941f_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a5c98e696f32d6d16aeb4e29eb71d941f_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a5c98e696f32d6d16aeb4e29eb71d941f_cgraph" id="amodbus__sensor_8cpp_a5c98e696f32d6d16aeb4e29eb71d941f_cgraph">
+<area shape="rect" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="5,81,147,108"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="195,81,326,108"/>
+<area shape="poly" title=" " alt="" coords="147,92,179,92,179,97,147,97"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="374,5,530,32"/>
+<area shape="poly" title=" " alt="" coords="289,78,373,42,391,35,393,40,375,46,291,83"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="414,56,490,83"/>
+<area shape="poly" title=" " alt="" coords="326,83,398,74,399,79,327,89"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="590,107,656,133"/>
+<area shape="poly" title=" " alt="" coords="327,97,574,114,574,119,326,102"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="392,157,512,184"/>
+<area shape="poly" title=" " alt="" coords="297,106,403,149,401,154,295,111"/>
+<area shape="poly" title=" " alt="" coords="499,154,574,132,575,137,501,159"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="578,157,668,184"/>
+<area shape="poly" title=" " alt="" coords="513,168,563,168,563,173,513,173"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a5c98e696f32d6d16aeb4e29eb71d941f_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a5c98e696f32d6d16aeb4e29eb71d941f_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a5c98e696f32d6d16aeb4e29eb71d941f_icgraph" id="amodbus__sensor_8cpp_a5c98e696f32d6d16aeb4e29eb71d941f_icgraph">
+<area shape="rect" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="621,5,762,32"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="457,5,573,32"/>
+<area shape="poly" title=" " alt="" coords="605,21,573,21,573,16,605,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,5,409,32"/>
+<area shape="poly" title=" " alt="" coords="442,21,410,21,410,16,442,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,5,250,32"/>
+<area shape="poly" title=" " alt="" coords="283,21,250,21,250,16,283,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac3a37446a712d9ae94e76304361d35d2" name="ac3a37446a712d9ae94e76304361d35d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3a37446a712d9ae94e76304361d35d2">&#9670;&#160;</a></span>readSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void readSensorData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_ac3a37446a712d9ae94e76304361d35d2_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_ac3a37446a712d9ae94e76304361d35d2_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_ac3a37446a712d9ae94e76304361d35d2_cgraph" id="amodbus__sensor_8cpp_ac3a37446a712d9ae94e76304361d35d2_cgraph">
+<area shape="rect" title=" " alt="" coords="5,183,121,209"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="555,107,686,133"/>
+<area shape="poly" title=" " alt="" coords="85,180,123,160,168,143,267,124,367,114,461,111,539,112,539,118,461,116,367,119,268,129,169,148,125,165,87,185"/>
+<area shape="rect" href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="202,259,282,285"/>
+<area shape="poly" title=" " alt="" coords="92,208,170,244,189,252,187,257,168,249,90,212"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="169,157,315,184"/>
+<area shape="poly" title=" " alt="" coords="121,185,153,181,154,186,121,190"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="171,208,312,235"/>
+<area shape="poly" title=" " alt="" coords="121,202,156,207,156,212,121,207"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b" title=" " alt="" coords="747,5,893,32"/>
+<area shape="poly" title=" " alt="" coords="640,104,687,73,745,42,759,36,761,40,748,46,690,78,643,108"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="787,208,853,235"/>
+<area shape="poly" title=" " alt="" coords="677,131,700,143,716,156,725,169,734,181,748,194,773,206,771,211,745,198,730,185,721,172,712,160,697,148,674,136"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="775,157,864,184"/>
+<area shape="poly" title=" " alt="" coords="677,131,761,153,760,158,675,137"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="786,56,854,83"/>
+<area shape="poly" title=" " alt="" coords="675,103,770,79,771,84,677,109"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67" title=" " alt="" coords="752,107,888,133"/>
+<area shape="poly" title=" " alt="" coords="687,117,737,117,737,123,687,123"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94" title=" " alt="" coords="941,5,1104,32"/>
+<area shape="poly" title=" " alt="" coords="893,16,925,16,925,21,893,21"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="363,208,494,235"/>
+<area shape="poly" title=" " alt="" coords="295,182,363,201,362,206,293,187"/>
+<area shape="poly" title=" " alt="" coords="481,233,543,244,620,250,698,244,771,231,772,236,699,249,620,255,542,249,480,238"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="542,208,699,235"/>
+<area shape="poly" title=" " alt="" coords="495,219,527,219,527,224,495,224"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="582,309,659,336"/>
+<area shape="poly" title=" " alt="" coords="452,233,544,288,570,301,567,305,541,293,449,237"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="560,157,681,184"/>
+<area shape="poly" title=" " alt="" coords="482,205,552,186,553,191,483,210"/>
+<area shape="poly" title=" " alt="" coords="677,182,773,207,771,212,675,187"/>
+<area shape="poly" title=" " alt="" coords="681,168,759,168,759,173,681,173"/>
+<area shape="poly" title=" " alt="" coords="313,219,347,219,347,224,313,224"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_ac3a37446a712d9ae94e76304361d35d2_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_ac3a37446a712d9ae94e76304361d35d2_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_ac3a37446a712d9ae94e76304361d35d2_icgraph" id="amodbus__sensor_8cpp_ac3a37446a712d9ae94e76304361d35d2_icgraph">
+<area shape="rect" title=" " alt="" coords="457,5,573,32"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,5,409,32"/>
+<area shape="poly" title=" " alt="" coords="442,21,410,21,410,16,442,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,5,250,32"/>
+<area shape="poly" title=" " alt="" coords="283,21,250,21,250,16,283,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3faa8f7948e57c2c23d36a3a12b1339d" name="a3faa8f7948e57c2c23d36a3a12b1339d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3faa8f7948e57c2c23d36a3a12b1339d">&#9670;&#160;</a></span>readSingleRegister()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool readSingleRegister </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>reg_addr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>reg_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>multiplier</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>target</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_float</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Чтение одного регистра с обработкой ошибок </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reg_addr</td><td>Адрес регистра </td></tr>
+    <tr><td class="paramname">reg_name</td><td>Название регистра для логирования </td></tr>
+    <tr><td class="paramname">multiplier</td><td>Множитель для конвертации </td></tr>
+    <tr><td class="paramname">target</td><td>Указатель на переменную для сохранения результата </td></tr>
+    <tr><td class="paramname">is_float</td><td>Флаг - сохранять как float или int </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true если чтение успешно </dd></dl>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a3faa8f7948e57c2c23d36a3a12b1339d_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a3faa8f7948e57c2c23d36a3a12b1339d_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a3faa8f7948e57c2c23d36a3a12b1339d_cgraph" id="amodbus__sensor_8cpp_a3faa8f7948e57c2c23d36a3a12b1339d_cgraph">
+<area shape="rect" title="Чтение одного регистра с обработкой ошибок" alt="" coords="5,81,137,108"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="185,5,341,32"/>
+<area shape="poly" title=" " alt="" coords="100,78,184,42,202,35,203,40,186,46,102,83"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="225,56,301,83"/>
+<area shape="poly" title=" " alt="" coords="137,83,209,74,210,79,137,89"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="400,107,467,133"/>
+<area shape="poly" title=" " alt="" coords="137,97,385,114,385,119,137,102"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="203,157,323,184"/>
+<area shape="poly" title=" " alt="" coords="108,106,214,149,212,154,106,111"/>
+<area shape="poly" title=" " alt="" coords="310,154,385,132,386,137,311,159"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="389,157,478,184"/>
+<area shape="poly" title=" " alt="" coords="323,168,373,168,373,173,323,173"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a3faa8f7948e57c2c23d36a3a12b1339d_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a3faa8f7948e57c2c23d36a3a12b1339d_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a3faa8f7948e57c2c23d36a3a12b1339d_icgraph" id="amodbus__sensor_8cpp_a3faa8f7948e57c2c23d36a3a12b1339d_icgraph">
+<area shape="rect" title="Чтение одного регистра с обработкой ошибок" alt="" coords="815,31,946,57"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="621,5,767,32"/>
+<area shape="poly" title=" " alt="" coords="799,36,767,31,767,26,800,30"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="623,56,764,83"/>
+<area shape="poly" title=" " alt="" coords="800,58,766,62,765,57,799,52"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="457,31,573,57"/>
+<area shape="poly" title=" " alt="" coords="606,34,573,38,573,33,605,29"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,31,409,57"/>
+<area shape="poly" title=" " alt="" coords="442,47,410,47,410,41,442,41"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,31,250,57"/>
+<area shape="poly" title=" " alt="" coords="283,47,250,47,250,41,283,41"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,31,59,57"/>
+<area shape="poly" title=" " alt="" coords="91,47,59,47,59,41,91,41"/>
+<area shape="poly" title=" " alt="" coords="608,60,573,55,573,50,608,55"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a54a04fceff1a6b7eef35a680491e19b4" name="a54a04fceff1a6b7eef35a680491e19b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54a04fceff1a6b7eef35a680491e19b4">&#9670;&#160;</a></span>realSensorTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void realSensorTask </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameters</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a54a04fceff1a6b7eef35a680491e19b4_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a54a04fceff1a6b7eef35a680491e19b4_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a54a04fceff1a6b7eef35a680491e19b4_cgraph" id="amodbus__sensor_8cpp_a54a04fceff1a6b7eef35a680491e19b4_cgraph">
+<area shape="rect" title=" " alt="" coords="5,81,117,108"/>
+<area shape="rect" href="logger_8cpp.html#a372ab412c03841f6fe08c751c5d44cba" title=" " alt="" coords="169,31,276,57"/>
+<area shape="poly" title=" " alt="" coords="105,78,162,60,164,65,107,83"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="181,81,264,108"/>
+<area shape="poly" title=" " alt="" coords="117,92,165,92,165,97,117,97"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="165,132,280,159"/>
+<area shape="poly" title=" " alt="" coords="107,106,164,124,162,129,105,111"/>
+<area shape="rect" href="logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e" title=" " alt="" coords="340,31,462,57"/>
+<area shape="poly" title=" " alt="" coords="277,41,325,41,325,47,277,47"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="714,81,846,108"/>
+<area shape="poly" title=" " alt="" coords="273,129,328,117,427,106,527,98,698,92,699,97,528,103,428,111,328,123,274,134"/>
+<area shape="rect" href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="362,183,441,209"/>
+<area shape="poly" title=" " alt="" coords="273,157,347,178,346,183,272,162"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="328,132,474,159"/>
+<area shape="poly" title=" " alt="" coords="280,143,312,143,312,148,280,148"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="330,233,472,260"/>
+<area shape="poly" title=" " alt="" coords="241,157,280,188,329,219,341,225,339,229,327,224,277,192,238,161"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b" title=" " alt="" coords="906,56,1052,83"/>
+<area shape="poly" title=" " alt="" coords="846,84,890,78,891,83,846,89"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="946,208,1012,235"/>
+<area shape="poly" title=" " alt="" coords="840,106,860,118,877,137,885,157,892,176,908,194,933,208,930,212,904,198,887,178,880,159,872,140,856,122,837,111"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="934,157,1024,184"/>
+<area shape="poly" title=" " alt="" coords="828,106,859,118,907,143,922,149,920,154,905,148,857,122,827,111"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="945,107,1013,133"/>
+<area shape="poly" title=" " alt="" coords="846,100,930,111,929,116,846,106"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67" title=" " alt="" coords="912,5,1047,32"/>
+<area shape="poly" title=" " alt="" coords="813,78,905,42,922,35,924,40,907,46,815,83"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94" title=" " alt="" coords="1100,56,1264,83"/>
+<area shape="poly" title=" " alt="" coords="1053,67,1085,67,1085,72,1053,72"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="522,208,654,235"/>
+<area shape="poly" title=" " alt="" coords="445,157,475,168,545,199,543,204,473,173,443,162"/>
+<area shape="poly" title=" " alt="" coords="614,233,654,253,702,269,746,277,780,280,814,277,857,269,900,257,939,240,941,244,902,262,859,275,815,283,780,285,745,283,701,275,652,258,611,238"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="702,132,858,159"/>
+<area shape="poly" title=" " alt="" coords="617,205,701,168,719,162,720,167,703,173,619,210"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="742,233,818,260"/>
+<area shape="poly" title=" " alt="" coords="654,227,727,237,726,242,654,233"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="720,183,840,209"/>
+<area shape="poly" title=" " alt="" coords="654,210,704,203,705,209,654,215"/>
+<area shape="poly" title=" " alt="" coords="841,201,931,213,930,218,840,206"/>
+<area shape="poly" title=" " alt="" coords="840,186,919,176,919,181,841,191"/>
+<area shape="poly" title=" " alt="" coords="472,234,506,230,507,235,472,240"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a54a04fceff1a6b7eef35a680491e19b4_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a54a04fceff1a6b7eef35a680491e19b4_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a54a04fceff1a6b7eef35a680491e19b4_icgraph" id="amodbus__sensor_8cpp_a54a04fceff1a6b7eef35a680491e19b4_icgraph">
+<area shape="rect" title=" " alt="" coords="298,5,409,32"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,5,250,32"/>
+<area shape="poly" title=" " alt="" coords="283,21,250,21,250,16,283,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0c4410314e55fce67a3c727cb1bf9520" name="a0c4410314e55fce67a3c727cb1bf9520"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c4410314e55fce67a3c727cb1bf9520">&#9670;&#160;</a></span>setupModbus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupModbus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Инициализация Modbus и SP3485E. </p>
+<p>Настраивает пины управления SP3485E и инициализирует UART для Modbus. Важно: DE и RE управляются раздельно для лучшего контроля над временем переключения </p>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a0c4410314e55fce67a3c727cb1bf9520_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a0c4410314e55fce67a3c727cb1bf9520_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a0c4410314e55fce67a3c727cb1bf9520_cgraph" id="amodbus__sensor_8cpp_a0c4410314e55fce67a3c727cb1bf9520_cgraph">
+<area shape="rect" title="Инициализация Modbus и SP3485E." alt="" coords="5,107,105,133"/>
+<area shape="rect" href="logger_8cpp.html#a372ab412c03841f6fe08c751c5d44cba" title=" " alt="" coords="161,5,268,32"/>
+<area shape="poly" title=" " alt="" coords="69,104,105,74,151,42,160,37,163,41,154,46,109,78,73,108"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="170,56,260,83"/>
+<area shape="poly" title=" " alt="" coords="99,103,155,85,157,90,101,109"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="173,107,256,133"/>
+<area shape="poly" title=" " alt="" coords="105,117,157,117,157,123,105,123"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a33b535e84f654e423bb627b25b7b3759" title="Завершение передачи данных" alt="" coords="153,157,277,184"/>
+<area shape="poly" title=" " alt="" coords="101,131,157,150,155,155,99,137"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a1c43d8a4afead0d0df29635242290377" title="Подготовка к передаче данных" alt="" coords="156,208,274,235"/>
+<area shape="poly" title=" " alt="" coords="73,132,109,162,154,194,163,199,160,203,151,198,105,166,69,136"/>
+<area shape="rect" href="logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e" title=" " alt="" coords="325,5,446,32"/>
+<area shape="poly" title=" " alt="" coords="269,16,310,16,310,21,269,21"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a0c4410314e55fce67a3c727cb1bf9520_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a0c4410314e55fce67a3c727cb1bf9520_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a0c4410314e55fce67a3c727cb1bf9520_icgraph" id="amodbus__sensor_8cpp_a0c4410314e55fce67a3c727cb1bf9520_icgraph">
+<area shape="rect" title="Инициализация Modbus и SP3485E." alt="" coords="107,5,206,32"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4f1a431da8f1feb8a64e2c5f887056df" name="a4f1a431da8f1feb8a64e2c5f887056df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f1a431da8f1feb8a64e2c5f887056df">&#9670;&#160;</a></span>startRealSensorTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void startRealSensorTask </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a4f1a431da8f1feb8a64e2c5f887056df_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a4f1a431da8f1feb8a64e2c5f887056df_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a4f1a431da8f1feb8a64e2c5f887056df_cgraph" id="amodbus__sensor_8cpp_a4f1a431da8f1feb8a64e2c5f887056df_cgraph">
+<area shape="rect" title=" " alt="" coords="5,81,149,108"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="197,81,308,108"/>
+<area shape="poly" title=" " alt="" coords="149,92,181,92,181,97,149,97"/>
+<area shape="rect" href="logger_8cpp.html#a372ab412c03841f6fe08c751c5d44cba" title=" " alt="" coords="360,31,467,57"/>
+<area shape="poly" title=" " alt="" coords="297,78,353,60,355,65,298,83"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="372,81,455,108"/>
+<area shape="poly" title=" " alt="" coords="308,92,357,92,357,97,308,97"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="356,132,471,159"/>
+<area shape="poly" title=" " alt="" coords="298,106,355,124,353,129,297,111"/>
+<area shape="rect" href="logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e" title=" " alt="" coords="532,31,653,57"/>
+<area shape="poly" title=" " alt="" coords="468,41,516,41,516,47,468,47"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="906,81,1037,108"/>
+<area shape="poly" title=" " alt="" coords="464,129,519,117,619,106,719,98,890,92,890,97,719,103,619,111,520,123,465,134"/>
+<area shape="rect" href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b" title=" " alt="" coords="553,183,632,209"/>
+<area shape="poly" title=" " alt="" coords="464,157,538,178,537,183,463,162"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a67111fe72a8b7cc6d742ed0cc8b92246" title="Чтение основных параметров (температура, влажность, pH, EC)" alt="" coords="519,132,666,159"/>
+<area shape="poly" title=" " alt="" coords="472,143,504,143,504,148,472,148"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a5c98e696f32d6d16aeb4e29eb71d941f" title="Чтение NPK параметров (азот, фосфор, калий)" alt="" coords="522,233,663,260"/>
+<area shape="poly" title=" " alt="" coords="433,157,471,188,521,219,532,225,530,229,518,224,468,192,429,161"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b" title=" " alt="" coords="1097,56,1244,83"/>
+<area shape="poly" title=" " alt="" coords="1037,84,1082,78,1082,83,1038,89"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="1137,208,1204,235"/>
+<area shape="poly" title=" " alt="" coords="1031,106,1051,118,1068,137,1076,157,1083,176,1099,194,1124,208,1121,212,1096,198,1079,178,1071,159,1063,140,1048,122,1028,111"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="1126,157,1215,184"/>
+<area shape="poly" title=" " alt="" coords="1020,106,1050,118,1098,143,1113,149,1111,154,1096,148,1048,122,1018,111"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="1136,107,1205,133"/>
+<area shape="poly" title=" " alt="" coords="1038,100,1121,111,1120,116,1037,106"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67" title=" " alt="" coords="1103,5,1238,32"/>
+<area shape="poly" title=" " alt="" coords="1005,78,1096,42,1114,35,1115,40,1098,46,1007,83"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aaaaed48863426c3f790f977bc04e7b94" title=" " alt="" coords="1292,56,1455,83"/>
+<area shape="poly" title=" " alt="" coords="1244,67,1276,67,1276,72,1244,72"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a3faa8f7948e57c2c23d36a3a12b1339d" title="Чтение одного регистра с обработкой ошибок" alt="" coords="714,208,845,235"/>
+<area shape="poly" title=" " alt="" coords="636,157,667,168,737,199,735,204,665,173,634,162"/>
+<area shape="poly" title=" " alt="" coords="805,233,845,253,894,269,937,277,971,280,1005,277,1049,269,1091,257,1130,240,1132,244,1093,262,1050,275,1006,283,971,285,936,283,892,275,843,258,803,238"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#aca7d239567ef1281e0fd378082fd48ac" title=" " alt="" coords="893,132,1049,159"/>
+<area shape="poly" title=" " alt="" coords="808,205,892,168,910,162,912,167,894,173,810,210"/>
+<area shape="rect" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="933,233,1009,260"/>
+<area shape="poly" title=" " alt="" coords="846,227,918,237,917,242,845,233"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116" title=" " alt="" coords="911,183,1031,209"/>
+<area shape="poly" title=" " alt="" coords="845,210,895,203,896,209,846,215"/>
+<area shape="poly" title=" " alt="" coords="1032,201,1122,213,1122,218,1031,206"/>
+<area shape="poly" title=" " alt="" coords="1031,186,1110,176,1111,181,1032,191"/>
+<area shape="poly" title=" " alt="" coords="663,234,698,230,699,235,664,240"/>
+</map>
+</div>
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_a4f1a431da8f1feb8a64e2c5f887056df_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_a4f1a431da8f1feb8a64e2c5f887056df_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_a4f1a431da8f1feb8a64e2c5f887056df_icgraph" id="amodbus__sensor_8cpp_a4f1a431da8f1feb8a64e2c5f887056df_icgraph">
+<area shape="rect" title=" " alt="" coords="107,5,250,32"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aedb09484ba8020afc57e9e9e26012bf1" name="aedb09484ba8020afc57e9e9e26012bf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedb09484ba8020afc57e9e9e26012bf1">&#9670;&#160;</a></span>testModbusConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool testModbusConnection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_aedb09484ba8020afc57e9e9e26012bf1_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_aedb09484ba8020afc57e9e9e26012bf1_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_aedb09484ba8020afc57e9e9e26012bf1_cgraph" id="amodbus__sensor_8cpp_aedb09484ba8020afc57e9e9e26012bf1_cgraph">
+<area shape="rect" title=" " alt="" coords="5,132,161,159"/>
+<area shape="rect" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="238,5,304,32"/>
+<area shape="poly" title=" " alt="" coords="97,129,144,87,207,42,222,34,224,39,210,46,147,92,100,133"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="226,56,316,83"/>
+<area shape="poly" title=" " alt="" coords="117,129,221,87,223,91,119,134"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="229,107,312,133"/>
+<area shape="poly" title=" " alt="" coords="161,132,213,125,214,130,162,137"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="237,157,305,184"/>
+<area shape="poly" title=" " alt="" coords="162,153,222,161,221,167,161,158"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a33b535e84f654e423bb627b25b7b3759" title="Завершение передачи данных" alt="" coords="209,208,333,235"/>
+<area shape="poly" title=" " alt="" coords="119,157,223,199,221,204,117,162"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a1c43d8a4afead0d0df29635242290377" title="Подготовка к передаче данных" alt="" coords="212,259,330,285"/>
+<area shape="poly" title=" " alt="" coords="100,157,147,199,210,244,219,249,216,254,207,249,144,203,97,161"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ab8a1f5220dc77f33a89d14fe4d82442f" name="ab8a1f5220dc77f33a89d14fe4d82442f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8a1f5220dc77f33a89d14fe4d82442f">&#9670;&#160;</a></span>testSP3485E()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void testSP3485E </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Тестирование работы SP3485E. </p>
+<p>Проверяет корректность работы пинов DE и RE:</p><ol type="1">
+<li>Устанавливает оба пина в режим OUTPUT</li>
+<li>Проверяет переключение HIGH/LOW</li>
+<li>Проверяет возможность независимого управления передатчиком и приемником </li>
+</ol>
+<div class="dynheader">
+Граф вызовов:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_ab8a1f5220dc77f33a89d14fe4d82442f_cgraph.png" border="0" usemap="#amodbus__sensor_8cpp_ab8a1f5220dc77f33a89d14fe4d82442f_cgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_ab8a1f5220dc77f33a89d14fe4d82442f_cgraph" id="amodbus__sensor_8cpp_ab8a1f5220dc77f33a89d14fe4d82442f_cgraph">
+<area shape="rect" title="Тестирование работы SP3485E." alt="" coords="5,56,104,83"/>
+<area shape="rect" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="152,5,241,32"/>
+<area shape="poly" title=" " alt="" coords="93,53,142,35,143,40,95,58"/>
+<area shape="rect" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="155,56,238,83"/>
+<area shape="poly" title=" " alt="" coords="104,67,139,67,139,72,104,72"/>
+<area shape="rect" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="162,107,230,133"/>
+<area shape="poly" title=" " alt="" coords="95,81,149,100,147,105,93,86"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="aa8a3b28ec8c21261d4e467da91a17a67" name="aa8a3b28ec8c21261d4e467da91a17a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a3b28ec8c21261d4e467da91a17a67">&#9670;&#160;</a></span>validateSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool validateSensorData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="dynheader">
+Граф вызова функции:</div>
+<div class="dyncontent">
+<div class="center"><img src="modbus__sensor_8cpp_aa8a3b28ec8c21261d4e467da91a17a67_icgraph.png" border="0" usemap="#amodbus__sensor_8cpp_aa8a3b28ec8c21261d4e467da91a17a67_icgraph" alt=""/></div>
+<map name="amodbus__sensor_8cpp_aa8a3b28ec8c21261d4e467da91a17a67_icgraph" id="amodbus__sensor_8cpp_aa8a3b28ec8c21261d4e467da91a17a67_icgraph">
+<area shape="rect" title=" " alt="" coords="800,5,935,32"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a7862d1878b888472d0c1c96fa826ead3" title="Финализация данных датчика (валидация, кэширование, скользящее среднее)" alt="" coords="621,5,752,32"/>
+<area shape="poly" title=" " alt="" coords="785,21,752,21,752,16,785,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2" title=" " alt="" coords="457,5,573,32"/>
+<area shape="poly" title=" " alt="" coords="605,21,573,21,573,16,605,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,5,409,32"/>
+<area shape="poly" title=" " alt="" coords="442,21,410,21,410,16,442,16"/>
+<area shape="rect" href="modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,5,250,32"/>
+<area shape="poly" title=" " alt="" coords="283,21,250,21,250,16,283,16"/>
+<area shape="rect" href="main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,5,59,32"/>
+<area shape="poly" title=" " alt="" coords="91,21,59,21,59,16,91,16"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a9f7da14569cf54a5633c163642e97dff" name="a9f7da14569cf54a5633c163642e97dff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f7da14569cf54a5633c163642e97dff">&#9670;&#160;</a></span>modbus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ModbusMaster modbus</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a90cc33c11a27aac5f56dcaac387c0d" name="a5a90cc33c11a27aac5f56dcaac387c0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a90cc33c11a27aac5f56dcaac387c0d">&#9670;&#160;</a></span>sensorCache</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_sensor_cache.html">SensorCache</a> sensorCache</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae6ed671f3036da58a93991fca2a2329c" name="ae6ed671f3036da58a93991fca2a2329c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ed671f3036da58a93991fca2a2329c">&#9670;&#160;</a></span>sensorData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_sensor_data.html">SensorData</a> sensorData</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc5319275c2df675d59ff17f862d3e44" name="acc5319275c2df675d59ff17f862d3e44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc5319275c2df675d59ff17f862d3e44">&#9670;&#160;</a></span>sensorLastError</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String sensorLastError = &quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="modbus__sensor_8cpp.html">modbus_sensor.cpp</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

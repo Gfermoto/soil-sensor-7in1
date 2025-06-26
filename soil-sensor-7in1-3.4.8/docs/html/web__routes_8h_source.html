@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor v2.0: Исходный файл include/web_routes.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+  $(function() { init_search(); });
+/* @license-end */
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor v2.0<span id="projectnumber">&#160;v2.0 (June 2025)</span>
+   </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration</div>
+  </td>
+    <td>        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect"                onmouseover="return searchBox.OnSearchSelectShow()"                onmouseout="return searchBox.OnSearchSelectHide()">&#160;</span>
+          <input type="text" id="MSearchField" value="" placeholder="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.svg" alt=""/></a>
+          </span>
+        </div>
+</td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('web__routes_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">web_routes.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="web__routes_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;WebServer.h&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;WiFi.h&gt;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="wifi__manager_8h.html">../src/wifi_manager.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// Внешние зависимости</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">extern</span> WebServer <a class="code hl_variable" href="routes__config_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a>;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// ОСНОВНЫЕ МАРШРУТЫ (routes_main.cpp)</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keywordtype">void</span> <a class="code hl_function" href="web__routes_8h.html#a6a7cf6b6ba01d34721e1a47ea65af867">setupMainRoutes</a>();</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">void</span> <a class="code hl_function" href="web__routes_8h.html#a8427468f39342a1990703e9f5ce7fd29">handleRoot</a>();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keywordtype">void</span> <a class="code hl_function" href="web__routes_8h.html#a1e811785ccbaccda2e3e3457971720cb">handleStatus</a>();</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">// ДАННЫЕ ДАТЧИКА (routes_data.cpp)</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">void</span> <a class="code hl_function" href="web__routes_8h.html#aed1136f683a386e56678e05fc3747972">setupDataRoutes</a>();</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">// Все обработчики данных реализованы как lambda-функции внутри setupDataRoutes()</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">// УПРАВЛЕНИЕ КОНФИГУРАЦИЕЙ (routes_config.cpp)</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="keywordtype">void</span> <a class="code hl_function" href="web__routes_8h.html#a0e7c19a3399afd6ceae18c4512cca24c">setupConfigRoutes</a>();</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">// Все обработчики конфигурации реализованы как lambda-функции внутри setupConfigRoutes()</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">// СЕРВИСНЫЕ ФУНКЦИИ (routes_service.cpp)</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keywordtype">void</span> <a class="code hl_function" href="web__routes_8h.html#a32c74f47a23de058ee90a43af2dff066">setupServiceRoutes</a>();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">// Все сервисные обработчики реализованы как lambda-функции внутри setupServiceRoutes()</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">// HTML ШАБЛОНЫ (web_templates.cpp)</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>String <a class="code hl_function" href="web__routes_8h.html#ad0518ce62fefc0ff55e7cd72e75db70d">generatePageHeader</a>(<span class="keyword">const</span> String&amp; title, <span class="keyword">const</span> String&amp; icon = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>String <a class="code hl_function" href="web__routes_8h.html#ad4f3a6e85baef9b2d3e2aec977c3a321">generatePageFooter</a>();</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>String <a class="code hl_function" href="web__routes_8h.html#a104303f7b44cf43e481a713261d52457">generateErrorPage</a>(<span class="keywordtype">int</span> errorCode, <span class="keyword">const</span> String&amp; errorMessage);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>String <a class="code hl_function" href="web__routes_8h.html#acc502267a202aba9171c0d593fbfac17">generateSuccessPage</a>(<span class="keyword">const</span> String&amp; title, <span class="keyword">const</span> String&amp; message, <span class="keyword">const</span> String&amp; redirectUrl = <span class="stringliteral">&quot;&quot;</span>,</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>                           <span class="keywordtype">int</span> redirectDelay = 2);</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>String <a class="code hl_function" href="web__routes_8h.html#a03709c52c03116ff221a501c3f0c69b2">generateBasePage</a>(<span class="keyword">const</span> String&amp; title, <span class="keyword">const</span> String&amp; content, <span class="keyword">const</span> String&amp; icon = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">// ОБРАБОТКА ОШИБОК (error_handlers.cpp)</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="keywordtype">void</span> <a class="code hl_function" href="web__routes_8h.html#a833be2e68cb85aa95168dae9c9b128ef">setupErrorHandlers</a>();</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="keywordtype">bool</span> <a class="code hl_function" href="web__routes_8h.html#ad738b39272f7fc383f5bb83814fb1a67">validateConfigInput</a>(<span class="keywordtype">bool</span> checkRequired = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="keywordtype">void</span> <a class="code hl_function" href="web__routes_8h.html#a72ddd36cf01d539c0b2575750fa997dc">handleUploadError</a>(<span class="keyword">const</span> String&amp; error);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><span class="comment">// УТИЛИТЫ</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="keywordtype">bool</span> <a class="code hl_function" href="web__routes_8h.html#aef0848857422724f7d825dd8a33421b9">isFeatureAvailable</a>(<span class="keyword">const</span> String&amp; feature);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="keywordtype">bool</span> <a class="code hl_function" href="web__routes_8h.html#aef0848857422724f7d825dd8a33421b9">isFeatureAvailable</a>();</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="keywordtype">void</span> <a class="code hl_function" href="web__routes_8h.html#a1a62e7c40bff885d97f6018743bec642">logWebRequest</a>(<span class="keyword">const</span> String&amp; method, <span class="keyword">const</span> String&amp; uri, <span class="keyword">const</span> String&amp; clientIP);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="comment">// ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ШАБЛОНОВ</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>String <a class="code hl_function" href="web__routes_8h.html#ad6e617b3350bd617099ba38b52cd3076">generateForm</a>(<span class="keyword">const</span> String&amp; action, <span class="keyword">const</span> String&amp; method, <span class="keyword">const</span> String&amp; formContent, <span class="keyword">const</span> String&amp; buttonText,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                    <span class="keyword">const</span> String&amp; buttonIcon);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span></div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>String <a class="code hl_function" href="web__routes_8h.html#a6ea1f07e47da42a04aa3dbf1829ceb61">generateConfigSection</a>(<span class="keyword">const</span> String&amp; title, <span class="keyword">const</span> String&amp; content, <span class="keyword">const</span> String&amp; helpText = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>String <a class="code hl_function" href="web__routes_8h.html#aa3bf8c4a6f5d5755121de67cf17ff422">generateInputField</a>(<span class="keyword">const</span> String&amp; <span class="keywordtype">id</span>, <span class="keyword">const</span> String&amp; name, <span class="keyword">const</span> String&amp; label, <span class="keyword">const</span> String&amp; value,</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>                          <span class="keyword">const</span> String&amp; type = <span class="stringliteral">&quot;text&quot;</span>, <span class="keywordtype">bool</span> required = <span class="keyword">false</span>, <span class="keyword">const</span> String&amp; placeholder = <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>String <a class="code hl_function" href="web__routes_8h.html#ae920cb227a775afac1415bab5339c623">generateCheckboxField</a>(<span class="keyword">const</span> String&amp; <span class="keywordtype">id</span>, <span class="keyword">const</span> String&amp; name, <span class="keyword">const</span> String&amp; label, <span class="keywordtype">bool</span> checked);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>String <a class="code hl_function" href="web__routes_8h.html#a8588b654fd55604bdb4fc112191c195f">generateNumberField</a>(<span class="keyword">const</span> String&amp; <span class="keywordtype">id</span>, <span class="keyword">const</span> String&amp; name, <span class="keyword">const</span> String&amp; label, <span class="keywordtype">int</span> value, <span class="keywordtype">int</span> min, <span class="keywordtype">int</span> max,</div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>                           <span class="keywordtype">int</span> step = 1);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>String <a class="code hl_function" href="web__routes_8h.html#af68ca26d269d5d8ea7fa42fc78a5a919">generateFormError</a>(<span class="keyword">const</span> String&amp; message);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>String <a class="code hl_function" href="web__routes_8h.html#a1d57b5edf50f600cc5d02641cb4510a0">generateApModeUnavailablePage</a>(<span class="keyword">const</span> String&amp; title, <span class="keyword">const</span> String&amp; icon);</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span> </div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="comment">// ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ОБРАБОТКИ ОШИБОК</span></div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>String <a class="code hl_function" href="web__routes_8h.html#a6fe24c5dc21b012791aecd16ab4dad96">generateValidationErrorResponse</a>(<span class="keyword">const</span> String&amp; errorMsg);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="keywordtype">void</span> <a class="code hl_function" href="web__routes_8h.html#a200ff078a206ee5a0b44bc0c5411f3f5">handleCriticalError</a>(<span class="keyword">const</span> String&amp; error);</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="keywordtype">bool</span> <a class="code hl_function" href="web__routes_8h.html#a195f4874889e332e6f540a518d6c51fe">isRouteAvailable</a>(<span class="keyword">const</span> String&amp; uri);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span></div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="keywordtype">bool</span> <a class="code hl_function" href="web__routes_8h.html#a6d52ae788bd99342b84e28a1af12392b">checkRouteAccess</a>(<span class="keyword">const</span> String&amp; routeName, <span class="keyword">const</span> String&amp; icon);</div>
+<div class="ttc" id="aroutes__config_8cpp_html_a6385fd6a6118223757bf00a8ba828562"><div class="ttname"><a href="routes__config_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a></div><div class="ttdeci">WebServer webServer</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a03709c52c03116ff221a501c3f0c69b2"><div class="ttname"><a href="web__routes_8h.html#a03709c52c03116ff221a501c3f0c69b2">generateBasePage</a></div><div class="ttdeci">String generateBasePage(const String &amp;title, const String &amp;content, const String &amp;icon=&quot;&quot;)</div><div class="ttdoc">Генерация базовой HTML структуры с навигацией</div><div class="ttdef"><b>Определения</b> web_templates.cpp:24</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a0e7c19a3399afd6ceae18c4512cca24c"><div class="ttname"><a href="web__routes_8h.html#a0e7c19a3399afd6ceae18c4512cca24c">setupConfigRoutes</a></div><div class="ttdeci">void setupConfigRoutes()</div><div class="ttdoc">Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/*)</div><div class="ttdef"><b>Определения</b> routes_config.cpp:23</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a104303f7b44cf43e481a713261d52457"><div class="ttname"><a href="web__routes_8h.html#a104303f7b44cf43e481a713261d52457">generateErrorPage</a></div><div class="ttdeci">String generateErrorPage(int errorCode, const String &amp;errorMessage)</div><div class="ttdoc">Генерация страницы ошибки</div><div class="ttdef"><b>Определения</b> web_templates.cpp:33</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a195f4874889e332e6f540a518d6c51fe"><div class="ttname"><a href="web__routes_8h.html#a195f4874889e332e6f540a518d6c51fe">isRouteAvailable</a></div><div class="ttdeci">bool isRouteAvailable(const String &amp;uri)</div><div class="ttdoc">Проверка доступности маршрута в текущем режиме</div><div class="ttdef"><b>Определения</b> error_handlers.cpp:200</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a1a62e7c40bff885d97f6018743bec642"><div class="ttname"><a href="web__routes_8h.html#a1a62e7c40bff885d97f6018743bec642">logWebRequest</a></div><div class="ttdeci">void logWebRequest(const String &amp;method, const String &amp;uri, const String &amp;clientIP)</div><div class="ttdoc">Логирование веб-запросов</div><div class="ttdef"><b>Определения</b> error_handlers.cpp:151</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a1d57b5edf50f600cc5d02641cb4510a0"><div class="ttname"><a href="web__routes_8h.html#a1d57b5edf50f600cc5d02641cb4510a0">generateApModeUnavailablePage</a></div><div class="ttdeci">String generateApModeUnavailablePage(const String &amp;title, const String &amp;icon)</div><div class="ttdoc">Генерация страницы &quot;Недоступно в AP режиме&quot;.</div><div class="ttdef"><b>Определения</b> web_templates.cpp:175</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a1e811785ccbaccda2e3e3457971720cb"><div class="ttname"><a href="web__routes_8h.html#a1e811785ccbaccda2e3e3457971720cb">handleStatus</a></div><div class="ttdeci">void handleStatus()</div><div class="ttdoc">Обработчик статуса (уже существует в wifi_manager.cpp)</div><div class="ttdef"><b>Определения</b> wifi_manager.cpp:266</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a200ff078a206ee5a0b44bc0c5411f3f5"><div class="ttname"><a href="web__routes_8h.html#a200ff078a206ee5a0b44bc0c5411f3f5">handleCriticalError</a></div><div class="ttdeci">void handleCriticalError(const String &amp;error)</div><div class="ttdoc">Обработка критических ошибок сервера</div><div class="ttdef"><b>Определения</b> error_handlers.cpp:187</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a32c74f47a23de058ee90a43af2dff066"><div class="ttname"><a href="web__routes_8h.html#a32c74f47a23de058ee90a43af2dff066">setupServiceRoutes</a></div><div class="ttdeci">void setupServiceRoutes()</div><div class="ttdoc">Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)</div><div class="ttdef"><b>Определения</b> routes_service.cpp:35</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a6a7cf6b6ba01d34721e1a47ea65af867"><div class="ttname"><a href="web__routes_8h.html#a6a7cf6b6ba01d34721e1a47ea65af867">setupMainRoutes</a></div><div class="ttdeci">void setupMainRoutes()</div><div class="ttdoc">Настройка основных маршрутов (/, /save, /status)</div><div class="ttdef"><b>Определения</b> routes_main.cpp:7</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a6d52ae788bd99342b84e28a1af12392b"><div class="ttname"><a href="web__routes_8h.html#a6d52ae788bd99342b84e28a1af12392b">checkRouteAccess</a></div><div class="ttdeci">bool checkRouteAccess(const String &amp;routeName, const String &amp;icon)</div><div class="ttdoc">Middleware для проверки доступности маршрута</div><div class="ttdef"><b>Определения</b> error_handlers.cpp:214</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a6ea1f07e47da42a04aa3dbf1829ceb61"><div class="ttname"><a href="web__routes_8h.html#a6ea1f07e47da42a04aa3dbf1829ceb61">generateConfigSection</a></div><div class="ttdeci">String generateConfigSection(const String &amp;title, const String &amp;content, const String &amp;helpText=&quot;&quot;)</div><div class="ttdoc">Генерация секции конфигурации</div><div class="ttdef"><b>Определения</b> web_templates.cpp:83</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a6fe24c5dc21b012791aecd16ab4dad96"><div class="ttname"><a href="web__routes_8h.html#a6fe24c5dc21b012791aecd16ab4dad96">generateValidationErrorResponse</a></div><div class="ttdeci">String generateValidationErrorResponse(const String &amp;errorMsg)</div><div class="ttdoc">Генерация HTML ответа с ошибкой валидации</div><div class="ttdef"><b>Определения</b> error_handlers.cpp:171</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a72ddd36cf01d539c0b2575750fa997dc"><div class="ttname"><a href="web__routes_8h.html#a72ddd36cf01d539c0b2575750fa997dc">handleUploadError</a></div><div class="ttdeci">void handleUploadError(const String &amp;error)</div><div class="ttdoc">Обработка ошибок загрузки файлов</div><div class="ttdef"><b>Определения</b> error_handlers.cpp:122</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a833be2e68cb85aa95168dae9c9b128ef"><div class="ttname"><a href="web__routes_8h.html#a833be2e68cb85aa95168dae9c9b128ef">setupErrorHandlers</a></div><div class="ttdeci">void setupErrorHandlers()</div><div class="ttdoc">Настройка обработчиков ошибок (404, 500, и т.</div><div class="ttdef"><b>Определения</b> error_handlers.cpp:7</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a8427468f39342a1990703e9f5ce7fd29"><div class="ttname"><a href="web__routes_8h.html#a8427468f39342a1990703e9f5ce7fd29">handleRoot</a></div><div class="ttdeci">void handleRoot()</div><div class="ttdoc">Обработчик главной страницы (уже существует в wifi_manager.cpp)</div><div class="ttdef"><b>Определения</b> wifi_manager.cpp:316</div></div>
+<div class="ttc" id="aweb__routes_8h_html_a8588b654fd55604bdb4fc112191c195f"><div class="ttname"><a href="web__routes_8h.html#a8588b654fd55604bdb4fc112191c195f">generateNumberField</a></div><div class="ttdeci">String generateNumberField(const String &amp;id, const String &amp;name, const String &amp;label, int value, int min, int max, int step=1)</div><div class="ttdoc">Генерация числового поля с валидацией</div><div class="ttdef"><b>Определения</b> web_templates.cpp:148</div></div>
+<div class="ttc" id="aweb__routes_8h_html_aa3bf8c4a6f5d5755121de67cf17ff422"><div class="ttname"><a href="web__routes_8h.html#aa3bf8c4a6f5d5755121de67cf17ff422">generateInputField</a></div><div class="ttdeci">String generateInputField(const String &amp;id, const String &amp;name, const String &amp;label, const String &amp;value, const String &amp;type=&quot;text&quot;, bool required=false, const String &amp;placeholder=&quot;&quot;)</div><div class="ttdoc">Генерация поля ввода</div><div class="ttdef"><b>Определения</b> web_templates.cpp:107</div></div>
+<div class="ttc" id="aweb__routes_8h_html_acc502267a202aba9171c0d593fbfac17"><div class="ttname"><a href="web__routes_8h.html#acc502267a202aba9171c0d593fbfac17">generateSuccessPage</a></div><div class="ttdeci">String generateSuccessPage(const String &amp;title, const String &amp;message, const String &amp;redirectUrl=&quot;&quot;, int redirectDelay=2)</div><div class="ttdoc">Генерация страницы успеха</div><div class="ttdef"><b>Определения</b> web_templates.cpp:42</div></div>
+<div class="ttc" id="aweb__routes_8h_html_ad0518ce62fefc0ff55e7cd72e75db70d"><div class="ttname"><a href="web__routes_8h.html#ad0518ce62fefc0ff55e7cd72e75db70d">generatePageHeader</a></div><div class="ttdeci">String generatePageHeader(const String &amp;title, const String &amp;icon=&quot;&quot;)</div><div class="ttdoc">Генерация заголовка HTML страницы</div><div class="ttdef"><b>Определения</b> web_templates.cpp:8</div></div>
+<div class="ttc" id="aweb__routes_8h_html_ad4f3a6e85baef9b2d3e2aec977c3a321"><div class="ttname"><a href="web__routes_8h.html#ad4f3a6e85baef9b2d3e2aec977c3a321">generatePageFooter</a></div><div class="ttdeci">String generatePageFooter()</div><div class="ttdoc">Генерация футера HTML страницы</div><div class="ttdef"><b>Определения</b> web_templates.cpp:19</div></div>
+<div class="ttc" id="aweb__routes_8h_html_ad6e617b3350bd617099ba38b52cd3076"><div class="ttname"><a href="web__routes_8h.html#ad6e617b3350bd617099ba38b52cd3076">generateForm</a></div><div class="ttdeci">String generateForm(const String &amp;action, const String &amp;method, const String &amp;formContent, const String &amp;buttonText, const String &amp;buttonIcon)</div><div class="ttdoc">Генерация формы с общими элементами</div><div class="ttdef"><b>Определения</b> web_templates.cpp:66</div></div>
+<div class="ttc" id="aweb__routes_8h_html_ad738b39272f7fc383f5bb83814fb1a67"><div class="ttname"><a href="web__routes_8h.html#ad738b39272f7fc383f5bb83814fb1a67">validateConfigInput</a></div><div class="ttdeci">bool validateConfigInput(bool checkRequired=true)</div><div class="ttdoc">Валидация входных данных конфигурации</div><div class="ttdef"><b>Определения</b> error_handlers.cpp:29</div></div>
+<div class="ttc" id="aweb__routes_8h_html_ae920cb227a775afac1415bab5339c623"><div class="ttname"><a href="web__routes_8h.html#ae920cb227a775afac1415bab5339c623">generateCheckboxField</a></div><div class="ttdeci">String generateCheckboxField(const String &amp;id, const String &amp;name, const String &amp;label, bool checked)</div><div class="ttdoc">Генерация поля чекбокса</div><div class="ttdef"><b>Определения</b> web_templates.cpp:127</div></div>
+<div class="ttc" id="aweb__routes_8h_html_aed1136f683a386e56678e05fc3747972"><div class="ttname"><a href="web__routes_8h.html#aed1136f683a386e56678e05fc3747972">setupDataRoutes</a></div><div class="ttdeci">void setupDataRoutes()</div><div class="ttdoc">Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)</div><div class="ttdef"><b>Определения</b> routes_data.cpp:24</div></div>
+<div class="ttc" id="aweb__routes_8h_html_aef0848857422724f7d825dd8a33421b9"><div class="ttname"><a href="web__routes_8h.html#aef0848857422724f7d825dd8a33421b9">isFeatureAvailable</a></div><div class="ttdeci">bool isFeatureAvailable()</div><div class="ttdoc">Проверка доступности функции в текущем режиме WiFi (без параметров)</div><div class="ttdef"><b>Определения</b> error_handlers.cpp:146</div></div>
+<div class="ttc" id="aweb__routes_8h_html_af68ca26d269d5d8ea7fa42fc78a5a919"><div class="ttname"><a href="web__routes_8h.html#af68ca26d269d5d8ea7fa42fc78a5a919">generateFormError</a></div><div class="ttdeci">String generateFormError(const String &amp;message)</div><div class="ttdoc">Генерация сообщения об ошибке в форме</div><div class="ttdef"><b>Определения</b> web_templates.cpp:164</div></div>
+<div class="ttc" id="awifi__manager_8h_html"><div class="ttname"><a href="wifi__manager_8h.html">wifi_manager.h</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="web__routes_8h.html">web_routes.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

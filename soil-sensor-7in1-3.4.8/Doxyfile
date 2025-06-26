@@ -1,0 +1,83 @@
+# Doxyfile 1.9.8
+# Конфигурация для генерации документации JXCT Soil Sensor v2.0
+
+# Основная информация о проекте
+PROJECT_NAME           = "JXCT Soil Sensor v2.0"
+PROJECT_NUMBER         = "v2.0 (June 2025)"
+PROJECT_BRIEF          = "Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and Home Assistant integration"
+
+# Каталоги для поиска исходников
+INPUT                  = src include README.md docs/*.md
+RECURSIVE              = YES
+USE_MDFILE_AS_MAINPAGE = README.md
+
+# Каталог для вывода документации
+OUTPUT_DIRECTORY       = docs
+
+# Язык документации
+OUTPUT_LANGUAGE        = Russian
+
+# Генерировать HTML
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+HTML_HEADER            = 
+HTML_FOOTER            = 
+HTML_EXTRA_STYLESHEET  = 
+
+# Генерировать LaTeX (PDF)
+GENERATE_LATEX         = NO
+
+# Включать все публичные и приватные члены
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+
+# Обрабатывать только файлы с расширениями
+FILE_PATTERNS          = *.cpp *.h *.md
+
+# Кодировка исходников
+INPUT_ENCODING         = UTF-8
+
+# Генерировать графы зависимостей
+HAVE_DOT               = YES
+CALL_GRAPH             = YES
+CALLER_GRAPH           = YES
+COLLABORATION_GRAPH    = YES
+INCLUDE_GRAPH          = YES
+INCLUDED_BY_GRAPH      = YES
+
+# Исключить служебные каталоги
+EXCLUDE_PATTERNS       = */.pio/* */libdeps/* */.git/* */.vscode/* */test/*
+
+# Настройки генерации
+SHORT_NAMES            = NO
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = YES
+MULTILINE_CPP_IS_BRIEF = NO
+
+# Включить поддержку Markdown
+MARKDOWN_SUPPORT       = YES
+
+# Генерация индекса
+ALPHABETICAL_INDEX     = YES
+
+# Показывать все детали
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = ./
+
+# Предупреждения
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES
+
+# Включить документацию для групп
+OPTIMIZE_OUTPUT_FOR_C  = NO
+OPTIMIZE_OUTPUT_JAVA   = NO
+OPTIMIZE_FOR_FORTRAN   = NO
+OPTIMIZE_OUTPUT_VHDL   = NO
+
+# Включить документацию для всех файлов
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = 

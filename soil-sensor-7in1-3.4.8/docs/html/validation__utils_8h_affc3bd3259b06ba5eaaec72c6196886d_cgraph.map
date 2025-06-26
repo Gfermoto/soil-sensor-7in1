@@ -1,0 +1,5 @@
+<map id="validateNTPInterval" name="validateNTPInterval">
+<area shape="rect" id="Node000001" title="Валидация интервала обновления NTP." alt="" coords="5,5,142,32"/>
+<area shape="rect" id="Node000002" href="$validation__utils_8cpp.html#a497c34deeef98edaac0de3ac1a3e10a8" title="Валидация интервала (общая функция)" alt="" coords="190,5,299,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="142,16,174,16,174,21,142,21"/>
+</map>

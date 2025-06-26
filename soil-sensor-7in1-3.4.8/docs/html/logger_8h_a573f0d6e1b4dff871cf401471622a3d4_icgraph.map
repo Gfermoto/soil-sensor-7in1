@@ -1,0 +1,18 @@
+<map id="logPrintHeader" name="logPrintHeader">
+<area shape="rect" id="Node000001" title=" " alt="" coords="457,107,565,133"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="331,5,376,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="481,99,408,46,375,30,378,25,411,42,484,94"/>
+<area shape="rect" id="Node000003" href="$modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="298,56,409,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="452,104,397,86,398,81,454,99"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,132,59,159"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="442,126,59,147,59,141,442,121"/>
+<area shape="rect" id="Node000006" href="$modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="129,157,228,184"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="443,136,410,141,229,167,228,162,409,136,442,130"/>
+<area shape="rect" id="Node000007" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="138,208,218,235"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="464,142,410,163,308,193,220,215,218,210,306,188,408,157,462,137"/>
+<area shape="rect" id="Node000004" href="$modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="107,56,250,83"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="283,72,250,72,250,67,283,67"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="132,92,108,104,56,134,53,129,105,99,130,87"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="113,162,59,153,60,147,114,157"/>
+<area shape="poly" id="edge9_Node000007_Node000005" title=" " alt="" coords="122,206,105,198,49,161,52,157,108,194,124,201"/>
+</map>

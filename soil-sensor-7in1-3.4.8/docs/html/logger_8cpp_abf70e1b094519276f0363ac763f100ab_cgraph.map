@@ -1,0 +1,7 @@
+<map id="logWiFiStatus" name="logWiFiStatus">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,109,57"/>
+<area shape="rect" id="Node000002" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="157,5,225,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,32,141,25,142,31,110,37"/>
+<area shape="rect" id="Node000003" href="$logger_8cpp.html#a8a220d54e17d73c281bb715f70bf6df9" title=" " alt="" coords="158,56,224,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="110,51,143,58,142,63,109,56"/>
+</map>

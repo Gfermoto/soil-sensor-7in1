@@ -1,0 +1,42 @@
+<map id="logSystem" name="logSystem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="801,302,884,329"/>
+<area shape="rect" id="Node000002" href="$logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d" title=" " alt="" coords="416,125,540,151"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="830,288,819,260,802,228,780,197,752,172,700,148,644,136,589,132,540,133,540,128,589,127,645,131,702,143,754,168,784,193,807,225,824,258,835,286"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="134,99,179,126"/>
+<area shape="poly" id="edge5_Node000001_Node000003" title=" " alt="" coords="834,288,825,251,809,209,785,167,770,149,751,134,716,112,677,95,637,81,596,72,511,62,427,63,348,71,278,84,180,108,179,103,277,78,348,66,427,58,512,57,597,67,639,76,679,90,718,107,755,129,773,145,789,164,814,206,830,250,839,287"/>
+<area shape="rect" id="Node000004" href="$logger_8cpp.html#a07e106e3f19501a64fde4b0c6fa8d73a" title=" " alt="" coords="266,23,346,50"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="838,287,833,238,819,178,808,148,793,119,775,93,751,71,703,42,649,23,593,12,536,8,480,10,429,15,347,29,346,24,428,9,480,4,536,3,593,7,650,18,705,37,755,67,779,89,798,116,813,146,824,177,838,237,843,286"/>
+<area shape="rect" id="Node000005" href="$modbus__sensor_8cpp.html#a54a04fceff1a6b7eef35a680491e19b4" title=" " alt="" coords="620,479,731,506"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="833,345,803,403,781,435,755,463,724,481,722,476,751,459,777,432,799,401,828,342"/>
+<area shape="rect" id="Node000007" href="$main_8cpp.html#a4fc01d736fe50cf5b977f755b675f11d" title=" " alt="" coords="5,378,59,405"/>
+<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="807,339,747,371,667,405,575,433,527,442,479,445,305,445,234,440,165,429,59,402,60,397,166,424,235,435,305,439,479,439,527,436,574,428,665,400,745,366,805,334"/>
+<area shape="rect" id="Node000008" href="$modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520" title="Инициализация Modbus и SP3485E." alt="" coords="107,201,206,227"/>
+<area shape="poly" id="edge10_Node000001_Node000008" title=" " alt="" coords="820,292,790,262,752,236,679,210,603,194,525,185,449,183,376,185,310,191,207,206,206,201,310,186,376,180,449,177,526,180,604,189,681,205,754,232,793,258,824,288"/>
+<area shape="rect" id="Node000009" href="$wifi__manager_8cpp.html#ada2454c68167b49ab4f42817be2b4959" title=" " alt="" coords="617,277,734,303"/>
+<area shape="poly" id="edge12_Node000001_Node000009" title=" " alt="" coords="786,309,734,302,735,296,786,304"/>
+<area shape="rect" id="Node000010" href="$wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2" title=" " alt="" coords="429,226,527,253"/>
+<area shape="poly" id="edge22_Node000001_Node000010" title=" " alt="" coords="809,295,782,280,752,267,693,253,632,245,527,240,527,235,632,239,694,248,754,262,784,275,812,291"/>
+<area shape="rect" id="Node000012" href="$wifi__manager_8cpp.html#ad2a97dbe5f144cd247e3b15c6af7c767" title=" " alt="" coords="116,353,196,379"/>
+<area shape="poly" id="edge21_Node000001_Node000012" title=" " alt="" coords="786,329,753,334,556,357,358,369,197,370,197,364,358,363,556,352,753,329,785,324"/>
+<area shape="rect" id="Node000013" href="$wifi__manager_8cpp.html#a0a1172dd684c9ed282dc5cb7e1ad1d7f" title=" " alt="" coords="254,327,358,354"/>
+<area shape="poly" id="edge23_Node000001_Node000013" title=" " alt="" coords="786,321,359,341,359,336,786,315"/>
+<area shape="rect" id="Node000014" href="$modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1" title=" " alt="" coords="598,530,753,557"/>
+<area shape="poly" id="edge24_Node000001_Node000014" title=" " alt="" coords="839,344,830,383,813,430,789,478,755,520,737,532,734,527,751,516,785,475,809,428,825,382,834,343"/>
+<area shape="rect" id="Node000015" href="$modbus__sensor_8cpp.html#ab8a1f5220dc77f33a89d14fe4d82442f" title="Тестирование работы SP3485E." alt="" coords="626,581,724,607"/>
+<area shape="poly" id="edge25_Node000001_Node000015" title=" " alt="" coords="842,344,835,393,821,453,795,516,777,545,755,571,726,588,723,583,751,567,773,542,790,513,816,452,830,392,837,344"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="401,135,179,117,180,112,401,129"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="265,60,180,104,178,99,263,55"/>
+<area shape="rect" id="Node000006" href="$modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df" title=" " alt="" coords="406,479,550,506"/>
+<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="604,495,550,495,550,490,604,490"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="391,504,326,505,253,500,178,487,106,463,85,451,67,436,41,407,45,403,71,432,88,447,108,458,179,482,254,495,326,499,391,498"/>
+<area shape="poly" id="edge11_Node000008_Node000007" title=" " alt="" coords="139,242,45,379,41,376,135,239"/>
+<area shape="poly" id="edge13_Node000009_Node000010" title=" " alt="" coords="605,275,526,254,528,249,606,270"/>
+<area shape="poly" id="edge20_Node000009_Node000013" title=" " alt="" coords="602,300,407,325,359,333,358,328,406,319,601,295"/>
+<area shape="rect" id="Node000011" href="$wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2" title=" " alt="" coords="263,226,349,253"/>
+<area shape="poly" id="edge14_Node000010_Node000011" title=" " alt="" coords="414,242,350,242,350,237,414,237"/>
+<area shape="poly" id="edge16_Node000010_Node000012" title=" " alt="" coords="415,260,338,286,255,318,183,354,180,350,253,313,336,281,413,255"/>
+<area shape="poly" id="edge18_Node000010_Node000013" title=" " alt="" coords="430,262,408,274,384,292,360,311,332,329,329,325,357,307,380,287,405,269,427,257"/>
+<area shape="poly" id="edge15_Node000011_Node000003" title=" " alt="" coords="276,218,172,129,175,125,279,214"/>
+<area shape="poly" id="edge17_Node000012_Node000007" title=" " alt="" coords="102,380,60,389,58,383,100,375"/>
+<area shape="poly" id="edge19_Node000013_Node000012" title=" " alt="" coords="239,355,197,362,196,357,238,349"/>
+</map>
