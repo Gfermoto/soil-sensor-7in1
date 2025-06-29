@@ -26,7 +26,7 @@
         <div class="header">
             <h1>🧪 Comprehensive Test Report</h1>
             <p>JXCT Soil Sensor v3.6.0</p>
-            <p>Generated: 2025-06-25T21:34:18.229416Z</p>
+            <p>Generated: 2025-06-29T21:15:13.962976Z</p>
             <div class="progress-bar">
                 <div class="progress-fill" style="width: 0.0%"></div>
             </div>
@@ -48,27 +48,43 @@
                     <div class="metric-label">❌ Failed</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">14.66s</div>
+                    <div class="metric-value">10.85s</div>
                     <div class="metric-label">⏱️ Duration</div>
+                </div>
+            </div>
+            
+            <h3>🧪 Unit Tests Detail</h3>
+            <div class="metrics">
+                <div class="metric-card">
+                    <div class="metric-value">0/0</div>
+                    <div class="metric-label">🔧 Simple Tests</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">0/0</div>
+                    <div class="metric-label">📐 Calibration Tests</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">0.0%</div>
+                    <div class="metric-label">🎯 Critical Algorithm Coverage</div>
                 </div>
             </div>
             
             <h2>📈 Code Quality</h2>
             <div class="metrics">
                 <div class="metric-card">
-                    <div class="metric-value">70.8%</div>
+                    <div class="metric-value">{coverage.get('lines', {}).get('percentage', 0):.1f}%</div>
                     <div class="metric-label">📊 Code Coverage</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">0</div>
+                    <div class="metric-value">{debt.get('code_smells', 0)}</div>
                     <div class="metric-label">🔍 Code Smells</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">0</div>
+                    <div class="metric-value">{debt.get('security_hotspots', 0)}</div>
                     <div class="metric-label">🔒 Security Issues</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-value">0.0%</div>
+                    <div class="metric-value">{debt.get('debt_ratio', 0):.1f}%</div>
                     <div class="metric-label">⚠️ Technical Debt</div>
                 </div>
             </div>

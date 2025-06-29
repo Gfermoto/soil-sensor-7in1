@@ -44,6 +44,7 @@ void setupConfigRoutes()
             html += navHtml();
             html += "<h1>" UI_ICON_INTERVALS " Настройка интервалов и фильтров</h1>";
             html += "<form action='/save_intervals' method='post'>";
+            html += "<input type='hidden' name='csrf_token' value='" + generateCSRFToken() + "'>";  // ✅ CSRF токен
 
             html += "<div class='section'><h2>📊 Интервалы опроса и публикации</h2>";
             html += "<div class='form-group'><label for='sensor_interval'>Интервал опроса датчика (сек):</label>";
@@ -145,6 +146,15 @@ void setupConfigRoutes()
                  []()
                  {
                      logWebRequest("POST", "/save_intervals", webServer.client().remoteIP().toString());
+
+                     // ✅ CSRF защита
+                     if (!validateCSRFToken(webServer.arg("csrf_token")))
+                     {
+                         webServer.send(403, "text/html; charset=utf-8", 
+                             "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Ошибка безопасности</title></head>"
+                             "<body><h1>🚫 CSRF атака заблокирована</h1><p>Недействительный токен безопасности</p></body></html>");
+                         return;
+                     }
 
                      if (currentWiFiMode == WiFiMode::AP)
                      {

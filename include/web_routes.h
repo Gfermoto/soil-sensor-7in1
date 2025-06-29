@@ -1,11 +1,52 @@
 #pragma once
 
 #include <WebServer.h>
-// #include <WiFi.h> // удалён как неиспользуемый
+#include <WiFi.h>
 #include "../src/wifi_manager.h"
 
 // Внешние зависимости
 extern WebServer webServer;
+
+// ============================================================================
+// CSRF ЗАЩИТА - БЕЗОПАСНАЯ РЕАЛИЗАЦИЯ
+// ============================================================================
+
+/**
+ * @brief Генерация CSRF токена
+ * @return Строка с уникальным CSRF токеном
+ */
+String generateCSRFToken();
+
+/**
+ * @brief Проверка CSRF токена
+ * @param token Токен для проверки
+ * @return true если токен валиден
+ */
+bool validateCSRFToken(const String& token);
+
+/**
+ * @brief Получение скрытого поля с CSRF токеном для форм
+ * @return HTML строка с hidden input для CSRF токена
+ */
+String getCSRFHiddenField();
+
+/**
+ * @brief Middleware для проверки CSRF на POST запросах
+ * @return true если запрос безопасен (GET или валидный CSRF токен)
+ */
+bool checkCSRFSafety();
+
+/**
+ * @brief Инициализация CSRF защиты
+ */
+void initCSRFProtection();
+
+/**
+ * @brief Преобразование HTTP метода в строку
+ * @param method HTTP метод
+ * @return Строковое представление метода
+ */
+String methodToString(HTTPMethod method);
 
 // ============================================================================
 // ОСНОВНЫЕ МАРШРУТЫ (routes_main.cpp)
@@ -22,121 +63,124 @@ void setupMainRoutes();
 void handleRoot();
 
 /**
- * @brief Обработчик статуса (уже существует в wifi_manager.cpp)
+ * @brief Обработчик страницы статуса (уже существует в wifi_manager.cpp)
  */
 void handleStatus();
 
 // ============================================================================
-// ДАННЫЕ ДАТЧИКА (routes_data.cpp)
+// КОНФИГУРАЦИОННЫЕ МАРШРУТЫ (routes_config.cpp)
 // ============================================================================
 
 /**
- * @brief Настройка маршрутов данных датчика (/readings, /sensor_json, /api/sensor)
- */
-void setupDataRoutes();
-
-// Все обработчики данных реализованы как lambda-функции внутри setupDataRoutes()
-
-// ============================================================================
-// УПРАВЛЕНИЕ КОНФИГУРАЦИЕЙ (routes_config.cpp)
-// ============================================================================
-
-/**
- * @brief Настройка маршрутов конфигурации (/intervals, /config_manager, /api/config/\*)
+ * @brief Настройка маршрутов для конфигурации
  */
 void setupConfigRoutes();
 
-// Все обработчики конфигурации реализованы как lambda-функции внутри setupConfigRoutes()
+/**
+ * @brief Обработчик страницы настроек интервалов
+ */
+void handleIntervals();
+
+/**
+ * @brief Обработчик страницы сложных настроек (лог, алгоритм, временная зона)
+ */
+void handleAdvanced();
+
+/**
+ * @brief Обработчик API импорта конфигурации
+ */
+void handleApiConfigImport();
+
+/**
+ * @brief Обработчик API экспорта конфигурации
+ */
+void handleApiConfigExport();
 
 // ============================================================================
-// СЕРВИСНЫЕ ФУНКЦИИ (routes_service.cpp)
+// СЕРВИСНЫЕ МАРШРУТЫ (routes_service.cpp)
 // ============================================================================
 
 /**
- * @brief Настройка сервисных маршрутов (/health, /service_status, /reset, /reboot, /ota)
+ * @brief Настройка сервисных маршрутов (/reset, /status, /info)
  */
 void setupServiceRoutes();
 
-// Все сервисные обработчики реализованы как lambda-функции внутри setupServiceRoutes()
+/**
+ * @brief Обработчик сброса системы
+ */
+void handleReset();
+
+/**
+ * @brief Обработчик информации о системе
+ */
+void handleInfo();
+
+/**
+ * @brief Обработчик обновления статуса
+ */
+void handleUpdateStatus();
 
 // ============================================================================
-// HTML ШАБЛОНЫ (web_templates.cpp)
-// ============================================================================
-
-/**
- * @brief Генерация заголовка HTML страницы
- * @param title Заголовок страницы
- * @param icon Иконка страницы (опционально)
- * @return HTML заголовок
- */
-String generatePageHeader(const String& title, const String& icon = "");
-
-/**
- * @brief Генерация футера HTML страницы
- * @return HTML футер
- */
-String generatePageFooter();
-
-/**
- * @brief Генерация страницы ошибки
- * @param errorCode Код ошибки
- * @param errorMessage Сообщение об ошибке
- * @return Полная HTML страница с ошибкой
- */
-String generateErrorPage(int errorCode, const String& errorMessage);
-
-/**
- * @brief Генерация страницы успеха
- * @param title Заголовок
- * @param message Сообщение об успехе
- * @param redirectUrl URL для перенаправления (опционально)
- * @param redirectDelay Задержка перенаправления в секундах (по умолчанию 2)
- * @return Полная HTML страница с сообщением об успехе
- */
-String generateSuccessPage(const String& title, const String& message, const String& redirectUrl = "",
-                           int redirectDelay = 2);
-
-/**
- * @brief Генерация базовой HTML структуры с навигацией
- * @param title Заголовок страницы
- * @param content Содержимое страницы
- * @param icon Иконка страницы (опционально)
- * @return Полная HTML страница
- */
-String generateBasePage(const String& title, const String& content, const String& icon = "");
-
-// ============================================================================
-// ОБРАБОТКА ОШИБОК (error_handlers.cpp)
+// МАРШРУТЫ ДАННЫХ (routes_data.cpp)
 // ============================================================================
 
 /**
- * @brief Настройка обработчиков ошибок (404, 500, и т.д.)
+ * @brief Настройка маршрутов для данных датчиков
  */
-void setupErrorHandlers();
+void setupDataRoutes();
 
 /**
- * @brief Валидация входных данных конфигурации
- * @param checkRequired Проверять ли обязательные поля
- * @return true если валидация прошла успешно
+ * @brief Отправка JSON данных датчиков
  */
-bool validateConfigInput(bool checkRequired = true);
+void sendSensorJson();
 
 /**
- * @brief Обработка ошибок загрузки файлов
- * @param error Описание ошибки
+ * @brief Обработчик главной страницы показаний
  */
-void handleUploadError(const String& error);
+void handleReadings();
+
+/**
+ * @brief Обработчик загрузки калибровочных файлов
+ */
+void handleReadingsUpload();
 
 // ============================================================================
-// УТИЛИТЫ
+// КАЛИБРОВОЧНЫЕ МАРШРУТЫ (routes_calibration.cpp)
 // ============================================================================
 
 /**
- * @brief Проверка доступности функции в текущем режиме WiFi
- * @param feature Название функции для проверки
- * @return true если функция доступна в текущем режиме
+ * @brief Настройка маршрутов калибровки
  */
-bool isFeatureAvailable(const String& feature);
+void setupCalibrationRoutes();
+
+/**
+ * @brief Обработчик страницы калибровки
+ */
+void handleCalibration();
+
+/**
+ * @brief Обработчик загрузки калибровочных данных
+ */
+void handleCalibrationUpload();
+
+// ============================================================================
+// ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ MIDDLEWARE
+// ============================================================================
+
+/**
+ * @brief Middleware для проверки доступности маршрута
+ * @param routeName Имя маршрута
+ * @param icon Иконка для отображения в интерфейсе
+ * @return true если маршрут доступен
+ */
+bool checkRouteAccess(const String& routeName, const String& icon);
+
+/**
+ * @brief Проверка доступности маршрута в текущем режиме
+ * @param uri URI запроса
+ * @return true если маршрут доступен
+ */
+bool isRouteAvailable(const String& uri);
 
 /**
  * @brief Проверка доступности функции в текущем режиме WiFi (без параметров)
@@ -189,13 +233,76 @@ String generateNumberField(const String& id, const String& name, const String& l
  */
 String generateFormError(const String& message);
 
+// ============================================================================
+// ОБРАБОТКА ОШИБОК (error_handlers.cpp)
+// ============================================================================
+
 /**
- * @brief Генерация страницы "Недоступно в AP режиме"
+ * @brief Настройка обработчиков ошибок (404, 500, и т.д.)
  */
-String generateApModeUnavailablePage(const String& title, const String& icon);
+void setupErrorHandlers();
+
+/**
+ * @brief Валидация входных данных конфигурации
+ * @param checkRequired Проверять ли обязательные поля
+ * @return true если валидация прошла успешно
+ */
+bool validateConfigInput(bool checkRequired = true);
+
+/**
+ * @brief Обработка ошибок загрузки файлов
+ * @param error Описание ошибки
+ */
+void handleUploadError(const String& error);
 
 // ============================================================================
-// ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ОБРАБОТКИ ОШИБОК
+// HTML ШАБЛОНЫ (web_templates.cpp)
+// ============================================================================
+
+/**
+ * @brief Генерация заголовка HTML страницы
+ * @param title Заголовок страницы
+ * @param icon Иконка страницы (опционально)
+ * @return HTML заголовок
+ */
+String generatePageHeader(const String& title, const String& icon = "");
+
+/**
+ * @brief Генерация футера HTML страницы
+ * @return HTML футер
+ */
+String generatePageFooter();
+
+/**
+ * @brief Генерация страницы ошибки
+ * @param errorCode Код ошибки
+ * @param errorMessage Сообщение об ошибке
+ * @return Полная HTML страница с ошибкой
+ */
+String generateErrorPage(int errorCode, const String& errorMessage);
+
+/**
+ * @brief Генерация страницы успеха
+ * @param title Заголовок
+ * @param message Сообщение об успехе
+ * @param redirectUrl URL для перенаправления (опционально)
+ * @param redirectDelay Задержка перенаправления в секундах (по умолчанию 2)
+ * @return Полная HTML страница с сообщением об успехе
+ */
+String generateSuccessPage(const String& title, const String& message, const String& redirectUrl = "",
+                           int redirectDelay = 2);
+
+/**
+ * @brief Генерация базовой HTML структуры с навигацией
+ * @param title Заголовок страницы
+ * @param content Содержимое страницы
+ * @param icon Иконка страницы (опционально)
+ * @return Полная HTML страница
+ */
+String generateBasePage(const String& title, const String& content, const String& icon = "");
+
+// ============================================================================
+// ОБРАБОТКА ОШИБОК (error_handlers.cpp)
 // ============================================================================
 
 /**
@@ -208,42 +315,25 @@ String generateValidationErrorResponse(const String& errorMsg);
  */
 void handleCriticalError(const String& error);
 
-/**
- * @brief Проверка доступности маршрута в текущем режиме
- */
-bool isRouteAvailable(const String& uri);
-
-/**
- * @brief Middleware для проверки доступности маршрута
- */
-bool checkRouteAccess(const String& routeName, const String& icon);
-
 // ============================================================================
-// КАЛИБРОВКА ДАТЧИКОВ (routes_calibration.cpp)
+// ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ШАБЛОНОВ
 // ============================================================================
 
 /**
- * @brief Настройка маршрутов калибровки (/calibration)
+ * @brief Генерация страницы "Недоступно в AP режиме"
  */
-void setupCalibrationRoutes();
+String generateApModeUnavailablePage(const String& title, const String& icon);
 
-// HTML навигация
-String navHtml();
-
-// ---------------------------------------------------------------------------
-// OTA МАРШРУТЫ (routes_ota.cpp)
-// ---------------------------------------------------------------------------
+// ============================================================================
+// ДОПОЛНИТЕЛЬНЫЕ МАРШРУТЫ
+// ============================================================================
 
 /**
- * @brief Настройка маршрутов OTA (/updates, /api/ota/*, /ota/*)
+ * @brief Настройка маршрутов OTA обновлений
  */
 void setupOtaRoutes();
 
-// ============================================================================
-// ОТЧЁТЫ ТЕСТИРОВАНИЯ (routes_reports.cpp)
-// ============================================================================
-
 /**
- * @brief Настройка маршрутов отчётов тестирования (/api/reports/*, /reports)
+ * @brief Настройка маршрутов отчетов
  */
 void setupReportsRoutes();

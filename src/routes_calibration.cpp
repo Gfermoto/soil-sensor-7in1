@@ -9,6 +9,7 @@
 
 // Экземпляр веб-сервера объявлен во внешнем модуле
 extern WebServer webServer;
+extern String navHtml();  // ✅ Объявление навигации
 
 // ------------------------------
 // HTML генераторы (простой MVP)
@@ -84,7 +85,7 @@ static void handleCalibrationPage()
 static File uploadFile;
 static SoilProfile uploadProfile = SoilProfile::SAND;
 
-static void handleCalibrationUpload()
+void handleCalibrationUpload()  // ✅ Убираем static - функция extern в header
 {
     HTTPUpload& upload = webServer.upload();
     if (upload.status == UPLOAD_FILE_START)

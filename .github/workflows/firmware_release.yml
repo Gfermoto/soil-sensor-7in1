@@ -19,20 +19,38 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.x'
+          
       - name: Install PlatformIO CLI
         run: pip install --upgrade platformio
+
+      - name: Sync versions automatically
+        run: |
+          echo "🔄 Синхронизация версий..."
+          python scripts/release_manager.py sync
+          echo "✅ Версии синхронизированы"
 
       - name: Verify VERSION file matches tag
         run: |
           TAG_VERSION="${GITHUB_REF_NAME#v}"
           FILE_VERSION=$(cat VERSION)
+          HEADER_VERSION=$(grep -o 'JXCT_VERSION_STRING ".*"' include/version.h | cut -d'"' -f2)
+          
+          echo "📋 Проверка версий:"
+          echo "  Tag: $TAG_VERSION"
+          echo "  VERSION file: $FILE_VERSION"
+          echo "  Header file: $HEADER_VERSION"
+          
           if [ "$TAG_VERSION" != "$FILE_VERSION" ]; then
             echo "❌ VERSION file ($FILE_VERSION) doesn't match tag ($TAG_VERSION)"
-            echo "This should not happen if release_cycle.py worked correctly"
             exit 1
-          else
-            echo "✅ VERSION file matches tag: $TAG_VERSION"
           fi
+          
+          if [ "$TAG_VERSION" != "$HEADER_VERSION" ]; then
+            echo "❌ Header file ($HEADER_VERSION) doesn't match tag ($TAG_VERSION)"
+            exit 1
+          fi
+          
+          echo "✅ Все версии синхронизированы: $TAG_VERSION"
 
       - name: Build firmware (production)
         run: pio run -e esp32dev-production
@@ -44,14 +62,24 @@ jobs:
           cp .pio/build/esp32dev-production/firmware.bin dist/
           HASH=$(sha256sum dist/firmware.bin | cut -d ' ' -f1)
           VERSION=${GITHUB_REF_NAME#v}
+          
+          # Создаем подробный manifest
           cat > dist/manifest.json <<EOF
           {
             "version": "${VERSION}",
             "url": "https://github.com/Gfermoto/soil-sensor-7in1/releases/download/${GITHUB_REF_NAME}/firmware.bin",
-            "sha256": "${HASH}"
+            "sha256": "${HASH}",
+            "build_date": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "platform": "esp32",
+            "environment": "production"
           }
           EOF
-          echo "SHA256: $HASH"
+          
+          echo "📦 Артефакты подготовлены:"
+          echo "  Firmware: dist/firmware.bin"
+          echo "  Manifest: dist/manifest.json"
+          echo "  SHA256: $HASH"
+          echo "  Size: $(ls -lh dist/firmware.bin | awk '{print $5}')"
 
       - name: Create GitHub Release & upload assets
         uses: softprops/action-gh-release@v1

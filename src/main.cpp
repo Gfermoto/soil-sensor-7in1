@@ -23,6 +23,7 @@
 #include "sensor_factory.h"
 #include "thingspeak_client.h"
 #include "version.h"  // ✅ Централизованное управление версией
+#include "web_routes.h"  // ✅ CSRF защита
 #include "wifi_manager.h"
 
 // Переменные для отслеживания времени
@@ -146,6 +147,9 @@ void setup()
 
     // Инициализация WiFi
     setupWiFi();
+
+    // Инициализация CSRF защиты (безопасность веб-интерфейса)
+    initCSRFProtection();
 
     // Инициализация ThingSpeak
     if (config.flags.thingSpeakEnabled)

@@ -11,6 +11,7 @@
 #include "../../include/jxct_strings.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
+#include "../../include/web_routes.h"  // ✅ CSRF защита
 #include "../../include/web_routes.h"
 #include "../modbus_sensor.h"
 #include "../mqtt_client.h"
@@ -121,6 +122,15 @@ void setupServiceRoutes()
                  {
                      logWebRequest("POST", webServer.uri(), webServer.client().remoteIP().toString());
 
+                     // ✅ CSRF защита - критическая операция сброса!
+                     if (!validateCSRFToken(webServer.arg("csrf_token")))
+                     {
+                         webServer.send(403, "text/html; charset=utf-8", 
+                             "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>🚫 CSRF атака</title></head>"
+                             "<body><h1>🚫 CSRF атака заблокирована</h1><p>Попытка сброса настроек заблокирована</p></body></html>");
+                         return;
+                     }
+
                      if (currentWiFiMode != WiFiMode::STA)
                      {
                          webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
@@ -150,6 +160,15 @@ void setupServiceRoutes()
                  []()
                  {
                      logWebRequest("POST", webServer.uri(), webServer.client().remoteIP().toString());
+
+                     // ✅ CSRF защита - критическая операция перезагрузки!
+                     if (!validateCSRFToken(webServer.arg("csrf_token")))
+                     {
+                         webServer.send(403, "text/html; charset=utf-8", 
+                             "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>🚫 CSRF атака</title></head>"
+                             "<body><h1>🚫 CSRF атака заблокирована</h1><p>Попытка перезагрузки заблокирована</p></body></html>");
+                         return;
+                     }
 
                      if (currentWiFiMode != WiFiMode::STA)
                      {

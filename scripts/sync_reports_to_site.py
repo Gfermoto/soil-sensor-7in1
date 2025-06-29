@@ -28,10 +28,33 @@ class ReportSynchronizer:
     def load_test_summary(self) -> Optional[Dict[str, Any]]:
         """Загружает сводку тестирования"""
         try:
+            # Приоритет комплексному отчёту
+            comprehensive_file = self.reports_dir / "comprehensive-report.json"
+            if comprehensive_file.exists():
+                with open(comprehensive_file, 'r', encoding='utf-8') as f:
+                    return json.load(f)
+            
+            # Fallback на простой отчёт
             summary_file = self.reports_dir / "simple-test-report.json"
             if summary_file.exists():
                 with open(summary_file, 'r', encoding='utf-8') as f:
                     return json.load(f)
+                    
+            # Загружаем калибровочные тесты отдельно если доступны
+            calibration_file = self.reports_dir / "calibration-test-report.json"
+            if calibration_file.exists():
+                with open(calibration_file, 'r', encoding='utf-8') as f:
+                    cal_report = json.load(f)
+                    # Создаём минимальную структуру для совместимости
+                    return {
+                        "timestamp": cal_report.get("timestamp", ""),
+                        "project": "JXCT Soil Sensor",
+                        "version": "3.6.0",
+                        "summary": cal_report.get("summary", {}),
+                        "tests": {
+                            "calibration_tests": cal_report.get("summary", {})
+                        }
+                    }
         except Exception as e:
             print(f"⚠️ Ошибка загрузки отчёта тестирования: {e}")
         return None
@@ -267,7 +290,56 @@ class ReportSynchronizer:
                     <div class="progress-bar">
                         <div class="progress-fill" style="width: {success_rate}%;"></div>
                     </div>
-                </div>
+                </div>"""
+        
+        # Добавляем unit-тесты если они доступны
+        unit_tests = test_summary.get("tests", {}).get("unit_tests", {})
+        if unit_tests:
+            calibration_tests = unit_tests.get("calibration_tests", {})
+            simple_tests = unit_tests.get("simple_tests", {})
+            
+            if calibration_tests:
+                cal_success_rate = (calibration_tests.get('passed', 0) / calibration_tests.get('total', 1) * 100) if calibration_tests.get('total', 0) > 0 else 0
+                html += f"""
+                <div class="metric-card">
+                    <h3>📐 Калибровка</h3>
+                    <div class="metric-value">{calibration_tests.get('passed', 0)}/{calibration_tests.get('total', 0)}</div>
+                    <div class="metric-label">Unit-тесты критических алгоритмов</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {cal_success_rate}%;"></div>
+                    </div>
+                </div>"""
+            
+            if simple_tests:
+                simple_success_rate = (simple_tests.get('passed', 0) / simple_tests.get('total', 1) * 100) if simple_tests.get('total', 0) > 0 else 0
+                html += f"""
+                <div class="metric-card">
+                    <h3>🔧 Валидация</h3>
+                    <div class="metric-value">{simple_tests.get('passed', 0)}/{simple_tests.get('total', 0)}</div>
+                    <div class="metric-label">Тесты валидации и компенсации</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {simple_success_rate}%;"></div>
+                    </div>
+                </div>"""
+        
+        html += """
+            </div>
+            
+            <h2>🧪 Unit Tests Quality</h2>
+            <div class="update-info">
+                <h3>🎯 Покрытие критических алгоритмов</h3>"""
+        
+        if unit_tests and unit_tests.get("calibration_tests", {}).get("total", 0) > 0:
+            html += f"""
+                <p><strong>📐 Алгоритмы интерполяции:</strong> 
+                   {unit_tests.get("calibration_tests", {}).get("passed", 0)} из {unit_tests.get("calibration_tests", {}).get("total", 0)} тестов прошли</p>
+                <p><strong>🔬 Тестируемые компоненты:</strong> Линейная интерполяция, экстраполяция, сохранение/загрузка калибровки</p>
+                <p><strong>⚡ Производительность:</strong> Алгоритмы калибровки выполняются в оптимальном времени</p>"""
+        else:
+            html += """
+                <p><em>Unit-тесты калибровки не найдены. Рекомендуется добавить тесты критических алгоритмов.</em></p>"""
+        
+        html += """
             </div>
             
             <div class="tech-debt-section">

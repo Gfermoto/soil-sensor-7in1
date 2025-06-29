@@ -194,7 +194,7 @@ static RecValues computeRecommendations()
     return rec;
 }
 
-static void handleReadingsUpload()
+void handleReadingsUpload()  // ✅ Убираем static - функция extern в header
 {
     HTTPUpload& upload = webServer.upload();
     if (upload.status == UPLOAD_FILE_START)
@@ -247,7 +247,7 @@ static void handleProfileSave()
     webServer.send(302, "text/plain", "Redirect");
 }
 
-static void sendSensorJson()
+void sendSensorJson()  // ✅ Убираем static - функция extern в header
 {
     // unified JSON response for sensor data
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());

@@ -90,37 +90,69 @@ class ComprehensiveTestRunner:
                 "pio", "test", "-e", "native", "-v"
             ], capture_output=True, text=True, cwd=self.project_root)
             
+            # Создаем структуру для детализированных результатов
+            unit_test_results = {
+                "simple_tests": {"total": 0, "passed": 0, "failed": 0},
+                "calibration_tests": {"total": 0, "passed": 0, "failed": 0},
+                "total_duration": 0,
+                "test_files": []
+            }
+            
             # Парсинг результатов из вывода PlatformIO
             lines = result.stdout.split('\n')
+            total_tests = 0
+            passed_tests = 0
+            
             for line in lines:
                 # Ищем строку вида "13 test cases: 13 succeeded in 00:00:01.809"
                 if "test cases:" in line and "succeeded" in line:
                     try:
-                        # Извлекаем числа из строки
                         import re
                         numbers = re.findall(r'\d+', line)
                         if len(numbers) >= 2:
                             total = int(numbers[0])
                             passed = int(numbers[1])
-                            self.results["summary"]["total_tests"] = total
-                            self.results["summary"]["passed_tests"] = passed
-                            self.results["summary"]["failed_tests"] = total - passed
-                            self.results["summary"]["success_rate"] = (passed / total * 100) if total > 0 else 0
-                            break
+                            total_tests += total
+                            passed_tests += passed
                     except ValueError:
                         continue
+                
+                # Парсим конкретные тестовые файлы
+                if "test_simple.cpp" in line and "PASS" in line:
+                    unit_test_results["simple_tests"]["passed"] += 1
+                    unit_test_results["simple_tests"]["total"] += 1
+                elif "test_calibration_unity.cpp" in line and "PASS" in line:
+                    unit_test_results["calibration_tests"]["passed"] += 1
+                    unit_test_results["calibration_tests"]["total"] += 1
+                elif "FAIL" in line:
+                    if "test_simple.cpp" in line:
+                        unit_test_results["simple_tests"]["failed"] += 1
+                        unit_test_results["simple_tests"]["total"] += 1
+                    elif "test_calibration_unity.cpp" in line:
+                        unit_test_results["calibration_tests"]["failed"] += 1
+                        unit_test_results["calibration_tests"]["total"] += 1
             
-            # Если не удалось распарсить, используем простые значения
-            if self.results["summary"]["total_tests"] == 0:
+            # Если не удалось распарсить точно, используем общие значения
+            if total_tests == 0:
                 if result.returncode == 0 and "PASS" in result.stdout:
-                    # Подсчитываем количество PASS
+                    # Подсчитываем количество PASS/FAIL
                     pass_count = result.stdout.count("PASS")
-                    self.results["summary"]["total_tests"] = pass_count
-                    self.results["summary"]["passed_tests"] = pass_count
-                    self.results["summary"]["failed_tests"] = 0
-                    self.results["summary"]["success_rate"] = 100.0
+                    fail_count = result.stdout.count("FAIL")
+                    total_tests = pass_count + fail_count
+                    passed_tests = pass_count
             
-            print(f"  ✅ Тесты: {self.results['summary']['passed_tests']}/{self.results['summary']['total_tests']}")
+            # Обновляем общие результаты
+            self.results["summary"]["total_tests"] = total_tests
+            self.results["summary"]["passed_tests"] = passed_tests
+            self.results["summary"]["failed_tests"] = total_tests - passed_tests
+            self.results["summary"]["success_rate"] = (passed_tests / total_tests * 100) if total_tests > 0 else 0
+            
+            # Сохраняем детализированные результаты
+            self.results["tests"]["unit_tests"] = unit_test_results
+            
+            print(f"  ✅ Общие тесты: {self.results['summary']['passed_tests']}/{self.results['summary']['total_tests']}")
+            print(f"  📊 Калибровка: {unit_test_results['calibration_tests']['passed']}/{unit_test_results['calibration_tests']['total']}")
+            print(f"  📊 Простые: {unit_test_results['simple_tests']['passed']}/{unit_test_results['simple_tests']['total']}")
             
         except Exception as e:
             print(f"  ❌ Ошибка: {e}")
@@ -264,6 +296,32 @@ class ComprehensiveTestRunner:
                     <div class="metric-value">{summary['total_duration']:.2f}s</div>
                     <div class="metric-label">⏱️ Duration</div>
                 </div>
+            </div>
+            
+            <h3>🧪 Unit Tests Detail</h3>
+            <div class="metrics">"""
+        
+        # Добавляем детализацию unit-тестов если они есть
+        unit_tests = self.results.get("tests", {}).get("unit_tests", {})
+        if unit_tests:
+            simple_tests = unit_tests.get("simple_tests", {})
+            calibration_tests = unit_tests.get("calibration_tests", {})
+            
+            html_content += f"""
+                <div class="metric-card">
+                    <div class="metric-value">{simple_tests.get('passed', 0)}/{simple_tests.get('total', 0)}</div>
+                    <div class="metric-label">🔧 Simple Tests</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">{calibration_tests.get('passed', 0)}/{calibration_tests.get('total', 0)}</div>
+                    <div class="metric-label">📐 Calibration Tests</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">{(calibration_tests.get('passed', 0) / calibration_tests.get('total', 1) * 100) if calibration_tests.get('total', 0) > 0 else 0:.1f}%</div>
+                    <div class="metric-label">🎯 Critical Algorithm Coverage</div>
+                </div>"""
+        
+        html_content += """
             </div>
             
             <h2>📈 Code Quality</h2>

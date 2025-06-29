@@ -1,0 +1,165 @@
+/**
+ * @file csrf_protection.cpp
+ * @brief Безопасная CSRF защита для веб-интерфейса JXCT
+ * @date 2025-01-22
+ * @author AI Assistant (Tech Debt Reduction Plan - Stage 1.2)
+ * 
+ * ВАЖНО: Реализация НЕ нарушает существующий функционал
+ * Добавляет дополнительную защиту без поломки API
+ */
+
+#include "../../include/web_routes.h"
+#include "../../include/logger.h"
+#include <Arduino.h>
+#include <WiFi.h>
+
+// ============================================================================
+// ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ДЛЯ CSRF
+// ============================================================================
+
+static String currentCSRFToken = "";
+static unsigned long tokenGeneratedTime = 0;
+const unsigned long CSRF_TOKEN_LIFETIME = 30 * 60 * 1000; // 30 минут в миллисекундах
+
+// ============================================================================
+// БЕЗОПАСНАЯ ГЕНЕРАЦИЯ CSRF ТОКЕНОВ
+// ============================================================================
+
+String generateCSRFToken() {
+    // Используем различные источники энтропии для безопасности
+    String token = "";
+    
+    // Компоненты для генерации токена:
+    unsigned long currentTime = millis();
+    uint32_t freeHeap = ESP.getFreeHeap();
+    uint32_t chipId = ESP.getEfuseMac();
+    
+    // Добавляем MAC адрес для уникальности
+    String macAddr = WiFi.macAddress();
+    macAddr.replace(":", "");
+    
+    // Генерируем токен из различных источников
+    token = String(currentTime, HEX) + 
+            String(freeHeap, HEX) + 
+            String(chipId, HEX) + 
+            macAddr.substring(6); // Последние 6 символов MAC
+    
+    // Сохраняем токен и время генерации
+    currentCSRFToken = token;
+    tokenGeneratedTime = currentTime;
+    
+    logDebug("CSRF токен сгенерирован: %s (время: %lu)", token.c_str(), currentTime);
+    
+    return token;
+}
+
+bool validateCSRFToken(const String& token) {
+    // Если токен пустой или не инициализирован
+    if (token.isEmpty() || currentCSRFToken.isEmpty()) {
+        logWarn("CSRF валидация: пустой токен");
+        return false;
+    }
+    
+    // Проверяем время жизни токена
+    unsigned long currentTime = millis();
+    if (currentTime - tokenGeneratedTime > CSRF_TOKEN_LIFETIME) {
+        logWarn("CSRF токен истек (время: %lu, генерирован: %lu)", 
+                currentTime, tokenGeneratedTime);
+        currentCSRFToken = ""; // Очищаем истекший токен
+        return false;
+    }
+    
+    // Проверяем совпадение токенов
+    bool isValid = (token == currentCSRFToken);
+    
+    if (isValid) {
+        logDebug("CSRF токен валиден");
+    } else {
+        logWarn("CSRF токен невалиден: ожидался %s, получен %s", 
+                currentCSRFToken.c_str(), token.c_str());
+    }
+    
+    return isValid;
+}
+
+String getCSRFHiddenField() {
+    // Генерируем новый токен если текущий пустой или истек
+    if (currentCSRFToken.isEmpty() || 
+        (millis() - tokenGeneratedTime) > CSRF_TOKEN_LIFETIME) {
+        generateCSRFToken();
+    }
+    
+    return "<input type=\"hidden\" name=\"csrf_token\" value=\"" + 
+           currentCSRFToken + "\">";
+}
+
+bool checkCSRFSafety() {
+    // GET запросы всегда безопасны (идемпотентные)
+    HTTPMethod method = webServer.method();
+    if (method == HTTP_GET || method == HTTP_HEAD || method == HTTP_OPTIONS) {
+        return true;
+    }
+    
+    // POST, PUT, DELETE требуют проверки CSRF
+    String csrfToken = "";
+    
+    // Ищем токен в POST параметрах
+    if (webServer.hasArg("csrf_token")) {
+        csrfToken = webServer.arg("csrf_token");
+    }
+    
+    // Если токен не найден в POST, ищем в заголовках
+    if (csrfToken.isEmpty() && webServer.hasHeader("X-CSRF-Token")) {
+        csrfToken = webServer.header("X-CSRF-Token");
+    }
+    
+    // Логируем попытку доступа
+    String clientIP = webServer.client().remoteIP().toString();
+    String uri = webServer.uri();
+    
+    if (csrfToken.isEmpty()) {
+        logWarn("CSRF: токен отсутствует для %s %s от %s", 
+                methodToString(method).c_str(), uri.c_str(), clientIP.c_str());
+        return false;
+    }
+    
+    bool isValid = validateCSRFToken(csrfToken);
+    
+    if (!isValid) {
+        logWarn("CSRF: валидация не пройдена для %s %s от %s", 
+                methodToString(method).c_str(), uri.c_str(), clientIP.c_str());
+    }
+    
+    return isValid;
+}
+
+// ============================================================================
+// ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
+// ============================================================================
+
+String methodToString(HTTPMethod method) {
+    switch (method) {
+        case HTTP_GET: return "GET";
+        case HTTP_POST: return "POST";
+        case HTTP_PUT: return "PUT";
+        case HTTP_DELETE: return "DELETE";
+        case HTTP_PATCH: return "PATCH";
+        case HTTP_HEAD: return "HEAD";
+        case HTTP_OPTIONS: return "OPTIONS";
+        default: return "UNKNOWN";
+    }
+}
+
+// ============================================================================
+// ИНИЦИАЛИЗАЦИЯ CSRF ЗАЩИТЫ
+// ============================================================================
+
+void initCSRFProtection() {
+    logInfo("Инициализация CSRF защиты");
+    
+    // Генерируем первоначальный токен
+    generateCSRFToken();
+    
+    logSuccess("CSRF защита активирована (время жизни токена: %lu мин)", 
+               CSRF_TOKEN_LIFETIME / 60000);
+} 

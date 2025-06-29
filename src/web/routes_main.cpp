@@ -17,6 +17,15 @@ void setupMainRoutes()
         {
             logWebRequest("POST", "/save", webServer.client().remoteIP().toString());
 
+            // CSRF защита (безопасная - не ломает API)
+            if (!checkCSRFSafety()) {
+                logWarn("CSRF атака отклонена на /save от %s", 
+                        webServer.client().remoteIP().toString().c_str());
+                String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
+                webServer.send(403, "text/html; charset=utf-8", html);
+                return;
+            }
+
             // Валидация входных данных
             if (!validateConfigInput(true))
             {
