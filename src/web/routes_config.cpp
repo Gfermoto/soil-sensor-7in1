@@ -12,6 +12,7 @@
 #include "../../include/logger.h"
 #include "../../include/web_routes.h"
 #include "../../include/web/csrf_protection.h"  // 🔒 CSRF защита
+#include "../../include/validation_utils.h"  // ✅ Валидация входных данных
 #include "../wifi_manager.h"
 
 extern WebServer webServer;
@@ -164,11 +165,30 @@ void setupConfigRoutes()
                          return;
                      }
 
-                     // Сохраняем интервалы (с конвертацией в миллисекунды)
-                     config.sensorReadInterval = webServer.arg("sensor_interval").toInt() * 1000;  // сек -> мс
-                     config.mqttPublishInterval = webServer.arg("mqtt_interval").toInt() * 60000;  // мин -> мс
-                     config.thingSpeakInterval = webServer.arg("ts_interval").toInt() * 60000;     // мин -> мс
-                     config.webUpdateInterval = webServer.arg("web_interval").toInt() * 1000;      // сек -> мс
+                     // ======= ВАЛИДАЦИЯ ВХОДНЫХ ДАННЫХ =======
+                     unsigned long sensorMs = webServer.arg("sensor_interval").toInt() * 1000;
+                     unsigned long mqttMs = webServer.arg("mqtt_interval").toInt() * 60000;
+                     unsigned long tsMs = webServer.arg("ts_interval").toInt() * 60000;
+                     unsigned long webMs = webServer.arg("web_interval").toInt() * 1000;
+
+                     ValidationResult valSensor = validateSensorReadInterval(sensorMs);
+                     ValidationResult valMqtt = validateMQTTPublishInterval(mqttMs);
+                     ValidationResult valTs = validateThingSpeakInterval(tsMs);
+
+                     if (!valSensor.isValid || !valMqtt.isValid || !valTs.isValid)
+                     {
+                         String html = generateErrorPage(400, "Ошибка валидации интервалов: " +
+                                                          String(!valSensor.isValid ? valSensor.message :
+                                                                 !valMqtt.isValid ? valMqtt.message : valTs.message));
+                         webServer.send(400, "text/html; charset=utf-8", html);
+                         return;
+                     }
+
+                     // ======= СОХРАНЯЕМ НАСТРОЙКИ =======
+                     config.sensorReadInterval = sensorMs;
+                     config.mqttPublishInterval = mqttMs;
+                     config.thingSpeakInterval = tsMs;
+                     config.webUpdateInterval = webMs;
 
                      // Сохраняем пороги дельта-фильтра
                      config.deltaTemperature = webServer.arg("delta_temp").toFloat();
