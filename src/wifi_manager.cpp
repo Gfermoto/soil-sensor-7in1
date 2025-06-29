@@ -16,6 +16,7 @@
 #include "mqtt_client.h"
 #include "thingspeak_client.h"
 #include "web_routes.h"  // 🏗️ Модульная архитектура v2.4.5
+#include "web/csrf_protection.h"  // 🔒 CSRF защита
 
 // Константы
 #define RESET_BUTTON_PIN 0             // GPIO0 для кнопки сброса
@@ -401,6 +402,7 @@ void handleRoot()
     html += navHtml();
     html += "<h1>" UI_ICON_CONFIG " Настройки JXCT</h1>";
     html += "<form action='/save' method='post'>";
+    html += getCSRFHiddenField(); // Добавляем CSRF токен
     html += "<div class='section'><h2>WiFi настройки</h2>";
     html += "<div class='form-group'><label for='ssid'>SSID:</label><input type='text' id='ssid' name='ssid' value='" +
             String(config.ssid) + "' required></div>";

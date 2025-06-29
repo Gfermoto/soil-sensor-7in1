@@ -8,7 +8,7 @@
  * Добавляет дополнительную защиту без поломки API
  */
 
-#include "../../include/web_routes.h"
+#include "../../include/web/csrf_protection.h"
 #include "../../include/logger.h"
 #include <Arduino.h>
 #include <WiFi.h>

@@ -12,7 +12,7 @@
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
 #include "../../include/web_routes.h"  // ✅ CSRF защита
-#include "../../include/web_routes.h"
+#include "../../include/web/csrf_protection.h"  // 🔒 CSRF защита
 #include "../modbus_sensor.h"
 #include "../mqtt_client.h"
 #include "../wifi_manager.h"
@@ -73,8 +73,10 @@ void setupServiceRoutes()
                     "</div>";
             html += "<div class='section' style='margin-top:20px;'>";
             html += "<form method='post' action='/reset' style='margin-bottom:10px'>";
+            html += getCSRFHiddenField();
             html += generateButton(ButtonType::DANGER, UI_ICON_RESET, "Сбросить настройки", "") + "</form>";
             html += "<form method='post' action='/reboot' style='margin-bottom:10px'>";
+            html += getCSRFHiddenField();
             html += generateButton(ButtonType::SECONDARY, "🔄", "Перезагрузить", "") + "</form>";
             html += "</div>";
             html +=
@@ -123,11 +125,12 @@ void setupServiceRoutes()
                      logWebRequest("POST", webServer.uri(), webServer.client().remoteIP().toString());
 
                      // ✅ CSRF защита - критическая операция сброса!
-                     if (!validateCSRFToken(webServer.arg("csrf_token")))
+                     if (!checkCSRFSafety())
                      {
-                         webServer.send(403, "text/html; charset=utf-8", 
-                             "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>🚫 CSRF атака</title></head>"
-                             "<body><h1>🚫 CSRF атака заблокирована</h1><p>Попытка сброса настроек заблокирована</p></body></html>");
+                         logWarn("CSRF атака отклонена на /reset от %s", 
+                                 webServer.client().remoteIP().toString().c_str());
+                         String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
+                         webServer.send(403, "text/html; charset=utf-8", html);
                          return;
                      }
 
@@ -162,11 +165,12 @@ void setupServiceRoutes()
                      logWebRequest("POST", webServer.uri(), webServer.client().remoteIP().toString());
 
                      // ✅ CSRF защита - критическая операция перезагрузки!
-                     if (!validateCSRFToken(webServer.arg("csrf_token")))
+                     if (!checkCSRFSafety())
                      {
-                         webServer.send(403, "text/html; charset=utf-8", 
-                             "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>🚫 CSRF атака</title></head>"
-                             "<body><h1>🚫 CSRF атака заблокирована</h1><p>Попытка перезагрузки заблокирована</p></body></html>");
+                         logWarn("CSRF атака отклонена на /reboot от %s", 
+                                 webServer.client().remoteIP().toString().c_str());
+                         String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
+                         webServer.send(403, "text/html; charset=utf-8", html);
                          return;
                      }
 
