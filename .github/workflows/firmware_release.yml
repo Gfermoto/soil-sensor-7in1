@@ -32,13 +32,14 @@ jobs:
       - name: Verify VERSION file matches tag
         run: |
           TAG_VERSION="${GITHUB_REF_NAME#v}"
-          FILE_VERSION=$(cat VERSION)
+          FILE_VERSION=$(cat VERSION | tr -d '\n\r')
           HEADER_VERSION=$(grep -o 'JXCT_VERSION_STRING ".*"' include/version.h | cut -d'"' -f2)
           
           echo "📋 Проверка версий:"
-          echo "  Tag: $TAG_VERSION"
-          echo "  VERSION file: $FILE_VERSION"
-          echo "  Header file: $HEADER_VERSION"
+          echo "  Tag: '$TAG_VERSION'"
+          echo "  VERSION file: '$FILE_VERSION'"
+          echo "  Header file: '$HEADER_VERSION'"
+          echo "  GITHUB_REF_NAME: '$GITHUB_REF_NAME'"
           
           if [ "$TAG_VERSION" != "$FILE_VERSION" ]; then
             echo "❌ VERSION file ($FILE_VERSION) doesn't match tag ($TAG_VERSION)"
