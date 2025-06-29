@@ -359,37 +359,23 @@ void setupConfigRoutes()
             }
 
             // --- Применяем конфигурацию --- (минимальный набор, расширяйте по необходимости)
-            ConfigData tmpCfg = config; // копируем текущую конфигурацию для атомарной валидации
             if (doc.containsKey("wifi"))
             {
                 JsonObject wifi = doc["wifi"];
-                strlcpy(tmpCfg.ssid, wifi["ssid"].as<const char*>(), sizeof(tmpCfg.ssid));
-                strlcpy(tmpCfg.password, wifi["password"].as<const char*>(), sizeof(tmpCfg.password));
+                strlcpy(config.ssid, wifi["ssid"].as<const char*>(), sizeof(config.ssid));
+                strlcpy(config.password, wifi["password"].as<const char*>(), sizeof(config.password));
             }
             if (doc.containsKey("mqtt"))
             {
                 JsonObject mqtt = doc["mqtt"];
-                tmpCfg.flags.mqttEnabled = mqtt["enabled"].as<bool>();
-                strlcpy(tmpCfg.mqttServer, mqtt["server"].as<const char*>(), sizeof(tmpCfg.mqttServer));
-                tmpCfg.mqttPort = mqtt["port"].as<int>();
-                strlcpy(tmpCfg.mqttUser, mqtt["user"].as<const char*>(), sizeof(tmpCfg.mqttUser));
-                strlcpy(tmpCfg.mqttPassword, mqtt["password"].as<const char*>(), sizeof(tmpCfg.mqttPassword));
+                config.flags.mqttEnabled = mqtt["enabled"].as<bool>();
+                strlcpy(config.mqttServer, mqtt["server"].as<const char*>(), sizeof(config.mqttServer));
+                config.mqttPort = mqtt["port"].as<int>();
+                strlcpy(config.mqttUser, mqtt["user"].as<const char*>(), sizeof(config.mqttUser));
+                strlcpy(config.mqttPassword, mqtt["password"].as<const char*>(), sizeof(config.mqttPassword));
             }
 
-            // ===== ВАЛИДАЦИЯ ПОЛНОЙ КОНФИГУРАЦИИ =====
-            ConfigValidationResult vres = validateFullConfig(tmpCfg, true);
-            if (!vres.isValid)
-            {
-                logValidationResult(vres, "/api/config/import");
-                String errJson = formatValidationErrors(vres);
-                webServer.send(400, "application/json", errJson);
-                importedJson = "";
-                return;
-            }
-
-            // Если валидация прошла, копируем tmpCfg → config
-            config = tmpCfg;
-
+            // Сохраняем в NVS
             saveConfig();
             importedJson = "";
 

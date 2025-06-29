@@ -88,6 +88,12 @@
 - [✅] Создана безопасная CSRF защита в `src/web/csrf_protection.cpp`
 - [✅] Добавлена проверка CSRF в `/save` эндпоинт
 - [✅] Интеграция в `include/web_routes.h`
+- [ ] **Stubs + CI workflow** (подключение unit-тестов под native)
+  - [ ] Создать заглушки для Arduino/WebServer/WiFi/ESP в `test/stubs/`
+  - [ ] Разнести тесты по папкам: `test/native/` vs `test/esp/`
+  - [ ] Настроить `test_ignore`/`test_filter` в `platformio.ini`
+  - [ ] Обновить CI workflow для запуска `pio test -e esp32dev --without-upload`
+  - [ ] Добавить stat-/san-анализ (clang-tidy, ASan) для native тестов
 - [ ] Улучшить input validation (defensive programming)
 - [ ] Проверить rate limiting (уже частично есть)
 - [ ] Security audit OWASP IoT Top 10

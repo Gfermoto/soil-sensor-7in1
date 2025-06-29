@@ -2,6 +2,7 @@
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
 #include "../../include/web_routes.h"
+#include "../../include/validation_utils.h"  // ✅ Валидация
 #include "../wifi_manager.h"
 
 void setupMainRoutes()
@@ -26,21 +27,42 @@ void setupMainRoutes()
                 return;
             }
 
-            // Валидация входных данных
-            if (!validateConfigInput(true))
+            // ====== ВАЛИДАЦИЯ ЧЕРЕЗ validation_utils ======
+            ValidationResult ssidRes = validateSSID(webServer.arg("ssid"));
+            ValidationResult passRes = validatePassword(webServer.arg("password"));
+
+            if (!ssidRes.isValid || !passRes.isValid)
             {
-                String errorMsg = "Заполните все обязательные поля";
-
-                // В режиме AP проверяем только SSID
-                if (currentWiFiMode == WiFiMode::AP &&
-                    (!webServer.hasArg("ssid") || webServer.arg("ssid").length() == 0))
-                {
-                    errorMsg = "Ошибка: заполните поле SSID";
-                }
-
-                String html = generateValidationErrorResponse(errorMsg);
+                String msg = !ssidRes.isValid ? ssidRes.message : passRes.message;
+                String html = generateErrorPage(400, msg);
                 webServer.send(400, "text/html; charset=utf-8", html);
                 return;
+            }
+
+            if (currentWiFiMode == WiFiMode::STA)
+            {
+                if (webServer.hasArg("mqtt_enabled"))
+                {
+                    ValidationResult hostRes = validateMQTTServer(webServer.arg("mqtt_server"));
+                    ValidationResult portRes = validateMQTTPort(webServer.arg("mqtt_port").toInt());
+                    if (!hostRes.isValid || !portRes.isValid)
+                    {
+                        String msg = !hostRes.isValid ? hostRes.message : portRes.message;
+                        String html = generateErrorPage(400, msg);
+                        webServer.send(400, "text/html; charset=utf-8", html);
+                        return;
+                    }
+                }
+                if (webServer.hasArg("ts_enabled"))
+                {
+                    ValidationResult tsRes = validateThingSpeakAPIKey(webServer.arg("ts_api_key"));
+                    if (!tsRes.isValid)
+                    {
+                        String html = generateErrorPage(400, tsRes.message);
+                        webServer.send(400, "text/html; charset=utf-8", html);
+                        return;
+                    }
+                }
             }
 
             // Сохранение настроек в конфигурацию
