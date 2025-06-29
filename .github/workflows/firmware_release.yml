@@ -31,23 +31,29 @@ jobs:
 
       - name: Verify VERSION file matches tag
         run: |
+          # Убираем 'v' из начала тега, если есть
           TAG_VERSION="${GITHUB_REF_NAME#v}"
-          FILE_VERSION=$(cat VERSION | tr -d '\n\r')
+          FILE_VERSION=$(cat VERSION | tr -d '\n\r' | tr -d ' ')
           HEADER_VERSION=$(grep -o 'JXCT_VERSION_STRING ".*"' include/version.h | cut -d'"' -f2)
           
           echo "📋 Проверка версий:"
-          echo "  Tag: '$TAG_VERSION'"
-          echo "  VERSION file: '$FILE_VERSION'"
-          echo "  Header file: '$HEADER_VERSION'"
           echo "  GITHUB_REF_NAME: '$GITHUB_REF_NAME'"
+          echo "  TAG_VERSION: '$TAG_VERSION'"
+          echo "  FILE_VERSION: '$FILE_VERSION'"
+          echo "  HEADER_VERSION: '$HEADER_VERSION'"
+          echo "  Lengths: TAG=${#TAG_VERSION}, FILE=${#FILE_VERSION}, HEADER=${#HEADER_VERSION}"
           
           if [ "$TAG_VERSION" != "$FILE_VERSION" ]; then
             echo "❌ VERSION file ($FILE_VERSION) doesn't match tag ($TAG_VERSION)"
+            echo "   TAG_VERSION length: ${#TAG_VERSION}"
+            echo "   FILE_VERSION length: ${#FILE_VERSION}"
             exit 1
           fi
           
           if [ "$TAG_VERSION" != "$HEADER_VERSION" ]; then
             echo "❌ Header file ($HEADER_VERSION) doesn't match tag ($TAG_VERSION)"
+            echo "   TAG_VERSION length: ${#TAG_VERSION}"
+            echo "   HEADER_VERSION length: ${#HEADER_VERSION}"
             exit 1
           fi
           
