@@ -11,6 +11,7 @@
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
 #include "../../include/web_routes.h"
+#include "../../include/web/csrf_protection.h"  // 🔒 CSRF защита
 #include "../wifi_manager.h"
 
 extern WebServer webServer;
@@ -44,7 +45,7 @@ void setupConfigRoutes()
             html += navHtml();
             html += "<h1>" UI_ICON_INTERVALS " Настройка интервалов и фильтров</h1>";
             html += "<form action='/save_intervals' method='post'>";
-            html += "<input type='hidden' name='csrf_token' value='" + generateCSRFToken() + "'>";  // ✅ CSRF токен
+            html += getCSRFHiddenField(); // Добавляем CSRF токен
 
             html += "<div class='section'><h2>📊 Интервалы опроса и публикации</h2>";
             html += "<div class='form-group'><label for='sensor_interval'>Интервал опроса датчика (сек):</label>";
@@ -148,11 +149,12 @@ void setupConfigRoutes()
                      logWebRequest("POST", "/save_intervals", webServer.client().remoteIP().toString());
 
                      // ✅ CSRF защита
-                     if (!validateCSRFToken(webServer.arg("csrf_token")))
+                     if (!checkCSRFSafety())
                      {
-                         webServer.send(403, "text/html; charset=utf-8", 
-                             "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>Ошибка безопасности</title></head>"
-                             "<body><h1>🚫 CSRF атака заблокирована</h1><p>Недействительный токен безопасности</p></body></html>");
+                         logWarn("CSRF атака отклонена на /save_intervals от %s", 
+                                 webServer.client().remoteIP().toString().c_str());
+                         String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
+                         webServer.send(403, "text/html; charset=utf-8", html);
                          return;
                      }
 
@@ -286,6 +288,7 @@ void setupConfigRoutes()
                      html += "<h2>📥 Импорт конфигурации</h2>";
                      html += "<p>Загрузите файл конфигурации для восстановления настроек:</p>";
                      html += "<form action='/api/config/import' method='post' enctype='multipart/form-data'>";
+                     html += getCSRFHiddenField(); // Добавляем CSRF токен
                      html += "<input type='file' name='config' accept='.json' required>";
                      html += generateButton(ButtonType::SECONDARY, "📤", "Загрузить конфигурацию", "");
                      html += "</form>";
@@ -310,6 +313,16 @@ void setupConfigRoutes()
             if (currentWiFiMode == WiFiMode::AP)
             {
                 webServer.send(403, "application/json", "{\"error\":\"Недоступно в режиме AP\"}");
+                importedJson = "";
+                return;
+            }
+
+            // ✅ CSRF защита - критическая операция импорта конфигурации!
+            if (!checkCSRFSafety())
+            {
+                logWarn("CSRF атака отклонена на /api/config/import от %s", 
+                        webServer.client().remoteIP().toString().c_str());
+                webServer.send(403, "application/json", "{\"error\":\"CSRF token invalid\"}");
                 importedJson = "";
                 return;
             }

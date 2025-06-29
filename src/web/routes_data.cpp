@@ -14,6 +14,7 @@
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
 #include "../../include/web_routes.h"
+#include "../../include/web/csrf_protection.h"  // 🔒 CSRF защита
 #include "../modbus_sensor.h"
 #include "../wifi_manager.h"
 #include "calibration_manager.h"
@@ -525,6 +526,7 @@ void setupDataRoutes()
             // Форма загрузки CSV
             html +=
                 "<form action='/readings/upload' method='post' enctype='multipart/form-data' style='margin-top:15px;'>";
+            html += getCSRFHiddenField(); // Добавляем CSRF токен
             html +=
                 "<div class='form-group'><label for='calibration_csv'><strong>Загрузить CSV файл "
                 "калибровки:</strong></label>";
@@ -542,6 +544,7 @@ void setupDataRoutes()
             if (csvPresent)
             {
                 html += "<form action='/readings/csv_reset' method='post' style='margin-top:10px;'>";
+                html += getCSRFHiddenField(); // Добавляем CSRF токен
                 html += generateButton(ButtonType::SECONDARY, "🗑️", "Удалить CSV таблицу", "");
                 html += "</form>";
             }
@@ -724,6 +727,17 @@ void setupDataRoutes()
                  []()
                  {
                      logWebRequest("POST", "/readings/csv_reset", webServer.client().remoteIP().toString());
+                     
+                     // ✅ CSRF защита - критическая операция удаления!
+                     if (!checkCSRFSafety())
+                     {
+                         logWarn("CSRF атака отклонена на /readings/csv_reset от %s", 
+                                 webServer.client().remoteIP().toString().c_str());
+                         String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
+                         webServer.send(403, "text/html; charset=utf-8", html);
+                         return;
+                     }
+                     
                      CalibrationManager::init();
                      bool removed = CalibrationManager::deleteTable(SoilProfile::SAND);
                      String toast = removed ? "CSV+удален" : "CSV+не+найден";
