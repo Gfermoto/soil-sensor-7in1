@@ -37,13 +37,18 @@ jobs:
           # Убираем 'v' из начала тега, если есть
           TAG_VERSION="${GITHUB_REF_NAME#v}"
           FILE_VERSION=$(cat VERSION | tr -d '\n\r' | tr -d ' ')
-          HEADER_VERSION=$(grep '^#define JXCT_VERSION_STRING' include/version.h | cut -d'"' -f2)
+          
+          # Извлекаем версию из макросов в header файле
+          MAJOR=$(grep '^#define JXCT_VERSION_MAJOR' include/version.h | awk '{print $3}')
+          MINOR=$(grep '^#define JXCT_VERSION_MINOR' include/version.h | awk '{print $3}')
+          PATCH=$(grep '^#define JXCT_VERSION_PATCH' include/version.h | awk '{print $3}')
+          HEADER_VERSION="${MAJOR}.${MINOR}.${PATCH}"
           
           echo "📋 Проверка версий:"
           echo "  GITHUB_REF_NAME: '$GITHUB_REF_NAME'"
           echo "  TAG_VERSION: '$TAG_VERSION'"
           echo "  FILE_VERSION: '$FILE_VERSION'"
-          echo "  HEADER_VERSION: '$HEADER_VERSION'"
+          echo "  HEADER_VERSION: '$HEADER_VERSION' (MAJOR=$MAJOR, MINOR=$MINOR, PATCH=$PATCH)"
           echo "  Lengths: TAG=${#TAG_VERSION}, FILE=${#FILE_VERSION}, HEADER=${#HEADER_VERSION}"
           
           if [ "$TAG_VERSION" != "$FILE_VERSION" ]; then
