@@ -37,9 +37,6 @@
 # Visual Studio Code
 .vscode/
 
-# MkDocs build directory
-site/
-
 # Python virtual environment
 .venv/
 
