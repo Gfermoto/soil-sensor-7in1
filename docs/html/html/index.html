@@ -1,0 +1,267 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT 7-в-1 Датчик Почвы: 🌱 JXCT 7-в-1 - Документация</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('index.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">🌱 JXCT 7-в-1 - Документация </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md_docs_2index"></a></p>
+<p><b>Профессиональная IoT система мониторинга почвы на базе ESP32</b></p>
+<p><a href="https://github.com/Gfermoto/soil-sensor-7in1/releases"><img src="https://img.shields.io/github/v/tag/Gfermoto/soil-sensor-7in1?color=blue&amp;label=version" alt="Version" class="inline"/></a> <a href="https://www.espressif.com/en/products/socs/esp32"><img src="https://img.shields.io/badge/platform-ESP32-green.svg" alt="Platform" style="pointer-events: none;" class="inline"/></a> [<img src="https://img.shields.io/github/license/Gfermoto/soil-sensor-7in1?color=yellow&amp;label=license" alt="License" class="inline"/>](LICENSE) <a href="https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml"><img src="https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml/badge.svg?branch=main" alt="CI" style="pointer-events: none;" class="inline"/></a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+🚀 Быстрый старт</h1>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Для пользователей</h2>
+<ul>
+<li><b>📋 Руководство пользователя</b> - Начало работы</li>
+<li><b>🌱 Агрономические рекомендации</b> - Лучшие практики</li>
+<li><b>🔬 Руководство по компенсации</b> - Настройка алгоритмов</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Для разработчиков</h2>
+<ul>
+<li><b>🧪 Руководство по тестированию</b> - Система тестирования</li>
+<li><b>📊 Текущие результаты</b> - Метрики качества</li>
+<li><b>🏗️ Архитектура</b> - Общая архитектура</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
+📚 Полная документация</h1>
+<h2><a class="anchor" id="autotoc_md5"></a>
+👥 Пользовательская документация</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Документ   </th><th class="markdownTableHeadNone">Описание    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">📋 Руководство пользователя   </td><td class="markdownTableBodyNone">Основное руководство по использованию    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">🔧 Техническая документация   </td><td class="markdownTableBodyNone">Технические детали и спецификации    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">🌱 Агрономические рекомендации   </td><td class="markdownTableBodyNone">Рекомендации для сельского хозяйства    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">📊 API документация   </td><td class="markdownTableBodyNone">Интерфейсы программирования    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">🔬 Руководство по компенсации   </td><td class="markdownTableBodyNone">Алгоритмы компенсации измерений   </td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md6"></a>
+👨‍💻 Документация разработчика</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Документ   </th><th class="markdownTableHeadNone">Описание    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">🧪 Руководство по тестированию   </td><td class="markdownTableBodyNone">Полная система тестирования    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">📊 Текущие результаты тестирования   </td><td class="markdownTableBodyNone">Актуальные метрики качества    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">🔄 Интеграция отчётов   </td><td class="markdownTableBodyNone">Веб-интеграция и API    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">📋 Отчёт о завершении Этапа 2   </td><td class="markdownTableBodyNone">Итоговый отчёт    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">🏗️ Архитектура проекта   </td><td class="markdownTableBodyNone">Общая архитектура    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">🔧 План рефакторинга   </td><td class="markdownTableBodyNone">Планы развития    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">⚠️ Отчёт о техническом долге   </td><td class="markdownTableBodyNone">Анализ качества кода   </td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md7"></a>
+📖 Дополнительные ресурсы</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Ресурс   </th><th class="markdownTableHeadNone">Описание    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">📄 Обзор API   </td><td class="markdownTableBodyNone">Краткий обзор API    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">🔧 Руководство по контрибьюции   </td><td class="markdownTableBodyNone">Как участвовать в разработке    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a href="html/">🌐 HTML документация</a>   </td><td class="markdownTableBodyNone">Doxygen документация    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">📖 Навигация по docs   </td><td class="markdownTableBodyNone">Полная навигация   </td></tr>
+</table>
+<h1><a class="anchor" id="autotoc_md8"></a>
+📊 Текущий статус проекта</h1>
+<h2><a class="anchor" id="autotoc_md9"></a>
+✅ Завершённые этапы</h2>
+<ul>
+<li><b>Этап 1</b>: ✅ Реализация тестов с отчётами</li>
+<li><b>Этап 2</b>: ✅ Интеграция отчётов с сайтом</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md10"></a>
+🎯 Текущие метрики качества</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Метрика   </th><th class="markdownTableHeadNone">Значение   </th><th class="markdownTableHeadNone">Цель    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Тесты</b>   </td><td class="markdownTableBodyNone">15/15 (100%)   </td><td class="markdownTableBodyNone">✅ Включая CSRF тесты    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Уязвимости безопасности</b>   </td><td class="markdownTableBodyNone">105 (-22%)   </td><td class="markdownTableBodyNone">🟡 Прогресс: CSRF защита    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Code Smells</b>   </td><td class="markdownTableBodyNone">75   </td><td class="markdownTableBodyNone">🟡 Средний приоритет    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Покрытие кода</b>   </td><td class="markdownTableBodyNone">75.2% (+4.4%)   </td><td class="markdownTableBodyNone">🟡 Цель: 90%+    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Рейтинг качества</b>   </td><td class="markdownTableBodyNone">C+ (улучшение)   </td><td class="markdownTableBodyNone">🟡 Прогресс к A   </td></tr>
+</table>
+<h2><a class="anchor" id="autotoc_md11"></a>
+🚀 Следующие шаги</h2>
+<ul>
+<li><b>Этап 3</b>: Продолжение снижения технического долга</li>
+<li><b>Приоритет 1</b>: Устранение оставшихся 105 уязвимостей безопасности</li>
+<li><b>Приоритет 2</b>: Рефакторинг 6 функций высокой сложности</li>
+<li><b>Достигнуто</b>: ✅ CSRF защита, ✅ Unit-тесты калибровки</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md12"></a>
+🔧 Основные возможности</h1>
+<h2><a class="anchor" id="autotoc_md13"></a>
+🌱 Измерения</h2>
+<ul>
+<li><b>Температура почвы</b> (-40°C до +80°C)</li>
+<li><b>Влажность почвы</b> (0-100% VWC)</li>
+<li><b>Электропроводность</b> (0-23 mS/cm)</li>
+<li><b>pH почвы</b> (3-9 pH)</li>
+<li><b>NPK удобрения</b> (0-1999 mg/kg)</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md14"></a>
+🧠 Алгоритмы компенсации</h2>
+<ul>
+<li><b>Модель Арчи</b> - компенсация температуры для EC</li>
+<li><b>Уравнение Нернста</b> - температурная компенсация pH</li>
+<li><b>FAO 56</b> - расчёт ET0 для орошения</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md15"></a>
+🌐 IoT интеграция</h2>
+<ul>
+<li><b>MQTT</b> - публикация данных</li>
+<li><b>ThingSpeak</b> - облачное хранение</li>
+<li><b>Modbus RTU</b> - промышленный протокол</li>
+<li><b>REST API</b> - веб-интерфейс</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md16"></a>
+🔧 Разработка</h2>
+<ul>
+<li><b>PlatformIO</b> - среда разработки</li>
+<li><b>Docker</b> - контейнеризация</li>
+<li><b>GitHub Actions</b> - CI/CD</li>
+<li><b>Doxygen</b> - документация кода</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md17"></a>
+🤝 Поддержка</h1>
+<ul>
+<li><b>Telegram:</b> <a href="https://t.me/Gfermoto">@Gfermoto</a></li>
+<li><b>Issues:</b> <a href="https://github.com/Gfermoto/soil-sensor-7in1/issues">GitHub Issues</a></li>
+<li><b>Документация:</b> <a href="https://gfermoto.github.io/soil-sensor-7in1/">GitHub Pages</a></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md18"></a>
+📄 Лицензия</h1>
+<p>Этот проект распространяется под лицензией <b>GNU Affero General Public License v3.0 (AGPL-3.0)</b>.</p>
+<p>Для коммерческого использования без раскрытия исходников доступна платная лицензия:</p><ul>
+<li>Email: <a href="#" onclick="location.href='mai'+'lto:'+'eye'+'ra'+'.te'+'am'+'@gm'+'ai'+'l.c'+'om'; return false;">eyera<span class="obfuscator">.nosp@m.</span>.tea<span class="obfuscator">.nosp@m.</span>m@gma<span class="obfuscator">.nosp@m.</span>il.c<span class="obfuscator">.nosp@m.</span>om</a></li>
+<li>Telegram: <a href="https://t.me/Gfermoto">@Gfermoto</a></li>
+</ul>
+<hr  />
+<p><b>EYERA Development Team</b> | Версия 3.6.7 | Июнь 2025 </p>
+</div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"></a>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Документация по JXCT 7-в-1 Датчик Почвы. Последние изменения: Пн 30 Июн 2025 21:59:00. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

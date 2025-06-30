@@ -177,4 +177,11 @@ void RUN_UNITY_TESTS() {
 int main() {
     RUN_UNITY_TESTS();
     return 0;
-} 
+}
+
+#ifdef _WIN32
+#include <windows.h>
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+    return main();
+}
+#endif 

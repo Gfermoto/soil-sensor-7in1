@@ -1,0 +1,372 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT 7-в-1 Датчик Почвы: Файл src/web/csrf_protection.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('csrf__protection_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл csrf_protection.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Безопасная CSRF защита для веб-интерфейса JXCT.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="csrf__protection_8h_source.html">../../include/web/csrf_protection.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">../../include/logger.h</a>&quot;</code><br />
+<code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &lt;WiFi.h&gt;</code><br />
+</div>
+<p><a href="csrf__protection_8cpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:ab27a975e89338b0b23a40e028b1ae9b2" id="r_ab27a975e89338b0b23a40e028b1ae9b2"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab27a975e89338b0b23a40e028b1ae9b2">generateCSRFToken</a> ()</td></tr>
+<tr class="memdesc:ab27a975e89338b0b23a40e028b1ae9b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация CSRF токена  <br /></td></tr>
+<tr class="separator:ab27a975e89338b0b23a40e028b1ae9b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a936ecd18be81531b306c2c4705f7e860" id="r_a936ecd18be81531b306c2c4705f7e860"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a936ecd18be81531b306c2c4705f7e860">validateCSRFToken</a> (const String &amp;token)</td></tr>
+<tr class="memdesc:a936ecd18be81531b306c2c4705f7e860"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверка CSRF токена  <br /></td></tr>
+<tr class="separator:a936ecd18be81531b306c2c4705f7e860"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab8be89322026594573b8f3c8064bbbc" id="r_aab8be89322026594573b8f3c8064bbbc"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab8be89322026594573b8f3c8064bbbc">getCSRFHiddenField</a> ()</td></tr>
+<tr class="memdesc:aab8be89322026594573b8f3c8064bbbc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получение скрытого поля с CSRF токеном для форм  <br /></td></tr>
+<tr class="separator:aab8be89322026594573b8f3c8064bbbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0320c55f4de318df92de8a73e8e7d828" id="r_a0320c55f4de318df92de8a73e8e7d828"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0320c55f4de318df92de8a73e8e7d828">checkCSRFSafety</a> ()</td></tr>
+<tr class="memdesc:a0320c55f4de318df92de8a73e8e7d828"><td class="mdescLeft">&#160;</td><td class="mdescRight">Middleware для проверки CSRF на POST запросах  <br /></td></tr>
+<tr class="separator:a0320c55f4de318df92de8a73e8e7d828"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad9d33eff9bf83f09111cc522049930bc" id="r_ad9d33eff9bf83f09111cc522049930bc"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad9d33eff9bf83f09111cc522049930bc">methodToString</a> (HTTPMethod method)</td></tr>
+<tr class="memdesc:ad9d33eff9bf83f09111cc522049930bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Преобразование HTTP метода в строку  <br /></td></tr>
+<tr class="separator:ad9d33eff9bf83f09111cc522049930bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac922ac6444b8b990e13e3746ca931065" id="r_ac922ac6444b8b990e13e3746ca931065"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac922ac6444b8b990e13e3746ca931065">initCSRFProtection</a> ()</td></tr>
+<tr class="memdesc:ac922ac6444b8b990e13e3746ca931065"><td class="mdescLeft">&#160;</td><td class="mdescRight">Инициализация CSRF защиты  <br /></td></tr>
+<tr class="separator:ac922ac6444b8b990e13e3746ca931065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a235cd7fd2255ab7b1afb6437529776f8" id="r_a235cd7fd2255ab7b1afb6437529776f8"><td class="memItemLeft" align="right" valign="top">static String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a235cd7fd2255ab7b1afb6437529776f8">currentCSRFToken</a> = &quot;&quot;</td></tr>
+<tr class="separator:a235cd7fd2255ab7b1afb6437529776f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eb48d2dc5c72caad5b9064030e8ce5e" id="r_a7eb48d2dc5c72caad5b9064030e8ce5e"><td class="memItemLeft" align="right" valign="top">static unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7eb48d2dc5c72caad5b9064030e8ce5e">tokenGeneratedTime</a> = 0</td></tr>
+<tr class="separator:a7eb48d2dc5c72caad5b9064030e8ce5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0857d7f29ac875e2258e9bd3487e6ce0" id="r_a0857d7f29ac875e2258e9bd3487e6ce0"><td class="memItemLeft" align="right" valign="top">const unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0857d7f29ac875e2258e9bd3487e6ce0">CSRF_TOKEN_LIFETIME</a> = 30 * 60 * 1000</td></tr>
+<tr class="separator:a0857d7f29ac875e2258e9bd3487e6ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Безопасная CSRF защита для веб-интерфейса JXCT. </p>
+<dl class="section date"><dt>Дата</dt><dd>2025-01-22 </dd></dl>
+<dl class="section author"><dt>Автор</dt><dd>AI Assistant (Tech Debt Reduction Plan - Stage 1.2)</dd></dl>
+<p>ВАЖНО: Реализация НЕ нарушает существующий функционал Добавляет дополнительную защиту без поломки API </p>
+
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a></p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="a0320c55f4de318df92de8a73e8e7d828" name="a0320c55f4de318df92de8a73e8e7d828"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0320c55f4de318df92de8a73e8e7d828">&#9670;&#160;</a></span>checkCSRFSafety()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool checkCSRFSafety </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Middleware для проверки CSRF на POST запросах </p>
+<dl class="section return"><dt>Возвращает</dt><dd>true если запрос безопасен (GET или валидный CSRF токен) </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00096">96</a></p>
+
+</div>
+</div>
+<a id="ab27a975e89338b0b23a40e028b1ae9b2" name="ab27a975e89338b0b23a40e028b1ae9b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab27a975e89338b0b23a40e028b1ae9b2">&#9670;&#160;</a></span>generateCSRFToken()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateCSRFToken </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация CSRF токена </p>
+<dl class="section return"><dt>Возвращает</dt><dd>Строка с уникальным CSRF токеном </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00028">28</a></p>
+
+</div>
+</div>
+<a id="aab8be89322026594573b8f3c8064bbbc" name="aab8be89322026594573b8f3c8064bbbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab8be89322026594573b8f3c8064bbbc">&#9670;&#160;</a></span>getCSRFHiddenField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String getCSRFHiddenField </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Получение скрытого поля с CSRF токеном для форм </p>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML строка с hidden input для CSRF токена </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00085">85</a></p>
+
+</div>
+</div>
+<a id="ac922ac6444b8b990e13e3746ca931065" name="ac922ac6444b8b990e13e3746ca931065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac922ac6444b8b990e13e3746ca931065">&#9670;&#160;</a></span>initCSRFProtection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initCSRFProtection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Инициализация CSRF защиты </p>
+
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00157">157</a></p>
+
+</div>
+</div>
+<a id="ad9d33eff9bf83f09111cc522049930bc" name="ad9d33eff9bf83f09111cc522049930bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9d33eff9bf83f09111cc522049930bc">&#9670;&#160;</a></span>methodToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String methodToString </td>
+          <td>(</td>
+          <td class="paramtype">HTTPMethod</td>          <td class="paramname"><span class="paramname"><em>method</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Преобразование HTTP метода в строку </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>HTTP метод </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Строковое представление метода </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00140">140</a></p>
+
+</div>
+</div>
+<a id="a936ecd18be81531b306c2c4705f7e860" name="a936ecd18be81531b306c2c4705f7e860"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a936ecd18be81531b306c2c4705f7e860">&#9670;&#160;</a></span>validateCSRFToken()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool validateCSRFToken </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>token</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверка CSRF токена </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">token</td><td>Токен для проверки </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true если токен валиден </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00056">56</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a0857d7f29ac875e2258e9bd3487e6ce0" name="a0857d7f29ac875e2258e9bd3487e6ce0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0857d7f29ac875e2258e9bd3487e6ce0">&#9670;&#160;</a></span>CSRF_TOKEN_LIFETIME</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unsigned long CSRF_TOKEN_LIFETIME = 30 * 60 * 1000</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00022">22</a></p>
+
+</div>
+</div>
+<a id="a235cd7fd2255ab7b1afb6437529776f8" name="a235cd7fd2255ab7b1afb6437529776f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a235cd7fd2255ab7b1afb6437529776f8">&#9670;&#160;</a></span>currentCSRFToken</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">String currentCSRFToken = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00020">20</a></p>
+
+</div>
+</div>
+<a id="a7eb48d2dc5c72caad5b9064030e8ce5e" name="a7eb48d2dc5c72caad5b9064030e8ce5e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eb48d2dc5c72caad5b9064030e8ce5e">&#9670;&#160;</a></span>tokenGeneratedTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long tokenGeneratedTime = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00021">21</a></p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_0d4dde2834ed44e47b6207c19e4aac26.html">web</a></li><li class="navelem"><a class="el" href="csrf__protection_8cpp.html">csrf_protection.cpp</a></li>
+    <li class="footer">Документация по JXCT 7-в-1 Датчик Почвы. Последние изменения: Пн 30 Июн 2025 21:59:00. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>
