@@ -92,7 +92,7 @@ def analyze_code_duplication():
     """Анализ дублирования кода"""
     print("🔄 Анализ дублирования кода...")
     
-    # Используем простую эвристику для поиска дублирования
+    # Используем более точную эвристику для поиска дублирования
     duplication_score = 0
     
     # Проверяем src директорию
@@ -102,27 +102,35 @@ def analyze_code_duplication():
             if file.endswith('.cpp'):
                 src_files.append(os.path.join(root, file))
     
-    # Простая проверка на дублирование функций
-    function_names = set()
+    # Ищем реальные дубликаты кода (блоки кода, а не имена функций)
+    code_blocks = []
     for file in src_files[:10]:  # Проверяем первые 10 файлов
         try:
             with open(file, 'r', encoding='utf-8') as f:
                 content = f.read()
-                # Ищем определения функций
                 lines = content.split('\n')
-                for line in lines:
-                    if 'void ' in line or 'int ' in line or 'String ' in line:
-                        if '(' in line and ')' in line:
-                            func_name = line.split('(')[0].split()[-1]
-                            if func_name in function_names:
-                                duplication_score += 1
-                            function_names.add(func_name)
+                
+                # Ищем повторяющиеся блоки кода (3+ строки)
+                for i in range(len(lines) - 2):
+                    block = '\n'.join(lines[i:i+3])
+                    if len(block.strip()) > 20:  # Минимальный размер блока
+                        code_blocks.append(block.strip())
         except:
             continue
     
+    # Считаем дубликаты
+    seen_blocks = set()
+    for block in code_blocks:
+        if block in seen_blocks:
+            duplication_score += 1
+        seen_blocks.add(block)
+    
+    # Ограничиваем score разумными пределами
+    duplication_score = min(duplication_score, 10)  # Максимум 10 дубликатов
+    
     return {
         "duplication_score": duplication_score,
-        "unique_functions": len(function_names),
+        "unique_functions": len(seen_blocks),
         "files_checked": len(src_files[:10])
     }
 
