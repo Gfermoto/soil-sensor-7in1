@@ -1013,127 +1013,130 @@
   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">setupOTA</span><span class="p">(</span><span class="s">&quot;https://github.com/Gfermoto/soil-sensor-7in1/releases/latest/download/manifest.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">otaClient</span><span class="p">);</span>
 </code></pre></div></li>
 <li><strong>SHA256 валидация</strong> обновлений:
-  <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mbedtls/sha256.h&gt;</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">verifySha256</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">calcDigest</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">expectedHex</span><span class="p">)</span>
-</code></pre></div></li>
-<li><strong>Безопасная доставка</strong> через GitHub Releases</li>
-</ul>
-<h4 id="-рекомендации_1">🔧 <strong>Рекомендации:</strong><a class="headerlink" href="#-рекомендации_1" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>Добавить anti-rollback механизм</li>
-<li>Реализовать уведомления о критических обновлениях</li>
-</ul>
-<hr />
-<h3 id="i5-use-of-insecure-or-outdated-components"><strong>I5: Use of Insecure or Outdated Components</strong><a class="headerlink" href="#i5-use-of-insecure-or-outdated-components" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Статус:</strong> 🟢 <strong>SECURE</strong> (8/10)</p>
-<h4 id="-положительные-находки_4">✅ <strong>Положительные находки:</strong><a class="headerlink" href="#-положительные-находки_4" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><strong>Современные библиотеки:</strong> mbedTLS для криптографии</li>
-<li><strong>Актуальные фреймворки:</strong> ESP32 Arduino Core</li>
-<li><strong>Безопасные зависимости:</strong> отсутствуют известные уязвимости</li>
-</ul>
-<h4 id="-рекомендации_2">🔧 <strong>Рекомендации:</strong><a class="headerlink" href="#-рекомендации_2" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>Регулярно обновлять зависимости</li>
-<li>Добавить автоматическую проверку уязвимостей</li>
-</ul>
-<hr />
-<h3 id="i6-insufficient-privacy-protection"><strong>I6: Insufficient Privacy Protection</strong><a class="headerlink" href="#i6-insufficient-privacy-protection" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Статус:</strong> 🟢 <strong>SECURE</strong> (8/10) ⬆️ <strong>ПЕРЕСМОТРЕНО</strong></p>
-<h4 id="-положительные-находки_5">✅ <strong>Положительные находки:</strong><a class="headerlink" href="#-положительные-находки_5" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><strong>Локальное хранение</strong> данных датчиков</li>
-<li><strong>Контроль пользователя</strong> над передачей данных</li>
-<li><strong>Минимальный сбор данных</strong> - только необходимые метрики</li>
-<li><strong>Локальная сеть:</strong> Данные не покидают контролируемую среду</li>
-</ul>
-<h4 id="-рекомендации-опциональные_1">💡 <strong>Рекомендации (опциональные):</strong><a class="headerlink" href="#-рекомендации-опциональные_1" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>Privacy policy для коммерческого использования</li>
-<li>Механизм удаления данных</li>
-</ul>
-<hr />
-<h3 id="i7-insecure-data-transfer-and-storage"><strong>I7: Insecure Data Transfer and Storage</strong><a class="headerlink" href="#i7-insecure-data-transfer-and-storage" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Статус:</strong> 🟢 <strong>SECURE</strong> (8/10) ⬆️ <strong>ПЕРЕСМОТРЕНО</strong></p>
-<h4 id="-положительные-находки_6">✅ <strong>Положительные находки:</strong><a class="headerlink" href="#-положительные-находки_6" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><strong>Шифрование хранения</strong> - ESP32 Preferences</li>
-<li><strong>HTTPS для внешних API</strong> (ThingSpeak, OTA)</li>
-<li><strong>Локальная передача:</strong> HTTP в локальной сети приемлем</li>
-</ul>
-<h4 id="-контекст-безопасности_1">🎯 <strong>Контекст безопасности:</strong><a class="headerlink" href="#-контекст-безопасности_1" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><strong>Локальная сеть:</strong> Перехват трафика маловероятен</li>
-<li><strong>Физический контроль:</strong> Сеть под контролем владельца</li>
-<li><strong>Критичные данные:</strong> Не передаются (только показания датчиков)</li>
-</ul>
-<h4 id="-рекомендации-опциональные_2">💡 <strong>Рекомендации (опциональные):</strong><a class="headerlink" href="#-рекомендации-опциональные_2" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>HTTPS только для публичного доступа</li>
-<li>Шифрование MQTT при необходимости</li>
-</ul>
-<hr />
-<h3 id="i8-lack-of-device-management"><strong>I8: Lack of Device Management</strong><a class="headerlink" href="#i8-lack-of-device-management" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Статус:</strong> 🟢 <strong>SECURE</strong> (8/10)</p>
-<h4 id="-положительные-находки_7">✅ <strong>Положительные находки:</strong><a class="headerlink" href="#-положительные-находки_7" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><strong>Централизованное управление</strong> через веб-интерфейс</li>
-<li><strong>OTA обновления</strong> с проверкой целостности</li>
-<li><strong>Мониторинг статуса</strong> устройства</li>
-<li><strong>Логирование</strong> системных событий</li>
-</ul>
-<h4 id="-рекомендации_3">🔧 <strong>Рекомендации:</strong><a class="headerlink" href="#-рекомендации_3" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>Добавить удаленный мониторинг</li>
-<li>Реализовать secure decommissioning</li>
-</ul>
-<hr />
-<h3 id="i9-insecure-default-settings"><strong>I9: Insecure Default Settings</strong><a class="headerlink" href="#i9-insecure-default-settings" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Статус:</strong> 🟢 <strong>SECURE</strong> (9/10)</p>
-<h4 id="-положительные-находки_8">✅ <strong>Положительные находки:</strong><a class="headerlink" href="#-положительные-находки_8" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><strong>Нет default паролей</strong> в коде</li>
-<li><strong>Принудительная настройка</strong> при первом запуске</li>
-<li><strong>Безопасные значения по умолчанию</strong></li>
-<li><strong>Отключенные ненужные сервисы</strong></li>
-</ul>
-<h4 id="-проверенные-настройки">✅ <strong>Проверенные настройки:</strong><a class="headerlink" href="#-проверенные-настройки" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>WiFi: требует конфигурации</li>
-<li>MQTT: опциональный, безопасные параметры</li>
-<li>Веб-интерфейс: требует аутентификации</li>
-</ul>
-<hr />
-<h3 id="i10-lack-of-physical-hardening"><strong>I10: Lack of Physical Hardening</strong><a class="headerlink" href="#i10-lack-of-physical-hardening" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Статус:</strong> 🟢 <strong>SECURE</strong> (8/10)</p>
-<h4 id="-положительные-находки_9">✅ <strong>Положительные находки:</strong><a class="headerlink" href="#-положительные-находки_9" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><strong>ESP32 архитектура</strong> с ограниченным доступом к debug</li>
-<li><strong>Отсутствие debug портов</strong> в production сборке</li>
-<li><strong>Secure boot</strong> поддержка (ESP32 capability)</li>
-<li><strong>Физическая защита</strong> датчиков в корпусе</li>
-</ul>
-<h4 id="-рекомендации_4">🔧 <strong>Рекомендации:</strong><a class="headerlink" href="#-рекомендации_4" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>Активировать secure boot ESP32</li>
-<li>Добавить tamper detection</li>
-</ul>
-<hr />
-<h2 id="-практическое-тестирование">🧪 <strong>ПРАКТИЧЕСКОЕ ТЕСТИРОВАНИЕ</strong><a class="headerlink" href="#-практическое-тестирование" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="тестовое-устройство-esp32-на-192168274"><strong>Тестовое устройство:</strong> ESP32 на 192.168.2.74<a class="headerlink" href="#тестовое-устройство-esp32-на-192168274" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="-результаты-e2e-тестов">✅ <strong>Результаты E2E тестов:</strong><a class="headerlink" href="#-результаты-e2e-тестов" title="Постоянная ссылка">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>✅ Главная страница: 200 OK (11,642 символа)
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>✅ API датчиков: 200 OK (валидный JSON)
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>✅ CSRF защита: 403 Forbidden при POST без токена
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>✅ Веб-интерфейс: полностью функционален
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>✅ Время ответа: &lt; 10 секунд
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mbedtls/sha256.h&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">verifySha256</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">calcDigest</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">expectedHex</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="err">```</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Безопасная</span><span class="w"> </span><span class="n">доставка</span><span class="o">**</span><span class="w"> </span><span class="n">через</span><span class="w"> </span><span class="n">GitHub</span><span class="w"> </span><span class="n">Releases</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="cp">#### 🔧 **Рекомендации:**</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="o">-</span><span class="w"> </span><span class="n">Добавить</span><span class="w"> </span><span class="n">anti</span><span class="o">-</span><span class="n">rollback</span><span class="w"> </span><span class="n">механизм</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="o">-</span><span class="w"> </span><span class="n">Реализовать</span><span class="w"> </span><span class="n">уведомления</span><span class="w"> </span><span class="n">о</span><span class="w"> </span><span class="n">критических</span><span class="w"> </span><span class="n">обновлениях</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="o">---</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="cp">### **I5: Use of Insecure or Outdated Components**</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Современные</span><span class="w"> </span><span class="n">библиотеки</span><span class="o">:**</span><span class="w"> </span><span class="n">mbedTLS</span><span class="w"> </span><span class="n">для</span><span class="w"> </span><span class="n">криптографии</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Актуальные</span><span class="w"> </span><span class="n">фреймворки</span><span class="o">:**</span><span class="w"> </span><span class="n">ESP32</span><span class="w"> </span><span class="n">Arduino</span><span class="w"> </span><span class="n">Core</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Безопасные</span><span class="w"> </span><span class="n">зависимости</span><span class="o">:**</span><span class="w"> </span><span class="n">отсутствуют</span><span class="w"> </span><span class="n">известные</span><span class="w"> </span><span class="n">уязвимости</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="cp">#### 🔧 **Рекомендации:**</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="o">-</span><span class="w"> </span><span class="n">Регулярно</span><span class="w"> </span><span class="n">обновлять</span><span class="w"> </span><span class="n">зависимости</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="o">-</span><span class="w"> </span><span class="n">Добавить</span><span class="w"> </span><span class="n">автоматическую</span><span class="w"> </span><span class="n">проверку</span><span class="w"> </span><span class="n">уязвимостей</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="o">---</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="cp">### **I6: Insufficient Privacy Protection**</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="err">⬆️</span><span class="w"> </span><span class="o">**</span><span class="n">ПЕРЕСМОТРЕНО</span><span class="o">**</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Локальное</span><span class="w"> </span><span class="n">хранение</span><span class="o">**</span><span class="w"> </span><span class="n">данных</span><span class="w"> </span><span class="n">датчиков</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Контроль</span><span class="w"> </span><span class="n">пользователя</span><span class="o">**</span><span class="w"> </span><span class="n">над</span><span class="w"> </span><span class="n">передачей</span><span class="w"> </span><span class="n">данных</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Минимальный</span><span class="w"> </span><span class="n">сбор</span><span class="w"> </span><span class="n">данных</span><span class="o">**</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">только</span><span class="w"> </span><span class="n">необходимые</span><span class="w"> </span><span class="n">метрики</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Локальная</span><span class="w"> </span><span class="n">сеть</span><span class="o">:**</span><span class="w"> </span><span class="n">Данные</span><span class="w"> </span><span class="n">не</span><span class="w"> </span><span class="n">покидают</span><span class="w"> </span><span class="n">контролируемую</span><span class="w"> </span><span class="n">среду</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="cp">#### 💡 **Рекомендации (опциональные):**</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="o">-</span><span class="w"> </span><span class="n">Privacy</span><span class="w"> </span><span class="n">policy</span><span class="w"> </span><span class="n">для</span><span class="w"> </span><span class="n">коммерческого</span><span class="w"> </span><span class="n">использования</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="o">-</span><span class="w"> </span><span class="n">Механизм</span><span class="w"> </span><span class="n">удаления</span><span class="w"> </span><span class="n">данных</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="o">---</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="cp">### **I7: Insecure Data Transfer and Storage**</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="err">⬆️</span><span class="w"> </span><span class="o">**</span><span class="n">ПЕРЕСМОТРЕНО</span><span class="o">**</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Шифрование</span><span class="w"> </span><span class="n">хранения</span><span class="o">**</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ESP32</span><span class="w"> </span><span class="n">Preferences</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">HTTPS</span><span class="w"> </span><span class="n">для</span><span class="w"> </span><span class="n">внешних</span><span class="w"> </span><span class="n">API</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="n">ThingSpeak</span><span class="p">,</span><span class="w"> </span><span class="n">OTA</span><span class="p">)</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Локальная</span><span class="w"> </span><span class="n">передача</span><span class="o">:**</span><span class="w"> </span><span class="n">HTTP</span><span class="w"> </span><span class="n">в</span><span class="w"> </span><span class="n">локальной</span><span class="w"> </span><span class="n">сети</span><span class="w"> </span><span class="n">приемлем</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a><span class="cp">#### 🎯 **Контекст безопасности:**</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Локальная</span><span class="w"> </span><span class="n">сеть</span><span class="o">:**</span><span class="w"> </span><span class="n">Перехват</span><span class="w"> </span><span class="n">трафика</span><span class="w"> </span><span class="n">маловероятен</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Физический</span><span class="w"> </span><span class="n">контроль</span><span class="o">:**</span><span class="w"> </span><span class="n">Сеть</span><span class="w"> </span><span class="n">под</span><span class="w"> </span><span class="n">контролем</span><span class="w"> </span><span class="n">владельца</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Критичные</span><span class="w"> </span><span class="n">данные</span><span class="o">:**</span><span class="w"> </span><span class="n">Не</span><span class="w"> </span><span class="n">передаются</span><span class="w"> </span><span class="p">(</span><span class="n">только</span><span class="w"> </span><span class="n">показания</span><span class="w"> </span><span class="n">датчиков</span><span class="p">)</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>
+<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a><span class="cp">#### 💡 **Рекомендации (опциональные):**</span>
+<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a><span class="o">-</span><span class="w"> </span><span class="n">HTTPS</span><span class="w"> </span><span class="n">только</span><span class="w"> </span><span class="n">для</span><span class="w"> </span><span class="n">публичного</span><span class="w"> </span><span class="n">доступа</span>
+<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a><span class="o">-</span><span class="w"> </span><span class="n">Шифрование</span><span class="w"> </span><span class="n">MQTT</span><span class="w"> </span><span class="n">при</span><span class="w"> </span><span class="n">необходимости</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>
+<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a><span class="o">---</span>
+<a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>
+<a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a><span class="cp">### **I8: Lack of Device Management**</span>
+<a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>
+<a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Централизованное</span><span class="w"> </span><span class="n">управление</span><span class="o">**</span><span class="w"> </span><span class="n">через</span><span class="w"> </span><span class="n">веб</span><span class="o">-</span><span class="n">интерфейс</span>
+<a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">OTA</span><span class="w"> </span><span class="n">обновления</span><span class="o">**</span><span class="w"> </span><span class="n">с</span><span class="w"> </span><span class="n">проверкой</span><span class="w"> </span><span class="n">целостности</span>
+<a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Мониторинг</span><span class="w"> </span><span class="n">статуса</span><span class="o">**</span><span class="w"> </span><span class="n">устройства</span>
+<a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Логирование</span><span class="o">**</span><span class="w"> </span><span class="n">системных</span><span class="w"> </span><span class="n">событий</span>
+<a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>
+<a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a><span class="cp">#### 🔧 **Рекомендации:**</span>
+<a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a><span class="o">-</span><span class="w"> </span><span class="n">Добавить</span><span class="w"> </span><span class="n">удаленный</span><span class="w"> </span><span class="n">мониторинг</span>
+<a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a><span class="o">-</span><span class="w"> </span><span class="n">Реализовать</span><span class="w"> </span><span class="n">secure</span><span class="w"> </span><span class="n">decommissioning</span>
+<a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>
+<a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a><span class="o">---</span>
+<a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>
+<a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a><span class="cp">### **I9: Insecure Default Settings**</span>
+<a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>
+<a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Нет</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">паролей</span><span class="o">**</span><span class="w"> </span><span class="n">в</span><span class="w"> </span><span class="n">коде</span>
+<a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Принудительная</span><span class="w"> </span><span class="n">настройка</span><span class="o">**</span><span class="w"> </span><span class="n">при</span><span class="w"> </span><span class="n">первом</span><span class="w"> </span><span class="n">запуске</span>
+<a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Безопасные</span><span class="w"> </span><span class="n">значения</span><span class="w"> </span><span class="n">по</span><span class="w"> </span><span class="n">умолчанию</span><span class="o">**</span>
+<a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Отключенные</span><span class="w"> </span><span class="n">ненужные</span><span class="w"> </span><span class="n">сервисы</span><span class="o">**</span>
+<a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>
+<a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a><span class="cp">#### ✅ **Проверенные настройки:**</span>
+<a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a><span class="o">-</span><span class="w"> </span><span class="n">WiFi</span><span class="o">:</span><span class="w"> </span><span class="n">требует</span><span class="w"> </span><span class="n">конфигурации</span>
+<a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a><span class="o">-</span><span class="w"> </span><span class="n">MQTT</span><span class="o">:</span><span class="w"> </span><span class="n">опциональный</span><span class="p">,</span><span class="w"> </span><span class="n">безопасные</span><span class="w"> </span><span class="n">параметры</span>
+<a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a><span class="o">-</span><span class="w"> </span><span class="n">Веб</span><span class="o">-</span><span class="n">интерфейс</span><span class="o">:</span><span class="w"> </span><span class="n">требует</span><span class="w"> </span><span class="n">аутентификации</span>
+<a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a>
+<a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a><span class="o">---</span>
+<a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>
+<a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a><span class="cp">### **I10: Lack of Physical Hardening**</span>
+<a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a>
+<a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">ESP32</span><span class="w"> </span><span class="n">архитектура</span><span class="o">**</span><span class="w"> </span><span class="n">с</span><span class="w"> </span><span class="n">ограниченным</span><span class="w"> </span><span class="n">доступом</span><span class="w"> </span><span class="n">к</span><span class="w"> </span><span class="n">debug</span>
+<a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Отсутствие</span><span class="w"> </span><span class="n">debug</span><span class="w"> </span><span class="n">портов</span><span class="o">**</span><span class="w"> </span><span class="n">в</span><span class="w"> </span><span class="n">production</span><span class="w"> </span><span class="n">сборке</span>
+<a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Secure</span><span class="w"> </span><span class="n">boot</span><span class="o">**</span><span class="w"> </span><span class="n">поддержка</span><span class="w"> </span><span class="p">(</span><span class="n">ESP32</span><span class="w"> </span><span class="n">capability</span><span class="p">)</span>
+<a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Физическая</span><span class="w"> </span><span class="n">защита</span><span class="o">**</span><span class="w"> </span><span class="n">датчиков</span><span class="w"> </span><span class="n">в</span><span class="w"> </span><span class="n">корпусе</span>
+<a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a>
+<a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a><span class="cp">#### 🔧 **Рекомендации:**</span>
+<a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a><span class="o">-</span><span class="w"> </span><span class="n">Активировать</span><span class="w"> </span><span class="n">secure</span><span class="w"> </span><span class="n">boot</span><span class="w"> </span><span class="n">ESP32</span>
+<a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a><span class="o">-</span><span class="w"> </span><span class="n">Добавить</span><span class="w"> </span><span class="n">tamper</span><span class="w"> </span><span class="n">detection</span>
+<a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a>
+<a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a><span class="o">---</span>
+<a id="__codelineno-3-105" name="__codelineno-3-105" href="#__codelineno-3-105"></a>
+<a id="__codelineno-3-106" name="__codelineno-3-106" href="#__codelineno-3-106"></a><span class="cp">## 🧪 **ПРАКТИЧЕСКОЕ ТЕСТИРОВАНИЕ**</span>
+<a id="__codelineno-3-107" name="__codelineno-3-107" href="#__codelineno-3-107"></a>
+<a id="__codelineno-3-108" name="__codelineno-3-108" href="#__codelineno-3-108"></a><span class="cp">### **Тестовое устройство:** ESP32 на 192.168.2.74</span>
+<a id="__codelineno-3-109" name="__codelineno-3-109" href="#__codelineno-3-109"></a>
+<a id="__codelineno-3-110" name="__codelineno-3-110" href="#__codelineno-3-110"></a><span class="cp">#### ✅ **Результаты E2E тестов:**</span>
 </code></pre></div>
-<h4 id="-security-тесты">✅ <strong>Security тесты:</strong><a class="headerlink" href="#-security-тесты" title="Постоянная ссылка">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>✅ CSRF атаки: отклонены (403)
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>✅ Injection атаки: валидация входов
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>✅ Hardcoded пароли: не найдены
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>✅ Локальная сеть: HTTP приемлем для данного контекста
+✅ Главная страница: 200 OK (11,642 символа)
+✅ API датчиков: 200 OK (валидный JSON)
+✅ CSRF защита: 403 Forbidden при POST без токена
+✅ Веб-интерфейс: полностью функционален
+✅ Время ответа: &lt; 10 секунд
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>#### ✅ **Security тесты:**
 </code></pre></div>
+✅ CSRF атаки: отклонены (403)
+✅ Injection атаки: валидация входов
+✅ Hardcoded пароли: не найдены
+✅ Локальная сеть: HTTP приемлем для данного контекста
+```</li>
+</ul>
 <hr />
 <h2 id="-security-score-breakdown-пересмотрено">📈 <strong>SECURITY SCORE BREAKDOWN (ПЕРЕСМОТРЕНО)</strong><a class="headerlink" href="#-security-score-breakdown-пересмотрено" title="Постоянная ссылка">&para;</a></h2>
 <table>
