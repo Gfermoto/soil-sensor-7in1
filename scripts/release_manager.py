@@ -160,30 +160,35 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
         self.update_platformio_ini(version)
         print(f"✅ Версия {version} обновлена во всех файлах")
     
-    def create_git_tag(self, version: str, message: str = None):
-        """Создать git тег"""
+    def delete_git_tag(self, version: str):
+        """Удалить git тег локально и на origin"""
         tag_name = f"v{version}"
-        
-        # Проверяем, существует ли тег
         try:
-            subprocess.run(
-                ["git", "rev-parse", tag_name],
-                cwd=self.project_dir,
-                check=True,
-                capture_output=True
-            )
-            print(f"⚠️  Тег {tag_name} уже существует")
-            return False
+            subprocess.run(["git", "tag", "-d", tag_name], cwd=self.project_dir, check=True)
+            subprocess.run(["git", "push", "origin", f":refs/tags/{tag_name}"], cwd=self.project_dir, check=True)
+            print(f"🗑️  Удалён старый тег: {tag_name}")
+        except subprocess.CalledProcessError:
+            print(f"⚠️  Не удалось удалить тег {tag_name} (возможно, не существует)")
+
+    def create_git_tag(self, version: str, message: str = None, force: bool = False):
+        """Создать git тег, при force удалить старый"""
+        tag_name = f"v{version}"
+        # Проверяем, существует ли тег
+        exists = False
+        try:
+            subprocess.run(["git", "rev-parse", tag_name], cwd=self.project_dir, check=True, capture_output=True)
+            exists = True
         except subprocess.CalledProcessError:
             pass
-        
+        if exists:
+            if force:
+                self.delete_git_tag(version)
+            else:
+                print(f"⚠️  Тег {tag_name} уже существует")
+                return False
         # Создаем тег
         tag_message = message or f"JXCT Soil Sensor v{version}: релиз"
-        subprocess.run(
-            ["git", "tag", "-a", tag_name, "-m", tag_message],
-            cwd=self.project_dir,
-            check=True
-        )
+        subprocess.run(["git", "tag", "-a", tag_name, "-m", tag_message], cwd=self.project_dir, check=True)
         print(f"✅ Создан git тег: {tag_name}")
         return True
     
@@ -232,31 +237,22 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
             print(f"❌ Ошибка при пуше: {e}")
             return False
     
-    def create_release(self, version: str, message: str = None, auto_push: bool = True):
-        """Создать полный релиз"""
-        print(f"🚀 Создание релиза {version}...")
-        
-        # Валидация версии
+    def create_release(self, version: str, message: str = None, auto_push: bool = True, force_tag: bool = False, no_bump: bool = False):
+        """Создать полный релиз, с опциями force_tag и no_bump"""
+        print(f"🚀 Создание релиза {version}... (force_tag={force_tag}, no_bump={no_bump})")
         if not self.validate_version_format(version):
             print(f"❌ Неверный формат версии: {version}")
             return False
-        
-        # Обновляем все файлы
-        self.update_all_version_files(version)
-        
-        # Коммитим изменения
-        if not self.commit_changes(version, f"release: версия {version} — автоматическое обновление"):
+        if not no_bump:
+            self.update_all_version_files(version)
+            if not self.commit_changes(version, f"release: версия {version} — автоматическое обновление"):
+                return False
+        # Создаём тег (force_tag)
+        if not self.create_git_tag(version, message, force=force_tag):
             return False
-        
-        # Создаем тег
-        if not self.create_git_tag(version, message):
-            return False
-        
-        # Пушим изменения
         if auto_push:
             if not self.push_changes():
                 return False
-        
         print(f"🎉 Релиз {version} успешно создан!")
         return True
     
@@ -283,57 +279,39 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
 
 def main():
     parser = argparse.ArgumentParser(description="JXCT Release Manager - управление версиями и релизами")
-    parser.add_argument("command", choices=["version", "release", "bump", "sync"], 
-                       help="Команда для выполнения")
+    parser.add_argument("command", choices=["version", "release", "bump", "sync"], help="Команда для выполнения")
     parser.add_argument("--version", "-v", help="Версия для релиза (например, 3.6.2)")
-    parser.add_argument("--type", "-t", choices=["major", "minor", "patch"], 
-                       help="Тип увеличения версии для bump/version")
+    parser.add_argument("--type", "-t", choices=["major", "minor", "patch"], help="Тип увеличения версии для bump/version")
     parser.add_argument("--message", "-m", help="Сообщение для коммита/тега")
-    parser.add_argument("--no-push", action="store_true", 
-                       help="Не пушить изменения автоматически")
-    parser.add_argument("--no-commit", action="store_true",
-                       help="Не создавать коммит (только обновить файлы)")
+    parser.add_argument("--no-push", action="store_true", help="Не пушить изменения автоматически")
+    parser.add_argument("--no-commit", action="store_true", help="Не создавать коммит (только обновить файлы)")
     parser.add_argument("--project-dir", help="Директория проекта")
-    
+    parser.add_argument("--force-tag", action="store_true", help="Пересоздать тег, если уже существует")
+    parser.add_argument("--no-bump", action="store_true", help="Не обновлять файлы версии, только тег и пуш")
     args = parser.parse_args()
-    
     manager = ReleaseManager(args.project_dir)
-    
     try:
         if args.command == "version":
-            # Поднять версию без создания релиза
             if not args.type:
                 print("❌ Для команды version требуется указать --type")
                 sys.exit(1)
-            
             new_version = manager.bump_version(args.type)
             print(f"📈 Новая версия: {new_version}")
-            
-            # Обновляем файлы
             manager.update_all_version_files(new_version)
-            
-            # Коммитим изменения (если не указан --no-commit)
             if not args.no_commit:
                 if not manager.commit_changes(new_version, args.message):
                     sys.exit(1)
-                
-                # Пушим изменения (если не указан --no-push)
                 if not args.no_push:
-                    if not manager.push_changes(push_tag=False):  # Не пушим теги
+                    if not manager.push_changes(push_tag=False):
                         sys.exit(1)
-            
             print(f"✅ Версия {new_version} успешно обновлена!")
-            
         elif args.command == "release":
-            # Создать полный релиз
             if not args.version:
                 print("❌ Для команды release требуется указать --version")
                 sys.exit(1)
-            success = manager.create_release(args.version, args.message, not args.no_push)
+            success = manager.create_release(args.version, args.message, not args.no_push, force_tag=args.force_tag, no_bump=args.no_bump)
             sys.exit(0 if success else 1)
-            
         elif args.command == "bump":
-            # Увеличить версию и создать релиз
             if not args.type:
                 print("❌ Для команды bump требуется указать --type")
                 sys.exit(1)
@@ -341,14 +319,11 @@ def main():
             print(f"📈 Новая версия: {new_version}")
             success = manager.create_release(new_version, args.message, not args.no_push)
             sys.exit(0 if success else 1)
-            
         elif args.command == "sync":
-            # Синхронизировать версии
             changed = manager.sync_versions()
             if changed:
                 print("💡 Выполните git add и git commit для сохранения изменений")
             sys.exit(0)
-            
     except Exception as e:
         print(f"❌ Ошибка: {e}")
         sys.exit(1)

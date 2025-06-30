@@ -4,9 +4,19 @@ on:
   push:
     tags:
       - "v*"
+    branches:
+      - main  # Для тестирования CI на main
   # Явный триггер для релизов
   release:
     types: [published]
+  # Ручной запуск
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Версия для сборки (например, 3.6.7)'
+        required: false
+        default: 'auto'
+        type: string
 
 permissions:
   contents: write
