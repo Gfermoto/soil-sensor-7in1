@@ -104,6 +104,7 @@ jobs:
           echo "  Size: $(ls -lh dist/firmware.bin | awk '{print $5}')"
 
       - name: Create GitHub Release & upload assets
+        if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v1
         with:
           files: |
