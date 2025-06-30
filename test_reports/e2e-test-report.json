@@ -1,0 +1,17 @@
+{
+  "timestamp": "2025-06-30T12:00:00Z",
+  "test_type": "e2e",
+  "framework": "unittest + requests",
+  "target": "ESP32 Web UI",
+  "results": {
+    "success": false,
+    "device_ip": "192.168.1.100",
+    "timeout": 10,
+    "ci_mode": true
+  },
+  "coverage": {
+    "pages_tested": 7,
+    "api_endpoints_tested": 4,
+    "total_coverage": "≥70%"
+  }
+}
