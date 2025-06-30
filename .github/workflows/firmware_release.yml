@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - "v*"
+  # Явный триггер для релизов
+  release:
+    types: [published]
 
 permissions:
   contents: write
