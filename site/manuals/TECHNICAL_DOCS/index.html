@@ -1,0 +1,2805 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Документация для датчика почвы JXCT 7-в-1 (v3.6.7) - Профессиональная IoT система мониторинга почвы на базе ESP32">
+      
+      
+        <meta name="author" content="EYERA Development Team">
+      
+      
+        <link rel="canonical" href="https://gfermoto.github.io/soil-sensor-7in1/manuals/TECHNICAL_DOCS/">
+      
+      
+        <link rel="prev" href="../WIRING_DIAGRAM/">
+      
+      
+        <link rel="next" href="../../api-overview/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Техническая документация - 🌱 JXCT 7-в-1 Датчик Почвы</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-техническая-документация-jxct-7-в-1" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../.." title="🌱 JXCT 7-в-1 Датчик Почвы" class="md-header__button md-logo" aria-label="🌱 JXCT 7-в-1 Датчик Почвы" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            🌱 JXCT 7-в-1 Датчик Почвы
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Техническая документация
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Переключить на тёмную тему"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную тему" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Переключить на светлую тему"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую тему" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JXCT
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Главная
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../USER_GUIDE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Руководства
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../api-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API Документация
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../dev/ARCH_OVERALL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Разработка
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="🌱 JXCT 7-в-1 Датчик Почвы" class="md-nav__button md-logo" aria-label="🌱 JXCT 7-в-1 Датчик Почвы" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    🌱 JXCT 7-в-1 Датчик Почвы
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JXCT
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Главная
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Руководства
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Руководства
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../USER_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Руководство пользователя
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AGRO_RECOMMENDATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Агрономические рекомендации
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../COMPENSATION_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Компенсация показаний
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MODBUS_PROTOCOL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Протокол Modbus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONFIG_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Управление конфигурацией
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VERSION_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Управление версиями
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WIRING_DIAGRAM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Схема подключения
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Техническая документация
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Техническая документация
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#-содержание" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 Содержание
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-архитектура-системы" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Архитектура системы
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏗️ Архитектура системы">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-общая-концепция" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 Общая концепция
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-жизненный-цикл-системы" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Жизненный цикл системы
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-аппаратная-архитектура" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔌 Аппаратная архитектура
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔌 Аппаратная архитектура">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-основные-компоненты" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧩 Основные компоненты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧩 Основные компоненты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#esp32-микроконтроллер" class="md-nav__link">
+    <span class="md-ellipsis">
+      ESP32 микроконтроллер
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jxct-7-в-1-датчик" class="md-nav__link">
+    <span class="md-ellipsis">
+      JXCT 7-в-1 датчик
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-схема-подключения" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔌 Схема подключения
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-характеристики-датчика" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Характеристики датчика
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-программная-архитектура" class="md-nav__link">
+    <span class="md-ellipsis">
+      💻 Программная архитектура
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💻 Программная архитектура">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-архитектурные-слои" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏛️ Архитектурные слои
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-основные-модули" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 Основные модули
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 Основные модули">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-модуль-датчика-modbus_sensorcpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Модуль датчика (modbus_sensor.cpp)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-модуль-компенсации-sensor_compensationcpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Модуль компенсации (sensor_compensation.cpp)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-модуль-калибровки-calibration_managercpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Модуль калибровки (calibration_manager.cpp)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-веб-сервер-web" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Веб-сервер (web/)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-mqtt-клиент-mqtt_clientcpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. MQTT клиент (mqtt_client.cpp)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-wifi-менеджер-wifi_managercpp" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. WiFi менеджер (wifi_manager.cpp)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-основной-цикл-работы" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Основной цикл работы
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-сетевые-протоколы" class="md-nav__link">
+    <span class="md-ellipsis">
+      📡 Сетевые протоколы
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📡 Сетевые протоколы">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-wifi" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 WiFi
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 WiFi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#режимы-работы" class="md-nav__link">
+    <span class="md-ellipsis">
+      Режимы работы
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#конфигурация" class="md-nav__link">
+    <span class="md-ellipsis">
+      Конфигурация
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-mqtt" class="md-nav__link">
+    <span class="md-ellipsis">
+      📡 MQTT
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📡 MQTT">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#структура-топиков" class="md-nav__link">
+    <span class="md-ellipsis">
+      Структура топиков
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#формат-сообщений" class="md-nav__link">
+    <span class="md-ellipsis">
+      Формат сообщений
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-thingspeak" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌍 ThingSpeak
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌍 ThingSpeak">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#структура-канала" class="md-nav__link">
+    <span class="md-ellipsis">
+      Структура канала
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-modbus-rtu" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔌 Modbus RTU
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔌 Modbus RTU">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#регистры-датчика" class="md-nav__link">
+    <span class="md-ellipsis">
+      Регистры датчика
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#формат-запроса" class="md-nav__link">
+    <span class="md-ellipsis">
+      Формат запроса
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-алгоритмы-компенсации" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔬 Алгоритмы компенсации
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔬 Алгоритмы компенсации">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-температурная-компенсация" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌡️ Температурная компенсация
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌡️ Температурная компенсация">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#модель-арчи-для-ec" class="md-nav__link">
+    <span class="md-ellipsis">
+      Модель Арчи для EC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#уравнение-нернста-для-ph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Уравнение Нернста для pH
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-влажностная-компенсация" class="md-nav__link">
+    <span class="md-ellipsis">
+      💧 Влажностная компенсация
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💧 Влажностная компенсация">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fao-56-модель-для-npk" class="md-nav__link">
+    <span class="md-ellipsis">
+      FAO 56 модель для NPK
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-двухэтапная-система" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Двухэтапная система
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Двухэтапная система">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#этап-1-csv-калибровка" class="md-nav__link">
+    <span class="md-ellipsis">
+      Этап 1: CSV калибровка
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#этап-2-математическая-компенсация" class="md-nav__link">
+    <span class="md-ellipsis">
+      Этап 2: Математическая компенсация
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-веб-интерфейс" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 Веб-интерфейс
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 Веб-интерфейс">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-архитектура" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏗️ Архитектура
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏗️ Архитектура">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#компоненты" class="md-nav__link">
+    <span class="md-ellipsis">
+      Компоненты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#структура-страниц" class="md-nav__link">
+    <span class="md-ellipsis">
+      Структура страниц
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-адаптивный-дизайн" class="md-nav__link">
+    <span class="md-ellipsis">
+      📱 Адаптивный дизайн
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📱 Адаптивный дизайн">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#breakpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Breakpoints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#css-grid-система" class="md-nav__link">
+    <span class="md-ellipsis">
+      CSS Grid система
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-ajax-обновления" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 AJAX обновления
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔄 AJAX обновления">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#javascript-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      JavaScript API
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-api-документация" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 API документация
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 API документация">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-rest-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌐 REST API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌐 REST API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1sensor" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/v1/sensor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1config" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/v1/config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-apiv1config" class="md-nav__link">
+    <span class="md-ellipsis">
+      POST /api/v1/config
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#get-apiv1status" class="md-nav__link">
+    <span class="md-ellipsis">
+      GET /api/v1/status
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-mqtt-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      📡 MQTT API
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📡 MQTT API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#топики-для-публикации" class="md-nav__link">
+    <span class="md-ellipsis">
+      Топики для публикации
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#топики-для-подписки" class="md-nav__link">
+    <span class="md-ellipsis">
+      Топики для подписки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#формат-команд" class="md-nav__link">
+    <span class="md-ellipsis">
+      Формат команд
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-конфигурация" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Конфигурация
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Конфигурация">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-структура-конфигурации" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Структура конфигурации
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-хранение-конфигурации" class="md-nav__link">
+    <span class="md-ellipsis">
+      💾 Хранение конфигурации
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💾 Хранение конфигурации">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nvs-non-volatile-storage" class="md-nav__link">
+    <span class="md-ellipsis">
+      NVS (Non-Volatile Storage)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-валидация-конфигурации" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔄 Валидация конфигурации
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-структура-проекта" class="md-nav__link">
+    <span class="md-ellipsis">
+      📁 Структура проекта
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-разработка" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Разработка
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Разработка">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-требования-к-окружению" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Требования к окружению
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Требования к окружению">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#platformio" class="md-nav__link">
+    <span class="md-ellipsis">
+      PlatformIO
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#зависимости" class="md-nav__link">
+    <span class="md-ellipsis">
+      Зависимости
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-стандарты-кодирования" class="md-nav__link">
+    <span class="md-ellipsis">
+      📝 Стандарты кодирования
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📝 Стандарты кодирования">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#именование" class="md-nav__link">
+    <span class="md-ellipsis">
+      Именование
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#комментарии" class="md-nav__link">
+    <span class="md-ellipsis">
+      Комментарии
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-тестирование" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Тестирование
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Тестирование">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#структура-тестов" class="md-nav__link">
+    <span class="md-ellipsis">
+      Структура тестов
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-логирование" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Логирование
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Логирование">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#уровни-логирования" class="md-nav__link">
+    <span class="md-ellipsis">
+      Уровни логирования
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ротация-логов" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ротация логов
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-cicd" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 CI/CD
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 CI/CD">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#github-actions" class="md-nav__link">
+    <span class="md-ellipsis">
+      GitHub Actions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-поддержка" class="md-nav__link">
+    <span class="md-ellipsis">
+      📞 Поддержка
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📞 Поддержка">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-связь-с-разработчиками" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 Связь с разработчиками
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-дополнительные-ресурсы" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Дополнительные ресурсы
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-полезные-ссылки" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Полезные ссылки
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API Документация
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API Документация
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../api-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Обзор API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Разработка
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Разработка
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/ARCH_OVERALL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Архитектура
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/QA_REFACTORING_PLAN_2025H2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    План рефакторинга
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/TECH_DEBT_REPORT_2025-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Технический долг
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING_DOCS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Участие в проекте
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Gfermoto/soil-sensor-7in1/edit/main/docs/manuals/TECHNICAL_DOCS.md" title="Редактировать страницу" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/Gfermoto/soil-sensor-7in1/raw/main/docs/manuals/TECHNICAL_DOCS.md" title="Посмотреть исходный код страницы" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="-техническая-документация-jxct-7-в-1">🔧 Техническая документация JXCT 7-в-1<a class="headerlink" href="#-техническая-документация-jxct-7-в-1" title="Постоянная ссылка">&para;</a></h1>
+<p><strong>Дата:</strong> Июнь 2025<br />
+<strong>Версия:</strong> 3.6.7<br />
+<strong>Автор:</strong> JXCT Development Team</p>
+<hr />
+<h2 id="-содержание">📖 Содержание<a class="headerlink" href="#-содержание" title="Постоянная ссылка">&para;</a></h2>
+<ol>
+<li><a href="#️-архитектура-системы">🏗️ Архитектура системы</a></li>
+<li><a href="#-аппаратная-архитектура">🔌 Аппаратная архитектура</a></li>
+<li><a href="#-программная-архитектура">💻 Программная архитектура</a></li>
+<li><a href="#-сетевые-протоколы">📡 Сетевые протоколы</a></li>
+<li><a href="#-алгоритмы-компенсации">🔬 Алгоритмы компенсации</a></li>
+<li><a href="#-веб-интерфейс">🌐 Веб-интерфейс</a></li>
+<li><a href="#-api-документация">📊 API документация</a></li>
+<li><a href="#-конфигурация">🔧 Конфигурация</a></li>
+<li><a href="#-структура-проекта">📁 Структура проекта</a></li>
+<li><a href="#️-разработка">🛠️ Разработка</a></li>
+</ol>
+<hr />
+<h2 id="-архитектура-системы">🏗️ Архитектура системы<a class="headerlink" href="#-архитектура-системы" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-общая-концепция">🎯 Общая концепция<a class="headerlink" href="#-общая-концепция" title="Постоянная ссылка">&para;</a></h3>
+<p>JXCT 7-в-1 представляет собой IoT устройство для мониторинга почвы, построенное на принципах:</p>
+<ul>
+<li><strong>Модульность:</strong> Разделение на независимые компоненты</li>
+<li><strong>Масштабируемость:</strong> Возможность добавления новых функций</li>
+<li><strong>Надежность:</strong> Обработка ошибок и восстановление</li>
+<li><strong>Производительность:</strong> Оптимизация для ESP32</li>
+</ul>
+<h3 id="-жизненный-цикл-системы">🔄 Жизненный цикл системы<a class="headerlink" href="#-жизненный-цикл-системы" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Загрузка → Инициализация → Основной цикл → Обработка ошибок → Перезагрузка
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    ↓           ↓              ↓              ↓              ↓
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  NVS        WiFi/MQTT     Измерения      Логирование    Сохранение
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  Загрузка    Подключение   Компенсация    Ошибок        Состояния
+</code></pre></div>
+<hr />
+<h2 id="-аппаратная-архитектура">🔌 Аппаратная архитектура<a class="headerlink" href="#-аппаратная-архитектура" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-основные-компоненты">🧩 Основные компоненты<a class="headerlink" href="#-основные-компоненты" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="esp32-микроконтроллер">ESP32 микроконтроллер<a class="headerlink" href="#esp32-микроконтроллер" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Модель:</strong> ESP32-WROOM-32 (рекомендуется)</li>
+<li><strong>Процессор:</strong> Dual-core Xtensa LX6 @ 240MHz</li>
+<li><strong>RAM:</strong> 520KB SRAM</li>
+<li><strong>Flash:</strong> 4MB (SPIFFS для файловой системы)</li>
+<li><strong>WiFi:</strong> 802.11 b/g/n</li>
+<li><strong>Bluetooth:</strong> 4.2 BR/EDR + BLE</li>
+</ul>
+<h4 id="jxct-7-в-1-датчик">JXCT 7-в-1 датчик<a class="headerlink" href="#jxct-7-в-1-датчик" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Интерфейс:</strong> Modbus RTU</li>
+<li><strong>Скорость:</strong> 9600 bps</li>
+<li><strong>Питание:</strong> 3.3V</li>
+<li><strong>Потребление:</strong> &lt; 50mA</li>
+<li><strong>Диапазон температур:</strong> -40°C до +85°C</li>
+</ul>
+<h3 id="-схема-подключения">🔌 Схема подключения<a class="headerlink" href="#-схема-подключения" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ESP32                    JXCT Sensor
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>┌─────────┐              ┌─────────┐
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>│  3.3V   │──────────────│   VCC   │
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│         │              │         │
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>│  GND    │──────────────│   GND   │
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│         │              │         │
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>│ GPIO2   │──────────────│   TX    │
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│         │              │         │
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│ GPIO4   │──────────────│   RX    │
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>└─────────┘              └─────────┘
+</code></pre></div>
+<h3 id="-характеристики-датчика">📊 Характеристики датчика<a class="headerlink" href="#-характеристики-датчика" title="Постоянная ссылка">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Диапазон</th>
+<th>Точность</th>
+<th>Единицы</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Температура</td>
+<td>0-50°C</td>
+<td>±0.5°C</td>
+<td>°C</td>
+</tr>
+<tr>
+<td>Влажность</td>
+<td>0-100%</td>
+<td>±3%</td>
+<td>%</td>
+</tr>
+<tr>
+<td>EC</td>
+<td>0-5000</td>
+<td>±5%</td>
+<td>µS/cm</td>
+</tr>
+<tr>
+<td>pH</td>
+<td>3-9</td>
+<td>±0.3</td>
+<td>pH</td>
+</tr>
+<tr>
+<td>Азот</td>
+<td>0-2000</td>
+<td>±10%</td>
+<td>мг/кг</td>
+</tr>
+<tr>
+<td>Фосфор</td>
+<td>0-1000</td>
+<td>±10%</td>
+<td>мг/кг</td>
+</tr>
+<tr>
+<td>Калий</td>
+<td>0-2000</td>
+<td>±10%</td>
+<td>мг/кг</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="-программная-архитектура">💻 Программная архитектура<a class="headerlink" href="#-программная-архитектура" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-архитектурные-слои">🏛️ Архитектурные слои<a class="headerlink" href="#-архитектурные-слои" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>┌─────────────────────────────────────┐
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>│           Веб-интерфейс             │ ← Пользовательский интерфейс
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├─────────────────────────────────────┤
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│           API слой                  │ ← REST API и JSON
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>├─────────────────────────────────────┤
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│         Бизнес-логика               │ ← Компенсация, калибровка
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>├─────────────────────────────────────┤
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│         Слой данных                 │ ← Датчики, NVS, файлы
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>├─────────────────────────────────────┤
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│         Сетевой слой                │ ← WiFi, MQTT, HTTP
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>├─────────────────────────────────────┤
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│         Аппаратный слой             │ ← ESP32, Modbus
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>└─────────────────────────────────────┘
+</code></pre></div>
+<h3 id="-основные-модули">📦 Основные модули<a class="headerlink" href="#-основные-модули" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="1-модуль-датчика-modbus_sensorcpp">1. <strong>Модуль датчика</strong> (<code>modbus_sensor.cpp</code>)<a class="headerlink" href="#1-модуль-датчика-modbus_sensorcpp" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>Чтение данных с JXCT датчика</li>
+<li>Обработка Modbus RTU протокола</li>
+<li>Валидация полученных данных</li>
+<li>Обработка ошибок связи</li>
+</ul>
+<h4 id="2-модуль-компенсации-sensor_compensationcpp">2. <strong>Модуль компенсации</strong> (<code>sensor_compensation.cpp</code>)<a class="headerlink" href="#2-модуль-компенсации-sensor_compensationcpp" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>Применение научных моделей</li>
+<li>Температурная компенсация</li>
+<li>Влажностная компенсация</li>
+<li>Коррекция по типу почвы</li>
+</ul>
+<h4 id="3-модуль-калибровки-calibration_managercpp">3. <strong>Модуль калибровки</strong> (<code>calibration_manager.cpp</code>)<a class="headerlink" href="#3-модуль-калибровки-calibration_managercpp" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>Управление CSV калибровочными таблицами</li>
+<li>Линейная интерполяция</li>
+<li>Применение коэффициентов коррекции</li>
+<li>Валидация калибровочных данных</li>
+</ul>
+<h4 id="4-веб-сервер-web">4. <strong>Веб-сервер</strong> (<code>web/</code>)<a class="headerlink" href="#4-веб-сервер-web" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>HTTP сервер на ESP32</li>
+<li>REST API endpoints</li>
+<li>HTML страницы</li>
+<li>Обработка форм и файлов</li>
+</ul>
+<h4 id="5-mqtt-клиент-mqtt_clientcpp">5. <strong>MQTT клиент</strong> (<code>mqtt_client.cpp</code>)<a class="headerlink" href="#5-mqtt-клиент-mqtt_clientcpp" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>Подключение к MQTT брокеру</li>
+<li>Публикация данных</li>
+<li>Обработка команд</li>
+<li>Автоматическое переподключение</li>
+</ul>
+<h4 id="6-wifi-менеджер-wifi_managercpp">6. <strong>WiFi менеджер</strong> (<code>wifi_manager.cpp</code>)<a class="headerlink" href="#6-wifi-менеджер-wifi_managercpp" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>Управление WiFi подключением</li>
+<li>Режимы AP/STA</li>
+<li>Автоматическое переподключение</li>
+<li>Диагностика сети</li>
+</ul>
+<h3 id="-основной-цикл-работы">🔄 Основной цикл работы<a class="headerlink" href="#-основной-цикл-работы" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loop</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="c1">// 1. Чтение данных с датчика</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">readSensorData</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="c1">// 2. Применение калибровки</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">        </span><span class="n">applyCalibration</span><span class="p">();</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">        </span><span class="c1">// 3. Математическая компенсация</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">        </span><span class="n">applyCompensation</span><span class="p">();</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">        </span><span class="c1">// 4. Обновление веб-интерфейса</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">        </span><span class="n">updateWebInterface</span><span class="p">();</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">        </span><span class="c1">// 5. Проверка необходимости публикации</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">shouldPublish</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">            </span><span class="n">publishToMQTT</span><span class="p">();</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="w">            </span><span class="n">publishToThingSpeak</span><span class="p">();</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="w">        </span><span class="p">}</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="w">    </span><span class="c1">// 6. Обработка веб-запросов</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="w">    </span><span class="n">webServer</span><span class="p">.</span><span class="n">handleClient</span><span class="p">();</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a><span class="w">    </span><span class="c1">// 7. Проверка OTA обновлений</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="w">    </span><span class="n">checkOTAUpdates</span><span class="p">();</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="w">    </span><span class="c1">// 8. Задержка до следующего цикла</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="w">    </span><span class="n">delay</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">sensorReadInterval</span><span class="p">);</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="-сетевые-протоколы">📡 Сетевые протоколы<a class="headerlink" href="#-сетевые-протоколы" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-wifi">🌐 WiFi<a class="headerlink" href="#-wifi" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="режимы-работы">Режимы работы<a class="headerlink" href="#режимы-работы" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>STA (Station):</strong> Подключение к существующей сети</li>
+<li><strong>AP (Access Point):</strong> Создание точки доступа</li>
+<li><strong>AP+STA:</strong> Одновременная работа в обоих режимах</li>
+</ul>
+<h4 id="конфигурация">Конфигурация<a class="headerlink" href="#конфигурация" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// STA режим</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">WIFI_SSID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;your_network&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">WIFI_PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;your_password&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1">// AP режим</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">AP_SSID</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;JXCT_Setup&quot;</span><span class="p">;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">AP_PASSWORD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;12345678&quot;</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="-mqtt">📡 MQTT<a class="headerlink" href="#-mqtt" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="структура-топиков">Структура топиков<a class="headerlink" href="#структура-топиков" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>jxct/sensor/{device_id}/temperature
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>jxct/sensor/{device_id}/humidity
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>jxct/sensor/{device_id}/ec
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>jxct/sensor/{device_id}/ph
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>jxct/sensor/{device_id}/nitrogen
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>jxct/sensor/{device_id}/phosphorus
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>jxct/sensor/{device_id}/potassium
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>jxct/sensor/{device_id}/status
+</code></pre></div>
+<h4 id="формат-сообщений">Формат сообщений<a class="headerlink" href="#формат-сообщений" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1640995200</span><span class="p">,</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span><span class="nt">&quot;value&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">25.5</span><span class="p">,</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;°C&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span><span class="nt">&quot;quality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;good&quot;</span><span class="p">,</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="w">  </span><span class="nt">&quot;compensated&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="-thingspeak">🌍 ThingSpeak<a class="headerlink" href="#-thingspeak" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="структура-канала">Структура канала<a class="headerlink" href="#структура-канала" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Field 1:</strong> Температура (°C)</li>
+<li><strong>Field 2:</strong> Влажность (%)</li>
+<li><strong>Field 3:</strong> EC (µS/cm)</li>
+<li><strong>Field 4:</strong> pH</li>
+<li><strong>Field 5:</strong> Азот (мг/кг)</li>
+<li><strong>Field 6:</strong> Фосфор (мг/кг)</li>
+<li><strong>Field 7:</strong> Калий (мг/кг)</li>
+<li><strong>Field 8:</strong> Статус (битовая маска)</li>
+</ul>
+<h3 id="-modbus-rtu">🔌 Modbus RTU<a class="headerlink" href="#-modbus-rtu" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="регистры-датчика">Регистры датчика<a class="headerlink" href="#регистры-датчика" title="Постоянная ссылка">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>Адрес</th>
+<th>Описание</th>
+<th>Единицы</th>
+<th>Диапазон</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x0001</td>
+<td>Температура</td>
+<td>0.1°C</td>
+<td>-400-800</td>
+</tr>
+<tr>
+<td>0x0002</td>
+<td>Влажность</td>
+<td>0.1%</td>
+<td>0-1000</td>
+</tr>
+<tr>
+<td>0x0003</td>
+<td>EC</td>
+<td>1 µS/cm</td>
+<td>0-65535</td>
+</tr>
+<tr>
+<td>0x0004</td>
+<td>pH</td>
+<td>0.1 pH</td>
+<td>0-140</td>
+</tr>
+<tr>
+<td>0x0005</td>
+<td>Азот</td>
+<td>1 мг/кг</td>
+<td>0-65535</td>
+</tr>
+<tr>
+<td>0x0006</td>
+<td>Фосфор</td>
+<td>1 мг/кг</td>
+<td>0-65535</td>
+</tr>
+<tr>
+<td>0x0007</td>
+<td>Калий</td>
+<td>1 мг/кг</td>
+<td>0-65535</td>
+</tr>
+</tbody>
+</table>
+<h4 id="формат-запроса">Формат запроса<a class="headerlink" href="#формат-запроса" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>01 03 00 01 00 07 25 CA
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>│  │  │  │  │  │  │  │
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>│  │  │  │  │  │  │  └─ CRC
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>│  │  │  │  │  │  └───── Количество регистров (7)
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>│  │  │  │  │  └──────── Начальный адрес (0x0001)
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>│  │  │  └─┴──────────── Код функции (03 - чтение)
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>│  └─┴────────────────── Адрес устройства (01)
+</code></pre></div>
+<hr />
+<h2 id="-алгоритмы-компенсации">🔬 Алгоритмы компенсации<a class="headerlink" href="#-алгоритмы-компенсации" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-температурная-компенсация">🌡️ Температурная компенсация<a class="headerlink" href="#-температурная-компенсация" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="модель-арчи-для-ec">Модель Арчи для EC<a class="headerlink" href="#модель-арчи-для-ec" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">float</span><span class="w"> </span><span class="nf">compensateEC</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">ec</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">temperature</span><span class="p">,</span><span class="w"> </span><span class="n">SoilType</span><span class="w"> </span><span class="n">soilType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="c1">// Коэффициенты по типам почв</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getSoilCoefficient</span><span class="p">(</span><span class="n">soilType</span><span class="p">);</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">    </span><span class="c1">// Температурная компенсация</span>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">tempFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.02</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">temperature</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">25.0</span><span class="p">);</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="w">    </span><span class="c1">// Модель Арчи: EC = σ * φ^m</span>
+<a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">tempFactor</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">k</span><span class="p">;</span>
+<a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="p">}</span>
+</code></pre></div>
+<h4 id="уравнение-нернста-для-ph">Уравнение Нернста для pH<a class="headerlink" href="#уравнение-нернста-для-ph" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kt">float</span><span class="w"> </span><span class="nf">compensatePH</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">ph</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">temperature</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="c1">// Температурная поправка: -0.003 pH/°C</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">tempCorrection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">-0.003</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">temperature</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">25.0</span><span class="p">);</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ph</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">tempCorrection</span><span class="p">;</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="-влажностная-компенсация">💧 Влажностная компенсация<a class="headerlink" href="#-влажностная-компенсация" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="fao-56-модель-для-npk">FAO 56 модель для NPK<a class="headerlink" href="#fao-56-модель-для-npk" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kt">float</span><span class="w"> </span><span class="nf">compensateNPK</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">npk</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">humidity</span><span class="p">,</span><span class="w"> </span><span class="n">SoilType</span><span class="w"> </span><span class="n">soilType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="c1">// Базовый коэффициент влажности</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">humidityFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.1</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">humidity</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">60.0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">40.0</span><span class="p">;</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">    </span><span class="c1">// Коррекция по типу почвы</span>
+<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">soilFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getSoilHumidityFactor</span><span class="p">(</span><span class="n">soilType</span><span class="p">);</span>
+<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+<a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">npk</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">humidityFactor</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">soilFactor</span><span class="p">;</span>
+<a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="-двухэтапная-система">📊 Двухэтапная система<a class="headerlink" href="#-двухэтапная-система" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="этап-1-csv-калибровка">Этап 1: CSV калибровка<a class="headerlink" href="#этап-1-csv-калибровка" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kt">float</span><span class="w"> </span><span class="nf">applyCalibration</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">rawValue</span><span class="p">,</span><span class="w"> </span><span class="n">SoilProfile</span><span class="w"> </span><span class="n">profile</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">hasCalibrationTable</span><span class="p">(</span><span class="n">profile</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">rawValue</span><span class="p">;</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="w">    </span><span class="c1">// Линейная интерполяция</span>
+<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">factor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">interpolateCalibration</span><span class="p">(</span><span class="n">rawValue</span><span class="p">,</span><span class="w"> </span><span class="n">profile</span><span class="p">);</span>
+<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">rawValue</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">factor</span><span class="p">;</span>
+<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a><span class="p">}</span>
+</code></pre></div>
+<h4 id="этап-2-математическая-компенсация">Этап 2: Математическая компенсация<a class="headerlink" href="#этап-2-математическая-компенсация" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kt">float</span><span class="w"> </span><span class="nf">applyCompensation</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">calibratedValue</span><span class="p">,</span><span class="w"> </span><span class="n">SensorData</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">SENSOR_EC</span><span class="p">:</span>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">compensateEC</span><span class="p">(</span><span class="n">calibratedValue</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">temperature</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">soilType</span><span class="p">);</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">SENSOR_PH</span><span class="p">:</span>
+<a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">compensatePH</span><span class="p">(</span><span class="n">calibratedValue</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">temperature</span><span class="p">);</span>
+<a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a><span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="no">SENSOR_NPK</span><span class="p">:</span>
+<a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">compensateNPK</span><span class="p">(</span><span class="n">calibratedValue</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">humidity</span><span class="p">,</span><span class="w"> </span><span class="n">data</span><span class="p">.</span><span class="n">soilType</span><span class="p">);</span>
+<a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a><span class="w">        </span><span class="k">default</span><span class="o">:</span>
+<a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">calibratedValue</span><span class="p">;</span>
+<a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="-веб-интерфейс">🌐 Веб-интерфейс<a class="headerlink" href="#-веб-интерфейс" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-архитектура">🏗️ Архитектура<a class="headerlink" href="#-архитектура" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="компоненты">Компоненты<a class="headerlink" href="#компоненты" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>HTTP сервер:</strong> Встроенный в ESP32</li>
+<li><strong>HTML генерация:</strong> Динамическая генерация страниц</li>
+<li><strong>JavaScript:</strong> AJAX для обновления данных</li>
+<li><strong>CSS:</strong> Адаптивный дизайн</li>
+</ul>
+<h4 id="структура-страниц">Структура страниц<a class="headerlink" href="#структура-страниц" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>/                    → Главная (настройки WiFi/MQTT)
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>/readings           → Показания датчика
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>/intervals          → Настройка интервалов
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>/updates            → OTA обновления
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>/service            → Сервисные функции
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>/api/v1/sensor      → JSON API
+</code></pre></div>
+<h3 id="-адаптивный-дизайн">📱 Адаптивный дизайн<a class="headerlink" href="#-адаптивный-дизайн" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="breakpoints">Breakpoints<a class="headerlink" href="#breakpoints" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Mobile:</strong> &lt; 768px</li>
+<li><strong>Tablet:</strong> 768px - 1024px</li>
+<li><strong>Desktop:</strong> &gt; 1024px</li>
+</ul>
+<h4 id="css-grid-система">CSS Grid система<a class="headerlink" href="#css-grid-система" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="p">.</span><span class="nc">container</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="w">    </span><span class="k">display</span><span class="p">:</span><span class="w"> </span><span class="k">grid</span><span class="p">;</span>
+<a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="w">    </span><span class="k">grid-template-columns</span><span class="p">:</span><span class="w"> </span><span class="nf">repeat</span><span class="p">(</span><span class="kc">auto</span><span class="nv">-fit</span><span class="p">,</span><span class="w"> </span><span class="nf">minmax</span><span class="p">(</span><span class="mi">300</span><span class="kt">px</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="n">fr</span><span class="p">));</span>
+<a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="w">    </span><span class="k">gap</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="-ajax-обновления">🔄 AJAX обновления<a class="headerlink" href="#-ajax-обновления" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="javascript-api">JavaScript API<a class="headerlink" href="#javascript-api" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1">// Получение данных датчика</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="nx">fetch</span><span class="p">(</span><span class="s1">&#39;/api/v1/sensor&#39;</span><span class="p">)</span>
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="w">    </span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">data</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">updateDisplay</span><span class="p">(</span><span class="nx">data</span><span class="p">));</span>
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a><span class="c1">// Обновление каждые 3 секунды</span>
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a><span class="nx">setInterval</span><span class="p">(</span><span class="nx">updateSensorData</span><span class="p">,</span><span class="w"> </span><span class="mf">3000</span><span class="p">);</span>
+</code></pre></div>
+<hr />
+<h2 id="-api-документация">📊 API документация<a class="headerlink" href="#-api-документация" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-rest-api">🌐 REST API<a class="headerlink" href="#-rest-api" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="get-apiv1sensor">GET <code>/api/v1/sensor</code><a class="headerlink" href="#get-apiv1sensor" title="Постоянная ссылка">&para;</a></h4>
+<p>Получение текущих показаний датчика</p>
+<p><strong>Ответ:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="p">{</span>
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1640995200</span><span class="p">,</span>
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="w">  </span><span class="nt">&quot;temperature&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="w">    </span><span class="nt">&quot;raw&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">25.3</span><span class="p">,</span>
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a><span class="w">    </span><span class="nt">&quot;compensated&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">25.5</span><span class="p">,</span>
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a><span class="w">    </span><span class="nt">&quot;recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">22.0</span><span class="p">,</span>
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a><span class="w">    </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;°C&quot;</span>
+<a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a><span class="w">  </span><span class="nt">&quot;humidity&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a><span class="w">    </span><span class="nt">&quot;raw&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">65.2</span><span class="p">,</span>
+<a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a><span class="w">    </span><span class="nt">&quot;compensated&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">65.0</span><span class="p">,</span>
+<a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a><span class="w">    </span><span class="nt">&quot;recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">60.0</span><span class="p">,</span>
+<a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a><span class="w">    </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;%&quot;</span>
+<a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a><span class="w">  </span><span class="nt">&quot;ec&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a><span class="w">    </span><span class="nt">&quot;raw&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span>
+<a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a><span class="w">    </span><span class="nt">&quot;compensated&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1180</span><span class="p">,</span>
+<a id="__codelineno-16-18" name="__codelineno-16-18" href="#__codelineno-16-18"></a><span class="w">    </span><span class="nt">&quot;recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1500</span><span class="p">,</span>
+<a id="__codelineno-16-19" name="__codelineno-16-19" href="#__codelineno-16-19"></a><span class="w">    </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;µS/cm&quot;</span>
+<a id="__codelineno-16-20" name="__codelineno-16-20" href="#__codelineno-16-20"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-16-21" name="__codelineno-16-21" href="#__codelineno-16-21"></a><span class="w">  </span><span class="nt">&quot;ph&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-22" name="__codelineno-16-22" href="#__codelineno-16-22"></a><span class="w">    </span><span class="nt">&quot;raw&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.8</span><span class="p">,</span>
+<a id="__codelineno-16-23" name="__codelineno-16-23" href="#__codelineno-16-23"></a><span class="w">    </span><span class="nt">&quot;compensated&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.7</span><span class="p">,</span>
+<a id="__codelineno-16-24" name="__codelineno-16-24" href="#__codelineno-16-24"></a><span class="w">    </span><span class="nt">&quot;recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="mf">6.5</span><span class="p">,</span>
+<a id="__codelineno-16-25" name="__codelineno-16-25" href="#__codelineno-16-25"></a><span class="w">    </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;pH&quot;</span>
+<a id="__codelineno-16-26" name="__codelineno-16-26" href="#__codelineno-16-26"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-16-27" name="__codelineno-16-27" href="#__codelineno-16-27"></a><span class="w">  </span><span class="nt">&quot;nitrogen&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-28" name="__codelineno-16-28" href="#__codelineno-16-28"></a><span class="w">    </span><span class="nt">&quot;raw&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span>
+<a id="__codelineno-16-29" name="__codelineno-16-29" href="#__codelineno-16-29"></a><span class="w">    </span><span class="nt">&quot;compensated&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span>
+<a id="__codelineno-16-30" name="__codelineno-16-30" href="#__codelineno-16-30"></a><span class="w">    </span><span class="nt">&quot;recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span>
+<a id="__codelineno-16-31" name="__codelineno-16-31" href="#__codelineno-16-31"></a><span class="w">    </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mg/kg&quot;</span>
+<a id="__codelineno-16-32" name="__codelineno-16-32" href="#__codelineno-16-32"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-16-33" name="__codelineno-16-33" href="#__codelineno-16-33"></a><span class="w">  </span><span class="nt">&quot;phosphorus&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-34" name="__codelineno-16-34" href="#__codelineno-16-34"></a><span class="w">    </span><span class="nt">&quot;raw&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span>
+<a id="__codelineno-16-35" name="__codelineno-16-35" href="#__codelineno-16-35"></a><span class="w">    </span><span class="nt">&quot;compensated&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span>
+<a id="__codelineno-16-36" name="__codelineno-16-36" href="#__codelineno-16-36"></a><span class="w">    </span><span class="nt">&quot;recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span>
+<a id="__codelineno-16-37" name="__codelineno-16-37" href="#__codelineno-16-37"></a><span class="w">    </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mg/kg&quot;</span>
+<a id="__codelineno-16-38" name="__codelineno-16-38" href="#__codelineno-16-38"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-16-39" name="__codelineno-16-39" href="#__codelineno-16-39"></a><span class="w">  </span><span class="nt">&quot;potassium&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-40" name="__codelineno-16-40" href="#__codelineno-16-40"></a><span class="w">    </span><span class="nt">&quot;raw&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span>
+<a id="__codelineno-16-41" name="__codelineno-16-41" href="#__codelineno-16-41"></a><span class="w">    </span><span class="nt">&quot;compensated&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<a id="__codelineno-16-42" name="__codelineno-16-42" href="#__codelineno-16-42"></a><span class="w">    </span><span class="nt">&quot;recommended&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span>
+<a id="__codelineno-16-43" name="__codelineno-16-43" href="#__codelineno-16-43"></a><span class="w">    </span><span class="nt">&quot;unit&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mg/kg&quot;</span>
+<a id="__codelineno-16-44" name="__codelineno-16-44" href="#__codelineno-16-44"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-16-45" name="__codelineno-16-45" href="#__codelineno-16-45"></a><span class="w">  </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-16-46" name="__codelineno-16-46" href="#__codelineno-16-46"></a><span class="w">    </span><span class="nt">&quot;sensor&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ok&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-47" name="__codelineno-16-47" href="#__codelineno-16-47"></a><span class="w">    </span><span class="nt">&quot;wifi&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;connected&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-48" name="__codelineno-16-48" href="#__codelineno-16-48"></a><span class="w">    </span><span class="nt">&quot;mqtt&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;connected&quot;</span><span class="p">,</span>
+<a id="__codelineno-16-49" name="__codelineno-16-49" href="#__codelineno-16-49"></a><span class="w">    </span><span class="nt">&quot;calibration&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;enabled&quot;</span>
+<a id="__codelineno-16-50" name="__codelineno-16-50" href="#__codelineno-16-50"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-16-51" name="__codelineno-16-51" href="#__codelineno-16-51"></a><span class="p">}</span>
+</code></pre></div></p>
+<h4 id="get-apiv1config">GET <code>/api/v1/config</code><a class="headerlink" href="#get-apiv1config" title="Постоянная ссылка">&para;</a></h4>
+<p>Получение текущей конфигурации</p>
+<p><strong>Ответ:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="p">{</span>
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="nt">&quot;wifi&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="w">    </span><span class="nt">&quot;ssid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;your_network&quot;</span><span class="p">,</span>
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="w">    </span><span class="nt">&quot;mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;sta&quot;</span>
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="w">  </span><span class="nt">&quot;mqtt&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a><span class="w">    </span><span class="nt">&quot;enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a><span class="w">    </span><span class="nt">&quot;server&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;mqtt.example.com&quot;</span><span class="p">,</span>
+<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a><span class="w">    </span><span class="nt">&quot;port&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1883</span><span class="p">,</span>
+<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a><span class="w">    </span><span class="nt">&quot;topic&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jxct/sensor/001&quot;</span>
+<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a><span class="w">  </span><span class="nt">&quot;sensor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a><span class="w">    </span><span class="nt">&quot;read_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">30000</span><span class="p">,</span>
+<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a><span class="w">    </span><span class="nt">&quot;calibration_enabled&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a><span class="w">    </span><span class="nt">&quot;soil_type&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;loam&quot;</span><span class="p">,</span>
+<a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a><span class="w">    </span><span class="nt">&quot;crop&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tomato&quot;</span>
+<a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a><span class="p">}</span>
+</code></pre></div></p>
+<h4 id="post-apiv1config">POST <code>/api/v1/config</code><a class="headerlink" href="#post-apiv1config" title="Постоянная ссылка">&para;</a></h4>
+<p>Обновление конфигурации</p>
+<p><strong>Тело запроса:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="p">{</span>
+<a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span><span class="nt">&quot;wifi&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">    </span><span class="nt">&quot;ssid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;new_network&quot;</span><span class="p">,</span>
+<a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a><span class="w">    </span><span class="nt">&quot;password&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;new_password&quot;</span>
+<a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a><span class="w">  </span><span class="nt">&quot;sensor&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a><span class="w">    </span><span class="nt">&quot;read_interval&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">60000</span>
+<a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a><span class="p">}</span>
+</code></pre></div></p>
+<h4 id="get-apiv1status">GET <code>/api/v1/status</code><a class="headerlink" href="#get-apiv1status" title="Постоянная ссылка">&para;</a></h4>
+<p>Получение системного статуса</p>
+<p><strong>Ответ:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="p">{</span>
+<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.6.7&quot;</span><span class="p">,</span>
+<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">  </span><span class="nt">&quot;uptime&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">86400</span><span class="p">,</span>
+<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">  </span><span class="nt">&quot;free_memory&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">150000</span><span class="p">,</span>
+<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">  </span><span class="nt">&quot;wifi_rssi&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">-45</span><span class="p">,</span>
+<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">  </span><span class="nt">&quot;mqtt_connected&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">  </span><span class="nt">&quot;sensor_connected&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">  </span><span class="nt">&quot;last_reading&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1640995200</span>
+<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="p">}</span>
+</code></pre></div></p>
+<h3 id="-mqtt-api">📡 MQTT API<a class="headerlink" href="#-mqtt-api" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="топики-для-публикации">Топики для публикации<a class="headerlink" href="#топики-для-публикации" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>jxct/sensor/{device_id}/data
+<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>jxct/sensor/{device_id}/status
+<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>jxct/sensor/{device_id}/config
+</code></pre></div>
+<h4 id="топики-для-подписки">Топики для подписки<a class="headerlink" href="#топики-для-подписки" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>jxct/sensor/{device_id}/command
+<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>jxct/sensor/{device_id}/config/update
+</code></pre></div>
+<h4 id="формат-команд">Формат команд<a class="headerlink" href="#формат-команд" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="p">{</span>
+<a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="nt">&quot;command&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;restart&quot;</span><span class="p">,</span>
+<a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1640995200</span><span class="p">,</span>
+<a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">  </span><span class="nt">&quot;id&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;cmd_001&quot;</span>
+<a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="-конфигурация">🔧 Конфигурация<a class="headerlink" href="#-конфигурация" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-структура-конфигурации">📝 Структура конфигурации<a class="headerlink" href="#-структура-конфигурации" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Config</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="w">    </span><span class="c1">// WiFi настройки</span>
+<a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">ssid</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+<a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">password</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+<a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>
+<a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="w">    </span><span class="c1">// MQTT настройки</span>
+<a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">mqttEnabled</span><span class="p">;</span>
+<a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">mqttServer</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+<a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">mqttPort</span><span class="p">;</span>
+<a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">mqttUser</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+<a id="__codelineno-23-11" name="__codelineno-23-11" href="#__codelineno-23-11"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">mqttPassword</span><span class="p">[</span><span class="mi">32</span><span class="p">];</span>
+<a id="__codelineno-23-12" name="__codelineno-23-12" href="#__codelineno-23-12"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">mqttTopic</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+<a id="__codelineno-23-13" name="__codelineno-23-13" href="#__codelineno-23-13"></a>
+<a id="__codelineno-23-14" name="__codelineno-23-14" href="#__codelineno-23-14"></a><span class="w">    </span><span class="c1">// ThingSpeak настройки</span>
+<a id="__codelineno-23-15" name="__codelineno-23-15" href="#__codelineno-23-15"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">thingSpeakEnabled</span><span class="p">;</span>
+<a id="__codelineno-23-16" name="__codelineno-23-16" href="#__codelineno-23-16"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">thingSpeakApiKey</span><span class="p">[</span><span class="mi">64</span><span class="p">];</span>
+<a id="__codelineno-23-17" name="__codelineno-23-17" href="#__codelineno-23-17"></a><span class="w">    </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">thingSpeakChannelId</span><span class="p">;</span>
+<a id="__codelineno-23-18" name="__codelineno-23-18" href="#__codelineno-23-18"></a>
+<a id="__codelineno-23-19" name="__codelineno-23-19" href="#__codelineno-23-19"></a><span class="w">    </span><span class="c1">// Настройки датчика</span>
+<a id="__codelineno-23-20" name="__codelineno-23-20" href="#__codelineno-23-20"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sensorReadInterval</span><span class="p">;</span>
+<a id="__codelineno-23-21" name="__codelineno-23-21" href="#__codelineno-23-21"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">mqttPublishInterval</span><span class="p">;</span>
+<a id="__codelineno-23-22" name="__codelineno-23-22" href="#__codelineno-23-22"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">thingSpeakInterval</span><span class="p">;</span>
+<a id="__codelineno-23-23" name="__codelineno-23-23" href="#__codelineno-23-23"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">webUpdateInterval</span><span class="p">;</span>
+<a id="__codelineno-23-24" name="__codelineno-23-24" href="#__codelineno-23-24"></a>
+<a id="__codelineno-23-25" name="__codelineno-23-25" href="#__codelineno-23-25"></a><span class="w">    </span><span class="c1">// Фильтры</span>
+<a id="__codelineno-23-26" name="__codelineno-23-26" href="#__codelineno-23-26"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">deltaTemperature</span><span class="p">;</span>
+<a id="__codelineno-23-27" name="__codelineno-23-27" href="#__codelineno-23-27"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">deltaHumidity</span><span class="p">;</span>
+<a id="__codelineno-23-28" name="__codelineno-23-28" href="#__codelineno-23-28"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">deltaPh</span><span class="p">;</span>
+<a id="__codelineno-23-29" name="__codelineno-23-29" href="#__codelineno-23-29"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">deltaEc</span><span class="p">;</span>
+<a id="__codelineno-23-30" name="__codelineno-23-30" href="#__codelineno-23-30"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">deltaNpk</span><span class="p">;</span>
+<a id="__codelineno-23-31" name="__codelineno-23-31" href="#__codelineno-23-31"></a>
+<a id="__codelineno-23-32" name="__codelineno-23-32" href="#__codelineno-23-32"></a><span class="w">    </span><span class="c1">// Калибровка</span>
+<a id="__codelineno-23-33" name="__codelineno-23-33" href="#__codelineno-23-33"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">calibrationEnabled</span><span class="p">;</span>
+<a id="__codelineno-23-34" name="__codelineno-23-34" href="#__codelineno-23-34"></a><span class="w">    </span><span class="n">SoilProfile</span><span class="w"> </span><span class="n">soilProfile</span><span class="p">;</span>
+<a id="__codelineno-23-35" name="__codelineno-23-35" href="#__codelineno-23-35"></a>
+<a id="__codelineno-23-36" name="__codelineno-23-36" href="#__codelineno-23-36"></a><span class="w">    </span><span class="c1">// Культура и среда</span>
+<a id="__codelineno-23-37" name="__codelineno-23-37" href="#__codelineno-23-37"></a><span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">cropId</span><span class="p">[</span><span class="mi">16</span><span class="p">];</span>
+<a id="__codelineno-23-38" name="__codelineno-23-38" href="#__codelineno-23-38"></a><span class="w">    </span><span class="n">EnvironmentType</span><span class="w"> </span><span class="n">environmentType</span><span class="p">;</span>
+<a id="__codelineno-23-39" name="__codelineno-23-39" href="#__codelineno-23-39"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">latitude</span><span class="p">;</span>
+<a id="__codelineno-23-40" name="__codelineno-23-40" href="#__codelineno-23-40"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">longitude</span><span class="p">;</span>
+<a id="__codelineno-23-41" name="__codelineno-23-41" href="#__codelineno-23-41"></a>
+<a id="__codelineno-23-42" name="__codelineno-23-42" href="#__codelineno-23-42"></a><span class="w">    </span><span class="c1">// Флаги</span>
+<a id="__codelineno-23-43" name="__codelineno-23-43" href="#__codelineno-23-43"></a><span class="w">    </span><span class="k">struct</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-23-44" name="__codelineno-23-44" href="#__codelineno-23-44"></a><span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">useRealSensor</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-23-45" name="__codelineno-23-45" href="#__codelineno-23-45"></a><span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">seasonalAdjustEnabled</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-23-46" name="__codelineno-23-46" href="#__codelineno-23-46"></a><span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">outlierFilterEnabled</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-23-47" name="__codelineno-23-47" href="#__codelineno-23-47"></a><span class="w">        </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">isGreenhouse</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<a id="__codelineno-23-48" name="__codelineno-23-48" href="#__codelineno-23-48"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="n">flags</span><span class="p">;</span>
+<a id="__codelineno-23-49" name="__codelineno-23-49" href="#__codelineno-23-49"></a><span class="p">};</span>
+</code></pre></div>
+<h3 id="-хранение-конфигурации">💾 Хранение конфигурации<a class="headerlink" href="#-хранение-конфигурации" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="nvs-non-volatile-storage">NVS (Non-Volatile Storage)<a class="headerlink" href="#nvs-non-volatile-storage" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1">// Сохранение</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="kt">void</span><span class="w"> </span><span class="nf">saveConfig</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="w">    </span><span class="n">Preferences</span><span class="w"> </span><span class="n">prefs</span><span class="p">;</span>
+<a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="w">    </span><span class="n">prefs</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="s">&quot;jxct&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span>
+<a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="w">    </span><span class="n">prefs</span><span class="p">.</span><span class="n">putBytes</span><span class="p">(</span><span class="s">&quot;config&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">config</span><span class="p">));</span>
+<a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="w">    </span><span class="n">prefs</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+<a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="p">}</span>
+<a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>
+<a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a><span class="c1">// Загрузка</span>
+<a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="kt">void</span><span class="w"> </span><span class="nf">loadConfig</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="w">    </span><span class="n">Preferences</span><span class="w"> </span><span class="n">prefs</span><span class="p">;</span>
+<a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="w">    </span><span class="n">prefs</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="s">&quot;jxct&quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span>
+<a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a><span class="w">    </span><span class="n">prefs</span><span class="p">.</span><span class="n">getBytes</span><span class="p">(</span><span class="s">&quot;config&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">config</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">config</span><span class="p">));</span>
+<a id="__codelineno-24-14" name="__codelineno-24-14" href="#__codelineno-24-14"></a><span class="w">    </span><span class="n">prefs</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+<a id="__codelineno-24-15" name="__codelineno-24-15" href="#__codelineno-24-15"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="-валидация-конфигурации">🔄 Валидация конфигурации<a class="headerlink" href="#-валидация-конфигурации" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kt">bool</span><span class="w"> </span><span class="nf">validateConfig</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="w">    </span><span class="c1">// Проверка WiFi</span>
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">ssid</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="w">    </span><span class="c1">// Проверка MQTT</span>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">mqttEnabled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">strlen</span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">mqttServer</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">mqttPort</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">config</span><span class="p">.</span><span class="n">mqttPort</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">65535</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="w">    </span><span class="c1">// Проверка интервалов</span>
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">sensorReadInterval</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">mqttPublishInterval</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">60000</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span>
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
+<a id="__codelineno-25-16" name="__codelineno-25-16" href="#__codelineno-25-16"></a><span class="p">}</span>
+</code></pre></div>
+<hr />
+<h2 id="-структура-проекта">📁 Структура проекта<a class="headerlink" href="#-структура-проекта" title="Постоянная ссылка">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>JXCT/
+<a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>├── src/                          # Исходный код
+<a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>│   ├── main.cpp                  # Главный файл
+<a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>│   ├── config.cpp                # Конфигурация
+<a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>│   ├── modbus_sensor.cpp         # Работа с датчиком
+<a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>│   ├── sensor_compensation.cpp   # Компенсация данных
+<a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>│   ├── calibration_manager.cpp   # Калибровка
+<a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>│   ├── mqtt_client.cpp           # MQTT клиент
+<a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>│   ├── wifi_manager.cpp          # WiFi управление
+<a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>│   ├── ota_manager.cpp           # OTA обновления
+<a id="__codelineno-26-11" name="__codelineno-26-11" href="#__codelineno-26-11"></a>│   └── web/                      # Веб-интерфейс
+<a id="__codelineno-26-12" name="__codelineno-26-12" href="#__codelineno-26-12"></a>│       ├── routes_main.cpp       # Главные маршруты
+<a id="__codelineno-26-13" name="__codelineno-26-13" href="#__codelineno-26-13"></a>│       ├── routes_data.cpp       # Данные датчика
+<a id="__codelineno-26-14" name="__codelineno-26-14" href="#__codelineno-26-14"></a>│       ├── routes_config.cpp     # Конфигурация
+<a id="__codelineno-26-15" name="__codelineno-26-15" href="#__codelineno-26-15"></a>│       ├── routes_ota.cpp        # OTA обновления
+<a id="__codelineno-26-16" name="__codelineno-26-16" href="#__codelineno-26-16"></a>│       └── routes_service.cpp    # Сервисные функции
+<a id="__codelineno-26-17" name="__codelineno-26-17" href="#__codelineno-26-17"></a>├── include/                      # Заголовочные файлы
+<a id="__codelineno-26-18" name="__codelineno-26-18" href="#__codelineno-26-18"></a>│   ├── ISensor.h                 # Интерфейс датчика
+<a id="__codelineno-26-19" name="__codelineno-26-19" href="#__codelineno-26-19"></a>│   ├── basic_sensor_adapter.h    # Базовый адаптер
+<a id="__codelineno-26-20" name="__codelineno-26-20" href="#__codelineno-26-20"></a>│   ├── modbus_sensor_adapter.h   # Modbus адаптер
+<a id="__codelineno-26-21" name="__codelineno-26-21" href="#__codelineno-26-21"></a>│   ├── calibration_manager.h     # Калибровка
+<a id="__codelineno-26-22" name="__codelineno-26-22" href="#__codelineno-26-22"></a>│   ├── sensor_compensation.h     # Компенсация
+<a id="__codelineno-26-23" name="__codelineno-26-23" href="#__codelineno-26-23"></a>│   ├── mqtt_client.h             # MQTT клиент
+<a id="__codelineno-26-24" name="__codelineno-26-24" href="#__codelineno-26-24"></a>│   ├── wifi_manager.h            # WiFi управление
+<a id="__codelineno-26-25" name="__codelineno-26-25" href="#__codelineno-26-25"></a>│   ├── ota_manager.h             # OTA обновления
+<a id="__codelineno-26-26" name="__codelineno-26-26" href="#__codelineno-26-26"></a>│   ├── web_routes.h              # Веб маршруты
+<a id="__codelineno-26-27" name="__codelineno-26-27" href="#__codelineno-26-27"></a>│   ├── jxct_config_vars.h        # Конфигурация
+<a id="__codelineno-26-28" name="__codelineno-26-28" href="#__codelineno-26-28"></a>│   ├── jxct_constants.h          # Константы
+<a id="__codelineno-26-29" name="__codelineno-26-29" href="#__codelineno-26-29"></a>│   ├── jxct_ui_system.h          # UI система
+<a id="__codelineno-26-30" name="__codelineno-26-30" href="#__codelineno-26-30"></a>│   ├── logger.h                  # Логирование
+<a id="__codelineno-26-31" name="__codelineno-26-31" href="#__codelineno-26-31"></a>│   └── version.h                 # Версия
+<a id="__codelineno-26-32" name="__codelineno-26-32" href="#__codelineno-26-32"></a>├── docs/                         # Документация
+<a id="__codelineno-26-33" name="__codelineno-26-33" href="#__codelineno-26-33"></a>│   ├── manuals/                  # Руководства
+<a id="__codelineno-26-34" name="__codelineno-26-34" href="#__codelineno-26-34"></a>│   ├── dev/                      # Разработка
+<a id="__codelineno-26-35" name="__codelineno-26-35" href="#__codelineno-26-35"></a>│   ├── examples/                 # Примеры
+<a id="__codelineno-26-36" name="__codelineno-26-36" href="#__codelineno-26-36"></a>│   └── html/                     # Doxygen
+<a id="__codelineno-26-37" name="__codelineno-26-37" href="#__codelineno-26-37"></a>├── test/                         # Тесты
+<a id="__codelineno-26-38" name="__codelineno-26-38" href="#__codelineno-26-38"></a>│   ├── test_validation_utils.cpp # Тесты валидации
+<a id="__codelineno-26-39" name="__codelineno-26-39" href="#__codelineno-26-39"></a>│   └── stubs/                    # Заглушки
+<a id="__codelineno-26-40" name="__codelineno-26-40" href="#__codelineno-26-40"></a>├── scripts/                      # Скрипты
+<a id="__codelineno-26-41" name="__codelineno-26-41" href="#__codelineno-26-41"></a>│   ├── release.ps1               # Релиз
+<a id="__codelineno-26-42" name="__codelineno-26-42" href="#__codelineno-26-42"></a>│   └── auto_version.py           # Автоверсионирование
+<a id="__codelineno-26-43" name="__codelineno-26-43" href="#__codelineno-26-43"></a>├── platformio.ini                # Конфигурация PlatformIO
+<a id="__codelineno-26-44" name="__codelineno-26-44" href="#__codelineno-26-44"></a>├── Doxyfile                      # Конфигурация Doxygen
+<a id="__codelineno-26-45" name="__codelineno-26-45" href="#__codelineno-26-45"></a>└── README.md                     # Основная документация
+</code></pre></div>
+<hr />
+<h2 id="-разработка">🛠️ Разработка<a class="headerlink" href="#-разработка" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-требования-к-окружению">🔧 Требования к окружению<a class="headerlink" href="#-требования-к-окружению" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="platformio">PlatformIO<a class="headerlink" href="#platformio" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="k">[env:esp32dev]</span>
+<a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a><span class="na">platform</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">espressif32</span>
+<a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="na">board</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">esp32dev</span>
+<a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="na">framework</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">arduino</span>
+<a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="na">monitor_speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">115200</span>
+<a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="na">build_flags</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-DCORE_DEBUG_LEVEL=3</span>
+<a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a><span class="na">lib_deps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="w">    </span><span class="na">arduino-libraries/ArduinoJson@^6.21.3</span>
+<a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a><span class="w">    </span><span class="na">knolleary/PubSubClient@^2.8</span>
+<a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a><span class="w">    </span><span class="na">arduino-libraries/NTPClient@^3.2.1</span>
+<a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a><span class="w">    </span><span class="na">bblanchon/ArduinoJson@^6.21.3</span>
+</code></pre></div>
+<h4 id="зависимости">Зависимости<a class="headerlink" href="#зависимости" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>ArduinoJson:</strong> Работа с JSON</li>
+<li><strong>PubSubClient:</strong> MQTT клиент</li>
+<li><strong>NTPClient:</strong> Синхронизация времени</li>
+<li><strong>ESP32 Arduino:</strong> Основной фреймворк</li>
+</ul>
+<h3 id="-стандарты-кодирования">📝 Стандарты кодирования<a class="headerlink" href="#-стандарты-кодирования" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="именование">Именование<a class="headerlink" href="#именование" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="c1">// Классы: PascalCase</span>
+<a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">CalibrationManager</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">};</span>
+<a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a>
+<a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="c1">// Функции: camelCase</span>
+<a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="kt">void</span><span class="w"> </span><span class="nf">applyCompensation</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a>
+<a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="c1">// Константы: UPPER_SNAKE_CASE</span>
+<a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_RETRY_COUNT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="p">;</span>
+<a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a>
+<a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="c1">// Переменные: camelCase</span>
+<a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="kt">int</span><span class="w"> </span><span class="n">sensorReadInterval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30000</span><span class="p">;</span>
+</code></pre></div>
+<h4 id="комментарии">Комментарии<a class="headerlink" href="#комментарии" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="cm">/**</span>
+<a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="cm"> * @brief Применяет температурную компенсацию к значению EC</span>
+<a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="cm"> * @param ec Исходное значение EC</span>
+<a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="cm"> * @param temperature Температура в градусах Цельсия</span>
+<a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="cm"> * @param soilType Тип почвы</span>
+<a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="cm"> * @return Скомпенсированное значение EC</span>
+<a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="cm"> */</span>
+<a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="kt">float</span><span class="w"> </span><span class="nf">compensateEC</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">ec</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">temperature</span><span class="p">,</span><span class="w"> </span><span class="n">SoilType</span><span class="w"> </span><span class="n">soilType</span><span class="p">);</span>
+</code></pre></div>
+<h3 id="-тестирование">🧪 Тестирование<a class="headerlink" href="#-тестирование" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="структура-тестов">Структура тестов<a class="headerlink" href="#структура-тестов" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;unity.h&gt;</span>
+<a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+<a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">test_compensation</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">compensateEC</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="mf">25.0</span><span class="p">,</span><span class="w"> </span><span class="n">SoilType</span><span class="o">::</span><span class="n">LOAM</span><span class="p">);</span>
+<a id="__codelineno-30-5" name="__codelineno-30-5" href="#__codelineno-30-5"></a><span class="w">    </span><span class="n">TEST_ASSERT_FLOAT_WITHIN</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+<a id="__codelineno-30-6" name="__codelineno-30-6" href="#__codelineno-30-6"></a><span class="p">}</span>
+<a id="__codelineno-30-7" name="__codelineno-30-7" href="#__codelineno-30-7"></a>
+<a id="__codelineno-30-8" name="__codelineno-30-8" href="#__codelineno-30-8"></a><span class="kt">void</span><span class="w"> </span><span class="nf">test_calibration</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-30-9" name="__codelineno-30-9" href="#__codelineno-30-9"></a><span class="w">    </span><span class="kt">float</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">applyCalibration</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="n">SoilProfile</span><span class="o">::</span><span class="n">SAND</span><span class="p">);</span>
+<a id="__codelineno-30-10" name="__codelineno-30-10" href="#__codelineno-30-10"></a><span class="w">    </span><span class="n">TEST_ASSERT_FLOAT_WITHIN</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w"> </span><span class="n">result</span><span class="p">);</span>
+<a id="__codelineno-30-11" name="__codelineno-30-11" href="#__codelineno-30-11"></a><span class="p">}</span>
+<a id="__codelineno-30-12" name="__codelineno-30-12" href="#__codelineno-30-12"></a>
+<a id="__codelineno-30-13" name="__codelineno-30-13" href="#__codelineno-30-13"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-30-14" name="__codelineno-30-14" href="#__codelineno-30-14"></a><span class="w">    </span><span class="n">UNITY_BEGIN</span><span class="p">();</span>
+<a id="__codelineno-30-15" name="__codelineno-30-15" href="#__codelineno-30-15"></a><span class="w">    </span><span class="n">RUN_TEST</span><span class="p">(</span><span class="n">test_compensation</span><span class="p">);</span>
+<a id="__codelineno-30-16" name="__codelineno-30-16" href="#__codelineno-30-16"></a><span class="w">    </span><span class="n">RUN_TEST</span><span class="p">(</span><span class="n">test_calibration</span><span class="p">);</span>
+<a id="__codelineno-30-17" name="__codelineno-30-17" href="#__codelineno-30-17"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">UNITY_END</span><span class="p">();</span>
+<a id="__codelineno-30-18" name="__codelineno-30-18" href="#__codelineno-30-18"></a><span class="p">}</span>
+</code></pre></div>
+<h3 id="-логирование">📊 Логирование<a class="headerlink" href="#-логирование" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="уровни-логирования">Уровни логирования<a class="headerlink" href="#уровни-логирования" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="c1">// Отладка</span>
+<a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a><span class="n">logDebug</span><span class="p">(</span><span class="s">&quot;Чтение датчика: %d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sensorId</span><span class="p">);</span>
+<a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>
+<a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="c1">// Информация</span>
+<a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a><span class="n">logInfo</span><span class="p">(</span><span class="s">&quot;Данные получены: T=%.1f°C&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">temperature</span><span class="p">);</span>
+<a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a>
+<a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a><span class="c1">// Предупреждение</span>
+<a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="n">logWarning</span><span class="p">(</span><span class="s">&quot;Высокая температура: %.1f°C&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">temperature</span><span class="p">);</span>
+<a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a>
+<a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a><span class="c1">// Ошибка</span>
+<a id="__codelineno-31-11" name="__codelineno-31-11" href="#__codelineno-31-11"></a><span class="n">logError</span><span class="p">(</span><span class="s">&quot;Ошибка связи с датчиком: %s&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">errorMessage</span><span class="p">);</span>
+</code></pre></div>
+<h4 id="ротация-логов">Ротация логов<a class="headerlink" href="#ротация-логов" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="c1">// Максимальный размер лога: 10KB</span>
+<a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="c1">// Автоматическая очистка старых записей</span>
+<a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="c1">// Сохранение в SPIFFS</span>
+</code></pre></div>
+<h3 id="-cicd">🚀 CI/CD<a class="headerlink" href="#-cicd" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="github-actions">GitHub Actions<a class="headerlink" href="#github-actions" title="Постоянная ссылка">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Build and Test</span>
+<a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>
+<a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a><span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<a id="__codelineno-33-6" name="__codelineno-33-6" href="#__codelineno-33-6"></a><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
+<a id="__codelineno-33-7" name="__codelineno-33-7" href="#__codelineno-33-7"></a><span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<a id="__codelineno-33-8" name="__codelineno-33-8" href="#__codelineno-33-8"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span>
+<a id="__codelineno-33-9" name="__codelineno-33-9" href="#__codelineno-33-9"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/setup-python@v2</span>
+<a id="__codelineno-33-10" name="__codelineno-33-10" href="#__codelineno-33-10"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pip install platformio</span>
+<a id="__codelineno-33-11" name="__codelineno-33-11" href="#__codelineno-33-11"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pio run</span>
+<a id="__codelineno-33-12" name="__codelineno-33-12" href="#__codelineno-33-12"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">pio test</span>
+</code></pre></div>
+<hr />
+<h2 id="-поддержка">📞 Поддержка<a class="headerlink" href="#-поддержка" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-связь-с-разработчиками">💬 Связь с разработчиками<a class="headerlink" href="#-связь-с-разработчиками" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Telegram:</strong> <a href="https://t.me/Gfermoto">@Gfermoto</a></li>
+<li><strong>GitHub Issues:</strong> <a href="https://github.com/Gfermoto/soil-sensor-7in1/issues">Сообщить о проблеме</a></li>
+<li><strong>Документация:</strong> <a href="https://gfermoto.github.io/soil-sensor-7in1/">GitHub Pages</a></li>
+</ul>
+<h3 id="-дополнительные-ресурсы">📚 Дополнительные ресурсы<a class="headerlink" href="#-дополнительные-ресурсы" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><a href="../USER_GUIDE/">Руководство пользователя</a></li>
+<li><a href="../API/">API документация</a></li>
+<li><a href="../AGRO_RECOMMENDATIONS/">Агрономические рекомендации</a></li>
+<li><a href="../COMPENSATION_GUIDE/">Руководство по компенсации</a></li>
+</ul>
+<h3 id="-полезные-ссылки">🔗 Полезные ссылки<a class="headerlink" href="#-полезные-ссылки" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/Gfermoto/soil-sensor-7in1">🌱 GitHub репозиторий</a> - Исходный код проекта</li>
+<li><a href="../../dev/QA_REFACTORING_PLAN_2025H2/">📋 План рефакторинга</a> - Планы развития на 2025</li>
+<li><a href="../../dev/TECH_DEBT_REPORT_2025-06/">📊 Отчет о техническом долге</a> - Анализ технических проблем</li>
+<li><a href="../../dev/ARCH_OVERALL/">🏗️ Архитектура системы</a> - Общая архитектура проекта</li>
+</ul>
+<hr />
+<p><strong>© 2025 JXCT Development Team</strong><br />
+<em>Версия 3.6.7 | Июнь 2025</em> </p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/Gfermoto/soil-sensor-7in1" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://t.me/jxct_support" target="_blank" rel="noopener" title="Telegram Support" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8m114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.45 10.45 0 0 1 3.53 6.716 43.8 43.8 0 0 1 .417 9.769"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+    
+  </body>
+</html>

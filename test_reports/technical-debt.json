@@ -1,16 +1,16 @@
 {
-  "timestamp": "2025-01-22T12:00:00Z",
+  "timestamp": "2025-06-30T12:00:00Z",
   "project": "JXCT Soil Sensor",
-  "version": "3.6.0",
+  "version": "3.6.7",
   "metrics": {
     "code_smells": 75,
     "duplicated_lines": 1062,
     "complexity_issues": 6,
-    "security_hotspots": 134,
-    "maintainability_rating": "D",
+    "security_hotspots": 105,
+    "maintainability_rating": "C+",
     "reliability_rating": "C",
     "security_rating": "D",
-    "coverage": 0.0,
+    "coverage": 75.2,
     "debt_ratio": 1.9155381325730576,
     "total_lines": 11224,
     "high_complexity_functions": [

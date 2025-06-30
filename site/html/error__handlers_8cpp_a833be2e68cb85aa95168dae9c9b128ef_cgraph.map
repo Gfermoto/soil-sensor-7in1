@@ -1,0 +1,25 @@
+<map id="setupErrorHandlers" name="setupErrorHandlers">
+<area shape="rect" id="Node000001" title="Настройка обработчиков ошибок (404, 500, и т." alt="" coords="5,107,139,133"/>
+<area shape="rect" id="Node000002" href="$web__templates_8cpp.html#a104303f7b44cf43e481a713261d52457" title="Генерация страницы ошибки" alt="" coords="187,56,316,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="121,103,186,85,188,90,123,109"/>
+<area shape="rect" id="Node000009" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="217,107,286,133"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="139,117,202,117,202,123,139,123"/>
+<area shape="rect" id="Node000010" href="$error__handlers_8cpp.html#a1a62e7c40bff885d97f6018743bec642" title="Логирование веб&#45;запросов" alt="" coords="195,157,308,184"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="123,131,188,150,186,155,121,137"/>
+<area shape="rect" id="Node000003" href="$web__templates_8cpp.html#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" title="Генерация базовой HTML структуры с навигацией" alt="" coords="364,56,495,83"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="317,67,349,67,349,72,317,72"/>
+<area shape="rect" id="Node000004" href="$web__templates_8cpp.html#ad4f3a6e85baef9b2d3e2aec977c3a321" title="Генерация футера HTML страницы" alt="" coords="546,5,684,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="481,53,548,34,550,39,482,58"/>
+<area shape="rect" id="Node000006" href="$web__templates_8cpp.html#ac4502db1ad8d9e08830f7eb784d62600" title="Генерация заголовка HTML страницы" alt="" coords="543,56,687,83"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="496,67,528,67,528,72,496,72"/>
+<area shape="rect" id="Node000008" href="$wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9" title=" " alt="" coords="580,107,650,133"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="482,81,566,104,564,109,481,86"/>
+<area shape="rect" id="Node000005" href="$jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="735,5,842,32"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="684,16,720,16,720,21,684,21"/>
+<area shape="rect" id="Node000007" href="$jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="735,56,843,83"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="687,67,719,67,719,72,687,72"/>
+<area shape="rect" id="Node000011" href="$logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="392,132,468,159"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="308,160,376,150,376,156,309,165"/>
+<area shape="rect" id="Node000012" href="$logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf" title=" " alt="" coords="400,183,460,209"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="309,176,385,187,384,192,308,181"/>
+</map>

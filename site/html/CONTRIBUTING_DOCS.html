@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📑 Contributing to Documentation</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            margin: -20px -20px 20px -20px;
+        }
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+        }
+        .navigation a {
+            color: #1976d2;
+            text-decoration: none;
+            margin-right: 15px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .navigation a:hover {
+            background-color: #e3f2fd;
+        }
+        .content {
+            padding: 20px 0;
+        }
+        h1, h2, h3, h4 {
+            color: #2e7d32;
+        }
+        h1 {
+            border-bottom: 3px solid #4caf50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 2px solid #81c784;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid #4caf50;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background: #388e3c;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .status-success { background: #4caf50; color: white; }
+        .status-warning { background: #ff9800; color: white; }
+        .status-error { background: #f44336; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>📑 Contributing to Documentation</h1>
+            <p>JXCT 7-в-1 Датчик Почвы - Профессиональная IoT система мониторинга</p>
+        </div>
+        
+        <div class="navigation">
+            
+            <a href="index.html">🏠 Главная</a>
+            <a href="manuals/USER_GUIDE.html">👤 Руководство пользователя</a>
+            <a href="manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+            <a href="manuals/API.html">📡 API</a>
+            <a href="html/index.html">📚 API документация</a>
+        
+        </div>
+        
+        <div class="content">
+            <h1>📑 Contributing to Documentation</h1>
+
+<p>Спасибо за желание помочь улучшить документацию JXCT!  
+Ниже — краткие правила и чек-лист для pull-request.</p>
+
+---
+<h2>1. Форматирование</h2>
+* <strong>Markdown (CommonMark)</strong> — расширения GitHub поддерживаются.
+* Файлы UTF-8 <strong>без BOM</strong>.
+* Заголовок H1 = emoji + тема + версия/дата (<code># 📚 API Reference v2.7</code>).
+* Коды: тройные бэктики с указанием языка (<code></code><code>cpp, </code><code></code>bash, <code></code>`json).
+* Диаграммы — Mermaid (<code> </code><code></code>mermaid`).
+
+<h2>2. Линтеры</h2>
+CI автоматически запускает:
+1. <code>markdownlint</code> — стиль.
+2. <code>markdown-link-check</code> — работа ссылок.
+
+<p>Запустите локально перед PR:
+<code></code>`bash
+npm i -g markdownlint-cli markdown-link-check
+markdownlint "<em></em>/*.md"
+markdown-link-check README.md
+<code></code>`</p>
+
+<h2>3. Файловая структура</h2>
+<code></code>`
+docs/
+ |-- manuals/        # Руководства пользователя
+ |-- dev/            # Технические документы (арх, планы)
+ |-- examples/       # Примеры конфигов / CSV
+ |-- archive/        # Исторические материалы (>1 года)
+<code></code>`
+
+<h2>4. Язык</h2>
+* <strong>Пользовательские</strong> инструкции — 🇷🇺 Русский.
+* <strong>Разработческие</strong> (dev/) — 🇬🇧 Английский.
+
+<h2>5. Pull-request чек-лист</h2><ul>
+<li>[ ] Локально прошёл <code>markdownlint</code> и <code>link-check</code>.</li>
+</ul><li>[ ] Добавлен/обновлён TOC при необходимости.</li><ul>
+<li>[ ] Обновлены ссылки, если файл переименован.</li>
+</ul><li>[ ] README/Содержание обновлены при добавлении новых важных docs.</li>
+
+Спасибо за вклад! 
+        </div>
+        
+        <a href="../../index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+</body>
+</html>

@@ -127,7 +127,7 @@ struct ReportConfig {
 {
   "timestamp": "2025-01-22T12:00:00Z",
   "project": "JXCT Soil Sensor", 
-  "version": "3.6.0",
+  "version": "3.6.7",
   "summary": {
     "total_tests": 13,
     "passed_tests": 13,
