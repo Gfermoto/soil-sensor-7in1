@@ -98,7 +98,7 @@
   setupOTA("https://github.com/Gfermoto/soil-sensor-7in1/releases/latest/download/manifest.json", otaClient);
   ```
 - **SHA256 валидация** обновлений:
-  ```cpp
+```cpp
   #include <mbedtls/sha256.h>
   static bool verifySha256(const uint8_t *calcDigest, const char *expectedHex)
   ```
