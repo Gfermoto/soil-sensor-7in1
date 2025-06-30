@@ -37,7 +37,7 @@ jobs:
           # Убираем 'v' из начала тега, если есть
           TAG_VERSION="${GITHUB_REF_NAME#v}"
           FILE_VERSION=$(cat VERSION | tr -d '\n\r' | tr -d ' ')
-          HEADER_VERSION=$(grep -o 'JXCT_VERSION_STRING ".*"' include/version.h | cut -d'"' -f2)
+          HEADER_VERSION=$(grep '^#define JXCT_VERSION_STRING' include/version.h | cut -d'"' -f2)
           
           echo "📋 Проверка версий:"
           echo "  GITHUB_REF_NAME: '$GITHUB_REF_NAME'"
