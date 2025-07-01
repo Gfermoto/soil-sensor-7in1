@@ -54,9 +54,7 @@
 5. ✅ **CI интеграция** - E2E тесты в pipeline и проверены
 
 ### 🟡 **В ПРОЦЕССЕ:**
-1. **Security audit** - OWASP IoT Top 10 проверка
-2. **Рефакторинг дублирования** - только безопасные функции
-3. **Покрытие тестов** - 75.2% → 85%
+# (Security audit завершён, убран из списка)
 
 ### 🔴 **ОТЛОЖЕННЫЕ (критические компоненты):**
 1. **Rate-limiting** - требует изменения критических компонентов
@@ -105,7 +103,7 @@
 | T0-2 | CSRF-token на POST /save & /api/* | Lead Dev | 6 h | **✅ ЗАВЕРШЕНО: полная реализация** |
 | T0-3 | 20 e2e tests (Playwright) Web/UI | QA | 3 d | Coverage Web routes ≥ 70 % |
 | T0-4 | Unit tests `CalibrationManager` (load/interpolate) | QA | 1 d | **✅ ЗАВЕРШЕНО: +4.4% coverage** |
-| T0-5 | Security audit OWASP IoT Top 10 | Security | 2 d | 0 high-severity issues |
+| T0-5 | Security audit OWASP IoT Top 10 | Security | ✅ Завершено (30.06.2025) | 0 high-severity issues |
 
 ## 3. Long-term goals (ссылки → QA_REFACTORING_PLAN_2025H2.md)
 * strict layered architecture (RF-4).
