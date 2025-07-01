@@ -102,4 +102,5 @@ nav:
     - Архитектура: dev/ARCH_OVERALL.md
     - План рефакторинга: dev/QA_REFACTORING_PLAN_2025H2.md
     - Технический долг: dev/TECH_DEBT_REPORT_2025-06.md
+    - Анализ дублирования: dev/DUPLICATION_INCLUDE_ANALYSIS_2025-06-30.md
     - Участие в проекте: CONTRIBUTING_DOCS.md 
