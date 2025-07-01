@@ -1,0 +1,4 @@
+# Исключаем сгенерированный сайт и HTML-документацию из статистики языков
+site/** linguist-generated
+docs/html/** linguist-generated
+site/**.map linguist-generated 
