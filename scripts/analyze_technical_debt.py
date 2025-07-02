@@ -214,12 +214,67 @@ def create_function_signature(func_text):
     
     return signature
 
+def is_trivial_block(block):
+    """Проверяет, является ли блок тривиальным (вдумчивый анализ)"""
+    import re
+    lines = block.split('\n')
+    content = ' '.join(lines).strip()
+    
+    # Расширенные тривиальные паттерны
+    trivial_patterns = [
+        r'^\s*[{}]\s*$',  # Только скобки
+        r'^\s*break;\s*$',  # Только break
+        r'^\s*#include\s+["<].*[">]\s*$',  # Include директивы
+        r'^\s*//.*$',  # Только комментарии
+        r'^\s*$',  # Пустые строки
+        r'^\s*return\s*;\s*$',  # Только return
+        r'^\s*}\s*$',  # Только закрывающая скобка
+        r'^\s*else\s*{\s*$',  # Только else {
+        r'^\s*if\s*\([^)]*\)\s*{\s*$',  # Только if (...) {
+        r'^\s*for\s*\([^)]*\)\s*{\s*$',  # Только for (...) {
+        r'^\s*while\s*\([^)]*\)\s*{\s*$',  # Только while (...) {
+        r'^\s*switch\s*\([^)]*\)\s*{\s*$',  # Только switch (...) {
+        r'^\s*case\s+[^:]+:\s*$',  # Только case ...:
+        r'^\s*default:\s*$',  # Только default:
+        r'^\s*config\.[a-zA-Z_][a-zA-Z0-9_]*\s*=\s*[^;]+;\s*$',  # Конфигурационные присваивания
+        r'^\s*[a-zA-Z_][a-zA-Z0-9_]*\s*=\s*[^;]+;\s*$',  # Простые присваивания
+        r'^\s*log[A-Z][a-zA-Z]*\s*\([^)]*\);\s*$',  # Логирование
+        r'^\s*Serial\.[a-zA-Z]+\s*\([^)]*\);\s*$',  # Serial вызовы
+        r'^\s*delay\s*\([^)]*\);\s*$',  # delay вызовы
+        r'^\s*WiFi\.[a-zA-Z]+\s*\([^)]*\);\s*$',  # WiFi вызовы
+        r'^\s*server\.[a-zA-Z]+\s*\([^)]*\);\s*$',  # server вызовы
+        r'^\s*client\.[a-zA-Z]+\s*\([^)]*\);\s*$',  # client вызовы
+        r'^\s*request\.[a-zA-Z]+\s*\([^)]*\);\s*$',  # request вызовы
+        r'^\s*response\.[a-zA-Z]+\s*\([^)]*\);\s*$',  # response вызовы
+    ]
+    
+    for pattern in trivial_patterns:
+        if re.match(pattern, content, re.MULTILINE):
+            return True
+    
+    # Проверяем, что блок содержит достаточно осмысленного кода
+    meaningful_lines = 0
+    for line in lines:
+        line = line.strip()
+        if line and not line.startswith('//') and not line.startswith('#'):
+            # Считаем строки с реальным кодом
+            if any(keyword in line for keyword in ['if', 'for', 'while', 'switch', 'return', 'break', 'continue']):
+                meaningful_lines += 1
+            elif any(char in line for char in ['(', ')', '{', '}', ';', '=']):
+                meaningful_lines += 1
+    
+    # Если меньше 3 осмысленных строк - считаем тривиальным
+    if meaningful_lines < 3:
+        return True
+    
+    return False
+
 def find_code_patterns(files):
-    """Ищет повторяющиеся паттерны кода"""
+    """Ищет повторяющиеся паттерны кода (вдумчивый анализ)"""
     patterns = {}
     pattern_count = 0
     
-    print(f"  🔍 Анализируем паттерны в {len(files)} файлах...")
+    print(f"  🔍 Анализируем паттерны в {len(files)} файлах (вдумчивый режим)...")
     
     # Сначала собираем все паттерны из всех файлов
     for file in files:
@@ -229,11 +284,18 @@ def find_code_patterns(files):
                 
                 # Ищем повторяющиеся блоки кода
                 lines = content.split('\n')
-                for i in range(len(lines) - 4):  # Блоки по 5 строк
-                    block = '\n'.join(lines[i:i+5])
-                    if len(block.strip()) > 50:
-                        # Нормализуем блок
-                        normalized = normalize_block(block)
+                for i in range(len(lines) - 9):  # Блоки по 10 строк
+                    block = '\n'.join(lines[i:i+10])
+                    
+                    # Пропускаем тривиальные блоки
+                    if is_trivial_block(block):
+                        continue
+                    
+                    # Нормализуем блок
+                    normalized = normalize_block(block)
+                    
+                    # Увеличиваем минимальный размер для более осмысленных блоков
+                    if len(normalized.strip()) > 150:  # Минимальный размер
                         if normalized not in patterns:
                             patterns[normalized] = []
                         patterns[normalized].append(file)
@@ -242,32 +304,55 @@ def find_code_patterns(files):
             continue
     
     # Теперь ищем паттерны, которые встречаются в РАЗНЫХ файлах
+    meaningful_duplicates = []
     for pattern, file_list in patterns.items():
         unique_files = list(set(file_list))  # Убираем дубликаты файлов
         if len(unique_files) > 1:  # Паттерн встречается в разных файлах
             pattern_count += 1
+            meaningful_duplicates.append((unique_files, pattern))
             if pattern_count <= 5:  # Показываем первые 5 дубликатов
                 print(f"    🔄 Дубликат #{pattern_count}:")
                 print(f"       Файлы: {unique_files}")
-                print(f"       Блок: {pattern[:100]}...")
+                print(f"       Блок: {pattern[:200]}...")
     
-    print(f"  📊 Найдено {pattern_count} паттернов между файлами из {len(patterns)} уникальных блоков")
+    print(f"  📊 Найдено {pattern_count} вдумчивых дубликатов между файлами из {len(patterns)} уникальных блоков")
     return pattern_count
 
 def normalize_block(block):
-    """Нормализует блок кода для сравнения"""
+    """Нормализует блок кода для сравнения (вдумчивая нормализация)"""
+    import re
+    
     # Убираем комментарии и лишние пробелы
     lines = block.split('\n')
     clean_lines = []
     
     for line in lines:
+        # Убираем комментарии
         if '//' in line:
             line = line.split('//')[0]
+        if '/*' in line:
+            line = line.split('/*')[0]
+        
+        # Убираем лишние пробелы
         line = ' '.join(line.split())
+        
         if line.strip():
             clean_lines.append(line)
     
-    return '\n'.join(clean_lines)
+    normalized = '\n'.join(clean_lines)
+    
+    # Дополнительная нормализация для лучшего сравнения
+    # Заменяем имена переменных на placeholder (но сохраняем структуру)
+    normalized = re.sub(r'\b[a-zA-Z_][a-zA-Z0-9_]*\s*=\s*', 'VAR = ', normalized)
+    
+    # Нормализуем числа (но сохраняем их тип)
+    normalized = re.sub(r'\b\d+\.\d+\b', 'FLOAT', normalized)  # float числа
+    normalized = re.sub(r'\b\d+\b', 'INT', normalized)  # целые числа
+    
+    # Нормализуем строки (но сохраняем их наличие)
+    normalized = re.sub(r'"[^"]*"', 'STRING', normalized)
+    
+    return normalized
 
 def generate_report():
     """Генерирует полный отчёт"""

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-02T21:20:09.745701",
+  "timestamp": "2025-07-02T21:46:46.253633",
   "version": "3.5.0",
   "analysis": {
     "clang_tidy": {
@@ -318,13 +318,13 @@
       "total_files_checked": 19
     },
     "duplication": {
-      "duplication_score": 50,
+      "duplication_score": 17,
       "exact_duplicates": 0,
-      "pattern_duplicates": 50,
+      "pattern_duplicates": 17,
       "files_checked": 24,
       "details": []
     }
   },
-  "total_tech_debt_score": 210,
-  "status": "🟠 High"
+  "total_tech_debt_score": 111,
+  "status": "🟡 Medium"
 }
