@@ -2,150 +2,174 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/CONTRIBUTING_DOCS/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/CSRF_SECURITY_AUDIT/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/CURRENT_TEST_RESULTS/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
+    </url>
+    <url>
+         <loc>https://gfermoto.github.io/soil-sensor-7in1/CURRENT_TEST_RESULTS_BACKUP_20250702_101124/</loc>
+         <lastmod>2025-07-02</lastmod>
+    </url>
+    <url>
+         <loc>https://gfermoto.github.io/soil-sensor-7in1/CURRENT_TEST_RESULTS_COMPACT/</loc>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/NAVIGATION/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/REPORTS_INTEGRATION/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/STAGE_2_COMPLETION_REPORT/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/TESTING_GUIDE/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
+    </url>
+    <url>
+         <loc>https://gfermoto.github.io/soil-sensor-7in1/TESTING_GUIDE_BACKUP_20250702_101121/</loc>
+         <lastmod>2025-07-02</lastmod>
+    </url>
+    <url>
+         <loc>https://gfermoto.github.io/soil-sensor-7in1/TESTING_GUIDE_COMPACT/</loc>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/api-overview/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/dev/ARCH_OVERALL/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/dev/DUPLICATION_INCLUDE_ANALYSIS_2025-06-30/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/dev/QA_REFACTORING_PLAN_2025H2/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/dev/SAFE_TECH_DEBT_REDUCTION_PLAN/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
+    </url>
+    <url>
+         <loc>https://gfermoto.github.io/soil-sensor-7in1/dev/SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014/</loc>
+         <lastmod>2025-07-02</lastmod>
+    </url>
+    <url>
+         <loc>https://gfermoto.github.io/soil-sensor-7in1/dev/SAFE_TECH_DEBT_REDUCTION_PLAN_COMPACT/</loc>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/dev/TECH_DEBT_PROGRESS_REPORT_22JAN2025/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/dev/TECH_DEBT_QUICK_REFERENCE/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/dev/TECH_DEBT_REPORT_2025-06/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/dev/ARCH_OVERALL/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/dev/QA_REFACTORING_PLAN_2025H2/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/dev/TECH_DEBT_REPORT_2025-06/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/manuals/AGRO_RECOMMENDATIONS/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/manuals/API/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/manuals/COMPENSATION_GUIDE/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/manuals/CONFIG_MANAGEMENT/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/manuals/MODBUS_PROTOCOL/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/manuals/TECHNICAL_DOCS/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/manuals/USER_GUIDE/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/manuals/VERSION_MANAGEMENT/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/html/manuals/WIRING_DIAGRAM/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/manuals/AGRO_RECOMMENDATIONS/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/manuals/API/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/manuals/COMPENSATION_GUIDE/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/manuals/CONFIG_MANAGEMENT/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/manuals/MODBUS_PROTOCOL/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/manuals/TECHNICAL_DOCS/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/manuals/USER_GUIDE/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/manuals/VERSION_MANAGEMENT/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
     <url>
          <loc>https://gfermoto.github.io/soil-sensor-7in1/manuals/WIRING_DIAGRAM/</loc>
-         <lastmod>2025-07-01</lastmod>
+         <lastmod>2025-07-02</lastmod>
     </url>
 </urlset>
