@@ -471,17 +471,35 @@ class CISummaryGenerator:
         """Генерация сводного отчёта"""
         print("🔍 Анализ артефактов CI/CD...")
 
-        # Анализируем результаты всех jobs
-        self.summary_data['jobs']['unit_tests'] = self.analyze_unit_tests()
-        self.summary_data['jobs']['e2e_tests'] = self.analyze_e2e_tests()
-        self.summary_data['jobs']['static_analysis'] = self.analyze_static_analysis()
-        self.summary_data['jobs']['performance_tests'] = self.analyze_performance_tests()
+        # Проверяем существование директории артефактов
+        if not self.artifacts_path.exists():
+            print(f"⚠️ Директория артефактов не найдена: {self.artifacts_path}")
+            print("Создаём минимальный отчёт...")
+            
+            # Создаём минимальные данные
+            self.summary_data['jobs']['unit_tests'] = {"status": "no_artifacts", "total_tests": 0, "passed_tests": 0}
+            self.summary_data['jobs']['e2e_tests'] = {"status": "no_artifacts", "total_tests": 0, "passed_tests": 0}
+            self.summary_data['jobs']['static_analysis'] = {"status": "no_artifacts", "code_smells": 0}
+            self.summary_data['jobs']['performance_tests'] = {"status": "no_artifacts", "average_response_time": 0}
+            
+            self.summary_data['overall_status'] = "warning"
+            self.summary_data['recommendations'] = [
+                "Артефакты CI/CD не найдены",
+                "Проверьте настройки workflow",
+                "Убедитесь, что все jobs завершились"
+            ]
+        else:
+            # Анализируем результаты всех jobs
+            self.summary_data['jobs']['unit_tests'] = self.analyze_unit_tests()
+            self.summary_data['jobs']['e2e_tests'] = self.analyze_e2e_tests()
+            self.summary_data['jobs']['static_analysis'] = self.analyze_static_analysis()
+            self.summary_data['jobs']['performance_tests'] = self.analyze_performance_tests()
 
-        # Определяем общий статус
-        self.summary_data['overall_status'] = self.determine_overall_status()
+            # Определяем общий статус
+            self.summary_data['overall_status'] = self.determine_overall_status()
 
-        # Генерируем рекомендации
-        self.summary_data['recommendations'] = self.generate_recommendations()
+            # Генерируем рекомендации
+            self.summary_data['recommendations'] = self.generate_recommendations()
 
         # Генерируем HTML отчёт
         report_path = self.generate_html_report()
