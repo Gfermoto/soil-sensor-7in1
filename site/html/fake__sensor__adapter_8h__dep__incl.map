@@ -1,7 +1,0 @@
-<map id="src/fake_sensor_adapter.h" name="src/fake_sensor_adapter.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,181,32"/>
-<area shape="rect" id="Node000002" href="$sensor__factory_8h.html" title=" " alt="" coords="12,80,174,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="96,48,96,80,90,80,90,48"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html" title="Главный файл проекта JXCT датчика" alt="" coords="45,155,141,181"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="96,122,96,154,90,154,90,122"/>
-</map>

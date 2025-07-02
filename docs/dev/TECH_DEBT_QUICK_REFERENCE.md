@@ -77,9 +77,9 @@ src/ota_manager.cpp         ← Система OTA обновлений
 3. **Duplication 18 → 10** (дубликаты)
 4. **Architecture** (разделение слоев)
 
-## 📖 **ПОЛНЫЙ ПЛАН**
+## �� **ПОЛНЫЙ ПЛАН**
 
-[SAFE_TECH_DEBT_REDUCTION_PLAN.md](./SAFE_TECH_DEBT_REDUCTION_PLAN.md)
+[Полный план рефакторинга](QA_REFACTORING_PLAN_2025H2.md)
 
 ---
 

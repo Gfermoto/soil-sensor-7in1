@@ -1,7 +1,0 @@
-<map id="logUptime" name="logUptime">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,86,57"/>
-<area shape="rect" id="Node000002" href="$logger_8cpp.html#a9ce43588b680fbf5d2269e785fc39f21" title=" " alt="" coords="134,5,249,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="86,34,118,29,119,34,87,40"/>
-<area shape="rect" id="Node000003" href="$logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="150,56,233,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="87,48,135,57,134,62,86,54"/>
-</map>

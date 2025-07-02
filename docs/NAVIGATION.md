@@ -4,7 +4,7 @@
 
 ### 📖 Главные страницы
 - **[🏠 Главная страница](index.md)** - Обзор проекта
-- **[📚 Навигация](README.md)** - Полная навигация
+- **[📚 Навигация](https://github.com/Gfermoto/soil-sensor-7in1#readme)** - Полная навигация
 - **[🧭 Быстрая навигация](NAVIGATION.md)** - Этот файл
 
 ### 👥 Для пользователей
@@ -26,7 +26,7 @@
 ### 📖 Дополнительные ресурсы
 - **[📄 Обзор API](api-overview.md)**
 - **[🔧 Руководство по контрибьюции](CONTRIBUTING_DOCS.md)**
-- **[🌐 HTML документация](html/)**
+- **[🌐 API HTML](https://gfermoto.github.io/soil-sensor-7in1/api/html/index.html)**
 
 ## 📊 Статус документации
 

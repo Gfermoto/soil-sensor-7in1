@@ -1,7 +1,0 @@
-<map id="logWebRequest" name="logWebRequest">
-<area shape="rect" id="Node000001" title="Логирование веб&#45;запросов" alt="" coords="5,31,119,57"/>
-<area shape="rect" id="Node000002" href="$logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="167,5,243,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,31,151,25,152,31,120,37"/>
-<area shape="rect" id="Node000003" href="$logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf" title=" " alt="" coords="175,56,235,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="120,51,160,59,159,64,119,57"/>
-</map>

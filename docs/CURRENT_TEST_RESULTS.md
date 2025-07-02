@@ -23,8 +23,8 @@
 
 ## 🔗 **ОТЧЁТЫ**
 
-- [comprehensive-report.html](../test_reports/comprehensive-report.html)
-- [e2e-test-report.json](../test_reports/e2e-test-report.json)
+- [comprehensive-report.html](test_reports/comprehensive-report.html)
+- [e2e-test-report.json](test_reports/e2e-test-report.json)
 - [CSRF_SECURITY_AUDIT.md](CSRF_SECURITY_AUDIT.md)
 
 ## ✅ **ПОСЛЕДНИЕ ЗАПУСКИ**

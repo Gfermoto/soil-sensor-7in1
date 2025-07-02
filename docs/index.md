@@ -82,7 +82,7 @@
 - [Обзор API](api-overview.md)
 - [Руководство по участию](CONTRIBUTING_DOCS.md)
 
-- [README проекта](../README.md)
+- [README проекта](https://github.com/Gfermoto/soil-sensor-7in1#readme)
 
 ---
 
