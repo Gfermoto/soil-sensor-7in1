@@ -139,13 +139,17 @@ static bool loadTestReport(const String& filename, TestSummary& summary) {
     }
     
     File file = SPIFFS.open(filename, "r");
-    if (!file) return false;
+    if (!file) {
+        return false;
+    }
     
     StaticJsonDocument<1024> doc;
     DeserializationError error = deserializeJson(doc, file);
     file.close();
     
-    if (error) return false;
+    if (error) {
+        return false;
+    }
     
     summary.total = doc["summary"]["total"] | 0;
     summary.passed = doc["summary"]["passed"] | 0;
@@ -170,13 +174,17 @@ static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& deb
     }
     
     File file = SPIFFS.open(filename, "r");
-    if (!file) return false;
+    if (!file) {
+        return false;
+    }
     
     StaticJsonDocument<2048> doc;
     DeserializationError error = deserializeJson(doc, file);
     file.close();
     
-    if (error) return false;
+    if (error) {
+        return false;
+    }
     
     debt.code_smells = doc["metrics"]["code_smells"] | 0;
     debt.duplicated_lines = doc["metrics"]["duplicated_lines"] | 0;

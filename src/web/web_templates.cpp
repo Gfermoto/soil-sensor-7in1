@@ -110,8 +110,12 @@ String generateInputField(const String& id, const String& name, const String& la
     String html = "<div class='form-group'>";
     html += "<label for='" + id + "'>" + label + ":</label>";
     html += "<input type='" + type + "' id='" + id + "' name='" + name + "' value='" + value + "'";
-    if (required) html += " required";
-    if (placeholder.length() > 0) html += " placeholder='" + placeholder + "'";
+    if (required) {
+        html += " required";
+    }
+    if (placeholder.length() > 0) {
+        html += " placeholder='" + placeholder + "'";
+    }
     html += "></div>";
     return html;
 }
@@ -129,7 +133,9 @@ String generateCheckboxField(const String& id, const String& name, const String&
     String html = "<div class='form-group'>";
     html += "<label for='" + id + "'>" + label + ":</label>";
     html += "<input type='checkbox' id='" + id + "' name='" + name + "'";
-    if (checked) html += " checked";
+    if (checked) {
+        html += " checked";
+    }
     html += "></div>";
     return html;
 }

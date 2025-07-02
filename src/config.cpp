@@ -113,12 +113,15 @@ void loadConfig()
 
     preferences.end();
     // Значения по умолчанию для новых полей
-    if (strlen(config.mqttDeviceName) == 0)
+    if (strlen(config.mqttDeviceName) == 0) {
         strlcpy(config.mqttDeviceName, getDeviceId().c_str(), sizeof(config.mqttDeviceName));
-    if (strlen(config.thingSpeakChannelId) == 0)
+    }
+    if (strlen(config.thingSpeakChannelId) == 0) {
         strlcpy(config.thingSpeakChannelId, "", sizeof(config.thingSpeakChannelId));
-    if (strlen(config.mqttTopicPrefix) == 0)
+    }
+    if (strlen(config.mqttTopicPrefix) == 0) {
         strlcpy(config.mqttTopicPrefix, getDefaultTopic().c_str(), sizeof(config.mqttTopicPrefix));
+    }
 
     logSuccess("Конфигурация загружена");
     logDebug("SSID: %s, MQTT: %s:%d, ThingSpeak: %s", config.ssid, config.mqttServer, config.mqttPort,
@@ -274,11 +277,11 @@ void resetConfig()
 
     // Soil profile и агро-поля
     config.soilProfile = 0;
-    config.latitude = 0.0f;
-    config.longitude = 0.0f;
+    config.latitude = 0.0F;
+    config.longitude = 0.0F;
     strlcpy(config.cropId, "", sizeof(config.cropId));
     config.flags.isGreenhouse = false;
-    config.irrigationSpikeThreshold = 8.0f;
+    config.irrigationSpikeThreshold = 8.0F;
     config.irrigationHoldMinutes = 5;
 
     // v2.6.1: сезонные коэффициенты и тип среды

@@ -6,7 +6,7 @@ std::string formatFloat(float value, int precision, bool asInt)
 {
     char buf[8];
     if (asInt) {
-        snprintf(buf, sizeof(buf), "%d", (int)(value + 0.5f));
+        snprintf(buf, sizeof(buf), "%d", (int)(value + 0.5F));
     } else {
         snprintf(buf, sizeof(buf), "%.*f", precision, value);
     }

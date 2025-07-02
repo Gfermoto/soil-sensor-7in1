@@ -75,12 +75,12 @@ constexpr unsigned long MODBUS_FRAME_DELAY = 100;        // 100 мс между 
 // ============================================================================
 
 // Диапазоны значений датчика
-constexpr float SENSOR_TEMP_MIN = -40.0f;
-constexpr float SENSOR_TEMP_MAX = 80.0f;
-constexpr float SENSOR_HUMIDITY_MIN = 0.0f;
-constexpr float SENSOR_HUMIDITY_MAX = 100.0f;
-constexpr float SENSOR_PH_MIN = 0.0f;
-constexpr float SENSOR_PH_MAX = 14.0f;
+constexpr float SENSOR_TEMP_MIN = -40.0F;
+constexpr float SENSOR_TEMP_MAX = 80.0F;
+constexpr float SENSOR_HUMIDITY_MIN = 0.0F;
+constexpr float SENSOR_HUMIDITY_MAX = 100.0F;
+constexpr float SENSOR_PH_MIN = 0.0F;
+constexpr float SENSOR_PH_MAX = 14.0F;
 constexpr uint16_t SENSOR_EC_MIN = 0;
 constexpr uint16_t SENSOR_EC_MAX = 20000;
 constexpr uint16_t SENSOR_NPK_MIN = 0;
@@ -104,11 +104,11 @@ constexpr uint8_t MOVING_AVERAGE_WINDOW_MAX = 20;
 constexpr uint8_t MOVING_AVERAGE_WINDOW_DEFAULT = 5;
 
 // Дельта-фильтры (пороги изменений)
-constexpr float DEFAULT_DELTA_TEMPERATURE = 0.5f;  // 0.5°C
-constexpr float DEFAULT_DELTA_HUMIDITY = 2.0f;     // 2%
-constexpr float DEFAULT_DELTA_PH = 0.1f;           // 0.1 pH
-constexpr float DEFAULT_DELTA_EC = 50.0f;          // 50 µS/cm
-constexpr float DEFAULT_DELTA_NPK = 10.0f;         // 10 mg/kg
+constexpr float DEFAULT_DELTA_TEMPERATURE = 0.5F;  // 0.5°C
+constexpr float DEFAULT_DELTA_HUMIDITY = 2.0F;     // 2%
+constexpr float DEFAULT_DELTA_PH = 0.1F;           // 0.1 pH
+constexpr float DEFAULT_DELTA_EC = 50.0F;          // 50 µS/cm
+constexpr float DEFAULT_DELTA_NPK = 10.0F;         // 10 mg/kg
 
 // Принудительная публикация
 constexpr uint8_t DEFAULT_FORCE_PUBLISH_CYCLES = 10;  // Каждые 10 циклов

@@ -221,9 +221,15 @@ String formatUptime(unsigned long milliseconds)
     hours %= 24;
 
     String uptime = "";
-    if (days > 0) uptime += String(days) + "д ";
-    if (hours > 0) uptime += String(hours) + "ч ";
-    if (minutes > 0) uptime += String(minutes) + "м ";
+    if (days > 0) {
+        uptime += String(days) + "д ";
+    }
+    if (hours > 0) {
+        uptime += String(hours) + "ч ";
+    }
+    if (minutes > 0) {
+        uptime += String(minutes) + "м ";
+    }
     uptime += String(seconds) + "с";
 
     return uptime;
