@@ -12,7 +12,7 @@ var searchData=
   ['initmovingaveragebuffers_9',['initMovingAverageBuffers',['../modbus__sensor_8cpp.html#ae316f6943acb0b355ff8b0f878b08d04',1,'initMovingAverageBuffers(SensorData &amp;data):&#160;modbus_sensor.cpp'],['../modbus__sensor_8h.html#ae316f6943acb0b355ff8b0f878b08d04',1,'initMovingAverageBuffers(SensorData &amp;data):&#160;modbus_sensor.cpp']]],
   ['initpreferences_10',['initPreferences',['../main_8cpp.html#abb0ddf3422a587580e789235c0503668',1,'main.cpp']]],
   ['invalidatehaconfigcache_11',['invalidateHAConfigCache',['../mqtt__client_8cpp.html#a78b590745e792368420169e642494895',1,'invalidateHAConfigCache():&#160;mqtt_client.cpp'],['../mqtt__client_8h.html#a78b590745e792368420169e642494895',1,'invalidateHAConfigCache():&#160;mqtt_client.cpp']]],
-  ['iot_20интеграция_12',['🌐 IoT интеграция',['../index.html#autotoc_md15',1,'']]],
+  ['iot_20интеграция_12',['🌐 IoT интеграция',['../index.html#autotoc_md22',1,'']]],
   ['is_5fvalid_13',['is_valid',['../struct_sensor_cache.html#add741c7682063714899826a20fe363f8',1,'SensorCache']]],
   ['isconfigvalid_14',['isConfigValid',['../config_8cpp.html#aeb61f04cd3b4b68e8146d85c447d70d1',1,'isConfigValid():&#160;config.cpp'],['../jxct__config__vars_8h.html#aeb61f04cd3b4b68e8146d85c447d70d1',1,'isConfigValid():&#160;config.cpp']]],
   ['isensor_15',['ISensor',['../class_i_sensor.html',1,'']]],

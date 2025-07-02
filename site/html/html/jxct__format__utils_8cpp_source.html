@@ -27,7 +27,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
    </div>
    <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
   </td>
@@ -108,84 +108,87 @@ $(function(){initNavTree('jxct__format__utils_8cpp_source.html',''); initResizab
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">    5</a></span>std::string <a class="code hl_function" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a>(<span class="keywordtype">float</span> value, <span class="keywordtype">int</span> precision, <span class="keywordtype">bool</span> asInt)</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keywordtype">char</span> buf[8];</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keywordflow">if</span> (asInt) {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>        snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%d&quot;</span>, (<span class="keywordtype">int</span>)(value + 0.5F));</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%.*f&quot;</span>, precision, value);</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    }</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    <span class="keywordflow">return</span> std::string(buf);</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>}</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <span class="keywordflow">if</span> (asInt)</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>        snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%d&quot;</span>, (<span class="keywordtype">int</span>)(value + 0.5F));</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    }</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>    {</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>        snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%.*f&quot;</span>, precision, value);</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    }</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordflow">return</span> std::string(buf);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>}</div>
 </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="foldopen" id="foldopen00016" data-start="{" data-end="}">
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470">   16</a></span>std::string <a class="code hl_function" href="jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470">format_moisture</a>(<span class="keywordtype">float</span> value)</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a>(value, 1, <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>}</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="}">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470">   19</a></span>std::string <a class="code hl_function" href="jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470">format_moisture</a>(<span class="keywordtype">float</span> value)</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a>(value, 1, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
 </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="foldopen" id="foldopen00021" data-start="{" data-end="}">
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351">   21</a></span>std::string <a class="code hl_function" href="jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351">format_temperature</a>(<span class="keywordtype">float</span> value)</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a>(value, 1, <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="}">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351">   24</a></span>std::string <a class="code hl_function" href="jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351">format_temperature</a>(<span class="keywordtype">float</span> value)</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a>(value, 1, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
 </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="foldopen" id="foldopen00026" data-start="{" data-end="}">
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483">   26</a></span>std::string <a class="code hl_function" href="jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483">format_ec</a>(<span class="keywordtype">float</span> value)</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a>(value, 0, <span class="keyword">true</span>);</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="}">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483">   29</a></span>std::string <a class="code hl_function" href="jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483">format_ec</a>(<span class="keywordtype">float</span> value)</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>{</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a>(value, 0, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
 </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="foldopen" id="foldopen00031" data-start="{" data-end="}">
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152">   31</a></span>std::string <a class="code hl_function" href="jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152">format_ph</a>(<span class="keywordtype">float</span> value)</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a>(value, 1, <span class="keyword">false</span>);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152">   34</a></span>std::string <a class="code hl_function" href="jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152">format_ph</a>(<span class="keywordtype">float</span> value)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a>(value, 1, <span class="keyword">false</span>);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
 </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="foldopen" id="foldopen00036" data-start="{" data-end="}">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b">   36</a></span>std::string <a class="code hl_function" href="jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b">format_npk</a>(<span class="keywordtype">float</span> value)</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>{</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a>(value, 0, <span class="keyword">true</span>);</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>}</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b">   39</a></span>std::string <a class="code hl_function" href="jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b">format_npk</a>(<span class="keywordtype">float</span> value)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a>(value, 0, <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>}</div>
 </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">// Универсальная функция форматирования для веб-интерфейса</span></div>
-<div class="foldopen" id="foldopen00042" data-start="{" data-end="}">
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#adc35370b803782f896c844976a9ad6ce">   42</a></span>String <a class="code hl_function" href="jxct__format__utils_8cpp.html#adc35370b803782f896c844976a9ad6ce">formatValue</a>(<span class="keywordtype">float</span> value, <span class="keyword">const</span> <span class="keywordtype">char</span>* unit, <span class="keywordtype">int</span> precision)</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>{</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">char</span> buf[32];</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">// Форматируем значение с заданной точностью</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">switch</span> (precision)</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    {</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <span class="keywordflow">case</span> 0:</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>            snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%.0f%s&quot;</span>, value, unit);</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">case</span> 1:</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%.1f%s&quot;</span>, value, unit);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">// Универсальная функция форматирования для веб-интерфейса</span></div>
+<div class="foldopen" id="foldopen00045" data-start="{" data-end="}">
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="jxct__format__utils_8cpp.html#adc35370b803782f896c844976a9ad6ce">   45</a></span>String <a class="code hl_function" href="jxct__format__utils_8cpp.html#adc35370b803782f896c844976a9ad6ce">formatValue</a>(<span class="keywordtype">float</span> value, <span class="keyword">const</span> <span class="keywordtype">char</span>* unit, <span class="keywordtype">int</span> precision)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordtype">char</span> buf[32];</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// Форматируем значение с заданной точностью</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">switch</span> (precision)</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        <span class="keywordflow">case</span> 0:</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%.0f%s&quot;</span>, value, unit);</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">case</span> 2:</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%.2f%s&quot;</span>, value, unit);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">case</span> 3:</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%.3f%s&quot;</span>, value, unit);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        <span class="keywordflow">case</span> 1:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%.1f%s&quot;</span>, value, unit);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>        <span class="keywordflow">case</span> 2:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>            snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%.2f%s&quot;</span>, value, unit);</div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> String(buf);</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="keywordflow">case</span> 3:</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>            snprintf(buf, <span class="keyword">sizeof</span>(buf), <span class="stringliteral">&quot;%.3f%s&quot;</span>, value, unit);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">return</span> String(buf);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>}</div>
 </div>
-<div class="ttc" id="ajxct__format__utils_8cpp_html_a39b2dedc3670adcf20a62a8d113d2483"><div class="ttname"><a href="jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483">format_ec</a></div><div class="ttdeci">std::string format_ec(float value)</div><div class="ttdef"><b>Определения</b> <a href="#l00026">jxct_format_utils.cpp:26</a></div></div>
-<div class="ttc" id="ajxct__format__utils_8cpp_html_a3be478cef555484efe62159216f6d470"><div class="ttname"><a href="jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470">format_moisture</a></div><div class="ttdeci">std::string format_moisture(float value)</div><div class="ttdef"><b>Определения</b> <a href="#l00016">jxct_format_utils.cpp:16</a></div></div>
-<div class="ttc" id="ajxct__format__utils_8cpp_html_a416ab24406c338058778bbde7c4da152"><div class="ttname"><a href="jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152">format_ph</a></div><div class="ttdeci">std::string format_ph(float value)</div><div class="ttdef"><b>Определения</b> <a href="#l00031">jxct_format_utils.cpp:31</a></div></div>
-<div class="ttc" id="ajxct__format__utils_8cpp_html_a9a843da2888c9b8014dd9506284f1351"><div class="ttname"><a href="jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351">format_temperature</a></div><div class="ttdeci">std::string format_temperature(float value)</div><div class="ttdef"><b>Определения</b> <a href="#l00021">jxct_format_utils.cpp:21</a></div></div>
-<div class="ttc" id="ajxct__format__utils_8cpp_html_abdc9f6cdc05f0aa72eec54b3e904ca7b"><div class="ttname"><a href="jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b">format_npk</a></div><div class="ttdeci">std::string format_npk(float value)</div><div class="ttdef"><b>Определения</b> <a href="#l00036">jxct_format_utils.cpp:36</a></div></div>
+<div class="ttc" id="ajxct__format__utils_8cpp_html_a39b2dedc3670adcf20a62a8d113d2483"><div class="ttname"><a href="jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483">format_ec</a></div><div class="ttdeci">std::string format_ec(float value)</div><div class="ttdef"><b>Определения</b> <a href="#l00029">jxct_format_utils.cpp:29</a></div></div>
+<div class="ttc" id="ajxct__format__utils_8cpp_html_a3be478cef555484efe62159216f6d470"><div class="ttname"><a href="jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470">format_moisture</a></div><div class="ttdeci">std::string format_moisture(float value)</div><div class="ttdef"><b>Определения</b> <a href="#l00019">jxct_format_utils.cpp:19</a></div></div>
+<div class="ttc" id="ajxct__format__utils_8cpp_html_a416ab24406c338058778bbde7c4da152"><div class="ttname"><a href="jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152">format_ph</a></div><div class="ttdeci">std::string format_ph(float value)</div><div class="ttdef"><b>Определения</b> <a href="#l00034">jxct_format_utils.cpp:34</a></div></div>
+<div class="ttc" id="ajxct__format__utils_8cpp_html_a9a843da2888c9b8014dd9506284f1351"><div class="ttname"><a href="jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351">format_temperature</a></div><div class="ttdeci">std::string format_temperature(float value)</div><div class="ttdef"><b>Определения</b> <a href="#l00024">jxct_format_utils.cpp:24</a></div></div>
+<div class="ttc" id="ajxct__format__utils_8cpp_html_abdc9f6cdc05f0aa72eec54b3e904ca7b"><div class="ttname"><a href="jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b">format_npk</a></div><div class="ttdeci">std::string format_npk(float value)</div><div class="ttdef"><b>Определения</b> <a href="#l00039">jxct_format_utils.cpp:39</a></div></div>
 <div class="ttc" id="ajxct__format__utils_8cpp_html_ac1718f3e1196ed6ae1677727368438d4"><div class="ttname"><a href="jxct__format__utils_8cpp.html#ac1718f3e1196ed6ae1677727368438d4">formatFloat</a></div><div class="ttdeci">std::string formatFloat(float value, int precision, bool asInt)</div><div class="ttdef"><b>Определения</b> <a href="#l00005">jxct_format_utils.cpp:5</a></div></div>
-<div class="ttc" id="ajxct__format__utils_8cpp_html_adc35370b803782f896c844976a9ad6ce"><div class="ttname"><a href="jxct__format__utils_8cpp.html#adc35370b803782f896c844976a9ad6ce">formatValue</a></div><div class="ttdeci">String formatValue(float value, const char *unit, int precision)</div><div class="ttdef"><b>Определения</b> <a href="#l00042">jxct_format_utils.cpp:42</a></div></div>
+<div class="ttc" id="ajxct__format__utils_8cpp_html_adc35370b803782f896c844976a9ad6ce"><div class="ttname"><a href="jxct__format__utils_8cpp.html#adc35370b803782f896c844976a9ad6ce">formatValue</a></div><div class="ttdeci">String formatValue(float value, const char *unit, int precision)</div><div class="ttdef"><b>Определения</b> <a href="#l00045">jxct_format_utils.cpp:45</a></div></div>
 <div class="ttc" id="ajxct__format__utils_8h_html"><div class="ttname"><a href="jxct__format__utils_8h.html">jxct_format_utils.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
@@ -193,7 +196,7 @@ $(function(){initNavTree('jxct__format__utils_8cpp_source.html',''); initResizab
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="jxct__format__utils_8cpp.html">jxct_format_utils.cpp</a></li>
-    <li class="footer">Документация по JXCT 7-в-1 Датчик Почвы. Последние изменения: Ср 2 Июл 2025 23:26:07. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

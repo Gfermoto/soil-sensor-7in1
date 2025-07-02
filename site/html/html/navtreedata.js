@@ -25,7 +25,7 @@
 var NAVTREE =
 [
   [ "JXCT 7-в-1 Датчик Почвы", "index.html", [
-    [ "🌱 JXCT 7-в-1 - Документация", "index.html", "index" ],
+    [ "🌱 JXCT 7-в-1 Датчик Почвы", "index.html", "index" ],
     [ "Пространства имен", "namespaces.html", [
       [ "Пространства имен", "namespaces.html", "namespaces_dup" ],
       [ "Члены пространств имен", "namespacemembers.html", [
@@ -62,11 +62,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_i_sensor_8h.html",
-"jxct__config__vars_8h.html#a8e19d13af09f7ed0afad391730f1e3e7",
-"jxct__ui__system_8h.html#a075f0130a6ec13e19f3da60e46f893ef",
-"mqtt__client_8cpp.html#a9d23c1c2b3b5f9613a2215945494badb",
-"struct_sensor_data.html#a7979bb38cf97b270df57bf7621259a0d",
-"wifi__manager_8h.html#ad2a97dbe5f144cd247e3b15c6af7c767"
+"jxct__config__vars_8h.html#a688d00bbabd28fbaf9e0c50eca3adeae",
+"jxct__ui__system_8cpp.html#a7834ec4c73014039a2aeeedadff41141",
+"mqtt__client_8cpp.html#a91e8c5486997693c709911d497356754",
+"struct_sensor_data.html#a52fa7ffba8c0e5a3177f77e3b2583b20",
+"wifi__manager_8h.html#aa43f68b6c12da400ebbda9664b030944"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';
