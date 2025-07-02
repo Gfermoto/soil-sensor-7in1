@@ -16,19 +16,19 @@
 ### **Быстрое тестирование:**
 ```bash
 # Запуск всех тестов
-python scripts/run_comprehensive_tests.py
+python [scripts/run_comprehensive_tests.py](../scripts/run_comprehensive_tests.py)
 
-# Только E2E тесты
-python scripts/run_e2e_tests.py
+# Только E2E тесты  
+python [scripts/run_e2e_tests.py](../scripts/run_e2e_tests.py)
 
 # Проверка безопасности
-python test/test_csrf_security.cpp
+[test/test_csrf_security.cpp](../test/test_csrf_security.cpp)
 ```
 
 ### **E2E тестирование на реальном устройстве:**
 ```bash
 # ESP32 на 192.168.2.74
-python test/e2e/test_web_ui.py --target 192.168.2.74
+python [test/e2e/test_web_ui.py](../test/e2e/test_web_ui.py) --target 192.168.2.74
 ```
 
 ## 🎯 **СЛЕДУЮЩИЕ ШАГИ**
@@ -39,6 +39,6 @@ python test/e2e/test_web_ui.py --target 192.168.2.74
 
 ## 🔗 **ДЕТАЛЬНЫЕ ОТЧЁТЫ**
 
-- **Результаты:** `test_reports/`
-- **E2E отчёты:** `test_reports/e2e-test-report.json`
-- **Security аудит:** `docs/CSRF_SECURITY_AUDIT.md` 
+- **Результаты:** [test_reports/](../test_reports/)
+- **E2E отчёты:** [e2e-test-report.json](../test_reports/e2e-test-report.json)
+- **Security аудит:** [CSRF_SECURITY_AUDIT.md](CSRF_SECURITY_AUDIT.md) 

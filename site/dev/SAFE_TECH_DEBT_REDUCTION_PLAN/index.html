@@ -955,12 +955,12 @@
 <li><strong>E2E тесты</strong> - 70% покрытие веб-интерфейса (ESP32 192.168.2.74)</li>
 <li><strong>Security Audit</strong> - OWASP IoT Top 10 завершён (8.7/10 SECURE)</li>
 <li><strong>Unit тесты</strong> - покрытие 75.2% (+44.2% прогресс)</li>
-<li><strong>API документация</strong> - обновлена в <code>docs/manuals/API.md</code></li>
-<li><strong>Regression тесты</strong> - реализованы в <code>scripts/run_comprehensive_tests.py</code></li>
+<li><strong>API документация</strong> - обновлена в <a href="../../manuals/API/">API.md</a></li>
+<li><strong>Regression тесты</strong> - реализованы в <a href="../../scripts/run_comprehensive_tests.py">run_comprehensive_tests.py</a></li>
 </ul>
 <h3 id="-текущие-задачи">🔄 <strong>ТЕКУЩИЕ ЗАДАЧИ:</strong><a class="headerlink" href="#-текущие-задачи" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Рефакторинг дублирования</strong> - план в <code>docs/dev/DUPLICATION_INCLUDE_ANALYSIS_2025-06-30.md</code></li>
+<li><strong>Рефакторинг дублирования</strong> - план в <a href="../DUPLICATION_INCLUDE_ANALYSIS_2025-06-30/">DUPLICATION_INCLUDE_ANALYSIS_2025-06-30.md</a></li>
 <li><strong>Покрытие тестов</strong> - цель 75.2% → 85%</li>
 </ul>
 <hr />
@@ -971,14 +971,14 @@
 - <code>sensor_compensation.cpp</code> - дублирование формул
 - Общие утилиты форматирования</p>
 <p><strong>Безопасные зоны для рефакторинга:</strong>
-- ✅ Утилиты форматирования (<code>jxct_format_utils.cpp</code>)
-- ✅ Валидация входных данных (<code>validation_utils.cpp</code>)
-- ✅ Логирование (<code>logger.cpp</code>)</p>
+- ✅ Утилиты форматирования (<a href="../../src/jxct_format_utils.cpp">jxct_format_utils.cpp</a>)
+- ✅ Валидация входных данных (<a href="../../src/validation_utils.cpp">validation_utils.cpp</a>)
+- ✅ Логирование (<a href="../../src/logger.cpp">logger.cpp</a>)</p>
 <p><strong>Запретные зоны:</strong>
-- 🚫 <code>sensor_compensation.cpp</code> - формулы компенсаций
-- 🚫 <code>mqtt_client.cpp</code> - отправка данных
-- 🚫 <code>modbus_sensor.cpp</code> - чтение датчиков
-- 🚫 <code>calibration_manager.cpp</code> - алгоритмы калибровки</p>
+- 🚫 <a href="../../src/sensor_compensation.cpp">sensor_compensation.cpp</a> - формулы компенсаций
+- 🚫 <a href="../../src/mqtt_client.cpp">mqtt_client.cpp</a> - отправка данных
+- 🚫 <a href="../../src/modbus_sensor.cpp">modbus_sensor.cpp</a> - чтение датчиков
+- 🚫 <a href="../../src/calibration_manager.cpp">calibration_manager.cpp</a> - алгоритмы калибровки</p>
 <h3 id="2-средний-приоритет-покрытие-тестов-2-дня"><strong>2. СРЕДНИЙ ПРИОРИТЕТ: Покрытие тестов (2 дня)</strong><a class="headerlink" href="#2-средний-приоритет-покрытие-тестов-2-дня" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li>Добавить тесты для новых утилит</li>
@@ -1040,11 +1040,11 @@
 <hr />
 <h2 id="-ссылки-на-детальную-документацию">🔗 <strong>ССЫЛКИ НА ДЕТАЛЬНУЮ ДОКУМЕНТАЦИЮ</strong><a class="headerlink" href="#-ссылки-на-детальную-документацию" title="Постоянная ссылка">&para;</a></h2>
 <ul>
-<li><strong>E2E тесты:</strong> <code>test/e2e/test_web_ui.py</code></li>
-<li><strong>Security Audit:</strong> <code>docs/CSRF_SECURITY_AUDIT.md</code></li>
-<li><strong>Анализ дублирования:</strong> <code>docs/dev/DUPLICATION_INCLUDE_ANALYSIS_2025-06-30.md</code></li>
-<li><strong>Тестирование:</strong> <code>docs/TESTING_GUIDE.md</code></li>
-<li><strong>API документация:</strong> <code>docs/manuals/API.md</code></li>
+<li><strong>E2E тесты:</strong> <a href="../../test/e2e/test_web_ui.py">test_web_ui.py</a></li>
+<li><strong>Security Audit:</strong> <a href="../../CSRF_SECURITY_AUDIT/">CSRF_SECURITY_AUDIT.md</a></li>
+<li><strong>Анализ дублирования:</strong> <a href="../DUPLICATION_INCLUDE_ANALYSIS_2025-06-30/">DUPLICATION_INCLUDE_ANALYSIS_2025-06-30.md</a></li>
+<li><strong>Тестирование:</strong> <a href="../../TESTING_GUIDE/">TESTING_GUIDE.md</a></li>
+<li><strong>API документация:</strong> <a href="../../manuals/API/">API.md</a></li>
 </ul>
 <hr />
 <h2 id="-следующие-шаги">⏳ <strong>СЛЕДУЮЩИЕ ШАГИ</strong><a class="headerlink" href="#-следующие-шаги" title="Постоянная ссылка">&para;</a></h2>
@@ -1053,7 +1053,15 @@
 <li><strong>Покрытие тестов</strong> - достижение 85%</li>
 <li><strong>Архитектурные улучшения</strong> - по необходимости</li>
 </ol>
-<p><strong>📊 ЗАКЛЮЧЕНИЕ:</strong> Проект готов к production использованию. Основные задачи безопасности и качества выполнены. </p>
+<p><strong>📊 ЗАКЛЮЧЕНИЕ:</strong> Проект готов к production использованию. Основные задачи безопасности и качества выполнены.</p>
+<hr />
+<h2 id="-внешние-ссылки">🔗 <strong>ВНЕШНИЕ ССЫЛКИ</strong><a class="headerlink" href="#-внешние-ссылки" title="Постоянная ссылка">&para;</a></h2>
+<ul>
+<li><strong>GitHub репозиторий:</strong> <a href="https://github.com/Gfermoto/soil-sensor-7in1">soil-sensor-7in1</a></li>
+<li><strong>GitHub Actions:</strong> <a href="https://github.com/Gfermoto/soil-sensor-7in1/actions">CI/CD Pipeline</a></li>
+<li><strong>Документация сайта:</strong> <a href="https://gfermoto.github.io/soil-sensor-7in1/">gfermoto.github.io/soil-sensor-7in1</a></li>
+<li><strong>Releases:</strong> <a href="https://github.com/Gfermoto/soil-sensor-7in1/releases">GitHub Releases</a> </li>
+</ul>
 
 
 

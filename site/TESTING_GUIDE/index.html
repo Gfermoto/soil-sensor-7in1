@@ -981,17 +981,17 @@
 <h2 id="-запуск-тестов">🚀 <strong>ЗАПУСК ТЕСТОВ</strong><a class="headerlink" href="#-запуск-тестов" title="Постоянная ссылка">&para;</a></h2>
 <h3 id="быстрое-тестирование"><strong>Быстрое тестирование:</strong><a class="headerlink" href="#быстрое-тестирование" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Запуск всех тестов</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python<span class="w"> </span>scripts/run_comprehensive_tests.py
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python<span class="w"> </span><span class="o">[</span>scripts/run_comprehensive_tests.py<span class="o">](</span>../scripts/run_comprehensive_tests.py<span class="o">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Только E2E тесты</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python<span class="w"> </span>scripts/run_e2e_tests.py
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Только E2E тесты  </span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python<span class="w"> </span><span class="o">[</span>scripts/run_e2e_tests.py<span class="o">](</span>../scripts/run_e2e_tests.py<span class="o">)</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Проверка безопасности</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>python<span class="w"> </span>test/test_csrf_security.cpp
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="o">[</span>test/test_csrf_security.cpp<span class="o">](</span>../test/test_csrf_security.cpp<span class="o">)</span>
 </code></pre></div>
 <h3 id="e2e-тестирование-на-реальном-устройстве"><strong>E2E тестирование на реальном устройстве:</strong><a class="headerlink" href="#e2e-тестирование-на-реальном-устройстве" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># ESP32 на 192.168.2.74</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python<span class="w"> </span>test/e2e/test_web_ui.py<span class="w"> </span>--target<span class="w"> </span><span class="m">192</span>.168.2.74
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python<span class="w"> </span><span class="o">[</span>test/e2e/test_web_ui.py<span class="o">](</span>../test/e2e/test_web_ui.py<span class="o">)</span><span class="w"> </span>--target<span class="w"> </span><span class="m">192</span>.168.2.74
 </code></pre></div>
 <h2 id="-следующие-шаги">🎯 <strong>СЛЕДУЮЩИЕ ШАГИ</strong><a class="headerlink" href="#-следующие-шаги" title="Постоянная ссылка">&para;</a></h2>
 <ol>
@@ -1001,9 +1001,9 @@
 </ol>
 <h2 id="-детальные-отчёты">🔗 <strong>ДЕТАЛЬНЫЕ ОТЧЁТЫ</strong><a class="headerlink" href="#-детальные-отчёты" title="Постоянная ссылка">&para;</a></h2>
 <ul>
-<li><strong>Результаты:</strong> <code>test_reports/</code></li>
-<li><strong>E2E отчёты:</strong> <code>test_reports/e2e-test-report.json</code></li>
-<li><strong>Security аудит:</strong> <code>docs/CSRF_SECURITY_AUDIT.md</code> </li>
+<li><strong>Результаты:</strong> <a href="../test_reports/">test_reports/</a></li>
+<li><strong>E2E отчёты:</strong> <a href="../test_reports/e2e-test-report.json">e2e-test-report.json</a></li>
+<li><strong>Security аудит:</strong> <a href="../CSRF_SECURITY_AUDIT/">CSRF_SECURITY_AUDIT.md</a> </li>
 </ul>
 
 

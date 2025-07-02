@@ -128,2707 +128,2707 @@
       "task": "Настроен CI/CD workflow (`.github/workflows/`)"
     },
     {
-      "file": "docs\\TESTING_GUIDE.md",
+      "file": "docs\\TESTING_GUIDE_BACKUP_20250702_101121.md",
       "line": 340,
       "checked": false,
       "task": "Автоматическое обновление страницы тестов"
     },
     {
-      "file": "docs\\TESTING_GUIDE.md",
+      "file": "docs\\TESTING_GUIDE_BACKUP_20250702_101121.md",
       "line": 341,
       "checked": false,
       "task": "API для получения метрик"
     },
     {
-      "file": "docs\\TESTING_GUIDE.md",
+      "file": "docs\\TESTING_GUIDE_BACKUP_20250702_101121.md",
       "line": 342,
       "checked": false,
       "task": "Дашборд качества кода"
     },
     {
-      "file": "docs\\TESTING_GUIDE.md",
+      "file": "docs\\TESTING_GUIDE_BACKUP_20250702_101121.md",
       "line": 345,
       "checked": false,
       "task": "План рефакторинга на основе отчётов"
     },
     {
-      "file": "docs\\TESTING_GUIDE.md",
+      "file": "docs\\TESTING_GUIDE_BACKUP_20250702_101121.md",
       "line": 346,
       "checked": false,
       "task": "Автоматические исправления"
     },
     {
-      "file": "docs\\TESTING_GUIDE.md",
+      "file": "docs\\TESTING_GUIDE_BACKUP_20250702_101121.md",
       "line": 347,
       "checked": false,
       "task": "Контроль качества в CI/CD"
     },
     {
-      "file": "docs\\TESTING_GUIDE.md",
+      "file": "docs\\TESTING_GUIDE_BACKUP_20250702_101121.md",
       "line": 350,
       "checked": false,
       "task": "Тренды качества кода"
     },
     {
-      "file": "docs\\TESTING_GUIDE.md",
+      "file": "docs\\TESTING_GUIDE_BACKUP_20250702_101121.md",
       "line": 351,
       "checked": false,
       "task": "Прогнозирование проблем"
     },
     {
-      "file": "docs\\TESTING_GUIDE.md",
+      "file": "docs\\TESTING_GUIDE_BACKUP_20250702_101121.md",
       "line": 352,
       "checked": false,
       "task": "Интеграция с SonarQube"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 92,
       "checked": false,
       "task": "**Stubs + CI workflow** (подключение unit-тестов под native)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 98,
       "checked": false,
       "task": "Улучшить input validation (defensive programming)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 99,
       "checked": false,
       "task": "Проверить rate limiting (уже частично есть)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 100,
       "checked": false,
       "task": "Security audit OWASP IoT Top 10"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 103,
       "checked": false,
       "task": "Убрать дублирование include-директив"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 104,
       "checked": false,
       "task": "Стандартизировать именование переменных"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 105,
       "checked": false,
       "task": "Форматирование кода (clang-format)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 106,
       "checked": false,
       "task": "Удалить неиспользуемые переменные"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 112,
       "checked": false,
       "task": "Extract method для повторяющихся фрагментов"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 113,
       "checked": false,
       "task": "Создать utility функции"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 114,
       "checked": false,
       "task": "**ВАЖНО:** поведение остается ИДЕНТИЧНЫМ"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 115,
       "checked": false,
       "task": "Каждое изменение через regression тесты"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 118,
       "checked": false,
       "task": "Вынести бизнес-логику из роутов в отдельные модули"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 119,
       "checked": false,
       "task": "Создать фасады для сложных операций"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 120,
       "checked": false,
       "task": "Сохранить все существующие API"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 121,
       "checked": false,
       "task": "Добавить контрактные тесты"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 127,
       "checked": false,
       "task": "Строгое разделение слоев (с контрактными тестами)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 128,
       "checked": false,
       "task": "Dependency injection (постепенно)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 129,
       "checked": false,
       "task": "Только при 85%+ покрытии тестами"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 130,
       "checked": false,
       "task": "Полная регрессионная проверка"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 163,
       "checked": false,
       "task": "Изменение не затрагивает запретные зоны?"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 164,
       "checked": false,
       "task": "Есть regression тесты?"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 165,
       "checked": false,
       "task": "API остается совместимым?"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 166,
       "checked": false,
       "task": "Покрытие тестами не снижается?"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 167,
       "checked": false,
       "task": "Есть план отката?"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 302,
       "checked": true,
       "task": "CSRF защита реализована и протестирована на реальном устройстве"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 303,
       "checked": true,
       "task": "Unit тесты: заглушки добавлены (+5 тестов)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 304,
       "checked": true,
       "task": "E2E тесты: ≥70% покрытие достигнуто (протестировано на 192.168.2.74)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 305,
       "checked": true,
       "task": "Windows-ограничения документированы"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 306,
       "checked": true,
       "task": "CI интеграция: E2E тесты в pipeline"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 307,
       "checked": true,
       "task": "**OWASP IoT Top 10 Security Audit ЗАВЕРШЕН** ✅"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 308,
       "checked": true,
       "task": "**Security audit пересмотрен для локального использования** ✅"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 436,
       "checked": false,
       "task": "**Stubs + CI workflow** (подключение unit-тестов под native)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 442,
       "checked": false,
       "task": "Улучшить input validation (defensive programming)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 443,
       "checked": false,
       "task": "Проверить rate limiting (уже частично есть)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 444,
       "checked": false,
       "task": "Security audit OWASP IoT Top 10"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 447,
       "checked": false,
       "task": "Убрать дублирование include-директив"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 448,
       "checked": false,
       "task": "Стандартизировать именование переменных"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 449,
       "checked": false,
       "task": "Форматирование кода (clang-format)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 450,
       "checked": false,
       "task": "Удалить неиспользуемые переменные"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 456,
       "checked": false,
       "task": "Extract method для повторяющихся фрагментов"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 457,
       "checked": false,
       "task": "Создать utility функции"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 458,
       "checked": false,
       "task": "**ВАЖНО:** поведение остается ИДЕНТИЧНЫМ"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 459,
       "checked": false,
       "task": "Каждое изменение через regression тесты"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 462,
       "checked": false,
       "task": "Вынести бизнес-логику из роутов в отдельные модули"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 463,
       "checked": false,
       "task": "Создать фасады для сложных операций"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 464,
       "checked": false,
       "task": "Сохранить все существующие API"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 465,
       "checked": false,
       "task": "Добавить контрактные тесты"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 471,
       "checked": false,
       "task": "Строгое разделение слоев (с контрактными тестами)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 472,
       "checked": false,
       "task": "Dependency injection (постепенно)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 473,
       "checked": false,
       "task": "Только при 85%+ покрытии тестами"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 474,
       "checked": false,
       "task": "Полная регрессионная проверка"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 507,
       "checked": false,
       "task": "Изменение не затрагивает запретные зоны?"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 508,
       "checked": false,
       "task": "Есть regression тесты?"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 509,
       "checked": false,
       "task": "API остается совместимым?"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 510,
       "checked": false,
       "task": "Покрытие тестами не снижается?"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 511,
       "checked": false,
       "task": "Есть план отката?"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 646,
       "checked": true,
       "task": "CSRF защита реализована и протестирована на реальном устройстве"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 647,
       "checked": true,
       "task": "Unit тесты: заглушки добавлены (+5 тестов)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 648,
       "checked": true,
       "task": "E2E тесты: ≥70% покрытие достигнуто (протестировано на 192.168.2.74)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 649,
       "checked": true,
       "task": "Windows-ограничения документированы"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 650,
       "checked": true,
       "task": "CI интеграция: E2E тесты в pipeline"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 651,
       "checked": true,
       "task": "**OWASP IoT Top 10 Security Audit ЗАВЕРШЕН** ✅"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 652,
       "checked": true,
       "task": "**Security audit пересмотрен для локального использования** ✅"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 701,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 702,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 703,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 706,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 707,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 708,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 746,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 747,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 748,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 751,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 752,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 753,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 791,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 792,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 793,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 796,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 797,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 798,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 836,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 837,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 838,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 841,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 842,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 843,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 881,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 882,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 883,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 886,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 887,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 888,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 926,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 927,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 928,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 931,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 932,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 933,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 971,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 972,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 973,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 976,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 977,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 978,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1016,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1017,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1018,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1021,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1022,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1023,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1061,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1062,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1063,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1066,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1067,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1068,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1106,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1107,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1108,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1111,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1112,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1113,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1151,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1152,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1153,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1156,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1157,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1158,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1196,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1197,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1198,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1201,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1202,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1203,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1241,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1242,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1243,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1246,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1247,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1248,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1286,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1287,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1288,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1291,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1292,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1293,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1331,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1332,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1333,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1336,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1337,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1338,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1376,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1377,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1378,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1381,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1382,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1383,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1421,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1422,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1423,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1426,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1427,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1428,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1466,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1467,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1468,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1471,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1472,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1473,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1511,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1512,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1513,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1516,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1517,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1518,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1556,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1557,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1558,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1561,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1562,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1563,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1601,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1602,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1603,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1606,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1607,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1608,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1646,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1647,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1648,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1651,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1652,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1653,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1691,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1692,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1693,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1696,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1697,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1698,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1736,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1737,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1738,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1741,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1742,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1743,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1781,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1782,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1783,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1786,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1787,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1788,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1826,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1827,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1828,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1831,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1832,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1833,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1871,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1872,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1873,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1876,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1877,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1878,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1916,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1917,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1918,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1921,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1922,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1923,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1961,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1962,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1963,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1966,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1967,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 1968,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2006,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2007,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2008,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2011,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2012,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2013,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2051,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2052,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2053,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2056,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2057,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2058,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2096,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2097,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2098,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2101,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2102,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2103,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2141,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2142,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2143,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2146,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2147,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2148,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2186,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2187,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2188,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2191,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2192,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2193,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2231,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2232,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2233,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2236,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2237,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2238,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2276,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2277,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2278,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2281,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2282,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2283,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2321,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2322,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2323,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2326,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2327,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2328,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2366,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2367,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2368,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2371,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2372,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2373,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2411,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2412,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2413,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2416,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2417,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2418,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2456,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2457,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2458,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2461,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2462,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2463,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2501,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2502,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2503,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2506,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2507,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2508,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2546,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2547,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2548,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2551,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2552,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2553,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2591,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2592,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2593,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2596,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2597,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2598,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2636,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2637,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2638,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2641,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2642,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2643,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2681,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2682,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2683,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2686,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2687,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2688,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2726,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2727,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2728,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2731,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2732,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2733,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2771,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2772,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2773,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2776,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2777,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2778,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2816,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2817,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2818,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2821,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2822,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2823,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2861,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2862,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2863,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2866,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2867,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2868,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2906,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2907,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2908,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2911,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2912,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2913,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2951,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2952,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2953,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2956,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2957,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2958,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2996,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2997,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 2998,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3001,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3002,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3003,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3041,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3042,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3043,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3046,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3047,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3048,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3086,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3087,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3088,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3091,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3092,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3093,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3131,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3132,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3133,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3136,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3137,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3138,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3176,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3177,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3178,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3181,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3182,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3183,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3221,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3222,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3223,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3226,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3227,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3228,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3266,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3267,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3268,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3271,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3272,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3273,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3311,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3312,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3313,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3316,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3317,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3318,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3356,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3357,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3358,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3361,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3362,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3363,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3401,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3402,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3403,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3406,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3407,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3408,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3446,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3447,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3448,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3451,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3452,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3453,
       "checked": false,
       "task": "**Secure boot** активация"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3491,
       "checked": false,
       "task": "**Рефакторинг дублирования** - только безопасные функции (3 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3492,
       "checked": false,
       "task": "**Покрытие тестов** - 75.2% → 85% (2 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3493,
       "checked": false,
       "task": "**Улучшение архитектуры** - вынос бизнес-логики из routes_data.cpp (4 дня)"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3496,
       "checked": false,
       "task": "**HTTPS** только при необходимости удаленного доступа"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3497,
       "checked": false,
       "task": "**TLS для MQTT** при подключении к внешним брокерам"
     },
     {
-      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN.md",
+      "file": "docs\\dev\\SAFE_TECH_DEBT_REDUCTION_PLAN_BACKUP_20250702_101014.md",
       "line": 3498,
       "checked": false,
       "task": "**Secure boot** активация"
