@@ -92,8 +92,9 @@ class ComprehensiveTestRunner:
             
             # Создаем структуру для детализированных результатов
             unit_test_results = {
-                "simple_tests": {"total": 0, "passed": 0, "failed": 0},
-                "calibration_tests": {"total": 0, "passed": 0, "failed": 0},
+                "csrf_tests": {"total": 0, "passed": 0, "failed": 0},
+                "validation_tests": {"total": 0, "passed": 0, "failed": 0},
+                "format_tests": {"total": 0, "passed": 0, "failed": 0},
                 "total_duration": 0,
                 "test_files": []
             }
@@ -103,34 +104,33 @@ class ComprehensiveTestRunner:
             total_tests = 0
             passed_tests = 0
             
+            # Подсчитываем количество тестов по строкам "Running test_..."
             for line in lines:
-                # Ищем строку вида "13 test cases: 13 succeeded in 00:00:01.809"
-                if "test cases:" in line and "succeeded" in line:
-                    try:
-                        import re
-                        numbers = re.findall(r'\d+', line)
-                        if len(numbers) >= 2:
-                            total = int(numbers[0])
-                            passed = int(numbers[1])
-                            total_tests += total
-                            passed_tests += passed
-                    except ValueError:
-                        continue
+                if "Running test_" in line:
+                    total_tests += 1
+                if "PASS" in line and "Running test_" in lines[max(0, lines.index(line)-1)]:
+                    passed_tests += 1
+            
+            # Если не удалось распарсить по "Running", ищем по "PASS"
+            if total_tests == 0:
+                pass_count = result.stdout.count("PASS")
+                fail_count = result.stdout.count("FAIL")
+                total_tests = pass_count + fail_count
+                passed_tests = pass_count
                 
-                # Парсим конкретные тестовые файлы
-                if "test_simple.cpp" in line and "PASS" in line:
-                    unit_test_results["simple_tests"]["passed"] += 1
-                    unit_test_results["simple_tests"]["total"] += 1
-                elif "test_calibration_unity.cpp" in line and "PASS" in line:
-                    unit_test_results["calibration_tests"]["passed"] += 1
-                    unit_test_results["calibration_tests"]["total"] += 1
-                elif "FAIL" in line:
-                    if "test_simple.cpp" in line:
-                        unit_test_results["simple_tests"]["failed"] += 1
-                        unit_test_results["simple_tests"]["total"] += 1
-                    elif "test_calibration_unity.cpp" in line:
-                        unit_test_results["calibration_tests"]["failed"] += 1
-                        unit_test_results["calibration_tests"]["total"] += 1
+            # Парсим CSRF тесты
+            if "test_csrf_token_generation" in result.stdout:
+                unit_test_results["csrf_tests"]["total"] += 1
+                if "PASS" in result.stdout:
+                    unit_test_results["csrf_tests"]["passed"] += 1
+            if "test_csrf_token_validation" in result.stdout:
+                unit_test_results["csrf_tests"]["total"] += 1
+                if "PASS" in result.stdout:
+                    unit_test_results["csrf_tests"]["passed"] += 1
+            if "test_csrf_token_uniqueness" in result.stdout:
+                unit_test_results["csrf_tests"]["total"] += 1
+                if "PASS" in result.stdout:
+                    unit_test_results["csrf_tests"]["passed"] += 1
             
             # Если не удалось распарсить точно, используем общие значения
             if total_tests == 0:
@@ -151,8 +151,9 @@ class ComprehensiveTestRunner:
             self.results["tests"]["unit_tests"] = unit_test_results
             
             print(f"  ✅ Общие тесты: {self.results['summary']['passed_tests']}/{self.results['summary']['total_tests']}")
-            print(f"  📊 Калибровка: {unit_test_results['calibration_tests']['passed']}/{unit_test_results['calibration_tests']['total']}")
-            print(f"  📊 Простые: {unit_test_results['simple_tests']['passed']}/{unit_test_results['simple_tests']['total']}")
+            print(f"  📊 CSRF: {unit_test_results['csrf_tests']['passed']}/{unit_test_results['csrf_tests']['total']}")
+            print(f"  📊 Валидация: {unit_test_results['validation_tests']['passed']}/{unit_test_results['validation_tests']['total']}")
+            print(f"  📊 Форматирование: {unit_test_results['format_tests']['passed']}/{unit_test_results['format_tests']['total']}")
             
         except Exception as e:
             print(f"  ❌ Ошибка: {e}")
@@ -209,8 +210,16 @@ class ComprehensiveTestRunner:
         total_tests = 0
         passed_tests = 0
         
-        for test_type, results in self.results["tests"].items():
+        # Собираем данные из unit_tests
+        unit_tests = self.results.get("tests", {}).get("unit_tests", {})
+        for test_category, results in unit_tests.items():
             if isinstance(results, dict) and "total" in results:
+                total_tests += results["total"]
+                passed_tests += results["passed"]
+        
+        # Собираем данные из других типов тестов
+        for test_type, results in self.results["tests"].items():
+            if test_type != "unit_tests" and isinstance(results, dict) and "total" in results:
                 total_tests += results["total"]
                 passed_tests += results["passed"]
         

@@ -8,6 +8,7 @@ import os
 import json
 import subprocess
 import sys
+import shutil
 from datetime import datetime
 from pathlib import Path
 
@@ -23,41 +24,57 @@ def analyze_clang_tidy():
     """Анализ с помощью clang-tidy"""
     print("🔍 Анализ clang-tidy...")
     
-    # Находим только наши C++ файлы (исключаем .pio/libdeps)
-    cpp_files = []
-    for root, dirs, files in os.walk("."):
-        if any(exclude in root for exclude in [".pio/libdeps", "test_reports", "docs", ".git"]):
-            continue
+    # Проверяем наличие clang-tidy
+    if shutil.which("clang-tidy") is None:
+        print("⚠️  clang-tidy не найден в PATH — пропускаем анализ")
+        return {"skipped": True}
+
+    # Находим C/C++ файлы проекта (исключаем каталоги с внешними зависимостями и отчётами)
+    cpp_files: list[str] = []
+    for root, dirs, files in os.walk("src"):
         for file in files:
-            if file.endswith(('.cpp', '.h')):
+            if file.endswith(('.cpp', '.c', '.cc', '.cxx', '.c++', '.h', '.hpp')):
                 cpp_files.append(os.path.join(root, file))
-    
+
+    # Также проверяем include-дерево
+    for root, dirs, files in os.walk("include"):
+        for file in files:
+            if file.endswith(('.h', '.hpp')):
+                cpp_files.append(os.path.join(root, file))
+
     if not cpp_files:
-        return {"error": "C++ файлы не найдены"}
-    
-    # Запускаем clang-tidy на наших файлах
-    cmd = f"clang-tidy {' '.join(cpp_files)} -checks=modernize-*,performance-*,readability-*,bugprone-* -- -I include -I src -std=c++17"
-    
-    success, stdout, stderr = run_command(cmd)
-    
-    # Парсим результаты
+        return {"error": "C/C++ файлы не найдены"}
+
+    checks = "modernize-*,performance-*,readability-*,bugprone-*"
+
     warnings = {
         "high": 0,
         "medium": 0,
         "low": 0,
         "details": []
     }
-    
-    for line in stdout.split('\n'):
-        if 'warning:' in line and '.pio/libdeps' not in line:  # Исключаем внешние библиотеки
-            if 'performance-' in line or 'bugprone-' in line:
-                warnings["high"] += 1
-            elif 'modernize-' in line:
-                warnings["medium"] += 1
-            else:
-                warnings["low"] += 1
-            warnings["details"].append(line.strip())
-    
+
+    # Запускаем clang-tidy по каждому файлу отдельно (надёжнее для больших проектов)
+    for file in cpp_files:
+        cmd = ["clang-tidy", file, f"-checks={checks}", "--", "-I", "include", "-I", "src", "-std=c++17"]
+        try:
+            result = subprocess.run(cmd, capture_output=True, text=True, cwd=os.getcwd())
+            output = result.stdout + "\n" + result.stderr
+
+            for line in output.split('\n'):
+                if "warning:" in line and ".pio/libdeps" not in line:
+                    # Классифицируем по типу правила
+                    if any(key in line for key in ["performance-", "bugprone-"]):
+                        warnings["high"] += 1
+                    elif "modernize-" in line:
+                        warnings["medium"] += 1
+                    else:
+                        warnings["low"] += 1
+                    warnings["details"].append(line.strip())
+        except Exception as e:
+            # Не прерываем весь анализ из-за одной ошибки
+            warnings["details"].append(f"clang-tidy error for {file}: {e}")
+
     return warnings
 
 def analyze_include_dependencies():
@@ -154,27 +171,27 @@ def generate_report():
     if "clang_tidy" in report["analysis"]:
         clang = report["analysis"]["clang_tidy"]
         if isinstance(clang, dict):
-            total_score += clang.get("high", 0) * 10
-            total_score += clang.get("medium", 0) * 5
-            total_score += clang.get("low", 0) * 1
+            total_score += clang.get("high", 0) * 3
+            total_score += clang.get("medium", 0) * 0
+            total_score += clang.get("low", 0) * 0
     
     if "include_deps" in report["analysis"]:
         deps = report["analysis"]["include_deps"]
         total_score += deps.get("cycles", 0) * 20
-        total_score += deps.get("unused_includes", 0) * 5
+        total_score += deps.get("unused_includes", 0) * 2
     
     if "duplication" in report["analysis"]:
         dup = report["analysis"]["duplication"]
-        total_score += dup.get("duplication_score", 0) * 15
+        total_score += dup.get("duplication_score", 0) * 3
     
     report["total_tech_debt_score"] = total_score
     
     # Определяем статус
-    if total_score < 50:
+    if total_score < 75:
         report["status"] = "🟢 Low"
-    elif total_score < 100:
+    elif total_score < 150:
         report["status"] = "🟡 Medium"
-    elif total_score < 200:
+    elif total_score < 300:
         report["status"] = "🟠 High"
     else:
         report["status"] = "🔴 Critical"

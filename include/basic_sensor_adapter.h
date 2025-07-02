@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ISensor.h"
-#include "modbus_sensor.h"  // forward for SensorData
 
 // BasicSensorAdapter — лёгкий каркас абстракции без использования std::function (экономия flash)
 class BasicSensorAdapter : public ISensor

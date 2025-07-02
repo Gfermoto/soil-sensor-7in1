@@ -1,9 +1,9 @@
 #pragma once
-#include <memory>
 #include "ISensor.h"
 #include "fake_sensor_adapter.h"
 #include "jxct_config_vars.h"
 #include "modbus_sensor_adapter.h"
+#include <memory>
 
 static std::unique_ptr<ISensor> createSensorInstance()
 {
