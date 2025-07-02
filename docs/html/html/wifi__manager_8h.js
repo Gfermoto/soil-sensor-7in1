@@ -1,9 +1,9 @@
 var wifi__manager_8h =
 [
     [ "STATUS_LED_PIN", "wifi__manager_8h.html#a089a71f836911c71b3f73fdd3b4b890b", null ],
-    [ "WiFiMode", "wifi__manager_8h.html#ae685142b922ea26aa869f6cb5e17a19c", [
-      [ "AP", "wifi__manager_8h.html#ae685142b922ea26aa869f6cb5e17a19ca0fd3f8dd5edc33b28db1162e15e8fcbc", null ],
-      [ "STA", "wifi__manager_8h.html#ae685142b922ea26aa869f6cb5e17a19ca971ab16c6e59a04d070cb8d8da13418e", null ]
+    [ "WiFiMode", "wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6", [
+      [ "AP", "wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6a0fd3f8dd5edc33b28db1162e15e8fcbc", null ],
+      [ "STA", "wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6a971ab16c6e59a04d070cb8d8da13418e", null ]
     ] ],
     [ "checkResetButton", "wifi__manager_8h.html#ac90eb7c31515447a075eee8f395ac02f", null ],
     [ "handleWiFi", "wifi__manager_8h.html#aef11d16b4d8e760671e3487b2106b6b2", null ],

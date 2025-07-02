@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['sand_0',['SAND',['../sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b',1,'SAND:&#160;sensor_compensation.h'],['../sensor__compensation_8h.html#a32f5636a03443547a8c316772610c4c1add8b86e783c5b75c7c9224089b4f239b',1,'SAND:&#160;sensor_compensation.h']]],
-  ['sandpeat_1',['SANDPEAT',['../sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155da7668b00d953ed05d4e494e67757cf0ab',1,'SANDPEAT:&#160;sensor_compensation.h'],['../sensor__compensation_8h.html#a32f5636a03443547a8c316772610c4c1a7668b00d953ed05d4e494e67757cf0ab',1,'SANDPEAT:&#160;sensor_compensation.h']]],
+  ['sand_0',['SAND',['../sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b',1,'SAND:&#160;sensor_compensation.h'],['../sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6eadd8b86e783c5b75c7c9224089b4f239b',1,'SAND:&#160;sensor_compensation.h']]],
+  ['sandpeat_1',['SANDPEAT',['../sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155da7668b00d953ed05d4e494e67757cf0ab',1,'SANDPEAT:&#160;sensor_compensation.h'],['../sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6ea7668b00d953ed05d4e494e67757cf0ab',1,'SANDPEAT:&#160;sensor_compensation.h']]],
   ['saveconfig_2',['saveConfig',['../config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae',1,'saveConfig():&#160;config.cpp'],['../routes__config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae',1,'saveConfig():&#160;config.cpp'],['../jxct__config__vars_8h.html#a688d00bbabd28fbaf9e0c50eca3adeae',1,'saveConfig():&#160;config.cpp']]],
   ['savecsv_3',['saveCsv',['../namespace_calibration_manager.html#ade735ff876ef578fafeb7c46676bcf82',1,'CalibrationManager']]],
   ['saverawsnapshot_4',['saveRawSnapshot',['../modbus__sensor_8cpp.html#a7a820fe61fb2c2163f98e3a273af4b55',1,'modbus_sensor.cpp']]],
-  ['secondary_5',['SECONDARY',['../jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a371b09d93ca01e09a42fbd5a2a423f8e',1,'jxct_ui_system.h']]],
+  ['secondary_5',['SECONDARY',['../jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153a371b09d93ca01e09a42fbd5a2a423f8e',1,'jxct_ui_system.h']]],
   ['security_5fhotspots_6',['security_hotspots',['../struct_technical_debt_metrics.html#a1943cf949cadf24adf12d9b4d7826447',1,'TechnicalDebtMetrics']]],
   ['sendconfigexportjson_7',['sendConfigExportJson',['../routes__config_8cpp.html#a08204d6e0087ca3676433990aad58a76',1,'routes_config.cpp']]],
   ['senddatatothingspeak_8',['sendDataToThingSpeak',['../thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf',1,'sendDataToThingSpeak():&#160;thingspeak_client.cpp'],['../thingspeak__client_8h.html#aaef2ba5628e59244986aa0c0f40b58cf',1,'sendDataToThingSpeak():&#160;thingspeak_client.cpp']]],
@@ -60,9 +60,9 @@ var searchData=
   ['shouldpublishmqtt_57',['shouldPublishMqtt',['../mqtt__client_8cpp.html#ae52ddcd06cd95e01b1484fdff31ec40e',1,'mqtt_client.cpp']]],
   ['soil_5fec_58',['SOIL_EC',['../sensor__compensation_8cpp.html#acd870b1b4a3ad38428ccce7c467035a9',1,'sensor_compensation.cpp']]],
   ['soilprofile_59',['SoilProfile',['../sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155d',1,'sensor_compensation.h']]],
-  ['soiltype_60',['SoilType',['../sensor__compensation_8h.html#a32f5636a03443547a8c316772610c4c1',1,'sensor_compensation.h']]],
+  ['soiltype_60',['SoilType',['../sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e',1,'sensor_compensation.h']]],
   ['ssid_61',['ssid',['../struct_config_data.html#ae280e01c917c44f8fdaea8ea803b2398',1,'ConfigData']]],
-  ['sta_62',['STA',['../wifi__manager_8h.html#ae685142b922ea26aa869f6cb5e17a19ca971ab16c6e59a04d070cb8d8da13418e',1,'wifi_manager.h']]],
+  ['sta_62',['STA',['../wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6a971ab16c6e59a04d070cb8d8da13418e',1,'wifi_manager.h']]],
   ['startapmode_63',['startAPMode',['../wifi__manager_8cpp.html#a9b3d409b1449092a0b4efaace9c666a2',1,'startAPMode():&#160;wifi_manager.cpp'],['../wifi__manager_8h.html#a9b3d409b1449092a0b4efaace9c666a2',1,'startAPMode():&#160;wifi_manager.cpp']]],
   ['startfakesensortask_64',['startFakeSensorTask',['../fake__sensor_8cpp.html#abd277e18147efb1103e91eac01627612',1,'startFakeSensorTask():&#160;fake_sensor.cpp'],['../fake__sensor_8h.html#abd277e18147efb1103e91eac01627612',1,'startFakeSensorTask():&#160;fake_sensor.cpp'],['../main_8cpp.html#abd277e18147efb1103e91eac01627612',1,'startFakeSensorTask():&#160;fake_sensor.cpp']]],
   ['startrealsensortask_65',['startRealSensorTask',['../main_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df',1,'startRealSensorTask():&#160;modbus_sensor.cpp'],['../modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df',1,'startRealSensorTask():&#160;modbus_sensor.cpp'],['../modbus__sensor_8h.html#a4f1a431da8f1feb8a64e2c5f887056df',1,'startRealSensorTask():&#160;modbus_sensor.cpp']]],
@@ -72,6 +72,6 @@ var searchData=
   ['statusbuf_69',['statusBuf',['../ota__manager_8cpp.html#a6299a956b91060e72f87a22c4ce7b8a1',1,'ota_manager.cpp']]],
   ['statustopicbuffer_70',['statusTopicBuffer',['../mqtt__client_8cpp.html#abbce218884367d7d814067d0b63442bf',1,'mqtt_client.cpp']]],
   ['stringify_71',['STRINGIFY',['../version_8h.html#a6df1d22fb5f09eccc23b9f399670cfd7',1,'version.h']]],
-  ['success_72',['SUCCESS',['../jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c',1,'SUCCESS:&#160;jxct_ui_system.h'],['../jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad0749aaba8b833466dfcbb0428e4f89c',1,'SUCCESS:&#160;jxct_ui_system.h']]],
+  ['success_72',['SUCCESS',['../jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153ad0749aaba8b833466dfcbb0428e4f89c',1,'SUCCESS:&#160;jxct_ui_system.h'],['../jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5ead0749aaba8b833466dfcbb0428e4f89c',1,'SUCCESS:&#160;jxct_ui_system.h']]],
   ['success_5frate_73',['success_rate',['../struct_test_summary.html#aeebadaa0f9fe3b629218b308729db8f5',1,'TestSummary']]]
 ];

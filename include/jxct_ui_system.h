@@ -60,7 +60,7 @@
 #define UI_ICON_CALIBRATION "🛠️"
 
 // 📋 ТИПЫ КНОПОК
-enum class ButtonType
+enum class ButtonType : std::uint8_t
 {
     PRIMARY,    // Основная зеленая кнопка
     SECONDARY,  // Синяя кнопка
@@ -70,7 +70,7 @@ enum class ButtonType
 };
 
 // 🎨 ТИПЫ СООБЩЕНИЙ
-enum class MessageType
+enum class MessageType : std::uint8_t
 {
     SUCCESS,
     ERROR,

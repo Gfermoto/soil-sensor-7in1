@@ -43,18 +43,18 @@ var jxct__ui__system_8h =
     [ "UI_SECTION_PADDING", "jxct__ui__system_8h.html#a2d52deefc5b60934f93d055171ae599a", null ],
     [ "UI_TRANSITION_FAST", "jxct__ui__system_8h.html#a9377f79f32bf678f828e7f7682fbeddc", null ],
     [ "UI_TRANSITION_NORMAL", "jxct__ui__system_8h.html#aa64ee0313362e85e9592e801fac9460a", null ],
-    [ "ButtonType", "jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943", [
-      [ "PRIMARY", "jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a428429ba9ea83e4841036fb0508fd6dc", null ],
-      [ "SECONDARY", "jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a371b09d93ca01e09a42fbd5a2a423f8e", null ],
-      [ "DANGER", "jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a707e893c1db5175432f341eb5d6d1ca7", null ],
-      [ "SUCCESS", "jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943ad0749aaba8b833466dfcbb0428e4f89c", null ],
-      [ "OUTLINE", "jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a6a656275b77dd69c1cc1f49c58859151", null ]
+    [ "ButtonType", "jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153", [
+      [ "PRIMARY", "jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153a428429ba9ea83e4841036fb0508fd6dc", null ],
+      [ "SECONDARY", "jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153a371b09d93ca01e09a42fbd5a2a423f8e", null ],
+      [ "DANGER", "jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153a707e893c1db5175432f341eb5d6d1ca7", null ],
+      [ "SUCCESS", "jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153ad0749aaba8b833466dfcbb0428e4f89c", null ],
+      [ "OUTLINE", "jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153a6a656275b77dd69c1cc1f49c58859151", null ]
     ] ],
-    [ "MessageType", "jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013", [
-      [ "SUCCESS", "jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013ad0749aaba8b833466dfcbb0428e4f89c", null ],
-      [ "ERROR", "jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013abb1ca97ec761fc37101737ba0aa2e7c5", null ],
-      [ "WARNING", "jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a059e9861e0400dfbe05c98a841f3f96b", null ],
-      [ "INFO", "jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a551b723eafd6a31d444fcb2f5920fbd3", null ]
+    [ "MessageType", "jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5e", [
+      [ "SUCCESS", "jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5ead0749aaba8b833466dfcbb0428e4f89c", null ],
+      [ "ERROR", "jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5eabb1ca97ec761fc37101737ba0aa2e7c5", null ],
+      [ "WARNING", "jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5ea059e9861e0400dfbe05c98a841f3f96b", null ],
+      [ "INFO", "jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5ea551b723eafd6a31d444fcb2f5920fbd3", null ]
     ] ],
     [ "generateButton", "jxct__ui__system_8h.html#af67d399d8034386a7a70ae4b0b08a972", null ],
     [ "getLoaderHTML", "jxct__ui__system_8h.html#a3a0ab8552fa88451ee4451e40d2058b3", null ],

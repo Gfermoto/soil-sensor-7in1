@@ -22,6 +22,16 @@
 #define RESET_BUTTON_PIN 0             // GPIO0 для кнопки сброса
 #define WIFI_RECONNECT_INTERVAL 30000  // Интервал между попытками переподключения (30 секунд)
 
+// Константы для светодиода и таймингов
+#define LED_FAST_BLINK_INTERVAL 100    // Интервал быстрого мигания светодиода (мс)
+#define LED_SLOW_BLINK_INTERVAL 500    // Интервал медленного мигания светодиода (мс)
+#define WIFI_MODE_DELAY 100            // Задержка при смене режима WiFi (мс)
+#define NTP_TIMEOUT_MS 5000            // Таймаут для NTP синхронизации (мс)
+#define RESET_BUTTON_HOLD_TIME 5000    // Время удержания кнопки сброса (мс)
+#define RESTART_DELAY_MS 1000          // Задержка перед перезагрузкой (мс)
+#define DNS_PORT 53                    // Порт DNS сервера
+#define MAC_ADDRESS_BUFFER_SIZE 20     // Размер буфера для MAC адреса
+
 // Глобальные переменные
 bool wifiConnected = false;
 WiFiMode currentWiFiMode = WiFiMode::AP;
@@ -61,7 +71,7 @@ void setLedBlink(unsigned long interval)
 
 void setLedFastBlink()
 {
-    ledBlinkInterval = 100;
+    ledBlinkInterval = LED_FAST_BLINK_INTERVAL;
     ledFastBlink = true;
 }
 
@@ -102,12 +112,12 @@ void setupWiFi()
     logPrintHeader("ИНИЦИАЛИЗАЦИЯ WiFi", COLOR_GREEN);
 
     pinMode(STATUS_LED_PIN, OUTPUT);
-    setLedBlink(500);
+    setLedBlink(LED_SLOW_BLINK_INTERVAL);
 
     // Сначала отключаем WiFi и очищаем настройки
     WiFi.disconnect(true);
     WiFi.mode(WIFI_OFF);
-    delay(100);
+    delay(WIFI_MODE_DELAY);
 
     loadConfig();
 
@@ -124,7 +134,7 @@ void setupWiFi()
         logWiFi("Переход в режим AP (точка доступа)");
         startAPMode();
     }
-    logPrintSeparator("─", 60);
+    logPrintSeparator("─", DEFAULT_SEPARATOR_LENGTH);
 }
 
 void handleWiFi()
@@ -175,7 +185,7 @@ void handleWiFi()
                             MAX_RECONNECT_ATTEMPTS);
 
                     WiFi.disconnect(true);
-                    delay(100);
+                    delay(WIFI_MODE_DELAY);
                     WiFi.begin(config.ssid, config.password);
 
                     lastReconnectAttempt = millis();
@@ -208,7 +218,7 @@ String getApSsid()
 {
     uint8_t mac[6];
     WiFi.macAddress(mac);
-    char buf[20];
+    char buf[MAC_ADDRESS_BUFFER_SIZE];
     snprintf(buf, sizeof(buf), "jxct-%02X%02X%02X", mac[3], mac[4], mac[5]);
     for (int i = 0; buf[i]; ++i) buf[i] = tolower(buf[i]);
     return String(buf);
@@ -221,9 +231,9 @@ void startAPMode()
     WiFi.mode(WIFI_AP);
     String apSsid = getApSsid();
     WiFi.softAP(apSsid.c_str(), JXCT_WIFI_AP_PASS);
-    dnsServer.start(53, "*", WiFi.softAPIP());
+    dnsServer.start(DNS_PORT, "*", WiFi.softAPIP());
     setupWebServer();
-    setLedBlink(500);
+    setLedBlink(LED_SLOW_BLINK_INTERVAL);
     logWiFi("Режим точки доступа запущен");
     logSystem("SSID: %s", apSsid.c_str());
     logSystem("IP адрес: %s", WiFi.softAPIP().toString().c_str());
@@ -234,7 +244,7 @@ void startSTAMode()
     currentWiFiMode = WiFiMode::STA;
     WiFi.disconnect(true);  // Полное отключение с очисткой настроек
     WiFi.mode(WIFI_STA);
-    delay(100);  // Даем время на применение режима
+    delay(WIFI_MODE_DELAY);  // Даем время на применение режима
 
     String hostname = getApSsid();
     WiFi.setHostname(hostname.c_str());
@@ -284,9 +294,9 @@ void startSTAMode()
             if (timeClient)
             {
                 unsigned long ntpStart = millis();
-                while (!timeClient->forceUpdate() && millis() - ntpStart < 5000)
+                while (!timeClient->forceUpdate() && millis() - ntpStart < NTP_TIMEOUT_MS)
                 {
-                    delay(100);
+                    delay(WIFI_MODE_DELAY);
                 }
                 logSystem("NTP синхронизация: %s", timeClient->isTimeSet() ? "OK" : "не удалось");
             }
@@ -320,12 +330,12 @@ bool checkResetButton()
     else if (!isPressed && wasPressed)
     {
         wasPressed = false;
-        setLedBlink(500);
+        setLedBlink(LED_SLOW_BLINK_INTERVAL);
         return false;
     }
     else if (isPressed && wasPressed)
     {
-        if (millis() - pressStart >= 5000)
+        if (millis() - pressStart >= RESET_BUTTON_HOLD_TIME)
         {
             return true;
         }
@@ -336,7 +346,7 @@ bool checkResetButton()
 void restartESP()
 {
     logWarn("Перезагрузка ESP32...");
-    delay(1000);
+    delay(RESTART_DELAY_MS);
     ESP.restart();
 }
 

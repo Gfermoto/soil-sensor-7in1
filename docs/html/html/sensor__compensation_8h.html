@@ -122,24 +122,24 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
 <br />
  }</td></tr>
 <tr class="separator:aaa92ab56ea828c0bcccad4564b21155d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32f5636a03443547a8c316772610c4c1" id="r_a32f5636a03443547a8c316772610c4c1"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a> { <br />
-&#160;&#160;<a class="el" href="#a32f5636a03443547a8c316772610c4c1add8b86e783c5b75c7c9224089b4f239b">SAND</a>
-, <a class="el" href="#a32f5636a03443547a8c316772610c4c1a053c3b9443919054c42fe7115e111e36">LOAM</a>
-, <a class="el" href="#a32f5636a03443547a8c316772610c4c1a2238fb7511b33ddb5f91ab723f0c3add">PEAT</a>
-, <a class="el" href="#a32f5636a03443547a8c316772610c4c1a062285f4ae598699cec7d4b2e3a7fac2">CLAY</a>
+<tr class="memitem:a547d6434d73984a5c1b06e2f34a88a6e" id="r_a547d6434d73984a5c1b06e2f34a88a6e"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> : std::uint8_t { <br />
+&#160;&#160;<a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6eadd8b86e783c5b75c7c9224089b4f239b">SAND</a>
+, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6ea053c3b9443919054c42fe7115e111e36">LOAM</a>
+, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6ea2238fb7511b33ddb5f91ab723f0c3add">PEAT</a>
+, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6ea062285f4ae598699cec7d4b2e3a7fac2">CLAY</a>
 , <br />
-&#160;&#160;<a class="el" href="#a32f5636a03443547a8c316772610c4c1a7668b00d953ed05d4e494e67757cf0ab">SANDPEAT</a>
+&#160;&#160;<a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6ea7668b00d953ed05d4e494e67757cf0ab">SANDPEAT</a>
 <br />
  }</td></tr>
-<tr class="separator:a32f5636a03443547a8c316772610c4c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:a547d6434d73984a5c1b06e2f34a88a6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
-<tr class="memitem:af586e2e5563baee2b53964aff0e1467d" id="r_af586e2e5563baee2b53964aff0e1467d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af586e2e5563baee2b53964aff0e1467d">correctEC</a> (float ecRaw, float T, float theta, <a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a> soil)</td></tr>
+<tr class="memitem:af586e2e5563baee2b53964aff0e1467d" id="r_af586e2e5563baee2b53964aff0e1467d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af586e2e5563baee2b53964aff0e1467d">correctEC</a> (float ecRaw, float T, float theta, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
 <tr class="separator:af586e2e5563baee2b53964aff0e1467d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec93dd728b4450e4078a1e26954478e5" id="r_aec93dd728b4450e4078a1e26954478e5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec93dd728b4450e4078a1e26954478e5">correctPH</a> (float phRaw, float T)</td></tr>
 <tr class="separator:aec93dd728b4450e4078a1e26954478e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9d6b97073bca78fb526c17bdbf816a6" id="r_aa9d6b97073bca78fb526c17bdbf816a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9d6b97073bca78fb526c17bdbf816a6">correctNPK</a> (float T, float theta, float &amp;N, float &amp;P, float &amp;K, <a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a> soil)</td></tr>
+<tr class="memitem:aa9d6b97073bca78fb526c17bdbf816a6" id="r_aa9d6b97073bca78fb526c17bdbf816a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9d6b97073bca78fb526c17bdbf816a6">correctNPK</a> (float T, float theta, float &amp;N, float &amp;P, float &amp;K, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
 <tr class="separator:aa9d6b97073bca78fb526c17bdbf816a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
@@ -179,8 +179,8 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
 
 </div>
 </div>
-<a id="a32f5636a03443547a8c316772610c4c1" name="a32f5636a03443547a8c316772610c4c1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32f5636a03443547a8c316772610c4c1">&#9670;&#160;</a></span>SoilType</h2>
+<a id="a547d6434d73984a5c1b06e2f34a88a6e" name="a547d6434d73984a5c1b06e2f34a88a6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a547d6434d73984a5c1b06e2f34a88a6e">&#9670;&#160;</a></span>SoilType</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -189,7 +189,7 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class <a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a></td>
+          <td class="memname">enum class <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> : std::uint8_t</td>
         </tr>
       </table>
   </td>
@@ -199,11 +199,11 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="a32f5636a03443547a8c316772610c4c1add8b86e783c5b75c7c9224089b4f239b" name="a32f5636a03443547a8c316772610c4c1add8b86e783c5b75c7c9224089b4f239b"></a>SAND&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a32f5636a03443547a8c316772610c4c1a053c3b9443919054c42fe7115e111e36" name="a32f5636a03443547a8c316772610c4c1a053c3b9443919054c42fe7115e111e36"></a>LOAM&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a32f5636a03443547a8c316772610c4c1a2238fb7511b33ddb5f91ab723f0c3add" name="a32f5636a03443547a8c316772610c4c1a2238fb7511b33ddb5f91ab723f0c3add"></a>PEAT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a32f5636a03443547a8c316772610c4c1a062285f4ae598699cec7d4b2e3a7fac2" name="a32f5636a03443547a8c316772610c4c1a062285f4ae598699cec7d4b2e3a7fac2"></a>CLAY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a32f5636a03443547a8c316772610c4c1a7668b00d953ed05d4e494e67757cf0ab" name="a32f5636a03443547a8c316772610c4c1a7668b00d953ed05d4e494e67757cf0ab"></a>SANDPEAT&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="a547d6434d73984a5c1b06e2f34a88a6eadd8b86e783c5b75c7c9224089b4f239b" name="a547d6434d73984a5c1b06e2f34a88a6eadd8b86e783c5b75c7c9224089b4f239b"></a>SAND&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a547d6434d73984a5c1b06e2f34a88a6ea053c3b9443919054c42fe7115e111e36" name="a547d6434d73984a5c1b06e2f34a88a6ea053c3b9443919054c42fe7115e111e36"></a>LOAM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a547d6434d73984a5c1b06e2f34a88a6ea2238fb7511b33ddb5f91ab723f0c3add" name="a547d6434d73984a5c1b06e2f34a88a6ea2238fb7511b33ddb5f91ab723f0c3add"></a>PEAT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a547d6434d73984a5c1b06e2f34a88a6ea062285f4ae598699cec7d4b2e3a7fac2" name="a547d6434d73984a5c1b06e2f34a88a6ea062285f4ae598699cec7d4b2e3a7fac2"></a>CLAY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a547d6434d73984a5c1b06e2f34a88a6ea7668b00d953ed05d4e494e67757cf0ab" name="a547d6434d73984a5c1b06e2f34a88a6ea7668b00d953ed05d4e494e67757cf0ab"></a>SANDPEAT&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 <p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8h_source.html">sensor_compensation.h</a> строка <a class="el" href="sensor__compensation_8h_source.html#l00023">23</a></p>
@@ -235,7 +235,7 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -278,7 +278,7 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -316,7 +316,7 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="sensor__compensation_8h.html">sensor_compensation.h</a></li>
-    <li class="footer">Документация по JXCT 7-в-1 Датчик Почвы. Последние изменения: Ср 2 Июл 2025 21:47:03. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT 7-в-1 Датчик Почвы. Последние изменения: Ср 2 Июл 2025 22:09:33. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>

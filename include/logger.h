@@ -9,7 +9,7 @@
 #include <Arduino.h>
 
 // Уровни логгирования
-enum LogLevel
+enum LogLevel : std::uint8_t
 {
     LOG_ERROR = 0,
     LOG_WARN = 1,

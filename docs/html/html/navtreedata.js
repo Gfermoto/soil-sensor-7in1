@@ -63,9 +63,9 @@ var NAVTREEINDEX =
 [
 "_i_sensor_8h.html",
 "jxct__config__vars_8h.html#a8e19d13af09f7ed0afad391730f1e3e7",
-"logger_8h.html#a54dab32db32234798ff063ccc0dde695",
-"routes__config_8cpp.html#ad5ed6ddd9940c0097cc91774056df1c2",
-"validation__utils_8h.html#a1b8529ff5465c73b043d27ad7d2e86f3"
+"logger_8h.html#a4a348f4af13be9d7c726e296e9b3c89b",
+"routes__config_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9",
+"validation__utils_8h.html#a15f556efd2c016821186e4604e1d94a5"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

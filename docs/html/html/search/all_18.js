@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['warning_0',['WARNING',['../jxct__ui__system_8h.html#ac6606ebe91c8ac66a2c314c79f5ab013a059e9861e0400dfbe05c98a841f3f96b',1,'jxct_ui_system.h']]],
+  ['warning_0',['WARNING',['../jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5ea059e9861e0400dfbe05c98a841f3f96b',1,'jxct_ui_system.h']]],
   ['watchdog_5ftimeout_5fsec_1',['WATCHDOG_TIMEOUT_SEC',['../jxct__config__vars_8h.html#adfabfbdb34653df3fe5aa5c212a140a2',1,'jxct_config_vars.h']]],
   ['web_5froutes_2eh_2',['web_routes.h',['../web__routes_8h.html',1,'']]],
   ['web_5fserver_5ftask_5fpriority_3',['WEB_SERVER_TASK_PRIORITY',['../jxct__constants_8h.html#ab03a887f37e8650b369c91aef844be7b',1,'jxct_constants.h']]],
@@ -16,8 +16,9 @@ var searchData=
   ['wifi_5fmanager_2ecpp_13',['wifi_manager.cpp',['../wifi__manager_8cpp.html',1,'']]],
   ['wifi_5fmanager_2eh_14',['wifi_manager.h',['../wifi__manager_8h.html',1,'']]],
   ['wifi_5fmax_5fattempts_15',['WIFI_MAX_ATTEMPTS',['../jxct__config__vars_8h.html#a670833d6bc4ebeab45f259d03c9362c1',1,'jxct_config_vars.h']]],
-  ['wifi_5freconnect_5finterval_16',['WIFI_RECONNECT_INTERVAL',['../wifi__manager_8cpp.html#ad0854f1671654054950c3e17aef87be9',1,'wifi_manager.cpp']]],
-  ['wifi_5fretry_5fdelay_5fms_17',['WIFI_RETRY_DELAY_MS',['../jxct__config__vars_8h.html#a04b848298b9a35170cd46e8ef3b88464',1,'jxct_config_vars.h']]],
-  ['wificonnected_18',['wifiConnected',['../wifi__manager_8cpp.html#ac542c876ea54085aa0173a9cd1e3251c',1,'wifiConnected:&#160;wifi_manager.cpp'],['../wifi__manager_8h.html#ac542c876ea54085aa0173a9cd1e3251c',1,'wifiConnected:&#160;wifi_manager.cpp']]],
-  ['wifimode_19',['WiFiMode',['../wifi__manager_8h.html#ae685142b922ea26aa869f6cb5e17a19c',1,'wifi_manager.h']]]
+  ['wifi_5fmode_5fdelay_16',['WIFI_MODE_DELAY',['../wifi__manager_8cpp.html#adfbe35b61f15f636fb1862e48f1a765c',1,'wifi_manager.cpp']]],
+  ['wifi_5freconnect_5finterval_17',['WIFI_RECONNECT_INTERVAL',['../wifi__manager_8cpp.html#ad0854f1671654054950c3e17aef87be9',1,'wifi_manager.cpp']]],
+  ['wifi_5fretry_5fdelay_5fms_18',['WIFI_RETRY_DELAY_MS',['../jxct__config__vars_8h.html#a04b848298b9a35170cd46e8ef3b88464',1,'jxct_config_vars.h']]],
+  ['wificonnected_19',['wifiConnected',['../wifi__manager_8cpp.html#ac542c876ea54085aa0173a9cd1e3251c',1,'wifiConnected:&#160;wifi_manager.cpp'],['../wifi__manager_8h.html#ac542c876ea54085aa0173a9cd1e3251c',1,'wifiConnected:&#160;wifi_manager.cpp']]],
+  ['wifimode_20',['WiFiMode',['../wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6',1,'wifi_manager.h']]]
 ];

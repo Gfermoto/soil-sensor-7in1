@@ -26,6 +26,7 @@ var jxct__constants_8h =
     [ "DEFAULT_MQTT_PUBLISH_INTERVAL", "jxct__constants_8h.html#a67dcd3564182a15e00496b2cf2227ed7", null ],
     [ "DEFAULT_NTP_UPDATE_INTERVAL", "jxct__constants_8h.html#a4a3bbfdcb5c25d9f893585031128e1f2", null ],
     [ "DEFAULT_SENSOR_READ_INTERVAL", "jxct__constants_8h.html#a6434b7a387ed20c9f364ba4761763d37", null ],
+    [ "DEFAULT_SEPARATOR_LENGTH", "jxct__constants_8h.html#abc454bc37d61113a513356d453998d84", null ],
     [ "DEFAULT_THINGSPEAK_INTERVAL", "jxct__constants_8h.html#af693c003b6fde3f116c5fd46e4c487f2", null ],
     [ "DEFAULT_WEB_SERVER_PORT", "jxct__constants_8h.html#a4e987a55f2a52382b2e444e1e658eee9", null ],
     [ "DNS_CACHE_TTL", "jxct__constants_8h.html#a564c8f2937d070bba56544f0b63d8842", null ],

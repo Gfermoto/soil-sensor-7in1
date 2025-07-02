@@ -20,7 +20,7 @@ enum class SoilProfile : uint8_t
 };
 
 // Типы почвы
-enum class SoilType
+enum class SoilType : std::uint8_t
 {
     SAND,
     LOAM,

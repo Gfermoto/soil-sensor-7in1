@@ -17,13 +17,14 @@ var searchData=
   ['default_5fmqtt_5fpublish_5finterval_14',['DEFAULT_MQTT_PUBLISH_INTERVAL',['../jxct__constants_8h.html#a67dcd3564182a15e00496b2cf2227ed7',1,'jxct_constants.h']]],
   ['default_5fntp_5fupdate_5finterval_15',['DEFAULT_NTP_UPDATE_INTERVAL',['../jxct__constants_8h.html#a4a3bbfdcb5c25d9f893585031128e1f2',1,'jxct_constants.h']]],
   ['default_5fsensor_5fread_5finterval_16',['DEFAULT_SENSOR_READ_INTERVAL',['../jxct__constants_8h.html#a6434b7a387ed20c9f364ba4761763d37',1,'jxct_constants.h']]],
-  ['default_5fthingspeak_5finterval_17',['DEFAULT_THINGSPEAK_INTERVAL',['../jxct__constants_8h.html#af693c003b6fde3f116c5fd46e4c487f2',1,'jxct_constants.h']]],
-  ['default_5fweb_5fserver_5fport_18',['DEFAULT_WEB_SERVER_PORT',['../jxct__constants_8h.html#a4e987a55f2a52382b2e444e1e658eee9',1,'jxct_constants.h']]],
-  ['device_5fmanufacturer_19',['DEVICE_MANUFACTURER',['../version_8h.html#a83f77c2317b3d28560f91fffca64efea',1,'version.h']]],
-  ['device_5fmodel_20',['DEVICE_MODEL',['../version_8h.html#acd8d2dccf471a5d0cbd070ff1bef8887',1,'version.h']]],
-  ['device_5fsw_5fversion_21',['DEVICE_SW_VERSION',['../version_8h.html#aa6399036840a604f6b3bbbf93f7ecd3c',1,'version.h']]],
-  ['dns_5fcache_5fttl_22',['DNS_CACHE_TTL',['../jxct__constants_8h.html#a564c8f2937d070bba56544f0b63d8842',1,'jxct_constants.h']]],
-  ['dnscachemqtt_23',['dnsCacheMqtt',['../mqtt__client_8cpp.html#acb28a5a07d3f507386781a4629dfdeef',1,'mqtt_client.cpp']]],
-  ['dnsserver_24',['dnsServer',['../wifi__manager_8cpp.html#a52c5394c861b62875409604eedc0fcd7',1,'wifi_manager.cpp']]],
-  ['duplicated_5flines_25',['duplicated_lines',['../struct_technical_debt_metrics.html#ad65a2aec2bf57710c6ce49d3e5f37aad',1,'TechnicalDebtMetrics']]]
+  ['default_5fseparator_5flength_17',['DEFAULT_SEPARATOR_LENGTH',['../jxct__constants_8h.html#abc454bc37d61113a513356d453998d84',1,'jxct_constants.h']]],
+  ['default_5fthingspeak_5finterval_18',['DEFAULT_THINGSPEAK_INTERVAL',['../jxct__constants_8h.html#af693c003b6fde3f116c5fd46e4c487f2',1,'jxct_constants.h']]],
+  ['default_5fweb_5fserver_5fport_19',['DEFAULT_WEB_SERVER_PORT',['../jxct__constants_8h.html#a4e987a55f2a52382b2e444e1e658eee9',1,'jxct_constants.h']]],
+  ['device_5fmanufacturer_20',['DEVICE_MANUFACTURER',['../version_8h.html#a83f77c2317b3d28560f91fffca64efea',1,'version.h']]],
+  ['device_5fmodel_21',['DEVICE_MODEL',['../version_8h.html#acd8d2dccf471a5d0cbd070ff1bef8887',1,'version.h']]],
+  ['device_5fsw_5fversion_22',['DEVICE_SW_VERSION',['../version_8h.html#aa6399036840a604f6b3bbbf93f7ecd3c',1,'version.h']]],
+  ['dns_5fcache_5fttl_23',['DNS_CACHE_TTL',['../jxct__constants_8h.html#a564c8f2937d070bba56544f0b63d8842',1,'jxct_constants.h']]],
+  ['dnscachemqtt_24',['dnsCacheMqtt',['../mqtt__client_8cpp.html#acb28a5a07d3f507386781a4629dfdeef',1,'mqtt_client.cpp']]],
+  ['dnsserver_25',['dnsServer',['../wifi__manager_8cpp.html#a52c5394c861b62875409604eedc0fcd7',1,'wifi_manager.cpp']]],
+  ['duplicated_5flines_26',['duplicated_lines',['../struct_technical_debt_metrics.html#ad65a2aec2bf57710c6ce49d3e5f37aad',1,'TechnicalDebtMetrics']]]
 ];

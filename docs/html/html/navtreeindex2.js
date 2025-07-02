@@ -1,5 +1,11 @@
 var NAVTREEINDEX2 =
 {
+"logger_8h.html#a4a348f4af13be9d7c726e296e9b3c89b":[3,0,1,12,29],
+"logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4":[3,0,1,12,19],
+"logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473":[3,0,1,12,19,0],
+"logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837":[3,0,1,12,19,2],
+"logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e":[3,0,1,12,19,3],
+"logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13":[3,0,1,12,19,1],
 "logger_8h.html#a54dab32db32234798ff063ccc0dde695":[3,0,1,12,30],
 "logger_8h.html#a573f0d6e1b4dff871cf401471622a3d4":[3,0,1,12,27],
 "logger_8h.html#a60baa11f08afed73f5a7bc5d31f698ce":[3,0,1,12,22],
@@ -16,11 +22,6 @@ var NAVTREEINDEX2 =
 "logger_8h.html#ab52ca48221cf6d89f8ebd189da180059":[3,0,1,12,9],
 "logger_8h.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf":[3,0,1,12,23],
 "logger_8h.html#abf70e1b094519276f0363ac763f100ab":[3,0,1,12,35],
-"logger_8h.html#aca1fd1d8935433e6ba2e3918214e07f9":[3,0,1,12,19],
-"logger_8h.html#aca1fd1d8935433e6ba2e3918214e07f9a230506cce5c68c3bac5a821c42ed3473":[3,0,1,12,19,0],
-"logger_8h.html#aca1fd1d8935433e6ba2e3918214e07f9a6e98ff471e3ce6c4ef2d75c37ee51837":[3,0,1,12,19,2],
-"logger_8h.html#aca1fd1d8935433e6ba2e3918214e07f9ab9f002c6ffbfd511da8090213227454e":[3,0,1,12,19,3],
-"logger_8h.html#aca1fd1d8935433e6ba2e3918214e07f9ac8041ffa22bc823d4726701cdb13fc13":[3,0,1,12,19,1],
 "logger_8h.html#ace461ff84ce50a76653ec959a2436320":[3,0,1,12,25],
 "logger_8h.html#ad86358bf19927183dd7b4ae215a29731":[3,0,1,12,5],
 "logger_8h.html#aef367594259e15c9df8b0caf3dfddba8":[3,0,1,12,26],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "routes__config_8cpp.html#a08204d6e0087ca3676433990aad58a76":[3,0,2,0,2,3],
 "routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c":[3,0,2,0,2,4],
 "routes__config_8cpp.html#a6385fd6a6118223757bf00a8ba828562":[3,0,2,0,2,6],
-"routes__config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae":[3,0,2,0,2,2],
-"routes__config_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9":[3,0,2,0,2,1]
+"routes__config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae":[3,0,2,0,2,2]
 };

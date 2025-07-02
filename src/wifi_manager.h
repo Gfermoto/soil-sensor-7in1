@@ -8,7 +8,7 @@
 #include <WiFi.h>
 
 // Перечисление для режимов WiFi
-enum class WiFiMode
+enum class WiFiMode : std::uint8_t
 {
     AP,  // Режим точки доступа
     STA  // Режим клиента
