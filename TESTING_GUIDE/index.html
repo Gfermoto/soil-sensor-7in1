@@ -15,6 +15,10 @@
         <link rel="canonical" href="https://gfermoto.github.io/soil-sensor-7in1/TESTING_GUIDE/">
       
       
+        <link rel="prev" href="../CONTRIBUTING_DOCS/">
+      
+      
+        <link rel="next" href="../CSRF_SECURITY_AUDIT/">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -22,7 +26,7 @@
     
     
       
-        <title>Руководство по тестированию JXCT - 🌱 JXCT 7-в-1 Датчик Почвы</title>
+        <title>Руководство по тестированию - 🌱 JXCT 7-в-1 Датчик Почвы</title>
       
     
     
@@ -74,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#руководство-по-тестированию-jxct" class="md-skip">
+        <a href="#jxct" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -112,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Руководство по тестированию JXCT
+              Руководство по тестированию
             
           </span>
         </div>
@@ -297,6 +301,30 @@
     
   
   Разработка
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Тестирование
 
         </a>
       </li>
@@ -750,6 +778,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -818,12 +850,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../dev/QA_REFACTORING_PLAN_2025H2/" class="md-nav__link">
+      <a href="../dev/TECH_DEBT_QUICK_REFERENCE/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    План рефакторинга
+    🚀 Техдолг (кратко)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CURRENT_TEST_RESULTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    📊 Результаты тестов
     
   </span>
   
@@ -847,6 +902,29 @@
   
   <span class="md-ellipsis">
     Технический долг
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev/QA_REFACTORING_PLAN_2025H2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    План рефакторинга
     
   </span>
   
@@ -910,6 +988,523 @@
   
 
     
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    Тестирование
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Тестирование
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Руководство по тестированию
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Руководство по тестированию
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Обзор
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 Типы тестов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 Типы тестов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Unit тесты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Интеграционные тесты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-e2e" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. E2E тесты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Тесты производительности
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Автоматизация
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔧 Автоматизация">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pre-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pre-commit система
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cicd-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      CI/CD Pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Результаты тестирования
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Результаты тестирования">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#3-2025" class="md-nav__link">
+    <span class="md-ellipsis">
+      Текущие метрики (3 июля 2025)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚀 Запуск тестов
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 Запуск тестов">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Комплексное тестирование
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Отдельные тесты
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 Отчёты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 Отчёты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      Генерируемые отчёты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      Просмотр отчётов
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔍 Отладка
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔍 Отладка">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#unicode-windows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Проблемы с Unicode (Windows)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#platformio" class="md-nav__link">
+    <span class="md-ellipsis">
+      Проблемы с PlatformIO
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Чек-лист тестирования
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📋 Чек-лист тестирования">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      Перед коммитом
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      Перед релизом
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      🛠️ Инструменты
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🛠️ Инструменты">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      Основные скрипты
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      Конфигурация
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Дополнительные ресурсы
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CSRF_SECURITY_AUDIT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Аудит безопасности CSRF
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../STAGE_2_COMPLETION_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Отчет Stage 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REPORTS_INTEGRATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Интеграция отчетов
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DUPLICATION_ANALYSIS_DETAILED/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Анализ дублирования
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -942,38 +1537,38 @@
   
 
 
-<h1 id="руководство-по-тестированию-jxct">Руководство по тестированию JXCT<a class="headerlink" href="#руководство-по-тестированию-jxct" title="Постоянная ссылка">&para;</a></h1>
+<h1 id="jxct">Руководство по тестированию JXCT<a class="headerlink" href="#jxct" title="Постоянная ссылка">&para;</a></h1>
 <p><strong>Версия:</strong> 3.6.0
 <strong>Дата обновления:</strong> 3 июля 2025</p>
-<h2 id="-обзор">📋 Обзор<a class="headerlink" href="#-обзор" title="Постоянная ссылка">&para;</a></h2>
+<h2 id="_1">📋 Обзор<a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h2>
 <p>JXCT использует многоуровневую систему тестирования для обеспечения качества кода и надёжности системы мониторинга почвы.</p>
-<h2 id="-типы-тестов">🧪 Типы тестов<a class="headerlink" href="#-типы-тестов" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-unit-тесты">1. Unit тесты<a class="headerlink" href="#1-unit-тесты" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_2">🧪 Типы тестов<a class="headerlink" href="#_2" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="1-unit">1. Unit тесты<a class="headerlink" href="#1-unit" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li><strong>Назначение:</strong> Тестирование отдельных функций и классов</li>
 <li><strong>Покрытие:</strong> 70.8% строк, 75.0% функций</li>
 <li><strong>Запуск:</strong> <code>pio test -e native -v</code></li>
 </ul>
-<h3 id="2-интеграционные-тесты">2. Интеграционные тесты<a class="headerlink" href="#2-интеграционные-тесты" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="2">2. Интеграционные тесты<a class="headerlink" href="#2" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li><strong>Назначение:</strong> Тестирование взаимодействия компонентов</li>
 <li><strong>Файлы:</strong> <code>test/integration/test_component_interaction.cpp</code></li>
 <li><strong>Запуск:</strong> <code>python scripts/run_comprehensive_tests.py</code></li>
 </ul>
-<h3 id="3-e2e-тесты">3. E2E тесты<a class="headerlink" href="#3-e2e-тесты" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="3-e2e">3. E2E тесты<a class="headerlink" href="#3-e2e" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li><strong>Назначение:</strong> Тестирование веб-интерфейса</li>
 <li><strong>Файлы:</strong> <code>test/e2e/test_web_ui.py</code></li>
 <li><strong>Запуск:</strong> <code>python test/e2e/test_web_ui.py</code></li>
 </ul>
-<h3 id="4-тесты-производительности">4. Тесты производительности<a class="headerlink" href="#4-тесты-производительности" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="4">4. Тесты производительности<a class="headerlink" href="#4" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li><strong>Назначение:</strong> Измерение производительности критических функций</li>
 <li><strong>Метрики:</strong> Валидация &lt; 100ms, Компенсация &lt; 50ms</li>
 <li><strong>Запуск:</strong> <code>python scripts/run_performance_tests.py</code></li>
 </ul>
-<h2 id="-автоматизация">🔧 Автоматизация<a class="headerlink" href="#-автоматизация" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="pre-commit-система">Pre-commit система<a class="headerlink" href="#pre-commit-система" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_3">🔧 Автоматизация<a class="headerlink" href="#_3" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="pre-commit">Pre-commit система<a class="headerlink" href="#pre-commit" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Автоматический запуск при коммите</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Your message&quot;</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
@@ -994,8 +1589,8 @@
 <a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy-docs</span>
 </code></pre></div>
-<h2 id="-результаты-тестирования">📊 Результаты тестирования<a class="headerlink" href="#-результаты-тестирования" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="текущие-метрики-3-июля-2025">Текущие метрики (3 июля 2025)<a class="headerlink" href="#текущие-метрики-3-июля-2025" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_4">📊 Результаты тестирования<a class="headerlink" href="#_4" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="3-2025">Текущие метрики (3 июля 2025)<a class="headerlink" href="#3-2025" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;lines&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;70.8%&quot;</span><span class="p">,</span>
@@ -1012,8 +1607,8 @@
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="p">}</span>
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">}</span>
 </code></pre></div>
-<h2 id="-запуск-тестов">🚀 Запуск тестов<a class="headerlink" href="#-запуск-тестов" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="комплексное-тестирование">Комплексное тестирование<a class="headerlink" href="#комплексное-тестирование" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_5">🚀 Запуск тестов<a class="headerlink" href="#_5" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_6">Комплексное тестирование<a class="headerlink" href="#_6" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Все тесты + анализ</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python<span class="w"> </span>scripts/run_comprehensive_tests.py
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
@@ -1023,7 +1618,7 @@
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Только тесты производительности</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>python<span class="w"> </span>scripts/run_performance_tests.py
 </code></pre></div>
-<h3 id="отдельные-тесты">Отдельные тесты<a class="headerlink" href="#отдельные-тесты" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_7">Отдельные тесты<a class="headerlink" href="#_7" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Unit тесты (требует PlatformIO)</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>pio<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-e<span class="w"> </span>native<span class="w"> </span>-v
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
@@ -1033,44 +1628,44 @@
 <a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># CSRF тесты</span>
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>python<span class="w"> </span>test/native/test_csrf_security.py
 </code></pre></div>
-<h2 id="-отчёты">📈 Отчёты<a class="headerlink" href="#-отчёты" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="генерируемые-отчёты">Генерируемые отчёты<a class="headerlink" href="#генерируемые-отчёты" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_8">📈 Отчёты<a class="headerlink" href="#_8" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_9">Генерируемые отчёты<a class="headerlink" href="#_9" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li><code>test_reports/comprehensive-report.json</code> - Полный отчёт</li>
 <li><code>test_reports/technical-debt-ci.json</code> - Анализ технического долга</li>
 <li><code>test_reports/e2e-test-report.json</code> - E2E тесты</li>
 <li><code>test_reports/performance-test-report.json</code> - Производительность</li>
 </ul>
-<h3 id="просмотр-отчётов">Просмотр отчётов<a class="headerlink" href="#просмотр-отчётов" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_10">Просмотр отчётов<a class="headerlink" href="#_10" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># HTML отчёт</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>open<span class="w"> </span>test_reports/comprehensive-report.html
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># JSON отчёт</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>cat<span class="w"> </span>test_reports/comprehensive-report.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
 </code></pre></div>
-<h2 id="-отладка">🔍 Отладка<a class="headerlink" href="#-отладка" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="проблемы-с-unicode-windows">Проблемы с Unicode (Windows)<a class="headerlink" href="#проблемы-с-unicode-windows" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_11">🔍 Отладка<a class="headerlink" href="#_11" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="unicode-windows">Проблемы с Unicode (Windows)<a class="headerlink" href="#unicode-windows" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Установка переменной окружения</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">set</span><span class="w"> </span><span class="nv">PYTHONIOENCODING</span><span class="o">=</span>utf-8
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Или в PowerShell</span>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nv">$env</span>:PYTHONIOENCODING<span class="o">=</span><span class="s2">&quot;utf-8&quot;</span>
 </code></pre></div>
-<h3 id="проблемы-с-platformio">Проблемы с PlatformIO<a class="headerlink" href="#проблемы-с-platformio" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="platformio">Проблемы с PlatformIO<a class="headerlink" href="#platformio" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Очистка кэша</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>pio<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>clean
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Обновление зависимостей</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>pio<span class="w"> </span>pkg<span class="w"> </span>update
 </code></pre></div>
-<h2 id="-чек-лист-тестирования">📋 Чек-лист тестирования<a class="headerlink" href="#-чек-лист-тестирования" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="перед-коммитом">Перед коммитом<a class="headerlink" href="#перед-коммитом" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="-">📋 Чек-лист тестирования<a class="headerlink" href="#-" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_12">Перед коммитом<a class="headerlink" href="#_12" title="Постоянная ссылка">&para;</a></h3>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Pre-commit проверки прошли</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Unit тесты проходят</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Нет критических предупреждений</li>
 </ul>
-<h3 id="перед-релизом">Перед релизом<a class="headerlink" href="#перед-релизом" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_13">Перед релизом<a class="headerlink" href="#_13" title="Постоянная ссылка">&para;</a></h3>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Все тесты проходят</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Покрытие кода &gt; 70%</li>
@@ -1078,8 +1673,8 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> E2E тесты проходят</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Тесты производительности в норме</li>
 </ul>
-<h2 id="-инструменты">🛠️ Инструменты<a class="headerlink" href="#-инструменты" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="основные-скрипты">Основные скрипты<a class="headerlink" href="#основные-скрипты" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_14">🛠️ Инструменты<a class="headerlink" href="#_14" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_15">Основные скрипты<a class="headerlink" href="#_15" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li><code>scripts/pre-commit.py</code> - Pre-commit проверки</li>
 <li><code>scripts/format_code.py</code> - Форматирование кода</li>
@@ -1087,13 +1682,13 @@
 <li><code>scripts/run_comprehensive_tests.py</code> - Комплексное тестирование</li>
 <li><code>scripts/analyze_technical_debt.py</code> - Анализ технического долга</li>
 </ul>
-<h3 id="конфигурация">Конфигурация<a class="headerlink" href="#конфигурация" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_16">Конфигурация<a class="headerlink" href="#_16" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li><code>.clang-format</code> - Стиль C++ кода</li>
 <li><code>platformio.ini</code> - Конфигурация PlatformIO</li>
 <li><code>.github/workflows/ci-cd.yml</code> - CI/CD pipeline</li>
 </ul>
-<h2 id="-дополнительные-ресурсы">📚 Дополнительные ресурсы<a class="headerlink" href="#-дополнительные-ресурсы" title="Постоянная ссылка">&para;</a></h2>
+<h2 id="_17">📚 Дополнительные ресурсы<a class="headerlink" href="#_17" title="Постоянная ссылка">&para;</a></h2>
 <ul>
 <li><a href="https://docs.platformio.org/">Документация PlatformIO</a></li>
 <li><a href="docs/CSRF_SECURITY_AUDIT.md">Руководство по CSRF защите</a></li>
