@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#-tech-debt-report--june-2025-rev-13-02-jul" class="md-skip">
+        <a href="#-tech-debt-report--june-2025-rev-14-02-jul" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -1094,7 +1094,7 @@
   
 
 
-<h1 id="-tech-debt-report--june-2025-rev-13-02-jul">🗒️ Tech-Debt Report — June 2025 (rev-13, 02-Jul)<a class="headerlink" href="#-tech-debt-report--june-2025-rev-13-02-jul" title="Постоянная ссылка">&para;</a></h1>
+<h1 id="-tech-debt-report--june-2025-rev-14-02-jul">🗒️ Tech-Debt Report — June 2025 (rev-14, 02-Jul)<a class="headerlink" href="#-tech-debt-report--june-2025-rev-14-02-jul" title="Постоянная ссылка">&para;</a></h1>
 <table>
 <thead>
 <tr>
@@ -1107,7 +1107,7 @@
 <tr>
 <td>Code cleanliness</td>
 <td style="text-align: center;">🟡</td>
-<td>0 clang-tidy warnings (<strong>устранены</strong>); IWYU: 0 циклов, 3 неиспользуемых include; дублирование: 10 уникальных дубликатов (score=100, 🟡 Medium).</td>
+<td><strong>260 clang-tidy warnings</strong> (20 high, 160 medium, 80 low); IWYU: 0 циклов, 0 неиспользуемых include; дублирование: 17 уникальных дубликатов (score=111, 🟡 Medium). <strong>Оптимизация enum и магических чисел выполнена</strong>.</td>
 </tr>
 <tr>
 <td>Architecture</td>
@@ -1247,6 +1247,7 @@
 <hr />
 <h2 id="-история-изменений">🔄 <strong>История изменений:</strong><a class="headerlink" href="#-история-изменений" title="Постоянная ссылка">&para;</a></h2>
 <ul>
+<li><strong>Rev-14 (02.07.2025):</strong> Оптимизация enum (std::uint8_t), вынос магических чисел в константы (WiFi/LED/тайминги), техдолг score=111 (🟡 Medium), clang-tidy: 260 warnings</li>
 <li><strong>Rev-13 (02.07.2025):</strong> 26 unit-тестов (CSRF+Validation+Format+SensorCompensation) работают в Windows, техдолг снижен до 🟡 Medium (score 100), убраны неиспользуемые include</li>
 <li><strong>Rev-10 (30.06.2025):</strong> E2E тесты протестированы на реальном устройстве 192.168.2.74, 70% покрытие подтверждено, CSRF защита проверена</li>
 <li><strong>Rev-9 (30.06.2025):</strong> E2E тесты реализованы, ≥70% покрытие веб-интерфейса</li>
@@ -1254,7 +1255,7 @@
 <li><strong>Rev-7 (29.06.2025):</strong> CSRF защита реализована, security hotspots снижены до 105</li>
 </ul>
 <hr />
-<p><strong>Обновлено:</strong> 30.06.2025 - E2E тесты протестированы на реальном устройстве, цели достигнуты</p>
+<p><strong>Обновлено:</strong> 02.07.2025 - Оптимизация enum и магических чисел, техдолг score=111 (🟡 Medium)</p>
 <hr />
 <h2 id="1-key-pain-points-обновлено">1. Key pain points (обновлено)<a class="headerlink" href="#1-key-pain-points-обновлено" title="Постоянная ссылка">&para;</a></h2>
 <ol>

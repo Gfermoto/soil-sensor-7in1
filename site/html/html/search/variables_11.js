@@ -10,7 +10,11 @@ var searchData=
   ['raw_5ftemperature_7',['raw_temperature',['../struct_sensor_data.html#ad4f2c5ac6721efbfb394d394e74cc369',1,'SensorData']]],
   ['recentirrigation_8',['recentIrrigation',['../struct_sensor_data.html#a209057037cdfa0f908f128c11a581f4a',1,'SensorData']]],
   ['report_5fcache_5fttl_9',['REPORT_CACHE_TTL',['../routes__reports_8cpp.html#a9e8e9d654c8a3641ec17d99186db5919',1,'routes_reports.cpp']]],
-  ['reset_5fbutton_5fpin_10',['RESET_BUTTON_PIN',['../main_8cpp.html#aaef35518e8271022cf7cfca55d8c86d4',1,'RESET_BUTTON_PIN:&#160;main.cpp'],['../jxct__constants_8h.html#a4a3aea0890a9c7d81ed2b359ee3ae200',1,'RESET_BUTTON_PIN:&#160;jxct_constants.h']]],
-  ['reset_5fbutton_5ftask_5fpriority_11',['RESET_BUTTON_TASK_PRIORITY',['../jxct__constants_8h.html#a2748e3aebe921d6d2f1965fb7b71bbfa',1,'jxct_constants.h']]],
-  ['reset_5fbutton_5ftask_5fstack_5fsize_12',['RESET_BUTTON_TASK_STACK_SIZE',['../jxct__constants_8h.html#af5ae137d7081e66e1cd43e5c8df7de05',1,'jxct_constants.h']]]
+  ['report_5fcache_5fttl_5fms_10',['REPORT_CACHE_TTL_MS',['../jxct__constants_8h.html#a6e0684191970e6eba9a9f324bec14dc9',1,'jxct_constants.h']]],
+  ['reports_5fautorefresh_5finterval_5fms_11',['REPORTS_AUTOREFRESH_INTERVAL_MS',['../jxct__constants_8h.html#a388cf132b3a15fb4b29e070e51446295',1,'jxct_constants.h']]],
+  ['reports_5fjson_5fdoc_5flarge_5fsize_12',['REPORTS_JSON_DOC_LARGE_SIZE',['../jxct__constants_8h.html#aa8dff1c70704f2253a04a57fa04d215e',1,'jxct_constants.h']]],
+  ['reports_5fjson_5fdoc_5fsize_13',['REPORTS_JSON_DOC_SIZE',['../jxct__constants_8h.html#a63009532e7b32ae5bb837e6edfe0202a',1,'jxct_constants.h']]],
+  ['reset_5fbutton_5fpin_14',['RESET_BUTTON_PIN',['../main_8cpp.html#aaef35518e8271022cf7cfca55d8c86d4',1,'RESET_BUTTON_PIN:&#160;main.cpp'],['../jxct__constants_8h.html#a4a3aea0890a9c7d81ed2b359ee3ae200',1,'RESET_BUTTON_PIN:&#160;jxct_constants.h']]],
+  ['reset_5fbutton_5ftask_5fpriority_15',['RESET_BUTTON_TASK_PRIORITY',['../jxct__constants_8h.html#a2748e3aebe921d6d2f1965fb7b71bbfa',1,'jxct_constants.h']]],
+  ['reset_5fbutton_5ftask_5fstack_5fsize_16',['RESET_BUTTON_TASK_STACK_SIZE',['../jxct__constants_8h.html#af5ae137d7081e66e1cd43e5c8df7de05',1,'jxct_constants.h']]]
 ];

@@ -1,12 +1,23 @@
 var searchData=
 [
   ['ota_5fbuffer_5fsize_0',['OTA_BUFFER_SIZE',['../jxct__constants_8h.html#a22264a27d455a1be8245280540e34650',1,'jxct_constants.h']]],
-  ['ota_5fmanager_2ecpp_1',['ota_manager.cpp',['../ota__manager_8cpp.html',1,'']]],
-  ['ota_5fmanager_2eh_2',['ota_manager.h',['../ota__manager_8h.html',1,'']]],
-  ['ota_5ftimeout_3',['OTA_TIMEOUT',['../jxct__constants_8h.html#a4e82d246ba3af051580c6dc37dcaf8a3',1,'jxct_constants.h']]],
-  ['ota_5fupdate_5furl_5ftemplate_4',['OTA_UPDATE_URL_TEMPLATE',['../jxct__constants_8h.html#ac2eb6652b9b3a0b6a91cf51ae6141291',1,'jxct_constants.h']]],
-  ['ota_5fwatchdog_5ftimeout_5fsec_5',['OTA_WATCHDOG_TIMEOUT_SEC',['../jxct__config__vars_8h.html#a34bf95207114d92aae320115352794e5',1,'jxct_config_vars.h']]],
-  ['otacommandtopicbuffer_6',['otaCommandTopicBuffer',['../mqtt__client_8cpp.html#a35f256d87608b13739929b96361be87d',1,'mqtt_client.cpp']]],
-  ['otastatustopicbuffer_7',['otaStatusTopicBuffer',['../mqtt__client_8cpp.html#a97077e8e77af0bddb223979d23764f9b',1,'mqtt_client.cpp']]],
-  ['outline_8',['OUTLINE',['../jxct__ui__system_8h.html#ae2d5c50fae96a83cc4f5974af78e6943a6a656275b77dd69c1cc1f49c58859151',1,'jxct_ui_system.h']]]
+  ['ota_5fdelay_5fms_1',['OTA_DELAY_MS',['../jxct__constants_8h.html#af9671ec1272b5fe627548a9a5839975c',1,'jxct_constants.h']]],
+  ['ota_5fjson_5fdoc_5fsize_2',['OTA_JSON_DOC_SIZE',['../jxct__constants_8h.html#a952f6ffbe84382122e9734c64b2c2a1b',1,'jxct_constants.h']]],
+  ['ota_5fmanager_2ecpp_3',['ota_manager.cpp',['../ota__manager_8cpp.html',1,'']]],
+  ['ota_5fmanager_2eh_4',['ota_manager.h',['../ota__manager_8h.html',1,'']]],
+  ['ota_5fprogress_5flog_5fthreshold_5',['OTA_PROGRESS_LOG_THRESHOLD',['../jxct__constants_8h.html#a8a928039448dcc2c8bfe0a66c327a64c',1,'jxct_constants.h']]],
+  ['ota_5fstage_5fcheck_6',['OTA_STAGE_CHECK',['../jxct__constants_8h.html#a5adc70430d136402241bec2bda3ff44f',1,'jxct_constants.h']]],
+  ['ota_5fstage_5fconnection_7',['OTA_STAGE_CONNECTION',['../jxct__constants_8h.html#a67ceb925ddd7d10a6da1b44a2785c677',1,'jxct_constants.h']]],
+  ['ota_5fstage_5fdefault_8',['OTA_STAGE_DEFAULT',['../jxct__constants_8h.html#ae3e0b7f10f6fe85c7cebd35434aa46e9',1,'jxct_constants.h']]],
+  ['ota_5fstage_5fdownload_9',['OTA_STAGE_DOWNLOAD',['../jxct__constants_8h.html#a012ba3eb455180c359435d57ebc0b205',1,'jxct_constants.h']]],
+  ['ota_5fstage_5ffinish_10',['OTA_STAGE_FINISH',['../jxct__constants_8h.html#a64c516f5b18c9cf621e7ace9618ecfb1',1,'jxct_constants.h']]],
+  ['ota_5fstage_5finstall_11',['OTA_STAGE_INSTALL',['../jxct__constants_8h.html#a91060f3497ce6dc7f6336ae01ce37585',1,'jxct_constants.h']]],
+  ['ota_5fstage_5fverify_12',['OTA_STAGE_VERIFY',['../jxct__constants_8h.html#a3cd517ce43b8a36499d3da2eb0b4ff29',1,'jxct_constants.h']]],
+  ['ota_5ftimeout_13',['OTA_TIMEOUT',['../jxct__constants_8h.html#a4e82d246ba3af051580c6dc37dcaf8a3',1,'jxct_constants.h']]],
+  ['ota_5fupdate_5finterval_5fms_14',['OTA_UPDATE_INTERVAL_MS',['../jxct__constants_8h.html#aeae0cc4dca85ad5d9b5d5ac9e83c6c27',1,'jxct_constants.h']]],
+  ['ota_5fupdate_5furl_5ftemplate_15',['OTA_UPDATE_URL_TEMPLATE',['../jxct__constants_8h.html#ac2eb6652b9b3a0b6a91cf51ae6141291',1,'jxct_constants.h']]],
+  ['ota_5fwatchdog_5ftimeout_5fsec_16',['OTA_WATCHDOG_TIMEOUT_SEC',['../jxct__config__vars_8h.html#a34bf95207114d92aae320115352794e5',1,'jxct_config_vars.h']]],
+  ['otacommandtopicbuffer_17',['otaCommandTopicBuffer',['../mqtt__client_8cpp.html#a35f256d87608b13739929b96361be87d',1,'mqtt_client.cpp']]],
+  ['otastatustopicbuffer_18',['otaStatusTopicBuffer',['../mqtt__client_8cpp.html#a97077e8e77af0bddb223979d23764f9b',1,'mqtt_client.cpp']]],
+  ['outline_19',['OUTLINE',['../jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153a6a656275b77dd69c1cc1f49c58859151',1,'jxct_ui_system.h']]]
 ];

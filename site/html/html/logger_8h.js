@@ -19,11 +19,11 @@ var logger_8h =
     [ "LOG_SYMBOL_SYSTEM", "logger_8h.html#a0c7e0aa41ab5cb38235c908e87aeb5ea", null ],
     [ "LOG_SYMBOL_WARN", "logger_8h.html#a7e4fda439418c6c40322f686422d9780", null ],
     [ "LOG_SYMBOL_WIFI", "logger_8h.html#a9b85a144155d4ee001653d25ce7a8ba6", null ],
-    [ "LogLevel", "logger_8h.html#aca1fd1d8935433e6ba2e3918214e07f9", [
-      [ "LOG_ERROR", "logger_8h.html#aca1fd1d8935433e6ba2e3918214e07f9a230506cce5c68c3bac5a821c42ed3473", null ],
-      [ "LOG_WARN", "logger_8h.html#aca1fd1d8935433e6ba2e3918214e07f9ac8041ffa22bc823d4726701cdb13fc13", null ],
-      [ "LOG_INFO", "logger_8h.html#aca1fd1d8935433e6ba2e3918214e07f9a6e98ff471e3ce6c4ef2d75c37ee51837", null ],
-      [ "LOG_DEBUG", "logger_8h.html#aca1fd1d8935433e6ba2e3918214e07f9ab9f002c6ffbfd511da8090213227454e", null ]
+    [ "LogLevel", "logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4", [
+      [ "LOG_ERROR", "logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473", null ],
+      [ "LOG_WARN", "logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13", null ],
+      [ "LOG_INFO", "logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837", null ],
+      [ "LOG_DEBUG", "logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e", null ]
     ] ],
     [ "logData", "logger_8h.html#af2cfc49d3e5f87ebc351693b47c348e1", null ],
     [ "logDebug", "logger_8h.html#a1e536b98344ba271bbfc484cca848dbe", null ],

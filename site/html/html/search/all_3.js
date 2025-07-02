@@ -2,7 +2,7 @@ var searchData=
 [
   ['acquirefn_0',['AcquireFn',['../class_basic_sensor_adapter.html#a7209e637c892c9013df462380c97eb96',1,'BasicSensorAdapter']]],
   ['addtomovingaverage_1',['addToMovingAverage',['../modbus__sensor_8cpp.html#afa3ddec4a6bc8ee0972ab805e02aad6b',1,'addToMovingAverage(SensorData &amp;data, float temp, float hum, float ec, float ph, float n, float p, float k):&#160;modbus_sensor.cpp'],['../modbus__sensor_8h.html#afa3ddec4a6bc8ee0972ab805e02aad6b',1,'addToMovingAverage(SensorData &amp;data, float temp, float hum, float ec, float ph, float n, float p, float k):&#160;modbus_sensor.cpp']]],
-  ['ap_2',['AP',['../wifi__manager_8h.html#ae685142b922ea26aa869f6cb5e17a19ca0fd3f8dd5edc33b28db1162e15e8fcbc',1,'wifi_manager.h']]],
+  ['ap_2',['AP',['../wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6a0fd3f8dd5edc33b28db1162e15e8fcbc',1,'wifi_manager.h']]],
   ['api_5fconfig_5fexport_3',['API_CONFIG_EXPORT',['../error__handlers_8cpp.html#a279a0c067a8addd61f08d5fd7993ec35',1,'API_CONFIG_EXPORT:&#160;error_handlers.cpp'],['../jxct__strings_8h.html#a279a0c067a8addd61f08d5fd7993ec35',1,'API_CONFIG_EXPORT:&#160;jxct_strings.h']]],
   ['api_5froot_4',['API_ROOT',['../jxct__strings_8h.html#a2658231c913ad33de1f1e34cea47ac12',1,'jxct_strings.h']]],
   ['api_5fsensor_5',['API_SENSOR',['../jxct__strings_8h.html#a47583d6152c2bf2cd0df1b41cd090268',1,'jxct_strings.h']]],

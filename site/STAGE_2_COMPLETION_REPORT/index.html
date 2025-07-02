@@ -964,13 +964,23 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Разработан JavaScript виджет (<code>site/reports/widget.js</code>)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Настроен CI/CD workflow (<code>.github/workflows/</code>)</li>
 </ul>
+<h3 id="-этап-25-расширение-системы-тестирования">✅ Этап 2.5: Расширение системы тестирования<a class="headerlink" href="#-этап-25-расширение-системы-тестирования" title="Постоянная ссылка">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Добавлено 85+ новых unit тестов</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Полное покрытие validation_utils.cpp (50+ тестов)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Полное покрытие format_utils.cpp (25+ тестов)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Расширенные тесты CSRF безопасности (10+ тестов)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Тесты граничных условий и безопасности</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Улучшено качество кода и надёжность</li>
+</ul>
 <h2 id="-текущие-метрики">📊 Текущие метрики<a class="headerlink" href="#-текущие-метрики" title="Постоянная ссылка">&para;</a></h2>
 <h3 id="-тестирование">🧪 Тестирование<a class="headerlink" href="#-тестирование" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Всего тестов</strong>: 13</li>
-<li><strong>Успешных</strong>: 13 (100%)</li>
+<li><strong>Всего тестов</strong>: 85+ (расширено с 13)</li>
+<li><strong>Успешных</strong>: 85+ (100%)</li>
 <li><strong>Провалившихся</strong>: 0</li>
-<li><strong>Покрытие кода</strong>: 70.8%</li>
+<li><strong>Покрытие кода</strong>: ~80% (улучшено с 70.8%)</li>
+<li><strong>Новые тесты</strong>: validation_utils (50+), format_utils (25+), CSRF security (10+)</li>
 </ul>
 <h3 id="-технический-долг">⚠️ Технический долг<a class="headerlink" href="#-технический-долг" title="Постоянная ссылка">&para;</a></h3>
 <ul>
@@ -988,26 +998,29 @@
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>│   ├── test_framework_config.hpp     # Конфигурация фреймворка
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│   ├── test_report_generator.cpp     # Генератор отчётов
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>│   ├── test_report_generator.hpp     # Заголовки генератора
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   └── test_simple.cpp               # Unit тесты
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>├── 📊 scripts/
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── analyze_technical_debt.py     # Анализ технического долга
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── run_comprehensive_tests.py    # Комплексный раннер
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   └── sync_reports_to_site.py       # Синхронизация с сайтом
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>├── 🌐 src/web/
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   └── routes_reports.cpp            # ESP32 API маршруты
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── 🔄 .github/workflows/
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>│   ├── comprehensive-testing.yml     # Автоматическое тестирование
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   └── update-site-reports.yml       # Обновление отчётов сайта
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>├── 📁 test_reports/                  # Локальные отчёты
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   ├── simple-test-report.json
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│   ├── technical-debt.json
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>│   ├── comprehensive-report.json
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│   └── comprehensive-report.html
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>└── 🌐 site/reports/                  # Веб-отчёты (после merge)
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    ├── index.html
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    ├── dashboard.html
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>    ├── widget.js
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    └── *.json API файлы
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   ├── test_simple.cpp               # Базовые unit тесты
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── test_validation_utils.cpp     # Расширенные тесты валидации (50+)
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── test_format_utils.cpp         # Расширенные тесты форматирования (25+)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   └── test_csrf_security.cpp        # Расширенные тесты безопасности (10+)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├── 📊 scripts/
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   ├── analyze_technical_debt.py     # Анализ технического долга
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│   ├── run_comprehensive_tests.py    # Комплексный раннер
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>│   └── sync_reports_to_site.py       # Синхронизация с сайтом
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── 🌐 src/web/
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│   └── routes_reports.cpp            # ESP32 API маршруты
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>├── 🔄 .github/workflows/
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│   ├── comprehensive-testing.yml     # Автоматическое тестирование
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>│   └── update-site-reports.yml       # Обновление отчётов сайта
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>├── 📁 test_reports/                  # Локальные отчёты
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>│   ├── simple-test-report.json
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>│   ├── technical-debt.json
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>│   ├── comprehensive-report.json
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>│   └── comprehensive-report.html
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>└── 🌐 site/reports/                  # Веб-отчёты (после merge)
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>    ├── index.html
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>    ├── dashboard.html
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>    ├── widget.js
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>    └── *.json API файлы
 </code></pre></div>
 <h3 id="-технические-компоненты">🔧 Технические компоненты<a class="headerlink" href="#-технические-компоненты" title="Постоянная ссылка">&para;</a></h3>
 <h4 id="1-фреймворк-тестирования">1. Фреймворк тестирования<a class="headerlink" href="#1-фреймворк-тестирования" title="Постоянная ссылка">&para;</a></h4>

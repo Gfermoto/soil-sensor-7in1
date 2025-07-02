@@ -29,5 +29,5 @@ var searchData=
   ['delta_5fnpk_26',['DELTA_NPK',['../jxct__config__vars_8h.html#ac81d514cad041a427ef91aae287508d0',1,'jxct_config_vars.h']]],
   ['delta_5fph_27',['DELTA_PH',['../jxct__config__vars_8h.html#ae13f5c1a3a53aa110c1d0935eb31c33e',1,'jxct_config_vars.h']]],
   ['delta_5ftemperature_28',['DELTA_TEMPERATURE',['../jxct__config__vars_8h.html#aed35e9e24cf284b3d4ccc163cd2541ba',1,'jxct_config_vars.h']]],
-  ['dns_5fport_29',['DNS_PORT',['../jxct__config__vars_8h.html#ab1d3f5c08428c20521a92ca2fa20f46c',1,'jxct_config_vars.h']]]
+  ['dns_5fport_29',['DNS_PORT',['../wifi__manager_8cpp.html#ab1d3f5c08428c20521a92ca2fa20f46c',1,'DNS_PORT:&#160;wifi_manager.cpp'],['../jxct__config__vars_8h.html#ab1d3f5c08428c20521a92ca2fa20f46c',1,'DNS_PORT:&#160;jxct_config_vars.h']]]
 ];
