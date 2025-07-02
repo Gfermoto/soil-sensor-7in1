@@ -2,6 +2,7 @@
 #include <ArduinoJson.h>
 #include <Update.h>
 #include "../../include/jxct_config_vars.h"
+#include "../../include/jxct_constants.h"
 #include "../../include/jxct_strings.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
@@ -38,11 +39,11 @@ void setupOtaRoutes()
                      logWebRequest("POST", "/api/ota/check", webServer.client().remoteIP().toString());
                      if (currentWiFiMode != WiFiMode::STA)
                      {
-                         webServer.send(403, "application/json", "{\"error\":\"unavailable\"}");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_JSON, "{\"error\":\"unavailable\"}");
                          return;
                      }
                      triggerOtaCheck();  // уже включает handleOTA()
-                     webServer.send(200, "application/json", "{\"ok\":true}");
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":true}");
                  });
 
     // API: установить найденное обновление
@@ -52,13 +53,13 @@ void setupOtaRoutes()
                      logWebRequest("POST", "/api/ota/install", webServer.client().remoteIP().toString());
                      if (currentWiFiMode != WiFiMode::STA)
                      {
-                         webServer.send(403, "application/json", "{\"error\":\"unavailable\"}");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_JSON, "{\"error\":\"unavailable\"}");
                          return;
                      }
 
                      // Запускаем принудительную установку
                      triggerOtaInstall();
-                     webServer.send(200, "application/json", "{\"ok\":true}");
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":true}");
                  });
 
     // HTML страница обновлений
@@ -70,7 +71,7 @@ void setupOtaRoutes()
 
             if (currentWiFiMode == WiFiMode::AP)
             {
-                webServer.send(200, "text/html; charset=utf-8", generateApModeUnavailablePage("Обновления", "🚀"));
+                webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, generateApModeUnavailablePage("Обновления", "🚀"));
                 return;
             }
 
@@ -187,9 +188,9 @@ void setupOtaRoutes()
                 "'Проверка обновлений'].includes(status)) {\n";
             html += "      // Этапы OTA\n";
             html +=
-                "      const stages = {'Подключение': 25, 'Загрузка': 50, 'Проверка': 75, 'Завершение': 90, "
-                "'Завершение установки': 95, 'Проверка обновлений': 30};\n";
-            html += "      showProgress(status + '...', stages[status] || 25);\n";
+                "      const stages = {'Подключение': " + String(OTA_STAGE_CONNECTION) + ", 'Загрузка': " + String(OTA_STAGE_DOWNLOAD) + ", 'Проверка': " + String(OTA_STAGE_VERIFY) + ", 'Завершение': " + String(OTA_STAGE_FINISH) + ", "
+                "'Завершение установки': " + String(OTA_STAGE_INSTALL) + ", 'Проверка обновлений': " + String(OTA_STAGE_CHECK) + "};\n";
+            html += "      showProgress(status + '...', stages[status] || " + String(OTA_STAGE_DEFAULT) + ");\n";
             html += "      isOtaActive = true;\n";
             html += "    } else {\n";
             html += "      // Завершенные состояния\n";
@@ -265,7 +266,7 @@ void setupOtaRoutes()
             html += "      setTimeout(() => {\n";
             html += "        btn.disabled = false;\n";
             html += "        btn.textContent = '🔍 Проверить обновления';\n";
-            html += "      }, 3000);\n";
+            html += "      }, " + String(OTA_DELAY_MS) + ");\n";
             html += "    });\n";
             html += "});\n";
             html += "\n";
@@ -320,11 +321,11 @@ void setupOtaRoutes()
             html += "});\n";
             html += "\n";
             html += "// Автообновление статуса\n";
-            html += "setInterval(updateStatus, 1000);\n";
+            html += "setInterval(updateStatus, " + String(OTA_UPDATE_INTERVAL_MS) + ");\n";
             html += "updateStatus();\n";
             html += "</script>";
             html += generatePageFooter();
-            webServer.send(200, "text/html; charset=utf-8", html);
+            webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
         });
 
     // Upload маршрут
@@ -335,7 +336,7 @@ void setupOtaRoutes()
 
 static void sendOtaStatusJson()
 {
-    StaticJsonDocument<256> doc;
+    StaticJsonDocument<OTA_JSON_DOC_SIZE> doc;
 
     // Если идёт локальная загрузка, показываем её статус
     if (isLocalUploadActive)
@@ -362,7 +363,7 @@ static void sendOtaStatusJson()
     doc["version"] = JXCT_VERSION_STRING;
     String json;
     serializeJson(doc, json);
-    webServer.send(200, "application/json", json);
+    webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
 }
 
 static void handleFirmwareUpload()
@@ -402,7 +403,7 @@ static void handleFirmwareUpload()
 
             // Логируем прогресс каждые 64KB
             static size_t lastLogged = 0;
-            if (localUploadProgress - lastLogged > 65536)
+            if (localUploadProgress - lastLogged > OTA_PROGRESS_LOG_THRESHOLD)
             {
                 logSystem("[OTA] Загружено: %u байт", localUploadProgress);
                 lastLogged = localUploadProgress;
@@ -421,8 +422,8 @@ static void handleFirmwareUpload()
                 logSuccess("[OTA] Файл принят успешно, перезагрузка через 2 сек");
                 localUploadStatus = "success";
                 isLocalUploadActive = false;
-                webServer.send(200, "application/json", "{\"ok\":true}");
-                delay(2000);
+                webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":true}");
+                delay(OTA_DELAY_MS);
                 ESP.restart();
             }
             else
@@ -431,7 +432,7 @@ static void handleFirmwareUpload()
                 Update.printError(Serial);
                 isLocalUploadActive = false;
                 localUploadStatus = "error";
-                webServer.send(200, "application/json", "{\"ok\":false,\"error\":\"not_finished\"}");
+                webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":false,\"error\":\"not_finished\"}");
             }
         }
         else
@@ -440,7 +441,7 @@ static void handleFirmwareUpload()
             Update.printError(Serial);
             isLocalUploadActive = false;
             localUploadStatus = "error";
-            webServer.send(200, "application/json", "{\"ok\":false,\"error\":\"end_failed\"}");
+            webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":false,\"error\":\"end_failed\"}");
         }
     }
     else if (upload.status == UPLOAD_FILE_ABORTED)
@@ -449,6 +450,6 @@ static void handleFirmwareUpload()
         Update.abort();
         isLocalUploadActive = false;
         localUploadStatus = "aborted";
-        webServer.send(200, "application/json", "{\"ok\":false,\"error\":\"aborted\"}");
+        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":false,\"error\":\"aborted\"}");
     }
 }

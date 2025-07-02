@@ -5,6 +5,7 @@
 #include "../wifi_manager.h"
 #include <ArduinoJson.h>
 #include <SPIFFS.h>
+#include "../../include/jxct_constants.h"
 
 // Структуры для отчётов
 struct TestSummary {
@@ -29,7 +30,7 @@ struct TechnicalDebtMetrics {
 static TestSummary lastTestSummary;
 static TechnicalDebtMetrics lastTechDebt;
 static unsigned long lastReportUpdate = 0;
-static const unsigned long REPORT_CACHE_TTL = 300000; // 5 минут
+static const unsigned long REPORT_CACHE_TTL = REPORT_CACHE_TTL_MS;
 
 // Функции для работы с отчётами
 static bool loadTestReport(const String& filename, TestSummary& summary);
@@ -48,7 +49,7 @@ void setupReportsRoutes()
         
         updateReportsCache();
         
-        StaticJsonDocument<512> doc;
+        StaticJsonDocument<JSON_DOC_SMALL> doc;
         doc["timestamp"] = lastTestSummary.timestamp;
         doc["total"] = lastTestSummary.total;
         doc["passed"] = lastTestSummary.passed;
@@ -57,7 +58,7 @@ void setupReportsRoutes()
         
         String json;
         serializeJson(doc, json);
-        webServer.send(200, "application/json", json);
+        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
     });
 
     webServer.on("/api/reports/technical-debt", HTTP_GET, []() {
@@ -65,7 +66,7 @@ void setupReportsRoutes()
         
         updateReportsCache();
         
-        StaticJsonDocument<1024> doc;
+        StaticJsonDocument<JSON_DOC_MEDIUM> doc;
         doc["code_smells"] = lastTechDebt.code_smells;
         doc["duplicated_lines"] = lastTechDebt.duplicated_lines;
         doc["complexity_issues"] = lastTechDebt.complexity_issues;
@@ -76,7 +77,7 @@ void setupReportsRoutes()
         
         String json;
         serializeJson(doc, json);
-        webServer.send(200, "application/json", json);
+        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
     });
 
     // API для получения полных отчётов
@@ -85,7 +86,7 @@ void setupReportsRoutes()
         
         updateReportsCache();
         
-        StaticJsonDocument<2048> doc;
+        StaticJsonDocument<JSON_DOC_LARGE> doc;
         
         // Тестовые метрики
         doc["test_summary"]["total"] = lastTestSummary.total;
@@ -105,7 +106,7 @@ void setupReportsRoutes()
         
         String json;
         serializeJson(doc, json);
-        webServer.send(200, "application/json", json);
+        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
     });
 
     // Веб-интерфейс для просмотра отчётов
@@ -113,7 +114,7 @@ void setupReportsRoutes()
         logWebRequest("GET", "/reports", webServer.client().remoteIP().toString());
         
         String html = generateReportsHTML();
-        webServer.send(200, "text/html; charset=utf-8", html);
+        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
     });
 
     // Дашборд отчётов (краткий обзор)
@@ -121,7 +122,7 @@ void setupReportsRoutes()
         logWebRequest("GET", "/reports/dashboard", webServer.client().remoteIP().toString());
         
         String html = generateReportsDashboardHTML();
-        webServer.send(200, "text/html; charset=utf-8", html);
+        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
     });
 
     logSuccess("🧪 Маршруты отчётов тестирования настроены");
@@ -130,11 +131,11 @@ void setupReportsRoutes()
 static bool loadTestReport(const String& filename, TestSummary& summary) {
     if (!SPIFFS.exists(filename)) {
         // Заглушка с демо-данными
-        summary.total = 13;
-        summary.passed = 13;
+        summary.total = TESTS_TOTAL_COUNT;
+        summary.passed = TESTS_PASSED_COUNT;
         summary.failed = 0;
-        summary.success_rate = 100.0;
-        summary.timestamp = "2025-01-22T12:00:00Z";
+        summary.success_rate = TEST_SUCCESS_RATE_MAX;
+        summary.timestamp = TEST_TIMESTAMP_EXAMPLE;
         return true;
     }
     
@@ -143,7 +144,7 @@ static bool loadTestReport(const String& filename, TestSummary& summary) {
         return false;
     }
     
-    StaticJsonDocument<1024> doc;
+    StaticJsonDocument<REPORTS_JSON_DOC_SIZE> doc;
     DeserializationError error = deserializeJson(doc, file);
     file.close();
     
@@ -163,13 +164,13 @@ static bool loadTestReport(const String& filename, TestSummary& summary) {
 static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& debt) {
     if (!SPIFFS.exists(filename)) {
         // Заглушка с демо-данными
-        debt.code_smells = 66;
-        debt.duplicated_lines = 933;
+        debt.code_smells = TECH_DEBT_CODE_SMELLS;
+        debt.duplicated_lines = TECH_DEBT_DUPLICATED_LINES;
         debt.complexity_issues = 6;
-        debt.security_hotspots = 134;
+        debt.security_hotspots = TECH_DEBT_SECURITY_HOTSPOTS;
         debt.maintainability_rating = "D";
-        debt.debt_ratio = 1.93;
-        debt.coverage = 70.8;
+        debt.debt_ratio = TECH_DEBT_DEBT_RATIO;
+        debt.coverage = TECH_DEBT_COVERAGE;
         return true;
     }
     
@@ -178,7 +179,7 @@ static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& deb
         return false;
     }
     
-    StaticJsonDocument<2048> doc;
+    StaticJsonDocument<REPORTS_JSON_DOC_LARGE_SIZE> doc;
     DeserializationError error = deserializeJson(doc, file);
     file.close();
     

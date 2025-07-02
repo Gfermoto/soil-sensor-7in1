@@ -6,6 +6,7 @@
 
 #include <ArduinoJson.h>
 #include "../../include/jxct_config_vars.h"
+#include "../../include/jxct_constants.h"
 #include "../../include/jxct_device_info.h"
 #include "../../include/jxct_strings.h"
 #include "../../include/jxct_ui_system.h"
@@ -37,7 +38,7 @@ void setupConfigRoutes()
 
             if (currentWiFiMode == WiFiMode::AP)
             {
-                webServer.send(200, "text/html; charset=utf-8",
+                webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML,
                                generateApModeUnavailablePage("Интервалы", UI_ICON_INTERVALS));
                 return;
             }
@@ -50,28 +51,28 @@ void setupConfigRoutes()
 
             html += "<div class='section'><h2>📊 Интервалы опроса и публикации</h2>";
             html += "<div class='form-group'><label for='sensor_interval'>Интервал опроса датчика (сек):</label>";
-            html += "<input type='number' id='sensor_interval' name='sensor_interval' min='1' max='300' value='" +
-                    String(config.sensorReadInterval / 1000) + "' required>";
-            html += "<div class='help'>1-300 сек. Текущее: " + String(config.sensorReadInterval / 1000) +
+            html += "<input type='number' id='sensor_interval' name='sensor_interval' min='" + String(CONFIG_SENSOR_INTERVAL_MIN_SEC) + "' max='" + String(CONFIG_SENSOR_INTERVAL_MAX_SEC) + "' value='" +
+                    String(config.sensorReadInterval / CONVERSION_SEC_TO_MS) + "' required>";
+            html += "<div class='help'>" + String(CONFIG_SENSOR_INTERVAL_MIN_SEC) + "-" + String(CONFIG_SENSOR_INTERVAL_MAX_SEC) + " сек. Текущее: " + String(config.sensorReadInterval / CONVERSION_SEC_TO_MS) +
                     " сек (по умолчанию: 1 сек)</div></div>";
 
             html += "<div class='form-group'><label for='mqtt_interval'>Интервал MQTT публикации (мин):</label>";
-            html += "<input type='number' id='mqtt_interval' name='mqtt_interval' min='1' max='60' value='" +
-                    String(config.mqttPublishInterval / 60000) + "' required>";
-            html += "<div class='help'>1-60 мин. Текущее: " + String(config.mqttPublishInterval / 60000) +
+            html += "<input type='number' id='mqtt_interval' name='mqtt_interval' min='" + String(CONFIG_MQTT_INTERVAL_MIN_MIN) + "' max='" + String(CONFIG_MQTT_INTERVAL_MAX_MIN) + "' value='" +
+                    String(config.mqttPublishInterval / CONVERSION_MIN_TO_MS) + "' required>";
+            html += "<div class='help'>" + String(CONFIG_MQTT_INTERVAL_MIN_MIN) + "-" + String(CONFIG_MQTT_INTERVAL_MAX_MIN) + " мин. Текущее: " + String(config.mqttPublishInterval / CONVERSION_MIN_TO_MS) +
                     " мин</div></div>";
 
             html += "<div class='form-group'><label for='ts_interval'>Интервал ThingSpeak (мин):</label>";
-            html += "<input type='number' id='ts_interval' name='ts_interval' min='5' max='120' value='" +
-                    String(config.thingSpeakInterval / 60000) + "' required>";
-            html += "<div class='help'>5-120 мин. Текущее: " + String(config.thingSpeakInterval / 60000) +
+            html += "<input type='number' id='ts_interval' name='ts_interval' min='" + String(CONFIG_THINGSPEAK_INTERVAL_MIN_MIN) + "' max='" + String(CONFIG_THINGSPEAK_INTERVAL_MAX_MIN) + "' value='" +
+                    String(config.thingSpeakInterval / CONVERSION_MIN_TO_MS) + "' required>";
+            html += "<div class='help'>" + String(CONFIG_THINGSPEAK_INTERVAL_MIN_MIN) + "-" + String(CONFIG_THINGSPEAK_INTERVAL_MAX_MIN) + " мин. Текущее: " + String(config.thingSpeakInterval / CONVERSION_MIN_TO_MS) +
                     " мин</div></div>";
 
             html +=
                 "<div class='form-group'><label for='web_interval'>Интервал обновления веб-интерфейса (сек):</label>";
-            html += "<input type='number' id='web_interval' name='web_interval' min='5' max='60' value='" +
-                    String(config.webUpdateInterval / 1000) + "' required>";
-            html += "<div class='help'>5-60 сек. Текущее: " + String(config.webUpdateInterval / 1000) +
+            html += "<input type='number' id='web_interval' name='web_interval' min='" + String(CONFIG_WEB_INTERVAL_MIN_SEC) + "' max='" + String(CONFIG_WEB_INTERVAL_MAX_SEC) + "' value='" +
+                    String(config.webUpdateInterval / CONVERSION_SEC_TO_MS) + "' required>";
+            html += "<div class='help'>" + String(CONFIG_WEB_INTERVAL_MIN_SEC) + "-" + String(CONFIG_WEB_INTERVAL_MAX_SEC) + " сек. Текущее: " + String(config.webUpdateInterval / CONVERSION_SEC_TO_MS) +
                     " сек</div></div></div>";
 
             html += "<div class='section'><h2>🎯 Пороги дельта-фильтра</h2>";
@@ -81,36 +82,36 @@ void setupConfigRoutes()
             html += "<div class='help'>0.1-5.0°C. Публикация при изменении более чем на это значение</div></div>";
 
             html += "<div class='form-group'><label for='delta_hum'>Порог влажности (%):</label>";
-            html += "<input type='number' id='delta_hum' name='delta_hum' min='0.5' max='10.0' step='0.5' value='" +
+            html += "<input type='number' id='delta_hum' name='delta_hum' min='" + String(CONFIG_DELTA_HUMIDITY_MIN) + "' max='" + String(CONFIG_DELTA_HUMIDITY_MAX) + "' step='" + String(CONFIG_STEP_HUMIDITY) + "' value='" +
                     String(config.deltaHumidity) + "' required>";
-            html += "<div class='help'>0.5-10.0%. Публикация при изменении более чем на это значение</div></div>";
+            html += "<div class='help'>" + String(CONFIG_DELTA_HUMIDITY_MIN) + "-" + String(CONFIG_DELTA_HUMIDITY_MAX) + "%. Публикация при изменении более чем на это значение</div></div>";
 
             html += "<div class='form-group'><label for='delta_ph'>Порог pH:</label>";
-            html += "<input type='number' id='delta_ph' name='delta_ph' min='0.01' max='1.0' step='0.01' value='" +
+            html += "<input type='number' id='delta_ph' name='delta_ph' min='" + String(CONFIG_DELTA_PH_MIN) + "' max='" + String(CONFIG_DELTA_PH_MAX) + "' step='" + String(CONFIG_STEP_PH) + "' value='" +
                     String(config.deltaPh) + "' required>";
-            html += "<div class='help'>0.01-1.0. Публикация при изменении более чем на это значение</div></div>";
+            html += "<div class='help'>" + String(CONFIG_DELTA_PH_MIN) + "-" + String(CONFIG_DELTA_PH_MAX) + ". Публикация при изменении более чем на это значение</div></div>";
 
             html += "<div class='form-group'><label for='delta_ec'>Порог EC (µS/cm):</label>";
-            html += "<input type='number' id='delta_ec' name='delta_ec' min='10' max='500' value='" +
+            html += "<input type='number' id='delta_ec' name='delta_ec' min='" + String(CONFIG_DELTA_EC_MIN) + "' max='" + String(CONFIG_DELTA_EC_MAX) + "' value='" +
                     String((int)config.deltaEc) + "' required>";
-            html += "<div class='help'>10-500 µS/cm. Публикация при изменении более чем на это значение</div></div>";
+            html += "<div class='help'>" + String(CONFIG_DELTA_EC_MIN) + "-" + String(CONFIG_DELTA_EC_MAX) + " µS/cm. Публикация при изменении более чем на это значение</div></div>";
 
             html += "<div class='form-group'><label for='delta_npk'>Порог NPK (mg/kg):</label>";
-            html += "<input type='number' id='delta_npk' name='delta_npk' min='1' max='50' value='" +
+            html += "<input type='number' id='delta_npk' name='delta_npk' min='" + String(CONFIG_DELTA_NPK_MIN) + "' max='" + String(CONFIG_DELTA_NPK_MAX) + "' value='" +
                     String((int)config.deltaNpk) + "' required>";
             html +=
-                "<div class='help'>1-50 mg/kg. Публикация при изменении более чем на это значение</div></div></div>";
+                "<div class='help'>" + String(CONFIG_DELTA_NPK_MIN) + "-" + String(CONFIG_DELTA_NPK_MAX) + " mg/kg. Публикация при изменении более чем на это значение</div></div></div>";
 
             html += "<div class='section'><h2>📈 Скользящее среднее</h2>";
             html += "<div class='form-group'><label for='avg_window'>Размер окна усреднения:</label>";
-            html += "<input type='number' id='avg_window' name='avg_window' min='5' max='15' value='" +
+            html += "<input type='number' id='avg_window' name='avg_window' min='" + String(CONFIG_AVG_WINDOW_MIN) + "' max='" + String(CONFIG_AVG_WINDOW_MAX) + "' value='" +
                     String(config.movingAverageWindow) + "' required>";
-            html += "<div class='help'>5-15 измерений. Больше = плавнее, но медленнее реакция</div></div>";
+            html += "<div class='help'>" + String(CONFIG_AVG_WINDOW_MIN) + "-" + String(CONFIG_AVG_WINDOW_MAX) + " измерений. Больше = плавнее, но медленнее реакция</div></div>";
 
             html += "<div class='form-group'><label for='force_cycles'>Принудительная публикация (циклов):</label>";
-            html += "<input type='number' id='force_cycles' name='force_cycles' min='5' max='50' value='" +
+            html += "<input type='number' id='force_cycles' name='force_cycles' min='" + String(CONFIG_FORCE_CYCLES_MIN) + "' max='" + String(CONFIG_FORCE_CYCLES_MAX) + "' value='" +
                     String(config.forcePublishCycles) + "' required>";
-            html += "<div class='help'>5-50 циклов. Публикация каждые N циклов даже без изменений</div></div>";
+            html += "<div class='help'>" + String(CONFIG_FORCE_CYCLES_MIN) + "-" + String(CONFIG_FORCE_CYCLES_MAX) + " циклов. Публикация каждые N циклов даже без изменений</div></div>";
 
             // Новые настройки алгоритма и фильтра выбросов
             html += "<div class='form-group'><label for='filter_algo'>Алгоритм обработки данных:</label>";
@@ -140,7 +141,7 @@ void setupConfigRoutes()
             html += "</form>";
             html += generatePageFooter();
 
-            webServer.send(200, "text/html; charset=utf-8", html);
+            webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
         });
 
     // Обработчик сохранения настроек интервалов
@@ -154,22 +155,22 @@ void setupConfigRoutes()
                      {
                          logWarn("CSRF атака отклонена на /save_intervals от %s", 
                                  webServer.client().remoteIP().toString().c_str());
-                         String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
-                         webServer.send(403, "text/html; charset=utf-8", html);
+                         String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
                          return;
                      }
 
                      if (currentWiFiMode == WiFiMode::AP)
                      {
-                         webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_PLAIN, "Недоступно в режиме точки доступа");
                          return;
                      }
 
                      // ======= ВАЛИДАЦИЯ ВХОДНЫХ ДАННЫХ =======
-                     unsigned long sensorMs = webServer.arg("sensor_interval").toInt() * 1000;
-                     unsigned long mqttMs = webServer.arg("mqtt_interval").toInt() * 60000;
-                     unsigned long tsMs = webServer.arg("ts_interval").toInt() * 60000;
-                     unsigned long webMs = webServer.arg("web_interval").toInt() * 1000;
+                     unsigned long sensorMs = webServer.arg("sensor_interval").toInt() * CONVERSION_SEC_TO_MS;
+                     unsigned long mqttMs = webServer.arg("mqtt_interval").toInt() * CONVERSION_MIN_TO_MS;
+                     unsigned long tsMs = webServer.arg("ts_interval").toInt() * CONVERSION_MIN_TO_MS;
+                     unsigned long webMs = webServer.arg("web_interval").toInt() * CONVERSION_SEC_TO_MS;
 
                      ValidationResult valSensor = validateSensorReadInterval(sensorMs);
                      ValidationResult valMqtt = validateMQTTPublishInterval(mqttMs);
@@ -177,10 +178,10 @@ void setupConfigRoutes()
 
                      if (!valSensor.isValid || !valMqtt.isValid || !valTs.isValid)
                      {
-                         String html = generateErrorPage(400, "Ошибка валидации интервалов: " +
+                         String html = generateErrorPage(HTTP_BAD_REQUEST, "Ошибка валидации интервалов: " +
                                                           String(!valSensor.isValid ? valSensor.message :
                                                                  !valMqtt.isValid ? valMqtt.message : valTs.message));
-                         webServer.send(400, "text/html; charset=utf-8", html);
+                         webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
                          return;
                      }
 
@@ -216,12 +217,12 @@ void setupConfigRoutes()
                      html += "<h1>" UI_ICON_SUCCESS " Настройки интервалов сохранены!</h1>";
                      html += "<div class='msg msg-success'>" UI_ICON_SUCCESS " Новые настройки вступили в силу</div>";
                      html += "<p><strong>Текущие интервалы:</strong><br>";
-                     html += "📊 Датчик: " + String(config.sensorReadInterval / 1000) + " сек<br>";
-                     html += "📡 MQTT: " + String(config.mqttPublishInterval / 60000) + " мин<br>";
-                     html += "📈 ThingSpeak: " + String(config.thingSpeakInterval / 60000) + " мин</p>";
+                     html += "📊 Датчик: " + String(config.sensorReadInterval / CONVERSION_SEC_TO_MS) + " сек<br>";
+                     html += "📡 MQTT: " + String(config.mqttPublishInterval / CONVERSION_MIN_TO_MS) + " мин<br>";
+                     html += "📈 ThingSpeak: " + String(config.thingSpeakInterval / CONVERSION_MIN_TO_MS) + " мин</p>";
                      html += "<p><em>Возврат к настройкам через 3 секунды...</em></p>";
                      html += "</div>" + String(getToastHTML()) + "</body></html>";
-                     webServer.send(200, "text/html; charset=utf-8", html);
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
                  });
 
     // Сброс интервалов к умолчанию
@@ -232,7 +233,7 @@ void setupConfigRoutes()
 
                      if (currentWiFiMode == WiFiMode::AP)
                      {
-                         webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_PLAIN, "Недоступно в режиме точки доступа");
                          return;
                      }
 
@@ -263,7 +264,7 @@ void setupConfigRoutes()
                              " Настройки интервалов возвращены к значениям по умолчанию</div>";
                      html += "<p><em>Возврат к настройкам через 2 секунды...</em></p>";
                      html += "</div>" + String(getToastHTML()) + "</body></html>";
-                     webServer.send(200, "text/html; charset=utf-8", html);
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
                  });
 
     // Страница управления конфигурацией
@@ -280,7 +281,7 @@ void setupConfigRoutes()
                          html += "<h1>" UI_ICON_FOLDER " Конфигурация</h1>";
                          html += "<div class='msg msg-error'>" UI_ICON_ERROR
                                  " Недоступно в режиме точки доступа</div></div></body></html>";
-                         webServer.send(200, "text/html; charset=utf-8", html);
+                         webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
                          return;
                      }
 
@@ -315,7 +316,7 @@ void setupConfigRoutes()
                      html += "</div>";
 
                      html += "</div>" + String(getToastHTML()) + "</body></html>";
-                     webServer.send(200, "text/html; charset=utf-8", html);
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
                  });
 
     // API v1 конфигурация
@@ -332,7 +333,7 @@ void setupConfigRoutes()
 
             if (currentWiFiMode == WiFiMode::AP)
             {
-                webServer.send(403, "application/json", "{\"error\":\"Недоступно в режиме AP\"}");
+                webServer.send(HTTP_FORBIDDEN, "application/json", "{\"error\":\"Недоступно в режиме AP\"}");
                 importedJson = "";
                 return;
             }
@@ -342,18 +343,18 @@ void setupConfigRoutes()
             {
                 logWarn("CSRF атака отклонена на /api/config/import от %s", 
                         webServer.client().remoteIP().toString().c_str());
-                webServer.send(403, "application/json", "{\"error\":\"CSRF token invalid\"}");
+                webServer.send(HTTP_FORBIDDEN, "application/json", "{\"error\":\"CSRF token invalid\"}");
                 importedJson = "";
                 return;
             }
 
             // Парсим накопленный JSON
-            StaticJsonDocument<2048> doc;
+            StaticJsonDocument<CONFIG_JSON_DOC_SIZE> doc;
             DeserializationError err = deserializeJson(doc, importedJson);
             if (err)
             {
                 String resp = String("{\"error\":\"Ошибка JSON: ") + err.c_str() + "\"}";
-                webServer.send(400, "application/json", resp);
+                webServer.send(HTTP_BAD_REQUEST, "application/json", resp);
                 importedJson = "";
                 return;
             }
@@ -381,7 +382,7 @@ void setupConfigRoutes()
 
             // Отправляем 303 Redirect, чтобы браузер вернулся к менеджеру конфигурации
             webServer.sendHeader("Location", "/config_manager?import_ok=1", true);
-            webServer.send(303, "text/plain", "Redirect");
+            webServer.send(HTTP_SEE_OTHER, "text/plain", "Redirect");
         },
         // uploadHandler: накапливаем файл
         []()
@@ -413,11 +414,11 @@ static void sendConfigExportJson()
 
     if (currentWiFiMode == WiFiMode::AP)
     {
-        webServer.send(403, "application/json", "{\"error\":\"Недоступно в режиме точки доступа\"}");
+        webServer.send(HTTP_FORBIDDEN, "application/json", "{\"error\":\"Недоступно в режиме точки доступа\"}");
         return;
     }
 
-    StaticJsonDocument<1024> root;
+    StaticJsonDocument<CONFIG_JSON_ROOT_SIZE> root;
 
     // MQTT
     JsonObject mqtt = root.createNestedObject("mqtt");
@@ -463,5 +464,5 @@ static void sendConfigExportJson()
     serializeJson(root, json);
 
     webServer.sendHeader("Content-Disposition", "attachment; filename=\"jxct_config_" + String(millis()) + ".json\"");
-    webServer.send(200, "application/json", json);
+    webServer.send(HTTP_OK, "application/json", json);
 }

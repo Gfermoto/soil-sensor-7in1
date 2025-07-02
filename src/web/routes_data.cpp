@@ -9,6 +9,7 @@
 #include <NTPClient.h>
 #include <time.h>
 #include "../../include/jxct_config_vars.h"
+#include "../../include/jxct_constants.h"
 #include "../../include/jxct_format_utils.h"
 #include "../../include/jxct_strings.h"
 #include "../../include/jxct_ui_system.h"
@@ -38,38 +39,38 @@ struct RecValues
 static RecValues computeRecommendations()
 {
     // 1. База по культуре или generic
-    RecValues rec{21, 60, 1200, 6.3, 30, 10, 25};
+    RecValues rec{TEST_DATA_TEMP_BASE + 1, TEST_DATA_HUM_BASE, TEST_DATA_EC_BASE, TEST_DATA_PH_BASE, TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
     const char* id = config.cropId;
     if (strlen(id) > 0)
     {
         if (strcmp(id, "tomato") == 0)
-            rec = {22, 60, 1500, 6.5, 40, 10, 30};
+            rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE, TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE + 0.2F, TEST_DATA_NPK_BASE + 15, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE + 5};
         else if (strcmp(id, "cucumber") == 0)
-            rec = {24, 70, 1800, 6.2, 35, 12, 28};
+            rec = {TEST_DATA_TEMP_BASE + 4, TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 600, TEST_DATA_PH_BASE - 0.1F, TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE + 3};
         else if (strcmp(id, "pepper") == 0)
-            rec = {23, 65, 1600, 6.3, 38, 11, 29};
+            rec = {TEST_DATA_TEMP_BASE + 3, TEST_DATA_HUM_BASE + 5, TEST_DATA_EC_BASE + 400, TEST_DATA_PH_BASE, TEST_DATA_NPK_BASE + 13, TEST_DATA_NPK_BASE - 14, TEST_DATA_NPK_BASE + 4};
         else if (strcmp(id, "lettuce") == 0)
-            rec = {20, 75, 1000, 6.0, 30, 8, 25};
+            rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE + 15, TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.3F, TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE};
         else if (strcmp(id, "blueberry") == 0)
-            rec = {18, 65, 1200, 5.0, 30, 10, 20};
+            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5, TEST_DATA_EC_BASE, TEST_DATA_PH_BASE - 1.3F, TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
         else if (strcmp(id, "lawn") == 0)
-            rec = {20, 50, 800, 6.3, 25, 8, 20};
+            rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE - 10, TEST_DATA_EC_BASE - 400, TEST_DATA_PH_BASE, TEST_DATA_NPK_BASE, TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 5};
         else if (strcmp(id, "grape") == 0)
-            rec = {22, 55, 1400, 6.5, 35, 12, 25};
+            rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE - 5, TEST_DATA_EC_BASE + 200, TEST_DATA_PH_BASE + 0.2F, TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE};
         else if (strcmp(id, "conifer") == 0)
-            rec = {18, 55, 1000, 5.5, 25, 8, 15};
+            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE - 5, TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.8F, TEST_DATA_NPK_BASE, TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 10};
         else if (strcmp(id, "strawberry") == 0)
-            rec = {20, 70, 1500, 6.0, 35, 10, 25};
+            rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE - 0.3F, TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
         else if (strcmp(id, "apple") == 0)
-            rec = {18, 60, 1200, 6.5, 25, 10, 20};
+            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE, TEST_DATA_EC_BASE, TEST_DATA_PH_BASE + 0.2F, TEST_DATA_NPK_BASE, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
         else if (strcmp(id, "pear") == 0)
-            rec = {18, 60, 1200, 6.5, 25, 10, 20};
+            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE, TEST_DATA_EC_BASE, TEST_DATA_PH_BASE + 0.2F, TEST_DATA_NPK_BASE, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
         else if (strcmp(id, "cherry") == 0)
-            rec = {20, 60, 1300, 6.5, 30, 10, 25};
+            rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE, TEST_DATA_EC_BASE + 100, TEST_DATA_PH_BASE + 0.2F, TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
         else if (strcmp(id, "raspberry") == 0)
-            rec = {18, 65, 1100, 6.2, 30, 10, 22};
+            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5, TEST_DATA_EC_BASE - 100, TEST_DATA_PH_BASE - 0.1F, TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 3};
         else if (strcmp(id, "currant") == 0)
-            rec = {17, 65, 1000, 6.2, 25, 9, 20};
+            rec = {TEST_DATA_TEMP_BASE - 3, TEST_DATA_HUM_BASE + 5, TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.1F, TEST_DATA_NPK_BASE, TEST_DATA_NPK_BASE - 16, TEST_DATA_NPK_BASE - 5};
     }
 
     // 2. Коррекция по soilProfile (влажность и pH)
@@ -80,8 +81,8 @@ static RecValues computeRecommendations()
     }
     else if (soil == 2)
     {
-        rec.hum += 10;
-        rec.ph -= 0.3f;
+        rec.hum += TEST_DATA_HUM_VARIATION;
+        rec.ph -= 0.3F;
     }
     else if (soil == 3)
     {
@@ -96,24 +97,23 @@ static RecValues computeRecommendations()
     switch (config.environmentType)
     {
         case 1:  // greenhouse
-            rec.hum += 10;
-            rec.ec += 300;
+            rec.hum += TEST_DATA_HUM_VARIATION;
+            rec.ec += TEST_DATA_EC_VARIATION;
             rec.n += 5;
             rec.k += 5;
             rec.t += 2;
             break;
         case 2:  // indoor
             rec.hum += -5;
-            rec.ec -= 200;
+            rec.ec -= TEST_DATA_EC_VARIATION_SMALL;
             rec.t += 1;
             break;
     }
 
     // 3a. Конверсия NPK в мг/кг (датчик выдаёт мг/кг, таблица хранилась в мг/дм³ ~ экстракт 1:5)
-    constexpr float NPK_FACTOR = 6.5f;  // пересчёт мг/дм³ → мг/кг (ρ=1.3 г/см³, влажность ≈30%)
-    rec.n *= NPK_FACTOR;
-    rec.p *= NPK_FACTOR;
-    rec.k *= NPK_FACTOR;
+    rec.n *= TEST_DATA_NPK_FACTOR;
+    rec.p *= TEST_DATA_NPK_FACTOR;
+    rec.k *= TEST_DATA_NPK_FACTOR;
 
     // 4. Сезонная коррекция (только если включена)
     if (config.flags.seasonalAdjustEnabled)
@@ -127,12 +127,12 @@ static RecValues computeRecommendations()
         if (rainy)
         {
             rec.hum += 5;
-            rec.ec -= 100;
+            rec.ec -= TEST_DATA_EC_VARIATION_MIN;
         }
         else
         {
             rec.hum += -2;
-            rec.ec += 100;
+            rec.ec += TEST_DATA_EC_VARIATION_MIN;
         }
 
         // Коррекция NPK по сезону
@@ -140,54 +140,54 @@ static RecValues computeRecommendations()
         {  // Outdoor
             if (m >= 3 && m <= 5)
             {                    // Весна
-                rec.n *= 1.20f;  // +20%
-                rec.p *= 1.15f;  // +15%
-                rec.k *= 1.10f;  // +10%
+                rec.n *= TEST_DATA_NPK_INCREASE_N;  // +20%
+                rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
+                rec.k *= TEST_DATA_NPK_INCREASE_K;  // +10%
             }
             else if (m >= 6 && m <= 8)
             {                    // Лето
-                rec.n *= 0.90f;  // -10%
-                rec.p *= 1.05f;  // +5%
-                rec.k *= 1.25f;  // +25%
+                rec.n *= TEST_DATA_NPK_DECREASE_N;  // -10%
+                rec.p *= 1.05F;  // +5%
+                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +25%
             }
             else if (m >= 9 && m <= 11)
             {                    // Осень
-                rec.n *= 0.80f;  // -20%
-                rec.p *= 1.10f;  // +10%
-                rec.k *= 1.15f;  // +15%
+                rec.n *= TEST_DATA_NPK_DECREASE_N;  // -20%
+                rec.p *= 1.10F;  // +10%
+                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15%
             }
             else
             {                    // Зима
-                rec.n *= 0.70f;  // -30%
-                rec.p *= 1.05f;  // +5%
-                rec.k *= 1.05f;  // +5%
+                rec.n *= TEST_DATA_NPK_DECREASE_N;  // -30%
+                rec.p *= 1.05F;  // +5%
+                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +5%
             }
         }
         else if (config.environmentType == 1)
         {  // Greenhouse
             if (m >= 3 && m <= 5)
             {                    // Весна
-                rec.n *= 1.25f;  // +25%
-                rec.p *= 1.20f;  // +20%
-                rec.k *= 1.15f;  // +15%
+                rec.n *= TEST_DATA_NPK_INCREASE_N;  // +25%
+                rec.p *= TEST_DATA_NPK_INCREASE_P;  // +20%
+                rec.k *= TEST_DATA_NPK_INCREASE_K;  // +15%
             }
             else if (m >= 6 && m <= 8)
             {                    // Лето
-                rec.n *= 1.10f;  // +10%
-                rec.p *= 1.10f;  // +10%
-                rec.k *= 1.30f;  // +30%
+                rec.n *= TEST_DATA_NPK_DECREASE_N;  // -10%
+                rec.p *= 1.10F;  // +10%
+                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +30%
             }
             else if (m >= 9 && m <= 11)
             {                    // Осень
-                rec.n *= 1.15f;  // +15%
-                rec.p *= 1.15f;  // +15%
-                rec.k *= 1.20f;  // +20%
+                rec.n *= TEST_DATA_NPK_INCREASE_N;  // +15%
+                rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
+                rec.k *= TEST_DATA_NPK_INCREASE_K;  // +20%
             }
             else
             {                    // Зима
-                rec.n *= 1.05f;  // +5%
-                rec.p *= 1.10f;  // +10%
-                rec.k *= 1.15f;  // +15%
+                rec.n *= TEST_DATA_NPK_DECREASE_N;  // +5%
+                rec.p *= 1.10F;  // +10%
+                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15%
             }
         }
     }
@@ -223,7 +223,7 @@ void handleReadingsUpload()  // ✅ Убираем static - функция exter
             logSuccess("Файл калибровки загружен (%u байт)", upload.totalSize);
         }
         webServer.sendHeader("Location", "/readings?toast=Калибровка+загружена", true);
-        webServer.send(302, "text/plain", "Redirect");
+        webServer.send(HTTP_REDIRECT, "text/plain", "Redirect");
     }
 }
 
@@ -245,7 +245,7 @@ static void handleProfileSave()
         logSuccess("Профиль почвы изменён на %s", profileStr.c_str());
     }
     webServer.sendHeader("Location", "/readings?toast=Профиль+сохранен", true);
-    webServer.send(302, "text/plain", "Redirect");
+    webServer.send(HTTP_REDIRECT, "text/plain", "Redirect");
 }
 
 void sendSensorJson()  // ✅ Убираем static - функция extern в header
@@ -254,11 +254,11 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
     if (currentWiFiMode != WiFiMode::STA)
     {
-        webServer.send(403, "application/json", "{\"error\":\"AP mode\"}");
+        webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_JSON, "{\"error\":\"AP mode\"}");
         return;
     }
 
-    StaticJsonDocument<512> doc;
+    StaticJsonDocument<SENSOR_JSON_DOC_SIZE> doc;
     doc["temperature"] = format_temperature(sensorData.temperature);
     doc["humidity"] = format_moisture(sensorData.humidity);
     doc["ec"] = format_ec(sensorData.ec);
@@ -298,14 +298,14 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
 
         time_t now = timeClient ? (time_t)timeClient->getEpochTime() : time(nullptr);
         // если время < 2000-01-01 считаем, что NTP ещё не синхронизирован
-        if (now < 946684800)
+        if (now < NTP_TIMESTAMP_2000)
         {
             // Пробуем обновить NTP
             if (timeClient)
             {
                 timeClient->forceUpdate();
                 now = (time_t)timeClient->getEpochTime();
-                if (now < 946684800) return "Н/Д";
+                if (now < NTP_TIMESTAMP_2000) return "Н/Д";
             }
             else
             {
@@ -330,20 +330,20 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
         alerts += n;
     };
     // Физические пределы датчика
-    if (sensorData.temperature < -45 || sensorData.temperature > 115) append("T");
-    if (sensorData.humidity < 0 || sensorData.humidity > 100) append("θ");
-    if (sensorData.ec < 0 || sensorData.ec > 10000) append("EC");
+    if (sensorData.temperature < TEMP_MIN_VALID || sensorData.temperature > TEMP_MAX_VALID) append("T");
+    if (sensorData.humidity < HUM_MIN_VALID || sensorData.humidity > HUM_MAX_VALID) append("θ");
+    if (sensorData.ec < 0 || sensorData.ec > EC_MAX_VALID) append("EC");
     if (sensorData.ph < 3 || sensorData.ph > 9) append("pH");
-    if (sensorData.nitrogen < 0 || sensorData.nitrogen > 1999) append("N");
-    if (sensorData.phosphorus < 0 || sensorData.phosphorus > 1999) append("P");
-    if (sensorData.potassium < 0 || sensorData.potassium > 1999) append("K");
+    if (sensorData.nitrogen < 0 || sensorData.nitrogen > NPK_MAX_VALID) append("N");
+    if (sensorData.phosphorus < 0 || sensorData.phosphorus > NPK_MAX_VALID) append("P");
+    if (sensorData.potassium < 0 || sensorData.potassium > NPK_MAX_VALID) append("K");
     doc["alerts"] = alerts;
 
     doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
 
     String json;
     serializeJson(doc, json);
-    webServer.send(200, "application/json", json);
+    webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
 }
 
 void setupDataRoutes()

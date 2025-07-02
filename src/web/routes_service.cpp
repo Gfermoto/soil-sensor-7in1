@@ -6,6 +6,7 @@
 
 #include <ArduinoJson.h>
 #include "../../include/jxct_config_vars.h"
+#include "../../include/jxct_constants.h"
 #include "../../include/jxct_device_info.h"
 #include "../../include/jxct_format_utils.h"
 #include "../../include/jxct_strings.h"
@@ -59,7 +60,7 @@ void setupServiceRoutes()
 
             if (currentWiFiMode == WiFiMode::AP)
             {
-                webServer.send(200, "text/html; charset=utf-8",
+                webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML,
                                generateApModeUnavailablePage("Сервис", UI_ICON_SERVICE));
                 return;
             }
@@ -129,14 +130,14 @@ void setupServiceRoutes()
                      {
                          logWarn("CSRF атака отклонена на /reset от %s", 
                                  webServer.client().remoteIP().toString().c_str());
-                         String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
-                         webServer.send(403, "text/html; charset=utf-8", html);
+                         String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
                          return;
                      }
 
                      if (currentWiFiMode != WiFiMode::STA)
                      {
-                         webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_PLAIN, "Недоступно в режиме точки доступа");
                          return;
                      }
 
@@ -147,8 +148,8 @@ void setupServiceRoutes()
                          "style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'><h2>Настройки "
                          "сброшены</h2><p>Перезагрузка...<br>Сейчас вы будете перенаправлены на страницу "
                          "сервисов.</p></body></html>";
-                     webServer.send(200, "text/html; charset=utf-8", html);
-                     delay(2000);
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
+                     delay(WEB_OPERATION_DELAY_MS);
                      ESP.restart();
                  });
 
@@ -156,7 +157,7 @@ void setupServiceRoutes()
                  []()
                  {
                      webServer.sendHeader("Location", "/reset", true);
-                     webServer.send(307, "text/plain", "Redirect");
+                     webServer.send(HTTP_REDIRECT_PERMANENT, HTTP_CONTENT_TYPE_PLAIN, "Redirect");
                  });
 
     webServer.on("/reboot", HTTP_POST,
@@ -169,14 +170,14 @@ void setupServiceRoutes()
                      {
                          logWarn("CSRF атака отклонена на /reboot от %s", 
                                  webServer.client().remoteIP().toString().c_str());
-                         String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
-                         webServer.send(403, "text/html; charset=utf-8", html);
+                         String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
                          return;
                      }
 
                      if (currentWiFiMode != WiFiMode::STA)
                      {
-                         webServer.send(403, "text/plain", "Недоступно в режиме точки доступа");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_PLAIN, "Недоступно в режиме точки доступа");
                          return;
                      }
 
@@ -185,8 +186,8 @@ void setupServiceRoutes()
                          "content='2;url=/service'><title>Перезагрузка</title></head><body "
                          "style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'><h2>Перезагрузка...</"
                          "h2><p>Сейчас вы будете перенаправлены на страницу сервисов.</p></body></html>";
-                     webServer.send(200, "text/html; charset=utf-8", html);
-                     delay(2000);
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
+                     delay(WEB_OPERATION_DELAY_MS);
                      ESP.restart();
                  });
 
@@ -194,7 +195,7 @@ void setupServiceRoutes()
                  []()
                  {
                      webServer.sendHeader("Location", "/reboot", true);
-                     webServer.send(307, "text/plain", "Redirect");
+                     webServer.send(HTTP_REDIRECT_PERMANENT, HTTP_CONTENT_TYPE_PLAIN, "Redirect");
                  });
 
     // Старый маршрут /ota более не нужен – сделаем редирект на новую страницу
@@ -202,7 +203,7 @@ void setupServiceRoutes()
                  []()
                  {
                      webServer.sendHeader("Location", "/updates", true);
-                     webServer.send(302, "text/plain", "Redirect");
+                     webServer.send(HTTP_REDIRECT_TEMPORARY, HTTP_CONTENT_TYPE_PLAIN, "Redirect");
                  });
 
     logSuccess("Сервисные маршруты настроены");
@@ -211,14 +212,14 @@ void setupServiceRoutes()
 // Вспомогательная функция для форматирования времени работы
 String formatUptime(unsigned long milliseconds)
 {
-    unsigned long seconds = milliseconds / 1000;
-    unsigned long minutes = seconds / 60;
-    unsigned long hours = minutes / 60;
-    unsigned long days = hours / 24;
+    unsigned long seconds = milliseconds / MILLISECONDS_IN_SECOND;
+    unsigned long minutes = seconds / SECONDS_IN_MINUTE;
+    unsigned long hours = minutes / MINUTES_IN_HOUR;
+    unsigned long days = hours / HOURS_IN_DAY;
 
-    seconds %= 60;
-    minutes %= 60;
-    hours %= 24;
+    seconds %= SECONDS_IN_MINUTE;
+    minutes %= MINUTES_IN_HOUR;
+    hours %= HOURS_IN_DAY;
 
     String uptime = "";
     if (days > 0) {
@@ -238,13 +239,13 @@ String formatUptime(unsigned long milliseconds)
 void sendHealthJson()
 {
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
-    StaticJsonDocument<1024> doc;
+    StaticJsonDocument<JSON_DOC_MEDIUM> doc;
 
     // System info
     doc["device"]["manufacturer"] = DEVICE_MANUFACTURER;
     doc["device"]["model"] = DEVICE_MODEL;
     doc["device"]["version"] = FIRMWARE_VERSION;
-    doc["device"]["uptime"] = millis() / 1000;
+    doc["device"]["uptime"] = millis() / MILLISECONDS_IN_SECOND;
     doc["device"]["free_heap"] = ESP.getFreeHeap();
     doc["device"]["chip_model"] = ESP.getChipModel();
     doc["device"]["chip_revision"] = ESP.getChipRevision();
@@ -315,13 +316,13 @@ void sendHealthJson()
 
     String json;
     serializeJson(doc, json);
-    webServer.send(200, "application/json", json);
+    webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
 }
 
 void sendServiceStatusJson()
 {
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
-    StaticJsonDocument<512> doc;
+    StaticJsonDocument<JSON_DOC_SMALL> doc;
     doc["wifi_connected"] = wifiConnected;
     doc["wifi_ip"] = WiFi.localIP().toString();
     doc["wifi_ssid"] = WiFi.SSID();
@@ -338,5 +339,5 @@ void sendServiceStatusJson()
 
     String json;
     serializeJson(doc, json);
-    webServer.send(200, "application/json", json);
+    webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
 }

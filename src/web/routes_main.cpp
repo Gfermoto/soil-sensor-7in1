@@ -1,4 +1,5 @@
 #include "../../include/jxct_config_vars.h"
+#include "../../include/jxct_constants.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
 #include "../../include/web_routes.h"
@@ -22,8 +23,8 @@ void setupMainRoutes()
             if (!checkCSRFSafety()) {
                 logWarn("CSRF атака отклонена на /save от %s", 
                         webServer.client().remoteIP().toString().c_str());
-                String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
-                webServer.send(403, "text/html; charset=utf-8", html);
+                String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
+                webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
                 return;
             }
 
@@ -34,8 +35,8 @@ void setupMainRoutes()
             if (!ssidRes.isValid || !passRes.isValid)
             {
                 String msg = !ssidRes.isValid ? ssidRes.message : passRes.message;
-                String html = generateErrorPage(400, msg);
-                webServer.send(400, "text/html; charset=utf-8", html);
+                String html = generateErrorPage(HTTP_BAD_REQUEST, msg);
+                webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
                 return;
             }
 
@@ -48,8 +49,8 @@ void setupMainRoutes()
                     if (!hostRes.isValid || !portRes.isValid)
                     {
                         String msg = !hostRes.isValid ? hostRes.message : portRes.message;
-                        String html = generateErrorPage(400, msg);
-                        webServer.send(400, "text/html; charset=utf-8", html);
+                        String html = generateErrorPage(HTTP_BAD_REQUEST, msg);
+                        webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
                         return;
                     }
                 }
@@ -58,8 +59,8 @@ void setupMainRoutes()
                     ValidationResult tsRes = validateThingSpeakAPIKey(webServer.arg("ts_api_key"));
                     if (!tsRes.isValid)
                     {
-                        String html = generateErrorPage(400, tsRes.message);
-                        webServer.send(400, "text/html; charset=utf-8", html);
+                        String html = generateErrorPage(HTTP_BAD_REQUEST, tsRes.message);
+                        webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
                         return;
                     }
                 }
@@ -127,7 +128,7 @@ void setupMainRoutes()
             String html = generateSuccessPage("Настройки сохранены",
                                               "Настройки сохранены успешно. Устройство перезагружается...", "/", 1);
 
-            webServer.send(200, "text/html; charset=utf-8", html);
+            webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
 
             logSuccess("Настройки сохранены успешно");
             delay(1000);
