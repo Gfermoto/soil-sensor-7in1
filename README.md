@@ -110,4 +110,4 @@ JXCT/
 
 ---
 
-**EYERA Development Team** | Версия 3.6.7 | Июнь 2025
+**EYERA Development Team** | Версия 3.6.7 | Июль 2025
