@@ -106,8 +106,8 @@ $(function(){initNavTree('routes__calibration_8cpp_source.html',''); initResizab
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="logger_8h.html">logger.h</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="sensor__compensation_8h.html">sensor_compensation.h</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="validation__utils_8h.html">validation_utils.h</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="web__routes_8h.html">web_routes.h</a>&quot;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="csrf__protection_8h.html">web/csrf_protection.h</a>&quot;</span>  <span class="comment">// 🔒 CSRF защита</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;<a class="code" href="csrf__protection_8h.html">web/csrf_protection.h</a>&quot;</span>  <span class="comment">// 🔒 CSRF защита</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;<a class="code" href="web__routes_8h.html">web_routes.h</a>&quot;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// Экземпляр веб-сервера объявлен во внешнем модуле</span></div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">extern</span> WebServer <a class="code hl_variable" href="routes__calibration_8cpp.html#a6385fd6a6118223757bf00a8ba828562">webServer</a>;</div>
@@ -131,7 +131,7 @@ $(function(){initNavTree('routes__calibration_8cpp_source.html',''); initResizab
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="comment">// Форма выбора профиля почвы</span></div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    html += <span class="stringliteral">&quot;&lt;form action=&#39;/calibration/save&#39; method=&#39;post&#39; enctype=&#39;multipart/form-data&#39;&gt;&quot;</span>;</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    html += <a class="code hl_function" href="csrf__protection_8cpp.html#aab8be89322026594573b8f3c8064bbbc">getCSRFHiddenField</a>(); <span class="comment">// Добавляем CSRF токен</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    html += <a class="code hl_function" href="csrf__protection_8cpp.html#aab8be89322026594573b8f3c8064bbbc">getCSRFHiddenField</a>();  <span class="comment">// Добавляем CSRF токен</span></div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    html += <span class="stringliteral">&quot;&lt;div class=&#39;section&#39;&gt;&lt;h2&gt;Профиль почвы&lt;/h2&gt;&quot;</span>;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    html +=</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>        <span class="stringliteral">&quot;&lt;div class=&#39;form-group&#39;&gt;&lt;label for=&#39;soil_profile&#39;&gt;Тип почвы:&lt;/label&gt;&lt;select id=&#39;soil_profile&#39; &quot;</span></div>
@@ -259,7 +259,7 @@ $(function(){initNavTree('routes__calibration_8cpp_source.html',''); initResizab
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>        <a class="code hl_function" href="routes__calibration_8cpp.html#a39afb173dda384eaffde7b3c0f136af4">handleCalibrationUpload</a>);</div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>}</div>
 </div>
-<div class="ttc" id="acsrf__protection_8cpp_html_aab8be89322026594573b8f3c8064bbbc"><div class="ttname"><a href="csrf__protection_8cpp.html#aab8be89322026594573b8f3c8064bbbc">getCSRFHiddenField</a></div><div class="ttdeci">String getCSRFHiddenField()</div><div class="ttdoc">Получение скрытого поля с CSRF токеном для форм</div><div class="ttdef"><b>Определения</b> <a href="csrf__protection_8cpp_source.html#l00085">csrf_protection.cpp:85</a></div></div>
+<div class="ttc" id="acsrf__protection_8cpp_html_aab8be89322026594573b8f3c8064bbbc"><div class="ttname"><a href="csrf__protection_8cpp.html#aab8be89322026594573b8f3c8064bbbc">getCSRFHiddenField</a></div><div class="ttdeci">String getCSRFHiddenField()</div><div class="ttdoc">Получение скрытого поля с CSRF токеном для форм</div><div class="ttdef"><b>Определения</b> <a href="csrf__protection_8cpp_source.html#l00088">csrf_protection.cpp:88</a></div></div>
 <div class="ttc" id="acsrf__protection_8h_html"><div class="ttname"><a href="csrf__protection_8h.html">csrf_protection.h</a></div><div class="ttdoc">Заголовочный файл для CSRF защиты</div></div>
 <div class="ttc" id="ajxct__ui__system_8cpp_html_a7834ec4c73014039a2aeeedadff41141"><div class="ttname"><a href="jxct__ui__system_8cpp.html#a7834ec4c73014039a2aeeedadff41141">generateButton</a></div><div class="ttdeci">String generateButton(ButtonType type, const char *icon, const char *text, const char *action)</div><div class="ttdef"><b>Определения</b> <a href="jxct__ui__system_8cpp_source.html#l00286">jxct_ui_system.cpp:286</a></div></div>
 <div class="ttc" id="ajxct__ui__system_8h_html"><div class="ttname"><a href="jxct__ui__system_8h.html">jxct_ui_system.h</a></div></div>
@@ -299,7 +299,7 @@ $(function(){initNavTree('routes__calibration_8cpp_source.html',''); initResizab
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="routes__calibration_8cpp.html">routes_calibration.cpp</a></li>
-    <li class="footer">Документация по JXCT 7-в-1 Датчик Почвы. Последние изменения: Ср 2 Июл 2025 23:26:07. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+    <li class="footer">Документация по JXCT 7-в-1 Датчик Почвы. Последние изменения: Чт 3 Июл 2025 00:42:34. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
   </ul>
 </div>
 </body>
