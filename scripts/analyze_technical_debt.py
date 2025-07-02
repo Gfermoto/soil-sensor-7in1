@@ -102,50 +102,172 @@ def analyze_include_dependencies():
     }
 
 def analyze_code_duplication():
-    """Анализ дублирования кода"""
+    """Анализ дублирования кода - упрощённая но точная версия"""
     print("🔄 Анализ дублирования кода...")
     
-    # Используем более точную эвристику для поиска дублирования
-    duplication_score = 0
-    
-    # Проверяем src директорию
-    src_files = []
+    # Собираем только основные C++ файлы
+    cpp_files = []
     for root, dirs, files in os.walk("src"):
         for file in files:
             if file.endswith('.cpp'):
-                src_files.append(os.path.join(root, file))
+                cpp_files.append(os.path.join(root, file))
     
-    # Ищем реальные дубликаты кода (блоки кода, а не имена функций)
-    code_blocks = []
-    for file in src_files[:10]:  # Проверяем первые 10 файлов
+    print(f"  📁 Анализируем {len(cpp_files)} файлов...")
+    
+    # Простой но эффективный анализ дублирования
+    code_signatures = {}
+    duplicates_found = 0
+    duplicate_details = []
+    
+    for file in cpp_files:
         try:
-            with open(file, 'r', encoding='utf-8') as f:
+            with open(file, 'r', encoding='utf-8', errors='ignore') as f:
                 content = f.read()
-                lines = content.split('\n')
                 
-                # Ищем повторяющиеся блоки кода (3+ строки)
-                for i in range(len(lines) - 2):
-                    block = '\n'.join(lines[i:i+3])
-                    if len(block.strip()) > 20:  # Минимальный размер блока
-                        code_blocks.append(block.strip())
-        except:
+                # Извлекаем функции и важные блоки кода
+                functions = extract_simple_functions(content)
+                
+                for func in functions:
+                    # Создаём сигнатуру функции (без имён переменных)
+                    signature = create_function_signature(func)
+                    
+                    if signature in code_signatures:
+                        # Найден дубликат!
+                        duplicates_found += 1
+                        duplicate_details.append({
+                            'file1': code_signatures[signature],
+                            'file2': file,
+                            'signature': signature[:100] + '...'
+                        })
+                    else:
+                        code_signatures[signature] = file
+                        
+        except Exception as e:
+            print(f"  ⚠️ Ошибка чтения {file}: {e}")
             continue
     
-    # Считаем дубликаты
-    seen_blocks = set()
-    for block in code_blocks:
-        if block in seen_blocks:
-            duplication_score += 1
-        seen_blocks.add(block)
+    # Ищем повторяющиеся паттерны кода
+    pattern_duplicates = find_code_patterns(cpp_files)
     
-    # Ограничиваем score разумными пределами
-    duplication_score = min(duplication_score, 10)  # Максимум 10 дубликатов
+    total_duplicates = duplicates_found + pattern_duplicates
     
     return {
-        "duplication_score": duplication_score,
-        "unique_functions": len(seen_blocks),
-        "files_checked": len(src_files[:10])
+        "duplication_score": total_duplicates,
+        "exact_duplicates": duplicates_found,
+        "pattern_duplicates": pattern_duplicates,
+        "files_checked": len(cpp_files),
+        "details": duplicate_details[:3]  # Первые 3 дубликата для отчёта
     }
+
+def extract_simple_functions(content):
+    """Извлекает функции простым способом"""
+    functions = []
+    lines = content.split('\n')
+    
+    current_func = []
+    brace_count = 0
+    in_function = False
+    
+    for line in lines:
+        # Ищем начало функции
+        if not in_function and ('void ' in line or 'int ' in line or 'bool ' in line or 'float ' in line or 'double ' in line or 'String ' in line):
+            if '{' in line:
+                in_function = True
+                brace_count = line.count('{') - line.count('}')
+                current_func = [line]
+            else:
+                current_func = [line]
+        elif in_function:
+            current_func.append(line)
+            brace_count += line.count('{') - line.count('}')
+            
+            if brace_count == 0:
+                # Функция закончилась
+                func_text = '\n'.join(current_func)
+                if len(func_text.strip()) > 30:  # Минимальный размер
+                    functions.append(func_text)
+                current_func = []
+                in_function = False
+    
+    return functions
+
+def create_function_signature(func_text):
+    """Создаёт сигнатуру функции без имён переменных"""
+    # Убираем комментарии
+    lines = func_text.split('\n')
+    clean_lines = []
+    
+    for line in lines:
+        if '//' in line:
+            line = line.split('//')[0]
+        if line.strip():
+            clean_lines.append(line.strip())
+    
+    # Заменяем имена переменных на placeholder
+    signature = '\n'.join(clean_lines)
+    
+    # Простые замены для нормализации
+    import re
+    signature = re.sub(r'\b[a-zA-Z_][a-zA-Z0-9_]*\b', 'VAR', signature)  # Имена переменных
+    signature = re.sub(r'\d+', 'NUM', signature)  # Числа
+    signature = re.sub(r'"[^"]*"', 'STR', signature)  # Строки
+    
+    return signature
+
+def find_code_patterns(files):
+    """Ищет повторяющиеся паттерны кода"""
+    patterns = {}
+    pattern_count = 0
+    
+    print(f"  🔍 Анализируем паттерны в {len(files)} файлах...")
+    
+    # Сначала собираем все паттерны из всех файлов
+    for file in files:
+        try:
+            with open(file, 'r', encoding='utf-8', errors='ignore') as f:
+                content = f.read()
+                
+                # Ищем повторяющиеся блоки кода
+                lines = content.split('\n')
+                for i in range(len(lines) - 4):  # Блоки по 5 строк
+                    block = '\n'.join(lines[i:i+5])
+                    if len(block.strip()) > 50:
+                        # Нормализуем блок
+                        normalized = normalize_block(block)
+                        if normalized not in patterns:
+                            patterns[normalized] = []
+                        patterns[normalized].append(file)
+                            
+        except Exception as e:
+            continue
+    
+    # Теперь ищем паттерны, которые встречаются в РАЗНЫХ файлах
+    for pattern, file_list in patterns.items():
+        unique_files = list(set(file_list))  # Убираем дубликаты файлов
+        if len(unique_files) > 1:  # Паттерн встречается в разных файлах
+            pattern_count += 1
+            if pattern_count <= 5:  # Показываем первые 5 дубликатов
+                print(f"    🔄 Дубликат #{pattern_count}:")
+                print(f"       Файлы: {unique_files}")
+                print(f"       Блок: {pattern[:100]}...")
+    
+    print(f"  📊 Найдено {pattern_count} паттернов между файлами из {len(patterns)} уникальных блоков")
+    return pattern_count
+
+def normalize_block(block):
+    """Нормализует блок кода для сравнения"""
+    # Убираем комментарии и лишние пробелы
+    lines = block.split('\n')
+    clean_lines = []
+    
+    for line in lines:
+        if '//' in line:
+            line = line.split('//')[0]
+        line = ' '.join(line.split())
+        if line.strip():
+            clean_lines.append(line)
+    
+    return '\n'.join(clean_lines)
 
 def generate_report():
     """Генерирует полный отчёт"""
