@@ -65,4 +65,4 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
     print(f"[auto_version] version.h regenerated to {version_str}")
 except Exception as e:
     print(f"[auto_version] error: {e}")
-    sys.exit(1) 
+    sys.exit(1)

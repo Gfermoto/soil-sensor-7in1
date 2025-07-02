@@ -15,16 +15,16 @@ from typing import Dict, Any, Optional
 
 class ReportSynchronizer:
     """Класс для синхронизации отчётов с сайтом"""
-    
+
     def __init__(self, project_root: str):
         self.project_root = Path(project_root)
         self.reports_dir = self.project_root / "test_reports"
         self.site_dir = self.project_root / "site"
         self.site_reports_dir = self.site_dir / "reports"
-        
+
         # Создаём директории если не существуют
         self.site_reports_dir.mkdir(exist_ok=True)
-        
+
     def load_test_summary(self) -> Optional[Dict[str, Any]]:
         """Загружает сводку тестирования"""
         try:
@@ -33,13 +33,13 @@ class ReportSynchronizer:
             if comprehensive_file.exists():
                 with open(comprehensive_file, 'r', encoding='utf-8') as f:
                     return json.load(f)
-            
+
             # Fallback на простой отчёт
             summary_file = self.reports_dir / "simple-test-report.json"
             if summary_file.exists():
                 with open(summary_file, 'r', encoding='utf-8') as f:
                     return json.load(f)
-                    
+
             # Загружаем калибровочные тесты отдельно если доступны
             calibration_file = self.reports_dir / "calibration-test-report.json"
             if calibration_file.exists():
@@ -58,7 +58,7 @@ class ReportSynchronizer:
         except Exception as e:
             print(f"⚠️ Ошибка загрузки отчёта тестирования: {e}")
         return None
-    
+
     def load_technical_debt(self) -> Optional[Dict[str, Any]]:
         """Загружает отчёт технического долга"""
         try:
@@ -69,16 +69,16 @@ class ReportSynchronizer:
         except Exception as e:
             print(f"⚠️ Ошибка загрузки отчёта технического долга: {e}")
         return None
-    
+
     def generate_reports_index_html(self, test_summary: Dict[str, Any], tech_debt: Dict[str, Any]) -> str:
         """Генерирует главную страницу отчётов"""
-        
+
         # Статус системы
         success_rate = test_summary.get('summary', {}).get('success_rate', 0)
         status_icon = "✅" if success_rate >= 90 else "⚠️" if success_rate >= 70 else "❌"
         status_text = "Отлично" if success_rate >= 90 else "Хорошо" if success_rate >= 70 else "Требует внимания"
         status_color = "#28a745" if success_rate >= 90 else "#ffc107" if success_rate >= 70 else "#dc3545"
-        
+
         # Метрики технического долга
         metrics = tech_debt.get('metrics', {})
         code_smells = metrics.get('code_smells', 0)
@@ -88,7 +88,7 @@ class ReportSynchronizer:
         maintainability_rating = metrics.get('maintainability_rating', 'Unknown')
         debt_ratio = metrics.get('debt_ratio', 0.0)
         coverage = metrics.get('coverage', 0.0)
-        
+
         html = f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -253,18 +253,18 @@ class ReportSynchronizer:
             <h1>🧪 Отчёты качества кода</h1>
             <p>Автоматический мониторинг качества проекта JXCT Soil Sensor</p>
         </div>
-        
+
         <div class="status-banner">
             {status_icon} Статус системы: {status_text} ({success_rate:.1f}% тестов прошло)
         </div>
-        
+
         <div class="nav">
             <a href="../index.html">🏠 Главная</a>
             <a href="../html/index.html">📚 API Документация</a>
             <a href="dashboard.html">📈 Дашборд</a>
             <a href="test-summary.json">📄 JSON Отчёт</a>
         </div>
-        
+
         <div class="content">
             <h2>📊 Сводка тестирования</h2>
             <div class="metrics-grid">
@@ -291,13 +291,13 @@ class ReportSynchronizer:
                         <div class="progress-fill" style="width: {success_rate}%;"></div>
                     </div>
                 </div>"""
-        
+
         # Добавляем unit-тесты если они доступны
         unit_tests = test_summary.get("tests", {}).get("unit_tests", {})
         if unit_tests:
             calibration_tests = unit_tests.get("calibration_tests", {})
             simple_tests = unit_tests.get("simple_tests", {})
-            
+
             if calibration_tests:
                 cal_success_rate = (calibration_tests.get('passed', 0) / calibration_tests.get('total', 1) * 100) if calibration_tests.get('total', 0) > 0 else 0
                 html += f"""
@@ -309,7 +309,7 @@ class ReportSynchronizer:
                         <div class="progress-fill" style="width: {cal_success_rate}%;"></div>
                     </div>
                 </div>"""
-            
+
             if simple_tests:
                 simple_success_rate = (simple_tests.get('passed', 0) / simple_tests.get('total', 1) * 100) if simple_tests.get('total', 0) > 0 else 0
                 html += f"""
@@ -321,27 +321,27 @@ class ReportSynchronizer:
                         <div class="progress-fill" style="width: {simple_success_rate}%;"></div>
                     </div>
                 </div>"""
-        
+
         html += """
             </div>
-            
+
             <h2>🧪 Unit Tests Quality</h2>
             <div class="update-info">
                 <h3>🎯 Покрытие критических алгоритмов</h3>"""
-        
+
         if unit_tests and unit_tests.get("calibration_tests", {}).get("total", 0) > 0:
             html += f"""
-                <p><strong>📐 Алгоритмы интерполяции:</strong> 
+                <p><strong>📐 Алгоритмы интерполяции:</strong>
                    {unit_tests.get("calibration_tests", {}).get("passed", 0)} из {unit_tests.get("calibration_tests", {}).get("total", 0)} тестов прошли</p>
                 <p><strong>🔬 Тестируемые компоненты:</strong> Линейная интерполяция, экстраполяция, сохранение/загрузка калибровки</p>
                 <p><strong>⚡ Производительность:</strong> Алгоритмы калибровки выполняются в оптимальном времени</p>"""
         else:
             html += """
                 <p><em>Unit-тесты калибровки не найдены. Рекомендуется добавить тесты критических алгоритмов.</em></p>"""
-        
+
         html += """
             </div>
-            
+
             <div class="tech-debt-section">
                 <h3>⚠️ Технический долг</h3>
                 <div class="metrics-grid">
@@ -366,20 +366,20 @@ class ReportSynchronizer:
                         <div class="metric-label">Потенциальных уязвимостей</div>
                     </div>
                 </div>
-                
+
                 <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 5px;">
                     <strong>🏆 Рейтинг поддерживаемости:</strong> <span style="color: #856404; font-weight: bold;">{maintainability_rating}</span><br>
                     <strong>💰 Долговой коэффициент:</strong> <span style="color: #856404; font-weight: bold;">{debt_ratio:.2f}%</span><br>
                     <strong>🎯 Покрытие тестами:</strong> <span style="color: #856404; font-weight: bold;">{coverage:.1f}%</span>
                 </div>
             </div>
-            
+
             <div class="update-info">
                 <h3>📅 Информация об обновлении</h3>
                 <p><strong>Последний отчёт:</strong> {test_summary.get('timestamp', 'Неизвестно')}</p>
                 <p><strong>Версия проекта:</strong> {tech_debt.get('version', 'Unknown')}</p>
                 <p><em>Отчёты обновляются автоматически при каждом запуске CI/CD pipeline</em></p>
-                
+
                 <div style="margin-top: 15px;">
                     <a href="test-summary.json" class="btn">📊 Полный отчёт тестов</a>
                     <a href="technical-debt.json" class="btn btn-secondary">⚠️ Технический долг</a>
@@ -387,19 +387,19 @@ class ReportSynchronizer:
                 </div>
             </div>
         </div>
-        
+
         <div class="footer">
             <p>© 2025 JXCT Development Team | Система мониторинга качества кода v3.6.0</p>
             <p>Автоматически сгенерировано {datetime.datetime.now().strftime('%d.%m.%Y в %H:%M')}</p>
         </div>
     </div>
-    
+
     <script>
         // Автообновление каждые 10 минут
         setTimeout(() => {{
             location.reload();
         }}, 600000);
-        
+
         // Добавляем анимацию для прогресс-бара
         document.addEventListener('DOMContentLoaded', function() {{
             const progressBars = document.querySelectorAll('.progress-fill');
@@ -415,17 +415,17 @@ class ReportSynchronizer:
 </body>
 </html>"""
         return html
-    
+
     def generate_dashboard_html(self, test_summary: Dict[str, Any], tech_debt: Dict[str, Any]) -> str:
         """Генерирует дашборд отчётов"""
-        
+
         success_rate = test_summary.get('summary', {}).get('success_rate', 0)
         status_icon = "✅" if success_rate >= 90 else "⚠️" if success_rate >= 70 else "❌"
         status_text = "Система работает стабильно" if success_rate >= 90 else "Система требует внимания" if success_rate >= 70 else "Критические проблемы"
         status_color = "#28a745" if success_rate >= 90 else "#ffc107" if success_rate >= 70 else "#dc3545"
-        
+
         metrics = tech_debt.get('metrics', {})
-        
+
         html = f"""<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -539,7 +539,7 @@ class ReportSynchronizer:
             <div class="timestamp">
                 Последнее обновление: {test_summary.get('timestamp', 'Неизвестно')}
             </div>
-            
+
             <div class="quick-stats">
                 <div class="stat-item">
                     <div class="stat-value">{success_rate:.0f}%</div>
@@ -558,7 +558,7 @@ class ReportSynchronizer:
                     <div class="stat-label">Покрытие кода</div>
                 </div>
             </div>
-            
+
             <div class="actions">
                 <a href="index.html" class="btn">📊 Подробные отчёты</a>
                 <a href="test-summary.json" class="btn btn-secondary">📄 JSON API</a>
@@ -566,7 +566,7 @@ class ReportSynchronizer:
             </div>
         </div>
     </div>
-    
+
     <script>
         // Автообновление каждые 5 минут
         setTimeout(() => {{
@@ -576,20 +576,20 @@ class ReportSynchronizer:
 </body>
 </html>"""
         return html
-    
+
     def sync_reports(self) -> bool:
         """Основная функция синхронизации отчётов"""
         try:
             print("🔄 Начинаем синхронизацию отчётов с сайтом...")
-            
+
             # Загружаем отчёты
             test_summary = self.load_test_summary()
             tech_debt = self.load_technical_debt()
-            
+
             if not test_summary or not tech_debt:
                 print("❌ Не удалось загрузить отчёты")
                 return False
-            
+
             # Копируем JSON файлы
             if (self.reports_dir / "simple-test-report.json").exists():
                 shutil.copy2(
@@ -597,28 +597,28 @@ class ReportSynchronizer:
                     self.site_reports_dir / "test-summary.json"
                 )
                 print("✅ Скопирован отчёт тестирования")
-            
+
             if (self.reports_dir / "technical-debt.json").exists():
                 shutil.copy2(
                     self.reports_dir / "technical-debt.json",
                     self.site_reports_dir / "technical-debt.json"
                 )
                 print("✅ Скопирован отчёт технического долга")
-            
+
             # Генерируем HTML страницы
             reports_html = self.generate_reports_index_html(test_summary, tech_debt)
             with open(self.site_reports_dir / "index.html", 'w', encoding='utf-8') as f:
                 f.write(reports_html)
             print("✅ Сгенерирована главная страница отчётов")
-            
+
             dashboard_html = self.generate_dashboard_html(test_summary, tech_debt)
             with open(self.site_reports_dir / "dashboard.html", 'w', encoding='utf-8') as f:
                 f.write(dashboard_html)
             print("✅ Сгенерирован дашборд отчётов")
-            
+
             print("🎉 Синхронизация отчётов завершена успешно!")
             return True
-            
+
         except Exception as e:
             print(f"❌ Ошибка синхронизации: {e}")
             return False
@@ -626,20 +626,20 @@ class ReportSynchronizer:
 def main():
     """Главная функция"""
     import sys
-    
+
     # Определяем корневую директорию проекта
     if len(sys.argv) > 1:
         project_root = sys.argv[1]
     else:
         project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    
+
     print(f"📁 Корневая директория проекта: {project_root}")
-    
+
     # Создаём синхронизатор и запускаем
     synchronizer = ReportSynchronizer(project_root)
     success = synchronizer.sync_reports()
-    
+
     sys.exit(0 if success else 1)
 
 if __name__ == "__main__":
-    main() 
+    main()

@@ -221,7 +221,7 @@ python scripts/run_comprehensive_tests.py
 
 ```ini
 [env:native]                    # Базовые тесты
-[env:native-comprehensive]      # Комплексные тесты  
+[env:native-comprehensive]      # Комплексные тесты
 [env:native-coverage]          # Тесты с покрытием
 [env:esp32dev]                 # Тесты на железе
 ```
@@ -232,7 +232,7 @@ python scripts/run_comprehensive_tests.py
 // test_framework_config.hpp
 struct ReportConfig {
     bool generateXML = true;
-    bool generateHTML = true; 
+    bool generateHTML = true;
     bool generateJSON = true;
     bool includeTechnicalDebt = true;
     std::string outputDir = "test_reports";
@@ -245,7 +245,7 @@ struct ReportConfig {
 ```json
 {
   "timestamp": "2025-01-22T12:00:00Z",
-  "project": "JXCT Soil Sensor", 
+  "project": "JXCT Soil Sensor",
   "version": "3.6.7",
   "summary": {
     "total_tests": 13,
@@ -278,7 +278,7 @@ on:
 ### Артефакты
 - `technical-debt-report`
 - `test-reports-unit`
-- `test-reports-integration` 
+- `test-reports-integration`
 - `coverage-report`
 - `comprehensive-test-report`
 
@@ -303,14 +303,14 @@ RUN_TEST(test_new_feature);
 void test_performance_new_feature() {
 #ifndef ARDUINO
     auto start = std::chrono::high_resolution_clock::now();
-    
+
     for (int i = 0; i < 1000; ++i) {
         processNewFeature(test_data[i]);
     }
-    
+
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-    
+
     TEST_ASSERT_TRUE(duration.count() < 100);  // < 100мс
 #endif
 }
@@ -362,6 +362,6 @@ void test_performance_new_feature() {
 
 ---
 
-**Автор**: EYERA Development Team  
-**Версия**: 1.0.0  
-**Дата**: 2025-01-22 
+**Автор**: EYERA Development Team
+**Версия**: 1.0.0
+**Дата**: 2025-01-22

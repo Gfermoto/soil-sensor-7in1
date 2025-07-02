@@ -1148,7 +1148,7 @@
 <h2 id="-конфигурация">🔧 Конфигурация<a class="headerlink" href="#-конфигурация" title="Постоянная ссылка">&para;</a></h2>
 <h3 id="platformio-окружения">PlatformIO окружения<a class="headerlink" href="#platformio-окружения" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="na">[env</span><span class="o">:</span><span class="s">native]</span><span class="w">                    </span><span class="c1"># Базовые тесты</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="na">[env</span><span class="o">:</span><span class="s">native-comprehensive]</span><span class="w">      </span><span class="c1"># Комплексные тесты  </span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="na">[env</span><span class="o">:</span><span class="s">native-comprehensive]</span><span class="w">      </span><span class="c1"># Комплексные тесты</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="na">[env</span><span class="o">:</span><span class="s">native-coverage]</span><span class="w">          </span><span class="c1"># Тесты с покрытием</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="na">[env</span><span class="o">:</span><span class="s">esp32dev]</span><span class="w">                 </span><span class="c1"># Тесты на железе</span>
 </code></pre></div>
@@ -1156,7 +1156,7 @@
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// test_framework_config.hpp</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="k">struct</span><span class="w"> </span><span class="nc">ReportConfig</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">generateXML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">generateHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"> </span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">generateHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">generateJSON</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">includeTechnicalDebt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">outputDir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;test_reports&quot;</span><span class="p">;</span>
@@ -1166,7 +1166,7 @@
 <h3 id="json-отчёт">JSON отчёт<a class="headerlink" href="#json-отчёт" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="p">{</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="nt">&quot;timestamp&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;2025-01-22T12:00:00Z&quot;</span><span class="p">,</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JXCT Soil Sensor&quot;</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">  </span><span class="nt">&quot;project&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;JXCT Soil Sensor&quot;</span><span class="p">,</span>
 <a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">  </span><span class="nt">&quot;version&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;3.6.7&quot;</span><span class="p">,</span>
 <a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">  </span><span class="nt">&quot;summary&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="w">    </span><span class="nt">&quot;total_tests&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span>
@@ -1196,7 +1196,7 @@
 <ul>
 <li><code>technical-debt-report</code></li>
 <li><code>test-reports-unit</code></li>
-<li><code>test-reports-integration</code> </li>
+<li><code>test-reports-integration</code></li>
 <li><code>coverage-report</code></li>
 <li><code>comprehensive-test-report</code></li>
 </ul>
@@ -1275,9 +1275,9 @@
 <li>Создайте issue с описанием проблемы</li>
 </ol>
 <hr />
-<p><strong>Автор</strong>: EYERA Development Team<br />
-<strong>Версия</strong>: 1.0.0<br />
-<strong>Дата</strong>: 2025-01-22 </p>
+<p><strong>Автор</strong>: EYERA Development Team
+<strong>Версия</strong>: 1.0.0
+<strong>Дата</strong>: 2025-01-22</p>
 
 
 

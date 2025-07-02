@@ -8,16 +8,18 @@
  * @author EYERA Development Team
  */
 
-#include <string>
 #include <chrono>
+#include <string>
 #include <vector>
 
-namespace jxct::testing {
+namespace jxct::testing
+{
 
 /**
  * @brief Конфигурация системы отчётов
  */
-struct ReportConfig {
+struct ReportConfig
+{
     std::string outputDir = "test_reports";
     std::string projectName = "JXCT Soil Sensor";
     std::string version = "3.6.0";
@@ -32,7 +34,8 @@ struct ReportConfig {
 /**
  * @brief Метрики качества кода
  */
-struct QualityMetrics {
+struct QualityMetrics
+{
     double codeCoverage = 0.0;
     int totalTests = 0;
     int passedTests = 0;
@@ -40,7 +43,7 @@ struct QualityMetrics {
     int skippedTests = 0;
     std::chrono::milliseconds executionTime{0};
     size_t memoryUsage = 0;
-    
+
     // Технический долг
     int codeSmells = 0;
     int duplicatedLines = 0;
@@ -51,30 +54,33 @@ struct QualityMetrics {
 /**
  * @brief Категории тестов
  */
-enum class TestCategory {
-    UNIT,           // Юнит-тесты
-    INTEGRATION,    // Интеграционные тесты
-    SYSTEM,         // Системные тесты
-    PERFORMANCE,    // Тесты производительности
-    SECURITY,       // Тесты безопасности
-    API,           // API тесты
-    HARDWARE       // Тесты аппаратной части
+enum class TestCategory
+{
+    UNIT,         // Юнит-тесты
+    INTEGRATION,  // Интеграционные тесты
+    SYSTEM,       // Системные тесты
+    PERFORMANCE,  // Тесты производительности
+    SECURITY,     // Тесты безопасности
+    API,          // API тесты
+    HARDWARE      // Тесты аппаратной части
 };
 
 /**
  * @brief Приоритет теста
  */
-enum class TestPriority {
-    CRITICAL,      // Критичные тесты (блокируют релиз)
-    HIGH,          // Высокий приоритет
-    MEDIUM,        // Средний приоритет
-    LOW            // Низкий приоритет
+enum class TestPriority
+{
+    CRITICAL,  // Критичные тесты (блокируют релиз)
+    HIGH,      // Высокий приоритет
+    MEDIUM,    // Средний приоритет
+    LOW        // Низкий приоритет
 };
 
 /**
  * @brief Информация о тесте
  */
-struct TestInfo {
+struct TestInfo
+{
     std::string name;
     std::string description;
     TestCategory category;
@@ -88,7 +94,8 @@ struct TestInfo {
 /**
  * @brief Результат выполнения теста
  */
-struct TestResult {
+struct TestResult
+{
     TestInfo info;
     bool passed = false;
     std::chrono::milliseconds duration{0};
@@ -96,7 +103,7 @@ struct TestResult {
     std::string stackTrace;
     size_t memoryUsed = 0;
     std::vector<std::string> warnings;
-    
+
     // Метрики производительности
     double cpuUsage = 0.0;
     size_t peakMemoryUsage = 0;
@@ -107,17 +114,18 @@ struct TestResult {
 /**
  * @brief Отчёт о выполнении тестов
  */
-struct TestReport {
+struct TestReport
+{
     std::chrono::system_clock::time_point timestamp;
     std::string environment;
     std::string gitCommit;
     std::string gitBranch;
     QualityMetrics metrics;
     std::vector<TestResult> results;
-    
+
     // Сравнение с предыдущим запуском
     bool hasRegression = false;
     std::vector<std::string> regressionDetails;
 };
 
-} // namespace jxct::testing 
+}  // namespace jxct::testing

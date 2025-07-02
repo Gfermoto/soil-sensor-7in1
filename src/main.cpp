@@ -22,7 +22,7 @@
 #include "ota_manager.h"
 #include "sensor_factory.h"
 #include "thingspeak_client.h"
-#include "version.h"  // ✅ Централизованное управление версией
+#include "version.h"     // ✅ Централизованное управление версией
 #include "web_routes.h"  // ✅ CSRF защита
 #include "wifi_manager.h"
 
@@ -247,7 +247,8 @@ void loop()
     }
 
     // === Проверяем наличие новых данных датчика (НАСТРАИВАЕМО v2.3.0) ===
-    if (sensorData.valid && (currentTime - lastDataPublish >= config.sensorReadInterval)) {
+    if (sensorData.valid && (currentTime - lastDataPublish >= config.sensorReadInterval))
+    {
         pendingMqttPublish = true;
         pendingThingspeakPublish = true;
         lastDataPublish = currentTime;
@@ -255,7 +256,8 @@ void loop()
     }
 
     // ✅ Групповая отправка MQTT (настраиваемо v2.3.0)
-    if (pendingMqttPublish && (currentTime - mqttBatchTimer >= config.mqttPublishInterval)) {
+    if (pendingMqttPublish && (currentTime - mqttBatchTimer >= config.mqttPublishInterval))
+    {
         publishSensorData();
         pendingMqttPublish = false;
         mqttBatchTimer = currentTime;
@@ -263,12 +265,16 @@ void loop()
     }
 
     // ✅ Групповая отправка ThingSpeak (настраиваемо v2.3.0)
-    if (pendingThingspeakPublish && (currentTime - thingspeakBatchTimer >= config.thingSpeakInterval)) {
+    if (pendingThingspeakPublish && (currentTime - thingspeakBatchTimer >= config.thingSpeakInterval))
+    {
         bool tsOk = sendDataToThingSpeak();
-        if (tsOk) {
+        if (tsOk)
+        {
             thingspeakBatchTimer = currentTime;  // Сбрасываем таймер только при успешной отправке
             DEBUG_PRINTLN("[BATCH] ThingSpeak данные отправлены группой");
-        } else {
+        }
+        else
+        {
             DEBUG_PRINTLN("[BATCH] ThingSpeak отправка не удалась, повтор через следующий интервал");
         }
         pendingThingspeakPublish = false;

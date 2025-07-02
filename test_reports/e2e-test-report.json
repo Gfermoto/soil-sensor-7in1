@@ -29,13 +29,13 @@
         "response_size": 11642
       },
       {
-        "name": "Статус системы", 
+        "name": "Статус системы",
         "endpoint": "/status",
         "status": 200
       },
       {
         "name": "API датчиков",
-        "endpoint": "/sensor_json", 
+        "endpoint": "/sensor_json",
         "status": 200,
         "content_type": "application/json"
       },
@@ -70,7 +70,7 @@
         "note": "Endpoint не реализован"
       },
       {
-        "name": "API статус системы", 
+        "name": "API статус системы",
         "endpoint": "/api/system/status",
         "status": 404,
         "note": "Endpoint не реализован"

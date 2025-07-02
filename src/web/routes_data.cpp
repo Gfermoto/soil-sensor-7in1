@@ -14,8 +14,8 @@
 #include "../../include/jxct_strings.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
-#include "../../include/web_routes.h"
 #include "../../include/web/csrf_protection.h"  // 🔒 CSRF защита
+#include "../../include/web_routes.h"
 #include "../modbus_sensor.h"
 #include "../wifi_manager.h"
 #include "calibration_manager.h"
@@ -39,38 +39,53 @@ struct RecValues
 static RecValues computeRecommendations()
 {
     // 1. База по культуре или generic
-    RecValues rec{TEST_DATA_TEMP_BASE + 1, TEST_DATA_HUM_BASE, TEST_DATA_EC_BASE, TEST_DATA_PH_BASE, TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
+    RecValues rec{TEST_DATA_TEMP_BASE + 1, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE, TEST_DATA_PH_BASE,
+                  TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
     const char* id = config.cropId;
     if (strlen(id) > 0)
     {
         if (strcmp(id, "tomato") == 0)
-            rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE, TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE + 0.2F, TEST_DATA_NPK_BASE + 15, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE + 5};
+            rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE + 0.2F,
+                   TEST_DATA_NPK_BASE + 15, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE + 5};
         else if (strcmp(id, "cucumber") == 0)
-            rec = {TEST_DATA_TEMP_BASE + 4, TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 600, TEST_DATA_PH_BASE - 0.1F, TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE + 3};
+            rec = {TEST_DATA_TEMP_BASE + 4, TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 600, TEST_DATA_PH_BASE - 0.1F,
+                   TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE + 3};
         else if (strcmp(id, "pepper") == 0)
-            rec = {TEST_DATA_TEMP_BASE + 3, TEST_DATA_HUM_BASE + 5, TEST_DATA_EC_BASE + 400, TEST_DATA_PH_BASE, TEST_DATA_NPK_BASE + 13, TEST_DATA_NPK_BASE - 14, TEST_DATA_NPK_BASE + 4};
+            rec = {TEST_DATA_TEMP_BASE + 3, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE + 400, TEST_DATA_PH_BASE,
+                   TEST_DATA_NPK_BASE + 13, TEST_DATA_NPK_BASE - 14, TEST_DATA_NPK_BASE + 4};
         else if (strcmp(id, "lettuce") == 0)
-            rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE + 15, TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.3F, TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE};
+            rec = {TEST_DATA_TEMP_BASE,    TEST_DATA_HUM_BASE + 15, TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.3F,
+                   TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE};
         else if (strcmp(id, "blueberry") == 0)
-            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5, TEST_DATA_EC_BASE, TEST_DATA_PH_BASE - 1.3F, TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
+            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE - 1.3F,
+                   TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
         else if (strcmp(id, "lawn") == 0)
-            rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE - 10, TEST_DATA_EC_BASE - 400, TEST_DATA_PH_BASE, TEST_DATA_NPK_BASE, TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 5};
+            rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE - 10, TEST_DATA_EC_BASE - 400, TEST_DATA_PH_BASE,
+                   TEST_DATA_NPK_BASE,  TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 5};
         else if (strcmp(id, "grape") == 0)
-            rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE - 5, TEST_DATA_EC_BASE + 200, TEST_DATA_PH_BASE + 0.2F, TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE};
+            rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE - 5,  TEST_DATA_EC_BASE + 200, TEST_DATA_PH_BASE + 0.2F,
+                   TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE};
         else if (strcmp(id, "conifer") == 0)
-            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE - 5, TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.8F, TEST_DATA_NPK_BASE, TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 10};
+            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE - 5,  TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.8F,
+                   TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 10};
         else if (strcmp(id, "strawberry") == 0)
-            rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE - 0.3F, TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
+            rec = {TEST_DATA_TEMP_BASE,     TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE - 0.3F,
+                   TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
         else if (strcmp(id, "apple") == 0)
-            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE, TEST_DATA_EC_BASE, TEST_DATA_PH_BASE + 0.2F, TEST_DATA_NPK_BASE, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
+            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE + 0.2F,
+                   TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
         else if (strcmp(id, "pear") == 0)
-            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE, TEST_DATA_EC_BASE, TEST_DATA_PH_BASE + 0.2F, TEST_DATA_NPK_BASE, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
+            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE + 0.2F,
+                   TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
         else if (strcmp(id, "cherry") == 0)
-            rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE, TEST_DATA_EC_BASE + 100, TEST_DATA_PH_BASE + 0.2F, TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
+            rec = {TEST_DATA_TEMP_BASE,    TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE + 100, TEST_DATA_PH_BASE + 0.2F,
+                   TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
         else if (strcmp(id, "raspberry") == 0)
-            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5, TEST_DATA_EC_BASE - 100, TEST_DATA_PH_BASE - 0.1F, TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 3};
+            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE - 100, TEST_DATA_PH_BASE - 0.1F,
+                   TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 3};
         else if (strcmp(id, "currant") == 0)
-            rec = {TEST_DATA_TEMP_BASE - 3, TEST_DATA_HUM_BASE + 5, TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.1F, TEST_DATA_NPK_BASE, TEST_DATA_NPK_BASE - 16, TEST_DATA_NPK_BASE - 5};
+            rec = {TEST_DATA_TEMP_BASE - 3, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.1F,
+                   TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 16, TEST_DATA_NPK_BASE - 5};
     }
 
     // 2. Коррекция по soilProfile (влажность и pH)
@@ -139,54 +154,54 @@ static RecValues computeRecommendations()
         if (config.environmentType == 0)
         {  // Outdoor
             if (m >= 3 && m <= 5)
-            {                    // Весна
+            {                                       // Весна
                 rec.n *= TEST_DATA_NPK_INCREASE_N;  // +20%
                 rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
                 rec.k *= TEST_DATA_NPK_INCREASE_K;  // +10%
             }
             else if (m >= 6 && m <= 8)
-            {                    // Лето
+            {                                       // Лето
                 rec.n *= TEST_DATA_NPK_DECREASE_N;  // -10%
-                rec.p *= 1.05F;  // +5%
+                rec.p *= 1.05F;                     // +5%
                 rec.k *= TEST_DATA_NPK_DECREASE_K;  // +25%
             }
             else if (m >= 9 && m <= 11)
-            {                    // Осень
+            {                                       // Осень
                 rec.n *= TEST_DATA_NPK_DECREASE_N;  // -20%
-                rec.p *= 1.10F;  // +10%
+                rec.p *= 1.10F;                     // +10%
                 rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15%
             }
             else
-            {                    // Зима
+            {                                       // Зима
                 rec.n *= TEST_DATA_NPK_DECREASE_N;  // -30%
-                rec.p *= 1.05F;  // +5%
+                rec.p *= 1.05F;                     // +5%
                 rec.k *= TEST_DATA_NPK_DECREASE_K;  // +5%
             }
         }
         else if (config.environmentType == 1)
         {  // Greenhouse
             if (m >= 3 && m <= 5)
-            {                    // Весна
+            {                                       // Весна
                 rec.n *= TEST_DATA_NPK_INCREASE_N;  // +25%
                 rec.p *= TEST_DATA_NPK_INCREASE_P;  // +20%
                 rec.k *= TEST_DATA_NPK_INCREASE_K;  // +15%
             }
             else if (m >= 6 && m <= 8)
-            {                    // Лето
+            {                                       // Лето
                 rec.n *= TEST_DATA_NPK_DECREASE_N;  // -10%
-                rec.p *= 1.10F;  // +10%
+                rec.p *= 1.10F;                     // +10%
                 rec.k *= TEST_DATA_NPK_DECREASE_K;  // +30%
             }
             else if (m >= 9 && m <= 11)
-            {                    // Осень
+            {                                       // Осень
                 rec.n *= TEST_DATA_NPK_INCREASE_N;  // +15%
                 rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
                 rec.k *= TEST_DATA_NPK_INCREASE_K;  // +20%
             }
             else
-            {                    // Зима
+            {                                       // Зима
                 rec.n *= TEST_DATA_NPK_DECREASE_N;  // +5%
-                rec.p *= 1.10F;  // +10%
+                rec.p *= 1.10F;                     // +10%
                 rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15%
             }
         }
@@ -526,7 +541,7 @@ void setupDataRoutes()
             // Форма загрузки CSV
             html +=
                 "<form action='/readings/upload' method='post' enctype='multipart/form-data' style='margin-top:15px;'>";
-            html += getCSRFHiddenField(); // Добавляем CSRF токен
+            html += getCSRFHiddenField();  // Добавляем CSRF токен
             html +=
                 "<div class='form-group'><label for='calibration_csv'><strong>Загрузить CSV файл "
                 "калибровки:</strong></label>";
@@ -544,7 +559,7 @@ void setupDataRoutes()
             if (csvPresent)
             {
                 html += "<form action='/readings/csv_reset' method='post' style='margin-top:10px;'>";
-                html += getCSRFHiddenField(); // Добавляем CSRF токен
+                html += getCSRFHiddenField();  // Добавляем CSRF токен
                 html += generateButton(ButtonType::SECONDARY, "🗑️", "Удалить CSV таблицу", "");
                 html += "</form>";
             }
@@ -727,17 +742,17 @@ void setupDataRoutes()
                  []()
                  {
                      logWebRequest("POST", "/readings/csv_reset", webServer.client().remoteIP().toString());
-                     
+
                      // ✅ CSRF защита - критическая операция удаления!
                      if (!checkCSRFSafety())
                      {
-                         logWarn("CSRF атака отклонена на /readings/csv_reset от %s", 
+                         logWarn("CSRF атака отклонена на /readings/csv_reset от %s",
                                  webServer.client().remoteIP().toString().c_str());
                          String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
                          webServer.send(403, "text/html; charset=utf-8", html);
                          return;
                      }
-                     
+
                      CalibrationManager::init();
                      bool removed = CalibrationManager::deleteTable(SoilProfile::SAND);
                      String toast = removed ? "CSV+удален" : "CSV+не+найден";

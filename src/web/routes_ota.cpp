@@ -187,9 +187,12 @@ void setupOtaRoutes()
                 "    } else if (['Подключение', 'Загрузка', 'Проверка', 'Завершение', 'Завершение установки', "
                 "'Проверка обновлений'].includes(status)) {\n";
             html += "      // Этапы OTA\n";
-            html +=
-                "      const stages = {'Подключение': " + String(OTA_STAGE_CONNECTION) + ", 'Загрузка': " + String(OTA_STAGE_DOWNLOAD) + ", 'Проверка': " + String(OTA_STAGE_VERIFY) + ", 'Завершение': " + String(OTA_STAGE_FINISH) + ", "
-                "'Завершение установки': " + String(OTA_STAGE_INSTALL) + ", 'Проверка обновлений': " + String(OTA_STAGE_CHECK) + "};\n";
+            html += "      const stages = {'Подключение': " + String(OTA_STAGE_CONNECTION) +
+                    ", 'Загрузка': " + String(OTA_STAGE_DOWNLOAD) + ", 'Проверка': " + String(OTA_STAGE_VERIFY) +
+                    ", 'Завершение': " + String(OTA_STAGE_FINISH) +
+                    ", "
+                    "'Завершение установки': " +
+                    String(OTA_STAGE_INSTALL) + ", 'Проверка обновлений': " + String(OTA_STAGE_CHECK) + "};\n";
             html += "      showProgress(status + '...', stages[status] || " + String(OTA_STAGE_DEFAULT) + ");\n";
             html += "      isOtaActive = true;\n";
             html += "    } else {\n";

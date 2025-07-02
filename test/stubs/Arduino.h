@@ -40,7 +40,10 @@ class String : public std::string
     {
         return std::stoi(*this);
     }
-    bool isEmpty() const { return this->empty(); }
+    bool isEmpty() const
+    {
+        return this->empty();
+    }
 };
 
 using UBaseType_t = unsigned int;
@@ -75,7 +78,8 @@ inline void delay(millis_t ms)
     std::this_thread::sleep_for(std::chrono::milliseconds(ms));
 }
 
-inline unsigned long millis() {
+inline unsigned long millis()
+{
     static auto start = std::chrono::steady_clock::now();
     auto now = std::chrono::steady_clock::now();
     return (unsigned long)std::chrono::duration_cast<std::chrono::milliseconds>(now - start).count();

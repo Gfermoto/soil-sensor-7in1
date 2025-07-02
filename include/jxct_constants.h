@@ -1,4 +1,7 @@
 #pragma once
+#include <Arduino.h>
+#include <stddef.h>
+#include <stdint.h>
 
 /**
  * @file jxct_constants.h
@@ -196,7 +199,7 @@ constexpr bool DEBUG_WIFI_ENABLED = false;
 
 // Размеры разделителей и отступов
 constexpr int DEFAULT_SEPARATOR_LENGTH = 60;  // Длина разделителя по умолчанию
-constexpr int JXCT_REDIRECT_DELAY_MS = 1000; // Задержка редиректа (мс)
+constexpr int JXCT_REDIRECT_DELAY_MS = 1000;  // Задержка редиректа (мс)
 
 // ============================================================================
 // HTTP КОДЫ И ЗАГОЛОВКИ
@@ -253,7 +256,7 @@ constexpr const char* OTA_UPDATE_URL_TEMPLATE = "https://api.github.com/repos/%s
 // ============================================================================
 // ОТЧЁТЫ И МЕТРИКИ
 // ============================================================================
-constexpr unsigned long REPORT_CACHE_TTL_MS = 300000; // 5 минут
+constexpr unsigned long REPORT_CACHE_TTL_MS = 300000;  // 5 минут
 constexpr int JSON_DOC_LARGE = 2048;
 constexpr int TEST_SUCCESS_RATE_THRESHOLD = 90;
 constexpr int TESTS_TOTAL_COUNT = 13;
@@ -265,7 +268,7 @@ constexpr int TECH_DEBT_DUPLICATED_LINES = 933;
 constexpr int TECH_DEBT_SECURITY_HOTSPOTS = 134;
 constexpr float TECH_DEBT_DEBT_RATIO = 1.93F;
 constexpr float TECH_DEBT_COVERAGE = 70.8F;
-constexpr unsigned long REPORTS_AUTOREFRESH_INTERVAL_MS = 300000; // 5 минут
+constexpr unsigned long REPORTS_AUTOREFRESH_INTERVAL_MS = 300000;  // 5 минут
 
 // ============================================================================
 // КОНФИГУРАЦИЯ И ВАЛИДАЦИЯ
@@ -352,7 +355,7 @@ constexpr int TEST_DATA_EC_VARIATION_SMALL = 200;
 constexpr int TEST_DATA_EC_VARIATION_MIN = 100;
 
 // Факторы для NPK
-constexpr float TEST_DATA_NPK_FACTOR = 6.5F;  // пересчёт мг/дм³ → мг/кг
+constexpr float TEST_DATA_NPK_FACTOR = 6.5F;       // пересчёт мг/дм³ → мг/кг
 constexpr float TEST_DATA_NPK_INCREASE_N = 1.20F;  // +20%
 constexpr float TEST_DATA_NPK_INCREASE_P = 1.15F;  // +15%
 constexpr float TEST_DATA_NPK_INCREASE_K = 1.10F;  // +10%

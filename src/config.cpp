@@ -113,13 +113,16 @@ void loadConfig()
 
     preferences.end();
     // Значения по умолчанию для новых полей
-    if (strlen(config.mqttDeviceName) == 0) {
+    if (strlen(config.mqttDeviceName) == 0)
+    {
         strlcpy(config.mqttDeviceName, getDeviceId().c_str(), sizeof(config.mqttDeviceName));
     }
-    if (strlen(config.thingSpeakChannelId) == 0) {
+    if (strlen(config.thingSpeakChannelId) == 0)
+    {
         strlcpy(config.thingSpeakChannelId, "", sizeof(config.thingSpeakChannelId));
     }
-    if (strlen(config.mqttTopicPrefix) == 0) {
+    if (strlen(config.mqttTopicPrefix) == 0)
+    {
         strlcpy(config.mqttTopicPrefix, getDefaultTopic().c_str(), sizeof(config.mqttTopicPrefix));
     }
 

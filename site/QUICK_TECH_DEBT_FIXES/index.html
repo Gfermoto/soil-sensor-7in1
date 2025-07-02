@@ -22,7 +22,7 @@
     
     
       
-        <title>Быстрые и безопасные исправления технического долга JXCT - 🌱 JXCT 7-в-1 Датчик Почвы</title>
+        <title>Быстрое исправление технического долга JXCT - 🌱 JXCT 7-в-1 Датчик Почвы</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#быстрые-и-безопасные-исправления-технического-долга-jxct" class="md-skip">
+        <a href="#быстрое-исправление-технического-долга-jxct" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Быстрые и безопасные исправления технического долга JXCT
+              Быстрое исправление технического долга JXCT
             
           </span>
         </div>
@@ -942,275 +942,181 @@
   
 
 
-<h1 id="быстрые-и-безопасные-исправления-технического-долга-jxct">Быстрые и безопасные исправления технического долга JXCT<a class="headerlink" href="#быстрые-и-безопасные-исправления-технического-долга-jxct" title="Постоянная ссылка">&para;</a></h1>
-<h2 id="-текущий-статус">📊 Текущий статус<a class="headerlink" href="#-текущий-статус" title="Постоянная ссылка">&para;</a></h2>
+<h1 id="быстрое-исправление-технического-долга-jxct">Быстрое исправление технического долга JXCT<a class="headerlink" href="#быстрое-исправление-технического-долга-jxct" title="Постоянная ссылка">&para;</a></h1>
+<p><strong>Версия:</strong> 3.6.0<br />
+<strong>Дата обновления:</strong> 3 июля 2025<br />
+<strong>Статус:</strong> ✅ АВТОМАТИЗИРОВАНО</p>
+<h2 id="-обзор">🎯 Обзор<a class="headerlink" href="#-обзор" title="Постоянная ссылка">&para;</a></h2>
+<p>Система автоматического исправления технического долга для проекта JXCT. Все исправления теперь выполняются автоматически через pre-commit и CI/CD.</p>
+<h2 id="-текущее-состояние">📊 Текущее состояние<a class="headerlink" href="#-текущее-состояние" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="метрики-качества-3-июля-2025">Метрики качества (3 июля 2025)<a class="headerlink" href="#метрики-качества-3-июля-2025" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Общий score</strong>: 111 (Medium)</li>
-<li><strong>Clang-tidy</strong>: 286 предупреждений (20 high, 160 medium, 106 low)</li>
-<li><strong>Дублирование</strong>: 17 дубликатов</li>
-<li><strong>Include зависимости</strong>: 0 проблем</li>
+<li><strong>Общий score:</strong> 90 (улучшение с 95)</li>
+<li><strong>Статус:</strong> 🟡 Medium (приемлемый)</li>
+<li><strong>Clang-tidy:</strong> 20 high, 157 medium, 58 low</li>
+<li><strong>Дублирование:</strong> 10 блоков найдено</li>
+<li><strong>Циклы зависимостей:</strong> 0</li>
+<li><strong>Неиспользуемые инклюды:</strong> 0</li>
 </ul>
-<h2 id="-быстрые-и-безопасные-исправления">🚀 Быстрые и безопасные исправления<a class="headerlink" href="#-быстрые-и-безопасные-исправления" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-magic-numbers-быстро-и-безопасно-">1. Magic Numbers (Быстро и безопасно) ⚡<a class="headerlink" href="#1-magic-numbers-быстро-и-безопасно-" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Проблема</strong>: 50+ магических чисел в коде
-<strong>Решение</strong>: Заменить на именованные константы</p>
-<h4 id="приоритетные-файлы">Приоритетные файлы:<a class="headerlink" href="#приоритетные-файлы" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><code>src/config.cpp</code> - 15+ магических чисел</li>
-<li><code>src/web/routes_service.cpp</code> - 10+ магических чисел</li>
-<li><code>src/web/routes_reports.cpp</code> - 8+ магических чисел</li>
-</ul>
-<h4 id="примеры-быстрых-исправлений">Примеры быстрых исправлений:<a class="headerlink" href="#примеры-быстрых-исправлений" title="Постоянная ссылка">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Было:</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1000</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">delay</span><span class="p">(</span><span class="mi">60000</span><span class="p">);</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1">// Станет:</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MAX_RETRY_COUNT</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">WIFI_TIMEOUT_MS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">60000</span><span class="p">;</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_RETRY_COUNT</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">delay</span><span class="p">(</span><span class="n">WIFI_TIMEOUT_MS</span><span class="p">);</span>
+<h2 id="-автоматические-исправления">🔧 Автоматические исправления<a class="headerlink" href="#-автоматические-исправления" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="1-форматирование-кода">1. Форматирование кода<a class="headerlink" href="#1-форматирование-кода" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Автоматически при коммите</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Your message&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Ручной запуск</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python<span class="w"> </span>scripts/format_code.py
 </code></pre></div>
-<h3 id="2-floating-point-literals-очень-быстро-">2. Floating Point Literals (Очень быстро) ⚡⚡<a class="headerlink" href="#2-floating-point-literals-очень-быстро-" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Проблема</strong>: 20+ предупреждений о суффиксах 'f'
-<strong>Решение</strong>: Заменить 'f' на 'F'</p>
-<h4 id="файлы-для-исправления">Файлы для исправления:<a class="headerlink" href="#файлы-для-исправления" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><code>include/jxct_constants.h</code> - 8 предупреждений</li>
-<li><code>src/config.cpp</code> - 6 предупреждений</li>
-<li><code>src/jxct_format_utils.cpp</code> - 2 предупреждения</li>
-</ul>
-<h4 id="пример">Пример:<a class="headerlink" href="#пример" title="Постоянная ссылка">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Было:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">DEFAULT_TEMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">25.0f</span><span class="p">;</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1">// Станет:</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">const</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">DEFAULT_TEMP</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">25.0F</span><span class="p">;</span>
+<p><strong>Что исправляется:</strong>
+- ✅ Trailing whitespace во всех файлах
+- ✅ Стиль C++ кода (clang-format)
+- ✅ Длинные строки (предупреждения)
+- ✅ Большие файлы (предупреждения)</p>
+<h3 id="2-pre-commit-проверки">2. Pre-commit проверки<a class="headerlink" href="#2-pre-commit-проверки" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Автоматический запуск</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python<span class="w"> </span>scripts/pre-commit.py<span class="w"> </span>--verbose
 </code></pre></div>
-<h3 id="3-braces-around-statements-быстро-">3. Braces Around Statements (Быстро) ⚡<a class="headerlink" href="#3-braces-around-statements-быстро-" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Проблема</strong>: 10+ предупреждений о скобках
-<strong>Решение</strong>: Добавить фигурные скобки</p>
-<h4 id="примеры">Примеры:<a class="headerlink" href="#примеры" title="Постоянная ссылка">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Было:</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">doSomething</span><span class="p">();</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">// Станет:</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">condition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="n">doSomething</span><span class="p">();</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+<p><strong>Проверки:</strong>
+- ✅ Python синтаксис
+- ✅ Статический анализ технического долга
+- ✅ Форматирование кода
+- ✅ Предупреждения о проблемах</p>
+<h2 id="-быстрые-команды">🚀 Быстрые команды<a class="headerlink" href="#-быстрые-команды" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="полная-автоматизация">Полная автоматизация<a class="headerlink" href="#полная-автоматизация" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 1. Форматирование + проверки</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>python<span class="w"> </span>scripts/format_code.py
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 2. Pre-commit проверки</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>python<span class="w"> </span>scripts/pre-commit.py<span class="w"> </span>--verbose
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="c1"># 3. Анализ технического долга</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>python<span class="w"> </span>scripts/analyze_technical_debt.py
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="c1"># 4. Комплексное тестирование</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>python<span class="w"> </span>scripts/run_comprehensive_tests.py
 </code></pre></div>
-<h3 id="4-redundant-declarations-очень-быстро-">4. Redundant Declarations (Очень быстро) ⚡⚡<a class="headerlink" href="#4-redundant-declarations-очень-быстро-" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Проблема</strong>: 2 дублирующихся объявления
-<strong>Решение</strong>: Удалить дубликаты</p>
-<h4 id="файлы">Файлы:<a class="headerlink" href="#файлы" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><code>src/web/routes_ota.cpp</code> - <code>currentWiFiMode</code></li>
-<li><code>src/web/routes_service.cpp</code> - <code>currentWiFiMode</code></li>
-</ul>
-<h3 id="5-enum-size-optimization-быстро-">5. Enum Size Optimization (Быстро) ⚡<a class="headerlink" href="#5-enum-size-optimization-быстро-" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Проблема</strong>: 6 enum'ов используют int вместо uint8_t
-<strong>Решение</strong>: Изменить базовый тип</p>
-<h4 id="файлы_1">Файлы:<a class="headerlink" href="#файлы_1" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><code>include/logger.h</code> - LogLevel</li>
-<li><code>include/jxct_ui_system.h</code> - ButtonType, MessageType</li>
-<li><code>include/sensor_compensation.h</code> - SoilProfile, SoilType</li>
-<li><code>src/wifi_manager.h</code> - WiFiMode</li>
-</ul>
-<h4 id="пример_1">Пример:<a class="headerlink" href="#пример_1" title="Постоянная ссылка">&para;</a></h4>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Было:</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">enum</span><span class="w"> </span><span class="nc">LogLevel</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="n">DEBUG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="n">INFO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="n">WARN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="n">ERROR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">};</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="c1">// Станет:</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">enum</span><span class="w"> </span><span class="nc">LogLevel</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">uint8_t</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="n">DEBUG</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="n">INFO</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">    </span><span class="n">WARN</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">    </span><span class="n">ERROR</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="p">};</span>
+<h3 id="отдельные-операции">Отдельные операции<a class="headerlink" href="#отдельные-операции" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Только удаление trailing whitespace</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python<span class="w"> </span>scripts/auto_format.py
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Только clang-format</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>powershell<span class="w"> </span>-ExecutionPolicy<span class="w"> </span>Bypass<span class="w"> </span>-File<span class="w"> </span>scripts/format_all.ps1
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Только анализ</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>python<span class="w"> </span>scripts/analyze_technical_debt.py
 </code></pre></div>
-<h2 id="-план-выполнения">📋 План выполнения<a class="headerlink" href="#-план-выполнения" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="этап-1-очень-быстрые-исправления-5-10-минут--выполнено">Этап 1: Очень быстрые исправления (5-10 минут) ✅ ВЫПОЛНЕНО<a class="headerlink" href="#этап-1-очень-быстрые-исправления-5-10-минут--выполнено" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="-результаты-автоматизации">📈 Результаты автоматизации<a class="headerlink" href="#-результаты-автоматизации" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="исправлено-автоматически">Исправлено автоматически<a class="headerlink" href="#исправлено-автоматически" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>✅ <strong>Trailing whitespace:</strong> Удалён во всех текстовых файлах</li>
+<li>✅ <strong>Стиль кода:</strong> Автоматическое форматирование C++</li>
+<li>✅ <strong>Предупреждения:</strong> Выводятся, но не блокируют коммит</li>
+<li>✅ <strong>Кроссплатформенность:</strong> Работает в Windows/Linux</li>
+</ul>
+<h3 id="требует-ручного-исправления">Требует ручного исправления<a class="headerlink" href="#требует-ручного-исправления" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>🔄 <strong>Магические числа:</strong> Частично устранены, остальные требуют анализа</li>
+<li>🔄 <strong>Дублирование кода:</strong> 10 блоков в <code>routes_calibration.cpp</code> и <code>routes_data.cpp</code></li>
+<li>🔄 <strong>Trailing return types:</strong> 157 предупреждений clang-tidy</li>
+<li>🔄 <strong>C-style arrays:</strong> Замена на std::array</li>
+</ul>
+<h2 id="-инструменты">🛠️ Инструменты<a class="headerlink" href="#-инструменты" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="основные-скрипты">Основные скрипты<a class="headerlink" href="#основные-скрипты" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><code>scripts/format_code.py</code> - Универсальное форматирование</li>
+<li><code>scripts/auto_format.py</code> - Удаление trailing whitespace</li>
+<li><code>scripts/pre-commit.py</code> - Pre-commit проверки</li>
+<li><code>scripts/analyze_technical_debt.py</code> - Анализ технического долга</li>
+</ul>
+<h3 id="конфигурация">Конфигурация<a class="headerlink" href="#конфигурация" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><code>.clang-format</code> - Стиль C++ кода</li>
+<li><code>.git/hooks/pre-commit</code> - Pre-commit hook</li>
+<li><code>.github/workflows/ci-cd.yml</code> - CI/CD pipeline</li>
+</ul>
+<h2 id="-чек-лист-исправлений">📋 Чек-лист исправлений<a class="headerlink" href="#-чек-лист-исправлений" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="автоматические-выполняются-при-коммите">Автоматические (выполняются при коммите)<a class="headerlink" href="#автоматические-выполняются-при-коммите" title="Постоянная ссылка">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Trailing whitespace</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Стиль C++ кода</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Python синтаксис</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> Статический анализ</li>
+</ul>
+<h3 id="ручные-требуют-внимания">Ручные (требуют внимания)<a class="headerlink" href="#ручные-требуют-внимания" title="Постоянная ссылка">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Магические числа в <code>config.cpp</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Дублирование в <code>routes_calibration.cpp</code> и <code>routes_data.cpp</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Trailing return types в заголовочных файлах</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> C-style arrays замена на std::array</li>
+</ul>
+<h2 id="-приоритеты-исправления">🎯 Приоритеты исправления<a class="headerlink" href="#-приоритеты-исправления" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="высокий-приоритет">Высокий приоритет<a class="headerlink" href="#высокий-приоритет" title="Постоянная ссылка">&para;</a></h3>
 <ol>
-<li>✅ Исправить floating point literals (f → F)</li>
-<li>✅ Добавить braces around statements</li>
-<li>⚠️ Redundant declarations не найдены (extern объявления нормальны)</li>
+<li><strong>Дублирование кода</strong> - Рефакторинг upload handlers</li>
+<li><strong>Магические числа</strong> - Вынос в константы</li>
+<li><strong>Trailing return types</strong> - Современный C++ стиль</li>
 </ol>
-<h3 id="этап-2-быстрые-исправления-15-30-минут--в-процессе">Этап 2: Быстрые исправления (15-30 минут) 🔄 В ПРОЦЕССЕ<a class="headerlink" href="#этап-2-быстрые-исправления-15-30-минут--в-процессе" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="средний-приоритет">Средний приоритет<a class="headerlink" href="#средний-приоритет" title="Постоянная ссылка">&para;</a></h3>
 <ol>
-<li>🔄 Заменить magic numbers на константы</li>
-<li>🔄 Оптимизировать enum sizes</li>
+<li><strong>C-style arrays</strong> - Замена на std::array</li>
+<li><strong>Enum sizes</strong> - Оптимизация размера</li>
+<li><strong>Parameter names</strong> - Улучшение читаемости</li>
 </ol>
-<h3 id="этап-3-средние-исправления-30-60-минут">Этап 3: Средние исправления (30-60 минут)<a class="headerlink" href="#этап-3-средние-исправления-30-60-минут" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="низкий-приоритет">Низкий приоритет<a class="headerlink" href="#низкий-приоритет" title="Постоянная ссылка">&para;</a></h3>
 <ol>
-<li>🔄 Исправить trailing return types (частично)</li>
-<li>🔄 Заменить C-style arrays на std::array</li>
+<li><strong>Deprecated headers</strong> - Замена stddef.h на cstddef</li>
+<li><strong>Magic numbers</strong> - Менее критичные значения</li>
+<li><strong>Identifier length</strong> - Короткие имена параметров</li>
 </ol>
-<h2 id="-результаты-выполнения">🎯 Результаты выполнения<a class="headerlink" href="#-результаты-выполнения" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="-этап-1-выполнен-быстрые-исправления">✅ Этап 1 выполнен (быстрые исправления):<a class="headerlink" href="#-этап-1-выполнен-быстрые-исправления" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="-отчёты">📊 Отчёты<a class="headerlink" href="#-отчёты" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="генерируемые-отчёты">Генерируемые отчёты<a class="headerlink" href="#генерируемые-отчёты" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Score остался 111</strong> (Medium) - ожидаемо, так как исправили только малые проблемы</li>
-<li><strong>Количество предупреждений уменьшилось с 271 до 260</strong> (-11 предупреждений)</li>
-<li><strong>Исправлены проблемы:</strong></li>
-<li>8 floating point literals (f → F)</li>
-<li>10+ braces around statements</li>
-<li><strong>Прошивка собирается успешно</strong> ✅</li>
+<li><code>test_reports/technical-debt-ci.json</code> - Детальный анализ</li>
+<li><code>test_reports/comprehensive-report.json</code> - Общий отчёт</li>
+<li><code>docs/TECH_DEBT_REPORT_2025-06.md</code> - Полный отчёт</li>
 </ul>
-<h3 id="-следующие-этапы">🔄 Следующие этапы:<a class="headerlink" href="#-следующие-этапы" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="просмотр-результатов">Просмотр результатов<a class="headerlink" href="#просмотр-результатов" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># JSON отчёт</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>cat<span class="w"> </span>test_reports/technical-debt-ci.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># HTML отчёт</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>open<span class="w"> </span>test_reports/comprehensive-report.html
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Markdown отчёт</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>cat<span class="w"> </span>docs/TECH_DEBT_REPORT_2025-06.md
+</code></pre></div>
+<h2 id="-отладка">🔍 Отладка<a class="headerlink" href="#-отладка" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="проблемы-с-unicode-windows">Проблемы с Unicode (Windows)<a class="headerlink" href="#проблемы-с-unicode-windows" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Установка переменной окружения</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">set</span><span class="w"> </span><span class="nv">PYTHONIOENCODING</span><span class="o">=</span>utf-8
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Или в PowerShell</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nv">$env</span>:PYTHONIOENCODING<span class="o">=</span><span class="s2">&quot;utf-8&quot;</span>
+</code></pre></div>
+<h3 id="проблемы-с-pre-commit">Проблемы с pre-commit<a class="headerlink" href="#проблемы-с-pre-commit" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Пропуск pre-commit (не рекомендуется)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>git<span class="w"> </span>commit<span class="w"> </span>--no-verify<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Emergency fix&quot;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Ручной запуск с подробным выводом</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>python<span class="w"> </span>scripts/pre-commit.py<span class="w"> </span>--verbose
+</code></pre></div>
+<h2 id="-дополнительные-ресурсы">📚 Дополнительные ресурсы<a class="headerlink" href="#-дополнительные-ресурсы" title="Постоянная ссылка">&para;</a></h2>
 <ul>
-<li><strong>Magic numbers</strong>: ~50 предупреждений (большой потенциал)</li>
-<li><strong>Enum optimization</strong>: 6 предупреждений</li>
-<li><strong>Trailing return types</strong>: ~100 предупреждений (требует осторожности)</li>
+<li><a href="../TECH_DEBT_REPORT_2025-06/">Полный отчёт о техническом долге</a></li>
+<li><a href="../TESTING_GUIDE/">Руководство по тестированию</a></li>
+<li><a href="../STAGE_2_COMPLETION_REPORT/">Отчёт о завершении Stage 2</a></li>
+<li><a href="../CSRF_SECURITY_AUDIT/">Аудит CSRF безопасности</a></li>
 </ul>
-<h2 id="-что-не-трогать-рискованно">⚠️ Что НЕ трогать (рискованно)<a class="headerlink" href="#-что-не-трогать-рискованно" title="Постоянная ссылка">&para;</a></h2>
-<ol>
-<li><strong>Trailing return types</strong> - требует тщательного тестирования</li>
-<li><strong>Parameter names</strong> - может сломать API</li>
-<li><strong>Easily swappable parameters</strong> - требует рефакторинга</li>
-<li><strong>Implicit bool conversions</strong> - может изменить логику</li>
-</ol>
-<h2 id="-тестирование">🧪 Тестирование<a class="headerlink" href="#-тестирование" title="Постоянная ссылка">&para;</a></h2>
-<p>После каждого этапа:
-1. Запустить сборку: <code>pio run</code>
-2. Запустить тесты: <code>python scripts/run_comprehensive_tests.py</code>
-3. Проверить технический долг: <code>python scripts/analyze_technical_debt.py</code></p>
-<h2 id="-коммиты">📝 Коммиты<a class="headerlink" href="#-коммиты" title="Постоянная ссылка">&para;</a></h2>
-<p>Рекомендуется коммитить каждый этап отдельно:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Quick fix: floating point literals (f → F)&quot;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Quick fix: remove redundant declarations&quot;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Quick fix: add braces around statements&quot;</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Quick fix: replace magic numbers with constants&quot;</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Quick fix: optimize enum sizes&quot;</span>
-</code></pre></div></p>
-<h2 id="выполнено-2025-07-02">Выполнено (2025-07-02)<a class="headerlink" href="#выполнено-2025-07-02" title="Постоянная ссылка">&para;</a></h2>
+<h2 id="-заключение">🏆 Заключение<a class="headerlink" href="#-заключение" title="Постоянная ссылка">&para;</a></h2>
+<p>Система автоматического исправления технического долга полностью функциональна:</p>
 <ul>
-<li>Оптимизирован размер всех enum через <code>std::uint8_t</code> (logger, UI, sensor_compensation, wifi_manager)</li>
-<li>Вынесены магические числа в константы для WiFi, LED, таймингов, буферов, разделителей (см. <code>jxct_constants.h</code>)</li>
-<li>Приведён к единому стилю вызов констант во всех изменённых файлах</li>
-<li>Проверена сборка — всё работает корректно</li>
+<li>✅ <strong>Автоматизация:</strong> Все простые исправления выполняются автоматически</li>
+<li>✅ <strong>Качество:</strong> Pre-commit проверки предотвращают регрессии</li>
+<li>✅ <strong>Отчёты:</strong> Детальная аналитика технического долга</li>
+<li>✅ <strong>Кроссплатформенность:</strong> Работает в Windows и Linux</li>
 </ul>
-<h2 id="рекомендации-для-следующих-шагов">Рекомендации для следующих шагов<a class="headerlink" href="#рекомендации-для-следующих-шагов" title="Постоянная ссылка">&para;</a></h2>
-<ul>
-<li>Аналогично вынести магические числа из других крупных файлов (<code>web_templates.cpp</code>, <code>routes_service.cpp</code>, <code>routes_reports.cpp</code> и др.)</li>
-<li>После каждого этапа — пересборка и тестирование</li>
-<li>Не вносить рискованных изменений без отдельного тестирования</li>
-</ul>
-<h2 id="история-изменений">История изменений<a class="headerlink" href="#история-изменений" title="Постоянная ссылка">&para;</a></h2>
-<ul>
-<li>2025-07-02: Оптимизация enum, вынос магических чисел, обновление отчёта </li>
-</ul>
-<h2 id="-завершённые-исправления">✅ ЗАВЕРШЁННЫЕ ИСПРАВЛЕНИЯ<a class="headerlink" href="#-завершённые-исправления" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-исправление-предупреждений-clang-tidy">1. Исправление предупреждений clang-tidy<a class="headerlink" href="#1-исправление-предупреждений-clang-tidy" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Статус:</strong> ✅ ЗАВЕРШЕНО</li>
-<li><strong>Файлы:</strong> Все исходные файлы</li>
-<li><strong>Изменения:</strong></li>
-<li>Добавлены суффиксы 'f' для float литералов</li>
-<li>Добавлены фигурные скобки в if-блоках</li>
-<li>Проверены дублирующиеся объявления extern</li>
-<li>Оптимизирован размер enum через std::uint8_t</li>
-<li>Вынесены магические числа в константы</li>
-<li>Приведён стиль вызова констант</li>
-</ul>
-<h3 id="2-вынос-магических-чисел-в-константы">2. Вынос магических чисел в константы<a class="headerlink" href="#2-вынос-магических-чисел-в-константы" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Статус:</strong> ✅ ЗАВЕРШЕНО</li>
-<li><strong>Файлы:</strong> Все файлы web/API, jxct_constants.h</li>
-<li><strong>Изменения:</strong></li>
-<li>Все магические числа вынесены в централизованный файл jxct_constants.h</li>
-<li>Добавлены константы для HTTP кодов, интервалов, размеров JSON, порогов, тестовых данных</li>
-<li>Проведён финальный аудит всех файлов</li>
-<li>Устранены дубликаты констант</li>
-<li>Унифицирован стиль использования констант</li>
-<li>Код стал более поддерживаемым и прозрачным</li>
-</ul>
-<h3 id="3-анализ-и-устранение-дублирования-кода">3. Анализ и устранение дублирования кода<a class="headerlink" href="#3-анализ-и-устранение-дублирования-кода" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Статус:</strong> ✅ ЗАВЕРШЕНО</li>
-<li><strong>Файлы:</strong> Все исходные файлы</li>
-<li><strong>Изменения:</strong></li>
-<li>Улучшен алгоритм анализа дублирования</li>
-<li>Снижено количество дубликатов</li>
-<li>Уменьшен score технического долга</li>
-<li>Исправлены эвристики анализа</li>
-</ul>
-<h3 id="4-добавление-расширенных-unit-тестов">4. Добавление расширенных unit тестов<a class="headerlink" href="#4-добавление-расширенных-unit-тестов" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Статус:</strong> ✅ ЗАВЕРШЕНО</li>
-<li><strong>Файлы:</strong> test/test_validation_utils.cpp, test/test_format_utils.cpp, test/test_csrf_security.cpp</li>
-<li><strong>Изменения:</strong></li>
-<li>Добавлено 85+ новых unit тестов</li>
-<li>Полное покрытие validation_utils.cpp (50+ тестов)</li>
-<li>Полное покрытие format_utils.cpp (25+ тестов)</li>
-<li>Расширенные тесты CSRF безопасности (10+ тестов)</li>
-<li>Тесты граничных условий и безопасности</li>
-<li>Улучшено качество кода и надёжность</li>
-</ul>
-<h2 id="-результаты">📊 РЕЗУЛЬТАТЫ<a class="headerlink" href="#-результаты" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="предупреждения-clang-tidy">Предупреждения clang-tidy<a class="headerlink" href="#предупреждения-clang-tidy" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>До:</strong> Множественные предупреждения</li>
-<li><strong>После:</strong> Минимальное количество предупреждений</li>
-<li><strong>Улучшение:</strong> ~90%</li>
-</ul>
-<h3 id="магические-числа">Магические числа<a class="headerlink" href="#магические-числа" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>До:</strong> Множественные магические числа в коде</li>
-<li><strong>После:</strong> Все критические числа вынесены в константы</li>
-<li><strong>Улучшение:</strong> 100% покрытие бизнес-логики</li>
-</ul>
-<h3 id="дублирование-кода">Дублирование кода<a class="headerlink" href="#дублирование-кода" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>До:</strong> Высокий уровень дублирования</li>
-<li><strong>После:</strong> Значительно снижено</li>
-<li><strong>Улучшение:</strong> ~40% снижение дубликатов</li>
-</ul>
-<h3 id="покрытие-тестами">Покрытие тестами<a class="headerlink" href="#покрытие-тестами" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>До:</strong> Базовое покрытие</li>
-<li><strong>После:</strong> Расширенное покрытие с 85+ новыми тестами</li>
-<li><strong>Улучшение:</strong> Значительное увеличение надёжности</li>
-</ul>
-<h2 id="-следующие-шаги">🎯 СЛЕДУЮЩИЕ ШАГИ<a class="headerlink" href="#-следующие-шаги" title="Постоянная ссылка">&para;</a></h2>
-<ol>
-<li><strong>Автоматизация тестирования</strong></li>
-<li>Настройка CI/CD для автоматического запуска тестов</li>
-<li>Добавление интеграционных тестов</li>
-<li>Тесты производительности</li>
-<li>
-<p>Pre-commit hooks</p>
-</li>
-<li>
-<p><strong>Мониторинг качества кода</strong></p>
-</li>
-<li>Регулярные проверки clang-tidy</li>
-<li>Анализ дублирования кода</li>
-<li>Контроль магических чисел</li>
-<li>
-<p>Автоматические проверки покрытия тестами</p>
-</li>
-<li>
-<p><strong>Документация</strong></p>
-</li>
-<li>Обновление руководств разработчика</li>
-<li>Создание стандартов кодирования</li>
-<li>Документирование констант</li>
-<li>Руководства по тестированию</li>
-</ol>
-<h2 id="-заметки">📝 ЗАМЕТКИ<a class="headerlink" href="#-заметки" title="Постоянная ссылка">&para;</a></h2>
-<ul>
-<li>Все изменения протестированы и не нарушают функциональность</li>
-<li>Код стал более читаемым и поддерживаемым</li>
-<li>Улучшена производительность сборки</li>
-<li>Снижен технический долг проекта</li>
-<li>Добавлена надёжная система тестирования </li>
-</ul>
+<p>Проект готов к дальнейшему развитию с надёжной системой контроля качества.</p>
+<hr />
+<p><strong>Следующий шаг:</strong> Ручное исправление приоритетных проблем технического долга</p>
 
 
 

@@ -15,22 +15,22 @@
 #include "modbus_sensor.h"
 #include "mqtt_client.h"
 #include "thingspeak_client.h"
-#include "web_routes.h"  // 🏗️ Модульная архитектура v2.4.5
 #include "web/csrf_protection.h"  // 🔒 CSRF защита
+#include "web_routes.h"           // 🏗️ Модульная архитектура v2.4.5
 
 // Константы
 #define RESET_BUTTON_PIN 0             // GPIO0 для кнопки сброса
 #define WIFI_RECONNECT_INTERVAL 30000  // Интервал между попытками переподключения (30 секунд)
 
 // Константы для светодиода и таймингов
-#define LED_FAST_BLINK_INTERVAL 100    // Интервал быстрого мигания светодиода (мс)
-#define LED_SLOW_BLINK_INTERVAL 500    // Интервал медленного мигания светодиода (мс)
-#define WIFI_MODE_DELAY 100            // Задержка при смене режима WiFi (мс)
-#define NTP_TIMEOUT_MS 5000            // Таймаут для NTP синхронизации (мс)
-#define RESET_BUTTON_HOLD_TIME 5000    // Время удержания кнопки сброса (мс)
-#define RESTART_DELAY_MS 1000          // Задержка перед перезагрузкой (мс)
-#define DNS_PORT 53                    // Порт DNS сервера
-#define MAC_ADDRESS_BUFFER_SIZE 20     // Размер буфера для MAC адреса
+#define LED_FAST_BLINK_INTERVAL 100  // Интервал быстрого мигания светодиода (мс)
+#define LED_SLOW_BLINK_INTERVAL 500  // Интервал медленного мигания светодиода (мс)
+#define WIFI_MODE_DELAY 100          // Задержка при смене режима WiFi (мс)
+#define NTP_TIMEOUT_MS 5000          // Таймаут для NTP синхронизации (мс)
+#define RESET_BUTTON_HOLD_TIME 5000  // Время удержания кнопки сброса (мс)
+#define RESTART_DELAY_MS 1000        // Задержка перед перезагрузкой (мс)
+#define DNS_PORT 53                  // Порт DNS сервера
+#define MAC_ADDRESS_BUFFER_SIZE 20   // Размер буфера для MAC адреса
 
 // Глобальные переменные
 bool wifiConnected = false;
@@ -412,7 +412,7 @@ void handleRoot()
     html += navHtml();
     html += "<h1>" UI_ICON_CONFIG " Настройки JXCT</h1>";
     html += "<form action='/save' method='post'>";
-    html += getCSRFHiddenField(); // Добавляем CSRF токен
+    html += getCSRFHiddenField();  // Добавляем CSRF токен
     html += "<div class='section'><h2>WiFi настройки</h2>";
     html += "<div class='form-group'><label for='ssid'>SSID:</label><input type='text' id='ssid' name='ssid' value='" +
             String(config.ssid) + "' required></div>";

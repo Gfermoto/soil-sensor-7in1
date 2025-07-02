@@ -13,8 +13,7 @@ bool validateInterval(const String& argName, int minValue, int maxValue, const S
         int value = webServer.arg(argName).toInt();
         if (value < minValue || value > maxValue)
         {
-            logWarn("Валидация: некорректный %s: %d (допустимо %d-%d)", 
-                   description.c_str(), value, minValue, maxValue);
+            logWarn("Валидация: некорректный %s: %d (допустимо %d-%d)", description.c_str(), value, minValue, maxValue);
             return false;
         }
     }

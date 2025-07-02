@@ -2,8 +2,8 @@
 #include "../../include/jxct_constants.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
-#include "../../include/web_routes.h"
 #include "../../include/validation_utils.h"  // ✅ Валидация
+#include "../../include/web_routes.h"
 #include "../wifi_manager.h"
 
 void setupMainRoutes()
@@ -20,9 +20,9 @@ void setupMainRoutes()
             logWebRequest("POST", "/save", webServer.client().remoteIP().toString());
 
             // CSRF защита (безопасная - не ломает API)
-            if (!checkCSRFSafety()) {
-                logWarn("CSRF атака отклонена на /save от %s", 
-                        webServer.client().remoteIP().toString().c_str());
+            if (!checkCSRFSafety())
+            {
+                logWarn("CSRF атака отклонена на /save от %s", webServer.client().remoteIP().toString().c_str());
                 String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                 webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
                 return;

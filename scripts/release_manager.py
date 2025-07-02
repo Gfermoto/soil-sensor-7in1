@@ -18,13 +18,13 @@ class ReleaseManager:
         self.version_file = self.project_dir / "VERSION"
         self.version_header = self.project_dir / "include" / "version.h"
         self.platformio_ini = self.project_dir / "platformio.ini"
-        
+
     def get_current_version(self) -> str:
         """Получить текущую версию из файла VERSION"""
         if not self.version_file.exists():
             return "0.0.0"
         return self.version_file.read_text(encoding='utf-8').strip()
-    
+
     def get_latest_git_tag(self) -> str:
         """Получить последний git тег"""
         try:
@@ -39,27 +39,27 @@ class ReleaseManager:
             return tag.lstrip("v") if tag.startswith("v") else tag
         except subprocess.CalledProcessError:
             return ""
-    
+
     def validate_version_format(self, version: str) -> bool:
         """Проверить формат версии (major.minor.patch)"""
         return bool(re.match(r"^\d+\.\d+\.\d+$", version))
-    
+
     def parse_version(self, version: str) -> tuple:
         """Разобрать версию на компоненты"""
         match = re.match(r"(\d+)\.(\d+)\.(\d+)", version)
         if not match:
             raise ValueError(f"Неверный формат версии: {version}")
         return tuple(map(int, match.groups()))
-    
+
     def update_version_file(self, version: str):
         """Обновить файл VERSION"""
         self.version_file.write_text(f"{version}\n", encoding='utf-8')
         print(f"✅ Обновлен файл VERSION: {version}")
-    
+
     def update_version_header(self, version: str):
         """Обновить include/version.h"""
         major, minor, patch = self.parse_version(version)
-        
+
         header_content = f"""#pragma once
 
 // Auto-generated. DO NOT EDIT MANUALLY.
@@ -89,17 +89,17 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
 #endif
 #define JXCT_FULL_VERSION_STRING JXCT_VERSION_STRING " (built " JXCT_BUILD_DATE " " JXCT_BUILD_TIME ")"
 """
-        
+
         self.version_header.parent.mkdir(parents=True, exist_ok=True)
         self.version_header.write_text(header_content, encoding='utf-8')
         print(f"✅ Обновлен include/version.h: {version}")
-    
+
     def update_platformio_ini(self, version: str):
         """Обновить версию в platformio.ini"""
         if not self.platformio_ini.exists():
             print("⚠️  platformio.ini не найден, пропускаем")
             return
-            
+
         try:
             content = self.platformio_ini.read_text(encoding='utf-8')
         except UnicodeDecodeError:
@@ -113,14 +113,14 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
             else:
                 print("❌ Не удалось прочитать platformio.ini")
                 return
-        
+
         # Обновляем комментарий с версией
         content = re.sub(
             r"; Version: \d+\.\d+\.\d+",
             f"; Version: {version}",
             content
         )
-        
+
         # Обновляем дату последнего обновления
         current_date = datetime.now().strftime("%B %Y")
         content = re.sub(
@@ -128,15 +128,15 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
             f"; Last Updated: {current_date}",
             content
         )
-        
+
         self.platformio_ini.write_text(content, encoding='utf-8')
         print(f"✅ Обновлен platformio.ini: {version}")
-    
+
     def bump_version(self, bump_type: str):
         """Увеличить версию (major, minor, patch)"""
         current = self.get_current_version()
         major, minor, patch = self.parse_version(current)
-        
+
         if bump_type == "major":
             major += 1
             minor = 0
@@ -148,10 +148,10 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
             patch += 1
         else:
             raise ValueError(f"Неизвестный тип bump: {bump_type}")
-        
+
         new_version = f"{major}.{minor}.{patch}"
         return new_version
-    
+
     def update_all_version_files(self, version: str):
         """Обновить версию во всех файлах"""
         print(f"📝 Обновление версии до {version}...")
@@ -159,7 +159,7 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
         self.update_version_header(version)
         self.update_platformio_ini(version)
         print(f"✅ Версия {version} обновлена во всех файлах")
-    
+
     def delete_git_tag(self, version: str):
         """Удалить git тег локально и на origin"""
         tag_name = f"v{version}"
@@ -191,7 +191,7 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
         subprocess.run(["git", "tag", "-a", tag_name, "-m", tag_message], cwd=self.project_dir, check=True)
         print(f"✅ Создан git тег: {tag_name}")
         return True
-    
+
     def commit_changes(self, version: str, message: str = None):
         """Закоммитить изменения версии"""
         try:
@@ -200,7 +200,7 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
                 cwd=self.project_dir,
                 check=True
             )
-            
+
             commit_msg = message or f"version: обновлена до {version}"
             subprocess.run(
                 ["git", "commit", "-m", commit_msg],
@@ -212,7 +212,7 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
         except subprocess.CalledProcessError as e:
             print(f"❌ Ошибка при коммите: {e}")
             return False
-    
+
     def push_changes(self, push_tag: bool = True):
         """Запушить изменения и тег"""
         try:
@@ -223,7 +223,7 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
                 check=True
             )
             print("✅ Изменения запушены в main")
-            
+
             # Пушим тег
             if push_tag:
                 subprocess.run(
@@ -236,7 +236,7 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
         except subprocess.CalledProcessError as e:
             print(f"❌ Ошибка при пуше: {e}")
             return False
-    
+
     def create_release(self, version: str, message: str = None, auto_push: bool = True, force_tag: bool = False, no_bump: bool = False):
         """Создать полный релиз, с опциями force_tag и no_bump"""
         print(f"🚀 Создание релиза {version}... (force_tag={force_tag}, no_bump={no_bump})")
@@ -255,15 +255,15 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
                 return False
         print(f"🎉 Релиз {version} успешно создан!")
         return True
-    
+
     def sync_versions(self):
         """Синхронизировать версии между файлами"""
         print("🔄 Синхронизация версий...")
-        
+
         # Получаем версию из git тега или файла VERSION
         git_version = self.get_latest_git_tag()
         file_version = self.get_current_version()
-        
+
         if git_version and file_version != git_version:
             print(f"📝 Синхронизируем версию: {file_version} → {git_version}")
             self.update_all_version_files(git_version)
@@ -273,7 +273,7 @@ static const char* FIRMWARE_VERSION = JXCT_VERSION_STRING;
             self.update_version_header(file_version)
             self.update_platformio_ini(file_version)
             return True
-        
+
         print("✅ Версии уже синхронизированы")
         return False
 
@@ -329,4 +329,4 @@ def main():
         sys.exit(1)
 
 if __name__ == "__main__":
-    main() 
+    main()

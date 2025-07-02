@@ -24,4 +24,4 @@ void initCSRFProtection();
 // Вспомогательные функции
 String methodToString(HTTPMethod method);
 
-#endif // CSRF_PROTECTION_H 
+#endif  // CSRF_PROTECTION_H

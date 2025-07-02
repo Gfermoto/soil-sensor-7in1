@@ -944,9 +944,9 @@
 
 <h1 id="-отчет-о-прогрессе-снижение-технического-долга">📊 ОТЧЕТ О ПРОГРЕССЕ: СНИЖЕНИЕ ТЕХНИЧЕСКОГО ДОЛГА<a class="headerlink" href="#-отчет-о-прогрессе-снижение-технического-долга" title="Постоянная ссылка">&para;</a></h1>
 <p><em>Дата: 02 июля 2025</em></p>
-<p><strong>Проект:</strong> JXCT Soil Sensor 7-in-1<br />
-<strong>Версия:</strong> 3.6.7<br />
-<strong>Этап:</strong> 2 (Стабилизация и оптимизация)  </p>
+<p><strong>Проект:</strong> JXCT Soil Sensor 7-in-1
+<strong>Версия:</strong> 3.6.7
+<strong>Этап:</strong> 2 (Стабилизация и оптимизация)</p>
 <hr />
 <h2 id="-достижения-за-период-январь-июль-2025">✅ <strong>ДОСТИЖЕНИЯ ЗА ПЕРИОД ЯНВАРЬ-ИЮЛЬ 2025</strong><a class="headerlink" href="#-достижения-за-период-январь-июль-2025" title="Постоянная ссылка">&para;</a></h2>
 <h3 id="-безопасность-csrf-защита-завершено-">🔒 <strong>БЕЗОПАСНОСТЬ: CSRF ЗАЩИТА (ЗАВЕРШЕНО)</strong> ✅<a class="headerlink" href="#-безопасность-csrf-защита-завершено-" title="Постоянная ссылка">&para;</a></h3>
@@ -966,7 +966,7 @@
 <p><strong>Технические детали:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Пример интеграции CSRF защиты</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">checkCSRFSafety</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">logWarn</span><span class="p">(</span><span class="s">&quot;CSRF атака отклонена на /save от %s&quot;</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">logWarn</span><span class="p">(</span><span class="s">&quot;CSRF атака отклонена на /save от %s&quot;</span><span class="p">,</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">            </span><span class="n">webServer</span><span class="p">.</span><span class="n">client</span><span class="p">().</span><span class="n">remoteIP</span><span class="p">().</span><span class="n">toString</span><span class="p">().</span><span class="n">c_str</span><span class="p">());</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="n">html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">generateErrorPage</span><span class="p">(</span><span class="mi">403</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Forbidden: Недействительный CSRF токен&quot;</span><span class="p">);</span>
 <a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">webServer</span><span class="p">.</span><span class="n">send</span><span class="p">(</span><span class="mi">403</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;text/html; charset=utf-8&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">html</span><span class="p">);</span>
@@ -1106,7 +1106,7 @@
 <h3 id="-unit-testing-strategy">🧪 <strong>Unit Testing Strategy</strong><a class="headerlink" href="#-unit-testing-strategy" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>test/
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── test_calibration_manager.cpp    # Новый - 7 тестов интерполяции
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├── unity_simple.h                  # Минимальная Unity заглушка  
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>├── unity_simple.h                  # Минимальная Unity заглушка
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>├── test_simple.cpp                 # Существующие тесты
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>└── stubs/                          # Arduino заглушки
 <a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    ├── Arduino.h
@@ -1119,7 +1119,7 @@
 <ul class="task-list">
 <li>[✅] CSRF токены на POST эндпоинты - <strong>ЗАВЕРШЕНО</strong></li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Input validation - В очереди</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Rate limiting audit - В очереди  </li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Rate limiting audit - В очереди</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> OWASP IoT Top 10 audit - В очереди</li>
 </ul>
 <h3 id="-этап-11---тесты-60-завершено">🔄 <strong>Этап 1.1 - Тесты: 60% ЗАВЕРШЕНО</strong><a class="headerlink" href="#-этап-11---тесты-60-завершено" title="Постоянная ссылка">&para;</a></h3>
@@ -1146,13 +1146,13 @@
 </ul>
 <hr />
 <h2 id="-контакты-и-ответственность">📞 <strong>КОНТАКТЫ И ОТВЕТСТВЕННОСТЬ</strong><a class="headerlink" href="#-контакты-и-ответственность" title="Постоянная ссылка">&para;</a></h2>
-<p><strong>Исполнитель:</strong> AI Assistant (Tech Debt Reduction Plan)<br />
-<strong>Дата:</strong> 22.01.2025<br />
-<strong>Следующий отчет:</strong> 23.01.2025<br />
-<strong>Статус:</strong> ✅ В соответствии с планом  </p>
+<p><strong>Исполнитель:</strong> AI Assistant (Tech Debt Reduction Plan)
+<strong>Дата:</strong> 22.01.2025
+<strong>Следующий отчет:</strong> 23.01.2025
+<strong>Статус:</strong> ✅ В соответствии с планом</p>
 <hr />
-<p><em>"Безопасность превыше скорости. Качество превыше количества."</em><br />
-<em>- Консилиум экспертов JXCT, 22.01.2025</em> </p>
+<p><em>"Безопасность превыше скорости. Качество превыше количества."</em>
+<em>- Консилиум экспертов JXCT, 22.01.2025</em></p>
 
 
 

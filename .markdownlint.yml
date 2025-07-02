@@ -1,3 +1,3 @@
 default: true
 MD013: false  # line length
-MD033: false  # embedded HTML 
+MD033: false  # embedded HTML

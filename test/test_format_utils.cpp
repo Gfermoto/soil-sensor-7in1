@@ -75,7 +75,7 @@ void test_format_temperature()
 void test_format_ec()
 {
     auto result = format_ec(1500.7F);
-    TEST_ASSERT_EQUAL_STRING("1501", result.c_str()); // Округление
+    TEST_ASSERT_EQUAL_STRING("1501", result.c_str());  // Округление
 }
 
 void test_format_ph()
@@ -87,7 +87,7 @@ void test_format_ph()
 void test_format_npk()
 {
     auto result = format_npk(125.7F);
-    TEST_ASSERT_EQUAL_STRING("126", result.c_str()); // Округление
+    TEST_ASSERT_EQUAL_STRING("126", result.c_str());  // Округление
 }
 
 // ============================================================================
@@ -120,8 +120,8 @@ void test_formatValue_precision_3()
 
 void test_formatValue_precision_default()
 {
-    auto result = formatValue(25.789F, "°C", 5); // Неизвестная точность
-    TEST_ASSERT_EQUAL_STRING("25.79°C", result.c_str()); // Должна быть точность 2
+    auto result = formatValue(25.789F, "°C", 5);          // Неизвестная точность
+    TEST_ASSERT_EQUAL_STRING("25.79°C", result.c_str());  // Должна быть точность 2
 }
 
 void test_formatValue_negative()
@@ -147,7 +147,7 @@ void test_formatValue_different_units()
     auto result1 = formatValue(60.0F, "%", 1);
     auto result2 = formatValue(1500.0F, "µS/cm", 0);
     auto result3 = formatValue(6.5F, "pH", 1);
-    
+
     TEST_ASSERT_EQUAL_STRING("60.0%", result1.c_str());
     TEST_ASSERT_EQUAL_STRING("1500µS/cm", result2.c_str());
     TEST_ASSERT_EQUAL_STRING("6.5pH", result3.c_str());
@@ -204,7 +204,7 @@ void setup()
     Serial.begin(115200);
     delay(2000);
     UNITY_BEGIN();
-    
+
     // Тесты универсального форматирования float
     RUN_TEST(test_formatFloat_as_int);
     RUN_TEST(test_formatFloat_as_float_0_precision);
@@ -213,14 +213,14 @@ void setup()
     RUN_TEST(test_formatFloat_negative);
     RUN_TEST(test_formatFloat_zero);
     RUN_TEST(test_formatFloat_rounding);
-    
+
     // Тесты специализированного форматирования
     RUN_TEST(test_format_moisture);
     RUN_TEST(test_format_temperature);
     RUN_TEST(test_format_ec);
     RUN_TEST(test_format_ph);
     RUN_TEST(test_format_npk);
-    
+
     // Тесты веб-форматирования
     RUN_TEST(test_formatValue_precision_0);
     RUN_TEST(test_formatValue_precision_1);
@@ -231,28 +231,28 @@ void setup()
     RUN_TEST(test_formatValue_zero);
     RUN_TEST(test_formatValue_empty_unit);
     RUN_TEST(test_formatValue_different_units);
-    
+
     // Тесты граничных значений
     RUN_TEST(test_formatFloat_very_small);
     RUN_TEST(test_formatFloat_very_large);
     RUN_TEST(test_formatValue_large_number);
-    
+
     // Тесты округления
     RUN_TEST(test_formatFloat_rounding_up);
     RUN_TEST(test_formatFloat_rounding_down);
     RUN_TEST(test_formatValue_rounding);
-    
+
     UNITY_END();
 }
 
 void loop() {}
-#else  // Native PC tests
+#else   // Native PC tests
 int main(int argc, char** argv)
 {
     (void)argc;
     (void)argv;
     UNITY_BEGIN();
-    
+
     // Тесты универсального форматирования float
     RUN_TEST(test_formatFloat_as_int);
     RUN_TEST(test_formatFloat_as_float_0_precision);
@@ -261,14 +261,14 @@ int main(int argc, char** argv)
     RUN_TEST(test_formatFloat_negative);
     RUN_TEST(test_formatFloat_zero);
     RUN_TEST(test_formatFloat_rounding);
-    
+
     // Тесты специализированного форматирования
     RUN_TEST(test_format_moisture);
     RUN_TEST(test_format_temperature);
     RUN_TEST(test_format_ec);
     RUN_TEST(test_format_ph);
     RUN_TEST(test_format_npk);
-    
+
     // Тесты веб-форматирования
     RUN_TEST(test_formatValue_precision_0);
     RUN_TEST(test_formatValue_precision_1);
@@ -279,17 +279,17 @@ int main(int argc, char** argv)
     RUN_TEST(test_formatValue_zero);
     RUN_TEST(test_formatValue_empty_unit);
     RUN_TEST(test_formatValue_different_units);
-    
+
     // Тесты граничных значений
     RUN_TEST(test_formatFloat_very_small);
     RUN_TEST(test_formatFloat_very_large);
     RUN_TEST(test_formatValue_large_number);
-    
+
     // Тесты округления
     RUN_TEST(test_formatFloat_rounding_up);
     RUN_TEST(test_formatFloat_rounding_down);
     RUN_TEST(test_formatValue_rounding);
-    
+
     return UNITY_END();
 }
-#endif  // ARDUINO 
+#endif  // ARDUINO

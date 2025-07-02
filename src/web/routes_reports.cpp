@@ -1,14 +1,15 @@
+#include <ArduinoJson.h>
+#include <SPIFFS.h>
 #include "../../include/jxct_config_vars.h"
+#include "../../include/jxct_constants.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
-#include <ArduinoJson.h>
-#include <SPIFFS.h>
-#include "../../include/jxct_constants.h"
 
 // Структуры для отчётов
-struct TestSummary {
+struct TestSummary
+{
     int total;
     int passed;
     int failed;
@@ -16,7 +17,8 @@ struct TestSummary {
     String timestamp;
 };
 
-struct TechnicalDebtMetrics {
+struct TechnicalDebtMetrics
+{
     int code_smells;
     int duplicated_lines;
     int complexity_issues;
@@ -44,92 +46,104 @@ void setupReportsRoutes()
     logInfo("🧪 Настройка маршрутов отчётов тестирования...");
 
     // API для получения отчётов в JSON формате
-    webServer.on("/api/reports/test-summary", HTTP_GET, []() {
-        logWebRequest("GET", "/api/reports/test-summary", webServer.client().remoteIP().toString());
-        
-        updateReportsCache();
-        
-        StaticJsonDocument<JSON_DOC_SMALL> doc;
-        doc["timestamp"] = lastTestSummary.timestamp;
-        doc["total"] = lastTestSummary.total;
-        doc["passed"] = lastTestSummary.passed;
-        doc["failed"] = lastTestSummary.failed;
-        doc["success_rate"] = lastTestSummary.success_rate;
-        
-        String json;
-        serializeJson(doc, json);
-        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
-    });
+    webServer.on("/api/reports/test-summary", HTTP_GET,
+                 []()
+                 {
+                     logWebRequest("GET", "/api/reports/test-summary", webServer.client().remoteIP().toString());
 
-    webServer.on("/api/reports/technical-debt", HTTP_GET, []() {
-        logWebRequest("GET", "/api/reports/technical-debt", webServer.client().remoteIP().toString());
-        
-        updateReportsCache();
-        
-        StaticJsonDocument<JSON_DOC_MEDIUM> doc;
-        doc["code_smells"] = lastTechDebt.code_smells;
-        doc["duplicated_lines"] = lastTechDebt.duplicated_lines;
-        doc["complexity_issues"] = lastTechDebt.complexity_issues;
-        doc["security_hotspots"] = lastTechDebt.security_hotspots;
-        doc["maintainability_rating"] = lastTechDebt.maintainability_rating;
-        doc["debt_ratio"] = lastTechDebt.debt_ratio;
-        doc["coverage"] = lastTechDebt.coverage;
-        
-        String json;
-        serializeJson(doc, json);
-        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
-    });
+                     updateReportsCache();
+
+                     StaticJsonDocument<JSON_DOC_SMALL> doc;
+                     doc["timestamp"] = lastTestSummary.timestamp;
+                     doc["total"] = lastTestSummary.total;
+                     doc["passed"] = lastTestSummary.passed;
+                     doc["failed"] = lastTestSummary.failed;
+                     doc["success_rate"] = lastTestSummary.success_rate;
+
+                     String json;
+                     serializeJson(doc, json);
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
+                 });
+
+    webServer.on("/api/reports/technical-debt", HTTP_GET,
+                 []()
+                 {
+                     logWebRequest("GET", "/api/reports/technical-debt", webServer.client().remoteIP().toString());
+
+                     updateReportsCache();
+
+                     StaticJsonDocument<JSON_DOC_MEDIUM> doc;
+                     doc["code_smells"] = lastTechDebt.code_smells;
+                     doc["duplicated_lines"] = lastTechDebt.duplicated_lines;
+                     doc["complexity_issues"] = lastTechDebt.complexity_issues;
+                     doc["security_hotspots"] = lastTechDebt.security_hotspots;
+                     doc["maintainability_rating"] = lastTechDebt.maintainability_rating;
+                     doc["debt_ratio"] = lastTechDebt.debt_ratio;
+                     doc["coverage"] = lastTechDebt.coverage;
+
+                     String json;
+                     serializeJson(doc, json);
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
+                 });
 
     // API для получения полных отчётов
-    webServer.on("/api/reports/full", HTTP_GET, []() {
-        logWebRequest("GET", "/api/reports/full", webServer.client().remoteIP().toString());
-        
-        updateReportsCache();
-        
-        StaticJsonDocument<JSON_DOC_LARGE> doc;
-        
-        // Тестовые метрики
-        doc["test_summary"]["total"] = lastTestSummary.total;
-        doc["test_summary"]["passed"] = lastTestSummary.passed;
-        doc["test_summary"]["failed"] = lastTestSummary.failed;
-        doc["test_summary"]["success_rate"] = lastTestSummary.success_rate;
-        doc["test_summary"]["timestamp"] = lastTestSummary.timestamp;
-        
-        // Технический долг
-        doc["technical_debt"]["code_smells"] = lastTechDebt.code_smells;
-        doc["technical_debt"]["duplicated_lines"] = lastTechDebt.duplicated_lines;
-        doc["technical_debt"]["complexity_issues"] = lastTechDebt.complexity_issues;
-        doc["technical_debt"]["security_hotspots"] = lastTechDebt.security_hotspots;
-        doc["technical_debt"]["maintainability_rating"] = lastTechDebt.maintainability_rating;
-        doc["technical_debt"]["debt_ratio"] = lastTechDebt.debt_ratio;
-        doc["technical_debt"]["coverage"] = lastTechDebt.coverage;
-        
-        String json;
-        serializeJson(doc, json);
-        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
-    });
+    webServer.on("/api/reports/full", HTTP_GET,
+                 []()
+                 {
+                     logWebRequest("GET", "/api/reports/full", webServer.client().remoteIP().toString());
+
+                     updateReportsCache();
+
+                     StaticJsonDocument<JSON_DOC_LARGE> doc;
+
+                     // Тестовые метрики
+                     doc["test_summary"]["total"] = lastTestSummary.total;
+                     doc["test_summary"]["passed"] = lastTestSummary.passed;
+                     doc["test_summary"]["failed"] = lastTestSummary.failed;
+                     doc["test_summary"]["success_rate"] = lastTestSummary.success_rate;
+                     doc["test_summary"]["timestamp"] = lastTestSummary.timestamp;
+
+                     // Технический долг
+                     doc["technical_debt"]["code_smells"] = lastTechDebt.code_smells;
+                     doc["technical_debt"]["duplicated_lines"] = lastTechDebt.duplicated_lines;
+                     doc["technical_debt"]["complexity_issues"] = lastTechDebt.complexity_issues;
+                     doc["technical_debt"]["security_hotspots"] = lastTechDebt.security_hotspots;
+                     doc["technical_debt"]["maintainability_rating"] = lastTechDebt.maintainability_rating;
+                     doc["technical_debt"]["debt_ratio"] = lastTechDebt.debt_ratio;
+                     doc["technical_debt"]["coverage"] = lastTechDebt.coverage;
+
+                     String json;
+                     serializeJson(doc, json);
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
+                 });
 
     // Веб-интерфейс для просмотра отчётов
-    webServer.on("/reports", HTTP_GET, []() {
-        logWebRequest("GET", "/reports", webServer.client().remoteIP().toString());
-        
-        String html = generateReportsHTML();
-        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
-    });
+    webServer.on("/reports", HTTP_GET,
+                 []()
+                 {
+                     logWebRequest("GET", "/reports", webServer.client().remoteIP().toString());
+
+                     String html = generateReportsHTML();
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
+                 });
 
     // Дашборд отчётов (краткий обзор)
-    webServer.on("/reports/dashboard", HTTP_GET, []() {
-        logWebRequest("GET", "/reports/dashboard", webServer.client().remoteIP().toString());
-        
-        String html = generateReportsDashboardHTML();
-        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
-    });
+    webServer.on("/reports/dashboard", HTTP_GET,
+                 []()
+                 {
+                     logWebRequest("GET", "/reports/dashboard", webServer.client().remoteIP().toString());
+
+                     String html = generateReportsDashboardHTML();
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
+                 });
 
     logSuccess("🧪 Маршруты отчётов тестирования настроены");
 }
 
-static bool loadTestReport(const String& filename, TestSummary& summary) {
-    if (!SPIFFS.exists(filename)) {
+static bool loadTestReport(const String& filename, TestSummary& summary)
+{
+    if (!SPIFFS.exists(filename))
+    {
         // Заглушка с демо-данными
         summary.total = TESTS_TOTAL_COUNT;
         summary.passed = TESTS_PASSED_COUNT;
@@ -138,31 +152,35 @@ static bool loadTestReport(const String& filename, TestSummary& summary) {
         summary.timestamp = TEST_TIMESTAMP_EXAMPLE;
         return true;
     }
-    
+
     File file = SPIFFS.open(filename, "r");
-    if (!file) {
+    if (!file)
+    {
         return false;
     }
-    
+
     StaticJsonDocument<REPORTS_JSON_DOC_SIZE> doc;
     DeserializationError error = deserializeJson(doc, file);
     file.close();
-    
-    if (error) {
+
+    if (error)
+    {
         return false;
     }
-    
+
     summary.total = doc["summary"]["total"] | 0;
     summary.passed = doc["summary"]["passed"] | 0;
     summary.failed = doc["summary"]["failed"] | 0;
     summary.success_rate = doc["summary"]["success_rate"] | 0.0;
     summary.timestamp = doc["timestamp"] | "Unknown";
-    
+
     return true;
 }
 
-static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& debt) {
-    if (!SPIFFS.exists(filename)) {
+static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& debt)
+{
+    if (!SPIFFS.exists(filename))
+    {
         // Заглушка с демо-данными
         debt.code_smells = TECH_DEBT_CODE_SMELLS;
         debt.duplicated_lines = TECH_DEBT_DUPLICATED_LINES;
@@ -173,20 +191,22 @@ static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& deb
         debt.coverage = TECH_DEBT_COVERAGE;
         return true;
     }
-    
+
     File file = SPIFFS.open(filename, "r");
-    if (!file) {
+    if (!file)
+    {
         return false;
     }
-    
+
     StaticJsonDocument<REPORTS_JSON_DOC_LARGE_SIZE> doc;
     DeserializationError error = deserializeJson(doc, file);
     file.close();
-    
-    if (error) {
+
+    if (error)
+    {
         return false;
     }
-    
+
     debt.code_smells = doc["metrics"]["code_smells"] | 0;
     debt.duplicated_lines = doc["metrics"]["duplicated_lines"] | 0;
     debt.complexity_issues = doc["metrics"]["complexity_issues"] | 0;
@@ -194,22 +214,25 @@ static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& deb
     debt.maintainability_rating = doc["metrics"]["maintainability_rating"] | "Unknown";
     debt.debt_ratio = doc["metrics"]["debt_ratio"] | 0.0;
     debt.coverage = doc["metrics"]["coverage"] | 0.0;
-    
+
     return true;
 }
 
-static void updateReportsCache() {
+static void updateReportsCache()
+{
     unsigned long now = millis();
-    if (now - lastReportUpdate < REPORT_CACHE_TTL) {
-        return; // Кэш ещё актуален
+    if (now - lastReportUpdate < REPORT_CACHE_TTL)
+    {
+        return;  // Кэш ещё актуален
     }
-    
+
     loadTestReport("/reports/test-summary.json", lastTestSummary);
     loadTechDebtReport("/reports/technical-debt.json", lastTechDebt);
     lastReportUpdate = now;
 }
 
-static String generateReportsHTML() {
+static String generateReportsHTML()
+{
     updateReportsCache();
     String html = R"(
 <!DOCTYPE html>
@@ -334,12 +357,13 @@ static String generateReportsHTML() {
     return html;
 }
 
-static String generateReportsDashboardHTML() {
+static String generateReportsDashboardHTML()
+{
     updateReportsCache();
-    
+
     String statusIcon = lastTestSummary.success_rate >= 90 ? "[OK]" : "[WARNING]";
     String statusColor = lastTestSummary.success_rate >= 90 ? "#28a745" : "#ffc107";
-    
+
     String html = R"(
 <!DOCTYPE html>
 <html lang="en">
@@ -373,7 +397,8 @@ static String generateReportsDashboardHTML() {
         .status-text {
             font-size: 1.5em;
             font-weight: bold;
-            color: )" + statusColor + R"(;
+            color: )" +
+                  statusColor + R"(;
             margin-bottom: 10px;
         }
         .quick-stats {
@@ -422,33 +447,40 @@ static String generateReportsDashboardHTML() {
 <body>
     <div class="dashboard">
         <div class="summary-card">
-            <div class="status-icon">)" + statusIcon + R"(</div>
+            <div class="status-icon">)" +
+                  statusIcon + R"(</div>
             <div class="status-text">
-                )" + (lastTestSummary.success_rate >= 90 ? "System is stable" : "Attention required") + R"(
+                )" +
+                  (lastTestSummary.success_rate >= 90 ? "System is stable" : "Attention required") + R"(
             </div>
             <div style="color: #6c757d;">
-                Last testing: )" + lastTestSummary.timestamp + R"(
+                Last testing: )" +
+                  lastTestSummary.timestamp + R"(
             </div>
-            
+
             <div class="quick-stats">
                 <div class="stat-item">
-                    <div class="stat-value">)" + String(lastTestSummary.success_rate, 0) + R"(%</div>
+                    <div class="stat-value">)" +
+                  String(lastTestSummary.success_rate, 0) + R"(%</div>
                     <div class="stat-label">Success Rate</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">)" + String(lastTestSummary.total) + R"(</div>
+                    <div class="stat-value">)" +
+                  String(lastTestSummary.total) + R"(</div>
                     <div class="stat-label">Tests</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">)" + String(lastTechDebt.code_smells) + R"(</div>
+                    <div class="stat-value">)" +
+                  String(lastTechDebt.code_smells) + R"(</div>
                     <div class="stat-label">Code Smells</div>
                 </div>
                 <div class="stat-item">
-                    <div class="stat-value">)" + String(lastTechDebt.coverage, 0) + R"(%</div>
+                    <div class="stat-value">)" +
+                  String(lastTechDebt.coverage, 0) + R"(%</div>
                     <div class="stat-label">Coverage</div>
                 </div>
             </div>
-            
+
             <div class="actions">
                 <a href="/reports" class="btn">[CHART] Detailed Reports</a>
                 <a href="/api/reports/full" class="btn btn-secondary">[FILE] JSON API</a>
@@ -459,6 +491,6 @@ static String generateReportsDashboardHTML() {
 </body>
 </html>
 )";
-    
+
     return html;
-} 
+}

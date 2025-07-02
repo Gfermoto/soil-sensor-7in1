@@ -943,8 +943,8 @@
 
 
 <h1 id="modbus-rtu-протокол-для-jxct-7-в-1-датчика-почвы">MODBUS RTU Протокол для JXCT 7-в-1 Датчика Почвы<a class="headerlink" href="#modbus-rtu-протокол-для-jxct-7-в-1-датчика-почвы" title="Постоянная ссылка">&para;</a></h1>
-<p><strong>Версия:</strong> 3.4.9<br />
-<strong>Дата:</strong> Июнь 2025<br />
+<p><strong>Версия:</strong> 3.4.9
+<strong>Дата:</strong> Июнь 2025
 <strong>Автор:</strong> JXCT Development Team</p>
 <hr />
 <h2 id="-содержание">📖 Содержание<a class="headerlink" href="#-содержание" title="Постоянная ссылка">&para;</a></h2>
@@ -1054,7 +1054,7 @@
 </code></pre></div></p>
 <p><strong>Расчет значений:</strong>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>Азот (N):    0x015E = 350 мг/кг
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Фосфор (P):  0x01F3 = 499 мг/кг  
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>Фосфор (P):  0x01F3 = 499 мг/кг
 <a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>Калий (K):   0x03D6 = 982 мг/кг
 </code></pre></div></p>
 <h2 id="-схема-подключения-esp32">🔧 Схема подключения ESP32<a class="headerlink" href="#-схема-подключения-esp32" title="Постоянная ссылка">&para;</a></h2>
@@ -1196,7 +1196,7 @@
 <a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>
 <a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">modbus</span><span class="p">.</span><span class="n">ku8MBSuccess</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="w">        </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modbus</span><span class="p">.</span><span class="n">getResponseBuffer</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
-<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">        </span><span class="n">logSuccess</span><span class="p">(</span><span class="s">&quot;Датчик найден! Версия прошивки: %d.%d&quot;</span><span class="p">,</span><span class="w"> </span>
+<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="w">        </span><span class="n">logSuccess</span><span class="p">(</span><span class="s">&quot;Датчик найден! Версия прошивки: %d.%d&quot;</span><span class="p">,</span>
 <a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="w">                  </span><span class="p">(</span><span class="n">version</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">,</span><span class="w"> </span><span class="n">version</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="mh">0xFF</span><span class="p">);</span>
 <a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span>
 <a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
@@ -1324,7 +1324,7 @@
 <li><a href="https://github.com/Gfermoto/soil-sensor-7in1">🌱 GitHub репозиторий</a> - Исходный код проекта</li>
 <li><a href="../../dev/QA_REFACTORING_PLAN_2025H2/">📋 План рефакторинга</a> - Планы развития на 2025</li>
 <li><a href="../../dev/TECH_DEBT_REPORT_2025-06/">📊 Отчет о техническом долге</a> - Анализ технических проблем</li>
-<li><a href="../../dev/ARCH_OVERALL/">🏗️ Архитектура системы</a> - Общая архитектура проекта </li>
+<li><a href="../../dev/ARCH_OVERALL/">🏗️ Архитектура системы</a> - Общая архитектура проекта</li>
 </ul>
 
 

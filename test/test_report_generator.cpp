@@ -7,68 +7,77 @@
  */
 
 #include "test_report_generator.hpp"
-#include <fstream>
-#include <sstream>
-#include <iomanip>
-#include <filesystem>
 #include <ctime>
+#include <filesystem>
+#include <fstream>
+#include <iomanip>
+#include <sstream>
 
 #ifdef __linux__
 #include <sys/resource.h>
 #include <unistd.h>
 #endif
 
-namespace jxct::testing {
+namespace jxct::testing
+{
 
-TestReportGenerator::TestReportGenerator(const ReportConfig& config)
-    : config_(config) {
+TestReportGenerator::TestReportGenerator(const ReportConfig& config) : config_(config)
+{
     // Создаём директорию для отчётов
     std::filesystem::create_directories(config_.outputDir);
-    
+
     // Инициализируем метрики
     metrics_ = QualityMetrics{};
 }
 
-void TestReportGenerator::addTestResult(const TestResult& result) {
+void TestReportGenerator::addTestResult(const TestResult& result)
+{
     results_.push_back(result);
     updateMetrics(result);
 }
 
-void TestReportGenerator::setTechnicalDebtMetrics(int codeSmells, int duplicatedLines, 
-                                                 int complexityIssues, int securityHotspots) {
+void TestReportGenerator::setTechnicalDebtMetrics(int codeSmells, int duplicatedLines, int complexityIssues,
+                                                  int securityHotspots)
+{
     metrics_.codeSmells = codeSmells;
     metrics_.duplicatedLines = duplicatedLines;
     metrics_.complexityIssues = complexityIssues;
     metrics_.securityHotspots = securityHotspots;
 }
 
-void TestReportGenerator::setCodeCoverage(double coverage) {
+void TestReportGenerator::setCodeCoverage(double coverage)
+{
     metrics_.codeCoverage = coverage;
 }
 
-void TestReportGenerator::generateReports() {
+void TestReportGenerator::generateReports()
+{
     auto report = createReport();
-    
-    if (config_.generateXML) {
+
+    if (config_.generateXML)
+    {
         generateXMLReport(report);
     }
-    
-    if (config_.generateHTML) {
+
+    if (config_.generateHTML)
+    {
         generateHTMLReport(report);
     }
-    
-    if (config_.generateJSON) {
+
+    if (config_.generateJSON)
+    {
         generateJSONReport(report);
     }
-    
+
     // Сохраняем исторические данные
     saveHistoricalData(report);
-    
+
     // Анализируем регрессии
     analyzeRegressions(report);
 }
 
-TestReport TestReportGenerator::createReport() {
+TestReport TestReportGenerator::createReport()
+{
     TestReport report;
     report.timestamp = std::chrono::system_clock::now();
     report.environment = getEnvironmentInfo();
@@ -76,86 +85,96 @@ TestReport TestReportGenerator::createReport() {
     report.gitBranch = getGitBranch();
     report.metrics = metrics_;
     report.results = results_;
-    
+
     return report;
 }
 
-void TestReportGenerator::generateXMLReport(const TestReport& report) {
+void TestReportGenerator::generateXMLReport(const TestReport& report)
+{
     std::string filename = config_.outputDir + "/test-results.xml";
     std::ofstream file(filename);
-    
-    if (!file.is_open()) {
+
+    if (!file.is_open())
+    {
         throw std::runtime_error("Cannot create XML report file: " + filename);
     }
-    
+
     file << "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
     file << "<testsuites name=\"" << config_.projectName << "\" ";
     file << "tests=\"" << metrics_.totalTests << "\" ";
     file << "failures=\"" << metrics_.failedTests << "\" ";
     file << "skipped=\"" << metrics_.skippedTests << "\" ";
-    file << "time=\"" << std::fixed << std::setprecision(3) 
-         << metrics_.executionTime.count() / 1000.0 << "\">\n";
-    
+    file << "time=\"" << std::fixed << std::setprecision(3) << metrics_.executionTime.count() / 1000.0 << "\">\n";
+
     // Группируем тесты по категориям
     std::map<TestCategory, std::vector<TestResult>> categorized;
-    for (const auto& result : report.results) {
+    for (const auto& result : report.results)
+    {
         categorized[result.info.category].push_back(result);
     }
-    
-    for (const auto& [category, tests] : categorized) {
+
+    for (const auto& [category, tests] : categorized)
+    {
         file << "  <testsuite name=\"" << categoryToString(category) << "\" ";
         file << "tests=\"" << tests.size() << "\">\n";
-        
-        for (const auto& test : tests) {
+
+        for (const auto& test : tests)
+        {
             file << "    <testcase name=\"" << escapeXML(test.info.name) << "\" ";
             file << "classname=\"" << escapeXML(test.info.description) << "\" ";
-            file << "time=\"" << std::fixed << std::setprecision(3) 
-                 << test.duration.count() / 1000.0 << "\"";
-            
-            if (!test.passed) {
+            file << "time=\"" << std::fixed << std::setprecision(3) << test.duration.count() / 1000.0 << "\"";
+
+            if (!test.passed)
+            {
                 file << ">\n";
                 file << "      <failure message=\"" << escapeXML(test.errorMessage) << "\">";
                 file << escapeXML(test.stackTrace);
                 file << "</failure>\n";
                 file << "    </testcase>\n";
-            } else {
+            }
+            else
+            {
                 file << "/>\n";
             }
         }
-        
+
         file << "  </testsuite>\n";
     }
-    
+
     file << "</testsuites>\n";
     file.close();
 }
 
-void TestReportGenerator::generateHTMLReport(const TestReport& report) {
+void TestReportGenerator::generateHTMLReport(const TestReport& report)
+{
     std::string filename = config_.outputDir + "/test-report.html";
     std::ofstream file(filename);
-    
-    if (!file.is_open()) {
+
+    if (!file.is_open())
+    {
         throw std::runtime_error("Cannot create HTML report file: " + filename);
     }
-    
+
     file << generateHTMLHeader();
     file << generateHTMLSummary(report);
     file << generateHTMLMetrics(report);
     file << generateHTMLTestResults(report);
     file << generateHTMLTechnicalDebt(report);
     file << generateHTMLFooter();
-    
+
     file.close();
 }
 
-void TestReportGenerator::generateJSONReport(const TestReport& report) {
+void TestReportGenerator::generateJSONReport(const TestReport& report)
+{
     std::string filename = config_.outputDir + "/test-report.json";
     std::ofstream file(filename);
-    
-    if (!file.is_open()) {
+
+    if (!file.is_open())
+    {
         throw std::runtime_error("Cannot create JSON report file: " + filename);
     }
-    
+
     file << "{\n";
     file << "  \"project\": \"" << config_.projectName << "\",\n";
     file << "  \"version\": \"" << config_.version << "\",\n";
@@ -165,7 +184,7 @@ void TestReportGenerator::generateJSONReport(const TestReport& report) {
     file << "    \"commit\": \"" << report.gitCommit << "\",\n";
     file << "    \"branch\": \"" << report.gitBranch << "\"\n";
     file << "  },\n";
-    
+
     // Метрики
     file << "  \"metrics\": {\n";
     file << "    \"codeCoverage\": " << report.metrics.codeCoverage << ",\n";
@@ -182,10 +201,11 @@ void TestReportGenerator::generateJSONReport(const TestReport& report) {
     file << "      \"securityHotspots\": " << report.metrics.securityHotspots << "\n";
     file << "    }\n";
     file << "  },\n";
-    
+
     // Результаты тестов
     file << "  \"results\": [\n";
-    for (size_t i = 0; i < report.results.size(); ++i) {
+    for (size_t i = 0; i < report.results.size(); ++i)
+    {
         const auto& result = report.results[i];
         file << "    {\n";
         file << "      \"name\": \"" << result.info.name << "\",\n";
@@ -200,11 +220,12 @@ void TestReportGenerator::generateJSONReport(const TestReport& report) {
     }
     file << "  ]\n";
     file << "}\n";
-    
+
     file.close();
 }
 
-std::string TestReportGenerator::generateHTMLHeader() {
+std::string TestReportGenerator::generateHTMLHeader()
+{
     return R"(<!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -246,52 +267,58 @@ std::string TestReportGenerator::generateHTMLHeader() {
 )";
 }
 
-std::string TestReportGenerator::generateHTMLSummary(const TestReport& report) {
+std::string TestReportGenerator::generateHTMLSummary(const TestReport& report)
+{
     std::ostringstream html;
-    
+
     html << "<div class=\"container\">\n";
     html << "  <div class=\"header\">\n";
     html << "    <h1>🧪 Отчёт о тестировании</h1>\n";
     html << "    <p>" << config_.projectName << " v" << config_.version << "</p>\n";
     html << "    <p>Сгенерирован: " << formatTimestamp(report.timestamp) << "</p>\n";
     html << "    <p>Окружение: " << report.environment << " | Коммит: " << report.gitCommit.substr(0, 8) << "</p>\n";
-    
+
     // Прогресс-бар общего успеха
-    double successRate = report.metrics.totalTests > 0 ? 
-        (double)report.metrics.passedTests / report.metrics.totalTests * 100.0 : 0.0;
-    
+    double successRate =
+        report.metrics.totalTests > 0 ? (double)report.metrics.passedTests / report.metrics.totalTests * 100.0 : 0.0;
+
     html << "    <div class=\"progress-bar\">\n";
     html << "      <div class=\"progress-fill\" style=\"width: " << successRate << "%\"></div>\n";
     html << "    </div>\n";
     html << "    <p>Успешность: " << std::fixed << std::setprecision(1) << successRate << "%</p>\n";
     html << "  </div>\n";
     html << "  <div class=\"content\">\n";
-    
+
     return html.str();
 }
 
-std::string TestReportGenerator::generateHTMLMetrics(const TestReport& report) {
+std::string TestReportGenerator::generateHTMLMetrics(const TestReport& report)
+{
     std::ostringstream html;
-    
+
     html << "    <div class=\"metrics\">\n";
     html << "      <div class=\"metric-card\">\n";
     html << "        <div class=\"metric-value\">" << report.metrics.totalTests << "</div>\n";
     html << "        <div class=\"metric-label\">Всего тестов</div>\n";
     html << "      </div>\n";
     html << "      <div class=\"metric-card\">\n";
-    html << "        <div class=\"metric-value\" style=\"color: #28a745;\">" << report.metrics.passedTests << "</div>\n";
+    html << "        <div class=\"metric-value\" style=\"color: #28a745;\">" << report.metrics.passedTests
+         << "</div>\n";
     html << "        <div class=\"metric-label\">✅ Прошли</div>\n";
     html << "      </div>\n";
     html << "      <div class=\"metric-card\">\n";
-    html << "        <div class=\"metric-value\" style=\"color: #dc3545;\">" << report.metrics.failedTests << "</div>\n";
+    html << "        <div class=\"metric-value\" style=\"color: #dc3545;\">" << report.metrics.failedTests
+         << "</div>\n";
     html << "        <div class=\"metric-label\">❌ Провалились</div>\n";
     html << "      </div>\n";
     html << "      <div class=\"metric-card\">\n";
-    html << "        <div class=\"metric-value\">" << std::fixed << std::setprecision(1) << report.metrics.codeCoverage << "%</div>\n";
+    html << "        <div class=\"metric-value\">" << std::fixed << std::setprecision(1) << report.metrics.codeCoverage
+         << "%</div>\n";
     html << "        <div class=\"metric-label\">📊 Покрытие кода</div>\n";
     html << "      </div>\n";
     html << "      <div class=\"metric-card\">\n";
-    html << "        <div class=\"metric-value\">" << std::fixed << std::setprecision(2) << report.metrics.executionTime.count() / 1000.0 << "s</div>\n";
+    html << "        <div class=\"metric-value\">" << std::fixed << std::setprecision(2)
+         << report.metrics.executionTime.count() / 1000.0 << "s</div>\n";
     html << "        <div class=\"metric-label\">⏱️ Время выполнения</div>\n";
     html << "      </div>\n";
     html << "      <div class=\"metric-card\">\n";
@@ -299,110 +326,137 @@ std::string TestReportGenerator::generateHTMLMetrics(const TestReport& report) {
     html << "        <div class=\"metric-label\">💾 Использование памяти</div>\n";
     html << "      </div>\n";
     html << "    </div>\n";
-    
+
     return html.str();
 }
 
-std::string TestReportGenerator::generateHTMLTestResults(const TestReport& report) {
+std::string TestReportGenerator::generateHTMLTestResults(const TestReport& report)
+{
     std::ostringstream html;
-    
+
     html << "    <div class=\"test-results\">\n";
     html << "      <h2>📋 Результаты тестов</h2>\n";
-    
-    for (const auto& result : report.results) {
+
+    for (const auto& result : report.results)
+    {
         std::string categoryClass = "badge-unit";
-        switch (result.info.category) {
-            case TestCategory::INTEGRATION: categoryClass = "badge-integration"; break;
-            case TestCategory::SYSTEM: categoryClass = "badge-system"; break;
-            case TestCategory::PERFORMANCE: categoryClass = "badge-performance"; break;
-            case TestCategory::SECURITY: categoryClass = "badge-security"; break;
-            default: break;
+        switch (result.info.category)
+        {
+            case TestCategory::INTEGRATION:
+                categoryClass = "badge-integration";
+                break;
+            case TestCategory::SYSTEM:
+                categoryClass = "badge-system";
+                break;
+            case TestCategory::PERFORMANCE:
+                categoryClass = "badge-performance";
+                break;
+            case TestCategory::SECURITY:
+                categoryClass = "badge-security";
+                break;
+            default:
+                break;
         }
-        
+
         html << "      <div class=\"test-item\">\n";
         html << "        <div class=\"test-header\">\n";
         html << "          <div>\n";
         html << "            <div class=\"test-name\">" << result.info.name << "</div>\n";
         html << "            <div>\n";
-        html << "              <span class=\"category-badge " << categoryClass << "\">" << categoryToString(result.info.category) << "</span>\n";
-        html << "              <small>" << priorityToString(result.info.priority) << " | " << result.duration.count() << "ms</small>\n";
+        html << "              <span class=\"category-badge " << categoryClass << "\">"
+             << categoryToString(result.info.category) << "</span>\n";
+        html << "              <small>" << priorityToString(result.info.priority) << " | " << result.duration.count()
+             << "ms</small>\n";
         html << "            </div>\n";
         html << "          </div>\n";
         html << "          <div class=\"test-status " << (result.passed ? "status-pass" : "status-fail") << "\">\n";
         html << "            " << (result.passed ? "✅ PASS" : "❌ FAIL") << "\n";
         html << "          </div>\n";
         html << "        </div>\n";
-        
+
         html << "        <div class=\"test-details\">\n";
         html << "          <p><strong>Описание:</strong> " << result.info.description << "</p>\n";
-        if (!result.passed) {
+        if (!result.passed)
+        {
             html << "          <p><strong>❌ Ошибка:</strong> " << result.errorMessage << "</p>\n";
         }
         html << "          <p><strong>⏱️ Время выполнения:</strong> " << result.duration.count() << "ms</p>\n";
         html << "          <p><strong>💾 Память:</strong> " << result.memoryUsed << " bytes</p>\n";
         html << "          <p><strong>👤 Автор:</strong> " << result.info.author << "</p>\n";
         html << "        </div>\n";
-        
+
         html << "      </div>\n";
     }
-    
+
     html << "    </div>\n";
-    
+
     return html.str();
 }
 
-std::string TestReportGenerator::generateHTMLTechnicalDebt(const TestReport& report) {
+std::string TestReportGenerator::generateHTMLTechnicalDebt(const TestReport& report)
+{
     std::ostringstream html;
-    
-    if (config_.includeTechnicalDebt) {
+
+    if (config_.includeTechnicalDebt)
+    {
         html << "    <div class=\"technical-debt\">\n";
         html << "      <h3 class=\"debt-warning\">⚠️ Технический долг</h3>\n";
         html << "      <p>Анализ качества кода и технического долга проекта</p>\n";
         html << "      <div class=\"metrics\">\n";
         html << "        <div class=\"metric-card\">\n";
-        html << "          <div class=\"metric-value\" style=\"color: #856404;\">" << report.metrics.codeSmells << "</div>\n";
+        html << "          <div class=\"metric-value\" style=\"color: #856404;\">" << report.metrics.codeSmells
+             << "</div>\n";
         html << "          <div class=\"metric-label\">🔍 Code Smells</div>\n";
         html << "        </div>\n";
         html << "        <div class=\"metric-card\">\n";
-        html << "          <div class=\"metric-value\" style=\"color: #856404;\">" << report.metrics.duplicatedLines << "</div>\n";
+        html << "          <div class=\"metric-value\" style=\"color: #856404;\">" << report.metrics.duplicatedLines
+             << "</div>\n";
         html << "          <div class=\"metric-label\">📋 Дублированные строки</div>\n";
         html << "        </div>\n";
         html << "        <div class=\"metric-card\">\n";
-        html << "          <div class=\"metric-value\" style=\"color: #856404;\">" << report.metrics.complexityIssues << "</div>\n";
+        html << "          <div class=\"metric-value\" style=\"color: #856404;\">" << report.metrics.complexityIssues
+             << "</div>\n";
         html << "          <div class=\"metric-label\">🔄 Проблемы сложности</div>\n";
         html << "        </div>\n";
         html << "        <div class=\"metric-card\">\n";
-        html << "          <div class=\"metric-value\" style=\"color: #dc3545;\">" << report.metrics.securityHotspots << "</div>\n";
+        html << "          <div class=\"metric-value\" style=\"color: #dc3545;\">" << report.metrics.securityHotspots
+             << "</div>\n";
         html << "          <div class=\"metric-label\">🔒 Уязвимости</div>\n";
         html << "        </div>\n";
         html << "      </div>\n";
-        
+
         // Рекомендации по улучшению
         html << "      <h4>💡 Рекомендации</h4>\n";
         html << "      <ul>\n";
-        if (report.metrics.codeSmells > 10) {
+        if (report.metrics.codeSmells > 10)
+        {
             html << "        <li>Высокое количество code smells - рекомендуется рефакторинг</li>\n";
         }
-        if (report.metrics.duplicatedLines > 50) {
+        if (report.metrics.duplicatedLines > 50)
+        {
             html << "        <li>Много дублированного кода - выделить общие функции</li>\n";
         }
-        if (report.metrics.complexityIssues > 0) {
+        if (report.metrics.complexityIssues > 0)
+        {
             html << "        <li>Есть сложные функции - упростить логику</li>\n";
         }
-        if (report.metrics.securityHotspots > 0) {
+        if (report.metrics.securityHotspots > 0)
+        {
             html << "        <li>Обнаружены потенциальные уязвимости - провести аудит безопасности</li>\n";
         }
-        if (report.metrics.codeCoverage < 80.0) {
+        if (report.metrics.codeCoverage < 80.0)
+        {
             html << "        <li>Низкое покрытие тестами - добавить больше тестов</li>\n";
         }
         html << "      </ul>\n";
         html << "    </div>\n";
     }
-    
+
     return html.str();
 }
 
-std::string TestReportGenerator::generateHTMLFooter() {
+std::string TestReportGenerator::generateHTMLFooter()
+{
     return R"(  </div>
 </div>
 
@@ -414,7 +468,7 @@ document.querySelectorAll('.test-header').forEach(header => {
         if (details && details.classList.contains('test-details')) {
             const isVisible = details.style.display === 'block';
             details.style.display = isVisible ? 'none' : 'block';
-            
+
             // Анимация для стрелки
             header.style.transform = isVisible ? 'none' : 'scale(1.02)';
         }
@@ -435,22 +489,27 @@ document.querySelectorAll('.test-item').forEach(item => {
 )";
 }
 
-void TestReportGenerator::updateMetrics(const TestResult& result) {
+void TestReportGenerator::updateMetrics(const TestResult& result)
+{
     metrics_.totalTests++;
-    
-    if (result.passed) {
+
+    if (result.passed)
+    {
         metrics_.passedTests++;
-    } else {
+    }
+    else
+    {
         metrics_.failedTests++;
     }
-    
+
     metrics_.executionTime += result.duration;
     metrics_.memoryUsage += result.memoryUsed;
 }
 
-std::string TestReportGenerator::getEnvironmentInfo() {
+std::string TestReportGenerator::getEnvironmentInfo()
+{
     std::ostringstream info;
-    
+
 #ifdef __linux__
     info << "Linux";
 #elif defined(_WIN32)
@@ -466,118 +525,150 @@ std::string TestReportGenerator::getEnvironmentInfo() {
 #else
     info << " (Native)";
 #endif
-    
+
     return info.str();
 }
 
-std::string TestReportGenerator::getGitCommit() {
+std::string TestReportGenerator::getGitCommit()
+{
     // В реальной реализации здесь будет вызов git команды
     const char* githubSha = std::getenv("GITHUB_SHA");
-    if (githubSha) {
+    if (githubSha)
+    {
         return std::string(githubSha);
     }
-    
+
     // Попытка получить через git команду (упрощённо)
     return "unknown-commit";
 }
 
-std::string TestReportGenerator::getGitBranch() {
+std::string TestReportGenerator::getGitBranch()
+{
     // В реальной реализации здесь будет вызов git команды
     const char* githubRef = std::getenv("GITHUB_REF_NAME");
-    if (githubRef) {
+    if (githubRef)
+    {
         return std::string(githubRef);
     }
-    
+
     return "unknown-branch";
 }
 
-std::string TestReportGenerator::formatTimestamp(const std::chrono::system_clock::time_point& tp) {
+std::string TestReportGenerator::formatTimestamp(const std::chrono::system_clock::time_point& tp)
+{
     auto time_t = std::chrono::system_clock::to_time_t(tp);
     auto tm = *std::localtime(&time_t);
-    
+
     std::ostringstream oss;
     oss << std::put_time(&tm, "%Y-%m-%d %H:%M:%S");
     return oss.str();
 }
 
-std::string TestReportGenerator::categoryToString(TestCategory category) {
-    switch (category) {
-        case TestCategory::UNIT: return "Unit";
-        case TestCategory::INTEGRATION: return "Integration";
-        case TestCategory::SYSTEM: return "System";
-        case TestCategory::PERFORMANCE: return "Performance";
-        case TestCategory::SECURITY: return "Security";
-        case TestCategory::API: return "API";
-        case TestCategory::HARDWARE: return "Hardware";
-        default: return "Unknown";
+std::string TestReportGenerator::categoryToString(TestCategory category)
+{
+    switch (category)
+    {
+        case TestCategory::UNIT:
+            return "Unit";
+        case TestCategory::INTEGRATION:
+            return "Integration";
+        case TestCategory::SYSTEM:
+            return "System";
+        case TestCategory::PERFORMANCE:
+            return "Performance";
+        case TestCategory::SECURITY:
+            return "Security";
+        case TestCategory::API:
+            return "API";
+        case TestCategory::HARDWARE:
+            return "Hardware";
+        default:
+            return "Unknown";
     }
 }
 
-std::string TestReportGenerator::priorityToString(TestPriority priority) {
-    switch (priority) {
-        case TestPriority::CRITICAL: return "Critical";
-        case TestPriority::HIGH: return "High";
-        case TestPriority::MEDIUM: return "Medium";
-        case TestPriority::LOW: return "Low";
-        default: return "Unknown";
+std::string TestReportGenerator::priorityToString(TestPriority priority)
+{
+    switch (priority)
+    {
+        case TestPriority::CRITICAL:
+            return "Critical";
+        case TestPriority::HIGH:
+            return "High";
+        case TestPriority::MEDIUM:
+            return "Medium";
+        case TestPriority::LOW:
+            return "Low";
+        default:
+            return "Unknown";
     }
 }
 
-std::string TestReportGenerator::escapeXML(const std::string& input) {
+std::string TestReportGenerator::escapeXML(const std::string& input)
+{
     std::string result = input;
     size_t pos = 0;
-    
-    while ((pos = result.find("&", pos)) != std::string::npos) {
+
+    while ((pos = result.find("&", pos)) != std::string::npos)
+    {
         result.replace(pos, 1, "&amp;");
         pos += 5;
     }
-    
+
     pos = 0;
-    while ((pos = result.find("<", pos)) != std::string::npos) {
+    while ((pos = result.find("<", pos)) != std::string::npos)
+    {
         result.replace(pos, 1, "&lt;");
         pos += 4;
     }
-    
+
     pos = 0;
-    while ((pos = result.find(">", pos)) != std::string::npos) {
+    while ((pos = result.find(">", pos)) != std::string::npos)
+    {
         result.replace(pos, 1, "&gt;");
         pos += 4;
     }
-    
+
     pos = 0;
-    while ((pos = result.find("\"", pos)) != std::string::npos) {
+    while ((pos = result.find("\"", pos)) != std::string::npos)
+    {
         result.replace(pos, 1, "&quot;");
         pos += 6;
     }
-    
+
     return result;
 }
 
-void TestReportGenerator::saveHistoricalData(const TestReport& report) {
+void TestReportGenerator::saveHistoricalData(const TestReport& report)
+{
     // Сохраняем исторические данные для анализа трендов
     std::string historyFile = config_.outputDir + "/test-history.json";
-    
+
     // Здесь будет реализация сохранения истории для анализа трендов
     // Пока что создаём заглушку
     std::ofstream file(historyFile, std::ios::app);
-    if (file.is_open()) {
+    if (file.is_open())
+    {
         file << "// История тестов для " << formatTimestamp(report.timestamp) << "\n";
         file.close();
     }
 }
 
-void TestReportGenerator::analyzeRegressions(TestReport& report) {
+void TestReportGenerator::analyzeRegressions(TestReport& report)
+{
     // Анализируем регрессии по сравнению с предыдущими запусками
     // Пока что простая проверка
-    if (report.metrics.failedTests > 0) {
+    if (report.metrics.failedTests > 0)
+    {
         report.hasRegression = true;
         report.regressionDetails.push_back("Обнаружены провалившиеся тесты");
     }
-    
-    if (report.metrics.codeCoverage < 70.0) {
+
+    if (report.metrics.codeCoverage < 70.0)
+    {
         report.hasRegression = true;
         report.regressionDetails.push_back("Низкое покрытие кода");
     }
 }
 
-} // namespace jxct::testing 
+}  // namespace jxct::testing

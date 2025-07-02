@@ -1,7 +1,7 @@
+#include "../../include/jxct_constants.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
-#include "../../include/jxct_constants.h"
 
 // External function declarations
 extern String navHtml();
@@ -111,10 +111,12 @@ String generateInputField(const String& id, const String& name, const String& la
     String html = "<div class='form-group'>";
     html += "<label for='" + id + "'>" + label + ":</label>";
     html += "<input type='" + type + "' id='" + id + "' name='" + name + "' value='" + value + "'";
-    if (required) {
+    if (required)
+    {
         html += " required";
     }
-    if (placeholder.length() > 0) {
+    if (placeholder.length() > 0)
+    {
         html += " placeholder='" + placeholder + "'";
     }
     html += "></div>";
@@ -134,7 +136,8 @@ String generateCheckboxField(const String& id, const String& name, const String&
     String html = "<div class='form-group'>";
     html += "<label for='" + id + "'>" + label + ":</label>";
     html += "<input type='checkbox' id='" + id + "' name='" + name + "'";
-    if (checked) {
+    if (checked)
+    {
         html += " checked";
     }
     html += "></div>";

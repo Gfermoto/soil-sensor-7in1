@@ -22,7 +22,7 @@
     
     
       
-        <title>🧪 Руководство по тестированию JXCT - 🌱 JXCT 7-в-1 Датчик Почвы</title>
+        <title>Руководство по тестированию JXCT - 🌱 JXCT 7-в-1 Датчик Почвы</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#-руководство-по-тестированию-jxct" class="md-skip">
+        <a href="#руководство-по-тестированию-jxct" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -112,7 +112,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🧪 Руководство по тестированию JXCT
+              Руководство по тестированию JXCT
             
           </span>
         </div>
@@ -942,199 +942,166 @@
   
 
 
-<h1 id="-руководство-по-тестированию-jxct">🧪 Руководство по тестированию JXCT<a class="headerlink" href="#-руководство-по-тестированию-jxct" title="Постоянная ссылка">&para;</a></h1>
-<blockquote>
-<p><strong>Статус:</strong> ✅ <strong>ОСНОВНЫЕ ТЕСТЫ ЗАВЕРШЕНЫ</strong> | <strong>Покрытие:</strong> 70.8%</p>
-</blockquote>
-<h2 id="-обзор-системы-тестирования">📋 Обзор системы тестирования<a class="headerlink" href="#-обзор-системы-тестирования" title="Постоянная ссылка">&para;</a></h2>
-<p>JXCT использует многоуровневую систему тестирования для обеспечения качества и надёжности кода.</p>
+<h1 id="руководство-по-тестированию-jxct">Руководство по тестированию JXCT<a class="headerlink" href="#руководство-по-тестированию-jxct" title="Постоянная ссылка">&para;</a></h1>
+<p><strong>Версия:</strong> 3.6.0<br />
+<strong>Дата обновления:</strong> 3 июля 2025</p>
+<h2 id="-обзор">📋 Обзор<a class="headerlink" href="#-обзор" title="Постоянная ссылка">&para;</a></h2>
+<p>JXCT использует многоуровневую систему тестирования для обеспечения качества кода и надёжности системы мониторинга почвы.</p>
 <h2 id="-типы-тестов">🧪 Типы тестов<a class="headerlink" href="#-типы-тестов" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-unit-тесты-базовые">1. Unit тесты (Базовые)<a class="headerlink" href="#1-unit-тесты-базовые" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="1-unit-тесты">1. Unit тесты<a class="headerlink" href="#1-unit-тесты" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Файлы:</strong> <code>test/test_*.cpp</code></li>
-<li><strong>Покрытие:</strong> Основные функции</li>
+<li><strong>Назначение:</strong> Тестирование отдельных функций и классов</li>
+<li><strong>Покрытие:</strong> 70.8% строк, 75.0% функций</li>
+<li><strong>Запуск:</strong> <code>pio test -e native -v</code></li>
+</ul>
+<h3 id="2-интеграционные-тесты">2. Интеграционные тесты<a class="headerlink" href="#2-интеграционные-тесты" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Назначение:</strong> Тестирование взаимодействия компонентов</li>
+<li><strong>Файлы:</strong> <code>test/integration/test_component_interaction.cpp</code></li>
 <li><strong>Запуск:</strong> <code>python scripts/run_comprehensive_tests.py</code></li>
 </ul>
-<h3 id="2-unit-тесты-расширенные--новое">2. Unit тесты (Расширенные) ✅ НОВОЕ<a class="headerlink" href="#2-unit-тесты-расширенные--новое" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="3-e2e-тесты">3. E2E тесты<a class="headerlink" href="#3-e2e-тесты" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Файлы:</strong> </li>
-<li><code>test/test_validation_utils.cpp</code> (50+ тестов)</li>
-<li><code>test/test_format_utils.cpp</code> (25+ тестов) </li>
-<li><code>test/test_csrf_security.cpp</code> (10+ тестов)</li>
-<li><strong>Покрытие:</strong> Полное покрытие критических модулей</li>
-<li><strong>Особенности:</strong> Тесты граничных условий, безопасности, производительности</li>
-</ul>
-<h3 id="3-интеграционные-тесты">3. Интеграционные тесты<a class="headerlink" href="#3-интеграционные-тесты" title="Постоянная ссылка">&para;</a></h3>
-<ul>
+<li><strong>Назначение:</strong> Тестирование веб-интерфейса</li>
 <li><strong>Файлы:</strong> <code>test/e2e/test_web_ui.py</code></li>
-<li><strong>Покрытие:</strong> Взаимодействие компонентов</li>
-<li><strong>Статус:</strong> В разработке</li>
+<li><strong>Запуск:</strong> <code>python test/e2e/test_web_ui.py</code></li>
 </ul>
 <h3 id="4-тесты-производительности">4. Тесты производительности<a class="headerlink" href="#4-тесты-производительности" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Статус:</strong> Планируется</li>
-<li><strong>Цель:</strong> Измерение скорости работы критических функций</li>
+<li><strong>Назначение:</strong> Измерение производительности критических функций</li>
+<li><strong>Метрики:</strong> Валидация &lt; 100ms, Компенсация &lt; 50ms</li>
+<li><strong>Запуск:</strong> <code>python scripts/run_performance_tests.py</code></li>
 </ul>
+<h2 id="-автоматизация">🔧 Автоматизация<a class="headerlink" href="#-автоматизация" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="pre-commit-система">Pre-commit система<a class="headerlink" href="#pre-commit-система" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Автоматический запуск при коммите</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;Your message&quot;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Ручной запуск</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python<span class="w"> </span>scripts/pre-commit.py<span class="w"> </span>--verbose
+</code></pre></div>
+<p><strong>Что проверяется:</strong>
+- ✅ Форматирование кода (trailing whitespace)
+- ✅ Clang-format для C++ файлов
+- ✅ Python синтаксис
+- ✅ Статический анализ технического долга</p>
+<h3 id="cicd-pipeline">CI/CD Pipeline<a class="headerlink" href="#cicd-pipeline" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># .github/workflows/ci-cd.yml</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">CI/CD Pipeline</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nt">on</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">push</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">pull_request</span><span class="p p-Indicator">]</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="nt">jobs</span><span class="p">:</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">build</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">deploy-docs</span>
+</code></pre></div>
+<h2 id="-результаты-тестирования">📊 Результаты тестирования<a class="headerlink" href="#-результаты-тестирования" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="текущие-метрики-3-июля-2025">Текущие метрики (3 июля 2025)<a class="headerlink" href="#текущие-метрики-3-июля-2025" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">&quot;coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">&quot;lines&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;70.8%&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">&quot;functions&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;75.0%&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="nt">&quot;branches&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;66.7%&quot;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">&quot;performance&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="nt">&quot;validation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt; 100ms&quot;</span><span class="p">,</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">    </span><span class="nt">&quot;compensation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt; 50ms&quot;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">  </span><span class="nt">&quot;technical_debt&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="nt">&quot;score&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">90</span><span class="p">,</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="nt">&quot;status&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Medium&quot;</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">}</span>
+</code></pre></div>
 <h2 id="-запуск-тестов">🚀 Запуск тестов<a class="headerlink" href="#-запуск-тестов" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="быстрый-запуск">Быстрый запуск<a class="headerlink" href="#быстрый-запуск" title="Постоянная ссылка">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>scripts/run_comprehensive_tests.py
+<h3 id="комплексное-тестирование">Комплексное тестирование<a class="headerlink" href="#комплексное-тестирование" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Все тесты + анализ</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python<span class="w"> </span>scripts/run_comprehensive_tests.py
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1"># Только анализ технического долга</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>python<span class="w"> </span>scripts/analyze_technical_debt.py
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># Только тесты производительности</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>python<span class="w"> </span>scripts/run_performance_tests.py
 </code></pre></div>
-<h3 id="детальный-запуск">Детальный запуск<a class="headerlink" href="#детальный-запуск" title="Постоянная ссылка">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Unit тесты</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python<span class="w"> </span>scripts/run_comprehensive_tests.py<span class="w"> </span>--unit
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># E2E тесты  </span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>python<span class="w"> </span>scripts/run_e2e_tests.py
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Все тесты с отчётами</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>python<span class="w"> </span>scripts/run_comprehensive_tests.py<span class="w"> </span>--full-report
+<h3 id="отдельные-тесты">Отдельные тесты<a class="headerlink" href="#отдельные-тесты" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Unit тесты (требует PlatformIO)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>pio<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-e<span class="w"> </span>native<span class="w"> </span>-v
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># E2E тесты</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>python<span class="w"> </span>test/e2e/test_web_ui.py
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># CSRF тесты</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>python<span class="w"> </span>test/native/test_csrf_security.py
 </code></pre></div>
-<h2 id="-отчёты-о-тестировании">📊 Отчёты о тестировании<a class="headerlink" href="#-отчёты-о-тестировании" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="автоматические-отчёты">Автоматические отчёты<a class="headerlink" href="#автоматические-отчёты" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="-отчёты">📈 Отчёты<a class="headerlink" href="#-отчёты" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="генерируемые-отчёты">Генерируемые отчёты<a class="headerlink" href="#генерируемые-отчёты" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><code>test_reports/comprehensive-report.html</code> - Полный отчёт</li>
-<li><code>test_reports/combined-test-report.json</code> - JSON отчёт</li>
-<li><code>test_reports/technical-debt.json</code> - Анализ технического долга</li>
+<li><code>test_reports/comprehensive-report.json</code> - Полный отчёт</li>
+<li><code>test_reports/technical-debt-ci.json</code> - Анализ технического долга</li>
+<li><code>test_reports/e2e-test-report.json</code> - E2E тесты</li>
+<li><code>test_reports/performance-test-report.json</code> - Производительность</li>
 </ul>
-<h3 id="метрики-качества">Метрики качества<a class="headerlink" href="#метрики-качества" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li>Покрытие кода тестами</li>
-<li>Время выполнения тестов</li>
-<li>Количество пройденных/проваленных тестов</li>
-<li>Анализ технического долга</li>
-</ul>
-<h2 id="-новые-расширенные-тесты">🔧 Новые расширенные тесты<a class="headerlink" href="#-новые-расширенные-тесты" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="validation-utils-50-тестов">Validation Utils (50+ тестов)<a class="headerlink" href="#validation-utils-50-тестов" title="Постоянная ссылка">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Примеры новых тестов</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">TEST_CASE</span><span class="p">(</span><span class="s">&quot;validate_sensor_data - граничные значения&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="c1">// Тесты минимальных/максимальных значений</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="p">}</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">TEST_CASE</span><span class="p">(</span><span class="s">&quot;validate_config - безопасность&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="c1">// Тесты защиты от инъекций</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="p">}</span>
+<h3 id="просмотр-отчётов">Просмотр отчётов<a class="headerlink" href="#просмотр-отчётов" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># HTML отчёт</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>open<span class="w"> </span>test_reports/comprehensive-report.html
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># JSON отчёт</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>cat<span class="w"> </span>test_reports/comprehensive-report.json<span class="w"> </span><span class="p">|</span><span class="w"> </span>jq
 </code></pre></div>
-<h3 id="format-utils-25-тестов">Format Utils (25+ тестов)<a class="headerlink" href="#format-utils-25-тестов" title="Постоянная ссылка">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Примеры новых тестов  </span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">TEST_CASE</span><span class="p">(</span><span class="s">&quot;format_temperature - точность&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="c1">// Тесты форматирования с различной точностью</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">}</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">TEST_CASE</span><span class="p">(</span><span class="s">&quot;format_json - валидность&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="c1">// Тесты корректности JSON</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="csrf-security-10-тестов">CSRF Security (10+ тестов)<a class="headerlink" href="#csrf-security-10-тестов" title="Постоянная ссылка">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Примеры новых тестов</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">TEST_CASE</span><span class="p">(</span><span class="s">&quot;csrf_protection - токены&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="c1">// Тесты генерации и валидации токенов</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="p">}</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">TEST_CASE</span><span class="p">(</span><span class="s">&quot;csrf_protection - атаки&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="c1">// Тесты защиты от различных атак</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
-</code></pre></div>
-<h2 id="-планы-автоматизации">🎯 Планы автоматизации<a class="headerlink" href="#-планы-автоматизации" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-cicd-pipeline">1. CI/CD Pipeline<a class="headerlink" href="#1-cicd-pipeline" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Статус:</strong> Планируется</li>
-<li><strong>Цель:</strong> Автоматический запуск тестов при каждом коммите</li>
-<li><strong>Инструменты:</strong> GitHub Actions / GitLab CI</li>
-</ul>
-<h3 id="2-pre-commit-hooks">2. Pre-commit Hooks<a class="headerlink" href="#2-pre-commit-hooks" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Статус:</strong> Планируется  </li>
-<li><strong>Цель:</strong> Проверка кода перед коммитом</li>
-<li><strong>Функции:</strong></li>
-<li>Автоматический запуск unit тестов</li>
-<li>Проверка стиля кода</li>
-<li>Статический анализ</li>
-</ul>
-<h3 id="3-интеграционные-тесты_1">3. Интеграционные тесты<a class="headerlink" href="#3-интеграционные-тесты_1" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Статус:</strong> В разработке</li>
-<li><strong>Цель:</strong> Тестирование взаимодействия компонентов</li>
-<li><strong>Области:</strong></li>
-<li>Web API + Database</li>
-<li>Sensor + Calibration</li>
-<li>MQTT + Thingspeak</li>
-</ul>
-<h3 id="4-тесты-производительности_1">4. Тесты производительности<a class="headerlink" href="#4-тесты-производительности_1" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Статус:</strong> Планируется</li>
-<li><strong>Цель:</strong> Мониторинг производительности</li>
-<li><strong>Метрики:</strong></li>
-<li>Время ответа API</li>
-<li>Скорость обработки данных</li>
-<li>Использование памяти</li>
-</ul>
-<h2 id="-метрики-качества">📈 Метрики качества<a class="headerlink" href="#-метрики-качества" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="текущие-показатели">Текущие показатели<a class="headerlink" href="#текущие-показатели" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Unit тесты:</strong> 85+ тестов</li>
-<li><strong>Покрытие:</strong> ~80% критического кода</li>
-<li><strong>Время выполнения:</strong> &lt; 30 секунд</li>
-<li><strong>Успешность:</strong> &gt; 95%</li>
-</ul>
-<h3 id="целевые-показатели">Целевые показатели<a class="headerlink" href="#целевые-показатели" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Unit тесты:</strong> 150+ тестов</li>
-<li><strong>Покрытие:</strong> &gt; 90% всего кода</li>
-<li><strong>Интеграционные тесты:</strong> 20+ тестов</li>
-<li><strong>Тесты производительности:</strong> 10+ тестов</li>
-</ul>
-<h2 id="-настройка-окружения">🛠️ Настройка окружения<a class="headerlink" href="#-настройка-окружения" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="требования">Требования<a class="headerlink" href="#требования" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li>Python 3.8+</li>
-<li>CMake 3.16+</li>
-<li>Clang/LLVM (для статического анализа)</li>
-<li>Unity Framework (для unit тестов)</li>
-</ul>
-<h3 id="установка-зависимостей">Установка зависимостей<a class="headerlink" href="#установка-зависимостей" title="Постоянная ссылка">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</code></pre></div>
-<h2 id="-рекомендации">📝 Рекомендации<a class="headerlink" href="#-рекомендации" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="для-разработчиков">Для разработчиков<a class="headerlink" href="#для-разработчиков" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li>Запускайте тесты перед каждым коммитом</li>
-<li>Добавляйте тесты для новой функциональности</li>
-<li>Следите за покрытием кода</li>
-<li>Используйте отчёты для улучшения качества</li>
-</ol>
-<h3 id="для-ревьюеров">Для ревьюеров<a class="headerlink" href="#для-ревьюеров" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li>Проверяйте наличие тестов для новых функций</li>
-<li>Оценивайте качество тестов</li>
-<li>Контролируйте покрытие кода</li>
-<li>Анализируйте отчёты о производительности</li>
-</ol>
-<h2 id="-отладка-тестов">🔍 Отладка тестов<a class="headerlink" href="#-отладка-тестов" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="частые-проблемы">Частые проблемы<a class="headerlink" href="#частые-проблемы" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li><strong>Тесты не компилируются:</strong> Проверьте зависимости</li>
-<li><strong>Тесты падают:</strong> Проверьте окружение</li>
-<li><strong>Медленные тесты:</strong> Оптимизируйте тестовые данные</li>
-</ol>
-<h3 id="логи-и-отладка">Логи и отладка<a class="headerlink" href="#логи-и-отладка" title="Постоянная ссылка">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Подробный вывод</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>python<span class="w"> </span>scripts/run_comprehensive_tests.py<span class="w"> </span>--verbose
+<h2 id="-отладка">🔍 Отладка<a class="headerlink" href="#-отладка" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="проблемы-с-unicode-windows">Проблемы с Unicode (Windows)<a class="headerlink" href="#проблемы-с-unicode-windows" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># Установка переменной окружения</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="nb">set</span><span class="w"> </span><span class="nv">PYTHONIOENCODING</span><span class="o">=</span>utf-8
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Отладка конкретного теста</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>python<span class="w"> </span>scripts/run_comprehensive_tests.py<span class="w"> </span>--test<span class="w"> </span>validation_utils
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Или в PowerShell</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nv">$env</span>:PYTHONIOENCODING<span class="o">=</span><span class="s2">&quot;utf-8&quot;</span>
 </code></pre></div>
-<h2 id="-дорожная-карта">🎯 <strong>Дорожная карта</strong><a class="headerlink" href="#-дорожная-карта" title="Постоянная ссылка">&para;</a></h2>
-<ol>
-<li><strong>Покрытие тестов:</strong> 70.8% → 85%</li>
-<li><strong>Regression тесты:</strong> расширение сценариев</li>
-<li><strong>Performance тесты:</strong> добавление при необходимости</li>
-</ol>
-<h2 id="-детальные-отчёты">🔗 <strong>ДЕТАЛЬНЫЕ ОТЧЁТЫ</strong><a class="headerlink" href="#-детальные-отчёты" title="Постоянная ссылка">&para;</a></h2>
-<ul>
-<li><strong>Результаты:</strong> <a href="../test_reports/">test_reports/</a></li>
-<li><strong>E2E отчёты:</strong> <a href="../test_reports/e2e-test-report.json">e2e-test-report.json</a></li>
-<li><strong>Security аудит:</strong> <a href="../CSRF_SECURITY_AUDIT/">CSRF_SECURITY_AUDIT.md</a> </li>
+<h3 id="проблемы-с-platformio">Проблемы с PlatformIO<a class="headerlink" href="#проблемы-с-platformio" title="Постоянная ссылка">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Очистка кэша</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>pio<span class="w"> </span>run<span class="w"> </span>-t<span class="w"> </span>clean
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Обновление зависимостей</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>pio<span class="w"> </span>pkg<span class="w"> </span>update
+</code></pre></div>
+<h2 id="-чек-лист-тестирования">📋 Чек-лист тестирования<a class="headerlink" href="#-чек-лист-тестирования" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="перед-коммитом">Перед коммитом<a class="headerlink" href="#перед-коммитом" title="Постоянная ссылка">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Pre-commit проверки прошли</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Unit тесты проходят</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Нет критических предупреждений</li>
 </ul>
+<h3 id="перед-релизом">Перед релизом<a class="headerlink" href="#перед-релизом" title="Постоянная ссылка">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Все тесты проходят</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Покрытие кода &gt; 70%</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Технический долг &lt; 100</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> E2E тесты проходят</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Тесты производительности в норме</li>
+</ul>
+<h2 id="-инструменты">🛠️ Инструменты<a class="headerlink" href="#-инструменты" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="основные-скрипты">Основные скрипты<a class="headerlink" href="#основные-скрипты" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><code>scripts/pre-commit.py</code> - Pre-commit проверки</li>
+<li><code>scripts/format_code.py</code> - Форматирование кода</li>
+<li><code>scripts/auto_format.py</code> - Удаление trailing whitespace</li>
+<li><code>scripts/run_comprehensive_tests.py</code> - Комплексное тестирование</li>
+<li><code>scripts/analyze_technical_debt.py</code> - Анализ технического долга</li>
+</ul>
+<h3 id="конфигурация">Конфигурация<a class="headerlink" href="#конфигурация" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><code>.clang-format</code> - Стиль C++ кода</li>
+<li><code>platformio.ini</code> - Конфигурация PlatformIO</li>
+<li><code>.github/workflows/ci-cd.yml</code> - CI/CD pipeline</li>
+</ul>
+<h2 id="-дополнительные-ресурсы">📚 Дополнительные ресурсы<a class="headerlink" href="#-дополнительные-ресурсы" title="Постоянная ссылка">&para;</a></h2>
+<ul>
+<li><a href="https://docs.platformio.org/">Документация PlatformIO</a></li>
+<li><a href="docs/CSRF_SECURITY_AUDIT.md">Руководство по CSRF защите</a></li>
+<li><a href="docs/TECH_DEBT_REPORT_2025-06.md">Отчёт о техническом долге</a></li>
+<li><a href="docs/QUICK_TECH_DEBT_FIXES.md">Руководство по автоматизации</a></li>
+</ul>
+<hr />
+<p><strong>Поддержка:</strong> Создайте issue в GitHub для вопросов по тестированию</p>
 
 
 

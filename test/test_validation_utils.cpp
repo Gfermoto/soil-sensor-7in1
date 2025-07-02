@@ -1,9 +1,9 @@
 #include <Arduino.h>
 #include <unity.h>
 
-#include "validation_utils.h"
 #include "jxct_config_vars.h"
 #include "jxct_constants.h"
+#include "validation_utils.h"
 
 #ifndef ARDUINO
 #include "../src/validation_utils.cpp"
@@ -49,7 +49,7 @@ void test_validateSSID_boundary()
 void test_validatePassword_empty()
 {
     auto res = validatePassword("");
-    TEST_ASSERT_TRUE(res.isValid); // Пустой пароль допустим
+    TEST_ASSERT_TRUE(res.isValid);  // Пустой пароль допустим
 }
 
 void test_validatePassword_short()
@@ -122,20 +122,20 @@ void test_validateThingSpeakAPIKey_empty()
 
 void test_validateThingSpeakAPIKey_wrong_length()
 {
-    auto res = validateThingSpeakAPIKey("123456789012345"); // 15 символов
+    auto res = validateThingSpeakAPIKey("123456789012345");  // 15 символов
     TEST_ASSERT_FALSE(res.isValid);
     TEST_ASSERT_EQUAL_STRING("ThingSpeak API ключ должен содержать 16 символов", res.message.c_str());
 }
 
 void test_validateThingSpeakAPIKey_valid()
 {
-    auto res = validateThingSpeakAPIKey("1234567890123456"); // 16 символов
+    auto res = validateThingSpeakAPIKey("1234567890123456");  // 16 символов
     TEST_ASSERT_TRUE(res.isValid);
 }
 
 void test_validateThingSpeakAPIKey_invalid_chars()
 {
-    auto res = validateThingSpeakAPIKey("123456789012345@"); // содержит @
+    auto res = validateThingSpeakAPIKey("123456789012345@");  // содержит @
     TEST_ASSERT_FALSE(res.isValid);
     TEST_ASSERT_EQUAL_STRING("ThingSpeak API ключ содержит недопустимые символы", res.message.c_str());
 }
@@ -183,7 +183,7 @@ void test_validateThingSpeakInterval()
 
 void test_validateNTPInterval()
 {
-    auto res = validateNTPInterval(3600000); // 1 час
+    auto res = validateNTPInterval(3600000);  // 1 час
     TEST_ASSERT_TRUE(res.isValid);
 }
 
@@ -287,7 +287,7 @@ void test_validateFullConfig_valid()
     strcpy(config.ssid, "TestWiFi");
     strcpy(config.password, "12345678");
     config.mqttEnabled = false;
-    
+
     auto res = validateFullConfig(config, false);
     TEST_ASSERT_TRUE(res.isValid);
     TEST_ASSERT_EQUAL(0, res.errors.size());
@@ -296,10 +296,10 @@ void test_validateFullConfig_valid()
 void test_validateFullConfig_invalid_ssid()
 {
     ConfigData config = {};
-    strcpy(config.ssid, ""); // Пустой SSID
+    strcpy(config.ssid, "");  // Пустой SSID
     strcpy(config.password, "12345678");
     config.mqttEnabled = false;
-    
+
     auto res = validateFullConfig(config, false);
     TEST_ASSERT_FALSE(res.isValid);
     TEST_ASSERT_EQUAL(1, res.errors.size());
@@ -310,9 +310,9 @@ void test_validateFullConfig_invalid_password()
 {
     ConfigData config = {};
     strcpy(config.ssid, "TestWiFi");
-    strcpy(config.password, "123"); // Слишком короткий
+    strcpy(config.password, "123");  // Слишком короткий
     config.mqttEnabled = false;
-    
+
     auto res = validateFullConfig(config, false);
     TEST_ASSERT_FALSE(res.isValid);
     TEST_ASSERT_EQUAL(1, res.errors.size());
@@ -325,8 +325,8 @@ void test_validateFullConfig_mqtt_enabled_invalid()
     strcpy(config.ssid, "TestWiFi");
     strcpy(config.password, "12345678");
     config.mqttEnabled = true;
-    strcpy(config.mqttServer, ""); // Пустой сервер
-    
+    strcpy(config.mqttServer, "");  // Пустой сервер
+
     auto res = validateFullConfig(config, true);
     TEST_ASSERT_FALSE(res.isValid);
     TEST_ASSERT_EQUAL(1, res.errors.size());
@@ -378,7 +378,7 @@ void test_formatValidationErrors()
     result.isValid = false;
     result.errors.push_back({"ssid", "SSID не может быть пустым"});
     result.errors.push_back({"password", "Пароль слишком короткий"});
-    
+
     String formatted = formatValidationErrors(result);
     TEST_ASSERT_TRUE(formatted.indexOf("ssid") >= 0);
     TEST_ASSERT_TRUE(formatted.indexOf("password") >= 0);
@@ -391,7 +391,7 @@ void test_formatSensorValidationErrors()
     result.isValid = false;
     result.errors.push_back({"temperature", "Температура вне диапазона"});
     result.errors.push_back({"humidity", "Влажность вне диапазона"});
-    
+
     String formatted = formatSensorValidationErrors(result);
     TEST_ASSERT_TRUE(formatted.indexOf("temperature") >= 0);
     TEST_ASSERT_TRUE(formatted.indexOf("humidity") >= 0);
@@ -404,7 +404,7 @@ void setup()
     Serial.begin(115200);
     delay(2000);
     UNITY_BEGIN();
-    
+
     // Тесты валидации конфигурации
     RUN_TEST(test_validateSSID_empty);
     RUN_TEST(test_validateSSID_valid);
@@ -424,7 +424,7 @@ void setup()
     RUN_TEST(test_validateThingSpeakAPIKey_wrong_length);
     RUN_TEST(test_validateThingSpeakAPIKey_valid);
     RUN_TEST(test_validateThingSpeakAPIKey_invalid_chars);
-    
+
     // Тесты валидации интервалов
     RUN_TEST(test_validateInterval_valid);
     RUN_TEST(test_validateInterval_too_low);
@@ -433,7 +433,7 @@ void setup()
     RUN_TEST(test_validateMQTTPublishInterval);
     RUN_TEST(test_validateThingSpeakInterval);
     RUN_TEST(test_validateNTPInterval);
-    
+
     // Тесты валидации данных датчика
     RUN_TEST(test_validateRange_valid);
     RUN_TEST(test_validateRange_too_low);
@@ -449,34 +449,34 @@ void setup()
     RUN_TEST(test_validateEC_invalid);
     RUN_TEST(test_validateNPK_valid);
     RUN_TEST(test_validateNPK_invalid);
-    
+
     // Тесты комплексной валидации
     RUN_TEST(test_validateFullConfig_valid);
     RUN_TEST(test_validateFullConfig_invalid_ssid);
     RUN_TEST(test_validateFullConfig_invalid_password);
     RUN_TEST(test_validateFullConfig_mqtt_enabled_invalid);
-    
+
     // Тесты вспомогательных функций
     RUN_TEST(test_isValidIPAddress_valid);
     RUN_TEST(test_isValidIPAddress_invalid);
     RUN_TEST(test_isValidHostname_valid);
     RUN_TEST(test_isValidHostname_invalid);
-    
+
     // Тесты форматирования ошибок
     RUN_TEST(test_formatValidationErrors);
     RUN_TEST(test_formatSensorValidationErrors);
-    
+
     UNITY_END();
 }
 
 void loop() {}
-#else  // Native PC tests
+#else   // Native PC tests
 int main(int argc, char** argv)
 {
     (void)argc;
     (void)argv;
     UNITY_BEGIN();
-    
+
     // Тесты валидации конфигурации
     RUN_TEST(test_validateSSID_empty);
     RUN_TEST(test_validateSSID_valid);
@@ -496,7 +496,7 @@ int main(int argc, char** argv)
     RUN_TEST(test_validateThingSpeakAPIKey_wrong_length);
     RUN_TEST(test_validateThingSpeakAPIKey_valid);
     RUN_TEST(test_validateThingSpeakAPIKey_invalid_chars);
-    
+
     // Тесты валидации интервалов
     RUN_TEST(test_validateInterval_valid);
     RUN_TEST(test_validateInterval_too_low);
@@ -505,7 +505,7 @@ int main(int argc, char** argv)
     RUN_TEST(test_validateMQTTPublishInterval);
     RUN_TEST(test_validateThingSpeakInterval);
     RUN_TEST(test_validateNTPInterval);
-    
+
     // Тесты валидации данных датчика
     RUN_TEST(test_validateRange_valid);
     RUN_TEST(test_validateRange_too_low);
@@ -521,23 +521,23 @@ int main(int argc, char** argv)
     RUN_TEST(test_validateEC_invalid);
     RUN_TEST(test_validateNPK_valid);
     RUN_TEST(test_validateNPK_invalid);
-    
+
     // Тесты комплексной валидации
     RUN_TEST(test_validateFullConfig_valid);
     RUN_TEST(test_validateFullConfig_invalid_ssid);
     RUN_TEST(test_validateFullConfig_invalid_password);
     RUN_TEST(test_validateFullConfig_mqtt_enabled_invalid);
-    
+
     // Тесты вспомогательных функций
     RUN_TEST(test_isValidIPAddress_valid);
     RUN_TEST(test_isValidIPAddress_invalid);
     RUN_TEST(test_isValidHostname_valid);
     RUN_TEST(test_isValidHostname_invalid);
-    
+
     // Тесты форматирования ошибок
     RUN_TEST(test_formatValidationErrors);
     RUN_TEST(test_formatSensorValidationErrors);
-    
+
     return UNITY_END();
 }
-#endif  // ARDUINO 
+#endif  // ARDUINO

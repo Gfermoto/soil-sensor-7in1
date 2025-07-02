@@ -41,4 +41,4 @@ python test/e2e/test_web_ui.py --target 192.168.2.74
 
 - **Результаты:** `test_reports/`
 - **E2E отчёты:** `test_reports/e2e-test-report.json`
-- **Security аудит:** `docs/CSRF_SECURITY_AUDIT.md` 
+- **Security аудит:** `docs/CSRF_SECURITY_AUDIT.md`

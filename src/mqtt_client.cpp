@@ -380,58 +380,58 @@ bool shouldPublishMqtt()
         return true;
     }
 
-    DEBUG_PRINTF("[MQTT DEBUG] Проверка дельт: skipCounter=%d, forcePublishCycles=%d\n", 
-                 skipCounter, config.forcePublishCycles);
+    DEBUG_PRINTF("[MQTT DEBUG] Проверка дельт: skipCounter=%d, forcePublishCycles=%d\n", skipCounter,
+                 config.forcePublishCycles);
 
     // Проверяем дельта изменения
     bool hasSignificantChange = false;
 
     if (abs(sensorData.temperature - sensorData.prev_temperature) >= config.deltaTemperature)
     {
-        DEBUG_PRINTF("[DELTA] Температура изменилась: %.1f -> %.1f (дельта=%.1f)\n", 
-                     sensorData.prev_temperature, sensorData.temperature, config.deltaTemperature);
+        DEBUG_PRINTF("[DELTA] Температура изменилась: %.1f -> %.1f (дельта=%.1f)\n", sensorData.prev_temperature,
+                     sensorData.temperature, config.deltaTemperature);
         hasSignificantChange = true;
     }
 
     if (abs(sensorData.humidity - sensorData.prev_humidity) >= config.deltaHumidity)
     {
-        DEBUG_PRINTF("[DELTA] Влажность изменилась: %.1f -> %.1f (дельта=%.1f)\n", 
-                     sensorData.prev_humidity, sensorData.humidity, config.deltaHumidity);
+        DEBUG_PRINTF("[DELTA] Влажность изменилась: %.1f -> %.1f (дельта=%.1f)\n", sensorData.prev_humidity,
+                     sensorData.humidity, config.deltaHumidity);
         hasSignificantChange = true;
     }
 
     if (abs(sensorData.ph - sensorData.prev_ph) >= config.deltaPh)
     {
-        DEBUG_PRINTF("[DELTA] pH изменился: %.1f -> %.1f (дельта=%.1f)\n", 
-                     sensorData.prev_ph, sensorData.ph, config.deltaPh);
+        DEBUG_PRINTF("[DELTA] pH изменился: %.1f -> %.1f (дельта=%.1f)\n", sensorData.prev_ph, sensorData.ph,
+                     config.deltaPh);
         hasSignificantChange = true;
     }
 
     if (abs(sensorData.ec - sensorData.prev_ec) >= config.deltaEc)
     {
-        DEBUG_PRINTF("[DELTA] EC изменилась: %.0f -> %.0f (дельта=%.0f)\n", 
-                     sensorData.prev_ec, sensorData.ec, config.deltaEc);
+        DEBUG_PRINTF("[DELTA] EC изменилась: %.0f -> %.0f (дельта=%.0f)\n", sensorData.prev_ec, sensorData.ec,
+                     config.deltaEc);
         hasSignificantChange = true;
     }
 
     if (abs(sensorData.nitrogen - sensorData.prev_nitrogen) >= config.deltaNpk)
     {
-        DEBUG_PRINTF("[DELTA] Азот изменился: %.0f -> %.0f (дельта=%.0f)\n", 
-                     sensorData.prev_nitrogen, sensorData.nitrogen, config.deltaNpk);
+        DEBUG_PRINTF("[DELTA] Азот изменился: %.0f -> %.0f (дельта=%.0f)\n", sensorData.prev_nitrogen,
+                     sensorData.nitrogen, config.deltaNpk);
         hasSignificantChange = true;
     }
 
     if (abs(sensorData.phosphorus - sensorData.prev_phosphorus) >= config.deltaNpk)
     {
-        DEBUG_PRINTF("[DELTA] Фосфор изменился: %.0f -> %.0f (дельта=%.0f)\n", 
-                     sensorData.prev_phosphorus, sensorData.phosphorus, config.deltaNpk);
+        DEBUG_PRINTF("[DELTA] Фосфор изменился: %.0f -> %.0f (дельта=%.0f)\n", sensorData.prev_phosphorus,
+                     sensorData.phosphorus, config.deltaNpk);
         hasSignificantChange = true;
     }
 
     if (abs(sensorData.potassium - sensorData.prev_potassium) >= config.deltaNpk)
     {
-        DEBUG_PRINTF("[DELTA] Калий изменился: %.0f -> %.0f (дельта=%.0f)\n", 
-                     sensorData.prev_potassium, sensorData.potassium, config.deltaNpk);
+        DEBUG_PRINTF("[DELTA] Калий изменился: %.0f -> %.0f (дельта=%.0f)\n", sensorData.prev_potassium,
+                     sensorData.potassium, config.deltaNpk);
         hasSignificantChange = true;
     }
 
@@ -444,8 +444,8 @@ bool shouldPublishMqtt()
     {
         DEBUG_PRINTLN("[DELTA] Изменения незначительные, пропускаем публикацию");
         DEBUG_PRINTF("[DELTA] Текущие значения: T=%.1f, H=%.1f, pH=%.1f, EC=%.0f, N=%.0f, P=%.0f, K=%.0f\n",
-                     sensorData.temperature, sensorData.humidity, sensorData.ph, sensorData.ec,
-                     sensorData.nitrogen, sensorData.phosphorus, sensorData.potassium);
+                     sensorData.temperature, sensorData.humidity, sensorData.ph, sensorData.ec, sensorData.nitrogen,
+                     sensorData.phosphorus, sensorData.potassium);
         DEBUG_PRINTF("[DELTA] Предыдущие значения: T=%.1f, H=%.1f, pH=%.1f, EC=%.0f, N=%.0f, P=%.0f, K=%.0f\n",
                      sensorData.prev_temperature, sensorData.prev_humidity, sensorData.prev_ph, sensorData.prev_ec,
                      sensorData.prev_nitrogen, sensorData.prev_phosphorus, sensorData.prev_potassium);
@@ -456,9 +456,9 @@ bool shouldPublishMqtt()
 
 void publishSensorData()
 {
-    DEBUG_PRINTF("[MQTT DEBUG] mqttEnabled=%d, connected=%d, valid=%d\n", 
-                 config.flags.mqttEnabled, mqttClient.connected(), sensorData.valid);
-    
+    DEBUG_PRINTF("[MQTT DEBUG] mqttEnabled=%d, connected=%d, valid=%d\n", config.flags.mqttEnabled,
+                 mqttClient.connected(), sensorData.valid);
+
     if (!config.flags.mqttEnabled || !mqttClient.connected() || !sensorData.valid)
     {
         DEBUG_PRINTLN("[MQTT DEBUG] Условия не выполнены, публикация отменена");

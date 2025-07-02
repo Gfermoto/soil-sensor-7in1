@@ -51,7 +51,7 @@ def is_trivial_block(block):
     import re
     lines = block.split('\n')
     content = ' '.join(lines).strip()
-    
+
     # Расширенные тривиальные паттерны
     trivial_patterns = [
         r'^\s*[{}]\s*$',  # Только скобки
@@ -79,11 +79,11 @@ def is_trivial_block(block):
         r'^\s*request\.[a-zA-Z]+\s*\([^)]*\);\s*$',  # request вызовы
         r'^\s*response\.[a-zA-Z]+\s*\([^)]*\);\s*$',  # response вызовы
     ]
-    
+
     for pattern in trivial_patterns:
         if re.match(pattern, content, re.MULTILINE):
             return True
-    
+
     # Проверяем, что блок содержит достаточно осмысленного кода
     meaningful_lines = 0
     for line in lines:
@@ -94,85 +94,85 @@ def is_trivial_block(block):
                 meaningful_lines += 1
             elif any(char in line for char in ['(', ')', '{', '}', ';', '=']):
                 meaningful_lines += 1
-    
+
     # Если меньше 3 осмысленных строк - считаем тривиальным
     if meaningful_lines < 3:
         return True
-    
+
     return False
 
 def normalize_block(block):
     """Нормализует блок кода для сравнения (вдумчивая нормализация)"""
     import re
-    
+
     # Убираем комментарии и лишние пробелы
     lines = block.split('\n')
     clean_lines = []
-    
+
     for line in lines:
         # Убираем комментарии
         if '//' in line:
             line = line.split('//')[0]
         if '/*' in line:
             line = line.split('/*')[0]
-        
+
         # Убираем лишние пробелы
         line = ' '.join(line.split())
-        
+
         if line.strip():
             clean_lines.append(line)
-    
+
     normalized = '\n'.join(clean_lines)
-    
+
     # Дополнительная нормализация для лучшего сравнения
     # Заменяем имена переменных на placeholder (но сохраняем структуру)
     normalized = re.sub(r'\b[a-zA-Z_][a-zA-Z0-9_]*\s*=\s*', 'VAR = ', normalized)
-    
+
     # Нормализуем числа (но сохраняем их тип)
     normalized = re.sub(r'\b\d+\.\d+\b', 'FLOAT', normalized)  # float числа
     normalized = re.sub(r'\b\d+\b', 'INT', normalized)  # целые числа
-    
+
     # Нормализуем строки (но сохраняем их наличие)
     normalized = re.sub(r'"[^"]*"', 'STRING', normalized)
-    
+
     return normalized
 
 def find_code_patterns(files):
     """Ищет повторяющиеся паттерны кода (вдумчивый анализ)"""
     patterns = {}
     pattern_count = 0
-    
+
     for file in files:
         try:
             with open(file, 'r', encoding='utf-8', errors='ignore') as f:
                 content = f.read()
-                
+
                 lines = content.split('\n')
                 for i in range(len(lines) - 9):  # Блоки по 10 строк
                     block = '\n'.join(lines[i:i+10])
-                    
+
                     # Пропускаем тривиальные блоки
                     if is_trivial_block(block):
                         continue
-                    
+
                     # Нормализуем блок
                     normalized = normalize_block(block)
-                    
+
                     # Увеличиваем минимальный размер для более осмысленных блоков
                     if len(normalized.strip()) > 150:  # Минимальный размер
                         if normalized not in patterns:
                             patterns[normalized] = []
                         patterns[normalized].append(file)
-                            
+
         except Exception as e:
             continue
-    
+
     # Ищем дубликаты между разными файлами
     for pattern, file_list in patterns.items():
         unique_files = list(set(file_list))
         if len(unique_files) > 1:
             pattern_count += 1
-    
+
     return pattern_count
 ```
 
@@ -221,4 +221,4 @@ def find_code_patterns(files):
 
 ## Заключение
 
-Вдумчивый алгоритм анализа дублирования теперь даёт точные и профессиональные результаты. Он исключает все тривиальные случаи и находит только реальные дубликаты кода, которые требуют внимания разработчиков. Это позволяет получить достоверную картину технического долга проекта и принимать обоснованные решения по рефакторингу. 
+Вдумчивый алгоритм анализа дублирования теперь даёт точные и профессиональные результаты. Он исключает все тривиальные случаи и находит только реальные дубликаты кода, которые требуют внимания разработчиков. Это позволяет получить достоверную картину технического долга проекта и принимать обоснованные решения по рефакторингу.

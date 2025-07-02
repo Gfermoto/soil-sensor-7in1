@@ -1,6 +1,6 @@
 # 🛡️ Безопасный план снижения технического долга JXCT
 
-> **Статус:** ✅ **ОСНОВНЫЕ ЗАДАЧИ ЗАВЕРШЕНЫ** | **Версия:** 3.6.7  
+> **Статус:** ✅ **ОСНОВНЫЕ ЗАДАЧИ ЗАВЕРШЕНЫ** | **Версия:** 3.6.7
 > **Последнее обновление:** 02.07.2025 | **Покрытие тестов:** 70.8%
 
 ---
@@ -102,4 +102,4 @@
 - **GitHub репозиторий:** [soil-sensor-7in1](https://github.com/Gfermoto/soil-sensor-7in1)
 - **GitHub Actions:** [CI/CD Pipeline](https://github.com/Gfermoto/soil-sensor-7in1/actions)
 - **Документация сайта:** [gfermoto.github.io/soil-sensor-7in1](https://gfermoto.github.io/soil-sensor-7in1/)
-- **Releases:** [GitHub Releases](https://github.com/Gfermoto/soil-sensor-7in1/releases) 
+- **Releases:** [GitHub Releases](https://github.com/Gfermoto/soil-sensor-7in1/releases)

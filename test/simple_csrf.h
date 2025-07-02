@@ -1,5 +1,5 @@
 #pragma once
 #include <string>
- 
+
 std::string generateCSRFToken();
-bool validateCSRFToken(const std::string& token); 
+bool validateCSRFToken(const std::string& token);

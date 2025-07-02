@@ -4,8 +4,8 @@
 #include "logger.h"
 #include "sensor_compensation.h"
 #include "validation_utils.h"
-#include "web_routes.h"
 #include "web/csrf_protection.h"  // 🔒 CSRF защита
+#include "web_routes.h"
 
 // Экземпляр веб-сервера объявлен во внешнем модуле
 extern WebServer webServer;
@@ -28,7 +28,7 @@ static String generateCalibrationPage()
 
     // Форма выбора профиля почвы
     html += "<form action='/calibration/save' method='post' enctype='multipart/form-data'>";
-    html += getCSRFHiddenField(); // Добавляем CSRF токен
+    html += getCSRFHiddenField();  // Добавляем CSRF токен
     html += "<div class='section'><h2>Профиль почвы</h2>";
     html +=
         "<div class='form-group'><label for='soil_profile'>Тип почвы:</label><select id='soil_profile' "

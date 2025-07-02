@@ -11,9 +11,9 @@
 #include "../../include/jxct_strings.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
-#include "../../include/web_routes.h"
+#include "../../include/validation_utils.h"     // ✅ Валидация входных данных
 #include "../../include/web/csrf_protection.h"  // 🔒 CSRF защита
-#include "../../include/validation_utils.h"  // ✅ Валидация входных данных
+#include "../../include/web_routes.h"
 #include "../wifi_manager.h"
 
 extern WebServer webServer;
@@ -47,33 +47,43 @@ void setupConfigRoutes()
             html += navHtml();
             html += "<h1>" UI_ICON_INTERVALS " Настройка интервалов и фильтров</h1>";
             html += "<form action='/save_intervals' method='post'>";
-            html += getCSRFHiddenField(); // Добавляем CSRF токен
+            html += getCSRFHiddenField();  // Добавляем CSRF токен
 
             html += "<div class='section'><h2>📊 Интервалы опроса и публикации</h2>";
             html += "<div class='form-group'><label for='sensor_interval'>Интервал опроса датчика (сек):</label>";
-            html += "<input type='number' id='sensor_interval' name='sensor_interval' min='" + String(CONFIG_SENSOR_INTERVAL_MIN_SEC) + "' max='" + String(CONFIG_SENSOR_INTERVAL_MAX_SEC) + "' value='" +
-                    String(config.sensorReadInterval / CONVERSION_SEC_TO_MS) + "' required>";
-            html += "<div class='help'>" + String(CONFIG_SENSOR_INTERVAL_MIN_SEC) + "-" + String(CONFIG_SENSOR_INTERVAL_MAX_SEC) + " сек. Текущее: " + String(config.sensorReadInterval / CONVERSION_SEC_TO_MS) +
+            html += "<input type='number' id='sensor_interval' name='sensor_interval' min='" +
+                    String(CONFIG_SENSOR_INTERVAL_MIN_SEC) + "' max='" + String(CONFIG_SENSOR_INTERVAL_MAX_SEC) +
+                    "' value='" + String(config.sensorReadInterval / CONVERSION_SEC_TO_MS) + "' required>";
+            html += "<div class='help'>" + String(CONFIG_SENSOR_INTERVAL_MIN_SEC) + "-" +
+                    String(CONFIG_SENSOR_INTERVAL_MAX_SEC) +
+                    " сек. Текущее: " + String(config.sensorReadInterval / CONVERSION_SEC_TO_MS) +
                     " сек (по умолчанию: 1 сек)</div></div>";
 
             html += "<div class='form-group'><label for='mqtt_interval'>Интервал MQTT публикации (мин):</label>";
-            html += "<input type='number' id='mqtt_interval' name='mqtt_interval' min='" + String(CONFIG_MQTT_INTERVAL_MIN_MIN) + "' max='" + String(CONFIG_MQTT_INTERVAL_MAX_MIN) + "' value='" +
-                    String(config.mqttPublishInterval / CONVERSION_MIN_TO_MS) + "' required>";
-            html += "<div class='help'>" + String(CONFIG_MQTT_INTERVAL_MIN_MIN) + "-" + String(CONFIG_MQTT_INTERVAL_MAX_MIN) + " мин. Текущее: " + String(config.mqttPublishInterval / CONVERSION_MIN_TO_MS) +
-                    " мин</div></div>";
+            html += "<input type='number' id='mqtt_interval' name='mqtt_interval' min='" +
+                    String(CONFIG_MQTT_INTERVAL_MIN_MIN) + "' max='" + String(CONFIG_MQTT_INTERVAL_MAX_MIN) +
+                    "' value='" + String(config.mqttPublishInterval / CONVERSION_MIN_TO_MS) + "' required>";
+            html += "<div class='help'>" + String(CONFIG_MQTT_INTERVAL_MIN_MIN) + "-" +
+                    String(CONFIG_MQTT_INTERVAL_MAX_MIN) +
+                    " мин. Текущее: " + String(config.mqttPublishInterval / CONVERSION_MIN_TO_MS) + " мин</div></div>";
 
             html += "<div class='form-group'><label for='ts_interval'>Интервал ThingSpeak (мин):</label>";
-            html += "<input type='number' id='ts_interval' name='ts_interval' min='" + String(CONFIG_THINGSPEAK_INTERVAL_MIN_MIN) + "' max='" + String(CONFIG_THINGSPEAK_INTERVAL_MAX_MIN) + "' value='" +
+            html += "<input type='number' id='ts_interval' name='ts_interval' min='" +
+                    String(CONFIG_THINGSPEAK_INTERVAL_MIN_MIN) + "' max='" +
+                    String(CONFIG_THINGSPEAK_INTERVAL_MAX_MIN) + "' value='" +
                     String(config.thingSpeakInterval / CONVERSION_MIN_TO_MS) + "' required>";
-            html += "<div class='help'>" + String(CONFIG_THINGSPEAK_INTERVAL_MIN_MIN) + "-" + String(CONFIG_THINGSPEAK_INTERVAL_MAX_MIN) + " мин. Текущее: " + String(config.thingSpeakInterval / CONVERSION_MIN_TO_MS) +
-                    " мин</div></div>";
+            html += "<div class='help'>" + String(CONFIG_THINGSPEAK_INTERVAL_MIN_MIN) + "-" +
+                    String(CONFIG_THINGSPEAK_INTERVAL_MAX_MIN) +
+                    " мин. Текущее: " + String(config.thingSpeakInterval / CONVERSION_MIN_TO_MS) + " мин</div></div>";
 
             html +=
                 "<div class='form-group'><label for='web_interval'>Интервал обновления веб-интерфейса (сек):</label>";
-            html += "<input type='number' id='web_interval' name='web_interval' min='" + String(CONFIG_WEB_INTERVAL_MIN_SEC) + "' max='" + String(CONFIG_WEB_INTERVAL_MAX_SEC) + "' value='" +
-                    String(config.webUpdateInterval / CONVERSION_SEC_TO_MS) + "' required>";
-            html += "<div class='help'>" + String(CONFIG_WEB_INTERVAL_MIN_SEC) + "-" + String(CONFIG_WEB_INTERVAL_MAX_SEC) + " сек. Текущее: " + String(config.webUpdateInterval / CONVERSION_SEC_TO_MS) +
-                    " сек</div></div></div>";
+            html += "<input type='number' id='web_interval' name='web_interval' min='" +
+                    String(CONFIG_WEB_INTERVAL_MIN_SEC) + "' max='" + String(CONFIG_WEB_INTERVAL_MAX_SEC) +
+                    "' value='" + String(config.webUpdateInterval / CONVERSION_SEC_TO_MS) + "' required>";
+            html +=
+                "<div class='help'>" + String(CONFIG_WEB_INTERVAL_MIN_SEC) + "-" + String(CONFIG_WEB_INTERVAL_MAX_SEC) +
+                " сек. Текущее: " + String(config.webUpdateInterval / CONVERSION_SEC_TO_MS) + " сек</div></div></div>";
 
             html += "<div class='section'><h2>🎯 Пороги дельта-фильтра</h2>";
             html += "<div class='form-group'><label for='delta_temp'>Порог температуры (°C):</label>";
@@ -82,36 +92,46 @@ void setupConfigRoutes()
             html += "<div class='help'>0.1-5.0°C. Публикация при изменении более чем на это значение</div></div>";
 
             html += "<div class='form-group'><label for='delta_hum'>Порог влажности (%):</label>";
-            html += "<input type='number' id='delta_hum' name='delta_hum' min='" + String(CONFIG_DELTA_HUMIDITY_MIN) + "' max='" + String(CONFIG_DELTA_HUMIDITY_MAX) + "' step='" + String(CONFIG_STEP_HUMIDITY) + "' value='" +
-                    String(config.deltaHumidity) + "' required>";
-            html += "<div class='help'>" + String(CONFIG_DELTA_HUMIDITY_MIN) + "-" + String(CONFIG_DELTA_HUMIDITY_MAX) + "%. Публикация при изменении более чем на это значение</div></div>";
+            html += "<input type='number' id='delta_hum' name='delta_hum' min='" + String(CONFIG_DELTA_HUMIDITY_MIN) +
+                    "' max='" + String(CONFIG_DELTA_HUMIDITY_MAX) + "' step='" + String(CONFIG_STEP_HUMIDITY) +
+                    "' value='" + String(config.deltaHumidity) + "' required>";
+            html += "<div class='help'>" + String(CONFIG_DELTA_HUMIDITY_MIN) + "-" + String(CONFIG_DELTA_HUMIDITY_MAX) +
+                    "%. Публикация при изменении более чем на это значение</div></div>";
 
             html += "<div class='form-group'><label for='delta_ph'>Порог pH:</label>";
-            html += "<input type='number' id='delta_ph' name='delta_ph' min='" + String(CONFIG_DELTA_PH_MIN) + "' max='" + String(CONFIG_DELTA_PH_MAX) + "' step='" + String(CONFIG_STEP_PH) + "' value='" +
+            html += "<input type='number' id='delta_ph' name='delta_ph' min='" + String(CONFIG_DELTA_PH_MIN) +
+                    "' max='" + String(CONFIG_DELTA_PH_MAX) + "' step='" + String(CONFIG_STEP_PH) + "' value='" +
                     String(config.deltaPh) + "' required>";
-            html += "<div class='help'>" + String(CONFIG_DELTA_PH_MIN) + "-" + String(CONFIG_DELTA_PH_MAX) + ". Публикация при изменении более чем на это значение</div></div>";
+            html += "<div class='help'>" + String(CONFIG_DELTA_PH_MIN) + "-" + String(CONFIG_DELTA_PH_MAX) +
+                    ". Публикация при изменении более чем на это значение</div></div>";
 
             html += "<div class='form-group'><label for='delta_ec'>Порог EC (µS/cm):</label>";
-            html += "<input type='number' id='delta_ec' name='delta_ec' min='" + String(CONFIG_DELTA_EC_MIN) + "' max='" + String(CONFIG_DELTA_EC_MAX) + "' value='" +
-                    String((int)config.deltaEc) + "' required>";
-            html += "<div class='help'>" + String(CONFIG_DELTA_EC_MIN) + "-" + String(CONFIG_DELTA_EC_MAX) + " µS/cm. Публикация при изменении более чем на это значение</div></div>";
+            html += "<input type='number' id='delta_ec' name='delta_ec' min='" + String(CONFIG_DELTA_EC_MIN) +
+                    "' max='" + String(CONFIG_DELTA_EC_MAX) + "' value='" + String((int)config.deltaEc) + "' required>";
+            html += "<div class='help'>" + String(CONFIG_DELTA_EC_MIN) + "-" + String(CONFIG_DELTA_EC_MAX) +
+                    " µS/cm. Публикация при изменении более чем на это значение</div></div>";
 
             html += "<div class='form-group'><label for='delta_npk'>Порог NPK (mg/kg):</label>";
-            html += "<input type='number' id='delta_npk' name='delta_npk' min='" + String(CONFIG_DELTA_NPK_MIN) + "' max='" + String(CONFIG_DELTA_NPK_MAX) + "' value='" +
-                    String((int)config.deltaNpk) + "' required>";
-            html +=
-                "<div class='help'>" + String(CONFIG_DELTA_NPK_MIN) + "-" + String(CONFIG_DELTA_NPK_MAX) + " mg/kg. Публикация при изменении более чем на это значение</div></div></div>";
+            html += "<input type='number' id='delta_npk' name='delta_npk' min='" + String(CONFIG_DELTA_NPK_MIN) +
+                    "' max='" + String(CONFIG_DELTA_NPK_MAX) + "' value='" + String((int)config.deltaNpk) +
+                    "' required>";
+            html += "<div class='help'>" + String(CONFIG_DELTA_NPK_MIN) + "-" + String(CONFIG_DELTA_NPK_MAX) +
+                    " mg/kg. Публикация при изменении более чем на это значение</div></div></div>";
 
             html += "<div class='section'><h2>📈 Скользящее среднее</h2>";
             html += "<div class='form-group'><label for='avg_window'>Размер окна усреднения:</label>";
-            html += "<input type='number' id='avg_window' name='avg_window' min='" + String(CONFIG_AVG_WINDOW_MIN) + "' max='" + String(CONFIG_AVG_WINDOW_MAX) + "' value='" +
-                    String(config.movingAverageWindow) + "' required>";
-            html += "<div class='help'>" + String(CONFIG_AVG_WINDOW_MIN) + "-" + String(CONFIG_AVG_WINDOW_MAX) + " измерений. Больше = плавнее, но медленнее реакция</div></div>";
+            html += "<input type='number' id='avg_window' name='avg_window' min='" + String(CONFIG_AVG_WINDOW_MIN) +
+                    "' max='" + String(CONFIG_AVG_WINDOW_MAX) + "' value='" + String(config.movingAverageWindow) +
+                    "' required>";
+            html += "<div class='help'>" + String(CONFIG_AVG_WINDOW_MIN) + "-" + String(CONFIG_AVG_WINDOW_MAX) +
+                    " измерений. Больше = плавнее, но медленнее реакция</div></div>";
 
             html += "<div class='form-group'><label for='force_cycles'>Принудительная публикация (циклов):</label>";
-            html += "<input type='number' id='force_cycles' name='force_cycles' min='" + String(CONFIG_FORCE_CYCLES_MIN) + "' max='" + String(CONFIG_FORCE_CYCLES_MAX) + "' value='" +
+            html += "<input type='number' id='force_cycles' name='force_cycles' min='" +
+                    String(CONFIG_FORCE_CYCLES_MIN) + "' max='" + String(CONFIG_FORCE_CYCLES_MAX) + "' value='" +
                     String(config.forcePublishCycles) + "' required>";
-            html += "<div class='help'>" + String(CONFIG_FORCE_CYCLES_MIN) + "-" + String(CONFIG_FORCE_CYCLES_MAX) + " циклов. Публикация каждые N циклов даже без изменений</div></div>";
+            html += "<div class='help'>" + String(CONFIG_FORCE_CYCLES_MIN) + "-" + String(CONFIG_FORCE_CYCLES_MAX) +
+                    " циклов. Публикация каждые N циклов даже без изменений</div></div>";
 
             // Новые настройки алгоритма и фильтра выбросов
             html += "<div class='form-group'><label for='filter_algo'>Алгоритм обработки данных:</label>";
@@ -153,7 +173,7 @@ void setupConfigRoutes()
                      // ✅ CSRF защита
                      if (!checkCSRFSafety())
                      {
-                         logWarn("CSRF атака отклонена на /save_intervals от %s", 
+                         logWarn("CSRF атака отклонена на /save_intervals от %s",
                                  webServer.client().remoteIP().toString().c_str());
                          String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                          webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
@@ -178,9 +198,11 @@ void setupConfigRoutes()
 
                      if (!valSensor.isValid || !valMqtt.isValid || !valTs.isValid)
                      {
-                         String html = generateErrorPage(HTTP_BAD_REQUEST, "Ошибка валидации интервалов: " +
-                                                          String(!valSensor.isValid ? valSensor.message :
-                                                                 !valMqtt.isValid ? valMqtt.message : valTs.message));
+                         String html =
+                             generateErrorPage(HTTP_BAD_REQUEST, "Ошибка валидации интервалов: " +
+                                                                     String(!valSensor.isValid ? valSensor.message
+                                                                            : !valMqtt.isValid ? valMqtt.message
+                                                                                               : valTs.message));
                          webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
                          return;
                      }
@@ -309,7 +331,7 @@ void setupConfigRoutes()
                      html += "<h2>📥 Импорт конфигурации</h2>";
                      html += "<p>Загрузите файл конфигурации для восстановления настроек:</p>";
                      html += "<form action='/api/config/import' method='post' enctype='multipart/form-data'>";
-                     html += getCSRFHiddenField(); // Добавляем CSRF токен
+                     html += getCSRFHiddenField();  // Добавляем CSRF токен
                      html += "<input type='file' name='config' accept='.json' required>";
                      html += generateButton(ButtonType::SECONDARY, "📤", "Загрузить конфигурацию", "");
                      html += "</form>";
@@ -341,7 +363,7 @@ void setupConfigRoutes()
             // ✅ CSRF защита - критическая операция импорта конфигурации!
             if (!checkCSRFSafety())
             {
-                logWarn("CSRF атака отклонена на /api/config/import от %s", 
+                logWarn("CSRF атака отклонена на /api/config/import от %s",
                         webServer.client().remoteIP().toString().c_str());
                 webServer.send(HTTP_FORBIDDEN, "application/json", "{\"error\":\"CSRF token invalid\"}");
                 importedJson = "";

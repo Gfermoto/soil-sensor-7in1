@@ -12,8 +12,8 @@
 #include "../../include/jxct_strings.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
-#include "../../include/web_routes.h"  // ✅ CSRF защита
 #include "../../include/web/csrf_protection.h"  // 🔒 CSRF защита
+#include "../../include/web_routes.h"           // ✅ CSRF защита
 #include "../modbus_sensor.h"
 #include "../mqtt_client.h"
 #include "../wifi_manager.h"
@@ -128,7 +128,7 @@ void setupServiceRoutes()
                      // ✅ CSRF защита - критическая операция сброса!
                      if (!checkCSRFSafety())
                      {
-                         logWarn("CSRF атака отклонена на /reset от %s", 
+                         logWarn("CSRF атака отклонена на /reset от %s",
                                  webServer.client().remoteIP().toString().c_str());
                          String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                          webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
@@ -168,7 +168,7 @@ void setupServiceRoutes()
                      // ✅ CSRF защита - критическая операция перезагрузки!
                      if (!checkCSRFSafety())
                      {
-                         logWarn("CSRF атака отклонена на /reboot от %s", 
+                         logWarn("CSRF атака отклонена на /reboot от %s",
                                  webServer.client().remoteIP().toString().c_str());
                          String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                          webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
@@ -222,13 +222,16 @@ String formatUptime(unsigned long milliseconds)
     hours %= HOURS_IN_DAY;
 
     String uptime = "";
-    if (days > 0) {
+    if (days > 0)
+    {
         uptime += String(days) + "д ";
     }
-    if (hours > 0) {
+    if (hours > 0)
+    {
         uptime += String(hours) + "ч ";
     }
-    if (minutes > 0) {
+    if (minutes > 0)
+    {
         uptime += String(minutes) + "м ";
     }
     uptime += String(seconds) + "с";

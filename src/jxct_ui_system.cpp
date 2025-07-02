@@ -263,19 +263,19 @@ input:focus, select:focus, textarea:focus {
     .container { padding: 20px; margin: 5px; }
     h1 { font-size: 20px; }
     h2 { font-size: 16px; }
-    .nav a { 
-        display: block; 
-        margin: 5px 0; 
+    .nav a {
+        display: block;
+        margin: 5px 0;
         text-align: center;
     }
-    .btn { 
-        width: 100%; 
+    .btn {
+        width: 100%;
         margin-right: 0;
         margin-bottom: 15px;
     }
     .section { padding: 12px; }
     .form-group { margin-bottom: 15px; }
-    
+
 
 }
     )";
@@ -325,17 +325,17 @@ function showToast(message, type) {
     const toast = document.createElement('div');
     toast.className = 'toast';
     toast.textContent = message;
-    
+
     const colors = {
         'success': '#4CAF50',
         'error': '#F44336',
         'warning': '#FFC107',
         'info': '#2196F3'
     };
-    
+
     toast.style.background = colors[type] || colors['info'];
     document.body.appendChild(toast);
-    
+
     setTimeout(() => toast.classList.add('show'), 100);
     setTimeout(() => {
         toast.classList.remove('show');

@@ -1,9 +1,13 @@
 #pragma once
 #include "Arduino.h"
 
-class WiFiClass {
-public:
-    String macAddress() { return String("AA:BB:CC:DD:EE:FF"); }
+class WiFiClass
+{
+   public:
+    String macAddress()
+    {
+        return String("AA:BB:CC:DD:EE:FF");
+    }
 };
 
-static WiFiClass WiFi; 
+static WiFiClass WiFi;

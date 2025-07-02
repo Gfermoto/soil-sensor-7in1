@@ -25,4 +25,4 @@
 
 - `test_reports/comprehensive-report.html`
 - `test_reports/e2e-test-report.json`
-- `docs/CSRF_SECURITY_AUDIT.md` 
+- `docs/CSRF_SECURITY_AUDIT.md`
