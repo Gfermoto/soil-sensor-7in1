@@ -1,5 +1,4 @@
 #include <LittleFS.h>
-#include <vector>
 #include "calibration_manager.h"
 #include "jxct_ui_system.h"
 #include "logger.h"

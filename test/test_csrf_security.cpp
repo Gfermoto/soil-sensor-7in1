@@ -13,6 +13,81 @@ void logInfo(const char*, ...) {}
 void logSystem(const char*, ...) {}
 }
 
+// Заглушки для Arduino и FS
+#include <string>
+#include <cstring>
+#include <cstdint>
+
+// Заглушки для LittleFS
+namespace {
+    bool littleFS_initialized = false;
+    bool littleFS_exists_result = false;
+}
+
+// Заглушка для File
+class File {
+public:
+    bool available() { return false; }
+    std::string readStringUntil(char delimiter) { return ""; }
+    void close() {}
+    size_t size() { return 0; }
+    size_t write(uint8_t byte) { return 1; }
+};
+
+// Заглушка для Stream
+class Stream {
+public:
+    virtual int available() { return 0; }
+    virtual int read() { return -1; }
+    virtual size_t write(uint8_t) { return 1; }
+};
+
+// Заглушки для LittleFS
+class LittleFSClass {
+public:
+    bool begin(bool formatOnFailure) {
+        littleFS_initialized = true;
+        return true;
+    }
+    
+    bool exists(const char* path) {
+        return littleFS_exists_result;
+    }
+    
+    bool mkdir(const char* path) {
+        return true;
+    }
+    
+    File open(const char* path, const char* mode) {
+        static File dummyFile;
+        return dummyFile;
+    }
+    
+    bool remove(const char* path) {
+        return true;
+    }
+};
+
+LittleFSClass LittleFS;
+
+// Заглушки для Arduino функций
+bool isDigit(char c) { return c >= '0' && c <= '9'; }
+int random(int min, int max) { return min; }
+// Убираем millis() - он уже есть в Arduino.h
+
+// Заглушка для FS.h
+#define FS_H
+namespace fs {
+    class FS {
+    public:
+        virtual bool begin(bool formatOnFailure = false) = 0;
+        virtual bool exists(const char* path) = 0;
+        virtual bool mkdir(const char* path) = 0;
+        virtual File open(const char* path, const char* mode) = 0;
+        virtual bool remove(const char* path) = 0;
+    };
+}
+
 #include "validation_utils.h"
 #include "jxct_constants.h"
 // Подключаем реализацию напрямую (без зависимости от logger.cpp)
@@ -20,6 +95,7 @@ void logSystem(const char*, ...) {}
 #include "jxct_format_utils.h"
 #include "sensor_compensation.h"
 #include "../src/sensor_compensation.cpp"
+
 
 void setUp(void) {
     // Настройка перед каждым тестом
@@ -130,6 +206,36 @@ void test_validate_temperature_valid(void) {
     TEST_ASSERT_TRUE(res.isValid);
 }
 
+void test_validate_humidity_low(void) {
+    ValidationResult res = validateHumidity(SENSOR_HUMIDITY_MIN - 1);
+    TEST_ASSERT_FALSE(res.isValid);
+}
+
+void test_validate_humidity_high(void) {
+    ValidationResult res = validateHumidity(SENSOR_HUMIDITY_MAX + 1);
+    TEST_ASSERT_FALSE(res.isValid);
+}
+
+void test_validate_humidity_valid(void) {
+    ValidationResult res = validateHumidity(50.0f);
+    TEST_ASSERT_TRUE(res.isValid);
+}
+
+void test_validate_ph_low(void) {
+    ValidationResult res = validatePH(SENSOR_PH_MIN - 1);
+    TEST_ASSERT_FALSE(res.isValid);
+}
+
+void test_validate_ph_high(void) {
+    ValidationResult res = validatePH(SENSOR_PH_MAX + 1);
+    TEST_ASSERT_FALSE(res.isValid);
+}
+
+void test_validate_ph_valid(void) {
+    ValidationResult res = validatePH(7.0f);
+    TEST_ASSERT_TRUE(res.isValid);
+}
+
 // ---------------- FormatUtils Tests ----------------
 void test_format_temperature(void){std::string s=format_temperature(23.456f);TEST_ASSERT_EQUAL_STRING("23.5",s.c_str());}
 void test_format_ec(void){std::string s=format_ec(1234.7f);TEST_ASSERT_EQUAL_STRING("1235",s.c_str());}
@@ -145,6 +251,8 @@ void test_correct_ec_saturated(void){float res=correctEC(1000.0f,25.0f,45.0f,Soi
 void test_correct_ec_low_moisture(void){float res=correctEC(1000.0f,25.0f,30.0f,SoilType::LOAM);TEST_ASSERT_GREATER_THAN(1000.0f,res);} 
 void test_correct_npk_out_of_range(void){float N=100,P=100,K=100;correctNPK(25.0f,20.0f,N,P,K,SoilType::LOAM);TEST_ASSERT_FLOAT_WITHIN(1e-5f,100.0f,N);TEST_ASSERT_FLOAT_WITHIN(1e-5f,100.0f,P);TEST_ASSERT_FLOAT_WITHIN(1e-5f,100.0f,K);} 
 void test_correct_npk_increase(void){float N=100,P=100,K=100;correctNPK(25.0f,30.0f,N,P,K,SoilType::LOAM);TEST_ASSERT_GREATER_THAN(100.0f,N);TEST_ASSERT_GREATER_THAN(100.0f,P);TEST_ASSERT_GREATER_THAN(100.0f,K);} 
+
+
 
 int main(void) {
     UNITY_BEGIN();
@@ -163,6 +271,12 @@ int main(void) {
     RUN_TEST(test_validate_temperature_low);
     RUN_TEST(test_validate_temperature_high);
     RUN_TEST(test_validate_temperature_valid);
+    RUN_TEST(test_validate_humidity_low);
+    RUN_TEST(test_validate_humidity_high);
+    RUN_TEST(test_validate_humidity_valid);
+    RUN_TEST(test_validate_ph_low);
+    RUN_TEST(test_validate_ph_high);
+    RUN_TEST(test_validate_ph_valid);
     RUN_TEST(test_format_temperature);
     RUN_TEST(test_format_ec);
     RUN_TEST(test_format_ph);
@@ -174,5 +288,6 @@ int main(void) {
     RUN_TEST(test_correct_ec_low_moisture);
     RUN_TEST(test_correct_npk_out_of_range);
     RUN_TEST(test_correct_npk_increase);
+
     UNITY_END();
 } 

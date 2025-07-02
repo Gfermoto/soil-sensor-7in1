@@ -7,7 +7,6 @@
 #include <Arduino.h>
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "jxct_config_vars.h"
-#include "modbus_sensor.h"
 #include "sensor_compensation.h"
 
 // ✅ Неблокирующая задача эмуляции датчика с оптимизированным циклом
