@@ -195,21 +195,21 @@ class ComprehensiveTestRunner:
         # В реальности здесь должны быть Python unit тесты
         total_tests = 5  # Количество основных тестов
         passed_tests = 4  # Большинство тестов проходят
-        
+
         self.results["summary"]["total_tests"] = total_tests
         self.results["summary"]["passed_tests"] = passed_tests
         self.results["summary"]["failed_tests"] = total_tests - passed_tests
         self.results["summary"]["success_rate"] = (passed_tests / total_tests * 100)
-        
+
         print(f"  [OK] Python unit тесты: {passed_tests}/{total_tests} (заглушка для CI)")
-        
+
         # Возвращаем фиктивный результат
         class MockResult:
             def __init__(self):
                 self.returncode = 0
                 self.stdout = f"PASS: {passed_tests} tests completed successfully"
                 self.stderr = ""
-        
+
         return MockResult()
 
     def _run_coverage_analysis(self):
@@ -463,7 +463,7 @@ def main():
 
     # Запускаем тестирование
     runner = ComprehensiveTestRunner(args.project_root)
-    
+
     # Выборочный запуск тестов
     if args.unit:
         print("[UNIT] Запуск только unit тестов...")

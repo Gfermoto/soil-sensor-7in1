@@ -475,13 +475,13 @@ class CISummaryGenerator:
         if not self.artifacts_path.exists():
             print(f"⚠️ Директория артефактов не найдена: {self.artifacts_path}")
             print("Создаём минимальный отчёт...")
-            
+
             # Создаём минимальные данные
             self.summary_data['jobs']['unit_tests'] = {"status": "no_artifacts", "total_tests": 0, "passed_tests": 0}
             self.summary_data['jobs']['e2e_tests'] = {"status": "no_artifacts", "total_tests": 0, "passed_tests": 0}
             self.summary_data['jobs']['static_analysis'] = {"status": "no_artifacts", "code_smells": 0}
             self.summary_data['jobs']['performance_tests'] = {"status": "no_artifacts", "average_response_time": 0}
-            
+
             self.summary_data['overall_status'] = "warning"
             self.summary_data['recommendations'] = [
                 "Артефакты CI/CD не найдены",

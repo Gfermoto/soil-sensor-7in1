@@ -69,7 +69,6 @@ markdown_extensions:
       title: "Содержание"
       permalink_title: "Постоянная ссылка"
       baselevel: 1
-      slugify: !!python/name:pymdownx.slugs.uslugify
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.inlinehilite
@@ -100,7 +99,15 @@ nav:
     - API Reference: manuals/API.md
   - Разработка:
     - Архитектура: dev/ARCH_OVERALL.md
-    - План рефакторинга: dev/QA_REFACTORING_PLAN_2025H2.md
+    - 🚀 Техдолг (кратко): dev/TECH_DEBT_QUICK_REFERENCE.md
+    - 📊 Результаты тестов: CURRENT_TEST_RESULTS.md
     - Технический долг: dev/TECH_DEBT_REPORT_2025-06.md
+    - План рефакторинга: dev/QA_REFACTORING_PLAN_2025H2.md
     - Анализ дублирования: dev/DUPLICATION_INCLUDE_ANALYSIS_2025-06-30.md
     - Участие в проекте: CONTRIBUTING_DOCS.md
+  - Тестирование:
+    - Руководство по тестированию: TESTING_GUIDE.md
+    - Аудит безопасности CSRF: CSRF_SECURITY_AUDIT.md
+    - Отчет Stage 2: STAGE_2_COMPLETION_REPORT.md
+    - Интеграция отчетов: REPORTS_INTEGRATION.md
+    - Анализ дублирования: DUPLICATION_ANALYSIS_DETAILED.md
