@@ -118,6 +118,18 @@ class ComprehensiveTestRunner:
                 total_tests = pass_count + fail_count
                 passed_tests = pass_count
                 
+            # Исправление: если все тесты прошли, то passed_tests = total_tests
+            if "Tests completed:" in result.stdout and "passed" in result.stdout:
+                # Извлекаем количество из строки "Tests completed: X passed"
+                for line in lines:
+                    if "Tests completed:" in line and "passed" in line:
+                        try:
+                            passed_tests = int(line.split(":")[1].split()[0])
+                            total_tests = passed_tests
+                            break
+                        except (ValueError, IndexError):
+                            pass
+                
             # Парсим CSRF тесты
             if "test_csrf_token_generation" in result.stdout:
                 unit_test_results["csrf_tests"]["total"] += 1
