@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['api_5fconfig_5fexport_0',['API_CONFIG_EXPORT',['../error__handlers_8cpp.html#a279a0c067a8addd61f08d5fd7993ec35',1,'API_CONFIG_EXPORT:&#160;error_handlers.cpp'],['../jxct__strings_8h.html#a279a0c067a8addd61f08d5fd7993ec35',1,'API_CONFIG_EXPORT:&#160;jxct_strings.h']]],
+  ['api_5fconfig_5fexport_0',['API_CONFIG_EXPORT',['../jxct__strings_8h.html#a279a0c067a8addd61f08d5fd7993ec35',1,'jxct_strings.h']]],
   ['api_5froot_1',['API_ROOT',['../jxct__strings_8h.html#a2658231c913ad33de1f1e34cea47ac12',1,'jxct_strings.h']]],
   ['api_5fsensor_2',['API_SENSOR',['../jxct__strings_8h.html#a47583d6152c2bf2cd0df1b41cd090268',1,'jxct_strings.h']]],
   ['api_5fsystem_3',['API_SYSTEM',['../jxct__strings_8h.html#a7abdda090ad7c65c48dca0543be0b84f',1,'jxct_strings.h']]],

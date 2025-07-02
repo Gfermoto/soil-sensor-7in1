@@ -1,5 +1,10 @@
 var NAVTREEINDEX1 =
 {
+"jxct__config__vars_8h.html#a688d00bbabd28fbaf9e0c50eca3adeae":[3,0,1,6,29],
+"jxct__config__vars_8h.html#a68dcffe45eda49259202f133335e4c39":[3,0,1,6,9],
+"jxct__config__vars_8h.html#a6ea06cf7b8092a0adaf07614d7ece59d":[3,0,1,6,31],
+"jxct__config__vars_8h.html#a6fa5204bcafe1db397da4a87b1690061":[3,0,1,6,28],
+"jxct__config__vars_8h.html#a77d7dabaae0518e06c791e4d2dce6628":[3,0,1,6,13],
 "jxct__config__vars_8h.html#a8e19d13af09f7ed0afad391730f1e3e7":[3,0,1,6,22],
 "jxct__config__vars_8h.html#a9ec1b82f0673d93d65a1bd26c7d4a95f":[3,0,1,6,2],
 "jxct__config__vars_8h.html#aa0e54eb96835b229951b29cfe762097b":[3,0,1,6,16],
@@ -244,10 +249,5 @@ var NAVTREEINDEX1 =
 "jxct__strings_8h_source.html":[3,0,1,10],
 "jxct__ui__system_8cpp.html":[3,0,2,8],
 "jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e":[3,0,2,8,3],
-"jxct__ui__system_8cpp.html#a3a0ab8552fa88451ee4451e40d2058b3":[3,0,2,8,1],
-"jxct__ui__system_8cpp.html#a7834ec4c73014039a2aeeedadff41141":[3,0,2,8,0],
-"jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472":[3,0,2,8,2],
-"jxct__ui__system_8cpp_source.html":[3,0,2,8],
-"jxct__ui__system_8h.html":[3,0,1,11],
-"jxct__ui__system_8h.html#a04a3625848045f60e1d29c0561dd683b":[3,0,1,11,2]
+"jxct__ui__system_8cpp.html#a3a0ab8552fa88451ee4451e40d2058b3":[3,0,2,8,1]
 };
