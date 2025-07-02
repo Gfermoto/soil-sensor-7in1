@@ -1,0 +1,7 @@
+<map id="logSensorValidationResult" name="logSensorValidationResult">
+<area shape="rect" id="Node000001" title="Логирование результата валидации датчика" alt="" coords="5,31,179,57"/>
+<area shape="rect" id="Node000002" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="227,5,316,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,29,211,24,212,30,179,34"/>
+<area shape="rect" id="Node000003" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="237,56,306,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,54,222,60,222,65,179,59"/>
+</map>

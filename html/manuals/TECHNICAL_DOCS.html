@@ -1,0 +1,965 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 Техническая документация JXCT 7-в-1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            margin: -20px -20px 20px -20px;
+        }
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+        }
+        .navigation a {
+            color: #1976d2;
+            text-decoration: none;
+            margin-right: 15px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .navigation a:hover {
+            background-color: #e3f2fd;
+        }
+        .content {
+            padding: 20px 0;
+        }
+        h1, h2, h3, h4 {
+            color: #2e7d32;
+        }
+        h1 {
+            border-bottom: 3px solid #4caf50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 2px solid #81c784;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid #4caf50;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background: #388e3c;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .status-success { background: #4caf50; color: white; }
+        .status-warning { background: #ff9800; color: white; }
+        .status-error { background: #f44336; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔧 Техническая документация JXCT 7-в-1</h1>
+            <p>JXCT 7-в-1 Датчик Почвы - Профессиональная IoT система мониторинга</p>
+        </div>
+        
+        <div class="navigation">
+            
+        <a href="../../index.html">🏠 Главная</a>
+        <a href="USER_GUIDE.html">📋 Руководство</a>
+        <a href="TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+        <a href="API.html">📡 API</a>
+        <a href="../../html/index.html">📚 API документация</a>
+    
+        </div>
+        
+        <div class="content">
+            <h1>🔧 Техническая документация JXCT 7-в-1</h1>
+
+<strong>Версия:</strong> 3.4.9  
+<strong>Дата:</strong> Июнь 2025  
+<strong>Автор:</strong> JXCT Development Team
+
+<p>---</p>
+
+<h2>📖 Содержание</h2>
+
+<p>1. <a href="#️-архитектура-системы">🏗️ Архитектура системы</a>
+2. <a href="#-аппаратная-архитектура">🔌 Аппаратная архитектура</a>
+3. <a href="#-программная-архитектура">💻 Программная архитектура</a>
+4. <a href="#-сетевые-протоколы">📡 Сетевые протоколы</a>
+5. <a href="#-алгоритмы-компенсации">🔬 Алгоритмы компенсации</a>
+6. <a href="#-веб-интерфейс">🌐 Веб-интерфейс</a>
+7. <a href="#-api-документация">📊 API документация</a>
+8. <a href="#-конфигурация">🔧 Конфигурация</a>
+9. <a href="#-структура-проекта">📁 Структура проекта</a>
+10. <a href="#️-разработка">🛠️ Разработка</a></p>
+
+---
+
+<h2>🏗️ Архитектура системы</h2>
+
+<h3>🎯 Общая концепция</h3>
+
+<p>JXCT 7-в-1 представляет собой IoT устройство для мониторинга почвы, построенное на принципах:
+<ul>
+<li><strong>Модульность:</strong> Разделение на независимые компоненты</li>
+</ul><li><strong>Масштабируемость:</strong> Возможность добавления новых функций</li><ul>
+<li><strong>Надежность:</strong> Обработка ошибок и восстановление</li>
+</ul><li><strong>Производительность:</strong> Оптимизация для ESP32</li></p>
+
+<h3>🔄 Жизненный цикл системы</h3>
+
+<code></code>`
+Загрузка → Инициализация → Основной цикл → Обработка ошибок → Перезагрузка
+    ↓           ↓              ↓              ↓              ↓
+  NVS        WiFi/MQTT     Измерения      Логирование    Сохранение
+  Загрузка    Подключение   Компенсация    Ошибок        Состояния
+<code></code>`
+
+<p>---</p>
+
+<h2>🔌 Аппаратная архитектура</h2>
+
+<h3>🧩 Основные компоненты</h3>
+
+<p>#### ESP32 микроконтроллер<ul>
+<li><strong>Модель:</strong> ESP32-WROOM-32 (рекомендуется)</li>
+</ul><li><strong>Процессор:</strong> Dual-core Xtensa LX6 @ 240MHz</li><ul>
+<li><strong>RAM:</strong> 520KB SRAM</li>
+</ul><li><strong>Flash:</strong> 4MB (SPIFFS для файловой системы)</li><ul>
+<li><strong>WiFi:</strong> 802.11 b/g/n</li>
+</ul><li><strong>Bluetooth:</strong> 4.2 BR/EDR + BLE</li></p>
+
+#### JXCT 7-в-1 датчик<ul>
+<li><strong>Интерфейс:</strong> Modbus RTU</li>
+</ul><li><strong>Скорость:</strong> 9600 bps</li><ul>
+<li><strong>Питание:</strong> 3.3V</li>
+</ul><li><strong>Потребление:</strong> < 50mA</li><ul>
+<li><strong>Диапазон температур:</strong> -40°C до +85°C</li>
+</ul>
+<h3>🔌 Схема подключения</h3>
+
+<code></code>`
+ESP32                    JXCT Sensor
+┌─────────┐              ┌─────────┐
+│  3.3V   │──────────────│   VCC   │
+│         │              │         │
+│  GND    │──────────────│   GND   │
+│         │              │         │
+│ GPIO2   │──────────────│   TX    │
+│         │              │         │
+│ GPIO4   │──────────────│   RX    │
+└─────────┘              └─────────┘
+<code></code>`
+
+<h3>📊 Характеристики датчика</h3>
+
+<p>| Параметр | Диапазон | Точность | Единицы |
+|----------|----------|----------|---------|
+| Температура | 0-50°C | ±0.5°C | °C |
+| Влажность | 0-100% | ±3% | % |
+| EC | 0-5000 | ±5% | µS/cm |
+| pH | 3-9 | ±0.3 | pH |
+| Азот | 0-2000 | ±10% | мг/кг |
+| Фосфор | 0-1000 | ±10% | мг/кг |
+| Калий | 0-2000 | ±10% | мг/кг |</p>
+
+---
+
+<h2>💻 Программная архитектура</h2>
+
+<h3>🏛️ Архитектурные слои</h3>
+
+<code></code>`
+┌─────────────────────────────────────┐
+│           Веб-интерфейс             │ ← Пользовательский интерфейс
+├─────────────────────────────────────┤
+│           API слой                  │ ← REST API и JSON
+├─────────────────────────────────────┤
+│         Бизнес-логика               │ ← Компенсация, калибровка
+├─────────────────────────────────────┤
+│         Слой данных                 │ ← Датчики, NVS, файлы
+├─────────────────────────────────────┤
+│         Сетевой слой                │ ← WiFi, MQTT, HTTP
+├─────────────────────────────────────┤
+│         Аппаратный слой             │ ← ESP32, Modbus
+└─────────────────────────────────────┘
+<code></code>`
+
+<h3>📦 Основные модули</h3>
+
+<p>#### 1. <strong>Модуль датчика</strong> (<code>modbus_sensor.cpp</code>)<ul>
+<li>Чтение данных с JXCT датчика</li>
+</ul><li>Обработка Modbus RTU протокола</li><ul>
+<li>Валидация полученных данных</li>
+</ul><li>Обработка ошибок связи</li></p>
+
+#### 2. <strong>Модуль компенсации</strong> (<code>sensor_compensation.cpp</code>)<ul>
+<li>Применение научных моделей</li>
+</ul><li>Температурная компенсация</li><ul>
+<li>Влажностная компенсация</li>
+</ul><li>Коррекция по типу почвы</li>
+
+<p>#### 3. <strong>Модуль калибровки</strong> (<code>calibration_manager.cpp</code>)<ul>
+<li>Управление CSV калибровочными таблицами</li>
+</ul><li>Линейная интерполяция</li><ul>
+<li>Применение коэффициентов коррекции</li>
+</ul><li>Валидация калибровочных данных</li></p>
+
+#### 4. <strong>Веб-сервер</strong> (<code>web/</code>)<ul>
+<li>HTTP сервер на ESP32</li>
+</ul><li>REST API endpoints</li><ul>
+<li>HTML страницы</li>
+</ul><li>Обработка форм и файлов</li>
+
+<p>#### 5. <strong>MQTT клиент</strong> (<code>mqtt_client.cpp</code>)<ul>
+<li>Подключение к MQTT брокеру</li>
+</ul><li>Публикация данных</li><ul>
+<li>Обработка команд</li>
+</ul><li>Автоматическое переподключение</li></p>
+
+#### 6. <strong>WiFi менеджер</strong> (<code>wifi_manager.cpp</code>)<ul>
+<li>Управление WiFi подключением</li>
+</ul><li>Режимы AP/STA</li><ul>
+<li>Автоматическое переподключение</li>
+</ul><li>Диагностика сети</li>
+
+<h3>🔄 Основной цикл работы</h3>
+
+<code></code>`cpp
+void loop() {
+    // 1. Чтение данных с датчика
+    if (readSensorData()) {
+        // 2. Применение калибровки
+        applyCalibration();
+        
+        // 3. Математическая компенсация
+        applyCompensation();
+        
+        // 4. Обновление веб-интерфейса
+        updateWebInterface();
+        
+        // 5. Проверка необходимости публикации
+        if (shouldPublish()) {
+            publishToMQTT();
+            publishToThingSpeak();
+        }
+    }
+    
+    // 6. Обработка веб-запросов
+    webServer.handleClient();
+    
+    // 7. Проверка OTA обновлений
+    checkOTAUpdates();
+    
+    // 8. Задержка до следующего цикла
+    delay(config.sensorReadInterval);
+}
+<code></code>`
+
+<p>---</p>
+
+<h2>📡 Сетевые протоколы</h2>
+
+<h3>🌐 WiFi</h3>
+
+<p>#### Режимы работы<ul>
+<li><strong>STA (Station):</strong> Подключение к существующей сети</li>
+</ul><li><strong>AP (Access Point):</strong> Создание точки доступа</li><ul>
+<li><strong>AP+STA:</strong> Одновременная работа в обоих режимах</li>
+</ul>
+#### Конфигурация
+<code></code>`cpp
+// STA режим
+const char* WIFI_SSID = "your_network";
+const char* WIFI_PASSWORD = "your_password";</p>
+
+// AP режим
+const char* AP_SSID = "JXCT_Setup";
+const char* AP_PASSWORD = "12345678";
+<code></code>`
+
+<h3>📡 MQTT</h3>
+
+<p>#### Структура топиков
+<code></code>`
+jxct/sensor/{device_id}/temperature
+jxct/sensor/{device_id}/humidity
+jxct/sensor/{device_id}/ec
+jxct/sensor/{device_id}/ph
+jxct/sensor/{device_id}/nitrogen
+jxct/sensor/{device_id}/phosphorus
+jxct/sensor/{device_id}/potassium
+jxct/sensor/{device_id}/status
+<code></code>`</p>
+
+#### Формат сообщений
+<code></code>`json
+{
+  "timestamp": 1640995200,
+  "value": 25.5,
+  "unit": "°C",
+  "quality": "good",
+  "compensated": true
+}
+<code></code>`
+
+<h3>🌍 ThingSpeak</h3>
+
+<p>#### Структура канала<ul>
+<li><strong>Field 1:</strong> Температура (°C)</li>
+</ul><li><strong>Field 2:</strong> Влажность (%)</li><ul>
+<li><strong>Field 3:</strong> EC (µS/cm)</li>
+</ul><li><strong>Field 4:</strong> pH</li><ul>
+<li><strong>Field 5:</strong> Азот (мг/кг)</li>
+</ul><li><strong>Field 6:</strong> Фосфор (мг/кг)</li><ul>
+<li><strong>Field 7:</strong> Калий (мг/кг)</li>
+</ul><li><strong>Field 8:</strong> Статус (битовая маска)</li></p>
+
+<h3>🔌 Modbus RTU</h3>
+
+<p>#### Регистры датчика
+| Адрес | Описание | Единицы | Диапазон |
+|-------|----------|---------|----------|
+| 0x0001 | Температура | 0.1°C | -400-800 |
+| 0x0002 | Влажность | 0.1% | 0-1000 |
+| 0x0003 | EC | 1 µS/cm | 0-65535 |
+| 0x0004 | pH | 0.1 pH | 0-140 |
+| 0x0005 | Азот | 1 мг/кг | 0-65535 |
+| 0x0006 | Фосфор | 1 мг/кг | 0-65535 |
+| 0x0007 | Калий | 1 мг/кг | 0-65535 |</p>
+
+#### Формат запроса
+<code></code>`
+01 03 00 01 00 07 25 CA
+│  │  │  │  │  │  │  │
+│  │  │  │  │  │  │  └─ CRC
+│  │  │  │  │  │  └───── Количество регистров (7)
+│  │  │  │  │  └──────── Начальный адрес (0x0001)
+│  │  │  └─┴──────────── Код функции (03 - чтение)
+│  └─┴────────────────── Адрес устройства (01)
+<code></code>`
+
+<p>---</p>
+
+<h2>🔬 Алгоритмы компенсации</h2>
+
+<h3>🌡️ Температурная компенсация</h3>
+
+<p>#### Модель Арчи для EC
+<code></code>`cpp
+float compensateEC(float ec, float temperature, SoilType soilType) {
+    // Коэффициенты по типам почв
+    float k = getSoilCoefficient(soilType);
+    
+    // Температурная компенсация
+    float tempFactor = 1.0 + 0.02 * (temperature - 25.0);
+    
+    // Модель Арчи: EC = σ * φ^m
+    return ec <em> tempFactor </em> k;
+}
+<code></code>`</p>
+
+#### Уравнение Нернста для pH
+<code></code>`cpp
+float compensatePH(float ph, float temperature) {
+    // Температурная поправка: -0.003 pH/°C
+    float tempCorrection = -0.003 * (temperature - 25.0);
+    return ph + tempCorrection;
+}
+<code></code>`
+
+<h3>💧 Влажностная компенсация</h3>
+
+<p>#### FAO 56 модель для NPK
+<code></code>`cpp
+float compensateNPK(float npk, float humidity, SoilType soilType) {
+    // Базовый коэффициент влажности
+    float humidityFactor = 1.0 + 0.1 * (humidity - 60.0) / 40.0;
+    
+    // Коррекция по типу почвы
+    float soilFactor = getSoilHumidityFactor(soilType);
+    
+    return npk <em> humidityFactor </em> soilFactor;
+}
+<code></code>`</p>
+
+<h3>📊 Двухэтапная система</h3>
+
+<p>#### Этап 1: CSV калибровка
+<code></code>`cpp
+float applyCalibration(float rawValue, SoilProfile profile) {
+    if (!hasCalibrationTable(profile)) {
+        return rawValue;
+    }
+    
+    // Линейная интерполяция
+    float factor = interpolateCalibration(rawValue, profile);
+    return rawValue * factor;
+}
+<code></code>`</p>
+
+#### Этап 2: Математическая компенсация
+<code></code>`cpp
+float applyCompensation(float calibratedValue, SensorData data) {
+    switch (data.type) {
+        case SENSOR_EC:
+            return compensateEC(calibratedValue, data.temperature, data.soilType);
+        case SENSOR_PH:
+            return compensatePH(calibratedValue, data.temperature);
+        case SENSOR_NPK:
+            return compensateNPK(calibratedValue, data.humidity, data.soilType);
+        default:
+            return calibratedValue;
+    }
+}
+<code></code>`
+
+<p>---</p>
+
+<h2>🌐 Веб-интерфейс</h2>
+
+<h3>🏗️ Архитектура</h3>
+
+<p>#### Компоненты<ul>
+<li><strong>HTTP сервер:</strong> Встроенный в ESP32</li>
+</ul><li><strong>HTML генерация:</strong> Динамическая генерация страниц</li><ul>
+<li><strong>JavaScript:</strong> AJAX для обновления данных</li>
+</ul><li><strong>CSS:</strong> Адаптивный дизайн</li></p>
+
+#### Структура страниц
+<code></code>`
+/                    → Главная (настройки WiFi/MQTT)
+/readings           → Показания датчика
+/intervals          → Настройка интервалов
+/updates            → OTA обновления
+/service            → Сервисные функции
+/api/v1/sensor      → JSON API
+<code></code>`
+
+<h3>📱 Адаптивный дизайн</h3>
+
+<p>#### Breakpoints<ul>
+<li><strong>Mobile:</strong> < 768px</li>
+</ul><li><strong>Tablet:</strong> 768px - 1024px</li><ul>
+<li><strong>Desktop:</strong> > 1024px</li>
+</ul>
+#### CSS Grid система
+<code></code>`css
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+<code></code>`</p>
+
+<h3>🔄 AJAX обновления</h3>
+
+<p>#### JavaScript API
+<code></code>`javascript
+// Получение данных датчика
+fetch('/api/v1/sensor')
+    .then(response => response.json())
+    .then(data => updateDisplay(data));</p>
+
+// Обновление каждые 3 секунды
+setInterval(updateSensorData, 3000);
+<code></code>`
+
+<p>---</p>
+
+<h2>📊 API документация</h2>
+
+<h3>🌐 REST API</h3>
+
+<p>#### GET <code>/api/v1/sensor</code>
+Получение текущих показаний датчика</p>
+
+<strong>Ответ:</strong>
+<code></code>`json
+{
+  "timestamp": 1640995200,
+  "temperature": {
+    "raw": 25.3,
+    "compensated": 25.5,
+    "recommended": 22.0,
+    "unit": "°C"
+  },
+  "humidity": {
+    "raw": 65.2,
+    "compensated": 65.0,
+    "recommended": 60.0,
+    "unit": "%"
+  },
+  "ec": {
+    "raw": 1200,
+    "compensated": 1180,
+    "recommended": 1500,
+    "unit": "µS/cm"
+  },
+  "ph": {
+    "raw": 6.8,
+    "compensated": 6.7,
+    "recommended": 6.5,
+    "unit": "pH"
+  },
+  "nitrogen": {
+    "raw": 35,
+    "compensated": 38,
+    "recommended": 40,
+    "unit": "mg/kg"
+  },
+  "phosphorus": {
+    "raw": 12,
+    "compensated": 11,
+    "recommended": 10,
+    "unit": "mg/kg"
+  },
+  "potassium": {
+    "raw": 28,
+    "compensated": 30,
+    "recommended": 30,
+    "unit": "mg/kg"
+  },
+  "status": {
+    "sensor": "ok",
+    "wifi": "connected",
+    "mqtt": "connected",
+    "calibration": "enabled"
+  }
+}
+<code></code>`
+
+<p>#### GET <code>/api/v1/config</code>
+Получение текущей конфигурации</p>
+
+<strong>Ответ:</strong>
+<code></code>`json
+{
+  "wifi": {
+    "ssid": "your_network",
+    "mode": "sta"
+  },
+  "mqtt": {
+    "enabled": true,
+    "server": "mqtt.example.com",
+    "port": 1883,
+    "topic": "jxct/sensor/001"
+  },
+  "sensor": {
+    "read_interval": 30000,
+    "calibration_enabled": true,
+    "soil_type": "loam",
+    "crop": "tomato"
+  }
+}
+<code></code>`
+
+<p>#### POST <code>/api/v1/config</code>
+Обновление конфигурации</p>
+
+<strong>Тело запроса:</strong>
+<code></code>`json
+{
+  "wifi": {
+    "ssid": "new_network",
+    "password": "new_password"
+  },
+  "sensor": {
+    "read_interval": 60000
+  }
+}
+<code></code>`
+
+<p>#### GET <code>/api/v1/status</code>
+Получение системного статуса</p>
+
+<strong>Ответ:</strong>
+<code></code>`json
+{
+  "version": "3.4.9",
+  "uptime": 86400,
+  "free_memory": 150000,
+  "wifi_rssi": -45,
+  "mqtt_connected": true,
+  "sensor_connected": true,
+  "last_reading": 1640995200
+}
+<code></code>`
+
+<h3>📡 MQTT API</h3>
+
+<p>#### Топики для публикации
+<code></code>`
+jxct/sensor/{device_id}/data
+jxct/sensor/{device_id}/status
+jxct/sensor/{device_id}/config
+<code></code>`</p>
+
+#### Топики для подписки
+<code></code>`
+jxct/sensor/{device_id}/command
+jxct/sensor/{device_id}/config/update
+<code></code>`
+
+<p>#### Формат команд
+<code></code>`json
+{
+  "command": "restart",
+  "timestamp": 1640995200,
+  "id": "cmd_001"
+}
+<code></code>`</p>
+
+---
+
+<h2>🔧 Конфигурация</h2>
+
+<h3>📝 Структура конфигурации</h3>
+
+<code></code>`cpp
+struct Config {
+    // WiFi настройки
+    char ssid[32];
+    char password[64];
+    
+    // MQTT настройки
+    bool mqttEnabled;
+    char mqttServer[64];
+    int mqttPort;
+    char mqttUser[32];
+    char mqttPassword[32];
+    char mqttTopic[64];
+    
+    // ThingSpeak настройки
+    bool thingSpeakEnabled;
+    char thingSpeakApiKey[64];
+    unsigned long thingSpeakChannelId;
+    
+    // Настройки датчика
+    int sensorReadInterval;
+    int mqttPublishInterval;
+    int thingSpeakInterval;
+    int webUpdateInterval;
+    
+    // Фильтры
+    float deltaTemperature;
+    float deltaHumidity;
+    float deltaPh;
+    float deltaEc;
+    float deltaNpk;
+    
+    // Калибровка
+    bool calibrationEnabled;
+    SoilProfile soilProfile;
+    
+    // Культура и среда
+    char cropId[16];
+    EnvironmentType environmentType;
+    float latitude;
+    float longitude;
+    
+    // Флаги
+    struct {
+        uint8_t useRealSensor : 1;
+        uint8_t seasonalAdjustEnabled : 1;
+        uint8_t outlierFilterEnabled : 1;
+        uint8_t isGreenhouse : 1;
+    } flags;
+};
+<code></code>`
+
+<h3>💾 Хранение конфигурации</h3>
+
+<p>#### NVS (Non-Volatile Storage)
+<code></code>`cpp
+// Сохранение
+void saveConfig() {
+    Preferences prefs;
+    prefs.begin("jxct", false);
+    prefs.putBytes("config", &config, sizeof(config));
+    prefs.end();
+}</p>
+
+// Загрузка
+void loadConfig() {
+    Preferences prefs;
+    prefs.begin("jxct", true);
+    prefs.getBytes("config", &config, sizeof(config));
+    prefs.end();
+}
+<code></code>`
+
+<h3>🔄 Валидация конфигурации</h3>
+
+<code></code>`cpp
+bool validateConfig() {
+    // Проверка WiFi
+    if (strlen(config.ssid) == 0) return false;
+    
+    // Проверка MQTT
+    if (config.mqttEnabled) {
+        if (strlen(config.mqttServer) == 0) return false;
+        if (config.mqttPort < 1 || config.mqttPort > 65535) return false;
+    }
+    
+    // Проверка интервалов
+    if (config.sensorReadInterval < 1000) return false;
+    if (config.mqttPublishInterval < 60000) return false;
+    
+    return true;
+}
+<code></code>`
+
+<p>---</p>
+
+<h2>📁 Структура проекта</h2>
+
+<code></code>`
+JXCT/
+├── src/                          # Исходный код
+│   ├── main.cpp                  # Главный файл
+│   ├── config.cpp                # Конфигурация
+│   ├── modbus_sensor.cpp         # Работа с датчиком
+│   ├── sensor_compensation.cpp   # Компенсация данных
+│   ├── calibration_manager.cpp   # Калибровка
+│   ├── mqtt_client.cpp           # MQTT клиент
+│   ├── wifi_manager.cpp          # WiFi управление
+│   ├── ota_manager.cpp           # OTA обновления
+│   └── web/                      # Веб-интерфейс
+│       ├── routes_main.cpp       # Главные маршруты
+│       ├── routes_data.cpp       # Данные датчика
+│       ├── routes_config.cpp     # Конфигурация
+│       ├── routes_ota.cpp        # OTA обновления
+│       └── routes_service.cpp    # Сервисные функции
+├── include/                      # Заголовочные файлы
+│   ├── ISensor.h                 # Интерфейс датчика
+│   ├── basic_sensor_adapter.h    # Базовый адаптер
+│   ├── modbus_sensor_adapter.h   # Modbus адаптер
+│   ├── calibration_manager.h     # Калибровка
+│   ├── sensor_compensation.h     # Компенсация
+│   ├── mqtt_client.h             # MQTT клиент
+│   ├── wifi_manager.h            # WiFi управление
+│   ├── ota_manager.h             # OTA обновления
+│   ├── web_routes.h              # Веб маршруты
+│   ├── jxct_config_vars.h        # Конфигурация
+│   ├── jxct_constants.h          # Константы
+│   ├── jxct_ui_system.h          # UI система
+│   ├── logger.h                  # Логирование
+│   └── version.h                 # Версия
+├── docs/                         # Документация
+│   ├── manuals/                  # Руководства
+│   ├── dev/                      # Разработка
+│   ├── examples/                 # Примеры
+│   └── html/                     # Doxygen
+├── test/                         # Тесты
+│   ├── test_validation_utils.cpp # Тесты валидации
+│   └── stubs/                    # Заглушки
+├── scripts/                      # Скрипты
+│   ├── release.ps1               # Релиз
+│   └── auto_version.py           # Автоверсионирование
+├── platformio.ini                # Конфигурация PlatformIO
+├── Doxyfile                      # Конфигурация Doxygen
+└── README.md                     # Основная документация
+<code></code>`
+
+<p>---</p>
+
+<h2>🛠️ Разработка</h2>
+
+<h3>🔧 Требования к окружению</h3>
+
+<p>#### PlatformIO
+<code></code>`ini
+[env:esp32dev]
+platform = espressif32
+board = esp32dev
+framework = arduino
+monitor_speed = 115200
+build_flags = -DCORE_DEBUG_LEVEL=3
+lib_deps = 
+    arduino-libraries/ArduinoJson@^6.21.3
+    knolleary/PubSubClient@^2.8
+    arduino-libraries/NTPClient@^3.2.1
+    bblanchon/ArduinoJson@^6.21.3
+<code></code>`</p>
+
+#### Зависимости<ul>
+<li><strong>ArduinoJson:</strong> Работа с JSON</li>
+</ul><li><strong>PubSubClient:</strong> MQTT клиент</li><ul>
+<li><strong>NTPClient:</strong> Синхронизация времени</li>
+</ul><li><strong>ESP32 Arduino:</strong> Основной фреймворк</li>
+
+<h3>📝 Стандарты кодирования</h3>
+
+<p>#### Именование
+<code></code>`cpp
+// Классы: PascalCase
+class CalibrationManager { };</p>
+
+// Функции: camelCase
+void applyCompensation() { }
+
+<p>// Константы: UPPER_SNAKE_CASE
+const int MAX_RETRY_COUNT = 3;</p>
+
+// Переменные: camelCase
+int sensorReadInterval = 30000;
+<code></code>`
+
+<p>#### Комментарии
+<code></code>`cpp
+/<em></em>
+ * @brief Применяет температурную компенсацию к значению EC
+ * @param ec Исходное значение EC
+ * @param temperature Температура в градусах Цельсия
+ * @param soilType Тип почвы
+ * @return Скомпенсированное значение EC
+ */
+float compensateEC(float ec, float temperature, SoilType soilType);
+<code></code>`</p>
+
+<h3>🧪 Тестирование</h3>
+
+<p>#### Структура тестов
+<code></code>`cpp
+#include <unity.h></p>
+
+void test_compensation() {
+    float result = compensateEC(1000, 25.0, SoilType::LOAM);
+    TEST_ASSERT_FLOAT_WITHIN(50, 1000, result);
+}
+
+<p>void test_calibration() {
+    float result = applyCalibration(1000, SoilProfile::SAND);
+    TEST_ASSERT_FLOAT_WITHIN(100, 1000, result);
+}</p>
+
+int main() {
+    UNITY_BEGIN();
+    RUN_TEST(test_compensation);
+    RUN_TEST(test_calibration);
+    return UNITY_END();
+}
+<code></code>`
+
+<h3>📊 Логирование</h3>
+
+<p>#### Уровни логирования
+<code></code>`cpp
+// Отладка
+logDebug("Чтение датчика: %d", sensorId);</p>
+
+// Информация
+logInfo("Данные получены: T=%.1f°C", temperature);
+
+<p>// Предупреждение
+logWarning("Высокая температура: %.1f°C", temperature);</p>
+
+// Ошибка
+logError("Ошибка связи с датчиком: %s", errorMessage);
+<code></code>`
+
+<p>#### Ротация логов
+<code></code>`cpp
+// Максимальный размер лога: 10KB
+// Автоматическая очистка старых записей
+// Сохранение в SPIFFS
+<code></code>`</p>
+
+<h3>🚀 CI/CD</h3>
+
+<p>#### GitHub Actions
+<code></code>`yaml
+name: Build and Test
+on: [push, pull_request]</p>
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - run: pip install platformio
+      - run: pio run
+      - run: pio test
+<code></code>`
+
+<p>---</p>
+
+<h2>📞 Поддержка</h2>
+
+<h3>💬 Связь с разработчиками</h3><ul>
+<li><strong>Telegram:</strong> <a href="https://t.me/Gfermoto">@Gfermoto</a></li>
+</ul><li><strong>GitHub Issues:</strong> <a href="https://github.com/Gfermoto/soil-sensor-7in1/issues">Сообщить о проблеме</a></li><ul>
+<li><strong>Документация:</strong> <a href="https://gfermoto.github.io/soil-sensor-7in1/">GitHub Pages</a></li>
+</ul>
+<h3>📚 Дополнительные ресурсы</h3><ul>
+<li><a href="USER_GUIDE.md">Руководство пользователя</a></li>
+</ul><li><a href="API.md">API документация</a></li><ul>
+<li><a href="AGRO_RECOMMENDATIONS.md">Агрономические рекомендации</a></li>
+</ul><li><a href="COMPENSATION_GUIDE.md">Руководство по компенсации</a></li>
+
+<h3>🔗 Полезные ссылки</h3>
+<ul>
+<li><a href="https://github.com/Gfermoto/soil-sensor-7in1">🌱 GitHub репозиторий</a> - Исходный код проекта</li>
+</ul><li><a href="../dev/QA_REFACTORING_PLAN_2025H2.md">📋 План рефакторинга</a> - Планы развития на 2025</li><ul>
+<li><a href="../dev/TECH_DEBT_REPORT_2025-06.md">📊 Отчет о техническом долге</a> - Анализ технических проблем</li>
+</ul><li><a href="../dev/ARCH_OVERALL.md">🏗️ Архитектура системы</a> - Общая архитектура проекта</li>
+
+<p>---</p>
+
+<strong>© 2025 JXCT Development Team</strong>  
+<em>Версия 3.4.9 | Июнь 2025</em> 
+        </div>
+        
+        <a href="../../index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+</body>
+</html>

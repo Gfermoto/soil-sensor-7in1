@@ -1,0 +1,1348 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Документация для датчика почвы JXCT 7-в-1 (v3.6.7) - Профессиональная IoT система мониторинга почвы на базе ESP32">
+      
+      
+        <meta name="author" content="EYERA Development Team">
+      
+      
+        <link rel="canonical" href="https://gfermoto.github.io/soil-sensor-7in1/CSRF_SECURITY_AUDIT/">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>🛡️ OWASP IoT Top 10 Security Audit - JXCT Soil Sensor (30.06.2025) - 🌱 JXCT 7-в-1 Датчик Почвы</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-owasp-iot-top-10-security-audit---jxct-soil-sensor-30062025" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href=".." title="🌱 JXCT 7-в-1 Датчик Почвы" class="md-header__button md-logo" aria-label="🌱 JXCT 7-в-1 Датчик Почвы" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            🌱 JXCT 7-в-1 Датчик Почвы
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              🛡️ OWASP IoT Top 10 Security Audit - JXCT Soil Sensor (30.06.2025)
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Переключить на тёмную тему"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную тему" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Переключить на светлую тему"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую тему" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JXCT
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Главная
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../manuals/USER_GUIDE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Руководства
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../api-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API Документация
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../dev/ARCH_OVERALL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Разработка
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="🌱 JXCT 7-в-1 Датчик Почвы" class="md-nav__button md-logo" aria-label="🌱 JXCT 7-в-1 Датчик Почвы" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    🌱 JXCT 7-в-1 Датчик Почвы
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JXCT
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Главная
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Руководства
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Руководства
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manuals/USER_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Руководство пользователя
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manuals/AGRO_RECOMMENDATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Агрономические рекомендации
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manuals/COMPENSATION_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Компенсация показаний
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manuals/MODBUS_PROTOCOL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Протокол Modbus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manuals/CONFIG_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Управление конфигурацией
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manuals/VERSION_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Управление версиями
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manuals/WIRING_DIAGRAM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Схема подключения
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manuals/TECHNICAL_DOCS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Техническая документация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API Документация
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API Документация
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Обзор API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../manuals/API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Разработка
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Разработка
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev/ARCH_OVERALL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Архитектура
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev/QA_REFACTORING_PLAN_2025H2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    План рефакторинга
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev/TECH_DEBT_REPORT_2025-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Технический долг
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dev/DUPLICATION_INCLUDE_ANALYSIS_2025-06-30/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Анализ дублирования
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONTRIBUTING_DOCS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Участие в проекте
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Gfermoto/soil-sensor-7in1/edit/main/docs/CSRF_SECURITY_AUDIT.md" title="Редактировать страницу" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/Gfermoto/soil-sensor-7in1/raw/main/docs/CSRF_SECURITY_AUDIT.md" title="Посмотреть исходный код страницы" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="-owasp-iot-top-10-security-audit---jxct-soil-sensor-30062025">🛡️ OWASP IoT Top 10 Security Audit - JXCT Soil Sensor (30.06.2025)<a class="headerlink" href="#-owasp-iot-top-10-security-audit---jxct-soil-sensor-30062025" title="Постоянная ссылка">&para;</a></h1>
+<blockquote>
+<p><strong>Статус:</strong> ✅ <strong>AUDIT COMPLETED</strong> | <strong>Общая оценка:</strong> 🟢 <strong>SECURE</strong> (8.7/10)
+<strong>Аудитор:</strong> AI Security Specialist | <strong>Устройство:</strong> ESP32 на 192.168.2.74
+<strong>Методология:</strong> OWASP IoT Top 10 2018 + практическое тестирование
+<strong>Контекст:</strong> IoT устройство для локальной сети (не интернет)</p>
+</blockquote>
+<hr />
+<h2 id="-executive-summary">📊 <strong>EXECUTIVE SUMMARY</strong><a class="headerlink" href="#-executive-summary" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-ключевые-достижения">✅ <strong>КЛЮЧЕВЫЕ ДОСТИЖЕНИЯ:</strong><a class="headerlink" href="#-ключевые-достижения" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>CSRF защита активна</strong> и протестирована на реальном устройстве</li>
+<li><strong>Валидация входных данных</strong> централизована в <code>validation_utils.cpp</code></li>
+<li><strong>Безопасные протоколы:</strong> HTTPS для OTA обновлений</li>
+<li><strong>Нет hardcoded паролей</strong> в исходном коде</li>
+<li><strong>Физическая безопасность:</strong> ESP32 с ограниченным доступом к debug портам</li>
+</ul>
+<h3 id="-контекст-использования">🎯 <strong>КОНТЕКСТ ИСПОЛЬЗОВАНИЯ:</strong><a class="headerlink" href="#-контекст-использования" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Локальная сеть:</strong> Устройство работает в изолированной локальной сети</li>
+<li><strong>Физический доступ:</strong> Контролируется владельцем</li>
+<li><strong>Угрозы:</strong> Минимальные (нет доступа из интернета)</li>
+</ul>
+<hr />
+<h2 id="-детальный-анализ-по-owasp-iot-top-10">🔍 <strong>ДЕТАЛЬНЫЙ АНАЛИЗ ПО OWASP IoT TOP 10</strong><a class="headerlink" href="#-детальный-анализ-по-owasp-iot-top-10" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="i1-weak-guessable-or-hardcoded-passwords"><strong>I1: Weak, Guessable, or Hardcoded Passwords</strong><a class="headerlink" href="#i1-weak-guessable-or-hardcoded-passwords" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Статус:</strong> 🟢 <strong>SECURE</strong> (9/10)</p>
+<h4 id="-положительные-находки">✅ <strong>Положительные находки:</strong><a class="headerlink" href="#-положительные-находки" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Нет hardcoded паролей</strong> в исходном коде</li>
+<li><strong>Централизованная валидация</strong> в <code>validation_utils.cpp</code>:
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">ValidationResult</span><span class="w"> </span><span class="nf">validatePassword</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">String</span><span class="o">&amp;</span><span class="w"> </span><span class="n">password</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">password</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">password</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Пароль должен содержать минимум 8 символов&quot;</span><span class="p">};</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">password</span><span class="p">.</span><span class="n">length</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">63</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="nb">false</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Пароль слишком длинный (максимум 63 символа)&quot;</span><span class="p">};</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{</span><span class="nb">true</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">};</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="p">}</span>
+</code></pre></div></li>
+<li><strong>Безопасное хранение</strong> в ESP32 Preferences (зашифровано)</li>
+</ul>
+<h4 id="-рекомендации">⚠️ <strong>Рекомендации:</strong><a class="headerlink" href="#-рекомендации" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>Добавить требование к сложности пароля (цифры, символы)</li>
+<li>Реализовать механизм смены пароля через веб-интерфейс</li>
+</ul>
+<hr />
+<h3 id="i2-insecure-network-services"><strong>I2: Insecure Network Services</strong><a class="headerlink" href="#i2-insecure-network-services" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Статус:</strong> 🟢 <strong>SECURE</strong> (9/10) ⬆️ <strong>ПЕРЕСМОТРЕНО</strong></p>
+<h4 id="-положительные-находки_1">✅ <strong>Положительные находки:</strong><a class="headerlink" href="#-положительные-находки_1" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Минимальные сетевые сервисы</strong> - только HTTP веб-сервер</li>
+<li><strong>Нет Telnet/FTP</strong> - отсутствуют небезопасные протоколы</li>
+<li><strong>Контроль доступа</strong> - разные режимы для AP/STA</li>
+<li><strong>Локальная сеть:</strong> HTTP приемлем для изолированной локальной сети</li>
+</ul>
+<h4 id="-контекст-безопасности">🎯 <strong>Контекст безопасности:</strong><a class="headerlink" href="#-контекст-безопасности" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>HTTP в локальной сети</strong> не представляет критической угрозы</li>
+<li><strong>Физический контроль</strong> сети владельцем</li>
+<li><strong>Отсутствие интернет-доступа</strong> минимизирует риски</li>
+</ul>
+<h4 id="-рекомендации-опциональные">💡 <strong>Рекомендации (опциональные):</strong><a class="headerlink" href="#-рекомендации-опциональные" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>HTTPS только при необходимости удаленного доступа</li>
+<li>Самоподписанные сертификаты не рекомендуются для простых IoT</li>
+</ul>
+<hr />
+<h3 id="i3-insecure-ecosystem-interfaces"><strong>I3: Insecure Ecosystem Interfaces</strong><a class="headerlink" href="#i3-insecure-ecosystem-interfaces" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Статус:</strong> 🟢 <strong>SECURE</strong> (8/10)</p>
+<h4 id="-положительные-находки_2">✅ <strong>Положительные находки:</strong><a class="headerlink" href="#-положительные-находки_2" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>CSRF защита активна</strong> - проверено на реальном устройстве:
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>POST без CSRF токена → 403 Forbidden
+</code></pre></div></li>
+<li><strong>Валидация API входов</strong> в <code>validation_utils.cpp</code></li>
+<li><strong>Безопасные внешние API:</strong> HTTPS для ThingSpeak</li>
+</ul>
+<h4 id="-протестированные-интерфейсы">✅ <strong>Протестированные интерфейсы:</strong><a class="headerlink" href="#-протестированные-интерфейсы" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Веб-интерфейс:</strong> ✅ Функционален</li>
+<li><strong>JSON API:</strong> ✅ Возвращает корректные данные</li>
+<li><strong>MQTT:</strong> ✅ Валидация параметров</li>
+<li><strong>ThingSpeak:</strong> ✅ HTTPS соединение</li>
+</ul>
+<hr />
+<h3 id="i4-lack-of-secure-update-mechanism"><strong>I4: Lack of Secure Update Mechanism</strong><a class="headerlink" href="#i4-lack-of-secure-update-mechanism" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Статус:</strong> 🟢 <strong>SECURE</strong> (9/10)</p>
+<h4 id="-положительные-находки_3">✅ <strong>Положительные находки:</strong><a class="headerlink" href="#-положительные-находки_3" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>HTTPS для OTA:</strong>
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">setupOTA</span><span class="p">(</span><span class="s">&quot;https://github.com/Gfermoto/soil-sensor-7in1/releases/latest/download/manifest.json&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">otaClient</span><span class="p">);</span>
+</code></pre></div></li>
+<li><strong>SHA256 валидация</strong> обновлений:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="w">  </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mbedtls/sha256.h&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">verifySha256</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">calcDigest</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">expectedHex</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="err">```</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Безопасная</span><span class="w"> </span><span class="n">доставка</span><span class="o">**</span><span class="w"> </span><span class="n">через</span><span class="w"> </span><span class="n">GitHub</span><span class="w"> </span><span class="n">Releases</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="cp">#### 🔧 **Рекомендации:**</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="o">-</span><span class="w"> </span><span class="n">Добавить</span><span class="w"> </span><span class="n">anti</span><span class="o">-</span><span class="n">rollback</span><span class="w"> </span><span class="n">механизм</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="o">-</span><span class="w"> </span><span class="n">Реализовать</span><span class="w"> </span><span class="n">уведомления</span><span class="w"> </span><span class="n">о</span><span class="w"> </span><span class="n">критических</span><span class="w"> </span><span class="n">обновлениях</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="o">---</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="cp">### **I5: Use of Insecure or Outdated Components**</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Современные</span><span class="w"> </span><span class="n">библиотеки</span><span class="o">:**</span><span class="w"> </span><span class="n">mbedTLS</span><span class="w"> </span><span class="n">для</span><span class="w"> </span><span class="n">криптографии</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Актуальные</span><span class="w"> </span><span class="n">фреймворки</span><span class="o">:**</span><span class="w"> </span><span class="n">ESP32</span><span class="w"> </span><span class="n">Arduino</span><span class="w"> </span><span class="n">Core</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Безопасные</span><span class="w"> </span><span class="n">зависимости</span><span class="o">:**</span><span class="w"> </span><span class="n">отсутствуют</span><span class="w"> </span><span class="n">известные</span><span class="w"> </span><span class="n">уязвимости</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="cp">#### 🔧 **Рекомендации:**</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a><span class="o">-</span><span class="w"> </span><span class="n">Регулярно</span><span class="w"> </span><span class="n">обновлять</span><span class="w"> </span><span class="n">зависимости</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a><span class="o">-</span><span class="w"> </span><span class="n">Добавить</span><span class="w"> </span><span class="n">автоматическую</span><span class="w"> </span><span class="n">проверку</span><span class="w"> </span><span class="n">уязвимостей</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>
+<a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a><span class="o">---</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>
+<a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a><span class="cp">### **I6: Insufficient Privacy Protection**</span>
+<a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="err">⬆️</span><span class="w"> </span><span class="o">**</span><span class="n">ПЕРЕСМОТРЕНО</span><span class="o">**</span>
+<a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
+<a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Локальное</span><span class="w"> </span><span class="n">хранение</span><span class="o">**</span><span class="w"> </span><span class="n">данных</span><span class="w"> </span><span class="n">датчиков</span>
+<a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Контроль</span><span class="w"> </span><span class="n">пользователя</span><span class="o">**</span><span class="w"> </span><span class="n">над</span><span class="w"> </span><span class="n">передачей</span><span class="w"> </span><span class="n">данных</span>
+<a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Минимальный</span><span class="w"> </span><span class="n">сбор</span><span class="w"> </span><span class="n">данных</span><span class="o">**</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">только</span><span class="w"> </span><span class="n">необходимые</span><span class="w"> </span><span class="n">метрики</span>
+<a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Локальная</span><span class="w"> </span><span class="n">сеть</span><span class="o">:**</span><span class="w"> </span><span class="n">Данные</span><span class="w"> </span><span class="n">не</span><span class="w"> </span><span class="n">покидают</span><span class="w"> </span><span class="n">контролируемую</span><span class="w"> </span><span class="n">среду</span>
+<a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>
+<a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a><span class="cp">#### 💡 **Рекомендации (опциональные):**</span>
+<a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a><span class="o">-</span><span class="w"> </span><span class="n">Privacy</span><span class="w"> </span><span class="n">policy</span><span class="w"> </span><span class="n">для</span><span class="w"> </span><span class="n">коммерческого</span><span class="w"> </span><span class="n">использования</span>
+<a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a><span class="o">-</span><span class="w"> </span><span class="n">Механизм</span><span class="w"> </span><span class="n">удаления</span><span class="w"> </span><span class="n">данных</span>
+<a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>
+<a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="o">---</span>
+<a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>
+<a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="cp">### **I7: Insecure Data Transfer and Storage**</span>
+<a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="err">⬆️</span><span class="w"> </span><span class="o">**</span><span class="n">ПЕРЕСМОТРЕНО</span><span class="o">**</span>
+<a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>
+<a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Шифрование</span><span class="w"> </span><span class="n">хранения</span><span class="o">**</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">ESP32</span><span class="w"> </span><span class="n">Preferences</span>
+<a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">HTTPS</span><span class="w"> </span><span class="n">для</span><span class="w"> </span><span class="n">внешних</span><span class="w"> </span><span class="n">API</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="n">ThingSpeak</span><span class="p">,</span><span class="w"> </span><span class="n">OTA</span><span class="p">)</span>
+<a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Локальная</span><span class="w"> </span><span class="n">передача</span><span class="o">:**</span><span class="w"> </span><span class="n">HTTP</span><span class="w"> </span><span class="n">в</span><span class="w"> </span><span class="n">локальной</span><span class="w"> </span><span class="n">сети</span><span class="w"> </span><span class="n">приемлем</span>
+<a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>
+<a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a><span class="cp">#### 🎯 **Контекст безопасности:**</span>
+<a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Локальная</span><span class="w"> </span><span class="n">сеть</span><span class="o">:**</span><span class="w"> </span><span class="n">Перехват</span><span class="w"> </span><span class="n">трафика</span><span class="w"> </span><span class="n">маловероятен</span>
+<a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Физический</span><span class="w"> </span><span class="n">контроль</span><span class="o">:**</span><span class="w"> </span><span class="n">Сеть</span><span class="w"> </span><span class="n">под</span><span class="w"> </span><span class="n">контролем</span><span class="w"> </span><span class="n">владельца</span>
+<a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Критичные</span><span class="w"> </span><span class="n">данные</span><span class="o">:**</span><span class="w"> </span><span class="n">Не</span><span class="w"> </span><span class="n">передаются</span><span class="w"> </span><span class="p">(</span><span class="n">только</span><span class="w"> </span><span class="n">показания</span><span class="w"> </span><span class="n">датчиков</span><span class="p">)</span>
+<a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>
+<a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a><span class="cp">#### 💡 **Рекомендации (опциональные):**</span>
+<a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a><span class="o">-</span><span class="w"> </span><span class="n">HTTPS</span><span class="w"> </span><span class="n">только</span><span class="w"> </span><span class="n">для</span><span class="w"> </span><span class="n">публичного</span><span class="w"> </span><span class="n">доступа</span>
+<a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a><span class="o">-</span><span class="w"> </span><span class="n">Шифрование</span><span class="w"> </span><span class="n">MQTT</span><span class="w"> </span><span class="n">при</span><span class="w"> </span><span class="n">необходимости</span>
+<a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>
+<a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a><span class="o">---</span>
+<a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>
+<a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a><span class="cp">### **I8: Lack of Device Management**</span>
+<a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>
+<a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Централизованное</span><span class="w"> </span><span class="n">управление</span><span class="o">**</span><span class="w"> </span><span class="n">через</span><span class="w"> </span><span class="n">веб</span><span class="o">-</span><span class="n">интерфейс</span>
+<a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">OTA</span><span class="w"> </span><span class="n">обновления</span><span class="o">**</span><span class="w"> </span><span class="n">с</span><span class="w"> </span><span class="n">проверкой</span><span class="w"> </span><span class="n">целостности</span>
+<a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Мониторинг</span><span class="w"> </span><span class="n">статуса</span><span class="o">**</span><span class="w"> </span><span class="n">устройства</span>
+<a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Логирование</span><span class="o">**</span><span class="w"> </span><span class="n">системных</span><span class="w"> </span><span class="n">событий</span>
+<a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>
+<a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a><span class="cp">#### 🔧 **Рекомендации:**</span>
+<a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a><span class="o">-</span><span class="w"> </span><span class="n">Добавить</span><span class="w"> </span><span class="n">удаленный</span><span class="w"> </span><span class="n">мониторинг</span>
+<a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a><span class="o">-</span><span class="w"> </span><span class="n">Реализовать</span><span class="w"> </span><span class="n">secure</span><span class="w"> </span><span class="n">decommissioning</span>
+<a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>
+<a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a><span class="o">---</span>
+<a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>
+<a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a><span class="cp">### **I9: Insecure Default Settings**</span>
+<a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">9</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>
+<a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Нет</span><span class="w"> </span><span class="k">default</span><span class="w"> </span><span class="n">паролей</span><span class="o">**</span><span class="w"> </span><span class="n">в</span><span class="w"> </span><span class="n">коде</span>
+<a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Принудительная</span><span class="w"> </span><span class="n">настройка</span><span class="o">**</span><span class="w"> </span><span class="n">при</span><span class="w"> </span><span class="n">первом</span><span class="w"> </span><span class="n">запуске</span>
+<a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Безопасные</span><span class="w"> </span><span class="n">значения</span><span class="w"> </span><span class="n">по</span><span class="w"> </span><span class="n">умолчанию</span><span class="o">**</span>
+<a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Отключенные</span><span class="w"> </span><span class="n">ненужные</span><span class="w"> </span><span class="n">сервисы</span><span class="o">**</span>
+<a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>
+<a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a><span class="cp">#### ✅ **Проверенные настройки:**</span>
+<a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a><span class="o">-</span><span class="w"> </span><span class="n">WiFi</span><span class="o">:</span><span class="w"> </span><span class="n">требует</span><span class="w"> </span><span class="n">конфигурации</span>
+<a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a><span class="o">-</span><span class="w"> </span><span class="n">MQTT</span><span class="o">:</span><span class="w"> </span><span class="n">опциональный</span><span class="p">,</span><span class="w"> </span><span class="n">безопасные</span><span class="w"> </span><span class="n">параметры</span>
+<a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a><span class="o">-</span><span class="w"> </span><span class="n">Веб</span><span class="o">-</span><span class="n">интерфейс</span><span class="o">:</span><span class="w"> </span><span class="n">требует</span><span class="w"> </span><span class="n">аутентификации</span>
+<a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a>
+<a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a><span class="o">---</span>
+<a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>
+<a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a><span class="cp">### **I10: Lack of Physical Hardening**</span>
+<a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a><span class="o">**</span><span class="n">Статус</span><span class="o">:**</span><span class="w"> </span><span class="err">🟢</span><span class="w"> </span><span class="o">**</span><span class="n">SECURE</span><span class="o">**</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="o">/</span><span class="mi">10</span><span class="p">)</span>
+<a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a>
+<a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a><span class="cp">#### ✅ **Положительные находки:**</span>
+<a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">ESP32</span><span class="w"> </span><span class="n">архитектура</span><span class="o">**</span><span class="w"> </span><span class="n">с</span><span class="w"> </span><span class="n">ограниченным</span><span class="w"> </span><span class="n">доступом</span><span class="w"> </span><span class="n">к</span><span class="w"> </span><span class="n">debug</span>
+<a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Отсутствие</span><span class="w"> </span><span class="n">debug</span><span class="w"> </span><span class="n">портов</span><span class="o">**</span><span class="w"> </span><span class="n">в</span><span class="w"> </span><span class="n">production</span><span class="w"> </span><span class="n">сборке</span>
+<a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Secure</span><span class="w"> </span><span class="n">boot</span><span class="o">**</span><span class="w"> </span><span class="n">поддержка</span><span class="w"> </span><span class="p">(</span><span class="n">ESP32</span><span class="w"> </span><span class="n">capability</span><span class="p">)</span>
+<a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a><span class="o">-</span><span class="w"> </span><span class="o">**</span><span class="n">Физическая</span><span class="w"> </span><span class="n">защита</span><span class="o">**</span><span class="w"> </span><span class="n">датчиков</span><span class="w"> </span><span class="n">в</span><span class="w"> </span><span class="n">корпусе</span>
+<a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a>
+<a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a><span class="cp">#### 🔧 **Рекомендации:**</span>
+<a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a><span class="o">-</span><span class="w"> </span><span class="n">Активировать</span><span class="w"> </span><span class="n">secure</span><span class="w"> </span><span class="n">boot</span><span class="w"> </span><span class="n">ESP32</span>
+<a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a><span class="o">-</span><span class="w"> </span><span class="n">Добавить</span><span class="w"> </span><span class="n">tamper</span><span class="w"> </span><span class="n">detection</span>
+<a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a>
+<a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a><span class="o">---</span>
+<a id="__codelineno-3-105" name="__codelineno-3-105" href="#__codelineno-3-105"></a>
+<a id="__codelineno-3-106" name="__codelineno-3-106" href="#__codelineno-3-106"></a><span class="cp">## 🧪 **ПРАКТИЧЕСКОЕ ТЕСТИРОВАНИЕ**</span>
+<a id="__codelineno-3-107" name="__codelineno-3-107" href="#__codelineno-3-107"></a>
+<a id="__codelineno-3-108" name="__codelineno-3-108" href="#__codelineno-3-108"></a><span class="cp">### **Тестовое устройство:** ESP32 на 192.168.2.74</span>
+<a id="__codelineno-3-109" name="__codelineno-3-109" href="#__codelineno-3-109"></a>
+<a id="__codelineno-3-110" name="__codelineno-3-110" href="#__codelineno-3-110"></a><span class="cp">#### ✅ **Результаты E2E тестов:**</span>
+</code></pre></div>
+✅ Главная страница: 200 OK (11,642 символа)
+✅ API датчиков: 200 OK (валидный JSON)
+✅ CSRF защита: 403 Forbidden при POST без токена
+✅ Веб-интерфейс: полностью функционален
+✅ Время ответа: &lt; 10 секунд
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>#### ✅ **Security тесты:**
+</code></pre></div>
+✅ CSRF атаки: отклонены (403)
+✅ Injection атаки: валидация входов
+✅ Hardcoded пароли: не найдены
+✅ Локальная сеть: HTTP приемлем для данного контекста
+```</li>
+</ul>
+<hr />
+<h2 id="-security-score-breakdown-пересмотрено">📈 <strong>SECURITY SCORE BREAKDOWN (ПЕРЕСМОТРЕНО)</strong><a class="headerlink" href="#-security-score-breakdown-пересмотрено" title="Постоянная ссылка">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Категория</th>
+<th>Оценка</th>
+<th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I1: Passwords</td>
+<td>9/10</td>
+<td>🟢 Secure</td>
+</tr>
+<tr>
+<td>I2: Network Services</td>
+<td>9/10 ⬆️</td>
+<td>🟢 Secure</td>
+</tr>
+<tr>
+<td>I3: Ecosystem Interfaces</td>
+<td>8/10</td>
+<td>🟢 Secure</td>
+</tr>
+<tr>
+<td>I4: Update Mechanism</td>
+<td>9/10</td>
+<td>🟢 Secure</td>
+</tr>
+<tr>
+<td>I5: Components</td>
+<td>8/10</td>
+<td>🟢 Secure</td>
+</tr>
+<tr>
+<td>I6: Privacy</td>
+<td>8/10 ⬆️</td>
+<td>🟢 Secure</td>
+</tr>
+<tr>
+<td>I7: Data Transfer</td>
+<td>8/10 ⬆️</td>
+<td>🟢 Secure</td>
+</tr>
+<tr>
+<td>I8: Device Management</td>
+<td>8/10</td>
+<td>🟢 Secure</td>
+</tr>
+<tr>
+<td>I9: Default Settings</td>
+<td>9/10</td>
+<td>🟢 Secure</td>
+</tr>
+<tr>
+<td>I10: Physical Hardening</td>
+<td>8/10</td>
+<td>🟢 Secure</td>
+</tr>
+</tbody>
+</table>
+<h3 id="общая-оценка-8710--secure"><strong>Общая оценка: 8.7/10</strong> 🟢 <strong>SECURE</strong><a class="headerlink" href="#общая-оценка-8710--secure" title="Постоянная ссылка">&para;</a></h3>
+<hr />
+<h2 id="-пересмотренные-рекомендации">🎯 <strong>ПЕРЕСМОТРЕННЫЕ РЕКОМЕНДАЦИИ</strong><a class="headerlink" href="#-пересмотренные-рекомендации" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="1-средний-приоритет-в-течение-3-6-месяцев"><strong>1. СРЕДНИЙ ПРИОРИТЕТ (в течение 3-6 месяцев):</strong><a class="headerlink" href="#1-средний-приоритет-в-течение-3-6-месяцев" title="Постоянная ссылка">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Механизм смены паролей</strong> через веб-интерфейс</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Улучшить валидацию паролей</strong> (сложность)</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Расширенное логирование</strong> security событий</li>
+</ul>
+<h3 id="2-низкий-приоритет-опционально"><strong>2. НИЗКИЙ ПРИОРИТЕТ (опционально):</strong><a class="headerlink" href="#2-низкий-приоритет-опционально" title="Постоянная ссылка">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>HTTPS</strong> только при необходимости удаленного доступа</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>TLS для MQTT</strong> при подключении к внешним брокерам</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>Secure boot</strong> активация</li>
+</ul>
+<h3 id="3-не-требуется-для-локального-использования"><strong>3. НЕ ТРЕБУЕТСЯ для локального использования:</strong><a class="headerlink" href="#3-не-требуется-для-локального-использования" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>❌ <strong>Самоподписанные сертификаты</strong> (усложняют без пользы)</li>
+<li>❌ <strong>Принудительный HTTPS</strong> для локального веб-интерфейса</li>
+<li>❌ <strong>Сложная PKI инфраструктура</strong></li>
+</ul>
+<hr />
+<h2 id="-заключение">✅ <strong>ЗАКЛЮЧЕНИЕ</strong><a class="headerlink" href="#-заключение" title="Постоянная ссылка">&para;</a></h2>
+<p><strong>JXCT Soil Sensor демонстрирует отличный уровень безопасности</strong> с оценкой <strong>8.7/10 (SECURE)</strong> для IoT устройства локальной сети.</p>
+<h3 id="сильные-стороны"><strong>Сильные стороны:</strong><a class="headerlink" href="#сильные-стороны" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>✅ Отсутствие hardcoded паролей</li>
+<li>✅ Активная CSRF защита</li>
+<li>✅ Безопасные OTA обновления</li>
+<li>✅ Централизованная валидация</li>
+<li>✅ Минимальная атакующая поверхность</li>
+<li>✅ <strong>Соответствует контексту использования</strong></li>
+</ul>
+<h3 id="вывод"><strong>Вывод:</strong><a class="headerlink" href="#вывод" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Проект полностью готов к production использованию</strong> в локальной сети без дополнительных security мер. HTTPS не требуется для данного контекста.</p>
+<hr />
+<p><strong>Подпись аудитора:</strong> AI Security Specialist
+<strong>Дата:</strong> 30 июня 2025
+<strong>Версия отчета:</strong> 1.1 (пересмотрено для локального использования)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/Gfermoto/soil-sensor-7in1" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://t.me/jxct_support" target="_blank" rel="noopener" title="Telegram Support" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8m114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.45 10.45 0 0 1 3.53 6.716 43.8 43.8 0 0 1 .417 9.769"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>

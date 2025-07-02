@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🗒️ Tech-Debt Report — June 2025 (rev-3, 24-Jun)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            margin: -20px -20px 20px -20px;
+        }
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+        }
+        .navigation a {
+            color: #1976d2;
+            text-decoration: none;
+            margin-right: 15px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .navigation a:hover {
+            background-color: #e3f2fd;
+        }
+        .content {
+            padding: 20px 0;
+        }
+        h1, h2, h3, h4 {
+            color: #2e7d32;
+        }
+        h1 {
+            border-bottom: 3px solid #4caf50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 2px solid #81c784;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid #4caf50;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background: #388e3c;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .status-success { background: #4caf50; color: white; }
+        .status-warning { background: #ff9800; color: white; }
+        .status-error { background: #f44336; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🗒️ Tech-Debt Report — June 2025 (rev-3, 24-Jun)</h1>
+            <p>JXCT 7-в-1 Датчик Почвы - Профессиональная IoT система мониторинга</p>
+        </div>
+        
+        <div class="navigation">
+            
+        <a href="../../index.html">🏠 Главная</a>
+        <a href="../manuals/USER_GUIDE.html">👤 Руководство пользователя</a>
+        <a href="../manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+        <a href="../manuals/API.html">📡 API</a>
+        <a href="../../html/index.html">📚 API документация</a>
+    
+        </div>
+        
+        <div class="content">
+            <h1>🗒️ Tech-Debt Report — June 2025 (rev-3, 24-Jun)</h1>
+
+<p>| Area | Status | Evidence / Metric |
+|------|:------:|-------------------|
+| Code cleanliness | 🟡 | 1 182 clang-tidy warnings → 38 <strong>high</strong> / 174 <strong>medium</strong> / rest low.  Duplicate <code>#include <Arduino.h></code> устранён; IWYU показывает 2 лишних инклуда. |
+| Architecture | 🟡 | Business-логика рекомендаций остаётся в <code>routes_data.cpp</code>; абстракция <code>ISensor</code> полностью покрывает Real/Fake, циклов include ≈0 (проверено IWYU). |
+| Testing | 🟠 | 42 Google-Test кейса + 8 Unity (legacy). Coverage native <strong>31 %</strong> (gcov). Нет e2e-тестов OTA/UI. |
+| CI / Static analysis | 🟢 | Build + unit + clang-tidy high-→error (gate). cppcheck MISRA-subset запускается. |
+| Security | 🟡 | Rate-limit IP-bucket (20 req/min) внедрён; CSRF-токенов нет; OTA манифест ещё без подписи. |
+| Performance | ✅ | Flash 59 %, RAM 24 % (v3.4.9-prod, ESP32-WROOM-32). |
+| Documentation | 🟢 | README, API.md, ARCH_OVERALL.md, QA_REFACTORING_PLAN актуальны. |</p>
+
+Легенда статусов: 🟢 — OK, 🟡 — warning, 🟠 — problem, 🔴 — critical.
+
+<p>---</p>
+
+<h2>1. Key pain points (обновлено)</h2>
+1. <strong>Тесты</strong> — покрытие 31 %; нет интеграции OTA/Web.
+2. <strong>Смешение слоёв</strong> — расчёт рекомендаций всё ещё в роуте данных.
+3. <strong>Static analysis debt</strong> — 38 high clang-tidy (raw pointers, C-style cast).
+4. <strong>Security gaps</strong> — нет CSRF / HTTPS; OTA подпись TODO.
+5. <strong>Архитектурная стабильность</strong> — отменена миграция статических страниц для снижения рисков.
+
+<h2>2. Quick-win tasks (Sprint 0)</h2>
+| ID | Task | Owner | Effort | Done-When |
+|----|------|-------|--------|-----------|
+| T0-1 | clang-tidy <em>medium</em>→error для нового кода | DevOps | 3 h | CI fails on ≥1 new <strong>medium</strong> |
+| T0-2 | CSRF-token на POST /save & /api/* | Lead Dev | 6 h | Token header проверен |
+| T0-3 | 20 e2e tests (Playwright) Web/UI | QA | 3 d | Coverage Web routes ≥ 70 % |
+| T0-4 | Unit tests <code>CalibrationManager</code> (load/interpolate) | QA | 1 d | +4 % coverage |
+| T0-5 | Security audit OWASP IoT Top 10 | Security | 2 d | 0 high-severity issues |
+
+<h2>3. Long-term goals (ссылки → QA_REFACTORING_PLAN_2025H2.md)</h2>
+* strict layered architecture (RF-4).
+* OTA SHA-256 + rollback metrics (RF-5).
+* Unit coverage ≥ 85 %, Integration ≥ 60 % (QA-plan).
+* Security hardening (CSRF, input validation, rate limiting).
+
+<p>---</p>
+
+<h2>4. Архитектурные решения (обновлено)</h2><ul>
+<li><strong>Отменена миграция статических страниц</strong> — риски превышают выгоды</li>
+</ul><li><strong>Фокус на стабильности</strong> — приоритет качеству кода над архитектурными экспериментами</li><ul>
+<li><strong>Постепенное улучшение</strong> — эволюционное развитие без революционных изменений</li>
+</ul>
+---
+
+Prepared by: <strong>AI Assistant</strong> — 2025-06-24 
+        </div>
+        
+        <a href="../../index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+</body>
+</html>

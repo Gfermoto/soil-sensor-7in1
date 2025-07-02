@@ -1,0 +1,7 @@
+<map id="getOtaStatusTopic" name="getOtaStatusTopic">
+<area shape="rect" id="Node000001" title=" " alt="" coords="243,5,372,32"/>
+<area shape="rect" id="Node000002" href="$mqtt__client_8cpp.html#a926aeaa7d52ebd60e289af8d6ef98600" title=" " alt="" coords="99,5,195,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="227,21,195,21,195,16,227,16"/>
+<area shape="rect" id="Node000003" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="83,21,51,21,51,16,83,16"/>
+</map>

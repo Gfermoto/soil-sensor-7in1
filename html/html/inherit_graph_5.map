@@ -1,0 +1,9 @@
+<map id="Иерархия классов. Графический вид." name="Иерархия классов. Графический вид.">
+<area shape="rect" id="Node000000" href="$class_i_sensor.html" title=" " alt="" coords="5,31,72,57"/>
+<area shape="rect" id="Node000001" href="$class_basic_sensor_adapter.html" title=" " alt="" coords="120,31,260,57"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="87,41,119,41,119,47,87,47"/>
+<area shape="rect" id="Node000002" href="$class_fake_sensor_adapter.html" title=" " alt="" coords="316,5,453,32"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="275,30,316,25,316,30,276,36"/>
+<area shape="rect" id="Node000003" href="$class_modbus_sensor_adapter.html" title=" " alt="" coords="308,56,461,83"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="276,52,308,57,307,62,275,58"/>
+</map>

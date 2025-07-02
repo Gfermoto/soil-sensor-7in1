@@ -1,0 +1,1585 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Документация для датчика почвы JXCT 7-в-1 (v3.6.7) - Профессиональная IoT система мониторинга почвы на базе ESP32">
+      
+      
+        <meta name="author" content="EYERA Development Team">
+      
+      
+        <link rel="canonical" href="https://gfermoto.github.io/soil-sensor-7in1/html/manuals/USER_GUIDE/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.15">
+    
+    
+      
+        <title>📋 Руководство пользователя JXCT 7-в-1 - 🌱 JXCT 7-в-1 Датчик Почвы</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-руководство-пользователя-jxct-7-в-1" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../../.." title="🌱 JXCT 7-в-1 Датчик Почвы" class="md-header__button md-logo" aria-label="🌱 JXCT 7-в-1 Датчик Почвы" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            🌱 JXCT 7-в-1 Датчик Почвы
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              📋 Руководство пользователя JXCT 7-в-1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Переключить на тёмную тему"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Переключить на тёмную тему" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Переключить на светлую тему"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Переключить на светлую тему" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JXCT
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Главная
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../manuals/USER_GUIDE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Руководства
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../api-overview/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  API Документация
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../dev/ARCH_OVERALL/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Разработка
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="🌱 JXCT 7-в-1 Датчик Почвы" class="md-nav__button md-logo" aria-label="🌱 JXCT 7-в-1 Датчик Почвы" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    🌱 JXCT 7-в-1 Датчик Почвы
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Перейти к репозиторию" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    JXCT
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Главная
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Руководства
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Руководства
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../manuals/USER_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Руководство пользователя
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../manuals/AGRO_RECOMMENDATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Агрономические рекомендации
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../manuals/COMPENSATION_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Компенсация показаний
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../manuals/MODBUS_PROTOCOL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Протокол Modbus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../manuals/CONFIG_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Управление конфигурацией
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../manuals/VERSION_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Управление версиями
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../manuals/WIRING_DIAGRAM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Схема подключения
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../manuals/TECHNICAL_DOCS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Техническая документация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    API Документация
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            API Документация
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../api-overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Обзор API
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../manuals/API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Разработка
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Разработка
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/ARCH_OVERALL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Архитектура
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/QA_REFACTORING_PLAN_2025H2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    План рефакторинга
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/TECH_DEBT_REPORT_2025-06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Технический долг
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../dev/DUPLICATION_INCLUDE_ANALYSIS_2025-06-30/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Анализ дублирования
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../CONTRIBUTING_DOCS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Участие в проекте
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+    <a href="https://github.com/Gfermoto/soil-sensor-7in1/edit/main/docs/html/manuals/USER_GUIDE.md" title="Редактировать страницу" class="md-content__button md-icon" rel="edit">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/Gfermoto/soil-sensor-7in1/raw/main/docs/html/manuals/USER_GUIDE.md" title="Посмотреть исходный код страницы" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="-руководство-пользователя-jxct-7-в-1">📋 Руководство пользователя JXCT 7-в-1<a class="headerlink" href="#-руководство-пользователя-jxct-7-в-1" title="Постоянная ссылка">&para;</a></h1>
+<p><strong>Версия:</strong> 3.4.9
+<strong>Дата:</strong> Июнь 2025
+<strong>Автор:</strong> JXCT Development Team</p>
+<hr />
+<h2 id="-содержание">📖 Содержание<a class="headerlink" href="#-содержание" title="Постоянная ссылка">&para;</a></h2>
+<ol>
+<li><a href="#-введение">🎯 Введение</a></li>
+<li><a href="#-комплектация">📦 Комплектация</a></li>
+<li><a href="#-установка-и-настройка">🔧 Установка и настройка</a></li>
+<li><a href="#-веб-интерфейс">🌐 Веб-интерфейс</a></li>
+<li><a href="#-работа-с-показаниями">📊 Работа с показаниями</a></li>
+<li><a href="#-настройка-параметров">⚙️ Настройка параметров</a></li>
+<li><a href="#-калибровка-датчика">🔬 Калибровка датчика</a></li>
+<li><a href="#-обновления-прошивки">🚀 Обновления прошивки</a></li>
+<li><a href="#-сервисные-функции">🔧 Сервисные функции</a></li>
+<li><a href="#-часто-задаваемые-вопросы">❓ Часто задаваемые вопросы</a></li>
+</ol>
+<hr />
+<h2 id="-введение">🎯 Введение<a class="headerlink" href="#-введение" title="Постоянная ссылка">&para;</a></h2>
+<p>JXCT 7-в-1 — это умный датчик почвы на базе ESP32, который измеряет 7 ключевых параметров почвы:</p>
+<ul>
+<li>🌡️ <strong>Температура почвы</strong> (0-50°C, ±0.5°C)</li>
+<li>💧 <strong>Влажность почвы</strong> (0-100%, ±3%)</li>
+<li>⚡ <strong>Электропроводность (EC)</strong> (0-5000 µS/cm, ±5%)</li>
+<li>🧪 <strong>pH почвы</strong> (3-9 pH, ±0.3 pH)</li>
+<li>🌿 <strong>Азот (N)</strong> (0-2000 мг/кг, ±10%)</li>
+<li>🌱 <strong>Фосфор (P)</strong> (0-1000 мг/кг, ±10%)</li>
+<li>🍃 <strong>Калий (K)</strong> (0-2000 мг/кг, ±10%)</li>
+</ul>
+<h3 id="-основные-возможности">🌟 Основные возможности<a class="headerlink" href="#-основные-возможности" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Научно обоснованная компенсация</strong> данных</li>
+<li><strong>Современный веб-интерфейс</strong> с адаптивным дизайном</li>
+<li><strong>OTA обновления</strong> прошивки по воздуху</li>
+<li><strong>Интеграция с IoT платформами</strong> (MQTT, ThingSpeak)</li>
+<li><strong>Экспорт данных</strong> в CSV формате</li>
+<li><strong>Лабораторная калибровка</strong> через CSV файлы</li>
+</ul>
+<hr />
+<h2 id="-комплектация">📦 Комплектация<a class="headerlink" href="#-комплектация" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-аппаратная-часть">🔧 Аппаратная часть<a class="headerlink" href="#-аппаратная-часть" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>ESP32 модуль</strong> (рекомендуется ESP32-WROOM-32)</li>
+<li><strong>JXCT 7-в-1 датчик почвы</strong></li>
+<li><strong>USB кабель</strong> для программирования</li>
+<li><strong>Блок питания</strong> 5V/2A (опционально)</li>
+<li><strong>Корпус</strong> для защиты от влаги</li>
+</ul>
+<h3 id="-программная-часть">💾 Программная часть<a class="headerlink" href="#-программная-часть" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Прошивка JXCT</strong> версии 3.4.9</li>
+<li><strong>PlatformIO IDE</strong> для разработки</li>
+<li><strong>Веб-интерфейс</strong> встроенный в прошивку</li>
+</ul>
+<hr />
+<h2 id="-установка-и-настройка">🔧 Установка и настройка<a class="headerlink" href="#-установка-и-настройка" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-требования">📋 Требования<a class="headerlink" href="#-требования" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>ESP32 совместимый модуль</li>
+<li>USB кабель</li>
+<li>Компьютер с PlatformIO IDE</li>
+<li>JXCT 7-в-1 датчик почвы</li>
+</ul>
+<h3 id="-быстрая-установка">⚡ Быстрая установка<a class="headerlink" href="#-быстрая-установка" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Клонируйте репозиторий:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Gfermoto/soil-sensor-7in1.git
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>soil-sensor-7in1
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Откройте проект в PlatformIO:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>pio<span class="w"> </span>run
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Загрузите прошивку на ESP32:</strong>
+   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>pio<span class="w"> </span>run<span class="w"> </span>--target<span class="w"> </span>upload
+</code></pre></div></p>
+</li>
+<li>
+<p><strong>Подключитесь к WiFi сети:</strong></p>
+</li>
+<li>Сеть: <code>JXCT_Setup</code></li>
+<li>IP адрес: <code>192.168.4.1</code></li>
+</ol>
+<h3 id="-подключение-датчика">🔌 Подключение датчика<a class="headerlink" href="#-подключение-датчика" title="Постоянная ссылка">&para;</a></h3>
+<p>Подключите JXCT датчик к ESP32 согласно схеме:</p>
+<table>
+<thead>
+<tr>
+<th>Датчик</th>
+<th>ESP32</th>
+<th>Описание</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>VCC</td>
+<td>3.3V</td>
+<td>Питание</td>
+</tr>
+<tr>
+<td>GND</td>
+<td>GND</td>
+<td>Земля</td>
+</tr>
+<tr>
+<td>TX</td>
+<td>GPIO2</td>
+<td>Передача данных</td>
+</tr>
+<tr>
+<td>RX</td>
+<td>GPIO4</td>
+<td>Прием данных</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="-веб-интерфейс">🌐 Веб-интерфейс<a class="headerlink" href="#-веб-интерфейс" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-главная-страница-">🏠 Главная страница (<code>/</code>)<a class="headerlink" href="#-главная-страница-" title="Постоянная ссылка">&para;</a></h3>
+<p>Первая страница для настройки WiFi и основных параметров:</p>
+<h4 id="wifi-настройки">WiFi настройки<a class="headerlink" href="#wifi-настройки" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>SSID:</strong> Имя вашей WiFi сети</li>
+<li><strong>Пароль:</strong> Пароль от WiFi сети</li>
+<li><strong>Режим:</strong> STA (подключение к сети) или AP (точка доступа)</li>
+</ul>
+<h4 id="mqtt-настройки">MQTT настройки<a class="headerlink" href="#mqtt-настройки" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Сервер:</strong> Адрес MQTT брокера</li>
+<li><strong>Порт:</strong> 1883 (по умолчанию)</li>
+<li><strong>Пользователь/Пароль:</strong> Учетные данные MQTT</li>
+</ul>
+<h4 id="thingspeak-настройки">ThingSpeak настройки<a class="headerlink" href="#thingspeak-настройки" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>API Key:</strong> Ваш ключ ThingSpeak</li>
+<li><strong>Channel ID:</strong> ID канала для данных</li>
+</ul>
+<h4 id="дополнительные-настройки">Дополнительные настройки<a class="headerlink" href="#дополнительные-настройки" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Культура:</strong> Выбор выращиваемой культуры</li>
+<li><strong>Тип почвы:</strong> Песок, суглинок, глина, торф</li>
+<li><strong>Тип среды:</strong> Открытый грунт, теплица, помещение</li>
+<li><strong>Координаты:</strong> Широта и долгота для сезонных поправок</li>
+</ul>
+<h3 id="-страница-показаний-readings">📊 Страница показаний (<code>/readings</code>)<a class="headerlink" href="#-страница-показаний-readings" title="Постоянная ссылка">&para;</a></h3>
+<p>Основная страница для просмотра данных датчика:</p>
+<h4 id="структура-данных">Структура данных<a class="headerlink" href="#структура-данных" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>RAW:</strong> Сырые данные с датчика</li>
+<li><strong>Компенс.:</strong> Данные после математической компенсации</li>
+<li><strong>Реком.:</strong> Рекомендуемые значения для выбранной культуры</li>
+</ul>
+<h4 id="цветовая-индикация">Цветовая индикация<a class="headerlink" href="#цветовая-индикация" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>🟢 <strong>Зеленый:</strong> Значение в норме</li>
+<li>🟡 <strong>Желтый:</strong> Близко к границам</li>
+<li>🟠 <strong>Оранжевый:</strong> Отклонение &gt;20%</li>
+<li>🔴 <strong>Красный:</strong> Критическое отклонение</li>
+</ul>
+<h4 id="стрелки-изменений">Стрелки изменений<a class="headerlink" href="#стрелки-изменений" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>↑:</strong> Значение увеличилось после компенсации</li>
+<li><strong>↓:</strong> Значение уменьшилось после компенсации</li>
+</ul>
+<h3 id="-настройка-интервалов-intervals">⚙️ Настройка интервалов (<code>/intervals</code>)<a class="headerlink" href="#-настройка-интервалов-intervals" title="Постоянная ссылка">&para;</a></h3>
+<p>Управление частотой измерений и публикации:</p>
+<h4 id="интервалы-опроса">Интервалы опроса<a class="headerlink" href="#интервалы-опроса" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Датчик:</strong> 1-300 секунд (рекомендуется 30 сек)</li>
+<li><strong>MQTT:</strong> 1-60 минут</li>
+<li><strong>ThingSpeak:</strong> 5-120 минут</li>
+<li><strong>Веб-интерфейс:</strong> 5-60 секунд</li>
+</ul>
+<h4 id="пороги-дельта-фильтра">Пороги дельта-фильтра<a class="headerlink" href="#пороги-дельта-фильтра" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Температура:</strong> 0.1-5.0°C</li>
+<li><strong>Влажность:</strong> 0.5-10.0%</li>
+<li><strong>pH:</strong> 0.01-1.0</li>
+<li><strong>EC:</strong> 10-500 µS/cm</li>
+<li><strong>NPK:</strong> 1-50 мг/кг</li>
+</ul>
+<h4 id="алгоритмы-обработки">Алгоритмы обработки<a class="headerlink" href="#алгоритмы-обработки" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Среднее арифметическое:</strong> Быстрая обработка</li>
+<li><strong>Медианное значение:</strong> Устойчивость к выбросам</li>
+<li><strong>Фильтр выбросов:</strong> Автоматическое отбрасывание аномалий</li>
+</ul>
+<h3 id="-обновления-updates">🚀 Обновления (<code>/updates</code>)<a class="headerlink" href="#-обновления-updates" title="Постоянная ссылка">&para;</a></h3>
+<p>Управление прошивкой устройства:</p>
+<h4 id="удаленное-обновление">Удаленное обновление<a class="headerlink" href="#удаленное-обновление" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Проверить обновления:</strong> Автоматическая проверка новых версий</li>
+<li><strong>Установить:</strong> Загрузка и установка найденного обновления</li>
+</ul>
+<h4 id="локальное-обновление">Локальное обновление<a class="headerlink" href="#локальное-обновление" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Загрузить файл:</strong> Выбор .bin файла прошивки</li>
+<li><strong>Прогресс:</strong> Отображение процесса загрузки</li>
+</ul>
+<h3 id="-сервисные-функции-service">🔧 Сервисные функции (<code>/service</code>)<a class="headerlink" href="#-сервисные-функции-service" title="Постоянная ссылка">&para;</a></h3>
+<p>Диагностика и обслуживание:</p>
+<h4 id="системная-информация">Системная информация<a class="headerlink" href="#системная-информация" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Версия прошивки:</strong> Текущая версия</li>
+<li><strong>Время работы:</strong> Uptime устройства</li>
+<li><strong>Свободная память:</strong> Доступная RAM</li>
+<li><strong>Размер файловой системы:</strong> Использование Flash</li>
+</ul>
+<h4 id="диагностика">Диагностика<a class="headerlink" href="#диагностика" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Тест датчика:</strong> Проверка связи с датчиком</li>
+<li><strong>Тест WiFi:</strong> Проверка подключения к сети</li>
+<li><strong>Тест MQTT:</strong> Проверка MQTT соединения</li>
+<li><strong>Тест ThingSpeak:</strong> Проверка отправки данных</li>
+</ul>
+<h4 id="управление">Управление<a class="headerlink" href="#управление" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Перезагрузка:</strong> Перезапуск устройства</li>
+<li><strong>Сброс настроек:</strong> Возврат к заводским настройкам</li>
+<li><strong>Очистка логов:</strong> Удаление старых логов</li>
+</ul>
+<hr />
+<h2 id="-работа-с-показаниями">📊 Работа с показаниями<a class="headerlink" href="#-работа-с-показаниями" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-понимание-данных">🔍 Понимание данных<a class="headerlink" href="#-понимание-данных" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="температура-почвы">Температура почвы<a class="headerlink" href="#температура-почвы" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Диапазон:</strong> 0-50°C</li>
+<li><strong>Точность:</strong> ±0.5°C</li>
+<li><strong>Влияние:</strong> На активность микроорганизмов и доступность питательных веществ</li>
+</ul>
+<h4 id="влажность-почвы">Влажность почвы<a class="headerlink" href="#влажность-почвы" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Диапазон:</strong> 0-100%</li>
+<li><strong>Точность:</strong> ±3%</li>
+<li><strong>Оптимально:</strong> 60-80% для большинства культур</li>
+</ul>
+<h4 id="электропроводность-ec">Электропроводность (EC)<a class="headerlink" href="#электропроводность-ec" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Диапазон:</strong> 0-5000 µS/cm</li>
+<li><strong>Точность:</strong> ±5%</li>
+<li><strong>Интерпретация:</strong></li>
+<li>&lt; 500 µS/cm: Очень низкая</li>
+<li>500-1000 µS/cm: Низкая</li>
+<li>1000-2000 µS/cm: Оптимальная</li>
+<li>2000-3000 µS/cm: Высокая</li>
+<li>
+<blockquote>
+<p>3000 µS/cm: Очень высокая</p>
+</blockquote>
+</li>
+</ul>
+<h4 id="ph-почвы">pH почвы<a class="headerlink" href="#ph-почвы" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Диапазон:</strong> 3-9 pH</li>
+<li><strong>Точность:</strong> ±0.3 pH</li>
+<li><strong>Оптимально:</strong> 6.0-7.0 для большинства культур</li>
+</ul>
+<h4 id="npk-азот-фосфор-калий">NPK (Азот, Фосфор, Калий)<a class="headerlink" href="#npk-азот-фосфор-калий" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Диапазон:</strong> 0-2000 мг/кг</li>
+<li><strong>Точность:</strong> ±10%</li>
+<li><strong>Единицы:</strong> мг/кг сухой почвы</li>
+</ul>
+<h3 id="-интерпретация-результатов">📈 Интерпретация результатов<a class="headerlink" href="#-интерпретация-результатов" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="цветовая-индикация_1">Цветовая индикация<a class="headerlink" href="#цветовая-индикация_1" title="Постоянная ссылка">&para;</a></h4>
+<p>Система автоматически оценивает состояние почвы:</p>
+<ul>
+<li><strong>🟢 Норма:</strong> Все параметры в оптимальном диапазоне</li>
+<li><strong>🟡 Внимание:</strong> Один или несколько параметров близки к границам</li>
+<li><strong>🟠 Предупреждение:</strong> Значительные отклонения от нормы</li>
+<li><strong>🔴 Критично:</strong> Критические отклонения, требующие вмешательства</li>
+</ul>
+<h4 id="рекомендации">Рекомендации<a class="headerlink" href="#рекомендации" title="Постоянная ссылка">&para;</a></h4>
+<p>Система предоставляет рекомендации на основе:
+- Выбранной культуры
+- Типа почвы
+- Сезона
+- Типа среды выращивания</p>
+<hr />
+<h2 id="-настройка-параметров">⚙️ Настройка параметров<a class="headerlink" href="#-настройка-параметров" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-выбор-культуры">🌱 Выбор культуры<a class="headerlink" href="#-выбор-культуры" title="Постоянная ссылка">&para;</a></h3>
+<p>Доступные культуры с предустановленными параметрами:</p>
+<table>
+<thead>
+<tr>
+<th>Культура</th>
+<th>Температура</th>
+<th>Влажность</th>
+<th>EC</th>
+<th>pH</th>
+<th>N</th>
+<th>P</th>
+<th>K</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Томаты</td>
+<td>22°C</td>
+<td>60%</td>
+<td>1500</td>
+<td>6.5</td>
+<td>40</td>
+<td>10</td>
+<td>30</td>
+</tr>
+<tr>
+<td>Огурцы</td>
+<td>24°C</td>
+<td>70%</td>
+<td>1800</td>
+<td>6.2</td>
+<td>35</td>
+<td>12</td>
+<td>28</td>
+</tr>
+<tr>
+<td>Перец</td>
+<td>23°C</td>
+<td>65%</td>
+<td>1600</td>
+<td>6.3</td>
+<td>38</td>
+<td>11</td>
+<td>29</td>
+</tr>
+<tr>
+<td>Салат</td>
+<td>20°C</td>
+<td>75%</td>
+<td>1000</td>
+<td>6.0</td>
+<td>30</td>
+<td>8</td>
+<td>25</td>
+</tr>
+<tr>
+<td>Голубика</td>
+<td>18°C</td>
+<td>65%</td>
+<td>1200</td>
+<td>5.0</td>
+<td>30</td>
+<td>10</td>
+<td>20</td>
+</tr>
+<tr>
+<td>Газон</td>
+<td>20°C</td>
+<td>50%</td>
+<td>800</td>
+<td>6.3</td>
+<td>25</td>
+<td>8</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<h3 id="-типы-почв">🌍 Типы почв<a class="headerlink" href="#-типы-почв" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Песок (0):</strong> Низкая влагоемкость, быстрый дренаж</li>
+<li><strong>Суглинок (1):</strong> Сбалансированные свойства</li>
+<li><strong>Торф (2):</strong> Высокая влагоемкость, кислая реакция</li>
+<li><strong>Глина (3):</strong> Высокая влагоемкость, медленный дренаж</li>
+</ul>
+<h3 id="-типы-среды">🏠 Типы среды<a class="headerlink" href="#-типы-среды" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Открытый грунт (0):</strong> Стандартные условия</li>
+<li><strong>Теплица (1):</strong> Повышенная влажность и температура</li>
+<li><strong>Помещение (2):</strong> Контролируемые условия</li>
+</ul>
+<hr />
+<h2 id="-калибровка-датчика">🔬 Калибровка датчика<a class="headerlink" href="#-калибровка-датчика" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-двухэтапная-система-компенсации">📊 Двухэтапная система компенсации<a class="headerlink" href="#-двухэтапная-система-компенсации" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="1-csv-калибровочная-таблица">1️⃣ CSV калибровочная таблица<a class="headerlink" href="#1-csv-калибровочная-таблица" title="Постоянная ссылка">&para;</a></h4>
+<p>Лабораторная поверка с коэффициентами коррекции:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a># Пример калибровочной таблицы
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a># Формат: сырое_значение,коэффициент_коррекции
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a># Электропроводность (µS/cm)
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>0,1.000
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>500,0.98
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>1000,0.95
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>1500,0.93
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>2000,0.91
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a># pH
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>3.0,1.000
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>4.0,1.000
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>5.0,1.000
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>6.0,1.000
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>7.0,1.000
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>8.0,1.000
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>9.0,1.000
+</code></pre></div>
+<h4 id="2-математическая-компенсация">2️⃣ Математическая компенсация<a class="headerlink" href="#2-математическая-компенсация" title="Постоянная ссылка">&para;</a></h4>
+<p>Научные модели для автоматической коррекции:</p>
+<ul>
+<li><strong>EC:</strong> Модель Арчи (1942) с коэффициентами по типам почв</li>
+<li><strong>pH:</strong> Уравнение Нернста для температурной поправки</li>
+<li><strong>NPK:</strong> FAO 56 + Eur. J. Soil Sci. для влажностной компенсации</li>
+</ul>
+<h3 id="-загрузка-калибровки">📥 Загрузка калибровки<a class="headerlink" href="#-загрузка-калибровки" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li>Подготовьте CSV файл с коэффициентами</li>
+<li>Перейдите на страницу <code>/readings</code></li>
+<li>Нажмите "Выберите файл" в разделе калибровки</li>
+<li>Выберите ваш CSV файл</li>
+<li>Нажмите "Загрузить CSV"</li>
+</ol>
+<h3 id="-управление-калибровкой">🔄 Управление калибровкой<a class="headerlink" href="#-управление-калибровкой" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Включить/выключить:</strong> Переключатель в настройках</li>
+<li><strong>Удалить таблицу:</strong> Кнопка "Удалить CSV таблицу"</li>
+<li><strong>Статус:</strong> Отображается на странице показаний</li>
+</ul>
+<hr />
+<h2 id="-обновления-прошивки">🚀 Обновления прошивки<a class="headerlink" href="#-обновления-прошивки" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-ota-обновления">🔄 OTA обновления<a class="headerlink" href="#-ota-обновления" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="автоматическая-проверка">Автоматическая проверка<a class="headerlink" href="#автоматическая-проверка" title="Постоянная ссылка">&para;</a></h4>
+<ol>
+<li>Перейдите на страницу <code>/updates</code></li>
+<li>Нажмите "Проверить обновления"</li>
+<li>Система автоматически найдет новые версии</li>
+<li>При наличии обновления появится кнопка "Установить"</li>
+</ol>
+<h4 id="ручная-установка">Ручная установка<a class="headerlink" href="#ручная-установка" title="Постоянная ссылка">&para;</a></h4>
+<ol>
+<li>Скачайте .bin файл прошивки</li>
+<li>Перейдите на страницу <code>/updates</code></li>
+<li>Нажмите "Выберите файл"</li>
+<li>Выберите скачанный .bin файл</li>
+<li>Нажмите "Загрузить прошивку"</li>
+</ol>
+<h3 id="-важные-замечания">⚠️ Важные замечания<a class="headerlink" href="#-важные-замечания" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Не отключайте питание</strong> во время обновления</li>
+<li><strong>Дождитесь завершения</strong> процесса</li>
+<li><strong>Система перезагрузится</strong> автоматически</li>
+<li><strong>Проверьте версию</strong> после обновления</li>
+</ul>
+<hr />
+<h2 id="-сервисные-функции">🔧 Сервисные функции<a class="headerlink" href="#-сервисные-функции" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-мониторинг-системы">📊 Мониторинг системы<a class="headerlink" href="#-мониторинг-системы" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="системная-информация_1">Системная информация<a class="headerlink" href="#системная-информация_1" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Версия прошивки:</strong> Текущая версия прошивки</li>
+<li><strong>Время работы:</strong> Время с последней перезагрузки</li>
+<li><strong>Свободная память:</strong> Доступная оперативная память</li>
+<li><strong>Размер файловой системы:</strong> Использование Flash памяти</li>
+</ul>
+<h4 id="сетевые-параметры">Сетевые параметры<a class="headerlink" href="#сетевые-параметры" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>IP адрес:</strong> Текущий IP адрес устройства</li>
+<li><strong>MAC адрес:</strong> Уникальный идентификатор</li>
+<li><strong>Сила сигнала WiFi:</strong> Качество соединения</li>
+<li><strong>Статус MQTT:</strong> Подключение к MQTT брокеру</li>
+</ul>
+<h3 id="-диагностика">🛠️ Диагностика<a class="headerlink" href="#-диагностика" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="тест-датчика">Тест датчика<a class="headerlink" href="#тест-датчика" title="Постоянная ссылка">&para;</a></h4>
+<p>Проверка связи с JXCT датчиком:
+- Чтение всех параметров
+- Проверка целостности данных
+- Валидация диапазонов</p>
+<h4 id="тест-сети">Тест сети<a class="headerlink" href="#тест-сети" title="Постоянная ссылка">&para;</a></h4>
+<p>Проверка сетевого подключения:
+- Доступность WiFi
+- Подключение к интернету
+- Работа DNS</p>
+<h4 id="тест-интеграций">Тест интеграций<a class="headerlink" href="#тест-интеграций" title="Постоянная ссылка">&para;</a></h4>
+<p>Проверка внешних сервисов:
+- MQTT публикация
+- ThingSpeak отправка
+- NTP синхронизация</p>
+<h3 id="-управление-устройством">🔄 Управление устройством<a class="headerlink" href="#-управление-устройством" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="перезагрузка">Перезагрузка<a class="headerlink" href="#перезагрузка" title="Постоянная ссылка">&para;</a></h4>
+<p>Мягкая перезагрузка системы:
+- Сохранение всех настроек
+- Перезапуск всех сервисов
+- Очистка временных данных</p>
+<h4 id="сброс-настроек">Сброс настроек<a class="headerlink" href="#сброс-настроек" title="Постоянная ссылка">&para;</a></h4>
+<p>Возврат к заводским настройкам:
+- <strong>⚠️ Внимание:</strong> Все настройки будут потеряны
+- WiFi настройки сброшены
+- MQTT/ThingSpeak отключены
+- Калибровка удалена</p>
+<h4 id="очистка-логов">Очистка логов<a class="headerlink" href="#очистка-логов" title="Постоянная ссылка">&para;</a></h4>
+<p>Удаление старых логов:
+- Освобождение места в памяти
+- Улучшение производительности
+- Сброс счетчиков ошибок</p>
+<hr />
+<h2 id="-часто-задаваемые-вопросы">❓ Часто задаваемые вопросы<a class="headerlink" href="#-часто-задаваемые-вопросы" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-технические-вопросы">🔧 Технические вопросы<a class="headerlink" href="#-технические-вопросы" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Q: Датчик показывает неверные значения</strong>
+A: Проверьте подключение, выполните калибровку, убедитесь в правильности типа почвы</p>
+<p><strong>Q: Не подключается к WiFi</strong>
+A: Проверьте SSID и пароль, убедитесь в стабильности сигнала</p>
+<p><strong>Q: MQTT не работает</strong>
+A: Проверьте настройки сервера, порт, логин и пароль</p>
+<p><strong>Q: ThingSpeak не отправляет данные</strong>
+A: Проверьте API ключ и Channel ID, убедитесь в интернет-соединении</p>
+<h3 id="-вопросы-по-данным">📊 Вопросы по данным<a class="headerlink" href="#-вопросы-по-данным" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Q: Что означают стрелки ↑↓ в показаниях?</strong>
+A: Показывают направление изменений после компенсации данных</p>
+<p><strong>Q: Почему значения RAW и Компенс. отличаются?</strong>
+A: Компенсированные значения учитывают температуру, влажность и тип почвы</p>
+<p><strong>Q: Как интерпретировать цветовую индикацию?</strong>
+A: Зеленый - норма, желтый - внимание, оранжевый - предупреждение, красный - критично</p>
+<p><strong>Q: Откуда берутся рекомендации?</strong>
+A: На основе выбранной культуры, сезона и типа среды выращивания</p>
+<h3 id="-вопросы-по-калибровке">🔬 Вопросы по калибровке<a class="headerlink" href="#-вопросы-по-калибровке" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Q: Нужна ли калибровка?</strong>
+A: Рекомендуется для повышения точности, но не обязательна</p>
+<p><strong>Q: Как создать CSV файл калибровки?</strong>
+A: Используйте пример из <code>/docs/examples/calibration_example.csv</code></p>
+<p><strong>Q: Можно ли использовать калибровку от другого датчика?</strong>
+A: Не рекомендуется, каждый датчик индивидуален</p>
+<p><strong>Q: Как проверить качество калибровки?</strong>
+A: Сравните показания с лабораторными измерениями</p>
+<h3 id="-вопросы-по-веб-интерфейсу">🌐 Вопросы по веб-интерфейсу<a class="headerlink" href="#-вопросы-по-веб-интерфейсу" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Q: Не открывается веб-интерфейс</strong>
+A: Проверьте IP адрес, убедитесь в подключении к правильной сети</p>
+<p><strong>Q: Интерфейс медленно загружается</strong>
+A: Проверьте качество WiFi соединения, перезагрузите устройство</p>
+<p><strong>Q: Не сохраняются настройки</strong>
+A: Проверьте права доступа, убедитесь в достаточном месте в памяти</p>
+<p><strong>Q: Как экспортировать данные?</strong>
+A: Используйте API <code>/api/v1/sensor</code> или функцию экспорта CSV</p>
+<hr />
+<h2 id="-поддержка">📞 Поддержка<a class="headerlink" href="#-поддержка" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-связь-с-разработчиками">💬 Связь с разработчиками<a class="headerlink" href="#-связь-с-разработчиками" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Telegram:</strong> <a href="https://t.me/Gfermoto">@Gfermoto</a></li>
+<li><strong>GitHub Issues:</strong> <a href="https://github.com/Gfermoto/soil-sensor-7in1/issues">Сообщить о проблеме</a></li>
+<li><strong>Документация:</strong> <a href="https://gfermoto.github.io/soil-sensor-7in1/">GitHub Pages</a></li>
+</ul>
+<h3 id="-дополнительные-ресурсы">📚 Дополнительные ресурсы<a class="headerlink" href="#-дополнительные-ресурсы" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><a href="../TECHNICAL_DOCS/">Техническая документация</a></li>
+<li><a href="../API/">API документация</a></li>
+<li><a href="../AGRO_RECOMMENDATIONS/">Агрономические рекомендации</a></li>
+<li><a href="../COMPENSATION_GUIDE/">Руководство по компенсации</a></li>
+</ul>
+<h3 id="-полезные-ссылки">🔗 Полезные ссылки<a class="headerlink" href="#-полезные-ссылки" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/Gfermoto/soil-sensor-7in1">🌱 GitHub репозиторий</a> - Исходный код проекта</li>
+<li><a href="../../dev/QA_REFACTORING_PLAN_2025H2/">📋 План рефакторинга</a> - Планы развития на 2025</li>
+<li><a href="../../dev/TECH_DEBT_REPORT_2025-06/">📊 Отчет о техническом долге</a> - Анализ технических проблем</li>
+<li><a href="../../dev/ARCH_OVERALL/">🏗️ Архитектура системы</a> - Общая архитектура проекта</li>
+</ul>
+<hr />
+<p><strong>© 2025 JXCT Development Team</strong>
+<em>Версия 3.4.9 | Июнь 2025</em></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+    <a href="https://github.com/Gfermoto/soil-sensor-7in1" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://t.me/jxct_support" target="_blank" rel="noopener" title="Telegram Support" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8m114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.45 10.45 0 0 1 3.53 6.716 43.8 43.8 0 0 1 .417 9.769"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56ea9cef.min.js"></script>
+      
+    
+  </body>
+</html>

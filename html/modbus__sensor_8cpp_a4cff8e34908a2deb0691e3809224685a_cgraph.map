@@ -1,0 +1,35 @@
+<map id="applyCompensationIfEnabled" name="applyCompensationIfEnabled">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,236,197,263"/>
+<area shape="rect" id="Node000002" href="$namespace_calibration_manager.html#abb872938a17efb733eaf531bb5c0a1dc" title=" " alt="" coords="245,144,378,187"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="136,233,241,191,243,195,138,238"/>
+<area shape="rect" id="Node000011" href="$sensor__compensation_8cpp.html#af586e2e5563baee2b53964aff0e1467d" title=" " alt="" coords="271,211,352,237"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="197,235,256,228,256,233,197,240"/>
+<area shape="rect" id="Node000012" href="$sensor__compensation_8cpp.html#aa9d6b97073bca78fb526c17bdbf816a6" title=" " alt="" coords="267,261,356,288"/>
+<area shape="poly" id="edge13_Node000001_Node000012" title=" " alt="" coords="197,258,252,265,251,270,197,264"/>
+<area shape="rect" id="Node000016" href="$sensor__compensation_8cpp.html#aec93dd728b4450e4078a1e26954478e5" title=" " alt="" coords="271,312,352,339"/>
+<area shape="poly" id="edge17_Node000001_Node000016" title=" " alt="" coords="141,261,258,304,257,309,140,266"/>
+<area shape="rect" id="Node000003" href="$namespace_calibration_manager.html#a1ee0f1f244cb68eaa7e47a79deb452b6" title=" " alt="" coords="426,144,559,187"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="378,163,411,163,411,168,378,168"/>
+<area shape="rect" id="Node000008" href="$namespace_calibration_manager.html#a15db87f3fcb09c7f4c5abc69009cef89" title=" " alt="" coords="426,77,559,120"/>
+<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="370,141,418,123,419,128,372,146"/>
+<area shape="rect" id="Node000004" href="$namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613" title=" " alt="" coords="607,107,741,149"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="559,149,592,142,593,147,560,154"/>
+<area shape="rect" id="Node000007" href="$namespace_calibration_manager.html#a24c0b11ea08e757ae404289fa38e33b3" title=" " alt="" coords="607,173,741,216"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="560,173,593,179,592,184,559,179"/>
+<area shape="rect" id="Node000005" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="800,89,866,116"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="741,115,785,108,785,113,742,120"/>
+<area shape="rect" id="Node000006" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="789,140,878,167"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="742,136,774,141,773,147,741,141"/>
+<area shape="poly" id="edge8_Node000008_Node000004" title=" " alt="" coords="560,107,593,112,592,117,559,112"/>
+<area shape="poly" id="edge11_Node000008_Node000007" title=" " alt="" coords="539,118,561,130,609,159,616,163,614,168,606,164,558,134,537,123"/>
+<area shape="rect" id="Node000009" href="$logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf" title=" " alt="" coords="644,5,704,32"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="536,74,606,42,628,32,630,37,608,46,538,79"/>
+<area shape="rect" id="Node000010" href="$logger_8cpp.html#a34f49079ccda568e5054918ae4354431" title=" " alt="" coords="640,56,708,83"/>
+<area shape="poly" id="edge10_Node000008_Node000010" title=" " alt="" coords="559,85,624,75,625,80,560,91"/>
+<area shape="rect" id="Node000013" href="$sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a" title=" " alt="" coords="464,211,522,237"/>
+<area shape="poly" id="edge14_Node000012_Node000013" title=" " alt="" coords="356,260,448,234,449,239,357,265"/>
+<area shape="rect" id="Node000014" href="$sensor__compensation_8cpp.html#adf2ddb83f2189c9159aa7fe534217ea4" title=" " alt="" coords="463,261,522,288"/>
+<area shape="poly" id="edge15_Node000012_Node000014" title=" " alt="" coords="356,272,447,272,447,277,356,277"/>
+<area shape="rect" id="Node000015" href="$sensor__compensation_8cpp.html#ae64bff1823ab30991e51b8d57c23be39" title=" " alt="" coords="464,312,522,339"/>
+<area shape="poly" id="edge16_Node000012_Node000015" title=" " alt="" coords="357,284,449,311,448,316,356,290"/>
+</map>

@@ -1,0 +1,7 @@
+<map id="src/modbus_sensor.h" name="src/modbus_sensor.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="30,5,177,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,80,82,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,34,65,70,61,66,91,31"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="106,80,224,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="116,31,147,66,143,70,112,34"/>
+</map>

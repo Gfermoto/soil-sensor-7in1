@@ -1,0 +1,8 @@
+<map id="logData" name="logData">
+<area shape="rect" id="Node000001" title=" " alt="" coords="307,5,373,32"/>
+<area shape="rect" id="Node000002" href="$main_8cpp.html#afe461d27b9c48d5921c00d521181f12f" title=" " alt="" coords="5,5,51,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="292,21,51,21,51,16,292,16"/>
+<area shape="rect" id="Node000003" href="$thingspeak__client_8cpp.html#aaef2ba5628e59244986aa0c0f40b58cf" title=" " alt="" coords="99,31,259,57"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="292,29,260,34,259,29,291,24"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="83,31,51,25,52,20,84,25"/>
+</map>

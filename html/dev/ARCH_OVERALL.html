@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🏗️ Общая архитектура JXCT v3.4.9</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            margin: -20px -20px 20px -20px;
+        }
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+        }
+        .navigation a {
+            color: #1976d2;
+            text-decoration: none;
+            margin-right: 15px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .navigation a:hover {
+            background-color: #e3f2fd;
+        }
+        .content {
+            padding: 20px 0;
+        }
+        h1, h2, h3, h4 {
+            color: #2e7d32;
+        }
+        h1 {
+            border-bottom: 3px solid #4caf50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 2px solid #81c784;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid #4caf50;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background: #388e3c;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .status-success { background: #4caf50; color: white; }
+        .status-warning { background: #ff9800; color: white; }
+        .status-error { background: #f44336; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏗️ Общая архитектура JXCT v3.4.9</h1>
+            <p>JXCT 7-в-1 Датчик Почвы - Профессиональная IoT система мониторинга</p>
+        </div>
+        
+        <div class="navigation">
+            
+        <a href="../../index.html">🏠 Главная</a>
+        <a href="../manuals/USER_GUIDE.html">👤 Руководство пользователя</a>
+        <a href="../manuals/TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+        <a href="../manuals/API.html">📡 API</a>
+        <a href="../../html/index.html">📚 API документация</a>
+    
+        </div>
+        
+        <div class="content">
+            <h1>🏗️ Общая архитектура JXCT v3.4.9</h1>
+
+<p>> <strong>Версия документа:</strong> 3.4.9  
+> <strong>Дата обновления:</strong> 2025-06-24  
+> <strong>Статус:</strong> Актуальная архитектура с фокусом на стабильность</p>
+
+---
+
+<h2>🎯 <strong>ПРИНЦИПЫ АРХИТЕКТУРЫ</strong></h2>
+
+<h3>1. <strong>Стабильность превыше всего</strong></h3><ul>
+<li>Эволюционное развитие без революционных изменений</li>
+</ul><li>Приоритет качества кода над архитектурными экспериментами</li><ul>
+<li>Тщательное тестирование перед внедрением изменений</li>
+</ul>
+<h3>2. <strong>Модульность и переиспользование</strong></h3><ul>
+<li>Четкое разделение ответственности между модулями</li>
+</ul><li>Минимизация циклических зависимостей</li><ul>
+<li>Использование интерфейсов для абстракции</li>
+</ul>
+<h3>3. <strong>Производительность и эффективность</strong></h3><ul>
+<li>Оптимизация использования памяти и Flash</li>
+</ul><li>Эффективные алгоритмы обработки данных</li><ul>
+<li>Минимизация накладных расходов</li>
+</ul>
+---
+
+<h2>🔧 <strong>ОСНОВНЫЕ КОМПОНЕНТЫ</strong></h2>
+
+<h3>📡 <strong>СИСТЕМА ДАТЧИКОВ</strong></h3>
+
+<p>#### 🔌 <strong>Абстракция датчиков</strong>
+<code></code>`cpp
+// Файл: include/ISensor.h</p>
+
+class ISensor {
+public:
+    virtual ~ISensor() = default;
+    virtual bool initialize() = 0;
+    virtual SensorData read() = 0;
+    virtual bool isConnected() const = 0;
+    virtual String getSensorInfo() const = 0;
+};
+<code></code>`
+
+<p>#### 🎭 <strong>Адаптеры датчиков</strong>
+<code></code>`cpp
+// Файл: src/modbus_sensor.h</p>
+
+class ModbusSensorAdapter : public ISensor {
+private:
+    ModbusSensor* sensor;
+    
+public:
+    ModbusSensorAdapter(ModbusSensor* s) : sensor(s) {}
+    
+    bool initialize() override {
+        return sensor->begin();
+    }
+    
+    SensorData read() override {
+        return sensor->getData();
+    }
+    
+    bool isConnected() const override {
+        return sensor->isConnected();
+    }
+    
+    String getSensorInfo() const override {
+        return "Modbus Sensor v" + String(sensor->getVersion());
+    }
+};
+<code></code>`
+
+<h3>🧮 <strong>СИСТЕМА КОМПЕНСАЦИИ</strong></h3>
+
+<p>#### ✅ <strong>ИСПРАВЛЕННАЯ ДВУХЭТАПНАЯ КОМПЕНСАЦИЯ</strong></p>
+
+<code></code>`cpp
+// Файл: src/modbus_sensor.cpp
+
+<p>void applyCompensationIfEnabled(SensorData& d, const SoilProfile& profile) {
+    // ШАГ 1: Применяем калибровочную таблицу CSV (лабораторная поверка)
+    float tempCalibrated = CalibrationManager::applyCalibration(d.temperature, profile);
+    float humCalibrated = CalibrationManager::applyCalibration(d.humidity, profile);
+    float ecCalibrated = CalibrationManager::applyCalibration(d.ec, profile);
+    float phCalibrated = CalibrationManager::applyCalibration(d.ph, profile);
+    float nCalibrated = CalibrationManager::applyCalibration(d.nitrogen, profile);
+    float pCalibrated = CalibrationManager::applyCalibration(d.phosphorus, profile);
+    float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);</p>
+
+    // ШАГ 2: Применяем математическую компенсацию (температурная, влажностная)
+    float ec25 = ecCalibrated / (1.0f + 0.021f * (tempCalibrated - 25.0f));
+    d.ec = correctEC(ec25, tempCalibrated, humCalibrated, profile.soilType);
+    d.ph = correctPH(phCalibrated, tempCalibrated);
+    correctNPK(tempCalibrated, humCalibrated, d.nitrogen, d.phosphorus, d.potassium, profile.soilType);
+}
+<code></code>`
+
+<p>#### 🔧 <strong>Калибровочный менеджер</strong>
+<code></code>`cpp
+// Файл: src/calibration_manager.cpp</p>
+
+class CalibrationManager {
+public:
+    // Применение калибровочной таблицы с линейной интерполяцией
+    static float applyCalibration(float rawValue, const CalibrationProfile& profile) {
+        if (!profile.isLoaded()) {
+            return rawValue; // Возвращаем исходное значение если таблица не загружена
+        }
+        
+        // Поиск ближайших точек калибровки
+        CalibrationPoint lower, upper;
+        if (profile.findInterpolationPoints(rawValue, lower, upper)) {
+            // Линейная интерполяция
+            float ratio = (rawValue - lower.raw) / (upper.raw - lower.raw);
+            return lower.calibrated + ratio * (upper.calibrated - lower.calibrated);
+        }
+        
+        return rawValue; // Вне диапазона калибровки
+    }
+};
+<code></code>`
+
+<p>#### 1️⃣ <strong>Модель Арчи - EC компенсация</strong>
+<code></code>`cpp
+float correctEC(float ec25, float temperature, float humidity, SoilType soilType) {
+    // Температурная компенсация (Archie, 1942)
+    float tempFactor = 1.0f + 0.021f * (temperature - 25.0f);
+    
+    // Влажностная компенсация по модели Арчи
+    float porosity = getPorosity(soilType);
+    float archieCoeff = getArchieCoefficient(soilType);
+    float humFactor = pow(humidity / 100.0f, archieCoeff);
+    
+    return ec25 <em> tempFactor </em> humFactor;
+}</p>
+
+float getArchieCoefficient(SoilType soilType) {
+    switch (soilType) {
+        case SAND: return 0.15f;      // Песок
+        case LOAM: return 0.30f;      // Суглинок
+        case CLAY: return 0.45f;      // Глина
+        case PEAT: return 0.10f;      // Торф
+        case SANDY_PEAT: return 0.18f; // Песчано-торфяной
+        default: return 0.30f;
+    }
+}
+<code></code>`
+
+<p>#### 2️⃣ <strong>Уравнение Нернста - pH компенсация</strong>
+<code></code>`cpp
+float correctPH(float phRaw, float temperature) {
+    // Температурная поправка pH по уравнению Нернста
+    // dE/dT = -0.003 V/°C для pH электрода
+    return phRaw - 0.003f * (temperature - 25.0f);
+}
+<code></code>`</p>
+
+#### 3️⃣ <strong>FAO 56 + Eur. J. Soil Sci. - NPK компенсация</strong>
+<code></code>`cpp
+void correctNPK(float temperature, float humidity, 
+                float& nitrogen, float& phosphorus, float& potassium, 
+                SoilType soilType) {
+    // Температурная компенсация NPK
+    float tempFactor = 1.0f - 0.02f * (temperature - 25.0f);
+    
+    // Влажностная компенсация по FAO 56
+    float humFactor = 1.0f + 0.05f * (humidity - 50.0f) / 50.0f;
+    
+    // Применение компенсации
+    nitrogen <em>= tempFactor </em> humFactor;
+    phosphorus <em>= tempFactor </em> humFactor;
+    potassium <em>= tempFactor </em> humFactor;
+}
+<code></code>`
+
+<h2>🌐 <strong>ВЕБ-ИНТЕРФЕЙС</strong></h2>
+
+<h3>📱 <strong>Архитектура веб-интерфейса</strong></h3>
+<code></code>`
+┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
+│   Web Browser   │    │   ESP32 Web     │    │   Data Storage  │
+│   (Frontend)    │◄──►│   Server        │◄──►│   (NVS/Flash)   │
+└─────────────────┘    └─────────────────┘    └─────────────────┘
+                              │
+                              ▼
+                       ┌─────────────────┐
+                       │   Sensor Data   │
+                       │   Processing    │
+                       └─────────────────┘
+<code></code>`
+
+<h3>🛣️ <strong>Маршрутизация</strong></h3>
+<code></code>`cpp
+// Файл: src/web/routes_data.cpp
+
+<p>void setupDataRoutes() {
+    // Основные маршруты данных
+    server.on("/readings", HTTP_GET, handleReadings);
+    server.on("/api/sensor", HTTP_GET, handleApiData);
+    server.on("/api/calibration", HTTP_POST, handleCalibrationUpload);
+    
+    // Статические файлы
+    server.on("/calibration_example.csv", HTTP_GET, handleStaticFile);
+    server.on("/favicon.ico", HTTP_GET, handleStaticFile);
+}
+<code></code>`</p>
+
+<h3>🎨 <strong>UI компоненты</strong></h3><ul>
+<li><strong>Информационные блоки</strong> с объяснением процессов компенсации</li>
+</ul><li><strong>Визуальная индикация</strong> статуса калибровки</li><ul>
+<li><strong>Цветовая кодировка</strong> значений (зеленый, желтый, оранжевый, красный)</li>
+</ul><li><strong>Стрелки изменений</strong> ↑↓ для показа динамики</li><ul>
+<li><strong>Ссылки на примеры</strong> CSV файлов</li>
+</ul>
+<h2>🔌 <strong>ИНТЕГРАЦИИ</strong></h2>
+
+<h3>🌐 <strong>MQTT клиент</strong></h3>
+<code></code>`cpp
+// Файл: src/mqtt_client.cpp
+
+<p>class MQTTClient {
+public:
+    // Подключение к MQTT серверу
+    bool connect(const String& server, int port, 
+                 const String& username, const String& password);
+    
+    // Публикация данных
+    bool publishData(const SensorData& data);
+    
+    // Подписка на команды
+    void subscribeToCommands();
+    
+private:
+    // Обработка входящих сообщений
+    void handleMessage(const String& topic, const String& payload);
+};
+<code></code>`</p>
+
+<h3>☁️ <strong>ThingSpeak интеграция</strong></h3>
+<code></code>`cpp
+// Файл: src/thingspeak_client.cpp
+
+<p>class ThingSpeakClient {
+public:
+    // Отправка данных в ThingSpeak
+    bool sendData(const SensorData& data);
+    
+    // Получение данных из ThingSpeak
+    SensorData getData();
+    
+private:
+    // HTTP запросы к ThingSpeak API
+    bool makeRequest(const String& endpoint, const String& data);
+};
+<code></code>`</p>
+
+<h2>🔍 <strong>ЛОГИРОВАНИЕ И ДИАГНОСТИКА</strong></h2>
+
+<h3>📝 <strong>Система логирования</strong></h3>
+<code></code>`cpp
+// Файл: src/logger.cpp
+
+<p>class Logger {
+public:
+    // Уровни логирования
+    enum Level { DEBUG, INFO, WARNING, ERROR, CRITICAL };
+    
+    // Логирование с уровнем
+    static void log(Level level, const String& message);
+    
+    // Логирование данных датчика
+    static void logSensorData(const SensorData& data);
+    
+    // Логирование ошибок
+    static void logError(const String& error, const String& context);
+    
+private:
+    // Форматирование времени
+    static String formatTimestamp();
+    
+    // Цветной вывод (для отладки)
+    static String getColorCode(Level level);
+};
+<code></code>`</p>
+
+<h3>🎯 <strong>Валидация данных</strong></h3>
+<code></code>`cpp
+// Файл: src/validation_utils.cpp
+
+<p>class ValidationUtils {
+public:
+    // Валидация данных датчика
+    static bool validateSensorData(const SensorData& data);
+    
+    // Валидация конфигурации
+    static bool validateConfig(const SystemConfig& config);
+    
+    // Валидация калибровочной таблицы
+    static bool validateCalibrationTable(const CalibrationTable& table);
+    
+private:
+    // Проверка диапазонов значений
+    static bool isInRange(float value, float min, float max);
+    
+    // Проверка корректности CSV
+    static bool isValidCSV(const String& csvData);
+};
+<code></code>`</p>
+
+<h2>🚀 <strong>ПРОИЗВОДИТЕЛЬНОСТЬ И ОПТИМИЗАЦИЯ</strong></h2>
+
+<h3>📊 <strong>Использование памяти</strong></h3><ul>
+<li><strong>RAM:</strong> ~57KB (17.4% от доступной)</li>
+</ul><li><strong>Flash:</strong> ~1184KB (60.2% от доступной)</li><ul>
+<li><strong>NVS:</strong> ~4KB для конфигурации</li>
+</ul><li><strong>Heap:</strong> Динамическое управление</li>
+
+<h3>⚡ <strong>Оптимизации</strong></h3><ul>
+<li><strong>Статические буферы:</strong> Для критических операций</li>
+</ul><li><strong>Пул памяти:</strong> Для частых операций</li><ul>
+<li><strong>Кэширование:</strong> Результатов вычислений</li>
+</ul><li><strong>Lazy loading:</strong> Загрузка данных по требованию</li>
+
+<h2>🔒 <strong>БЕЗОПАСНОСТЬ</strong></h2>
+
+<h3>🛡️ <strong>Текущие меры</strong></h3><ul>
+<li><strong>Rate limiting:</strong> 20 запросов в минуту на IP</li>
+</ul><li><strong>Input validation:</strong> Проверка всех входных данных</li><ul>
+<li><strong>Error handling:</strong> Безопасная обработка ошибок</li>
+</ul>
+<h3>🚧 <strong>Планируемые улучшения</strong></h3><ul>
+<li><strong>CSRF токены:</strong> Для всех POST запросов</li>
+</ul><li><strong>OTA подпись:</strong> SHA-256 для прошивок</li><ul>
+<li><strong>HTTPS:</strong> Для веб-интерфейса</li>
+</ul><li><strong>Dependency scanning:</strong> Автоматическая проверка уязвимостей</li>
+
+<h2>📈 <strong>МОНИТОРИНГ И МЕТРИКИ</strong></h2>
+
+<h3>📊 <strong>Ключевые метрики</strong></h3><ul>
+<li><strong>Время отклика:</strong> < 500ms для веб-запросов</li>
+</ul><li><strong>Использование памяти:</strong> < 80% от доступной</li><ul>
+<li><strong>Стабильность:</strong> 99.9% uptime</li>
+</ul><li><strong>Точность:</strong> RMS погрешность < 5%</li>
+
+<h3>🔍 <strong>Диагностика</strong></h3><ul>
+<li><strong>Логирование:</strong> Все критические операции</li>
+</ul><li><strong>Метрики производительности:</strong> Время выполнения функций</li><ul>
+<li><strong>Алерты:</strong> При превышении пороговых значений</li>
+</ul>
+---
+
+<h2>📋 <strong>ПЛАНЫ РАЗВИТИЯ</strong></h2>
+
+<h3>🎯 <strong>Краткосрочные цели (3-6 месяцев)</strong></h3>
+1. <strong>Повышение покрытия тестами</strong> до 85%
+2. <strong>Улучшение безопасности</strong> (CSRF, OTA подпись)
+3. <strong>Оптимизация производительности</strong> (кэширование, пулы памяти)
+4. <strong>Расширение документации</strong> (API, примеры использования)
+
+<h3>🚀 <strong>Долгосрочные цели (6-12 месяцев)</strong></h3>
+1. <strong>Модульная архитектура</strong> с четким разделением слоев
+2. <strong>Расширенные интеграции</strong> (дополнительные облачные сервисы)
+3. <strong>Машинное обучение</strong> для улучшения точности
+4. <strong>Мобильное приложение</strong> для управления устройством
+
+<p>---</p>
+
+<strong>Версия:</strong> 3.4.9  
+<strong>Дата:</strong> 2025-06-24  
+<strong>Автор:</strong> JXCT Development Team 
+        </div>
+        
+        <a href="../../index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+</body>
+</html>

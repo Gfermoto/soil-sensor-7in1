@@ -1,0 +1,38 @@
+<map id="src/modbus_sensor.cpp" name="src/modbus_sensor.cpp">
+<area shape="rect" id="Node000001" title="Работа с Modbus&#45;датчиком JXCT." alt="" coords="445,5,605,32"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="487,229,563,256"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="445,27,327,34,197,46,87,62,50,72,31,82,14,106,8,128,12,147,25,163,46,178,74,191,146,211,231,225,320,233,471,239,471,244,320,238,231,230,145,216,72,196,44,183,22,167,7,149,3,128,9,104,27,78,48,67,86,57,197,41,327,29,444,21"/>
+<area shape="rect" id="Node000003" href="$modbus__sensor_8h.html" title=" " alt="" coords="42,80,166,107"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="452,35,182,81,181,76,451,30"/>
+<area shape="rect" id="Node000005" href="$jxct__device__info_8h.html" title=" " alt="" coords="190,80,316,107"/>
+<area shape="poly" id="edge5_Node000001_Node000005" title=" " alt="" coords="478,35,316,78,315,73,477,30"/>
+<area shape="rect" id="Node000007" href="$jxct__config__vars_8h.html" title=" " alt="" coords="340,80,467,107"/>
+<area shape="poly" id="edge8_Node000001_Node000007" title=" " alt="" coords="505,35,439,74,437,69,503,30"/>
+<area shape="rect" id="Node000009" href="$debug_8h.html" title=" " alt="" coords="491,80,559,107"/>
+<area shape="poly" id="edge10_Node000001_Node000009" title=" " alt="" coords="528,33,528,64,522,64,522,33"/>
+<area shape="rect" id="Node000010" href="$logger_8h.html" title="Система логгирования с красивым форматированием" alt="" coords="562,155,629,181"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="539,31,556,52,573,79,585,109,593,139,588,140,580,111,568,81,552,55,535,34"/>
+<area shape="rect" id="Node000011" href="$jxct__constants_8h.html" title="Централизованные константы системы JXCT." alt="" coords="633,80,750,107"/>
+<area shape="poly" id="edge14_Node000001_Node000011" title=" " alt="" coords="555,30,650,71,648,76,553,35"/>
+<area shape="rect" id="Node000012" href="$sensor__compensation_8h.html" title="Алгоритмы коррекции показаний датчиков" alt="" coords="653,155,813,181"/>
+<area shape="poly" id="edge15_Node000001_Node000012" title=" " alt="" coords="606,27,700,46,740,61,764,78,771,94,770,112,755,143,750,141,765,110,766,95,760,82,737,65,699,52,605,32"/>
+<area shape="rect" id="Node000013" href="$src_2calibration__manager_8h.html" title=" " alt="" coords="826,80,974,107"/>
+<area shape="poly" id="edge17_Node000001_Node000013" title=" " alt="" coords="591,30,820,74,819,79,590,35"/>
+<area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="97,108,81,144,79,163,86,180,112,198,151,212,201,223,257,231,373,239,472,240,472,245,373,244,256,236,200,229,150,218,109,203,82,183,73,164,75,142,93,106"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="95,155,214,181"/>
+<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="115,106,139,141,135,144,110,109"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="255,107,259,143,266,163,278,179,310,197,360,212,472,232,471,238,359,217,308,202,274,183,261,165,254,145,250,108"/>
+<area shape="rect" id="Node000006" href="$version_8h.html" title=" " alt="" coords="288,155,362,181"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="267,105,304,142,300,145,264,109"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="386,155,488,181"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="412,106,427,139,423,142,407,108"/>
+<area shape="poly" id="edge11_Node000009_Node000002" title=" " alt="" coords="528,107,528,214,522,214,522,107"/>
+<area shape="poly" id="edge13_Node000010_Node000002" title=" " alt="" coords="585,184,550,220,546,216,582,180"/>
+<area shape="poly" id="edge16_Node000012_Node000002" title=" " alt="" coords="698,184,577,226,575,221,696,179"/>
+<area shape="poly" id="edge18_Node000013_Node000002" title=" " alt="" coords="895,109,869,146,849,167,826,184,764,212,697,230,633,239,579,244,579,238,633,234,696,224,762,207,824,179,846,163,864,143,891,105"/>
+<area shape="poly" id="edge21_Node000013_Node000012" title=" " alt="" coords="872,110,777,151,775,146,870,105"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="888,155,938,181"/>
+<area shape="poly" id="edge19_Node000013_Node000014" title=" " alt="" coords="905,107,911,139,905,140,899,108"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="962,155,1040,181"/>
+<area shape="poly" id="edge20_Node000013_Node000015" title=" " alt="" coords="919,105,972,143,969,147,916,109"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="triggerOtaInstall" name="triggerOtaInstall">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,100,119,126"/>
+<area shape="rect" id="Node000002" href="$ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463" title=" " alt="" coords="167,100,308,126"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,110,152,110,152,116,119,116"/>
+<area shape="rect" id="Node000004" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="539,49,605,76"/>
+<area shape="poly" id="edge11_Node000001_Node000004" title=" " alt="" coords="93,96,206,52,280,29,356,12,419,3,448,4,483,12,514,23,541,38,538,43,511,28,482,17,447,10,420,8,356,17,281,34,208,57,95,101"/>
+<area shape="rect" id="Node000005" href="$logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14" title=" " alt="" coords="530,176,614,202"/>
+<area shape="poly" id="edge12_Node000001_Node000005" title=" " alt="" coords="96,124,210,167,282,188,356,204,419,209,482,204,515,199,516,204,483,209,419,214,356,209,281,193,208,172,95,129"/>
+<area shape="rect" id="Node000003" href="$ota__manager_8cpp.html#a6bfd77aa7f122e508ece81a6f6cfbb88" title=" " alt="" coords="367,100,471,126"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="308,110,352,110,352,116,308,116"/>
+<area shape="poly" id="edge8_Node000002_Node000004" title=" " alt="" coords="252,97,296,63,324,47,355,34,400,27,445,28,487,34,524,43,523,49,486,40,444,33,400,32,357,39,327,52,299,68,255,101"/>
+<area shape="poly" id="edge9_Node000002_Node000005" title=" " alt="" coords="255,125,299,158,327,174,357,186,397,195,439,198,515,195,515,200,439,203,396,200,355,191,324,179,296,162,252,129"/>
+<area shape="rect" id="Node000006" href="$ota__manager_8cpp.html#a95a87e1e1d6cd503264f609ff0d1834c" title=" " alt="" coords="356,150,482,177"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="289,124,355,143,353,148,287,129"/>
+<area shape="rect" id="Node000007" href="$ota__manager_8cpp.html#a2b7fa9588e9d775a9058925bb170f465" title=" " alt="" coords="370,49,468,76"/>
+<area shape="poly" id="edge10_Node000002_Node000007" title=" " alt="" coords="287,96,356,77,357,82,289,101"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="461,96,523,75,525,81,463,101"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="458,124,484,136,536,165,534,169,481,141,456,129"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="459,147,481,136,516,111,545,84,549,88,519,115,484,140,461,152"/>
+<area shape="poly" id="edge7_Node000006_Node000005" title=" " alt="" coords="483,171,515,177,514,182,482,177"/>
+</map>
