@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"logger_8h.html#a4534b577b74a58b0f4b7be027af664e0":[3,0,1,12,8],
 "logger_8h.html#a4a348f4af13be9d7c726e296e9b3c89b":[3,0,1,12,29],
 "logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4":[3,0,1,12,19],
 "logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473":[3,0,1,12,19,0],
@@ -248,6 +249,5 @@ var NAVTREEINDEX2 =
 "routes__config_8cpp.html":[3,0,2,0,2],
 "routes__config_8cpp.html#a08204d6e0087ca3676433990aad58a76":[3,0,2,0,2,3],
 "routes__config_8cpp.html#a0e7c19a3399afd6ceae18c4512cca24c":[3,0,2,0,2,4],
-"routes__config_8cpp.html#a6385fd6a6118223757bf00a8ba828562":[3,0,2,0,2,6],
-"routes__config_8cpp.html#a688d00bbabd28fbaf9e0c50eca3adeae":[3,0,2,0,2,2]
+"routes__config_8cpp.html#a6385fd6a6118223757bf00a8ba828562":[3,0,2,0,2,6]
 };

@@ -195,6 +195,7 @@ constexpr bool DEBUG_WIFI_ENABLED = false;
 
 // Размеры разделителей и отступов
 constexpr int DEFAULT_SEPARATOR_LENGTH = 60;  // Длина разделителя по умолчанию
+constexpr int JXCT_REDIRECT_DELAY_MS = 1000; // Задержка редиректа (мс)
 
 // ============================================================================
 // ВЕРСИОНИРОВАНИЕ И СОВМЕСТИМОСТЬ

@@ -38,6 +38,7 @@ var jxct__constants_8h =
     [ "HTTP_CONTENT_TYPE_JSON", "jxct__constants_8h.html#ae50f04cb8a3d316eb61afdb47ccb6470", null ],
     [ "JSON_BUFFER_SIZE", "jxct__constants_8h.html#a3ab6698eff150be75250e5066a32c343", null ],
     [ "JXCT_BUTTON_HOLD_TIME_MS", "jxct__constants_8h.html#ad9caf8aea0daab8f3b8499c43ca27186", null ],
+    [ "JXCT_REDIRECT_DELAY_MS", "jxct__constants_8h.html#a4f8d3f60641bdc9b079e2bd23aa6ff62", null ],
     [ "JXCT_STATUS_LED_PIN", "jxct__constants_8h.html#a921d1345eebedb569ba46c07be781d2e", null ],
     [ "JXCT_WATCHDOG_TIMEOUT_SEC", "jxct__constants_8h.html#a7954a4e74b56f782bc40acf8db11b6a9", null ],
     [ "JXCT_WIFI_AP_PASS", "jxct__constants_8h.html#a4e8fd5f93ab38700d0ef3e9fb0bcc720", null ],

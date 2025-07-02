@@ -1,6 +1,7 @@
 #include "../../include/jxct_ui_system.h"
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
+#include "../../include/jxct_constants.h"
 
 // External function declarations
 extern String navHtml();
@@ -48,7 +49,7 @@ String generateSuccessPage(const String& title, const String& message, const Str
     {
         content += "<p><em>Перенаправление через " + String(redirectDelay) + " секунд...</em></p>";
         content += "<script>setTimeout(function(){window.location.href='" + redirectUrl + "';}, " +
-                   String(redirectDelay * 1000) + ");</script>";
+                   String(redirectDelay * JXCT_REDIRECT_DELAY_MS) + ");</script>";
     }
 
     return generateBasePage(title, content, UI_ICON_SUCCESS);
