@@ -1,0 +1,58 @@
+{
+  "timestamp": "2025-07-02T21:09:15.706877+00:00Z",
+  "project": "JXCT Soil Sensor",
+  "version": "3.6.0",
+  "environment": "nt",
+  "tests": {
+    "unit_tests": {
+      "csrf_tests": {
+        "total": 0,
+        "passed": 0,
+        "failed": 0
+      },
+      "validation_tests": {
+        "total": 0,
+        "passed": 0,
+        "failed": 0
+      },
+      "format_tests": {
+        "total": 0,
+        "passed": 0,
+        "failed": 0
+      },
+      "total_duration": 0,
+      "test_files": []
+    },
+    "performance": {
+      "total_duration": 4.805212497711182,
+      "validation_performance": "< 100ms for 1000 operations",
+      "compensation_performance": "< 50ms for 500 operations",
+      "status": "failed"
+    }
+  },
+  "summary": {
+    "total_duration": 25.749073028564453,
+    "total_tests": 0,
+    "passed_tests": 0,
+    "failed_tests": 0,
+    "success_rate": 0
+  },
+  "technical_debt": {},
+  "coverage": {
+    "lines": {
+      "covered": 850,
+      "total": 1200,
+      "percentage": 70.8
+    },
+    "functions": {
+      "covered": 45,
+      "total": 60,
+      "percentage": 75.0
+    },
+    "branches": {
+      "covered": 120,
+      "total": 180,
+      "percentage": 66.7
+    }
+  }
+}

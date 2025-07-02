@@ -1,7 +1,0 @@
-<map id="BasicSensorAdapter::BasicSensorAdapter" name="BasicSensorAdapter::BasicSensorAdapter">
-<area shape="rect" id="Node000001" title=" " alt="" coords="215,39,363,81"/>
-<area shape="rect" id="Node000002" href="$class_fake_sensor_adapter.html#af18b89449d9a289d773170c66787bd23" title=" " alt="" coords="14,5,158,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,48,158,41,159,36,199,43"/>
-<area shape="rect" id="Node000003" href="$class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084" title=" " alt="" coords="5,72,167,115"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="200,77,168,83,167,77,199,72"/>
-</map>

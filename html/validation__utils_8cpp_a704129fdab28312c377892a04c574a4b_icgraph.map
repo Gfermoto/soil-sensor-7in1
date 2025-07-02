@@ -1,5 +1,0 @@
-<map id="validateHumidity" name="validateHumidity">
-<area shape="rect" id="Node000001" title="Валидация влажности" alt="" coords="210,5,328,32"/>
-<area shape="rect" id="Node000002" href="$validation__utils_8cpp.html#a1b8529ff5465c73b043d27ad7d2e86f3" title="Полная валидация данных датчика" alt="" coords="5,5,162,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,21,162,21,162,16,194,16"/>
-</map>
