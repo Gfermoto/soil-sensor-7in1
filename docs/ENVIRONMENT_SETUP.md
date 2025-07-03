@@ -213,4 +213,4 @@ For issues with environment setup:
 1. Check this documentation
 2. Review PowerShell profile setup
 3. Check GitHub Actions logs
-4. Contact the development team 
+4. Contact the development team
