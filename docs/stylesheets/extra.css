@@ -47,22 +47,8 @@
 }
 
 /* СТИЛИ ДЛЯ ВСЕХ BADGE - ОДИНАКОВЫЙ РАЗМЕР */
-/* Shields.io badges */
-.md-content img[src*="shields.io"],
-/* GitHub Actions badges */
-.md-content img[src*="github.com"][src*="badge"],
-.md-content img[src*="actions/workflows"],
-/* Дополнительные селекторы для всех возможных badge */
-.md-content img[src*="badge"],
-.md-content img[src*="CI"],
-.md-content img[src*="build"],
-.md-content img[src*="tests"],
-.md-content img[src*="docs"],
-.md-content img[src*="version"],
-.md-content img[src*="platform"],
-.md-content img[src*="license"],
-/* Универсальный селектор для всех img с style=for-the-badge */
-.md-content img[style*="for-the-badge"] {
+/* Shields.io badges - единственный тип плашек */
+.md-content img[src*="shields.io"] {
   height: 28px !important;
   max-height: 28px !important;
   min-height: 28px !important;
@@ -90,18 +76,7 @@
   }
   
   /* Плашки на мобильных */
-  .md-content img[src*="shields.io"],
-  .md-content img[src*="github.com"][src*="badge"],
-  .md-content img[src*="actions/workflows"],
-  .md-content img[src*="badge"],
-  .md-content img[src*="CI"],
-  .md-content img[src*="build"],
-  .md-content img[src*="tests"],
-  .md-content img[src*="docs"],
-  .md-content img[src*="version"],
-  .md-content img[src*="platform"],
-  .md-content img[src*="license"],
-  .md-content img[style*="for-the-badge"] {
+  .md-content img[src*="shields.io"] {
     height: 24px !important;
     max-height: 24px !important;
     min-height: 24px !important;
