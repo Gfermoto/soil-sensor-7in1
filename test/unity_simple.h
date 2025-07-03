@@ -57,12 +57,12 @@
         return;                                                                                                     \
     }
 
-#define TEST_ASSERT_LESS_THAN(threshold, actual)                                                                    \
-    if ((actual) >= (threshold))                                                                                    \
-    {                                                                                                               \
+#define TEST_ASSERT_LESS_THAN(threshold, actual)                                                                 \
+    if ((actual) >= (threshold))                                                                                 \
+    {                                                                                                            \
         std::cerr << "❌ FAIL: " << __FUNCTION__ << " line " << __LINE__ << " expected less than: " << threshold \
-                  << " actual: " << actual << std::endl;                                                            \
-        return;                                                                                                     \
+                  << " actual: " << actual << std::endl;                                                         \
+        return;                                                                                                  \
     }
 
 #define TEST_ASSERT_NOT_EQUAL(expected, actual)                                \
@@ -87,5 +87,4 @@
     std::cout << "🚀 Starting Unity Tests" << std::endl;
 
 #undef UNITY_END
-#define UNITY_END()                                                                  \
-    (std::cout << "\n📊 Tests completed: " << tests_passed << " passed" << std::endl, 0)
+#define UNITY_END() (std::cout << "\n📊 Tests completed: " << tests_passed << " passed" << std::endl, 0)

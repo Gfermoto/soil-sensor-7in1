@@ -469,4 +469,4 @@ void setup()
 }
 
 void loop() {}
-#endif // ARDUINO
+#endif  // ARDUINO
