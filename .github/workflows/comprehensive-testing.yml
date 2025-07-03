@@ -52,16 +52,12 @@ jobs:
           if [[ "${{ github.event_name }}" == "schedule" ]] || [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             echo "should-run=true" >> $GITHUB_OUTPUT
           else
-<<<<<<< Updated upstream
-            echo "should-run=true" >> $GITHUB_OUTPUT
-=======
             # Проверяем, есть ли изменения в коде
             if git diff --name-only HEAD~1 | grep -E '\.(cpp|h|py)$'; then
-            echo "should-run=true" >> $GITHUB_OUTPUT
+              echo "should-run=true" >> $GITHUB_OUTPUT
             else
               echo "should-run=false" >> $GITHUB_OUTPUT
             fi
->>>>>>> Stashed changes
           fi
 
   technical-debt-analysis:
@@ -284,10 +280,6 @@ jobs:
           echo "  - comprehensive-test-report"
           echo "  - technical-debt-report"
           echo "  - test-reports-*"
-<<<<<<< Updated upstream
-          echo "  - coverage-report" 
-=======
           echo "  - coverage-report" 
           echo ""
-          echo "🔗 Ссылка на run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID" 
->>>>>>> Stashed changes
+          echo "🔗 Ссылка на run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
