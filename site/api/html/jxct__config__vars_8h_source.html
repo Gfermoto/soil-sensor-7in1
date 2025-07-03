@@ -1,0 +1,258 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT 7-в-1 Датчик Почвы: Исходный файл include/jxct_config_vars.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   </div>
+   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('jxct__config__vars_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">jxct_config_vars.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="jxct__config__vars_8h.html">См. документацию.</a><div class="fragment"><div class="foldopen" id="foldopen00001" data-start="{" data-end="}">
+<div class="line"><a id="l00001" name="l00001"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a482c09d923aa8219c0d59569ffe2d231">    1</a></span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// Аппаратные пины (перенесены в jxct_constants.h для централизации)</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// Оставляем только те, которые еще не перенесены</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#ac1268edc13ca85789628d69528560051">    5</a></span><span class="preprocessor">#define BOOT_BUTTON 0</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a089a71f836911c71b3f73fdd3b4b890b">    6</a></span><span class="preprocessor">#define STATUS_LED_PIN 2</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// Интервалы (мс) - МАКСИМАЛЬНАЯ ОТЗЫВЧИВОСТЬ</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#aa0e54eb96835b229951b29cfe762097b">    9</a></span><span class="preprocessor">#define SENSOR_READ_INTERVAL 1000    </span><span class="comment">// 1 сек - максимальная частота опроса датчика</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a5d391ac9f5a18b48d867fe5de3e6e73b">   10</a></span><span class="preprocessor">#define MQTT_PUBLISH_INTERVAL 60000  </span><span class="comment">// 1 мин (было 5 мин) - увеличенная частота отправки</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#afdd40eb3ab6faed1dd66ff50cec060f9">   11</a></span><span class="preprocessor">#define THINGSPEAK_INTERVAL 900000   </span><span class="comment">// 15 мин (было 15 сек) - соблюдение rate limit</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a2f69cddbe3d15df4fdced0e36984cd7a">   12</a></span><span class="preprocessor">#define WEB_UPDATE_INTERVAL 5000     </span><span class="comment">// 5 сек (было 10 сек) - улучшенная отзывчивость</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// Константы для системы - v2.5.0 подготовка к OTA</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a0906dae4a42c1fef9ec0cd0a5212ed4a">   15</a></span><span class="preprocessor">#define HTTP_PORT 80                 </span><span class="comment">// Порт веб-сервера</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#ab1d3f5c08428c20521a92ca2fa20f46c">   16</a></span><span class="preprocessor">#define DNS_PORT 53                  </span><span class="comment">// Порт DNS сервера для captive portal</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a5a148869b99db8fccfb85591d00cf94b">   17</a></span><span class="preprocessor">#define LED_FAST_BLINK_MS 100        </span><span class="comment">// Быстрое мигание LED</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a77d7dabaae0518e06c791e4d2dce6628">   18</a></span><span class="preprocessor">#define LED_SLOW_BLINK_MS 500        </span><span class="comment">// Медленное мигание LED</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a670833d6bc4ebeab45f259d03c9362c1">   19</a></span><span class="preprocessor">#define WIFI_MAX_ATTEMPTS 20         </span><span class="comment">// Максимум попыток подключения к WiFi</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a04b848298b9a35170cd46e8ef3b88464">   20</a></span><span class="preprocessor">#define WIFI_RETRY_DELAY_MS 500      </span><span class="comment">// Задержка между попытками WiFi</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a21bfc357c536666cbacb163b043d27ec">   21</a></span><span class="preprocessor">#define BUTTON_HOLD_TIME_MS 2000     </span><span class="comment">// Время удержания кнопки для сброса</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a9ec1b82f0673d93d65a1bd26c7d4a95f">   22</a></span><span class="preprocessor">#define CONFIG_SAVE_DELAY_MS 2000    </span><span class="comment">// Задержка перед перезагрузкой после сохранения</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#adfabfbdb34653df3fe5aa5c212a140a2">   23</a></span><span class="preprocessor">#define WATCHDOG_TIMEOUT_SEC 30      </span><span class="comment">// Таймаут watchdog timer</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a34bf95207114d92aae320115352794e5">   24</a></span><span class="preprocessor">#define OTA_WATCHDOG_TIMEOUT_SEC 60  </span><span class="comment">// Увеличенный таймаут для OTA</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// ДЕЛЬТА-ФИЛЬТР v2.2.1: Пороговые значения для публикации (МИНИМАЛЬНАЯ ФИЛЬТРАЦИЯ)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#aed35e9e24cf284b3d4ccc163cd2541ba">   27</a></span><span class="preprocessor">#define DELTA_TEMPERATURE 0.1f  </span><span class="comment">// ±0.1°C (минимум)</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#ae3ef5abe7c300ed5f284959dced43add">   28</a></span><span class="preprocessor">#define DELTA_HUMIDITY 0.5f     </span><span class="comment">// ±0.5% (минимум)</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#ae13f5c1a3a53aa110c1d0935eb31c33e">   29</a></span><span class="preprocessor">#define DELTA_PH 0.01f          </span><span class="comment">// ±0.01 pH (минимум)</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a60dad88b193712506f4d823c1e3d1308">   30</a></span><span class="preprocessor">#define DELTA_EC 10.0f          </span><span class="comment">// ±10 µS/cm (минимум)</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#ac81d514cad041a427ef91aae287508d0">   31</a></span><span class="preprocessor">#define DELTA_NPK 1.0f          </span><span class="comment">// ±1 mg/kg (минимум для N, P, K)</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a68dcffe45eda49259202f133335e4c39">   32</a></span><span class="preprocessor">#define FORCE_PUBLISH_CYCLES 5  </span><span class="comment">// Принудительная публикация каждые 5 циклов (5 мин при 1 мин интервале)</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">// Modbus ID по умолчанию</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#ab3f5a96fb12247f8fe0f1eb350a32d90">   35</a></span><span class="preprocessor">#define JXCT_MODBUS_ID 1</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">// Константы для точки доступа</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a8e19d13af09f7ed0afad391730f1e3e7">   38</a></span><span class="preprocessor">#define WIFI_AP_SSID &quot;JXCT-Setup&quot;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="jxct__config__vars_8h.html#a3408bc061b1888cfd751dad7b5e3d874">   39</a></span><span class="preprocessor">#define WIFI_AP_PASS &quot;12345678&quot;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">// Экспорт глобальной конфигурации</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#include &lt;Preferences.h&gt;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">// Оптимизированная упакованная структура конфигурации</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">struct </span><a class="code hl_function" href="jxct__config__vars_8h.html#a482c09d923aa8219c0d59569ffe2d231">__attribute__</a>((packed)) Config</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// WiFi настройки</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <span class="keywordtype">char</span> ssid[32];</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keywordtype">char</span> password[32];  <span class="comment">// Сократил с 64 до 32 (обычно достаточно)</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="comment">// MQTT настройки</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keywordtype">char</span> mqttServer[48];  <span class="comment">// Сократил с 64 до 48 байт</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    uint16_t mqttPort;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordtype">char</span> mqttUser[24];         <span class="comment">// Сократил с 32 до 24 байт</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordtype">char</span> mqttPassword[24];     <span class="comment">// Сократил с 32 до 24 байт</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keywordtype">char</span> mqttTopicPrefix[48];  <span class="comment">// Сократил с 64 до 48 байт</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keywordtype">char</span> mqttDeviceName[24];   <span class="comment">// Сократил с 32 до 24 байт</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    uint8_t mqttQos;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// ThingSpeak настройки</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">char</span> thingSpeakApiKey[24];     <span class="comment">// Сократил с 32 до 24 байт</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">char</span> thingSpeakChannelId[12];  <span class="comment">// Сократил с 16 до 12 байт</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    uint16_t thingspeakInterval;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// Информация о устройстве</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">char</span> manufacturer[24];  <span class="comment">// Сократил с 32 до 24 байт</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">char</span> model[24];         <span class="comment">// Сократил с 32 до 24 байт</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">char</span> swVersion[12];     <span class="comment">// Сократил с 16 до 12 байт</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// NTP настройки</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">char</span> ntpServer[48];  <span class="comment">// Сократил с 64 до 48 байт</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    uint32_t ntpUpdateInterval;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// Датчик настройки</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    uint8_t modbusId;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">// Безопасность веб-интерфейса</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordtype">char</span> webPassword[24];  <span class="comment">// Пароль для доступа к веб-интерфейсу</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="comment">// v2.3.0: Настраиваемые интервалы (16 байт)</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    uint32_t sensorReadInterval;   <span class="comment">// Интервал опроса датчика (1-300 сек, по умолчанию 1 сек)</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    uint32_t mqttPublishInterval;  <span class="comment">// Интервал MQTT публикации (1-60 мин)</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    uint32_t thingSpeakInterval;   <span class="comment">// Интервал ThingSpeak (5-120 мин)</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    uint32_t webUpdateInterval;    <span class="comment">// Интервал обновления веб-интерфейса (5-60 сек)</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="comment">// v2.3.0: Настраиваемые пороги дельта-фильтра (20 байт)</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    <span class="keywordtype">float</span> deltaTemperature;  <span class="comment">// Порог температуры (0.1-5.0°C)</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordtype">float</span> deltaHumidity;     <span class="comment">// Порог влажности (0.5-10.0%)</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordtype">float</span> deltaPh;           <span class="comment">// Порог pH (0.01-1.0)</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordtype">float</span> deltaEc;           <span class="comment">// Порог EC (10-500 µS/cm)</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordtype">float</span> deltaNpk;          <span class="comment">// Порог NPK (1-50 mg/kg)</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <span class="comment">// v2.3.0: Настройки скользящего среднего (8 байт)</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    uint8_t movingAverageWindow;   <span class="comment">// Размер окна (5-15 измерений)</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    uint8_t forcePublishCycles;    <span class="comment">// Принудительная публикация (5-50 циклов)</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    uint8_t filterAlgorithm;       <span class="comment">// 0=среднее, 1=медиана</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    uint8_t outlierFilterEnabled;  <span class="comment">// 0=отключен, 1=включен (&gt;2σ)</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// v2.5.1: Настройки калибровки</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    uint8_t soilProfile;  <span class="comment">// 0 = sand, 1 = loam, 2 = peat</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// v2.6.0: Агро-профили</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    <span class="keywordtype">float</span> latitude;   <span class="comment">// Широта устройства (градусы)</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>    <span class="keywordtype">float</span> longitude;  <span class="comment">// Долгота устройства (градусы)</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordtype">char</span> cropId[16];  <span class="comment">// Идентификатор культуры (&quot;tomato&quot;, ...)</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="comment">// v2.6.0: Детектор полива</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordtype">float</span> irrigationSpikeThreshold;      <span class="comment">// % прироста влажности</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    uint16_t irrigationHoldMinutes;      <span class="comment">// мин удержания повышенной влажности</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    uint16_t postIrrigationHoldMinutes;  <span class="comment">// мин игнорировать коррекцию после полива</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="comment">// v2.6.1: Тип среды выращивания (0=outdoor,1=greenhouse,2=indoor)</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    uint8_t environmentType;</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    <span class="comment">// Битовые поля для boolean флагов (экономия 4 байта)</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    <span class="keyword">struct </span><a class="code hl_function" href="jxct__config__vars_8h.html#a482c09d923aa8219c0d59569ffe2d231">__attribute__</a>((packed))</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    {</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>        uint8_t hassEnabled : 1;            <span class="comment">// 1 бит вместо 1 байта</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>        uint8_t useRealSensor : 1;          <span class="comment">// 1 бит вместо 1 байта</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>        uint8_t mqttEnabled : 1;            <span class="comment">// 1 бит вместо 1 байта</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>        uint8_t thingSpeakEnabled : 1;      <span class="comment">// 1 бит вместо 1 байта</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        uint8_t calibrationEnabled : 1;     <span class="comment">// Включена ли компенсация</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>        uint8_t isGreenhouse : 1;           <span class="comment">// 1 = теплица, 0 = открытый грунт (устарело)</span></div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>        uint8_t seasonalAdjustEnabled : 1;  <span class="comment">// Учитывать сезонные коэффициенты</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>        uint8_t autoOtaEnabled : 1;         <span class="comment">// автоматическое OTA разрешено</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    } flags;</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>};</div>
+</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="keyword">extern</span> Config <a class="code hl_variable" href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span><span class="keyword">extern</span> Preferences <a class="code hl_variable" href="config_8cpp.html#a6ea06cf7b8092a0adaf07614d7ece59d">preferences</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span><span class="comment">// Объявления функций работы с конфигом</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="keywordtype">void</span> <a class="code hl_function" href="jxct__config__vars_8h.html#ad5ed6ddd9940c0097cc91774056df1c2">loadConfig</a>();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><span class="keywordtype">void</span> <a class="code hl_function" href="jxct__config__vars_8h.html#a688d00bbabd28fbaf9e0c50eca3adeae">saveConfig</a>();</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="keywordtype">void</span> <a class="code hl_function" href="jxct__config__vars_8h.html#a6fa5204bcafe1db397da4a87b1690061">resetConfig</a>();</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="keywordtype">bool</span> <a class="code hl_function" href="jxct__config__vars_8h.html#aeb61f04cd3b4b68e8146d85c447d70d1">isConfigValid</a>();</div>
+<div class="ttc" id="aconfig_8cpp_html_a4a8dd3a2de125b72d4fe6251a0a271b5"><div class="ttname"><a href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a></div><div class="ttdeci">Config config</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00034">config.cpp:34</a></div></div>
+<div class="ttc" id="aconfig_8cpp_html_a6ea06cf7b8092a0adaf07614d7ece59d"><div class="ttname"><a href="config_8cpp.html#a6ea06cf7b8092a0adaf07614d7ece59d">preferences</a></div><div class="ttdeci">Preferences preferences</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00035">config.cpp:35</a></div></div>
+<div class="ttc" id="ajxct__config__vars_8h_html_a482c09d923aa8219c0d59569ffe2d231"><div class="ttname"><a href="jxct__config__vars_8h.html#a482c09d923aa8219c0d59569ffe2d231">__attribute__</a></div><div class="ttdeci">struct __attribute__((packed)) Config</div><div class="ttdef"><b>Определения</b> <a href="#l00001">jxct_config_vars.h:45</a></div></div>
+<div class="ttc" id="ajxct__config__vars_8h_html_a688d00bbabd28fbaf9e0c50eca3adeae"><div class="ttname"><a href="jxct__config__vars_8h.html#a688d00bbabd28fbaf9e0c50eca3adeae">saveConfig</a></div><div class="ttdeci">void saveConfig()</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00134">config.cpp:134</a></div></div>
+<div class="ttc" id="ajxct__config__vars_8h_html_a6fa5204bcafe1db397da4a87b1690061"><div class="ttname"><a href="jxct__config__vars_8h.html#a6fa5204bcafe1db397da4a87b1690061">resetConfig</a></div><div class="ttdeci">void resetConfig()</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00218">config.cpp:218</a></div></div>
+<div class="ttc" id="ajxct__config__vars_8h_html_ad5ed6ddd9940c0097cc91774056df1c2"><div class="ttname"><a href="jxct__config__vars_8h.html#ad5ed6ddd9940c0097cc91774056df1c2">loadConfig</a></div><div class="ttdeci">void loadConfig()</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00039">config.cpp:39</a></div></div>
+<div class="ttc" id="ajxct__config__vars_8h_html_aeb61f04cd3b4b68e8146d85c447d70d1"><div class="ttname"><a href="jxct__config__vars_8h.html#aeb61f04cd3b4b68e8146d85c447d70d1">isConfigValid</a></div><div class="ttdeci">bool isConfigValid()</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00310">config.cpp:310</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="jxct__config__vars_8h.html">jxct_config_vars.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>
