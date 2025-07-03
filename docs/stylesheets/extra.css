@@ -82,4 +82,394 @@
     min-height: 24px !important;
     margin: 1px 2px !important;
   }
+}
+
+/* ===== СОВРЕМЕННЫЙ ПРОФЕССИОНАЛЬНЫЙ ДИЗАЙН JXCT ===== */
+
+/* === ОСНОВНЫЕ СТИЛИ === */
+
+/* Современные шрифты */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --md-primary-fg-color: #6366f1;
+  --md-primary-fg-color--light: #818cf8;
+  --md-primary-fg-color--dark: #4f46e5;
+  --md-accent-fg-color: #6366f1;
+  --md-accent-fg-color--transparent: #6366f1;
+  
+  /* Современные цвета */
+  --jxct-green: #10b981;
+  --jxct-blue: #3b82f6;
+  --jxct-purple: #8b5cf6;
+  --jxct-orange: #f59e0b;
+  --jxct-red: #ef4444;
+  
+  /* Тени */
+  --jxct-shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --jxct-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --jxct-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  
+  /* Скругления */
+  --jxct-radius: 0.5rem;
+  --jxct-radius-lg: 0.75rem;
+}
+
+/* === НАВИГАЦИЯ === */
+
+/* Улучшенная боковая панель */
+.md-nav--primary {
+  width: 320px !important;
+  max-width: 320px !important;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-right: 1px solid #e2e8f0;
+}
+
+.md-sidebar--primary {
+  width: 320px !important;
+  max-width: 320px !important;
+}
+
+.md-main__inner {
+  margin-left: 320px !important;
+}
+
+/* Современные ссылки навигации */
+.md-nav__link {
+  border-radius: var(--jxct-radius);
+  margin: 2px 8px;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.md-nav__link:hover {
+  background: linear-gradient(135deg, var(--md-primary-fg-color) 0%, var(--md-primary-fg-color--light) 100%);
+  color: white !important;
+  transform: translateX(4px);
+  box-shadow: var(--jxct-shadow);
+}
+
+.md-nav__link--active {
+  background: linear-gradient(135deg, var(--md-primary-fg-color) 0%, var(--md-primary-fg-color--light) 100%);
+  color: white !important;
+  box-shadow: var(--jxct-shadow);
+}
+
+/* === ЗАГОЛОВКИ === */
+
+/* Современные заголовки */
+.md-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--md-primary-fg-color) 0%, var(--jxct-purple) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 3px solid var(--md-primary-fg-color);
+}
+
+.md-content h2 {
+  font-size: 1.875rem;
+  font-weight: 600;
+  color: var(--md-primary-fg-color);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 4px solid var(--md-primary-fg-color);
+}
+
+.md-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--jxct-purple);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* === КАРТОЧКИ И БЛОКИ === */
+
+/* Современные карточки */
+.md-content .admonition {
+  border-radius: var(--jxct-radius-lg);
+  border: none;
+  box-shadow: var(--jxct-shadow);
+  margin: 1.5rem 0;
+  overflow: hidden;
+}
+
+.md-content .admonition-title {
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  margin: 0;
+  border-radius: var(--jxct-radius-lg) var(--jxct-radius-lg) 0 0;
+}
+
+.md-content .admonition-title::before {
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+/* Цветные карточки */
+.md-content .admonition.note {
+  background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+  border-left: 4px solid var(--jxct-blue);
+}
+
+.md-content .admonition.warning {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+  border-left: 4px solid var(--jxct-orange);
+}
+
+.md-content .admonition.tip {
+  background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+  border-left: 4px solid var(--jxct-green);
+}
+
+.md-content .admonition.danger {
+  background: linear-gradient(135deg, #fee2e2 0%, #fecaca 100%);
+  border-left: 4px solid var(--jxct-red);
+}
+
+/* === ПЛАШКИ (BADGES) === */
+
+/* Унифицированные размеры для всех плашек shields.io */
+.md-content img[src*="shields.io"] {
+  height: 28px !important;
+  max-height: 28px !important;
+  min-height: 28px !important;
+  width: auto !important;
+  vertical-align: middle !important;
+  margin: 4px 6px !important;
+  display: inline-block !important;
+  border-radius: var(--jxct-radius) !important;
+  box-shadow: var(--jxct-shadow-sm) !important;
+  transition: all 0.2s ease !important;
+}
+
+.md-content img[src*="shields.io"]:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: var(--jxct-shadow) !important;
+}
+
+/* === КОД === */
+
+/* Современные блоки кода */
+.md-content pre {
+  border-radius: var(--jxct-radius-lg);
+  box-shadow: var(--jxct-shadow);
+  border: 1px solid #e2e8f0;
+  background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  margin: 1.5rem 0;
+}
+
+.md-content code {
+  background: #f1f5f9;
+  color: var(--md-primary-fg-color);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.md-content pre code {
+  background: transparent;
+  color: #e2e8f0;
+  padding: 0;
+}
+
+/* === ТАБЛИЦЫ === */
+
+/* Современные таблицы */
+.md-content table {
+  border-radius: var(--jxct-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--jxct-shadow);
+  border: 1px solid #e2e8f0;
+  margin: 1.5rem 0;
+}
+
+.md-content table th {
+  background: linear-gradient(135deg, var(--md-primary-fg-color) 0%, var(--md-primary-fg-color--light) 100%);
+  color: white;
+  font-weight: 600;
+  padding: 1rem;
+  text-align: left;
+}
+
+.md-content table td {
+  padding: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  background: white;
+}
+
+.md-content table tr:nth-child(even) td {
+  background: #f8fafc;
+}
+
+.md-content table tr:hover td {
+  background: #f1f5f9;
+}
+
+/* === КНОПКИ === */
+
+/* Современные кнопки */
+.md-content .md-button {
+  border-radius: var(--jxct-radius);
+  padding: 0.75rem 1.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+  box-shadow: var(--jxct-shadow-sm);
+}
+
+.md-content .md-button:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--jxct-shadow);
+}
+
+/* === СПИСКИ === */
+
+/* Современные списки */
+.md-content ul, .md-content ol {
+  padding-left: 1.5rem;
+}
+
+.md-content li {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+}
+
+.md-content ul li::marker {
+  color: var(--md-primary-fg-color);
+  font-weight: 600;
+}
+
+/* === ЦИТАТЫ === */
+
+/* Современные цитаты */
+.md-content blockquote {
+  border-left: 4px solid var(--md-primary-fg-color);
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border-radius: 0 var(--jxct-radius-lg) var(--jxct-radius-lg) 0;
+  font-style: italic;
+}
+
+/* === ПОИСК === */
+
+/* Современный поиск */
+.md-search__input {
+  border-radius: var(--jxct-radius-lg);
+  border: 2px solid #e2e8f0;
+  transition: all 0.2s ease;
+}
+
+.md-search__input:focus {
+  border-color: var(--md-primary-fg-color);
+  box-shadow: 0 0 0 3px rgb(99 102 241 / 0.1);
+}
+
+/* === МОБИЛЬНАЯ АДАПТАЦИЯ === */
+
+@media (max-width: 76.1875em) {
+  .md-nav--primary {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .md-sidebar--primary {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .md-main__inner {
+    margin-left: 0 !important;
+  }
+  
+  /* Плашки на мобильных */
+  .md-content img[src*="shields.io"] {
+    height: 24px !important;
+    max-height: 24px !important;
+    min-height: 24px !important;
+    margin: 2px 4px !important;
+  }
+  
+  /* Заголовки на мобильных */
+  .md-content h1 {
+    font-size: 2rem;
+  }
+  
+  .md-content h2 {
+    font-size: 1.5rem;
+  }
+  
+  .md-content h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* === АНИМАЦИИ === */
+
+/* Плавные переходы */
+.md-content * {
+  transition: all 0.2s ease;
+}
+
+/* Анимация появления */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.md-content > * {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* === ДОПОЛНИТЕЛЬНЫЕ УЛУЧШЕНИЯ === */
+
+/* Улучшенные ссылки */
+.md-content a {
+  color: var(--md-primary-fg-color);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.md-content a:hover {
+  color: var(--md-primary-fg-color--dark);
+  border-bottom-color: var(--md-primary-fg-color);
+}
+
+/* Улучшенные изображения */
+.md-content img {
+  border-radius: var(--jxct-radius);
+  box-shadow: var(--jxct-shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.md-content img:hover {
+  transform: scale(1.02);
+  box-shadow: var(--jxct-shadow);
+}
+
+/* Улучшенные горизонтальные линии */
+.md-content hr {
+  border: none;
+  height: 2px;
+  background: linear-gradient(90deg, transparent 0%, var(--md-primary-fg-color) 50%, transparent 100%);
+  margin: 2rem 0;
 } 

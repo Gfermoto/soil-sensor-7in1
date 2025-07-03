@@ -1,14 +1,14 @@
 site_name: JXCT Soil Sensor v3.6.9
 # site_url: https://gfermoto.github.io/soil-sensor-7in1/  # Закомментировано для локальной разработки
-site_description: Документация для датчика почвы JXCT 7-в-1 (v3.6.7) - Профессиональная IoT система мониторинга почвы на базе ESP32
+site_description: Профессиональная IoT система мониторинга почвы на базе ESP32
 site_author: EYERA Development Team
 # site_version: 3.6.7  # Устаревший параметр
 
-repo_name: JXCT
+repo_name: Gfermoto/soil-sensor-7in1
 repo_url: https://github.com/Gfermoto/soil-sensor-7in1
 edit_uri: edit/main/docs/
 
-# Принудительное обновление кэша
+# Современные настройки
 extra:
   version:
     provider: mike
@@ -20,13 +20,15 @@ extra:
       link: https://t.me/jxct_support
       name: Telegram Support
 
-# Кастомные стили для исправления ширины навигации
+# Кастомные стили
 extra_css:
   - stylesheets/extra.css
 
 theme:
   name: material
   language: ru
+  
+  # Современные функции
   features:
     - navigation.instant
     - navigation.tracking
@@ -42,31 +44,43 @@ theme:
     - content.code.copy
     - content.action.edit
     - content.action.view
+    - header.autohide
+  
+  # Современная цветовая схема
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: green
-      accent: light green
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/brightness-7
         name: Переключить на тёмную тему
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
-      primary: green
-      accent: light green
+      primary: indigo
+      accent: indigo
       toggle:
         icon: material/brightness-4
         name: Переключить на светлую тему
+  
+  # Современные шрифты
   font:
-    text: Roboto
-    code: Roboto Mono
+    text: Inter
+    code: JetBrains Mono
+  
+  # Иконки
   icon:
     repo: fontawesome/brands/github
+    edit: material/pencil
+    view: material/eye
 
+# Плагины
 plugins:
   - search:
       lang: ru
+      separator: '[\s\-,:!=\[\]()"/`|]+'
 
+# Расширения Markdown
 markdown_extensions:
   - toc:
       permalink: true
@@ -76,9 +90,15 @@ markdown_extensions:
       slugify: !!python/name:pymdownx.slugs.uslugify
   - pymdownx.highlight:
       anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - admonition
   - pymdownx.details
   - attr_list
@@ -87,36 +107,45 @@ markdown_extensions:
   - def_list
   - pymdownx.tasklist:
       custom_checkbox: true
+  - pymdownx.emoji:
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.caret
+  - pymdownx.smartsymbols
+  - pymdownx.saneheaders
 
+# Современная навигация
 nav:
-  - Главная: index.md
-  - 👤 Для пользователя:
-    - Руководство пользователя: manuals/USER_GUIDE.md
-    - Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
-    - Компенсация показаний: manuals/COMPENSATION_GUIDE.md
-    - Схема подключения: manuals/WIRING_DIAGRAM.md
-  - 🛠️ Для инженера:
-    - Техническая документация: manuals/TECHNICAL_DOCS.md
-    - Управление конфигурацией: manuals/CONFIG_MANAGEMENT.md
-    - Управление версиями: manuals/VERSION_MANAGEMENT.md
-    - Протокол Modbus: manuals/MODBUS_PROTOCOL.md
+  - 🏠 Главная: index.md
+  - 👤 Пользователю:
+    - 📖 Руководство пользователя: manuals/USER_GUIDE.md
+    - 🌱 Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
+    - ⚖️ Компенсация показаний: manuals/COMPENSATION_GUIDE.md
+    - 🔌 Схема подключения: manuals/WIRING_DIAGRAM.md
+  - 🛠️ Инженеру:
+    - 📋 Техническая документация: manuals/TECHNICAL_DOCS.md
+    - ⚙️ Управление конфигурацией: manuals/CONFIG_MANAGEMENT.md
+    - 🔄 Управление версиями: manuals/VERSION_MANAGEMENT.md
+    - 📡 Протокол Modbus: manuals/MODBUS_PROTOCOL.md
   - 🌐 API и интеграция:
-    - Обзор API: api-overview.md
-    - API Reference: manuals/API.md
-    - HTML API (Doxygen): api/html/index.html
-  - 👨‍💻 Разработка:
-    - Руководство по тестированию: TESTING_GUIDE.md
-    - Текущие результаты: CURRENT_TEST_RESULTS.md
-    - Интеграция отчётов: REPORTS_INTEGRATION.md
-    - Архитектура: dev/ARCH_OVERALL.md
-    - План рефакторинга: dev/QA_REFACTORING_PLAN_2025H2.md
-    - Технический долг: dev/TECH_DEBT_REPORT_2025-06.md
-    - Быстрая справка по техдолгу: dev/TECHNICAL_DEBT_QUICK_REFERENCE.md
-    - Участие в проекте: CONTRIBUTING_DOCS.md
+    - 📊 Обзор API: api-overview.md
+    - 📚 API Reference: manuals/API.md
+    - 🔗 HTML API (Doxygen): api/html/index.html
+  - 👨‍💻 Разработчику:
+    - 🧪 Руководство по тестированию: TESTING_GUIDE.md
+    - 📈 Текущие результаты: CURRENT_TEST_RESULTS.md
+    - 🔗 Интеграция отчётов: REPORTS_INTEGRATION.md
+    - 🏗️ Архитектура: dev/ARCH_OVERALL.md
+    - 🔄 План рефакторинга: dev/QA_REFACTORING_PLAN_2025H2.md
+    - 📊 Технический долг: dev/TECH_DEBT_REPORT_2025-06.md
+    - ⚡ Быстрая справка по техдолгу: dev/TECHNICAL_DEBT_QUICK_REFERENCE.md
+    - 🤝 Участие в проекте: CONTRIBUTING_DOCS.md
   - 📊 Отчёты:
-    - Отчёт о завершении Этапа 2: STAGE_2_COMPLETION_REPORT.md
-    - Аудит безопасности CSRF: CSRF_SECURITY_AUDIT.md
-    - Быстрая справка по тестированию: TESTING_QUICK_REFERENCE.md
-    - Быстрая справка по техдолгу: TECHNICAL_DEBT_QUICK_REFERENCE.md
+    - ✅ Отчёт о завершении Этапа 2: STAGE_2_COMPLETION_REPORT.md
+    - 🔒 Аудит безопасности CSRF: CSRF_SECURITY_AUDIT.md
+    - ⚡ Быстрая справка по тестированию: TESTING_QUICK_REFERENCE.md
+    - ⚡ Быстрая справка по техдолгу: TECHNICAL_DEBT_QUICK_REFERENCE.md
   - 📖 Дополнительно:
-    - Навигация: NAVIGATION.md
+    - 🧭 Навигация: NAVIGATION.md
