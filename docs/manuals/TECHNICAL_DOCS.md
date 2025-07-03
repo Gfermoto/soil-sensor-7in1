@@ -359,7 +359,7 @@ float applyCompensation(float calibratedValue, SensorData data) {
 /intervals          → Настройка интервалов
 /updates            → OTA обновления
 /service            → Сервисные функции
-/api/v1/sensor      → JSON API
+/api/v3.6.9/sensor      → JSON API
 ```
 
 ### 📱 Адаптивный дизайн
@@ -383,7 +383,7 @@ float applyCompensation(float calibratedValue, SensorData data) {
 #### JavaScript API
 ```javascript
 // Получение данных датчика
-fetch('/api/v1/sensor')
+fetch('/api/v3.6.9/sensor')
     .then(response => response.json())
     .then(data => updateDisplay(data));
 
@@ -397,7 +397,7 @@ setInterval(updateSensorData, 3000);
 
 ### 🌐 REST API
 
-#### GET `/api/v1/sensor`
+#### GET `/api/v3.6.9/sensor`
 Получение текущих показаний датчика
 
 **Ответ:**
@@ -455,7 +455,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### GET `/api/v1/config`
+#### GET `/api/v3.6.9/config`
 Получение текущей конфигурации
 
 **Ответ:**
@@ -480,7 +480,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### POST `/api/v1/config`
+#### POST `/api/v3.6.9/config`
 Обновление конфигурации
 
 **Тело запроса:**
@@ -496,7 +496,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### GET `/api/v1/status`
+#### GET `/api/v3.6.9/status`
 Получение системного статуса
 
 **Ответ:**
@@ -803,8 +803,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - uses: actions/checkout@v3.6.9
+      - uses: actions/setup-python@v3.6.9
       - run: pip install platformio
       - run: pio run
       - run: pio test

@@ -3,7 +3,7 @@
 **Дата:** Июнь 2025
 **Версия:** 3.6.7
 
-REST API для интеграции с JXCT Soil Sensor v2.2.0.
+REST API для интеграции с JXCT Soil Sensor v3.6.9
 
 ---
 
@@ -27,15 +27,15 @@ REST API для интеграции с JXCT Soil Sensor v2.2.0.
 
 | Метод | Путь | Описание |
 |-------|------|----------|
-| GET | `/api/v1/sensor` | Основные данные датчика (JSON). |
-| GET | `/sensor_json` | Те же данные (legacy, будет удалён в v2.7.0). |
-| GET | `/api/sensor` | DEPRECATED alias → `/api/v1/sensor`. |
-| GET | `/api/v1/system/health` | Полная диагностика устройства. |
-| GET | `/api/v1/system/status` | Краткий статус сервисов. |
-| POST | `/api/v1/system/reset` | Сброс настроек (307 на `/reset`). |
-| POST | `/api/v1/system/reboot` | Перезагрузка (307 на `/reboot`). |
-| GET | `/api/v1/config/export` | Скачать конфигурацию (JSON, без паролей). |
-| GET | `/api/config/export` | DEPRECATED alias → `/api/v1/config/export`. |
+| GET | `/api/v3.6.9/sensor` | Основные данные датчика (JSON). |
+| GET | `/sensor_json` | Те же данные (legacy, будет удалён в v3.6.9). |
+| GET | `/api/sensor` | DEPRECATED alias → `/api/v3.6.9/sensor`. |
+| GET | `/api/v3.6.9/system/health` | Полная диагностика устройства. |
+| GET | `/api/v3.6.9/system/status` | Краткий статус сервисов. |
+| POST | `/api/v3.6.9/system/reset` | Сброс настроек (307 на `/reset`). |
+| POST | `/api/v3.6.9/system/reboot` | Перезагрузка (307 на `/reboot`). |
+| GET | `/api/v3.6.9/config/export` | Скачать конфигурацию (JSON, без паролей). |
+| GET | `/api/config/export` | DEPRECATED alias → `/api/v3.6.9/config/export`. |
 | POST | `/api/config/import` | Импорт конфигурации. |
 | GET | `/readings` | Веб-страница с показаниями датчика. |
 | GET | `/service` | Веб-страница диагностики сервисов. |
@@ -93,7 +93,7 @@ curl http://192.168.4.1/api/sensor
 ### POST /api/config/import – Импорт настроек
 Загрузите JSON, полученный ранее экспортом, чтобы восстановить конфигурацию.
 
-### POST /reset – Legacy сброс (будет удалён в v2.7.0).
+### POST /reset – Legacy сброс (будет удалён в v3.6.9).
 
 ### POST /reboot – Legacy перезагрузка.
 

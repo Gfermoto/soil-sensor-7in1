@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-03T12:58:40.735236+00:00Z",
+  "timestamp": "2025-07-03T18:58:58.855168+00:00Z",
   "project": "JXCT Soil Sensor",
   "version": "3.6.8",
   "environment": "nt",
@@ -24,14 +24,14 @@
       "test_files": []
     },
     "performance": {
-      "total_duration": 6.787431240081787,
+      "total_duration": 6.077184200286865,
       "validation_performance": "< 100ms for 1000 operations",
       "compensation_performance": "< 50ms for 500 operations",
       "status": "failed"
     }
   },
   "summary": {
-    "total_duration": 28.958898305892944,
+    "total_duration": 33.47589898109436,
     "total_tests": 0,
     "passed_tests": 0,
     "failed_tests": 0,

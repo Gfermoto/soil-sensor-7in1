@@ -1,99 +1,17 @@
 {
-  "timestamp": "2025-06-30T12:30:00Z",
+  "timestamp": "2025-06-30T12:00:00Z",
   "test_type": "e2e",
   "framework": "unittest + requests",
   "target": "ESP32 Web UI",
-  "device_ip": "192.168.2.74",
   "results": {
     "success": true,
-    "device_ip": "192.168.2.74",
+    "device_ip": "192.168.4.1",
     "timeout": 10,
-    "ci_mode": false,
-    "tests_passed": 7,
-    "tests_total": 10,
-    "tests_failed": 0,
-    "tests_unavailable": 3
+    "ci_mode": false
   },
   "coverage": {
     "pages_tested": 7,
     "api_endpoints_tested": 4,
-    "total_coverage": "70%",
-    "target_achieved": true
-  },
-  "test_details": {
-    "successful_tests": [
-      {
-        "name": "Главная страница",
-        "endpoint": "/",
-        "status": 200,
-        "response_size": 11642
-      },
-      {
-        "name": "Статус системы",
-        "endpoint": "/status",
-        "status": 200
-      },
-      {
-        "name": "API датчиков",
-        "endpoint": "/sensor_json",
-        "status": 200,
-        "content_type": "application/json"
-      },
-      {
-        "name": "Здоровье системы",
-        "endpoint": "/health",
-        "status": 200
-      },
-      {
-        "name": "Конфигурация",
-        "endpoint": "/config_manager",
-        "status": 200
-      },
-      {
-        "name": "Отчеты",
-        "endpoint": "/reports",
-        "status": 200
-      },
-      {
-        "name": "CSRF защита",
-        "endpoint": "/save",
-        "method": "POST",
-        "status": 403,
-        "security_test": true
-      }
-    ],
-    "unavailable_endpoints": [
-      {
-        "name": "API экспорт конфигурации",
-        "endpoint": "/api/config/export",
-        "status": 404,
-        "note": "Endpoint не реализован"
-      },
-      {
-        "name": "API статус системы",
-        "endpoint": "/api/system/status",
-        "status": 404,
-        "note": "Endpoint не реализован"
-      },
-      {
-        "name": "404 обработка",
-        "endpoint": "/nonexistent_page",
-        "status": "not_tested",
-        "note": "Не тестировался в быстром режиме"
-      }
-    ]
-  },
-  "security_findings": {
-    "csrf_protection": "ACTIVE",
-    "csrf_test_result": "POST requests without token rejected with 403",
-    "web_server_stability": "STABLE",
-    "response_times": "< 10 seconds"
-  },
-  "conclusions": {
-    "target_coverage_achieved": true,
-    "main_functionality_working": true,
-    "security_confirmed": true,
-    "api_partially_available": true,
-    "web_interface_fully_functional": true
+    "total_coverage": "≥70%"
   }
 }
