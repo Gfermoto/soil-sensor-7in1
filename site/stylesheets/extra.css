@@ -1,0 +1,115 @@
+/* Кастомные стили для исправления ширины навигационной панели */
+
+/* Увеличиваем ширину навигационной панели */
+.md-nav--primary {
+  width: 320px !important;
+  max-width: 320px !important;
+}
+
+/* Увеличиваем ширину боковой панели */
+.md-sidebar--primary {
+  width: 320px !important;
+  max-width: 320px !important;
+}
+
+/* Увеличиваем отступ для основного контента */
+.md-main__inner {
+  margin-left: 320px !important;
+}
+
+/* Исправляем ширину навигационных элементов */
+.md-nav__link {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+}
+
+/* Увеличиваем ширину выпадающих меню */
+.md-nav[data-md-level="1"] {
+  width: 100% !important;
+}
+
+/* Исправляем отображение длинных названий */
+.md-ellipsis {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  line-height: 1.4 !important;
+}
+
+/* Увеличиваем ширину табов */
+.md-tabs {
+  width: 100% !important;
+}
+
+.md-tabs__link {
+  white-space: normal !important;
+  word-wrap: break-word !important;
+  padding: 0.5rem 1rem !important;
+}
+
+/* Консистентные плашки - принудительно крупные */
+img[alt*="CI"], 
+img[alt*="badge"], 
+img[alt*="build"], 
+img[alt*="tests"], 
+img[alt*="docs"],
+img[alt*="Version"],
+img[alt*="Platform"],
+img[alt*="License"],
+img[alt*="Code Quality"],
+img[alt*="Documentation"],
+img[alt*="Tests"],
+img[alt*="IoT"],
+img[alt*="Руководство пользователя"],
+img[alt*="Агрономические рекомендации"],
+img[alt*="Техническая документация"],
+img[alt*="Схема подключения"],
+img[alt*="API Overview"],
+img[alt*="Dev Guide"] {
+  height: 32px !important;
+  max-height: 32px !important;
+  min-height: 28px !important;
+  width: auto !important;
+  max-width: none !important;
+  vertical-align: middle !important;
+  margin: 2px 4px !important;
+  display: inline-block !important;
+  border-radius: 6px !important;
+}
+
+/* Специально для плашек в начале страницы */
+.md-content img[alt*="CI"],
+.md-content img[alt*="Version"],
+.md-content img[alt*="Platform"],
+.md-content img[alt*="License"] {
+  height: 36px !important;
+  max-height: 36px !important;
+  margin: 4px 6px !important;
+}
+
+/* Исправляем отображение на мобильных устройствах */
+@media (max-width: 76.1875em) {
+  .md-nav--primary {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .md-sidebar--primary {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  
+  .md-main__inner {
+    margin-left: 0 !important;
+  }
+  
+  /* Плашки на мобильных */
+  img[alt*="CI"], 
+  img[alt*="badge"], 
+  img[alt*="build"], 
+  img[alt*="tests"], 
+  img[alt*="docs"] {
+    height: 28px !important;
+    max-height: 28px !important;
+    margin: 1px 2px !important;
+  }
+} 

@@ -1,5 +1,5 @@
 site_name: JXCT Soil Sensor v3.6.9
-site_url: https://gfermoto.github.io/soil-sensor-7in1/
+# site_url: https://gfermoto.github.io/soil-sensor-7in1/  # Закомментировано для локальной разработки
 site_description: Документация для датчика почвы JXCT 7-в-1 (v3.6.7) - Профессиональная IoT система мониторинга почвы на базе ESP32
 site_author: EYERA Development Team
 # site_version: 3.6.7  # Устаревший параметр
@@ -19,6 +19,10 @@ extra:
     - icon: fontawesome/brands/telegram
       link: https://t.me/jxct_support
       name: Telegram Support
+
+# Кастомные стили для исправления ширины навигации
+extra_css:
+  - stylesheets/extra.css
 
 theme:
   name: material
@@ -99,6 +103,7 @@ nav:
   - 🌐 API и интеграция:
     - Обзор API: api-overview.md
     - API Reference: manuals/API.md
+    - HTML API (Doxygen): api/html/index.html
   - 👨‍💻 Разработка:
     - Руководство по тестированию: TESTING_GUIDE.md
     - Текущие результаты: CURRENT_TEST_RESULTS.md
