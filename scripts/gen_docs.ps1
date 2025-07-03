@@ -37,11 +37,13 @@ if (Test-Path "site/api/html/index.html") {
     Write-Host "[gen_docs] Doxygen documentation verified in site/api/html" -ForegroundColor Green
 } else {
     Write-Host "[gen_docs] WARNING: Doxygen documentation not found after MkDocs build!" -ForegroundColor Yellow
-    # Копируем обратно, если MkDocs удалил
-    if (Test-Path "site/api/html") {
-        Remove-Item -Recurse -Force "site/api/html"
+    # Генерируем Doxygen заново, если MkDocs удалил
+    Write-Host "[gen_docs] Regenerating Doxygen documentation..." -ForegroundColor Cyan
+    doxygen Doxyfile
+    if (Test-Path "site/api/html/index.html") {
+        Write-Host "[gen_docs] Doxygen documentation restored" -ForegroundColor Green
+    } else {
+        Write-Host "[gen_docs] ERROR: Failed to restore Doxygen documentation!" -ForegroundColor Red
+        exit 1
     }
-    New-Item -ItemType Directory -Force -Path "site/api/html" | Out-Null
-    Copy-Item -Recurse -Force "site/api/html/*" "site/api/html/" | Out-Null
-    Write-Host "[gen_docs] Doxygen documentation restored" -ForegroundColor Green
 } 
