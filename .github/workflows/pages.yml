@@ -26,23 +26,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-          
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install mkdocs mkdocs-material
-          
       - name: Generate Doxygen docs
-        run: doxygen Doxyfile
-        continue-on-error: true
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: doxygen Doxyfile
 
       - name: Build site
-        run: mkdocs build
-        continue-on-error: true
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: mkdocs build
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
@@ -50,7 +42,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: 'site'
 
       - name: Deploy to GitHub Pages
         id: deployment

@@ -12,38 +12,36 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Setup Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-          
-      - name: Install PlatformIO
-        run: |
-          python -m pip install --upgrade pip
-          pip install platformio
-          
       - name: Build firmware (development)
-        run: pio run -e esp32dev
-        continue-on-error: true
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: pio run -e esp32dev
           
       - name: Build firmware (production)
-        run: pio run -e esp32dev-production
-        continue-on-error: true
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: pio run -e esp32dev-production
           
       - name: Run unit tests (native)
-        run: pio test -e native -vv
-        continue-on-error: true  # Не блокируем CI если native тесты падают
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: pio test -e native -vv
+        continue-on-error: true
           
       - name: Route presence tests
-        run: python -m unittest discover -s test -p "test_routes.py"
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: python -m unittest discover -s test -p "test_routes.py"
         continue-on-error: true
 
       - name: Static analysis with clang-tidy
-        run: bash scripts/static_analysis.sh
-        continue-on-error: true  # Не блокируем CI если статический анализ падает
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: bash scripts/static_analysis.sh
+        continue-on-error: true
 
       - name: Technical debt analysis
-        run: python scripts/analyze_technical_debt.py
-        continue-on-error: true  # Не блокируем CI если анализ технического долга падает
-
-      # конец job 
+        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+        with:
+          args: python scripts/analyze_technical_debt.py
+        continue-on-error: true 
