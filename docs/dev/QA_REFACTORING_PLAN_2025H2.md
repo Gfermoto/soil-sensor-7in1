@@ -47,7 +47,7 @@
 | 28-29 | Refactor Sprint-1: **low-hanging** (duplication, naming) | DevTeam |
 | 30 (22-26 июл) | Регресс-тесты + code-coverage отчёт | QA |
 | 31-33 | Refactor Sprint-2: **architecture** (циклы, включает routing split) | DevTeam |
-| 34 (19-23 авг) | Beta v3.6.0 (core stability focus) | FW-Lead |
+| 34 (19-23 авг) | Beta v3.6.7 (core stability focus) | FW-Lead |
 
 ---
 

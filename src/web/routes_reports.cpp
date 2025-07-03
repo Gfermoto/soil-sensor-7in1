@@ -345,7 +345,9 @@ static String generateReportsHTML()
             </div>
         </div>
         <div class=\"footer\">
-            <p>© 2025 JXCT Development Team | Code Quality Monitoring System v3.6.0</p>
+            <p>© 2025 JXCT Development Team | Code Quality Monitoring System vяю3 . 6 . 8 
+ 
+ </p>
         </div>
     </div>
     <script>

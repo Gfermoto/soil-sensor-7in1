@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-03T01:05:14.956385",
+  "timestamp": "2025-07-03T07:18:12.430853",
   "version": "3.5.0",
   "analysis": {
     "clang_tidy": {
@@ -107,10 +107,10 @@
         "C:\\Git\\JXCT\\src\\web\\routes_reports.cpp:180:13: warning: use a trailing return type for this function [modernize-use-trailing-return-type]",
         "C:\\Git\\JXCT\\src\\web\\routes_reports.cpp:187:34: warning: 6 is a magic number; consider replacing it with a named constant [readability-magic-numbers]",
         "C:\\Git\\JXCT\\src\\web\\routes_reports.cpp:234:15: warning: use a trailing return type for this function [modernize-use-trailing-return-type]",
-        "C:\\Git\\JXCT\\src\\web\\routes_reports.cpp:360:15: warning: use a trailing return type for this function [modernize-use-trailing-return-type]",
-        "C:\\Git\\JXCT\\src\\web\\routes_reports.cpp:364:57: warning: 90 is a magic number; consider replacing it with a named constant [readability-magic-numbers]",
-        "C:\\Git\\JXCT\\src\\web\\routes_reports.cpp:365:58: warning: 90 is a magic number; consider replacing it with a named constant [readability-magic-numbers]",
-        "C:\\Git\\JXCT\\src\\web\\routes_reports.cpp:454:52: warning: 90 is a magic number; consider replacing it with a named constant [readability-magic-numbers]",
+        "C:\\Git\\JXCT\\src\\web\\routes_reports.cpp:362:15: warning: use a trailing return type for this function [modernize-use-trailing-return-type]",
+        "C:\\Git\\JXCT\\src\\web\\routes_reports.cpp:366:57: warning: 90 is a magic number; consider replacing it with a named constant [readability-magic-numbers]",
+        "C:\\Git\\JXCT\\src\\web\\routes_reports.cpp:367:58: warning: 90 is a magic number; consider replacing it with a named constant [readability-magic-numbers]",
+        "C:\\Git\\JXCT\\src\\web\\routes_reports.cpp:456:52: warning: 90 is a magic number; consider replacing it with a named constant [readability-magic-numbers]",
         "C:\\Git\\JXCT\\src\\web\\routes_service.cpp:22:17: warning: redundant 'currentWiFiMode' declaration [readability-redundant-declaration]",
         "C:\\Git\\JXCT\\src\\web\\routes_service.cpp:25:15: warning: use a trailing return type for this function [modernize-use-trailing-return-type]",
         "C:\\Git\\JXCT\\src\\web\\routes_service.cpp:26:15: warning: use a trailing return type for this function [modernize-use-trailing-return-type]",

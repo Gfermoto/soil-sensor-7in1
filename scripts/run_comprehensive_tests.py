@@ -29,7 +29,7 @@ class ComprehensiveTestRunner:
         self.results = {
             "timestamp": datetime.now(UTC).isoformat() + "Z",
             "project": "JXCT Soil Sensor",
-            "version": "3.6.0",
+            "version": "3.6.8",
             "environment": self._get_environment(),
             "tests": {},
             "summary": {

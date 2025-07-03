@@ -24,7 +24,6 @@ on:
 
 env:
   PROJECT_NAME: "JXCT Soil Sensor"
-  PROJECT_VERSION: "3.6.0"
 
 jobs:
   # =============================================================================
@@ -36,11 +35,24 @@ jobs:
     outputs:
       test-matrix: ${{ steps.matrix.outputs.matrix }}
       should-run-tests: ${{ steps.check.outputs.should-run }}
+      version: ${{ steps.version.outputs.version }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0  # Полная история для анализа
+      
+      - name: Чтение версии
+        id: version
+        run: |
+          if [ -f "VERSION" ]; then
+            VERSION=$(cat VERSION | tr -d '\n\r')
+            echo "version=$VERSION" >> $GITHUB_OUTPUT
+            echo "📋 Версия проекта: $VERSION"
+          else
+            echo "version=0.0.0" >> $GITHUB_OUTPUT
+            echo "⚠️ Файл VERSION не найден, используем 0.0.0"
+          fi
       
       - name: Проверка изменений
         id: check
@@ -496,7 +508,9 @@ jobs:
               <div class="container">
                   <div class="header">
                       <h1>🧪 Comprehensive Test Report</h1>
-                      <p>JXCT Soil Sensor v3.6.0</p>
+                      <p>JXCT Soil Sensor vяю3 . 6 . 8 
+ 
+ </p>
                       <p>Generated: $(date -u +"%Y-%m-%d %H:%M:%S UTC")</p>
                       <p>Commit: $GITHUB_SHA</p>
                   </div>
