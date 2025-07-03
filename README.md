@@ -17,22 +17,20 @@
 
 ## 🚀 Быстрый старт
 
-<div align="center">
+**Для пользователей:**
 
-### 📚 Документация
-[![Documentation](https://img.shields.io/badge/📖-Полная%20документация-blue?style=for-the-badge&logo=read-the-docs)](docs/README.md)
-[![API Docs](https://img.shields.io/badge/🔧-API%20документация-green?style=for-the-badge&logo=swagger)](docs/api-overview.md)
-[![User Guide](https://img.shields.io/badge/👤-Руководство%20пользователя-orange?style=for-the-badge&logo=book)](docs/manuals/USER_GUIDE.md)
+[![📋 Руководство пользователя](https://img.shields.io/badge/📋-Руководство%20пользователя-orange?style=for-the-badge&logo=book)](docs/manuals/USER_GUIDE.md)
+[![🌱 Агрономические рекомендации](https://img.shields.io/badge/🌱-Агрономические%20рекомендации-brightgreen?style=for-the-badge&logo=leaf)](docs/manuals/AGRO_RECOMMENDATIONS.md)
 
-### 🧪 Тестирование
-[![Tests](https://img.shields.io/badge/✅-Тесты%20(100%25)-brightgreen?style=for-the-badge&logo=testcafe)](test_reports/MASTER_TEST_SUMMARY.md)
-[![Quality](https://img.shields.io/badge/🔍-Технический%20долг-yellow?style=for-the-badge&logo=code-climate)](docs/TECHNICAL_DEBT_QUICK_REFERENCE.md)
+**Для инженеров:**
 
-### 🔧 Разработка
-[![Contributing](https://img.shields.io/badge/🤝-Как%20участвовать-purple?style=for-the-badge&logo=github)](docs/CONTRIBUTING_DOCS.md)
-[![Issues](https://img.shields.io/badge/🐛-Issues-red?style=for-the-badge&logo=github)](https://github.com/Gfermoto/soil-sensor-7in1/issues)
+[![🛠️ Техническая документация](https://img.shields.io/badge/🛠️-Техническая%20документация-blue?style=for-the-badge&logo=read-the-docs)](docs/manuals/TECHNICAL_DOCS.md)
+[![🔌 Схема подключения](https://img.shields.io/badge/🔌-Схема%20подключения-blueviolet?style=for-the-badge&logo=plug)](docs/manuals/WIRING_DIAGRAM.md)
 
-</div>
+**Для разработчиков:**
+
+[![👨‍💻 API Overview](https://img.shields.io/badge/👨‍💻-API%20Overview-green?style=for-the-badge&logo=swagger)](docs/api-overview.md)
+[![🧑‍💻 Dev Guide](https://img.shields.io/badge/🧑‍💻-Dev%20Guide-lightgrey?style=for-the-badge&logo=github)](docs/dev/)
 
 ---
 

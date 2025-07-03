@@ -13,24 +13,20 @@
 
 ## 🚀 Быстрый старт
 
-<div align="center">
+**Для пользователей:**
 
-### 👤 Для пользователей
-[![User Guide](https://img.shields.io/badge/📋-Руководство%20пользователя-orange?style=for-the-badge&logo=book)](manuals/USER_GUIDE.md)
-[![Agro Recommendations](https://img.shields.io/badge/🌱-Агрономические%20рекомендации-brightgreen?style=for-the-badge&logo=leaf)](manuals/AGRO_RECOMMENDATIONS.md)
-[![Compensation Guide](https://img.shields.io/badge/🔬-Компенсация%20измерений-blue?style=for-the-badge&logo=science)](manuals/COMPENSATION_GUIDE.md)
+[![📋 Руководство пользователя](https://img.shields.io/badge/📋-Руководство%20пользователя-orange?style=for-the-badge&logo=book)](manuals/USER_GUIDE.md)
+[![🌱 Агрономические рекомендации](https://img.shields.io/badge/🌱-Агрономические%20рекомендации-brightgreen?style=for-the-badge&logo=leaf)](manuals/AGRO_RECOMMENDATIONS.md)
 
-### 👨‍💻 Для разработчиков
-[![Testing Guide](https://img.shields.io/badge/🧪-Руководство%20по%20тестированию-purple?style=for-the-badge&logo=testcafe)](TESTING_GUIDE.md)
-[![Test Results](https://img.shields.io/badge/📊-Результаты%20тестов-green?style=for-the-badge&logo=chart-line)](CURRENT_TEST_RESULTS.md)
-[![Architecture](https://img.shields.io/badge/🏗️-Архитектура%20системы-red?style=for-the-badge&logo=architecture)](dev/ARCH_OVERALL.md)
+**Для инженеров:**
 
-### 🔧 Быстрые ссылки
-[![API Docs](https://img.shields.io/badge/🌐-API%20документация-green?style=for-the-badge&logo=swagger)](api-overview.md)
-[![Technical Debt](https://img.shields.io/badge/🔍-Технический%20долг-yellow?style=for-the-badge&logo=code-climate)](TECHNICAL_DEBT_QUICK_REFERENCE.md)
-[![Contributing](https://img.shields.io/badge/🤝-Как%20участвовать-purple?style=for-the-badge&logo=github)](CONTRIBUTING_DOCS.md)
+[![🛠️ Техническая документация](https://img.shields.io/badge/🛠️-Техническая%20документация-blue?style=for-the-badge&logo=read-the-docs)](manuals/TECHNICAL_DOCS.md)
+[![🔌 Схема подключения](https://img.shields.io/badge/🔌-Схема%20подключения-blueviolet?style=for-the-badge&logo=plug)](manuals/WIRING_DIAGRAM.md)
 
-</div>
+**Для разработчиков:**
+
+[![👨‍💻 API Overview](https://img.shields.io/badge/👨‍💻-API%20Overview-green?style=for-the-badge&logo=swagger)](api-overview.md)
+[![🧑‍💻 Dev Guide](https://img.shields.io/badge/🧑‍💻-Dev%20Guide-lightgrey?style=for-the-badge&logo=github)](dev/)
 
 ## 📚 Полная документация
 
