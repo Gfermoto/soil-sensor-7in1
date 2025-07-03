@@ -1,4 +1,4 @@
-name: CI
+name: CI - Improved
 
 on:
   push:
@@ -16,6 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.version.outputs.version }}
+      should-run: ${{ steps.check.outputs.should-run }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -33,6 +34,13 @@ jobs:
             echo "version=0.0.0" >> $GITHUB_OUTPUT
             echo "VERSION file not found, using default"
           fi
+      
+      - name: Check if tests should run
+        id: check
+        run: |
+          # Всегда запускаем тесты для PR и push
+          echo "should-run=true" >> $GITHUB_OUTPUT
+          echo "Tests will run"
 
   setup:
     name: Setup Environment
@@ -71,11 +79,6 @@ jobs:
             echo "ERROR: Version header not generated"
             exit 1
           fi
-      
-      - name: Synchronize versions
-        run: |
-          echo "Synchronizing versions across all components..."
-          python scripts/sync_versions.py
 
   build:
     name: Build Firmware
