@@ -46,25 +46,40 @@
   padding: 0.5rem 1rem !important;
 }
 
-/* Консистентные плашки - принудительно крупные */
-img[alt*="CI"], 
-img[alt*="badge"], 
-img[alt*="build"], 
-img[alt*="tests"], 
-img[alt*="docs"],
-img[alt*="Version"],
-img[alt*="Platform"],
-img[alt*="License"],
-img[alt*="Code Quality"],
-img[alt*="Documentation"],
-img[alt*="Tests"],
-img[alt*="IoT"],
-img[alt*="Руководство пользователя"],
-img[alt*="Агрономические рекомендации"],
-img[alt*="Техническая документация"],
-img[alt*="Схема подключения"],
-img[alt*="API Overview"],
-img[alt*="Dev Guide"] {
+/* ПРИНУДИТЕЛЬНЫЕ стили для всех badge - максимальная специфичность */
+.md-content img[alt*="CI"], 
+.md-content img[alt*="badge"], 
+.md-content img[alt*="build"], 
+.md-content img[alt*="tests"], 
+.md-content img[alt*="docs"],
+.md-content img[alt*="Version"],
+.md-content img[alt*="Platform"],
+.md-content img[alt*="License"],
+.md-content img[alt*="Code Quality"],
+.md-content img[alt*="Documentation"],
+.md-content img[alt*="Tests"],
+.md-content img[alt*="IoT"],
+.md-content img[alt*="Руководство пользователя"],
+.md-content img[alt*="Агрономические рекомендации"],
+.md-content img[alt*="Техническая документация"],
+.md-content img[alt*="Схема подключения"],
+.md-content img[alt*="API Overview"],
+.md-content img[alt*="Dev Guide"],
+/* Универсальный селектор для всех img с style=for-the-badge */
+.md-content img[style*="for-the-badge"],
+/* Селектор по src для shields.io */
+.md-content img[src*="shields.io"],
+/* Селектор по src для GitHub Actions */
+.md-content img[src*="github.com"],
+/* Дополнительные селекторы для всех возможных badge */
+.md-content img[src*="badge"],
+.md-content img[src*="CI"],
+.md-content img[src*="build"],
+.md-content img[src*="tests"],
+.md-content img[src*="docs"],
+.md-content img[src*="version"],
+.md-content img[src*="platform"],
+.md-content img[src*="license"] {
   height: 32px !important;
   max-height: 32px !important;
   min-height: 28px !important;
@@ -74,13 +89,19 @@ img[alt*="Dev Guide"] {
   margin: 2px 4px !important;
   display: inline-block !important;
   border-radius: 6px !important;
+  /* Принудительно переопределяем любые другие стили */
+  transform: none !important;
+  scale: 1 !important;
+  zoom: 1 !important;
 }
 
-/* Специально для плашек в начале страницы */
-.md-content img[alt*="CI"],
-.md-content img[alt*="Version"],
-.md-content img[alt*="Platform"],
-.md-content img[alt*="License"] {
+/* Специально для плашек в начале страницы - ещё более специфично */
+.md-content h1 + p img[alt*="CI"],
+.md-content h1 + p img[alt*="Version"],
+.md-content h1 + p img[alt*="Platform"],
+.md-content h1 + p img[alt*="License"],
+.md-content h1 + p img[src*="shields.io"],
+.md-content h1 + p img[src*="github.com"] {
   height: 36px !important;
   max-height: 36px !important;
   margin: 4px 6px !important;
@@ -102,12 +123,14 @@ img[alt*="Dev Guide"] {
     margin-left: 0 !important;
   }
   
-  /* Плашки на мобильных */
-  img[alt*="CI"], 
-  img[alt*="badge"], 
-  img[alt*="build"], 
-  img[alt*="tests"], 
-  img[alt*="docs"] {
+  /* Плашки на мобильных - принудительно */
+  .md-content img[alt*="CI"], 
+  .md-content img[alt*="badge"], 
+  .md-content img[alt*="build"], 
+  .md-content img[alt*="tests"], 
+  .md-content img[alt*="docs"],
+  .md-content img[src*="shields.io"],
+  .md-content img[src*="github.com"] {
     height: 28px !important;
     max-height: 28px !important;
     margin: 1px 2px !important;
