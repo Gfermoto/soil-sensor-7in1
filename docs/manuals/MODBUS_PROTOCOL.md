@@ -1,6 +1,6 @@
 # 📡 Протокол Modbus RTU JXCT 7-в-1
 
-**Дата:** Июнь 2025  
+**Дата:** Июнь 2025
 **Версия:** 3.6.7
 
 **Автор:** JXCT Development Team
@@ -148,7 +148,7 @@ Hex значение: 0x00ED = 237 (decimal)
 **Расчет значений:**
 ```
 Азот (N):    0x015E = 350 мг/кг
-Фосфор (P):  0x01F3 = 499 мг/кг  
+Фосфор (P):  0x01F3 = 499 мг/кг
 Калий (K):   0x03D6 = 982 мг/кг
 ```
 
@@ -199,7 +199,7 @@ RE ──┐          ┌────────┐          ┌─────
      │          │        │          │
      └──────────┘        └──────────┘
      ├─ прием ──┤├─ передача ─┤├─ прием ──┤
-     
+
      │◄─ 50µs ─►│          │◄─ 50µs ─►│
 ```
 
@@ -231,16 +231,16 @@ GND          │ GND         │ Черный       │ Общий минус
 void setupModbus() {
     // Настройка UART2 для Modbus
     Serial2.begin(9600, SERIAL_8N1, MODBUS_RX_PIN, MODBUS_TX_PIN);
-    
+
     // Настройка пинов SP3485E
     pinMode(MODBUS_DE_PIN, OUTPUT);    // GPIO4
     pinMode(MODBUS_RE_PIN, OUTPUT);    // GPIO5
     digitalWrite(MODBUS_DE_PIN, LOW);  // Передатчик выключен
     digitalWrite(MODBUS_RE_PIN, LOW);  // Приемник включен
-    
+
     // Инициализация Modbus
     node.begin(SENSOR_ID, Serial2);
-    
+
     // Настройка обработчиков переключения режима
     node.preTransmission(preTransmission);   // Перед передачей
     node.postTransmission(postTransmission); // После передачи
@@ -267,14 +267,14 @@ void readSensorData() {
         uint16_t ph_raw = modbus.getResponseBuffer(0);
         float ph = ph_raw / 100.0;
     }
-    
+
     // Чтение температуры
     result = modbus.readHoldingRegisters(0x0013, 1);
     if (result == modbus.ku8MBSuccess) {
         uint16_t temp_raw = modbus.getResponseBuffer(0);
         float temperature = temp_raw / 10.0;
     }
-    
+
     // Чтение NPK (3 регистра за один запрос)
     result = modbus.readHoldingRegisters(0x001E, 3);
     if (result == modbus.ku8MBSuccess) {
@@ -306,13 +306,13 @@ void readSensorData() {
 ```cpp
 bool testModbusConnection() {
     logSystem("Тест связи с датчиком JXCT...");
-    
+
     // Попытка чтения версии прошивки
     uint8_t result = modbus.readHoldingRegisters(0x0007, 1);
-    
+
     if (result == modbus.ku8MBSuccess) {
         uint16_t version = modbus.getResponseBuffer(0);
-        logSuccess("Датчик найден! Версия прошивки: %d.%d", 
+        logSuccess("Датчик найден! Версия прошивки: %d.%d",
                   (version >> 8) & 0xFF, version & 0xFF);
         return true;
     } else {
@@ -329,7 +329,7 @@ MODBUS RTU использует CRC16 с полиномом 0xA001:
 ```cpp
 uint16_t calculateCRC16(uint8_t* data, size_t length) {
     uint16_t crc = 0xFFFF;
-    
+
     for (size_t i = 0; i < length; i++) {
         crc ^= (uint16_t)data[i];
         for (int j = 0; j < 8; j++) {
@@ -340,7 +340,7 @@ uint16_t calculateCRC16(uint8_t* data, size_t length) {
             }
         }
     }
-    
+
     return crc;
 }
 ```
@@ -397,21 +397,21 @@ for (int i = 0; i < 4; i++) {
 bool validateSensorData(SensorData& data) {
     // Температура: -10°C до +50°C
     if (data.temperature < -10.0 || data.temperature > 50.0) return false;
-    
+
     // Влажность: 0% до 100%
     if (data.humidity < 0.0 || data.humidity > 100.0) return false;
-    
+
     // pH: 0 до 14
     if (data.ph < 0.0 || data.ph > 14.0) return false;
-    
+
     // EC: 0 до 20000 µS/cm
     if (data.ec < 0.0 || data.ec > 20000.0) return false;
-    
+
     // NPK: 0 до 2000 мг/кг
     if (data.nitrogen < 0.0 || data.nitrogen > 2000.0) return false;
     if (data.phosphorus < 0.0 || data.phosphorus > 2000.0) return false;
     if (data.potassium < 0.0 || data.potassium > 2000.0) return false;
-    
+
     return true;
 }
 ```
@@ -457,4 +457,4 @@ bool validateSensorData(SensorData& data) {
 - [🌱 GitHub репозиторий](https://github.com/Gfermoto/soil-sensor-7in1) - Исходный код проекта
 - [📋 План рефакторинга](../dev/QA_REFACTORING_PLAN_2025H2.md) - Планы развития на 2025
 - [📊 Отчет о техническом долге](../dev/TECH_DEBT_REPORT_2025-06.md) - Анализ технических проблем
-- [🏗️ Архитектура системы](../dev/ARCH_OVERALL.md) - Общая архитектура проекта 
+- [🏗️ Архитектура системы](../dev/ARCH_OVERALL.md) - Общая архитектура проекта

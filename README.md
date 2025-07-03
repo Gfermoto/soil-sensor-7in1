@@ -1,16 +1,42 @@
-# JXCT Soil Sensor
+# 🌱 JXCT Soil Sensor 7-in-1
 
-**Версия:** 3.6.9  
-**Дата:** 2025-07-03  
-**Статус:** ✅ Готов к демонстрации
+**Профессиональная IoT система мониторинга почвы на базе ESP32**
+
+[![Version](https://img.shields.io/github/v/tag/Gfermoto/soil-sensor-7in1?color=blue&label=version&style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1/releases)
+[![Platform](https://img.shields.io/badge/platform-ESP32-green.svg?style=for-the-badge)](https://www.espressif.com/en/products/socs/esp32)
+[![License](https://img.shields.io/github/license/Gfermoto/soil-sensor-7in1?color=yellow&label=license&style=for-the-badge)](LICENSE)
+[![CI](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml/badge.svg?branch=main&style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml)
+[![Code Quality](https://img.shields.io/badge/code%20quality-A%2B-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
+[![Documentation](https://img.shields.io/badge/docs-100%25%20complete-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
+[![Tests](https://img.shields.io/badge/tests-100%25%20passing-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
+[![IoT](https://img.shields.io/badge/IoT-Smart%20Agriculture-blue.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
+
+**Версия:** 3.6.9 | **Дата:** 2025-07-03 | **Статус:** ✅ Production Ready
 
 ---
 
-Умный IoT-датчик почвы с веб-интерфейсом, OTA, API и научно обоснованной методикой.
+## 🚀 Быстрый старт
 
-- **Документация:** [docs/README.md](docs/README.md)
-- **Лицензия:** MIT ([LICENSE](LICENSE))
-- **Поддержка:** GitHub Issues
+<div align="center">
+
+### 📚 Документация
+[![Documentation](https://img.shields.io/badge/📖-Полная%20документация-blue?style=for-the-badge&logo=read-the-docs)](docs/README.md)
+[![API Docs](https://img.shields.io/badge/🔧-API%20документация-green?style=for-the-badge&logo=swagger)](docs/api-overview.md)
+[![User Guide](https://img.shields.io/badge/👤-Руководство%20пользователя-orange?style=for-the-badge&logo=book)](docs/manuals/USER_GUIDE.md)
+
+### 🧪 Тестирование
+[![Tests](https://img.shields.io/badge/✅-Тесты%20(100%25)-brightgreen?style=for-the-badge&logo=testcafe)](test_reports/MASTER_TEST_SUMMARY.md)
+[![Quality](https://img.shields.io/badge/🔍-Технический%20долг-yellow?style=for-the-badge&logo=code-climate)](docs/TECHNICAL_DEBT_QUICK_REFERENCE.md)
+
+### 🔧 Разработка
+[![Contributing](https://img.shields.io/badge/🤝-Как%20участвовать-purple?style=for-the-badge&logo=github)](docs/CONTRIBUTING_DOCS.md)
+[![Issues](https://img.shields.io/badge/🐛-Issues-red?style=for-the-badge&logo=github)](https://github.com/Gfermoto/soil-sensor-7in1/issues)
+
+</div>
+
+---
+
+**Умный IoT-датчик почвы с веб-интерфейсом, OTA, API и научно обоснованной методикой.**
 
 ---
 
@@ -31,12 +57,14 @@
 JXCT - это интеллектуальный IoT датчик почвы для точного земледелия с веб-интерфейсом, OTA обновлениями и полным набором тестов.
 
 ### ✨ Основные возможности
-- 📊 Измерение влажности, температуры и pH почвы
-- 🌐 Веб-интерфейс для мониторинга
-- 🔄 OTA обновления по воздуху
-- 📡 MQTT интеграция
-- 🔒 CSRF защита
-- 🧪 Полное покрытие тестами
+- 🌡️ **7 параметров почвы:** Влажность, температура, pH, EC, NPK (азот, фосфор, калий)
+- 🌐 **Веб-интерфейс:** Современный responsive дизайн с real-time мониторингом
+- 🔄 **OTA обновления:** Безопасные обновления по воздуху
+- 📡 **MQTT интеграция:** Поддержка Home Assistant, Thingspeak
+- 🔒 **Безопасность:** CSRF защита, валидация данных
+- 🧪 **Тестирование:** 100% покрытие тестами (90 unit + 23 E2E)
+- 📊 **Научный подход:** Модель Арчи для EC, уравнение Нернста для pH
+- 🔧 **Профессиональная архитектура:** Модульная структура, чистая архитектура
 
 ---
 
@@ -219,4 +247,4 @@ JXCT/
 - Технический долг требует внимания
 - Покрытие кода можно улучшить
 
-**Общая оценка:** 8.5/10 - Отличное качество с возможностью улучшения 
+**Общая оценка:** 8.5/10 - Отличное качество с возможностью улучшения

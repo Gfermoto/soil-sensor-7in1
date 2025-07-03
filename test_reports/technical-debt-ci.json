@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-03T15:58:40.846360",
+  "timestamp": "2025-07-03T21:29:37.515547",
   "version": "3.5.0",
   "analysis": {
     "clang_tidy": {
@@ -226,9 +226,9 @@
         "C:\\Git\\JXCT\\include\\version.h:6:9: warning: macro 'JXCT_VERSION_MAJOR' defines an integral constant; prefer an enum instead [modernize-macro-to-enum]",
         "C:\\Git\\JXCT\\include\\version.h:7:9: warning: macro 'JXCT_VERSION_MINOR' defines an integral constant; prefer an enum instead [modernize-macro-to-enum]",
         "C:\\Git\\JXCT\\include\\version.h:8:9: warning: macro 'JXCT_VERSION_PATCH' defines an integral constant; prefer an enum instead [modernize-macro-to-enum]",
-        "C:\\Git\\JXCT\\include\\version.h:14:14: warning: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]",
         "C:\\Git\\JXCT\\include\\version.h:15:14: warning: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]",
         "C:\\Git\\JXCT\\include\\version.h:16:14: warning: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]",
+        "C:\\Git\\JXCT\\include\\version.h:17:14: warning: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]",
         "C:\\Git\\JXCT\\include\\web_routes.h:17:8: warning: use a trailing return type for this function [modernize-use-trailing-return-type]",
         "C:\\Git\\JXCT\\include\\web_routes.h:24:6: warning: use a trailing return type for this function [modernize-use-trailing-return-type]",
         "C:\\Git\\JXCT\\include\\web_routes.h:30:8: warning: use a trailing return type for this function [modernize-use-trailing-return-type]",

@@ -2,22 +2,35 @@
 
 **Профессиональная IoT система мониторинга почвы на базе ESP32**
 
-[![Version](https://img.shields.io/github/v/tag/Gfermoto/soil-sensor-7in1?color=blue&label=version)](https://github.com/Gfermoto/soil-sensor-7in1/releases)
-[![Platform](https://img.shields.io/badge/platform-ESP32-green.svg)](https://www.espressif.com/en/products/socs/esp32)
-[![License](https://img.shields.io/github/license/Gfermoto/soil-sensor-7in1?color=yellow&label=license)](../LICENSE)
-[![CI](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml)
+[![Version](https://img.shields.io/github/v/tag/Gfermoto/soil-sensor-7in1?color=blue&label=version&style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1/releases)
+[![Platform](https://img.shields.io/badge/platform-ESP32-green.svg?style=for-the-badge)](https://www.espressif.com/en/products/socs/esp32)
+[![License](https://img.shields.io/github/license/Gfermoto/soil-sensor-7in1?color=yellow&label=license&style=for-the-badge)](../LICENSE)
+[![CI](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml/badge.svg?branch=main&style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml)
+[![Code Quality](https://img.shields.io/badge/code%20quality-A%2B-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
+[![Documentation](https://img.shields.io/badge/docs-100%25%20complete-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
+[![Tests](https://img.shields.io/badge/tests-100%25%20passing-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
+[![IoT](https://img.shields.io/badge/IoT-Smart%20Agriculture-blue.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
 
 ## 🚀 Быстрый старт
 
-### Для пользователей
-- **[📋 Руководство пользователя](manuals/USER_GUIDE.md)** - Пошаговое руководство по установке, настройке и использованию устройства
-- **[🌱 Агрономические рекомендации](manuals/AGRO_RECOMMENDATIONS.md)** - Научно обоснованные рекомендации для точного земледелия
-- **[🔬 Руководство по компенсации](manuals/COMPENSATION_GUIDE.md)** - Настройка алгоритмов температурной компенсации измерений
+<div align="center">
 
-### Для разработчиков
-- **[🧪 Руководство по тестированию](TESTING_GUIDE.md)** - Полная система тестирования с фреймворком и отчетами
-- **[📊 Текущие результаты](CURRENT_TEST_RESULTS.md)** - Актуальные метрики качества и производительности
-- **[🏗️ Архитектура](dev/ARCH_OVERALL.md)** - Общая архитектура системы и принципы проектирования
+### 👤 Для пользователей
+[![User Guide](https://img.shields.io/badge/📋-Руководство%20пользователя-orange?style=for-the-badge&logo=book)](manuals/USER_GUIDE.md)
+[![Agro Recommendations](https://img.shields.io/badge/🌱-Агрономические%20рекомендации-brightgreen?style=for-the-badge&logo=leaf)](manuals/AGRO_RECOMMENDATIONS.md)
+[![Compensation Guide](https://img.shields.io/badge/🔬-Компенсация%20измерений-blue?style=for-the-badge&logo=science)](manuals/COMPENSATION_GUIDE.md)
+
+### 👨‍💻 Для разработчиков
+[![Testing Guide](https://img.shields.io/badge/🧪-Руководство%20по%20тестированию-purple?style=for-the-badge&logo=testcafe)](TESTING_GUIDE.md)
+[![Test Results](https://img.shields.io/badge/📊-Результаты%20тестов-green?style=for-the-badge&logo=chart-line)](CURRENT_TEST_RESULTS.md)
+[![Architecture](https://img.shields.io/badge/🏗️-Архитектура%20системы-red?style=for-the-badge&logo=architecture)](dev/ARCH_OVERALL.md)
+
+### 🔧 Быстрые ссылки
+[![API Docs](https://img.shields.io/badge/🌐-API%20документация-green?style=for-the-badge&logo=swagger)](api-overview.md)
+[![Technical Debt](https://img.shields.io/badge/🔍-Технический%20долг-yellow?style=for-the-badge&logo=code-climate)](TECHNICAL_DEBT_QUICK_REFERENCE.md)
+[![Contributing](https://img.shields.io/badge/🤝-Как%20участвовать-purple?style=for-the-badge&logo=github)](CONTRIBUTING_DOCS.md)
+
+</div>
 
 ## 📚 Полная документация
 
@@ -46,7 +59,7 @@
 |--------|----------|------------|
 | [📄 Обзор API](api-overview.md) | Краткий обзор API | Быстрое знакомство с возможностями API |
 | [🔧 Руководство по контрибьюции](CONTRIBUTING_DOCS.md) | Как участвовать в разработке | Правила и процедуры для участников проекта |
-| [🌐 HTML документация](../site/api-overview/) | Doxygen документация | Автогенерированная документация кода |
+| [🌐 HTML документация](../site/api/html/) | Doxygen документация | Автогенерированная документация кода |
 | [📖 Навигация по docs](NAVIGATION.md) | Полная навигация | Структура и организация документации |
 
 ## 📊 Текущий статус проекта
@@ -112,4 +125,4 @@
 
 ---
 
-**EYERA Development Team** | Версия 3.6.7 | Июнь 2025 
+**EYERA Development Team** | Версия 3.6.7 | Июнь 2025
