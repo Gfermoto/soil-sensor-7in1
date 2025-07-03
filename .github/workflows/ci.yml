@@ -58,12 +58,8 @@ jobs:
       - name: Install PlatformIO
         run: |
           echo "Installing PlatformIO..."
-          python -m pip install platformio || echo "PlatformIO installation failed, continuing with fallback"
-          if command -v pio >/dev/null 2>&1; then
-            pio --version
-          else
-            echo "PlatformIO not available, using fallback"
-          fi
+          python -m pip install platformio
+          pio --version
       
       - name: Generate version header
         run: |
@@ -105,12 +101,8 @@ jobs:
       - name: Install PlatformIO
         run: |
           echo "Installing PlatformIO..."
-          python -m pip install platformio || echo "PlatformIO installation failed, continuing with fallback"
-          if command -v pio >/dev/null 2>&1; then
-            echo "PlatformIO installed successfully"
-          else
-            echo "PlatformIO not available, using fallback"
-          fi
+          python -m pip install platformio
+          pio --version
       
       - name: Generate version header
         run: python scripts/auto_version.py

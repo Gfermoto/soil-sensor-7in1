@@ -10,8 +10,7 @@
 #include "../stubs/logger.cpp"
 #endif
 
-void setUp() {}
-void tearDown() {}
+// setUp и tearDown определены в test_csrf_security.cpp
 
 // ============================================================================
 // ТЕСТЫ ВАЛИДАЦИИ КОНФИГУРАЦИИ
@@ -284,8 +283,8 @@ void test_validateNPK_invalid()
 void test_validateFullConfig_valid()
 {
     ConfigData config = {};
-    strcpy(config.ssid, "TestWiFi");
-    strcpy(config.password, "12345678");
+    config.ssid = "TestWiFi";
+    config.password = "12345678";
     config.mqttEnabled = false;
 
     auto res = validateFullConfig(config, false);
@@ -296,8 +295,8 @@ void test_validateFullConfig_valid()
 void test_validateFullConfig_invalid_ssid()
 {
     ConfigData config = {};
-    strcpy(config.ssid, "");  // Пустой SSID
-    strcpy(config.password, "12345678");
+    config.ssid = "";  // Пустой SSID
+    config.password = "12345678";
     config.mqttEnabled = false;
 
     auto res = validateFullConfig(config, false);
@@ -309,8 +308,8 @@ void test_validateFullConfig_invalid_ssid()
 void test_validateFullConfig_invalid_password()
 {
     ConfigData config = {};
-    strcpy(config.ssid, "TestWiFi");
-    strcpy(config.password, "123");  // Слишком короткий
+    config.ssid = "TestWiFi";
+    config.password = "123";  // Слишком короткий
     config.mqttEnabled = false;
 
     auto res = validateFullConfig(config, false);
@@ -322,10 +321,10 @@ void test_validateFullConfig_invalid_password()
 void test_validateFullConfig_mqtt_enabled_invalid()
 {
     ConfigData config = {};
-    strcpy(config.ssid, "TestWiFi");
-    strcpy(config.password, "12345678");
+    config.ssid = "TestWiFi";
+    config.password = "12345678";
     config.mqttEnabled = true;
-    strcpy(config.mqttServer, "");  // Пустой сервер
+    config.mqttServer = "";  // Пустой сервер
 
     auto res = validateFullConfig(config, true);
     TEST_ASSERT_FALSE(res.isValid);
@@ -470,74 +469,4 @@ void setup()
 }
 
 void loop() {}
-#else   // Native PC tests
-int main(int argc, char** argv)
-{
-    (void)argc;
-    (void)argv;
-    UNITY_BEGIN();
-
-    // Тесты валидации конфигурации
-    RUN_TEST(test_validateSSID_empty);
-    RUN_TEST(test_validateSSID_valid);
-    RUN_TEST(test_validateSSID_too_long);
-    RUN_TEST(test_validateSSID_boundary);
-    RUN_TEST(test_validatePassword_empty);
-    RUN_TEST(test_validatePassword_short);
-    RUN_TEST(test_validatePassword_valid);
-    RUN_TEST(test_validatePassword_too_long);
-    RUN_TEST(test_validateMQTTServer_empty);
-    RUN_TEST(test_validateMQTTServer_valid);
-    RUN_TEST(test_validateMQTTServer_with_spaces);
-    RUN_TEST(test_validateMQTTPort_valid);
-    RUN_TEST(test_validateMQTTPort_invalid_low);
-    RUN_TEST(test_validateMQTTPort_invalid_high);
-    RUN_TEST(test_validateThingSpeakAPIKey_empty);
-    RUN_TEST(test_validateThingSpeakAPIKey_wrong_length);
-    RUN_TEST(test_validateThingSpeakAPIKey_valid);
-    RUN_TEST(test_validateThingSpeakAPIKey_invalid_chars);
-
-    // Тесты валидации интервалов
-    RUN_TEST(test_validateInterval_valid);
-    RUN_TEST(test_validateInterval_too_low);
-    RUN_TEST(test_validateInterval_too_high);
-    RUN_TEST(test_validateSensorReadInterval);
-    RUN_TEST(test_validateMQTTPublishInterval);
-    RUN_TEST(test_validateThingSpeakInterval);
-    RUN_TEST(test_validateNTPInterval);
-
-    // Тесты валидации данных датчика
-    RUN_TEST(test_validateRange_valid);
-    RUN_TEST(test_validateRange_too_low);
-    RUN_TEST(test_validateRange_too_high);
-    RUN_TEST(test_validateTemperature_valid);
-    RUN_TEST(test_validateTemperature_too_low);
-    RUN_TEST(test_validateTemperature_too_high);
-    RUN_TEST(test_validateHumidity_valid);
-    RUN_TEST(test_validateHumidity_invalid);
-    RUN_TEST(test_validatePH_valid);
-    RUN_TEST(test_validatePH_invalid);
-    RUN_TEST(test_validateEC_valid);
-    RUN_TEST(test_validateEC_invalid);
-    RUN_TEST(test_validateNPK_valid);
-    RUN_TEST(test_validateNPK_invalid);
-
-    // Тесты комплексной валидации
-    RUN_TEST(test_validateFullConfig_valid);
-    RUN_TEST(test_validateFullConfig_invalid_ssid);
-    RUN_TEST(test_validateFullConfig_invalid_password);
-    RUN_TEST(test_validateFullConfig_mqtt_enabled_invalid);
-
-    // Тесты вспомогательных функций
-    RUN_TEST(test_isValidIPAddress_valid);
-    RUN_TEST(test_isValidIPAddress_invalid);
-    RUN_TEST(test_isValidHostname_valid);
-    RUN_TEST(test_isValidHostname_invalid);
-
-    // Тесты форматирования ошибок
-    RUN_TEST(test_formatValidationErrors);
-    RUN_TEST(test_formatSensorValidationErrors);
-
-    return UNITY_END();
-}
-#endif  // ARDUINO
+#endif // ARDUINO
