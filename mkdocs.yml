@@ -27,25 +27,16 @@ extra_css:
 theme:
   name: material
   language: ru
-  
-  # Современные функции
+
+  # Базовые функции
   features:
-    - navigation.instant
-    - navigation.tracking
     - navigation.tabs
     - navigation.sections
     - navigation.expand
-    - navigation.indexes
-    - navigation.top
     - toc.follow
-    - toc.integrate
-    - search.suggest
     - search.highlight
     - content.code.copy
-    - content.action.edit
-    - content.action.view
-    - header.autohide
-  
+
   # Современная цветовая схема
   palette:
     - media: "(prefers-color-scheme: light)"
@@ -62,12 +53,12 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Переключить на светлую тему
-  
-  # Современные шрифты
+
+  # Базовые шрифты
   font:
-    text: Inter
-    code: JetBrains Mono
-  
+    text: Roboto
+    code: Roboto Mono
+
   # Иконки
   icon:
     repo: fontawesome/brands/github

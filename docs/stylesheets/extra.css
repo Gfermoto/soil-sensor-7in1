@@ -49,37 +49,16 @@
 /* СТИЛИ ДЛЯ ВСЕХ BADGE - ОДИНАКОВЫЙ РАЗМЕР */
 /* Shields.io badges - единственный тип плашек */
 .md-content img[src*="shields.io"] {
-  height: 28px !important;
-  max-height: 28px !important;
-  min-height: 28px !important;
+  height: 20px !important;
   width: auto !important;
   vertical-align: middle !important;
   margin: 2px 4px !important;
-  display: inline-block !important;
-  border-radius: 6px !important;
 }
 
-/* Исправляем отображение на мобильных устройствах */
+/* Мобильная адаптация для плашек */
 @media (max-width: 76.1875em) {
-  .md-nav--primary {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  
-  .md-sidebar--primary {
-    width: 100% !important;
-    max-width: 100% !important;
-  }
-  
-  .md-main__inner {
-    margin-left: 0 !important;
-  }
-  
-  /* Плашки на мобильных */
   .md-content img[src*="shields.io"] {
-    height: 24px !important;
-    max-height: 24px !important;
-    min-height: 24px !important;
+    height: 18px !important;
     margin: 1px 2px !important;
   }
 }
