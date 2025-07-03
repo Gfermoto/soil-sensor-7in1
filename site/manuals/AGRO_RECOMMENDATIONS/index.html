@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Документация для датчика почвы JXCT 7-в-1 (v3.6.7) - Профессиональная IoT система мониторинга почвы на базе ESP32">
+        <meta name="description" content="Документация для датчика почвы JXCT 7-в-1 v3.6.9 - Профессиональная IoT система мониторинга почвы на базе ESP32">
       
       
         <meta name="author" content="EYERA Development Team">
@@ -15,10 +15,10 @@
         <link rel="canonical" href="https://gfermoto.github.io/soil-sensor-7in1/manuals/AGRO_RECOMMENDATIONS/">
       
       
-        <link rel="prev" href="../USER_GUIDE/">
+        <link rel="prev" href="../API/">
       
       
-        <link rel="next" href="../COMPENSATION_GUIDE/">
+        <link rel="next" href="../../api-overview/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Агрономические рекомендации - 🌱 JXCT 7-в-1 Датчик Почвы</title>
+        <title>Агрономические рекомендации - JXCT Soil Sensor v3.6.9</title>
       
     
     
@@ -96,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href="../.." title="🌱 JXCT 7-в-1 Датчик Почвы" class="md-header__button md-logo" aria-label="🌱 JXCT 7-в-1 Датчик Почвы" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.6.9" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.6.9" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            🌱 JXCT 7-в-1 Датчик Почвы
+            JXCT Soil Sensor v3.6.9
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -129,9 +129,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Переключить на тёмную тему"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Переключить на тёмную тему" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -139,9 +139,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Переключить на светлую тему"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Переключить на светлую тему" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -173,13 +173,16 @@
       </label>
       <nav class="md-search__options" aria-label="Поиск">
         
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Поделиться" aria-label="Поделиться" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
         <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
-      
-        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -256,8 +259,6 @@
           
   
   
-    
-  
   Руководства
 
         </a>
@@ -278,30 +279,6 @@
           
   
   
-    
-  
-  API Документация
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../../dev/ARCH_OVERALL/" class="md-tabs__link">
-          
-  
-  
-    
-  
   Разработка
 
         </a>
@@ -318,17 +295,53 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../TESTING_GUIDE/" class="md-tabs__link">
+        <a href="../../REPORTS_INTEGRATION/" class="md-tabs__link">
           
   
   
-    
-  
-  Тестирование
+  Отчеты
 
         </a>
       </li>
     
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../NAVIGATION/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Навигация
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../CONTRIBUTING_DOCS/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Документация для разработчиков
+
+      </a>
+    </li>
   
 
       
@@ -352,17 +365,15 @@
   
 
 
-  
-
-<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="🌱 JXCT 7-в-1 Датчик Почвы" class="md-nav__button md-logo" aria-label="🌱 JXCT 7-в-1 Датчик Почвы" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.6.9" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.6.9" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    🌱 JXCT 7-в-1 Датчик Почвы
+    JXCT Soil Sensor v3.6.9
   </label>
   
     <div class="md-nav__source">
@@ -410,24 +421,6 @@
   
   
     
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
     
     
     
@@ -494,6 +487,167 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../TECHNICAL_DOCS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Техническая документация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../COMPENSATION_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Руководство по компенсации
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CONFIG_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Управление конфигурацией
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VERSION_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Управление версиями
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WIRING_DIAGRAM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Схема подключения
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MODBUS_PROTOCOL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Протокол Modbus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API документация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -532,8 +686,6 @@
       </a>
       
         
-
-  
 
 <nav class="md-nav md-nav--secondary" aria-label="Содержание">
   
@@ -1466,144 +1618,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../COMPENSATION_GUIDE/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Компенсация показаний
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../MODBUS_PROTOCOL/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Протокол Modbus
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../CONFIG_MANAGEMENT/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Управление конфигурацией
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../VERSION_MANAGEMENT/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Управление версиями
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../WIRING_DIAGRAM/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Схема подключения
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../TECHNICAL_DOCS/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Техническая документация
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1618,12 +1632,6 @@
   
   
     
-    
-      
-        
-      
-        
-      
     
     
     
@@ -1647,7 +1655,7 @@
   
   
   <span class="md-ellipsis">
-    API Документация
+    Разработка
     
   </span>
   
@@ -1658,7 +1666,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            API Документация
+            Разработка
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1692,12 +1700,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../API/" class="md-nav__link">
+      <a href="../../TESTING_GUIDE/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    API Reference
+    Руководство по тестированию
     
   </span>
   
@@ -1707,74 +1715,6 @@
   
 
               
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
-        
-          
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    Разработка
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
-            <span class="md-nav__icon md-icon"></span>
-            Разработка
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
             
               
                 
@@ -1807,52 +1747,6 @@
   
     <li class="md-nav__item">
       <a href="../../dev/TECH_DEBT_QUICK_REFERENCE/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    🚀 Техдолг (кратко)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../CURRENT_TEST_RESULTS/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    📊 Результаты тестов
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../dev/TECH_DEBT_REPORT_2025-06/" class="md-nav__link">
         
   
   
@@ -1891,52 +1785,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../dev/DUPLICATION_INCLUDE_ANALYSIS_2025-06-30/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Анализ дублирования
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../CONTRIBUTING_DOCS/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Участие в проекте
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -1952,18 +1800,6 @@
   
     
     
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-    
     
     
       
@@ -1978,15 +1814,15 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
-    Тестирование
+    Отчеты
     
   </span>
   
@@ -1994,10 +1830,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Тестирование
+            Отчеты
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -2008,12 +1844,58 @@
   
   
     <li class="md-nav__item">
-      <a href="../../TESTING_GUIDE/" class="md-nav__link">
+      <a href="../../REPORTS_INTEGRATION/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Руководство по тестированию
+    Интеграция отчетов
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CURRENT_TEST_RESULTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Текущие результаты тестов
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../STAGE_2_COMPLETION_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Отчет о завершении этапа 2
     
   </span>
   
@@ -2054,52 +1936,6 @@
   
   
     <li class="md-nav__item">
-      <a href="../../STAGE_2_COMPLETION_REPORT/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Отчет Stage 2
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../REPORTS_INTEGRATION/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Интеграция отчетов
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../../DUPLICATION_ANALYSIS_DETAILED/" class="md-nav__link">
         
   
@@ -2123,12 +1959,991 @@
   
 
     
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../NAVIGATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Навигация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING_DOCS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Документация для разработчиков
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
                 </div>
               </div>
             
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📖 Содержание
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌱 ОБЩИЕ ПРИНЦИПЫ МОНИТОРИНГА ПОЧВЫ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌱 ОБЩИЕ ПРИНЦИПЫ МОНИТОРИНГА ПОЧВЫ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Оптимальные условия измерений
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔬 Научно обоснованная компенсация
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌡️ ТЕМПЕРАТУРА ПОЧВЫ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌡️ ТЕМПЕРАТУРА ПОЧВЫ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 Оптимальные диапазоны по культурам
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 Оптимальные диапазоны по культурам">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌾 Зерновые культуры
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      🥔 Корнеплоды
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌿 Овощные культуры
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Компенсация температуры
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      💧 ВЛАЖНОСТЬ ПОЧВЫ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💧 ВЛАЖНОСТЬ ПОЧВЫ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Критические уровни влажности
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Критические уровни влажности">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      🚨 Критически низкая влажность
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Оптимальная влажность
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚠️ Избыточная влажность
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌱 Рекомендации по поливу
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ec" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚡ ЭЛЕКТРОПРОВОДНОСТЬ (EC)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚡ ЭЛЕКТРОПРОВОДНОСТЬ (EC)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ec_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Интерпретация значений EC
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Интерпретация значений EC">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      🟢 Нормальная электропроводность
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      🟡 Повышенная электропроводность
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1942" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔬 Модель Арчи (1942) для компенсации
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌱 Рекомендации по засолению
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ph" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧪 pH ПОЧВЫ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧪 pH ПОЧВЫ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ph_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Оптимальные значения pH по культурам
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Оптимальные значения pH по культурам">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ph-50-65" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌾 Кислотолюбивые культуры (pH 5.0-6.5)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ph-60-75" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌱 Нейтральные культуры (pH 6.0-7.5)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ph-70-80" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌿 Щелочные культуры (pH 7.0-8.0)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ph_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Температурная компенсация pH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ph_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌱 Рекомендации по регулированию pH
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#n" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌿 АЗОТ (N)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌿 АЗОТ (N)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Интерпретация содержания азота
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Интерпретация содержания азота">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1500-2000" class="md-nav__link">
+    <span class="md-ellipsis">
+      🟢 Высокое содержание (1500-2000 мг/кг)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#800-1500" class="md-nav__link">
+    <span class="md-ellipsis">
+      🟡 Среднее содержание (800-1500 мг/кг)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0-800" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔴 Низкое содержание (0-800 мг/кг)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fao-56" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔬 Компенсация по FAO 56
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌱 Рекомендации по азоту
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#p" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌱 ФОСФОР (P)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌱 ФОСФОР (P)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Интерпретация содержания фосфора
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Интерпретация содержания фосфора">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#800-1000" class="md-nav__link">
+    <span class="md-ellipsis">
+      🟢 Высокое содержание (800-1000 мг/кг)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#400-800" class="md-nav__link">
+    <span class="md-ellipsis">
+      🟡 Среднее содержание (400-800 мг/кг)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0-400" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔴 Низкое содержание (0-400 мг/кг)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eur-j-soil-sci" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔬 Компенсация по Eur. J. Soil Sci.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_23" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌱 Рекомендации по фосфору
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍃 КАЛИЙ (K)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🍃 КАЛИЙ (K)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_24" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Интерпретация содержания калия
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📊 Интерпретация содержания калия">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1500-2000_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🟢 Высокое содержание (1500-2000 мг/кг)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#800-1500_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🟡 Среднее содержание (800-1500 мг/кг)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0-800_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔴 Низкое содержание (0-800 мг/кг)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#eur-j-soil-sci_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔬 Компенсация по Eur. J. Soil Sci.
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_25" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌱 Рекомендации по калию
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#npk" class="md-nav__link">
+    <span class="md-ellipsis">
+      📅 СЕЗОННЫЕ КОРРЕКТИРОВКИ NPK
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📅 СЕЗОННЫЕ КОРРЕКТИРОВКИ NPK">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outdoor" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌍 Открытый грунт (Outdoor)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🌍 Открытый грунт (Outdoor)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌸 Весна (март-май)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ☀️ Лето (июнь-август)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍂 Осень (сентябрь-ноябрь)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❄️ Зима (декабрь-февраль)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#greenhouse" class="md-nav__link">
+    <span class="md-ellipsis">
+      🏠 Теплица (Greenhouse)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🏠 Теплица (Greenhouse)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_26" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌸 Весна
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_27" class="md-nav__link">
+    <span class="md-ellipsis">
+      ☀️ Лето
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_28" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍂 Осень
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_29" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❄️ Зима
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔬 Научное обоснование сезонных корректировок
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔬 Научное обоснование сезонных корректировок">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-n" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Азот (N):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-p" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Фосфор (P):
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-k" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Калий (K):
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      📅 ОБЩИЕ СЕЗОННЫЕ РЕКОМЕНДАЦИИ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📅 ОБЩИЕ СЕЗОННЫЕ РЕКОМЕНДАЦИИ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      🌸 Весна (март-май)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      ☀️ Лето (июнь-август)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      🍂 Осень (сентябрь-ноябрь)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#-_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❄️ Зима (декабрь-февраль)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔬 КАЛИБРОВКА И ПОВЕРКА
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔬 КАЛИБРОВКА И ПОВЕРКА">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_33" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ ИСПРАВЛЕННАЯ СИСТЕМА КАЛИБРОВКИ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="✅ ИСПРАВЛЕННАЯ СИСТЕМА КАЛИБРОВКИ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_34" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Двухэтапная компенсация
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_35" class="md-nav__link">
+    <span class="md-ellipsis">
+      📋 Пример калибровочной таблицы
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_36" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Частота калибровки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_37" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Контроль качества
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_38" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎯 ПРАКТИЧЕСКИЕ РЕКОМЕНДАЦИИ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎯 ПРАКТИЧЕСКИЕ РЕКОМЕНДАЦИИ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#-_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      📱 Использование веб-интерфейса
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_39" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Техническое обслуживание
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_40" class="md-nav__link">
+    <span class="md-ellipsis">
+      📊 Интерпретация данных
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_41" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔧 Рекомендации по реализации
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_42" class="md-nav__link">
+    <span class="md-ellipsis">
+      📞 Поддержка
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📞 Поддержка">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_43" class="md-nav__link">
+    <span class="md-ellipsis">
+      💬 Связь с разработчиками
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_44" class="md-nav__link">
+    <span class="md-ellipsis">
+      📚 Дополнительные ресурсы
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_45" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔗 Полезные ссылки
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
             
           
           
@@ -2141,7 +2956,7 @@
   
     <a href="https://github.com/Gfermoto/soil-sensor-7in1/edit/main/docs/manuals/AGRO_RECOMMENDATIONS.md" title="Редактировать страницу" class="md-content__button md-icon">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
     </a>
   
   
@@ -2150,17 +2965,19 @@
     
     <a href="https://github.com/Gfermoto/soil-sensor-7in1/raw/main/docs/manuals/AGRO_RECOMMENDATIONS.md" title="Посмотреть исходный код страницы" class="md-content__button md-icon">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
     </a>
   
 
 
-<h1 id="jxct-7-1">🌱 Агрономические рекомендации JXCT 7-в-1<a class="headerlink" href="#jxct-7-1" title="Постоянная ссылка">&para;</a></h1>
+<h1 id="jxct-7-1">🌱 Агрономические рекомендации JXCT 7-в-1<a class="headerlink" href="#jxct-7-1" title="Permanent link">&para;</a></h1>
 <p><strong>Дата:</strong> Июнь 2025
-<strong>Версия:</strong> 3.6.7
+<strong>Версия:</strong> яю3 . 6 . 8 
+ 
+ 
 <strong>Автор:</strong> JXCT Development Team</p>
 <hr />
-<h2 id="_1">📖 Содержание<a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h2>
+<h2 id="_1">📖 Содержание<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <ol>
 <li><a href="#-общие-принципы-мониторинга-почвы">🌱 Общие принципы мониторинга почвы</a></li>
 <li><a href="#️-температура-почвы">🌡️ Температура почвы</a></li>
@@ -2176,94 +2993,94 @@
 <li><a href="#-практические-рекомендации">🎯 Практические рекомендации</a></li>
 </ol>
 <hr />
-<h2 id="_2">🌱 <strong>ОБЩИЕ ПРИНЦИПЫ МОНИТОРИНГА ПОЧВЫ</strong><a class="headerlink" href="#_2" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_3">📊 <strong>Оптимальные условия измерений</strong><a class="headerlink" href="#_3" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_2">🌱 <strong>ОБЩИЕ ПРИНЦИПЫ МОНИТОРИНГА ПОЧВЫ</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">📊 <strong>Оптимальные условия измерений</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Время измерений:</strong> За 30 минут до восхода и через 3 часа после полудня</li>
 <li><strong>Частота измерений:</strong> Каждые 30 минут для точного мониторинга</li>
 <li><strong>Глубина установки:</strong> 10-15 см от поверхности почвы</li>
 <li><strong>Температура почвы:</strong> 5-35°C для корректных измерений</li>
 </ul>
-<h3 id="_4">🔬 <strong>Научно обоснованная компенсация</strong><a class="headerlink" href="#_4" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_4">🔬 <strong>Научно обоснованная компенсация</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>✅ Двухэтапная система:</strong> CSV калибровка + математическая компенсация</li>
 <li><strong>Лабораторная поверка:</strong> Корректировка по эталонным образцам</li>
 <li><strong>Температурная компенсация:</strong> Учет влияния температуры на электроды</li>
 <li><strong>Влажностная компенсация:</strong> Модель Арчи для EC, FAO 56 для NPK</li>
 </ul>
-<h2 id="_5">🌡️ <strong>ТЕМПЕРАТУРА ПОЧВЫ</strong><a class="headerlink" href="#_5" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_6">📈 <strong>Оптимальные диапазоны по культурам</strong><a class="headerlink" href="#_6" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="_7">🌾 <strong>Зерновые культуры</strong><a class="headerlink" href="#_7" title="Постоянная ссылка">&para;</a></h4>
+<h2 id="_5">🌡️ <strong>ТЕМПЕРАТУРА ПОЧВЫ</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="_6">📈 <strong>Оптимальные диапазоны по культурам</strong><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h4 id="_7">🌾 <strong>Зерновые культуры</strong><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Пшеница:</strong> 8-25°C (оптимум 15-20°C)</li>
 <li><strong>Ячмень:</strong> 6-22°C (оптимум 12-18°C)</li>
 <li><strong>Овес:</strong> 5-20°C (оптимум 10-16°C)</li>
 <li><strong>Рожь:</strong> 4-18°C (оптимум 8-14°C)</li>
 </ul>
-<h4 id="_8">🥔 <strong>Корнеплоды</strong><a class="headerlink" href="#_8" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="_8">🥔 <strong>Корнеплоды</strong><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Картофель:</strong> 12-25°C (оптимум 18-22°C)</li>
 <li><strong>Свекла:</strong> 10-28°C (оптимум 15-25°C)</li>
 <li><strong>Морковь:</strong> 8-25°C (оптимум 15-20°C)</li>
 </ul>
-<h4 id="_9">🌿 <strong>Овощные культуры</strong><a class="headerlink" href="#_9" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="_9">🌿 <strong>Овощные культуры</strong><a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Томаты:</strong> 15-30°C (оптимум 20-25°C)</li>
 <li><strong>Огурцы:</strong> 18-32°C (оптимум 22-28°C)</li>
 <li><strong>Перец:</strong> 20-30°C (оптимум 25-28°C)</li>
 <li><strong>Капуста:</strong> 8-22°C (оптимум 12-18°C)</li>
 </ul>
-<h3 id="_10">🔧 <strong>Компенсация температуры</strong><a class="headerlink" href="#_10" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_10">🔧 <strong>Компенсация температуры</strong><a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Уравнение Нернста для pH</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">pH_corrected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pH_raw</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.003</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">25</span><span class="err">°</span><span class="n">C</span><span class="p">)</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// Температурная компенсация EC</span>
 <a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">EC_25</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EC_raw</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.021</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">25</span><span class="err">°</span><span class="n">C</span><span class="p">))</span>
 </code></pre></div>
-<h2 id="_11">💧 <strong>ВЛАЖНОСТЬ ПОЧВЫ</strong><a class="headerlink" href="#_11" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_12">📊 <strong>Критические уровни влажности</strong><a class="headerlink" href="#_12" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="_13">🚨 <strong>Критически низкая влажность</strong><a class="headerlink" href="#_13" title="Постоянная ссылка">&para;</a></h4>
+<h2 id="_11">💧 <strong>ВЛАЖНОСТЬ ПОЧВЫ</strong><a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h3 id="_12">📊 <strong>Критические уровни влажности</strong><a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<h4 id="_13">🚨 <strong>Критически низкая влажность</strong><a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Песчаные почвы:</strong> &lt; 15%</li>
 <li><strong>Суглинистые почвы:</strong> &lt; 20%</li>
 <li><strong>Глинистые почвы:</strong> &lt; 25%</li>
 <li><strong>Торфяные почвы:</strong> &lt; 30%</li>
 </ul>
-<h4 id="_14">✅ <strong>Оптимальная влажность</strong><a class="headerlink" href="#_14" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="_14">✅ <strong>Оптимальная влажность</strong><a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Песчаные почвы:</strong> 20-35%</li>
 <li><strong>Суглинистые почвы:</strong> 25-40%</li>
 <li><strong>Глинистые почвы:</strong> 30-45%</li>
 <li><strong>Торфяные почвы:</strong> 35-50%</li>
 </ul>
-<h4 id="_15">⚠️ <strong>Избыточная влажность</strong><a class="headerlink" href="#_15" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="_15">⚠️ <strong>Избыточная влажность</strong><a class="headerlink" href="#_15" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Все типы почв:</strong> &gt; 60%</li>
 <li><strong>Риск анаэробных условий</strong></li>
 <li><strong>Замедление роста корней</strong></li>
 </ul>
-<h3 id="_16">🌱 <strong>Рекомендации по поливу</strong><a class="headerlink" href="#_16" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_16">🌱 <strong>Рекомендации по поливу</strong><a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Частота полива:</strong> Зависит от типа почвы и культуры</li>
 <li><strong>Время полива:</strong> Раннее утро или вечер</li>
 <li><strong>Глубина увлажнения:</strong> 20-30 см для большинства культур</li>
 <li><strong>Метод полива:</strong> Капельное орошение предпочтительнее</li>
 </ul>
-<h2 id="ec">⚡ <strong>ЭЛЕКТРОПРОВОДНОСТЬ (EC)</strong><a class="headerlink" href="#ec" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="ec_1">📊 <strong>Интерпретация значений EC</strong><a class="headerlink" href="#ec_1" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="_17">🟢 <strong>Нормальная электропроводность</strong><a class="headerlink" href="#_17" title="Постоянная ссылка">&para;</a></h4>
+<h2 id="ec">⚡ <strong>ЭЛЕКТРОПРОВОДНОСТЬ (EC)</strong><a class="headerlink" href="#ec" title="Permanent link">&para;</a></h2>
+<h3 id="ec_1">📊 <strong>Интерпретация значений EC</strong><a class="headerlink" href="#ec_1" title="Permanent link">&para;</a></h3>
+<h4 id="_17">🟢 <strong>Нормальная электропроводность</strong><a class="headerlink" href="#_17" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>0-800 µS/cm:</strong> Отличные условия</li>
 <li><strong>800-1500 µS/cm:</strong> Хорошие условия</li>
 <li><strong>1500-2500 µS/cm:</strong> Удовлетворительные условия</li>
 </ul>
-<h4 id="_18">🟡 <strong>Повышенная электропроводность</strong><a class="headerlink" href="#_18" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="_18">🟡 <strong>Повышенная электропроводность</strong><a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>2500-3500 µS/cm:</strong> Требует внимания</li>
 <li><strong>3500-5000 µS/cm:</strong> Критический уровень</li>
 <li><strong>&gt; 5000 µS/cm:</strong> Опасный уровень</li>
 </ul>
-<h3 id="1942">🔬 <strong>Модель Арчи (1942) для компенсации</strong><a class="headerlink" href="#1942" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="1942">🔬 <strong>Модель Арчи (1942) для компенсации</strong><a class="headerlink" href="#1942" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// Коэффициенты по типам почв</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kt">float</span><span class="w"> </span><span class="n">k_sand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.15</span><span class="p">;</span><span class="w">      </span><span class="c1">// Песок</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="kt">float</span><span class="w"> </span><span class="n">k_loam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.30</span><span class="p">;</span><span class="w">      </span><span class="c1">// Суглинок</span>
@@ -2274,212 +3091,212 @@
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1">// Формула компенсации</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">EC_corrected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EC_25</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="n">θ_sat</span><span class="o">/</span><span class="n">θ</span><span class="p">)</span><span class="o">^</span><span class="n">k</span>
 </code></pre></div>
-<h3 id="_19">🌱 <strong>Рекомендации по засолению</strong><a class="headerlink" href="#_19" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_19">🌱 <strong>Рекомендации по засолению</strong><a class="headerlink" href="#_19" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Промывка почвы:</strong> При EC &gt; 3000 µS/cm</li>
 <li><strong>Дренаж:</strong> Улучшение оттока воды</li>
 <li><strong>Выбор культур:</strong> Солеустойчивые сорта</li>
 <li><strong>Внесение органики:</strong> Улучшение структуры почвы</li>
 </ul>
-<h2 id="ph">🧪 <strong>pH ПОЧВЫ</strong><a class="headerlink" href="#ph" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="ph_1">📊 <strong>Оптимальные значения pH по культурам</strong><a class="headerlink" href="#ph_1" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="ph-50-65">🌾 <strong>Кислотолюбивые культуры (pH 5.0-6.5)</strong><a class="headerlink" href="#ph-50-65" title="Постоянная ссылка">&para;</a></h4>
+<h2 id="ph">🧪 <strong>pH ПОЧВЫ</strong><a class="headerlink" href="#ph" title="Permanent link">&para;</a></h2>
+<h3 id="ph_1">📊 <strong>Оптимальные значения pH по культурам</strong><a class="headerlink" href="#ph_1" title="Permanent link">&para;</a></h3>
+<h4 id="ph-50-65">🌾 <strong>Кислотолюбивые культуры (pH 5.0-6.5)</strong><a class="headerlink" href="#ph-50-65" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Картофель:</strong> 5.0-6.0</li>
 <li><strong>Черника:</strong> 4.5-5.5</li>
 <li><strong>Рододендрон:</strong> 4.5-5.5</li>
 <li><strong>Гортензия:</strong> 5.0-6.0</li>
 </ul>
-<h4 id="ph-60-75">🌱 <strong>Нейтральные культуры (pH 6.0-7.5)</strong><a class="headerlink" href="#ph-60-75" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="ph-60-75">🌱 <strong>Нейтральные культуры (pH 6.0-7.5)</strong><a class="headerlink" href="#ph-60-75" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Большинство овощей:</strong> 6.0-7.0</li>
 <li><strong>Зерновые культуры:</strong> 6.0-7.5</li>
 <li><strong>Бобовые культуры:</strong> 6.0-7.0</li>
 <li><strong>Плодовые деревья:</strong> 6.0-7.0</li>
 </ul>
-<h4 id="ph-70-80">🌿 <strong>Щелочные культуры (pH 7.0-8.0)</strong><a class="headerlink" href="#ph-70-80" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="ph-70-80">🌿 <strong>Щелочные культуры (pH 7.0-8.0)</strong><a class="headerlink" href="#ph-70-80" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Спаржа:</strong> 7.0-8.0</li>
 <li><strong>Брюссельская капуста:</strong> 7.0-7.5</li>
 <li><strong>Капуста:</strong> 6.5-7.5</li>
 <li><strong>Свекла:</strong> 6.5-7.5</li>
 </ul>
-<h3 id="ph_2">🔧 <strong>Температурная компенсация pH</strong><a class="headerlink" href="#ph_2" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="ph_2">🔧 <strong>Температурная компенсация pH</strong><a class="headerlink" href="#ph_2" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// Уравнение Нернста</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">pH_corrected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pH_raw</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.003</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">25</span><span class="err">°</span><span class="n">C</span><span class="p">)</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1">// Обоснование: зависимость электродного потенциала от температуры</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1">// Коэффициент -0.003 V/°C для pH электрода</span>
 </code></pre></div>
-<h3 id="ph_3">🌱 <strong>Рекомендации по регулированию pH</strong><a class="headerlink" href="#ph_3" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="ph_3">🌱 <strong>Рекомендации по регулированию pH</strong><a class="headerlink" href="#ph_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Известкование:</strong> При pH &lt; 5.5</li>
 <li><strong>Гипсование:</strong> При pH &gt; 8.0</li>
 <li><strong>Органические удобрения:</strong> Постепенное изменение pH</li>
 <li><strong>Мониторинг:</strong> Регулярные измерения после внесения</li>
 </ul>
-<h2 id="n">🌿 <strong>АЗОТ (N)</strong><a class="headerlink" href="#n" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_20">📊 <strong>Интерпретация содержания азота</strong><a class="headerlink" href="#_20" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="1500-2000">🟢 <strong>Высокое содержание (1500-2000 мг/кг)</strong><a class="headerlink" href="#1500-2000" title="Постоянная ссылка">&para;</a></h4>
+<h2 id="n">🌿 <strong>АЗОТ (N)</strong><a class="headerlink" href="#n" title="Permanent link">&para;</a></h2>
+<h3 id="_20">📊 <strong>Интерпретация содержания азота</strong><a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<h4 id="1500-2000">🟢 <strong>Высокое содержание (1500-2000 мг/кг)</strong><a class="headerlink" href="#1500-2000" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Избыток азота:</strong> Риск полегания</li>
 <li><strong>Рекомендации:</strong> Уменьшить внесение</li>
 <li><strong>Культуры:</strong> Листовые овощи</li>
 </ul>
-<h4 id="800-1500">🟡 <strong>Среднее содержание (800-1500 мг/кг)</strong><a class="headerlink" href="#800-1500" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="800-1500">🟡 <strong>Среднее содержание (800-1500 мг/кг)</strong><a class="headerlink" href="#800-1500" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Оптимальный уровень:</strong> Для большинства культур</li>
 <li><strong>Поддержание:</strong> Регулярные подкормки</li>
 <li><strong>Мониторинг:</strong> Еженедельные измерения</li>
 </ul>
-<h4 id="0-800">🔴 <strong>Низкое содержание (0-800 мг/кг)</strong><a class="headerlink" href="#0-800" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="0-800">🔴 <strong>Низкое содержание (0-800 мг/кг)</strong><a class="headerlink" href="#0-800" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Дефицит азота:</strong> Замедление роста</li>
 <li><strong>Рекомендации:</strong> Внесение азотных удобрений</li>
 <li><strong>Срочность:</strong> Немедленные меры</li>
 </ul>
-<h3 id="fao-56">🔬 <strong>Компенсация по FAO 56</strong><a class="headerlink" href="#fao-56" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="fao-56">🔬 <strong>Компенсация по FAO 56</strong><a class="headerlink" href="#fao-56" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Температурная компенсация азота</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">N_corrected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N_raw</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.02</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">25</span><span class="err">°</span><span class="n">C</span><span class="p">))</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">// Влажностная компенсация</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">N_final</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N_corrected</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.05</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="n">H</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">50</span><span class="o">%</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">50</span><span class="o">%</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="_21">🌱 <strong>Рекомендации по азоту</strong><a class="headerlink" href="#_21" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_21">🌱 <strong>Рекомендации по азоту</strong><a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Весенние подкормки:</strong> Активизация роста</li>
 <li><strong>Летние подкормки:</strong> Поддержание развития</li>
 <li><strong>Осенние подкормки:</strong> Подготовка к зиме</li>
 <li><strong>Формы азота:</strong> NH4+ для кислых почв, NO3- для щелочных</li>
 </ul>
-<h2 id="p">🌱 <strong>ФОСФОР (P)</strong><a class="headerlink" href="#p" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_22">📊 <strong>Интерпретация содержания фосфора</strong><a class="headerlink" href="#_22" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="800-1000">🟢 <strong>Высокое содержание (800-1000 мг/кг)</strong><a class="headerlink" href="#800-1000" title="Постоянная ссылка">&para;</a></h4>
+<h2 id="p">🌱 <strong>ФОСФОР (P)</strong><a class="headerlink" href="#p" title="Permanent link">&para;</a></h2>
+<h3 id="_22">📊 <strong>Интерпретация содержания фосфора</strong><a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<h4 id="800-1000">🟢 <strong>Высокое содержание (800-1000 мг/кг)</strong><a class="headerlink" href="#800-1000" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Избыток фосфора:</strong> Фиксация в почве</li>
 <li><strong>Рекомендации:</strong> Уменьшить внесение</li>
 <li><strong>Риск:</strong> Загрязнение водоемов</li>
 </ul>
-<h4 id="400-800">🟡 <strong>Среднее содержание (400-800 мг/кг)</strong><a class="headerlink" href="#400-800" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="400-800">🟡 <strong>Среднее содержание (400-800 мг/кг)</strong><a class="headerlink" href="#400-800" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Оптимальный уровень:</strong> Для большинства культур</li>
 <li><strong>Поддержание:</strong> Фосфорные удобрения</li>
 <li><strong>Мониторинг:</strong> Ежемесячные измерения</li>
 </ul>
-<h4 id="0-400">🔴 <strong>Низкое содержание (0-400 мг/кг)</strong><a class="headerlink" href="#0-400" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="0-400">🔴 <strong>Низкое содержание (0-400 мг/кг)</strong><a class="headerlink" href="#0-400" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Дефицит фосфора:</strong> Замедление развития корней</li>
 <li><strong>Рекомендации:</strong> Внесение фосфорных удобрений</li>
 <li><strong>Срочность:</strong> Планирование внесения</li>
 </ul>
-<h3 id="eur-j-soil-sci">🔬 <strong>Компенсация по Eur. J. Soil Sci.</strong><a class="headerlink" href="#eur-j-soil-sci" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="eur-j-soil-sci">🔬 <strong>Компенсация по Eur. J. Soil Sci.</strong><a class="headerlink" href="#eur-j-soil-sci" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Температурная компенсация фосфора</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">P_corrected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P_raw</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.02</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">25</span><span class="err">°</span><span class="n">C</span><span class="p">))</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">// Влажностная компенсация</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">P_final</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P_corrected</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.05</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="n">H</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">50</span><span class="o">%</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">50</span><span class="o">%</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="_23">🌱 <strong>Рекомендации по фосфору</strong><a class="headerlink" href="#_23" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_23">🌱 <strong>Рекомендации по фосфору</strong><a class="headerlink" href="#_23" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Внесение под зябь:</strong> Лучшая доступность</li>
 <li><strong>Локальное внесение:</strong> В зону корней</li>
 <li><strong>Формы фосфора:</strong> Водорастворимые для быстрого эффекта</li>
 <li><strong>pH почвы:</strong> Оптимум 6.0-7.0 для доступности</li>
 </ul>
-<h2 id="k">🍃 <strong>КАЛИЙ (K)</strong><a class="headerlink" href="#k" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_24">📊 <strong>Интерпретация содержания калия</strong><a class="headerlink" href="#_24" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="1500-2000_1">🟢 <strong>Высокое содержание (1500-2000 мг/кг)</strong><a class="headerlink" href="#1500-2000_1" title="Постоянная ссылка">&para;</a></h4>
+<h2 id="k">🍃 <strong>КАЛИЙ (K)</strong><a class="headerlink" href="#k" title="Permanent link">&para;</a></h2>
+<h3 id="_24">📊 <strong>Интерпретация содержания калия</strong><a class="headerlink" href="#_24" title="Permanent link">&para;</a></h3>
+<h4 id="1500-2000_1">🟢 <strong>Высокое содержание (1500-2000 мг/кг)</strong><a class="headerlink" href="#1500-2000_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Избыток калия:</strong> Конкуренция с кальцием</li>
 <li><strong>Рекомендации:</strong> Уменьшить внесение</li>
 <li><strong>Мониторинг:</strong> Содержание кальция</li>
 </ul>
-<h4 id="800-1500_1">🟡 <strong>Среднее содержание (800-1500 мг/кг)</strong><a class="headerlink" href="#800-1500_1" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="800-1500_1">🟡 <strong>Среднее содержание (800-1500 мг/кг)</strong><a class="headerlink" href="#800-1500_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Оптимальный уровень:</strong> Для большинства культур</li>
 <li><strong>Поддержание:</strong> Калийные удобрения</li>
 <li><strong>Мониторинг:</strong> Ежемесячные измерения</li>
 </ul>
-<h4 id="0-800_1">🔴 <strong>Низкое содержание (0-800 мг/кг)</strong><a class="headerlink" href="#0-800_1" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="0-800_1">🔴 <strong>Низкое содержание (0-800 мг/кг)</strong><a class="headerlink" href="#0-800_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Дефицит калия:</strong> Снижение устойчивости</li>
 <li><strong>Рекомендации:</strong> Внесение калийных удобрений</li>
 <li><strong>Срочность:</strong> Планирование внесения</li>
 </ul>
-<h3 id="eur-j-soil-sci_1">🔬 <strong>Компенсация по Eur. J. Soil Sci.</strong><a class="headerlink" href="#eur-j-soil-sci_1" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="eur-j-soil-sci_1">🔬 <strong>Компенсация по Eur. J. Soil Sci.</strong><a class="headerlink" href="#eur-j-soil-sci_1" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Температурная компенсация калия</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">K_corrected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">K_raw</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">0.02</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">25</span><span class="err">°</span><span class="n">C</span><span class="p">))</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1">// Влажностная компенсация</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="n">K_final</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">K_corrected</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.05</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="p">(</span><span class="n">H</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">50</span><span class="o">%</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">50</span><span class="o">%</span><span class="p">)</span>
 </code></pre></div>
-<h3 id="_25">🌱 <strong>Рекомендации по калию</strong><a class="headerlink" href="#_25" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_25">🌱 <strong>Рекомендации по калию</strong><a class="headerlink" href="#_25" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Осенние подкормки:</strong> Повышение зимостойкости</li>
 <li><strong>Летние подкормки:</strong> Устойчивость к засухе</li>
 <li><strong>Формы калия:</strong> Хлоридные для большинства культур</li>
 <li><strong>Сульфатные:</strong> Для чувствительных к хлору культур</li>
 </ul>
-<h2 id="npk">📅 <strong>СЕЗОННЫЕ КОРРЕКТИРОВКИ NPK</strong><a class="headerlink" href="#npk" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="outdoor">🌍 <strong>Открытый грунт (Outdoor)</strong><a class="headerlink" href="#outdoor" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="-">🌸 <strong>Весна (март-май)</strong><a class="headerlink" href="#-" title="Постоянная ссылка">&para;</a></h4>
+<h2 id="npk">📅 <strong>СЕЗОННЫЕ КОРРЕКТИРОВКИ NPK</strong><a class="headerlink" href="#npk" title="Permanent link">&para;</a></h2>
+<h3 id="outdoor">🌍 <strong>Открытый грунт (Outdoor)</strong><a class="headerlink" href="#outdoor" title="Permanent link">&para;</a></h3>
+<h4 id="-">🌸 <strong>Весна (март-май)</strong><a class="headerlink" href="#-" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>N</strong>: +20% (активный рост вегетативной массы)</li>
 <li><strong>P</strong>: +15% (развитие корневой системы)</li>
 <li><strong>K</strong>: +10% (подготовка к цветению)</li>
 </ul>
-<h4 id="-_1">☀️ <strong>Лето (июнь-август)</strong><a class="headerlink" href="#-_1" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="-_1">☀️ <strong>Лето (июнь-август)</strong><a class="headerlink" href="#-_1" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>N</strong>: -10% (снижение вегетативного роста)</li>
 <li><strong>P</strong>: +5% (поддержка цветения)</li>
 <li><strong>K</strong>: +25% (формирование плодов)</li>
 </ul>
-<h4 id="-_2">🍂 <strong>Осень (сентябрь-ноябрь)</strong><a class="headerlink" href="#-_2" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="-_2">🍂 <strong>Осень (сентябрь-ноябрь)</strong><a class="headerlink" href="#-_2" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>N</strong>: -20% (подготовка к покою)</li>
 <li><strong>P</strong>: +10% (накопление питательных веществ)</li>
 <li><strong>K</strong>: +15% (укрепление тканей)</li>
 </ul>
-<h4 id="-_3">❄️ <strong>Зима (декабрь-февраль)</strong><a class="headerlink" href="#-_3" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="-_3">❄️ <strong>Зима (декабрь-февраль)</strong><a class="headerlink" href="#-_3" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>N</strong>: -30% (период покоя)</li>
 <li><strong>P</strong>: +5% (минимальная поддержка)</li>
 <li><strong>K</strong>: +5% (защита от стресса)</li>
 </ul>
-<h3 id="greenhouse">🏠 <strong>Теплица (Greenhouse)</strong><a class="headerlink" href="#greenhouse" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="_26">🌸 <strong>Весна</strong><a class="headerlink" href="#_26" title="Постоянная ссылка">&para;</a></h4>
+<h3 id="greenhouse">🏠 <strong>Теплица (Greenhouse)</strong><a class="headerlink" href="#greenhouse" title="Permanent link">&para;</a></h3>
+<h4 id="_26">🌸 <strong>Весна</strong><a class="headerlink" href="#_26" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>N</strong>: +25% (интенсивный старт)</li>
 <li><strong>P</strong>: +20% (активное корнеобразование)</li>
 <li><strong>K</strong>: +15% (подготовка к цветению)</li>
 </ul>
-<h4 id="_27">☀️ <strong>Лето</strong><a class="headerlink" href="#_27" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="_27">☀️ <strong>Лето</strong><a class="headerlink" href="#_27" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>N</strong>: +10% (поддержка роста)</li>
 <li><strong>P</strong>: +10% (поддержка цветения)</li>
 <li><strong>K</strong>: +30% (формирование урожая)</li>
 </ul>
-<h4 id="_28">🍂 <strong>Осень</strong><a class="headerlink" href="#_28" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="_28">🍂 <strong>Осень</strong><a class="headerlink" href="#_28" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>N</strong>: +15% (продление вегетации)</li>
 <li><strong>P</strong>: +15% (поддержка плодоношения)</li>
 <li><strong>K</strong>: +20% (качество урожая)</li>
 </ul>
-<h4 id="_29">❄️ <strong>Зима</strong><a class="headerlink" href="#_29" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="_29">❄️ <strong>Зима</strong><a class="headerlink" href="#_29" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>N</strong>: +5% (минимальный рост)</li>
 <li><strong>P</strong>: +10% (поддержка развития)</li>
 <li><strong>K</strong>: +15% (стрессоустойчивость)</li>
 </ul>
-<h3 id="_30">🔬 <strong>Научное обоснование сезонных корректировок</strong><a class="headerlink" href="#_30" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="1-n">1. <strong>Азот (N)</strong>:<a class="headerlink" href="#1-n" title="Постоянная ссылка">&para;</a></h4>
+<h3 id="_30">🔬 <strong>Научное обоснование сезонных корректировок</strong><a class="headerlink" href="#_30" title="Permanent link">&para;</a></h3>
+<h4 id="1-n">1. <strong>Азот (N)</strong>:<a class="headerlink" href="#1-n" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Весной:</strong> Повышенная потребность для синтеза белков и хлорофилла</li>
 <li><strong>Летом:</strong> Снижение для предотвращения избыточного вегетативного роста</li>
 <li><strong>Осенью:</strong> Минимизация для подготовки к зимовке</li>
 <li><strong>В теплице:</strong> Более равномерное распределение из-за контролируемых условий</li>
 </ul>
-<h4 id="2-p">2. <strong>Фосфор (P)</strong>:<a class="headerlink" href="#2-p" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="2-p">2. <strong>Фосфор (P)</strong>:<a class="headerlink" href="#2-p" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Критичен для энергетического обмена (ATP)</strong></li>
 <li><strong>Весной:</strong> Развитие корневой системы</li>
@@ -2487,7 +3304,7 @@
 <li><strong>Осенью:</strong> Накопление питательных веществ</li>
 <li><strong>В теплице:</strong> Повышенные дозы из-за интенсивного выращивания</li>
 </ul>
-<h4 id="3-k">3. <strong>Калий (K)</strong>:<a class="headerlink" href="#3-k" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="3-k">3. <strong>Калий (K)</strong>:<a class="headerlink" href="#3-k" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Регулирует водный баланс и транспорт питательных веществ</strong></li>
 <li><strong>Весной:</strong> Подготовка к цветению</li>
@@ -2495,8 +3312,8 @@
 <li><strong>Осенью:</strong> Укрепление тканей</li>
 <li><strong>В теплице:</strong> Повышенные дозы для компенсации стрессов</li>
 </ul>
-<h3 id="_31">📅 <strong>ОБЩИЕ СЕЗОННЫЕ РЕКОМЕНДАЦИИ</strong><a class="headerlink" href="#_31" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="-_4">🌸 <strong>Весна (март-май)</strong><a class="headerlink" href="#-_4" title="Постоянная ссылка">&para;</a></h4>
+<h3 id="_31">📅 <strong>ОБЩИЕ СЕЗОННЫЕ РЕКОМЕНДАЦИИ</strong><a class="headerlink" href="#_31" title="Permanent link">&para;</a></h3>
+<h4 id="-_4">🌸 <strong>Весна (март-май)</strong><a class="headerlink" href="#-_4" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Азот:</strong> Повышенные требования (+20-25%)</li>
 <li><strong>Фосфор:</strong> Развитие корневой системы</li>
@@ -2504,7 +3321,7 @@
 <li><strong>pH:</strong> Проверка и корректировка</li>
 <li><strong>Влажность:</strong> Контроль после таяния снега</li>
 </ul>
-<h4 id="-_5">☀️ <strong>Лето (июнь-август)</strong><a class="headerlink" href="#-_5" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="-_5">☀️ <strong>Лето (июнь-август)</strong><a class="headerlink" href="#-_5" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Азот:</strong> Стандартные дозы</li>
 <li><strong>Фосфор:</strong> Умеренные дозы</li>
@@ -2512,7 +3329,7 @@
 <li><strong>Влажность:</strong> Интенсивный контроль</li>
 <li><strong>EC:</strong> Мониторинг засоления</li>
 </ul>
-<h4 id="-_6">🍂 <strong>Осень (сентябрь-ноябрь)</strong><a class="headerlink" href="#-_6" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="-_6">🍂 <strong>Осень (сентябрь-ноябрь)</strong><a class="headerlink" href="#-_6" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Азот:</strong> Снижение (-20%)</li>
 <li><strong>Фосфор:</strong> Повышенные дозы (+10-15%)</li>
@@ -2520,16 +3337,16 @@
 <li><strong>pH:</strong> Подготовка к зиме</li>
 <li><strong>Влажность:</strong> Контроль дренажа</li>
 </ul>
-<h4 id="-_7">❄️ <strong>Зима (декабрь-февраль)</strong><a class="headerlink" href="#-_7" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="-_7">❄️ <strong>Зима (декабрь-февраль)</strong><a class="headerlink" href="#-_7" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Все элементы:</strong> Минимальные требования</li>
 <li><strong>Мониторинг:</strong> Только критических параметров</li>
 <li><strong>Подготовка:</strong> Планирование весенних работ</li>
 <li><strong>Оборудование:</strong> Проверка и обслуживание</li>
 </ul>
-<h2 id="_32">🔬 <strong>КАЛИБРОВКА И ПОВЕРКА</strong><a class="headerlink" href="#_32" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_33">✅ <strong>ИСПРАВЛЕННАЯ СИСТЕМА КАЛИБРОВКИ</strong><a class="headerlink" href="#_33" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="_34">📊 <strong>Двухэтапная компенсация</strong><a class="headerlink" href="#_34" title="Постоянная ссылка">&para;</a></h4>
+<h2 id="_32">🔬 <strong>КАЛИБРОВКА И ПОВЕРКА</strong><a class="headerlink" href="#_32" title="Permanent link">&para;</a></h2>
+<h3 id="_33">✅ <strong>ИСПРАВЛЕННАЯ СИСТЕМА КАЛИБРОВКИ</strong><a class="headerlink" href="#_33" title="Permanent link">&para;</a></h3>
+<h4 id="_34">📊 <strong>Двухэтапная компенсация</strong><a class="headerlink" href="#_34" title="Permanent link">&para;</a></h4>
 <ol>
 <li><strong>CSV калибровочная таблица (лабораторная поверка)</strong></li>
 <li>Применяется первой ко всем параметрам</li>
@@ -2545,7 +3362,7 @@
 <li>pH поправка по уравнению Нернста</li>
 <li>NPK компенсация по FAO 56 и Eur. J. Soil Sci.</li>
 </ol>
-<h4 id="_35">📋 <strong>Пример калибровочной таблицы</strong><a class="headerlink" href="#_35" title="Постоянная ссылка">&para;</a></h4>
+<h4 id="_35">📋 <strong>Пример калибровочной таблицы</strong><a class="headerlink" href="#_35" title="Permanent link">&para;</a></h4>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a># Пример калибровочной таблицы для JXCT датчика
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a># Формат: сырое_значение,коэффициент_коррекции
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
@@ -2606,43 +3423,43 @@
 <a id="__codelineno-6-58" name="__codelineno-6-58" href="#__codelineno-6-58"></a>1000,0.86
 <a id="__codelineno-6-59" name="__codelineno-6-59" href="#__codelineno-6-59"></a>1500,0.84
 </code></pre></div>
-<h3 id="_36">🔧 <strong>Частота калибровки</strong><a class="headerlink" href="#_36" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_36">🔧 <strong>Частота калибровки</strong><a class="headerlink" href="#_36" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Лабораторная поверка:</strong> Каждые 6 месяцев</li>
 <li><strong>Полевая проверка:</strong> Каждые 2 недели</li>
 <li><strong>Внеочередная калибровка:</strong> При смене типа почвы</li>
 <li><strong>Валидация:</strong> Сравнение с эталонными образцами</li>
 </ul>
-<h3 id="_37">📊 <strong>Контроль качества</strong><a class="headerlink" href="#_37" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_37">📊 <strong>Контроль качества</strong><a class="headerlink" href="#_37" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Дублирование измерений:</strong> 3-5 последовательных измерений</li>
 <li><strong>Отбраковка аномалий:</strong> Исключение значений &gt;2σ</li>
 <li><strong>Временные ряды:</strong> Анализ трендов</li>
 <li><strong>Сравнение с прогнозами:</strong> Валидация моделей</li>
 </ul>
-<h2 id="_38">🎯 <strong>ПРАКТИЧЕСКИЕ РЕКОМЕНДАЦИИ</strong><a class="headerlink" href="#_38" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="-_8">📱 <strong>Использование веб-интерфейса</strong><a class="headerlink" href="#-_8" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_38">🎯 <strong>ПРАКТИЧЕСКИЕ РЕКОМЕНДАЦИИ</strong><a class="headerlink" href="#_38" title="Permanent link">&para;</a></h2>
+<h3 id="-_8">📱 <strong>Использование веб-интерфейса</strong><a class="headerlink" href="#-_8" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Регулярный мониторинг:</strong> Ежедневная проверка показаний</li>
 <li><strong>Анализ трендов:</strong> Еженедельный просмотр данных</li>
 <li><strong>Экспорт данных:</strong> Ежемесячное сохранение отчетов</li>
 <li><strong>Настройка оповещений:</strong> При критических значениях</li>
 </ul>
-<h3 id="_39">🔧 <strong>Техническое обслуживание</strong><a class="headerlink" href="#_39" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_39">🔧 <strong>Техническое обслуживание</strong><a class="headerlink" href="#_39" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Очистка датчика:</strong> Каждые 2 недели</li>
 <li><strong>Проверка соединений:</strong> Ежемесячно</li>
 <li><strong>Обновление прошивки:</strong> При появлении новых версий</li>
 <li><strong>Проверка настроек:</strong> Регулярная валидация конфигурации</li>
 </ul>
-<h3 id="_40">📊 <strong>Интерпретация данных</strong><a class="headerlink" href="#_40" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_40">📊 <strong>Интерпретация данных</strong><a class="headerlink" href="#_40" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Комплексный анализ:</strong> Учет всех параметров</li>
 <li><strong>Сезонные корректировки:</strong> Применение поправок</li>
 <li><strong>Сравнение с нормами:</strong> Для конкретных культур</li>
 <li><strong>Прогнозирование:</strong> Планирование агротехнических мероприятий</li>
 </ul>
-<h3 id="_41">🔧 <strong>Рекомендации по реализации</strong><a class="headerlink" href="#_41" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_41">🔧 <strong>Рекомендации по реализации</strong><a class="headerlink" href="#_41" title="Permanent link">&para;</a></h3>
 <ol>
 <li><strong>Добавить в <code>computeRecommendations()</code> сезонные коэффициенты для NPK</strong></li>
 <li><strong>Учитывать тип выращивания (теплица/открытый грунт)</strong></li>
@@ -2650,17 +3467,19 @@
 <li><strong>Возможно, добавить отдельные профили для разных культур</strong></li>
 </ol>
 <hr />
-<p><strong>Версия документации:</strong> 3.6.7
+<p><strong>Версия документации:</strong> яю3 . 6 . 8 
+ 
+ 
 <strong>Дата обновления:</strong> 2025-06-24
 <strong>Статус:</strong> ✅ Актуально с исправленной логикой калибровки и сезонными корректировками</p>
-<h2 id="_42">📞 Поддержка<a class="headerlink" href="#_42" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_43">💬 Связь с разработчиками<a class="headerlink" href="#_43" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_42">📞 Поддержка<a class="headerlink" href="#_42" title="Permanent link">&para;</a></h2>
+<h3 id="_43">💬 Связь с разработчиками<a class="headerlink" href="#_43" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>Telegram:</strong> <a href="https://t.me/Gfermoto">@Gfermoto</a></li>
 <li><strong>GitHub Issues:</strong> <a href="https://github.com/Gfermoto/soil-sensor-7in1/issues">Сообщить о проблеме</a></li>
 <li><strong>Документация:</strong> <a href="https://gfermoto.github.io/soil-sensor-7in1/">GitHub Pages</a></li>
 </ul>
-<h3 id="_44">📚 Дополнительные ресурсы<a class="headerlink" href="#_44" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_44">📚 Дополнительные ресурсы<a class="headerlink" href="#_44" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="../USER_GUIDE/">Руководство пользователя</a></li>
 <li><a href="../TECHNICAL_DOCS/">Техническая документация</a></li>
@@ -2671,7 +3490,7 @@
 <li><a href="../MODBUS_PROTOCOL/">Протокол Modbus</a></li>
 <li><a href="../VERSION_MANAGEMENT/">Управление версиями</a></li>
 </ul>
-<h3 id="_45">🔗 Полезные ссылки<a class="headerlink" href="#_45" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_45">🔗 Полезные ссылки<a class="headerlink" href="#_45" title="Permanent link">&para;</a></h3>
 <ul>
 <li><a href="https://github.com/Gfermoto/soil-sensor-7in1">🌱 GitHub репозиторий</a> - Исходный код проекта</li>
 <li><a href="../../dev/QA_REFACTORING_PLAN_2025H2/">📋 План рефакторинга</a> - Планы развития на 2025</li>
@@ -2685,6 +3504,27 @@
 
 
 
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Последнее обновление">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="3 июля 2025 г. 04:20:09 UTC">3 июля 2025 г.</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
 
 
 
@@ -2712,6 +3552,10 @@
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
   
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024-2025 EYERA Development Team
+    </div>
+  
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
@@ -2726,7 +3570,10 @@
     
     
     
-    <a href="https://github.com/Gfermoto/soil-sensor-7in1" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
+      
+      
+    
+    <a href="https://github.com/Gfermoto/soil-sensor-7in1" target="_blank" rel="noopener" title="github.com" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
@@ -2734,8 +3581,8 @@
     
     
     
-    <a href="https://t.me/jxct_support" target="_blank" rel="noopener" title="Telegram Support" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8m114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.45 10.45 0 0 1 3.53 6.716 43.8 43.8 0 0 1 .417 9.769"/></svg>
+    <a href="mailto:support@eyera.tech" target="_blank" rel="noopener" title="" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l217.6 163.2c11.4 8.5 27 8.5 38.4 0l217.6-163.2c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 176v208c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V176L294.4 339.2a63.9 63.9 0 0 1-76.8 0z"/></svg>
     </a>
   
 </div>
@@ -2752,7 +3599,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>

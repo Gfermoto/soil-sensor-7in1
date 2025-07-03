@@ -470,3 +470,77 @@ void setup()
 
 void loop() {}
 #endif  // ARDUINO
+
+// Native entry point for Windows/Linux testing
+#ifndef ARDUINO
+int main()
+{
+    Serial.begin(115200);
+    delay(2000);
+    UNITY_BEGIN();
+
+    // Тесты валидации конфигурации
+    RUN_TEST(test_validateSSID_empty);
+    RUN_TEST(test_validateSSID_valid);
+    RUN_TEST(test_validateSSID_too_long);
+    RUN_TEST(test_validateSSID_boundary);
+    RUN_TEST(test_validatePassword_empty);
+    RUN_TEST(test_validatePassword_short);
+    RUN_TEST(test_validatePassword_valid);
+    RUN_TEST(test_validatePassword_too_long);
+    RUN_TEST(test_validateMQTTServer_empty);
+    RUN_TEST(test_validateMQTTServer_valid);
+    RUN_TEST(test_validateMQTTServer_with_spaces);
+    RUN_TEST(test_validateMQTTPort_valid);
+    RUN_TEST(test_validateMQTTPort_invalid_low);
+    RUN_TEST(test_validateMQTTPort_invalid_high);
+    RUN_TEST(test_validateThingSpeakAPIKey_empty);
+    RUN_TEST(test_validateThingSpeakAPIKey_wrong_length);
+    RUN_TEST(test_validateThingSpeakAPIKey_valid);
+    RUN_TEST(test_validateThingSpeakAPIKey_invalid_chars);
+
+    // Тесты валидации интервалов
+    RUN_TEST(test_validateInterval_valid);
+    RUN_TEST(test_validateInterval_too_low);
+    RUN_TEST(test_validateInterval_too_high);
+    RUN_TEST(test_validateSensorReadInterval);
+    RUN_TEST(test_validateMQTTPublishInterval);
+    RUN_TEST(test_validateThingSpeakInterval);
+    RUN_TEST(test_validateNTPInterval);
+
+    // Тесты валидации данных датчика
+    RUN_TEST(test_validateRange_valid);
+    RUN_TEST(test_validateRange_too_low);
+    RUN_TEST(test_validateRange_too_high);
+    RUN_TEST(test_validateTemperature_valid);
+    RUN_TEST(test_validateTemperature_too_low);
+    RUN_TEST(test_validateTemperature_too_high);
+    RUN_TEST(test_validateHumidity_valid);
+    RUN_TEST(test_validateHumidity_invalid);
+    RUN_TEST(test_validatePH_valid);
+    RUN_TEST(test_validatePH_invalid);
+    RUN_TEST(test_validateEC_valid);
+    RUN_TEST(test_validateEC_invalid);
+    RUN_TEST(test_validateNPK_valid);
+    RUN_TEST(test_validateNPK_invalid);
+
+    // Тесты комплексной валидации
+    RUN_TEST(test_validateFullConfig_valid);
+    RUN_TEST(test_validateFullConfig_invalid_ssid);
+    RUN_TEST(test_validateFullConfig_invalid_password);
+    RUN_TEST(test_validateFullConfig_mqtt_enabled_invalid);
+
+    // Тесты вспомогательных функций
+    RUN_TEST(test_isValidIPAddress_valid);
+    RUN_TEST(test_isValidIPAddress_invalid);
+    RUN_TEST(test_isValidHostname_valid);
+    RUN_TEST(test_isValidHostname_invalid);
+
+    // Тесты форматирования ошибок
+    RUN_TEST(test_formatValidationErrors);
+    RUN_TEST(test_formatSensorValidationErrors);
+
+    UNITY_END();
+    return 0;
+}
+#endif  // !ARDUINO
