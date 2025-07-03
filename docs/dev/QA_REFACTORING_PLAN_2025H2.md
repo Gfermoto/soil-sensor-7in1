@@ -25,13 +25,13 @@
 ---
 
 ## 3. Методика QA-аудита
-1. **Инструменты статического анализа**
-   * clang-tidy (modernize-*, performance-*, readability-*)
-   * Cppcheck (MISRA subset)
-   * Sonar C++ (community edition)
-2. **Поиск дублирования** — `cpp-dependencies`, `cloc --by-file --duplicates`.
-3. **Граф зависимостей** — `include-what-you-use` + `Graphviz`.
-4. **Сложность** — Lizard: CCN ≥ 15 → hot-spot.
+1. **Инструменты статического анализа**  
+   * clang-tidy (modernize-*, performance-*, readability-*)  
+   * Cppcheck (MISRA subset)  
+   * Sonar C++ (community edition)  
+2. **Поиск дублирования** — `cpp-dependencies`, `cloc --by-file --duplicates`.  
+3. **Граф зависимостей** — `include-what-you-use` + `Graphviz`.  
+4. **Сложность** — Lizard: CCN ≥ 15 → hot-spot.  
 5. **Runtime-аудит** — AddressSanitizer + LeakSanitizer (native build).
 6. **Security audit** — OWASP IoT Top 10, dependency scanning.
 
@@ -47,7 +47,7 @@
 | 28-29 | Refactor Sprint-1: **low-hanging** (duplication, naming) | DevTeam |
 | 30 (22-26 июл) | Регресс-тесты + code-coverage отчёт | QA |
 | 31-33 | Refactor Sprint-2: **architecture** (циклы, включает routing split) | DevTeam |
-| 34 (19-23 авг) | Beta v3.6.7 (core stability focus) | FW-Lead |
+| 34 (19-23 авг) | Beta v3.6.0 (core stability focus) | FW-Lead |
 
 ---
 
@@ -91,8 +91,8 @@
 
 © JXCT Team, 2025 — документ поддерживается автоматически (ссылка в CI: nightly‐gen-tech-debt).
 
-- **Покрытие тестов:** 75.2% (было 31%)
+- **Покрытие тестов:** 75.2% (было 31%) 
 
 ### ✅ **ЗАВЕРШЁННЫЕ УЛУЧШЕНИЯ:**
 - **CSRF защита:** ✅ **РЕАЛИЗОВАНА** - все POST эндпоинты защищены
-- **Unit тесты калибровки:** ✅ **СОЗДАНЫ** - 8 тестов с 100% прохождением
+- **Unit тесты калибровки:** ✅ **СОЗДАНЫ** - 8 тестов с 100% прохождением 

@@ -115,7 +115,7 @@ python scripts/analyze_technical_debt.py
 - ✅ API endpoints: 8/8
 - ✅ OTA обновления: 3/3
 
-**📊 [Детальная разбивка тестов](test_reports/comprehensive-test-summary.md)**
+**📊 [Детальная разбивка тестов](test_reports/MASTER_TEST_SUMMARY.md)**
 
 ---
 

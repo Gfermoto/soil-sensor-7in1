@@ -13,16 +13,16 @@
 
 ## Основные разделы
 
-### 📚 [API Reference](https://gfermoto.github.io/soil-sensor-7in1/api/html/index.html)
+### 📚 [API Reference](../site/api-overview/index.html)
 Главная страница API документации с обзором всех компонентов.
 
-### 🔧 [Исходный код](https://gfermoto.github.io/soil-sensor-7in1/api/html/files.html)
+### 🔧 [Исходный код](../site/api-overview/files.html)
 Список всех файлов исходного кода с подробным описанием.
 
-### 📋 [Список функций](https://gfermoto.github.io/soil-sensor-7in1/api/html/functions.html)
+### 📋 [Список функций](../site/api-overview/functions.html)
 Алфавитный список всех функций с описанием параметров и возвращаемых значений.
 
-### 🏗️ [Структуры данных](https://gfermoto.github.io/soil-sensor-7in1/api/html/annotated.html)
+### 🏗️ [Структуры данных](../site/api-overview/annotated.html)
 Определения всех структур данных, классов и интерфейсов.
 
 ## Основные компоненты
@@ -89,4 +89,4 @@ doxygen Doxyfile
 
 1. Создайте Issue в GitHub репозитории
 2. Обратитесь в Telegram: [@jxct_support](https://t.me/jxct_support)
-3. Присоединитесь к Discord серверу: [JXCT Community](https://discord.gg/jxct)
+3. Присоединитесь к Discord серверу: [JXCT Community](https://discord.gg/jxct) 

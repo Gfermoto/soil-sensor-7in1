@@ -284,4 +284,4 @@ console.log(`Загрузка виджета: ${end - start}ms`);
 - ✅ **Удобство** доступа к информации
 - ✅ **Расширяемость** для новых типов отчётов
 
-Для получения дополнительной помощи обращайтесь к [документации проекта](https://github.com/Gfermoto/soil-sensor-7in1#readme) или создавайте [issue](https://github.com/Gfermoto/soil-sensor-7in1/issues).
+Для получения дополнительной помощи обращайтесь к [документации проекта](index.md) или создавайте [issue](https://github.com/Gfermoto/soil-sensor-7in1/issues). 

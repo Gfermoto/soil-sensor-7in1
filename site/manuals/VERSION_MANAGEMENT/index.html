@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Документация для датчика почвы JXCT 7-в-1 v3.6.9 - Профессиональная IoT система мониторинга почвы на базе ESP32">
+        <meta name="description" content="Документация для датчика почвы JXCT 7-в-1 (v3.6.7) - Профессиональная IoT система мониторинга почвы на базе ESP32">
       
       
         <meta name="author" content="EYERA Development Team">
@@ -18,7 +18,7 @@
         <link rel="prev" href="../CONFIG_MANAGEMENT/">
       
       
-        <link rel="next" href="../WIRING_DIAGRAM/">
+        <link rel="next" href="../MODBUS_PROTOCOL/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -26,7 +26,7 @@
     
     
       
-        <title>Управление версиями - JXCT Soil Sensor v3.6.9</title>
+        <title>Управление версиями - 🌱 JXCT 7-в-1 Датчик Почвы</title>
       
     
     
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#jxct" class="md-skip">
+        <a href="#-управление-версиями-jxct" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href="../.." title="JXCT Soil Sensor v3.6.9" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.6.9" data-md-component="logo">
+    <a href="../.." title="🌱 JXCT 7-в-1 Датчик Почвы" class="md-header__button md-logo" aria-label="🌱 JXCT 7-в-1 Датчик Почвы" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -110,7 +110,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            JXCT Soil Sensor v3.6.9
+            🌱 JXCT 7-в-1 Датчик Почвы
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -129,9 +129,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Переключить на тёмную тему"  type="radio" name="__palette" id="__palette_0">
     
-      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+      <label class="md-header__button md-icon" title="Переключить на тёмную тему" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -139,9 +139,9 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="green" data-md-color-accent="light-green"  aria-label="Переключить на светлую тему"  type="radio" name="__palette" id="__palette_1">
     
-      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+      <label class="md-header__button md-icon" title="Переключить на светлую тему" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
       </label>
     
@@ -173,16 +173,13 @@
       </label>
       <nav class="md-search__options" aria-label="Поиск">
         
-          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Поделиться" aria-label="Поделиться" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
-            
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
-          </a>
-        
         <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
           
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -249,17 +246,41 @@
   
   
   
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../USER_GUIDE/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  👤 Для пользователя
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
     
   
   
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../USER_GUIDE/" class="md-tabs__link">
+        <a href="../TECHNICAL_DOCS/" class="md-tabs__link">
           
   
   
-  Руководства
+    
+  
+  🛠️ Для инженера
 
         </a>
       </li>
@@ -279,7 +300,9 @@
           
   
   
-  Разработка
+    
+  
+  🌐 API и интеграция
 
         </a>
       </li>
@@ -295,11 +318,13 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../REPORTS_INTEGRATION/" class="md-tabs__link">
+        <a href="../../TESTING_GUIDE/" class="md-tabs__link">
           
   
   
-  Отчеты
+    
+  
+  👨‍💻 Разработка
 
         </a>
       </li>
@@ -312,17 +337,20 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../NAVIGATION/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../STAGE_2_COMPLETION_REPORT/" class="md-tabs__link">
+          
   
   
     
   
-  Навигация
+  📊 Отчёты
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -331,17 +359,20 @@
   
   
   
-    <li class="md-tabs__item">
-      <a href="../../CONTRIBUTING_DOCS/" class="md-tabs__link">
-        
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../NAVIGATION/" class="md-tabs__link">
+          
   
   
     
   
-  Документация для разработчиков
+  📖 Дополнительно
 
-      </a>
-    </li>
+        </a>
+      </li>
+    
   
 
       
@@ -365,15 +396,17 @@
   
 
 
-<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  
+
+<nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="JXCT Soil Sensor v3.6.9" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.6.9" data-md-component="logo">
+    <a href="../.." title="🌱 JXCT 7-в-1 Датчик Почвы" class="md-nav__button md-logo" aria-label="🌱 JXCT 7-в-1 Датчик Почвы" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
 
     </a>
-    JXCT Soil Sensor v3.6.9
+    🌱 JXCT 7-в-1 Датчик Почвы
   </label>
   
     <div class="md-nav__source">
@@ -416,36 +449,43 @@
       
   
   
-    
   
   
-  
-    
-    
     
     
       
         
+      
         
+      
+        
+      
+        
+      
+    
+    
+    
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
-    Руководства
+    👤 Для пользователя
     
   </span>
   
@@ -453,10 +493,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            Руководства
+            👤 Для пользователя
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -490,12 +530,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../TECHNICAL_DOCS/" class="md-nav__link">
+      <a href="../AGRO_RECOMMENDATIONS/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Техническая документация
+    Агрономические рекомендации
     
   </span>
   
@@ -518,7 +558,118 @@
   
   
   <span class="md-ellipsis">
-    Руководство по компенсации
+    Компенсация показаний
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../WIRING_DIAGRAM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Схема подключения
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    🛠️ Для инженера
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            🛠️ Для инженера
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TECHNICAL_DOCS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Техническая документация
     
   </span>
   
@@ -595,6 +746,8 @@
       
         
 
+  
+
 <nav class="md-nav md-nav--secondary" aria-label="Содержание">
   
   
@@ -609,7 +762,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#-содержание" class="md-nav__link">
     <span class="md-ellipsis">
       📖 Содержание
     </span>
@@ -618,7 +771,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
+  <a href="#-обзор" class="md-nav__link">
     <span class="md-ellipsis">
       🎯 Обзор
     </span>
@@ -627,7 +780,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
+  <a href="#-файл-версии" class="md-nav__link">
     <span class="md-ellipsis">
       📁 Файл версии
     </span>
@@ -636,7 +789,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
+  <a href="#-как-изменить-версию" class="md-nav__link">
     <span class="md-ellipsis">
       🔧 Как изменить версию
     </span>
@@ -646,7 +799,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
+  <a href="#простой-способ" class="md-nav__link">
     <span class="md-ellipsis">
       Простой способ
     </span>
@@ -655,7 +808,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
+  <a href="#автоматическое-обновление" class="md-nav__link">
     <span class="md-ellipsis">
       Автоматическое обновление
     </span>
@@ -669,7 +822,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
+  <a href="#-доступные-макросы" class="md-nav__link">
     <span class="md-ellipsis">
       📋 Доступные макросы
     </span>
@@ -679,7 +832,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
+  <a href="#основные-макросы-версии" class="md-nav__link">
     <span class="md-ellipsis">
       Основные макросы версии
     </span>
@@ -688,7 +841,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
+  <a href="#информация-о-сборке" class="md-nav__link">
     <span class="md-ellipsis">
       Информация о сборке
     </span>
@@ -697,7 +850,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
+  <a href="#константы-устройства" class="md-nav__link">
     <span class="md-ellipsis">
       Константы устройства
     </span>
@@ -711,7 +864,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
+  <a href="#-сравнение-версий" class="md-nav__link">
     <span class="md-ellipsis">
       🔍 Сравнение версий
     </span>
@@ -720,7 +873,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
+  <a href="#-преимущества" class="md-nav__link">
     <span class="md-ellipsis">
       🚀 Преимущества
     </span>
@@ -730,7 +883,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
+  <a href="#-до-проблемы" class="md-nav__link">
     <span class="md-ellipsis">
       ✅ До (проблемы):
     </span>
@@ -739,7 +892,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
+  <a href="#-после-решение" class="md-nav__link">
     <span class="md-ellipsis">
       ✅ После (решение):
     </span>
@@ -753,7 +906,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
+  <a href="#-примеры-использования" class="md-nav__link">
     <span class="md-ellipsis">
       📝 Примеры использования
     </span>
@@ -763,7 +916,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#c" class="md-nav__link">
+  <a href="#в-коде-c" class="md-nav__link">
     <span class="md-ellipsis">
       В коде C++
     </span>
@@ -772,7 +925,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#mqtt" class="md-nav__link">
+  <a href="#в-mqtt-сообщениях" class="md-nav__link">
     <span class="md-ellipsis">
       В MQTT сообщениях
     </span>
@@ -781,7 +934,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#-" class="md-nav__link">
+  <a href="#в-веб-интерфейсе" class="md-nav__link">
     <span class="md-ellipsis">
       В веб-интерфейсе
     </span>
@@ -795,7 +948,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
+  <a href="#-процесс-релиза" class="md-nav__link">
     <span class="md-ellipsis">
       🔄 Процесс релиза
     </span>
@@ -804,7 +957,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
+  <a href="#-важные-замечания" class="md-nav__link">
     <span class="md-ellipsis">
       ⚠️ Важные замечания
     </span>
@@ -813,7 +966,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
+  <a href="#-результат" class="md-nav__link">
     <span class="md-ellipsis">
       🎯 Результат
     </span>
@@ -822,7 +975,7 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
+  <a href="#-поддержка" class="md-nav__link">
     <span class="md-ellipsis">
       📞 Поддержка
     </span>
@@ -832,7 +985,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
+  <a href="#-связь-с-разработчиками" class="md-nav__link">
     <span class="md-ellipsis">
       💬 Связь с разработчиками
     </span>
@@ -841,7 +994,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
+  <a href="#-дополнительные-ресурсы" class="md-nav__link">
     <span class="md-ellipsis">
       📚 Дополнительные ресурсы
     </span>
@@ -850,7 +1003,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
+  <a href="#-полезные-ссылки" class="md-nav__link">
     <span class="md-ellipsis">
       🔗 Полезные ссылки
     </span>
@@ -879,81 +1032,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../WIRING_DIAGRAM/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Схема подключения
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
       <a href="../MODBUS_PROTOCOL/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     Протокол Modbus
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../API/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    API документация
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../AGRO_RECOMMENDATIONS/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Агрономические рекомендации
     
   </span>
   
@@ -979,6 +1063,12 @@
   
     
     
+      
+        
+      
+        
+      
+    
     
     
       
@@ -993,15 +1083,15 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
-    Разработка
+    🌐 API и интеграция
     
   </span>
   
@@ -1009,10 +1099,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            Разработка
+            🌐 API и интеграция
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1046,12 +1136,151 @@
   
   
     <li class="md-nav__item">
+      <a href="../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    👨‍💻 Разработка
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            👨‍💻 Разработка
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../TESTING_GUIDE/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     Руководство по тестированию
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CURRENT_TEST_RESULTS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Текущие результаты
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../REPORTS_INTEGRATION/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Интеграция отчётов
     
   </span>
   
@@ -1092,7 +1321,30 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/TECH_DEBT_QUICK_REFERENCE/" class="md-nav__link">
+      <a href="../../dev/QA_REFACTORING_PLAN_2025H2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    План рефакторинга
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/TECH_DEBT_REPORT_2025-06/" class="md-nav__link">
         
   
   
@@ -1115,12 +1367,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../dev/QA_REFACTORING_PLAN_2025H2/" class="md-nav__link">
+      <a href="../../dev/TECHNICAL_DEBT_QUICK_REFERENCE/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    План рефакторинга
+    Быстрая справка по техдолгу
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING_DOCS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Участие в проекте
     
   </span>
   
@@ -1146,6 +1421,16 @@
   
     
     
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
     
     
       
@@ -1160,15 +1445,15 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
-    Отчеты
+    📊 Отчёты
     
   </span>
   
@@ -1176,58 +1461,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
-            Отчеты
+            📊 Отчёты
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../REPORTS_INTEGRATION/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Интеграция отчетов
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../CURRENT_TEST_RESULTS/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Текущие результаты тестов
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1241,7 +1480,7 @@
   
   
   <span class="md-ellipsis">
-    Отчет о завершении этапа 2
+    Отчёт о завершении Этапа 2
     
   </span>
   
@@ -1282,12 +1521,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../../DUPLICATION_ANALYSIS_DETAILED/" class="md-nav__link">
+      <a href="../../TESTING_QUICK_REFERENCE/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Анализ дублирования
+    Быстрая справка по тестированию
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TECHNICAL_DEBT_QUICK_REFERENCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Быстрая справка по техдолгу
     
   </span>
   
@@ -1311,6 +1573,55 @@
   
   
   
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    📖 Дополнительно
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            📖 Дополнительно
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
     <li class="md-nav__item">
       <a href="../../NAVIGATION/" class="md-nav__link">
         
@@ -1326,25 +1637,11 @@
     </li>
   
 
-    
+              
+            
+          </ul>
+        </nav>
       
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../CONTRIBUTING_DOCS/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Документация для разработчиков
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1355,287 +1652,6 @@
                 </div>
               </div>
             
-            
-              
-              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
-                <div class="md-sidebar__scrollwrap">
-                  <div class="md-sidebar__inner">
-                    
-
-<nav class="md-nav md-nav--secondary" aria-label="Содержание">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Содержание
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
-    <span class="md-ellipsis">
-      📖 Содержание
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_2" class="md-nav__link">
-    <span class="md-ellipsis">
-      🎯 Обзор
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_3" class="md-nav__link">
-    <span class="md-ellipsis">
-      📁 Файл версии
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_4" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔧 Как изменить версию
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🔧 Как изменить версию">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_5" class="md-nav__link">
-    <span class="md-ellipsis">
-      Простой способ
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_6" class="md-nav__link">
-    <span class="md-ellipsis">
-      Автоматическое обновление
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_7" class="md-nav__link">
-    <span class="md-ellipsis">
-      📋 Доступные макросы
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📋 Доступные макросы">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_8" class="md-nav__link">
-    <span class="md-ellipsis">
-      Основные макросы версии
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    <span class="md-ellipsis">
-      Информация о сборке
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    <span class="md-ellipsis">
-      Константы устройства
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔍 Сравнение версий
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_12" class="md-nav__link">
-    <span class="md-ellipsis">
-      🚀 Преимущества
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="🚀 Преимущества">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_13" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ До (проблемы):
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_14" class="md-nav__link">
-    <span class="md-ellipsis">
-      ✅ После (решение):
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_15" class="md-nav__link">
-    <span class="md-ellipsis">
-      📝 Примеры использования
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📝 Примеры использования">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#c" class="md-nav__link">
-    <span class="md-ellipsis">
-      В коде C++
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#mqtt" class="md-nav__link">
-    <span class="md-ellipsis">
-      В MQTT сообщениях
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#-" class="md-nav__link">
-    <span class="md-ellipsis">
-      В веб-интерфейсе
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_16" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔄 Процесс релиза
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_17" class="md-nav__link">
-    <span class="md-ellipsis">
-      ⚠️ Важные замечания
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_18" class="md-nav__link">
-    <span class="md-ellipsis">
-      🎯 Результат
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_19" class="md-nav__link">
-    <span class="md-ellipsis">
-      📞 Поддержка
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="📞 Поддержка">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#_20" class="md-nav__link">
-    <span class="md-ellipsis">
-      💬 Связь с разработчиками
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_21" class="md-nav__link">
-    <span class="md-ellipsis">
-      📚 Дополнительные ресурсы
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#_22" class="md-nav__link">
-    <span class="md-ellipsis">
-      🔗 Полезные ссылки
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-                  </div>
-                </div>
-              </div>
             
           
           
@@ -1648,7 +1664,7 @@
   
     <a href="https://github.com/Gfermoto/soil-sensor-7in1/edit/main/docs/manuals/VERSION_MANAGEMENT.md" title="Редактировать страницу" class="md-content__button md-icon">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75z"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
   
   
@@ -1657,19 +1673,17 @@
     
     <a href="https://github.com/Gfermoto/soil-sensor-7in1/raw/main/docs/manuals/VERSION_MANAGEMENT.md" title="Посмотреть исходный код страницы" class="md-content__button md-icon">
       
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0 8a5 5 0 0 1-5-5 5 5 0 0 1 5-5 5 5 0 0 1 5 5 5 5 0 0 1-5 5m0-12.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="jxct">📋 Управление версиями JXCT<a class="headerlink" href="#jxct" title="Permanent link">&para;</a></h1>
-<p><strong>Дата:</strong> Июнь 2025
-<strong>Версия:</strong> яю3 . 6 . 8 
- 
- </p>
+<h1 id="-управление-версиями-jxct">📋 Управление версиями JXCT<a class="headerlink" href="#-управление-версиями-jxct" title="Постоянная ссылка">&para;</a></h1>
+<p><strong>Дата:</strong> Июнь 2025<br />
+<strong>Версия:</strong> 3.6.7</p>
 <p><strong>Автор:</strong> JXCT Development Team</p>
 <hr />
-<h2 id="_1">📖 Содержание<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h2 id="-содержание">📖 Содержание<a class="headerlink" href="#-содержание" title="Постоянная ссылка">&para;</a></h2>
 <ol>
 <li><a href="#-обзор">🎯 Обзор</a></li>
 <li><a href="#-файл-версии">📁 Файл версии</a></li>
@@ -1683,16 +1697,16 @@
 <li><a href="#-результат">🎯 Результат</a></li>
 </ol>
 <hr />
-<h2 id="_2">🎯 Обзор<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h2 id="-обзор">🎯 Обзор<a class="headerlink" href="#-обзор" title="Постоянная ссылка">&para;</a></h2>
 <p>Начиная с версии 2.4.5, проект JXCT использует <strong>централизованное управление версией</strong>. Это означает, что версия определяется в одном месте и автоматически обновляется во всех частях проекта.</p>
-<h2 id="_3">📁 Файл версии<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<h2 id="-файл-версии">📁 Файл версии<a class="headerlink" href="#-файл-версии" title="Постоянная ссылка">&para;</a></h2>
 <p><strong>Файл:</strong> <code>include/version.h</code></p>
 <p>Это единственное место, где нужно изменять версию проекта.</p>
-<h2 id="_4">🔧 Как изменить версию<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<h3 id="_5">Простой способ<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<h2 id="-как-изменить-версию">🔧 Как изменить версию<a class="headerlink" href="#-как-изменить-версию" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="простой-способ">Простой способ<a class="headerlink" href="#простой-способ" title="Постоянная ссылка">&para;</a></h3>
 <p>Отредактируйте файл <code>include/version.h</code> и измените только эти три строки:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="cp">#define JXCT_VERSION_MAJOR 2    </span><span class="c1">// Основная версия</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#define JXCT_VERSION_MINOR 4    </span><span class="c1">// Минорная версия</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="cp">#define JXCT_VERSION_MINOR 4    </span><span class="c1">// Минорная версия  </span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="cp">#define JXCT_VERSION_PATCH 5    </span><span class="c1">// Патч версия</span>
 </code></pre></div>
 <p><strong>Пример:</strong> Для версии 2.5.0:
@@ -1700,7 +1714,7 @@
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="cp">#define JXCT_VERSION_MINOR 5</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="cp">#define JXCT_VERSION_PATCH 0</span>
 </code></pre></div></p>
-<h3 id="_6">Автоматическое обновление<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<h3 id="автоматическое-обновление">Автоматическое обновление<a class="headerlink" href="#автоматическое-обновление" title="Постоянная ссылка">&para;</a></h3>
 <p>После изменения версии в <code>version.h</code>, она автоматически обновится в:</p>
 <ul>
 <li>✅ <strong>MQTT сообщениях</strong> (<code>sw_version</code> в Home Assistant)</li>
@@ -1710,26 +1724,26 @@
 <li>✅ <strong>Логах системы</strong></li>
 <li>✅ <strong>OTA обновлениях</strong></li>
 </ul>
-<h2 id="_7">📋 Доступные макросы<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<h3 id="_8">Основные макросы версии<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<h2 id="-доступные-макросы">📋 Доступные макросы<a class="headerlink" href="#-доступные-макросы" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="основные-макросы-версии">Основные макросы версии<a class="headerlink" href="#основные-макросы-версии" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">JXCT_VERSION_MAJOR</span><span class="w">          </span><span class="c1">// 2</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">JXCT_VERSION_MINOR</span><span class="w">          </span><span class="c1">// 4</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">JXCT_VERSION_MINOR</span><span class="w">          </span><span class="c1">// 4  </span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="n">JXCT_VERSION_PATCH</span><span class="w">          </span><span class="c1">// 5</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">JXCT_VERSION_STRING</span><span class="w">         </span><span class="c1">// &quot;2.4.5&quot;</span>
 <a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">JXCT_VERSION_CODE</span><span class="w">           </span><span class="c1">// 20405 (для сравнения)</span>
 </code></pre></div>
-<h3 id="_9">Информация о сборке<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<h3 id="информация-о-сборке">Информация о сборке<a class="headerlink" href="#информация-о-сборке" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">JXCT_BUILD_DATE</span><span class="w">             </span><span class="c1">// &quot;Dec 25 2024&quot;</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">JXCT_BUILD_TIME</span><span class="w">             </span><span class="c1">// &quot;15:30:45&quot;</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">JXCT_FULL_VERSION_STRING</span><span class="w">    </span><span class="c1">// &quot;2.4.5 (built Dec 25 2024 15:30:45)&quot;</span>
 </code></pre></div>
-<h3 id="_10">Константы устройства<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<h3 id="константы-устройства">Константы устройства<a class="headerlink" href="#константы-устройства" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">DEVICE_MANUFACTURER</span><span class="p">[]</span><span class="w">       </span><span class="c1">// &quot;Eyera&quot;</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">DEVICE_MODEL</span><span class="p">[]</span><span class="w">             </span><span class="c1">// &quot;JXCT-7in1&quot;</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">DEVICE_SW_VERSION</span><span class="p">[]</span><span class="w">        </span><span class="c1">// &quot;2.4.5&quot; (автоматически)</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">FIRMWARE_VERSION</span><span class="w">           </span><span class="c1">// &quot;2.4.5&quot; (для совместимости)</span>
 </code></pre></div>
-<h2 id="_11">🔍 Сравнение версий<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<h2 id="-сравнение-версий">🔍 Сравнение версий<a class="headerlink" href="#-сравнение-версий" title="Постоянная ссылка">&para;</a></h2>
 <p>Для проверки версии в коде:</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// Проверка минимальной версии</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="cp">#if JXCT_VERSION_AT_LEAST(2, 4, 5)</span>
@@ -1741,23 +1755,23 @@
 <a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="c1">// Код только для версии 2.4.5</span>
 <a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="cp">#endif</span>
 </code></pre></div>
-<h2 id="_12">🚀 Преимущества<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
-<h3 id="_13">✅ До (проблемы):<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<h2 id="-преимущества">🚀 Преимущества<a class="headerlink" href="#-преимущества" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-до-проблемы">✅ До (проблемы):<a class="headerlink" href="#-до-проблемы" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li>Версия была разбросана по 4+ файлам</li>
 <li>При обновлении легко забыть какой-то файл</li>
 <li>Версии в MQTT и веб-интерфейсе могли не совпадать</li>
 <li>Ручное обновление каждого места</li>
 </ul>
-<h3 id="_14">✅ После (решение):<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<h3 id="-после-решение">✅ После (решение):<a class="headerlink" href="#-после-решение" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li><strong>Одно место</strong> для изменения версии</li>
 <li><strong>Автоматическое обновление</strong> везде</li>
 <li><strong>Гарантированная согласованность</strong></li>
 <li><strong>Простота сопровождения</strong></li>
 </ul>
-<h2 id="_15">📝 Примеры использования<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
-<h3 id="c">В коде C++<a class="headerlink" href="#c" title="Permanent link">&para;</a></h3>
+<h2 id="-примеры-использования">📝 Примеры использования<a class="headerlink" href="#-примеры-использования" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="в-коде-c">В коде C++<a class="headerlink" href="#в-коде-c" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;version.h&quot;</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">printVersion</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -1765,13 +1779,13 @@
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">&quot;Полная версия: &quot;</span><span class="w"> </span><span class="n">JXCT_FULL_VERSION_STRING</span><span class="p">);</span>
 <a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
 </code></pre></div>
-<h3 id="mqtt">В MQTT сообщениях<a class="headerlink" href="#mqtt" title="Permanent link">&para;</a></h3>
+<h3 id="в-mqtt-сообщениях">В MQTT сообщениях<a class="headerlink" href="#в-mqtt-сообщениях" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">doc</span><span class="p">[</span><span class="s">&quot;device&quot;</span><span class="p">][</span><span class="s">&quot;sw_version&quot;</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DEVICE_SW_VERSION</span><span class="p">;</span><span class="w">  </span><span class="c1">// Автоматически &quot;2.4.5&quot;</span>
 </code></pre></div>
-<h3 id="-">В веб-интерфейсе<a class="headerlink" href="#-" title="Permanent link">&para;</a></h3>
+<h3 id="в-веб-интерфейсе">В веб-интерфейсе<a class="headerlink" href="#в-веб-интерфейсе" title="Постоянная ссылка">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">html</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="s">&quot;Версия: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">String</span><span class="p">(</span><span class="n">FIRMWARE_VERSION</span><span class="p">);</span><span class="w">  </span><span class="c1">// Автоматически &quot;2.4.5&quot;</span>
 </code></pre></div>
-<h2 id="_16">🔄 Процесс релиза<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<h2 id="-процесс-релиза">🔄 Процесс релиза<a class="headerlink" href="#-процесс-релиза" title="Постоянная ссылка">&para;</a></h2>
 <ol>
 <li><strong>Измените версию</strong> в <code>include/version.h</code></li>
 <li><strong>Скомпилируйте</strong> проект (<code>pio run</code>)</li>
@@ -1779,28 +1793,28 @@
 <li><strong>Создайте коммит</strong> с новой версией</li>
 <li><strong>Создайте тег</strong> в Git: <code>git tag v2.4.5</code></li>
 </ol>
-<h2 id="_17">⚠️ Важные замечания<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<h2 id="-важные-замечания">⚠️ Важные замечания<a class="headerlink" href="#-важные-замечания" title="Постоянная ссылка">&para;</a></h2>
 <ul>
 <li><strong>НЕ изменяйте</strong> версию в других файлах - она перезапишется</li>
 <li><strong>Всегда компилируйте</strong> после изменения версии</li>
 <li><strong>Используйте семантическое версионирование</strong>: MAJOR.MINOR.PATCH</li>
 <li><strong>Обновляйте CHANGELOG.md</strong> при изменении версии</li>
 </ul>
-<h2 id="_18">🎯 Результат<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<h2 id="-результат">🎯 Результат<a class="headerlink" href="#-результат" title="Постоянная ссылка">&para;</a></h2>
 <p>Теперь для изменения версии во всем проекте достаточно изменить <strong>3 строки</strong> в <strong>1 файле</strong>!</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">// Было: изменения в 4+ файлах</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1">// Стало: изменения в 1 файле</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="cp">#define JXCT_VERSION_PATCH 6  </span><span class="c1">// Изменили только эту строку</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1">// Версия автоматически обновилась везде! 🎉</span>
 </code></pre></div>
-<h2 id="_19">📞 Поддержка<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
-<h3 id="_20">💬 Связь с разработчиками<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<h2 id="-поддержка">📞 Поддержка<a class="headerlink" href="#-поддержка" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="-связь-с-разработчиками">💬 Связь с разработчиками<a class="headerlink" href="#-связь-с-разработчиками" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li><strong>Telegram:</strong> <a href="https://t.me/Gfermoto">@Gfermoto</a></li>
 <li><strong>GitHub Issues:</strong> <a href="https://github.com/Gfermoto/soil-sensor-7in1/issues">Сообщить о проблеме</a></li>
 <li><strong>Документация:</strong> <a href="https://gfermoto.github.io/soil-sensor-7in1/">GitHub Pages</a></li>
 </ul>
-<h3 id="_21">📚 Дополнительные ресурсы<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<h3 id="-дополнительные-ресурсы">📚 Дополнительные ресурсы<a class="headerlink" href="#-дополнительные-ресурсы" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li><a href="../USER_GUIDE/">Руководство пользователя</a></li>
 <li><a href="../TECHNICAL_DOCS/">Техническая документация</a></li>
@@ -1811,12 +1825,12 @@
 <li><a href="../WIRING_DIAGRAM/">Схема подключения</a></li>
 <li><a href="../MODBUS_PROTOCOL/">Протокол Modbus</a></li>
 </ul>
-<h3 id="_22">🔗 Полезные ссылки<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<h3 id="-полезные-ссылки">🔗 Полезные ссылки<a class="headerlink" href="#-полезные-ссылки" title="Постоянная ссылка">&para;</a></h3>
 <ul>
 <li><a href="https://github.com/Gfermoto/soil-sensor-7in1">🌱 GitHub репозиторий</a> - Исходный код проекта</li>
 <li><a href="../../dev/QA_REFACTORING_PLAN_2025H2/">📋 План рефакторинга</a> - Планы развития на 2025</li>
 <li><a href="../../dev/TECH_DEBT_REPORT_2025-06/">📊 Отчет о техническом долге</a> - Анализ технических проблем</li>
-<li><a href="../../dev/ARCH_OVERALL/">🏗️ Архитектура системы</a> - Общая архитектура проекта</li>
+<li><a href="../../dev/ARCH_OVERALL/">🏗️ Архитектура системы</a> - Общая архитектура проекта </li>
 </ul>
 
 
@@ -1825,27 +1839,6 @@
 
 
 
-  
-    
-  
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Последнее обновление">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="3 июля 2025 г. 04:20:09 UTC">3 июля 2025 г.</span>
-  </span>
-
-    
-    
-    
-    
-  </aside>
 
 
 
@@ -1873,10 +1866,6 @@
     <div class="md-footer-meta__inner md-grid">
       <div class="md-copyright">
   
-    <div class="md-copyright__highlight">
-      Copyright &copy; 2024-2025 EYERA Development Team
-    </div>
-  
   
     Made with
     <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
@@ -1891,10 +1880,7 @@
     
     
     
-      
-      
-    
-    <a href="https://github.com/Gfermoto/soil-sensor-7in1" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+    <a href="https://github.com/Gfermoto/soil-sensor-7in1" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
@@ -1902,8 +1888,8 @@
     
     
     
-    <a href="mailto:support@eyera.tech" target="_blank" rel="noopener" title="" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M48 64C21.5 64 0 85.5 0 112c0 15.1 7.1 29.3 19.2 38.4l217.6 163.2c11.4 8.5 27 8.5 38.4 0l217.6-163.2c12.1-9.1 19.2-23.3 19.2-38.4 0-26.5-21.5-48-48-48zM0 176v208c0 35.3 28.7 64 64 64h384c35.3 0 64-28.7 64-64V176L294.4 339.2a63.9 63.9 0 0 1-76.8 0z"/></svg>
+    <a href="https://t.me/jxct_support" target="_blank" rel="noopener" title="Telegram Support" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8m114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.45 10.45 0 0 1 3.53 6.716 43.8 43.8 0 0 1 .417 9.769"/></svg>
     </a>
   
 </div>
@@ -1920,7 +1906,7 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "search.highlight", "search.share", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.sections", "navigation.expand", "navigation.indexes", "navigation.top", "toc.follow", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy", "content.action.edit", "content.action.view"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
     
     
       <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>

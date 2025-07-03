@@ -1,100 +1,117 @@
-site_name: JXCT Soil Sensor v3.6.9
+site_name: 🌱 JXCT 7-в-1 Датчик Почвы
 site_url: https://gfermoto.github.io/soil-sensor-7in1/
-site_description: Документация для датчика почвы JXCT 7-в-1 v3.6.9 - Профессиональная IoT система мониторинга почвы на базе ESP32
+site_description: Документация для датчика почвы JXCT 7-в-1 (v3.6.7) - Профессиональная IoT система мониторинга почвы на базе ESP32
 site_author: EYERA Development Team
+# site_version: 3.6.7  # Устаревший параметр
 
 repo_name: JXCT
 repo_url: https://github.com/Gfermoto/soil-sensor-7in1
 edit_uri: edit/main/docs/
 
-theme:
-  name: material
-  language: ru
-  palette:
-    - scheme: default
-      primary: green
-      accent: light-green
-      toggle:
-        icon: material/brightness-7
-        name: Switch to dark mode
-    - scheme: slate
-      primary: green
-      accent: light-green
-      toggle:
-        icon: material/brightness-4
-        name: Switch to light mode
-  features:
-    - navigation.tabs
-    - navigation.sections
-    - navigation.expand
-    - navigation.top
-    - search.highlight
-    - search.share
-    - content.code.copy
-    - content.action.edit
-    - content.action.view
-  icon:
-    repo: fontawesome/brands/github
-    edit: material/pencil
-    view: material/eye
-
-plugins:
-  - search:
-      lang: ru
-  - git-revision-date-localized:
-      type: date
-      locale: ru
-
-markdown_extensions:
-  - admonition
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - pymdownx.tabbed:
-      alternate_style: true
-  - attr_list
-  - md_in_html
-  - tables
-  - toc:
-      permalink: true
-
-nav:
-  - Главная: index.md
-  - Руководства:
-    - Руководство пользователя: manuals/USER_GUIDE.md
-    - Техническая документация: manuals/TECHNICAL_DOCS.md
-    - Руководство по компенсации: manuals/COMPENSATION_GUIDE.md
-    - Управление конфигурацией: manuals/CONFIG_MANAGEMENT.md
-    - Управление версиями: manuals/VERSION_MANAGEMENT.md
-    - Схема подключения: manuals/WIRING_DIAGRAM.md
-    - Протокол Modbus: manuals/MODBUS_PROTOCOL.md
-    - API документация: manuals/API.md
-    - Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
-  - Разработка:
-    - Обзор API: api-overview.md
-    - Руководство по тестированию: TESTING_GUIDE.md
-    - Архитектура: dev/ARCH_OVERALL.md
-    - Технический долг: dev/TECH_DEBT_QUICK_REFERENCE.md
-    - План рефакторинга: dev/QA_REFACTORING_PLAN_2025H2.md
-  - Отчеты:
-    - Интеграция отчетов: REPORTS_INTEGRATION.md
-    - Текущие результаты тестов: CURRENT_TEST_RESULTS.md
-    - Отчет о завершении этапа 2: STAGE_2_COMPLETION_REPORT.md
-    - Аудит безопасности CSRF: CSRF_SECURITY_AUDIT.md
-    - Анализ дублирования: DUPLICATION_ANALYSIS_DETAILED.md
-  - Навигация: NAVIGATION.md
-  - Документация для разработчиков: CONTRIBUTING_DOCS.md
-
+# Принудительное обновление кэша
 extra:
   version:
     provider: mike
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/Gfermoto/soil-sensor-7in1
-    - icon: fontawesome/solid/envelope
-      link: mailto:support@eyera.tech
+      name: GitHub
+    - icon: fontawesome/brands/telegram
+      link: https://t.me/jxct_support
+      name: Telegram Support
 
-copyright: Copyright &copy; 2024-2025 EYERA Development Team 
+theme:
+  name: material
+  language: ru
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
+    - toc.integrate
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.action.edit
+    - content.action.view
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: green
+      accent: light green
+      toggle:
+        icon: material/brightness-7
+        name: Переключить на тёмную тему
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: green
+      accent: light green
+      toggle:
+        icon: material/brightness-4
+        name: Переключить на светлую тему
+  font:
+    text: Roboto
+    code: Roboto Mono
+  icon:
+    repo: fontawesome/brands/github
+
+plugins:
+  - search:
+      lang: ru
+
+markdown_extensions:
+  - toc:
+      permalink: true
+      title: "Содержание"
+      permalink_title: "Постоянная ссылка"
+      baselevel: 1
+      slugify: !!python/name:pymdownx.slugs.uslugify
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - footnotes
+  - def_list
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - Главная: index.md
+  - 👤 Для пользователя:
+    - Руководство пользователя: manuals/USER_GUIDE.md
+    - Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
+    - Компенсация показаний: manuals/COMPENSATION_GUIDE.md
+    - Схема подключения: manuals/WIRING_DIAGRAM.md
+  - 🛠️ Для инженера:
+    - Техническая документация: manuals/TECHNICAL_DOCS.md
+    - Управление конфигурацией: manuals/CONFIG_MANAGEMENT.md
+    - Управление версиями: manuals/VERSION_MANAGEMENT.md
+    - Протокол Modbus: manuals/MODBUS_PROTOCOL.md
+  - 🌐 API и интеграция:
+    - Обзор API: api-overview.md
+    - API Reference: manuals/API.md
+  - 👨‍💻 Разработка:
+    - Руководство по тестированию: TESTING_GUIDE.md
+    - Текущие результаты: CURRENT_TEST_RESULTS.md
+    - Интеграция отчётов: REPORTS_INTEGRATION.md
+    - Архитектура: dev/ARCH_OVERALL.md
+    - План рефакторинга: dev/QA_REFACTORING_PLAN_2025H2.md
+    - Технический долг: dev/TECH_DEBT_REPORT_2025-06.md
+    - Быстрая справка по техдолгу: dev/TECHNICAL_DEBT_QUICK_REFERENCE.md
+    - Участие в проекте: CONTRIBUTING_DOCS.md
+  - 📊 Отчёты:
+    - Отчёт о завершении Этапа 2: STAGE_2_COMPLETION_REPORT.md
+    - Аудит безопасности CSRF: CSRF_SECURITY_AUDIT.md
+    - Быстрая справка по тестированию: TESTING_QUICK_REFERENCE.md
+    - Быстрая справка по техдолгу: TECHNICAL_DEBT_QUICK_REFERENCE.md
+  - 📖 Дополнительно:
+    - Навигация: NAVIGATION.md 
