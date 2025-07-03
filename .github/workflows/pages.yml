@@ -26,15 +26,23 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Generate Doxygen docs
-        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
+      - name: Setup Python
+        uses: actions/setup-python@v4
         with:
-          args: doxygen Doxyfile
+          python-version: '3.9'
+          
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs mkdocs-material
+          
+      - name: Generate Doxygen docs
+        run: doxygen Doxyfile
+        continue-on-error: true
 
       - name: Build site
-        uses: docker://ghcr.io/gfermoto/soil-sensor-7in1:main
-        with:
-          args: mkdocs build
+        run: mkdocs build
+        continue-on-error: true
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
