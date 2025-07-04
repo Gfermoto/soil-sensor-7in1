@@ -116,6 +116,7 @@ nav:
   - 🌐 API и интеграция:
     - 📊 Обзор API: api-overview.md
     - 📚 API Reference: manuals/API.md
+    - 🔧 Doxygen HTML: api/
   - 👨‍💻 Разработчику:
     - 🧪 Руководство по тестированию: TESTING_GUIDE.md
     - 📈 Текущие результаты: CURRENT_TEST_RESULTS.md
