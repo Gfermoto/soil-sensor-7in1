@@ -70,6 +70,8 @@ plugins:
   - search:
       lang: ru
       separator: '[\s\-,:!=\[\]()"/`|]+'
+  - git-revision-date-localized:
+      enable_creation_date: true
 
 # Расширения Markdown
 markdown_extensions:
@@ -116,7 +118,7 @@ nav:
   - 🌐 API и интеграция:
     - 📊 Обзор API: api-overview.md
     - 📚 API Reference: manuals/API.md
-    - 🔧 Doxygen HTML: api/
+    - 🔧 Doxygen HTML: https://gfermoto.github.io/soil-sensor-7in1/api/
   - 👨‍💻 Разработчику:
     - 🧪 Руководство по тестированию: TESTING_GUIDE.md
     - 📈 Текущие результаты: CURRENT_TEST_RESULTS.md
