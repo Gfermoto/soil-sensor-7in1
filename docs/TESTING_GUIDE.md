@@ -150,6 +150,7 @@ pio check -e esp32dev
 - `comprehensive-report.json` - общий отчет
 - `e2e-test-report.json` - E2E тесты ✨ **НОВОЕ**
 - `technical-debt.json` - технический долг
+- `test_reports` - test_reports
 
 ## 🚀 Быстрый старт
 
@@ -280,7 +281,7 @@ on:
 - `test-reports-unit`
 - `test-reports-integration`
 - `coverage-report`
-- `comprehensive-test-report`
+- `test_reports`
 
 ## 📚 Примеры использования
 

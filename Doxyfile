@@ -11,7 +11,7 @@ INPUT                  = src include
 RECURSIVE              = YES
 
 # Каталог для вывода документации
-OUTPUT_DIRECTORY       = site
+OUTPUT_DIRECTORY       = docs
 
 # Язык документации
 OUTPUT_LANGUAGE        = Russian

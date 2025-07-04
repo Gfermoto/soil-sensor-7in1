@@ -37,25 +37,7 @@
 | **Техническая** | 3 документа | ✅ Полная |
 | **Отчёты** | 4 документа | ✅ Актуальные |
 
-## 🔗 Прямые ссылки
 
-### 🧪 Тестирование
-- [TESTING_GUIDE.md](TESTING_GUIDE.md)
-- [CURRENT_TEST_RESULTS.md](CURRENT_TEST_RESULTS.md)
-- [REPORTS_INTEGRATION.md](REPORTS_INTEGRATION.md)
-- [STAGE_2_COMPLETION_REPORT.md](STAGE_2_COMPLETION_REPORT.md)
-
-### 🏗️ Архитектура
-- [dev/ARCH_OVERALL.md](dev/ARCH_OVERALL.md)
-- [dev/QA_REFACTORING_PLAN_2025H2.md](dev/QA_REFACTORING_PLAN_2025H2.md)
-- [dev/TECH_DEBT_REPORT_2025-06.md](dev/TECH_DEBT_REPORT_2025-06.md)
-
-### 👥 Пользователи
-- [manuals/USER_GUIDE.md](manuals/USER_GUIDE.md)
-- [manuals/TECHNICAL_DOCS.md](manuals/TECHNICAL_DOCS.md)
-- [manuals/AGRO_RECOMMENDATIONS.md](manuals/AGRO_RECOMMENDATIONS.md)
-- [manuals/API.md](manuals/API.md)
-- [manuals/COMPENSATION_GUIDE.md](manuals/COMPENSATION_GUIDE.md)
 
 ---
 *Последнее обновление: Июнь 2025* | *Версия: 3.6.7*

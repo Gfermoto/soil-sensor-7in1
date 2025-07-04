@@ -52,8 +52,6 @@
 - 🟡 **10 дублированных блоков кода**
 - 🟡 **149 medium-priority предупреждений**
 
-**📋 Детальный анализ:** [technical-debt-assessment.md](technical-debt-assessment.md)
-
 ---
 
 ## 📈 МЕТРИКИ КАЧЕСТВА

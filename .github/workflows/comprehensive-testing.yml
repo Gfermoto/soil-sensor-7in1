@@ -255,7 +255,7 @@ jobs:
       - name: Upload summary report
         uses: actions/upload-artifact@v4
         with:
-          name: comprehensive-test-report
+          name: test_reports
           path: test_reports/
           retention-days: 30
 
@@ -277,7 +277,7 @@ jobs:
           echo "  Quality rating: D"
           echo ""
           echo "Available artifacts:"
-          echo "  - comprehensive-test-report"
+          echo "  - test_reports"
           echo "  - technical-debt-report"
           echo "  - test-reports-*"
           echo "  - coverage-report" 
