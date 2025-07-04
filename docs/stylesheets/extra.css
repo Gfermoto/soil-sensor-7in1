@@ -466,24 +466,32 @@
   margin-bottom: 2.5rem;
   text-align: center;
   animation: fadeInUp 0.7s;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .hero__title {
-  font-size: 2.8rem;
+  font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 800;
   color: #10b981;
   margin-bottom: 1rem;
   letter-spacing: -1px;
+  line-height: 1.2;
 }
 .hero__desc {
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 3vw, 1.3rem);
   color: #374151;
   margin-bottom: 1.5rem;
+  line-height: 1.5;
+  max-width: 800px;
 }
 .hero__actions {
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
+  width: 100%;
 }
 .hero__button {
   background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
@@ -491,13 +499,15 @@
   font-weight: 600;
   border: none;
   border-radius: 0.75rem;
-  padding: 0.75rem 2rem;
-  font-size: 1.1rem;
+  padding: clamp(0.5rem, 2vw, 0.75rem) clamp(1rem, 4vw, 2rem);
+  font-size: clamp(0.9rem, 2.5vw, 1.1rem);
   box-shadow: 0 2px 8px rgba(16,185,129,0.08);
   transition: background 0.2s, transform 0.2s;
   cursor: pointer;
   text-decoration: none;
   margin-bottom: 0.5rem;
+  white-space: nowrap;
+  min-width: 120px;
 }
 .hero__button:hover {
   background: linear-gradient(90deg, #059669 0%, #10b981 100%);
@@ -506,26 +516,28 @@
 
 /* === CARDS === */
 .cards {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  justify-content: center;
   margin-bottom: 2.5rem;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 .card {
   background: #fff;
   border-radius: 1.25rem;
   box-shadow: 0 2px 16px rgba(16,185,129,0.08);
-  padding: 2rem 1.5rem 1.5rem 1.5rem;
-  max-width: 320px;
-  min-width: 240px;
-  flex: 1 1 240px;
+  padding: clamp(1.5rem, 4vw, 2rem) clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 1.5rem);
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   transition: box-shadow 0.2s, transform 0.2s;
   border: 1.5px solid #e0f2f1;
+  min-height: 200px;
+  justify-content: space-between;
 }
 .card:hover {
   box-shadow: 0 8px 32px rgba(16,185,129,0.16);
@@ -533,26 +545,30 @@
   border-color: #10b981;
 }
 .card__icon {
-  font-size: 2.5rem;
+  font-size: clamp(2rem, 6vw, 2.5rem);
   margin-bottom: 1rem;
   color: #10b981;
 }
 .card__title {
-  font-size: 1.25rem;
+  font-size: clamp(1.1rem, 3vw, 1.25rem);
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: #059669;
+  line-height: 1.3;
 }
 .card__desc {
-  font-size: 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   color: #374151;
   margin-bottom: 1rem;
+  line-height: 1.5;
+  flex-grow: 1;
 }
 .card__link {
   color: #10b981;
   font-weight: 600;
   text-decoration: none;
   transition: color 0.2s;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
 }
 .card__link:hover {
   color: #059669;
@@ -564,24 +580,109 @@
   background: linear-gradient(90deg, #d1fae5 0%, #a7f3d0 100%);
   border-left: 6px solid #10b981;
   border-radius: 0.75rem;
-  padding: 1.25rem 1.5rem;
-  margin: 2rem 0;
-  font-size: 1.1rem;
+  padding: clamp(1rem, 3vw, 1.25rem) clamp(1rem, 3vw, 1.5rem);
+  margin: 2rem auto;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
   color: #065f46;
   box-shadow: 0 2px 8px rgba(16,185,129,0.06);
+  max-width: 1200px;
+  line-height: 1.5;
 }
 
-/* === АДАПТИВНОСТЬ === */
-@media (max-width: 900px) {
+/* === АДАПТИВНОСТЬ ДЛЯ ВСЕХ РАЗМЕРОВ === */
+
+/* Большие экраны (1200px+) */
+@media (min-width: 1200px) {
   .cards {
-    flex-direction: column;
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Средние экраны (768px - 1199px) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Планшеты (600px - 767px) */
+@media (min-width: 600px) and (max-width: 767px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
-  .card {
-    max-width: 100%;
-    min-width: 0;
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero__button {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Мобильные (до 599px) */
+@media (max-width: 599px) {
+  .cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
   .hero {
-    padding: 1.5rem 0.5rem 1rem 0.5rem;
+    padding: 1.5rem 1rem 1rem 1rem;
+    border-radius: 1rem;
+  }
+  .hero__actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  .hero__button {
+    width: 100%;
+    max-width: 280px;
+  }
+  .card {
+    min-height: 180px;
+  }
+}
+
+/* Очень маленькие экраны (до 400px) */
+@media (max-width: 400px) {
+  .hero {
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+  }
+  .hero__title {
+    font-size: 1.8rem;
+  }
+  .hero__desc {
+    font-size: 1rem;
+  }
+  .card {
+    padding: 1rem 0.75rem 0.75rem 0.75rem;
+    min-height: 160px;
+  }
+}
+
+/* Масштабирование (zoom) */
+@media (max-width: 100%) {
+  .hero, .cards, .callout {
+    max-width: 95vw;
+  }
+}
+
+/* Высокое разрешение (Retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .hero, .card, .callout {
+    box-shadow: 0 2px 8px rgba(16,185,129,0.12);
+  }
+}
+
+/* Печать */
+@media print {
+  .hero, .card, .callout {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  .hero__button {
+    background: #10b981 !important;
+    color: white !important;
   }
 } 
