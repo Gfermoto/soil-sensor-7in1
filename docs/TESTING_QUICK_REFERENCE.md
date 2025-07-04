@@ -138,6 +138,6 @@ TIMEOUT = 10  # Таймаут в секундах
 
 ## 📞 ПОДДЕРЖКА
 
-- **Документация:** [docs/NAVIGATION.md](NAVIGATION.md)
+- **Документация:** [Главная страница](index.md)
 - **Issues:** GitHub Issues
-- **Техническая поддержка:** [CONTRIBUTING_DOCS.md](CONTRIBUTING_DOCS.md)
+- **Техническая поддержка:** [GitHub Issues](https://github.com/Gfermoto/soil-sensor-7in1/issues)

@@ -116,9 +116,3 @@ nav:
   - 🧪 Тестирование:
     - 📖 Руководство по тестированию: TESTING_GUIDE.md
     - ⚡ Быстрая справка по тестированию: TESTING_QUICK_REFERENCE.md
-  - 📊 Отчеты:
-    - 📈 Статус тестирования: CURRENT_TEST_RESULTS.md
-    - 🔒 Аудит безопасности CSRF: CSRF_SECURITY_AUDIT.md
-    - 📋 Отчет по документации: DOCUMENTATION_STATUS_REPORT.md
-    - 🔗 Отчет по интеграции отчетов: REPORTS_INTEGRATION.md
-    - ✅ Отчет о завершении этапа 2: STAGE_2_COMPLETION_REPORT.md

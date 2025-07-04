@@ -269,7 +269,7 @@ cat test_reports/latest_test_report.json
 - [Руководство по тестированию](TESTING_GUIDE.md)
 - [Быстрая справка по тестированию](TESTING_QUICK_REFERENCE.md)
 - [Техническая документация](manuals/TECHNICAL_DOCS.md)
-- [Руководство по контрибьюции](../CONTRIBUTING.md)
+- [GitHub Issues](https://github.com/Gfermoto/soil-sensor-7in1/issues)
 
 ---
 
