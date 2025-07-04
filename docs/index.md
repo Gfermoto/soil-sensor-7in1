@@ -10,6 +10,7 @@
 [![Documentation](https://img.shields.io/badge/docs-100%25%20complete-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
 [![Tests](https://img.shields.io/badge/tests-100%25%20passing-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
 [![IoT](https://img.shields.io/badge/IoT-Smart%20Agriculture-blue.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
+[![API Reference (Doxygen)](https://img.shields.io/badge/API%20Reference-Doxygen-blue?style=for-the-badge)](api/html/index.html)
 
 ## 🚀 Быстрый старт
 

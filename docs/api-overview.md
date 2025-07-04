@@ -1,3 +1,7 @@
+[![API Reference (Doxygen)](https://img.shields.io/badge/API%20Reference-Doxygen-blue?style=for-the-badge)](api/html/index.html)
+
+---
+
 # API Документация
 
 Добро пожаловать в API документацию для датчика почвы JXCT 7-в-1!
