@@ -104,13 +104,13 @@ class SimpleTestRunner:
                     result = subprocess.run([
                         sys.executable, str(test_path)
                     ], capture_output=True, text=True, cwd=self.project_root, timeout=30)
-                    
+
                     if result.returncode == 0:
                         passed_tests += 1
                         print(f"  [PASS] {test_file}")
                     else:
                         print(f"  [FAIL] {test_file}: {result.stderr}")
-                    
+
                     total_tests += 1
                 except Exception as e:
                     print(f"  [ERROR] {test_file}: {e}")
@@ -145,7 +145,7 @@ class SimpleTestRunner:
         if csrf_test.exists():
             try:
                 print("  [COMPILE] CSRF тесты...")
-                
+
                 # Компилируем с заглушками
                 compile_cmd = [
                     "g++", "-std=c++11", "-I", str(self.project_root / "test" / "stubs"),
@@ -153,15 +153,15 @@ class SimpleTestRunner:
                     str(csrf_test),
                     "-o", str(self.project_root / "test" / "csrf_test")
                 ]
-                
+
                 result = subprocess.run(compile_cmd, capture_output=True, text=True, cwd=self.project_root)
-                
+
                 if result.returncode == 0:
                     # Запускаем тест
                     test_result = subprocess.run([
                         str(self.project_root / "test" / "csrf_test")
                     ], capture_output=True, text=True, cwd=self.project_root)
-                    
+
                     if test_result.returncode == 0:
                         self.results["tests"]["unit_tests"]["csrf_tests"]["total"] = 3
                         self.results["tests"]["unit_tests"]["csrf_tests"]["passed"] = 3
@@ -177,7 +177,7 @@ class SimpleTestRunner:
                     self.results["tests"]["unit_tests"]["csrf_tests"]["total"] = 3
                     self.results["tests"]["unit_tests"]["csrf_tests"]["passed"] = 0
                     self.results["tests"]["unit_tests"]["csrf_tests"]["failed"] = 3
-                    
+
             except Exception as e:
                 print(f"  [ERROR] Ошибка запуска CSRF тестов: {e}")
                 self.results["tests"]["unit_tests"]["csrf_tests"]["total"] = 3
@@ -190,7 +190,7 @@ class SimpleTestRunner:
             # Проверяем синтаксис Python файлов
             python_files = list(self.project_root.rglob("*.py"))
             valid_python = 0
-            
+
             for py_file in python_files:
                 try:
                     result = subprocess.run([
@@ -204,7 +204,7 @@ class SimpleTestRunner:
             # Проверяем синтаксис C++ файлов (простая проверка)
             cpp_files = list(self.project_root.rglob("*.cpp")) + list(self.project_root.rglob("*.h"))
             valid_cpp = 0
-            
+
             for cpp_file in cpp_files:
                 try:
                     with open(cpp_file, 'r', encoding='utf-8') as f:
@@ -371,16 +371,16 @@ def main():
     """Главная функция"""
     project_root = Path(__file__).parent.parent
     runner = SimpleTestRunner(project_root)
-    
+
     success_rate = runner.run_all_tests()
-    
+
     print(f"\n📊 СВОДКА ТЕСТИРОВАНИЯ:")
     print(f"  📈 Успешность: {success_rate:.1f}%")
     print(f"  🧪 Тесты: {runner.results['summary']['passed_tests']}/{runner.results['summary']['total_tests']}")
     print(f"  ⏱️ Время: {runner.results['summary']['total_duration']:.2f}с")
-    
+
     return 0 if success_rate > 50 else 1
 
 
 if __name__ == "__main__":
-    sys.exit(main()) 
+    sys.exit(main())

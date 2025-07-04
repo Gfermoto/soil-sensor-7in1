@@ -11,7 +11,7 @@
 - **[Руководство пользователя](manuals/USER_GUIDE.md)** - Начало работы
 - **[Техническая документация](manuals/TECHNICAL_DOCS.md)** - Технические детали
 - **[API документация](manuals/API.md)** - Интерфейсы программирования
-- **[Doxygen](https://gfermoto.github.io/soil-sensor-7in1/api/)** - Документация кода
+- **[Обзор API](api-overview.md)** - Обзор API системы
 
 ## Основные возможности
 

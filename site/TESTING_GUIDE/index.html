@@ -13,7 +13,7 @@
       
       
       
-        <link rel="prev" href="../dev/TECHNICAL_DEBT_QUICK_REFERENCE/">
+        <link rel="prev" href="../dev/TECHNICAL_DEBT_REPORT/">
       
       
         <link rel="next" href="../TESTING_QUICK_REFERENCE/">
@@ -335,26 +335,6 @@
   
   
   📊 Отчеты
-
-        </a>
-      </li>
-    
-  
-
-      
-        
-  
-  
-  
-  
-    
-    
-      <li class="md-tabs__item">
-        <a href="../legacy/DUPLICATION_ANALYSIS_DETAILED/" class="md-tabs__link">
-          
-  
-  
-  📁 Устаревшее
 
         </a>
       </li>
@@ -763,12 +743,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../api/" class="md-nav__link">
+      <a href="../manuals/API/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    📚 Doxygen API
+    📖 API документация
     
   </span>
   
@@ -861,12 +841,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../dev/QA_REFACTORING_PLAN_2025H2/" class="md-nav__link">
+      <a href="../dev/QA_AUDIT_REPORT/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    🔄 План рефакторинга QA
+    🧪 QA Аудит
     
   </span>
   
@@ -884,12 +864,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../dev/SAFE_TECH_DEBT_REDUCTION_PLAN/" class="md-nav__link">
+      <a href="../dev/REFACTORING_PLAN/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    📉 План снижения технического долга
+    🔄 План рефакторинга
     
   </span>
   
@@ -907,35 +887,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../dev/TECH_DEBT_REPORT_2025-06/" class="md-nav__link">
+      <a href="../dev/TECHNICAL_DEBT_REPORT/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    📊 Отчет по техническому долгу
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../dev/TECHNICAL_DEBT_QUICK_REFERENCE/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    ⚡ Быстрая справка по техническому долгу
+    📉 Отчет технического долга
     
   </span>
   
@@ -1892,104 +1849,6 @@
   
 
     
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    📁 Устаревшее
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            📁 Устаревшее
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../legacy/DUPLICATION_ANALYSIS_DETAILED/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    🔍 Детальный анализ дублирования
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../legacy/ENVIRONMENT_SETUP/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    ⚙️ Настройка окружения
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
   </ul>
 </nav>
                   </div>
@@ -2807,7 +2666,8 @@
 <p>Все отчеты сохраняются в <code>test_reports/</code>:
 - <code>comprehensive-report.json</code> - общий отчет
 - <code>e2e-test-report.json</code> - E2E тесты ✨ <strong>НОВОЕ</strong>
-- <code>technical-debt.json</code> - технический долг</p>
+- <code>technical-debt.json</code> - технический долг
+- <code>test_reports</code> - test_reports</p>
 <h2 id="_16">🚀 Быстрый старт<a class="headerlink" href="#_16" title="Постоянная ссылка">&para;</a></h2>
 <h3 id="1">1. Запуск базовых тестов<a class="headerlink" href="#1" title="Постоянная ссылка">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Unit тесты</span>
@@ -2920,7 +2780,7 @@
 <li><code>test-reports-unit</code></li>
 <li><code>test-reports-integration</code></li>
 <li><code>coverage-report</code></li>
-<li><code>comprehensive-test-report</code></li>
+<li><code>test_reports</code></li>
 </ul>
 <h2 id="_26">📚 Примеры использования<a class="headerlink" href="#_26" title="Постоянная ссылка">&para;</a></h2>
 <h3 id="_27">Добавление нового теста<a class="headerlink" href="#_27" title="Постоянная ссылка">&para;</a></h3>

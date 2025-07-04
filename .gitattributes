@@ -1,3 +1,38 @@
+# Определяем основной язык программирования
+*.cpp linguist-language=C++
+*.h linguist-language=C++
+*.hpp linguist-language=C++
+*.c linguist-language=C
+*.ino linguist-language=C++
+
+# Исключаем HTML файлы из статистики языка
+*.html linguist-documentation
+site/* linguist-documentation
+docs/api/* linguist-documentation
+
+# Исключаем документацию и конфигурационные файлы
+*.md linguist-documentation
+*.yml linguist-documentation
+*.yaml linguist-documentation
+*.json linguist-documentation
+*.txt linguist-documentation
+*.csv linguist-documentation
+*.pdf linguist-documentation
+
+# Исключаем скрипты и тесты
+scripts/* linguist-documentation
+test/* linguist-documentation
+test_reports/* linguist-documentation
+
+# Исключаем документацию
+docs/* linguist-documentation
+site/* linguist-documentation
+
+# Определяем основные исходные файлы
+src/*.cpp linguist-language=C++
+src/*.h linguist-language=C++
+include/*.h linguist-language=C++
+
 # Исключаем сгенерированный сайт и HTML-документацию из статистики языков
 site/** linguist-generated
 docs/html/** linguist-generated

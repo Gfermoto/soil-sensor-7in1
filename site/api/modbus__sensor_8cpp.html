@@ -1,0 +1,984 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT 7-в-1 Датчик Почвы: Файл src/modbus_sensor.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   </div>
+   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл modbus_sensor.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Работа с Modbus-датчиком JXCT.  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a>&quot;</code><br />
+<code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="src_2calibration__manager_8h_source.html">calibration_manager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="debug_8h_source.html">debug.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">jxct_constants.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__device__info_8h_source.html">jxct_device_info.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sensor__compensation_8h_source.html">sensor_compensation.h</a>&quot;</code><br />
+</div>
+<p><a href="modbus__sensor_8cpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a2f7382dca34cb8bc9e1c80da26865a0a" id="r_a2f7382dca34cb8bc9e1c80da26865a0a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f7382dca34cb8bc9e1c80da26865a0a">debugPrintBuffer</a> (const char *prefix, uint8_t *buffer, size_t length)</td></tr>
+<tr class="separator:a2f7382dca34cb8bc9e1c80da26865a0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8a1f5220dc77f33a89d14fe4d82442f" id="r_ab8a1f5220dc77f33a89d14fe4d82442f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8a1f5220dc77f33a89d14fe4d82442f">testSP3485E</a> ()</td></tr>
+<tr class="memdesc:ab8a1f5220dc77f33a89d14fe4d82442f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Тестирование работы SP3485E.  <br /></td></tr>
+<tr class="separator:ab8a1f5220dc77f33a89d14fe4d82442f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c4410314e55fce67a3c727cb1bf9520" id="r_a0c4410314e55fce67a3c727cb1bf9520"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c4410314e55fce67a3c727cb1bf9520">setupModbus</a> ()</td></tr>
+<tr class="memdesc:a0c4410314e55fce67a3c727cb1bf9520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Инициализация Modbus и SP3485E.  <br /></td></tr>
+<tr class="separator:a0c4410314e55fce67a3c727cb1bf9520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e1b4f2813957877a5ac0ab90787f0e5" id="r_a0e1b4f2813957877a5ac0ab90787f0e5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e1b4f2813957877a5ac0ab90787f0e5">calculateCRC16</a> (uint8_t *data, size_t length)</td></tr>
+<tr class="separator:a0e1b4f2813957877a5ac0ab90787f0e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8a3b28ec8c21261d4e467da91a17a67" id="r_aa8a3b28ec8c21261d4e467da91a17a67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8a3b28ec8c21261d4e467da91a17a67">validateSensorData</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data)</td></tr>
+<tr class="separator:aa8a3b28ec8c21261d4e467da91a17a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eb8daa78bacfc8a930012162882aa9c" id="r_a8eb8daa78bacfc8a930012162882aa9c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8eb8daa78bacfc8a930012162882aa9c">getCachedData</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data)</td></tr>
+<tr class="separator:a8eb8daa78bacfc8a930012162882aa9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6444c2d436a57168cc75d4ef8529a6c8" id="r_a6444c2d436a57168cc75d4ef8529a6c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6444c2d436a57168cc75d4ef8529a6c8">readFirmwareVersion</a> ()</td></tr>
+<tr class="separator:a6444c2d436a57168cc75d4ef8529a6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b6b2ad640c9580fa45d8cbad28adf53" id="r_a8b6b2ad640c9580fa45d8cbad28adf53"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b6b2ad640c9580fa45d8cbad28adf53">readErrorStatus</a> ()</td></tr>
+<tr class="separator:a8b6b2ad640c9580fa45d8cbad28adf53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac87bc87eaf0bc01ebda5fe1bb44c88b" id="r_aac87bc87eaf0bc01ebda5fe1bb44c88b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac87bc87eaf0bc01ebda5fe1bb44c88b">changeDeviceAddress</a> (uint8_t new_address)</td></tr>
+<tr class="separator:aac87bc87eaf0bc01ebda5fe1bb44c88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedb09484ba8020afc57e9e9e26012bf1" id="r_aedb09484ba8020afc57e9e9e26012bf1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedb09484ba8020afc57e9e9e26012bf1">testModbusConnection</a> ()</td></tr>
+<tr class="separator:aedb09484ba8020afc57e9e9e26012bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3faa8f7948e57c2c23d36a3a12b1339d" id="r_a3faa8f7948e57c2c23d36a3a12b1339d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3faa8f7948e57c2c23d36a3a12b1339d">readSingleRegister</a> (uint16_t reg_addr, const char *reg_name, float multiplier, void *target, bool is_float)</td></tr>
+<tr class="memdesc:a3faa8f7948e57c2c23d36a3a12b1339d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Чтение одного регистра с обработкой ошибок  <br /></td></tr>
+<tr class="separator:a3faa8f7948e57c2c23d36a3a12b1339d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67111fe72a8b7cc6d742ed0cc8b92246" id="r_a67111fe72a8b7cc6d742ed0cc8b92246"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67111fe72a8b7cc6d742ed0cc8b92246">readBasicParameters</a> ()</td></tr>
+<tr class="memdesc:a67111fe72a8b7cc6d742ed0cc8b92246"><td class="mdescLeft">&#160;</td><td class="mdescRight">Чтение основных параметров (температура, влажность, pH, EC)  <br /></td></tr>
+<tr class="separator:a67111fe72a8b7cc6d742ed0cc8b92246"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c98e696f32d6d16aeb4e29eb71d941f" id="r_a5c98e696f32d6d16aeb4e29eb71d941f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c98e696f32d6d16aeb4e29eb71d941f">readNPKParameters</a> ()</td></tr>
+<tr class="memdesc:a5c98e696f32d6d16aeb4e29eb71d941f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Чтение NPK параметров (азот, фосфор, калий)  <br /></td></tr>
+<tr class="separator:a5c98e696f32d6d16aeb4e29eb71d941f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a820fe61fb2c2163f98e3a273af4b55" id="r_a7a820fe61fb2c2163f98e3a273af4b55"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7a820fe61fb2c2163f98e3a273af4b55">saveRawSnapshot</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;d)</td></tr>
+<tr class="separator:a7a820fe61fb2c2163f98e3a273af4b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7dfe5a231d563e4498f0217c486af795" id="r_a7dfe5a231d563e4498f0217c486af795"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7dfe5a231d563e4498f0217c486af795">updateIrrigationFlag</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;d)</td></tr>
+<tr class="separator:a7dfe5a231d563e4498f0217c486af795"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cff8e34908a2deb0691e3809224685a" id="r_a4cff8e34908a2deb0691e3809224685a"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cff8e34908a2deb0691e3809224685a">applyCompensationIfEnabled</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;d)</td></tr>
+<tr class="separator:a4cff8e34908a2deb0691e3809224685a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7862d1878b888472d0c1c96fa826ead3" id="r_a7862d1878b888472d0c1c96fa826ead3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7862d1878b888472d0c1c96fa826ead3">finalizeSensorData</a> (bool success)</td></tr>
+<tr class="memdesc:a7862d1878b888472d0c1c96fa826ead3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Финализация данных датчика (валидация, кэширование, скользящее среднее)  <br /></td></tr>
+<tr class="separator:a7862d1878b888472d0c1c96fa826ead3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3a37446a712d9ae94e76304361d35d2" id="r_ac3a37446a712d9ae94e76304361d35d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3a37446a712d9ae94e76304361d35d2">readSensorData</a> ()</td></tr>
+<tr class="separator:ac3a37446a712d9ae94e76304361d35d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7d239567ef1281e0fd378082fd48ac" id="r_aca7d239567ef1281e0fd378082fd48ac"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca7d239567ef1281e0fd378082fd48ac">convertRegisterToFloat</a> (uint16_t value, float multiplier)</td></tr>
+<tr class="separator:aca7d239567ef1281e0fd378082fd48ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c43d8a4afead0d0df29635242290377" id="r_a1c43d8a4afead0d0df29635242290377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c43d8a4afead0d0df29635242290377">preTransmission</a> ()</td></tr>
+<tr class="memdesc:a1c43d8a4afead0d0df29635242290377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Подготовка к передаче данных  <br /></td></tr>
+<tr class="separator:a1c43d8a4afead0d0df29635242290377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33b535e84f654e423bb627b25b7b3759" id="r_a33b535e84f654e423bb627b25b7b3759"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33b535e84f654e423bb627b25b7b3759">postTransmission</a> ()</td></tr>
+<tr class="memdesc:a33b535e84f654e423bb627b25b7b3759"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завершение передачи данных  <br /></td></tr>
+<tr class="separator:a33b535e84f654e423bb627b25b7b3759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54a04fceff1a6b7eef35a680491e19b4" id="r_a54a04fceff1a6b7eef35a680491e19b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54a04fceff1a6b7eef35a680491e19b4">realSensorTask</a> (void *pvParameters)</td></tr>
+<tr class="separator:a54a04fceff1a6b7eef35a680491e19b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f1a431da8f1feb8a64e2c5f887056df" id="r_a4f1a431da8f1feb8a64e2c5f887056df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f1a431da8f1feb8a64e2c5f887056df">startRealSensorTask</a> ()</td></tr>
+<tr class="separator:a4f1a431da8f1feb8a64e2c5f887056df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbf50656913748323cd03274af03c116" id="r_adbf50656913748323cd03274af03c116"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbf50656913748323cd03274af03c116">printModbusError</a> (uint8_t errNum)</td></tr>
+<tr class="separator:adbf50656913748323cd03274af03c116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae316f6943acb0b355ff8b0f878b08d04" id="r_ae316f6943acb0b355ff8b0f878b08d04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae316f6943acb0b355ff8b0f878b08d04">initMovingAverageBuffers</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data)</td></tr>
+<tr class="separator:ae316f6943acb0b355ff8b0f878b08d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa3ddec4a6bc8ee0972ab805e02aad6b" id="r_afa3ddec4a6bc8ee0972ab805e02aad6b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa3ddec4a6bc8ee0972ab805e02aad6b">addToMovingAverage</a> (<a class="el" href="struct_sensor_data.html">SensorData</a> &amp;data, float temp, float hum, float ec, float ph, float n, float p, float <a class="el" href="sensor__compensation_8cpp.html#a9fc4cca635a26c692681a7071e379aa7">k</a>)</td></tr>
+<tr class="separator:afa3ddec4a6bc8ee0972ab805e02aad6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaaaed48863426c3f790f977bc04e7b94" id="r_aaaaed48863426c3f790f977bc04e7b94"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaaaed48863426c3f790f977bc04e7b94">calculateMovingAverage</a> (float *buffer, uint8_t window_size, uint8_t filled)</td></tr>
+<tr class="separator:aaaaed48863426c3f790f977bc04e7b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fac607750afe2d74837248aeec2cfe0" id="r_a3fac607750afe2d74837248aeec2cfe0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_sensor_data.html">SensorData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fac607750afe2d74837248aeec2cfe0">getSensorData</a> ()</td></tr>
+<tr class="separator:a3fac607750afe2d74837248aeec2cfe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a9f7da14569cf54a5633c163642e97dff" id="r_a9f7da14569cf54a5633c163642e97dff"><td class="memItemLeft" align="right" valign="top">ModbusMaster&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f7da14569cf54a5633c163642e97dff">modbus</a></td></tr>
+<tr class="separator:a9f7da14569cf54a5633c163642e97dff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae6ed671f3036da58a93991fca2a2329c" id="r_ae6ed671f3036da58a93991fca2a2329c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_sensor_data.html">SensorData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6ed671f3036da58a93991fca2a2329c">sensorData</a></td></tr>
+<tr class="separator:ae6ed671f3036da58a93991fca2a2329c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a90cc33c11a27aac5f56dcaac387c0d" id="r_a5a90cc33c11a27aac5f56dcaac387c0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_sensor_cache.html">SensorCache</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a90cc33c11a27aac5f56dcaac387c0d">sensorCache</a></td></tr>
+<tr class="separator:a5a90cc33c11a27aac5f56dcaac387c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc5319275c2df675d59ff17f862d3e44" id="r_acc5319275c2df675d59ff17f862d3e44"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acc5319275c2df675d59ff17f862d3e44">sensorLastError</a> = &quot;&quot;</td></tr>
+<tr class="separator:acc5319275c2df675d59ff17f862d3e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70303ff3ef95ccb720e4ef57475b36d4" id="r_a70303ff3ef95ccb720e4ef57475b36d4"><td class="memItemLeft" align="right" valign="top">static unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70303ff3ef95ccb720e4ef57475b36d4">lastIrrigationTs</a> = 0</td></tr>
+<tr class="separator:a70303ff3ef95ccb720e4ef57475b36d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Работа с Modbus-датчиком JXCT. </p>
+<p>Реализация функций и задач для опроса датчика по Modbus RTU, преобразование данных, управление линией передачи. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a></p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="afa3ddec4a6bc8ee0972ab805e02aad6b" name="afa3ddec4a6bc8ee0972ab805e02aad6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa3ddec4a6bc8ee0972ab805e02aad6b">&#9670;&#160;</a></span>addToMovingAverage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void addToMovingAverage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>temp</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>hum</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ph</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>n</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>k</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00618">618</a></p>
+
+</div>
+</div>
+<a id="a4cff8e34908a2deb0691e3809224685a" name="a4cff8e34908a2deb0691e3809224685a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cff8e34908a2deb0691e3809224685a">&#9670;&#160;</a></span>applyCompensationIfEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void applyCompensationIfEnabled </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00397">397</a></p>
+
+</div>
+</div>
+<a id="a0e1b4f2813957877a5ac0ab90787f0e5" name="a0e1b4f2813957877a5ac0ab90787f0e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e1b4f2813957877a5ac0ab90787f0e5">&#9670;&#160;</a></span>calculateCRC16()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t calculateCRC16 </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00109">109</a></p>
+
+</div>
+</div>
+<a id="aaaaed48863426c3f790f977bc04e7b94" name="aaaaed48863426c3f790f977bc04e7b94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaaaed48863426c3f790f977bc04e7b94">&#9670;&#160;</a></span>calculateMovingAverage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float calculateMovingAverage </td>
+          <td>(</td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>window_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>filled</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00698">698</a></p>
+
+</div>
+</div>
+<a id="aac87bc87eaf0bc01ebda5fe1bb44c88b" name="aac87bc87eaf0bc01ebda5fe1bb44c88b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac87bc87eaf0bc01ebda5fe1bb44c88b">&#9670;&#160;</a></span>changeDeviceAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool changeDeviceAddress </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>new_address</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00183">183</a></p>
+
+</div>
+</div>
+<a id="aca7d239567ef1281e0fd378082fd48ac" name="aca7d239567ef1281e0fd378082fd48ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca7d239567ef1281e0fd378082fd48ac">&#9670;&#160;</a></span>convertRegisterToFloat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float convertRegisterToFloat </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>multiplier</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00507">507</a></p>
+
+</div>
+</div>
+<a id="a2f7382dca34cb8bc9e1c80da26865a0a" name="a2f7382dca34cb8bc9e1c80da26865a0a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f7382dca34cb8bc9e1c80da26865a0a">&#9670;&#160;</a></span>debugPrintBuffer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void debugPrintBuffer </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>prefix</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00024">24</a></p>
+
+</div>
+</div>
+<a id="a7862d1878b888472d0c1c96fa826ead3" name="a7862d1878b888472d0c1c96fa826ead3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7862d1878b888472d0c1c96fa826ead3">&#9670;&#160;</a></span>finalizeSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void finalizeSensorData </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>success</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Финализация данных датчика (валидация, кэширование, скользящее среднее) </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">success</td><td>Флаг успешности чтения всех параметров </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00456">456</a></p>
+
+</div>
+</div>
+<a id="a8eb8daa78bacfc8a930012162882aa9c" name="a8eb8daa78bacfc8a930012162882aa9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eb8daa78bacfc8a930012162882aa9c">&#9670;&#160;</a></span>getCachedData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool getCachedData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00144">144</a></p>
+
+</div>
+</div>
+<a id="a3fac607750afe2d74837248aeec2cfe0" name="a3fac607750afe2d74837248aeec2cfe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fac607750afe2d74837248aeec2cfe0">&#9670;&#160;</a></span>getSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_sensor_data.html">SensorData</a> getSensorData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00754">754</a></p>
+
+</div>
+</div>
+<a id="ae316f6943acb0b355ff8b0f878b08d04" name="ae316f6943acb0b355ff8b0f878b08d04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae316f6943acb0b355ff8b0f878b08d04">&#9670;&#160;</a></span>initMovingAverageBuffers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initMovingAverageBuffers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00600">600</a></p>
+
+</div>
+</div>
+<a id="a33b535e84f654e423bb627b25b7b3759" name="a33b535e84f654e423bb627b25b7b3759"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33b535e84f654e423bb627b25b7b3759">&#9670;&#160;</a></span>postTransmission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void postTransmission </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Завершение передачи данных </p>
+<p>Выключает передатчик и включает приемник с необходимой задержкой. Важно: Задержка 50 мкс необходима для корректного переключения режимов </p>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00529">529</a></p>
+
+</div>
+</div>
+<a id="a1c43d8a4afead0d0df29635242290377" name="a1c43d8a4afead0d0df29635242290377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c43d8a4afead0d0df29635242290377">&#9670;&#160;</a></span>preTransmission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void preTransmission </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Подготовка к передаче данных </p>
+<p>Включает передатчик и отключает приемник с необходимой задержкой. Важно: Задержка 50 мкс необходима для стабилизации сигналов на шине RS-485 </p>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00517">517</a></p>
+
+</div>
+</div>
+<a id="adbf50656913748323cd03274af03c116" name="adbf50656913748323cd03274af03c116"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbf50656913748323cd03274af03c116">&#9670;&#160;</a></span>printModbusError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printModbusError </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>errNum</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00559">559</a></p>
+
+</div>
+</div>
+<a id="a67111fe72a8b7cc6d742ed0cc8b92246" name="a67111fe72a8b7cc6d742ed0cc8b92246"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67111fe72a8b7cc6d742ed0cc8b92246">&#9670;&#160;</a></span>readBasicParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int readBasicParameters </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Чтение основных параметров (температура, влажность, pH, EC) </p>
+<dl class="section return"><dt>Возвращает</dt><dd>Количество успешно прочитанных параметров </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00319">319</a></p>
+
+</div>
+</div>
+<a id="a8b6b2ad640c9580fa45d8cbad28adf53" name="a8b6b2ad640c9580fa45d8cbad28adf53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b6b2ad640c9580fa45d8cbad28adf53">&#9670;&#160;</a></span>readErrorStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool readErrorStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00172">172</a></p>
+
+</div>
+</div>
+<a id="a6444c2d436a57168cc75d4ef8529a6c8" name="a6444c2d436a57168cc75d4ef8529a6c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6444c2d436a57168cc75d4ef8529a6c8">&#9670;&#160;</a></span>readFirmwareVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool readFirmwareVersion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00153">153</a></p>
+
+</div>
+</div>
+<a id="a5c98e696f32d6d16aeb4e29eb71d941f" name="a5c98e696f32d6d16aeb4e29eb71d941f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c98e696f32d6d16aeb4e29eb71d941f">&#9670;&#160;</a></span>readNPKParameters()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int readNPKParameters </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Чтение NPK параметров (азот, фосфор, калий) </p>
+<dl class="section return"><dt>Возвращает</dt><dd>Количество успешно прочитанных параметров </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00342">342</a></p>
+
+</div>
+</div>
+<a id="ac3a37446a712d9ae94e76304361d35d2" name="ac3a37446a712d9ae94e76304361d35d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3a37446a712d9ae94e76304361d35d2">&#9670;&#160;</a></span>readSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void readSensorData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00490">490</a></p>
+
+</div>
+</div>
+<a id="a3faa8f7948e57c2c23d36a3a12b1339d" name="a3faa8f7948e57c2c23d36a3a12b1339d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3faa8f7948e57c2c23d36a3a12b1339d">&#9670;&#160;</a></span>readSingleRegister()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool readSingleRegister </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>reg_addr</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>reg_name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>multiplier</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>target</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>is_float</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Чтение одного регистра с обработкой ошибок </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reg_addr</td><td>Адрес регистра </td></tr>
+    <tr><td class="paramname">reg_name</td><td>Название регистра для логирования </td></tr>
+    <tr><td class="paramname">multiplier</td><td>Множитель для конвертации </td></tr>
+    <tr><td class="paramname">target</td><td>Указатель на переменную для сохранения результата </td></tr>
+    <tr><td class="paramname">is_float</td><td>Флаг - сохранять как float или int </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true если чтение успешно </dd></dl>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00284">284</a></p>
+
+</div>
+</div>
+<a id="a54a04fceff1a6b7eef35a680491e19b4" name="a54a04fceff1a6b7eef35a680491e19b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54a04fceff1a6b7eef35a680491e19b4">&#9670;&#160;</a></span>realSensorTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void realSensorTask </td>
+          <td>(</td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>pvParameters</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00537">537</a></p>
+
+</div>
+</div>
+<a id="a7a820fe61fb2c2163f98e3a273af4b55" name="a7a820fe61fb2c2163f98e3a273af4b55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a820fe61fb2c2163f98e3a273af4b55">&#9670;&#160;</a></span>saveRawSnapshot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void saveRawSnapshot </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00362">362</a></p>
+
+</div>
+</div>
+<a id="a0c4410314e55fce67a3c727cb1bf9520" name="a0c4410314e55fce67a3c727cb1bf9520"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c4410314e55fce67a3c727cb1bf9520">&#9670;&#160;</a></span>setupModbus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupModbus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Инициализация Modbus и SP3485E. </p>
+<p>Настраивает пины управления SP3485E и инициализирует UART для Modbus. Важно: DE и RE управляются раздельно для лучшего контроля над временем переключения </p>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00080">80</a></p>
+
+</div>
+</div>
+<a id="a4f1a431da8f1feb8a64e2c5f887056df" name="a4f1a431da8f1feb8a64e2c5f887056df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f1a431da8f1feb8a64e2c5f887056df">&#9670;&#160;</a></span>startRealSensorTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void startRealSensorTask </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00553">553</a></p>
+
+</div>
+</div>
+<a id="aedb09484ba8020afc57e9e9e26012bf1" name="aedb09484ba8020afc57e9e9e26012bf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedb09484ba8020afc57e9e9e26012bf1">&#9670;&#160;</a></span>testModbusConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool testModbusConnection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00199">199</a></p>
+
+</div>
+</div>
+<a id="ab8a1f5220dc77f33a89d14fe4d82442f" name="ab8a1f5220dc77f33a89d14fe4d82442f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8a1f5220dc77f33a89d14fe4d82442f">&#9670;&#160;</a></span>testSP3485E()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void testSP3485E </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Тестирование работы SP3485E. </p>
+<p>Проверяет корректность работы пинов DE и RE:</p><ol type="1">
+<li>Устанавливает оба пина в режим OUTPUT</li>
+<li>Проверяет переключение HIGH/LOW</li>
+<li>Проверяет возможность независимого управления передатчиком и приемником </li>
+</ol>
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00045">45</a></p>
+
+</div>
+</div>
+<a id="a7dfe5a231d563e4498f0217c486af795" name="a7dfe5a231d563e4498f0217c486af795"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7dfe5a231d563e4498f0217c486af795">&#9670;&#160;</a></span>updateIrrigationFlag()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void updateIrrigationFlag </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>d</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00373">373</a></p>
+
+</div>
+</div>
+<a id="aa8a3b28ec8c21261d4e467da91a17a67" name="aa8a3b28ec8c21261d4e467da91a17a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a3b28ec8c21261d4e467da91a17a67">&#9670;&#160;</a></span>validateSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool validateSensorData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_sensor_data.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00132">132</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a70303ff3ef95ccb720e4ef57475b36d4" name="a70303ff3ef95ccb720e4ef57475b36d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70303ff3ef95ccb720e4ef57475b36d4">&#9670;&#160;</a></span>lastIrrigationTs</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long lastIrrigationTs = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00022">22</a></p>
+
+</div>
+</div>
+<a id="a9f7da14569cf54a5633c163642e97dff" name="a9f7da14569cf54a5633c163642e97dff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f7da14569cf54a5633c163642e97dff">&#9670;&#160;</a></span>modbus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ModbusMaster modbus</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00017">17</a></p>
+
+</div>
+</div>
+<a id="a5a90cc33c11a27aac5f56dcaac387c0d" name="a5a90cc33c11a27aac5f56dcaac387c0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a90cc33c11a27aac5f56dcaac387c0d">&#9670;&#160;</a></span>sensorCache</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_sensor_cache.html">SensorCache</a> sensorCache</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00019">19</a></p>
+
+</div>
+</div>
+<a id="ae6ed671f3036da58a93991fca2a2329c" name="ae6ed671f3036da58a93991fca2a2329c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ed671f3036da58a93991fca2a2329c">&#9670;&#160;</a></span>sensorData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_sensor_data.html">SensorData</a> sensorData</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00018">18</a></p>
+
+</div>
+</div>
+<a id="acc5319275c2df675d59ff17f862d3e44" name="acc5319275c2df675d59ff17f862d3e44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc5319275c2df675d59ff17f862d3e44">&#9670;&#160;</a></span>sensorLastError</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String sensorLastError = &quot;&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00020">20</a></p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="modbus__sensor_8cpp.html">modbus_sensor.cpp</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

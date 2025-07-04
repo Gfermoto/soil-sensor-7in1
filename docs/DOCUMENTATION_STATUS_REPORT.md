@@ -52,7 +52,7 @@ docs/
 │   ├── 🔌 WIRING_DIAGRAM.md
 │   └── ...
 ├── 🛠️ dev/                        # Для разработчиков
-│   ├── 📊 TECH_DEBT_REPORT.md
+│   ├── 📊 TECHNICAL_DEBT_REPORT.md
 │   ├── 🔍 DUPLICATION_ANALYSIS.md
 │   └── ...
 └── 📦 legacy/                     # Архив устаревших материалов
