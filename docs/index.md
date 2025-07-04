@@ -7,6 +7,58 @@
 [![License](https://img.shields.io/github/license/Gfermoto/soil-sensor-7in1?color=yellow&label=license)](LICENSE)
 [![CI](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml)
 
+<!-- HERO BLOCK -->
+<div class="hero">
+  <div class="hero__title">🌱 JXCT Soil Sensor</div>
+  <div class="hero__desc">
+    Профессиональная IoT система мониторинга почвы на базе ESP32<br>
+    <b>Документация, API, интеграция, поддержка</b>
+  </div>
+  <div class="hero__actions">
+    <a class="hero__button" href="manuals/USER_GUIDE.md">Руководство пользователя</a>
+    <a class="hero__button" href="manuals/API.md">API Reference</a>
+    <a class="hero__button" href="https://t.me/jxct_support" target="_blank">Поддержка</a>
+  </div>
+</div>
+
+<!-- КАРТОЧКИ ОСНОВНЫХ РАЗДЕЛОВ -->
+<div class="cards">
+  <div class="card">
+    <div class="card__icon">👤</div>
+    <div class="card__title">Пользователю</div>
+    <div class="card__desc">Руководство, агрономические рекомендации, компенсация показаний, схема подключения.</div>
+    <a class="card__link" href="manuals/USER_GUIDE.md">Подробнее</a>
+  </div>
+  <div class="card">
+    <div class="card__icon">🛠️</div>
+    <div class="card__title">Инженеру</div>
+    <div class="card__desc">Техническая документация, управление конфигурацией, протокол Modbus.</div>
+    <a class="card__link" href="manuals/TECHNICAL_DOCS.md">Подробнее</a>
+  </div>
+  <div class="card">
+    <div class="card__icon">👨‍💻</div>
+    <div class="card__title">Разработчику</div>
+    <div class="card__desc">Тестирование, архитектура, интеграция отчётов, план рефакторинга.</div>
+    <a class="card__link" href="TESTING_GUIDE.md">Подробнее</a>
+  </div>
+  <div class="card">
+    <div class="card__icon">🌐</div>
+    <div class="card__title">API и интеграция</div>
+    <div class="card__desc">Обзор API, Doxygen, REST-интерфейсы, интеграция с внешними системами.</div>
+    <a class="card__link" href="manuals/API.md">Подробнее</a>
+  </div>
+</div>
+
+<!-- CALLOUT: Быстрый старт -->
+<div class="callout">
+  🚀 <b>Быстрый старт:</b> <a href="manuals/USER_GUIDE.md">Откройте руководство пользователя</a> для пошаговой настройки и запуска системы.
+</div>
+
+<!-- CALLOUT: Поддержка -->
+<div class="callout">
+  🤝 <b>Поддержка:</b> Вопросы и помощь — <a href="https://t.me/jxct_support" target="_blank">Telegram</a> или <a href="https://github.com/Gfermoto/soil-sensor-7in1/issues">GitHub Issues</a>.
+</div>
+
 ## 🚀 Быстрый старт
 
 ### Для пользователей
