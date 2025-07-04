@@ -11,14 +11,14 @@ INPUT                  = src include
 RECURSIVE              = YES
 
 # Каталог для вывода документации
-OUTPUT_DIRECTORY       = build/doxygen
+OUTPUT_DIRECTORY       = site
 
 # Язык документации
 OUTPUT_LANGUAGE        = Russian
 
 # Генерировать HTML
 GENERATE_HTML          = YES
-HTML_OUTPUT            = html
+HTML_OUTPUT            = api
 
 # Генерировать LaTeX (PDF)
 GENERATE_LATEX         = NO

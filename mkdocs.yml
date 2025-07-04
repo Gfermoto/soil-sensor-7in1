@@ -50,11 +50,6 @@ theme:
         icon: material/toggle-switch-off-outline
         name: Переключить тему
 
-# Базовые шрифты
-font:
-  text: Roboto
-  code: Roboto Mono
-
 # Иконки
 icon:
   repo: fontawesome/brands/github
@@ -98,35 +93,35 @@ markdown_extensions:
 
 # Современная навигация
 nav:
-  - Главная: index.md
-  - Руководства:
-    - Руководство пользователя: manuals/USER_GUIDE.md
-    - Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
-    - Техническая документация: manuals/TECHNICAL_DOCS.md
-    - Схема подключения: manuals/WIRING_DIAGRAM.md
-    - API документация: manuals/API.md
-    - Протокол Modbus: manuals/MODBUS_PROTOCOL.md
-    - Управление конфигурацией: manuals/CONFIG_MANAGEMENT.md
-    - Управление версиями: manuals/VERSION_MANAGEMENT.md
-    - Руководство по компенсации: manuals/COMPENSATION_GUIDE.md
-  - API:
-    - Обзор API: api-overview.md
-    - Doxygen API: api/
-  - Разработка:
-    - Архитектура: dev/ARCH_OVERALL.md
-    - План рефакторинга QA: dev/QA_REFACTORING_PLAN_2025H2.md
-    - План снижения технического долга: dev/SAFE_TECH_DEBT_REDUCTION_PLAN.md
-    - Отчет по техническому долгу: dev/TECH_DEBT_REPORT_2025-06.md
-    - Быстрая справка по техническому долгу: dev/TECHNICAL_DEBT_QUICK_REFERENCE.md
-  - Тестирование:
-    - Руководство по тестированию: TESTING_GUIDE.md
-    - Быстрая справка по тестированию: TESTING_QUICK_REFERENCE.md
-  - Отчеты:
-    - Статус тестирования: CURRENT_TEST_RESULTS.md
-    - Аудит безопасности CSRF: CSRF_SECURITY_AUDIT.md
-    - Отчет по документации: DOCUMENTATION_STATUS_REPORT.md
-    - Отчет по интеграции отчетов: REPORTS_INTEGRATION.md
-    - Отчет о завершении этапа 2: STAGE_2_COMPLETION_REPORT.md
-  - Устаревшее:
-    - Детальный анализ дублирования: legacy/DUPLICATION_ANALYSIS_DETAILED.md
-    - Настройка окружения: legacy/ENVIRONMENT_SETUP.md
+  - 🏠 Главная: index.md
+  - 📚 Руководства:
+    - 👤 Руководство пользователя: manuals/USER_GUIDE.md
+    - 🌱 Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
+    - 🔧 Техническая документация: manuals/TECHNICAL_DOCS.md
+    - 🔌 Схема подключения: manuals/WIRING_DIAGRAM.md
+    - 📖 API документация: manuals/API.md
+    - 📡 Протокол Modbus: manuals/MODBUS_PROTOCOL.md
+    - ⚙️ Управление конфигурацией: manuals/CONFIG_MANAGEMENT.md
+    - 🏷️ Управление версиями: manuals/VERSION_MANAGEMENT.md
+    - ⚖️ Руководство по компенсации: manuals/COMPENSATION_GUIDE.md
+  - 🔌 API:
+    - 📋 Обзор API: api-overview.md
+    - 📚 Doxygen API: api/
+  - 🛠️ Разработка:
+    - 🏗️ Архитектура: dev/ARCH_OVERALL.md
+    - 🔄 План рефакторинга QA: dev/QA_REFACTORING_PLAN_2025H2.md
+    - 📉 План снижения технического долга: dev/SAFE_TECH_DEBT_REDUCTION_PLAN.md
+    - 📊 Отчет по техническому долгу: dev/TECH_DEBT_REPORT_2025-06.md
+    - ⚡ Быстрая справка по техническому долгу: dev/TECHNICAL_DEBT_QUICK_REFERENCE.md
+  - 🧪 Тестирование:
+    - 📖 Руководство по тестированию: TESTING_GUIDE.md
+    - ⚡ Быстрая справка по тестированию: TESTING_QUICK_REFERENCE.md
+  - 📊 Отчеты:
+    - 📈 Статус тестирования: CURRENT_TEST_RESULTS.md
+    - 🔒 Аудит безопасности CSRF: CSRF_SECURITY_AUDIT.md
+    - 📋 Отчет по документации: DOCUMENTATION_STATUS_REPORT.md
+    - 🔗 Отчет по интеграции отчетов: REPORTS_INTEGRATION.md
+    - ✅ Отчет о завершении этапа 2: STAGE_2_COMPLETION_REPORT.md
+  - 📁 Устаревшее:
+    - 🔍 Детальный анализ дублирования: legacy/DUPLICATION_ANALYSIS_DETAILED.md
+    - ⚙️ Настройка окружения: legacy/ENVIRONMENT_SETUP.md
