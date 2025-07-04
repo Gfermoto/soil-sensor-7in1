@@ -88,5 +88,5 @@ doxygen Doxyfile
 Если у вас есть вопросы по API или вы нашли ошибки в документации, пожалуйста:
 
 1. Создайте Issue в GitHub репозитории
-2. Обратитесь в Telegram: [@jxct_support](https://t.me/jxct_support)
-3. Присоединитесь к Discord серверу: [JXCT Community](https://discord.gg/jxct)
+2. Создайте Issue в GitHub репозитории
+3. Обратитесь к документации в разделе "Поддержка"

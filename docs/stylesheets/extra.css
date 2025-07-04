@@ -8,9 +8,12 @@
   --md-accent-fg-color: #10b981;
 }
 
-/* Убираем боковые панели - делаем одноколоночный дизайн */
+/* Убираем ВСЕ боковые панели - делаем полностью одноколоночный дизайн */
 .md-nav--primary,
-.md-sidebar--primary {
+.md-sidebar--primary,
+.md-nav--secondary,
+.md-sidebar--secondary,
+.md-toc {
   display: none !important;
 }
 
@@ -24,6 +27,12 @@
   margin-left: 0 !important;
   margin-right: 0 !important;
   max-width: 100% !important;
+}
+
+/* Убираем отступы для toc */
+.md-content__inner {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
 /* Современные заголовки */
