@@ -1,7 +1,0 @@
-<map id="CalibrationManager::init" name="CalibrationManager::init">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,139,65"/>
-<area shape="rect" id="Node000002" href="$logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce" title=" " alt="" coords="198,5,264,32"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="139,31,183,24,183,29,140,36"/>
-<area shape="rect" id="Node000003" href="$logger_8cpp.html#a54dab32db32234798ff063ccc0dde695" title=" " alt="" coords="187,56,276,83"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="140,52,172,57,171,63,139,57"/>
-</map>

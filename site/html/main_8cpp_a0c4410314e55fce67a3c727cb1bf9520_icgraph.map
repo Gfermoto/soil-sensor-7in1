@@ -1,5 +1,0 @@
-<map id="setupModbus" name="setupModbus">
-<area shape="rect" id="Node000001" title="Инициализация Modbus и SP3485E." alt="" coords="215,13,314,40"/>
-<area shape="rect" id="Node000002" href="$class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084" title=" " alt="" coords="5,5,167,48"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="199,29,167,29,167,24,199,24"/>
-</map>

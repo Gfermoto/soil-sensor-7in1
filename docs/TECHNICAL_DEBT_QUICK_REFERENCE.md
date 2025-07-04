@@ -60,9 +60,7 @@
 
 ## 🔗 ДЕТАЛЬНЫЕ ОТЧЕТЫ
 
-- **[Полный анализ](../test_reports/technical-debt-assessment.md)**
-- **[Сводная таблица тестов](../test_reports/MASTER_TEST_SUMMARY.md)**
-- **[JSON отчет](../test_reports/technical-debt-ci.json)**
+
 
 ---
 

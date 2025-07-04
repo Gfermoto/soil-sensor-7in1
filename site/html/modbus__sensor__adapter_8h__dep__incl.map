@@ -1,7 +1,0 @@
-<map id="src/modbus_sensor_adapter.h" name="src/modbus_sensor_adapter.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,202,32"/>
-<area shape="rect" id="Node000002" href="$sensor__factory_8h.html" title=" " alt="" coords="22,80,185,107"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,48,106,80,101,80,101,48"/>
-<area shape="rect" id="Node000003" href="$main_8cpp.html" title="Главный файл проекта JXCT датчика" alt="" coords="55,155,152,181"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="106,122,106,154,101,154,101,122"/>
-</map>

@@ -1,4 +1,4 @@
-/* Простые современные стили для JXCT */
+/* Современный одноколоночный дизайн */
 
 /* Основные цвета */
 :root {
@@ -8,140 +8,112 @@
   --md-accent-fg-color: #10b981;
 }
 
-/* Упрощенная навигация */
-.md-nav--primary {
-  width: 280px !important;
-}
-
+/* Убираем боковые панели - делаем одноколоночный дизайн */
+.md-nav--primary,
 .md-sidebar--primary {
-  width: 280px !important;
+  display: none !important;
 }
 
 .md-main__inner {
-  margin-left: 280px !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: 100% !important;
 }
 
-/* Простые заголовки */
+.md-content {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  max-width: 100% !important;
+}
+
+/* Современные заголовки */
 .md-content h1 {
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.5rem;
+  font-weight: 700;
   color: var(--md-primary-fg-color);
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid var(--md-primary-fg-color);
+  padding-bottom: 0.5rem;
 }
 
 .md-content h2 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 600;
   color: var(--md-primary-fg-color);
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.md-content h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #374151;
   margin-top: 1.5rem;
   margin-bottom: 0.75rem;
 }
 
-.md-content h3 {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #374151;
-  margin-top: 1rem;
-  margin-bottom: 0.5rem;
+/* Современные карточки */
+.md-typeset .admonition {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  margin: 1.5rem 0;
 }
 
-/* Простые ссылки */
-.md-content a {
+.md-typeset .admonition-title {
+  border-radius: 12px 12px 0 0;
+  font-weight: 600;
+}
+
+/* Современные кнопки */
+.md-typeset a {
   color: var(--md-primary-fg-color);
   text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
 }
 
-.md-content a:hover {
-  text-decoration: underline;
+.md-typeset a:hover {
+  border-bottom-color: var(--md-primary-fg-color);
 }
 
-/* Простые таблицы */
-.md-content table {
-  border-collapse: collapse;
-  width: 100%;
-  margin: 1rem 0;
+/* Современные таблицы */
+.md-typeset table {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.md-content table th,
-.md-content table td {
-  border: 1px solid #e5e7eb;
-  padding: 0.5rem;
-  text-align: left;
-}
-
-.md-content table th {
-  background-color: #f9fafb;
+.md-typeset table th {
+  background-color: var(--md-primary-fg-color);
+  color: white;
   font-weight: 600;
 }
 
-/* Простые блоки кода */
-.md-content pre {
-  background-color: #f9fafb;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.375rem;
-  padding: 1rem;
-  overflow-x: auto;
-}
-
-.md-content code {
+/* Современные блоки кода */
+.md-typeset code {
   background-color: #f3f4f6;
+  border-radius: 4px;
   padding: 0.125rem 0.25rem;
-  border-radius: 0.25rem;
-  font-size: 0.875rem;
+  font-size: 0.875em;
 }
 
-/* Простые списки */
-.md-content ul,
-.md-content ol {
-  margin: 1rem 0;
-  padding-left: 1.5rem;
+.md-typeset pre {
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.md-content li {
-  margin: 0.25rem 0;
-}
-
-/* Простые блоки */
-.md-content .admonition {
-  border: 1px solid #e5e7eb;
-  border-radius: 0.375rem;
-  padding: 1rem;
-  margin: 1rem 0;
-  background-color: #f9fafb;
-}
-
-.md-content .admonition-title {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-/* Shields.io badges */
-.md-content img[src*="shields.io"] {
-  height: 20px;
-  vertical-align: middle;
-  margin: 2px 4px;
-}
-
-/* Мобильная адаптация */
-@media (max-width: 76.1875em) {
-  .md-nav--primary,
-  .md-sidebar--primary {
-    width: 100% !important;
-  }
-  
-  .md-main__inner {
-    margin-left: 0 !important;
-  }
-  
+/* Адаптивность */
+@media (max-width: 768px) {
   .md-content h1 {
-    font-size: 1.75rem;
+    font-size: 2rem;
   }
   
   .md-content h2 {
-    font-size: 1.375rem;
+    font-size: 1.5rem;
   }
   
   .md-content h3 {
-    font-size: 1.125rem;
+    font-size: 1.25rem;
   }
 } 

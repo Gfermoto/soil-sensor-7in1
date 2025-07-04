@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT 7-в-1 Датчик Почвы: Исходный файл include/logger.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   </div>
+   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('logger_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">logger.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="logger_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#ifndef LOGGER_H</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#define LOGGER_H</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// Уровни логгирования</span></div>
+<div class="foldopen" id="foldopen00012" data-start="{" data-end="};">
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">   12</a></span><span class="keyword">enum</span> <a class="code hl_enumeration" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a> : std::uint8_t</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno"><a class="line" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473">   14</a></span>    <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473">LOG_ERROR</a> = 0,</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13">   15</a></span>    <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13">LOG_WARN</a> = 1,</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">   16</a></span>    <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a> = 2,</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">   17</a></span>    <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">LOG_DEBUG</a> = 3</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>};</div>
+</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">// Текущий уровень логгирования (можно менять)</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">extern</span> <a class="code hl_enumeration" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a> <a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// Символы для разных типов сообщений</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="logger_8h.html#a1805ae11e986e60d931ddd9e54e12fe5">   24</a></span><span class="preprocessor">#define LOG_SYMBOL_ERROR &quot;❌&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="logger_8h.html#a7e4fda439418c6c40322f686422d9780">   25</a></span><span class="preprocessor">#define LOG_SYMBOL_WARN &quot;⚠️ &quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="logger_8h.html#a29ad49893877cde0893a8a0fef27fe90">   26</a></span><span class="preprocessor">#define LOG_SYMBOL_INFO &quot;ℹ️ &quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="logger_8h.html#a20a52a9bc99086288ae7984b9a4ebc2b">   27</a></span><span class="preprocessor">#define LOG_SYMBOL_DEBUG &quot;🔧&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="logger_8h.html#a3f059e66d832311f77817c558143bc1f">   28</a></span><span class="preprocessor">#define LOG_SYMBOL_SUCCESS &quot;✅&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="logger_8h.html#a88747f65ea7adeeda31222acace5fc11">   29</a></span><span class="preprocessor">#define LOG_SYMBOL_SENSOR &quot;📡&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="logger_8h.html#a9b85a144155d4ee001653d25ce7a8ba6">   30</a></span><span class="preprocessor">#define LOG_SYMBOL_WIFI &quot;📶&quot;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="logger_8h.html#a80f904e66b58e997255b9a283394a107">   31</a></span><span class="preprocessor">#define LOG_SYMBOL_MQTT &quot;📤&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="logger_8h.html#ab52ca48221cf6d89f8ebd189da180059">   32</a></span><span class="preprocessor">#define LOG_SYMBOL_DATA &quot;📊&quot;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="logger_8h.html#a0c7e0aa41ab5cb38235c908e87aeb5ea">   33</a></span><span class="preprocessor">#define LOG_SYMBOL_SYSTEM &quot;⚙️ &quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">// Цвета для консоли (ANSI escape codes)</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">   36</a></span><span class="preprocessor">#define COLOR_RESET &quot;\033[0m&quot;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="logger_8h.html#ad86358bf19927183dd7b4ae215a29731">   37</a></span><span class="preprocessor">#define COLOR_RED &quot;\033[31m&quot;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="logger_8h.html#afc9149f5de51bd9ac4f5ebbfa153f018">   38</a></span><span class="preprocessor">#define COLOR_GREEN &quot;\033[32m&quot;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="logger_8h.html#a4534b577b74a58b0f4b7be027af664e0">   39</a></span><span class="preprocessor">#define COLOR_YELLOW &quot;\033[33m&quot;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="logger_8h.html#a23c70d699a5a775bc2e1ebeb8603f630">   40</a></span><span class="preprocessor">#define COLOR_BLUE &quot;\033[34m&quot;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="logger_8h.html#a8deb0beccea721b35bdb1b4f7264fe75">   41</a></span><span class="preprocessor">#define COLOR_MAGENTA &quot;\033[35m&quot;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">   42</a></span><span class="preprocessor">#define COLOR_CYAN &quot;\033[36m&quot;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="logger_8h.html#a9b44987ffdc2af19b635206b94334b69">   43</a></span><span class="preprocessor">#define COLOR_WHITE &quot;\033[37m&quot;</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="logger_8h.html#a302607d6f585b7e9ba1c3eab8d2199d5">   44</a></span><span class="preprocessor">#define COLOR_BOLD &quot;\033[1m&quot;</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#ifdef NO_ANSI_COLORS</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#undef COLOR_RESET</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#undef COLOR_RED</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#undef COLOR_GREEN</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#undef COLOR_YELLOW</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#undef COLOR_BLUE</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#undef COLOR_MAGENTA</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#undef COLOR_CYAN</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#undef COLOR_WHITE</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#undef COLOR_BOLD</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define COLOR_RESET &quot;&quot;</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define COLOR_RED &quot;&quot;</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define COLOR_GREEN &quot;&quot;</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#define COLOR_YELLOW &quot;&quot;</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#define COLOR_BLUE &quot;&quot;</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#define COLOR_MAGENTA &quot;&quot;</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#define COLOR_CYAN &quot;&quot;</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#define COLOR_WHITE &quot;&quot;</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#define COLOR_BOLD &quot;&quot;</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#endif  </span><span class="comment">// NO_ANSI_COLORS</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">// Функции логгирования</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#a573f0d6e1b4dff871cf401471622a3d4">logPrintHeader</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* title, <span class="keyword">const</span> <span class="keywordtype">char</span>* color = <a class="code hl_define" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#af0851b3565de2c7c6a23b5d3d30a8fcd">logPrintSeparator</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* symbol = <span class="stringliteral">&quot;─&quot;</span>, <span class="keywordtype">int</span> length = 50);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#aef367594259e15c9df8b0caf3dfddba8">logPrintBanner</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* text);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// Основные функции логгирования</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#a60baa11f08afed73f5a7bc5d31f698ce">logError</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#a34f49079ccda568e5054918ae4354431">logWarn</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf">logInfo</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#a1e536b98344ba271bbfc484cca848dbe">logDebug</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#a54dab32db32234798ff063ccc0dde695">logSuccess</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">// Специализированные функции</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#a4a348f4af13be9d7c726e296e9b3c89b">logSensor</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#a8a220d54e17d73c281bb715f70bf6df9">logWiFi</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#ace461ff84ce50a76653ec959a2436320">logMQTT</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#af2cfc49d3e5f87ebc351693b47c348e1">logData</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#a6673a3ba037fc4ceda09f36e43cd7f14">logSystem</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">// Утилиты</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#a07e106e3f19501a64fde4b0c6fa8d73a">logUptime</a>();</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#ab014807afa04f9783ed19c897cbdf54d">logMemoryUsage</a>();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8h.html#abf70e1b094519276f0363ac763f100ab">logWiFiStatus</a>();</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="preprocessor">#ifdef NO_EMOJI</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="preprocessor">#undef LOG_SYMBOL_ERROR</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="preprocessor">#undef LOG_SYMBOL_WARN</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#undef LOG_SYMBOL_INFO</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="preprocessor">#undef LOG_SYMBOL_DEBUG</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="preprocessor">#undef LOG_SYMBOL_SUCCESS</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="preprocessor">#define LOG_SYMBOL_ERROR &quot;&quot;</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="preprocessor">#define LOG_SYMBOL_WARN &quot;&quot;</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="preprocessor">#define LOG_SYMBOL_INFO &quot;&quot;</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="preprocessor">#define LOG_SYMBOL_DEBUG &quot;&quot;</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="preprocessor">#define LOG_SYMBOL_SUCCESS &quot;&quot;</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="preprocessor">#endif  </span><span class="comment">// LOGGER_H</span></div>
+<div class="ttc" id="alogger_8cpp_html_a16cca5b581e7f50a9cc5e838510ae6f5"><div class="ttname"><a href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a></div><div class="ttdeci">LogLevel currentLogLevel</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00012">logger.cpp:12</a></div></div>
+<div class="ttc" id="alogger_8h_html_a07e106e3f19501a64fde4b0c6fa8d73a"><div class="ttname"><a href="logger_8h.html#a07e106e3f19501a64fde4b0c6fa8d73a">logUptime</a></div><div class="ttdeci">void logUptime()</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00232">logger.cpp:232</a></div></div>
+<div class="ttc" id="alogger_8h_html_a1e536b98344ba271bbfc484cca848dbe"><div class="ttname"><a href="logger_8h.html#a1e536b98344ba271bbfc484cca848dbe">logDebug</a></div><div class="ttdeci">void logDebug(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00113">logger.cpp:113</a></div></div>
+<div class="ttc" id="alogger_8h_html_a34f49079ccda568e5054918ae4354431"><div class="ttname"><a href="logger_8h.html#a34f49079ccda568e5054918ae4354431">logWarn</a></div><div class="ttdeci">void logWarn(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00079">logger.cpp:79</a></div></div>
+<div class="ttc" id="alogger_8h_html_a4a348f4af13be9d7c726e296e9b3c89b"><div class="ttname"><a href="logger_8h.html#a4a348f4af13be9d7c726e296e9b3c89b">logSensor</a></div><div class="ttdeci">void logSensor(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00146">logger.cpp:146</a></div></div>
+<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a></div><div class="ttdeci">LogLevel</div><div class="ttdef"><b>Определения</b> <a href="#l00012">logger.h:13</a></div></div>
+<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473">LOG_ERROR</a></div><div class="ttdeci">@ LOG_ERROR</div><div class="ttdef"><b>Определения</b> <a href="#l00014">logger.h:14</a></div></div>
+<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a></div><div class="ttdeci">@ LOG_INFO</div><div class="ttdef"><b>Определения</b> <a href="#l00016">logger.h:16</a></div></div>
+<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">LOG_DEBUG</a></div><div class="ttdeci">@ LOG_DEBUG</div><div class="ttdef"><b>Определения</b> <a href="#l00017">logger.h:17</a></div></div>
+<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13">LOG_WARN</a></div><div class="ttdeci">@ LOG_WARN</div><div class="ttdef"><b>Определения</b> <a href="#l00015">logger.h:15</a></div></div>
+<div class="ttc" id="alogger_8h_html_a54dab32db32234798ff063ccc0dde695"><div class="ttname"><a href="logger_8h.html#a54dab32db32234798ff063ccc0dde695">logSuccess</a></div><div class="ttdeci">void logSuccess(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00130">logger.cpp:130</a></div></div>
+<div class="ttc" id="alogger_8h_html_a573f0d6e1b4dff871cf401471622a3d4"><div class="ttname"><a href="logger_8h.html#a573f0d6e1b4dff871cf401471622a3d4">logPrintHeader</a></div><div class="ttdeci">void logPrintHeader(const char *title, const char *color=COLOR_CYAN)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00027">logger.cpp:27</a></div></div>
+<div class="ttc" id="alogger_8h_html_a60baa11f08afed73f5a7bc5d31f698ce"><div class="ttname"><a href="logger_8h.html#a60baa11f08afed73f5a7bc5d31f698ce">logError</a></div><div class="ttdeci">void logError(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00062">logger.cpp:62</a></div></div>
+<div class="ttc" id="alogger_8h_html_a6673a3ba037fc4ceda09f36e43cd7f14"><div class="ttname"><a href="logger_8h.html#a6673a3ba037fc4ceda09f36e43cd7f14">logSystem</a></div><div class="ttdeci">void logSystem(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00214">logger.cpp:214</a></div></div>
+<div class="ttc" id="alogger_8h_html_a82573859711fce56f1aa0a76b18a9b18"><div class="ttname"><a href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a></div><div class="ttdeci">#define COLOR_CYAN</div><div class="ttdef"><b>Определения</b> <a href="#l00042">logger.h:42</a></div></div>
+<div class="ttc" id="alogger_8h_html_a8a220d54e17d73c281bb715f70bf6df9"><div class="ttname"><a href="logger_8h.html#a8a220d54e17d73c281bb715f70bf6df9">logWiFi</a></div><div class="ttdeci">void logWiFi(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00163">logger.cpp:163</a></div></div>
+<div class="ttc" id="alogger_8h_html_ab014807afa04f9783ed19c897cbdf54d"><div class="ttname"><a href="logger_8h.html#ab014807afa04f9783ed19c897cbdf54d">logMemoryUsage</a></div><div class="ttdeci">void logMemoryUsage()</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00237">logger.cpp:237</a></div></div>
+<div class="ttc" id="alogger_8h_html_ab9b4ed01ba7a88bb5e22d1c84e0f0abf"><div class="ttname"><a href="logger_8h.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf">logInfo</a></div><div class="ttdeci">void logInfo(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00096">logger.cpp:96</a></div></div>
+<div class="ttc" id="alogger_8h_html_abf70e1b094519276f0363ac763f100ab"><div class="ttname"><a href="logger_8h.html#abf70e1b094519276f0363ac763f100ab">logWiFiStatus</a></div><div class="ttdeci">void logWiFiStatus()</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00242">logger.cpp:242</a></div></div>
+<div class="ttc" id="alogger_8h_html_ace461ff84ce50a76653ec959a2436320"><div class="ttname"><a href="logger_8h.html#ace461ff84ce50a76653ec959a2436320">logMQTT</a></div><div class="ttdeci">void logMQTT(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00180">logger.cpp:180</a></div></div>
+<div class="ttc" id="alogger_8h_html_aef367594259e15c9df8b0caf3dfddba8"><div class="ttname"><a href="logger_8h.html#aef367594259e15c9df8b0caf3dfddba8">logPrintBanner</a></div><div class="ttdeci">void logPrintBanner(const char *text)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00049">logger.cpp:49</a></div></div>
+<div class="ttc" id="alogger_8h_html_af0851b3565de2c7c6a23b5d3d30a8fcd"><div class="ttname"><a href="logger_8h.html#af0851b3565de2c7c6a23b5d3d30a8fcd">logPrintSeparator</a></div><div class="ttdeci">void logPrintSeparator(const char *symbol=&quot;─&quot;, int length=50)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00039">logger.cpp:39</a></div></div>
+<div class="ttc" id="alogger_8h_html_af2cfc49d3e5f87ebc351693b47c348e1"><div class="ttname"><a href="logger_8h.html#af2cfc49d3e5f87ebc351693b47c348e1">logData</a></div><div class="ttdeci">void logData(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00197">logger.cpp:197</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="logger_8h.html">logger.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -89,8 +89,7 @@ python scripts/run_comprehensive_tests.py
 ## 📋 ОТЧЕТЫ
 
 ### Главные отчеты
-- **[Главная сводная таблица](../test_reports/MASTER_TEST_SUMMARY.md)**
-- **[Технический долг](../test_reports/technical-debt-assessment.md)**
+
 
 ### JSON отчеты
 - `test_reports/comprehensive-report.json` - Комплексный отчет
