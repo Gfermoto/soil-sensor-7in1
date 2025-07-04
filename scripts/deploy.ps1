@@ -1,25 +1,50 @@
 [Console]::OutputEncoding = [System.Text.Encoding]::UTF8
 # Full deployment script for JXCT documentation
 
+param(
+    [switch]$Auto = $false,
+    [string]$CommitMessage = ""
+)
+
 Write-Host "[deploy] Starting full deployment..." -ForegroundColor Cyan
+if ($Auto) {
+    Write-Host "[deploy] Running in AUTO mode" -ForegroundColor Yellow
+}
 
 # Проверяем статус git
 $gitStatus = git status --porcelain
 if ($gitStatus) {
     Write-Host "[deploy] Uncommitted changes detected:" -ForegroundColor Yellow
     Write-Host $gitStatus -ForegroundColor Gray
-    $response = Read-Host "Do you want to commit these changes? (y/n)"
-    if ($response -eq "y" -or $response -eq "Y") {
-        $commitMessage = Read-Host "Enter commit message (or press Enter for auto-message)"
-        if (-not $commitMessage) {
-            $commitMessage = "Auto-update documentation $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+    
+    if ($Auto) {
+        # Автоматический режим - коммитим без запроса
+        if (-not $CommitMessage) {
+            $CommitMessage = "Auto-update documentation $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
         }
+        Write-Host "[deploy] Auto-committing with message: $CommitMessage" -ForegroundColor Cyan
         git add .
-        git commit -m $commitMessage
-        Write-Host "[deploy] Changes committed" -ForegroundColor Green
+        git commit -m $CommitMessage
+        Write-Host "[deploy] Changes committed automatically" -ForegroundColor Green
     } else {
-        Write-Host "[deploy] Deployment cancelled" -ForegroundColor Red
-        exit 1
+        # Интерактивный режим
+        $response = Read-Host "Do you want to commit these changes? (y/n)"
+        if ($response -eq "y" -or $response -eq "Y") {
+            if (-not $CommitMessage) {
+                $commitMessage = Read-Host "Enter commit message (or press Enter for auto-message)"
+                if (-not $commitMessage) {
+                    $commitMessage = "Auto-update documentation $(Get-Date -Format 'yyyy-MM-dd HH:mm')"
+                }
+            } else {
+                $commitMessage = $CommitMessage
+            }
+            git add .
+            git commit -m $commitMessage
+            Write-Host "[deploy] Changes committed" -ForegroundColor Green
+        } else {
+            Write-Host "[deploy] Deployment cancelled" -ForegroundColor Red
+            exit 1
+        }
     }
 }
 
