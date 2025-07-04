@@ -1,0 +1,15 @@
+<map id="include/ISensor.h" name="include/ISensor.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="309,5,432,32"/>
+<area shape="rect" id="Node000002" href="$basic__sensor__adapter_8h.html" title=" " alt="" coords="231,80,374,123"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="352,46,322,82,317,78,348,42"/>
+<area shape="rect" id="Node000004" href="$sensor__factory_8h.html" title=" " alt="" coords="221,245,384,272"/>
+<area shape="poly" id="edge7_Node000001_Node000004" title=" " alt="" coords="390,44,407,76,422,116,427,158,424,179,415,199,402,215,386,229,350,247,347,242,383,224,398,212,411,196,419,178,422,158,417,117,402,78,385,46"/>
+<area shape="rect" id="Node000003" href="$fake__sensor__adapter_8h.html" title=" " alt="" coords="5,171,181,197"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="235,131,127,173,125,168,233,126"/>
+<area shape="rect" id="Node000006" href="$modbus__sensor__adapter_8h.html" title=" " alt="" coords="204,171,400,197"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="305,139,305,170,300,170,300,139"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="145,200,266,242,265,247,143,205"/>
+<area shape="rect" id="Node000005" href="$main_8cpp.html" title="Главный файл проекта JXCT датчика" alt="" coords="254,320,350,347"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="305,288,305,320,300,320,300,288"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="305,213,305,245,300,245,300,213"/>
+</map>

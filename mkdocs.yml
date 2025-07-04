@@ -17,7 +17,7 @@ extra:
       link: https://github.com/Gfermoto/soil-sensor-7in1
       name: GitHub
     - icon: fontawesome/brands/telegram
-      link: https://t.me/your_telegram_username
+      link: https://t.me/Gfermoto
       name: Telegram Support
 
 # Кастомные стили
@@ -71,8 +71,6 @@ plugins:
   - search:
       lang: ru
       separator: '[\s\-,:!=\[\]()"/`|]+'
-  - git-revision-date-localized:
-      enable_creation_date: true
 
 # Расширения Markdown
 markdown_extensions:

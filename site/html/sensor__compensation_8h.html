@@ -1,0 +1,333 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor 7-in-1: Файл include/sensor_compensation.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;v3.4.9 (June 2025)</span>
+   </div>
+   <div id="projectbrief">Professional IoT soil monitoring system with ESP32, Modbus RTU, MQTT, and advanced compensation algorithms</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#enum-members">Перечисления</a> &#124;
+<a href="#func-members">Функции</a>  </div>
+  <div class="headertitle"><div class="title">Файл sensor_compensation.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Алгоритмы коррекции показаний датчиков  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+</div>
+<p><a href="sensor__compensation_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Перечисления</h2></td></tr>
+<tr class="memitem:aaa92ab56ea828c0bcccad4564b21155d" id="r_aaa92ab56ea828c0bcccad4564b21155d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaa92ab56ea828c0bcccad4564b21155d">SoilProfile</a> : uint8_t { <br />
+&#160;&#160;<a class="el" href="#aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b">SAND</a> = 0
+, <a class="el" href="#aaa92ab56ea828c0bcccad4564b21155da053c3b9443919054c42fe7115e111e36">LOAM</a> = 1
+, <a class="el" href="#aaa92ab56ea828c0bcccad4564b21155da2238fb7511b33ddb5f91ab723f0c3add">PEAT</a> = 2
+, <a class="el" href="#aaa92ab56ea828c0bcccad4564b21155da062285f4ae598699cec7d4b2e3a7fac2">CLAY</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="#aaa92ab56ea828c0bcccad4564b21155da7668b00d953ed05d4e494e67757cf0ab">SANDPEAT</a> = 4
+<br />
+ }</td></tr>
+<tr class="separator:aaa92ab56ea828c0bcccad4564b21155d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32f5636a03443547a8c316772610c4c1" id="r_a32f5636a03443547a8c316772610c4c1"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a> { <br />
+&#160;&#160;<a class="el" href="#a32f5636a03443547a8c316772610c4c1add8b86e783c5b75c7c9224089b4f239b">SAND</a>
+, <a class="el" href="#a32f5636a03443547a8c316772610c4c1a053c3b9443919054c42fe7115e111e36">LOAM</a>
+, <a class="el" href="#a32f5636a03443547a8c316772610c4c1a2238fb7511b33ddb5f91ab723f0c3add">PEAT</a>
+, <a class="el" href="#a32f5636a03443547a8c316772610c4c1a062285f4ae598699cec7d4b2e3a7fac2">CLAY</a>
+, <br />
+&#160;&#160;<a class="el" href="#a32f5636a03443547a8c316772610c4c1a7668b00d953ed05d4e494e67757cf0ab">SANDPEAT</a>
+<br />
+ }</td></tr>
+<tr class="separator:a32f5636a03443547a8c316772610c4c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:af586e2e5563baee2b53964aff0e1467d" id="r_af586e2e5563baee2b53964aff0e1467d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af586e2e5563baee2b53964aff0e1467d">correctEC</a> (float ecRaw, float T, float theta, <a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a> soil)</td></tr>
+<tr class="separator:af586e2e5563baee2b53964aff0e1467d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec93dd728b4450e4078a1e26954478e5" id="r_aec93dd728b4450e4078a1e26954478e5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec93dd728b4450e4078a1e26954478e5">correctPH</a> (float phRaw, float T)</td></tr>
+<tr class="separator:aec93dd728b4450e4078a1e26954478e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9d6b97073bca78fb526c17bdbf816a6" id="r_aa9d6b97073bca78fb526c17bdbf816a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9d6b97073bca78fb526c17bdbf816a6">correctNPK</a> (float T, float theta, float &amp;N, float &amp;P, float &amp;K, <a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a> soil)</td></tr>
+<tr class="separator:aa9d6b97073bca78fb526c17bdbf816a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Алгоритмы коррекции показаний датчиков </p>
+<p>Этот модуль содержит функции для температурной, влажностной, pH-зависимой и EC-зависимой компенсации. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8h_source.html">sensor_compensation.h</a></p>
+</div><h2 class="groupheader">Перечисления</h2>
+<a id="aaa92ab56ea828c0bcccad4564b21155d" name="aaa92ab56ea828c0bcccad4564b21155d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa92ab56ea828c0bcccad4564b21155d">&#9670;&#160;</a></span>SoilProfile</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#aaa92ab56ea828c0bcccad4564b21155d">SoilProfile</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b" name="aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b"></a>SAND&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155da053c3b9443919054c42fe7115e111e36" name="aaa92ab56ea828c0bcccad4564b21155da053c3b9443919054c42fe7115e111e36"></a>LOAM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155da2238fb7511b33ddb5f91ab723f0c3add" name="aaa92ab56ea828c0bcccad4564b21155da2238fb7511b33ddb5f91ab723f0c3add"></a>PEAT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155da062285f4ae598699cec7d4b2e3a7fac2" name="aaa92ab56ea828c0bcccad4564b21155da062285f4ae598699cec7d4b2e3a7fac2"></a>CLAY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155da7668b00d953ed05d4e494e67757cf0ab" name="aaa92ab56ea828c0bcccad4564b21155da7668b00d953ed05d4e494e67757cf0ab"></a>SANDPEAT&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8h_source.html">sensor_compensation.h</a> строка <a class="el" href="sensor__compensation_8h_source.html#l00013">13</a></p>
+
+</div>
+</div>
+<a id="a32f5636a03443547a8c316772610c4c1" name="a32f5636a03443547a8c316772610c4c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32f5636a03443547a8c316772610c4c1">&#9670;&#160;</a></span>SoilType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="a32f5636a03443547a8c316772610c4c1add8b86e783c5b75c7c9224089b4f239b" name="a32f5636a03443547a8c316772610c4c1add8b86e783c5b75c7c9224089b4f239b"></a>SAND&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a32f5636a03443547a8c316772610c4c1a053c3b9443919054c42fe7115e111e36" name="a32f5636a03443547a8c316772610c4c1a053c3b9443919054c42fe7115e111e36"></a>LOAM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a32f5636a03443547a8c316772610c4c1a2238fb7511b33ddb5f91ab723f0c3add" name="a32f5636a03443547a8c316772610c4c1a2238fb7511b33ddb5f91ab723f0c3add"></a>PEAT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a32f5636a03443547a8c316772610c4c1a062285f4ae598699cec7d4b2e3a7fac2" name="a32f5636a03443547a8c316772610c4c1a062285f4ae598699cec7d4b2e3a7fac2"></a>CLAY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a32f5636a03443547a8c316772610c4c1a7668b00d953ed05d4e494e67757cf0ab" name="a32f5636a03443547a8c316772610c4c1a7668b00d953ed05d4e494e67757cf0ab"></a>SANDPEAT&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8h_source.html">sensor_compensation.h</a> строка <a class="el" href="sensor__compensation_8h_source.html#l00023">23</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="af586e2e5563baee2b53964aff0e1467d" name="af586e2e5563baee2b53964aff0e1467d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af586e2e5563baee2b53964aff0e1467d">&#9670;&#160;</a></span>correctEC()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float correctEC </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ecRaw</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>T</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>theta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00026">26</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="sensor__compensation_8cpp_source.html#l00007">k</a> и <a class="el" href="sensor__compensation_8cpp.html#acd870b1b4a3ad38428ccce7c467035a9">SOIL_EC</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00399">applyCompensationIfEnabled()</a> и <a class="el" href="fake__sensor_8cpp_source.html#l00014">fakeSensorTask()</a>.</p>
+
+</div>
+</div>
+<a id="aa9d6b97073bca78fb526c17bdbf816a6" name="aa9d6b97073bca78fb526c17bdbf816a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9d6b97073bca78fb526c17bdbf816a6">&#9670;&#160;</a></span>correctNPK()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void correctNPK </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>T</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>theta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;</td>          <td class="paramname"><span class="paramname"><em>N</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;</td>          <td class="paramname"><span class="paramname"><em>P</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float &amp;</td>          <td class="paramname"><span class="paramname"><em>K</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a32f5636a03443547a8c316772610c4c1">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00045">45</a></p>
+
+<p class="reference">Перекрестные ссылки <a class="el" href="sensor__compensation_8cpp_source.html#l00022">k_h_K()</a>, <a class="el" href="sensor__compensation_8cpp_source.html#l00020">k_h_N()</a>, <a class="el" href="sensor__compensation_8cpp_source.html#l00021">k_h_P()</a>, <a class="el" href="sensor__compensation_8cpp_source.html#l00017">k_t_K</a>, <a class="el" href="sensor__compensation_8cpp_source.html#l00015">k_t_N</a> и <a class="el" href="sensor__compensation_8cpp_source.html#l00016">k_t_P</a>.</p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00399">applyCompensationIfEnabled()</a> и <a class="el" href="fake__sensor_8cpp_source.html#l00014">fakeSensorTask()</a>.</p>
+
+</div>
+</div>
+<a id="aec93dd728b4450e4078a1e26954478e5" name="aec93dd728b4450e4078a1e26954478e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec93dd728b4450e4078a1e26954478e5">&#9670;&#160;</a></span>correctPH()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float correctPH </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>phRaw</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>T</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00038">38</a></p>
+
+<p class="reference">Используется в <a class="el" href="modbus__sensor_8cpp_source.html#l00399">applyCompensationIfEnabled()</a> и <a class="el" href="fake__sensor_8cpp_source.html#l00014">fakeSensorTask()</a>.</p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="sensor__compensation_8h.html">sensor_compensation.h</a></li>
+    <li class="footer">Документация по JXCT Soil Sensor 7-in-1. Последние изменения: Ср 25 Июн 2025 01:11:47. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

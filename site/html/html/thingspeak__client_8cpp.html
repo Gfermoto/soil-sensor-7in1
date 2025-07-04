@@ -1,0 +1,399 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT 7-в-1 Датчик Почвы: Файл src/thingspeak_client.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;1.0</span>
+   </div>
+   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл thingspeak_client.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &quot;<a class="el" href="thingspeak__client_8h_source.html">thingspeak_client.h</a>&quot;</code><br />
+<code>#include &lt;NTPClient.h&gt;</code><br />
+<code>#include &lt;ThingSpeak.h&gt;</code><br />
+<code>#include &lt;WiFiClient.h&gt;</code><br />
+<code>#include &lt;ctype.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__device__info_8h_source.html">jxct_device_info.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__format__utils_8h_source.html">jxct_format_utils.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">wifi_manager.h</a>&quot;</code><br />
+</div>
+<p><a href="thingspeak__client_8cpp_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a6b21b3f128c91055d8784740fcf05519" id="r_a6b21b3f128c91055d8784740fcf05519"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b21b3f128c91055d8784740fcf05519">trim</a> (char *s)</td></tr>
+<tr class="separator:a6b21b3f128c91055d8784740fcf05519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add7f50ba743d6501c1ad5e2dd4985e53" id="r_add7f50ba743d6501c1ad5e2dd4985e53"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add7f50ba743d6501c1ad5e2dd4985e53">getThingSpeakLastPublish</a> ()</td></tr>
+<tr class="separator:add7f50ba743d6501c1ad5e2dd4985e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3f256ffaf18113d28229c8ae013b1f5" id="r_ae3f256ffaf18113d28229c8ae013b1f5"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3f256ffaf18113d28229c8ae013b1f5">getThingSpeakLastError</a> ()</td></tr>
+<tr class="separator:ae3f256ffaf18113d28229c8ae013b1f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8e20ef000ee56a6aedcc07d88f38f90" id="r_af8e20ef000ee56a6aedcc07d88f38f90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8e20ef000ee56a6aedcc07d88f38f90">setupThingSpeak</a> (WiFiClient &amp;client)</td></tr>
+<tr class="separator:af8e20ef000ee56a6aedcc07d88f38f90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaef2ba5628e59244986aa0c0f40b58cf" id="r_aaef2ba5628e59244986aa0c0f40b58cf"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaef2ba5628e59244986aa0c0f40b58cf">sendDataToThingSpeak</a> ()</td></tr>
+<tr class="separator:aaef2ba5628e59244986aa0c0f40b58cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:ab4cd0eb2684ad54d1d0782f4ff75e07f" id="r_ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memItemLeft" align="right" valign="top">NTPClient *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">timeClient</a></td></tr>
+<tr class="separator:ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af914716ab642c858bca6b31ae976d15e" id="r_af914716ab642c858bca6b31ae976d15e"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af914716ab642c858bca6b31ae976d15e">THINGSPEAK_API_URL</a> = &quot;https://api.thingspeak.com/update&quot;</td></tr>
+<tr class="separator:af914716ab642c858bca6b31ae976d15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c15cb6759eb866fba42b090ffaf0d2a" id="r_a2c15cb6759eb866fba42b090ffaf0d2a"><td class="memItemLeft" align="right" valign="top">static unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c15cb6759eb866fba42b090ffaf0d2a">lastTsPublish</a> = 0</td></tr>
+<tr class="separator:a2c15cb6759eb866fba42b090ffaf0d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedae80edba7020a78f8012b644ebf866" id="r_aedae80edba7020a78f8012b644ebf866"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedae80edba7020a78f8012b644ebf866">consecutiveFailCount</a> = 0</td></tr>
+<tr class="separator:aedae80edba7020a78f8012b644ebf866"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf5c36e5da6f7c1b8394f1545ddee8c3" id="r_aaf5c36e5da6f7c1b8394f1545ddee8c3"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf5c36e5da6f7c1b8394f1545ddee8c3">thingSpeakLastPublishBuffer</a> [32] = &quot;0&quot;</td></tr>
+<tr class="separator:aaf5c36e5da6f7c1b8394f1545ddee8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c731a0fe7f1eaaad5c96a1a7a62c001" id="r_a8c731a0fe7f1eaaad5c96a1a7a62c001"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c731a0fe7f1eaaad5c96a1a7a62c001">thingSpeakLastErrorBuffer</a> [64] = &quot;&quot;</td></tr>
+<tr class="separator:a8c731a0fe7f1eaaad5c96a1a7a62c001"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Функции</h2>
+<a id="ae3f256ffaf18113d28229c8ae013b1f5" name="ae3f256ffaf18113d28229c8ae013b1f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3f256ffaf18113d28229c8ae013b1f5">&#9670;&#160;</a></span>getThingSpeakLastError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * getThingSpeakLastError </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00043">43</a></p>
+
+</div>
+</div>
+<a id="add7f50ba743d6501c1ad5e2dd4985e53" name="add7f50ba743d6501c1ad5e2dd4985e53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add7f50ba743d6501c1ad5e2dd4985e53">&#9670;&#160;</a></span>getThingSpeakLastPublish()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * getThingSpeakLastPublish </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00039">39</a></p>
+
+</div>
+</div>
+<a id="aaef2ba5628e59244986aa0c0f40b58cf" name="aaef2ba5628e59244986aa0c0f40b58cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaef2ba5628e59244986aa0c0f40b58cf">&#9670;&#160;</a></span>sendDataToThingSpeak()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sendDataToThingSpeak </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00053">53</a></p>
+
+</div>
+</div>
+<a id="af8e20ef000ee56a6aedcc07d88f38f90" name="af8e20ef000ee56a6aedcc07d88f38f90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8e20ef000ee56a6aedcc07d88f38f90">&#9670;&#160;</a></span>setupThingSpeak()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupThingSpeak </td>
+          <td>(</td>
+          <td class="paramtype">WiFiClient &amp;</td>          <td class="paramname"><span class="paramname"><em>client</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00048">48</a></p>
+
+</div>
+</div>
+<a id="a6b21b3f128c91055d8784740fcf05519" name="a6b21b3f128c91055d8784740fcf05519"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b21b3f128c91055d8784740fcf05519">&#9670;&#160;</a></span>trim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void trim </td>
+          <td>(</td>
+          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00021">21</a></p>
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="aedae80edba7020a78f8012b644ebf866" name="aedae80edba7020a78f8012b644ebf866"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedae80edba7020a78f8012b644ebf866">&#9670;&#160;</a></span>consecutiveFailCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int consecutiveFailCount = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00018">18</a></p>
+
+</div>
+</div>
+<a id="a2c15cb6759eb866fba42b090ffaf0d2a" name="a2c15cb6759eb866fba42b090ffaf0d2a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c15cb6759eb866fba42b090ffaf0d2a">&#9670;&#160;</a></span>lastTsPublish</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long lastTsPublish = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00017">17</a></p>
+
+</div>
+</div>
+<a id="af914716ab642c858bca6b31ae976d15e" name="af914716ab642c858bca6b31ae976d15e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af914716ab642c858bca6b31ae976d15e">&#9670;&#160;</a></span>THINGSPEAK_API_URL</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* THINGSPEAK_API_URL = &quot;https://api.thingspeak.com/update&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00015">15</a></p>
+
+</div>
+</div>
+<a id="a8c731a0fe7f1eaaad5c96a1a7a62c001" name="a8c731a0fe7f1eaaad5c96a1a7a62c001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c731a0fe7f1eaaad5c96a1a7a62c001">&#9670;&#160;</a></span>thingSpeakLastErrorBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char thingSpeakLastErrorBuffer[64] = &quot;&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00036">36</a></p>
+
+</div>
+</div>
+<a id="aaf5c36e5da6f7c1b8394f1545ddee8c3" name="aaf5c36e5da6f7c1b8394f1545ddee8c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf5c36e5da6f7c1b8394f1545ddee8c3">&#9670;&#160;</a></span>thingSpeakLastPublishBuffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">char thingSpeakLastPublishBuffer[32] = &quot;0&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00035">35</a></p>
+
+</div>
+</div>
+<a id="ab4cd0eb2684ad54d1d0782f4ff75e07f" name="ab4cd0eb2684ad54d1d0782f4ff75e07f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">&#9670;&#160;</a></span>timeClient</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTPClient* timeClient</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00044">44</a></p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="thingspeak__client_8cpp.html">thingspeak_client.cpp</a></li>
+    <li class="footer">Документация по JXCT 7-в-1 Датчик Почвы. Последние изменения: Пн 30 Июн 2025 22:49:21. Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

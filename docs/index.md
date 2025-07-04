@@ -30,7 +30,7 @@
 
 ## Поддержка
 
-- **Telegram:** [@your_telegram_username](https://t.me/your_telegram_username)
+- **Telegram:** [@Gfermoto](https://t.me/Gfermoto)
 - **Issues:** [GitHub Issues](https://github.com/Gfermoto/soil-sensor-7in1/issues)
 
 ## Лицензия
