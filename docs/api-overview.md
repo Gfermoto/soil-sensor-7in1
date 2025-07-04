@@ -89,4 +89,4 @@ doxygen Doxyfile
 
 1. Создайте Issue в GitHub репозитории
 2. Обратитесь в Telegram: [@jxct_support](https://t.me/jxct_support)
-3. Присоединитесь к Discord серверу: [JXCT Community](https://discord.gg/jxct) 
+3. Присоединитесь к Discord серверу: [JXCT Community](https://discord.gg/jxct)

@@ -1,7 +1,7 @@
 # 🔧 Техническая документация JXCT 7-в-1
 
-**Дата:** Июнь 2025  
-**Версия:** 3.6.7  
+**Дата:** Июнь 2025
+**Версия:** 3.6.7
 **Автор:** JXCT Development Team
 
 ---
@@ -157,26 +157,26 @@ void loop() {
     if (readSensorData()) {
         // 2. Применение калибровки
         applyCalibration();
-        
+
         // 3. Математическая компенсация
         applyCompensation();
-        
+
         // 4. Обновление веб-интерфейса
         updateWebInterface();
-        
+
         // 5. Проверка необходимости публикации
         if (shouldPublish()) {
             publishToMQTT();
             publishToThingSpeak();
         }
     }
-    
+
     // 6. Обработка веб-запросов
     webServer.handleClient();
-    
+
     // 7. Проверка OTA обновлений
     checkOTAUpdates();
-    
+
     // 8. Задержка до следующего цикла
     delay(config.sensorReadInterval);
 }
@@ -276,10 +276,10 @@ jxct/sensor/{device_id}/status
 float compensateEC(float ec, float temperature, SoilType soilType) {
     // Коэффициенты по типам почв
     float k = getSoilCoefficient(soilType);
-    
+
     // Температурная компенсация
     float tempFactor = 1.0 + 0.02 * (temperature - 25.0);
-    
+
     // Модель Арчи: EC = σ * φ^m
     return ec * tempFactor * k;
 }
@@ -301,10 +301,10 @@ float compensatePH(float ph, float temperature) {
 float compensateNPK(float npk, float humidity, SoilType soilType) {
     // Базовый коэффициент влажности
     float humidityFactor = 1.0 + 0.1 * (humidity - 60.0) / 40.0;
-    
+
     // Коррекция по типу почвы
     float soilFactor = getSoilHumidityFactor(soilType);
-    
+
     return npk * humidityFactor * soilFactor;
 }
 ```
@@ -317,7 +317,7 @@ float applyCalibration(float rawValue, SoilProfile profile) {
     if (!hasCalibrationTable(profile)) {
         return rawValue;
     }
-    
+
     // Линейная интерполяция
     float factor = interpolateCalibration(rawValue, profile);
     return rawValue * factor;
@@ -547,7 +547,7 @@ struct Config {
     // WiFi настройки
     char ssid[32];
     char password[64];
-    
+
     // MQTT настройки
     bool mqttEnabled;
     char mqttServer[64];
@@ -555,35 +555,35 @@ struct Config {
     char mqttUser[32];
     char mqttPassword[32];
     char mqttTopic[64];
-    
+
     // ThingSpeak настройки
     bool thingSpeakEnabled;
     char thingSpeakApiKey[64];
     unsigned long thingSpeakChannelId;
-    
+
     // Настройки датчика
     int sensorReadInterval;
     int mqttPublishInterval;
     int thingSpeakInterval;
     int webUpdateInterval;
-    
+
     // Фильтры
     float deltaTemperature;
     float deltaHumidity;
     float deltaPh;
     float deltaEc;
     float deltaNpk;
-    
+
     // Калибровка
     bool calibrationEnabled;
     SoilProfile soilProfile;
-    
+
     // Культура и среда
     char cropId[16];
     EnvironmentType environmentType;
     float latitude;
     float longitude;
-    
+
     // Флаги
     struct {
         uint8_t useRealSensor : 1;
@@ -621,17 +621,17 @@ void loadConfig() {
 bool validateConfig() {
     // Проверка WiFi
     if (strlen(config.ssid) == 0) return false;
-    
+
     // Проверка MQTT
     if (config.mqttEnabled) {
         if (strlen(config.mqttServer) == 0) return false;
         if (config.mqttPort < 1 || config.mqttPort > 65535) return false;
     }
-    
+
     // Проверка интервалов
     if (config.sensorReadInterval < 1000) return false;
     if (config.mqttPublishInterval < 60000) return false;
-    
+
     return true;
 }
 ```
@@ -702,7 +702,7 @@ board = esp32dev
 framework = arduino
 monitor_speed = 115200
 build_flags = -DCORE_DEBUG_LEVEL=3
-lib_deps = 
+lib_deps =
     arduino-libraries/ArduinoJson@^6.21.3
     knolleary/PubSubClient@^2.8
     arduino-libraries/NTPClient@^3.2.1
@@ -834,5 +834,5 @@ jobs:
 
 ---
 
-**© 2025 JXCT Development Team**  
-*Версия 3.6.7 | Июнь 2025* 
+**© 2025 JXCT Development Team**
+*Версия 3.6.7 | Июнь 2025*

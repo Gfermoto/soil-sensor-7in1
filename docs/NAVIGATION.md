@@ -58,4 +58,4 @@
 - [manuals/COMPENSATION_GUIDE.md](manuals/COMPENSATION_GUIDE.md)
 
 ---
-*Последнее обновление: Июнь 2025* | *Версия: 3.6.7* 
+*Последнее обновление: Июнь 2025* | *Версия: 3.6.7*

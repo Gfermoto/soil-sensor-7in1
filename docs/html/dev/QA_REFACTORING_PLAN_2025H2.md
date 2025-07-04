@@ -25,13 +25,13 @@
 ---
 
 ## 3. Методика QA-аудита
-1. **Инструменты статического анализа**  
-   * clang-tidy (modernize-*, performance-*, readability-*)  
-   * Cppcheck (MISRA subset)  
-   * Sonar C++ (community edition)  
-2. **Поиск дублирования** — `cpp-dependencies`, `cloc --by-file --duplicates`.  
-3. **Граф зависимостей** — `include-what-you-use` + `Graphviz`.  
-4. **Сложность** — Lizard: CCN ≥ 15 → hot-spot.  
+1. **Инструменты статического анализа**
+   * clang-tidy (modernize-*, performance-*, readability-*)
+   * Cppcheck (MISRA subset)
+   * Sonar C++ (community edition)
+2. **Поиск дублирования** — `cpp-dependencies`, `cloc --by-file --duplicates`.
+3. **Граф зависимостей** — `include-what-you-use` + `Graphviz`.
+4. **Сложность** — Lizard: CCN ≥ 15 → hot-spot.
 5. **Runtime-аудит** — AddressSanitizer + LeakSanitizer (native build).
 6. **Security audit** — OWASP IoT Top 10, dependency scanning.
 
@@ -89,4 +89,4 @@
 
 ---
 
-© JXCT Team, 2025 — документ поддерживается автоматически (ссылка в CI: nightly‐gen-tech-debt). 
+© JXCT Team, 2025 — документ поддерживается автоматически (ссылка в CI: nightly‐gen-tech-debt).
