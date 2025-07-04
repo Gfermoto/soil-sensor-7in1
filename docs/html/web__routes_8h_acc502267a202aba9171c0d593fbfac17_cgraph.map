@@ -1,0 +1,15 @@
+<map id="generateSuccessPage" name="generateSuccessPage">
+<area shape="rect" id="Node000001" title="Генерация страницы успеха" alt="" coords="5,56,158,83"/>
+<area shape="rect" id="Node000002" href="$web__templates_8cpp.html#a4a3cbe6f4d5353ddf606c9f8e1f0c9d1" title="Генерация базовой HTML структуры с навигацией" alt="" coords="206,56,337,83"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="158,67,190,67,190,72,158,72"/>
+<area shape="rect" id="Node000003" href="$web__templates_8cpp.html#ad4f3a6e85baef9b2d3e2aec977c3a321" title="Генерация футера HTML страницы" alt="" coords="388,5,526,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="322,53,390,34,392,39,324,58"/>
+<area shape="rect" id="Node000005" href="$web__templates_8cpp.html#ac4502db1ad8d9e08830f7eb784d62600" title="Генерация заголовка HTML страницы" alt="" coords="385,56,528,83"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="338,67,369,67,369,72,338,72"/>
+<area shape="rect" id="Node000007" href="$wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9" title=" " alt="" coords="422,107,492,133"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="324,81,408,104,406,109,322,86"/>
+<area shape="rect" id="Node000004" href="$jxct__ui__system_8cpp.html#afbda6d57dd082e7767c2c5e823951472" title=" " alt="" coords="577,5,684,32"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="526,16,562,16,562,21,526,21"/>
+<area shape="rect" id="Node000006" href="$jxct__ui__system_8cpp.html#a303ae6cee9693130ac22414e47140a1e" title=" " alt="" coords="576,56,685,83"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="529,67,561,67,561,72,529,72"/>
+</map>

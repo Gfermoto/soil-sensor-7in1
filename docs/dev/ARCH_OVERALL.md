@@ -1,7 +1,7 @@
 # 🏗️ Общая архитектура JXCT v3.6.7
 
-> **Версия документа:** 3.6.7
-> **Дата обновления:** 2025-06-24
+> **Версия документа:** 3.6.7  
+> **Дата обновления:** 2025-06-24  
 > **Статус:** Актуальная архитектура с фокусом на стабильность
 
 ---
@@ -50,22 +50,22 @@ public:
 class ModbusSensorAdapter : public ISensor {
 private:
     ModbusSensor* sensor;
-
+    
 public:
     ModbusSensorAdapter(ModbusSensor* s) : sensor(s) {}
-
+    
     bool initialize() override {
         return sensor->begin();
     }
-
+    
     SensorData read() override {
         return sensor->getData();
     }
-
+    
     bool isConnected() const override {
         return sensor->isConnected();
     }
-
+    
     String getSensorInfo() const override {
         return "Modbus Sensor v" + String(sensor->getVersion());
     }
@@ -108,7 +108,7 @@ public:
         if (!profile.isLoaded()) {
             return rawValue; // Возвращаем исходное значение если таблица не загружена
         }
-
+        
         // Поиск ближайших точек калибровки
         CalibrationPoint lower, upper;
         if (profile.findInterpolationPoints(rawValue, lower, upper)) {
@@ -116,7 +116,7 @@ public:
             float ratio = (rawValue - lower.raw) / (upper.raw - lower.raw);
             return lower.calibrated + ratio * (upper.calibrated - lower.calibrated);
         }
-
+        
         return rawValue; // Вне диапазона калибровки
     }
 };
@@ -127,12 +127,12 @@ public:
 float correctEC(float ec25, float temperature, float humidity, SoilType soilType) {
     // Температурная компенсация (Archie, 1942)
     float tempFactor = 1.0f + 0.021f * (temperature - 25.0f);
-
+    
     // Влажностная компенсация по модели Арчи
     float porosity = getPorosity(soilType);
     float archieCoeff = getArchieCoefficient(soilType);
     float humFactor = pow(humidity / 100.0f, archieCoeff);
-
+    
     return ec25 * tempFactor * humFactor;
 }
 
@@ -159,15 +159,15 @@ float correctPH(float phRaw, float temperature) {
 
 #### 3️⃣ **FAO 56 + Eur. J. Soil Sci. - NPK компенсация**
 ```cpp
-void correctNPK(float temperature, float humidity,
-                float& nitrogen, float& phosphorus, float& potassium,
+void correctNPK(float temperature, float humidity, 
+                float& nitrogen, float& phosphorus, float& potassium, 
                 SoilType soilType) {
     // Температурная компенсация NPK
     float tempFactor = 1.0f - 0.02f * (temperature - 25.0f);
-
+    
     // Влажностная компенсация по FAO 56
     float humFactor = 1.0f + 0.05f * (humidity - 50.0f) / 50.0f;
-
+    
     // Применение компенсации
     nitrogen *= tempFactor * humFactor;
     phosphorus *= tempFactor * humFactor;
@@ -200,7 +200,7 @@ void setupDataRoutes() {
     server.on("/readings", HTTP_GET, handleReadings);
     server.on("/api/sensor", HTTP_GET, handleApiData);
     server.on("/api/calibration", HTTP_POST, handleCalibrationUpload);
-
+    
     // Статические файлы
     server.on("/calibration_example.csv", HTTP_GET, handleStaticFile);
     server.on("/favicon.ico", HTTP_GET, handleStaticFile);
@@ -223,15 +223,15 @@ void setupDataRoutes() {
 class MQTTClient {
 public:
     // Подключение к MQTT серверу
-    bool connect(const String& server, int port,
+    bool connect(const String& server, int port, 
                  const String& username, const String& password);
-
+    
     // Публикация данных
     bool publishData(const SensorData& data);
-
+    
     // Подписка на команды
     void subscribeToCommands();
-
+    
 private:
     // Обработка входящих сообщений
     void handleMessage(const String& topic, const String& payload);
@@ -246,10 +246,10 @@ class ThingSpeakClient {
 public:
     // Отправка данных в ThingSpeak
     bool sendData(const SensorData& data);
-
+    
     // Получение данных из ThingSpeak
     SensorData getData();
-
+    
 private:
     // HTTP запросы к ThingSpeak API
     bool makeRequest(const String& endpoint, const String& data);
@@ -266,20 +266,20 @@ class Logger {
 public:
     // Уровни логирования
     enum Level { DEBUG, INFO, WARNING, ERROR, CRITICAL };
-
+    
     // Логирование с уровнем
     static void log(Level level, const String& message);
-
+    
     // Логирование данных датчика
     static void logSensorData(const SensorData& data);
-
+    
     // Логирование ошибок
     static void logError(const String& error, const String& context);
-
+    
 private:
     // Форматирование времени
     static String formatTimestamp();
-
+    
     // Цветной вывод (для отладки)
     static String getColorCode(Level level);
 };
@@ -293,17 +293,17 @@ class ValidationUtils {
 public:
     // Валидация данных датчика
     static bool validateSensorData(const SensorData& data);
-
+    
     // Валидация конфигурации
     static bool validateConfig(const SystemConfig& config);
-
+    
     // Валидация калибровочной таблицы
     static bool validateCalibrationTable(const CalibrationTable& table);
-
+    
 private:
     // Проверка диапазонов значений
     static bool isInRange(float value, float min, float max);
-
+    
     // Проверка корректности CSV
     static bool isValidCSV(const String& csvData);
 };
@@ -367,6 +367,6 @@ private:
 
 ---
 
-**Версия:** 3.6.7
-**Дата:** 2025-06-24
-**Автор:** JXCT Development Team
+**Версия:** 3.6.7  
+**Дата:** 2025-06-24  
+**Автор:** JXCT Development Team 

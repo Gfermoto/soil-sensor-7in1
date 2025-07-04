@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Схема подключения</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            border-radius: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #2e7d32 0%, #388e3c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px 10px 0 0;
+            margin: -20px -20px 20px -20px;
+        }
+        .navigation {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+        }
+        .navigation a {
+            color: #1976d2;
+            text-decoration: none;
+            margin-right: 15px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .navigation a:hover {
+            background-color: #e3f2fd;
+        }
+        .content {
+            padding: 20px 0;
+        }
+        h1, h2, h3, h4 {
+            color: #2e7d32;
+        }
+        h1 {
+            border-bottom: 3px solid #4caf50;
+            padding-bottom: 10px;
+        }
+        h2 {
+            border-bottom: 2px solid #81c784;
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+        pre {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            border-left: 4px solid #4caf50;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .back-link:hover {
+            background: #388e3c;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .status-success { background: #4caf50; color: white; }
+        .status-warning { background: #ff9800; color: white; }
+        .status-error { background: #f44336; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Схема подключения</h1>
+            <p>JXCT 7-в-1 Датчик Почвы - Профессиональная IoT система мониторинга</p>
+        </div>
+        
+        <div class="navigation">
+            
+        <a href="../../index.html">🏠 Главная</a>
+        <a href="USER_GUIDE.html">📋 Руководство</a>
+        <a href="TECHNICAL_DOCS.html">🔧 Техническая документация</a>
+        <a href="API.html">📡 API</a>
+        <a href="../../html/index.html">📚 API документация</a>
+    
+        </div>
+        
+        <div class="content">
+            <h1>Схема подключения</h1>
+
+<strong>Версия:</strong> 3.4.9  
+<strong>Дата:</strong> Июнь 2025  
+<strong>Автор:</strong> JXCT Development Team
+
+<p>---</p>
+
+<h2>📖 Содержание</h2>
+
+<p>1. <a href="#-rs-485-соединение">🔌 RS-485 соединение</a>
+2. <a href="#-питание-датчика">⚡ Питание датчика</a>
+3. <a href="#️-важные-замечания">⚠️ Важные замечания</a>
+4. <a href="#-рекомендации-по-монтажу">🔧 Рекомендации по монтажу</a></p>
+
+---
+
+<h2>🔌 RS-485 соединение</h2>
+
+<h3>ESP32 → RS-485 Transceiver (SP3485E)</h3>
+
+<p>#### SP3485E (3.3V логика)
+| ESP32 GPIO | SP3485E Pin | Тип сигнала | Описание |
+|------------|-------------|-------------|-----------| 
+| GPIO16     | RO         | Цифровой вход | UART2 RX - прием данных от SP3485E |
+| GPIO17     | DI         | Цифровой выход | UART2 TX - передача данных в SP3485E |
+| GPIO5      | DE/RE      | Цифровой выход | Управление направлением передачи |
+| 3.3V       | VCC        | Питание | Питание модуля SP3485E |
+| GND        | GND        | Земля | Общий провод |</p>
+
+#### Преимущества SP3485E:<ul>
+<li>✅ <strong>Питание от 3.3V</strong> - не требует преобразования уровней</li>
+</ul><li>✅ <strong>Высокая скорость</strong> - до 10 Mbps</li><ul>
+<li>✅ <strong>Низкое энергопотребление</strong> - всего 300μA в режиме ожидания</li>
+</ul><li>✅ <strong>Защита от ESD</strong> - до ±15kV HBM</li><ul>
+<li>✅ <strong>Встроенная защита</strong> от перенапряжения на линии RS-485</li>
+</ul>
+<h3>Подключение датчика JXCT</h3>
+
+<p>| SP3485E Pin | JXCT Pin | Тип сигнала | Описание |
+|-------------|----------|-------------|-----------| 
+| A           | A+       | RS-485 A    | Неинвертирующая линия RS-485 |
+| B           | B-       | RS-485 B    | Инвертирующая линия RS-485 |</p>
+
+<h2>⚡ Питание датчика</h2>
+
+<h3>Требования к питанию</h3><ul>
+<li><strong>SP3485E:</strong> питается от 3.3V ESP32 (оптимально для ESP32)</li>
+</ul><li><strong>Датчик:</strong> требует отдельное питание 12-24V</li><ul>
+<li><strong>Общий провод (GND):</strong> соединить все устройства</li>
+</ul><li><strong>Терминирование:</strong> резистор 120Ω между A и B на концах линии</li>
+
+<h3>Схема подключения питания</h3>
+
+<p>| Блок питания | JXCT Pin | Описание |
+|--------------|----------|-----------|
+| V+           | V+       | 12-24V питание датчика |
+| GND          | GND      | Общий провод |</p>
+
+<h2>⚠️ Важные замечания</h2>
+
+<h3>Критические моменты</h3><ul>
+<li><strong>Полярность:</strong> строго соблюдать подключение A+ и B-</li>
+</ul><li><strong>Заземление:</strong> обеспечить надежное заземление всех устройств</li><ul>
+<li><strong>Экранирование:</strong> использовать экранированную витую пару</li>
+</ul><li><strong>Длина линии:</strong> при длинных линиях использовать терминирующие резисторы</li>
+
+<h2>🔧 Рекомендации по монтажу</h2>
+
+<p>1. Используйте экранированную витую пару для RS-485
+2. Соблюдайте полярность подключения A+ и B-
+3. Обеспечьте надежное заземление
+4. При длинных линиях используйте терминирующие резисторы</p>
+
+<h2>📞 Поддержка</h2>
+
+<h3>💬 Связь с разработчиками</h3><ul>
+<li><strong>Telegram:</strong> <a href="https://t.me/Gfermoto">@Gfermoto</a></li>
+</ul><li><strong>GitHub Issues:</strong> <a href="https://github.com/Gfermoto/soil-sensor-7in1/issues">Сообщить о проблеме</a></li><ul>
+<li><strong>Документация:</strong> <a href="https://gfermoto.github.io/soil-sensor-7in1/">GitHub Pages</a></li>
+</ul>
+<h3>📚 Дополнительные ресурсы</h3><ul>
+<li><a href="USER_GUIDE.md">Руководство пользователя</a></li>
+</ul><li><a href="TECHNICAL_DOCS.md">Техническая документация</a></li><ul>
+<li><a href="AGRO_RECOMMENDATIONS.md">Агрономические рекомендации</a></li>
+</ul><li><a href="COMPENSATION_GUIDE.md">Руководство по компенсации</a></li><ul>
+<li><a href="API.md">API документация</a></li>
+</ul><li><a href="CONFIG_MANAGEMENT.md">Управление конфигурацией</a></li><ul>
+<li><a href="MODBUS_PROTOCOL.md">Протокол Modbus</a></li>
+</ul><li><a href="VERSION_MANAGEMENT.md">Управление версиями</a></li>
+
+<h3>🔗 Полезные ссылки</h3>
+<ul>
+<li><a href="https://github.com/Gfermoto/soil-sensor-7in1">🌱 GitHub репозиторий</a> - Исходный код проекта</li>
+</ul><li><a href="../dev/QA_REFACTORING_PLAN_2025H2.md">📋 План рефакторинга</a> - Планы развития на 2025</li><ul>
+<li><a href="../dev/TECH_DEBT_REPORT_2025-06.md">📊 Отчет о техническом долге</a> - Анализ технических проблем</li>
+</ul><li><a href="../dev/ARCH_OVERALL.md">🏗️ Архитектура системы</a> - Общая архитектура проекта </li>
+        </div>
+        
+        <a href="../../index.html" class="back-link">← Вернуться на главную</a>
+    </div>
+</body>
+</html>

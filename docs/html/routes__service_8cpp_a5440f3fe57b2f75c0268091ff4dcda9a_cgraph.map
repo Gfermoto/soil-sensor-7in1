@@ -1,0 +1,25 @@
+<map id="sendHealthJson" name="sendHealthJson">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,208,121,235"/>
+<area shape="rect" id="Node000002" href="$jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483" title=" " alt="" coords="217,5,296,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="66,206,78,173,99,129,128,82,167,42,201,25,203,30,170,46,133,85,104,131,83,175,71,208"/>
+<area shape="rect" id="Node000003" href="$jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470" title=" " alt="" coords="199,56,314,83"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="70,206,107,151,134,120,167,92,183,84,186,88,170,97,138,123,111,154,74,209"/>
+<area shape="rect" id="Node000004" href="$jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b" title=" " alt="" coords="214,107,300,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="78,205,117,174,167,143,198,131,200,136,170,148,120,179,81,209"/>
+<area shape="rect" id="Node000005" href="$jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152" title=" " alt="" coords="217,157,296,184"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="116,205,202,182,203,187,118,210"/>
+<area shape="rect" id="Node000006" href="$jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351" title=" " alt="" coords="190,208,324,235"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="121,219,174,219,174,224,121,224"/>
+<area shape="rect" id="Node000007" href="$mqtt__client_8cpp.html#ae7138b08148b127ef0202b5cc7ad389e" title=" " alt="" coords="198,259,316,285"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="118,233,189,252,188,257,116,238"/>
+<area shape="rect" id="Node000008" href="$thingspeak__client_8cpp.html#ae3f256ffaf18113d28229c8ae013b1f5" title=" " alt="" coords="176,309,338,336"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="81,233,120,264,170,295,184,301,182,306,167,300,117,268,78,237"/>
+<area shape="rect" id="Node000009" href="$thingspeak__client_8cpp.html#add7f50ba743d6501c1ad5e2dd4985e53" title=" " alt="" coords="169,360,345,387"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="74,234,111,288,138,319,170,346,179,351,176,355,167,350,134,323,107,292,70,237"/>
+<area shape="rect" id="Node000010" href="$error__handlers_8cpp.html#a1a62e7c40bff885d97f6018743bec642" title="Логирование веб&#45;запросов" alt="" coords="200,411,314,437"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="71,234,83,268,104,312,133,357,170,397,187,407,185,411,167,401,128,361,99,314,78,270,66,236"/>
+<area shape="rect" id="Node000011" href="$logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe" title=" " alt="" coords="393,385,469,412"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="314,413,378,404,378,409,314,418"/>
+<area shape="rect" id="Node000012" href="$logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf" title=" " alt="" coords="401,436,461,463"/>
+<area shape="poly" id="edge11_Node000010_Node000012" title=" " alt="" coords="314,430,386,440,385,445,314,435"/>
+</map>
