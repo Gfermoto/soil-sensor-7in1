@@ -35,7 +35,7 @@
 5. **Runtime-аудит** — AddressSanitizer + LeakSanitizer (native build).
 6. **Security audit** — OWASP IoT Top 10, dependency scanning.
 
-Результаты фиксируются в отчёте `tech_debt_report_2025-07.md` (шаблон — см. `docs/dev/TECH_DEBT_REPORT_2025-06.md`).
+Результаты фиксируются в отчёте `TECH_DEBT_REPORT.md` (шаблон — см. `docs/dev/TECH_DEBT_REPORT.md`).
 
 ---
 
@@ -74,7 +74,7 @@
 
 ## 7. Обновление связанной документации
 * Удалён `STATIC_PAGES_MIGRATION_PLAN.md` (отменён из-за рисков)
-* Обновлён `TECH_DEBT_REPORT_2025-06.md` с актуальными метриками
+* Обновлён `TECH_DEBT_REPORT.md` с актуальными метриками
 * Фокус на стабильности и качестве кода
 
 ---

@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/github/license/Gfermoto/soil-sensor-7in1?color=yellow&label=license&style=for-the-badge)](LICENSE)
 [![CI](https://img.shields.io/github/actions/workflow/status/Gfermoto/soil-sensor-7in1/ci.yml?branch=main&style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1/actions/workflows/ci.yml)
 [![Code Quality](https://img.shields.io/badge/code%20quality-A%2B-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
-[![Documentation](https://img.shields.io/badge/docs-100%25%20complete-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
+[![Documentation](https://img.shields.io/badge/docs-100%25%20complete-brightgreen.svg?style=for-the-badge)](https://gfermoto.github.io/soil-sensor-7in1/)
 [![Tests](https://img.shields.io/badge/tests-100%25%20passing-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
 [![IoT](https://img.shields.io/badge/IoT-Smart%20Agriculture-blue.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
 
@@ -158,9 +158,10 @@ python scripts/analyze_technical_debt.py
 - **[📖 Руководство пользователя](docs/manuals/USER_GUIDE.md)** - Как использовать
 
 ### 📋 Полная документация
+- **[🌐 Официальный сайт](https://gfermoto.github.io/soil-sensor-7in1/)** - Полная документация
 - **[📚 Главная навигация](docs/README.md)** - Структура документации
 - **[🔧 Технические спецификации](docs/manuals/TECHNICAL_DOCS.md)** - Архитектура
-- **[🌐 API документация](docs/manuals/API.md)** - Интерфейсы
+- **[🌐 API документация](docs/api-overview.md)** - Интерфейсы
 - **[📡 Протокол Modbus](docs/manuals/MODBUS_PROTOCOL.md)** - Коммуникация
 
 ---
@@ -265,19 +266,19 @@ JXCT/
 
 ## ❓ FAQ
 
-**Q: Как обновить прошивку?**  
+**Q: Как обновить прошивку?**
 A: Через web-интерфейс (OTA) или командой `pio run -t upload`
 
-**Q: Как интегрировать с Home Assistant?**  
+**Q: Как интегрировать с Home Assistant?**
 A: Настройте MQTT в web UI, добавьте устройство в Home Assistant
 
-**Q: Где посмотреть все тесты?**  
+**Q: Где посмотреть все тесты?**
 A: [Полная сводная таблица тестов](test_reports/MASTER_TEST_SUMMARY.md)
 
-**Q: Как работают алгоритмы компенсации?**  
+**Q: Как работают алгоритмы компенсации?**
 A: См. [Руководство по компенсации](docs/manuals/COMPENSATION_GUIDE.md)
 
-**Q: Как получить поддержку?**  
+**Q: Как получить поддержку?**
 A: Через [GitHub Issues](https://github.com/Gfermoto/soil-sensor-7in1/issues)
 
 ---

@@ -52,8 +52,8 @@ docs/
 │   ├── 🔌 WIRING_DIAGRAM.md
 │   └── ...
 ├── 🛠️ dev/                        # Для разработчиков
-│   ├── 📊 TECH_DEBT_REPORT_2025-06.md
-│   ├── 🔍 DUPLICATION_INCLUDE_ANALYSIS_2025-06-30.md
+│   ├── 📊 TECH_DEBT_REPORT.md
+│   ├── 🔍 DUPLICATION_ANALYSIS.md
 │   └── ...
 └── 📦 legacy/                     # Архив устаревших материалов
 ```

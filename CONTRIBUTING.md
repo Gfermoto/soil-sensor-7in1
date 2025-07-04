@@ -187,10 +187,10 @@ markdown-link-check README.md
 void test_new_feature_basic() {
     // Arrange
     NewFeature feature;
-    
+
     // Act
     bool result = feature.process();
-    
+
     // Assert
     TEST_ASSERT_TRUE(result);
 }
@@ -287,4 +287,4 @@ int main() {
 - **Discussions:** [GitHub Discussions](https://github.com/Gfermoto/soil-sensor-7in1/discussions)
 - **Документация:** [docs/](../docs/)
 
-Спасибо за вклад в развитие проекта! 🌱 
+Спасибо за вклад в развитие проекта! 🌱
