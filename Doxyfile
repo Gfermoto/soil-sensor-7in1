@@ -9,7 +9,6 @@ PROJECT_BRIEF          = "Документация API для датчика п�
 # Каталоги для поиска исходников
 INPUT                  = src include
 RECURSIVE              = YES
-USE_MDFILE_AS_MAINPAGE =
 
 # Каталог для вывода документации
 OUTPUT_DIRECTORY       = build/doxygen
@@ -28,16 +27,15 @@ GENERATE_LATEX         = NO
 EXTRACT_ALL            = YES
 EXTRACT_PRIVATE        = YES
 EXTRACT_STATIC         = YES
-EXTRACT_LOCAL_CLASSES  = YES
 
 # Обрабатывать только файлы с расширениями
-FILE_PATTERNS          = *.cpp *.h *.md
+FILE_PATTERNS          = *.cpp *.h
 
 # Кодировка исходников
 INPUT_ENCODING         = UTF-8
 
-# Генерировать графы зависимостей (упрощено)
-HAVE_DOT               = YES
+# Отключить графы для упрощения
+HAVE_DOT               = NO
 CALL_GRAPH             = NO
 CALLER_GRAPH           = NO
 COLLABORATION_GRAPH    = NO
@@ -66,8 +64,8 @@ STRIP_FROM_PATH        = ./
 # Предупреждения (упрощено)
 QUIET                  = NO
 WARNINGS               = YES
-WARN_IF_UNDOCUMENTED   = YES
-WARN_IF_DOC_ERROR      = YES
+WARN_IF_UNDOCUMENTED   = NO
+WARN_IF_DOC_ERROR      = NO
 
 # Включить документацию для групп
 OPTIMIZE_OUTPUT_FOR_C  = NO
@@ -103,10 +101,6 @@ VERBATIM_HEADERS       = YES
 GROUP_GRAPHS           = NO
 UML_LOOK               = NO
 TEMPLATE_RELATIONS     = NO
-INCLUDE_GRAPH          = NO
-INCLUDED_BY_GRAPH      = NO
-CALL_GRAPH             = NO
-CALLER_GRAPH           = NO
 GRAPHICAL_HIERARCHY    = YES
 DIRECTORY_GRAPH        = NO
 DOT_GRAPH_MAX_NODES    = 50
