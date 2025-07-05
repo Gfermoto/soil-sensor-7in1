@@ -245,7 +245,7 @@ struct ReportConfig {
 ### JSON отчёт {#json-otchyot}
 ```json
 {
-  "timestamp": "2025-01-22T12:00:00Z",
+  "timestamp": "2025-07-05T12:00:00Z",
   "project": "JXCT Soil Sensor",
   "version": "3.6.7",
   "summary": {
@@ -365,4 +365,4 @@ void test_performance_new_feature() {
 
 **Автор**: EYERA Development Team
 **Версия**: 1.0.0
-**Дата**: 2025-01-22
+**Дата**: 2025-07-05

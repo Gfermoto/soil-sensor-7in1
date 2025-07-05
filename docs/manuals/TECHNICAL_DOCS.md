@@ -1,7 +1,7 @@
 # 🔧 Техническая документация JXCT 7-в-1
 
-**Дата:** Июнь 2025
-**Версия:** 3.6.7
+**Дата:** Июль 2025
+**Версия:** 3.6.9
 **Автор:** JXCT Development Team
 
 ---
@@ -61,10 +61,10 @@
     - [JavaScript API](#javascript-api)
 - [API документация](#api-dokumentatsiya)
   - [REST API](#rest-api)
-    - [GET apiv3.6.9sensor](#get-apiv369sensor)
-    - [GET apiv3.6.9config](#get-apiv369config)
-    - [POST apiv3.6.9config](#post-apiv369config)
-    - [GET apiv3.6.9status](#get-apiv369status)
+    - [GET apiv3.6.9sensor](#get-apiv3.6.9sensor)
+    - [GET apiv3.6.9config](#get-apiv3.6.9config)
+    - [POST apiv3.6.9config](#post-apiv3.6.9config)
+    - [GET apiv3.6.9status](#get-apiv3.6.9status)
   - [MQTT API](#mqtt-api)
     - [Топики для публикации](#Topiki-dlya-publikatsii)
     - [Топики для подписки](#Topiki-dlya-podpiski)
@@ -492,7 +492,7 @@ setInterval(updateSensorData, 3000);
 
 ### 🌐 REST API {#rest-api}
 
-#### GET `/api/v3.6.9/sensor` {#get-apiv369sensor}
+#### GET `/api/v3.6.9/sensor` {#get-apiv3.6.9sensor}
 Получение текущих показаний датчика
 
 **Ответ:**
@@ -550,7 +550,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### GET `/api/v3.6.9/config` {#get-apiv369config}
+#### GET `/api/v3.6.9/config` {#get-apiv3.6.9config}
 Получение текущей конфигурации
 
 **Ответ:**
@@ -575,7 +575,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### POST `/api/v3.6.9/config` {#post-apiv369config}
+#### POST `/api/v3.6.9/config` {#post-apiv3.6.9config}
 Обновление конфигурации
 
 **Тело запроса:**
@@ -591,13 +591,13 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### GET `/api/v3.6.9/status` {#get-apiv369status}
+#### GET `/api/v3.6.9/status` {#get-apiv3.6.9status}
 Получение системного статуса
 
 **Ответ:**
 ```json
 {
-  "version": "3.6.7",
+  "version": "3.6.9",
   "uptime": 86400,
   "free_memory": 150000,
   "wifi_rssi": -45,
@@ -898,8 +898,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-- uses: actions/setup-python@v4
+      - uses: actions/checkout@v3.6.9
+- uses: actions/setup-python@v3.6.9
       - run: pip install platformio
       - run: pio run
       - run: pio test
@@ -935,4 +935,4 @@ jobs:
 ---
 
 **© 2025 JXCT Development Team**
-*Версия 3.6.7 | Июнь 2025*
+*Версия 3.6.9 | Июль 2025*
