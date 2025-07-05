@@ -1,69 +1,104 @@
 # 📊 API документация JXCT 7-в-1
 
 **Дата:** Июнь 2025
-**Версия API:** v1
+**Версия API:** v3.6.9
 
-REST API для интеграции с JXCT Soil Sensor v2.2.0.
+REST API для интеграции с JXCT Soil Sensor v3.6.9
 
----
-
-## 📖 Содержание
-
-1. [🌐 Доступ к API](#-доступ-к-api)
-2. [📊 Основные endpoints](#-основные-endpoints)
-3. [🌐 Веб-страницы](#-веб-страницы)
-4. [📝 Настройки](#-настройки)
-5. [🏠 MQTT интеграция](#-mqtt-интеграция)
-6. [📡 ThingSpeak интеграция](#-thingspeak-интеграция)
-7. [🔄 Коды ошибок](#-коды-ошибок)
-8. [📱 CORS поддержка](#-cors-поддержка)
+### 🔗 Связанная документация {#Svyazannaya-dokumentatsiya}
+- **[🖥️ C++ API](../DOXYGEN_API.md)** - Документация исходного кода
+- **[🏗️ Архитектура](TECHNICAL_DOCS.md)** - Техническая документация
+- **[🧪 Тестирование](../TESTING_GUIDE.md)** - Как тестировать API
 
 ---
 
-## 🌐 Доступ к API
+## 📋 Содержание {#Soderzhanie}
+
+  - [Связанная документация](#Svyazannaya-dokumentatsiya)
+- [Содержание](#Soderzhanie)
+- [Доступ к API](#Dostup-k-api)
+  - [Таблица актуальных эндпоинтов (API v3.6.9)](#Tablitsa-aktualnyh-endpointov-api-v369)
+  - [УстаревшиеDEPRECATED эндпоинты](#Ustarevshiedeprecated-endpointy)
+- [Веб-страницы](#Veb-stranitsy)
+  - [GET  - Настройки](#get-Nastroyki)
+  - [GET readings - Мониторинг](#get-readings-Monitoring)
+  - [GET service - Диагностика](#get-service-Diagnostika)
+- [Настройки](#Nastroyki)
+  - [POST save - Сохранение настроек](#post-save-Sohranenie-nastroek)
+- [MQTT интеграция](#mqtt-integratsiya)
+  - [Топики публикации](#Topiki-publikatsii)
+  - [Команды управления](#Komandy-upravleniya)
+- [ThingSpeak интеграция](#thingspeak-integratsiya)
+- [Коды ошибок](#Kody-oshibok)
+- [CORS поддержка](#cors-podderzhka)
+- [Примеры интеграций](#Primery-integratsiy)
+  - [Python](#python)
+  - [Node.js](#nodejs)
+  - [Home Assistant](#home-assistant)
+- [Поддержка](#Podderzhka)
+  - [Связь с разработчиками](#Svyaz-s-razrabotchikami)
+  - [Дополнительные ресурсы](#Dopolnitelnye-resursy)
+  - [Полезные ссылки](#Poleznye-ssylki)
+
+---
+
+## 📖 Содержание {#Soderzhanie}
+
+1. **🌐 Доступ к API**
+2. **📊 Основные endpoints**
+3. **🌐 Веб-страницы**
+4. **📝 Настройки**
+5. **🏠 MQTT интеграция**
+6. **📡 ThingSpeak интеграция**
+7. **🔄 Коды ошибок**
+8. **📱 CORS поддержка**
+
+---
+
+## 🌐 Доступ к API {#Dostup-k-api}
 
 **Все endpoints открыты** - авторизация не требуется.
 
-### 📋 Таблица актуальных эндпоинтов (API v1)
+### 📋 Таблица актуальных эндпоинтов (API v3.6.9) {#Tablitsa-aktualnyh-endpointov-api-v369}
 
 | Метод | Путь | Описание |
 |-------|------|----------|
-| GET   | `/api/v1/sensor`         | Основные данные датчика (JSON) |
-| GET   | `/api/v1/system/health`  | Полная диагностика устройства  |
-| GET   | `/api/v1/system/status`  | Краткий статус сервисов        |
-| POST  | `/api/v1/system/reset`   | Сброс настроек (307 на `/reset`) |
-| POST  | `/api/v1/system/reboot`  | Перезагрузка (307 на `/reboot`) |
-| GET   | `/api/v1/config/export`  | Скачать конфигурацию (JSON, без паролей) |
-| POST  | `/api/v1/config/import`  | Импорт конфигурации            |
+| GET   | `/api/v3.6.9/sensor`         | Основные данные датчика (JSON) |
+| GET   | `/api/v3.6.9/system/health`  | Полная диагностика устройства  |
+| GET   | `/api/v3.6.9/system/status`  | Краткий статус сервисов        |
+| POST  | `/api/v3.6.9/system/reset`   | Сброс настроек (307 на `/reset`) |
+| POST  | `/api/v3.6.9/system/reboot`  | Перезагрузка (307 на `/reboot`) |
+| GET   | `/api/v3.6.9/config/export`  | Скачать конфигурацию (JSON, без паролей) |
+| POST  | `/api/v3.6.9/config/import`  | Импорт конфигурации            |
 
-### 🕑 Устаревшие/DEPRECATED эндпоинты
+### 🕑 Устаревшие/DEPRECATED эндпоинты {#Ustarevshiedeprecated-endpointy}
 
 | Метод | Путь | Описание |
 |-------|------|----------|
 | GET   | `/sensor_json`           | Те же данные (legacy, будет удалён в будущих версиях) |
-| GET   | `/api/sensor`            | DEPRECATED alias → `/api/v1/sensor` |
-| GET   | `/api/config/export`     | DEPRECATED alias → `/api/v1/config/export` |
-| POST  | `/api/config/import`     | DEPRECATED alias → `/api/v1/config/import` |
+| GET   | `/api/sensor`            | DEPRECATED alias → `/api/v3.6.9/sensor` |
+| GET   | `/api/config/export`     | DEPRECATED alias → `/api/v3.6.9/config/export` |
+| POST  | `/api/config/import`     | DEPRECATED alias → `/api/v3.6.9/config/import` |
 | POST  | `/reset`                 | Legacy сброс (будет удалён) |
 | POST  | `/reboot`                | Legacy перезагрузка (будет удалён) |
 | GET   | `/health`                | Старый путь диагностики |
 
 ---
 
-## 🌐 Веб-страницы
+## 🌐 Веб-страницы {#Veb-stranitsy}
 
-### GET / - Настройки
+### GET / - Настройки {#get-Nastroyki}
 Веб-интерфейс для настройки WiFi, MQTT, ThingSpeak.
 
-### GET /readings - Мониторинг
+### GET /readings - Мониторинг {#get-readings-Monitoring}
 Страница с live данными датчика (обновление каждые 2 сек).
 
-### GET /service - Диагностика
+### GET /service - Диагностика {#get-service-Diagnostika}
 Статус WiFi, MQTT, ThingSpeak, датчика, системные метрики.
 
-## 📝 Настройки
+## 📝 Настройки {#Nastroyki}
 
-### POST /save - Сохранение настроек
+### POST /save - Сохранение настроек {#post-save-Sohranenie-nastroek}
 ```bash
 curl -X POST http://192.168.4.1/save \
   -d "wifi_ssid=MyWiFi" \
@@ -80,9 +115,9 @@ curl -X POST http://192.168.4.1/save \
 - `homeassistant_discovery` - включить HA Discovery (1/0)
 - `web_password` - пароль для веб-интерфейса
 
-## 🏠 MQTT интеграция
+## 🏠 MQTT интеграция {#mqtt-integratsiya}
 
-### Топики публикации
+### Топики публикации {#Topiki-publikatsii}
 ```
 homeassistant/sensor/jxct_soil/temperature/state
 homeassistant/sensor/jxct_soil/humidity/state
@@ -93,7 +128,7 @@ homeassistant/sensor/jxct_soil/phosphorus/state
 homeassistant/sensor/jxct_soil/potassium/state
 ```
 
-### Команды управления
+### Команды управления {#Komandy-upravleniya}
 ```bash
 # Перезагрузка устройства
 mosquitto_pub -h mqtt.local -t "jxct/command" -m "reboot"
@@ -105,7 +140,7 @@ mosquitto_pub -h mqtt.local -t "jxct/command" -m "reset"
 mosquitto_pub -h mqtt.local -t "jxct/command" -m "publish_test"
 ```
 
-## 📡 ThingSpeak интеграция
+## 📡 ThingSpeak интеграция {#thingspeak-integratsiya}
 
 Автоматическая отправка данных каждые 15 секунд в поля:
 - Field1: Температура (°C)
@@ -116,14 +151,14 @@ mosquitto_pub -h mqtt.local -t "jxct/command" -m "publish_test"
 - Field6: Фосфор (mg/kg)
 - Field7: Калий (mg/kg)
 
-## 🔄 Коды ошибок
+## 🔄 Коды ошибок {#Kody-oshibok}
 
 - **200** - Успешно
 - **400** - Некорректные параметры
 - **403** - Доступ запрещен
 - **500** - Внутренняя ошибка сервера
 
-## 📱 CORS поддержка
+## 📱 CORS поддержка {#cors-podderzhka}
 
 API поддерживает CORS для локальных сетей:
 ```javascript
@@ -132,9 +167,9 @@ fetch('http://192.168.4.1/api/sensor')
   .then(data => console.log(data));
 ```
 
-## 🔧 Примеры интеграций
+## 🔧 Примеры интеграций {#Primery-integratsiy}
 
-### Python
+### Python {#python}
 ```python
 import requests
 
@@ -144,7 +179,7 @@ data = response.json()
 print(f"Температура: {data['temperature']}°C")
 ```
 
-### Node.js
+### Node.js {#nodejs}
 ```javascript
 const axios = require('axios');
 
@@ -154,7 +189,7 @@ async function getSensorData() {
 }
 ```
 
-### Home Assistant
+### Home Assistant {#home-assistant}
 ```yaml
 # configuration.yaml
 sensor:
@@ -169,14 +204,14 @@ sensor:
     value_template: "{{ value_json.temperature }}"
 ```
 
-## 📞 Поддержка
+## 📞 Поддержка {#Podderzhka}
 
-### 💬 Связь с разработчиками
+### 💬 Связь с разработчиками {#Svyaz-s-razrabotchikami}
 - **Telegram:** [@Gfermoto](https://t.me/Gfermoto)
 - **GitHub Issues:** [Сообщить о проблеме](https://github.com/Gfermoto/soil-sensor-7in1/issues)
 - **Документация:** [GitHub Pages](https://gfermoto.github.io/soil-sensor-7in1/)
 
-### 📚 Дополнительные ресурсы
+### 📚 Дополнительные ресурсы {#Dopolnitelnye-resursy}
 - [Руководство пользователя](USER_GUIDE.md)
 - [Техническая документация](TECHNICAL_DOCS.md)
 - [Агрономические рекомендации](AGRO_RECOMMENDATIONS.md)
@@ -186,7 +221,7 @@ sensor:
 - [Протокол Modbus](MODBUS_PROTOCOL.md)
 - [Управление версиями](VERSION_MANAGEMENT.md)
 
-### 🔗 Полезные ссылки
+### 🔗 Полезные ссылки {#Poleznye-ssylki}
 
 - [🌱 GitHub репозиторий](https://github.com/Gfermoto/soil-sensor-7in1) - Исходный код проекта
 - [📋 План рефакторинга](../dev/REFACTORING_PLAN.md) - Планы развития

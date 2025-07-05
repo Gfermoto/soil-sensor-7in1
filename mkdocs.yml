@@ -1,5 +1,5 @@
 site_name: JXCT Soil Sensor v3.6.9
-# site_url: https://gfermoto.github.io/soil-sensor-7in1/  # Закомментировано для локальной разработки
+site_url: https://gfermoto.github.io/soil-sensor-7in1/
 site_description: Профессиональная IoT система мониторинга почвы на базе ESP32
 site_author: EYERA Development Team
 # site_version: 3.6.7  # Устаревший параметр
@@ -24,7 +24,7 @@ extra:
 extra_css:
   - stylesheets/extra.css
 
-# Современный одноколоночный дизайн
+# Яркий современный дизайн
 theme:
   name: material
   language: ru
@@ -32,23 +32,36 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - navigation.indexes
     - toc.follow
+    - toc.integrate
     - search.highlight
+    - search.share
+    - search.suggest
     - content.code.copy
+    - content.code.annotate
+    - content.tabs.link
     - header.autohide
   palette:
     - scheme: default
-      primary: green
-      accent: green
+      primary: teal
+      accent: cyan
       toggle:
-        icon: material/toggle-switch
-        name: Переключить тему
+        icon: material/brightness-7
+        name: Переключить на темную тему
     - scheme: slate
-      primary: green
-      accent: green
+      primary: teal
+      accent: cyan
       toggle:
-        icon: material/toggle-switch-off-outline
-        name: Переключить тему
+        icon: material/brightness-4
+        name: Переключить на светлую тему
+  font:
+    text: Roboto
+    code: Roboto Mono
+  favicon: assets/images/favicon.png
+  logo: assets/images/favicon.png
 
 # Иконки
 icon:
@@ -91,7 +104,7 @@ markdown_extensions:
   - pymdownx.smartsymbols
   - pymdownx.saneheaders
 
-# Современная навигация
+# Оригинальная правильная навигация
 nav:
   - 🏠 Главная: index.md
   - 📚 Руководства:
@@ -107,11 +120,8 @@ nav:
   - 🔌 API:
     - 📋 Обзор API: api-overview.md
     - 📖 API документация: manuals/API.md
+    - 🖥️ C++ API (Doxygen): DOXYGEN_API.md
   - 🛠️ Разработка:
-    - 🏗️ Архитектура: dev/ARCH_OVERALL.md
-    - 🧪 QA Аудит: dev/QA_AUDIT_REPORT.md
-    - 🔄 План рефакторинга: dev/REFACTORING_PLAN.md
-    - 📉 Отчет технического долга: dev/TECHNICAL_DEBT_REPORT.md
     - 🚀 Руководство по скриптам: SCRIPTS_GUIDE.md
   - 🧪 Тестирование:
     - 📖 Руководство по тестированию: TESTING_GUIDE.md
