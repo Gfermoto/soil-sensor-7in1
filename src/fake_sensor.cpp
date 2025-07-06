@@ -29,8 +29,8 @@ void fakeSensorTask(void* pvParameters)
 
             // NPK в мг/дм³ (как в даташите)
             float nitrogen_mgdm3 = 30 + random(-10, 10);  // 20..40
-            float phosphorus_mgdm3 = 15 + random(-5, 5);    // 10..20
-            float potassium_mgdm3 = 20 + random(-5, 5);    // 15..25
+            float phosphorus_mgdm3 = 15 + random(-5, 5);  // 10..20
+            float potassium_mgdm3 = 20 + random(-5, 5);   // 15..25
 
             // Конверсия в мг/кг (как в рекомендациях)
             constexpr float NPK_FACTOR = 6.5f;  // пересчёт мг/дм³ → мг/кг (ρ=1.3 г/см³, влажность ≈30%)

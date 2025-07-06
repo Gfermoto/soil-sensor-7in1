@@ -1,6 +1,6 @@
 #include "jxct_format_utils.h"
-#include <cstdio>
 #include <cmath>
+#include <cstdio>
 
 // Универсальная функция форматирования float
 std::string formatFloat(float value, int precision, bool asInt)

@@ -321,17 +321,20 @@ bool isValidIPAddress(const String& ip)
     {
         if (i == ip.length() || ip.charAt(i) == '.')
         {
-            if (i == start) {
+            if (i == start)
+            {
                 return false;  // Пустая часть
             }
 
             String part = ip.substring(start, i);
             int value = part.toInt();
 
-            if (value < 0 || value > 255) {
+            if (value < 0 || value > 255)
+            {
                 return false;
             }
-            if (part != String(value)) {
+            if (part != String(value))
+            {
                 return false;  // Проверка на ведущие нули
             }
 
@@ -345,7 +348,8 @@ bool isValidIPAddress(const String& ip)
 
 bool isValidHostname(const String& hostname)
 {
-    if (hostname.length() == 0 || hostname.length() > 253) {
+    if (hostname.length() == 0 || hostname.length() > 253)
+    {
         return false;
     }
 
@@ -369,7 +373,8 @@ bool isValidHostname(const String& hostname)
 
 String formatValidationErrors(const ConfigValidationResult& result)
 {
-    if (result.isValid) {
+    if (result.isValid)
+    {
         return "";
     }
 

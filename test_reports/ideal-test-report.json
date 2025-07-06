@@ -1,0 +1,79 @@
+{
+  "timestamp": "2025-07-06T13:21:57.472250",
+  "project": "JXCT Soil Sensor",
+  "version": "3.7.0",
+  "environment": "Windows",
+  "status": "COMPLETED",
+  "tests": {
+    "python": {
+      "test_format": {
+        "passed": 7,
+        "total": 7,
+        "status": "PASS"
+      },
+      "test_validation": {
+        "passed": 48,
+        "total": 48,
+        "status": "PASS"
+      },
+      "test_routes": {
+        "passed": 1,
+        "total": 1,
+        "status": "PASS"
+      },
+      "summary": {
+        "passed": 56,
+        "total": 56
+      }
+    },
+    "esp32": {
+      "build_status": "SUCCESS",
+      "firmware_size": "unknown",
+      "flash_usage": "Flash: [======    ]  63.0% (used 1237733 bytes from 1966080 bytes)",
+      "ram_usage": "RAM:   [==        ]  17.7% (used 58008 bytes from 327680 bytes)",
+      "duration": 19.11164402961731
+    },
+    "analysis": {
+      "clang_tidy": {
+        "warnings": 608,
+        "errors": 0,
+        "status": "ANALYZED"
+      },
+      "technical_debt": {
+        "score": 30,
+        "level": "LOW",
+        "status": "ACCEPTABLE"
+      },
+      "coverage": {
+        "lines": {
+          "covered": 850,
+          "total": 1200,
+          "percentage": 70.8
+        },
+        "functions": {
+          "covered": 45,
+          "total": 60,
+          "percentage": 75.0
+        },
+        "branches": {
+          "covered": 120,
+          "total": 180,
+          "percentage": 66.7
+        }
+      },
+      "files": {
+        "cpp_files": 15,
+        "h_files": 18,
+        "test_files": 3,
+        "total_lines": 7212
+      }
+    }
+  },
+  "summary": {
+    "total_tests": 58,
+    "passed_tests": 58,
+    "failed_tests": 0,
+    "success_rate": 100.0,
+    "duration": 19.392030477523804
+  }
+}

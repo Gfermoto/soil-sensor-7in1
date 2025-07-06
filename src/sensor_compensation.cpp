@@ -56,7 +56,8 @@ float correctPH(float phRaw, float T)
 // NPK ---------------------------------------------------------------
 void correctNPK(float T, float theta, float& N, float& P, float& K, SoilType soil)
 {
-    if (theta < 25.0f || theta > 60.0f) {
+    if (theta < 25.0f || theta > 60.0f)
+    {
         return;  // валидация – оставляем как есть
     }
 

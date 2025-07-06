@@ -28,15 +28,24 @@ const char* getColorCode(LogColor color)
 {
     switch (color)
     {
-        case LogColor::RED: return COLOR_RED;
-        case LogColor::GREEN: return COLOR_GREEN;
-        case LogColor::YELLOW: return COLOR_YELLOW;
-        case LogColor::BLUE: return COLOR_BLUE;
-        case LogColor::MAGENTA: return COLOR_MAGENTA;
-        case LogColor::CYAN: return COLOR_CYAN;
-        case LogColor::WHITE: return COLOR_WHITE;
-        case LogColor::CYAN_DEFAULT: return COLOR_CYAN;
-        default: return COLOR_CYAN;
+        case LogColor::RED:
+            return COLOR_RED;
+        case LogColor::GREEN:
+            return COLOR_GREEN;
+        case LogColor::YELLOW:
+            return COLOR_YELLOW;
+        case LogColor::BLUE:
+            return COLOR_BLUE;
+        case LogColor::MAGENTA:
+            return COLOR_MAGENTA;
+        case LogColor::CYAN:
+            return COLOR_CYAN;
+        case LogColor::WHITE:
+            return COLOR_WHITE;
+        case LogColor::CYAN_DEFAULT:
+            return COLOR_CYAN;
+        default:
+            return COLOR_CYAN;
     }
 }
 
@@ -78,7 +87,8 @@ void logPrintBanner(const char* text)
 // Основные функции логгирования
 void logError(const char* format, ...)
 {
-    if (currentLogLevel < LOG_ERROR) {
+    if (currentLogLevel < LOG_ERROR)
+    {
         return;
     }
 
@@ -97,7 +107,8 @@ void logError(const char* format, ...)
 
 void logWarn(const char* format, ...)
 {
-    if (currentLogLevel < LOG_WARN) {
+    if (currentLogLevel < LOG_WARN)
+    {
         return;
     }
 
@@ -116,7 +127,8 @@ void logWarn(const char* format, ...)
 
 void logInfo(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) {
+    if (currentLogLevel < LOG_INFO)
+    {
         return;
     }
 
@@ -135,7 +147,8 @@ void logInfo(const char* format, ...)
 
 void logDebug(const char* format, ...)
 {
-    if (currentLogLevel < LOG_DEBUG) {
+    if (currentLogLevel < LOG_DEBUG)
+    {
         return;
     }
 
@@ -170,7 +183,8 @@ void logSuccess(const char* format, ...)
 // Специализированные функции
 void logSensor(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) {
+    if (currentLogLevel < LOG_INFO)
+    {
         return;
     }
 
@@ -189,7 +203,8 @@ void logSensor(const char* format, ...)
 
 void logWiFi(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) {
+    if (currentLogLevel < LOG_INFO)
+    {
         return;
     }
 
@@ -208,7 +223,8 @@ void logWiFi(const char* format, ...)
 
 void logMQTT(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) {
+    if (currentLogLevel < LOG_INFO)
+    {
         return;
     }
 
@@ -227,7 +243,8 @@ void logMQTT(const char* format, ...)
 
 void logData(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) {
+    if (currentLogLevel < LOG_INFO)
+    {
         return;
     }
 
@@ -246,7 +263,8 @@ void logData(const char* format, ...)
 
 void logSystem(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) {
+    if (currentLogLevel < LOG_INFO)
+    {
         return;
     }
 

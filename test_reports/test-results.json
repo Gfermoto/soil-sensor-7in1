@@ -1,0 +1,37 @@
+{
+  "timestamp": "2025-07-06T13:09:35.281533",
+  "version": "3.7.0",
+  "test_results": {
+    "python_tests": {
+      "test_format.py": {
+        "status": "PASS",
+        "output": null
+      },
+      "test_validation.py": {
+        "status": "PASS",
+        "output": null
+      },
+      "test_routes.py": {
+        "status": "PASS",
+        "output": ""
+      }
+    },
+    "native_tests": {
+      "status": "FAIL",
+      "output": "Verbosity level can be increased via `-v, -vv, or -vvv` option\nCollected 1 tests\n\nProcessing * in native environment\n--------------------------------------------------------------------------------\nBuilding...\n\n",
+      "error": "'gcc' is not recognized as an internal or external command,\noperable program or batch file.\n*** [.pio\\build\\native\\unity_config_build\\unity_config.o] Error 1\n'gcc' is not recognized as an internal or external command,\noperable program or batch file.\n*** [.pio\\build\\native\\lib66b\\Unity\\unity.o] Error 1\n'g++' is not recognized as an internal or external command,\noperable program or batch file.\n*** [.pio\\build\\native\\test\\test_esp32_real.o] Error 1\nBuilding stage has failed, see errors above. Use `pio test -vvv` option to enable verbose output.\n--------------------- native:* [ERRORED] Took 1.27 seconds ---------------------\n=================================== SUMMARY ===================================\nEnvironment    Test    Status    Duration\n-------------  ------  --------  ------------\nnative         *       ERRORED   00:00:01.274\n================== 1 test cases: 0 succeeded in 00:00:01.274 ==================\n"
+    },
+    "esp32_tests": {
+      "status": "FAIL",
+      "output": "Verbosity level can be increased via `-v, -vv, or -vvv` option\nCollected 1 tests\n\nProcessing * in esp32dev environment\n--------------------------------------------------------------------------------\nBuilding & Uploading...\n\n",
+      "error": "*** [upload] Error 2\nUploading stage has failed, see errors above. Use `pio test -vvv` option to enable verbose output.\n------------------- esp32dev:* [ERRORED] Took 45.59 seconds -------------------\n=================================== SUMMARY ===================================\nEnvironment    Test    Status    Duration\n-------------  ------  --------  ------------\nesp32dev       *       ERRORED   00:00:45.589\n================== 1 test cases: 0 succeeded in 00:00:45.589 ==================\n"
+    }
+  },
+  "summary": {
+    "total_tests": 3,
+    "passed_tests": 0,
+    "failed_tests": 3,
+    "success_rate": "0.0%",
+    "overall_status": "FAIL"
+  }
+}

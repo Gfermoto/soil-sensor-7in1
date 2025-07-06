@@ -1,46 +1,42 @@
-#pragma once
-// Заглушка Arduino.h для тестирования и статического анализа
+/**
+ * @file Arduino.h
+ * @brief Простая заглушка Arduino для тестов
+ * @details Минимальная заглушка без конфликтов с ESP32
+ */
 
-// Убираем windows.h для clang-tidy
-// #include <windows.h>
+#ifndef ARDUINO_H_STUB
+#define ARDUINO_H_STUB
 
-#include <cstdint>
-#include <cstring>
-#include <string>
+// Базовые типы данных
+typedef unsigned char uint8_t;
+typedef unsigned short uint16_t;
+typedef unsigned int uint32_t;
+typedef signed char int8_t;
+typedef signed short int16_t;
+typedef signed int int32_t;
 
-// Основные типы Arduino
-typedef std::string String;
-typedef uint8_t byte;
+// Заглушки для Serial
+class SerialStub {
+public:
+    void begin(unsigned long baud) {}
+    void print(const char* str) {}
+    void println(const char* str) {}
+    void printf(const char* format, ...) {}
+};
+
+extern SerialStub Serial;
+
+// Заглушки для функций Arduino
+void delay(unsigned long ms) {}
+unsigned long millis() { return 0; }
+void pinMode(int pin, int mode) {}
+void digitalWrite(int pin, int value) {}
+int digitalRead(int pin) { return 0; }
 
 // Константы
 #define HIGH 1
 #define LOW 0
 #define INPUT 0
 #define OUTPUT 1
-#define INPUT_PULLUP 2
 
-// Макросы
-#define PROGMEM
-#define F(str) (str)
-
-// Функции
-void delay(unsigned long ms);
-void delayMicroseconds(unsigned int us);
-unsigned long millis();
-unsigned long micros();
-void pinMode(uint8_t pin, uint8_t mode);
-void digitalWrite(uint8_t pin, uint8_t val);
-int digitalRead(uint8_t pin);
-int analogRead(uint8_t pin);
-void analogWrite(uint8_t pin, int val);
-
-// Serial заглушка
-class SerialClass {
-public:
-    void begin(unsigned long baud);
-    void print(const char* str);
-    void println(const char* str);
-    void printf(const char* format, ...);
-};
-
-extern SerialClass Serial;
+#endif // ARDUINO_H_STUB

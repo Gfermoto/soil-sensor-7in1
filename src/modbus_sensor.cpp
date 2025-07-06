@@ -23,14 +23,16 @@ static unsigned long lastIrrigationTs = 0;
 
 void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
 {
-    if (currentLogLevel < LOG_DEBUG) {
+    if (currentLogLevel < LOG_DEBUG)
+    {
         return;
     }
 
     String hex_str = "";
     for (size_t i = 0; i < length; i++)
     {
-        if (buffer[i] < 0x10) {
+        if (buffer[i] < 0x10)
+        {
             hex_str += "0";
         }
         hex_str += String(buffer[i], HEX);

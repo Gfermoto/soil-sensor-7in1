@@ -115,9 +115,12 @@ void setup()
     if (esp_ota_get_state_partition(runningNow, &otaStateNow) == ESP_OK && otaStateNow == ESP_OTA_IMG_PENDING_VERIFY)
     {
         logSystem("OTA image pending verify → подтверждаем (ранний этап)");
-        if (esp_ota_mark_app_valid_cancel_rollback() == ESP_OK) {
+        if (esp_ota_mark_app_valid_cancel_rollback() == ESP_OK)
+        {
             logSuccess("OTA image подтверждена, откат отменён");
-        } else {
+        }
+        else
+        {
             logError("Не удалось подтвердить OTA image (ранний этап)!");
         }
     }
@@ -180,9 +183,12 @@ void setup()
     gSensor->begin();
 
     // Legacy: оставляем старые задачи для поточного обновления sensorData
-    if (config.flags.useRealSensor) {
+    if (config.flags.useRealSensor)
+    {
         startRealSensorTask();
-    } else {
+    }
+    else
+    {
         startFakeSensorTask();
     }
 
@@ -195,9 +201,12 @@ void setup()
     if (esp_ota_get_state_partition(running, &ota_state) == ESP_OK && ota_state == ESP_OTA_IMG_PENDING_VERIFY)
     {
         logSystem("OTA image pending verify → помечаем как valid");
-        if (esp_ota_mark_app_valid_cancel_rollback() == ESP_OK) {
+        if (esp_ota_mark_app_valid_cancel_rollback() == ESP_OK)
+        {
             logSuccess("OTA image подтверждена, откат отменён");
-        } else {
+        }
+        else
+        {
             logError("Не удалось подтвердить OTA image!");
         }
     }

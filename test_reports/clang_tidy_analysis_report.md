@@ -1,41 +1,41 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 05.07.2025 20:01
+**Дата анализа:** 06.07.2025 14:51
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 605
+- **Всего предупреждений:** 608
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
-### Разное (229 проблем)
+### Разное (233 проблем)
+- `misc-use-internal-linkage`: 96 случаев
 - `misc-use-anonymous-namespace`: 81 случаев
-- `misc-const-correctness`: 74 случаев
-- `misc-use-internal-linkage`: 70 случаев
+- `misc-const-correctness`: 52 случаев
 - `misc-unused-parameters`: 3 случаев
 - `64`: 1 случаев
 
-### Модернизация (87 проблем)
+### Модернизация (86 проблем)
 - `modernize-avoid-c-arrays`: 59 случаев
 - `modernize-macro-to-enum`: 12 случаев
 - `modernize-raw-string-literal`: 9 случаев
 - `modernize-deprecated-headers`: 4 случаев
-- `modernize-use-auto`: 3 случаев
+- `modernize-use-auto`: 2 случаев
 
-### Читаемость (243 проблем)
+### Читаемость (239 проблем)
 - `readability-braces-around-statements`: 100 случаев
 - `readability-uppercase-literal-suffix`: 60 случаев
 - `readability-identifier-length`: 34 случаев
-- `readability-redundant-declaration`: 21 случаев
+- `readability-redundant-declaration`: 18 случаев
 - `readability-math-missing-parentheses`: 6 случаев
 
-### Потенциальные баги (36 проблем)
-- `bugprone-easily-swappable-parameters`: 16 случаев
+### Потенциальные баги (40 проблем)
+- `bugprone-easily-swappable-parameters`: 19 случаев
 - `bugprone-narrowing-conversions`: 11 случаев
 - `bugprone-branch-clone`: 6 случаев
+- `bugprone-switch-missing-default-case`: 1 случаев
 - `bugprone-too-small-loop-variable`: 1 случаев
-- `bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp`: 1 случаев
 
 ### Безопасность (10 проблем)
 - `cert-dcl50-cpp`: 10 случаев
@@ -44,22 +44,26 @@
 ### src/calibration_manager.cpp (7 предупреждений)
 **Разное:** 4 проблем
 - src/calibration_manager.cpp:7:13:: variable '_initialized' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- src/calibration_manager.cpp:37:6:: function 'saveCsv' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- src/calibration_manager.cpp:178:9:: variable 'ratio' of type 'float' can be declared 'const' [misc-const-correctness]
+- src/calibration_manager.cpp:38:6:: function 'saveCsv' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- src/calibration_manager.cpp:187:9:: variable 'ratio' of type 'float' can be declared 'const' [misc-const-correctness]
 - ... и ещё 1 проблем
 
 **Модернизация:** 1 проблем
-- src/calibration_manager.cpp:139:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- src/calibration_manager.cpp:148:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 
 **Читаемость:** 2 проблем
-- src/calibration_manager.cpp:179:47:: '*' has higher precedence than '+'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
-- src/calibration_manager.cpp:182:5:: do not use 'else' after 'return' [readability-else-after-return]
+- src/calibration_manager.cpp:188:47:: '*' has higher precedence than '+'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
+- src/calibration_manager.cpp:191:5:: do not use 'else' after 'return' [readability-else-after-return]
 
-### src/config.cpp (7 предупреждений)
+### src/config.cpp (9 предупреждений)
+**Разное:** 2 проблем
+- C:\Git\JXCT\src\config.cpp:16:8:: function 'getDeviceId' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- C:\Git\JXCT\src\config.cpp:25:8:: function 'getDefaultTopic' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+
 **Модернизация:** 4 проблем
-- C:\Git\JXCT\src\config.cpp:18:16:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- C:\Git\JXCT\src\config.cpp:18:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - C:\Git\JXCT\src\config.cpp:20:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- C:\Git\JXCT\src\config.cpp:27:16:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- C:\Git\JXCT\src\config.cpp:27:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - ... и ещё 1 проблем
 
 **Читаемость:** 3 проблем
@@ -79,20 +83,23 @@
 - C:\Git\JXCT\src\fake_sensor.cpp:81:54:: floating point literal has suffix 'f', which is not uppercase [readability-uppercase-literal-suffix]
 - ... и ещё 1 проблем
 
-### src/jxct_format_utils.cpp (8 предупреждений)
-**Разное:** 6 проблем
+### src/jxct_format_utils.cpp (9 предупреждений)
+**Разное:** 7 проблем
 - src/jxct_format_utils.cpp:6:13:: function 'formatFloat' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - src/jxct_format_utils.cpp:20:13:: function 'format_moisture' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - src/jxct_format_utils.cpp:25:13:: function 'format_temperature' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- ... и ещё 3 проблем
+- ... и ещё 4 проблем
 
 **Модернизация:** 2 проблем
 - src/jxct_format_utils.cpp:8:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - src/jxct_format_utils.cpp:48:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 
-### src/jxct_ui_system.cpp (2 предупреждений)
+### src/jxct_ui_system.cpp (3 предупреждений)
 **Модернизация:** 1 проблем
 - C:\Git\JXCT\src\jxct_ui_system.cpp:6:18:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+
+**Разное:** 1 проблем
+- C:\Git\JXCT\src\jxct_ui_system.cpp:286:8:: function 'generateButton' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 
 **Потенциальные баги:** 1 проблем
 - C:\Git\JXCT\src\jxct_ui_system.cpp:286:58:: 2 adjacent parameters of 'generateButton' of similar type ('const char *') are easily swapped by mistake [bugprone-easily-swappable-parameters]
@@ -105,18 +112,18 @@
 - ... и ещё 3 проблем
 
 **Потенциальные баги:** 1 проблем
-- src/logger.cpp:38:9:: switch has 2 consecutive identical branches [bugprone-branch-clone]
+- src/logger.cpp:45:9:: switch has 2 consecutive identical branches [bugprone-branch-clone]
 
 **Безопасность:** 10 проблем
-- src/logger.cpp:79:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
-- src/logger.cpp:98:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
-- src/logger.cpp:117:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
+- src/logger.cpp:88:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
+- src/logger.cpp:108:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
+- src/logger.cpp:128:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
 - ... и ещё 7 проблем
 
 **Модернизация:** 10 проблем
-- src/logger.cpp:91:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src/logger.cpp:110:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src/logger.cpp:129:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- src/logger.cpp:101:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- src/logger.cpp:121:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- src/logger.cpp:141:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - ... и ещё 7 проблем
 
 ### src/main.cpp (24 предупреждений)
@@ -132,49 +139,49 @@
 - C:\Git\JXCT\src\main.cpp:37:6:: redundant 'loadConfig' declaration [readability-redundant-declaration]
 - ... и ещё 4 проблем
 
-### src/modbus_sensor.cpp (102 предупреждений)
-**Разное:** 33 проблем
+### src/modbus_sensor.cpp (101 предупреждений)
+**Разное:** 29 проблем
 - C:\Git\JXCT\src\modbus_sensor.cpp:17:14:: variable 'modbus' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- C:\Git\JXCT\src\modbus_sensor.cpp:20:8:: variable 'sensorLastError' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - C:\Git\JXCT\src\modbus_sensor.cpp:22:22:: variable 'lastIrrigationTs' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- C:\Git\JXCT\src\modbus_sensor.cpp:24:6:: function 'debugPrintBuffer' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- ... и ещё 30 проблем
+- ... и ещё 26 проблем
 
-**Читаемость:** 54 проблем
+**Читаемость:** 56 проблем
 - C:\Git\JXCT\src\modbus_sensor.cpp:24:52:: pointer parameter 'buffer' can be pointer to const [readability-non-const-parameter]
-- C:\Git\JXCT\src\modbus_sensor.cpp:113:34:: pointer parameter 'data' can be pointer to const [readability-non-const-parameter]
-- C:\Git\JXCT\src\modbus_sensor.cpp:122:17:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
-- ... и ещё 51 проблем
+- C:\Git\JXCT\src\modbus_sensor.cpp:115:34:: pointer parameter 'data' can be pointer to const [readability-non-const-parameter]
+- C:\Git\JXCT\src\modbus_sensor.cpp:124:17:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
+- ... и ещё 53 проблем
 
 **Модернизация:** 4 проблем
-- C:\Git\JXCT\src\modbus_sensor.cpp:299:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
-- C:\Git\JXCT\src\modbus_sensor.cpp:305:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
-- C:\Git\JXCT\src\modbus_sensor.cpp:380:12:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- C:\Git\JXCT\src\modbus_sensor.cpp:301:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
+- C:\Git\JXCT\src\modbus_sensor.cpp:307:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
+- C:\Git\JXCT\src\modbus_sensor.cpp:382:12:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - ... и ещё 1 проблем
 
-**Потенциальные баги:** 11 проблем
-- C:\Git\JXCT\src\modbus_sensor.cpp:513:12:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
-- C:\Git\JXCT\src\modbus_sensor.cpp:622:43:: 7 adjacent parameters of 'addToMovingAverage' of similar type ('float') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- C:\Git\JXCT\src\modbus_sensor.cpp:668:39:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
-- ... и ещё 8 проблем
+**Потенциальные баги:** 12 проблем
+- C:\Git\JXCT\src\modbus_sensor.cpp:409:5:: switching on non-enum value without default case may not cover all cases [bugprone-switch-missing-default-case]
+- C:\Git\JXCT\src\modbus_sensor.cpp:515:12:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
+- C:\Git\JXCT\src\modbus_sensor.cpp:624:43:: 7 adjacent parameters of 'addToMovingAverage' of similar type ('float') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- ... и ещё 9 проблем
 
-### src/mqtt_client.cpp (70 предупреждений)
-**Разное:** 41 проблем
+### src/mqtt_client.cpp (65 предупреждений)
+**Разное:** 38 проблем
 - C:\Git\JXCT\src\mqtt_client.cpp:22:12:: variable 'espClient' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - C:\Git\JXCT\src\mqtt_client.cpp:23:14:: variable 'mqttClient' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - C:\Git\JXCT\src\mqtt_client.cpp:24:6:: variable 'mqttConnected' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- ... и ещё 38 проблем
+- ... и ещё 35 проблем
 
-**Модернизация:** 22 проблем
+**Модернизация:** 21 проблем
 - C:\Git\JXCT\src\mqtt_client.cpp:27:8:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - C:\Git\JXCT\src\mqtt_client.cpp:34:8:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - C:\Git\JXCT\src\mqtt_client.cpp:35:8:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- ... и ещё 19 проблем
+- ... и ещё 18 проблем
 
-**Читаемость:** 7 проблем
+**Читаемость:** 6 проблем
 - C:\Git\JXCT\src\mqtt_client.cpp:100:5:: do not use 'else' after 'return' [readability-else-after-return]
 - C:\Git\JXCT\src\mqtt_client.cpp:129:41:: statement should be inside braces [readability-braces-around-statements]
 - C:\Git\JXCT\src\mqtt_client.cpp:136:42:: statement should be inside braces [readability-braces-around-statements]
-- ... и ещё 4 проблем
+- ... и ещё 3 проблем
 
 ### src/ota_manager.cpp (31 предупреждений)
 **Модернизация:** 8 проблем
@@ -199,18 +206,18 @@
 - C:\Git\JXCT\src\ota_manager.cpp:71:10:: implicit conversion 'const char *' -> 'bool' [readability-implicit-bool-conversion]
 - C:\Git\JXCT\src\ota_manager.cpp:112:33:: statement should be inside braces [readability-braces-around-statements]
 
-### src/routes_calibration.cpp (16 предупреждений)
+### src/routes_calibration.cpp (15 предупреждений)
 **Читаемость:** 6 проблем
 - C:\Git\JXCT\src\routes_calibration.cpp:11:18:: redundant 'webServer' declaration [readability-redundant-declaration]
 - C:\Git\JXCT\src\routes_calibration.cpp:96:34:: statement should be inside braces [readability-braces-around-statements]
 - C:\Git\JXCT\src\routes_calibration.cpp:98:43:: statement should be inside braces [readability-braces-around-statements]
 - ... и ещё 3 проблем
 
-**Разное:** 10 проблем
+**Разное:** 9 проблем
 - C:\Git\JXCT\src\routes_calibration.cpp:18:15:: function 'generateCalibrationPage' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - C:\Git\JXCT\src\routes_calibration.cpp:46:5:: variable 'hasSand' of type 'bool' can be declared 'const' [misc-const-correctness]
 - C:\Git\JXCT\src\routes_calibration.cpp:47:5:: variable 'hasSandPeat' of type 'bool' can be declared 'const' [misc-const-correctness]
-- ... и ещё 7 проблем
+- ... и ещё 6 проблем
 
 ### src/sensor_compensation.cpp (69 предупреждений)
 **Модернизация:** 6 проблем
@@ -255,50 +262,59 @@
 - C:\Git\JXCT\src\thingspeak_client.cpp:23:12:: statement should be inside braces [readability-braces-around-statements]
 - ... и ещё 9 проблем
 
-### src/validation_utils.cpp (4 предупреждений)
+### src/validation_utils.cpp (12 предупреждений)
+**Разное:** 8 проблем
+- src/validation_utils.cpp:15:18:: function 'validateSSID' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- src/validation_utils.cpp:28:18:: function 'validatePassword' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- src/validation_utils.cpp:41:18:: function 'validateMQTTServer' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- ... и ещё 5 проблем
+
 **Читаемость:** 4 проблем
 - src/validation_utils.cpp:145:35:: parameter name 'ph' is too short, expected at least 3 characters [readability-identifier-length]
 - src/validation_utils.cpp:150:35:: parameter name 'ec' is too short, expected at least 3 characters [readability-identifier-length]
 - src/validation_utils.cpp:315:37:: parameter name 'ip' is too short, expected at least 3 characters [readability-identifier-length]
 - ... и ещё 1 проблем
 
-### src/wifi_manager.cpp (29 предупреждений)
+### src/wifi_manager.cpp (28 предупреждений)
 **Модернизация:** 14 проблем
 - C:\Git\JXCT\src\wifi_manager.cpp:22:1:: replace macro with enum [modernize-macro-to-enum]
 - C:\Git\JXCT\src\wifi_manager.cpp:22:9:: macro 'RESET_BUTTON_PIN' defines an integral constant; prefer an enum instead [modernize-macro-to-enum]
 - C:\Git\JXCT\src\wifi_manager.cpp:23:9:: macro 'WIFI_RECONNECT_INTERVAL' defines an integral constant; prefer an enum instead [modernize-macro-to-enum]
 - ... и ещё 11 проблем
 
-**Разное:** 12 проблем
+**Разное:** 11 проблем
 - C:\Git\JXCT\src\wifi_manager.cpp:39:11:: variable 'dnsServer' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - C:\Git\JXCT\src\wifi_manager.cpp:42:15:: variable 'ledLastToggle' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - C:\Git\JXCT\src\wifi_manager.cpp:43:6:: variable 'ledState' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- ... и ещё 9 проблем
+- ... и ещё 8 проблем
 
 **Читаемость:** 3 проблем
 - C:\Git\JXCT\src\wifi_manager.cpp:50:6:: redundant 'handleRoot' declaration [readability-redundant-declaration]
 - C:\Git\JXCT\src\wifi_manager.cpp:223:21:: implicit conversion 'char' -> 'bool' [readability-implicit-bool-conversion]
 - C:\Git\JXCT\src\wifi_manager.cpp:223:33:: statement should be inside braces [readability-braces-around-statements]
 
-### src/web/csrf_protection.cpp (10 предупреждений)
-**Разное:** 9 проблем
+### src/web/csrf_protection.cpp (9 предупреждений)
+**Разное:** 8 проблем
 - C:\Git\JXCT\src\web\csrf_protection.cpp:20:15:: variable 'currentCSRFToken' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - C:\Git\JXCT\src\web\csrf_protection.cpp:21:22:: variable 'tokenGeneratedTime' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- C:\Git\JXCT\src\web\csrf_protection.cpp:39:5:: variable 'macAddr' of type 'String' (aka 'int') can be declared 'const' [misc-const-correctness]
-- ... и ещё 6 проблем
+- C:\Git\JXCT\src\web\csrf_protection.cpp:28:8:: function 'generateCSRFToken' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- ... и ещё 5 проблем
 
 **Модернизация:** 1 проблем
 - C:\Git\JXCT\src\web\csrf_protection.cpp:96:12:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
-### src/web/error_handlers.cpp (11 предупреждений)
-**Разное:** 4 проблем
+### src/web/error_handlers.cpp (18 предупреждений)
+**Разное:** 8 проблем
 - C:\Git\JXCT\src\web\error_handlers.cpp:9:6:: function 'validateInterval' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- C:\Git\JXCT\src\web\error_handlers.cpp:29:13:: variable 'uri' of type 'String' (aka 'int') can be declared 'const' [misc-const-correctness]
+- C:\Git\JXCT\src\web\error_handlers.cpp:93:6:: function 'handleUploadError' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - C:\Git\JXCT\src\web\error_handlers.cpp:101:6:: function 'isFeatureAvailable' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- ... и ещё 1 проблем
+- ... и ещё 5 проблем
 
-**Потенциальные баги:** 1 проблем
+**Потенциальные баги:** 4 проблем
 - C:\Git\JXCT\src\web\error_handlers.cpp:9:23:: 2 adjacent parameters of 'validateInterval' of similar type are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- C:\Git\JXCT\src\web\error_handlers.cpp:9:60:: 2 adjacent parameters of 'validateInterval' of similar type are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- C:\Git\JXCT\src\web\error_handlers.cpp:122:20:: 3 adjacent parameters of 'logWebRequest' of similar type ('const int &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- ... и ещё 1 проблем
 
 **Читаемость:** 6 проблем
 - C:\Git\JXCT\src\web\error_handlers.cpp:83:67:: statement should be inside braces [readability-braces-around-statements]
@@ -306,12 +322,12 @@
 - C:\Git\JXCT\src\web\error_handlers.cpp:85:104:: statement should be inside braces [readability-braces-around-statements]
 - ... и ещё 3 проблем
 
-### src/web/routes_config.cpp (14 предупреждений)
-**Читаемость:** 8 проблем
+### src/web/routes_config.cpp (12 предупреждений)
+**Читаемость:** 6 проблем
 - C:\Git\JXCT\src\web\routes_config.cpp:19:18:: redundant 'webServer' declaration [readability-redundant-declaration]
 - C:\Git\JXCT\src\web\routes_config.cpp:20:17:: redundant 'currentWiFiMode' declaration [readability-redundant-declaration]
 - C:\Git\JXCT\src\web\routes_config.cpp:24:13:: redundant 'loadConfig' declaration [readability-redundant-declaration]
-- ... и ещё 5 проблем
+- ... и ещё 3 проблем
 
 **Разное:** 5 проблем
 - C:\Git\JXCT\src\web\routes_config.cpp:28:13:: function 'sendConfigExportJson' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
@@ -322,17 +338,11 @@
 **Модернизация:** 1 проблем
 - C:\Git\JXCT\src\web\routes_config.cpp:368:68:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
-### src/web/routes_data.cpp (70 предупреждений)
+### src/web/routes_data.cpp (68 предупреждений)
 **Модернизация:** 3 проблем
 - C:\Git\JXCT\src\web\routes_data.cpp:10:10:: inclusion of deprecated C++ header 'time.h'; consider using 'ctime' instead [modernize-deprecated-headers]
 - C:\Git\JXCT\src\web\routes_data.cpp:272:64:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 - C:\Git\JXCT\src\web\routes_data.cpp:683:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-
-**Читаемость:** 54 проблем
-- C:\Git\JXCT\src\web\routes_data.cpp:27:15:: redundant 'formatValue' declaration [readability-redundant-declaration]
-- C:\Git\JXCT\src\web\routes_data.cpp:44:17:: variable name 'id' is too short, expected at least 3 characters [readability-identifier-length]
-- C:\Git\JXCT\src\web\routes_data.cpp:47:39:: statement should be inside braces [readability-braces-around-statements]
-- ... и ещё 51 проблем
 
 **Разное:** 8 проблем
 - C:\Git\JXCT\src\web\routes_data.cpp:31:13:: variable 'uploadFile' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
@@ -340,35 +350,35 @@
 - C:\Git\JXCT\src\web\routes_data.cpp:39:18:: function 'computeRecommendations' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - ... и ещё 5 проблем
 
+**Читаемость:** 52 проблем
+- C:\Git\JXCT\src\web\routes_data.cpp:44:17:: variable name 'id' is too short, expected at least 3 characters [readability-identifier-length]
+- C:\Git\JXCT\src\web\routes_data.cpp:47:39:: statement should be inside braces [readability-braces-around-statements]
+- C:\Git\JXCT\src\web\routes_data.cpp:50:46:: statement should be inside braces [readability-braces-around-statements]
+- ... и ещё 49 проблем
+
 **Потенциальные баги:** 5 проблем
 - C:\Git\JXCT\src\web\routes_data.cpp:75:13:: repeated branch body in conditional chain [bugprone-branch-clone]
 - C:\Git\JXCT\src\web\routes_data.cpp:103:5:: repeated branch body in conditional chain [bugprone-branch-clone]
 - C:\Git\JXCT\src\web\routes_data.cpp:163:13:: repeated branch body in conditional chain [bugprone-branch-clone]
 - ... и ещё 2 проблем
 
-### src/web/routes_main.cpp (12 предупреждений)
-**Разное:** 5 проблем
-- C:\Git\JXCT\src\web\routes_main.cpp:37:17:: variable 'msg' of type 'String' (aka 'int') can be declared 'const' [misc-const-correctness]
-- C:\Git\JXCT\src\web\routes_main.cpp:38:17:: variable 'html' of type 'String' (aka 'int') can be declared 'const' [misc-const-correctness]
-- C:\Git\JXCT\src\web\routes_main.cpp:51:25:: variable 'msg' of type 'String' (aka 'int') can be declared 'const' [misc-const-correctness]
-- ... и ещё 2 проблем
-
+### src/web/routes_main.cpp (7 предупреждений)
 **Читаемость:** 7 проблем
 - C:\Git\JXCT\src\web\routes_main.cpp:91:50:: statement should be inside braces [readability-braces-around-statements]
 - C:\Git\JXCT\src\web\routes_main.cpp:93:21:: statement should be inside braces [readability-braces-around-statements]
 - C:\Git\JXCT\src\web\routes_main.cpp:101:50:: statement should be inside braces [readability-braces-around-statements]
 - ... и ещё 4 проблем
 
-### src/web/routes_ota.cpp (19 предупреждений)
+### src/web/routes_ota.cpp (17 предупреждений)
 **Читаемость:** 2 проблем
 - C:\Git\JXCT\src\web\routes_ota.cpp:14:18:: redundant 'webServer' declaration [readability-redundant-declaration]
 - C:\Git\JXCT\src\web\routes_ota.cpp:15:17:: redundant 'currentWiFiMode' declaration [readability-redundant-declaration]
 
-**Разное:** 11 проблем
+**Разное:** 9 проблем
 - C:\Git\JXCT\src\web\routes_ota.cpp:19:13:: variable 'isLocalUploadActive' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - C:\Git\JXCT\src\web\routes_ota.cpp:20:15:: variable 'localUploadProgress' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - C:\Git\JXCT\src\web\routes_ota.cpp:21:15:: variable 'localUploadTotal' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- ... и ещё 8 проблем
+- ... и ещё 6 проблем
 
 **Модернизация:** 5 проблем
 - C:\Git\JXCT\src\web\routes_ota.cpp:42:81:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
@@ -379,35 +389,34 @@
 **Потенциальные баги:** 1 проблем
 - C:\Git\JXCT\src\web\routes_ota.cpp:349:27:: narrowing conversion from 'size_t' (aka 'unsigned long long') to signed type 'int' is implementation-defined [bugprone-narrowing-conversions]
 
-### src/web/routes_reports.cpp (16 предупреждений)
-**Разное:** 16 проблем
+### src/web/routes_reports.cpp (14 предупреждений)
+**Разное:** 14 проблем
 - C:\Git\JXCT\src\web\routes_reports.cpp:32:20:: variable 'lastTestSummary' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - C:\Git\JXCT\src\web\routes_reports.cpp:33:29:: variable 'lastTechDebt' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - C:\Git\JXCT\src\web\routes_reports.cpp:34:22:: variable 'lastReportUpdate' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- ... и ещё 13 проблем
+- ... и ещё 11 проблем
 
-### src/web/routes_service.cpp (7 предупреждений)
-**Читаемость:** 3 проблем
+### src/web/routes_service.cpp (6 предупреждений)
+**Читаемость:** 2 проблем
 - C:\Git\JXCT\src\web\routes_service.cpp:21:18:: redundant 'webServer' declaration [readability-redundant-declaration]
 - C:\Git\JXCT\src\web\routes_service.cpp:22:17:: redundant 'currentWiFiMode' declaration [readability-redundant-declaration]
-- C:\Git\JXCT\src\web\routes_service.cpp:29:15:: redundant 'sensorLastError' declaration [readability-redundant-declaration]
 
 **Разное:** 4 проблем
 - C:\Git\JXCT\src\web\routes_service.cpp:36:13:: function 'sendHealthJson' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - C:\Git\JXCT\src\web\routes_service.cpp:37:13:: function 'sendServiceStatusJson' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- C:\Git\JXCT\src\web\routes_service.cpp:40:8:: function 'formatUptime' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- C:\Git\JXCT\src\web\routes_service.cpp:213:8:: function 'formatUptime' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - ... и ещё 1 проблем
 
-### src/web/web_templates.cpp (18 предупреждений)
-**Разное:** 5 проблем
+### src/web/web_templates.cpp (25 предупреждений)
+**Разное:** 12 проблем
 - C:\Git\JXCT\src\web\web_templates.cpp:9:8:: function 'generatePageHeader' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- C:\Git\JXCT\src\web\web_templates.cpp:20:8:: function 'generatePageFooter' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - C:\Git\JXCT\src\web\web_templates.cpp:25:8:: function 'generateBasePage' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- C:\Git\JXCT\src\web\web_templates.cpp:43:8:: function 'generateSuccessPage' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- ... и ещё 2 проблем
+- ... и ещё 9 проблем
 
 **Потенциальные баги:** 10 проблем
-- C:\Git\JXCT\src\web\web_templates.cpp:9:27:: 2 adjacent parameters of 'generatePageHeader' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- C:\Git\JXCT\src\web\web_templates.cpp:25:25:: 3 adjacent parameters of 'generateBasePage' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- C:\Git\JXCT\src\web\web_templates.cpp:9:27:: 2 adjacent parameters of 'generatePageHeader' of similar type ('const int &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- C:\Git\JXCT\src\web\web_templates.cpp:25:25:: 3 adjacent parameters of 'generateBasePage' of similar type ('const int &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
 - C:\Git\JXCT\src\web\web_templates.cpp:34:26:: 2 adjacent parameters of 'generateErrorPage' of similar type are easily swapped by mistake [bugprone-easily-swappable-parameters]
 - ... и ещё 7 проблем
 

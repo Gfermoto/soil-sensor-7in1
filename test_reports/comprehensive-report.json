@@ -1,43 +1,90 @@
 {
-  "timestamp": "2025-07-05T16:45:21.134975+00:00Z",
+  "timestamp": "2025-07-06T11:48:48.725307+00:00Z",
   "project": "JXCT Soil Sensor",
-  "version": "3.6.8",
+  "version": "3.7.0",
   "environment": "nt",
   "tests": {
-    "unit_tests": {
-      "csrf_tests": {
-        "total": 0,
-        "passed": 0,
+    "python_tests": {
+      "format_tests": {
+        "total": 3,
+        "passed": 3,
         "failed": 0
       },
       "validation_tests": {
-        "total": 0,
-        "passed": 0,
+        "total": 5,
+        "passed": 5,
         "failed": 0
       },
-      "format_tests": {
-        "total": 0,
-        "passed": 0,
+      "routes_tests": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "critical_tests": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0
+      },
+      "modbus_mqtt_tests": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0
+      },
+      "system_tests": {
+        "total": 5,
+        "passed": 5,
         "failed": 0
       },
       "total_duration": 0,
-      "test_files": []
+      "test_files": [
+        "test_format.py",
+        "test_validation.py",
+        "test_critical_functions.py",
+        "test_modbus_mqtt.py",
+        "test_system_functions.py",
+        "test_routes.py"
+      ]
     },
-    "performance": {
-      "total_duration": 2.2229232788085938,
-      "validation_performance": "< 100ms for 1000 operations",
-      "compensation_performance": "< 50ms for 500 operations",
-      "status": "failed"
+    "esp32_build": {
+      "build_test": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0
+      },
+      "firmware_size": "Flash: [======    ]  63.0% (used 1237733 bytes from 1966080 bytes)",
+      "status": "success"
     }
   },
   "summary": {
-    "total_duration": 7.212187767028809,
-    "total_tests": 0,
-    "passed_tests": 0,
+    "total_duration": 18.623573541641235,
+    "total_tests": 25,
+    "passed_tests": 25,
     "failed_tests": 0,
-    "success_rate": 0
+    "success_rate": 100.0
   },
-  "technical_debt": {},
+  "technical_debt": {
+    "timestamp": "2025-07-06T14:48:48.844568",
+    "version": "3.5.0",
+    "analysis": {
+      "clang_tidy": {
+        "skipped": true
+      },
+      "include_deps": {
+        "cycles": 0,
+        "unused_includes": 0,
+        "total_files_checked": 19
+      },
+      "duplication": {
+        "duplication_score": 10,
+        "exact_duplicates": 0,
+        "pattern_duplicates": 10,
+        "files_checked": 24,
+        "details": []
+      }
+    },
+    "total_tech_debt_score": 30,
+    "status": "[GREEN] Low"
+  },
   "coverage": {
     "lines": {
       "covered": 850,

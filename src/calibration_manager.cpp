@@ -13,7 +13,8 @@ const char* profileToFilename(SoilProfile /*profile*/)
 
 bool init()
 {
-    if (_initialized) {
+    if (_initialized)
+    {
         return true;
     }
 
@@ -36,7 +37,8 @@ bool init()
 
 bool saveCsv(SoilProfile profile, Stream& fileStream)
 {
-    if (!init()) {
+    if (!init())
+    {
         return false;
     }
     const char* path = profileToFilename(profile);
@@ -62,7 +64,8 @@ bool saveCsv(SoilProfile profile, Stream& fileStream)
 bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntries, size_t& outCount)
 {
     outCount = 0;
-    if (!init()) {
+    if (!init())
+    {
         return false;
     }
     const char* path = profileToFilename(profile);
@@ -78,20 +81,24 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
     {
         line = calibrationFile.readStringUntil('\n');
         line.trim();
-        if (line.length() == 0) {
+        if (line.length() == 0)
+        {
             continue;
         }
-        if (line[0] == '#') {
+        if (line[0] == '#')
+        {
             continue;  // комментарий
         }
 
         // Пропускаем строку-заголовок (если обнаружены буквы)
-        if (!isDigit(line[0]) && line[0] != '-') {
+        if (!isDigit(line[0]) && line[0] != '-')
+        {
             continue;
         }
 
         int comma = line.indexOf(',');
-        if (comma < 0) {
+        if (comma < 0)
+        {
             continue;
         }
 
@@ -107,7 +114,8 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
 
 bool hasTable(SoilProfile profile)
 {
-    if (!init()) {
+    if (!init())
+    {
         return false;
     }
     return LittleFS.exists(profileToFilename(profile));
@@ -115,7 +123,8 @@ bool hasTable(SoilProfile profile)
 
 bool deleteTable(SoilProfile profile)
 {
-    if (!init()) {
+    if (!init())
+    {
         return false;
     }
     const char* path = profileToFilename(profile);

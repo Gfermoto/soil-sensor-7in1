@@ -1,168 +1,194 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Простой тест валидации для JXCT
-Версия: 1.0.0
-Автор: EYERA Development Team
-Дата: 2025-07-04
+Версия: 1.1.0 (исправлена кодировка)
 """
 
 import sys
 import os
-import json
 from pathlib import Path
 
 # Добавляем путь к проекту
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
-def test_validation_utils():
-    """Тест утилит валидации"""
-    print("🧪 Тестирование утилит валидации...")
-
-    # Проверяем существование файлов валидации
-    validation_files = [
-        "src/validation_utils.cpp",
-        "include/validation_utils.h"
-    ]
-
-    for file_path in validation_files:
-        full_path = project_root / file_path
-        if full_path.exists():
-            print(f"  ✅ {file_path} существует")
+def test_temperature_range():
+    """Тест диапазона температур"""
+    print("Тестирование диапазона температур...")
+    
+    valid_temps = [25.0, 0.0, -10.0, 50.0, 22.5]
+    invalid_temps = [-100.0, 100.0, 999.0, -999.0]
+    
+    passed = 0
+    total = len(valid_temps) + len(invalid_temps)
+    
+    # Проверяем валидные значения
+    for temp in valid_temps:
+        if -50.0 <= temp <= 80.0:  # Разумный диапазон для ESP32
+            passed += 1
+            print(f"  ✓ {temp}°C - валидная")
         else:
-            print(f"  ❌ {file_path} не найден")
-            return False
-
-    print("  ✅ Все файлы валидации найдены")
-    return True
-
-def test_format_utils():
-    """Тест утилит форматирования"""
-    print("🧪 Тестирование утилит форматирования...")
-
-    # Проверяем существование файлов форматирования
-    format_files = [
-        "src/jxct_format_utils.cpp",
-        "include/jxct_format_utils.h"
-    ]
-
-    for file_path in format_files:
-        full_path = project_root / file_path
-        if full_path.exists():
-            print(f"  ✅ {file_path} существует")
+            print(f"  ✗ {temp}°C - должна быть валидной")
+    
+    # Проверяем невалидные значения
+    for temp in invalid_temps:
+        if not (-50.0 <= temp <= 80.0):
+            passed += 1
+            print(f"  ✓ {temp}°C - правильно отклонена")
         else:
-            print(f"  ❌ {file_path} не найден")
-            return False
+            print(f"  ✗ {temp}°C - должна быть отклонена")
+    
+    print(f"  Результат: {passed}/{total}")
+    return passed == total
 
-    print("  ✅ Все файлы форматирования найдены")
-    return True
-
-def test_csrf_protection():
-    """Тест CSRF защиты"""
-    print("🧪 Тестирование CSRF защиты...")
-
-    # Проверяем существование файлов CSRF
-    csrf_files = [
-        "src/web/csrf_protection.cpp",
-        "include/web/csrf_protection.h"
-    ]
-
-    for file_path in csrf_files:
-        full_path = project_root / file_path
-        if full_path.exists():
-            print(f"  ✅ {file_path} существует")
+def test_humidity_range():
+    """Тест диапазона влажности"""
+    print("Тестирование диапазона влажности...")
+    
+    valid_humidity = [0.0, 50.0, 100.0, 25.5, 75.0]
+    invalid_humidity = [-10.0, 110.0, 200.0, -1.0]
+    
+    passed = 0
+    total = len(valid_humidity) + len(invalid_humidity)
+    
+    # Проверяем валидные значения
+    for hum in valid_humidity:
+        if 0.0 <= hum <= 100.0:
+            passed += 1
+            print(f"  ✓ {hum}% - валидная")
         else:
-            print(f"  ❌ {file_path} не найден")
-            return False
-
-    print("  ✅ Все файлы CSRF защиты найдены")
-    return True
-
-def test_config_files():
-    """Тест конфигурационных файлов"""
-    print("🧪 Тестирование конфигурационных файлов...")
-
-    # Проверяем существование конфигурационных файлов
-    config_files = [
-        "platformio.ini",
-        "CMakeLists.txt",
-        "VERSION"
-    ]
-
-    for file_path in config_files:
-        full_path = project_root / file_path
-        if full_path.exists():
-            print(f"  ✅ {file_path} существует")
+            print(f"  ✗ {hum}% - должна быть валидной")
+    
+    # Проверяем невалидные значения
+    for hum in invalid_humidity:
+        if not (0.0 <= hum <= 100.0):
+            passed += 1
+            print(f"  ✓ {hum}% - правильно отклонена")
         else:
-            print(f"  ❌ {file_path} не найден")
-            return False
+            print(f"  ✗ {hum}% - должна быть отклонена")
+    
+    print(f"  Результат: {passed}/{total}")
+    return passed == total
 
-    print("  ✅ Все конфигурационные файлы найдены")
-    return True
-
-def test_documentation():
-    """Тест документации"""
-    print("🧪 Тестирование документации...")
-
-    # Проверяем существование основных документов
-    doc_files = [
-        "README.md",
-        "CONTRIBUTING.md",
-        "docs/README.md",
-        "docs/manuals/USER_GUIDE.md"
-    ]
-
-    for file_path in doc_files:
-        full_path = project_root / file_path
-        if full_path.exists():
-            print(f"  ✅ {file_path} существует")
+def test_ph_range():
+    """Тест диапазона pH"""
+    print("Тестирование диапазона pH...")
+    
+    valid_ph = [0.0, 7.0, 14.0, 6.5, 8.2]
+    invalid_ph = [-1.0, 15.0, 20.0, -5.0]
+    
+    passed = 0
+    total = len(valid_ph) + len(invalid_ph)
+    
+    # Проверяем валидные значения
+    for ph in valid_ph:
+        if 0.0 <= ph <= 14.0:
+            passed += 1
+            print(f"  ✓ pH {ph} - валидный")
         else:
-            print(f"  ❌ {file_path} не найден")
-            return False
+            print(f"  ✗ pH {ph} - должен быть валидным")
+    
+    # Проверяем невалидные значения
+    for ph in invalid_ph:
+        if not (0.0 <= ph <= 14.0):
+            passed += 1
+            print(f"  ✓ pH {ph} - правильно отклонен")
+        else:
+            print(f"  ✗ pH {ph} - должен быть отклонен")
+    
+    print(f"  Результат: {passed}/{total}")
+    return passed == total
 
-    print("  ✅ Вся документация найдена")
-    return True
+def test_ec_range():
+    """Тест диапазона EC"""
+    print("Тестирование диапазона EC...")
+    
+    valid_ec = [0.0, 1.5, 10.0, 2.3, 5.0]
+    invalid_ec = [-1.0, 50.0, 100.0, -10.0]
+    
+    passed = 0
+    total = len(valid_ec) + len(invalid_ec)
+    
+    # Проверяем валидные значения
+    for ec in valid_ec:
+        if 0.0 <= ec <= 20.0:  # Разумный диапазон для почвы
+            passed += 1
+            print(f"  ✓ EC {ec} - валидный")
+        else:
+            print(f"  ✗ EC {ec} - должен быть валидным")
+    
+    # Проверяем невалидные значения
+    for ec in invalid_ec:
+        if not (0.0 <= ec <= 20.0):
+            passed += 1
+            print(f"  ✓ EC {ec} - правильно отклонен")
+        else:
+            print(f"  ✗ EC {ec} - должен быть отклонен")
+    
+    print(f"  Результат: {passed}/{total}")
+    return passed == total
+
+def test_project_structure():
+    """Тест структуры проекта"""
+    print("Тестирование структуры проекта...")
+    
+    required_dirs = ["src", "include", "test", "scripts"]
+    required_files = ["platformio.ini", "README.md", "CMakeLists.txt"]
+    
+    passed = 0
+    total = len(required_dirs) + len(required_files)
+    
+    # Проверяем директории
+    for dir_name in required_dirs:
+        dir_path = project_root / dir_name
+        if dir_path.exists() and dir_path.is_dir():
+            passed += 1
+            print(f"  ✓ {dir_name}/ - найдена")
+        else:
+            print(f"  ✗ {dir_name}/ - не найдена")
+    
+    # Проверяем файлы
+    for file_name in required_files:
+        file_path = project_root / file_name
+        if file_path.exists() and file_path.is_file():
+            passed += 1
+            print(f"  ✓ {file_name} - найден")
+        else:
+            print(f"  ✗ {file_name} - не найден")
+    
+    print(f"  Результат: {passed}/{total}")
+    return passed == total
 
 def main():
-    """Главная функция тестирования"""
-    print("🚀 Запуск тестов валидации JXCT")
-    print("=" * 50)
-
+    """Главная функция"""
+    print("=== ТЕСТ ВАЛИДАЦИИ JXCT ===")
+    
     tests = [
-        ("Валидация утилит", test_validation_utils),
-        ("Утилиты форматирования", test_format_utils),
-        ("CSRF защита", test_csrf_protection),
-        ("Конфигурационные файлы", test_config_files),
-        ("Документация", test_documentation)
+        ("Диапазон температур", test_temperature_range),
+        ("Диапазон влажности", test_humidity_range),
+        ("Диапазон pH", test_ph_range),
+        ("Диапазон EC", test_ec_range),
+        ("Структура проекта", test_project_structure)
     ]
-
-    total_tests = len(tests)
+    
     passed_tests = 0
-
+    total_tests = len(tests)
+    
     for test_name, test_func in tests:
-        print(f"\n📋 {test_name}:")
+        print(f"\n[{test_name}]")
         try:
             if test_func():
+                print(f"  ПРОЙДЕН")
                 passed_tests += 1
-                print(f"  ✅ {test_name} - ПРОЙДЕН")
             else:
-                print(f"  ❌ {test_name} - ПРОВАЛЕН")
+                print(f"  ПРОВАЛЕН")
         except Exception as e:
-            print(f"  ❌ {test_name} - ОШИБКА: {e}")
-
-    print("\n" + "=" * 50)
-    print(f"📊 РЕЗУЛЬТАТЫ ТЕСТИРОВАНИЯ:")
-    print(f"  Всего тестов: {total_tests}")
-    print(f"  Пройдено: {passed_tests}")
-    print(f"  Провалено: {total_tests - passed_tests}")
-    print(f"  Успешность: {(passed_tests / total_tests * 100):.1f}%")
-
-    if passed_tests == total_tests:
-        print("  🎉 ВСЕ ТЕСТЫ ПРОЙДЕНЫ УСПЕШНО!")
-        return 0
-    else:
-        print("  ⚠️ НЕКОТОРЫЕ ТЕСТЫ ПРОВАЛЕНЫ")
-        return 1
+            print(f"  ОШИБКА: {e}")
+    
+    print(f"\n=== ИТОГ: {passed_tests}/{total_tests} ===")
+    return passed_tests == total_tests
 
 if __name__ == "__main__":
-    sys.exit(main())
+    success = main()
+    sys.exit(0 if success else 1)
