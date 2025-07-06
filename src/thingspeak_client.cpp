@@ -20,7 +20,9 @@ static int consecutiveFailCount = 0;  // счётчик подряд неуда�
 // Утилита для обрезки пробелов в начале/конце строки C
 static void trim(char* s)
 {
-    if (!s) return;
+    if (!s) {
+        return;
+    }
     // Trim leading
     char* p = s;
     while (*p && isspace((unsigned char)*p)) ++p;

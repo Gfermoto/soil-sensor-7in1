@@ -126,15 +126,17 @@ const char* getCommandTopic()
 // OTA статус topic
 static const char* getOtaStatusTopic()
 {
-    if (otaStatusTopicBuffer[0] == '\0')
+    if (otaStatusTopicBuffer[0] == '\0') {
         snprintf(otaStatusTopicBuffer, sizeof(otaStatusTopicBuffer), "%s/ota/status", config.mqttTopicPrefix);
+    }
     return otaStatusTopicBuffer;
 }
 
 static const char* getOtaCommandTopic()
 {
-    if (otaCommandTopicBuffer[0] == '\0')
+    if (otaCommandTopicBuffer[0] == '\0') {
         snprintf(otaCommandTopicBuffer, sizeof(otaCommandTopicBuffer), "%s/ota/command", config.mqttTopicPrefix);
+    }
     return otaCommandTopicBuffer;
 }
 

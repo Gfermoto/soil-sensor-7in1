@@ -93,16 +93,17 @@ void handleCalibrationUpload()  // ✅ Убираем static - функция ex
     {
         // Получаем профиль почвы из аргумента формы
         String profileStr = webServer.arg("soil_profile");
-        if (profileStr == "sand")
+        if (profileStr == "sand") {
             uploadProfile = SoilProfile::SAND;
-        else if (profileStr == "sandpeat")
+        } else if (profileStr == "sandpeat") {
             uploadProfile = SoilProfile::SANDPEAT;
-        else if (profileStr == "loam")
+        } else if (profileStr == "loam") {
             uploadProfile = SoilProfile::LOAM;
-        else if (profileStr == "peat")
+        } else if (profileStr == "peat") {
             uploadProfile = SoilProfile::PEAT;
-        else if (profileStr == "clay")
+        } else if (profileStr == "clay") {
             uploadProfile = SoilProfile::CLAY;
+        }
 
         CalibrationManager::init();
         const char* path = CalibrationManager::profileToFilename(uploadProfile);

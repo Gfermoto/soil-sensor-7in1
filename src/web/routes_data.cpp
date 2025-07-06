@@ -44,48 +44,50 @@ static RecValues computeRecommendations()
     const char* id = config.cropId;
     if (strlen(id) > 0)
     {
-        if (strcmp(id, "tomato") == 0)
+        if (strcmp(id, "tomato") == 0) {
             rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE + 15, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE + 5};
-        else if (strcmp(id, "cucumber") == 0)
+        } else if (strcmp(id, "cucumber") == 0) {
             rec = {TEST_DATA_TEMP_BASE + 4, TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 600, TEST_DATA_PH_BASE - 0.1F,
                    TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE + 3};
-        else if (strcmp(id, "pepper") == 0)
+        }
+        else if (strcmp(id, "pepper") == 0) {
             rec = {TEST_DATA_TEMP_BASE + 3, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE + 400, TEST_DATA_PH_BASE,
                    TEST_DATA_NPK_BASE + 13, TEST_DATA_NPK_BASE - 14, TEST_DATA_NPK_BASE + 4};
-        else if (strcmp(id, "lettuce") == 0)
+        } else if (strcmp(id, "lettuce") == 0) {
             rec = {TEST_DATA_TEMP_BASE,    TEST_DATA_HUM_BASE + 15, TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.3F,
                    TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE};
-        else if (strcmp(id, "blueberry") == 0)
+        } else if (strcmp(id, "blueberry") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE - 1.3F,
                    TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
-        else if (strcmp(id, "lawn") == 0)
+        } else if (strcmp(id, "lawn") == 0) {
             rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE - 10, TEST_DATA_EC_BASE - 400, TEST_DATA_PH_BASE,
                    TEST_DATA_NPK_BASE,  TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 5};
-        else if (strcmp(id, "grape") == 0)
+        } else if (strcmp(id, "grape") == 0) {
             rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE - 5,  TEST_DATA_EC_BASE + 200, TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE};
-        else if (strcmp(id, "conifer") == 0)
+        } else if (strcmp(id, "conifer") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE - 5,  TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.8F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 10};
-        else if (strcmp(id, "strawberry") == 0)
+        } else if (strcmp(id, "strawberry") == 0) {
             rec = {TEST_DATA_TEMP_BASE,     TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE - 0.3F,
                    TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
-        else if (strcmp(id, "apple") == 0)
+        } else if (strcmp(id, "apple") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
-        else if (strcmp(id, "pear") == 0)
+        } else if (strcmp(id, "pear") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
-        else if (strcmp(id, "cherry") == 0)
+        } else if (strcmp(id, "cherry") == 0) {
             rec = {TEST_DATA_TEMP_BASE,    TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE + 100, TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
-        else if (strcmp(id, "raspberry") == 0)
+        } else if (strcmp(id, "raspberry") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE - 100, TEST_DATA_PH_BASE - 0.1F,
                    TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 3};
-        else if (strcmp(id, "currant") == 0)
+        } else if (strcmp(id, "currant") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 3, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.1F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 16, TEST_DATA_NPK_BASE - 5};
+        }
     }
 
     // 2. Коррекция по soilProfile (влажность и pH)

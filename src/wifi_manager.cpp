@@ -220,7 +220,9 @@ String getApSsid()
     WiFi.macAddress(mac);
     char buf[MAC_ADDRESS_BUFFER_SIZE];
     snprintf(buf, sizeof(buf), "jxct-%02X%02X%02X", mac[3], mac[4], mac[5]);
-    for (int i = 0; buf[i]; ++i) buf[i] = tolower(buf[i]);
+    for (int i = 0; buf[i]; ++i) {
+        buf[i] = tolower(buf[i]);
+    }
     return String(buf);
 }
 

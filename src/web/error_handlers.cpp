@@ -80,11 +80,21 @@ bool validateConfigInput(bool checkRequired)
     }
 
     // Валидация форматов данных
-    if (!validateInterval("mqtt_port", 1, 65535, "MQTT порт")) return false;
-    if (!validateInterval("ntp_interval", 10000, 86400000, "NTP интервал")) return false;
-    if (!validateInterval("sensor_read", 1000, 300000, "интервал чтения датчика")) return false;
-    if (!validateInterval("mqtt_publish", 1000, 3600000, "интервал MQTT публикации")) return false;
-    if (!validateInterval("thingspeak_interval", 15000, 7200000, "интервал ThingSpeak")) return false;
+    if (!validateInterval("mqtt_port", 1, 65535, "MQTT порт")) {
+        return false;
+    }
+    if (!validateInterval("ntp_interval", 10000, 86400000, "NTP интервал")) {
+        return false;
+    }
+    if (!validateInterval("sensor_read", 1000, 300000, "интервал чтения датчика")) {
+        return false;
+    }
+    if (!validateInterval("mqtt_publish", 1000, 3600000, "интервал MQTT публикации")) {
+        return false;
+    }
+    if (!validateInterval("thingspeak_interval", 15000, 7200000, "интервал ThingSpeak")) {
+        return false;
+    }
 
     logDebug("Валидация конфигурации прошла успешно");
     return true;

@@ -109,7 +109,9 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
 static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)
 {
     char calcHex[65];
-    for (int i = 0; i < 32; ++i) sprintf(&calcHex[i * 2], "%02x", calcDigest[i]);
+    for (int i = 0; i < 32; ++i) {
+        sprintf(&calcHex[i * 2], "%02x", calcDigest[i]);
+    }
     return strcasecmp(calcHex, expectedHex) == 0;
 }
 
