@@ -27,37 +27,44 @@
 #include "wifi_manager.h"
 
 // Переменные для отслеживания времени
+namespace {
 unsigned long lastDataPublish = 0;
 unsigned long lastNtpUpdate = 0;
 
-// Объявления функций
-bool initPreferences();
-void setupWiFi();
-void setupModbus();
-void loadConfig();
-void startRealSensorTask();
-void startFakeSensorTask();
-void handleWiFi();
-void handleMQTT();
+unsigned long lastStatusPrint = 0;
+unsigned long mqttBatchTimer = 0;
+unsigned long thingspeakBatchTimer = 0;
+bool pendingMqttPublish = false;
+bool pendingThingspeakPublish = false;
+}
 
-WiFiUDP ntpUDP;
-NTPClient* timeClient = nullptr;
+// Функции уже объявлены в соответствующих заголовочных файлах:
+// setupModbus() - в modbus_sensor.h
+// startRealSensorTask() - в modbus_sensor.h  
+// startFakeSensorTask() - в fake_sensor.h
+// handleMQTT() - в mqtt_client.h
+
+WiFiUDP ntpUDP;                 // NOLINT(misc-use-internal-linkage)
+NTPClient* timeClient = nullptr;  // NOLINT(misc-use-internal-linkage)
 
 // Константы
 const int RESET_BUTTON_PIN = 0;                     // GPIO0 для кнопки сброса
 const unsigned long STATUS_PRINT_INTERVAL = 30000;  // 30 секунд
 
-// Переменные
-unsigned long lastStatusPrint = 0;
+// Внутренняя инициализация Preferences (реализована ниже)
+static bool initPreferences();  // NOLINT(misc-use-anonymous-namespace)
+
+// Реализация инициализации Preferences (внутренняя)
+static bool initPreferences()  // NOLINT(misc-use-anonymous-namespace)
+{
+    return preferences.begin("jxct", false);
+}
 
 // === ОПТИМИЗАЦИЯ 3.2: Интеллектуальный батчинг данных для группировки сетевых отправок ===
-static unsigned long mqttBatchTimer = 0;
-static unsigned long thingspeakBatchTimer = 0;
-static bool pendingMqttPublish = false;
-static bool pendingThingspeakPublish = false;
+// перемещены в анонимное пространство имён выше
 
 // ✅ Неблокирующая задача мониторинга кнопки сброса
-void resetButtonTask(void* parameter)
+static void resetButtonTask(void* /*parameter*/)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
     pinMode(RESET_BUTTON_PIN, INPUT_PULLUP);
     static unsigned long buttonPressTime = 0;
@@ -158,7 +165,7 @@ void setup()
     // Инициализация ThingSpeak
     if (config.flags.thingSpeakEnabled)
     {
-        extern WiFiClient espClient;  // объявлен в mqtt_client.cpp
+        // extern WiFiClient espClient;  // объявлен в mqtt_client.h
         setupThingSpeak(espClient);
         logSuccess("ThingSpeak инициализирован");
     }
@@ -213,11 +220,6 @@ void setup()
 
     logSuccess("Инициализация завершена успешно!");
     logPrintSeparator("─", 60);
-}
-
-bool initPreferences()
-{
-    return preferences.begin("jxct", false);
 }
 
 // ✅ Неблокирующий главный цикл с оптимизированными интервалами

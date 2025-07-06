@@ -4,7 +4,9 @@
 
 namespace CalibrationManager
 {
-static bool _initialized = false;
+namespace {
+bool _initialized = false;
+}
 
 const char* profileToFilename(SoilProfile /*profile*/)
 {
@@ -52,7 +54,7 @@ bool saveCsv(SoilProfile profile, Stream& fileStream)
 
     while (fileStream.available())
     {
-        uint8_t dataByte = fileStream.read();
+        const uint8_t dataByte = fileStream.read();
         calibrationFile.write(dataByte);
     }
 
@@ -96,7 +98,7 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
             continue;
         }
 
-        int comma = line.indexOf(',');
+        const int comma = line.indexOf(',');
         if (comma < 0)
         {
             continue;
@@ -184,8 +186,8 @@ float applyCalibration(float rawValue, SoilProfile profile)
     // Линейная интерполяция между ближайшими значениями
     if (upperRaw > lowerRaw)
     {
-        float ratio = (rawValue - lowerRaw) / (upperRaw - lowerRaw);
-        float interpolatedCoeff = lowerCorr + ratio * (upperCorr - lowerCorr);
+        const float ratio = (rawValue - lowerRaw) / (upperRaw - lowerRaw);
+        const float interpolatedCoeff = lowerCorr + ratio * (upperCorr - lowerCorr);
         return rawValue * interpolatedCoeff;
     }
     else

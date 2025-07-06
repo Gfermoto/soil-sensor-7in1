@@ -1,69 +1,70 @@
 #include "jxct_format_utils.h"
 #include <cmath>
 #include <cstdio>
+#include <array>
 
 // Универсальная функция форматирования float
-std::string formatFloat(float value, int precision, bool asInt)
+std::string formatFloat(float value, int precision, bool asInt)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
-    char buf[8];
+    std::array<char, 8> buf;
     if (asInt)
     {
-        snprintf(buf, sizeof(buf), "%d", static_cast<int>(lround(value)));
+        snprintf(buf.data(), buf.size(), "%d", static_cast<int>(lround(value)));
     }
     else
     {
-        snprintf(buf, sizeof(buf), "%.*f", precision, value);
+        snprintf(buf.data(), buf.size(), "%.*f", precision, value);
     }
-    return std::string(buf);
+    return std::string(buf.data());
 }
 
-std::string format_moisture(float value)
+std::string format_moisture(float value)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
     return formatFloat(value, 1, false);
 }
 
-std::string format_temperature(float value)
+std::string format_temperature(float value)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
     return formatFloat(value, 1, false);
 }
 
-std::string format_ec(float value)
+std::string format_ec(float value)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
     return formatFloat(value, 0, true);
 }
 
-std::string format_ph(float value)
+std::string format_ph(float value)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
     return formatFloat(value, 1, false);
 }
 
-std::string format_npk(float value)
+std::string format_npk(float value)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
     return formatFloat(value, 0, true);
 }
 
 // Универсальная функция форматирования для веб-интерфейса
-String formatValue(float value, const char* unit, int precision)
+String formatValue(float value, const char* unit, int precision)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
-    char buf[32];
+    std::array<char, 32> buf;
 
     // Форматируем значение с заданной точностью
     switch (precision)
     {
         case 0:
-            snprintf(buf, sizeof(buf), "%.0f%s", value, unit);
+            snprintf(buf.data(), buf.size(), "%.0f%s", value, unit);
             break;
         case 1:
-            snprintf(buf, sizeof(buf), "%.1f%s", value, unit);
+            snprintf(buf.data(), buf.size(), "%.1f%s", value, unit);
             break;
         case 2:
         default:
-            snprintf(buf, sizeof(buf), "%.2f%s", value, unit);
+            snprintf(buf.data(), buf.size(), "%.2f%s", value, unit);
             break;
         case 3:
-            snprintf(buf, sizeof(buf), "%.3f%s", value, unit);
+            snprintf(buf.data(), buf.size(), "%.3f%s", value, unit);
             break;
     }
 
-    return String(buf);
+    return String(buf.data());
 }

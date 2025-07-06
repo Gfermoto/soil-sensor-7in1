@@ -142,8 +142,7 @@ void applyCompensationIfEnabled(SensorData& d)
     float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);
 
     // Шаг 2: Применяем математическую компенсацию (температурная, влажностная)
-    float ec25 = ecCalibrated / (1.0F + 0.021F * (tempCalibrated - 25.0F));
-    d.ec = correctEC(ec25, tempCalibrated, humCalibrated, soil);
+    d.ec = correctEC(ecCalibrated, tempCalibrated, humCalibrated, soil);
 
     d.ph = correctPH(phCalibrated, tempCalibrated);
 
@@ -381,7 +380,7 @@ bool testModbusConnection()
  * @param is_float Флаг - сохранять как float или int
  * @return true если чтение успешно
  */
-bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)
+static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)  // NOLINT(misc-use-anonymous-namespace)
 {
     logDebug("Чтение %s (0x%04X)...", reg_name, reg_addr);
     uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
@@ -416,7 +415,7 @@ bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplie
  * @brief Чтение основных параметров (температура, влажность, pH, EC)
  * @return Количество успешно прочитанных параметров
  */
-int readBasicParameters()
+static int readBasicParameters()  // NOLINT(misc-use-anonymous-namespace)
 {
     int success_count = 0;
 
@@ -439,7 +438,7 @@ int readBasicParameters()
  * @brief Чтение NPK параметров (азот, фосфор, калий)
  * @return Количество успешно прочитанных параметров
  */
-int readNPKParameters()
+static int readNPKParameters()  // NOLINT(misc-use-anonymous-namespace)
 {
     int success_count = 0;
 
@@ -459,7 +458,7 @@ int readNPKParameters()
  * @brief Финализация данных датчика (валидация, кэширование, скользящее среднее)
  * @param success Флаг успешности чтения всех параметров
  */
-void finalizeSensorData(bool success)
+static void finalizeSensorData(bool success)  // NOLINT(misc-use-anonymous-namespace)
 {
     sensorData.valid = success;
     sensorData.last_update = millis();
@@ -539,7 +538,7 @@ void postTransmission()
 }
 
 // ✅ Неблокирующая задача реального датчика с ДИАГНОСТИКОЙ
-void realSensorTask(void* pvParameters)
+static void realSensorTask(void* /*pvParameters*/)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
     logPrintHeader("ПРОСТОЕ ЧТЕНИЕ ДАТЧИКА JXCT", LogColor::CYAN);
     logSystem("🔥 Использую РАБОЧИЕ параметры: 9600 bps, 8N1, адрес 1");

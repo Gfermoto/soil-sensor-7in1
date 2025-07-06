@@ -10,7 +10,7 @@
 #include "modbus_sensor.h"
 #include "sensor_compensation.h"
 
-// ✅ Неблокирующая задача эмуляции датчика с оптимизированным циклом
+namespace {
 void fakeSensorTask(void* pvParameters)
 {
     const TickType_t taskDelay = 1000 / portTICK_PERIOD_MS;  // 1 секунда
@@ -22,15 +22,15 @@ void fakeSensorTask(void* pvParameters)
         // Генерируем данные только каждые 10 секунд
         if (iterationCounter >= dataGenerationInterval)
         {
-            sensorData.temperature = 22.0 + random(-50, 50) / 10.0;  // 17.0..27.0
-            sensorData.humidity = 50.0 + random(-200, 200) / 10.0;   // 30..70
-            sensorData.ec = 1000 + random(-200, 200);                // 800..1200
-            sensorData.ph = 6.5 + random(-20, 20) / 10.0;            // 4.5..8.5
+            sensorData.temperature = 22.0F + static_cast<float>(random(-50, 50)) / 10.0F;  // 17.0..27.0
+            sensorData.humidity = 50.0F + static_cast<float>(random(-200, 200)) / 10.0F;   // 30..70
+            sensorData.ec = 1000 + static_cast<int>(random(-200, 200));                     // 800..1200
+            sensorData.ph = 6.5F + static_cast<float>(random(-20, 20)) / 10.0F;            // 4.5..8.5
 
             // NPK в мг/дм³ (как в даташите)
-            float nitrogen_mgdm3 = 30 + random(-10, 10);  // 20..40
-            float phosphorus_mgdm3 = 15 + random(-5, 5);  // 10..20
-            float potassium_mgdm3 = 20 + random(-5, 5);   // 15..25
+            const float nitrogen_mgdm3 = 30.0F + static_cast<float>(random(-10, 10));  // 20..40
+            const float phosphorus_mgdm3 = 15.0F + static_cast<float>(random(-5, 5));  // 10..20
+            const float potassium_mgdm3 = 20.0F + static_cast<float>(random(-5, 5));   // 15..25
 
             // Конверсия в мг/кг (как в рекомендациях)
             constexpr float NPK_FACTOR = 6.5F;  // пересчёт мг/дм³ → мг/кг (ρ=1.3 г/см³, влажность ≈30%)
@@ -77,9 +77,8 @@ void fakeSensorTask(void* pvParameters)
                         break;
                 }
 
-                // 1. EC: температурная компенсация → затем модель Арчи
-                float ec25 = sensorData.ec / (1.0F + 0.021F * (sensorData.temperature - 25.0F));
-                sensorData.ec = correctEC(ec25, sensorData.temperature, sensorData.humidity, soil);
+                // 1. EC: единоразовая температурная + влажностная компенсация
+                sensorData.ec = correctEC(sensorData.ec, sensorData.temperature, sensorData.humidity, soil);
 
                 // 2. pH: температурная поправка
                 sensorData.ph = correctPH(sensorData.ph, sensorData.temperature);
@@ -100,6 +99,11 @@ void fakeSensorTask(void* pvParameters)
     }
 }
 
+// forward declaration; реализация глобальная ниже
+void startFakeSensorTask();
+} // anonymous namespace
+
+// Определение-обёртка с внешним связыванием
 void startFakeSensorTask()
 {
     xTaskCreate(fakeSensorTask, "FakeSensor", 4096, NULL, 1, NULL);

@@ -17,8 +17,10 @@
 // ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ДЛЯ CSRF
 // ============================================================================
 
-static String currentCSRFToken = "";
-static unsigned long tokenGeneratedTime = 0;
+namespace {
+String currentCSRFToken = "";
+unsigned long tokenGeneratedTime = 0;
+}
 const unsigned long CSRF_TOKEN_LIFETIME = 30 * 60 * 1000;  // 30 минут в миллисекундах
 
 // ============================================================================
@@ -31,9 +33,9 @@ String generateCSRFToken()
     String token = "";
 
     // Компоненты для генерации токена:
-    unsigned long currentTime = millis();
-    uint32_t freeHeap = ESP.getFreeHeap();
-    uint32_t chipId = ESP.getEfuseMac();
+    const unsigned long currentTime = millis();
+    const uint32_t freeHeap = ESP.getFreeHeap();
+    const uint32_t chipId = ESP.getEfuseMac();
 
     // Добавляем MAC адрес для уникальности
     String macAddr = WiFi.macAddress();
@@ -62,7 +64,7 @@ bool validateCSRFToken(const String& token)
     }
 
     // Проверяем время жизни токена
-    unsigned long currentTime = millis();
+    const unsigned long currentTime = millis();
     if (currentTime - tokenGeneratedTime > CSRF_TOKEN_LIFETIME)
     {
         logWarn("CSRF токен истек (время: %lu, генерирован: %lu)", currentTime, tokenGeneratedTime);
@@ -146,7 +148,7 @@ bool checkCSRFSafety()
 // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ
 // ============================================================================
 
-String methodToString(HTTPMethod method)
+String methodToString(HTTPMethod method)  // NOLINT(misc-use-internal-linkage)
 {
     switch (method)
     {

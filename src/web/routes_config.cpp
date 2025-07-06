@@ -16,15 +16,10 @@
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
 
-extern WebServer webServer;
-extern WiFiMode currentWiFiMode;
-
-// Объявления внешних функций
-extern String navHtml();
-extern void loadConfig();
-extern void saveConfig();
-
 // --- API v1 helpers ---
+static String importedJson;  // NOLINT(misc-use-anonymous-namespace)
+
+// Объявления локальных функций
 static void sendConfigExportJson();
 
 void setupConfigRoutes()
@@ -175,7 +170,7 @@ void setupConfigRoutes()
                      {
                          logWarn("CSRF атака отклонена на /save_intervals от %s",
                                  webServer.client().remoteIP().toString().c_str());
-                         String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
+                         const String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                          webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
                          return;
                      }
@@ -187,10 +182,10 @@ void setupConfigRoutes()
                      }
 
                      // ======= ВАЛИДАЦИЯ ВХОДНЫХ ДАННЫХ =======
-                     unsigned long sensorMs = webServer.arg("sensor_interval").toInt() * CONVERSION_SEC_TO_MS;
-                     unsigned long mqttMs = webServer.arg("mqtt_interval").toInt() * CONVERSION_MIN_TO_MS;
-                     unsigned long tsMs = webServer.arg("ts_interval").toInt() * CONVERSION_MIN_TO_MS;
-                     unsigned long webMs = webServer.arg("web_interval").toInt() * CONVERSION_SEC_TO_MS;
+                     const unsigned long sensorMs = webServer.arg("sensor_interval").toInt() * CONVERSION_SEC_TO_MS;
+                     const unsigned long mqttMs = webServer.arg("mqtt_interval").toInt() * CONVERSION_MIN_TO_MS;
+                     const unsigned long tsMs = webServer.arg("ts_interval").toInt() * CONVERSION_MIN_TO_MS;
+                     const unsigned long webMs = webServer.arg("web_interval").toInt() * CONVERSION_SEC_TO_MS;
 
                      ValidationResult valSensor = validateSensorReadInterval(sensorMs);
                      ValidationResult valMqtt = validateMQTTPublishInterval(mqttMs);
@@ -345,7 +340,6 @@ void setupConfigRoutes()
     webServer.on(API_CONFIG_EXPORT, HTTP_GET, sendConfigExportJson);
 
     // Импорт конфигурации через multipart/form-data (файл JSON)
-    static String importedJson;
     webServer.on(
         "/api/config/import", HTTP_POST,
         // Финальный обработчик после загрузки
@@ -430,6 +424,7 @@ void setupConfigRoutes()
 // ---------------------------------------------------------------------------
 // API v1: /api/v1/config/export
 // ---------------------------------------------------------------------------
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static void sendConfigExportJson()
 {
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());

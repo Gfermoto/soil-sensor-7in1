@@ -16,28 +16,27 @@
 #include "../../include/web_routes.h"           // ✅ CSRF защита
 #include "../modbus_sensor.h"
 #include "../mqtt_client.h"
+#include "../thingspeak_client.h"
 #include "../wifi_manager.h"
 
-extern WebServer webServer;
-extern WiFiMode currentWiFiMode;
-
-// Объявления внешних функций
-extern String navHtml();
-extern String getApSsid();
-
-// Внешние переменные для статусов
-extern String sensorLastError;
-
-// Объявления внешних функций
-extern const char* getThingSpeakLastPublish();
-extern const char* getThingSpeakLastError();
+// Внешние зависимости (уже объявлены в заголовочных файлах)
+// extern WebServer webServer;  // объявлено в web_routes.h
+// extern WiFiMode currentWiFiMode;  // объявлено в wifi_manager.h
+// extern String navHtml();  // объявлено в wifi_manager.h
+// extern String getApSsid();  // объявлено в wifi_manager.h
+// extern String sensorLastError;  // объявлено в modbus_sensor.h
+// extern const char* getThingSpeakLastPublish();  // объявлено в thingspeak_client.h
+// extern const char* getThingSpeakLastError();  // объявлено в thingspeak_client.h
 
 // --- API v1 helpers ---
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static void sendHealthJson();
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static void sendServiceStatusJson();
 
 // Локальные функции
-String formatUptime(unsigned long milliseconds);
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
+static String formatUptime(unsigned long milliseconds);
 
 void setupServiceRoutes()
 {
@@ -210,7 +209,8 @@ void setupServiceRoutes()
 }
 
 // Вспомогательная функция для форматирования времени работы
-String formatUptime(unsigned long milliseconds)
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
+static String formatUptime(unsigned long milliseconds)
 {
     unsigned long seconds = milliseconds / MILLISECONDS_IN_SECOND;
     unsigned long minutes = seconds / SECONDS_IN_MINUTE;
@@ -239,7 +239,8 @@ String formatUptime(unsigned long milliseconds)
     return uptime;
 }
 
-void sendHealthJson()
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
+static void sendHealthJson()
 {
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
     StaticJsonDocument<JSON_DOC_MEDIUM> doc;
@@ -322,7 +323,8 @@ void sendHealthJson()
     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
 }
 
-void sendServiceStatusJson()
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
+static void sendServiceStatusJson()
 {
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
     StaticJsonDocument<JSON_DOC_SMALL> doc;

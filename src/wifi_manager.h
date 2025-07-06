@@ -55,4 +55,8 @@ void restartESP();
 // Парсинг и применение конфигурации из JSON
 bool parseAndApplyConfig(const String& jsonContent, String& error);
 
+// HTML генераторы
+String navHtml();
+String getApSsid();
+
 #endif  // WIFI_MANAGER_H

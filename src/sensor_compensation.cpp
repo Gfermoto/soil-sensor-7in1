@@ -20,17 +20,19 @@ static constexpr float k_t_P[5] = {0.0053F, 0.0049F, 0.0035F, 0.0042F, 0.0051F};
 static constexpr float k_t_K[5] = {0.0032F, 0.0029F, 0.0018F, 0.0024F, 0.0031F};
 
 // влажностные коэффициенты (λ-функции заменить не можем, считаем прямо)
-static inline float k_h_N(float th)
+namespace {
+inline float k_h_N(float theta)
 {
-    return 1.8F - 0.024F * th;
+    return 1.8F - 0.024F * theta;
 }
-static inline float k_h_P(float th)
+inline float k_h_P(float theta)
 {
-    return 1.6F - 0.018F * th;
+    return 1.6F - 0.018F * theta;
 }
-static inline float k_h_K(float th)
+inline float k_h_K(float theta)
 {
-    return 1.9F - 0.021F * th;
+    return 1.9F - 0.021F * theta;
+}
 }
 
 // ------------------------------------------------------------------
@@ -72,5 +74,17 @@ void correctNPK(float T, float theta, float& N, float& P, float& K, SoilType soi
     N *= k_h_N(theta);
     P *= k_h_P(theta);
     K *= k_h_K(theta);
+}
+
+// ✅ ТИПОБЕЗОПАСНЫЕ ВЕРСИИ (предотвращают перепутывание параметров)
+// ------------------------------------------------------------------
+float correctEC(float ecRaw, const EnvironmentalConditions& env, SoilType soil)
+{
+    return correctEC(ecRaw, env.temperature, env.moisture, soil);
+}
+
+void correctNPK(const EnvironmentalConditions& env, NPKReferences& npk, SoilType soil)
+{
+    correctNPK(env.temperature, env.moisture, npk.nitrogen, npk.phosphorus, npk.potassium, soil);
 }
 // ------------------------------------------------------------------

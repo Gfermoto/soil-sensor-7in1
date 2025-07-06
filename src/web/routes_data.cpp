@@ -22,69 +22,70 @@
 
 extern NTPClient* timeClient;
 
-// Объявления внешних функций
-extern String navHtml();
-extern String formatValue(float value, const char* unit, int precision);
-extern String getApSsid();
+// Внешние зависимости (уже объявлены в заголовочных файлах)
+// extern String navHtml();  // объявлено в wifi_manager.h
+// extern String formatValue(float value, const char* unit, int precision);  // объявлено в jxct_format_utils.h
+// extern String getApSsid();  // объявлено в wifi_manager.h
 
 // Буфер для загрузки файлов (калибровка через /readings)
-static File uploadFile;
-static SoilProfile uploadProfile = SoilProfile::SAND;
+namespace {
+File uploadFile;
+SoilProfile uploadProfile = SoilProfile::SAND;
 
 struct RecValues
 {
     float t, hum, ec, ph, n, p, k;
 };
 
-static RecValues computeRecommendations()
+RecValues computeRecommendations()
 {
     // 1. База по культуре или generic
     RecValues rec{TEST_DATA_TEMP_BASE + 1, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE, TEST_DATA_PH_BASE,
                   TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
-    const char* id = config.cropId;
-    if (strlen(id) > 0)
+    const char* cropId = config.cropId;
+    if (strlen(cropId) > 0)
     {
-        if (strcmp(id, "tomato") == 0) {
+        if (strcmp(cropId, "tomato") == 0) {
             rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE + 15, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE + 5};
-        } else if (strcmp(id, "cucumber") == 0) {
+        } else if (strcmp(cropId, "cucumber") == 0) {
             rec = {TEST_DATA_TEMP_BASE + 4, TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 600, TEST_DATA_PH_BASE - 0.1F,
                    TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE + 3};
         }
-        else if (strcmp(id, "pepper") == 0) {
+        else if (strcmp(cropId, "pepper") == 0) {
             rec = {TEST_DATA_TEMP_BASE + 3, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE + 400, TEST_DATA_PH_BASE,
                    TEST_DATA_NPK_BASE + 13, TEST_DATA_NPK_BASE - 14, TEST_DATA_NPK_BASE + 4};
-        } else if (strcmp(id, "lettuce") == 0) {
+        } else if (strcmp(cropId, "lettuce") == 0) {
             rec = {TEST_DATA_TEMP_BASE,    TEST_DATA_HUM_BASE + 15, TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.3F,
                    TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE};
-        } else if (strcmp(id, "blueberry") == 0) {
+        } else if (strcmp(cropId, "blueberry") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE - 1.3F,
                    TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
-        } else if (strcmp(id, "lawn") == 0) {
+        } else if (strcmp(cropId, "lawn") == 0) {
             rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE - 10, TEST_DATA_EC_BASE - 400, TEST_DATA_PH_BASE,
                    TEST_DATA_NPK_BASE,  TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 5};
-        } else if (strcmp(id, "grape") == 0) {
+        } else if (strcmp(cropId, "grape") == 0) {
             rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE - 5,  TEST_DATA_EC_BASE + 200, TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE};
-        } else if (strcmp(id, "conifer") == 0) {
+        } else if (strcmp(cropId, "conifer") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE - 5,  TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.8F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 10};
-        } else if (strcmp(id, "strawberry") == 0) {
+        } else if (strcmp(cropId, "strawberry") == 0) {
             rec = {TEST_DATA_TEMP_BASE,     TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE - 0.3F,
                    TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
-        } else if (strcmp(id, "apple") == 0) {
+        } else if (strcmp(cropId, "apple") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
-        } else if (strcmp(id, "pear") == 0) {
+        } else if (strcmp(cropId, "pear") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
-        } else if (strcmp(id, "cherry") == 0) {
+        } else if (strcmp(cropId, "cherry") == 0) {
             rec = {TEST_DATA_TEMP_BASE,    TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE + 100, TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
-        } else if (strcmp(id, "raspberry") == 0) {
+        } else if (strcmp(cropId, "raspberry") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE - 100, TEST_DATA_PH_BASE - 0.1F,
                    TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 3};
-        } else if (strcmp(id, "currant") == 0) {
+        } else if (strcmp(cropId, "currant") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 3, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.1F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 16, TEST_DATA_NPK_BASE - 5};
         }
@@ -125,6 +126,9 @@ static RecValues computeRecommendations()
             rec.ec -= TEST_DATA_EC_VARIATION_SMALL;
             rec.t += 1;
             break;
+        default:
+            // Outdoor (case 0) или неизвестное значение - без дополнительной коррекции
+            break;
     }
 
     // 3a. Конверсия NPK в мг/кг (датчик выдаёт мг/кг, таблица хранилась в мг/дм³ ~ экстракт 1:5)
@@ -136,8 +140,8 @@ static RecValues computeRecommendations()
     if (config.flags.seasonalAdjustEnabled)
     {
         time_t now = time(nullptr);
-        struct tm* ti = localtime(&now);
-        int m = ti ? ti->tm_mon + 1 : 1;
+        struct tm* timeInfo = localtime(&now);
+        int m = timeInfo ? timeInfo->tm_mon + 1 : 1;
         bool rainy = (m == 4 || m == 5 || m == 6 || m == 10);
 
         // Коррекция влажности и EC
@@ -211,6 +215,7 @@ static RecValues computeRecommendations()
 
     return rec;
 }
+}
 
 void handleReadingsUpload()  // ✅ Убираем static - функция extern в header
 {
@@ -244,7 +249,8 @@ void handleReadingsUpload()  // ✅ Убираем static - функция exter
     }
 }
 
-static void handleProfileSave()
+namespace {
+void handleProfileSave()
 {
     if (webServer.hasArg("soil_profile"))
     {
@@ -263,6 +269,7 @@ static void handleProfileSave()
     }
     webServer.sendHeader("Location", "/readings?toast=Профиль+сохранен", true);
     webServer.send(HTTP_REDIRECT, "text/plain", "Redirect");
+}
 }
 
 void sendSensorJson()  // ✅ Убираем static - функция extern в header
@@ -322,7 +329,9 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
             {
                 timeClient->forceUpdate();
                 now = (time_t)timeClient->getEpochTime();
-                if (now < NTP_TIMESTAMP_2000) return "Н/Д";
+                if (now < NTP_TIMESTAMP_2000) {
+                    return "Н/Д";
+                }
             }
             else
             {
@@ -330,11 +339,19 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
             }
         }
         struct tm* ti = localtime(&now);
-        if (!ti) return "Н/Д";
+        if (!ti) {
+            return "Н/Д";
+        }
         uint8_t m = ti->tm_mon + 1;
-        if (m == 12 || m == 1 || m == 2) return "Зима";
-        if (m >= 3 && m <= 5) return "Весна";
-        if (m >= 6 && m <= 8) return "Лето";
+        if (m == 12 || m == 1 || m == 2) {
+            return "Зима";
+        }
+        if (m >= 3 && m <= 5) {
+            return "Весна";
+        }
+        if (m >= 6 && m <= 8) {
+            return "Лето";
+        }
         return "Осень";
     }();
     doc["season"] = seasonName;

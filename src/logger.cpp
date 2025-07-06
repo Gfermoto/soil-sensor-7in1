@@ -7,24 +7,27 @@
 #include <cstdarg>
 #include <cstdio>
 #include <WiFi.h>
+#include <array>
 
 // Глобальная переменная для уровня логгирования
 LogLevel currentLogLevel = LOG_DEBUG;
 
 // Получение времени работы в читаемом формате
+namespace {
 String getUptimeString()
 {
-    unsigned long milliseconds = millis();
+    const unsigned long milliseconds = millis();
     unsigned long seconds = milliseconds / 1000;
     unsigned long minutes = seconds / 60;
     unsigned long hours = minutes / 60;
-    unsigned long days = hours / 24;
+    const unsigned long days = hours / 24;
 
     seconds %= 60;
     minutes %= 60;
     hours %= 24;
 
     return String(days) + "д " + String(hours) + "ч " + String(minutes) + "м " + String(seconds) + "с";
+}
 }
 
 // Безопасные helper функции для форматирования
@@ -34,21 +37,21 @@ String formatLogMessage(const char* format, ...)
     va_start(args, format);
     
     // Буфер на стеке для небольших сообщений
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result < 0) {
         return String("LOG FORMAT ERROR");
     }
     
-    if (result < static_cast<int>(sizeof(buffer))) {
-        return String(buffer);
+    if (result < static_cast<int>(buffer.size())) {
+        return String(buffer.data());
     }
     
     // Если сообщение слишком длинное, обрезаем
-    buffer[sizeof(buffer) - 1] = '\0';
-    return String(buffer);
+    buffer[buffer.size() - 1] = '\0';
+    return String(buffer.data());
 }
 
 String formatLogMessage(const String& message)
@@ -206,12 +209,12 @@ void logError(const char* format, ...)
     std::va_list args;
     va_start(args, format);
     
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result >= 0) {
-        logError(String(buffer));
+        logError(String(buffer.data()));
     } else {
         logError(String("LOG FORMAT ERROR"));
     }
@@ -222,12 +225,12 @@ void logWarn(const char* format, ...)
     std::va_list args;
     va_start(args, format);
     
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result >= 0) {
-        logWarn(String(buffer));
+        logWarn(String(buffer.data()));
     } else {
         logWarn(String("LOG FORMAT ERROR"));
     }
@@ -238,12 +241,12 @@ void logInfo(const char* format, ...)
     std::va_list args;
     va_start(args, format);
     
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result >= 0) {
-        logInfo(String(buffer));
+        logInfo(String(buffer.data()));
     } else {
         logInfo(String("LOG FORMAT ERROR"));
     }
@@ -254,12 +257,12 @@ void logDebug(const char* format, ...)
     std::va_list args;
     va_start(args, format);
     
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result >= 0) {
-        logDebug(String(buffer));
+        logDebug(String(buffer.data()));
     } else {
         logDebug(String("LOG FORMAT ERROR"));
     }
@@ -270,12 +273,12 @@ void logSuccess(const char* format, ...)
     std::va_list args;
     va_start(args, format);
     
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result >= 0) {
-        logSuccess(String(buffer));
+        logSuccess(String(buffer.data()));
     } else {
         logSuccess(String("LOG FORMAT ERROR"));
     }
@@ -286,12 +289,12 @@ void logSensor(const char* format, ...)
     std::va_list args;
     va_start(args, format);
     
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result >= 0) {
-        logSensor(String(buffer));
+        logSensor(String(buffer.data()));
     } else {
         logSensor(String("LOG FORMAT ERROR"));
     }
@@ -302,12 +305,12 @@ void logWiFi(const char* format, ...)
     std::va_list args;
     va_start(args, format);
     
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result >= 0) {
-        logWiFi(String(buffer));
+        logWiFi(String(buffer.data()));
     } else {
         logWiFi(String("LOG FORMAT ERROR"));
     }
@@ -318,12 +321,12 @@ void logMQTT(const char* format, ...)
     std::va_list args;
     va_start(args, format);
     
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result >= 0) {
-        logMQTT(String(buffer));
+        logMQTT(String(buffer.data()));
     } else {
         logMQTT(String("LOG FORMAT ERROR"));
     }
@@ -334,12 +337,12 @@ void logHTTP(const char* format, ...)
     std::va_list args;
     va_start(args, format);
     
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result >= 0) {
-        logHTTP(String(buffer));
+        logHTTP(String(buffer.data()));
     } else {
         logHTTP(String("LOG FORMAT ERROR"));
     }
@@ -350,12 +353,12 @@ void logSystem(const char* format, ...)
     std::va_list args;
     va_start(args, format);
     
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result >= 0) {
-        logSystem(String(buffer));
+        logSystem(String(buffer.data()));
     } else {
         logSystem(String("LOG FORMAT ERROR"));
     }
@@ -366,12 +369,12 @@ void logData(const char* format, ...)
     std::va_list args;
     va_start(args, format);
     
-    char buffer[512];
-    int result = vsnprintf(buffer, sizeof(buffer), format, args);
+    std::array<char, 512> buffer;
+    int result = vsnprintf(buffer.data(), buffer.size(), format, args);
     va_end(args);
     
     if (result >= 0) {
-        logData(String(buffer));
+        logData(String(buffer.data()));
     } else {
         logData(String("LOG FORMAT ERROR"));
     }

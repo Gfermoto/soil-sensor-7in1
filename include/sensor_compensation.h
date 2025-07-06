@@ -29,8 +29,26 @@ enum class SoilType : std::uint8_t
     SANDPEAT
 };
 
+// Структуры для типобезопасности (предотвращение перепутывания параметров)
+struct EnvironmentalConditions
+{
+    float temperature;   // °C
+    float moisture;      // % влажности почвы (theta)
+};
+
+struct NPKReferences
+{
+    float& nitrogen;     // мг/кг
+    float& phosphorus;   // мг/кг  
+    float& potassium;    // мг/кг
+};
+
 // (устаревшие функции компенсации удалены)
 
 float correctEC(float ecRaw, float T, float theta, SoilType soil);
 float correctPH(float phRaw, float T);
 void correctNPK(float T, float theta, float& N, float& P, float& K, SoilType soil);
+
+// ✅ Новые типобезопасные версии (предотвращают перепутывание параметров)
+float correctEC(float ecRaw, const EnvironmentalConditions& env, SoilType soil);
+void correctNPK(const EnvironmentalConditions& env, NPKReferences& npk, SoilType soil);

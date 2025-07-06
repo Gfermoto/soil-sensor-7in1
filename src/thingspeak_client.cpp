@@ -2,6 +2,7 @@
 #include <NTPClient.h>
 #include <ThingSpeak.h>
 #include <WiFiClient.h>
+#include <array>
 #include <ctype.h>
 #include "jxct_config_vars.h"
 #include "jxct_device_info.h"
@@ -12,39 +13,41 @@
 extern NTPClient* timeClient;
 
 // URL для отправки данных в ThingSpeak
-const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";
+static const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";  // NOLINT(misc-use-anonymous-namespace)
 
-static unsigned long lastTsPublish = 0;
-static int consecutiveFailCount = 0;  // счётчик подряд неудач
+namespace {
+unsigned long lastTsPublish = 0;
+int consecutiveFailCount = 0;  // счётчик подряд неудач
 
 // Утилита для обрезки пробелов в начале/конце строки C
-static void trim(char* s)
+void trim(char* str)
 {
-    if (!s) {
+    if (!str) {
         return;
     }
     // Trim leading
-    char* p = s;
-    while (*p && isspace((unsigned char)*p)) ++p;
-    if (p != s) memmove(s, p, strlen(p) + 1);
+    char* ptr = str;
+    while (*ptr && isspace((unsigned char)*ptr)) ++ptr;
+    if (ptr != str) memmove(str, ptr, strlen(ptr) + 1);
 
     // Trim trailing
-    size_t len = strlen(s);
-    while (len > 0 && isspace((unsigned char)s[len - 1])) s[--len] = '\0';
+    size_t len = strlen(str);
+    while (len > 0 && isspace((unsigned char)str[len - 1])) str[--len] = '\0';
 }
 
 // ✅ Заменяем String на статические буферы
-static char thingSpeakLastPublishBuffer[32] = "0";
-static char thingSpeakLastErrorBuffer[64] = "";
+std::array<char, 32> thingSpeakLastPublishBuffer = {"0"};
+std::array<char, 64> thingSpeakLastErrorBuffer = {""};
+}
 
 // Геттеры для совместимости с внешним кодом
 const char* getThingSpeakLastPublish()
 {
-    return thingSpeakLastPublishBuffer;
+    return thingSpeakLastPublishBuffer.data();
 }
 const char* getThingSpeakLastError()
 {
-    return thingSpeakLastErrorBuffer;
+    return thingSpeakLastErrorBuffer.data();
 }
 
 void setupThingSpeak(WiFiClient& client)
@@ -55,32 +58,39 @@ void setupThingSpeak(WiFiClient& client)
 bool sendDataToThingSpeak()
 {
     // Проверки
-    if (!config.flags.thingSpeakEnabled) return false;
-    if (!wifiConnected) return false;
-    if (!sensorData.valid) return false;
+    if (!config.flags.thingSpeakEnabled) {
+        return false;
+    }
+    if (!wifiConnected) {
+        return false;
+    }
+    if (!sensorData.valid) {
+        return false;
+    }
 
     unsigned long now = millis();
-    if (now - lastTsPublish < config.thingSpeakInterval)  // too frequent
+    if (now - lastTsPublish < config.thingSpeakInterval) {  // too frequent
         return false;
+    }
 
-    char apiKeyBuf[25];
-    char channelBuf[16];
-    strlcpy(apiKeyBuf, config.thingSpeakApiKey, sizeof(apiKeyBuf));
-    strlcpy(channelBuf, config.thingSpeakChannelId, sizeof(channelBuf));
-    trim(apiKeyBuf);
-    trim(channelBuf);
+    std::array<char, 25> apiKeyBuf;
+    std::array<char, 16> channelBuf;
+    strlcpy(apiKeyBuf.data(), config.thingSpeakApiKey, apiKeyBuf.size());
+    strlcpy(channelBuf.data(), config.thingSpeakChannelId, channelBuf.size());
+    trim(apiKeyBuf.data());
+    trim(channelBuf.data());
 
-    unsigned long channelId = strtoul(channelBuf, nullptr, 10);
+    unsigned long channelId = strtoul(channelBuf.data(), nullptr, 10);
 
     // Проверяем корректность ID и API ключа - если неверные, молча пропускаем
-    if (channelId == 0 || strlen(apiKeyBuf) < 16)
+    if (channelId == 0 || strlen(apiKeyBuf.data()) < 16)
     {
         // Не логируем ошибку каждый раз, просто пропускаем отправку
-        if (strlen(thingSpeakLastErrorBuffer) == 0)  // логируем только первый раз
+        if (strlen(thingSpeakLastErrorBuffer.data()) == 0)  // логируем только первый раз
         {
-            logWarn("ThingSpeak: настройки не заданы (Channel ID: %s, API Key: %d символов)", channelBuf,
-                    strlen(apiKeyBuf));
-            strlcpy(thingSpeakLastErrorBuffer, "Настройки не заданы", sizeof(thingSpeakLastErrorBuffer));
+            logWarn("ThingSpeak: настройки не заданы (Channel ID: %s, API Key: %d символов)", channelBuf.data(),
+                    strlen(apiKeyBuf.data()));
+            strlcpy(thingSpeakLastErrorBuffer.data(), "Настройки не заданы", thingSpeakLastErrorBuffer.size());
         }
         return false;
     }
@@ -97,13 +107,13 @@ bool sendDataToThingSpeak()
     logData("Отправка в ThingSpeak: T=%.1f°C, H=%.1f%%, PH=%.2f", sensorData.temperature, sensorData.humidity,
             sensorData.ph);
 
-    int res = ThingSpeak.writeFields(channelId, apiKeyBuf);
+    int res = ThingSpeak.writeFields(channelId, apiKeyBuf.data());
 
     if (res == 200)
     {
         logSuccess("ThingSpeak: данные отправлены");
         lastTsPublish = millis();
-        snprintf(thingSpeakLastPublishBuffer, sizeof(thingSpeakLastPublishBuffer), "%lu", lastTsPublish);
+        snprintf(thingSpeakLastPublishBuffer.data(), thingSpeakLastPublishBuffer.size(), "%lu", lastTsPublish);
         thingSpeakLastErrorBuffer[0] = '\0';  // Очистка ошибки
         consecutiveFailCount = 0;             // обнуляем при успехе
         return true;
@@ -111,38 +121,38 @@ bool sendDataToThingSpeak()
     else if (res == -301)
     {
         logWarn("ThingSpeak: таймаут (-301), повторим позже");
-        strlcpy(thingSpeakLastErrorBuffer, "Timeout -301", sizeof(thingSpeakLastErrorBuffer));
+        strlcpy(thingSpeakLastErrorBuffer.data(), "Timeout -301", thingSpeakLastErrorBuffer.size());
     }
     else if (res == -401)
     {
         logDebug("ThingSpeak: превышен лимит публикаций");
-        strlcpy(thingSpeakLastErrorBuffer, "Превышен лимит публикаций (15 сек)", sizeof(thingSpeakLastErrorBuffer));
+        strlcpy(thingSpeakLastErrorBuffer.data(), "Превышен лимит публикаций (15 сек)", thingSpeakLastErrorBuffer.size());
     }
     else if (res == -302)
     {
         logError("ThingSpeak: неверный API ключ");
-        strlcpy(thingSpeakLastErrorBuffer, "Неверный API ключ", sizeof(thingSpeakLastErrorBuffer));
+        strlcpy(thingSpeakLastErrorBuffer.data(), "Неверный API ключ", thingSpeakLastErrorBuffer.size());
     }
     else if (res == -304)
     {
         logError("ThingSpeak: неверный Channel ID");
-        strlcpy(thingSpeakLastErrorBuffer, "Неверный Channel ID", sizeof(thingSpeakLastErrorBuffer));
+        strlcpy(thingSpeakLastErrorBuffer.data(), "Неверный Channel ID", thingSpeakLastErrorBuffer.size());
     }
     else if (res == 0)
     {
         logError("ThingSpeak: ошибка подключения");
-        strlcpy(thingSpeakLastErrorBuffer, "Ошибка подключения", sizeof(thingSpeakLastErrorBuffer));
+        strlcpy(thingSpeakLastErrorBuffer.data(), "Ошибка подключения", thingSpeakLastErrorBuffer.size());
     }
     else if (res == 400)
     {
         logError("ThingSpeak: HTTP 400 – неверный запрос (проверьте API Key/Channel)");
-        strlcpy(thingSpeakLastErrorBuffer, "HTTP 400 – неверный запрос (API/Channel)",
-                sizeof(thingSpeakLastErrorBuffer));
+        strlcpy(thingSpeakLastErrorBuffer.data(), "HTTP 400 – неверный запрос (API/Channel)",
+                thingSpeakLastErrorBuffer.size());
     }
     else
     {
         logError("ThingSpeak: ошибка %d", res);
-        snprintf(thingSpeakLastErrorBuffer, sizeof(thingSpeakLastErrorBuffer), "Ошибка %d", res);
+        snprintf(thingSpeakLastErrorBuffer.data(), thingSpeakLastErrorBuffer.size(), "Ошибка %d", res);
     }
 
     consecutiveFailCount++;
@@ -153,7 +163,7 @@ bool sendDataToThingSpeak()
         logWarn("ThingSpeak: %d ошибок подряд, отключаем на 1 час", consecutiveFailCount);
         lastTsPublish = millis();  // устанавливаем время последней попытки
         consecutiveFailCount = 0;  // сбрасываем счётчик
-        strlcpy(thingSpeakLastErrorBuffer, "Отключён на 1 час (много ошибок)", sizeof(thingSpeakLastErrorBuffer));
+        strlcpy(thingSpeakLastErrorBuffer.data(), "Отключён на 1 час (много ошибок)", thingSpeakLastErrorBuffer.size());
     }
 
     return false;

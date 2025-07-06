@@ -7,15 +7,16 @@
 #include "web/csrf_protection.h"  // 🔒 CSRF защита
 #include "web_routes.h"
 
-// Экземпляр веб-сервера объявлен во внешнем модуле
-extern WebServer webServer;
-extern String navHtml();  // ✅ Объявление навигации
+// Внешние зависимости (уже объявлены в заголовочных файлах)
+// extern WebServer webServer;  // объявлено в web_routes.h
+// extern String navHtml();  // объявлено в wifi_manager.h
 
 // ------------------------------
 // HTML генераторы (простой MVP)
 // ------------------------------
 
-static String generateCalibrationPage()
+namespace {
+String generateCalibrationPage()
 {
     String html;
     html += generatePageHeader("Калибровка", UI_ICON_CALIBRATION);
@@ -43,11 +44,11 @@ static String generateCalibrationPage()
     // Загрузка CSV файла
     html += "<div class='section'><h2>Калибровочная таблица";
     // Статусы профилей
-    bool hasSand = CalibrationManager::hasTable(SoilProfile::SAND);
-    bool hasSandPeat = CalibrationManager::hasTable(SoilProfile::SANDPEAT);
-    bool hasLoam = CalibrationManager::hasTable(SoilProfile::LOAM);
-    bool hasClay = CalibrationManager::hasTable(SoilProfile::CLAY);
-    bool hasPeat = CalibrationManager::hasTable(SoilProfile::PEAT);
+    const bool hasSand = CalibrationManager::hasTable(SoilProfile::SAND);
+    const bool hasSandPeat = CalibrationManager::hasTable(SoilProfile::SANDPEAT);
+    const bool hasLoam = CalibrationManager::hasTable(SoilProfile::LOAM);
+    const bool hasClay = CalibrationManager::hasTable(SoilProfile::CLAY);
+    const bool hasPeat = CalibrationManager::hasTable(SoilProfile::PEAT);
     html += " <span style='font-size:14px;color:#888'>(";
     html += "Песок:" + String(hasSand ? "✅" : "❌") + ", ";
     html += "Песч.-торф:" + String(hasSandPeat ? "✅" : "❌") + ", ";
@@ -71,7 +72,7 @@ static String generateCalibrationPage()
 //    Обработчики маршрутов
 // ------------------------------
 
-static void handleCalibrationPage()
+void handleCalibrationPage()
 {
     String html = generateCalibrationPage();
     if (webServer.hasArg("ok"))
@@ -83,8 +84,9 @@ static void handleCalibrationPage()
 }
 
 // Буфер для загрузки файлов
-static File uploadFile;
-static SoilProfile uploadProfile = SoilProfile::SAND;
+File uploadFile;
+SoilProfile uploadProfile = SoilProfile::SAND;
+}
 
 void handleCalibrationUpload()  // ✅ Убираем static - функция extern в header
 {

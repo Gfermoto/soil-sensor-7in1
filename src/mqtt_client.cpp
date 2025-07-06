@@ -8,6 +8,7 @@
 #include <NTPClient.h>
 #include <PubSubClient.h>
 #include <WiFiClient.h>
+#include <array>
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "jxct_config_vars.h"
 #include "jxct_constants.h"  // ✅ Централизованные константы
@@ -17,81 +18,100 @@
 #include "modbus_sensor.h"
 #include "ota_manager.h"
 #include "wifi_manager.h"
+#include "mqtt_client.h"  // 🆕 Подключаем собственный заголовок, убираем дубли объявлений
 extern NTPClient* timeClient;
 
-WiFiClient espClient;
-PubSubClient mqttClient(espClient);
+WiFiClient espClient;  // NOLINT(misc-use-internal-linkage)
+PubSubClient mqttClient(espClient);  // NOLINT(misc-use-internal-linkage)
+
+// ⬇️ Начало анонимного пространства — внутренняя реализация MQTT-клиента
+namespace {
+// Ранее static → внутреннее связывание
 bool mqttConnected = false;
 
-// ✅ Заменяем String на статический буфер
-static char mqttLastErrorBuffer[128] = "";
-const char* getMqttLastError()
-{
-    return mqttLastErrorBuffer;
-}
+std::array<char, 128> mqttLastErrorBuffer = {""};
 
-// ✅ Статические буферы для топиков и ID
-static char clientIdBuffer[32] = "";
-static char statusTopicBuffer[128] = "";
-static char commandTopicBuffer[128] = "";
-static char otaStatusTopicBuffer[128] = "";
-static char otaCommandTopicBuffer[128] = "";
+// Буферы для идентификаторов и топиков
+std::array<char, 32> clientIdBuffer = {""};
+std::array<char, 128> statusTopicBuffer = {""};
+std::array<char, 128> commandTopicBuffer = {""};
+std::array<char, 128> otaStatusTopicBuffer = {""};
+std::array<char, 128> otaCommandTopicBuffer = {""};
 
-// ✅ НОВОЕ: Кэш Home Assistant конфигураций
-// ИСПРАВЛЕНО: Перенос больших структур в статическую память для предотвращения переполнения стека
-static struct HomeAssistantConfigCache
-{
-    char tempConfig[512];
-    char humConfig[512];
-    char ecConfig[512];
-    char phConfig[512];
-    char nitrogenConfig[512];
-    char phosphorusConfig[512];
-    char potassiumConfig[512];
-    bool isValid;
-    char cachedDeviceId[32];
-    char cachedTopicPrefix[64];
-} haConfigCache = {"", "", "", "", "", "", "", false, "", ""};
+// Кэш Home Assistant discovery
+struct HomeAssistantConfigCache {
+    std::array<char, 512> tempConfig = {""};
+    std::array<char, 512> humConfig = {""};
+    std::array<char, 512> ecConfig = {""};
+    std::array<char, 512> phConfig = {""};
+    std::array<char, 512> nitrogenConfig = {""};
+    std::array<char, 512> phosphorusConfig = {""};
+    std::array<char, 512> potassiumConfig = {""};
+    bool isValid = false;
+    std::array<char, 32> cachedDeviceId = {""};
+    std::array<char, 64> cachedTopicPrefix = {""};
+} haConfigCache;
 
-// ✅ НОВОЕ: Кэш топиков публикации (перенесен в статическую память)
-static char pubTopicCache[7][128] = {"", "", "", "", "", "", ""};
-static bool pubTopicCacheValid = false;
+// Кэш топиков публикации
+std::array<std::array<char, 128>, 7> pubTopicCache = {{"", "", "", "", "", "", ""}};
+bool pubTopicCacheValid = false;
 
-// ✅ НОВОЕ: Кэш данных датчика JSON (перенесен в статическую память)
-static char cachedSensorJson[256] = "";
-static unsigned long lastCachedSensorTime = 0;
-static bool sensorJsonCacheValid = false;
+// Кэш JSON датчиков
+std::array<char, 256> cachedSensorJson = {""};
+unsigned long lastCachedSensorTime = 0;
+bool sensorJsonCacheValid = false;
 
-// ✅ ОПТИМИЗАЦИЯ 3.3: DNS кэширование для избежания повторных запросов
-struct DNSCache
-{
-    char hostname[HOSTNAME_BUFFER_SIZE];
+// DNS-кэш
+struct DNSCache {
+    std::array<char, HOSTNAME_BUFFER_SIZE> hostname = {""};
     IPAddress cachedIP;
     unsigned long cacheTime;
     bool isValid;
-} dnsCacheMqtt = {"", IPAddress(0, 0, 0, 0), 0, false};
+} dnsCacheMqtt = {{""}, IPAddress(0, 0, 0, 0), 0, false};
+
+// -----------------------------
+// Вспомогательные функции OTA
+// -----------------------------
+const char* getOtaStatusTopic() {
+    if (otaStatusTopicBuffer[0] == '\0') {
+        snprintf(otaStatusTopicBuffer.data(), otaStatusTopicBuffer.size(), "%s/ota/status", config.mqttTopicPrefix);
+    }
+    return otaStatusTopicBuffer.data();
+}
+
+const char* getOtaCommandTopic() {
+    if (otaCommandTopicBuffer[0] == '\0') {
+        snprintf(otaCommandTopicBuffer.data(), otaCommandTopicBuffer.size(), "%s/ota/command", config.mqttTopicPrefix);
+    }
+    return otaCommandTopicBuffer.data();
+}
+
+} // namespace (anonymous)
+
+// Публичный аксессор последней MQTT-ошибки
+const char* getMqttLastError()  // NOLINT(misc-use-internal-linkage)
+{
+    return mqttLastErrorBuffer.data();
+}
 
 // Forward declarations
-void mqttCallback(char* topic, byte* payload, unsigned int length);
-void publishHomeAssistantConfig();
-void invalidateHAConfigCache();               // ✅ НОВОЕ: Инвалидация кэша
-IPAddress getCachedIP(const char* hostname);  // ✅ НОВОЕ: Forward declaration для DNS кэша
+static IPAddress getCachedIP(const char* hostname);  // ✅ Внутренняя реализация, скрыта от других единиц трансляции  // NOLINT(misc-use-anonymous-namespace)
 
 // ✅ Оптимизированная функция getClientId с буфером
-const char* getClientId()
+static const char* getClientId()  // NOLINT(misc-use-anonymous-namespace)
 {
     if (clientIdBuffer[0] == '\0')
     {  // Кэшируем результат
-        uint8_t mac[6];
-        WiFi.macAddress(mac);
-        snprintf(clientIdBuffer, sizeof(clientIdBuffer), "JXCT_%02X%02X%02X%02X%02X%02X", mac[0], mac[1], mac[2],
+        std::array<uint8_t, 6> mac;
+        WiFi.macAddress(mac.data());
+        snprintf(clientIdBuffer.data(), clientIdBuffer.size(), "JXCT_%02X%02X%02X%02X%02X%02X", mac[0], mac[1], mac[2],
                  mac[3], mac[4], mac[5]);
     }
-    return clientIdBuffer;
+    return clientIdBuffer.data();
 }
 
 // ✅ Оптимизированная функция getMqttClientName
-const char* getMqttClientName()
+static const char* getMqttClientName()  // NOLINT(misc-use-anonymous-namespace)
 {
     if (strlen(config.mqttDeviceName) > 0)
     {
@@ -104,43 +124,26 @@ const char* getMqttClientName()
 }
 
 // ✅ Оптимизированная функция getStatusTopic с буфером
-const char* getStatusTopic()
+static const char* getStatusTopic()  // NOLINT(misc-use-anonymous-namespace)
 {
     if (statusTopicBuffer[0] == '\0')
     {  // Кэшируем результат
-        snprintf(statusTopicBuffer, sizeof(statusTopicBuffer), "%s/status", config.mqttTopicPrefix);
+        snprintf(statusTopicBuffer.data(), statusTopicBuffer.size(), "%s/status", config.mqttTopicPrefix);
     }
-    return statusTopicBuffer;
+    return statusTopicBuffer.data();
 }
 
 // ✅ Оптимизированная функция getCommandTopic с буфером
-const char* getCommandTopic()
+static const char* getCommandTopic()  // NOLINT(misc-use-anonymous-namespace)
 {
     if (commandTopicBuffer[0] == '\0')
     {  // Кэшируем результат
-        snprintf(commandTopicBuffer, sizeof(commandTopicBuffer), "%s/command", config.mqttTopicPrefix);
+        snprintf(commandTopicBuffer.data(), commandTopicBuffer.size(), "%s/command", config.mqttTopicPrefix);
     }
-    return commandTopicBuffer;
+    return commandTopicBuffer.data();
 }
 
-// OTA статус topic
-static const char* getOtaStatusTopic()
-{
-    if (otaStatusTopicBuffer[0] == '\0') {
-        snprintf(otaStatusTopicBuffer, sizeof(otaStatusTopicBuffer), "%s/ota/status", config.mqttTopicPrefix);
-    }
-    return otaStatusTopicBuffer;
-}
-
-static const char* getOtaCommandTopic()
-{
-    if (otaCommandTopicBuffer[0] == '\0') {
-        snprintf(otaCommandTopicBuffer, sizeof(otaCommandTopicBuffer), "%s/ota/command", config.mqttTopicPrefix);
-    }
-    return otaCommandTopicBuffer;
-}
-
-void publishAvailability(bool online)
+void publishAvailability(bool online)  // NOLINT(misc-use-internal-linkage)
 {
     const char* topic = getStatusTopic();
     const char* payload = online ? "online" : "offline";
@@ -148,7 +151,7 @@ void publishAvailability(bool online)
     mqttClient.publish(topic, payload, true);
 }
 
-void setupMQTT()
+void setupMQTT()  // NOLINT(misc-use-internal-linkage)
 {
     DEBUG_PRINTLN("[КРИТИЧЕСКАЯ ОТЛАДКА] Инициализация MQTT");
 
@@ -177,7 +180,7 @@ void setupMQTT()
     if (mqttServerIP == IPAddress(0, 0, 0, 0))
     {
         ERROR_PRINTF("[DNS] Не удалось разрешить DNS для %s\n", config.mqttServer);
-        strlcpy(mqttLastErrorBuffer, "Ошибка DNS резолвинга", sizeof(mqttLastErrorBuffer));
+        strlcpy(mqttLastErrorBuffer.data(), "Ошибка DNS резолвинга", mqttLastErrorBuffer.size());
         return;
     }
 
@@ -190,7 +193,7 @@ void setupMQTT()
     INFO_PRINTLN("[MQTT] Инициализация завершена с DNS кэшированием");
 }
 
-bool connectMQTT()
+bool connectMQTT()  // NOLINT(misc-use-internal-linkage)
 {
     DEBUG_PRINTLN("[КРИТИЧЕСКАЯ ОТЛАДКА] Попытка подключения к MQTT");
 
@@ -239,47 +242,47 @@ bool connectMQTT()
     {
         case -4:
             DEBUG_PRINTLN("Тайм-аут подключения");
-            strncpy(mqttLastErrorBuffer, "Тайм-аут подключения", sizeof(mqttLastErrorBuffer) - 1);
+            strncpy(mqttLastErrorBuffer.data(), "Тайм-аут подключения", mqttLastErrorBuffer.size() - 1);
             break;
         case -3:
             DEBUG_PRINTLN("Соединение потеряно");
-            strncpy(mqttLastErrorBuffer, "Соединение потеряно", sizeof(mqttLastErrorBuffer) - 1);
+            strncpy(mqttLastErrorBuffer.data(), "Соединение потеряно", mqttLastErrorBuffer.size() - 1);
             break;
         case -2:
             DEBUG_PRINTLN("Ошибка подключения");
-            strncpy(mqttLastErrorBuffer, "Ошибка подключения", sizeof(mqttLastErrorBuffer) - 1);
+            strncpy(mqttLastErrorBuffer.data(), "Ошибка подключения", mqttLastErrorBuffer.size() - 1);
             break;
         case -1:
             DEBUG_PRINTLN("Отключено");
-            strncpy(mqttLastErrorBuffer, "Отключено", sizeof(mqttLastErrorBuffer) - 1);
+            strncpy(mqttLastErrorBuffer.data(), "Отключено", mqttLastErrorBuffer.size() - 1);
             break;
         case 0:
             DEBUG_PRINTLN("Подключено");
-            strncpy(mqttLastErrorBuffer, "Подключено", sizeof(mqttLastErrorBuffer) - 1);
+            strncpy(mqttLastErrorBuffer.data(), "Подключено", mqttLastErrorBuffer.size() - 1);
             break;
         case 1:
             DEBUG_PRINTLN("Неверный протокол");
-            strncpy(mqttLastErrorBuffer, "Неверный протокол", sizeof(mqttLastErrorBuffer) - 1);
+            strncpy(mqttLastErrorBuffer.data(), "Неверный протокол", mqttLastErrorBuffer.size() - 1);
             break;
         case 2:
             DEBUG_PRINTLN("Неверный ID клиента");
-            strncpy(mqttLastErrorBuffer, "Неверный ID клиента", sizeof(mqttLastErrorBuffer) - 1);
+            strncpy(mqttLastErrorBuffer.data(), "Неверный ID клиента", mqttLastErrorBuffer.size() - 1);
             break;
         case 3:
             DEBUG_PRINTLN("Сервер недоступен");
-            strncpy(mqttLastErrorBuffer, "Сервер недоступен", sizeof(mqttLastErrorBuffer) - 1);
+            strncpy(mqttLastErrorBuffer.data(), "Сервер недоступен", mqttLastErrorBuffer.size() - 1);
             break;
         case 4:
             DEBUG_PRINTLN("Неверные учетные данные");
-            strncpy(mqttLastErrorBuffer, "Неверные учетные данные", sizeof(mqttLastErrorBuffer) - 1);
+            strncpy(mqttLastErrorBuffer.data(), "Неверные учетные данные", mqttLastErrorBuffer.size() - 1);
             break;
         case 5:
             DEBUG_PRINTLN("Не авторизован");
-            strncpy(mqttLastErrorBuffer, "Не авторизован", sizeof(mqttLastErrorBuffer) - 1);
+            strncpy(mqttLastErrorBuffer.data(), "Не авторизован", mqttLastErrorBuffer.size() - 1);
             break;
         default:
             DEBUG_PRINTLN("Неизвестная ошибка");
-            strncpy(mqttLastErrorBuffer, "Неизвестная ошибка", sizeof(mqttLastErrorBuffer) - 1);
+            strncpy(mqttLastErrorBuffer.data(), "Неизвестная ошибка", mqttLastErrorBuffer.size() - 1);
             break;
     }
 
@@ -310,7 +313,7 @@ bool connectMQTT()
     return result;
 }
 
-void handleMQTT()
+void handleMQTT()  // NOLINT(misc-use-internal-linkage)
 {
     if (!config.flags.mqttEnabled)
     {
@@ -346,16 +349,16 @@ void handleMQTT()
         mqttClient.loop();
 
         // Публикуем статус OTA, если изменился (не чаще 5 сек)
-        static char lastOtaStatus[64] = "";
+        static std::array<char, 64> lastOtaStatus = {""};
         static unsigned long lastOtaPublish = 0;
         const unsigned long OTA_STATUS_INTERVAL = 5000;
         if (millis() - lastOtaPublish > OTA_STATUS_INTERVAL)
         {
             const char* cur = getOtaStatus();
-            if (strcmp(cur, lastOtaStatus) != 0)
+            if (strcmp(cur, lastOtaStatus.data()) != 0)
             {
                 mqttClient.publish(getOtaStatusTopic(), cur, true);
-                strlcpy(lastOtaStatus, cur, sizeof(lastOtaStatus));
+                strlcpy(lastOtaStatus.data(), cur, lastOtaStatus.size());
             }
             lastOtaPublish = millis();
         }
@@ -363,7 +366,7 @@ void handleMQTT()
 }
 
 // ДЕЛЬТА-ФИЛЬТР v2.2.1: Проверка необходимости публикации
-bool shouldPublishMqtt()
+static bool shouldPublishMqtt()  // NOLINT(misc-use-anonymous-namespace)
 {
     static int skipCounter = 0;
 
@@ -456,7 +459,7 @@ bool shouldPublishMqtt()
     return hasSignificantChange;
 }
 
-void publishSensorData()
+void publishSensorData()  // NOLINT(misc-use-internal-linkage)
 {
     DEBUG_PRINTF("[MQTT DEBUG] mqttEnabled=%d, connected=%d, valid=%d\n", config.flags.mqttEnabled,
                  mqttClient.connected(), sensorData.valid);
@@ -503,7 +506,7 @@ void publishSensorData()
         doc["ts"] = (long)(timeClient ? timeClient->getEpochTime() : 0);  // timestamp → ts (-7 байт)
 
         // ✅ Кэшируем результат
-        serializeJson(doc, cachedSensorJson, sizeof(cachedSensorJson));
+        serializeJson(doc, cachedSensorJson.data(), cachedSensorJson.size());
         lastCachedSensorTime = currentTime;
         sensorJsonCacheValid = true;
 
@@ -511,20 +514,20 @@ void publishSensorData()
     }
 
     // ✅ Кэшируем топик публикации
-    static char stateTopicBuffer[128] = "";
+    static std::array<char, 128> stateTopicBuffer = {""};
     static bool stateTopicCached = false;
     if (!stateTopicCached)
     {
-        snprintf(stateTopicBuffer, sizeof(stateTopicBuffer), "%s/state", config.mqttTopicPrefix);
+        snprintf(stateTopicBuffer.data(), stateTopicBuffer.size(), "%s/state", config.mqttTopicPrefix);
         stateTopicCached = true;
     }
 
     // Публикуем кэшированный JSON
-    bool res = mqttClient.publish(stateTopicBuffer, cachedSensorJson, true);
+    bool res = mqttClient.publish(stateTopicBuffer.data(), cachedSensorJson.data(), true);
 
     if (res)
     {
-        strcpy(mqttLastErrorBuffer, "");
+        mqttLastErrorBuffer.fill('\0');
 
         // ДЕЛЬТА-ФИЛЬТР v2.2.1: Сохраняем текущие значения как предыдущие
         sensorData.prev_temperature = sensorData.temperature;
@@ -540,11 +543,11 @@ void publishSensorData()
     }
     else
     {
-        strcpy(mqttLastErrorBuffer, "Ошибка публикации MQTT");
+        strlcpy(mqttLastErrorBuffer.data(), "Ошибка публикации MQTT", mqttLastErrorBuffer.size());
     }
 }
 
-void publishHomeAssistantConfig()
+void publishHomeAssistantConfig()  // NOLINT(misc-use-internal-linkage)
 {
     DEBUG_PRINTLN("[publishHomeAssistantConfig] Публикация discovery-конфигов Home Assistant...");
     if (!config.flags.mqttEnabled || !mqttClient.connected() || !config.flags.hassEnabled)
@@ -558,8 +561,8 @@ void publishHomeAssistantConfig()
 
     // ✅ ОПТИМИЗАЦИЯ: Проверяем кэш конфигураций
     bool needToRebuildConfigs = false;
-    if (!haConfigCache.isValid || strcmp(haConfigCache.cachedDeviceId, deviceId) != 0 ||
-        strcmp(haConfigCache.cachedTopicPrefix, config.mqttTopicPrefix) != 0)
+    if (!haConfigCache.isValid || strcmp(haConfigCache.cachedDeviceId.data(), deviceId) != 0 ||
+        strcmp(haConfigCache.cachedTopicPrefix.data(), config.mqttTopicPrefix) != 0)
     {
         needToRebuildConfigs = true;
         DEBUG_PRINTLN("[HA] Кэш конфигураций устарел, пересоздаем...");
@@ -568,8 +571,8 @@ void publishHomeAssistantConfig()
     if (needToRebuildConfigs)
     {
         // Обновляем кэшированные значения
-        strlcpy(haConfigCache.cachedDeviceId, deviceId, sizeof(haConfigCache.cachedDeviceId));
-        strlcpy(haConfigCache.cachedTopicPrefix, config.mqttTopicPrefix, sizeof(haConfigCache.cachedTopicPrefix));
+        strlcpy(haConfigCache.cachedDeviceId.data(), deviceId, haConfigCache.cachedDeviceId.size());
+        strlcpy(haConfigCache.cachedTopicPrefix.data(), config.mqttTopicPrefix, haConfigCache.cachedTopicPrefix.size());
 
         // ✅ Создаем JSON конфигурации один раз и кэшируем их
         StaticJsonDocument<256> deviceInfo;
@@ -589,7 +592,7 @@ void publishHomeAssistantConfig()
         tempConfig["unique_id"] = String(deviceId) + "_temp";
         tempConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         tempConfig["device"] = deviceInfo;
-        serializeJson(tempConfig, haConfigCache.tempConfig, sizeof(haConfigCache.tempConfig));
+        serializeJson(tempConfig, haConfigCache.tempConfig.data(), haConfigCache.tempConfig.size());
 
         StaticJsonDocument<512> humConfig;
         humConfig["name"] = "JXCT Humidity";
@@ -600,7 +603,7 @@ void publishHomeAssistantConfig()
         humConfig["unique_id"] = String(deviceId) + "_hum";
         humConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         humConfig["device"] = deviceInfo;
-        serializeJson(humConfig, haConfigCache.humConfig, sizeof(haConfigCache.humConfig));
+        serializeJson(humConfig, haConfigCache.humConfig.data(), haConfigCache.humConfig.size());
 
         StaticJsonDocument<512> ecConfig;
         ecConfig["name"] = "JXCT EC";
@@ -611,7 +614,7 @@ void publishHomeAssistantConfig()
         ecConfig["unique_id"] = String(deviceId) + "_ec";
         ecConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         ecConfig["device"] = deviceInfo;
-        serializeJson(ecConfig, haConfigCache.ecConfig, sizeof(haConfigCache.ecConfig));
+        serializeJson(ecConfig, haConfigCache.ecConfig.data(), haConfigCache.ecConfig.size());
 
         StaticJsonDocument<512> phConfig;
         phConfig["name"] = "JXCT pH";
@@ -622,7 +625,7 @@ void publishHomeAssistantConfig()
         phConfig["unique_id"] = String(deviceId) + "_ph";
         phConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         phConfig["device"] = deviceInfo;
-        serializeJson(phConfig, haConfigCache.phConfig, sizeof(haConfigCache.phConfig));
+        serializeJson(phConfig, haConfigCache.phConfig.data(), haConfigCache.phConfig.size());
 
         StaticJsonDocument<512> nitrogenConfig;
         nitrogenConfig["name"] = "JXCT Nitrogen";
@@ -632,7 +635,7 @@ void publishHomeAssistantConfig()
         nitrogenConfig["unique_id"] = String(deviceId) + "_nitrogen";
         nitrogenConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         nitrogenConfig["device"] = deviceInfo;
-        serializeJson(nitrogenConfig, haConfigCache.nitrogenConfig, sizeof(haConfigCache.nitrogenConfig));
+        serializeJson(nitrogenConfig, haConfigCache.nitrogenConfig.data(), haConfigCache.nitrogenConfig.size());
 
         StaticJsonDocument<512> phosphorusConfig;
         phosphorusConfig["name"] = "JXCT Phosphorus";
@@ -642,7 +645,7 @@ void publishHomeAssistantConfig()
         phosphorusConfig["unique_id"] = String(deviceId) + "_phosphorus";
         phosphorusConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         phosphorusConfig["device"] = deviceInfo;
-        serializeJson(phosphorusConfig, haConfigCache.phosphorusConfig, sizeof(haConfigCache.phosphorusConfig));
+        serializeJson(phosphorusConfig, haConfigCache.phosphorusConfig.data(), haConfigCache.phosphorusConfig.size());
 
         StaticJsonDocument<512> potassiumConfig;
         potassiumConfig["name"] = "JXCT Potassium";
@@ -652,16 +655,16 @@ void publishHomeAssistantConfig()
         potassiumConfig["unique_id"] = String(deviceId) + "_potassium";
         potassiumConfig["availability_topic"] = String(config.mqttTopicPrefix) + "/status";
         potassiumConfig["device"] = deviceInfo;
-        serializeJson(potassiumConfig, haConfigCache.potassiumConfig, sizeof(haConfigCache.potassiumConfig));
+        serializeJson(potassiumConfig, haConfigCache.potassiumConfig.data(), haConfigCache.potassiumConfig.size());
 
         // ✅ Кэшируем топики публикации
-        snprintf(pubTopicCache[0], sizeof(pubTopicCache[0]), "homeassistant/sensor/%s_temperature/config", deviceId);
-        snprintf(pubTopicCache[1], sizeof(pubTopicCache[1]), "homeassistant/sensor/%s_humidity/config", deviceId);
-        snprintf(pubTopicCache[2], sizeof(pubTopicCache[2]), "homeassistant/sensor/%s_ec/config", deviceId);
-        snprintf(pubTopicCache[3], sizeof(pubTopicCache[3]), "homeassistant/sensor/%s_ph/config", deviceId);
-        snprintf(pubTopicCache[4], sizeof(pubTopicCache[4]), "homeassistant/sensor/%s_nitrogen/config", deviceId);
-        snprintf(pubTopicCache[5], sizeof(pubTopicCache[5]), "homeassistant/sensor/%s_phosphorus/config", deviceId);
-        snprintf(pubTopicCache[6], sizeof(pubTopicCache[6]), "homeassistant/sensor/%s_potassium/config", deviceId);
+        snprintf(pubTopicCache[0].data(), pubTopicCache[0].size(), "homeassistant/sensor/%s_temperature/config", deviceId);
+        snprintf(pubTopicCache[1].data(), pubTopicCache[1].size(), "homeassistant/sensor/%s_humidity/config", deviceId);
+        snprintf(pubTopicCache[2].data(), pubTopicCache[2].size(), "homeassistant/sensor/%s_ec/config", deviceId);
+        snprintf(pubTopicCache[3].data(), pubTopicCache[3].size(), "homeassistant/sensor/%s_ph/config", deviceId);
+        snprintf(pubTopicCache[4].data(), pubTopicCache[4].size(), "homeassistant/sensor/%s_nitrogen/config", deviceId);
+        snprintf(pubTopicCache[5].data(), pubTopicCache[5].size(), "homeassistant/sensor/%s_phosphorus/config", deviceId);
+        snprintf(pubTopicCache[6].data(), pubTopicCache[6].size(), "homeassistant/sensor/%s_potassium/config", deviceId);
         pubTopicCacheValid = true;
 
         haConfigCache.isValid = true;
@@ -669,19 +672,19 @@ void publishHomeAssistantConfig()
     }
 
     // ✅ Публикуем из кэша (супер быстро!)
-    mqttClient.publish(pubTopicCache[0], haConfigCache.tempConfig, true);
-    mqttClient.publish(pubTopicCache[1], haConfigCache.humConfig, true);
-    mqttClient.publish(pubTopicCache[2], haConfigCache.ecConfig, true);
-    mqttClient.publish(pubTopicCache[3], haConfigCache.phConfig, true);
-    mqttClient.publish(pubTopicCache[4], haConfigCache.nitrogenConfig, true);
-    mqttClient.publish(pubTopicCache[5], haConfigCache.phosphorusConfig, true);
-    mqttClient.publish(pubTopicCache[6], haConfigCache.potassiumConfig, true);
+    mqttClient.publish(pubTopicCache[0].data(), haConfigCache.tempConfig.data(), true);
+    mqttClient.publish(pubTopicCache[1].data(), haConfigCache.humConfig.data(), true);
+    mqttClient.publish(pubTopicCache[2].data(), haConfigCache.ecConfig.data(), true);
+    mqttClient.publish(pubTopicCache[3].data(), haConfigCache.phConfig.data(), true);
+    mqttClient.publish(pubTopicCache[4].data(), haConfigCache.nitrogenConfig.data(), true);
+    mqttClient.publish(pubTopicCache[5].data(), haConfigCache.phosphorusConfig.data(), true);
+    mqttClient.publish(pubTopicCache[6].data(), haConfigCache.potassiumConfig.data(), true);
 
     INFO_PRINTLN("[HA] Конфигурация Home Assistant опубликована из кэша");
-    strcpy(mqttLastErrorBuffer, "");
+    mqttLastErrorBuffer.fill('\0');
 }
 
-void removeHomeAssistantConfig()
+void removeHomeAssistantConfig()  // NOLINT(misc-use-internal-linkage)
 {
     String deviceIdStr = getDeviceId();
     const char* deviceId = deviceIdStr.c_str();
@@ -694,10 +697,10 @@ void removeHomeAssistantConfig()
     mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_phosphorus/config").c_str(), "", true);
     mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_potassium/config").c_str(), "", true);
     INFO_PRINTLN("[MQTT] Discovery-конфиги Home Assistant удалены");
-    strcpy(mqttLastErrorBuffer, "");
+    mqttLastErrorBuffer.fill('\0');
 }
 
-void handleMqttCommand(const String& cmd)
+void handleMqttCommand(const String& cmd)  // NOLINT(misc-use-internal-linkage)
 {
     DEBUG_PRINT("[MQTT] Получена команда: ");
     DEBUG_PRINTLN(cmd);
@@ -745,7 +748,7 @@ void handleMqttCommand(const String& cmd)
     }
 }
 
-void mqttCallback(char* topic, byte* payload, unsigned int length)
+void mqttCallback(char* topic, byte* payload, unsigned int length)  // NOLINT(misc-use-internal-linkage)
 {
     String t = String(topic);
     String message;
@@ -757,30 +760,30 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)
     }
 }
 
-void invalidateHAConfigCache()
+void invalidateHAConfigCache()  // NOLINT(misc-use-internal-linkage)
 {
     // Реализация инвалидации кэша Home Assistant конфигураций
     haConfigCache.isValid = false;
-    strcpy(haConfigCache.cachedDeviceId, "");
-    strcpy(haConfigCache.cachedTopicPrefix, "");
-    strcpy(haConfigCache.tempConfig, "");
-    strcpy(haConfigCache.humConfig, "");
-    strcpy(haConfigCache.ecConfig, "");
-    strcpy(haConfigCache.phConfig, "");
-    strcpy(haConfigCache.nitrogenConfig, "");
-    strcpy(haConfigCache.phosphorusConfig, "");
-    strcpy(haConfigCache.potassiumConfig, "");
+    haConfigCache.cachedDeviceId.fill('\0');
+    haConfigCache.cachedTopicPrefix.fill('\0');
+    haConfigCache.tempConfig.fill('\0');
+    haConfigCache.humConfig.fill('\0');
+    haConfigCache.ecConfig.fill('\0');
+    haConfigCache.phConfig.fill('\0');
+    haConfigCache.nitrogenConfig.fill('\0');
+    haConfigCache.phosphorusConfig.fill('\0');
+    haConfigCache.potassiumConfig.fill('\0');
     INFO_PRINTLN("[MQTT] Кэш Home Assistant конфигураций инвалидирован");
-    strcpy(mqttLastErrorBuffer, "");
+    mqttLastErrorBuffer.fill('\0');
 }
 
 // Функция получения IP с кэшированием
-IPAddress getCachedIP(const char* hostname)
+static IPAddress getCachedIP(const char* hostname)  // NOLINT(misc-use-anonymous-namespace)
 {
     unsigned long currentTime = millis();
 
     // Проверяем кэш
-    if (dnsCacheMqtt.isValid && strcmp(dnsCacheMqtt.hostname, hostname) == 0 &&
+    if (dnsCacheMqtt.isValid && strcmp(dnsCacheMqtt.hostname.data(), hostname) == 0 &&
         (currentTime - dnsCacheMqtt.cacheTime < DNS_CACHE_TTL))
     {
         DEBUG_PRINTF("[DNS] Используем кэшированный IP %s для %s\n", dnsCacheMqtt.cachedIP.toString().c_str(),
@@ -793,7 +796,7 @@ IPAddress getCachedIP(const char* hostname)
     if (WiFi.hostByName(hostname, resolvedIP))
     {
         // Кэшируем результат
-        strlcpy(dnsCacheMqtt.hostname, hostname, sizeof(dnsCacheMqtt.hostname));
+        strlcpy(dnsCacheMqtt.hostname.data(), hostname, dnsCacheMqtt.hostname.size());
         dnsCacheMqtt.cachedIP = resolvedIP;
         dnsCacheMqtt.cacheTime = currentTime;
         dnsCacheMqtt.isValid = true;

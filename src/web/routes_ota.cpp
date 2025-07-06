@@ -11,18 +11,19 @@
 #include "../wifi_manager.h"
 #include "ota_manager.h"
 
-extern WebServer webServer;
-extern WiFiMode currentWiFiMode;
-extern String navHtml();
-
 // Глобальные переменные для отслеживания прогресса локальной загрузки
-static bool isLocalUploadActive = false;
-static size_t localUploadProgress = 0;
-static size_t localUploadTotal = 0;
-static String localUploadStatus = "idle";
+namespace {
+bool isLocalUploadActive = false;
+size_t localUploadProgress = 0;
+size_t localUploadTotal = 0;
+String localUploadStatus = "idle";
+
+}
 
 // --- ВСПОМОГАТЕЛЬНЫЕ ---
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static void sendOtaStatusJson();
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static void handleFirmwareUpload();
 
 void setupOtaRoutes()
@@ -337,6 +338,7 @@ void setupOtaRoutes()
     logSuccess("Маршруты OTA настроены");
 }
 
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static void sendOtaStatusJson()
 {
     StaticJsonDocument<OTA_JSON_DOC_SIZE> doc;
@@ -369,6 +371,7 @@ static void sendOtaStatusJson()
     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
 }
 
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static void handleFirmwareUpload()
 {
     HTTPUpload& upload = webServer.upload();

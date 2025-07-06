@@ -76,9 +76,9 @@ ValidationResult validateThingSpeakAPIKey(const String& apiKey)
         return {false, "ThingSpeak API ключ должен содержать 16 символов"};
     }
     // Проверяем, что содержит только допустимые символы
-    for (char c : apiKey)
+    for (const char ch : apiKey)
     {
-        if (!isAlphaNumeric(c))
+        if (!isAlphaNumeric(ch))
         {
             return {false, "ThingSpeak API ключ содержит недопустимые символы"};
         }
@@ -91,7 +91,7 @@ ValidationResult validateInterval(unsigned long interval, unsigned long min_val,
 {
     if (interval < min_val || interval > max_val)
     {
-        String message = String(name) + " должен быть в диапазоне " + String(min_val) + "-" + String(max_val) + " мс";
+        const String message = String(name) + " должен быть в диапазоне " + String(min_val) + "-" + String(max_val) + " мс";
         return {false, message};
     }
     return {true, ""};
@@ -126,7 +126,7 @@ ValidationResult validateRange(float value, float min_val, float max_val, const 
 {
     if (value < min_val || value > max_val)
     {
-        String message = String(field_name) + " вне допустимого диапазона";
+        const String message = String(field_name) + " вне допустимого диапазона";
         return {false, message};
     }
     return {true, ""};
@@ -142,21 +142,21 @@ ValidationResult validateHumidity(float humidity)
     return validateRange(humidity, SENSOR_HUMIDITY_MIN, SENSOR_HUMIDITY_MAX, "Влажность");
 }
 
-ValidationResult validatePH(float ph)
+ValidationResult validatePH(float phValue)
 {
-    return validateRange(ph, SENSOR_PH_MIN, SENSOR_PH_MAX, "pH");
+    return validateRange(phValue, SENSOR_PH_MIN, SENSOR_PH_MAX, "pH");
 }
 
-ValidationResult validateEC(float ec)
+ValidationResult validateEC(float ecValue)
 {
-    return validateRange(ec, SENSOR_EC_MIN, SENSOR_EC_MAX, "EC");
+    return validateRange(ecValue, SENSOR_EC_MIN, SENSOR_EC_MAX, "EC");
 }
 
 ValidationResult validateNPK(float value, const char* nutrient)
 {
     if (value < SENSOR_NPK_MIN || value > SENSOR_NPK_MAX)
     {
-        String message = String(nutrient) + " вне допустимого диапазона";
+        const String message = String(nutrient) + " вне допустимого диапазона";
         return {false, message};
     }
     return {true, ""};
@@ -373,8 +373,7 @@ bool isValidHostname(const String& hostname)
 
 String formatValidationErrors(const ConfigValidationResult& result)
 {
-    if (result.isValid)
-    {
+    if (result.isValid) {
         return "";
     }
 
@@ -388,7 +387,9 @@ String formatValidationErrors(const ConfigValidationResult& result)
 
 String formatSensorValidationErrors(const SensorValidationResult& result)
 {
-    if (result.isValid) return "";
+    if (result.isValid) {
+        return "";
+    }
 
     String formatted = "Ошибки валидации датчика:\n";
     for (const auto& error : result.errors)

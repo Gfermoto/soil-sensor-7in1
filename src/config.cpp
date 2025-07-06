@@ -4,6 +4,7 @@
  * @details Загрузка, сохранение, сброс и валидация настроек устройства через NVS (Preferences).
  */
 #include <WiFi.h>
+#include <array>
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "jxct_config_vars.h"
 #include "jxct_device_info.h"
@@ -17,18 +18,18 @@ String getDeviceId()
 {
     uint8_t mac[6];
     WiFi.macAddress(mac);
-    char buf[32];
-    snprintf(buf, sizeof(buf), "%s_%02X%02X%02X", DEVICE_MODEL, mac[3], mac[4], mac[5]);
-    return String(buf);
+    std::array<char, 32> buf;
+    snprintf(buf.data(), buf.size(), "%s_%02X%02X%02X", DEVICE_MODEL, mac[3], mac[4], mac[5]);
+    return String(buf.data());
 }
 
 String getDefaultTopic()
 {
     uint8_t mac[6];
     WiFi.macAddress(mac);
-    char buf[32];
-    snprintf(buf, sizeof(buf), "jxct_%02X%02X%02X", mac[3], mac[4], mac[5]);
-    return String(buf);
+    std::array<char, 32> buf;
+    snprintf(buf.data(), buf.size(), "jxct_%02X%02X%02X", mac[3], mac[4], mac[5]);
+    return String(buf.data());
 }
 
 Config config;
@@ -74,7 +75,7 @@ void loadConfig()
     config.webPassword[0] = '\0';
 
     // NTP настройки
-    String ntpServer = preferences.getString("ntpServer", "pool.ntp.org");
+    const String ntpServer = preferences.getString("ntpServer", "pool.ntp.org");
     ntpServer.toCharArray(config.ntpServer, sizeof(config.ntpServer));
     config.ntpUpdateInterval = preferences.getUInt(KEY_NTP_INTERVAL, 60000);
 

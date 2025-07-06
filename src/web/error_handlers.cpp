@@ -5,12 +5,35 @@
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
 
-// Вспомогательная функция для валидации интервалов
+// Структура для типобезопасности (предотвращение перепутывания min/max)
+struct ValidationRange
+{
+    int minValue;
+    int maxValue;
+    
+    ValidationRange(int min, int max) : minValue(min), maxValue(max) {}
+};
+
+// Структура для веб-запроса (предотвращение перепутывания String параметров)
+struct HttpRequest
+{
+    String method;
+    String uri;
+    String clientIP;
+    
+    HttpRequest(const String& methodValue, const String& uriValue, const String& ipAddress) 
+        : method(methodValue), uri(uriValue), clientIP(ipAddress) {}
+};
+
+// Вспомогательные функции для валидации интервалов — скрыты во внутреннем безымянном пространстве имён,
+// чтобы ограничить область видимости текущим файлом и устранить предупреждение clang-tidy
+namespace {
+
 bool validateInterval(const String& argName, int minValue, int maxValue, const String& description)
 {
     if (webServer.hasArg(argName))
     {
-        int value = webServer.arg(argName).toInt();
+        const int value = webServer.arg(argName).toInt();
         if (value < minValue || value > maxValue)
         {
             logWarn("Валидация: некорректный %s: %d (допустимо %d-%d)", description.c_str(), value, minValue, maxValue);
@@ -19,6 +42,14 @@ bool validateInterval(const String& argName, int minValue, int maxValue, const S
     }
     return true;
 }
+
+// ✅ Типобезопасная версия (предотвращает перепутывание min/max)
+bool validateInterval(const String& argName, const ValidationRange& range, const String& description)
+{
+    return validateInterval(argName, range.minValue, range.maxValue, description);
+}
+
+} // namespace
 
 void setupErrorHandlers()
 {
@@ -108,7 +139,8 @@ void handleUploadError(const String& error)
     webServer.send(400, "text/html; charset=utf-8", html);
 }
 
-bool isFeatureAvailable(const String& feature)
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
+static bool isFeatureAvailable(const String& feature)
 {
     // Большинство функций недоступны в AP режиме
     if (currentWiFiMode == WiFiMode::AP)
@@ -142,6 +174,12 @@ void logWebRequest(const String& method, const String& uri, const String& client
         // Обычные запросы на уровне INFO
         logInfo("Web: %s %s from %s", method.c_str(), uri.c_str(), clientIP.c_str());
     }
+}
+
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
+static void logWebRequest(const HttpRequest& request)
+{
+    logWebRequest(request.method, request.uri, request.clientIP);
 }
 
 /**

@@ -3,12 +3,61 @@
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
 
+// Структуры для типобезопасности (предотвращение перепутывания параметров)
+struct PageInfo
+{
+    String title;
+    String icon;
+    
+    PageInfo(const String& titleText, const String& iconText) : title(titleText), icon(iconText) {}
+};
+
+struct FormInfo
+{
+    String action;
+    String method;
+    String formContent;
+    String buttonText;
+    String buttonIcon;
+    
+    FormInfo(const String& actionUrl, const String& methodType, const String& fc, const String& bt, const String& bi)
+        : action(actionUrl), method(methodType), formContent(fc), buttonText(bt), buttonIcon(bi) {}
+};
+
+struct InputFieldInfo
+{
+    String id;
+    String name;
+    String label;
+    String value;
+    String type;
+    bool required;
+    String placeholder;
+    
+    InputFieldInfo(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText, const String& typeText, bool isRequired, const String& placeholderText)
+        : id(fieldId), name(fieldName), label(labelText), value(valueText), type(typeText), required(isRequired), placeholder(placeholderText) {}
+};
+
+struct NumberFieldInfo
+{
+    String id;
+    String name;
+    String label;
+    int value;
+    int min;
+    int max;
+    int step;
+    
+    NumberFieldInfo(const String& i, const String& n, const String& l, int v, int mi, int ma, int s)
+        : id(i), name(n), label(l), value(v), min(mi), max(ma), step(s) {}
+};
+
 // External function declarations
 extern String navHtml();
 
-String generatePageHeader(const String& title, const String& icon)
+String generatePageHeader(const String& title, const String& icon)  // NOLINT(misc-use-internal-linkage)
 {
-    String iconStr = icon.length() > 0 ? icon + " " : "";
+    const String iconStr = icon.length() > 0 ? icon + " " : "";
     String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'>";
     html += "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
     html += "<title>" + iconStr + title + "</title>";
@@ -17,12 +66,18 @@ String generatePageHeader(const String& title, const String& icon)
     return html;
 }
 
-String generatePageFooter()
+// ✅ Типобезопасная версия
+String generatePageHeader(const PageInfo& page)  // NOLINT(misc-use-internal-linkage)
+{
+    return generatePageHeader(page.title, page.icon);
+}
+
+String generatePageFooter()  // NOLINT(misc-use-internal-linkage)
 {
     return "</div>" + String(getToastHTML()) + "</body></html>";
 }
 
-String generateBasePage(const String& title, const String& content, const String& icon)
+String generateBasePage(const String& title, const String& content, const String& icon)  // NOLINT(misc-use-internal-linkage)
 {
     String html = generatePageHeader(title, icon);
     html += navHtml();
@@ -31,7 +86,13 @@ String generateBasePage(const String& title, const String& content, const String
     return html;
 }
 
-String generateErrorPage(int errorCode, const String& errorMessage)
+// ✅ Типобезопасная версия
+String generateBasePage(const PageInfo& page, const String& content)  // NOLINT(misc-use-internal-linkage)
+{
+    return generateBasePage(page.title, content, page.icon);
+}
+
+String generateErrorPage(int errorCode, const String& errorMessage)  // NOLINT(misc-use-internal-linkage)
 {
     String content = "<h1>" UI_ICON_ERROR " Ошибка " + String(errorCode) + "</h1>";
     content += "<div class='msg msg-error'>" UI_ICON_ERROR " " + errorMessage + "</div>";
@@ -40,7 +101,7 @@ String generateErrorPage(int errorCode, const String& errorMessage)
     return generateBasePage("Ошибка " + String(errorCode), content, UI_ICON_ERROR);
 }
 
-String generateSuccessPage(const String& title, const String& message, const String& redirectUrl, int redirectDelay)
+String generateSuccessPage(const String& title, const String& message, const String& redirectUrl, int redirectDelay)  // NOLINT(misc-use-internal-linkage)
 {
     String content = "<h1>" UI_ICON_SUCCESS " " + title + "</h1>";
     content += "<div class='msg msg-success'>" UI_ICON_SUCCESS " " + message + "</div>";
@@ -65,13 +126,19 @@ String generateSuccessPage(const String& title, const String& message, const Str
  * @return HTML форма
  */
 String generateForm(const String& action, const String& method, const String& formContent, const String& buttonText,
-                    const String& buttonIcon)
+                    const String& buttonIcon)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<form action='" + action + "' method='" + method + "'>";
     html += formContent;
     html += generateButton(ButtonType::PRIMARY, buttonIcon.c_str(), buttonText.c_str(), "");
     html += "</form>";
     return html;
+}
+
+// ✅ Типобезопасная версия (предотвращает перепутывание 5 String параметров)
+String generateForm(const FormInfo& form)  // NOLINT(misc-use-internal-linkage)
+{
+    return generateForm(form.action, form.method, form.formContent, form.buttonText, form.buttonIcon);
 }
 
 /**
@@ -81,7 +148,7 @@ String generateForm(const String& action, const String& method, const String& fo
  * @param helpText Текст подсказки (опционально)
  * @return HTML секция
  */
-String generateConfigSection(const String& title, const String& content, const String& helpText)
+String generateConfigSection(const String& title, const String& content, const String& helpText)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='section'>";
     html += "<h2>" + title + "</h2>";
@@ -106,7 +173,7 @@ String generateConfigSection(const String& title, const String& content, const S
  * @return HTML поле ввода
  */
 String generateInputField(const String& id, const String& name, const String& label, const String& value,
-                          const String& type, bool required, const String& placeholder)
+                          const String& type, bool required, const String& placeholder)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='form-group'>";
     html += "<label for='" + id + "'>" + label + ":</label>";
@@ -123,6 +190,12 @@ String generateInputField(const String& id, const String& name, const String& la
     return html;
 }
 
+// ✅ Типобезопасная версия (предотвращает перепутывание 6 String параметров)
+String generateInputField(const InputFieldInfo& field)  // NOLINT(misc-use-internal-linkage)
+{
+    return generateInputField(field.id, field.name, field.label, field.value, field.type, field.required, field.placeholder);
+}
+
 /**
  * @brief Генерация поля чекбокса
  * @param id ID элемента
@@ -131,7 +204,7 @@ String generateInputField(const String& id, const String& name, const String& la
  * @param checked Состояние чекбокса
  * @return HTML чекбокс
  */
-String generateCheckboxField(const String& id, const String& name, const String& label, bool checked)
+String generateCheckboxField(const String& id, const String& name, const String& label, bool checked)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='form-group'>";
     html += "<label for='" + id + "'>" + label + ":</label>";
@@ -156,7 +229,7 @@ String generateCheckboxField(const String& id, const String& name, const String&
  * @return HTML числовое поле
  */
 String generateNumberField(const String& id, const String& name, const String& label, int value, int min, int max,
-                           int step)
+                           int step)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='form-group'>";
     html += "<label for='" + id + "'>" + label + ":</label>";
@@ -166,12 +239,18 @@ String generateNumberField(const String& id, const String& name, const String& l
     return html;
 }
 
+// ✅ Типобезопасная версия (предотвращает перепутывание 4 int параметров)
+String generateNumberField(const NumberFieldInfo& field)  // NOLINT(misc-use-internal-linkage)
+{
+    return generateNumberField(field.id, field.name, field.label, field.value, field.min, field.max, field.step);
+}
+
 /**
  * @brief Генерация сообщения об ошибке в форме
  * @param message Текст сообщения
  * @return HTML блок с ошибкой
  */
-String generateFormError(const String& message)
+String generateFormError(const String& message)  // NOLINT(misc-use-internal-linkage)
 {
     return "<div class='msg msg-error'>" UI_ICON_ERROR " " + message + "</div>";
 }
@@ -182,7 +261,7 @@ String generateFormError(const String& message)
  * @param icon Иконка страницы
  * @return Полная HTML страница
  */
-String generateApModeUnavailablePage(const String& title, const String& icon)
+String generateApModeUnavailablePage(const String& title, const String& icon)  // NOLINT(misc-use-internal-linkage)
 {
     String content = "<h1>" + icon + " " + title + "</h1>";
     content += "<div class='msg msg-error'>" UI_ICON_ERROR " Недоступно в режиме точки доступа</div>";

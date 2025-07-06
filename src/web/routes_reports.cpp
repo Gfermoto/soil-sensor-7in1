@@ -29,117 +29,13 @@ struct TechnicalDebtMetrics
 };
 
 // Глобальные переменные для кэширования отчётов
-static TestSummary lastTestSummary;
-static TechnicalDebtMetrics lastTechDebt;
-static unsigned long lastReportUpdate = 0;
+static TestSummary lastTestSummary;  // NOLINT(misc-use-anonymous-namespace)
+static TechnicalDebtMetrics lastTechDebt;  // NOLINT(misc-use-anonymous-namespace)
+static unsigned long lastReportUpdate = 0;  // NOLINT(misc-use-anonymous-namespace)
 static const unsigned long REPORT_CACHE_TTL = REPORT_CACHE_TTL_MS;
 
 // Функции для работы с отчётами
-static bool loadTestReport(const String& filename, TestSummary& summary);
-static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& debt);
-static void updateReportsCache();
-static String generateReportsHTML();
-static String generateReportsDashboardHTML();
-
-void setupReportsRoutes()
-{
-    logInfo("🧪 Настройка маршрутов отчётов тестирования...");
-
-    // API для получения отчётов в JSON формате
-    webServer.on("/api/reports/test-summary", HTTP_GET,
-                 []()
-                 {
-                     logWebRequest("GET", "/api/reports/test-summary", webServer.client().remoteIP().toString());
-
-                     updateReportsCache();
-
-                     StaticJsonDocument<JSON_DOC_SMALL> doc;
-                     doc["timestamp"] = lastTestSummary.timestamp;
-                     doc["total"] = lastTestSummary.total;
-                     doc["passed"] = lastTestSummary.passed;
-                     doc["failed"] = lastTestSummary.failed;
-                     doc["success_rate"] = lastTestSummary.success_rate;
-
-                     String json;
-                     serializeJson(doc, json);
-                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
-                 });
-
-    webServer.on("/api/reports/technical-debt", HTTP_GET,
-                 []()
-                 {
-                     logWebRequest("GET", "/api/reports/technical-debt", webServer.client().remoteIP().toString());
-
-                     updateReportsCache();
-
-                     StaticJsonDocument<JSON_DOC_MEDIUM> doc;
-                     doc["code_smells"] = lastTechDebt.code_smells;
-                     doc["duplicated_lines"] = lastTechDebt.duplicated_lines;
-                     doc["complexity_issues"] = lastTechDebt.complexity_issues;
-                     doc["security_hotspots"] = lastTechDebt.security_hotspots;
-                     doc["maintainability_rating"] = lastTechDebt.maintainability_rating;
-                     doc["debt_ratio"] = lastTechDebt.debt_ratio;
-                     doc["coverage"] = lastTechDebt.coverage;
-
-                     String json;
-                     serializeJson(doc, json);
-                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
-                 });
-
-    // API для получения полных отчётов
-    webServer.on("/api/reports/full", HTTP_GET,
-                 []()
-                 {
-                     logWebRequest("GET", "/api/reports/full", webServer.client().remoteIP().toString());
-
-                     updateReportsCache();
-
-                     StaticJsonDocument<JSON_DOC_LARGE> doc;
-
-                     // Тестовые метрики
-                     doc["test_summary"]["total"] = lastTestSummary.total;
-                     doc["test_summary"]["passed"] = lastTestSummary.passed;
-                     doc["test_summary"]["failed"] = lastTestSummary.failed;
-                     doc["test_summary"]["success_rate"] = lastTestSummary.success_rate;
-                     doc["test_summary"]["timestamp"] = lastTestSummary.timestamp;
-
-                     // Технический долг
-                     doc["technical_debt"]["code_smells"] = lastTechDebt.code_smells;
-                     doc["technical_debt"]["duplicated_lines"] = lastTechDebt.duplicated_lines;
-                     doc["technical_debt"]["complexity_issues"] = lastTechDebt.complexity_issues;
-                     doc["technical_debt"]["security_hotspots"] = lastTechDebt.security_hotspots;
-                     doc["technical_debt"]["maintainability_rating"] = lastTechDebt.maintainability_rating;
-                     doc["technical_debt"]["debt_ratio"] = lastTechDebt.debt_ratio;
-                     doc["technical_debt"]["coverage"] = lastTechDebt.coverage;
-
-                     String json;
-                     serializeJson(doc, json);
-                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
-                 });
-
-    // Веб-интерфейс для просмотра отчётов
-    webServer.on("/reports", HTTP_GET,
-                 []()
-                 {
-                     logWebRequest("GET", "/reports", webServer.client().remoteIP().toString());
-
-                     String html = generateReportsHTML();
-                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
-                 });
-
-    // Дашборд отчётов (краткий обзор)
-    webServer.on("/reports/dashboard", HTTP_GET,
-                 []()
-                 {
-                     logWebRequest("GET", "/reports/dashboard", webServer.client().remoteIP().toString());
-
-                     String html = generateReportsDashboardHTML();
-                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
-                 });
-
-    logSuccess("🧪 Маршруты отчётов тестирования настроены");
-}
-
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static bool loadTestReport(const String& filename, TestSummary& summary)
 {
     if (!SPIFFS.exists(filename))
@@ -177,6 +73,7 @@ static bool loadTestReport(const String& filename, TestSummary& summary)
     return true;
 }
 
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& debt)
 {
     if (!SPIFFS.exists(filename))
@@ -218,6 +115,7 @@ static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& deb
     return true;
 }
 
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static void updateReportsCache()
 {
     unsigned long now = millis();
@@ -231,6 +129,7 @@ static void updateReportsCache()
     lastReportUpdate = now;
 }
 
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static String generateReportsHTML()
 {
     updateReportsCache();
@@ -359,6 +258,7 @@ static String generateReportsHTML()
     return html;
 }
 
+// NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static String generateReportsDashboardHTML()
 {
     updateReportsCache();
@@ -495,4 +395,103 @@ static String generateReportsDashboardHTML()
 )";
 
     return html;
+}
+
+void setupReportsRoutes()
+{
+    logInfo("🧪 Настройка маршрутов отчётов тестирования...");
+
+    // API для получения отчётов в JSON формате
+    webServer.on("/api/reports/test-summary", HTTP_GET,
+                 []()
+                 {
+                     logWebRequest("GET", "/api/reports/test-summary", webServer.client().remoteIP().toString());
+
+                     updateReportsCache();
+
+                     StaticJsonDocument<JSON_DOC_SMALL> doc;
+                     doc["timestamp"] = lastTestSummary.timestamp;
+                     doc["total"] = lastTestSummary.total;
+                     doc["passed"] = lastTestSummary.passed;
+                     doc["failed"] = lastTestSummary.failed;
+                     doc["success_rate"] = lastTestSummary.success_rate;
+
+                     String json;
+                     serializeJson(doc, json);
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
+                 });
+
+    webServer.on("/api/reports/technical-debt", HTTP_GET,
+                 []()
+                 {
+                     logWebRequest("GET", "/api/reports/technical-debt", webServer.client().remoteIP().toString());
+
+                     updateReportsCache();
+
+                     StaticJsonDocument<JSON_DOC_MEDIUM> doc;
+                     doc["code_smells"] = lastTechDebt.code_smells;
+                     doc["duplicated_lines"] = lastTechDebt.duplicated_lines;
+                     doc["complexity_issues"] = lastTechDebt.complexity_issues;
+                     doc["security_hotspots"] = lastTechDebt.security_hotspots;
+                     doc["maintainability_rating"] = lastTechDebt.maintainability_rating;
+                     doc["debt_ratio"] = lastTechDebt.debt_ratio;
+                     doc["coverage"] = lastTechDebt.coverage;
+
+                     String json;
+                     serializeJson(doc, json);
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
+                 });
+
+    // API для получения полных отчётов
+    webServer.on("/api/reports/full", HTTP_GET,
+                 []()
+                 {
+                     logWebRequest("GET", "/api/reports/full", webServer.client().remoteIP().toString());
+
+                     updateReportsCache();
+
+                     StaticJsonDocument<JSON_DOC_LARGE> doc;
+
+                     // Тестовые метрики
+                     doc["test_summary"]["total"] = lastTestSummary.total;
+                     doc["test_summary"]["passed"] = lastTestSummary.passed;
+                     doc["test_summary"]["failed"] = lastTestSummary.failed;
+                     doc["test_summary"]["success_rate"] = lastTestSummary.success_rate;
+                     doc["test_summary"]["timestamp"] = lastTestSummary.timestamp;
+
+                     // Технический долг
+                     doc["technical_debt"]["code_smells"] = lastTechDebt.code_smells;
+                     doc["technical_debt"]["duplicated_lines"] = lastTechDebt.duplicated_lines;
+                     doc["technical_debt"]["complexity_issues"] = lastTechDebt.complexity_issues;
+                     doc["technical_debt"]["security_hotspots"] = lastTechDebt.security_hotspots;
+                     doc["technical_debt"]["maintainability_rating"] = lastTechDebt.maintainability_rating;
+                     doc["technical_debt"]["debt_ratio"] = lastTechDebt.debt_ratio;
+                     doc["technical_debt"]["coverage"] = lastTechDebt.coverage;
+
+                     String json;
+                     serializeJson(doc, json);
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
+                 });
+
+    // Веб-интерфейс для просмотра отчётов
+    webServer.on("/reports", HTTP_GET,
+                 []()
+                 {
+                     logWebRequest("GET", "/reports", webServer.client().remoteIP().toString());
+
+                     String html = generateReportsHTML();
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
+                 });
+
+    // Дашборд отчётов (краткий обзор)
+    webServer.on("/reports/dashboard", HTTP_GET,
+                 []()
+                 {
+                     logWebRequest("GET", "/reports/dashboard", webServer.client().remoteIP().toString());
+
+                     String html = generateReportsDashboardHTML();
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
+                 });
+
+    logSuccess("🧪 Маршруты отчётов тестирования настроены");
 }
