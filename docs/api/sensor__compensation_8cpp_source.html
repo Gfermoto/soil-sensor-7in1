@@ -169,22 +169,25 @@ $(function(){initNavTree('sensor__compensation_8cpp_source.html',''); initResiza
 <div class="foldopen" id="foldopen00057" data-start="{" data-end="}">
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="sensor__compensation_8cpp.html#aa9d6b97073bca78fb526c17bdbf816a6">   57</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="sensor__compensation_8cpp.html#aa9d6b97073bca78fb526c17bdbf816a6">correctNPK</a>(<span class="keywordtype">float</span> T, <span class="keywordtype">float</span> theta, <span class="keywordtype">float</span>&amp; N, <span class="keywordtype">float</span>&amp; P, <span class="keywordtype">float</span>&amp; K, <a class="code hl_enumeration" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">if</span> (theta &lt; 25.0f || theta &gt; 60.0f) <span class="keywordflow">return</span>;  <span class="comment">// валидация – оставляем как есть</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">int</span> idx = (int)soil;</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="comment">// Температурная коррекция</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    N *= (1.0f - <a class="code hl_variable" href="sensor__compensation_8cpp.html#adb61fb124bb88094238c5222e85ac573">k_t_N</a>[idx] * (T - 25.0f));</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    P *= (1.0f - <a class="code hl_variable" href="sensor__compensation_8cpp.html#ab0a07071dd32b23e25ec31b21b140a28">k_t_P</a>[idx] * (T - 25.0f));</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    K *= (1.0f - <a class="code hl_variable" href="sensor__compensation_8cpp.html#aea817cd039de87e310da8044514f303e">k_t_K</a>[idx] * (T - 25.0f));</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// Влажностная коррекция</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    N *= <a class="code hl_function" href="sensor__compensation_8cpp.html#adf2ddb83f2189c9159aa7fe534217ea4">k_h_N</a>(theta);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    P *= <a class="code hl_function" href="sensor__compensation_8cpp.html#ae64bff1823ab30991e51b8d57c23be39">k_h_P</a>(theta);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    K *= <a class="code hl_function" href="sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a">k_h_K</a>(theta);</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">if</span> (theta &lt; 25.0f || theta &gt; 60.0f)</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="keywordflow">return</span>;  <span class="comment">// валидация – оставляем как есть</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">int</span> idx = (int)soil;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">// Температурная коррекция</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    N *= (1.0f - <a class="code hl_variable" href="sensor__compensation_8cpp.html#adb61fb124bb88094238c5222e85ac573">k_t_N</a>[idx] * (T - 25.0f));</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    P *= (1.0f - <a class="code hl_variable" href="sensor__compensation_8cpp.html#ab0a07071dd32b23e25ec31b21b140a28">k_t_P</a>[idx] * (T - 25.0f));</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    K *= (1.0f - <a class="code hl_variable" href="sensor__compensation_8cpp.html#aea817cd039de87e310da8044514f303e">k_t_K</a>[idx] * (T - 25.0f));</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">// Влажностная коррекция</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    N *= <a class="code hl_function" href="sensor__compensation_8cpp.html#adf2ddb83f2189c9159aa7fe534217ea4">k_h_N</a>(theta);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    P *= <a class="code hl_function" href="sensor__compensation_8cpp.html#ae64bff1823ab30991e51b8d57c23be39">k_h_P</a>(theta);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    K *= <a class="code hl_function" href="sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a">k_h_K</a>(theta);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>}</div>
 </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">// ------------------------------------------------------------------</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// ------------------------------------------------------------------</span></div>
 <div class="ttc" id="ajxct__config__vars_8h_html"><div class="ttname"><a href="jxct__config__vars_8h.html">jxct_config_vars.h</a></div></div>
 <div class="ttc" id="asensor__compensation_8cpp_html_a8360d274b958e7c50437c1374056b69a"><div class="ttname"><a href="sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a">k_h_K</a></div><div class="ttdeci">static float k_h_K(float th)</div><div class="ttdef"><b>Определения</b> <a href="#l00031">sensor_compensation.cpp:31</a></div></div>
 <div class="ttc" id="asensor__compensation_8cpp_html_a9fc4cca635a26c692681a7071e379aa7"><div class="ttname"><a href="sensor__compensation_8cpp.html#a9fc4cca635a26c692681a7071e379aa7">k</a></div><div class="ttdeci">float k</div><div class="ttdef"><b>Определения</b> <a href="#l00009">sensor_compensation.cpp:9</a></div></div>

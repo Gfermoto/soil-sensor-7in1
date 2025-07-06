@@ -1,5 +1,6 @@
 var logger_8cpp =
 [
+    [ "getColorCode", "logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590", null ],
     [ "getUptimeString", "logger_8cpp.html#a9ce43588b680fbf5d2269e785fc39f21", null ],
     [ "logData", "logger_8cpp.html#af2cfc49d3e5f87ebc351693b47c348e1", null ],
     [ "logDebug", "logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe", null ],
@@ -8,7 +9,7 @@ var logger_8cpp =
     [ "logMemoryUsage", "logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d", null ],
     [ "logMQTT", "logger_8cpp.html#ace461ff84ce50a76653ec959a2436320", null ],
     [ "logPrintBanner", "logger_8cpp.html#aef367594259e15c9df8b0caf3dfddba8", null ],
-    [ "logPrintHeader", "logger_8cpp.html#a372ab412c03841f6fe08c751c5d44cba", null ],
+    [ "logPrintHeader", "logger_8cpp.html#ac8e71aa24f9f13d9f1cf0a1c8a7e51f5", null ],
     [ "logPrintSeparator", "logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e", null ],
     [ "logSensor", "logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b", null ],
     [ "logSuccess", "logger_8cpp.html#a54dab32db32234798ff063ccc0dde695", null ],

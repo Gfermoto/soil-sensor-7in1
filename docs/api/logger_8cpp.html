@@ -109,7 +109,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
 <div class="textblock"><code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
 <code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;WiFi.h&gt;</code><br />
-<code>#include &lt;stdarg.h&gt;</code><br />
+<code>#include &lt;cstdarg&gt;</code><br />
 </div>
 <p><a href="logger_8cpp_source.html">См. исходные тексты.</a></p>
 <table class="memberdecls">
@@ -117,8 +117,10 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
 Функции</h2></td></tr>
 <tr class="memitem:a9ce43588b680fbf5d2269e785fc39f21" id="r_a9ce43588b680fbf5d2269e785fc39f21"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ce43588b680fbf5d2269e785fc39f21">getUptimeString</a> ()</td></tr>
 <tr class="separator:a9ce43588b680fbf5d2269e785fc39f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a372ab412c03841f6fe08c751c5d44cba" id="r_a372ab412c03841f6fe08c751c5d44cba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a372ab412c03841f6fe08c751c5d44cba">logPrintHeader</a> (const char *title, const char *color)</td></tr>
-<tr class="separator:a372ab412c03841f6fe08c751c5d44cba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab94ddc842b6a690863609c28cfa93590" id="r_ab94ddc842b6a690863609c28cfa93590"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab94ddc842b6a690863609c28cfa93590">getColorCode</a> (<a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</td></tr>
+<tr class="separator:ab94ddc842b6a690863609c28cfa93590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8e71aa24f9f13d9f1cf0a1c8a7e51f5" id="r_ac8e71aa24f9f13d9f1cf0a1c8a7e51f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8e71aa24f9f13d9f1cf0a1c8a7e51f5">logPrintHeader</a> (const char *title, <a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</td></tr>
+<tr class="separator:ac8e71aa24f9f13d9f1cf0a1c8a7e51f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ee301b7bb89647696628fbd93584d9e" id="r_a3ee301b7bb89647696628fbd93584d9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ee301b7bb89647696628fbd93584d9e">logPrintSeparator</a> (const char *symbol, int length)</td></tr>
 <tr class="separator:a3ee301b7bb89647696628fbd93584d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef367594259e15c9df8b0caf3dfddba8" id="r_aef367594259e15c9df8b0caf3dfddba8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef367594259e15c9df8b0caf3dfddba8">logPrintBanner</a> (const char *text)</td></tr>
@@ -160,6 +162,25 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
 
 <p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a></p>
 </div><h2 class="groupheader">Функции</h2>
+<a id="ab94ddc842b6a690863609c28cfa93590" name="ab94ddc842b6a690863609c28cfa93590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab94ddc842b6a690863609c28cfa93590">&#9670;&#160;</a></span>getColorCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * getColorCode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00027">27</a></p>
+
+</div>
+</div>
 <a id="a9ce43588b680fbf5d2269e785fc39f21" name="a9ce43588b680fbf5d2269e785fc39f21"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ce43588b680fbf5d2269e785fc39f21">&#9670;&#160;</a></span>getUptimeString()</h2>
 
@@ -198,7 +219,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00197">197</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00244">244</a></p>
 
 </div>
 </div>
@@ -221,7 +242,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00113">113</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00148">148</a></p>
 
 </div>
 </div>
@@ -244,7 +265,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00062">62</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00088">88</a></p>
 
 </div>
 </div>
@@ -267,7 +288,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00096">96</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00128">128</a></p>
 
 </div>
 </div>
@@ -286,7 +307,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00237">237</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00290">290</a></p>
 
 </div>
 </div>
@@ -309,7 +330,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00180">180</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00224">224</a></p>
 
 </div>
 </div>
@@ -328,12 +349,12 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00049">49</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00075">75</a></p>
 
 </div>
 </div>
-<a id="a372ab412c03841f6fe08c751c5d44cba" name="a372ab412c03841f6fe08c751c5d44cba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a372ab412c03841f6fe08c751c5d44cba">&#9670;&#160;</a></span>logPrintHeader()</h2>
+<a id="ac8e71aa24f9f13d9f1cf0a1c8a7e51f5" name="ac8e71aa24f9f13d9f1cf0a1c8a7e51f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8e71aa24f9f13d9f1cf0a1c8a7e51f5">&#9670;&#160;</a></span>logPrintHeader()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -346,12 +367,12 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>color</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00027">27</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00053">53</a></p>
 
 </div>
 </div>
@@ -374,7 +395,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00039">39</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00065">65</a></p>
 
 </div>
 </div>
@@ -397,7 +418,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00146">146</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00184">184</a></p>
 
 </div>
 </div>
@@ -420,7 +441,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00130">130</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00168">168</a></p>
 
 </div>
 </div>
@@ -443,7 +464,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00214">214</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00264">264</a></p>
 
 </div>
 </div>
@@ -462,7 +483,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00232">232</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00285">285</a></p>
 
 </div>
 </div>
@@ -485,7 +506,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00079">79</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00108">108</a></p>
 
 </div>
 </div>
@@ -508,7 +529,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00163">163</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00204">204</a></p>
 
 </div>
 </div>
@@ -527,7 +548,7 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00242">242</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00295">295</a></p>
 
 </div>
 </div>

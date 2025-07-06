@@ -1,5 +1,15 @@
 var NAVTREEINDEX4 =
 {
+"struct_sensor_data.html#ac4ca11b4574092a5d653f9c3a838e218":[1,0,11,5],
+"struct_sensor_data.html#acf88a59ba1b4c48bcbe74e853e3ab7e7":[1,0,11,0],
+"struct_sensor_data.html#ad4f2c5ac6721efbfb394d394e74cc369":[1,0,11,34],
+"struct_sensor_data.html#ad603dc902dc414959a862b8e4b2777f9":[1,0,11,12],
+"struct_sensor_data.html#ae71019c6d425e1d48eca40c9ef0157f9":[1,0,11,17],
+"struct_sensor_data.html#ae86305145f71a026a5c398edab06f978":[1,0,11,11],
+"struct_sensor_data.html#aef31dc7b08499063bb728d0585cf4438":[1,0,11,22],
+"struct_sensor_data.html#afa3d7a9345781758cec2e8bac97ac1d3":[1,0,11,20],
+"struct_sensor_data.html#afb0e9f9ada5f63dbbe113a85b4ce2299":[1,0,11,27],
+"struct_sensor_data.html#afde3c50727e3e15ce3850afa8d73eff8":[1,0,11,6],
 "struct_sensor_validation_result.html":[1,0,12],
 "struct_sensor_validation_result.html#a41444c647d77a9f5f7b4c7d38e2abb8a":[1,0,12,0],
 "struct_sensor_validation_result.html#acfa046237a82d060e944d05e093d26bf":[1,0,12,1],

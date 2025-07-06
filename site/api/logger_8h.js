@@ -19,6 +19,16 @@ var logger_8h =
     [ "LOG_SYMBOL_SYSTEM", "logger_8h.html#a0c7e0aa41ab5cb38235c908e87aeb5ea", null ],
     [ "LOG_SYMBOL_WARN", "logger_8h.html#a7e4fda439418c6c40322f686422d9780", null ],
     [ "LOG_SYMBOL_WIFI", "logger_8h.html#a9b85a144155d4ee001653d25ce7a8ba6", null ],
+    [ "LogColor", "logger_8h.html#a2b15c85f545a729e30a74239be429afb", [
+      [ "RED", "logger_8h.html#a2b15c85f545a729e30a74239be429afbaa2d9547b5d3dd9f05984475f7c926da0", null ],
+      [ "GREEN", "logger_8h.html#a2b15c85f545a729e30a74239be429afba9de0e5dd94e861317e74964bed179fa0", null ],
+      [ "YELLOW", "logger_8h.html#a2b15c85f545a729e30a74239be429afba8a568e5f41b7e4da88fe5c4a00aad34e", null ],
+      [ "BLUE", "logger_8h.html#a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f", null ],
+      [ "MAGENTA", "logger_8h.html#a2b15c85f545a729e30a74239be429afbac634ffea7195608364671ac52ee59a61", null ],
+      [ "CYAN", "logger_8h.html#a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749", null ],
+      [ "WHITE", "logger_8h.html#a2b15c85f545a729e30a74239be429afbab5bf627e448384cf3a4c35121ca6008d", null ],
+      [ "CYAN_DEFAULT", "logger_8h.html#a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f", null ]
+    ] ],
     [ "LogLevel", "logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4", [
       [ "LOG_ERROR", "logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473", null ],
       [ "LOG_WARN", "logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13", null ],
@@ -32,7 +42,7 @@ var logger_8h =
     [ "logMemoryUsage", "logger_8h.html#ab014807afa04f9783ed19c897cbdf54d", null ],
     [ "logMQTT", "logger_8h.html#ace461ff84ce50a76653ec959a2436320", null ],
     [ "logPrintBanner", "logger_8h.html#aef367594259e15c9df8b0caf3dfddba8", null ],
-    [ "logPrintHeader", "logger_8h.html#a573f0d6e1b4dff871cf401471622a3d4", null ],
+    [ "logPrintHeader", "logger_8h.html#ac93b0657fd9c252448a2fa38d6b4ceda", null ],
     [ "logPrintSeparator", "logger_8h.html#af0851b3565de2c7c6a23b5d3d30a8fcd", null ],
     [ "logSensor", "logger_8h.html#a4a348f4af13be9d7c726e296e9b3c89b", null ],
     [ "logSuccess", "logger_8h.html#a54dab32db32234798ff063ccc0dde695", null ],
