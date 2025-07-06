@@ -1,44 +1,44 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 06.07.2025 15:36
+**Дата анализа:** 06.07.2025 16:02
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 608
+- **Всего предупреждений:** 618
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
-### Разное (233 проблем)
-- `misc-use-internal-linkage`: 96 случаев
+### Разное (245 проблем)
+- `misc-use-internal-linkage`: 110 случаев
 - `misc-use-anonymous-namespace`: 81 случаев
-- `misc-const-correctness`: 52 случаев
+- `misc-const-correctness`: 50 случаев
 - `misc-unused-parameters`: 3 случаев
 - `64`: 1 случаев
 
-### Модернизация (86 проблем)
-- `modernize-avoid-c-arrays`: 59 случаев
+### Модернизация (88 проблем)
+- `modernize-avoid-c-arrays`: 61 случаев
 - `modernize-macro-to-enum`: 12 случаев
 - `modernize-raw-string-literal`: 9 случаев
 - `modernize-deprecated-headers`: 4 случаев
 - `modernize-use-auto`: 2 случаев
 
-### Читаемость (239 проблем)
+### Читаемость (235 проблем)
 - `readability-braces-around-statements`: 100 случаев
 - `readability-uppercase-literal-suffix`: 60 случаев
-- `readability-identifier-length`: 34 случаев
+- `readability-identifier-length`: 30 случаев
 - `readability-redundant-declaration`: 18 случаев
 - `readability-math-missing-parentheses`: 6 случаев
 
-### Потенциальные баги (40 проблем)
-- `bugprone-easily-swappable-parameters`: 19 случаев
+### Потенциальные баги (38 проблем)
+- `bugprone-easily-swappable-parameters`: 18 случаев
 - `bugprone-narrowing-conversions`: 11 случаев
-- `bugprone-branch-clone`: 6 случаев
+- `bugprone-branch-clone`: 5 случаев
 - `bugprone-switch-missing-default-case`: 1 случаев
 - `bugprone-too-small-loop-variable`: 1 случаев
 
-### Безопасность (10 проблем)
-- `cert-dcl50-cpp`: 10 случаев
+### Безопасность (12 проблем)
+- `cert-dcl50-cpp`: 12 случаев
 
 ## 📁 ДЕТАЛЬНЫЙ АНАЛИЗ ПО ФАЙЛАМ
 ### src/calibration_manager.cpp (7 предупреждений)
@@ -104,27 +104,24 @@
 **Потенциальные баги:** 1 проблем
 - C:\Git\JXCT\src\jxct_ui_system.cpp:286:58:: 2 adjacent parameters of 'generateButton' of similar type ('const char *') are easily swapped by mistake [bugprone-easily-swappable-parameters]
 
-### src/logger.cpp (27 предупреждений)
-**Разное:** 6 проблем
+### src/logger.cpp (42 предупреждений)
+**Разное:** 18 проблем
 - src/logger.cpp:15:8:: function 'getUptimeString' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- src/logger.cpp:17:5:: variable 'totalSeconds' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
-- src/logger.cpp:18:5:: variable 'hours' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
-- ... и ещё 3 проблем
+- src/logger.cpp:17:5:: variable 'milliseconds' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+- src/logger.cpp:21:5:: variable 'days' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+- ... и ещё 15 проблем
 
-**Потенциальные баги:** 1 проблем
-- src/logger.cpp:45:9:: switch has 2 consecutive identical branches [bugprone-branch-clone]
+**Безопасность:** 12 проблем
+- src/logger.cpp:31:8:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
+- src/logger.cpp:204:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
+- src/logger.cpp:220:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
+- ... и ещё 9 проблем
 
-**Безопасность:** 10 проблем
-- src/logger.cpp:88:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
-- src/logger.cpp:108:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
-- src/logger.cpp:128:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
-- ... и ещё 7 проблем
-
-**Модернизация:** 10 проблем
-- src/logger.cpp:101:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src/logger.cpp:121:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src/logger.cpp:141:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- ... и ещё 7 проблем
+**Модернизация:** 12 проблем
+- src/logger.cpp:37:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- src/logger.cpp:209:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- src/logger.cpp:225:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- ... и ещё 9 проблем
 
 ### src/main.cpp (24 предупреждений)
 **Разное:** 17 проблем
@@ -139,18 +136,18 @@
 - C:\Git\JXCT\src\main.cpp:37:6:: redundant 'loadConfig' declaration [readability-redundant-declaration]
 - ... и ещё 4 проблем
 
-### src/modbus_sensor.cpp (101 предупреждений)
+### src/modbus_sensor.cpp (96 предупреждений)
 **Разное:** 29 проблем
 - C:\Git\JXCT\src\modbus_sensor.cpp:17:14:: variable 'modbus' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - C:\Git\JXCT\src\modbus_sensor.cpp:20:8:: variable 'sensorLastError' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - C:\Git\JXCT\src\modbus_sensor.cpp:22:22:: variable 'lastIrrigationTs' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - ... и ещё 26 проблем
 
-**Читаемость:** 56 проблем
+**Читаемость:** 52 проблем
 - C:\Git\JXCT\src\modbus_sensor.cpp:24:52:: pointer parameter 'buffer' can be pointer to const [readability-non-const-parameter]
 - C:\Git\JXCT\src\modbus_sensor.cpp:115:34:: pointer parameter 'data' can be pointer to const [readability-non-const-parameter]
 - C:\Git\JXCT\src\modbus_sensor.cpp:124:17:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
-- ... и ещё 53 проблем
+- ... и ещё 49 проблем
 
 **Модернизация:** 4 проблем
 - C:\Git\JXCT\src\modbus_sensor.cpp:301:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
@@ -158,11 +155,11 @@
 - C:\Git\JXCT\src\modbus_sensor.cpp:382:12:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - ... и ещё 1 проблем
 
-**Потенциальные баги:** 12 проблем
+**Потенциальные баги:** 11 проблем
 - C:\Git\JXCT\src\modbus_sensor.cpp:409:5:: switching on non-enum value without default case may not cover all cases [bugprone-switch-missing-default-case]
-- C:\Git\JXCT\src\modbus_sensor.cpp:515:12:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
-- C:\Git\JXCT\src\modbus_sensor.cpp:624:43:: 7 adjacent parameters of 'addToMovingAverage' of similar type ('float') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- ... и ещё 9 проблем
+- C:\Git\JXCT\src\modbus_sensor.cpp:514:12:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
+- C:\Git\JXCT\src\modbus_sensor.cpp:669:39:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
+- ... и ещё 8 проблем
 
 ### src/mqtt_client.cpp (65 предупреждений)
 **Разное:** 38 проблем

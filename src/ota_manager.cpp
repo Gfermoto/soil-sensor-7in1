@@ -266,10 +266,10 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
                 }
                 else
                 {
-                    int percent = (totalDownloaded * 100) / contentLen;
+                    int percent = static_cast<int>((totalDownloaded * 100) / contentLen);
                     snprintf(statusBuf, sizeof(statusBuf), "Загружено %d%%", percent);
                 }
-                logSystem("[OTA] Загружено: %d байт", totalDownloaded);
+                logSystem("[OTA] Загружено: %d байт", static_cast<int>(totalDownloaded));
                 lastProgress = millis();
             }
         }
@@ -278,7 +278,7 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
             // Если весь файл уже получен, прекращаем ожидание доп.данных
             if (!isChunked && totalDownloaded == (size_t)contentLen)
             {
-                logSystem("[OTA] Загрузка завершена, получено %d байт", totalDownloaded);
+                logSystem("[OTA] Загрузка завершена, получено %d байт", static_cast<int>(totalDownloaded));
                 break;
             }
 
@@ -292,7 +292,7 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
 
             if (isChunked && !http.connected())
             {
-                logSystem("[OTA] Chunked transfer завершён, загружено %d байт", totalDownloaded);
+                logSystem("[OTA] Chunked transfer завершён, загружено %d байт", static_cast<int>(totalDownloaded));
                 break;
             }
 
@@ -303,8 +303,8 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
 
     if (!isChunked && totalDownloaded != (size_t)contentLen)
     {
-        snprintf(statusBuf, sizeof(statusBuf), "Неполная загрузка %d/%d", totalDownloaded, contentLen);
-        logError("[OTA] Неполная загрузка: %d из %d байт", totalDownloaded, contentLen);
+        snprintf(statusBuf, sizeof(statusBuf), "Неполная загрузка %d/%d", static_cast<int>(totalDownloaded), contentLen);
+        logError("[OTA] Неполная загрузка: %d из %d байт", static_cast<int>(totalDownloaded), contentLen);
         Update.abort();
         return false;
     }
@@ -319,13 +319,13 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)
 
     // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем общее состояние системы
     size_t initialHeap = ESP.getFreeHeap();
-    logSystem("[OTA] Начальная память: %d байт", initialHeap);
+    logSystem("[OTA] Начальная память: %d байт", static_cast<int>(initialHeap));
 
     // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
     if (initialHeap < 80000)
     {
         strcpy(statusBuf, "Критически мало памяти");
-        logError("[OTA] Критически мало памяти: %d байт", initialHeap);
+        logError("[OTA] Критически мало памяти: %d байт", static_cast<int>(initialHeap));
         return false;
     }
 

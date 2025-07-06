@@ -666,13 +666,14 @@ void addToMovingAverage(SensorData& data, const SensorData& newReading)
     if (effective_window >= 3 && config.filterAlgorithm == 0)
     {
         // Среднее (O(1))
-        data.temperature = sum_temp / effective_window;
-        data.humidity = sum_hum / effective_window;
-        data.ec = sum_ec / effective_window;
-        data.ph = sum_ph / effective_window;
-        data.nitrogen = sum_n / effective_window;
-        data.phosphorus = sum_p / effective_window;
-        data.potassium = sum_k / effective_window;
+        float window_float = static_cast<float>(effective_window);
+        data.temperature = sum_temp / window_float;
+        data.humidity = sum_hum / window_float;
+        data.ec = sum_ec / window_float;
+        data.ph = sum_ph / window_float;
+        data.nitrogen = sum_n / window_float;
+        data.phosphorus = sum_p / window_float;
+        data.potassium = sum_k / window_float;
 
         DEBUG_PRINTF("[AVG O1] win=%d temp=%.1f\n", effective_window, data.temperature);
     }
