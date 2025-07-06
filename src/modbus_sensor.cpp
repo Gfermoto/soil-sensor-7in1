@@ -327,16 +327,16 @@ int readBasicParameters()
     int success_count = 0;
 
     // pH (÷ 100)
-    if (readSingleRegister(REG_PH, "pH", 0.01f, &sensorData.ph, true)) success_count++;
+    if (readSingleRegister(REG_PH, "pH", 0.01F, &sensorData.ph, true)) success_count++;
 
     // Влажность (÷ 10)
-    if (readSingleRegister(REG_SOIL_MOISTURE, "Влажность", 0.1f, &sensorData.humidity, true)) success_count++;
+    if (readSingleRegister(REG_SOIL_MOISTURE, "Влажность", 0.1F, &sensorData.humidity, true)) success_count++;
 
     // Температура (÷ 10)
-    if (readSingleRegister(REG_SOIL_TEMP, "Температура", 0.1f, &sensorData.temperature, true)) success_count++;
+    if (readSingleRegister(REG_SOIL_TEMP, "Температура", 0.1F, &sensorData.temperature, true)) success_count++;
 
     // EC (без деления)
-    if (readSingleRegister(REG_CONDUCTIVITY, "EC", 1.0f, &sensorData.ec, true)) success_count++;
+    if (readSingleRegister(REG_CONDUCTIVITY, "EC", 1.0F, &sensorData.ec, true)) success_count++;
 
     return success_count;
 }
@@ -350,13 +350,13 @@ int readNPKParameters()
     int success_count = 0;
 
     // Азот
-    if (readSingleRegister(REG_NITROGEN, "Азот", 1.0f, &sensorData.nitrogen, true)) success_count++;
+    if (readSingleRegister(REG_NITROGEN, "Азот", 1.0F, &sensorData.nitrogen, true)) success_count++;
 
     // Фосфор
-    if (readSingleRegister(REG_PHOSPHORUS, "Фосфор", 1.0f, &sensorData.phosphorus, true)) success_count++;
+    if (readSingleRegister(REG_PHOSPHORUS, "Фосфор", 1.0F, &sensorData.phosphorus, true)) success_count++;
 
     // Калий
-    if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0f, &sensorData.potassium, true)) success_count++;
+    if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0F, &sensorData.potassium, true)) success_count++;
 
     return success_count;
 }
@@ -385,7 +385,7 @@ static void updateIrrigationFlag(SensorData& d)
     float baseline = d.humidity;
     for (uint8_t i = 0; i < filled; ++i) baseline = (buf[i] < baseline) ? buf[i] : baseline;
 
-    bool spike = (filled == WIN) && (d.humidity - baseline >= config.irrigationSpikeThreshold) && (d.humidity > 25.0f);
+    bool spike = (filled == WIN) && (d.humidity - baseline >= config.irrigationSpikeThreshold) && (d.humidity > 25.0F);
     persist = spike ? persist + 1 : 0;
     if (persist >= 2)
     {
@@ -440,7 +440,7 @@ static void applyCompensationIfEnabled(SensorData& d)
     float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);
 
     // Шаг 2: Применяем математическую компенсацию (температурная, влажностная)
-    float ec25 = ecCalibrated / (1.0f + 0.021f * (tempCalibrated - 25.0f));
+    float ec25 = ecCalibrated / (1.0F + 0.021F * (tempCalibrated - 25.0F));
     d.ec = correctEC(ec25, tempCalibrated, humCalibrated, soil);
 
     d.ph = correctPH(phCalibrated, tempCalibrated);
@@ -737,7 +737,7 @@ float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
         // Возвращаем медиану
         if (elements_to_use % 2 == 0)
         {
-            return (temp_values[elements_to_use / 2 - 1] + temp_values[elements_to_use / 2]) / 2.0f;
+            return (temp_values[elements_to_use / 2 - 1] + temp_values[elements_to_use / 2]) / 2.0F;
         }
         else
         {

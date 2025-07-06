@@ -33,7 +33,7 @@ void fakeSensorTask(void* pvParameters)
             float potassium_mgdm3 = 20 + random(-5, 5);   // 15..25
 
             // Конверсия в мг/кг (как в рекомендациях)
-            constexpr float NPK_FACTOR = 6.5f;  // пересчёт мг/дм³ → мг/кг (ρ=1.3 г/см³, влажность ≈30%)
+            constexpr float NPK_FACTOR = 6.5F;  // пересчёт мг/дм³ → мг/кг (ρ=1.3 г/см³, влажность ≈30%)
             sensorData.nitrogen = nitrogen_mgdm3 * NPK_FACTOR;
             sensorData.phosphorus = phosphorus_mgdm3 * NPK_FACTOR;
             sensorData.potassium = potassium_mgdm3 * NPK_FACTOR;
@@ -78,7 +78,7 @@ void fakeSensorTask(void* pvParameters)
                 }
 
                 // 1. EC: температурная компенсация → затем модель Арчи
-                float ec25 = sensorData.ec / (1.0f + 0.021f * (sensorData.temperature - 25.0f));
+                float ec25 = sensorData.ec / (1.0F + 0.021F * (sensorData.temperature - 25.0F));
                 sensorData.ec = correctEC(ec25, sensorData.temperature, sensorData.humidity, soil);
 
                 // 2. pH: температурная поправка

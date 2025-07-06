@@ -8,29 +8,29 @@ static constexpr struct
 {
     float k;
 } SOIL_EC[] = {
-    {0.15f},  // SAND
-    {0.30f},  // LOAM
-    {0.10f},  // PEAT
-    {0.45f},  // CLAY
-    {0.18f}   // SANDPEAT
+    {0.15F},  // SAND
+    {0.30F},  // LOAM
+    {0.10F},  // PEAT
+    {0.45F},  // CLAY
+    {0.18F}   // SANDPEAT
 };
 
-static constexpr float k_t_N[5] = {0.0041f, 0.0038f, 0.0028f, 0.0032f, 0.0040f};
-static constexpr float k_t_P[5] = {0.0053f, 0.0049f, 0.0035f, 0.0042f, 0.0051f};
-static constexpr float k_t_K[5] = {0.0032f, 0.0029f, 0.0018f, 0.0024f, 0.0031f};
+static constexpr float k_t_N[5] = {0.0041F, 0.0038F, 0.0028F, 0.0032F, 0.0040F};
+static constexpr float k_t_P[5] = {0.0053F, 0.0049F, 0.0035F, 0.0042F, 0.0051F};
+static constexpr float k_t_K[5] = {0.0032F, 0.0029F, 0.0018F, 0.0024F, 0.0031F};
 
 // влажностные коэффициенты (λ-функции заменить не можем, считаем прямо)
 static inline float k_h_N(float th)
 {
-    return 1.8f - 0.024f * th;
+    return 1.8F - 0.024F * th;
 }
 static inline float k_h_P(float th)
 {
-    return 1.6f - 0.018f * th;
+    return 1.6F - 0.018F * th;
 }
 static inline float k_h_K(float th)
 {
-    return 1.9f - 0.021f * th;
+    return 1.9F - 0.021F * th;
 }
 
 // ------------------------------------------------------------------
@@ -38,25 +38,25 @@ static inline float k_h_K(float th)
 float correctEC(float ecRaw, float T, float theta, SoilType soil)
 {
     // Шаг 1. Температурная компенсация к 25 °C
-    float ec25 = ecRaw / (1.0f + 0.021f * (T - 25.0f));
+    float ec25 = ecRaw / (1.0F + 0.021F * (T - 25.0F));
 
     // Шаг 2. Перевод к ECe (насыщенная паста)
-    constexpr float THETA_SAT = 45.0f;  // %
+    constexpr float THETA_SAT = 45.0F;  // %
     float k = SOIL_EC[(int)soil].k;
-    return ec25 * powf(THETA_SAT / theta, 1.0f + k);
+    return ec25 * powf(THETA_SAT / theta, 1.0F + k);
 }
 
 // pH ----------------------------------------------------------------
 float correctPH(float phRaw, float T)
 {
     // только температурная поправка (-0.003·ΔT)
-    return phRaw - 0.003f * (T - 25.0f);
+    return phRaw - 0.003F * (T - 25.0F);
 }
 
 // NPK ---------------------------------------------------------------
 void correctNPK(float T, float theta, float& N, float& P, float& K, SoilType soil)
 {
-    if (theta < 25.0f || theta > 60.0f)
+    if (theta < 25.0F || theta > 60.0F)
     {
         return;  // валидация – оставляем как есть
     }
@@ -64,9 +64,9 @@ void correctNPK(float T, float theta, float& N, float& P, float& K, SoilType soi
     int idx = (int)soil;
 
     // Температурная коррекция
-    N *= (1.0f - k_t_N[idx] * (T - 25.0f));
-    P *= (1.0f - k_t_P[idx] * (T - 25.0f));
-    K *= (1.0f - k_t_K[idx] * (T - 25.0f));
+    N *= (1.0F - k_t_N[idx] * (T - 25.0F));
+    P *= (1.0F - k_t_P[idx] * (T - 25.0F));
+    K *= (1.0F - k_t_K[idx] * (T - 25.0F));
 
     // Влажностная коррекция
     N *= k_h_N(theta);

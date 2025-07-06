@@ -99,11 +99,11 @@ void loadConfig()
 
     // Soil profile и агро-поля
     config.soilProfile = preferences.getUChar("soilProfile", 0);
-    config.latitude = preferences.getFloat("lat", 0.0f);
-    config.longitude = preferences.getFloat("lon", 0.0f);
+    config.latitude = preferences.getFloat("lat", 0.0F);
+    config.longitude = preferences.getFloat("lon", 0.0F);
     preferences.getString("cropId", config.cropId, sizeof(config.cropId));
     config.flags.isGreenhouse = preferences.getBool("greenhouse", false);
-    config.irrigationSpikeThreshold = preferences.getFloat("irrigTh", 8.0f);
+    config.irrigationSpikeThreshold = preferences.getFloat("irrigTh", 8.0F);
     config.irrigationHoldMinutes = preferences.getUShort("irrigHold", 5);
 
     // v2.6.1: сезонные коэффициенты и тип среды
