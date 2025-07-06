@@ -109,7 +109,7 @@ String navHtml()
 
 void setupWiFi()
 {
-    logPrintHeader("ИНИЦИАЛИЗАЦИЯ WiFi", COLOR_GREEN);
+    logPrintHeader("ИНИЦИАЛИЗАЦИЯ WiFi", LogColor::GREEN);
 
     pinMode(STATUS_LED_PIN, OUTPUT);
     setLedBlink(LED_SLOW_BLINK_INTERVAL);

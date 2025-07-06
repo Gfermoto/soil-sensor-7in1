@@ -321,13 +321,19 @@ bool isValidIPAddress(const String& ip)
     {
         if (i == ip.length() || ip.charAt(i) == '.')
         {
-            if (i == start) return false;  // Пустая часть
+            if (i == start) {
+                return false;  // Пустая часть
+            }
 
             String part = ip.substring(start, i);
             int value = part.toInt();
 
-            if (value < 0 || value > 255) return false;
-            if (part != String(value)) return false;  // Проверка на ведущие нули
+            if (value < 0 || value > 255) {
+                return false;
+            }
+            if (part != String(value)) {
+                return false;  // Проверка на ведущие нули
+            }
 
             parts++;
             start = i + 1;
@@ -339,7 +345,9 @@ bool isValidIPAddress(const String& ip)
 
 bool isValidHostname(const String& hostname)
 {
-    if (hostname.length() == 0 || hostname.length() > 253) return false;
+    if (hostname.length() == 0 || hostname.length() > 253) {
+        return false;
+    }
 
     for (char c : hostname)
     {
@@ -361,7 +369,9 @@ bool isValidHostname(const String& hostname)
 
 String formatValidationErrors(const ConfigValidationResult& result)
 {
-    if (result.isValid) return "";
+    if (result.isValid) {
+        return "";
+    }
 
     String formatted = "Ошибки валидации:\n";
     for (const auto& error : result.errors)

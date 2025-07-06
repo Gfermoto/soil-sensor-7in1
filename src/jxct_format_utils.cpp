@@ -1,5 +1,6 @@
 #include "jxct_format_utils.h"
 #include <cstdio>
+#include <cmath>
 
 // Универсальная функция форматирования float
 std::string formatFloat(float value, int precision, bool asInt)
@@ -7,7 +8,7 @@ std::string formatFloat(float value, int precision, bool asInt)
     char buf[8];
     if (asInt)
     {
-        snprintf(buf, sizeof(buf), "%d", (int)(value + 0.5F));
+        snprintf(buf, sizeof(buf), "%d", static_cast<int>(lround(value)));
     }
     else
     {

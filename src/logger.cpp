@@ -6,7 +6,7 @@
 #include "logger.h"
 #include <Arduino.h>
 #include <WiFi.h>
-#include <stdarg.h>
+#include <cstdarg>
 
 // Глобальная переменная уровня логгирования
 LogLevel currentLogLevel = LOG_INFO;
@@ -23,11 +23,28 @@ String getUptimeString()
            String(seconds);
 }
 
+// Функция для получения ANSI цвета из enum
+const char* getColorCode(LogColor color)
+{
+    switch (color)
+    {
+        case LogColor::RED: return COLOR_RED;
+        case LogColor::GREEN: return COLOR_GREEN;
+        case LogColor::YELLOW: return COLOR_YELLOW;
+        case LogColor::BLUE: return COLOR_BLUE;
+        case LogColor::MAGENTA: return COLOR_MAGENTA;
+        case LogColor::CYAN: return COLOR_CYAN;
+        case LogColor::WHITE: return COLOR_WHITE;
+        case LogColor::CYAN_DEFAULT: return COLOR_CYAN;
+        default: return COLOR_CYAN;
+    }
+}
+
 // Вывод заголовка секции
-void logPrintHeader(const char* title, const char* color)
+void logPrintHeader(const char* title, LogColor color)
 {
     Serial.println();
-    Serial.print(color);
+    Serial.print(getColorCode(color));
     Serial.print(COLOR_BOLD);
     logPrintSeparator("═", 60);
     Serial.printf("  %s\n", title);
@@ -61,13 +78,15 @@ void logPrintBanner(const char* text)
 // Основные функции логгирования
 void logError(const char* format, ...)
 {
-    if (currentLogLevel < LOG_ERROR) return;
+    if (currentLogLevel < LOG_ERROR) {
+        return;
+    }
 
     Serial.print(COLOR_RED);
     Serial.print(LOG_SYMBOL_ERROR " ");
     Serial.print(COLOR_RESET);
 
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer), format, args);
@@ -78,13 +97,15 @@ void logError(const char* format, ...)
 
 void logWarn(const char* format, ...)
 {
-    if (currentLogLevel < LOG_WARN) return;
+    if (currentLogLevel < LOG_WARN) {
+        return;
+    }
 
     Serial.print(COLOR_YELLOW);
     Serial.print(LOG_SYMBOL_WARN);
     Serial.print(COLOR_RESET);
 
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer), format, args);
@@ -95,13 +116,15 @@ void logWarn(const char* format, ...)
 
 void logInfo(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) return;
+    if (currentLogLevel < LOG_INFO) {
+        return;
+    }
 
     Serial.print(COLOR_BLUE);
     Serial.print(LOG_SYMBOL_INFO);
     Serial.print(COLOR_RESET);
 
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer), format, args);
@@ -112,13 +135,15 @@ void logInfo(const char* format, ...)
 
 void logDebug(const char* format, ...)
 {
-    if (currentLogLevel < LOG_DEBUG) return;
+    if (currentLogLevel < LOG_DEBUG) {
+        return;
+    }
 
     Serial.print(COLOR_MAGENTA);
     Serial.print(LOG_SYMBOL_DEBUG " ");
     Serial.print(COLOR_RESET);
 
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer), format, args);
@@ -133,7 +158,7 @@ void logSuccess(const char* format, ...)
     Serial.print(LOG_SYMBOL_SUCCESS " ");
     Serial.print(COLOR_RESET);
 
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer), format, args);
@@ -145,13 +170,15 @@ void logSuccess(const char* format, ...)
 // Специализированные функции
 void logSensor(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) return;
+    if (currentLogLevel < LOG_INFO) {
+        return;
+    }
 
     Serial.print(COLOR_CYAN);
     Serial.print(LOG_SYMBOL_SENSOR " ");
     Serial.print(COLOR_RESET);
 
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer), format, args);
@@ -162,13 +189,15 @@ void logSensor(const char* format, ...)
 
 void logWiFi(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) return;
+    if (currentLogLevel < LOG_INFO) {
+        return;
+    }
 
     Serial.print(COLOR_GREEN);
     Serial.print(LOG_SYMBOL_WIFI " ");
     Serial.print(COLOR_RESET);
 
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer), format, args);
@@ -179,13 +208,15 @@ void logWiFi(const char* format, ...)
 
 void logMQTT(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) return;
+    if (currentLogLevel < LOG_INFO) {
+        return;
+    }
 
     Serial.print(COLOR_MAGENTA);
     Serial.print(LOG_SYMBOL_MQTT " ");
     Serial.print(COLOR_RESET);
 
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer), format, args);
@@ -196,13 +227,15 @@ void logMQTT(const char* format, ...)
 
 void logData(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) return;
+    if (currentLogLevel < LOG_INFO) {
+        return;
+    }
 
     Serial.print(COLOR_YELLOW);
     Serial.print(LOG_SYMBOL_DATA " ");
     Serial.print(COLOR_RESET);
 
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer), format, args);
@@ -213,13 +246,15 @@ void logData(const char* format, ...)
 
 void logSystem(const char* format, ...)
 {
-    if (currentLogLevel < LOG_INFO) return;
+    if (currentLogLevel < LOG_INFO) {
+        return;
+    }
 
     Serial.print(COLOR_WHITE);
     Serial.print(LOG_SYMBOL_SYSTEM);
     Serial.print(COLOR_RESET);
 
-    va_list args;
+    std::va_list args;
     va_start(args, format);
     char buffer[256];
     vsnprintf(buffer, sizeof(buffer), format, args);

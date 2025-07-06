@@ -13,7 +13,9 @@ const char* profileToFilename(SoilProfile /*profile*/)
 
 bool init()
 {
-    if (_initialized) return true;
+    if (_initialized) {
+        return true;
+    }
 
     if (!LittleFS.begin(true))
     {
@@ -34,11 +36,13 @@ bool init()
 
 bool saveCsv(SoilProfile profile, Stream& fileStream)
 {
-    if (!init()) return false;
+    if (!init()) {
+        return false;
+    }
     const char* path = profileToFilename(profile);
 
-    File f = LittleFS.open(path, "w");
-    if (!f)
+    File calibrationFile = LittleFS.open(path, "w");
+    if (!calibrationFile)
     {
         logError("Не удалось открыть файл %s для записи", path);
         return false;
@@ -46,60 +50,74 @@ bool saveCsv(SoilProfile profile, Stream& fileStream)
 
     while (fileStream.available())
     {
-        uint8_t b = fileStream.read();
-        f.write(b);
+        uint8_t dataByte = fileStream.read();
+        calibrationFile.write(dataByte);
     }
 
-    f.close();
-    logSuccess("Калибровочная таблица %s сохранена (%d байт)", path, f.size());
+    calibrationFile.close();
+    logSuccess("Калибровочная таблица %s сохранена (%d байт)", path, calibrationFile.size());
     return true;
 }
 
 bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntries, size_t& outCount)
 {
     outCount = 0;
-    if (!init()) return false;
+    if (!init()) {
+        return false;
+    }
     const char* path = profileToFilename(profile);
-    File f = LittleFS.open(path, "r");
-    if (!f)
+    File calibrationFile = LittleFS.open(path, "r");
+    if (!calibrationFile)
     {
         logWarn("Нет калибровочной таблицы %s", path);
         return false;
     }
 
     String line;
-    while (f.available() && outCount < maxEntries)
+    while (calibrationFile.available() && outCount < maxEntries)
     {
-        line = f.readStringUntil('\n');
+        line = calibrationFile.readStringUntil('\n');
         line.trim();
-        if (line.length() == 0) continue;
-        if (line[0] == '#') continue;  // комментарий
+        if (line.length() == 0) {
+            continue;
+        }
+        if (line[0] == '#') {
+            continue;  // комментарий
+        }
 
         // Пропускаем строку-заголовок (если обнаружены буквы)
-        if (!isDigit(line[0]) && line[0] != '-') continue;
+        if (!isDigit(line[0]) && line[0] != '-') {
+            continue;
+        }
 
         int comma = line.indexOf(',');
-        if (comma < 0) continue;
+        if (comma < 0) {
+            continue;
+        }
 
         float raw = line.substring(0, comma).toFloat();
         float corr = line.substring(comma + 1).toFloat();
         outBuffer[outCount++] = {raw, corr};
     }
 
-    f.close();
+    calibrationFile.close();
     logInfo("Загружено %d записей из %s", outCount, path);
     return outCount > 0;
 }
 
 bool hasTable(SoilProfile profile)
 {
-    if (!init()) return false;
+    if (!init()) {
+        return false;
+    }
     return LittleFS.exists(profileToFilename(profile));
 }
 
 bool deleteTable(SoilProfile profile)
 {
-    if (!init()) return false;
+    if (!init()) {
+        return false;
+    }
     const char* path = profileToFilename(profile);
     if (LittleFS.exists(path))
     {

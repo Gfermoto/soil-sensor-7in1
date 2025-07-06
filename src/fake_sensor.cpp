@@ -28,15 +28,15 @@ void fakeSensorTask(void* pvParameters)
             sensorData.ph = 6.5 + random(-20, 20) / 10.0;            // 4.5..8.5
 
             // NPK в мг/дм³ (как в даташите)
-            float n = 30 + random(-10, 10);  // 20..40
-            float p = 15 + random(-5, 5);    // 10..20
-            float k = 20 + random(-5, 5);    // 15..25
+            float nitrogen_mgdm3 = 30 + random(-10, 10);  // 20..40
+            float phosphorus_mgdm3 = 15 + random(-5, 5);    // 10..20
+            float potassium_mgdm3 = 20 + random(-5, 5);    // 15..25
 
             // Конверсия в мг/кг (как в рекомендациях)
             constexpr float NPK_FACTOR = 6.5f;  // пересчёт мг/дм³ → мг/кг (ρ=1.3 г/см³, влажность ≈30%)
-            sensorData.nitrogen = n * NPK_FACTOR;
-            sensorData.phosphorus = p * NPK_FACTOR;
-            sensorData.potassium = k * NPK_FACTOR;
+            sensorData.nitrogen = nitrogen_mgdm3 * NPK_FACTOR;
+            sensorData.phosphorus = phosphorus_mgdm3 * NPK_FACTOR;
+            sensorData.potassium = potassium_mgdm3 * NPK_FACTOR;
 
             sensorData.valid = true;
             sensorData.last_update = millis();  // ✅ Обновляем timestamp

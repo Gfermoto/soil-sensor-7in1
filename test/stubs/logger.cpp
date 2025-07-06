@@ -6,8 +6,9 @@ LogLevel currentLogLevel = LOG_INFO;
 
 static void noop(const char* /*format*/, ...) {}
 
-void logPrintHeader(const char* title, const char* color)
+void logPrintHeader(const char* title, LogColor color)
 {
+    // Заглушка для тестирования
     (void)title;
     (void)color;
 }

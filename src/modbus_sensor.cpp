@@ -23,12 +23,16 @@ static unsigned long lastIrrigationTs = 0;
 
 void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
 {
-    if (currentLogLevel < LOG_DEBUG) return;
+    if (currentLogLevel < LOG_DEBUG) {
+        return;
+    }
 
     String hex_str = "";
     for (size_t i = 0; i < length; i++)
     {
-        if (buffer[i] < 0x10) hex_str += "0";
+        if (buffer[i] < 0x10) {
+            hex_str += "0";
+        }
         hex_str += String(buffer[i], HEX);
         hex_str += " ";
     }
@@ -79,7 +83,7 @@ void testSP3485E()
  */
 void setupModbus()
 {
-    logPrintHeader("ИНИЦИАЛИЗАЦИЯ MODBUS", COLOR_CYAN);
+    logPrintHeader("ИНИЦИАЛИЗАЦИЯ MODBUS", LogColor::CYAN);
 
     // Устанавливаем пины управления SP3485E
     logSystem("Настройка пинов SP3485E...");
@@ -102,7 +106,7 @@ void setupModbus()
     modbus.postTransmission(postTransmission);  // Вызывается после передачи
 
     logSuccess("Modbus инициализирован");
-    logPrintHeader("MODBUS ГОТОВ ДЛЯ ПОЛНОГО ТЕСТИРОВАНИЯ", COLOR_GREEN);
+    logPrintHeader("MODBUS ГОТОВ ДЛЯ ПОЛНОГО ТЕСТИРОВАНИЯ", LogColor::GREEN);
 }
 
 // Функция для расчета CRC16 Modbus
@@ -536,7 +540,7 @@ void postTransmission()
 // ✅ Неблокирующая задача реального датчика с ДИАГНОСТИКОЙ
 void realSensorTask(void* pvParameters)
 {
-    logPrintHeader("ПРОСТОЕ ЧТЕНИЕ ДАТЧИКА JXCT", COLOR_CYAN);
+    logPrintHeader("ПРОСТОЕ ЧТЕНИЕ ДАТЧИКА JXCT", LogColor::CYAN);
     logSystem("🔥 Использую РАБОЧИЕ параметры: 9600 bps, 8N1, адрес 1");
     logSystem("📊 Функция: периодическое чтение всех регистров датчика");
 

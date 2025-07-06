@@ -17,6 +17,19 @@ enum LogLevel : std::uint8_t
     LOG_DEBUG = 3
 };
 
+// Цвета для заголовков логгирования
+enum class LogColor : std::uint8_t
+{
+    RED = 0,
+    GREEN = 1,
+    YELLOW = 2,
+    BLUE = 3,
+    MAGENTA = 4,
+    CYAN = 5,
+    WHITE = 6,
+    CYAN_DEFAULT = 7  // Уникальное значение
+};
+
 // Текущий уровень логгирования (можно менять)
 extern LogLevel currentLogLevel;
 
@@ -65,7 +78,7 @@ extern LogLevel currentLogLevel;
 #endif  // NO_ANSI_COLORS
 
 // Функции логгирования
-void logPrintHeader(const char* title, const char* color = COLOR_CYAN);
+void logPrintHeader(const char* title, LogColor color = LogColor::CYAN_DEFAULT);
 void logPrintSeparator(const char* symbol = "─", int length = 50);
 void logPrintBanner(const char* text);
 

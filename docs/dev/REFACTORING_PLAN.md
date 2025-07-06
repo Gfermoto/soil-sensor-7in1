@@ -1,6 +1,6 @@
 # 📋 План рефакторинга JXCT 7-в-1
 
-> **Версия:** 1.2 | **Дата:** 2025-07-05 | **Ревизия:** Rev.3 (Post-QA)  
+> **Версия:** 1.2 | **Дата:** 2025-07-05 | **Ревизия:** Rev.3 (Post-QA)
 > **Ответственные:** QA-Lead, Lead Dev, Arch
 
 ---
@@ -67,8 +67,8 @@
 class FileUploadHandler {
 public:
     static bool handleFileUpload(
-        const Upload& upload, 
-        File& uploadFile, 
+        const Upload& upload,
+        File& uploadFile,
         const String& path
     );
 private:
