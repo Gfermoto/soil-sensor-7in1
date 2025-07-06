@@ -474,8 +474,7 @@ void finalizeSensorData(bool success)
     updateIrrigationFlag(sensorData);
     applyCompensationIfEnabled(sensorData);
 
-    addToMovingAverage(sensorData, sensorData.temperature, sensorData.humidity, sensorData.ec, sensorData.ph,
-                       sensorData.nitrogen, sensorData.phosphorus, sensorData.potassium);
+    addToMovingAverage(sensorData, sensorData);
 
     if (validateSensorData(sensorData))
     {
@@ -621,7 +620,7 @@ void initMovingAverageBuffers(SensorData& data)
     DEBUG_PRINTLN("[MOVING_AVG] Буферы скользящего среднего инициализированы");
 }
 
-void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float ph, float n, float p, float k)
+void addToMovingAverage(SensorData& data, const SensorData& newReading)
 {
     uint8_t window_size = config.movingAverageWindow;
     if (window_size < 5) window_size = 5;
@@ -643,20 +642,20 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
     }
 
     // Записываем новые значения в буфер и добавляем их к сумме
-    data.temp_buffer[data.buffer_index] = temp;
-    sum_temp += temp;
-    data.hum_buffer[data.buffer_index] = hum;
-    sum_hum += hum;
-    data.ec_buffer[data.buffer_index] = ec;
-    sum_ec += ec;
-    data.ph_buffer[data.buffer_index] = ph;
-    sum_ph += ph;
-    data.n_buffer[data.buffer_index] = n;
-    sum_n += n;
-    data.p_buffer[data.buffer_index] = p;
-    sum_p += p;
-    data.k_buffer[data.buffer_index] = k;
-    sum_k += k;
+    data.temp_buffer[data.buffer_index] = newReading.temperature;
+    sum_temp += newReading.temperature;
+    data.hum_buffer[data.buffer_index] = newReading.humidity;
+    sum_hum += newReading.humidity;
+    data.ec_buffer[data.buffer_index] = newReading.ec;
+    sum_ec += newReading.ec;
+    data.ph_buffer[data.buffer_index] = newReading.ph;
+    sum_ph += newReading.ph;
+    data.n_buffer[data.buffer_index] = newReading.nitrogen;
+    sum_n += newReading.nitrogen;
+    data.p_buffer[data.buffer_index] = newReading.phosphorus;
+    sum_p += newReading.phosphorus;
+    data.k_buffer[data.buffer_index] = newReading.potassium;
+    sum_k += newReading.potassium;
 
     // Обновляем индексы кольцевого буфера
     data.buffer_index = (data.buffer_index + 1) % window_size;
@@ -691,13 +690,13 @@ void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float
     else
     {
         // Пока мало данных – возвращаем последние значения
-        data.temperature = temp;
-        data.humidity = hum;
-        data.ec = ec;
-        data.ph = ph;
-        data.nitrogen = n;
-        data.phosphorus = p;
-        data.potassium = k;
+        data.temperature = newReading.temperature;
+        data.humidity = newReading.humidity;
+        data.ec = newReading.ec;
+        data.ph = newReading.ph;
+        data.nitrogen = newReading.nitrogen;
+        data.phosphorus = newReading.phosphorus;
+        data.potassium = newReading.potassium;
     }
 }
 

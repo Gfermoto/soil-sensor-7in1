@@ -20,7 +20,7 @@ bool init()
 
     if (!LittleFS.begin(true))
     {
-        logError("LittleFS не инициализирован");
+        logError(String("LittleFS не инициализирован"));
         return false;
     }
 
@@ -31,7 +31,7 @@ bool init()
     }
 
     _initialized = true;
-    logSuccess("LittleFS инициализирован, доступен каталог /calibration");
+    logSuccess(String("LittleFS инициализирован, доступен каталог /calibration"));
     return true;
 }
 

@@ -133,7 +133,7 @@ void printModbusError(uint8_t errNum);
 void startRealSensorTask();
 
 // v2.3.0: Функции скользящего среднего
-void addToMovingAverage(SensorData& data, float temp, float hum, float ec, float ph, float n, float p, float k);
+void addToMovingAverage(SensorData& data, const SensorData& newReading);
 float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled);
 void initMovingAverageBuffers(SensorData& data);
 

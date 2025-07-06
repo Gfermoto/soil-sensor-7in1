@@ -1,69 +1,174 @@
-#include "logger.h"
-#include <cstdarg>
-#include <cstdio>
+/**
+ * @file logger.cpp
+ * @brief Stub реализация логгера для тестирования
+ */
 
-LogLevel currentLogLevel = LOG_INFO;
+#include "../../include/logger.h"
+#include <iostream>
+#include <string>
 
-static void noop(const char* /*format*/, ...) {}
+LogLevel currentLogLevel = LOG_DEBUG;
 
+// Основные функции логгирования (безопасные альтернативы)
+void logError(const char* message)
+{
+    if (currentLogLevel >= LOG_ERROR)
+    {
+        std::cout << "[ERROR] " << message << std::endl;
+    }
+}
+
+void logError(const String& message)
+{
+    logError(message.c_str());
+}
+
+void logWarn(const char* message)
+{
+    if (currentLogLevel >= LOG_WARN)
+    {
+        std::cout << "[WARN] " << message << std::endl;
+    }
+}
+
+void logWarn(const String& message)
+{
+    logWarn(message.c_str());
+}
+
+void logInfo(const char* message)
+{
+    if (currentLogLevel >= LOG_INFO)
+    {
+        std::cout << "[INFO] " << message << std::endl;
+    }
+}
+
+void logInfo(const String& message)
+{
+    logInfo(message.c_str());
+}
+
+void logDebug(const char* message)
+{
+    if (currentLogLevel >= LOG_DEBUG)
+    {
+        std::cout << "[DEBUG] " << message << std::endl;
+    }
+}
+
+void logDebug(const String& message)
+{
+    logDebug(message.c_str());
+}
+
+void logSuccess(const char* message)
+{
+    std::cout << "[SUCCESS] " << message << std::endl;
+}
+
+void logSuccess(const String& message)
+{
+    logSuccess(message.c_str());
+}
+
+// Специализированные функции (безопасные альтернативы)
+void logSensor(const char* message)
+{
+    if (currentLogLevel >= LOG_INFO)
+    {
+        std::cout << "[SENSOR] " << message << std::endl;
+    }
+}
+
+void logSensor(const String& message)
+{
+    logSensor(message.c_str());
+}
+
+void logWiFi(const char* message)
+{
+    if (currentLogLevel >= LOG_INFO)
+    {
+        std::cout << "[WiFi] " << message << std::endl;
+    }
+}
+
+void logWiFi(const String& message)
+{
+    logWiFi(message.c_str());
+}
+
+void logMQTT(const char* message)
+{
+    if (currentLogLevel >= LOG_INFO)
+    {
+        std::cout << "[MQTT] " << message << std::endl;
+    }
+}
+
+void logMQTT(const String& message)
+{
+    logMQTT(message.c_str());
+}
+
+void logData(const char* message)
+{
+    if (currentLogLevel >= LOG_INFO)
+    {
+        std::cout << "[DATA] " << message << std::endl;
+    }
+}
+
+void logData(const String& message)
+{
+    logData(message.c_str());
+}
+
+void logSystem(const char* message)
+{
+    if (currentLogLevel >= LOG_INFO)
+    {
+        std::cout << "[SYSTEM] " << message << std::endl;
+    }
+}
+
+void logSystem(const String& message)
+{
+    logSystem(message.c_str());
+}
+
+// Остальные функции (заглушки)
 void logPrintHeader(const char* title, LogColor color)
 {
-    // Заглушка для тестирования
-    (void)title;
-    (void)color;
+    std::cout << "=== " << title << " ===" << std::endl;
 }
+
 void logPrintSeparator(const char* symbol, int length)
 {
-    (void)symbol;
-    (void)length;
+    for (int i = 0; i < length; i++)
+    {
+        std::cout << symbol;
+    }
+    std::cout << std::endl;
 }
+
 void logPrintBanner(const char* text)
 {
-    (void)text;
+    std::cout << "*** " << text << " ***" << std::endl;
 }
 
-void logError(const char* format, ...)
+void logUptime()
 {
-    (void)format;
-}
-void logWarn(const char* format, ...)
-{
-    (void)format;
-}
-void logInfo(const char* format, ...)
-{
-    (void)format;
-}
-void logDebug(const char* format, ...)
-{
-    (void)format;
-}
-void logSuccess(const char* format, ...)
-{
-    (void)format;
+    std::cout << "[UPTIME] System uptime: 123 seconds" << std::endl;
 }
 
-void logSensor(const char* format, ...)
+void logMemoryUsage()
 {
-    (void)format;
-}
-void logWiFi(const char* format, ...)
-{
-    (void)format;
-}
-void logMQTT(const char* format, ...)
-{
-    (void)format;
-}
-void logData(const char* format, ...)
-{
-    (void)format;
-}
-void logSystem(const char* format, ...)
-{
-    (void)format;
+    std::cout << "[MEMORY] Free heap: 64KB" << std::endl;
 }
 
-void logUptime() {}
-void logMemoryUsage() {}
-void logWiFiStatus() {}
+void logWiFiStatus()
+{
+    std::cout << "[WiFi] Status: Connected" << std::endl;
+}
