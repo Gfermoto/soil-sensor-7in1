@@ -19,7 +19,10 @@ SensorData sensorData;
 SensorCache sensorCache;
 String sensorLastError = "";
 
-static unsigned long lastIrrigationTs = 0;
+// Внутренние переменные и функции — только для этой единицы трансляции
+namespace {
+
+unsigned long lastIrrigationTs = 0;  // время последнего полива (для фильтрации всплесков)
 
 void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
 {
@@ -40,6 +43,121 @@ void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
     }
     logDebug("%s%s", prefix, hex_str.c_str());
 }
+
+uint16_t calculateCRC16(uint8_t* data, size_t length)
+{
+    uint16_t crc = 0xFFFF;
+
+    for (size_t i = 0; i < length; i++)
+    {
+        crc ^= (uint16_t)data[i];
+        for (int j = 0; j < 8; j++)
+        {
+            if (crc & 0x0001)
+            {
+                crc = (crc >> 1) ^ 0xA001;
+            }
+            else
+            {
+                crc = crc >> 1;
+            }
+        }
+    }
+
+    return crc;
+}
+
+void saveRawSnapshot(SensorData& d)
+{
+    d.raw_temperature = d.temperature;
+    d.raw_humidity = d.humidity;
+    d.raw_ec = d.ec;
+    d.raw_ph = d.ph;
+    d.raw_nitrogen = d.nitrogen;
+    d.raw_phosphorus = d.phosphorus;
+    d.raw_potassium = d.potassium;
+}
+
+void updateIrrigationFlag(SensorData& d)
+{
+    constexpr uint8_t WIN = 6;
+    static float buf[WIN] = {NAN};
+    static uint8_t idx = 0, filled = 0, persist = 0;
+
+    float baseline = d.humidity;
+    for (uint8_t i = 0; i < filled; ++i) baseline = (buf[i] < baseline) ? buf[i] : baseline;
+
+    bool spike = (filled == WIN) && (d.humidity - baseline >= config.irrigationSpikeThreshold) && (d.humidity > 25.0F);
+    persist = spike ? persist + 1 : 0;
+    if (persist >= 2)
+    {
+        lastIrrigationTs = millis();
+        persist = 0;
+    }
+
+    buf[idx] = d.humidity;
+    idx = (idx + 1) % WIN;
+    if (filled < WIN) ++filled;
+
+    d.recentIrrigation = (millis() - lastIrrigationTs) <= (unsigned long)config.irrigationHoldMinutes * 60000UL;
+}
+
+void applyCompensationIfEnabled(SensorData& d)
+{
+    if (!config.flags.calibrationEnabled) return;
+
+    SoilType soil = SoilType::LOAM;
+    SoilProfile profile = SoilProfile::SAND;
+    switch (config.soilProfile)
+    {
+        case 0:
+            soil = SoilType::SAND;
+            profile = SoilProfile::SAND;
+            break;
+        case 1:
+            soil = SoilType::LOAM;
+            profile = SoilProfile::LOAM;
+            break;
+        case 2:
+            soil = SoilType::PEAT;
+            profile = SoilProfile::PEAT;
+            break;
+        case 3:
+            soil = SoilType::CLAY;
+            profile = SoilProfile::CLAY;
+            break;
+        case 4:
+            soil = SoilType::SANDPEAT;
+            profile = SoilProfile::SANDPEAT;
+            break;
+    }
+
+    // Шаг 1: Применяем калибровочную таблицу CSV (лабораторная поверка)
+    float tempCalibrated = CalibrationManager::applyCalibration(d.temperature, profile);
+    float humCalibrated = CalibrationManager::applyCalibration(d.humidity, profile);
+    float ecCalibrated = CalibrationManager::applyCalibration(d.ec, profile);
+    float phCalibrated = CalibrationManager::applyCalibration(d.ph, profile);
+    float nCalibrated = CalibrationManager::applyCalibration(d.nitrogen, profile);
+    float pCalibrated = CalibrationManager::applyCalibration(d.phosphorus, profile);
+    float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);
+
+    // Шаг 2: Применяем математическую компенсацию (температурная, влажностная)
+    float ec25 = ecCalibrated / (1.0F + 0.021F * (tempCalibrated - 25.0F));
+    d.ec = correctEC(ec25, tempCalibrated, humCalibrated, soil);
+
+    d.ph = correctPH(phCalibrated, tempCalibrated);
+
+    d.nitrogen = nCalibrated;
+    d.phosphorus = pCalibrated;
+    d.potassium = kCalibrated;
+    correctNPK(tempCalibrated, humCalibrated, d.nitrogen, d.phosphorus, d.potassium, soil);
+
+    // Обновляем остальные значения
+    d.temperature = tempCalibrated;
+    d.humidity = humCalibrated;
+}
+
+} // namespace (anonymous)
 
 /**
  * @brief Тестирование работы SP3485E
@@ -109,30 +227,6 @@ void setupModbus()
 
     logSuccess("Modbus инициализирован");
     logPrintHeader("MODBUS ГОТОВ ДЛЯ ПОЛНОГО ТЕСТИРОВАНИЯ", LogColor::GREEN);
-}
-
-// Функция для расчета CRC16 Modbus
-uint16_t calculateCRC16(uint8_t* data, size_t length)
-{
-    uint16_t crc = 0xFFFF;
-
-    for (size_t i = 0; i < length; i++)
-    {
-        crc ^= (uint16_t)data[i];
-        for (int j = 0; j < 8; j++)
-        {
-            if (crc & 0x0001)
-            {
-                crc = (crc >> 1) ^ 0xA001;
-            }
-            else
-            {
-                crc = crc >> 1;
-            }
-        }
-    }
-
-    return crc;
 }
 
 bool validateSensorData(SensorData& data)
@@ -359,100 +453,6 @@ int readNPKParameters()
     if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0F, &sensorData.potassium, true)) success_count++;
 
     return success_count;
-}
-
-// ------------------------------------------------------------
-// 🔽 Helper functions to reduce cyclomatic complexity
-// ------------------------------------------------------------
-
-static void saveRawSnapshot(SensorData& d)
-{
-    d.raw_temperature = d.temperature;
-    d.raw_humidity = d.humidity;
-    d.raw_ec = d.ec;
-    d.raw_ph = d.ph;
-    d.raw_nitrogen = d.nitrogen;
-    d.raw_phosphorus = d.phosphorus;
-    d.raw_potassium = d.potassium;
-}
-
-static void updateIrrigationFlag(SensorData& d)
-{
-    constexpr uint8_t WIN = 6;
-    static float buf[WIN] = {NAN};
-    static uint8_t idx = 0, filled = 0, persist = 0;
-
-    float baseline = d.humidity;
-    for (uint8_t i = 0; i < filled; ++i) baseline = (buf[i] < baseline) ? buf[i] : baseline;
-
-    bool spike = (filled == WIN) && (d.humidity - baseline >= config.irrigationSpikeThreshold) && (d.humidity > 25.0F);
-    persist = spike ? persist + 1 : 0;
-    if (persist >= 2)
-    {
-        lastIrrigationTs = millis();
-        persist = 0;
-    }
-
-    buf[idx] = d.humidity;
-    idx = (idx + 1) % WIN;
-    if (filled < WIN) ++filled;
-
-    d.recentIrrigation = (millis() - lastIrrigationTs) <= (unsigned long)config.irrigationHoldMinutes * 60000UL;
-}
-
-static void applyCompensationIfEnabled(SensorData& d)
-{
-    if (!config.flags.calibrationEnabled) return;
-
-    SoilType soil = SoilType::LOAM;
-    SoilProfile profile = SoilProfile::SAND;
-    switch (config.soilProfile)
-    {
-        case 0:
-            soil = SoilType::SAND;
-            profile = SoilProfile::SAND;
-            break;
-        case 1:
-            soil = SoilType::LOAM;
-            profile = SoilProfile::LOAM;
-            break;
-        case 2:
-            soil = SoilType::PEAT;
-            profile = SoilProfile::PEAT;
-            break;
-        case 3:
-            soil = SoilType::CLAY;
-            profile = SoilProfile::CLAY;
-            break;
-        case 4:
-            soil = SoilType::SANDPEAT;
-            profile = SoilProfile::SANDPEAT;
-            break;
-    }
-
-    // Шаг 1: Применяем калибровочную таблицу CSV (лабораторная поверка)
-    float tempCalibrated = CalibrationManager::applyCalibration(d.temperature, profile);
-    float humCalibrated = CalibrationManager::applyCalibration(d.humidity, profile);
-    float ecCalibrated = CalibrationManager::applyCalibration(d.ec, profile);
-    float phCalibrated = CalibrationManager::applyCalibration(d.ph, profile);
-    float nCalibrated = CalibrationManager::applyCalibration(d.nitrogen, profile);
-    float pCalibrated = CalibrationManager::applyCalibration(d.phosphorus, profile);
-    float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);
-
-    // Шаг 2: Применяем математическую компенсацию (температурная, влажностная)
-    float ec25 = ecCalibrated / (1.0F + 0.021F * (tempCalibrated - 25.0F));
-    d.ec = correctEC(ec25, tempCalibrated, humCalibrated, soil);
-
-    d.ph = correctPH(phCalibrated, tempCalibrated);
-
-    d.nitrogen = nCalibrated;
-    d.phosphorus = pCalibrated;
-    d.potassium = kCalibrated;
-    correctNPK(tempCalibrated, humCalibrated, d.nitrogen, d.phosphorus, d.potassium, soil);
-
-    // Обновляем остальные значения
-    d.temperature = tempCalibrated;
-    d.humidity = humCalibrated;
 }
 
 /**
