@@ -1,20 +1,20 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 07.07.2025 23:13
+**Дата анализа:** 07.07.2025 23:21
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 227
+- **Всего предупреждений:** 190
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
-### Читаемость (129 проблем)
-- `readability-braces-around-statements`: 35 случаев
+### Читаемость (93 проблем)
 - ``: 23 случаев
 - `readability-identifier-length`: 19 случаев
 - `readability-static-accessed-through-instance`: 16 случаев
 - `readability-implicit-bool-conversion`: 12 случаев
+- `readability-math-missing-parentheses`: 5 случаев
 
 ### Прочее (2 проблем)
 - `performance-enum-size`: 2 случаев
@@ -30,9 +30,9 @@
 - `misc-use-anonymous-namespace`: 6 случаев
 - `misc-use-internal-linkage`: 5 случаев
 
-### Модернизация (16 проблем)
+### Модернизация (15 проблем)
 - `modernize-raw-string-literal`: 8 случаев
-- `modernize-use-auto`: 5 случаев
+- `modernize-use-auto`: 4 случаев
 - `modernize-return-braced-init-list`: 1 случаев
 - `modernize-avoid-c-arrays`: 1 случаев
 - `modernize-deprecated-headers`: 1 случаев
@@ -71,41 +71,40 @@
 
 ### src/main.cpp ✅ Проблем не найдено
 
-### src/modbus_sensor.cpp (38 предупреждений)
-**Читаемость:** 27 проблем
+### src/modbus_sensor.cpp (24 предупреждений)
+**Читаемость:** 14 проблем
 - src\modbus_sensor.cpp:48:34:: pointer parameter 'data' can be pointer to const [readability-non-const-parameter]
 - src\modbus_sensor.cpp:57:17:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
 - src\modbus_sensor.cpp:86:5:: multiple declarations in a single statement reduces readability [readability-isolate-declaration]
-- ... и ещё 24 проблем
+- ... и ещё 11 проблем
 
 **Разное:** 6 проблем
-- src\modbus_sensor.cpp:366:5:: variable 'pre_delay' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
-- src\modbus_sensor.cpp:370:5:: variable 'post_delay' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
-- src\modbus_sensor.cpp:426:13:: function 'readSingleRegister' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\modbus_sensor.cpp:369:5:: variable 'pre_delay' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+- src\modbus_sensor.cpp:373:5:: variable 'post_delay' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+- src\modbus_sensor.cpp:429:13:: function 'readSingleRegister' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - ... и ещё 3 проблем
 
-**Модернизация:** 3 проблем
-- src\modbus_sensor.cpp:438:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
-- src\modbus_sensor.cpp:444:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
-- src\modbus_sensor.cpp:713:15:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
+**Модернизация:** 2 проблем
+- src\modbus_sensor.cpp:441:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
+- src\modbus_sensor.cpp:447:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
 
 **Потенциальные баги:** 2 проблем
-- src\modbus_sensor.cpp:782:9:: if with identical then and else branches [bugprone-branch-clone]
-- src\modbus_sensor.cpp:799:22:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
+- src\modbus_sensor.cpp:765:9:: if with identical then and else branches [bugprone-branch-clone]
+- src\modbus_sensor.cpp:782:22:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
 
-### src/mqtt_client.cpp (8 предупреждений)
+### src/mqtt_client.cpp (7 предупреждений)
 **Разное:** 2 проблем
 - src\mqtt_client.cpp:105:18:: function 'getCachedIP' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- src\mqtt_client.cpp:791:5:: variable 'currentTime' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+- src\mqtt_client.cpp:794:5:: variable 'currentTime' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
 
-**Читаемость:** 5 проблем
+**Читаемость:** 4 проблем
 - src\mqtt_client.cpp:206:9:: static member accessed through instance [readability-static-accessed-through-instance]
 - src\mqtt_client.cpp:761:18:: variable name 't' is too short, expected at least 3 characters [readability-identifier-length]
-- src\mqtt_client.cpp:763:46:: statement should be inside braces [readability-braces-around-statements]
-- ... и ещё 2 проблем
+- src\mqtt_client.cpp:807:9:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
+- ... и ещё 1 проблем
 
 **Модернизация:** 1 проблем
-- src\mqtt_client.cpp:815:12:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
+- src\mqtt_client.cpp:818:12:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
 
 ### src/ota_manager.cpp (17 предупреждений)
 **Потенциальные баги:** 2 проблем
@@ -200,11 +199,11 @@
 **Модернизация:** 1 проблем
 - src\web\routes_config.cpp:359:68:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
-### src/web/routes_data.cpp (41 предупреждений)
+### src/web/routes_data.cpp (19 предупреждений)
 **Модернизация:** 3 проблем
 - src\web\routes_data.cpp:10:10:: inclusion of deprecated C++ header 'time.h'; consider using 'ctime' instead [modernize-deprecated-headers]
 - src\web\routes_data.cpp:308:64:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-- src\web\routes_data.cpp:734:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_data.cpp:786:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
 **Разное:** 7 проблем
 - src\web\routes_data.cpp:117:5:: variable 'soil' of type 'int' can be declared 'const' [misc-const-correctness]
@@ -212,11 +211,11 @@
 - src\web\routes_data.cpp:329:5:: variable 'rec' of type 'RecValues' can be declared 'const' [misc-const-correctness]
 - ... и ещё 4 проблем
 
-**Читаемость:** 28 проблем
+**Читаемость:** 6 проблем
 - src\web\routes_data.cpp:162:27:: implicit conversion 'struct tm *' -> 'bool' [readability-implicit-bool-conversion]
 - src\web\routes_data.cpp:369:20:: variable name 'ti' is too short, expected at least 3 characters [readability-identifier-length]
 - src\web\routes_data.cpp:374:17:: variable name 'm' is too short, expected at least 3 characters [readability-identifier-length]
-- ... и ещё 25 проблем
+- ... и ещё 3 проблем
 
 **Потенциальные баги:** 3 проблем
 - src\web\routes_data.cpp:187:13:: repeated branch body in conditional chain [bugprone-branch-clone]

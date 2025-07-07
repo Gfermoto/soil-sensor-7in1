@@ -392,17 +392,41 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
     String alerts = "";
     auto append = [&](const char* n)
     {
-        if (alerts.length()) alerts += ", ";
+        if (alerts.length())
+        {
+            alerts += ", ";
+        }
         alerts += n;
     };
     // Физические пределы датчика
-    if (sensorData.temperature < TEMP_MIN_VALID || sensorData.temperature > TEMP_MAX_VALID) append("T");
-    if (sensorData.humidity < HUM_MIN_VALID || sensorData.humidity > HUM_MAX_VALID) append("θ");
-    if (sensorData.ec < 0 || sensorData.ec > EC_MAX_VALID) append("EC");
-    if (sensorData.ph < 3 || sensorData.ph > 9) append("pH");
-    if (sensorData.nitrogen < 0 || sensorData.nitrogen > NPK_MAX_VALID) append("N");
-    if (sensorData.phosphorus < 0 || sensorData.phosphorus > NPK_MAX_VALID) append("P");
-    if (sensorData.potassium < 0 || sensorData.potassium > NPK_MAX_VALID) append("K");
+    if (sensorData.temperature < TEMP_MIN_VALID || sensorData.temperature > TEMP_MAX_VALID)
+    {
+        append("T");
+    }
+    if (sensorData.humidity < HUM_MIN_VALID || sensorData.humidity > HUM_MAX_VALID)
+    {
+        append("θ");
+    }
+    if (sensorData.ec < 0 || sensorData.ec > EC_MAX_VALID)
+    {
+        append("EC");
+    }
+    if (sensorData.ph < 3 || sensorData.ph > 9)
+    {
+        append("pH");
+    }
+    if (sensorData.nitrogen < 0 || sensorData.nitrogen > NPK_MAX_VALID)
+    {
+        append("N");
+    }
+    if (sensorData.phosphorus < 0 || sensorData.phosphorus > NPK_MAX_VALID)
+    {
+        append("P");
+    }
+    if (sensorData.potassium < 0 || sensorData.potassium > NPK_MAX_VALID)
+    {
+        append("K");
+    }
     doc["alerts"] = alerts;
 
     doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
@@ -484,33 +508,61 @@ void setupDataRoutes()
             {
                 const char* id = config.cropId;
                 if (strcmp(id, "tomato") == 0)
+                {
                     recHeader = "Томаты";
+                }
                 else if (strcmp(id, "cucumber") == 0)
+                {
                     recHeader = "Огурцы";
+                }
                 else if (strcmp(id, "pepper") == 0)
+                {
                     recHeader = "Перец";
+                }
                 else if (strcmp(id, "lettuce") == 0)
+                {
                     recHeader = "Салат";
+                }
                 else if (strcmp(id, "blueberry") == 0)
+                {
                     recHeader = "Голубика";
+                }
                 else if (strcmp(id, "lawn") == 0)
+                {
                     recHeader = "Газон";
+                }
                 else if (strcmp(id, "grape") == 0)
+                {
                     recHeader = "Виноград";
+                }
                 else if (strcmp(id, "conifer") == 0)
+                {
                     recHeader = "Хвойные";
+                }
                 else if (strcmp(id, "strawberry") == 0)
+                {
                     recHeader = "Клубника";
+                }
                 else if (strcmp(id, "apple") == 0)
+                {
                     recHeader = "Яблоня";
+                }
                 else if (strcmp(id, "pear") == 0)
+                {
                     recHeader = "Груша";
+                }
                 else if (strcmp(id, "cherry") == 0)
+                {
                     recHeader = "Вишня";
+                }
                 else if (strcmp(id, "raspberry") == 0)
+                {
                     recHeader = "Малина";
+                }
                 else if (strcmp(id, "currant") == 0)
+                {
                     recHeader = "Смородина";
+                }
             }
 
             html += "<div class='section'><table class='data'><thead><tr><th></th><th>RAW</th><th>Компенс.</th><th>" +

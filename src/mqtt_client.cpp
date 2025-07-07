@@ -760,7 +760,10 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)  // NOLINT(mi
 {
     const String t = String(topic);
     String message;
-    for (unsigned int i = 0; i < length; ++i) message += (char)payload[i];
+    for (unsigned int i = 0; i < length; ++i)
+    {
+        message += (char)payload[i];
+    }
     DEBUG_PRINTF("[mqttCallback] Получено сообщение: %s = %s\n", t.c_str(), message.c_str());
     if (t == getCommandTopic() || t == getOtaCommandTopic())
     {

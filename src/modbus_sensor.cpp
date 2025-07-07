@@ -324,7 +324,10 @@ bool readErrorStatus()
 
 bool changeDeviceAddress(uint8_t new_address)
 {
-    if (new_address < 1 || new_address > 247) return false;
+    if (new_address < 1 || new_address > 247)
+    {
+        return false;
+    }
 
     const uint8_t result = modbus.writeSingleRegister(REG_DEVICE_ADDRESS, new_address);
     if (result == modbus.ku8MBSuccess)
@@ -464,16 +467,28 @@ static int readBasicParameters()  // NOLINT(misc-use-anonymous-namespace)
     int success_count = 0;
 
     // pH (÷ 100)
-    if (readSingleRegister(REG_PH, "pH", 0.01F, &sensorData.ph, true)) success_count++;
+    if (readSingleRegister(REG_PH, "pH", 0.01F, &sensorData.ph, true))
+    {
+        success_count++;
+    }
 
     // Влажность (÷ 10)
-    if (readSingleRegister(REG_SOIL_MOISTURE, "Влажность", 0.1F, &sensorData.humidity, true)) success_count++;
+    if (readSingleRegister(REG_SOIL_MOISTURE, "Влажность", 0.1F, &sensorData.humidity, true))
+    {
+        success_count++;
+    }
 
     // Температура (÷ 10)
-    if (readSingleRegister(REG_SOIL_TEMP, "Температура", 0.1F, &sensorData.temperature, true)) success_count++;
+    if (readSingleRegister(REG_SOIL_TEMP, "Температура", 0.1F, &sensorData.temperature, true))
+    {
+        success_count++;
+    }
 
     // EC (без деления)
-    if (readSingleRegister(REG_CONDUCTIVITY, "EC", 1.0F, &sensorData.ec, true)) success_count++;
+    if (readSingleRegister(REG_CONDUCTIVITY, "EC", 1.0F, &sensorData.ec, true))
+    {
+        success_count++;
+    }
 
     return success_count;
 }
@@ -487,13 +502,22 @@ static int readNPKParameters()  // NOLINT(misc-use-anonymous-namespace)
     int success_count = 0;
 
     // Азот
-    if (readSingleRegister(REG_NITROGEN, "Азот", 1.0F, &sensorData.nitrogen, true)) success_count++;
+    if (readSingleRegister(REG_NITROGEN, "Азот", 1.0F, &sensorData.nitrogen, true))
+    {
+        success_count++;
+    }
 
     // Фосфор
-    if (readSingleRegister(REG_PHOSPHORUS, "Фосфор", 1.0F, &sensorData.phosphorus, true)) success_count++;
+    if (readSingleRegister(REG_PHOSPHORUS, "Фосфор", 1.0F, &sensorData.phosphorus, true))
+    {
+        success_count++;
+    }
 
     // Калий
-    if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0F, &sensorData.potassium, true)) success_count++;
+    if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0F, &sensorData.potassium, true))
+    {
+        success_count++;
+    }
 
     return success_count;
 }
@@ -666,88 +690,47 @@ void initMovingAverageBuffers(SensorData& data)
 void addToMovingAverage(SensorData& data, const SensorData& newReading)
 {
     uint8_t window_size = config.movingAverageWindow;
-    if (window_size < 5) window_size = 5;
-    if (window_size > 15) window_size = 15;
-
-    // ---------- O(1) running sum для каждого параметра ----------
-    static float sum_temp = 0.0F, sum_hum = 0.0F, sum_ec = 0.0F, sum_ph = 0.0F, sum_n = 0.0F, sum_p = 0.0F,
-                 sum_k = 0.0F;
-
-    // Если буфер заполнен – вычитаем значение, которое покинет окно
-    if (data.buffer_filled >= window_size)
+    if (window_size < 5)
     {
-        sum_temp -= data.temp_buffer[data.buffer_index];
-        sum_hum -= data.hum_buffer[data.buffer_index];
-        sum_ec -= data.ec_buffer[data.buffer_index];
-        sum_ph -= data.ph_buffer[data.buffer_index];
-        sum_n -= data.n_buffer[data.buffer_index];
-        sum_p -= data.p_buffer[data.buffer_index];
-        sum_k -= data.k_buffer[data.buffer_index];
+        window_size = 5;
+    }
+    if (window_size > 15)
+    {
+        window_size = 15;
     }
 
-    // Записываем новые значения в буфер и добавляем их к сумме
+    // Обновляем буферы
     data.temp_buffer[data.buffer_index] = newReading.temperature;
-    sum_temp += newReading.temperature;
     data.hum_buffer[data.buffer_index] = newReading.humidity;
-    sum_hum += newReading.humidity;
     data.ec_buffer[data.buffer_index] = newReading.ec;
-    sum_ec += newReading.ec;
     data.ph_buffer[data.buffer_index] = newReading.ph;
-    sum_ph += newReading.ph;
     data.n_buffer[data.buffer_index] = newReading.nitrogen;
-    sum_n += newReading.nitrogen;
     data.p_buffer[data.buffer_index] = newReading.phosphorus;
-    sum_p += newReading.phosphorus;
     data.k_buffer[data.buffer_index] = newReading.potassium;
-    sum_k += newReading.potassium;
 
-    // Обновляем индексы кольцевого буфера
+    // Обновляем индекс
     data.buffer_index = (data.buffer_index + 1) % window_size;
-    if (data.buffer_filled < window_size) data.buffer_filled++;
-
-    const uint8_t effective_window = (data.buffer_filled < window_size) ? data.buffer_filled : window_size;
-
-    if (effective_window >= 3 && config.filterAlgorithm == 0)
+    if (data.buffer_filled < window_size)
     {
-        // Среднее (O(1))
-        const float window_float = static_cast<float>(effective_window);
-        data.temperature = sum_temp / window_float;
-        data.humidity = sum_hum / window_float;
-        data.ec = sum_ec / window_float;
-        data.ph = sum_ph / window_float;
-        data.nitrogen = sum_n / window_float;
-        data.phosphorus = sum_p / window_float;
-        data.potassium = sum_k / window_float;
+        data.buffer_filled++;
+    }
 
-        DEBUG_PRINTF("[AVG O1] win=%d temp=%.1f\n", effective_window, data.temperature);
-    }
-    else if (effective_window >= 3)
-    {
-        // Оставляем старый алгоритм для медианы и др.
-        data.temperature = calculateMovingAverage(data.temp_buffer, window_size, data.buffer_filled);
-        data.humidity = calculateMovingAverage(data.hum_buffer, window_size, data.buffer_filled);
-        data.ec = calculateMovingAverage(data.ec_buffer, window_size, data.buffer_filled);
-        data.ph = calculateMovingAverage(data.ph_buffer, window_size, data.buffer_filled);
-        data.nitrogen = calculateMovingAverage(data.n_buffer, window_size, data.buffer_filled);
-        data.phosphorus = calculateMovingAverage(data.p_buffer, window_size, data.buffer_filled);
-        data.potassium = calculateMovingAverage(data.k_buffer, window_size, data.buffer_filled);
-    }
-    else
-    {
-        // Пока мало данных – возвращаем последние значения
-        data.temperature = newReading.temperature;
-        data.humidity = newReading.humidity;
-        data.ec = newReading.ec;
-        data.ph = newReading.ph;
-        data.nitrogen = newReading.nitrogen;
-        data.phosphorus = newReading.phosphorus;
-        data.potassium = newReading.potassium;
-    }
+    // Вычисляем скользящее среднее
+    data.temperature = calculateMovingAverage(data.temp_buffer, window_size, data.buffer_filled);
+    data.humidity = calculateMovingAverage(data.hum_buffer, window_size, data.buffer_filled);
+    data.ec = calculateMovingAverage(data.ec_buffer, window_size, data.buffer_filled);
+    data.ph = calculateMovingAverage(data.ph_buffer, window_size, data.buffer_filled);
+    data.nitrogen = calculateMovingAverage(data.n_buffer, window_size, data.buffer_filled);
+    data.phosphorus = calculateMovingAverage(data.p_buffer, window_size, data.buffer_filled);
+    data.potassium = calculateMovingAverage(data.k_buffer, window_size, data.buffer_filled);
 }
 
 float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
 {
-    if (filled == 0) return 0.0F;
+    if (filled == 0)
+    {
+        return 0.0F;
+    }
 
     // Берем последние filled элементов (или window_size, если filled >= window_size)
     const uint8_t elements_to_use = (filled < window_size) ? filled : window_size;
