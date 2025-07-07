@@ -724,12 +724,12 @@ float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
         {
             for (uint8_t j = 0; j < elements_to_use - i - 1; ++j)
             {
-                            if (temp_values.at(j) > temp_values.at(j + 1))
-            {
-                const float temp = temp_values.at(j);
-                temp_values.at(j) = temp_values.at(j + 1);
-                temp_values.at(j + 1) = temp;
-            }
+                if (temp_values.at(j) > temp_values.at(j + 1))
+                {
+                    const float temp = temp_values.at(j);
+                    temp_values.at(j) = temp_values.at(j + 1);
+                    temp_values.at(j + 1) = temp;
+                }
             }
         }
 

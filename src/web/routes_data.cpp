@@ -73,10 +73,7 @@ RecValues computeRecommendations()
         } else if (strcmp(cropId, "strawberry") == 0) {
             rec = {TEST_DATA_TEMP_BASE,     TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE - 0.3F,
                    TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
-        } else if (strcmp(cropId, "apple") == 0) {
-            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE + 0.2F,
-                   TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
-        } else if (strcmp(cropId, "pear") == 0) {
+        } else if (strcmp(cropId, "apple") == 0 || strcmp(cropId, "pear") == 0) {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
         } else if (strcmp(cropId, "cherry") == 0) {
@@ -102,13 +99,9 @@ RecValues computeRecommendations()
         rec.hum += TEST_DATA_HUM_VARIATION;
         rec.ph -= 0.3F;
     }
-    else if (soil == 3)
+    else if (soil == 3 || soil == 1)
     {
-        rec.hum += 5; /* глина */
-    }
-    else if (soil == 1)
-    {
-        rec.hum += 5;
+        rec.hum += 5; /* глина или суглинок */
     }
 
     // 3. Коррекция по environmentType

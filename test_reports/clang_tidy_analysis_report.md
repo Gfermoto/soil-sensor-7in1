@@ -1,46 +1,43 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 07.07.2025 15:25
+**Дата анализа:** 07.07.2025 18:19
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 341
+- **Всего предупреждений:** 325
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
-### Читаемость (157 проблем)
+### Читаемость (158 проблем)
 - `readability-braces-around-statements`: 47 случаев
 - `readability-identifier-length`: 32 случаев
 - ``: 23 случаев
 - `readability-implicit-bool-conversion`: 17 случаев
 - `readability-static-accessed-through-instance`: 16 случаев
 
-### Модернизация (49 проблем)
+### Модернизация (48 проблем)
 - `modernize-avoid-c-arrays`: 12 случаев
 - `modernize-macro-to-enum`: 12 случаев
 - `modernize-raw-string-literal`: 9 случаев
 - `modernize-use-nullptr`: 5 случаев
 - `modernize-use-auto`: 5 случаев
 
-### Разное (93 проблем)
+### Разное (94 проблем)
 - `misc-const-correctness`: 90 случаев
+- `misc-use-internal-linkage`: 2 случаев
 - `misc-unused-parameters`: 1 случаев
-- `misc-use-internal-linkage`: 1 случаев
 - `misc-use-anonymous-namespace`: 1 случаев
 
 ### Прочее (1 проблем)
 - `performance-enum-size`: 1 случаев
 
-### Потенциальные баги (29 проблем)
-- `bugprone-easily-swappable-parameters`: 17 случаев
-- `bugprone-branch-clone`: 8 случаев
+### Потенциальные баги (24 проблем)
+- `bugprone-easily-swappable-parameters`: 15 случаев
+- `bugprone-branch-clone`: 5 случаев
 - `bugprone-narrowing-conversions`: 2 случаев
 - `bugprone-switch-missing-default-case`: 1 случаев
 - `bugprone-too-small-loop-variable`: 1 случаев
-
-### Безопасность (12 проблем)
-- `cert-dcl50-cpp`: 12 случаев
 
 ## 📁 ДЕТАЛЬНЫЙ АНАЛИЗ ПО ФАЙЛАМ
 ### src/calibration_manager.cpp (5 предупреждений)
@@ -62,35 +59,26 @@
 **Разное:** 1 проблем
 - src\fake_sensor.cpp:14:27:: parameter 'pvParameters' is unused [misc-unused-parameters]
 
-### src/jxct_format_utils.cpp (4 предупреждений)
+### src/jxct_format_utils.cpp (5 предупреждений)
 **Прочее:** 1 проблем
 - src\jxct_format_utils.cpp:7:12:: enum 'FormatType' uses a larger base type ('int', size: 4 bytes) than necessary for its value set, consider using 'std::uint8_t' (1 byte) as the base type to reduce its size [performance-enum-size]
 
-**Потенциальные баги:** 3 проблем
-- src\jxct_format_utils.cpp:13:25:: 2 adjacent parameters of 'formatFloat' of convertible types are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\jxct_format_utils.cpp:16:5:: if with identical then and else branches [bugprone-branch-clone]
-- src\jxct_format_utils.cpp:60:9:: switch has 4 consecutive identical branches [bugprone-branch-clone]
+**Читаемость:** 3 проблем
+- src\jxct_format_utils.cpp:17:23:: parameter name 'p' is too short, expected at least 3 characters [readability-identifier-length]
+- src\jxct_format_utils.cpp:17:37:: parameter name 'ft' is too short, expected at least 3 characters [readability-identifier-length]
+- src\jxct_format_utils.cpp:71:56:: conditional operator is used as sub-expression of parent conditional operator, refrain from using nested conditional operators [readability-avoid-nested-conditional-operator]
+
+**Потенциальные баги:** 1 проблем
+- src\jxct_format_utils.cpp:28:5:: if with identical then and else branches [bugprone-branch-clone]
 
 ### src/jxct_ui_system.cpp (1 предупреждений)
 **Модернизация:** 1 проблем
 - src\jxct_ui_system.cpp:6:18:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 
-### src/logger.cpp (16 предупреждений)
-**Безопасность:** 12 проблем
-- src\logger.cpp:34:8:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
-- src\logger.cpp:261:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
-- src\logger.cpp:279:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
-- ... и ещё 9 проблем
-
-**Модернизация:** 1 проблем
-- src\logger.cpp:45:16:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
-
-**Разное:** 1 проблем
-- src\logger.cpp:59:8:: function 'formatLogMessageSafe' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-
+### src/logger.cpp (2 предупреждений)
 **Читаемость:** 2 проблем
-- src\logger.cpp:484:9:: static member accessed through instance [readability-static-accessed-through-instance]
-- src\logger.cpp:491:68:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\logger.cpp:194:9:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\logger.cpp:200:73:: static member accessed through instance [readability-static-accessed-through-instance]
 
 ### src/main.cpp (4 предупреждений)
 **Модернизация:** 3 проблем
@@ -144,8 +132,8 @@
 
 ### src/ota_manager.cpp (18 предупреждений)
 **Читаемость:** 7 проблем
-- src\ota_manager.cpp:70:56:: implicit conversion 'const char *' -> 'bool' [readability-implicit-bool-conversion]
-- src\ota_manager.cpp:71:51:: implicit conversion 'WiFiClient *' -> 'bool' [readability-implicit-bool-conversion]
+- src\ota_manager.cpp:70:25:: implicit conversion 'const char *' -> 'bool' [readability-implicit-bool-conversion]
+- src\ota_manager.cpp:71:25:: implicit conversion 'WiFiClient *' -> 'bool' [readability-implicit-bool-conversion]
 - src\ota_manager.cpp:74:10:: implicit conversion 'const char *' -> 'bool' [readability-implicit-bool-conversion]
 - ... и ещё 4 проблем
 
@@ -166,23 +154,26 @@
 
 ### src/routes_calibration.cpp ✅ Проблем не найдено
 
-### src/sensor_compensation.cpp (20 предупреждений)
+### src/sensor_compensation.cpp (19 предупреждений)
 **Модернизация:** 6 проблем
 - src\sensor_compensation.cpp:2:10:: inclusion of deprecated C++ header 'math.h'; consider using 'cmath' instead [modernize-deprecated-headers]
 - src\sensor_compensation.cpp:3:10:: inclusion of deprecated C++ header 'time.h'; consider using 'ctime' instead [modernize-deprecated-headers]
 - src\sensor_compensation.cpp:7:18:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - ... и ещё 3 проблем
 
-**Читаемость:** 11 проблем
+**Читаемость:** 9 проблем
 - src\sensor_compensation.cpp:26:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
 - src\sensor_compensation.cpp:30:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
 - src\sensor_compensation.cpp:34:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
-- ... и ещё 8 проблем
+- ... и ещё 6 проблем
 
-**Потенциальные баги:** 3 проблем
-- src\sensor_compensation.cpp:40:30:: 2 adjacent parameters of 'correctEC' of similar type ('float') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\sensor_compensation.cpp:59:17:: 2 adjacent parameters of 'correctNPK' of similar type ('float') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\sensor_compensation.cpp:59:39:: 3 adjacent parameters of 'correctNPK' of similar type ('float &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+**Потенциальные баги:** 2 проблем
+- src\sensor_compensation.cpp:44:26:: 2 adjacent parameters of 'ECCompensationParams' of similar type ('float') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- src\sensor_compensation.cpp:69:53:: 3 adjacent parameters of 'correctNPK' of similar type ('float &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+
+**Разное:** 2 проблем
+- src\sensor_compensation.cpp:50:7:: function 'correctEC' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- src\sensor_compensation.cpp:69:6:: function 'correctNPK' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 
 ### src/thingspeak_client.cpp (3 предупреждений)
 **Модернизация:** 1 проблем
@@ -264,29 +255,28 @@
 **Модернизация:** 1 проблем
 - src\web\routes_config.cpp:361:68:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
-### src/web/routes_data.cpp (45 предупреждений)
+### src/web/routes_data.cpp (43 предупреждений)
 **Модернизация:** 3 проблем
 - src\web\routes_data.cpp:10:10:: inclusion of deprecated C++ header 'time.h'; consider using 'ctime' instead [modernize-deprecated-headers]
-- src\web\routes_data.cpp:277:64:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-- src\web\routes_data.cpp:698:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-
-**Потенциальные баги:** 5 проблем
-- src\web\routes_data.cpp:76:50:: repeated branch body in conditional chain [bugprone-branch-clone]
-- src\web\routes_data.cpp:106:5:: repeated branch body in conditional chain [bugprone-branch-clone]
-- src\web\routes_data.cpp:169:13:: repeated branch body in conditional chain [bugprone-branch-clone]
-- ... и ещё 2 проблем
+- src\web\routes_data.cpp:270:64:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_data.cpp:691:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
 **Разное:** 8 проблем
-- src\web\routes_data.cpp:95:5:: variable 'soil' of type 'int' can be declared 'const' [misc-const-correctness]
-- src\web\routes_data.cpp:145:9:: variable 'rainy' of type 'bool' can be declared 'const' [misc-const-correctness]
-- src\web\routes_data.cpp:257:9:: variable 'profileStr' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\web\routes_data.cpp:92:5:: variable 'soil' of type 'int' can be declared 'const' [misc-const-correctness]
+- src\web\routes_data.cpp:138:9:: variable 'rainy' of type 'bool' can be declared 'const' [misc-const-correctness]
+- src\web\routes_data.cpp:250:9:: variable 'profileStr' of type 'String' can be declared 'const' [misc-const-correctness]
 - ... и ещё 5 проблем
 
 **Читаемость:** 29 проблем
-- src\web\routes_data.cpp:144:13:: variable name 'm' is too short, expected at least 3 characters [readability-identifier-length]
-- src\web\routes_data.cpp:144:17:: implicit conversion 'struct tm *' -> 'bool' [readability-implicit-bool-conversion]
-- src\web\routes_data.cpp:337:20:: variable name 'ti' is too short, expected at least 3 characters [readability-identifier-length]
+- src\web\routes_data.cpp:137:13:: variable name 'm' is too short, expected at least 3 characters [readability-identifier-length]
+- src\web\routes_data.cpp:137:17:: implicit conversion 'struct tm *' -> 'bool' [readability-implicit-bool-conversion]
+- src\web\routes_data.cpp:330:20:: variable name 'ti' is too short, expected at least 3 characters [readability-identifier-length]
 - ... и ещё 26 проблем
+
+**Потенциальные баги:** 3 проблем
+- src\web\routes_data.cpp:162:13:: repeated branch body in conditional chain [bugprone-branch-clone]
+- src\web\routes_data.cpp:183:13:: repeated branch body in conditional chain [bugprone-branch-clone]
+- src\web\routes_data.cpp:189:13:: repeated branch body in conditional chain [bugprone-branch-clone]
 
 ### src/web/routes_main.cpp (18 предупреждений)
 **Разное:** 18 проблем
@@ -337,7 +327,6 @@
 
 ### 🔴 КРИТИЧЕСКИЕ (исправить немедленно)
 - Потенциальные баги - могут привести к неправильной работе
-- Проблемы безопасности - могут создать уязвимости
 
 ### 🟡 СРЕДНИЕ (исправить в ближайшее время)
 - Проблемы читаемости - затрудняют сопровождение кода

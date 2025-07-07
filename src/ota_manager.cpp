@@ -271,10 +271,10 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
                 }
                 else
                 {
-                    int percent = static_cast<int>((totalDownloaded * 100) / contentLen);
+                    const int percent = static_cast<int>((totalDownloaded * 100ULL) / static_cast<unsigned long long>(contentLen));
                     snprintf(statusBuf.data(), sizeof(statusBuf), "Загружено %d%%", percent);
                 }
-                logSystemSafe("\1", static_cast<int>(totalDownloaded));
+                logSystemSafe("\1", static_cast<long long>(totalDownloaded));
                 lastProgress = millis();
             }
         }
@@ -283,7 +283,7 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
             // Если весь файл уже получен, прекращаем ожидание доп.данных
             if (!isChunked && totalDownloaded == (size_t)contentLen)
             {
-                logSystemSafe("\1", static_cast<int>(totalDownloaded));
+                logSystemSafe("\1", static_cast<long long>(totalDownloaded));
                 break;
             }
 
@@ -297,7 +297,7 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
 
             if (isChunked && !http.connected())
             {
-                logSystemSafe("\1", static_cast<int>(totalDownloaded));
+                logSystemSafe("\1", static_cast<long long>(totalDownloaded));
                 break;
             }
 
@@ -308,8 +308,8 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
 
     if (!isChunked && totalDownloaded != (size_t)contentLen)
     {
-        snprintf(statusBuf.data(), sizeof(statusBuf), "Неполная загрузка %d/%d", static_cast<int>(totalDownloaded), contentLen);
-        logErrorSafe("\1", static_cast<int>(totalDownloaded), contentLen);
+        snprintf(statusBuf.data(), sizeof(statusBuf), "Неполная загрузка %lld/%d", static_cast<long long>(totalDownloaded), contentLen);
+        logErrorSafe("\1", static_cast<long long>(totalDownloaded), contentLen);
         Update.abort();
         return false;
     }
@@ -604,7 +604,7 @@ void handleOTA()
     }
     if (strlen(sha256) != 64U)
     {
-        logErrorSafe("\1", strlen(sha256));
+        logErrorSafe("\1", static_cast<unsigned int>(strlen(sha256)));
         strlcpy(statusBuf.data(), "Неверная подпись", sizeof(statusBuf));
         return;
     }

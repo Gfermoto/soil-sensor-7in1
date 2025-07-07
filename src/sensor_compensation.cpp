@@ -35,17 +35,27 @@ inline float k_h_K(float theta)
 }
 }
 
+// Строгая типизация для предотвращения ошибок
+struct ECCompensationParams {
+    float temperature;
+    float moisture;
+    SoilType soilType;
+    
+    ECCompensationParams(float temp, float moist, SoilType soil) 
+        : temperature(temp), moisture(moist), soilType(soil) {}
+};
+
 // ------------------------------------------------------------------
 // EC ----------------------------------------------------------------
-float correctEC(float ecRaw, float T, float theta, SoilType soil)
+float correctEC(float ecRaw, const ECCompensationParams& params)
 {
     // Шаг 1. Температурная компенсация к 25 °C
-    float ec25 = ecRaw / (1.0F + 0.021F * (T - 25.0F));
+    float ec25 = ecRaw / (1.0F + 0.021F * (params.temperature - 25.0F));
 
     // Шаг 2. Перевод к ECe (насыщенная паста)
     constexpr float THETA_SAT = 45.0F;  // %
-    const float k = SOIL_EC[(int)soil].k;
-    return ec25 * powf(THETA_SAT / theta, 1.0F + k);
+    const float k = SOIL_EC[static_cast<int>(params.soilType)].k;
+    return ec25 * powf(THETA_SAT / params.moisture, 1.0F + k);
 }
 
 // pH ----------------------------------------------------------------
@@ -56,35 +66,49 @@ float correctPH(float phRaw, float T)
 }
 
 // NPK ---------------------------------------------------------------
-void correctNPK(float T, float theta, float& N, float& P, float& K, SoilType soil)
+void correctNPK(const ECCompensationParams& params, float& N, float& P, float& K)
 {
-    if (theta < 25.0F || theta > 60.0F)
+    if (params.moisture < 25.0F || params.moisture > 60.0F)
     {
         return;  // валидация – оставляем как есть
     }
 
-    const int idx = (int)soil;
+    const int idx = static_cast<int>(params.soilType);
 
     // Температурная коррекция
-    N *= (1.0F - k_t_N[idx] * (T - 25.0F));
-    P *= (1.0F - k_t_P[idx] * (T - 25.0F));
-    K *= (1.0F - k_t_K[idx] * (T - 25.0F));
+    N *= (1.0F - k_t_N[idx] * (params.temperature - 25.0F));
+    P *= (1.0F - k_t_P[idx] * (params.temperature - 25.0F));
+    K *= (1.0F - k_t_K[idx] * (params.temperature - 25.0F));
 
     // Влажностная коррекция
-    N *= k_h_N(theta);
-    P *= k_h_P(theta);
-    K *= k_h_K(theta);
+    N *= k_h_N(params.moisture);
+    P *= k_h_P(params.moisture);
+    K *= k_h_K(params.moisture);
 }
 
 // ✅ ТИПОБЕЗОПАСНЫЕ ВЕРСИИ (предотвращают перепутывание параметров)
 // ------------------------------------------------------------------
 float correctEC(float ecRaw, const EnvironmentalConditions& env, SoilType soil)
 {
-    return correctEC(ecRaw, env.temperature, env.moisture, soil);
+    return correctEC(ecRaw, ECCompensationParams(env.temperature, env.moisture, soil));
 }
 
 void correctNPK(const EnvironmentalConditions& env, NPKReferences& npk, SoilType soil)
 {
-    correctNPK(env.temperature, env.moisture, npk.nitrogen, npk.phosphorus, npk.potassium, soil);
+    correctNPK(ECCompensationParams(env.temperature, env.moisture, soil), 
+               npk.nitrogen, npk.phosphorus, npk.potassium);
+}
+// ------------------------------------------------------------------
+
+// --- ОБРАТНАЯ СОВМЕСТИМОСТЬ: старые сигнатуры (тонкие обёртки) ---
+float correctEC(float ecRaw, float T, float theta, SoilType soil)
+{
+    return correctEC(ecRaw, EnvironmentalConditions{T, theta}, soil);
+}
+
+void correctNPK(float T, float theta, float& N, float& P, float& K, SoilType soil)
+{
+    NPKReferences npk{N, P, K};
+    correctNPK(EnvironmentalConditions{T, theta}, npk, soil);
 }
 // ------------------------------------------------------------------
