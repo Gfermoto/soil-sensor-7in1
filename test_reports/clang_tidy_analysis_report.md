@@ -1,12 +1,12 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 07.07.2025 14:09
+**Дата анализа:** 07.07.2025 15:07
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 344
+- **Всего предупреждений:** 342
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
 ### Читаемость (157 проблем)
@@ -29,10 +29,13 @@
 - `misc-use-internal-linkage`: 1 случаев
 - `misc-use-anonymous-namespace`: 1 случаев
 
-### Потенциальные баги (33 проблем)
-- `bugprone-easily-swappable-parameters`: 18 случаев
+### Прочее (1 проблем)
+- `performance-enum-size`: 1 случаев
+
+### Потенциальные баги (30 проблем)
+- `bugprone-easily-swappable-parameters`: 17 случаев
 - `bugprone-branch-clone`: 8 случаев
-- `bugprone-narrowing-conversions`: 5 случаев
+- `bugprone-narrowing-conversions`: 3 случаев
 - `bugprone-switch-missing-default-case`: 1 случаев
 - `bugprone-too-small-loop-variable`: 1 случаев
 
@@ -55,25 +58,22 @@
 - src\config.cpp:19:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - src\config.cpp:28:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 
-### src/fake_sensor.cpp (2 предупреждений)
+### src/fake_sensor.cpp (1 предупреждений)
 **Разное:** 1 проблем
 - src\fake_sensor.cpp:14:27:: parameter 'pvParameters' is unused [misc-unused-parameters]
 
-**Потенциальные баги:** 1 проблем
-- src\fake_sensor.cpp:27:29:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
+### src/jxct_format_utils.cpp (4 предупреждений)
+**Прочее:** 1 проблем
+- src\jxct_format_utils.cpp:7:12:: enum 'FormatType' uses a larger base type ('int', size: 4 bytes) than necessary for its value set, consider using 'std::uint8_t' (1 byte) as the base type to reduce its size [performance-enum-size]
 
-### src/jxct_format_utils.cpp (3 предупреждений)
 **Потенциальные баги:** 3 проблем
-- src\jxct_format_utils.cpp:7:25:: 2 adjacent parameters of 'formatFloat' of convertible types are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\jxct_format_utils.cpp:10:5:: if with identical then and else branches [bugprone-branch-clone]
-- src\jxct_format_utils.cpp:54:9:: switch has 4 consecutive identical branches [bugprone-branch-clone]
+- src\jxct_format_utils.cpp:13:25:: 2 adjacent parameters of 'formatFloat' of convertible types are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- src\jxct_format_utils.cpp:16:5:: if with identical then and else branches [bugprone-branch-clone]
+- src\jxct_format_utils.cpp:60:9:: switch has 4 consecutive identical branches [bugprone-branch-clone]
 
-### src/jxct_ui_system.cpp (2 предупреждений)
+### src/jxct_ui_system.cpp (1 предупреждений)
 **Модернизация:** 1 проблем
 - src\jxct_ui_system.cpp:6:18:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-
-**Потенциальные баги:** 1 проблем
-- src\jxct_ui_system.cpp:286:58:: 2 adjacent parameters of 'generateButton' of similar type ('const char *') are easily swapped by mistake [bugprone-easily-swappable-parameters]
 
 ### src/logger.cpp (16 предупреждений)
 **Безопасность:** 12 проблем
@@ -101,7 +101,7 @@
 **Читаемость:** 1 проблем
 - src\main.cpp:232:9:: implicit conversion 'NTPClient *' -> 'bool' [readability-implicit-bool-conversion]
 
-### src/modbus_sensor.cpp (65 предупреждений)
+### src/modbus_sensor.cpp (64 предупреждений)
 **Читаемость:** 42 проблем
 - src\modbus_sensor.cpp:47:34:: pointer parameter 'data' can be pointer to const [readability-non-const-parameter]
 - src\modbus_sensor.cpp:56:17:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
@@ -114,11 +114,11 @@
 - src\modbus_sensor.cpp:400:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
 - ... и ещё 3 проблем
 
-**Потенциальные баги:** 5 проблем
+**Потенциальные баги:** 4 проблем
 - src\modbus_sensor.cpp:111:5:: switching on non-enum value without default case may not cover all cases [bugprone-switch-missing-default-case]
-- src\modbus_sensor.cpp:513:12:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
 - src\modbus_sensor.cpp:725:33:: loop variable has narrower type 'uint8_t' than iteration's upper bound 'int' [bugprone-too-small-loop-variable]
-- ... и ещё 2 проблем
+- src\modbus_sensor.cpp:737:9:: if with identical then and else branches [bugprone-branch-clone]
+- ... и ещё 1 проблем
 
 **Разное:** 12 проблем
 - src\modbus_sensor.cpp:255:5:: variable 'result' of type 'uint8_t' (aka 'unsigned char') can be declared 'const' [misc-const-correctness]
@@ -257,12 +257,12 @@
 
 **Читаемость:** 26 проблем
 - src\web\routes_config.cpp:199:79:: conditional operator is used as sub-expression of parent conditional operator, refrain from using nested conditional operators [readability-avoid-nested-conditional-operator]
-- src\web\routes_config.cpp:406:25:: variable name 'up' is too short, expected at least 3 characters [readability-identifier-length]
-- src\web\routes_config.cpp:442:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
+- src\web\routes_config.cpp:405:25:: variable name 'up' is too short, expected at least 3 characters [readability-identifier-length]
+- src\web\routes_config.cpp:441:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
 - ... и ещё 23 проблем
 
 **Модернизация:** 1 проблем
-- src\web\routes_config.cpp:362:68:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_config.cpp:361:68:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
 ### src/web/routes_data.cpp (45 предупреждений)
 **Модернизация:** 3 проблем
@@ -348,3 +348,4 @@
 
 ### 🟢 НИЗКИЕ (можно исправить позже)
 - Разные мелкие проблемы
+- Прочие стилистические замечания

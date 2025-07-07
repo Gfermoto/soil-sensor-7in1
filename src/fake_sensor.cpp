@@ -24,7 +24,7 @@ void fakeSensorTask(void* pvParameters)
         {
             sensorData.temperature = 22.0F + static_cast<float>(random(-50, 50)) / 10.0F;  // 17.0..27.0
             sensorData.humidity = 50.0F + static_cast<float>(random(-200, 200)) / 10.0F;   // 30..70
-            sensorData.ec = 1000 + static_cast<int>(random(-200, 200));                     // 800..1200
+            sensorData.ec = 1000 + static_cast<float>(random(-200, 200));                   // 800..1200
             sensorData.ph = 6.5F + static_cast<float>(random(-20, 20)) / 10.0F;            // 4.5..8.5
 
             // NPK в мг/дм³ (как в даташите)

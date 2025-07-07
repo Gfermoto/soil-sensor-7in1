@@ -510,7 +510,7 @@ void readSensorData()
 
 float convertRegisterToFloat(uint16_t value, float multiplier)
 {
-    return value * multiplier;
+    return static_cast<float>(value) * multiplier;
 }
 
 /**

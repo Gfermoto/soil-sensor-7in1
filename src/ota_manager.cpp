@@ -71,7 +71,7 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
     logSystem("[OTA] [SETUP DEBUG]   client: %s", &client ? "OK" : "NULL");
 
     // КРИТИЧЕСКАЯ ПРОВЕРКА: Валидация входного URL
-    if (!manifestUrl || strlen(manifestUrl) < 20 || strstr(manifestUrl, "github.com") == nullptr)
+    if (!manifestUrl || strlen(manifestUrl) < 20U || strstr(manifestUrl, "github.com") == nullptr)
     {
         logError("[OTA] [SETUP DEBUG] ❌ Неверный URL манифеста!");
         return;
@@ -142,7 +142,7 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
     logSystem("[OTA] Загрузка: %s", urlBuffer.data());
 
     // ДОПОЛНИТЕЛЬНАЯ ЗАЩИТА: Проверяем целостность URL
-    if (strlen(urlBuffer.data()) < 10 || strstr(urlBuffer.data(), "github.com") == nullptr)
+    if (strlen(urlBuffer.data()) < 10U || strstr(urlBuffer.data(), "github.com") == nullptr)
     {
         strlcpy(statusBuf.data(), "Поврежденный URL", sizeof(statusBuf));
         logError("[OTA] URL поврежден или некорректен: %s", urlBuffer.data());
@@ -602,9 +602,9 @@ void handleOTA()
         strlcpy(statusBuf.data(), "Нет URL в манифесте", sizeof(statusBuf));
         return;
     }
-    if (strlen(sha256) != 64)
+    if (strlen(sha256) != 64U)
     {
-        logError("[OTA] [DEBUG] Поле 'sha256' неверной длины: %d (ожидается 64)", strlen(sha256));
+        logError("[OTA] [DEBUG] Поле 'sha256' неверной длины: %zu (ожидается 64)", strlen(sha256));
         strlcpy(statusBuf.data(), "Неверная подпись", sizeof(statusBuf));
         return;
     }
