@@ -57,32 +57,17 @@ String generateCSRFToken()
 bool validateCSRFToken(const String& token)
 {
     // Если токен пустой или не инициализирован
-    if (token.isEmpty() || currentCSRFToken.isEmpty())
-    {
-        logWarn("CSRF валидация: пустой токен");
-        return false;
-    }
+    if (token.isEmpty() || currentCSRFToken.isEmpty()) { logWarn("CSRF валидация: пустой токен"); return false; }
 
     // Проверяем время жизни токена
     const unsigned long currentTime = millis();
-    if (currentTime - tokenGeneratedTime > CSRF_TOKEN_LIFETIME)
-    {
-        logWarn("CSRF токен истек (время: %lu, генерирован: %lu)", currentTime, tokenGeneratedTime);
-        currentCSRFToken = "";  // Очищаем истекший токен
-        return false;
-    }
+    if (currentTime - tokenGeneratedTime > CSRF_TOKEN_LIFETIME) { logWarn("CSRF токен истек (время: %lu, генерирован: %lu)", currentTime, tokenGeneratedTime); currentCSRFToken = ""; return false; }
 
     // Проверяем совпадение токенов
     bool isValid = (token == currentCSRFToken);
 
-    if (isValid)
-    {
-        logDebug("CSRF токен валиден");
-    }
-    else
-    {
-        logWarn("CSRF токен невалиден: ожидался %s, получен %s", currentCSRFToken.c_str(), token.c_str());
-    }
+    if (isValid) { logDebug("CSRF токен валиден"); }
+    else { logWarn("CSRF токен невалиден: ожидался %s, получен %s", currentCSRFToken.c_str(), token.c_str()); }
 
     return isValid;
 }
@@ -90,10 +75,7 @@ bool validateCSRFToken(const String& token)
 String getCSRFHiddenField()
 {
     // Генерируем новый токен если текущий пустой или истек
-    if (currentCSRFToken.isEmpty() || (millis() - tokenGeneratedTime) > CSRF_TOKEN_LIFETIME)
-    {
-        generateCSRFToken();
-    }
+    if (currentCSRFToken.isEmpty() || (millis() - tokenGeneratedTime) > CSRF_TOKEN_LIFETIME) { generateCSRFToken(); }
 
     return "<input type=\"hidden\" name=\"csrf_token\" value=\"" + currentCSRFToken + "\">";
 }

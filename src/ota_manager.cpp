@@ -125,7 +125,7 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
     strlcpy(statusBuf.data(), "Подключение", sizeof(statusBuf));
 
     // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем память перед началом
-    size_t freeHeap = ESP.getFreeHeap();
+    const size_t freeHeap = ESP.getFreeHeap();
     logSystem("[OTA] Свободная память перед HTTP: %d байт", freeHeap);
 
     // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
@@ -204,7 +204,7 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
     strlcpy(statusBuf.data(), "Загрузка", sizeof(statusBuf));
 
     // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем память перед загрузкой
-    size_t heapBeforeDownload = ESP.getFreeHeap();
+    const size_t heapBeforeDownload = ESP.getFreeHeap();
     logSystem("[OTA] Память перед загрузкой: %d байт", heapBeforeDownload);
 
     // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
@@ -228,8 +228,8 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
     size_t totalDownloaded = 0;
     unsigned long lastProgress = millis();
     unsigned long lastActivity = millis();
-    const unsigned long TIMEOUT_MS = 120000;  // 2 минуты паузы между пакетами допускаются
-    bool isChunked = (contentLen == UPDATE_SIZE_UNKNOWN);
+    constexpr unsigned long TIMEOUT_MS = 120000;  // 2 минуты паузы между пакетами допускаются
+    const bool isChunked = (contentLen == UPDATE_SIZE_UNKNOWN);
 
     while (http.connected())
     {

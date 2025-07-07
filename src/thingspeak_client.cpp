@@ -27,12 +27,12 @@ void trim(char* str)
     }
     // Trim leading
     char* ptr = str;
-    while (*ptr && isspace((unsigned char)*ptr)) ++ptr;
-    if (ptr != str) memmove(str, ptr, strlen(ptr) + 1);
+    while (*ptr && isspace((unsigned char)*ptr)) { ++ptr; }
+    if (ptr != str) { memmove(str, ptr, strlen(ptr) + 1); }
 
     // Trim trailing
     size_t len = strlen(str);
-    while (len > 0 && isspace((unsigned char)str[len - 1])) str[--len] = '\0';
+    while (len > 0 && isspace((unsigned char)str[len - 1])) { str[--len] = '\0'; }
 }
 
 // ✅ Заменяем String на статические буферы
@@ -68,7 +68,7 @@ bool sendDataToThingSpeak()
         return false;
     }
 
-    unsigned long now = millis();
+    const unsigned long now = millis();
     if (now - lastTsPublish < config.thingSpeakInterval) {  // too frequent
         return false;
     }
@@ -80,7 +80,7 @@ bool sendDataToThingSpeak()
     trim(apiKeyBuf.data());
     trim(channelBuf.data());
 
-    unsigned long channelId = strtoul(channelBuf.data(), nullptr, 10);
+    const unsigned long channelId = strtoul(channelBuf.data(), nullptr, 10);
 
     // Проверяем корректность ID и API ключа - если неверные, молча пропускаем
     if (channelId == 0 || strlen(apiKeyBuf.data()) < 16)

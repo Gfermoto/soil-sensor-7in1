@@ -77,7 +77,7 @@ void updateLed()
 {
     if (ledBlinkInterval > 0)
     {
-        unsigned long now = millis();
+        const unsigned long now = millis();
         if (now - ledLastToggle >= ledBlinkInterval)
         {
             ledLastToggle = now;
@@ -168,7 +168,7 @@ void handleWiFi()
     {
         static unsigned long lastReconnectAttempt = 0;
         static int reconnectAttempts = 0;
-        const int MAX_RECONNECT_ATTEMPTS = 3;  // Максимальное количество попыток переподключения перед переходом в AP
+        constexpr int MAX_RECONNECT_ATTEMPTS = 3;  // Максимальное количество попыток переподключения перед переходом в AP
 
         if (WiFi.status() != WL_CONNECTED)
         {

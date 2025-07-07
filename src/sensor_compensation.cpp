@@ -44,7 +44,7 @@ float correctEC(float ecRaw, float T, float theta, SoilType soil)
 
     // Шаг 2. Перевод к ECe (насыщенная паста)
     constexpr float THETA_SAT = 45.0F;  // %
-    float k = SOIL_EC[(int)soil].k;
+    const float k = SOIL_EC[(int)soil].k;
     return ec25 * powf(THETA_SAT / theta, 1.0F + k);
 }
 
@@ -63,7 +63,7 @@ void correctNPK(float T, float theta, float& N, float& P, float& K, SoilType soi
         return;  // валидация – оставляем как есть
     }
 
-    int idx = (int)soil;
+    const int idx = (int)soil;
 
     // Температурная коррекция
     N *= (1.0F - k_t_N[idx] * (T - 25.0F));

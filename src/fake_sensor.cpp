@@ -106,5 +106,5 @@ void startFakeSensorTask();
 // Определение-обёртка с внешним связыванием
 void startFakeSensorTask()
 {
-    xTaskCreate(fakeSensorTask, "FakeSensor", 4096, NULL, 1, NULL);
+    xTaskCreate(fakeSensorTask, "FakeSensor", 4096, nullptr, 1, nullptr);
 }

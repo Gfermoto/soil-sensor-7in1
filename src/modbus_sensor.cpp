@@ -32,7 +32,7 @@ void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
     }
 
     String hex_str = "";
-    for (size_t i = 0; i < length; i++)
+    for (size_t i = 0; i < length; ++i)
     {
         if (buffer[i] < 0x10)
         {
@@ -48,10 +48,10 @@ uint16_t calculateCRC16(uint8_t* data, size_t length)
 {
     uint16_t crc = 0xFFFF;
 
-    for (size_t i = 0; i < length; i++)
+    for (size_t i = 0; i < length; ++i)
     {
         crc ^= (uint16_t)data[i];
-        for (int j = 0; j < 8; j++)
+        for (int j = 0; j < 8; ++j)
         {
             if (crc & 0x0001)
             {
@@ -87,7 +87,7 @@ void updateIrrigationFlag(SensorData& d)
     float baseline = d.humidity;
     for (uint8_t i = 0; i < filled; ++i) baseline = (buf[i] < baseline) ? buf[i] : baseline;
 
-    bool spike = (filled == WIN) && (d.humidity - baseline >= config.irrigationSpikeThreshold) && (d.humidity > 25.0F);
+    const bool spike = (filled == WIN) && (d.humidity - baseline >= config.irrigationSpikeThreshold) && (d.humidity > 25.0F);
     persist = spike ? persist + 1 : 0;
     if (persist >= 2)
     {
@@ -133,13 +133,13 @@ void applyCompensationIfEnabled(SensorData& d)
     }
 
     // Шаг 1: Применяем калибровочную таблицу CSV (лабораторная поверка)
-    float tempCalibrated = CalibrationManager::applyCalibration(d.temperature, profile);
-    float humCalibrated = CalibrationManager::applyCalibration(d.humidity, profile);
-    float ecCalibrated = CalibrationManager::applyCalibration(d.ec, profile);
-    float phCalibrated = CalibrationManager::applyCalibration(d.ph, profile);
-    float nCalibrated = CalibrationManager::applyCalibration(d.nitrogen, profile);
-    float pCalibrated = CalibrationManager::applyCalibration(d.phosphorus, profile);
-    float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);
+    const float tempCalibrated = CalibrationManager::applyCalibration(d.temperature, profile);
+    const float humCalibrated = CalibrationManager::applyCalibration(d.humidity, profile);
+    const float ecCalibrated = CalibrationManager::applyCalibration(d.ec, profile);
+    const float phCalibrated = CalibrationManager::applyCalibration(d.ph, profile);
+    const float nCalibrated = CalibrationManager::applyCalibration(d.nitrogen, profile);
+    const float pCalibrated = CalibrationManager::applyCalibration(d.phosphorus, profile);
+    const float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);
 
     // Шаг 2: Применяем математическую компенсацию (температурная, влажностная)
     d.ec = correctEC(ecCalibrated, tempCalibrated, humCalibrated, soil);
@@ -604,7 +604,7 @@ void printModbusError(uint8_t errNum)
 void initMovingAverageBuffers(SensorData& data)
 {
     // Инициализируем буферы нулями
-    for (int i = 0; i < 15; i++)
+    for (int i = 0; i < 15; ++i)
     {
         data.temp_buffer[i] = 0.0;
         data.hum_buffer[i] = 0.0;
@@ -626,7 +626,7 @@ void addToMovingAverage(SensorData& data, const SensorData& newReading)
     if (window_size > 15) window_size = 15;
 
     // ---------- O(1) running sum для каждого параметра ----------
-    static float sum_temp = 0, sum_hum = 0, sum_ec = 0, sum_ph = 0, sum_n = 0, sum_p = 0, sum_k = 0;
+    static float sum_temp = 0.0F, sum_hum = 0.0F, sum_ec = 0.0F, sum_ph = 0.0F, sum_n = 0.0F, sum_p = 0.0F, sum_k = 0.0F;
 
     // Если буфер заполнен – вычитаем значение, которое покинет окно
     if (data.buffer_filled >= window_size)
@@ -660,12 +660,12 @@ void addToMovingAverage(SensorData& data, const SensorData& newReading)
     data.buffer_index = (data.buffer_index + 1) % window_size;
     if (data.buffer_filled < window_size) data.buffer_filled++;
 
-    uint8_t effective_window = (data.buffer_filled < window_size) ? data.buffer_filled : window_size;
+    const uint8_t effective_window = (data.buffer_filled < window_size) ? data.buffer_filled : window_size;
 
     if (effective_window >= 3 && config.filterAlgorithm == 0)
     {
         // Среднее (O(1))
-        float window_float = static_cast<float>(effective_window);
+        const float window_float = static_cast<float>(effective_window);
         data.temperature = sum_temp / window_float;
         data.humidity = sum_hum / window_float;
         data.ec = sum_ec / window_float;
@@ -702,10 +702,10 @@ void addToMovingAverage(SensorData& data, const SensorData& newReading)
 
 float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
 {
-    if (filled == 0) return 0.0;
+    if (filled == 0) return 0.0F;
 
     // Берем последние filled элементов (или window_size, если filled >= window_size)
-    uint8_t elements_to_use = (filled < window_size) ? filled : window_size;
+    const uint8_t elements_to_use = (filled < window_size) ? filled : window_size;
 
     // v2.4.1: Используем настраиваемый алгоритм (среднее или медиана)
     extern Config config;
@@ -713,41 +713,41 @@ float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
     if (config.filterAlgorithm == 1)
     {  // FILTER_ALGORITHM_MEDIAN
         // Создаем временный массив для медианы
-        float temp_values[15];  // Максимальный размер окна
-        for (uint8_t i = 0; i < elements_to_use; i++)
+        std::array<float, 15> temp_values{};  // Максимальный размер окна
+        for (uint8_t i = 0; i < elements_to_use; ++i)
         {
-            temp_values[i] = buffer[i];
+            temp_values.at(i) = buffer[i];
         }
 
         // Простая сортировка для медианы
-        for (uint8_t i = 0; i < elements_to_use - 1; i++)
+        for (uint8_t i = 0; i < elements_to_use - 1; ++i)
         {
-            for (uint8_t j = 0; j < elements_to_use - i - 1; j++)
+            for (uint8_t j = 0; j < elements_to_use - i - 1; ++j)
             {
-                if (temp_values[j] > temp_values[j + 1])
-                {
-                    float temp = temp_values[j];
-                    temp_values[j] = temp_values[j + 1];
-                    temp_values[j + 1] = temp;
-                }
+                            if (temp_values.at(j) > temp_values.at(j + 1))
+            {
+                const float temp = temp_values.at(j);
+                temp_values.at(j) = temp_values.at(j + 1);
+                temp_values.at(j + 1) = temp;
+            }
             }
         }
 
         // Возвращаем медиану
         if (elements_to_use % 2 == 0)
         {
-            return (temp_values[elements_to_use / 2 - 1] + temp_values[elements_to_use / 2]) / 2.0F;
+            return (temp_values.at(elements_to_use / 2 - 1) + temp_values.at(elements_to_use / 2)) / 2.0F;
         }
         else
         {
-            return temp_values[elements_to_use / 2];
+            return temp_values.at(elements_to_use / 2);
         }
     }
     else
     {
         // FILTER_ALGORITHM_MEAN (по умолчанию)
-        float sum = 0.0;
-        for (uint8_t i = 0; i < elements_to_use; i++)
+        float sum = 0.0F;
+        for (uint8_t i = 0; i < elements_to_use; ++i)
         {
             sum += buffer[i];
         }

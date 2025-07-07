@@ -14,67 +14,37 @@
 
 ValidationResult validateSSID(const String& ssid)
 {
-    if (ssid.length() == 0)
-    {
-        return {false, "SSID не может быть пустым"};
-    }
-    if (ssid.length() > 32)
-    {
-        return {false, "SSID слишком длинный (максимум 32 символа)"};
-    }
+    if (ssid.length() == 0) { return {false, "SSID не может быть пустым"}; }
+    if (ssid.length() > 32) { return {false, "SSID слишком длинный (максимум 32 символа)"}; }
     return {true, ""};
 }
 
 ValidationResult validatePassword(const String& password)
 {
-    if (password.length() > 0 && password.length() < 8)
-    {
-        return {false, "Пароль должен содержать минимум 8 символов"};
-    }
-    if (password.length() > 63)
-    {
-        return {false, "Пароль слишком длинный (максимум 63 символа)"};
-    }
+    if (password.length() > 0 && password.length() < 8) { return {false, "Пароль должен содержать минимум 8 символов"}; }
+    if (password.length() > 63) { return {false, "Пароль слишком длинный (максимум 63 символа)"}; }
     return {true, ""};
 }
 
 ValidationResult validateMQTTServer(const String& server)
 {
-    if (server.length() == 0)
-    {
-        return {false, "MQTT сервер не может быть пустым"};
-    }
-    if (server.length() > 253)
-    {
-        return {false, "MQTT сервер слишком длинный"};
-    }
+    if (server.length() == 0) { return {false, "MQTT сервер не может быть пустым"}; }
+    if (server.length() > 253) { return {false, "MQTT сервер слишком длинный"}; }
     // Простая проверка на валидность hostname/IP
-    if (server.indexOf(' ') >= 0)
-    {
-        return {false, "MQTT сервер содержит недопустимые символы"};
-    }
+    if (server.indexOf(' ') >= 0) { return {false, "MQTT сервер содержит недопустимые символы"}; }
     return {true, ""};
 }
 
 ValidationResult validateMQTTPort(int port)
 {
-    if (port < CONFIG_MQTT_PORT_MIN || port > CONFIG_MQTT_PORT_MAX)
-    {
-        return {false, "MQTT порт должен быть в диапазоне 1-65535"};
-    }
+    if (port < CONFIG_MQTT_PORT_MIN || port > CONFIG_MQTT_PORT_MAX) { return {false, "MQTT порт должен быть в диапазоне 1-65535"}; }
     return {true, ""};
 }
 
 ValidationResult validateThingSpeakAPIKey(const String& apiKey)
 {
-    if (apiKey.length() == 0)
-    {
-        return {false, "ThingSpeak API ключ не может быть пустым"};
-    }
-    if (apiKey.length() != 16)
-    {
-        return {false, "ThingSpeak API ключ должен содержать 16 символов"};
-    }
+    if (apiKey.length() == 0) { return {false, "ThingSpeak API ключ не может быть пустым"}; }
+    if (apiKey.length() != 16) { return {false, "ThingSpeak API ключ должен содержать 16 символов"}; }
     // Проверяем, что содержит только допустимые символы
     for (const char ch : apiKey)
     {
@@ -317,7 +287,7 @@ bool isValidIPAddress(const String& ip)
     int parts = 0;
     int start = 0;
 
-    for (int i = 0; i <= ip.length(); i++)
+    for (int i = 0; i <= ip.length(); ++i)
     {
         if (i == ip.length() || ip.charAt(i) == '.')
         {

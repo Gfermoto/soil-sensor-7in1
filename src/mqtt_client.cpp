@@ -176,7 +176,7 @@ void setupMQTT()  // NOLINT(misc-use-internal-linkage)
     }
 
     // ✅ ОПТИМИЗАЦИЯ 3.3: Используем кэшированный DNS резолвинг
-    IPAddress mqttServerIP = getCachedIP(config.mqttServer);
+    const IPAddress mqttServerIP = getCachedIP(config.mqttServer);
     if (mqttServerIP == IPAddress(0, 0, 0, 0))
     {
         ERROR_PRINTF("[DNS] Не удалось разрешить DNS для %s\n", config.mqttServer);
@@ -212,7 +212,7 @@ bool connectMQTT()  // NOLINT(misc-use-internal-linkage)
     }
 
     // Попытка подключения с максимальной детализацией
-    const char* clientId = getMqttClientName();
+    const char* const clientId = getMqttClientName();
     DEBUG_PRINTF("[MQTT] Сервер: %s\n", config.mqttServer);
     DEBUG_PRINTF("[MQTT] Порт: %d\n", config.mqttPort);
     DEBUG_PRINTF("[MQTT] ID клиента: %s\n", clientId);
@@ -222,7 +222,7 @@ bool connectMQTT()  // NOLINT(misc-use-internal-linkage)
     mqttClient.setServer(config.mqttServer, config.mqttPort);
 
     // Попытка подключения с максимально подробной информацией
-    bool result = mqttClient.connect(clientId,
+    const bool result = mqttClient.connect(clientId,
                                      config.mqttUser,      // может быть пустым
                                      config.mqttPassword,  // может быть пустым
                                      getStatusTopic(),
@@ -234,7 +234,7 @@ bool connectMQTT()  // NOLINT(misc-use-internal-linkage)
     DEBUG_PRINTF("[MQTT] Результат подключения: %d\n", result);
 
     // Расшифровка кодов состояния
-    int state = mqttClient.state();
+    const int state = mqttClient.state();
     DEBUG_PRINTF("[MQTT] Состояние клиента: %d - ", state);
 
     // Сохраняем ошибку в буфер для доступа извне
@@ -752,7 +752,7 @@ void mqttCallback(char* topic, byte* payload, unsigned int length)  // NOLINT(mi
 {
     String t = String(topic);
     String message;
-    for (unsigned int i = 0; i < length; i++) message += (char)payload[i];
+    for (unsigned int i = 0; i < length; ++i) message += (char)payload[i];
     DEBUG_PRINTF("[mqttCallback] Получено сообщение: %s = %s\n", t.c_str(), message.c_str());
     if (t == getCommandTopic() || t == getOtaCommandTopic())
     {

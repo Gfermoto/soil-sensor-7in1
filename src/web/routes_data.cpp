@@ -255,14 +255,10 @@ void handleProfileSave()
     if (webServer.hasArg("soil_profile"))
     {
         String profileStr = webServer.arg("soil_profile");
-        if (profileStr == "sand")
-            config.soilProfile = 0;
-        else if (profileStr == "loam")
-            config.soilProfile = 1;
-        else if (profileStr == "peat")
-            config.soilProfile = 2;
-        else if (profileStr == "clay")
-            config.soilProfile = 3;
+        if (profileStr == "sand") { config.soilProfile = 0; }
+        else if (profileStr == "loam") { config.soilProfile = 1; }
+        else if (profileStr == "peat") { config.soilProfile = 2; }
+        else if (profileStr == "clay") { config.soilProfile = 3; }
 
         saveConfig();
         logSuccess("Профиль почвы изменён на %s", profileStr.c_str());

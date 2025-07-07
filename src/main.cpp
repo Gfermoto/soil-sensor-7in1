@@ -72,7 +72,7 @@ static void resetButtonTask(void* /*parameter*/)  // NOLINT(misc-use-internal-li
 
     while (true)
     {
-        bool currentState = (digitalRead(RESET_BUTTON_PIN) == LOW);
+        const bool currentState = (digitalRead(RESET_BUTTON_PIN) == LOW);
 
         if (currentState && !buttonPressed)
         {
@@ -225,7 +225,7 @@ void setup()
 // ✅ Неблокирующий главный цикл с оптимизированными интервалами
 void loop()
 {
-    unsigned long currentTime = millis();
+    const unsigned long currentTime = millis();
     esp_task_wdt_reset();
 
     // Обновление NTP каждые 6 часов
@@ -281,7 +281,7 @@ void loop()
     // ✅ Групповая отправка ThingSpeak (настраиваемо v2.3.0)
     if (pendingThingspeakPublish && (currentTime - thingspeakBatchTimer >= config.thingSpeakInterval))
     {
-        bool tsOk = sendDataToThingSpeak();
+        const bool tsOk = sendDataToThingSpeak();
         if (tsOk)
         {
             thingspeakBatchTimer = currentTime;  // Сбрасываем таймер только при успешной отправке

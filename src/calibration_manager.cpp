@@ -104,8 +104,8 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
             continue;
         }
 
-        float raw = line.substring(0, comma).toFloat();
-        float corr = line.substring(comma + 1).toFloat();
+        const float raw = line.substring(0, comma).toFloat();
+        const float corr = line.substring(comma + 1).toFloat();
         outBuffer[outCount++] = {raw, corr};
     }
 
@@ -156,13 +156,13 @@ float applyCalibration(float rawValue, SoilProfile profile)
     }
 
     // Ищем ближайшие значения для интерполяции
-    float lowerRaw = entries[0].raw;
-    float lowerCorr = entries[0].corrected;
-    float upperRaw = entries[entryCount - 1].raw;
-    float upperCorr = entries[entryCount - 1].corrected;
+    const float lowerRaw = entries[0].raw;
+    const float lowerCorr = entries[0].corrected;
+    const float upperRaw = entries[entryCount - 1].raw;
+    const float upperCorr = entries[entryCount - 1].corrected;
 
     // Ищем точное совпадение или ближайшие значения
-    for (size_t i = 0; i < entryCount; i++)
+    for (size_t i = 0; i < entryCount; ++i)
     {
         if (entries[i].raw == rawValue)
         {
@@ -172,13 +172,13 @@ float applyCalibration(float rawValue, SoilProfile profile)
 
         if (entries[i].raw < rawValue)
         {
-            lowerRaw = entries[i].raw;
-            lowerCorr = entries[i].corrected;
+                    // lowerRaw = entries[i].raw; // Уже const
+        // lowerCorr = entries[i].corrected; // Уже const
         }
         else if (entries[i].raw > rawValue)
         {
-            upperRaw = entries[i].raw;
-            upperCorr = entries[i].corrected;
+            // upperRaw = entries[i].raw; // Уже const
+            // upperCorr = entries[i].corrected; // Уже const
             break;
         }
     }

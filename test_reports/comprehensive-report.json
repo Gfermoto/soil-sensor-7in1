@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-06T20:42:10.808249+00:00Z",
+  "timestamp": "2025-07-07T09:57:33.712283+00:00Z",
   "project": "JXCT Soil Sensor",
   "version": "3.7.0",
   "environment": "nt",
@@ -51,23 +51,35 @@
         "passed": 1,
         "failed": 0
       },
-      "firmware_size": "Flash: [======    ]  63.1% (used 1239789 bytes from 1966080 bytes)",
+      "firmware_size": "Flash: [======    ]  63.2% (used 1241697 bytes from 1966080 bytes)",
       "status": "success"
     }
   },
   "summary": {
-    "total_duration": 21.303799152374268,
+    "total_duration": 37.71124315261841,
     "total_tests": 25,
     "passed_tests": 25,
     "failed_tests": 0,
     "success_rate": 100.0
   },
   "technical_debt": {
-    "timestamp": "2025-07-06T23:42:10.922232",
+    "timestamp": "2025-07-07T12:57:33.820474",
     "version": "3.5.0",
     "analysis": {
       "clang_tidy": {
-        "skipped": true
+        "total_warnings": 382,
+        "high": 0,
+        "medium": 45,
+        "low": 337,
+        "categories": {
+          "misc-const-correctness": 80,
+          "readability-braces-around-statements": 60,
+          "modernize-use-nullptr": 15,
+          "bugprone-easily-swappable-parameters": 12,
+          "readability-identifier-length": 10,
+          "modernize-avoid-c-arrays": 8,
+          "other": 197
+        }
       },
       "include_deps": {
         "cycles": 0,
@@ -79,7 +91,16 @@
         "exact_duplicates": 0,
         "pattern_duplicates": 10,
         "files_checked": 24,
-        "details": []
+        "details": [
+          {
+            "files": [
+              "src/web/routes_calibration.cpp",
+              "src/web/routes_data.cpp"
+            ],
+            "duplicates": 5,
+            "type": "pattern"
+          }
+        ]
       }
     },
     "total_tech_debt_score": 30,
