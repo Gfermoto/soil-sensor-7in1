@@ -25,7 +25,7 @@ namespace
 
 unsigned long lastIrrigationTs = 0;  // время последнего полива (для фильтрации всплесков)
 
-void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
+void debugPrintBuffer(const char* prefix, const uint8_t* buffer, size_t length)
 {
     if (currentLogLevel < LOG_DEBUG)
     {
@@ -45,7 +45,7 @@ void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
     logDebugSafe("\1", prefix, hex_str.c_str());
 }
 
-uint16_t calculateCRC16(uint8_t* data, size_t length)
+uint16_t calculateCRC16(const uint8_t* data, size_t length)
 {
     uint16_t crc = 0xFFFF;
 
@@ -725,7 +725,7 @@ void addToMovingAverage(SensorData& data, const SensorData& newReading)
     data.potassium = calculateMovingAverage(data.k_buffer, window_size, data.buffer_filled);
 }
 
-float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
+float calculateMovingAverage(const float* buffer, uint8_t window_size, uint8_t filled)
 {
     if (filled == 0)
     {

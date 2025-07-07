@@ -134,7 +134,7 @@ void startRealSensorTask();
 
 // v2.3.0: Функции скользящего среднего
 void addToMovingAverage(SensorData& data, const SensorData& newReading);
-float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled);
+float calculateMovingAverage(const float* buffer, uint8_t window_size, uint8_t filled);
 void initMovingAverageBuffers(SensorData& data);
 
 // Тестовые функции
