@@ -149,10 +149,10 @@ void setupConfigRoutes()
                 "<div class='help'>Автоматически отбрасывает измерения, отклоняющиеся более чем на 2 "
                 "сигма</div></div></div>";
 
-            html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить настройки", "");
+            html += generateButton(ButtonType::PRIMARY, ButtonConfig{UI_ICON_SAVE, "Сохранить настройки", ""});
+            html += "</form>";
             html +=
-                generateButton(ButtonType::SECONDARY, UI_ICON_RESET, "Сбросить к умолчанию (1 сек + мин. фильтрация)",
-                               "location.href='/reset_intervals'");
+                generateButton(ButtonType::SECONDARY, ButtonConfig{UI_ICON_RESET, "Сбросить к умолчанию (1 сек + мин. фильтрация)", ""});
             html += "</form>";
             html += generatePageFooter();
 
@@ -318,8 +318,7 @@ void setupConfigRoutes()
                      html += "<div class='section'>";
                      html += "<h2>📤 Экспорт конфигурации</h2>";
                      html += "<p>Скачайте текущую конфигурацию в формате JSON (пароли заменены на заглушки):</p>";
-                     html += generateButton(ButtonType::PRIMARY, "📥", "Скачать конфигурацию",
-                                            "location.href='/api/v1/config/export'");
+                     html += generateButton(ButtonType::PRIMARY, ButtonConfig{"📥", "Скачать конфигурацию", ""});
                      html += "</div>";
 
                      html += "<div class='section'>";
@@ -328,7 +327,7 @@ void setupConfigRoutes()
                      html += "<form action='/api/config/import' method='post' enctype='multipart/form-data'>";
                      html += getCSRFHiddenField();  // Добавляем CSRF токен
                      html += "<input type='file' name='config' accept='.json' required>";
-                     html += generateButton(ButtonType::SECONDARY, "📤", "Загрузить конфигурацию", "");
+                     html += generateButton(ButtonType::SECONDARY, ButtonConfig{"📤", "Загрузить конфигурацию", ""});
                      html += "</form>";
                      html += "</div>";
 

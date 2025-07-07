@@ -567,7 +567,7 @@ void setupDataRoutes()
                 "<div style='font-size:12px;color:#666;margin:5px 0;'>Файл должен содержать пары значений: "
                 "сырое_значение,коэффициент_коррекции</div>";
             html += "</div>";
-            html += generateButton(ButtonType::PRIMARY, UI_ICON_UPLOAD, "Загрузить CSV", "");
+            html += generateButton(ButtonType::PRIMARY, ButtonConfig{UI_ICON_UPLOAD, "Загрузить CSV", ""});
             html += "</form>";
 
             // Кнопка сброса CSV, если файл существует
@@ -575,7 +575,7 @@ void setupDataRoutes()
             {
                 html += "<form action='/readings/csv_reset' method='post' style='margin-top:10px;'>";
                 html += getCSRFHiddenField();  // Добавляем CSRF токен
-                html += generateButton(ButtonType::SECONDARY, "🗑️", "Удалить CSV таблицу", "");
+                html += generateButton(ButtonType::SECONDARY, ButtonConfig{"🗑️", "Удалить CSV таблицу", ""});
                 html += "</form>";
             }
             html += "</div>";

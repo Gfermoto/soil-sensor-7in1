@@ -109,7 +109,7 @@ void setupOtaRoutes()
             // Кнопки проверки и установки
             html += "<div style='display:flex;gap:10px;flex-wrap:wrap;'>";
             {
-                String btnCheck = generateButton(ButtonType::OUTLINE, "🔍", "Проверить обновления", "");
+                String btnCheck = generateButton(ButtonType::OUTLINE, ButtonConfig{"🔍", "Проверить обновления", ""});
                 btnCheck.replace("<button ", "<button id='btnCheck' ");
                 html += btnCheck;
             }
@@ -131,7 +131,7 @@ void setupOtaRoutes()
             html += "</div>";
             html += "<form id='uploadForm' enctype='multipart/form-data'>";
             {
-                String uploadBtn = generateButton(ButtonType::SECONDARY, "⬆️", "Загрузить прошивку", "");
+                String uploadBtn = generateButton(ButtonType::SECONDARY, ButtonConfig{"⬆️", "Загрузить прошивку", ""});
                 html += uploadBtn;
             }
             html += "</form></div>";

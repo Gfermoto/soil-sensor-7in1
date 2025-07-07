@@ -330,7 +330,7 @@ void handleRoot()
             "type='number' id='ntp_interval' name='ntp_interval' min='10000' max='86400000' value='" +
             String(config.ntpUpdateInterval) + "'></div></div>";
     }
-    html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить настройки", "") + "</form>";
+    html += generateButton(ButtonType::PRIMARY, ButtonConfig{UI_ICON_SAVE, "Сохранить настройки", ""}) + "</form>";
 
     // Добавляем JavaScript для динамического изменения обязательных полей
     if (currentWiFiMode == WiFiMode::STA)

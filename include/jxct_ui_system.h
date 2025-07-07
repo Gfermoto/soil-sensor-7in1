@@ -78,8 +78,15 @@ enum class MessageType : std::uint8_t
     INFO
 };
 
+// 🎯 КОНФИГУРАЦИЯ КНОПКИ
+struct ButtonConfig {
+    const char* icon;
+    const char* text;
+    const char* action;
+};
+
 // 🎯 ФУНКЦИИ ДЛЯ ГЕНЕРАЦИИ CSS И HTML
 const char* getUnifiedCSS();
 const char* getToastHTML();
 const char* getLoaderHTML();
-String generateButton(ButtonType type, const char* icon, const char* text, const char* action = "");
+String generateButton(ButtonType type, const ButtonConfig& config);

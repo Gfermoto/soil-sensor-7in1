@@ -74,10 +74,10 @@ void setupServiceRoutes()
             html += "<div class='section' style='margin-top:20px;'>";
             html += "<form method='post' action='/reset' style='margin-bottom:10px'>";
             html += getCSRFHiddenField();
-            html += generateButton(ButtonType::DANGER, UI_ICON_RESET, "Сбросить настройки", "") + "</form>";
+            html += generateButton(ButtonType::DANGER, ButtonConfig{UI_ICON_RESET, "Сбросить настройки", ""}) + "</form>";
             html += "<form method='post' action='/reboot' style='margin-bottom:10px'>";
             html += getCSRFHiddenField();
-            html += generateButton(ButtonType::SECONDARY, "🔄", "Перезагрузить", "") + "</form>";
+            html += generateButton(ButtonType::SECONDARY, ButtonConfig{"🔄", "Перезагрузить", ""}) + "</form>";
             html += "</div>";
             html +=
                 "<div class='section' style='margin-top:15px;font-size:14px;color:#555'><b>API:</b> <a "

@@ -59,7 +59,7 @@ String generateCalibrationPage()
         "<div class='form-group'><label for='calibration_csv'>Файл CSV:</label><input type='file' id='calibration_csv' "
         "name='calibration_csv' accept='.csv' required></div></div>";
 
-    html += generateButton(ButtonType::PRIMARY, UI_ICON_SAVE, "Сохранить", "");
+    html += generateButton(ButtonType::PRIMARY, ButtonConfig{UI_ICON_SAVE, "Сохранить", ""});
     html += "</form>";
 
     html += "</div>";

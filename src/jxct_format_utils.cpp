@@ -3,11 +3,17 @@
 #include <cstdio>
 #include <array>
 
+// Строгая типизация для предотвращения ошибок
+enum class FormatType {
+    INTEGER,
+    FLOAT
+};
+
 // Универсальная функция форматирования float
-std::string formatFloat(float value, int precision, bool asInt)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
+std::string formatFloat(float value, int precision, FormatType formatType)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
     std::array<char, 8> buf;
-    if (asInt)
+    if (formatType == FormatType::INTEGER)
     {
         snprintf(buf.data(), buf.size(), "%d", static_cast<int>(lround(value)));
     }
@@ -20,27 +26,27 @@ std::string formatFloat(float value, int precision, bool asInt)  // NOLINT(misc-
 
 std::string format_moisture(float value)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
-    return formatFloat(value, 1, false);
+    return formatFloat(value, 1, FormatType::FLOAT);
 }
 
 std::string format_temperature(float value)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
-    return formatFloat(value, 1, false);
+    return formatFloat(value, 1, FormatType::FLOAT);
 }
 
 std::string format_ec(float value)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
-    return formatFloat(value, 0, true);
+    return formatFloat(value, 0, FormatType::INTEGER);
 }
 
 std::string format_ph(float value)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
-    return formatFloat(value, 1, false);
+    return formatFloat(value, 1, FormatType::FLOAT);
 }
 
 std::string format_npk(float value)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 {
-    return formatFloat(value, 0, true);
+    return formatFloat(value, 0, FormatType::INTEGER);
 }
 
 // Универсальная функция форматирования для веб-интерфейса

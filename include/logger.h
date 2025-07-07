@@ -84,6 +84,40 @@ void logHTTP(const char* format, ...) __attribute__((format(printf, 1, 2)));
 void logSystem(const char* format, ...) __attribute__((format(printf, 1, 2)));
 void logData(const char* format, ...) __attribute__((format(printf, 1, 2)));
 
+// Современные безопасные template функции (рекомендуется использовать)
+template<typename... Args>
+void logErrorSafe(const char* format, Args&&... args);
+
+template<typename... Args>
+void logWarnSafe(const char* format, Args&&... args);
+
+template<typename... Args>
+void logInfoSafe(const char* format, Args&&... args);
+
+template<typename... Args>
+void logDebugSafe(const char* format, Args&&... args);
+
+template<typename... Args>
+void logSuccessSafe(const char* format, Args&&... args);
+
+template<typename... Args>
+void logSensorSafe(const char* format, Args&&... args);
+
+template<typename... Args>
+void logWiFiSafe(const char* format, Args&&... args);
+
+template<typename... Args>
+void logMQTTSafe(const char* format, Args&&... args);
+
+template<typename... Args>
+void logHTTPSafe(const char* format, Args&&... args);
+
+template<typename... Args>
+void logSystemSafe(const char* format, Args&&... args);
+
+template<typename... Args>
+void logDataSafe(const char* format, Args&&... args);
+
 // Специальные функции
 void logSeparator();
 void logNewline();

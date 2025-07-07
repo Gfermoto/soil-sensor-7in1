@@ -130,7 +130,7 @@ String generateForm(const String& action, const String& method, const String& fo
 {
     String html = "<form action='" + action + "' method='" + method + "'>";
     html += formContent;
-    html += generateButton(ButtonType::PRIMARY, buttonIcon.c_str(), buttonText.c_str(), "");
+    html += generateButton(ButtonType::PRIMARY, ButtonConfig{buttonIcon.c_str(), buttonText.c_str(), ""});
     html += "</form>";
     return html;
 }

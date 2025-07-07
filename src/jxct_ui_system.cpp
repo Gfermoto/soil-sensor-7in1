@@ -283,7 +283,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 // 🎯 ГЕНЕРАЦИЯ HTML КНОПОК
-String generateButton(ButtonType type, const char* icon, const char* text, const char* action)
+String generateButton(ButtonType type, const ButtonConfig& config)
 {
     String cssClass = "btn ";
 
@@ -307,11 +307,11 @@ String generateButton(ButtonType type, const char* icon, const char* text, const
     }
 
     String html = "<button type='submit' class='" + cssClass + "'";
-    if (strlen(action) > 0)
+    if (strlen(config.action) > 0)
     {
-        html = "<button type='button' class='" + cssClass + "' onclick=\"" + String(action) + "\"";
+        html = "<button type='button' class='" + cssClass + "' onclick=\"" + String(config.action) + "\"";
     }
-    html += ">" + String(icon) + " " + String(text) + "</button>";
+    html += ">" + String(config.icon) + " " + String(config.text) + "</button>";
 
     return html;
 }

@@ -54,6 +54,93 @@ String formatLogMessage(const char* format, ...)
     return String(buffer.data());
 }
 
+// Современная C++ альтернатива с template parameter pack
+template<typename... Args>
+String formatLogMessageSafe(const char* format, Args&&... args)
+{
+    std::array<char, 512> buffer;
+    int result = snprintf(buffer.data(), buffer.size(), format, std::forward<Args>(args)...);
+    
+    if (result < 0) {
+        return String("LOG FORMAT ERROR");
+    }
+    
+    if (result < static_cast<int>(buffer.size())) {
+        return String(buffer.data());
+    }
+    
+    // Если сообщение слишком длинное, обрезаем
+    buffer[buffer.size() - 1] = '\0';
+    return String(buffer.data());
+}
+
+// Безопасные template функции для логгирования
+template<typename... Args>
+void logErrorSafe(const char* format, Args&&... args)
+{
+    logError(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logWarnSafe(const char* format, Args&&... args)
+{
+    logWarn(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logInfoSafe(const char* format, Args&&... args)
+{
+    logInfo(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logDebugSafe(const char* format, Args&&... args)
+{
+    logDebug(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logSuccessSafe(const char* format, Args&&... args)
+{
+    logSuccess(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logSensorSafe(const char* format, Args&&... args)
+{
+    logSensor(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logWiFiSafe(const char* format, Args&&... args)
+{
+    logWiFi(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logMQTTSafe(const char* format, Args&&... args)
+{
+    logMQTT(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logHTTPSafe(const char* format, Args&&... args)
+{
+    logHTTP(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logSystemSafe(const char* format, Args&&... args)
+{
+    logSystem(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logDataSafe(const char* format, Args&&... args)
+{
+    logData(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
 String formatLogMessage(const String& message)
 {
     return message;
@@ -186,6 +273,8 @@ void logError(const char* format, ...)
         logError(String("LOG FORMAT ERROR"));
     }
 }
+
+
 
 void logWarn(const char* format, ...)
 {

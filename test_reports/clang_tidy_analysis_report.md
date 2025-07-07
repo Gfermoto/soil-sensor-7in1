@@ -1,12 +1,12 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 07.07.2025 12:46
+**Дата анализа:** 07.07.2025 14:09
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 343
+- **Всего предупреждений:** 344
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
 ### Читаемость (157 проблем)
@@ -23,9 +23,10 @@
 - `modernize-use-nullptr`: 5 случаев
 - `modernize-use-auto`: 5 случаев
 
-### Разное (92 проблем)
+### Разное (93 проблем)
 - `misc-const-correctness`: 90 случаев
 - `misc-unused-parameters`: 1 случаев
+- `misc-use-internal-linkage`: 1 случаев
 - `misc-use-anonymous-namespace`: 1 случаев
 
 ### Потенциальные баги (33 проблем)
@@ -74,19 +75,22 @@
 **Потенциальные баги:** 1 проблем
 - src\jxct_ui_system.cpp:286:58:: 2 adjacent parameters of 'generateButton' of similar type ('const char *') are easily swapped by mistake [bugprone-easily-swappable-parameters]
 
-### src/logger.cpp (15 предупреждений)
+### src/logger.cpp (16 предупреждений)
 **Безопасность:** 12 проблем
 - src\logger.cpp:34:8:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
-- src\logger.cpp:174:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
-- src\logger.cpp:190:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
+- src\logger.cpp:261:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
+- src\logger.cpp:279:6:: do not define a C-style variadic function; consider using a function parameter pack or currying instead [cert-dcl50-cpp]
 - ... и ещё 9 проблем
 
 **Модернизация:** 1 проблем
 - src\logger.cpp:45:16:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
 
+**Разное:** 1 проблем
+- src\logger.cpp:59:8:: function 'formatLogMessageSafe' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+
 **Читаемость:** 2 проблем
-- src\logger.cpp:395:9:: static member accessed through instance [readability-static-accessed-through-instance]
-- src\logger.cpp:402:68:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\logger.cpp:484:9:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\logger.cpp:491:68:: static member accessed through instance [readability-static-accessed-through-instance]
 
 ### src/main.cpp (4 предупреждений)
 **Модернизация:** 3 проблем
