@@ -1,9 +1,12 @@
 {
-  "timestamp": "2025-07-06T23:43:53.096697",
+  "timestamp": "2025-07-07T00:50:17.745690",
   "version": "3.5.0",
   "analysis": {
     "clang_tidy": {
-      "skipped": true
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "details": []
     },
     "include_deps": {
       "cycles": 0,

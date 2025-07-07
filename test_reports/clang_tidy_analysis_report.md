@@ -1,37 +1,37 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 06.07.2025 23:59
+**Дата анализа:** 07.07.2025 01:09
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 397
+- **Всего предупреждений:** 382
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
-### Читаемость (167 проблем)
+### Читаемость (166 проблем)
 - `readability-braces-around-statements`: 54 случаев
 - `readability-identifier-length`: 32 случаев
 - ``: 23 случаев
-- `readability-implicit-bool-conversion`: 18 случаев
+- `readability-implicit-bool-conversion`: 17 случаев
 - `readability-static-accessed-through-instance`: 16 случаев
 
-### Разное (121 проблем)
-- `misc-const-correctness`: 119 случаев
+### Разное (120 проблем)
+- `misc-const-correctness`: 118 случаев
 - `misc-unused-parameters`: 1 случаев
 - `misc-use-anonymous-namespace`: 1 случаев
 
-### Модернизация (67 проблем)
-- `modernize-avoid-c-arrays`: 24 случаев
+### Модернизация (52 проблем)
+- `modernize-avoid-c-arrays`: 13 случаев
 - `modernize-macro-to-enum`: 12 случаев
 - `modernize-raw-string-literal`: 9 случаев
 - `modernize-use-nullptr`: 7 случаев
-- `modernize-return-braced-init-list`: 6 случаев
+- `modernize-use-auto`: 5 случаев
 
-### Потенциальные баги (30 проблем)
-- `bugprone-easily-swappable-parameters`: 17 случаев
+### Потенциальные баги (32 проблем)
+- `bugprone-easily-swappable-parameters`: 18 случаев
+- `bugprone-branch-clone`: 7 случаев
 - `bugprone-narrowing-conversions`: 5 случаев
-- `bugprone-branch-clone`: 5 случаев
 - `bugprone-switch-missing-default-case`: 1 случаев
 - `bugprone-too-small-loop-variable`: 1 случаев
 
@@ -53,12 +53,10 @@
 **Модернизация:** 1 проблем
 - src\calibration_manager.cpp:150:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 
-### src/config.cpp (6 предупреждений)
-**Модернизация:** 6 проблем
-- src\config.cpp:18:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src\config.cpp:20:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src\config.cpp:22:12:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
-- ... и ещё 3 проблем
+### src/config.cpp (2 предупреждений)
+**Модернизация:** 2 проблем
+- src\config.cpp:19:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- src\config.cpp:28:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 
 ### src/fake_sensor.cpp (4 предупреждений)
 **Разное:** 1 проблем
@@ -72,10 +70,10 @@
 - src\fake_sensor.cpp:109:62:: use nullptr [modernize-use-nullptr]
 
 ### src/jxct_format_utils.cpp (3 предупреждений)
-**Модернизация:** 3 проблем
-- src\jxct_format_utils.cpp:8:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src\jxct_format_utils.cpp:48:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src\jxct_format_utils.cpp:68:12:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
+**Потенциальные баги:** 3 проблем
+- src\jxct_format_utils.cpp:7:25:: 2 adjacent parameters of 'formatFloat' of convertible types are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- src\jxct_format_utils.cpp:10:5:: if with identical then and else branches [bugprone-branch-clone]
+- src\jxct_format_utils.cpp:54:9:: switch has 4 consecutive identical branches [bugprone-branch-clone]
 
 ### src/jxct_ui_system.cpp (2 предупреждений)
 **Модернизация:** 1 проблем
@@ -153,28 +151,27 @@
 **Модернизация:** 1 проблем
 - src\mqtt_client.cpp:807:12:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
 
-### src/ota_manager.cpp (24 предупреждений)
+### src/ota_manager.cpp (21 предупреждений)
 **Читаемость:** 7 проблем
 - src\ota_manager.cpp:70:56:: implicit conversion 'const char *' -> 'bool' [readability-implicit-bool-conversion]
 - src\ota_manager.cpp:71:51:: implicit conversion 'WiFiClient *' -> 'bool' [readability-implicit-bool-conversion]
 - src\ota_manager.cpp:74:10:: implicit conversion 'const char *' -> 'bool' [readability-implicit-bool-conversion]
 - ... и ещё 4 проблем
 
-**Модернизация:** 6 проблем
-- src\ota_manager.cpp:114:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src\ota_manager.cpp:140:12:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src\ota_manager.cpp:227:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- ... и ещё 3 проблем
-
-**Потенциальные баги:** 2 проблем
-- src\ota_manager.cpp:116:18:: result of multiplication in type 'int' is used as a pointer offset after an implicit widening conversion to type 'ptrdiff_t' [bugprone-implicit-widening-of-multiplication-result]
-- src\ota_manager.cpp:554:25:: narrowing conversion from 'unsigned int' to signed type 'int' is implementation-defined [bugprone-narrowing-conversions]
-
 **Разное:** 9 проблем
 - src\ota_manager.cpp:128:5:: variable 'freeHeap' of type 'size_t' (aka 'unsigned long long') can be declared 'const' [misc-const-correctness]
 - src\ota_manager.cpp:207:5:: variable 'heapBeforeDownload' of type 'size_t' (aka 'unsigned long long') can be declared 'const' [misc-const-correctness]
 - src\ota_manager.cpp:232:5:: variable 'isChunked' of type 'bool' can be declared 'const' [misc-const-correctness]
 - ... и ещё 6 проблем
+
+**Модернизация:** 4 проблем
+- src\ota_manager.cpp:227:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+- src\ota_manager.cpp:338:5:: use auto when initializing with new to avoid duplicating the type name [modernize-use-auto]
+- src\ota_manager.cpp:361:5:: use auto when initializing with new to avoid duplicating the type name [modernize-use-auto]
+- ... и ещё 1 проблем
+
+**Потенциальные баги:** 1 проблем
+- src\ota_manager.cpp:554:25:: narrowing conversion from 'unsigned int' to signed type 'int' is implementation-defined [bugprone-narrowing-conversions]
 
 ### src/routes_calibration.cpp (1 предупреждений)
 **Разное:** 1 проблем
@@ -202,22 +199,18 @@
 - src\sensor_compensation.cpp:47:5:: variable 'k' of type 'float' can be declared 'const' [misc-const-correctness]
 - src\sensor_compensation.cpp:66:5:: variable 'idx' of type 'int' can be declared 'const' [misc-const-correctness]
 
-### src/thingspeak_client.cpp (12 предупреждений)
-**Модернизация:** 5 проблем
-- src\thingspeak_client.cpp:5:10:: inclusion of deprecated C++ header 'ctype.h'; consider using 'cctype' instead [modernize-deprecated-headers]
-- src\thingspeak_client.cpp:38:1:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src\thingspeak_client.cpp:39:1:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- ... и ещё 2 проблем
+### src/thingspeak_client.cpp (7 предупреждений)
+**Модернизация:** 1 проблем
+- src\thingspeak_client.cpp:6:10:: inclusion of deprecated C++ header 'ctype.h'; consider using 'cctype' instead [modernize-deprecated-headers]
 
 **Читаемость:** 5 проблем
-- src\thingspeak_client.cpp:24:10:: implicit conversion 'char *' -> 'bool' [readability-implicit-bool-conversion]
-- src\thingspeak_client.cpp:29:49:: statement should be inside braces [readability-braces-around-statements]
-- src\thingspeak_client.cpp:30:20:: statement should be inside braces [readability-braces-around-statements]
+- src\thingspeak_client.cpp:25:10:: implicit conversion 'char *' -> 'bool' [readability-implicit-bool-conversion]
+- src\thingspeak_client.cpp:30:49:: statement should be inside braces [readability-braces-around-statements]
+- src\thingspeak_client.cpp:31:20:: statement should be inside braces [readability-braces-around-statements]
 - ... и ещё 2 проблем
 
-**Разное:** 2 проблем
-- src\thingspeak_client.cpp:70:5:: variable 'now' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
-- src\thingspeak_client.cpp:109:5:: variable 'res' of type 'int' can be declared 'const' [misc-const-correctness]
+**Разное:** 1 проблем
+- src\thingspeak_client.cpp:71:5:: variable 'now' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
 
 ### src/validation_utils.cpp (9 предупреждений)
 **Читаемость:** 4 проблем
@@ -232,24 +225,24 @@
 - src\validation_utils.cpp:356:10:: variable 'c' of type 'char' can be declared 'const' [misc-const-correctness]
 - ... и ещё 2 проблем
 
-### src/wifi_manager.cpp (30 предупреждений)
-**Модернизация:** 15 проблем
-- src\wifi_manager.cpp:22:1:: replace macro with enum [modernize-macro-to-enum]
-- src\wifi_manager.cpp:22:9:: macro 'RESET_BUTTON_PIN' defines an integral constant; prefer an enum instead [modernize-macro-to-enum]
-- src\wifi_manager.cpp:23:9:: macro 'WIFI_RECONNECT_INTERVAL' defines an integral constant; prefer an enum instead [modernize-macro-to-enum]
-- ... и ещё 12 проблем
+### src/wifi_manager.cpp (27 предупреждений)
+**Модернизация:** 13 проблем
+- src\wifi_manager.cpp:23:1:: replace macro with enum [modernize-macro-to-enum]
+- src\wifi_manager.cpp:23:9:: macro 'RESET_BUTTON_PIN' defines an integral constant; prefer an enum instead [modernize-macro-to-enum]
+- src\wifi_manager.cpp:24:9:: macro 'WIFI_RECONNECT_INTERVAL' defines an integral constant; prefer an enum instead [modernize-macro-to-enum]
+- ... и ещё 10 проблем
 
 **Разное:** 6 проблем
-- src\wifi_manager.cpp:79:9:: variable 'now' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
-- src\wifi_manager.cpp:231:5:: variable 'apSsid' of type 'String' can be declared 'const' [misc-const-correctness]
-- src\wifi_manager.cpp:248:5:: variable 'hostname' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\wifi_manager.cpp:80:9:: variable 'now' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+- src\wifi_manager.cpp:232:5:: variable 'apSsid' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\wifi_manager.cpp:249:5:: variable 'hostname' of type 'String' can be declared 'const' [misc-const-correctness]
 - ... и ещё 3 проблем
 
-**Читаемость:** 9 проблем
-- src\wifi_manager.cpp:116:5:: static member accessed through instance [readability-static-accessed-through-instance]
-- src\wifi_manager.cpp:172:13:: static member accessed through instance [readability-static-accessed-through-instance]
-- src\wifi_manager.cpp:220:21:: implicit conversion 'char' -> 'bool' [readability-implicit-bool-conversion]
-- ... и ещё 6 проблем
+**Читаемость:** 8 проблем
+- src\wifi_manager.cpp:117:5:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\wifi_manager.cpp:173:13:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\wifi_manager.cpp:231:5:: static member accessed through instance [readability-static-accessed-through-instance]
+- ... и ещё 5 проблем
 
 ### src/web/csrf_protection.cpp (6 предупреждений)
 **Разное:** 5 проблем
