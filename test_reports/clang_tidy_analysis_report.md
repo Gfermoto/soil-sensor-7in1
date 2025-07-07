@@ -1,12 +1,12 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 07.07.2025 15:07
+**Дата анализа:** 07.07.2025 15:11
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 342
+- **Всего предупреждений:** 341
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
 ### Читаемость (157 проблем)
@@ -32,10 +32,10 @@
 ### Прочее (1 проблем)
 - `performance-enum-size`: 1 случаев
 
-### Потенциальные баги (30 проблем)
+### Потенциальные баги (29 проблем)
 - `bugprone-easily-swappable-parameters`: 17 случаев
 - `bugprone-branch-clone`: 8 случаев
-- `bugprone-narrowing-conversions`: 3 случаев
+- `bugprone-narrowing-conversions`: 2 случаев
 - `bugprone-switch-missing-default-case`: 1 случаев
 - `bugprone-too-small-loop-variable`: 1 случаев
 
@@ -295,7 +295,7 @@
 - src\web\routes_main.cpp:47:21:: variable 'hostRes' of type 'ValidationResult' can be declared 'const' [misc-const-correctness]
 - ... и ещё 15 проблем
 
-### src/web/routes_ota.cpp (8 предупреждений)
+### src/web/routes_ota.cpp (7 предупреждений)
 **Модернизация:** 5 проблем
 - src\web\routes_ota.cpp:43:81:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 - src\web\routes_ota.cpp:57:81:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
@@ -304,10 +304,7 @@
 
 **Разное:** 2 проблем
 - src\web\routes_ota.cpp:134:17:: variable 'uploadBtn' of type 'String' can be declared 'const' [misc-const-correctness]
-- src\web\routes_ota.cpp:351:13:: variable 'percent' of type 'int' can be declared 'const' [misc-const-correctness]
-
-**Потенциальные баги:** 1 проблем
-- src\web\routes_ota.cpp:351:27:: narrowing conversion from 'size_t' (aka 'unsigned long long') to signed type 'int' is implementation-defined [bugprone-narrowing-conversions]
+- src\web\routes_ota.cpp:351:13:: variable 'percent' of type 'size_t' (aka 'unsigned long long') can be declared 'const' [misc-const-correctness]
 
 ### src/web/routes_reports.cpp (7 предупреждений)
 **Разное:** 7 проблем

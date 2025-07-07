@@ -126,13 +126,13 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
 
     // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем память перед началом
     const size_t freeHeap = ESP.getFreeHeap();
-    logSystem("[OTA] Свободная память перед HTTP: %d байт", freeHeap);
+    logSystem("[OTA] Свободная память перед HTTP: %zu байт", freeHeap);
 
     // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
-    if (freeHeap < 70000)
+    if (freeHeap < 70000U)
     {
         strlcpy(statusBuf.data(), "Мало памяти", sizeof(statusBuf));
-        logError("[OTA] Недостаточно памяти для HTTP: %d байт", freeHeap);
+        logError("[OTA] Недостаточно памяти для HTTP: %zu байт", freeHeap);
         return false;
     }
 
@@ -205,13 +205,13 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
 
     // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем память перед загрузкой
     const size_t heapBeforeDownload = ESP.getFreeHeap();
-    logSystem("[OTA] Память перед загрузкой: %d байт", heapBeforeDownload);
+    logSystem("[OTA] Память перед загрузкой: %zu байт", heapBeforeDownload);
 
     // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
-    if (heapBeforeDownload < 60000)
+    if (heapBeforeDownload < 60000U)
     {
         strlcpy(statusBuf.data(), "Мало памяти для загрузки", sizeof(statusBuf));
-        logError("[OTA] Недостаточно памяти для загрузки: %d байт", heapBeforeDownload);
+        logError("[OTA] Недостаточно памяти для загрузки: %zu байт", heapBeforeDownload);
         return false;
     }
 
@@ -324,13 +324,13 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
 
     // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем общее состояние системы
     size_t initialHeap = ESP.getFreeHeap();
-    logSystem("[OTA] Начальная память: %d байт", static_cast<int>(initialHeap));
+    logSystem("[OTA] Начальная память: %zu байт", initialHeap);
 
     // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
-    if (initialHeap < 80000)
+    if (initialHeap < 80000U)
     {
         strlcpy(statusBuf.data(), "Критически мало памяти", sizeof(statusBuf));
-        logError("[OTA] Критически мало памяти: %d байт", static_cast<int>(initialHeap));
+        logError("[OTA] Критически мало памяти: %zu байт", initialHeap);
         return false;
     }
 
