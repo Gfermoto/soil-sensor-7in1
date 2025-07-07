@@ -34,8 +34,8 @@ void setupMainRoutes()
 
             if (!ssidRes.isValid || !passRes.isValid)
             {
-                String msg = !ssidRes.isValid ? ssidRes.message : passRes.message;
-                String html = generateErrorPage(HTTP_BAD_REQUEST, msg);
+                const String msg = !ssidRes.isValid ? ssidRes.message : passRes.message;
+                const String html = generateErrorPage(HTTP_BAD_REQUEST, msg);
                 webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
                 return;
             }
@@ -44,12 +44,12 @@ void setupMainRoutes()
             {
                 if (webServer.hasArg("mqtt_enabled"))
                 {
-                    ValidationResult hostRes = validateMQTTServer(webServer.arg("mqtt_server"));
+                    const ValidationResult hostRes = validateMQTTServer(webServer.arg("mqtt_server"));
                     ValidationResult portRes = validateMQTTPort(webServer.arg("mqtt_port").toInt());
                     if (!hostRes.isValid || !portRes.isValid)
                     {
-                        String msg = !hostRes.isValid ? hostRes.message : portRes.message;
-                        String html = generateErrorPage(HTTP_BAD_REQUEST, msg);
+                        const String msg = !hostRes.isValid ? hostRes.message : portRes.message;
+                        const String html = generateErrorPage(HTTP_BAD_REQUEST, msg);
                         webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
                         return;
                     }
@@ -59,7 +59,7 @@ void setupMainRoutes()
                     ValidationResult tsRes = validateThingSpeakAPIKey(webServer.arg("ts_api_key"));
                     if (!tsRes.isValid)
                     {
-                        String html = generateErrorPage(HTTP_BAD_REQUEST, tsRes.message);
+                        const String html = generateErrorPage(HTTP_BAD_REQUEST, tsRes.message);
                         webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
                         return;
                     }
@@ -142,7 +142,7 @@ void setupMainRoutes()
             saveConfig();
 
             // Отправка страницы успеха
-            String html = generateSuccessPage("Настройки сохранены",
+            const String html = generateSuccessPage("Настройки сохранены",
                                               "Настройки сохранены успешно. Устройство перезагружается...", "/", 1);
 
             webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);

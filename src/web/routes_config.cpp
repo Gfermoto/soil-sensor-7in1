@@ -187,8 +187,8 @@ void setupConfigRoutes()
             const unsigned long tsMs = webServer.arg("ts_interval").toInt() * CONVERSION_MIN_TO_MS;
             const unsigned long webMs = webServer.arg("web_interval").toInt() * CONVERSION_SEC_TO_MS;
 
-            ValidationResult valSensor = validateSensorReadInterval(sensorMs);
-            ValidationResult valMqtt = validateMQTTPublishInterval(mqttMs);
+            const ValidationResult valSensor = validateSensorReadInterval(sensorMs);
+            const ValidationResult valMqtt = validateMQTTPublishInterval(mqttMs);
             ValidationResult valTs = validateThingSpeakInterval(tsMs);
 
             if (!valSensor.isValid || !valMqtt.isValid || !valTs.isValid)
@@ -400,16 +400,16 @@ void setupConfigRoutes()
         // uploadHandler: накапливаем файл
         []()
         {
-            HTTPUpload& up = webServer.upload();
-            if (up.status == UPLOAD_FILE_START)
+                HTTPUpload& upload = webServer.upload();
+    if (upload.status == UPLOAD_FILE_START)
             {
                 importedJson = "";
             }
-            else if (up.status == UPLOAD_FILE_WRITE)
+            else if (upload.status == UPLOAD_FILE_WRITE)
             {
-                importedJson += String((const char*)up.buf, up.currentSize);
+                importedJson += String((const char*)upload.buf, upload.currentSize);
             }
-            else if (up.status == UPLOAD_FILE_END)
+            else if (upload.status == UPLOAD_FILE_END)
             {
                 // ничего, финальное действие в основном хендлере
             }

@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include <PubSubClient.h>
+#include <WiFi.h>
 
 extern WiFiClient espClient;
 extern PubSubClient mqttClient;

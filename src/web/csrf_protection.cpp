@@ -74,7 +74,7 @@ bool validateCSRFToken(const String& token)
     }
 
     // Проверяем совпадение токенов
-    bool isValid = (token == currentCSRFToken);
+    const bool isValid = (token == currentCSRFToken);
 
     if (isValid)
     {
@@ -96,7 +96,7 @@ String getCSRFHiddenField()
         generateCSRFToken();
     }
 
-    return "<input type=\"hidden\" name=\"csrf_token\" value=\"" + currentCSRFToken + "\">";
+    return R"(<input type="hidden" name="csrf_token" value=")" + currentCSRFToken + R"(">)";
 }
 
 bool checkCSRFSafety()
@@ -124,8 +124,8 @@ bool checkCSRFSafety()
     }
 
     // Логируем попытку доступа
-    String clientIP = webServer.client().remoteIP().toString();
-    String uri = webServer.uri();
+    const String clientIP = webServer.client().remoteIP().toString();
+    const String uri = webServer.uri();
 
     if (csrfToken.isEmpty())
     {

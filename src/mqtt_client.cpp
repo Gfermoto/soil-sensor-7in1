@@ -758,7 +758,7 @@ void handleMqttCommand(const String& cmd)  // NOLINT(misc-use-internal-linkage)
 
 void mqttCallback(char* topic, byte* payload, unsigned int length)  // NOLINT(misc-use-internal-linkage)
 {
-    String t = String(topic);
+    const String t = String(topic);
     String message;
     for (unsigned int i = 0; i < length; ++i) message += (char)payload[i];
     DEBUG_PRINTF("[mqttCallback] Получено сообщение: %s = %s\n", t.c_str(), message.c_str());

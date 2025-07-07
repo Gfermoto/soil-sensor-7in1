@@ -71,8 +71,8 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
     // ДОБАВЛЕНО: Детальная диагностика инициализации
     logSystem("[OTA] [SETUP DEBUG] Инициализация OTA 2.0...");
     logSystem("[OTA] [SETUP DEBUG] Входные параметры:");
-    logSystemSafe("\1", manifestUrl != nullptr ? manifestUrl : "NULL");
-    logSystemSafe("\1", &client != nullptr ? "OK" : "NULL");
+    logSystemSafe("\1", manifestUrl != nullptr ? manifestUrl : "nullptr");
+    logSystemSafe("\1", &client != nullptr ? "OK" : "nullptr");
 
     // КРИТИЧЕСКАЯ ПРОВЕРКА: Валидация входного URL
     if (manifestUrl == nullptr || strlen(manifestUrl) < 20U || strstr(manifestUrl, "github.com") == nullptr)

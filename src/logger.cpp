@@ -227,7 +227,7 @@ void logWiFiStatus()
 {
     if (WiFi.status() == WL_CONNECTED)
     {
-        logWiFi("Подключен к " + WiFi.SSID() + ", IP: " + WiFi.localIP().toString() + ", RSSI: " + WiFi.RSSI() +
+        logWiFi("Подключен к " + WiFi.SSID() + ", IP: " + WiFi.localIP().toString() + ", RSSI: " + String(WiFi.RSSI()) +
                 " dBm");
     }
     else

@@ -159,8 +159,8 @@ RecValues computeRecommendations()
     {
         time_t now = time(nullptr);
         struct tm* timeInfo = localtime(&now);
-        int m = timeInfo ? timeInfo->tm_mon + 1 : 1;
-        bool rainy = (m == 4 || m == 5 || m == 6 || m == 10);
+        const int month = timeInfo ? timeInfo->tm_mon + 1 : 1;
+        const bool rainy = (month == 4 || month == 5 || month == 6 || month == 10);
 
         // Коррекция влажности и EC
         if (rainy)
@@ -177,19 +177,19 @@ RecValues computeRecommendations()
         // Коррекция NPK по сезону
         if (config.environmentType == 0)
         {  // Outdoor
-            if (m >= 3 && m <= 5)
+            if (month >= 3 && month <= 5)
             {                                       // Весна
                 rec.n *= TEST_DATA_NPK_INCREASE_N;  // +20%
                 rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
                 rec.k *= TEST_DATA_NPK_INCREASE_K;  // +10%
             }
-            else if (m >= 6 && m <= 8)
+            else if (month >= 6 && month <= 8)
             {                                       // Лето
                 rec.n *= TEST_DATA_NPK_DECREASE_N;  // -10%
                 rec.p *= 1.05F;                     // +5%
                 rec.k *= TEST_DATA_NPK_DECREASE_K;  // +25%
             }
-            else if (m >= 9 && m <= 11)
+            else if (month >= 9 && month <= 11)
             {                                       // Осень
                 rec.n *= TEST_DATA_NPK_DECREASE_N;  // -20%
                 rec.p *= 1.10F;                     // +10%
@@ -204,19 +204,19 @@ RecValues computeRecommendations()
         }
         else if (config.environmentType == 1)
         {  // Greenhouse
-            if (m >= 3 && m <= 5)
+            if (month >= 3 && month <= 5)
             {                                       // Весна
                 rec.n *= TEST_DATA_NPK_INCREASE_N;  // +25%
                 rec.p *= TEST_DATA_NPK_INCREASE_P;  // +20%
                 rec.k *= TEST_DATA_NPK_INCREASE_K;  // +15%
             }
-            else if (m >= 6 && m <= 8)
+            else if (month >= 6 && month <= 8)
             {                                       // Лето
                 rec.n *= TEST_DATA_NPK_DECREASE_N;  // -10%
                 rec.p *= 1.10F;                     // +10%
                 rec.k *= TEST_DATA_NPK_DECREASE_K;  // +30%
             }
-            else if (m >= 9 && m <= 11)
+            else if (month >= 9 && month <= 11)
             {                                       // Осень
                 rec.n *= TEST_DATA_NPK_INCREASE_N;  // +15%
                 rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%

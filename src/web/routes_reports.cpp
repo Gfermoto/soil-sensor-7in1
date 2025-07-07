@@ -118,7 +118,7 @@ static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& deb
 // NOLINTNEXTLINE(misc-use-anonymous-namespace)
 static void updateReportsCache()
 {
-    unsigned long now = millis();
+    const unsigned long now = millis();
     if (now - lastReportUpdate < REPORT_CACHE_TTL)
     {
         return;  // Кэш ещё актуален
@@ -263,8 +263,8 @@ static String generateReportsDashboardHTML()
 {
     updateReportsCache();
 
-    String statusIcon = lastTestSummary.success_rate >= 90 ? "[OK]" : "[WARNING]";
-    String statusColor = lastTestSummary.success_rate >= 90 ? "#28a745" : "#ffc107";
+    const String statusIcon = lastTestSummary.success_rate >= 90 ? "[OK]" : "[WARNING]";
+    const String statusColor = lastTestSummary.success_rate >= 90 ? "#28a745" : "#ffc107";
 
     String html = R"(
 <!DOCTYPE html>

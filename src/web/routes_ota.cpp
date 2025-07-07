@@ -132,7 +132,7 @@ void setupOtaRoutes()
             html += "</div>";
             html += "<form id='uploadForm' enctype='multipart/form-data'>";
             {
-                String uploadBtn = generateButton(ButtonType::SECONDARY, ButtonConfig{"⬆️", "Загрузить прошивку", ""});
+                const String uploadBtn = generateButton(ButtonType::SECONDARY, ButtonConfig{"⬆️", "Загрузить прошивку", ""});
                 html += uploadBtn;
             }
             html += "</form></div>";
@@ -178,7 +178,7 @@ void setupOtaRoutes()
             html += "      isOtaActive = true;\n";
             html += "    } else if (status.includes('Загружено') && status.includes('%')) {\n";
             html += "      // Удаленная загрузка с процентами\n";
-            html += "      const percent = parseInt(status.match(/\\d+/)[0]);\n";
+            html += R"(      const percent = parseInt(status.match(/\d+/)[0]);)" "\n";
             html += "      showProgress('Загрузка обновления', percent);\n";
             html += "      isOtaActive = true;\n";
             html += "    } else if (status.includes('Загружено') && status.includes('КБ')) {\n";

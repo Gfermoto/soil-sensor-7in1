@@ -60,14 +60,14 @@ void setupErrorHandlers()
     webServer.onNotFound(
         []()
         {
-            String uri = webServer.uri();
-            String method = webServer.method() == HTTP_GET ? "GET" : "POST";
+            const String uri = webServer.uri();
+            const String method = webServer.method() == HTTP_GET ? "GET" : "POST";
 
             logWebRequest(method, uri, webServer.client().remoteIP().toString());
 
             logWarnSafe("\1", method.c_str(), uri.c_str());
 
-            String html = generateErrorPage(404, "Страница не найдена");
+            const String html = generateErrorPage(404, "Страница не найдена");
             webServer.send(404, "text/html; charset=utf-8", html);
         });
 
@@ -143,7 +143,7 @@ void handleUploadError(const String& error)
 {
     logErrorSafe("\1", error.c_str());
 
-    String html = generateErrorPage(400, "Ошибка загрузки файла: " + error);
+    const String html = generateErrorPage(400, "Ошибка загрузки файла: " + error);
     webServer.send(400, "text/html; charset=utf-8", html);
 }
 
@@ -215,7 +215,7 @@ void handleCriticalError(const String& error)
 {
     logErrorSafe("\1", error.c_str());
 
-    String html = generateErrorPage(500, "Внутренняя ошибка сервера: " + error);
+    const String html = generateErrorPage(500, "Внутренняя ошибка сервера: " + error);
     webServer.send(500, "text/html; charset=utf-8", html);
 }
 

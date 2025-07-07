@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-07T18:29:43.953146+00:00Z",
+  "timestamp": "2025-07-07T20:13:05.986715+00:00Z",
   "project": "JXCT Soil Sensor",
   "version": "3.7.0",
   "environment": "nt",
@@ -51,19 +51,19 @@
         "passed": 1,
         "failed": 0
       },
-      "firmware_size": "Flash: [======    ]  63.8% (used 1253893 bytes from 1966080 bytes)",
+      "firmware_size": "Flash: [======    ]  63.8% (used 1254121 bytes from 1966080 bytes)",
       "status": "success"
     }
   },
   "summary": {
-    "total_duration": 19.83653974533081,
+    "total_duration": 19.41126012802124,
     "total_tests": 25,
     "passed_tests": 25,
     "failed_tests": 0,
     "success_rate": 100.0
   },
   "technical_debt": {
-    "timestamp": "2025-07-07T21:29:44.077796",
+    "timestamp": "2025-07-07T23:13:06.085543",
     "version": "3.5.0",
     "analysis": {
       "clang_tidy": {

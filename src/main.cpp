@@ -138,7 +138,7 @@ void setup()
     // Настройка Watchdog Timer
     logSystem("Настройка Watchdog Timer (30 сек)...");
     esp_task_wdt_init(WATCHDOG_TIMEOUT_SEC, true);
-    esp_task_wdt_add(NULL);
+    esp_task_wdt_add(nullptr);
     logSuccess("Watchdog Timer активирован");
 
     // Инициализация Preferences
@@ -201,7 +201,7 @@ void setup()
     }
 
     // Запуск задачи мониторинга кнопки сброса
-    xTaskCreate(resetButtonTask, "ResetButton", 2048, NULL, 1, NULL);
+    xTaskCreate(resetButtonTask, "ResetButton", 2048, nullptr, 1, nullptr);
 
     // Если мы загружаемся после OTA и система ждёт подтверждения, отменяем откат после успешного старта
     const esp_partition_t* running = esp_ota_get_running_partition();

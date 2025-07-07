@@ -141,7 +141,7 @@ void setupServiceRoutes()
                      }
 
                      resetConfig();
-                     String html =
+                     const String html =
                          "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' "
                          "content='2;url=/service'><title>Сброс</title></head><body "
                          "style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'><h2>Настройки "
@@ -179,7 +179,7 @@ void setupServiceRoutes()
                          return;
                      }
 
-                     String html =
+                     const String html =
                          "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' "
                          "content='2;url=/service'><title>Перезагрузка</title></head><body "
                          "style='font-family:Arial,sans-serif;text-align:center;padding-top:40px'><h2>Перезагрузка...</"

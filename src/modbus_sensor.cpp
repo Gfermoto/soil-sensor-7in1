@@ -600,7 +600,7 @@ static void realSensorTask(void* /*pvParameters*/)  // NOLINT(misc-use-internal-
 
 void startRealSensorTask()
 {
-    xTaskCreate(realSensorTask, "RealSensor", 4096, NULL, 1, NULL);
+    xTaskCreate(realSensorTask, "RealSensor", 4096, nullptr, 1, nullptr);
 }
 
 // Функция для вывода ошибок Modbus

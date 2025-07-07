@@ -20,8 +20,8 @@ struct FormInfo
     String buttonText;
     String buttonIcon;
 
-    FormInfo(const String& actionUrl, const String& methodType, const String& fc, const String& bt, const String& bi)
-        : action(actionUrl), method(methodType), formContent(fc), buttonText(bt), buttonIcon(bi)
+    FormInfo(const String& actionUrl, const String& methodType, const String& formContent, const String& buttonText, const String& buttonIcon)
+        : action(actionUrl), method(methodType), formContent(formContent), buttonText(buttonText), buttonIcon(buttonIcon)
     {
     }
 };
@@ -59,8 +59,8 @@ struct NumberFieldInfo
     int max;
     int step;
 
-    NumberFieldInfo(const String& i, const String& n, const String& l, int v, int mi, int ma, int s)
-        : id(i), name(n), label(l), value(v), min(mi), max(ma), step(s)
+    NumberFieldInfo(const String& id, const String& name, const String& label, int value, int min, int max, int step)
+        : id(id), name(name), label(label), value(value), min(min), max(max), step(step)
     {
     }
 };

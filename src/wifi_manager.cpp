@@ -221,9 +221,9 @@ String getApSsid()  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-names
     WiFi.macAddress(mac.data());
     std::array<char, static_cast<size_t>(WifiConstants::MAC_ADDRESS_BUFFER_SIZE)> buf;
     snprintf(buf.data(), buf.size(), "jxct-%02X%02X%02X", mac[3], mac[4], mac[5]);
-    for (int i = 0; buf[i]; ++i)
+    for (int idx = 0; buf[idx]; ++idx)
     {
-        buf[i] = tolower(buf[i]);
+        buf[idx] = tolower(buf[idx]);
     }
     return String(buf.data());
 }
@@ -233,7 +233,7 @@ void startAPMode()
     currentWiFiMode = WiFiMode::AP;
     WiFi.disconnect();
     WiFi.mode(WIFI_AP);
-    String apSsid = getApSsid();
+    const String apSsid = getApSsid();
     WiFi.softAP(apSsid.c_str(), JXCT_WIFI_AP_PASS);
     dnsServer.start(static_cast<uint16_t>(WifiConstants::DNS_SERVER_PORT), "*", WiFi.softAPIP());
     setupWebServer();
@@ -250,7 +250,7 @@ void startSTAMode()
     WiFi.mode(WIFI_STA);
     delay(static_cast<unsigned long>(WifiConstants::WIFI_MODE_DELAY));  // Даем время на применение режима
 
-    String hostname = getApSsid();
+    const String hostname = getApSsid();
     WiFi.setHostname(hostname.c_str());
 
     if (strlen(config.ssid) > 0)
@@ -260,7 +260,7 @@ void startSTAMode()
 
         int attempts = 0;
         setLedBlink(WIFI_RETRY_DELAY_MS);
-        unsigned long startTime = millis();
+        const unsigned long startTime = millis();
 
         while (WiFi.status() != WL_CONNECTED && attempts < WIFI_CONNECTION_ATTEMPTS &&
                (millis() - startTime) < WIFI_CONNECTION_TIMEOUT)
@@ -331,6 +331,7 @@ bool checkResetButton()
         pressStart = millis();
         wasPressed = true;
         setLedFastBlink();
+        return false;
     }
     else if (!isPressed && wasPressed)
     {

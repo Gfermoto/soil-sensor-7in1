@@ -327,8 +327,8 @@ bool isValidIPAddress(const String& ipAddress)
                 return false;  // Пустая часть
             }
 
-            String part = ipAddress.substring(start, i);
-            int value = part.toInt();
+            const String part = ipAddress.substring(start, i);
+            const int value = part.toInt();
 
             if (value < 0 || value > 255)
             {
@@ -354,7 +354,7 @@ bool isValidHostname(const String& hostname)
         return false;
     }
 
-    for (char character : hostname)
+    for (const char character : hostname)
     {
         if (!isAlphaNumeric(character) && character != '.' && character != '-')
         {

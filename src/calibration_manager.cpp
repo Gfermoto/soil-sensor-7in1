@@ -21,14 +21,14 @@ bool init()
         return true;
     }
 
-    if (!LittleFS.begin(true) != 0)
+    if (LittleFS.begin(true) == 0)
     {
         logError(String("LittleFS не инициализирован"));
         return false;
     }
 
     // Создаем каталог /calibration при необходимости
-    if (LittleFS.exists("/calibration") == false)
+    if (!LittleFS.exists("/calibration"))
     {
         LittleFS.mkdir("/calibration");
     }
