@@ -168,7 +168,7 @@ void setupConfigRoutes()
                      // ✅ CSRF защита
                      if (!checkCSRFSafety())
                      {
-                         logWarn("CSRF атака отклонена на /save_intervals от %s",
+                         logWarnSafe("\1",
                                  webServer.client().remoteIP().toString().c_str());
                          const String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                          webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
@@ -356,7 +356,7 @@ void setupConfigRoutes()
             // ✅ CSRF защита - критическая операция импорта конфигурации!
             if (!checkCSRFSafety())
             {
-                logWarn("CSRF атака отклонена на /api/config/import от %s",
+                logWarnSafe("\1",
                         webServer.client().remoteIP().toString().c_str());
                 webServer.send(HTTP_FORBIDDEN, "application/json", "{\"error\":\"CSRF token invalid\"}");
                 importedJson = "";

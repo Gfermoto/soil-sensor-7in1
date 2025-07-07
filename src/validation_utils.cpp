@@ -377,14 +377,14 @@ void logValidationResult(const ConfigValidationResult& result, const char* conte
 {
     if (result.isValid)
     {
-        logSuccess("Валидация %s прошла успешно", context);
+        logSuccessSafe("\1", context);
     }
     else
     {
-        logError("Валидация %s не пройдена:", context);
+        logErrorSafe("\1", context);
         for (const auto& error : result.errors)
         {
-            logError("  %s: %s", error.field.c_str(), error.message.c_str());
+            logErrorSafe("\1", error.field.c_str(), error.message.c_str());
         }
     }
 }
@@ -393,14 +393,14 @@ void logSensorValidationResult(const SensorValidationResult& result, const char*
 {
     if (result.isValid)
     {
-        logSuccess("Валидация датчика %s прошла успешно", context);
+        logSuccessSafe("\1", context);
     }
     else
     {
-        logWarn("Валидация датчика %s не пройдена:", context);
+        logWarnSafe("\1", context);
         for (const auto& error : result.errors)
         {
-            logWarn("  %s: %s", error.field.c_str(), error.message.c_str());
+            logWarnSafe("\1", error.field.c_str(), error.message.c_str());
         }
     }
 }

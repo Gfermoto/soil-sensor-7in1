@@ -32,7 +32,7 @@ std::array<char, 8> guardSentinel = {"GUARD!"};  // часовой после UR
 
 static void _printGuard(const char* name, const char* tag, const char* current)  // NOLINT(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp,misc-use-anonymous-namespace)
 {
-    logError("[GUARD] Повреждение (%s) после %s: '%s'", name, tag, current);
+    logErrorSafe("\1", name, tag, current);
 }
 
 void checkGuard(const char* tag)
@@ -67,8 +67,8 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
     // ДОБАВЛЕНО: Детальная диагностика инициализации
     logSystem("[OTA] [SETUP DEBUG] Инициализация OTA 2.0...");
     logSystem("[OTA] [SETUP DEBUG] Входные параметры:");
-    logSystem("[OTA] [SETUP DEBUG]   manifestUrl: %s", manifestUrl ? manifestUrl : "NULL");
-    logSystem("[OTA] [SETUP DEBUG]   client: %s", &client ? "OK" : "NULL");
+    logSystemSafe("\1", manifestUrl ? manifestUrl : "NULL");
+    logSystemSafe("\1", &client ? "OK" : "NULL");
 
     // КРИТИЧЕСКАЯ ПРОВЕРКА: Валидация входного URL
     if (!manifestUrl || strlen(manifestUrl) < 20U || strstr(manifestUrl, "github.com") == nullptr)
@@ -100,10 +100,10 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
     pendingUpdateVersion = "";
 
     logSystem("[OTA] [SETUP DEBUG] Глобальные переменные установлены:");
-    logSystem("[OTA] [SETUP DEBUG]   manifestUrlGlobal: %s", manifestUrlGlobal.data());
-    logSystem("[OTA] [SETUP DEBUG]   clientPtr: %p", clientPtr);
-    logSystem("[OTA] [SETUP DEBUG]   statusBuf: '%s'", statusBuf.data());
-    logSystem("[OTA] [SETUP DEBUG]   urlInitialized: %s", urlInitialized ? "ДА" : "НЕТ");
+    logSystemSafe("\1", manifestUrlGlobal.data());
+    logSystemSafe("\1", clientPtr);
+    logSystemSafe("\1", statusBuf.data());
+    logSystemSafe("\1", urlInitialized ? "ДА" : "НЕТ");
 
     logSuccess("[OTA] [SETUP DEBUG] ✅ OTA инициализирован успешно с защитой памяти");
     checkGuard("setupOTA:exit");
@@ -126,26 +126,26 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
 
     // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем память перед началом
     const size_t freeHeap = ESP.getFreeHeap();
-    logSystem("[OTA] Свободная память перед HTTP: %zu байт", freeHeap);
+    logSystemSafe("\1", freeHeap);
 
     // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
     if (freeHeap < 70000U)
     {
         strlcpy(statusBuf.data(), "Мало памяти", sizeof(statusBuf));
-        logError("[OTA] Недостаточно памяти для HTTP: %zu байт", freeHeap);
+        logErrorSafe("\1", freeHeap);
         return false;
     }
 
     // ИСПРАВЛЕНО: Защита от повреждения памяти - копируем URL в статический буфер
     static std::array<char, 256> urlBuffer;
     strlcpy(urlBuffer.data(), binUrl.c_str(), urlBuffer.size());
-    logSystem("[OTA] Загрузка: %s", urlBuffer.data());
+    logSystemSafe("\1", urlBuffer.data());
 
     // ДОПОЛНИТЕЛЬНАЯ ЗАЩИТА: Проверяем целостность URL
     if (strlen(urlBuffer.data()) < 10U || strstr(urlBuffer.data(), "github.com") == nullptr)
     {
         strlcpy(statusBuf.data(), "Поврежденный URL", sizeof(statusBuf));
-        logError("[OTA] URL поврежден или некорректен: %s", urlBuffer.data());
+        logErrorSafe("\1", urlBuffer.data());
         return false;
     }
 
@@ -167,12 +167,12 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
     int code = http.GET();
     esp_task_wdt_reset();
 
-    logSystem("[OTA] HTTP ответ: %d", code);
+    logSystemSafe("\1", code);
 
     if (code != HTTP_CODE_OK)
     {
         snprintf(statusBuf.data(), sizeof(statusBuf), "Ошибка HTTP %d", code);
-        logError("[OTA] HTTP ошибка %d", code);
+        logErrorSafe("\1", code);
         return false;
     }
 
@@ -184,7 +184,7 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
     }
     else
     {
-        logSystem("[OTA] Размер файла: %d байт", contentLen);
+        logSystemSafe("\1", contentLen);
     }
 
     if (!Update.begin(contentLen))
@@ -205,13 +205,13 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
 
     // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем память перед загрузкой
     const size_t heapBeforeDownload = ESP.getFreeHeap();
-    logSystem("[OTA] Память перед загрузкой: %zu байт", heapBeforeDownload);
+    logSystemSafe("\1", heapBeforeDownload);
 
     // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
     if (heapBeforeDownload < 60000U)
     {
         strlcpy(statusBuf.data(), "Мало памяти для загрузки", sizeof(statusBuf));
-        logError("[OTA] Недостаточно памяти для загрузки: %zu байт", heapBeforeDownload);
+        logErrorSafe("\1", heapBeforeDownload);
         return false;
     }
 
@@ -274,7 +274,7 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
                     int percent = static_cast<int>((totalDownloaded * 100) / contentLen);
                     snprintf(statusBuf.data(), sizeof(statusBuf), "Загружено %d%%", percent);
                 }
-                logSystem("[OTA] Загружено: %d байт", static_cast<int>(totalDownloaded));
+                logSystemSafe("\1", static_cast<int>(totalDownloaded));
                 lastProgress = millis();
             }
         }
@@ -283,21 +283,21 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
             // Если весь файл уже получен, прекращаем ожидание доп.данных
             if (!isChunked && totalDownloaded == (size_t)contentLen)
             {
-                logSystem("[OTA] Загрузка завершена, получено %d байт", static_cast<int>(totalDownloaded));
+                logSystemSafe("\1", static_cast<int>(totalDownloaded));
                 break;
             }
 
             if (millis() - lastActivity > TIMEOUT_MS)
             {
                 strlcpy(statusBuf.data(), "Таймаут", sizeof(statusBuf));
-                logError("[OTA] Таймаут загрузки (нет данных %lu мс)", TIMEOUT_MS);
+                logErrorSafe("\1", TIMEOUT_MS);
                 Update.abort();
                 return false;
             }
 
             if (isChunked && !http.connected())
             {
-                logSystem("[OTA] Chunked transfer завершён, загружено %d байт", static_cast<int>(totalDownloaded));
+                logSystemSafe("\1", static_cast<int>(totalDownloaded));
                 break;
             }
 
@@ -309,7 +309,7 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
     if (!isChunked && totalDownloaded != (size_t)contentLen)
     {
         snprintf(statusBuf.data(), sizeof(statusBuf), "Неполная загрузка %d/%d", static_cast<int>(totalDownloaded), contentLen);
-        logError("[OTA] Неполная загрузка: %d из %d байт", static_cast<int>(totalDownloaded), contentLen);
+        logErrorSafe("\1", static_cast<int>(totalDownloaded), contentLen);
         Update.abort();
         return false;
     }
@@ -324,13 +324,13 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
 
     // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем общее состояние системы
     size_t initialHeap = ESP.getFreeHeap();
-    logSystem("[OTA] Начальная память: %zu байт", initialHeap);
+    logSystemSafe("\1", initialHeap);
 
     // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
     if (initialHeap < 80000U)
     {
         strlcpy(statusBuf.data(), "Критически мало памяти", sizeof(statusBuf));
-        logError("[OTA] Критически мало памяти: %zu байт", initialHeap);
+        logErrorSafe("\1", initialHeap);
         return false;
     }
 
@@ -355,7 +355,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
         return false;
     }
 
-    logSystem("[OTA] Инициализация успешна, размер контента: %d", contentLen);
+    logSystemSafe("\1", contentLen);
 
     // ИСПРАВЛЕНО: Создаем SHA256 контекст в куче
     mbedtls_sha256_context* shaCtx = new mbedtls_sha256_context();
@@ -451,9 +451,9 @@ void triggerOtaInstall()
         return;
     }
 
-    logSystem("[OTA] Принудительная установка обновления %s", pendingUpdateVersion.c_str());
-    logSystem("[OTA] URL: %s", pendingUpdateUrl.c_str());
-    logSystem("[OTA] SHA256: %.16s...", pendingUpdateSha256.c_str());
+    logSystemSafe("\1", pendingUpdateVersion.c_str());
+    logSystemSafe("\1", pendingUpdateUrl.c_str());
+    logSystemSafe("\1", pendingUpdateSha256.c_str());
 
     // ИСПРАВЛЕНО: Устанавливаем статус успешного обновления ДО перезагрузки
     strlcpy(statusBuf.data(), "Обновление успешно!", sizeof(statusBuf));
@@ -493,13 +493,13 @@ void handleOTA()
     // КРИТИЧЕСКАЯ ПРОВЕРКА: Проверяем целостность URL перед использованием
     if (strstr(manifestUrlGlobal.data(), "github.com") == nullptr)
     {
-        logError("[OTA] [DEBUG] ❌ URL поврежден в памяти: %s", manifestUrlGlobal.data());
+        logErrorSafe("\1", manifestUrlGlobal.data());
         logError("[OTA] [DEBUG] Переинициализируем OTA...");
         urlInitialized = false;  // Сбрасываем флаг для переинициализации
         return;
     }
 
-    logSystem("[OTA] [DEBUG] handleOTA() вызов #%lu, URL проверен: %.50s...", debugCallCount, manifestUrlGlobal.data());
+    logSystemSafe("\1", debugCallCount, manifestUrlGlobal.data());
 
     if (!clientPtr)
     {
@@ -508,7 +508,7 @@ void handleOTA()
     }
 
     logSystem("[OTA] [DEBUG] Начинаем проверку обновлений...");
-    logSystem("[OTA] [DEBUG] URL манифеста: %s", manifestUrlGlobal.data());
+    logSystemSafe("\1", manifestUrlGlobal.data());
     strlcpy(statusBuf.data(), "Проверка обновлений", sizeof(statusBuf));
 
     HTTPClient http;
@@ -521,12 +521,12 @@ void handleOTA()
     int code = http.GET();
     esp_task_wdt_reset();
 
-    logSystem("[OTA] [DEBUG] HTTP ответ: %d", code);
+    logSystemSafe("\1", code);
 
     if (code != HTTP_CODE_OK)
     {
         snprintf(statusBuf.data(), sizeof(statusBuf), "Ошибка манифеста %d", code);
-        logError("[OTA] [DEBUG] Ошибка загрузки манифеста: HTTP %d", code);
+        logErrorSafe("\1", code);
 
         // Дополнительная диагностика для популярных ошибок
         if (code == HTTP_CODE_NOT_FOUND)
@@ -535,7 +535,7 @@ void handleOTA()
         }
         else if (code == HTTP_CODE_MOVED_PERMANENTLY || code == HTTP_CODE_FOUND)
         {
-            logError("[OTA] [DEBUG] %d - редирект, но followRedirects включен", code);
+            logErrorSafe("\1", code);
         }
         else if (code == -1)
         {
@@ -554,11 +554,11 @@ void handleOTA()
     int contentLength = manifestContent.length();
     http.end();
 
-    logSystem("[OTA] [DEBUG] Манифест получен: %d байт", contentLength);
+    logSystemSafe("\1", contentLength);
 
     // Показываем первые 200 символов для диагностики
     String preview = manifestContent.substring(0, min(200, contentLength));
-    logSystem("[OTA] [DEBUG] Начало манифеста: '%s'%s", preview.c_str(), contentLength > 200 ? "..." : "");
+    logSystemSafe("\1", preview.c_str(), contentLength > 200 ? "..." : "");
 
     // Проверяем что это JSON
     if (!manifestContent.startsWith("{"))
@@ -574,8 +574,8 @@ void handleOTA()
     if (err)
     {
         strlcpy(statusBuf.data(), "Ошибка JSON", sizeof(statusBuf));
-        logError("[OTA] [DEBUG] Ошибка парсинга JSON: %s", err.c_str());
-        logError("[OTA] [DEBUG] JSON содержимое: '%s'", manifestContent.c_str());
+        logErrorSafe("\1", err.c_str());
+        logErrorSafe("\1", manifestContent.c_str());
         return;
     }
 
@@ -584,10 +584,10 @@ void handleOTA()
     const char* sha256 = doc["sha256"] | "";
 
     logSystem("[OTA] [DEBUG] Парсинг JSON успешен:");
-    logSystem("[OTA] [DEBUG]   version: '%s'", newVersion);
-    logSystem("[OTA] [DEBUG]   url: '%s'", binUrl);
-    logSystem("[OTA] [DEBUG]   sha256: '%s'", sha256);
-    logSystem("[OTA] [DEBUG]   текущая версия: '%s'", JXCT_VERSION_STRING);
+    logSystemSafe("\1", newVersion);
+    logSystemSafe("\1", binUrl);
+    logSystemSafe("\1", sha256);
+    logSystemSafe("\1", JXCT_VERSION_STRING);
 
     // Детальная валидация полей
     if (strlen(newVersion) == 0)
@@ -604,13 +604,13 @@ void handleOTA()
     }
     if (strlen(sha256) != 64U)
     {
-        logError("[OTA] [DEBUG] Поле 'sha256' неверной длины: %zu (ожидается 64)", strlen(sha256));
+        logErrorSafe("\1", strlen(sha256));
         strlcpy(statusBuf.data(), "Неверная подпись", sizeof(statusBuf));
         return;
     }
 
     // Проверка версий
-    logSystem("[OTA] [DEBUG] Сравниваем версии: '%s' vs '%s'", newVersion, JXCT_VERSION_STRING);
+    logSystemSafe("\1", newVersion, JXCT_VERSION_STRING);
 
     if (strcmp(newVersion, JXCT_VERSION_STRING) == 0)
     {
@@ -631,9 +631,9 @@ void handleOTA()
 
     snprintf(statusBuf.data(), sizeof(statusBuf), "Доступно обновление: %s", newVersion);
     logSystem("[OTA] [DEBUG] ✅ ОБНОВЛЕНИЕ НАЙДЕНО!");
-    logSystem("[OTA] [DEBUG]   Текущая: %s", JXCT_VERSION_STRING);
-    logSystem("[OTA] [DEBUG]   Доступна: %s", newVersion);
-    logSystem("[OTA] [DEBUG]   URL: %s", binUrl);
-    logSystem("[OTA] [DEBUG]   SHA256: %.16s...", sha256);
+    logSystemSafe("\1", JXCT_VERSION_STRING);
+    logSystemSafe("\1", newVersion);
+    logSystemSafe("\1", binUrl);
+    logSystemSafe("\1", sha256);
     logSystem("[OTA] [DEBUG] Ожидаем подтверждения установки через веб-интерфейс");
 }

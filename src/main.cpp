@@ -153,8 +153,8 @@ void setup()
     logSuccess("Конфигурация загружена");
 
     // Информация о режиме работы
-    logSystem("Режим датчика: %s", config.flags.useRealSensor ? "РЕАЛЬНЫЙ" : "ЭМУЛЯЦИЯ");
-    logSystem("Интервал чтения: %d мс", config.sensorReadInterval);
+    logSystemSafe("\1", config.flags.useRealSensor ? "РЕАЛЬНЫЙ" : "ЭМУЛЯЦИЯ");
+    logSystemSafe("\1", static_cast<unsigned int>(config.sensorReadInterval));
 
     // Инициализация WiFi
     setupWiFi();
@@ -233,7 +233,7 @@ void loop()
     {
         timeClient->forceUpdate();
         lastNtpUpdate = millis();
-        logSystem("NTP обновление: %s", timeClient->isTimeSet() ? "OK" : "не удалось");
+        logSystemSafe("\1", timeClient->isTimeSet() ? "OK" : "не удалось");
     }
 
     // ✅ Вывод статуса системы каждые 30 секунд (неблокирующий)
@@ -244,12 +244,12 @@ void loop()
         logUptime();
         logMemoryUsage();
         logWiFiStatus();
-        logSystem("Режим датчика: %s", config.flags.useRealSensor ? "РЕАЛЬНЫЙ" : "ЭМУЛЯЦИЯ");
+        logSystemSafe("\1", config.flags.useRealSensor ? "РЕАЛЬНЫЙ" : "ЭМУЛЯЦИЯ");
 
         // Статус данных датчика
         if (sensorData.valid)
         {
-            logData("Последние измерения получены %.1f сек назад", (currentTime - sensorData.last_update) / 1000.0);
+            logDataSafe("\1", (currentTime - sensorData.last_update) / 1000.0);
         }
         else
         {

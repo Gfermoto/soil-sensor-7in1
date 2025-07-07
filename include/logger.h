@@ -7,6 +7,8 @@
 #define LOGGER_H
 
 #include <Arduino.h>
+#include <array>
+#include <utility>
 
 // Уровни логгирования
 enum LogLevel : std::uint8_t
@@ -55,7 +57,6 @@ extern LogLevel currentLogLevel;
 #define COLOR_RESET "\033[0m"
 
 // Безопасные helper функции для форматирования
-String formatLogMessage(const char* format, ...);
 String formatLogMessage(const String& message);
 
 // Основные функции логгирования (String версии)
@@ -71,52 +72,87 @@ void logHTTP(const String& message);
 void logSystem(const String& message);
 void logData(const String& message);
 
-// Безопасные variadic функции (для обратной совместимости)
-void logError(const char* format, ...) __attribute__((format(printf, 1, 2)));
-void logWarn(const char* format, ...) __attribute__((format(printf, 1, 2)));
-void logInfo(const char* format, ...) __attribute__((format(printf, 1, 2)));
-void logDebug(const char* format, ...) __attribute__((format(printf, 1, 2)));
-void logSuccess(const char* format, ...) __attribute__((format(printf, 1, 2)));
-void logSensor(const char* format, ...) __attribute__((format(printf, 1, 2)));
-void logWiFi(const char* format, ...) __attribute__((format(printf, 1, 2)));
-void logMQTT(const char* format, ...) __attribute__((format(printf, 1, 2)));
-void logHTTP(const char* format, ...) __attribute__((format(printf, 1, 2)));
-void logSystem(const char* format, ...) __attribute__((format(printf, 1, 2)));
-void logData(const char* format, ...) __attribute__((format(printf, 1, 2)));
-
-// Современные безопасные template функции (рекомендуется использовать)
+// Современная C++ альтернатива с template parameter pack
 template<typename... Args>
-void logErrorSafe(const char* format, Args&&... args);
-
-template<typename... Args>
-void logWarnSafe(const char* format, Args&&... args);
+String formatLogMessageSafe(const char* format, Args&&... args)
+{
+    std::array<char, 512> buffer;
+    int result = snprintf(buffer.data(), buffer.size(), format, std::forward<Args>(args)...);
+    if (result < 0) {
+        return String("LOG FORMAT ERROR");
+    }
+    if (result < static_cast<int>(buffer.size())) {
+        return String(buffer.data());
+    }
+    buffer[buffer.size() - 1] = '\0';
+    return String(buffer.data());
+}
 
 template<typename... Args>
-void logInfoSafe(const char* format, Args&&... args);
+void logErrorSafe(const char* format, Args&&... args)
+{
+    logError(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
 
 template<typename... Args>
-void logDebugSafe(const char* format, Args&&... args);
+void logWarnSafe(const char* format, Args&&... args)
+{
+    logWarn(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
 
 template<typename... Args>
-void logSuccessSafe(const char* format, Args&&... args);
+void logInfoSafe(const char* format, Args&&... args)
+{
+    logInfo(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
 
 template<typename... Args>
-void logSensorSafe(const char* format, Args&&... args);
+void logDebugSafe(const char* format, Args&&... args)
+{
+    logDebug(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
 
 template<typename... Args>
-void logWiFiSafe(const char* format, Args&&... args);
+void logSuccessSafe(const char* format, Args&&... args)
+{
+    logSuccess(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
 
 template<typename... Args>
-void logMQTTSafe(const char* format, Args&&... args);
+void logSensorSafe(const char* format, Args&&... args)
+{
+    logSensor(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
 
 template<typename... Args>
-void logHTTPSafe(const char* format, Args&&... args);
+void logWiFiSafe(const char* format, Args&&... args)
+{
+    logWiFi(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
 
 template<typename... Args>
-void logSystemSafe(const char* format, Args&&... args);
+void logMQTTSafe(const char* format, Args&&... args)
+{
+    logMQTT(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
 
 template<typename... Args>
-void logDataSafe(const char* format, Args&&... args);
+void logHTTPSafe(const char* format, Args&&... args)
+{
+    logHTTP(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logSystemSafe(const char* format, Args&&... args)
+{
+    logSystem(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
+
+template<typename... Args>
+void logDataSafe(const char* format, Args&&... args)
+{
+    logData(formatLogMessageSafe(format, std::forward<Args>(args)...));
+}
 
 // Специальные функции
 void logSeparator();

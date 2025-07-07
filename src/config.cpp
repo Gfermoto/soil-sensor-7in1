@@ -128,7 +128,7 @@ void loadConfig()
     }
 
     logSuccess("Конфигурация загружена");
-    logDebug("SSID: %s, MQTT: %s:%d, ThingSpeak: %s", config.ssid, config.mqttServer, config.mqttPort,
+    logDebugSafe("SSID: %s, MQTT: %s:%d, ThingSpeak: %s", config.ssid, config.mqttServer, static_cast<int>(config.mqttPort),
              config.flags.thingSpeakEnabled ? "включен" : "выключен");
 }
 

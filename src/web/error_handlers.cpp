@@ -36,7 +36,7 @@ bool validateInterval(const String& argName, int minValue, int maxValue, const S
         const int value = webServer.arg(argName).toInt();
         if (value < minValue || value > maxValue)
         {
-            logWarn("Валидация: некорректный %s: %d (допустимо %d-%d)", description.c_str(), value, minValue, maxValue);
+            logWarnSafe("\1", description.c_str(), value, minValue, maxValue);
             return false;
         }
     }
@@ -62,7 +62,7 @@ void setupErrorHandlers()
 
             logWebRequest(method, uri, webServer.client().remoteIP().toString());
 
-            logWarn("404 Not Found: %s %s", method.c_str(), uri.c_str());
+            logWarnSafe("\1", method.c_str(), uri.c_str());
 
             String html = generateErrorPage(404, "Страница не найдена");
             webServer.send(404, "text/html; charset=utf-8", html);
@@ -133,7 +133,7 @@ bool validateConfigInput(bool checkRequired)
 
 void handleUploadError(const String& error)
 {
-    logError("Ошибка загрузки файла: %s", error.c_str());
+    logErrorSafe("\1", error.c_str());
 
     String html = generateErrorPage(400, "Ошибка загрузки файла: " + error);
     webServer.send(400, "text/html; charset=utf-8", html);
@@ -167,12 +167,12 @@ void logWebRequest(const String& method, const String& uri, const String& client
     if (uri.startsWith("/sensor_json") || uri.startsWith(API_SENSOR))
     {
         // API запросы логируем на уровне DEBUG
-        logDebug("%s %s from %s", method.c_str(), uri.c_str(), clientIP.c_str());
+        logDebugSafe("\1", method.c_str(), uri.c_str(), clientIP.c_str());
     }
     else
     {
         // Обычные запросы на уровне INFO
-        logInfo("Web: %s %s from %s", method.c_str(), uri.c_str(), clientIP.c_str());
+        logInfoSafe("\1", method.c_str(), uri.c_str(), clientIP.c_str());
     }
 }
 
@@ -205,7 +205,7 @@ String generateValidationErrorResponse(const String& errorMsg)
  */
 void handleCriticalError(const String& error)
 {
-    logError("Критическая ошибка веб-сервера: %s", error.c_str());
+    logErrorSafe("\1", error.c_str());
 
     String html = generateErrorPage(500, "Внутренняя ошибка сервера: " + error);
     webServer.send(500, "text/html; charset=utf-8", html);

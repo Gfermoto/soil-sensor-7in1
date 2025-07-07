@@ -41,7 +41,7 @@ void debugPrintBuffer(const char* prefix, uint8_t* buffer, size_t length)
         hex_str += String(buffer[i], HEX);
         hex_str += " ";
     }
-    logDebug("%s%s", prefix, hex_str.c_str());
+    logDebugSafe("\1", prefix, hex_str.c_str());
 }
 
 uint16_t calculateCRC16(uint8_t* data, size_t length)
@@ -213,7 +213,7 @@ void setupModbus()
     digitalWrite(MODBUS_DE_PIN, LOW);  // Передатчик в высокоимпедансном состоянии
     digitalWrite(MODBUS_RE_PIN, LOW);  // Приемник активен
 
-    logSystem("DE пин: %d, RE пин: %d", MODBUS_DE_PIN, MODBUS_RE_PIN);
+    logSystemSafe("\1", MODBUS_DE_PIN, MODBUS_RE_PIN);
     logSuccess("Пины SP3485E настроены");
 
     // Инициализация UART для Modbus
@@ -257,12 +257,12 @@ bool readFirmwareVersion()
     if (result == modbus.ku8MBSuccess)
     {
         uint16_t version = modbus.getResponseBuffer(0);
-        logSuccess("Версия прошивки датчика: %d.%d", (version >> 8) & 0xFF, version & 0xFF);
+        logSuccessSafe("\1", (version >> 8) & 0xFF, version & 0xFF);
         return true;
     }
     else
     {
-        logError("Ошибка чтения версии прошивки: %d", result);
+        logErrorSafe("\1", result);
         printModbusError(result);
         return false;
     }
@@ -300,7 +300,7 @@ bool testModbusConnection()
     logSystem("=== ТЕСТ MODBUS СОЕДИНЕНИЯ ===");
 
     // Проверяем пины
-    logSystem("DE пин: %d, RE пин: %d", MODBUS_DE_PIN, MODBUS_RE_PIN);
+    logSystemSafe("\1", MODBUS_DE_PIN, MODBUS_RE_PIN);
 
     // Тест 1: Проверка конфигурации пинов
     logSystem("Тест 1: Проверка конфигурации пинов...");
@@ -326,8 +326,8 @@ bool testModbusConnection()
     postTransmission();
     unsigned long post_delay = micros() - start_time;
 
-    logSystem("Задержка preTransmission: %lu мкс", pre_delay);
-    logSystem("Задержка postTransmission: %lu мкс", post_delay);
+    logSystemSafe("\1", pre_delay);
+    logSystemSafe("\1", post_delay);
 
     if (pre_delay >= 50 && post_delay >= 50)
     {
@@ -346,7 +346,7 @@ bool testModbusConnection()
     }
     else
     {
-        logError("Неверная скорость UART: %d", Serial2.baudRate());
+        logErrorSafe("\1", Serial2.baudRate());
         return false;
     }
 
@@ -359,7 +359,7 @@ bool testModbusConnection()
     }
     else
     {
-        logError("Ошибка чтения регистра версии: %02X", result);
+        logErrorSafe("\1", result);
         return false;
     }
 
@@ -382,7 +382,7 @@ bool testModbusConnection()
  */
 static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)  // NOLINT(misc-use-anonymous-namespace)
 {
-    logDebug("Чтение %s (0x%04X)...", reg_name, reg_addr);
+    logDebugSafe("\1", reg_name, reg_addr);
     uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
 
     if (result == modbus.ku8MBSuccess)
@@ -393,19 +393,19 @@ static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float mu
         {
             float* float_target = static_cast<float*>(target);
             *float_target = convertRegisterToFloat(raw_value, multiplier);
-            logDebug("%s: %.2f", reg_name, *float_target);
+            logDebugSafe("\1", reg_name, *float_target);
         }
         else
         {
             uint16_t* int_target = static_cast<uint16_t*>(target);
             *int_target = raw_value;
-            logDebug("%s: %d", reg_name, *int_target);
+            logDebugSafe("\1", reg_name, *int_target);
         }
         return true;
     }
     else
     {
-        logError("Ошибка чтения %s: %d", reg_name, result);
+        logErrorSafe("\1", reg_name, result);
         printModbusError(result);
         return false;
     }
@@ -592,7 +592,7 @@ void printModbusError(uint8_t errNum)
             logError("Modbus: Invalid CRC");
             break;
         default:
-            logError("Modbus: Неизвестная ошибка %d", errNum);
+            logErrorSafe("\1", errNum);
             break;
     }
 }

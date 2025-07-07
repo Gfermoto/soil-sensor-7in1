@@ -119,8 +119,8 @@ void setupWiFi()
 
     loadConfig();
 
-    logSystem("SSID: %s", config.ssid);
-    logDebug("Password: %s", strlen(config.password) > 0 ? "задан" : "не задан");
+    logSystemSafe("\1", config.ssid);
+    logDebugSafe("\1", strlen(config.password) > 0 ? "задан" : "не задан");
 
     if (strlen(config.ssid) > 0 && strlen(config.password) > 0)
     {
@@ -150,7 +150,7 @@ void handleWiFi()
             strlen(config.ssid) > 0 && strlen(config.password) > 0)  // есть сохранённые уч. данные
         {
             lastStaRetry = millis();
-            logWiFi("AP режим: пробуем снова подключиться к WiFi \"%s\"", config.ssid);
+            logWiFiSafe("AP режим: пробуем снова подключиться к WiFi \"%s\"", config.ssid);
             startSTAMode();  // если не получится, функция сама вернёт нас в AP
             return;          // ждём следующего цикла
         }
@@ -179,7 +179,7 @@ void handleWiFi()
 
                 if (reconnectAttempts < MAX_RECONNECT_ATTEMPTS)
                 {
-                    logWarn("Потеряно соединение с WiFi, попытка переподключения %d из %d", reconnectAttempts + 1,
+                    logWarnSafe("\1", reconnectAttempts + 1,
                             MAX_RECONNECT_ATTEMPTS);
 
                     WiFi.disconnect(true);
@@ -191,7 +191,7 @@ void handleWiFi()
                 }
                 else
                 {
-                    logError("Не удалось восстановить соединение после %d попыток, переход в AP",
+                    logErrorSafe("\1",
                              MAX_RECONNECT_ATTEMPTS);
                     startAPMode();
                     reconnectAttempts = 0;  // Сбрасываем счетчик для следующей сессии
@@ -205,7 +205,7 @@ void handleWiFi()
                 wifiConnected = true;
                 reconnectAttempts = 0;  // Сбрасываем счетчик при успешном подключении
                 setLedOn();
-                logSuccess("Подключено к WiFi, IP: %s", WiFi.localIP().toString().c_str());
+                logSuccessSafe("\1", WiFi.localIP().toString().c_str());
             }
         }
         webServer.handleClient();
@@ -235,8 +235,8 @@ void startAPMode()
     setupWebServer();
     setLedBlink(LED_SLOW_BLINK_INTERVAL);
     logWiFi("Режим точки доступа запущен");
-    logSystem("SSID: %s", apSsid.c_str());
-    logSystem("IP адрес: %s", WiFi.softAPIP().toString().c_str());
+    logSystemSafe("\1", apSsid.c_str());
+    logSystemSafe("\1", WiFi.softAPIP().toString().c_str());
 }
 
 void startSTAMode()
@@ -264,7 +264,7 @@ void startSTAMode()
             delay(WIFI_RETRY_DELAY_MS);
             updateLed();
             attempts++;
-            logDebug("Попытка подключения %d из %d", attempts, WIFI_CONNECTION_ATTEMPTS);
+            logDebugSafe("\1", attempts, WIFI_CONNECTION_ATTEMPTS);
 
             // Проверяем кнопку сброса во время подключения
             if (checkResetButton())
@@ -279,11 +279,11 @@ void startSTAMode()
         {
             wifiConnected = true;
             setLedOn();
-            logSuccess("Подключено к WiFi: %s", config.ssid);
-            logSystem("IP адрес: %s", WiFi.localIP().toString().c_str());
-            logSystem("MAC адрес: %s", WiFi.macAddress().c_str());
-            logSystem("Hostname: %s", hostname.c_str());
-            logSystem("RSSI: %d dBm", WiFi.RSSI());
+            logSuccessSafe("\1", config.ssid);
+            logSystemSafe("\1", WiFi.localIP().toString().c_str());
+            logSystemSafe("\1", WiFi.macAddress().c_str());
+            logSystemSafe("\1", hostname.c_str());
+            logSystemSafe("\1", WiFi.RSSI());
             // --- Первичная синхронизация времени NTP (блок до 5 сек) ---
             if (timeClient == nullptr)
             {
@@ -298,14 +298,14 @@ void startSTAMode()
                 {
                     delay(WIFI_MODE_DELAY);
                 }
-                logSystem("NTP синхронизация: %s", timeClient->isTimeSet() ? "OK" : "не удалось");
+                logSystemSafe("\1", timeClient->isTimeSet() ? "OK" : "не удалось");
             }
 
             setupWebServer();
         }
         else
         {
-            logError("Не удалось подключиться к WiFi после %d попыток", attempts);
+            logErrorSafe("\1", attempts);
             startAPMode();
         }
     }
@@ -397,7 +397,7 @@ void setupWebServer()
     // ============================================================================
 
     webServer.begin();
-    logSuccess("🏗️ Модульный веб-сервер v2.4.5 запущен. Режим: %s", currentWiFiMode == WiFiMode::AP ? "AP" : "STA");
+    logSuccessSafe("\1", currentWiFiMode == WiFiMode::AP ? "AP" : "STA");
     logSystem("✅ Активные модули: main, data, config, service, ota, error_handlers");
     logSystem("📋 Полный набор маршрутов готов к использованию");
 }

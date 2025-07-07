@@ -383,7 +383,7 @@ static void handleFirmwareUpload()
         localUploadTotal = upload.totalSize;
         localUploadStatus = "uploading";
 
-        logSystem("[OTA] Приём файла %s (%u байт)", upload.filename.c_str(), upload.totalSize);
+        logSystemSafe("\1", upload.filename.c_str(), upload.totalSize);
 
         if (!Update.begin(upload.totalSize == 0 ? UPDATE_SIZE_UNKNOWN : upload.totalSize))
         {
@@ -398,7 +398,7 @@ static void handleFirmwareUpload()
     {
         if (Update.write(upload.buf, upload.currentSize) != upload.currentSize)
         {
-            logError("[OTA] Write error: %d байт", upload.currentSize);
+            logErrorSafe("\1", upload.currentSize);
             Update.printError(Serial);
             isLocalUploadActive = false;
             localUploadStatus = "error";
@@ -411,14 +411,14 @@ static void handleFirmwareUpload()
             static size_t lastLogged = 0;
             if (localUploadProgress - lastLogged > OTA_PROGRESS_LOG_THRESHOLD)
             {
-                logSystem("[OTA] Загружено: %u байт", localUploadProgress);
+                logSystemSafe("\1", localUploadProgress);
                 lastLogged = localUploadProgress;
             }
         }
     }
     else if (upload.status == UPLOAD_FILE_END)
     {
-        logSystem("[OTA] Загрузка завершена: %u байт", localUploadProgress);
+        logSystemSafe("\1", localUploadProgress);
         localUploadStatus = "verifying";
 
         if (Update.end(true))  // true = устанавливать как boot partition

@@ -88,7 +88,7 @@ bool sendDataToThingSpeak()
         // Не логируем ошибку каждый раз, просто пропускаем отправку
         if (strlen(thingSpeakLastErrorBuffer.data()) == 0)  // логируем только первый раз
         {
-            logWarn("ThingSpeak: настройки не заданы (Channel ID: %s, API Key: %d символов)", channelBuf.data(),
+            logWarnSafe("\1", channelBuf.data(),
                     strlen(apiKeyBuf.data()));
             strlcpy(thingSpeakLastErrorBuffer.data(), "Настройки не заданы", thingSpeakLastErrorBuffer.size());
         }
@@ -104,7 +104,7 @@ bool sendDataToThingSpeak()
     ThingSpeak.setField(6, format_npk(sensorData.phosphorus).c_str());
     ThingSpeak.setField(7, format_npk(sensorData.potassium).c_str());
 
-    logData("Отправка в ThingSpeak: T=%.1f°C, H=%.1f%%, PH=%.2f", sensorData.temperature, sensorData.humidity,
+    logDataSafe("\1", sensorData.temperature, sensorData.humidity,
             sensorData.ph);
 
     int res = ThingSpeak.writeFields(channelId, apiKeyBuf.data());
@@ -151,7 +151,7 @@ bool sendDataToThingSpeak()
     }
     else
     {
-        logError("ThingSpeak: ошибка %d", res);
+        logErrorSafe("\1", res);
         snprintf(thingSpeakLastErrorBuffer.data(), thingSpeakLastErrorBuffer.size(), "Ошибка %d", res);
     }
 
@@ -160,7 +160,7 @@ bool sendDataToThingSpeak()
     // Если слишком много ошибок подряд, временно отключаем на 1 час
     if (consecutiveFailCount >= 10)
     {
-        logWarn("ThingSpeak: %d ошибок подряд, отключаем на 1 час", consecutiveFailCount);
+        logWarnSafe("\1", consecutiveFailCount);
         lastTsPublish = millis();  // устанавливаем время последней попытки
         consecutiveFailCount = 0;  // сбрасываем счётчик
         strlcpy(thingSpeakLastErrorBuffer.data(), "Отключён на 1 час (много ошибок)", thingSpeakLastErrorBuffer.size());

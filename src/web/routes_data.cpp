@@ -227,7 +227,7 @@ void handleReadingsUpload()  // ✅ Убираем static - функция exter
         uploadFile = LittleFS.open(path, "w");
         if (!uploadFile)
         {
-            logError("Не удалось создать файл %s", path);
+            logErrorSafe("\1", path);
         }
     }
     else if (upload.status == UPLOAD_FILE_WRITE)
@@ -242,7 +242,7 @@ void handleReadingsUpload()  // ✅ Убираем static - функция exter
         if (uploadFile)
         {
             uploadFile.close();
-            logSuccess("Файл калибровки загружен (%u байт)", upload.totalSize);
+            logSuccessSafe("\1", upload.totalSize);
         }
         webServer.sendHeader("Location", "/readings?toast=Калибровка+загружена", true);
         webServer.send(HTTP_REDIRECT, "text/plain", "Redirect");
@@ -261,7 +261,7 @@ void handleProfileSave()
         else if (profileStr == "clay") { config.soilProfile = 3; }
 
         saveConfig();
-        logSuccess("Профиль почвы изменён на %s", profileStr.c_str());
+        logSuccessSafe("\1", profileStr.c_str());
     }
     webServer.sendHeader("Location", "/readings?toast=Профиль+сохранен", true);
     webServer.send(HTTP_REDIRECT, "text/plain", "Redirect");
@@ -761,7 +761,7 @@ void setupDataRoutes()
                      // ✅ CSRF защита - критическая операция удаления!
                      if (!checkCSRFSafety())
                      {
-                         logWarn("CSRF атака отклонена на /readings/csv_reset от %s",
+                         logWarnSafe("\1",
                                  webServer.client().remoteIP().toString().c_str());
                          String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
                          webServer.send(403, "text/html; charset=utf-8", html);

@@ -106,7 +106,7 @@ void handleCalibrationUpload()  // ✅ Убираем static - функция ex
         uploadFile = LittleFS.open(path, "w");
         if (!uploadFile)
         {
-            logError("Не удалось создать файл %s", path);
+            logErrorSafe("\1", path);
         }
     }
     else if (upload.status == UPLOAD_FILE_WRITE)
@@ -121,7 +121,7 @@ void handleCalibrationUpload()  // ✅ Убираем static - функция ex
         if (uploadFile)
         {
             uploadFile.close();
-            logSuccess("Файл калибровки загружен (%u байт)", upload.totalSize);
+            logSuccessSafe("\1", upload.totalSize);
         }
         webServer.sendHeader("Location", "/calibration?ok=1", true);
         webServer.send(302, "text/plain", "Redirect");

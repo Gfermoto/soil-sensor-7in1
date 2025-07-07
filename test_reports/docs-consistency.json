@@ -2,9 +2,9 @@
   "version_consistency": true,
   "errors": [],
   "version": {
-    "VERSION": "3.6.9",
-    "version.h": "3.6.9",
-    "platformio.ini": "3.6.9"
+    "VERSION": "3.8.1",
+    "version.h": "3.8.1",
+    "platformio.ini": "3.8.1"
   },
   "checkboxes": [
     {

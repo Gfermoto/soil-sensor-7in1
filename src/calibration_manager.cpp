@@ -48,7 +48,7 @@ bool saveCsv(SoilProfile profile, Stream& fileStream)
     File calibrationFile = LittleFS.open(path, "w");
     if (!calibrationFile)
     {
-        logError("Не удалось открыть файл %s для записи", path);
+        logErrorSafe("\1", path);
         return false;
     }
 
@@ -59,7 +59,7 @@ bool saveCsv(SoilProfile profile, Stream& fileStream)
     }
 
     calibrationFile.close();
-    logSuccess("Калибровочная таблица %s сохранена (%d байт)", path, calibrationFile.size());
+    logSuccessSafe("\1", path, calibrationFile.size());
     return true;
 }
 
@@ -74,7 +74,7 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
     File calibrationFile = LittleFS.open(path, "r");
     if (!calibrationFile)
     {
-        logWarn("Нет калибровочной таблицы %s", path);
+        logWarnSafe("\1", path);
         return false;
     }
 
@@ -110,7 +110,7 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
     }
 
     calibrationFile.close();
-    logInfo("Загружено %d записей из %s", outCount, path);
+    logInfoSafe("\1", outCount, path);
     return outCount > 0;
 }
 

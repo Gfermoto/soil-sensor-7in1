@@ -127,7 +127,7 @@ void setupServiceRoutes()
                      // ✅ CSRF защита - критическая операция сброса!
                      if (!checkCSRFSafety())
                      {
-                         logWarn("CSRF атака отклонена на /reset от %s",
+                         logWarnSafe("\1",
                                  webServer.client().remoteIP().toString().c_str());
                          String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                          webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
@@ -167,7 +167,7 @@ void setupServiceRoutes()
                      // ✅ CSRF защита - критическая операция перезагрузки!
                      if (!checkCSRFSafety())
                      {
-                         logWarn("CSRF атака отклонена на /reboot от %s",
+                         logWarnSafe("\1",
                                  webServer.client().remoteIP().toString().c_str());
                          String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                          webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);

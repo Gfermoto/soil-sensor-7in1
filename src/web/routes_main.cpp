@@ -22,7 +22,7 @@ void setupMainRoutes()
             // CSRF защита (безопасная - не ломает API)
             if (!checkCSRFSafety())
             {
-                logWarn("CSRF атака отклонена на /save от %s", webServer.client().remoteIP().toString().c_str());
+                logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
                 const String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                 webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
                 return;
@@ -126,7 +126,7 @@ void setupMainRoutes()
                     config.irrigationHoldMinutes = webServer.arg("irrig_hold").toInt();
                 }
 
-                logInfo("Конфигурация обновлена: MQTT=%s, ThingSpeak=%s, HASS=%s",
+                logInfoSafe("\1",
                         config.flags.mqttEnabled ? "ON" : "OFF", config.flags.thingSpeakEnabled ? "ON" : "OFF",
                         config.flags.hassEnabled ? "ON" : "OFF");
             }

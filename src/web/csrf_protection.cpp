@@ -49,7 +49,7 @@ String generateCSRFToken()
     currentCSRFToken = token;
     tokenGeneratedTime = currentTime;
 
-    logDebug("CSRF токен сгенерирован: %s (время: %lu)", token.c_str(), currentTime);
+    logDebugSafe("\1", token.c_str(), currentTime);
 
     return token;
 }
@@ -61,13 +61,13 @@ bool validateCSRFToken(const String& token)
 
     // Проверяем время жизни токена
     const unsigned long currentTime = millis();
-    if (currentTime - tokenGeneratedTime > CSRF_TOKEN_LIFETIME) { logWarn("CSRF токен истек (время: %lu, генерирован: %lu)", currentTime, tokenGeneratedTime); currentCSRFToken = ""; return false; }
+    if (currentTime - tokenGeneratedTime > CSRF_TOKEN_LIFETIME) { logWarnSafe("\1", currentTime, tokenGeneratedTime); currentCSRFToken = ""; return false; }
 
     // Проверяем совпадение токенов
     bool isValid = (token == currentCSRFToken);
 
     if (isValid) { logDebug("CSRF токен валиден"); }
-    else { logWarn("CSRF токен невалиден: ожидался %s, получен %s", currentCSRFToken.c_str(), token.c_str()); }
+    else { logWarnSafe("\1", currentCSRFToken.c_str(), token.c_str()); }
 
     return isValid;
 }
@@ -110,7 +110,7 @@ bool checkCSRFSafety()
 
     if (csrfToken.isEmpty())
     {
-        logWarn("CSRF: токен отсутствует для %s %s от %s", methodToString(method).c_str(), uri.c_str(),
+        logWarnSafe("\1", methodToString(method).c_str(), uri.c_str(),
                 clientIP.c_str());
         return false;
     }
@@ -119,7 +119,7 @@ bool checkCSRFSafety()
 
     if (!isValid)
     {
-        logWarn("CSRF: валидация не пройдена для %s %s от %s", methodToString(method).c_str(), uri.c_str(),
+        logWarnSafe("\1", methodToString(method).c_str(), uri.c_str(),
                 clientIP.c_str());
     }
 
@@ -164,5 +164,5 @@ void initCSRFProtection()
     // Генерируем первоначальный токен
     generateCSRFToken();
 
-    logSuccess("CSRF защита активирована (время жизни токена: %lu мин)", CSRF_TOKEN_LIFETIME / 60000);
+    logSuccessSafe("\1", CSRF_TOKEN_LIFETIME / 60000);
 }
