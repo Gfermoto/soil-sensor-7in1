@@ -13,6 +13,7 @@
 namespace {
 void fakeSensorTask(void* pvParameters)
 {
+    (void)pvParameters;  // Suppress unused parameter warning
     const TickType_t taskDelay = 1000 / portTICK_PERIOD_MS;  // 1 секунда
     const uint32_t dataGenerationInterval = 10;              // Генерация данных каждые 10 итераций
     uint32_t iterationCounter = 0;

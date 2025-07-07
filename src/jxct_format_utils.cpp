@@ -22,16 +22,13 @@ std::string formatFloat(float value, const FormatOptions& options)  // NOLINT(mi
 {
     std::array<char, 8> buf;
     
-    // Используем тернарный оператор для устранения branch-clone
-    const char* format = (options.formatType == FormatType::INTEGER) ? "%d" : "%.*f";
-    
     if (options.formatType == FormatType::INTEGER)
     {
-        snprintf(buf.data(), buf.size(), format, static_cast<int>(lround(value)));
+        snprintf(buf.data(), buf.size(), "%d", static_cast<int>(lround(value)));
     }
     else
     {
-        snprintf(buf.data(), buf.size(), format, options.precision, value);
+        snprintf(buf.data(), buf.size(), "%.*f", options.precision, value);
     }
     return std::string(buf.data());
 }
@@ -68,7 +65,12 @@ String formatValue(float value, const char* unit, int precision)  // NOLINT(misc
 
     // Форматируем значение с заданной точностью
     // Используем clamp для ограничения precision в допустимых пределах
-    const int clampedPrecision = (precision < 0) ? 2 : (precision > 3) ? 2 : precision;
+    int clampedPrecision;
+    if (precision < 0 || precision > 3) {
+        clampedPrecision = 2;
+    } else {
+        clampedPrecision = precision;
+    }
     snprintf(buf.data(), buf.size(), "%.*f%s", clampedPrecision, value, unit);
 
     return String(buf.data());

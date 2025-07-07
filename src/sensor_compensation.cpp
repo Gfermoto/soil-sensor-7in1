@@ -47,7 +47,7 @@ struct ECCompensationParams {
 
 // ------------------------------------------------------------------
 // EC ----------------------------------------------------------------
-float correctEC(float ecRaw, const ECCompensationParams& params)
+float correctEC(float ecRaw, const ECCompensationParams& params)  // NOLINT(misc-use-internal-linkage)
 {
     // Шаг 1. Температурная компенсация к 25 °C
     float ec25 = ecRaw / (1.0F + 0.021F * (params.temperature - 25.0F));
@@ -66,7 +66,7 @@ float correctPH(float phRaw, float T)
 }
 
 // NPK ---------------------------------------------------------------
-void correctNPK(const ECCompensationParams& params, float& N, float& P, float& K)
+void correctNPK(const ECCompensationParams& params, float& N, float& P, float& K)  // NOLINT(misc-use-internal-linkage)
 {
     if (params.moisture < 25.0F || params.moisture > 60.0F)
     {

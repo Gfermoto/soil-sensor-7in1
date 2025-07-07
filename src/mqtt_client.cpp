@@ -321,7 +321,7 @@ void handleMQTT()  // NOLINT(misc-use-internal-linkage)
     }
 
     static bool wasConnected = false;
-    bool isConnected = mqttClient.connected();
+    const bool isConnected = mqttClient.connected();
 
     // Логирование изменений состояния подключения
     if (wasConnected && !isConnected)
@@ -480,7 +480,7 @@ void publishSensorData()  // NOLINT(misc-use-internal-linkage)
     DEBUG_PRINTLN("[MQTT DEBUG] Начинаем публикацию данных...");
 
     // ✅ ОПТИМИЗАЦИЯ: Кэшируем JSON данных датчика
-    unsigned long currentTime = millis();
+    const unsigned long currentTime = millis();
     bool needToRebuildJson = false;
 
     // Проверяем, нужно ли пересоздать JSON (данные обновились или кэш устарел)
@@ -556,7 +556,7 @@ void publishHomeAssistantConfig()  // NOLINT(misc-use-internal-linkage)
         return;
     }
 
-    String deviceIdStr = getDeviceId();
+    const String deviceIdStr = getDeviceId();
     const char* deviceId = deviceIdStr.c_str();
 
     // ✅ ОПТИМИЗАЦИЯ: Проверяем кэш конфигураций
@@ -686,7 +686,7 @@ void publishHomeAssistantConfig()  // NOLINT(misc-use-internal-linkage)
 
 void removeHomeAssistantConfig()  // NOLINT(misc-use-internal-linkage)
 {
-    String deviceIdStr = getDeviceId();
+    const String deviceIdStr = getDeviceId();
     const char* deviceId = deviceIdStr.c_str();
     // Публикуем пустой payload с retain для удаления сенсоров из HA
     mqttClient.publish(("homeassistant/sensor/" + String(deviceId) + "_temperature/config").c_str(), "", true);

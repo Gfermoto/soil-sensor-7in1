@@ -1,17 +1,17 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 07.07.2025 18:19
+**Дата анализа:** 07.07.2025 20:22
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 325
+- **Всего предупреждений:** 315
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
-### Читаемость (158 проблем)
+### Читаемость (162 проблем)
 - `readability-braces-around-statements`: 47 случаев
-- `readability-identifier-length`: 32 случаев
+- `readability-identifier-length`: 37 случаев
 - ``: 23 случаев
 - `readability-implicit-bool-conversion`: 17 случаев
 - `readability-static-accessed-through-instance`: 16 случаев
@@ -23,12 +23,6 @@
 - `modernize-use-nullptr`: 5 случаев
 - `modernize-use-auto`: 5 случаев
 
-### Разное (94 проблем)
-- `misc-const-correctness`: 90 случаев
-- `misc-use-internal-linkage`: 2 случаев
-- `misc-unused-parameters`: 1 случаев
-- `misc-use-anonymous-namespace`: 1 случаев
-
 ### Прочее (1 проблем)
 - `performance-enum-size`: 1 случаев
 
@@ -38,6 +32,10 @@
 - `bugprone-narrowing-conversions`: 2 случаев
 - `bugprone-switch-missing-default-case`: 1 случаев
 - `bugprone-too-small-loop-variable`: 1 случаев
+
+### Разное (80 проблем)
+- `misc-const-correctness`: 79 случаев
+- `misc-use-anonymous-namespace`: 1 случаев
 
 ## 📁 ДЕТАЛЬНЫЙ АНАЛИЗ ПО ФАЙЛАМ
 ### src/calibration_manager.cpp (5 предупреждений)
@@ -55,21 +53,18 @@
 - src\config.cpp:19:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - src\config.cpp:28:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 
-### src/fake_sensor.cpp (1 предупреждений)
-**Разное:** 1 проблем
-- src\fake_sensor.cpp:14:27:: parameter 'pvParameters' is unused [misc-unused-parameters]
+### src/fake_sensor.cpp ✅ Проблем не найдено
 
-### src/jxct_format_utils.cpp (5 предупреждений)
+### src/jxct_format_utils.cpp (4 предупреждений)
 **Прочее:** 1 проблем
 - src\jxct_format_utils.cpp:7:12:: enum 'FormatType' uses a larger base type ('int', size: 4 bytes) than necessary for its value set, consider using 'std::uint8_t' (1 byte) as the base type to reduce its size [performance-enum-size]
 
-**Читаемость:** 3 проблем
+**Читаемость:** 2 проблем
 - src\jxct_format_utils.cpp:17:23:: parameter name 'p' is too short, expected at least 3 characters [readability-identifier-length]
 - src\jxct_format_utils.cpp:17:37:: parameter name 'ft' is too short, expected at least 3 characters [readability-identifier-length]
-- src\jxct_format_utils.cpp:71:56:: conditional operator is used as sub-expression of parent conditional operator, refrain from using nested conditional operators [readability-avoid-nested-conditional-operator]
 
 **Потенциальные баги:** 1 проблем
-- src\jxct_format_utils.cpp:28:5:: if with identical then and else branches [bugprone-branch-clone]
+- src\jxct_format_utils.cpp:25:5:: if with identical then and else branches [bugprone-branch-clone]
 
 ### src/jxct_ui_system.cpp (1 предупреждений)
 **Модернизация:** 1 проблем
@@ -89,7 +84,7 @@
 **Читаемость:** 1 проблем
 - src\main.cpp:232:9:: implicit conversion 'NTPClient *' -> 'bool' [readability-implicit-bool-conversion]
 
-### src/modbus_sensor.cpp (64 предупреждений)
+### src/modbus_sensor.cpp (57 предупреждений)
 **Читаемость:** 42 проблем
 - src\modbus_sensor.cpp:47:34:: pointer parameter 'data' can be pointer to const [readability-non-const-parameter]
 - src\modbus_sensor.cpp:56:17:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
@@ -108,24 +103,22 @@
 - src\modbus_sensor.cpp:737:9:: if with identical then and else branches [bugprone-branch-clone]
 - ... и ещё 1 проблем
 
-**Разное:** 12 проблем
-- src\modbus_sensor.cpp:255:5:: variable 'result' of type 'uint8_t' (aka 'unsigned char') can be declared 'const' [misc-const-correctness]
-- src\modbus_sensor.cpp:259:9:: variable 'version' of type 'uint16_t' (aka 'unsigned short') can be declared 'const' [misc-const-correctness]
-- src\modbus_sensor.cpp:273:5:: variable 'result' of type 'uint8_t' (aka 'unsigned char') can be declared 'const' [misc-const-correctness]
-- ... и ещё 9 проблем
+**Разное:** 5 проблем
+- src\modbus_sensor.cpp:323:5:: variable 'pre_delay' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+- src\modbus_sensor.cpp:327:5:: variable 'post_delay' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+- src\modbus_sensor.cpp:499:5:: variable 'basic_success' of type 'int' can be declared 'const' [misc-const-correctness]
+- ... и ещё 2 проблем
 
-### src/mqtt_client.cpp (14 предупреждений)
+### src/mqtt_client.cpp (10 предупреждений)
 **Читаемость:** 7 проблем
 - src\mqtt_client.cpp:120:5:: do not use 'else' after 'return' [readability-else-after-return]
 - src\mqtt_client.cpp:201:9:: static member accessed through instance [readability-static-accessed-through-instance]
 - src\mqtt_client.cpp:506:28:: implicit conversion 'NTPClient *' -> 'bool' [readability-implicit-bool-conversion]
 - ... и ещё 4 проблем
 
-**Разное:** 6 проблем
-- src\mqtt_client.cpp:324:5:: variable 'isConnected' of type 'bool' can be declared 'const' [misc-const-correctness]
-- src\mqtt_client.cpp:483:5:: variable 'currentTime' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
-- src\mqtt_client.cpp:559:5:: variable 'deviceIdStr' of type 'String' can be declared 'const' [misc-const-correctness]
-- ... и ещё 3 проблем
+**Разное:** 2 проблем
+- src\mqtt_client.cpp:753:5:: variable 't' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\mqtt_client.cpp:783:5:: variable 'currentTime' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
 
 **Модернизация:** 1 проблем
 - src\mqtt_client.cpp:807:12:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
@@ -154,26 +147,22 @@
 
 ### src/routes_calibration.cpp ✅ Проблем не найдено
 
-### src/sensor_compensation.cpp (19 предупреждений)
+### src/sensor_compensation.cpp (22 предупреждений)
 **Модернизация:** 6 проблем
 - src\sensor_compensation.cpp:2:10:: inclusion of deprecated C++ header 'math.h'; consider using 'cmath' instead [modernize-deprecated-headers]
 - src\sensor_compensation.cpp:3:10:: inclusion of deprecated C++ header 'time.h'; consider using 'ctime' instead [modernize-deprecated-headers]
 - src\sensor_compensation.cpp:7:18:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 - ... и ещё 3 проблем
 
-**Читаемость:** 9 проблем
+**Читаемость:** 14 проблем
 - src\sensor_compensation.cpp:26:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
 - src\sensor_compensation.cpp:30:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
 - src\sensor_compensation.cpp:34:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
-- ... и ещё 6 проблем
+- ... и ещё 11 проблем
 
 **Потенциальные баги:** 2 проблем
 - src\sensor_compensation.cpp:44:26:: 2 adjacent parameters of 'ECCompensationParams' of similar type ('float') are easily swapped by mistake [bugprone-easily-swappable-parameters]
 - src\sensor_compensation.cpp:69:53:: 3 adjacent parameters of 'correctNPK' of similar type ('float &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-
-**Разное:** 2 проблем
-- src\sensor_compensation.cpp:50:7:: function 'correctEC' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- src\sensor_compensation.cpp:69:6:: function 'correctNPK' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 
 ### src/thingspeak_client.cpp (3 предупреждений)
 **Модернизация:** 1 проблем

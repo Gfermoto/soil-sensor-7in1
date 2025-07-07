@@ -252,11 +252,11 @@ bool getCachedData(SensorData& data)
 bool readFirmwareVersion()
 {
     logSensor("Запрос версии прошивки датчика...");
-    uint8_t result = modbus.readHoldingRegisters(0x07, 1);
+    const uint8_t result = modbus.readHoldingRegisters(0x07, 1);
 
     if (result == modbus.ku8MBSuccess)
     {
-        uint16_t version = modbus.getResponseBuffer(0);
+        const uint16_t version = modbus.getResponseBuffer(0);
         logSuccessSafe("\1", (version >> 8) & 0xFF, version & 0xFF);
         return true;
     }
@@ -270,7 +270,7 @@ bool readFirmwareVersion()
 
 bool readErrorStatus()
 {
-    uint8_t result = modbus.readHoldingRegisters(REG_ERROR_STATUS, 1);
+    const uint8_t result = modbus.readHoldingRegisters(REG_ERROR_STATUS, 1);
     if (result == modbus.ku8MBSuccess)
     {
         sensorData.error_status = modbus.getResponseBuffer(0);
@@ -283,7 +283,7 @@ bool changeDeviceAddress(uint8_t new_address)
 {
     if (new_address < 1 || new_address > 247) return false;
 
-    uint8_t result = modbus.writeSingleRegister(REG_DEVICE_ADDRESS, new_address);
+    const uint8_t result = modbus.writeSingleRegister(REG_DEVICE_ADDRESS, new_address);
     if (result == modbus.ku8MBSuccess)
     {
         // ✅ Неблокирующая задержка через vTaskDelay
@@ -352,7 +352,7 @@ bool testModbusConnection()
 
     // Тест 4: Попытка чтения регистра версии прошивки
     logSystem("Тест 4: Чтение версии прошивки...");
-    uint8_t result = modbus.readHoldingRegisters(0x00, 1);
+    const uint8_t result = modbus.readHoldingRegisters(0x00, 1);
     if (result == modbus.ku8MBSuccess)
     {
         logSuccess("Успешно прочитан регистр версии");
@@ -383,11 +383,11 @@ bool testModbusConnection()
 static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)  // NOLINT(misc-use-anonymous-namespace)
 {
     logDebugSafe("\1", reg_name, reg_addr);
-    uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
+    const uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
 
     if (result == modbus.ku8MBSuccess)
     {
-        uint16_t raw_value = modbus.getResponseBuffer(0);
+        const uint16_t raw_value = modbus.getResponseBuffer(0);
 
         if (is_float)
         {
