@@ -3,6 +3,7 @@
  * @brief Взаимодействие с MQTT-брокером и Home Assistant
  * @details Реализация подключения, публикации данных, обработки команд и интеграции с Home Assistant через discovery.
  */
+#include "mqtt_client.h"  // 🆕 Подключаем собственный заголовок, убираем дубли объявлений
 #include <Arduino.h>
 #include <ArduinoJson.h>
 #include <NTPClient.h>
@@ -18,14 +19,14 @@
 #include "modbus_sensor.h"
 #include "ota_manager.h"
 #include "wifi_manager.h"
-#include "mqtt_client.h"  // 🆕 Подключаем собственный заголовок, убираем дубли объявлений
 extern NTPClient* timeClient;
 
-WiFiClient espClient;  // NOLINT(misc-use-internal-linkage)
+WiFiClient espClient;                // NOLINT(misc-use-internal-linkage)
 PubSubClient mqttClient(espClient);  // NOLINT(misc-use-internal-linkage)
 
 // ⬇️ Начало анонимного пространства — внутренняя реализация MQTT-клиента
-namespace {
+namespace
+{
 // Ранее static → внутреннее связывание
 bool mqttConnected = false;
 
@@ -39,7 +40,8 @@ std::array<char, 128> otaStatusTopicBuffer = {""};
 std::array<char, 128> otaCommandTopicBuffer = {""};
 
 // Кэш Home Assistant discovery
-struct HomeAssistantConfigCache {
+struct HomeAssistantConfigCache
+{
     std::array<char, 512> tempConfig = {""};
     std::array<char, 512> humConfig = {""};
     std::array<char, 512> ecConfig = {""};
@@ -62,7 +64,8 @@ unsigned long lastCachedSensorTime = 0;
 bool sensorJsonCacheValid = false;
 
 // DNS-кэш
-struct DNSCache {
+struct DNSCache
+{
     std::array<char, HOSTNAME_BUFFER_SIZE> hostname = {""};
     IPAddress cachedIP;
     unsigned long cacheTime;
@@ -72,21 +75,25 @@ struct DNSCache {
 // -----------------------------
 // Вспомогательные функции OTA
 // -----------------------------
-const char* getOtaStatusTopic() {
-    if (otaStatusTopicBuffer[0] == '\0') {
+const char* getOtaStatusTopic()
+{
+    if (otaStatusTopicBuffer[0] == '\0')
+    {
         snprintf(otaStatusTopicBuffer.data(), otaStatusTopicBuffer.size(), "%s/ota/status", config.mqttTopicPrefix);
     }
     return otaStatusTopicBuffer.data();
 }
 
-const char* getOtaCommandTopic() {
-    if (otaCommandTopicBuffer[0] == '\0') {
+const char* getOtaCommandTopic()
+{
+    if (otaCommandTopicBuffer[0] == '\0')
+    {
         snprintf(otaCommandTopicBuffer.data(), otaCommandTopicBuffer.size(), "%s/ota/command", config.mqttTopicPrefix);
     }
     return otaCommandTopicBuffer.data();
 }
 
-} // namespace (anonymous)
+}  // namespace
 
 // Публичный аксессор последней MQTT-ошибки
 const char* getMqttLastError()  // NOLINT(misc-use-internal-linkage)
@@ -95,7 +102,8 @@ const char* getMqttLastError()  // NOLINT(misc-use-internal-linkage)
 }
 
 // Forward declarations
-static IPAddress getCachedIP(const char* hostname);  // ✅ Внутренняя реализация, скрыта от других единиц трансляции  // NOLINT(misc-use-anonymous-namespace)
+static IPAddress getCachedIP(const char* hostname);  // ✅ Внутренняя реализация, скрыта от других единиц трансляции  //
+                                                     // NOLINT(misc-use-anonymous-namespace)
 
 // ✅ Оптимизированная функция getClientId с буфером
 static const char* getClientId()  // NOLINT(misc-use-anonymous-namespace)
@@ -117,10 +125,7 @@ static const char* getMqttClientName()  // NOLINT(misc-use-anonymous-namespace)
     {
         return config.mqttDeviceName;
     }
-    else
-    {
-        return getClientId();
-    }
+    return getClientId();
 }
 
 // ✅ Оптимизированная функция getStatusTopic с буфером
@@ -223,12 +228,12 @@ bool connectMQTT()  // NOLINT(misc-use-internal-linkage)
 
     // Попытка подключения с максимально подробной информацией
     const bool result = mqttClient.connect(clientId,
-                                     config.mqttUser,      // может быть пустым
-                                     config.mqttPassword,  // может быть пустым
-                                     getStatusTopic(),
-                                     1,         // QoS
-                                     true,      // retain
-                                     "offline"  // will message
+                                           config.mqttUser,      // может быть пустым
+                                           config.mqttPassword,  // может быть пустым
+                                           getStatusTopic(),
+                                           1,         // QoS
+                                           true,      // retain
+                                           "offline"  // will message
     );
 
     DEBUG_PRINTF("[MQTT] Результат подключения: %d\n", result);
@@ -496,14 +501,14 @@ void publishSensorData()  // NOLINT(misc-use-internal-linkage)
         StaticJsonDocument<256> doc;  // ✅ Уменьшен размер с 512 до 256
 
         // ✅ ОПТИМИЗАЦИЯ 3.1: Сокращенные ключи для экономии трафика
-        doc["t"] = round(sensorData.temperature * 10) / 10.0;             // temperature → t (-10 байт)
-        doc["h"] = round(sensorData.humidity * 10) / 10.0;                // humidity → h (-7 байт)
-        doc["e"] = (int)round(sensorData.ec);                             // ec → e (стабильно)
-        doc["p"] = round(sensorData.ph * 10) / 10.0;                      // ph → p (стабильно)
-        doc["n"] = (int)round(sensorData.nitrogen);                       // nitrogen → n (-7 байт)
-        doc["r"] = (int)round(sensorData.phosphorus);                     // phosphorus → r (-9 байт)
-        doc["k"] = (int)round(sensorData.potassium);                      // potassium → k (-8 байт)
-        doc["ts"] = (long)(timeClient ? timeClient->getEpochTime() : 0);  // timestamp → ts (-7 байт)
+        doc["t"] = round(sensorData.temperature * 10) / 10.0;                        // temperature → t (-10 байт)
+        doc["h"] = round(sensorData.humidity * 10) / 10.0;                           // humidity → h (-7 байт)
+        doc["e"] = (int)round(sensorData.ec);                                        // ec → e (стабильно)
+        doc["p"] = round(sensorData.ph * 10) / 10.0;                                 // ph → p (стабильно)
+        doc["n"] = (int)round(sensorData.nitrogen);                                  // nitrogen → n (-7 байт)
+        doc["r"] = (int)round(sensorData.phosphorus);                                // phosphorus → r (-9 байт)
+        doc["k"] = (int)round(sensorData.potassium);                                 // potassium → k (-8 байт)
+        doc["ts"] = (long)(timeClient != nullptr ? timeClient->getEpochTime() : 0);  // timestamp → ts (-7 байт)
 
         // ✅ Кэшируем результат
         serializeJson(doc, cachedSensorJson.data(), cachedSensorJson.size());
@@ -658,13 +663,16 @@ void publishHomeAssistantConfig()  // NOLINT(misc-use-internal-linkage)
         serializeJson(potassiumConfig, haConfigCache.potassiumConfig.data(), haConfigCache.potassiumConfig.size());
 
         // ✅ Кэшируем топики публикации
-        snprintf(pubTopicCache[0].data(), pubTopicCache[0].size(), "homeassistant/sensor/%s_temperature/config", deviceId);
+        snprintf(pubTopicCache[0].data(), pubTopicCache[0].size(), "homeassistant/sensor/%s_temperature/config",
+                 deviceId);
         snprintf(pubTopicCache[1].data(), pubTopicCache[1].size(), "homeassistant/sensor/%s_humidity/config", deviceId);
         snprintf(pubTopicCache[2].data(), pubTopicCache[2].size(), "homeassistant/sensor/%s_ec/config", deviceId);
         snprintf(pubTopicCache[3].data(), pubTopicCache[3].size(), "homeassistant/sensor/%s_ph/config", deviceId);
         snprintf(pubTopicCache[4].data(), pubTopicCache[4].size(), "homeassistant/sensor/%s_nitrogen/config", deviceId);
-        snprintf(pubTopicCache[5].data(), pubTopicCache[5].size(), "homeassistant/sensor/%s_phosphorus/config", deviceId);
-        snprintf(pubTopicCache[6].data(), pubTopicCache[6].size(), "homeassistant/sensor/%s_potassium/config", deviceId);
+        snprintf(pubTopicCache[5].data(), pubTopicCache[5].size(), "homeassistant/sensor/%s_phosphorus/config",
+                 deviceId);
+        snprintf(pubTopicCache[6].data(), pubTopicCache[6].size(), "homeassistant/sensor/%s_potassium/config",
+                 deviceId);
         pubTopicCacheValid = true;
 
         haConfigCache.isValid = true;

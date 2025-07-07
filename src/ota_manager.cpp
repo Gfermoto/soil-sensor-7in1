@@ -7,13 +7,14 @@
 #include <esp_task_wdt.h>
 #include <mbedtls/sha256.h>
 #include <strings.h>
+#include <array>
 #include "jxct_config_vars.h"
 #include "logger.h"
 #include "version.h"
-#include <array>
 
 // Глобальные переменные для OTA 2.0
-namespace {
+namespace
+{
 // Сначала статусный буфер (расширен до 128 байт), чтобы возможное переполнение НЕ затирало URL.
 std::array<char, 128> statusBuf = {"Ожидание"};
 std::array<char, 8> guardGap = {"BEFORE"};       // часовой между statusBuf и URL
@@ -28,9 +29,12 @@ String pendingUpdateSha256 = "";
 String pendingUpdateVersion = "";
 
 std::array<char, 8> guardSentinel = {"GUARD!"};  // часовой после URL, как раньше
-}
+}  // namespace
 
-static void _printGuard(const char* name, const char* tag, const char* current)  // NOLINT(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp,misc-use-anonymous-namespace)
+static void _printGuard(
+    const char* name, const char* tag,
+    const char*
+        current)  // NOLINT(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp,misc-use-anonymous-namespace)
 {
     logErrorSafe("\1", name, tag, current);
 }
@@ -67,11 +71,11 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
     // ДОБАВЛЕНО: Детальная диагностика инициализации
     logSystem("[OTA] [SETUP DEBUG] Инициализация OTA 2.0...");
     logSystem("[OTA] [SETUP DEBUG] Входные параметры:");
-    logSystemSafe("\1", manifestUrl ? manifestUrl : "NULL");
-    logSystemSafe("\1", &client ? "OK" : "NULL");
+    logSystemSafe("\1", manifestUrl != nullptr ? manifestUrl : "NULL");
+    logSystemSafe("\1", &client != nullptr ? "OK" : "NULL");
 
     // КРИТИЧЕСКАЯ ПРОВЕРКА: Валидация входного URL
-    if (!manifestUrl || strlen(manifestUrl) < 20U || strstr(manifestUrl, "github.com") == nullptr)
+    if (manifestUrl == nullptr || strlen(manifestUrl) < 20U || strstr(manifestUrl, "github.com") == nullptr)
     {
         logError("[OTA] [SETUP DEBUG] ❌ Неверный URL манифеста!");
         return;
@@ -82,7 +86,8 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
     strlcpy(manifestUrlGlobal.data(), manifestUrl, sizeof(manifestUrlGlobal));
 
     // ПРОВЕРКА ЦЕЛОСТНОСТИ после копирования
-    if (strlen(manifestUrlGlobal.data()) != strlen(manifestUrl) || strstr(manifestUrlGlobal.data(), "github.com") == nullptr)
+    if (strlen(manifestUrlGlobal.data()) != strlen(manifestUrl) ||
+        strstr(manifestUrlGlobal.data(), "github.com") == nullptr)
     {
         logError("[OTA] [SETUP DEBUG] ❌ URL поврежден при копировании!");
         manifestUrlGlobal.fill('\0');
@@ -112,14 +117,16 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)
 static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)  // NOLINT(misc-use-anonymous-namespace)
 {
     std::array<char, 65> calcHex;
-    for (int i = 0; i < 32; ++i) {
+    for (int i = 0; i < 32; ++i)
+    {
         sprintf(&calcHex[i * 2], "%02x", calcDigest[i]);
     }
     return strcasecmp(calcHex.data(), expectedHex) == 0;
 }
 
 // Вспомогательная функция для инициализации загрузки
-static bool initializeDownload(HTTPClient& http, const String& binUrl, int& contentLen)  // NOLINT(misc-use-anonymous-namespace)
+static bool initializeDownload(HTTPClient& http, const String& binUrl,
+                               int& contentLen)  // NOLINT(misc-use-anonymous-namespace)
 {
     esp_task_wdt_reset();
     strlcpy(statusBuf.data(), "Подключение", sizeof(statusBuf));
@@ -199,7 +206,8 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl, int& cont
 }
 
 // Вспомогательная функция для загрузки данных
-static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_context& shaCtx)  // NOLINT(misc-use-anonymous-namespace)
+static bool downloadData(HTTPClient& http, int contentLen,
+                         mbedtls_sha256_context& shaCtx)  // NOLINT(misc-use-anonymous-namespace)
 {
     strlcpy(statusBuf.data(), "Загрузка", sizeof(statusBuf));
 
@@ -224,7 +232,7 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
     }
 
     // ИСПРАВЛЕНО: Оптимальный размер буфера для стабильной загрузки
-    uint8_t buf[512];  // Увеличиваем буфер для более быстрой загрузки
+    std::array<uint8_t, 512> buf;  // Увеличиваем буфер для более быстрой загрузки
     size_t totalDownloaded = 0;
     unsigned long lastProgress = millis();
     unsigned long lastActivity = millis();
@@ -239,8 +247,8 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
         if (avail > 0)
         {
             lastActivity = millis();
-            size_t toRead = (avail > sizeof(buf)) ? sizeof(buf) : avail;
-            int readBytes = stream->readBytes(buf, toRead);
+            size_t toRead = (avail > buf.size()) ? buf.size() : avail;
+            int readBytes = stream->readBytes(buf.data(), toRead);
 
             if (readBytes <= 0)
             {
@@ -250,7 +258,7 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
                 return false;
             }
 
-            if (Update.write(buf, readBytes) != (size_t)readBytes)
+            if (Update.write(buf.data(), readBytes) != (size_t)readBytes)
             {
                 strlcpy(statusBuf.data(), "Ошибка записи", sizeof(statusBuf));
                 logError("[OTA] Ошибка записи во flash");
@@ -259,7 +267,7 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
                 return false;
             }
 
-            mbedtls_sha256_update_ret(&shaCtx, buf, readBytes);
+            mbedtls_sha256_update_ret(&shaCtx, buf.data(), readBytes);
             totalDownloaded += readBytes;
 
             // Прогресс каждые 3 секунды
@@ -271,7 +279,8 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
                 }
                 else
                 {
-                    const int percent = static_cast<int>((totalDownloaded * 100ULL) / static_cast<unsigned long long>(contentLen));
+                    const int percent =
+                        static_cast<int>((totalDownloaded * 100ULL) / static_cast<unsigned long long>(contentLen));
                     snprintf(statusBuf.data(), sizeof(statusBuf), "Загружено %d%%", percent);
                 }
                 logSystemSafe("\1", static_cast<long long>(totalDownloaded));
@@ -308,7 +317,8 @@ static bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_contex
 
     if (!isChunked && totalDownloaded != (size_t)contentLen)
     {
-        snprintf(statusBuf.data(), sizeof(statusBuf), "Неполная загрузка %lld/%d", static_cast<long long>(totalDownloaded), contentLen);
+        snprintf(statusBuf.data(), sizeof(statusBuf), "Неполная загрузка %lld/%d",
+                 static_cast<long long>(totalDownloaded), contentLen);
         logErrorSafe("\1", static_cast<long long>(totalDownloaded), contentLen);
         Update.abort();
         return false;

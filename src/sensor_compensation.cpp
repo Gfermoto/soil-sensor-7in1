@@ -1,26 +1,29 @@
 #include "sensor_compensation.h"
-#include <math.h>
-#include <time.h>
+#include <cmath>
+#include <ctime>
 #include "jxct_config_vars.h"
 
 // --- коэффициенты ------------------------------------------------
-static constexpr struct
+struct SoilECCoeff
 {
     float k;
-} SOIL_EC[] = {
+};
+
+static constexpr std::array<SoilECCoeff, 5> SOIL_EC = {{
     {0.15F},  // SAND
     {0.30F},  // LOAM
     {0.10F},  // PEAT
     {0.45F},  // CLAY
     {0.18F}   // SANDPEAT
-};
+}};
 
-static constexpr float k_t_N[5] = {0.0041F, 0.0038F, 0.0028F, 0.0032F, 0.0040F};
-static constexpr float k_t_P[5] = {0.0053F, 0.0049F, 0.0035F, 0.0042F, 0.0051F};
-static constexpr float k_t_K[5] = {0.0032F, 0.0029F, 0.0018F, 0.0024F, 0.0031F};
+static constexpr std::array<float, 5> k_t_N = {0.0041F, 0.0038F, 0.0028F, 0.0032F, 0.0040F};
+static constexpr std::array<float, 5> k_t_P = {0.0053F, 0.0049F, 0.0035F, 0.0042F, 0.0051F};
+static constexpr std::array<float, 5> k_t_K = {0.0032F, 0.0029F, 0.0018F, 0.0024F, 0.0031F};
 
 // влажностные коэффициенты (λ-функции заменить не можем, считаем прямо)
-namespace {
+namespace
+{
 inline float k_h_N(float theta)
 {
     return 1.8F - 0.024F * theta;
@@ -33,16 +36,16 @@ inline float k_h_K(float theta)
 {
     return 1.9F - 0.021F * theta;
 }
-}
+}  // namespace
 
 // Строгая типизация для предотвращения ошибок
-struct ECCompensationParams {
+struct ECCompensationParams
+{
     float temperature;
     float moisture;
     SoilType soilType;
-    
-    ECCompensationParams(float temp, float moist, SoilType soil) 
-        : temperature(temp), moisture(moist), soilType(soil) {}
+
+    ECCompensationParams(float temp, float moist, SoilType soil) : temperature(temp), moisture(moist), soilType(soil) {}
 };
 
 // ------------------------------------------------------------------
@@ -76,9 +79,9 @@ void correctNPK(const ECCompensationParams& params, float& N, float& P, float& K
     const int idx = static_cast<int>(params.soilType);
 
     // Температурная коррекция
-    N *= (1.0F - k_t_N[idx] * (params.temperature - 25.0F));
-    P *= (1.0F - k_t_P[idx] * (params.temperature - 25.0F));
-    K *= (1.0F - k_t_K[idx] * (params.temperature - 25.0F));
+    N *= (1.0F - (k_t_N[idx] * (params.temperature - 25.0F)));
+    P *= (1.0F - (k_t_P[idx] * (params.temperature - 25.0F)));
+    K *= (1.0F - (k_t_K[idx] * (params.temperature - 25.0F)));
 
     // Влажностная коррекция
     N *= k_h_N(params.moisture);
@@ -95,8 +98,7 @@ float correctEC(float ecRaw, const EnvironmentalConditions& env, SoilType soil)
 
 void correctNPK(const EnvironmentalConditions& env, NPKReferences& npk, SoilType soil)
 {
-    correctNPK(ECCompensationParams(env.temperature, env.moisture, soil), 
-               npk.nitrogen, npk.phosphorus, npk.potassium);
+    correctNPK(ECCompensationParams(env.temperature, env.moisture, soil), npk.nitrogen, npk.phosphorus, npk.potassium);
 }
 // ------------------------------------------------------------------
 

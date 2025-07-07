@@ -20,7 +20,8 @@ SensorCache sensorCache;
 String sensorLastError = "";
 
 // Внутренние переменные и функции — только для этой единицы трансляции
-namespace {
+namespace
+{
 
 unsigned long lastIrrigationTs = 0;  // время последнего полива (для фильтрации всплесков)
 
@@ -67,27 +68,31 @@ uint16_t calculateCRC16(uint8_t* data, size_t length)
     return crc;
 }
 
-void saveRawSnapshot(SensorData& d)
+void saveRawSnapshot(SensorData& data)
 {
-    d.raw_temperature = d.temperature;
-    d.raw_humidity = d.humidity;
-    d.raw_ec = d.ec;
-    d.raw_ph = d.ph;
-    d.raw_nitrogen = d.nitrogen;
-    d.raw_phosphorus = d.phosphorus;
-    d.raw_potassium = d.potassium;
+    data.raw_temperature = data.temperature;
+    data.raw_humidity = data.humidity;
+    data.raw_ec = data.ec;
+    data.raw_ph = data.ph;
+    data.raw_nitrogen = data.nitrogen;
+    data.raw_phosphorus = data.phosphorus;
+    data.raw_potassium = data.potassium;
 }
 
-void updateIrrigationFlag(SensorData& d)
+void updateIrrigationFlag(SensorData& data)
 {
     constexpr uint8_t WIN = 6;
-    static float buf[WIN] = {NAN};
+    static std::array<float, WIN> buf = {NAN};
     static uint8_t idx = 0, filled = 0, persist = 0;
 
-    float baseline = d.humidity;
-    for (uint8_t i = 0; i < filled; ++i) baseline = (buf[i] < baseline) ? buf[i] : baseline;
+    float baseline = data.humidity;
+    for (uint8_t i = 0; i < filled; ++i)
+    {
+        baseline = (buf[i] < baseline) ? buf[i] : baseline;
+    }
 
-    const bool spike = (filled == WIN) && (d.humidity - baseline >= config.irrigationSpikeThreshold) && (d.humidity > 25.0F);
+    const bool spike =
+        (filled == WIN) && (data.humidity - baseline >= config.irrigationSpikeThreshold) && (data.humidity > 25.0F);
     persist = spike ? persist + 1 : 0;
     if (persist >= 2)
     {
@@ -95,16 +100,22 @@ void updateIrrigationFlag(SensorData& d)
         persist = 0;
     }
 
-    buf[idx] = d.humidity;
+    buf[idx] = data.humidity;
     idx = (idx + 1) % WIN;
-    if (filled < WIN) ++filled;
+    if (filled < WIN)
+    {
+        ++filled;
+    }
 
-    d.recentIrrigation = (millis() - lastIrrigationTs) <= (unsigned long)config.irrigationHoldMinutes * 60000UL;
+    data.recentIrrigation = (millis() - lastIrrigationTs) <= (unsigned long)config.irrigationHoldMinutes * 60000UL;
 }
 
-void applyCompensationIfEnabled(SensorData& d)
+void applyCompensationIfEnabled(SensorData& data)
 {
-    if (!config.flags.calibrationEnabled) return;
+    if (!config.flags.calibrationEnabled)
+    {
+        return;
+    }
 
     SoilType soil = SoilType::LOAM;
     SoilProfile profile = SoilProfile::SAND;
@@ -130,33 +141,38 @@ void applyCompensationIfEnabled(SensorData& d)
             soil = SoilType::SANDPEAT;
             profile = SoilProfile::SANDPEAT;
             break;
+        default:
+            // По умолчанию используем LOAM
+            soil = SoilType::LOAM;
+            profile = SoilProfile::LOAM;
+            break;
     }
 
     // Шаг 1: Применяем калибровочную таблицу CSV (лабораторная поверка)
-    const float tempCalibrated = CalibrationManager::applyCalibration(d.temperature, profile);
-    const float humCalibrated = CalibrationManager::applyCalibration(d.humidity, profile);
-    const float ecCalibrated = CalibrationManager::applyCalibration(d.ec, profile);
-    const float phCalibrated = CalibrationManager::applyCalibration(d.ph, profile);
-    const float nCalibrated = CalibrationManager::applyCalibration(d.nitrogen, profile);
-    const float pCalibrated = CalibrationManager::applyCalibration(d.phosphorus, profile);
-    const float kCalibrated = CalibrationManager::applyCalibration(d.potassium, profile);
+    const float tempCalibrated = CalibrationManager::applyCalibration(data.temperature, profile);
+    const float humCalibrated = CalibrationManager::applyCalibration(data.humidity, profile);
+    const float ecCalibrated = CalibrationManager::applyCalibration(data.ec, profile);
+    const float phCalibrated = CalibrationManager::applyCalibration(data.ph, profile);
+    const float nCalibrated = CalibrationManager::applyCalibration(data.nitrogen, profile);
+    const float pCalibrated = CalibrationManager::applyCalibration(data.phosphorus, profile);
+    const float kCalibrated = CalibrationManager::applyCalibration(data.potassium, profile);
 
     // Шаг 2: Применяем математическую компенсацию (температурная, влажностная)
-    d.ec = correctEC(ecCalibrated, tempCalibrated, humCalibrated, soil);
+    data.ec = correctEC(ecCalibrated, tempCalibrated, humCalibrated, soil);
 
-    d.ph = correctPH(phCalibrated, tempCalibrated);
+    data.ph = correctPH(phCalibrated, tempCalibrated);
 
-    d.nitrogen = nCalibrated;
-    d.phosphorus = pCalibrated;
-    d.potassium = kCalibrated;
-    correctNPK(tempCalibrated, humCalibrated, d.nitrogen, d.phosphorus, d.potassium, soil);
+    data.nitrogen = nCalibrated;
+    data.phosphorus = pCalibrated;
+    data.potassium = kCalibrated;
+    correctNPK(tempCalibrated, humCalibrated, data.nitrogen, data.phosphorus, data.potassium, soil);
 
     // Обновляем остальные значения
-    d.temperature = tempCalibrated;
-    d.humidity = humCalibrated;
+    data.temperature = tempCalibrated;
+    data.humidity = humCalibrated;
 }
 
-} // namespace (anonymous)
+}  // namespace
 
 /**
  * @brief Тестирование работы SP3485E
@@ -230,20 +246,47 @@ void setupModbus()
 
 bool validateSensorData(SensorData& data)
 {
-    if (data.temperature < MIN_TEMPERATURE || data.temperature > MAX_TEMPERATURE) return false;
-    if (data.humidity < MIN_HUMIDITY || data.humidity > MAX_HUMIDITY) return false;
-    if (data.ec < MIN_EC || data.ec > MAX_EC) return false;
-    if (data.ph < MIN_PH || data.ph > MAX_PH) return false;
-    if (data.nitrogen < MIN_NPK || data.nitrogen > MAX_NPK) return false;
-    if (data.phosphorus < MIN_NPK || data.phosphorus > MAX_NPK) return false;
-    if (data.potassium < MIN_NPK || data.potassium > MAX_NPK) return false;
+    if (data.temperature < MIN_TEMPERATURE || data.temperature > MAX_TEMPERATURE)
+    {
+        return false;
+    }
+    if (data.humidity < MIN_HUMIDITY || data.humidity > MAX_HUMIDITY)
+    {
+        return false;
+    }
+    if (data.ec < MIN_EC || data.ec > MAX_EC)
+    {
+        return false;
+    }
+    if (data.ph < MIN_PH || data.ph > MAX_PH)
+    {
+        return false;
+    }
+    if (data.nitrogen < MIN_NPK || data.nitrogen > MAX_NPK)
+    {
+        return false;
+    }
+    if (data.phosphorus < MIN_NPK || data.phosphorus > MAX_NPK)
+    {
+        return false;
+    }
+    if (data.potassium < MIN_NPK || data.potassium > MAX_NPK)
+    {
+        return false;
+    }
     return true;
 }
 
 bool getCachedData(SensorData& data)
 {
-    if (!sensorCache.is_valid) return false;
-    if (millis() - sensorCache.timestamp > MODBUS_CACHE_TIMEOUT) return false;
+    if (!sensorCache.is_valid)
+    {
+        return false;
+    }
+    if (millis() - sensorCache.timestamp > MODBUS_CACHE_TIMEOUT)
+    {
+        return false;
+    }
 
     data = sensorCache.data;
     return true;
@@ -380,7 +423,8 @@ bool testModbusConnection()
  * @param is_float Флаг - сохранять как float или int
  * @return true если чтение успешно
  */
-static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)  // NOLINT(misc-use-anonymous-namespace)
+static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target,
+                               bool is_float)  // NOLINT(misc-use-anonymous-namespace)
 {
     logDebugSafe("\1", reg_name, reg_addr);
     const uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
@@ -626,7 +670,8 @@ void addToMovingAverage(SensorData& data, const SensorData& newReading)
     if (window_size > 15) window_size = 15;
 
     // ---------- O(1) running sum для каждого параметра ----------
-    static float sum_temp = 0.0F, sum_hum = 0.0F, sum_ec = 0.0F, sum_ph = 0.0F, sum_n = 0.0F, sum_p = 0.0F, sum_k = 0.0F;
+    static float sum_temp = 0.0F, sum_hum = 0.0F, sum_ec = 0.0F, sum_ph = 0.0F, sum_n = 0.0F, sum_p = 0.0F,
+                 sum_k = 0.0F;
 
     // Если буфер заполнен – вычитаем значение, которое покинет окно
     if (data.buffer_filled >= window_size)
@@ -714,15 +759,15 @@ float calculateMovingAverage(float* buffer, uint8_t window_size, uint8_t filled)
     {  // FILTER_ALGORITHM_MEDIAN
         // Создаем временный массив для медианы
         std::array<float, 15> temp_values{};  // Максимальный размер окна
-        for (uint8_t i = 0; i < elements_to_use; ++i)
+        for (int i = 0; i < elements_to_use; ++i)
         {
             temp_values.at(i) = buffer[i];
         }
 
         // Простая сортировка для медианы
-        for (uint8_t i = 0; i < elements_to_use - 1; ++i)
+        for (int i = 0; i < elements_to_use - 1; ++i)
         {
-            for (uint8_t j = 0; j < elements_to_use - i - 1; ++j)
+            for (int j = 0; j < elements_to_use - i - 1; ++j)
             {
                 if (temp_values.at(j) > temp_values.at(j + 1))
                 {

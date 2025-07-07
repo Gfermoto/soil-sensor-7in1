@@ -8,7 +8,7 @@ struct PageInfo
 {
     String title;
     String icon;
-    
+
     PageInfo(const String& titleText, const String& iconText) : title(titleText), icon(iconText) {}
 };
 
@@ -19,9 +19,11 @@ struct FormInfo
     String formContent;
     String buttonText;
     String buttonIcon;
-    
+
     FormInfo(const String& actionUrl, const String& methodType, const String& fc, const String& bt, const String& bi)
-        : action(actionUrl), method(methodType), formContent(fc), buttonText(bt), buttonIcon(bi) {}
+        : action(actionUrl), method(methodType), formContent(fc), buttonText(bt), buttonIcon(bi)
+    {
+    }
 };
 
 struct InputFieldInfo
@@ -33,9 +35,18 @@ struct InputFieldInfo
     String type;
     bool required;
     String placeholder;
-    
-    InputFieldInfo(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText, const String& typeText, bool isRequired, const String& placeholderText)
-        : id(fieldId), name(fieldName), label(labelText), value(valueText), type(typeText), required(isRequired), placeholder(placeholderText) {}
+
+    InputFieldInfo(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
+                   const String& typeText, bool isRequired, const String& placeholderText)
+        : id(fieldId),
+          name(fieldName),
+          label(labelText),
+          value(valueText),
+          type(typeText),
+          required(isRequired),
+          placeholder(placeholderText)
+    {
+    }
 };
 
 struct NumberFieldInfo
@@ -47,9 +58,11 @@ struct NumberFieldInfo
     int min;
     int max;
     int step;
-    
+
     NumberFieldInfo(const String& i, const String& n, const String& l, int v, int mi, int ma, int s)
-        : id(i), name(n), label(l), value(v), min(mi), max(ma), step(s) {}
+        : id(i), name(n), label(l), value(v), min(mi), max(ma), step(s)
+    {
+    }
 };
 
 // External function declarations
@@ -77,7 +90,8 @@ String generatePageFooter()  // NOLINT(misc-use-internal-linkage)
     return "</div>" + String(getToastHTML()) + "</body></html>";
 }
 
-String generateBasePage(const String& title, const String& content, const String& icon)  // NOLINT(misc-use-internal-linkage)
+String generateBasePage(const String& title, const String& content,
+                        const String& icon)  // NOLINT(misc-use-internal-linkage)
 {
     String html = generatePageHeader(title, icon);
     html += navHtml();
@@ -101,7 +115,8 @@ String generateErrorPage(int errorCode, const String& errorMessage)  // NOLINT(m
     return generateBasePage("Ошибка " + String(errorCode), content, UI_ICON_ERROR);
 }
 
-String generateSuccessPage(const String& title, const String& message, const String& redirectUrl, int redirectDelay)  // NOLINT(misc-use-internal-linkage)
+String generateSuccessPage(const String& title, const String& message, const String& redirectUrl,
+                           int redirectDelay)  // NOLINT(misc-use-internal-linkage)
 {
     String content = "<h1>" UI_ICON_SUCCESS " " + title + "</h1>";
     content += "<div class='msg msg-success'>" UI_ICON_SUCCESS " " + message + "</div>";
@@ -148,7 +163,8 @@ String generateForm(const FormInfo& form)  // NOLINT(misc-use-internal-linkage)
  * @param helpText Текст подсказки (опционально)
  * @return HTML секция
  */
-String generateConfigSection(const String& title, const String& content, const String& helpText)  // NOLINT(misc-use-internal-linkage)
+String generateConfigSection(const String& title, const String& content,
+                             const String& helpText)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='section'>";
     html += "<h2>" + title + "</h2>";
@@ -173,7 +189,8 @@ String generateConfigSection(const String& title, const String& content, const S
  * @return HTML поле ввода
  */
 String generateInputField(const String& id, const String& name, const String& label, const String& value,
-                          const String& type, bool required, const String& placeholder)  // NOLINT(misc-use-internal-linkage)
+                          const String& type, bool required,
+                          const String& placeholder)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='form-group'>";
     html += "<label for='" + id + "'>" + label + ":</label>";
@@ -193,7 +210,8 @@ String generateInputField(const String& id, const String& name, const String& la
 // ✅ Типобезопасная версия (предотвращает перепутывание 6 String параметров)
 String generateInputField(const InputFieldInfo& field)  // NOLINT(misc-use-internal-linkage)
 {
-    return generateInputField(field.id, field.name, field.label, field.value, field.type, field.required, field.placeholder);
+    return generateInputField(field.id, field.name, field.label, field.value, field.type, field.required,
+                              field.placeholder);
 }
 
 /**
@@ -204,7 +222,8 @@ String generateInputField(const InputFieldInfo& field)  // NOLINT(misc-use-inter
  * @param checked Состояние чекбокса
  * @return HTML чекбокс
  */
-String generateCheckboxField(const String& id, const String& name, const String& label, bool checked)  // NOLINT(misc-use-internal-linkage)
+String generateCheckboxField(const String& id, const String& name, const String& label,
+                             bool checked)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='form-group'>";
     html += "<label for='" + id + "'>" + label + ":</label>";

@@ -32,15 +32,15 @@ enum class SoilType : std::uint8_t
 // Структуры для типобезопасности (предотвращение перепутывания параметров)
 struct EnvironmentalConditions
 {
-    float temperature;   // °C
-    float moisture;      // % влажности почвы (theta)
+    float temperature;  // °C
+    float moisture;     // % влажности почвы (theta)
 };
 
 struct NPKReferences
 {
-    float& nitrogen;     // мг/кг
-    float& phosphorus;   // мг/кг  
-    float& potassium;    // мг/кг
+    float& nitrogen;    // мг/кг
+    float& phosphorus;  // мг/кг
+    float& potassium;   // мг/кг
 };
 
 // (устаревшие функции компенсации удалены)

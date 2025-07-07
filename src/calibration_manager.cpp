@@ -4,7 +4,8 @@
 
 namespace CalibrationManager
 {
-namespace {
+namespace
+{
 bool _initialized = false;
 }
 
@@ -20,14 +21,14 @@ bool init()
         return true;
     }
 
-    if (!LittleFS.begin(true))
+    if (!LittleFS.begin(true) != 0)
     {
         logError(String("LittleFS не инициализирован"));
         return false;
     }
 
     // Создаем каталог /calibration при необходимости
-    if (!LittleFS.exists("/calibration"))
+    if (LittleFS.exists("/calibration") == false)
     {
         LittleFS.mkdir("/calibration");
     }
@@ -147,10 +148,10 @@ float applyCalibration(float rawValue, SoilProfile profile)
 
     // Загружаем калибровочную таблицу
     constexpr size_t MAX_ENTRIES = 100;
-    CalibrationEntry entries[MAX_ENTRIES];
+    std::array<CalibrationEntry, MAX_ENTRIES> entries;
     size_t entryCount;
 
-    if (!loadTable(profile, entries, MAX_ENTRIES, entryCount) || entryCount == 0)
+    if (!loadTable(profile, entries.data(), MAX_ENTRIES, entryCount) || entryCount == 0)
     {
         return rawValue;
     }
@@ -172,8 +173,8 @@ float applyCalibration(float rawValue, SoilProfile profile)
 
         if (entries[i].raw < rawValue)
         {
-                    // lowerRaw = entries[i].raw; // Уже const
-        // lowerCorr = entries[i].corrected; // Уже const
+            // lowerRaw = entries[i].raw; // Уже const
+            // lowerCorr = entries[i].corrected; // Уже const
         }
         else if (entries[i].raw > rawValue)
         {

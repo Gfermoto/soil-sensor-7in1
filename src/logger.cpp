@@ -4,16 +4,17 @@
  */
 
 #include "../include/logger.h"
-#include <cstdarg>
-#include <cstdio>
 #include <WiFi.h>
 #include <array>
+#include <cstdarg>
+#include <cstdio>
 
 // Глобальная переменная для уровня логгирования
 LogLevel currentLogLevel = LOG_DEBUG;
 
 // Получение времени работы в читаемом формате
-namespace {
+namespace
+{
 String getUptimeString()
 {
     const unsigned long milliseconds = millis();
@@ -28,7 +29,7 @@ String getUptimeString()
 
     return String(days) + "д " + String(hours) + "ч " + String(minutes) + "м " + String(seconds) + "с";
 }
-}
+}  // namespace
 
 String formatLogMessage(const String& message)
 {
@@ -38,7 +39,10 @@ String formatLogMessage(const String& message)
 // Основные функции логгирования (String версии)
 void logError(const String& message)
 {
-    if (currentLogLevel < LOG_ERROR) { return; }
+    if (currentLogLevel < LOG_ERROR)
+    {
+        return;
+    }
 
     Serial.print(COLOR_RED);
     Serial.print(LOG_SYMBOL_ERROR " ");
@@ -48,7 +52,10 @@ void logError(const String& message)
 
 void logWarn(const String& message)
 {
-    if (currentLogLevel < LOG_WARN) { return; }
+    if (currentLogLevel < LOG_WARN)
+    {
+        return;
+    }
 
     Serial.print(COLOR_YELLOW);
     Serial.print(LOG_SYMBOL_WARN);
@@ -58,7 +65,10 @@ void logWarn(const String& message)
 
 void logInfo(const String& message)
 {
-    if (currentLogLevel < LOG_INFO) { return; }
+    if (currentLogLevel < LOG_INFO)
+    {
+        return;
+    }
 
     Serial.print(COLOR_BLUE);
     Serial.print(LOG_SYMBOL_INFO);
@@ -68,7 +78,10 @@ void logInfo(const String& message)
 
 void logDebug(const String& message)
 {
-    if (currentLogLevel < LOG_DEBUG) { return; }
+    if (currentLogLevel < LOG_DEBUG)
+    {
+        return;
+    }
 
     Serial.print(COLOR_CYAN);
     Serial.print(LOG_SYMBOL_DEBUG);
@@ -78,7 +91,10 @@ void logDebug(const String& message)
 
 void logSuccess(const String& message)
 {
-    if (currentLogLevel < LOG_INFO) { return; }
+    if (currentLogLevel < LOG_INFO)
+    {
+        return;
+    }
 
     Serial.print(COLOR_GREEN);
     Serial.print(LOG_SYMBOL_SUCCESS);
@@ -88,7 +104,10 @@ void logSuccess(const String& message)
 
 void logSensor(const String& message)
 {
-    if (currentLogLevel < LOG_INFO) { return; }
+    if (currentLogLevel < LOG_INFO)
+    {
+        return;
+    }
 
     Serial.print(COLOR_MAGENTA);
     Serial.print(LOG_SYMBOL_SENSOR);
@@ -98,7 +117,10 @@ void logSensor(const String& message)
 
 void logWiFi(const String& message)
 {
-    if (currentLogLevel < LOG_INFO) { return; }
+    if (currentLogLevel < LOG_INFO)
+    {
+        return;
+    }
 
     Serial.print(COLOR_CYAN);
     Serial.print(LOG_SYMBOL_WIFI);
@@ -108,7 +130,10 @@ void logWiFi(const String& message)
 
 void logMQTT(const String& message)
 {
-    if (currentLogLevel < LOG_INFO) { return; }
+    if (currentLogLevel < LOG_INFO)
+    {
+        return;
+    }
 
     Serial.print(COLOR_BLUE);
     Serial.print(LOG_SYMBOL_MQTT);
@@ -118,7 +143,10 @@ void logMQTT(const String& message)
 
 void logHTTP(const String& message)
 {
-    if (currentLogLevel < LOG_INFO) { return; }
+    if (currentLogLevel < LOG_INFO)
+    {
+        return;
+    }
 
     Serial.print(COLOR_GREEN);
     Serial.print(LOG_SYMBOL_HTTP);
@@ -128,7 +156,10 @@ void logHTTP(const String& message)
 
 void logSystem(const String& message)
 {
-    if (currentLogLevel < LOG_INFO) { return; }
+    if (currentLogLevel < LOG_INFO)
+    {
+        return;
+    }
 
     Serial.print(COLOR_WHITE);
     Serial.print("⚙️  ");
@@ -138,7 +169,10 @@ void logSystem(const String& message)
 
 void logData(const String& message)
 {
-    if (currentLogLevel < LOG_INFO) { return; }
+    if (currentLogLevel < LOG_INFO)
+    {
+        return;
+    }
 
     Serial.print(COLOR_YELLOW);
     Serial.print("📊 ");
@@ -193,7 +227,8 @@ void logWiFiStatus()
 {
     if (WiFi.status() == WL_CONNECTED)
     {
-        logWiFi("Подключен к " + WiFi.SSID() + ", IP: " + WiFi.localIP().toString() + ", RSSI: " + WiFi.RSSI() + " dBm");
+        logWiFi("Подключен к " + WiFi.SSID() + ", IP: " + WiFi.localIP().toString() + ", RSSI: " + WiFi.RSSI() +
+                " dBm");
     }
     else
     {
@@ -216,15 +251,24 @@ const char* getColorCode(LogColor color)
 {
     switch (color)
     {
-        case LogColor::RED: return COLOR_RED;
-        case LogColor::GREEN: return COLOR_GREEN;
-        case LogColor::YELLOW: return COLOR_YELLOW;
-        case LogColor::BLUE: return COLOR_BLUE;
-        case LogColor::MAGENTA: return COLOR_MAGENTA;
-        case LogColor::CYAN: return COLOR_CYAN;
-        case LogColor::WHITE: return COLOR_WHITE;
-        case LogColor::CYAN_DEFAULT: return COLOR_CYAN;
-        default: return COLOR_RESET;
+        case LogColor::RED:
+            return COLOR_RED;
+        case LogColor::GREEN:
+            return COLOR_GREEN;
+        case LogColor::YELLOW:
+            return COLOR_YELLOW;
+        case LogColor::BLUE:
+            return COLOR_BLUE;
+        case LogColor::MAGENTA:
+            return COLOR_MAGENTA;
+        case LogColor::CYAN:
+            return COLOR_CYAN;
+        case LogColor::WHITE:
+            return COLOR_WHITE;
+        case LogColor::CYAN_DEFAULT:
+            return COLOR_CYAN;
+        default:
+            return COLOR_RESET;
     }
 }
 

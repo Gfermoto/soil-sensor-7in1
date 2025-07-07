@@ -3,7 +3,7 @@
 #include <ThingSpeak.h>
 #include <WiFiClient.h>
 #include <array>
-#include <ctype.h>
+#include <cctype>
 #include "jxct_config_vars.h"
 #include "jxct_device_info.h"
 #include "jxct_format_utils.h"
@@ -15,30 +15,41 @@ extern NTPClient* timeClient;
 // URL для отправки данных в ThingSpeak
 static const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";  // NOLINT(misc-use-anonymous-namespace)
 
-namespace {
+namespace
+{
 unsigned long lastTsPublish = 0;
 int consecutiveFailCount = 0;  // счётчик подряд неудач
 
 // Утилита для обрезки пробелов в начале/конце строки C
 void trim(char* str)
 {
-    if (!str) {
+    if (str == nullptr)
+    {
         return;
     }
     // Trim leading
     char* ptr = str;
-    while (*ptr && isspace((unsigned char)*ptr)) { ++ptr; }
-    if (ptr != str) { memmove(str, ptr, strlen(ptr) + 1); }
+    while (*ptr && isspace((unsigned char)*ptr))
+    {
+        ++ptr;
+    }
+    if (ptr != str)
+    {
+        memmove(str, ptr, strlen(ptr) + 1);
+    }
 
     // Trim trailing
     size_t len = strlen(str);
-    while (len > 0 && isspace((unsigned char)str[len - 1])) { str[--len] = '\0'; }
+    while (len > 0 && isspace((unsigned char)str[len - 1]))
+    {
+        str[--len] = '\0';
+    }
 }
 
 // ✅ Заменяем String на статические буферы
 std::array<char, 32> thingSpeakLastPublishBuffer = {"0"};
 std::array<char, 64> thingSpeakLastErrorBuffer = {""};
-}
+}  // namespace
 
 // Геттеры для совместимости с внешним кодом
 const char* getThingSpeakLastPublish()
@@ -58,18 +69,22 @@ void setupThingSpeak(WiFiClient& client)
 bool sendDataToThingSpeak()
 {
     // Проверки
-    if (!config.flags.thingSpeakEnabled) {
+    if (!config.flags.thingSpeakEnabled)
+    {
         return false;
     }
-    if (!wifiConnected) {
+    if (!wifiConnected)
+    {
         return false;
     }
-    if (!sensorData.valid) {
+    if (!sensorData.valid)
+    {
         return false;
     }
 
     const unsigned long now = millis();
-    if (now - lastTsPublish < config.thingSpeakInterval) {  // too frequent
+    if (now - lastTsPublish < config.thingSpeakInterval)
+    {  // too frequent
         return false;
     }
 
@@ -88,8 +103,7 @@ bool sendDataToThingSpeak()
         // Не логируем ошибку каждый раз, просто пропускаем отправку
         if (strlen(thingSpeakLastErrorBuffer.data()) == 0)  // логируем только первый раз
         {
-            logWarnSafe("\1", channelBuf.data(),
-                    strlen(apiKeyBuf.data()));
+            logWarnSafe("\1", channelBuf.data(), strlen(apiKeyBuf.data()));
             strlcpy(thingSpeakLastErrorBuffer.data(), "Настройки не заданы", thingSpeakLastErrorBuffer.size());
         }
         return false;
@@ -104,8 +118,7 @@ bool sendDataToThingSpeak()
     ThingSpeak.setField(6, format_npk(sensorData.phosphorus).c_str());
     ThingSpeak.setField(7, format_npk(sensorData.potassium).c_str());
 
-    logDataSafe("\1", sensorData.temperature, sensorData.humidity,
-            sensorData.ph);
+    logDataSafe("\1", sensorData.temperature, sensorData.humidity, sensorData.ph);
 
     int res = ThingSpeak.writeFields(channelId, apiKeyBuf.data());
 
@@ -126,7 +139,8 @@ bool sendDataToThingSpeak()
     else if (res == -401)
     {
         logDebug("ThingSpeak: превышен лимит публикаций");
-        strlcpy(thingSpeakLastErrorBuffer.data(), "Превышен лимит публикаций (15 сек)", thingSpeakLastErrorBuffer.size());
+        strlcpy(thingSpeakLastErrorBuffer.data(), "Превышен лимит публикаций (15 сек)",
+                thingSpeakLastErrorBuffer.size());
     }
     else if (res == -302)
     {

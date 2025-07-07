@@ -46,7 +46,7 @@ class PreCommitHook:
 
         python_files = [
             "test/test_format.py",
-            "test/test_validation.py", 
+            "test/test_validation.py",
             "test/test_routes.py",
             "scripts/run_simple_tests.py",
             "scripts/run_comprehensive_tests.py",
@@ -70,13 +70,13 @@ class PreCommitHook:
     def run_critical_tests(self) -> bool:
         """Запуск критически важных тестов"""
         self.log("Запуск критических тестов...")
-        
+
         # Только самые важные тесты
         tests = [
             ("test/test_format.py", "Тест форматирования"),
             ("test/test_validation.py", "Тест валидации")
         ]
-        
+
         success = True
         for test_file, description in tests:
             self.log(f"Запуск {description}...")
@@ -87,34 +87,34 @@ class PreCommitHook:
                 success = False
             else:
                 self.log(f"{description} пройден")
-        
+
         return success
 
     def check_esp32_build(self) -> bool:
         """Проверка сборки ESP32 (если доступно)"""
         self.log("Проверка сборки ESP32...")
-        
+
         # Проверяем доступность PlatformIO
         returncode, stdout, stderr = self.run_command(["pio", "--version"])
         if returncode != 0:
             self.log("PlatformIO недоступен, пропускаем проверку сборки", "WARNING")
             self.warnings.append("PlatformIO not available")
             return True
-        
+
         # Проверяем конфигурацию platformio.ini
         platformio_ini = self.project_root / "platformio.ini"
         if not platformio_ini.exists():
             self.log("platformio.ini не найден", "ERROR")
             self.errors.append("platformio.ini not found")
             return False
-        
+
         self.log("Конфигурация ESP32 корректна")
         return True
 
     def check_critical_files(self) -> bool:
         """Проверка наличия критических файлов"""
         self.log("Проверка критических файлов...")
-        
+
         critical_files = [
             "src/main.cpp",
             "platformio.ini",
@@ -122,17 +122,17 @@ class PreCommitHook:
             "src/validation_utils.cpp",
             "src/jxct_format_utils.cpp"
         ]
-        
+
         missing_files = []
         for file_path in critical_files:
             if not (self.project_root / file_path).exists():
                 missing_files.append(file_path)
-        
+
         if missing_files:
             self.log(f"Отсутствуют критические файлы: {missing_files}", "ERROR")
             self.errors.append(f"Missing critical files: {missing_files}")
             return False
-        
+
         self.log("Все критические файлы найдены")
         return True
 
@@ -140,14 +140,14 @@ class PreCommitHook:
         """Запуск всех проверок"""
         self.log("🔍 Запуск pre-commit проверок JXCT v3.7.0...")
         start_time = time.time()
-        
+
         checks = [
             ("Синтаксис Python", self.check_python_syntax),
             ("Критические файлы", self.check_critical_files),
             ("Критические тесты", self.run_critical_tests),
             ("Сборка ESP32", self.check_esp32_build),
         ]
-        
+
         success = True
         for check_name, check_func in checks:
             try:
@@ -157,33 +157,33 @@ class PreCommitHook:
                 self.log(f"Ошибка в проверке '{check_name}': {e}", "ERROR")
                 self.errors.append(f"Check '{check_name}' failed: {e}")
                 success = False
-        
+
         duration = time.time() - start_time
         self.log(f"Проверки завершены за {duration:.1f}с")
-        
+
         # Отчет
         if self.errors:
             self.log("❌ ОШИБКИ:", "ERROR")
             for error in self.errors:
                 self.log(f"  - {error}", "ERROR")
-        
+
         if self.warnings:
             self.log("⚠️ ПРЕДУПРЕЖДЕНИЯ:", "WARNING")
             for warning in self.warnings:
                 self.log(f"  - {warning}", "WARNING")
-        
+
         if success:
             self.log("✅ Все проверки пройдены успешно!")
         else:
             self.log("❌ Есть ошибки, коммит заблокирован!")
-        
+
         return success
 
 def main():
     """Главная функция"""
     hook = PreCommitHook()
     success = hook.run_all_checks()
-    
+
     if success:
         print("\n🚀 Pre-commit проверки пройдены, коммит разрешен!")
         sys.exit(0)

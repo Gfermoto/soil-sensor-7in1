@@ -74,7 +74,8 @@ void setupServiceRoutes()
             html += "<div class='section' style='margin-top:20px;'>";
             html += "<form method='post' action='/reset' style='margin-bottom:10px'>";
             html += getCSRFHiddenField();
-            html += generateButton(ButtonType::DANGER, ButtonConfig{UI_ICON_RESET, "Сбросить настройки", ""}) + "</form>";
+            html +=
+                generateButton(ButtonType::DANGER, ButtonConfig{UI_ICON_RESET, "Сбросить настройки", ""}) + "</form>";
             html += "<form method='post' action='/reboot' style='margin-bottom:10px'>";
             html += getCSRFHiddenField();
             html += generateButton(ButtonType::SECONDARY, ButtonConfig{"🔄", "Перезагрузить", ""}) + "</form>";
@@ -127,8 +128,7 @@ void setupServiceRoutes()
                      // ✅ CSRF защита - критическая операция сброса!
                      if (!checkCSRFSafety())
                      {
-                         logWarnSafe("\1",
-                                 webServer.client().remoteIP().toString().c_str());
+                         logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
                          String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                          webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
                          return;
@@ -167,8 +167,7 @@ void setupServiceRoutes()
                      // ✅ CSRF защита - критическая операция перезагрузки!
                      if (!checkCSRFSafety())
                      {
-                         logWarnSafe("\1",
-                                 webServer.client().remoteIP().toString().c_str());
+                         logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
                          String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                          webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
                          return;

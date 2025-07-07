@@ -79,7 +79,7 @@ class ComprehensiveTestRunner:
             result = subprocess.run([
                 sys.executable, "scripts/analyze_technical_debt.py"
             ], cwd=self.project_root, check=True, capture_output=True, text=True)
-            
+
             debt_file = self.project_root / "test_reports" / "technical-debt-ci.json"
             if debt_file.exists():
                 with open(debt_file, 'r', encoding='utf-8') as f:
@@ -88,7 +88,7 @@ class ComprehensiveTestRunner:
                     print(f"  [OK] Технический долг: {debt_data.get('overall_score', 'N/A')}")
             else:
                 print("  [WARN] Файл технического долга не найден")
-                
+
         except Exception as e:
             print(f"  [WARN] Анализ пропущен: {e}")
 
@@ -104,26 +104,26 @@ class ComprehensiveTestRunner:
             "total_duration": 0,
             "test_files": []
         }
-        
+
         total_tests = 0
         passed_tests = 0
-        
+
         # test_format.py
         try:
             result = subprocess.run([
                 sys.executable, "test/test_format.py"
-            ], cwd=self.project_root, capture_output=True, text=True, 
+            ], cwd=self.project_root, capture_output=True, text=True,
               encoding='utf-8', errors='ignore', timeout=30)
-            
+
             if result.returncode == 0:
                 # Подсчитываем "ПРОЙДЕН"
                 passed_count = result.stdout.count("ПРОЙДЕН")
                 total_count = passed_count  # Все тесты проходят
-                
+
                 if total_count == 0:
                     total_count = 3  # Известно из структуры
                     passed_count = 3
-                
+
                 python_results["format_tests"]["total"] = total_count
                 python_results["format_tests"]["passed"] = passed_count
                 python_results["test_files"].append("test_format.py")
@@ -135,7 +135,7 @@ class ComprehensiveTestRunner:
                 python_results["format_tests"]["failed"] = 1
                 total_tests += 1
                 print(f"  [FAIL] test_format.py: ОШИБКА")
-                
+
         except Exception as e:
             print(f"  [ERROR] test_format.py: {e}")
             python_results["format_tests"]["total"] = 1
@@ -146,17 +146,17 @@ class ComprehensiveTestRunner:
         try:
             result = subprocess.run([
                 sys.executable, "test/test_validation.py"
-            ], cwd=self.project_root, capture_output=True, text=True, 
+            ], cwd=self.project_root, capture_output=True, text=True,
               encoding='utf-8', errors='ignore', timeout=30)
-            
+
             if result.returncode == 0:
                 passed_count = result.stdout.count("ПРОЙДЕН")
                 total_count = passed_count
-                
+
                 if total_count == 0:
                     total_count = 5  # Известно из структуры
                     passed_count = 5
-                
+
                 python_results["validation_tests"]["total"] = total_count
                 python_results["validation_tests"]["passed"] = passed_count
                 python_results["test_files"].append("test_validation.py")
@@ -168,7 +168,7 @@ class ComprehensiveTestRunner:
                 python_results["validation_tests"]["failed"] = 1
                 total_tests += 1
                 print(f"  [FAIL] test_validation.py: ОШИБКА")
-                
+
         except Exception as e:
             print(f"  [ERROR] test_validation.py: {e}")
             python_results["validation_tests"]["total"] = 1
@@ -179,9 +179,9 @@ class ComprehensiveTestRunner:
         try:
             result = subprocess.run([
                 sys.executable, "test/test_critical_functions.py"
-            ], cwd=self.project_root, capture_output=True, text=True, 
+            ], cwd=self.project_root, capture_output=True, text=True,
               encoding='utf-8', errors='ignore', timeout=30)
-            
+
             if result.returncode == 0:
                 # Парсим результат "=== ИТОГ: X/Y ==="
                 lines = result.stdout.split('\n')
@@ -193,7 +193,7 @@ class ComprehensiveTestRunner:
                             passed_str, total_str = parts[1].split("/")
                             passed_count = int(passed_str)
                             total_count = int(total_str)
-                            
+
                             python_results["critical_tests"]["total"] = total_count
                             python_results["critical_tests"]["passed"] = passed_count
                             python_results["critical_tests"]["failed"] = total_count - passed_count
@@ -215,7 +215,7 @@ class ComprehensiveTestRunner:
                 python_results["critical_tests"]["failed"] = 1
                 total_tests += 1
                 print(f"  [FAIL] test_critical_functions.py: ОШИБКА")
-                
+
         except Exception as e:
             print(f"  [ERROR] test_critical_functions.py: {e}")
             python_results["critical_tests"]["total"] = 1
@@ -226,9 +226,9 @@ class ComprehensiveTestRunner:
         try:
             result = subprocess.run([
                 sys.executable, "test/test_modbus_mqtt.py"
-            ], cwd=self.project_root, capture_output=True, text=True, 
+            ], cwd=self.project_root, capture_output=True, text=True,
               encoding='utf-8', errors='ignore', timeout=30)
-            
+
             if result.returncode == 0:
                 # Парсим результат "=== ИТОГ: X/Y ==="
                 lines = result.stdout.split('\n')
@@ -240,7 +240,7 @@ class ComprehensiveTestRunner:
                             passed_str, total_str = parts[1].split("/")
                             passed_count = int(passed_str)
                             total_count = int(total_str)
-                            
+
                             python_results["modbus_mqtt_tests"]["total"] = total_count
                             python_results["modbus_mqtt_tests"]["passed"] = passed_count
                             python_results["modbus_mqtt_tests"]["failed"] = total_count - passed_count
@@ -262,7 +262,7 @@ class ComprehensiveTestRunner:
                 python_results["modbus_mqtt_tests"]["failed"] = 1
                 total_tests += 1
                 print(f"  [FAIL] test_modbus_mqtt.py: ОШИБКА")
-                
+
         except Exception as e:
             print(f"  [ERROR] test_modbus_mqtt.py: {e}")
             python_results["modbus_mqtt_tests"]["total"] = 1
@@ -273,9 +273,9 @@ class ComprehensiveTestRunner:
         try:
             result = subprocess.run([
                 sys.executable, "test/test_system_functions.py"
-            ], cwd=self.project_root, capture_output=True, text=True, 
+            ], cwd=self.project_root, capture_output=True, text=True,
               encoding='utf-8', errors='ignore', timeout=30)
-            
+
             if result.returncode == 0:
                 # Парсим результат "=== ИТОГ: X/Y ==="
                 lines = result.stdout.split('\n')
@@ -287,7 +287,7 @@ class ComprehensiveTestRunner:
                             passed_str, total_str = parts[1].split("/")
                             passed_count = int(passed_str)
                             total_count = int(total_str)
-                            
+
                             python_results["system_tests"]["total"] = total_count
                             python_results["system_tests"]["passed"] = passed_count
                             python_results["system_tests"]["failed"] = total_count - passed_count
@@ -309,7 +309,7 @@ class ComprehensiveTestRunner:
                 python_results["system_tests"]["failed"] = 1
                 total_tests += 1
                 print(f"  [FAIL] test_system_functions.py: ОШИБКА")
-                
+
         except Exception as e:
             print(f"  [ERROR] test_system_functions.py: {e}")
             python_results["system_tests"]["total"] = 1
@@ -320,9 +320,9 @@ class ComprehensiveTestRunner:
         try:
             result = subprocess.run([
                 sys.executable, "test/test_routes.py"
-            ], cwd=self.project_root, capture_output=True, text=True, 
+            ], cwd=self.project_root, capture_output=True, text=True,
               encoding='utf-8', errors='ignore', timeout=30)
-            
+
             if result.returncode == 0:
                 # unittest без -v выводит только точку при успехе
                 # Проверяем что нет ошибок и exit code 0
@@ -343,7 +343,7 @@ class ComprehensiveTestRunner:
                 python_results["routes_tests"]["failed"] = 1
                 total_tests += 1
                 print(f"  [FAIL] test_routes.py: ОШИБКА")
-                
+
         except Exception as e:
             print(f"  [ERROR] test_routes.py: {e}")
             python_results["routes_tests"]["total"] = 1
@@ -364,21 +364,21 @@ class ComprehensiveTestRunner:
             result = subprocess.run([
                 "pio", "run", "-e", "esp32dev"
             ], cwd=self.project_root, capture_output=True, text=True, timeout=120)
-            
+
             if result.returncode == 0:
                 esp32_results = {
                     "build_test": {"total": 1, "passed": 1, "failed": 0},
                     "firmware_size": "unknown",
                     "status": "success"
                 }
-                
+
                 # Извлекаем размер прошивки
                 lines = result.stdout.split('\n')
                 for line in lines:
                     if "Flash:" in line and "bytes" in line:
                         esp32_results["firmware_size"] = line.strip()
                         break
-                
+
                 self.results["tests"]["esp32_build"] = esp32_results
                 self.results["summary"]["total_tests"] += 1
                 self.results["summary"]["passed_tests"] += 1
@@ -394,7 +394,7 @@ class ComprehensiveTestRunner:
                 self.results["summary"]["total_tests"] += 1
                 self.results["summary"]["failed_tests"] += 1
                 print(f"  [FAIL] ESP32 сборка: ОШИБКА")
-                
+
         except Exception as e:
             print(f"  [ERROR] ESP32 сборка: {e}")
             self.results["summary"]["total_tests"] += 1
@@ -419,7 +419,7 @@ class ComprehensiveTestRunner:
                 "percentage": 66.7
             }
         }
-        
+
         self.results["coverage"] = coverage_data
         print(f"  [INFO] Покрытие кода: {coverage_data['lines']['percentage']}%")
 
@@ -427,7 +427,7 @@ class ComprehensiveTestRunner:
         """Подсчет итоговых результатов"""
         if self.results["summary"]["total_tests"] > 0:
             self.results["summary"]["success_rate"] = (
-                self.results["summary"]["passed_tests"] / 
+                self.results["summary"]["passed_tests"] /
                 self.results["summary"]["total_tests"] * 100
             )
         else:
@@ -518,10 +518,10 @@ class ComprehensiveTestRunner:
         print(f"  📈 Успешность: {self.results['summary']['success_rate']:.1f}%")
         print(f"  🧪 Тесты: {self.results['summary']['passed_tests']}/{self.results['summary']['total_tests']}")
         print(f"  ⏱️ Время: {self.results['summary']['total_duration']:.2f}с")
-        
+
         if 'coverage' in self.results:
             print(f"  📊 Покрытие: {self.results['coverage']['lines']['percentage']:.1f}%")
-        
+
         if self.results['technical_debt']:
             print(f"  🔧 Технический долг: {self.results['technical_debt'].get('status', 'N/A')}")
 
@@ -539,9 +539,9 @@ def main():
 
     project_root = Path(__file__).parent.parent
     runner = ComprehensiveTestRunner(project_root)
-    
+
     success = runner.run_all_tests()
-    
+
     if success:
         print("\n[OK] Комплексное тестирование завершено успешно")
         sys.exit(0)

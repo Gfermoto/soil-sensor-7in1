@@ -10,7 +10,7 @@ struct ValidationRange
 {
     int minValue;
     int maxValue;
-    
+
     ValidationRange(int min, int max) : minValue(min), maxValue(max) {}
 };
 
@@ -20,14 +20,17 @@ struct HttpRequest
     String method;
     String uri;
     String clientIP;
-    
-    HttpRequest(const String& methodValue, const String& uriValue, const String& ipAddress) 
-        : method(methodValue), uri(uriValue), clientIP(ipAddress) {}
+
+    HttpRequest(const String& methodValue, const String& uriValue, const String& ipAddress)
+        : method(methodValue), uri(uriValue), clientIP(ipAddress)
+    {
+    }
 };
 
 // Вспомогательные функции для валидации интервалов — скрыты во внутреннем безымянном пространстве имён,
 // чтобы ограничить область видимости текущим файлом и устранить предупреждение clang-tidy
-namespace {
+namespace
+{
 
 bool validateInterval(const String& argName, int minValue, int maxValue, const String& description)
 {
@@ -49,7 +52,7 @@ bool validateInterval(const String& argName, const ValidationRange& range, const
     return validateInterval(argName, range.minValue, range.maxValue, description);
 }
 
-} // namespace
+}  // namespace
 
 void setupErrorHandlers()
 {
@@ -111,19 +114,24 @@ bool validateConfigInput(bool checkRequired)
     }
 
     // Валидация форматов данных
-    if (!validateInterval("mqtt_port", 1, 65535, "MQTT порт")) {
+    if (!validateInterval("mqtt_port", 1, 65535, "MQTT порт"))
+    {
         return false;
     }
-    if (!validateInterval("ntp_interval", 10000, 86400000, "NTP интервал")) {
+    if (!validateInterval("ntp_interval", 10000, 86400000, "NTP интервал"))
+    {
         return false;
     }
-    if (!validateInterval("sensor_read", 1000, 300000, "интервал чтения датчика")) {
+    if (!validateInterval("sensor_read", 1000, 300000, "интервал чтения датчика"))
+    {
         return false;
     }
-    if (!validateInterval("mqtt_publish", 1000, 3600000, "интервал MQTT публикации")) {
+    if (!validateInterval("mqtt_publish", 1000, 3600000, "интервал MQTT публикации"))
+    {
         return false;
     }
-    if (!validateInterval("thingspeak_interval", 15000, 7200000, "интервал ThingSpeak")) {
+    if (!validateInterval("thingspeak_interval", 15000, 7200000, "интервал ThingSpeak"))
+    {
         return false;
     }
 

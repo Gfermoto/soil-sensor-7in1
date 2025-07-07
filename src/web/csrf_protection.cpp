@@ -17,10 +17,11 @@
 // ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ДЛЯ CSRF
 // ============================================================================
 
-namespace {
+namespace
+{
 String currentCSRFToken = "";
 unsigned long tokenGeneratedTime = 0;
-}
+}  // namespace
 const unsigned long CSRF_TOKEN_LIFETIME = 30 * 60 * 1000;  // 30 минут в миллисекундах
 
 // ============================================================================
@@ -57,17 +58,32 @@ String generateCSRFToken()
 bool validateCSRFToken(const String& token)
 {
     // Если токен пустой или не инициализирован
-    if (token.isEmpty() || currentCSRFToken.isEmpty()) { logWarn("CSRF валидация: пустой токен"); return false; }
+    if (token.isEmpty() || currentCSRFToken.isEmpty())
+    {
+        logWarn("CSRF валидация: пустой токен");
+        return false;
+    }
 
     // Проверяем время жизни токена
     const unsigned long currentTime = millis();
-    if (currentTime - tokenGeneratedTime > CSRF_TOKEN_LIFETIME) { logWarnSafe("\1", currentTime, tokenGeneratedTime); currentCSRFToken = ""; return false; }
+    if (currentTime - tokenGeneratedTime > CSRF_TOKEN_LIFETIME)
+    {
+        logWarnSafe("\1", currentTime, tokenGeneratedTime);
+        currentCSRFToken = "";
+        return false;
+    }
 
     // Проверяем совпадение токенов
     bool isValid = (token == currentCSRFToken);
 
-    if (isValid) { logDebug("CSRF токен валиден"); }
-    else { logWarnSafe("\1", currentCSRFToken.c_str(), token.c_str()); }
+    if (isValid)
+    {
+        logDebug("CSRF токен валиден");
+    }
+    else
+    {
+        logWarnSafe("\1", currentCSRFToken.c_str(), token.c_str());
+    }
 
     return isValid;
 }
@@ -75,7 +91,10 @@ bool validateCSRFToken(const String& token)
 String getCSRFHiddenField()
 {
     // Генерируем новый токен если текущий пустой или истек
-    if (currentCSRFToken.isEmpty() || (millis() - tokenGeneratedTime) > CSRF_TOKEN_LIFETIME) { generateCSRFToken(); }
+    if (currentCSRFToken.isEmpty() || (millis() - tokenGeneratedTime) > CSRF_TOKEN_LIFETIME)
+    {
+        generateCSRFToken();
+    }
 
     return "<input type=\"hidden\" name=\"csrf_token\" value=\"" + currentCSRFToken + "\">";
 }
@@ -110,8 +129,7 @@ bool checkCSRFSafety()
 
     if (csrfToken.isEmpty())
     {
-        logWarnSafe("\1", methodToString(method).c_str(), uri.c_str(),
-                clientIP.c_str());
+        logWarnSafe("\1", methodToString(method).c_str(), uri.c_str(), clientIP.c_str());
         return false;
     }
 
@@ -119,8 +137,7 @@ bool checkCSRFSafety()
 
     if (!isValid)
     {
-        logWarnSafe("\1", methodToString(method).c_str(), uri.c_str(),
-                clientIP.c_str());
+        logWarnSafe("\1", methodToString(method).c_str(), uri.c_str(), clientIP.c_str());
     }
 
     return isValid;

@@ -27,7 +27,8 @@
 #include "wifi_manager.h"
 
 // Переменные для отслеживания времени
-namespace {
+namespace
+{
 unsigned long lastDataPublish = 0;
 unsigned long lastNtpUpdate = 0;
 
@@ -36,15 +37,15 @@ unsigned long mqttBatchTimer = 0;
 unsigned long thingspeakBatchTimer = 0;
 bool pendingMqttPublish = false;
 bool pendingThingspeakPublish = false;
-}
+}  // namespace
 
 // Функции уже объявлены в соответствующих заголовочных файлах:
 // setupModbus() - в modbus_sensor.h
-// startRealSensorTask() - в modbus_sensor.h  
+// startRealSensorTask() - в modbus_sensor.h
 // startFakeSensorTask() - в fake_sensor.h
 // handleMQTT() - в mqtt_client.h
 
-WiFiUDP ntpUDP;                 // NOLINT(misc-use-internal-linkage)
+WiFiUDP ntpUDP;                   // NOLINT(misc-use-internal-linkage)
 NTPClient* timeClient = nullptr;  // NOLINT(misc-use-internal-linkage)
 
 // Константы
@@ -229,7 +230,7 @@ void loop()
     esp_task_wdt_reset();
 
     // Обновление NTP каждые 6 часов
-    if (timeClient && millis() - lastNtpUpdate > 6 * 3600 * 1000)
+    if (timeClient != nullptr && millis() - lastNtpUpdate > 6 * 3600 * 1000)
     {
         timeClient->forceUpdate();
         lastNtpUpdate = millis();

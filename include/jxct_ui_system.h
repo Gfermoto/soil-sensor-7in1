@@ -79,7 +79,8 @@ enum class MessageType : std::uint8_t
 };
 
 // 🎯 КОНФИГУРАЦИЯ КНОПКИ
-struct ButtonConfig {
+struct ButtonConfig
+{
     const char* icon;
     const char* text;
     const char* action;

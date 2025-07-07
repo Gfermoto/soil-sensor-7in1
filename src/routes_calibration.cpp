@@ -15,7 +15,8 @@
 // HTML генераторы (простой MVP)
 // ------------------------------
 
-namespace {
+namespace
+{
 String generateCalibrationPage()
 {
     String html;
@@ -86,7 +87,7 @@ void handleCalibrationPage()
 // Буфер для загрузки файлов
 File uploadFile;
 SoilProfile uploadProfile = SoilProfile::SAND;
-}
+}  // namespace
 
 void handleCalibrationUpload()  // ✅ Убираем static - функция extern в header
 {
@@ -95,11 +96,26 @@ void handleCalibrationUpload()  // ✅ Убираем static - функция ex
     {
         // Получаем профиль почвы из аргумента формы
         const String profileStr = webServer.arg("soil_profile");
-        if (profileStr == "sand") { uploadProfile = SoilProfile::SAND; }
-        else if (profileStr == "sandpeat") { uploadProfile = SoilProfile::SANDPEAT; }
-        else if (profileStr == "loam") { uploadProfile = SoilProfile::LOAM; }
-        else if (profileStr == "peat") { uploadProfile = SoilProfile::PEAT; }
-        else if (profileStr == "clay") { uploadProfile = SoilProfile::CLAY; }
+        if (profileStr == "sand")
+        {
+            uploadProfile = SoilProfile::SAND;
+        }
+        else if (profileStr == "sandpeat")
+        {
+            uploadProfile = SoilProfile::SANDPEAT;
+        }
+        else if (profileStr == "loam")
+        {
+            uploadProfile = SoilProfile::LOAM;
+        }
+        else if (profileStr == "peat")
+        {
+            uploadProfile = SoilProfile::PEAT;
+        }
+        else if (profileStr == "clay")
+        {
+            uploadProfile = SoilProfile::CLAY;
+        }
 
         CalibrationManager::init();
         const char* path = CalibrationManager::profileToFilename(uploadProfile);

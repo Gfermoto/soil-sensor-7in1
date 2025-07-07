@@ -12,13 +12,14 @@
 #include "ota_manager.h"
 
 // Глобальные переменные для отслеживания прогресса локальной загрузки
-namespace {
+namespace
+{
 bool isLocalUploadActive = false;
 size_t localUploadProgress = 0;
 size_t localUploadTotal = 0;
 String localUploadStatus = "idle";
 
-}
+}  // namespace
 
 // --- ВСПОМОГАТЕЛЬНЫЕ ---
 // NOLINTNEXTLINE(misc-use-anonymous-namespace)

@@ -16,8 +16,8 @@
 
 String getDeviceId()
 {
-    uint8_t mac[6];
-    WiFi.macAddress(mac);
+    std::array<uint8_t, 6> mac;
+    WiFi.macAddress(mac.data());
     std::array<char, 32> buf;
     snprintf(buf.data(), buf.size(), "%s_%02X%02X%02X", DEVICE_MODEL, mac[3], mac[4], mac[5]);
     return String(buf.data());
@@ -25,8 +25,8 @@ String getDeviceId()
 
 String getDefaultTopic()
 {
-    uint8_t mac[6];
-    WiFi.macAddress(mac);
+    std::array<uint8_t, 6> mac;
+    WiFi.macAddress(mac.data());
     std::array<char, 32> buf;
     snprintf(buf.data(), buf.size(), "jxct_%02X%02X%02X", mac[3], mac[4], mac[5]);
     return String(buf.data());
@@ -128,8 +128,8 @@ void loadConfig()
     }
 
     logSuccess("Конфигурация загружена");
-    logDebugSafe("SSID: %s, MQTT: %s:%d, ThingSpeak: %s", config.ssid, config.mqttServer, static_cast<int>(config.mqttPort),
-             config.flags.thingSpeakEnabled ? "включен" : "выключен");
+    logDebugSafe("SSID: %s, MQTT: %s:%d, ThingSpeak: %s", config.ssid, config.mqttServer,
+                 static_cast<int>(config.mqttPort), config.flags.thingSpeakEnabled ? "включен" : "выключен");
 }
 
 void saveConfig()

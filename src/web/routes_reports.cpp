@@ -29,8 +29,8 @@ struct TechnicalDebtMetrics
 };
 
 // Глобальные переменные для кэширования отчётов
-static TestSummary lastTestSummary;  // NOLINT(misc-use-anonymous-namespace)
-static TechnicalDebtMetrics lastTechDebt;  // NOLINT(misc-use-anonymous-namespace)
+static TestSummary lastTestSummary;         // NOLINT(misc-use-anonymous-namespace)
+static TechnicalDebtMetrics lastTechDebt;   // NOLINT(misc-use-anonymous-namespace)
 static unsigned long lastReportUpdate = 0;  // NOLINT(misc-use-anonymous-namespace)
 static const unsigned long REPORT_CACHE_TTL = REPORT_CACHE_TTL_MS;
 

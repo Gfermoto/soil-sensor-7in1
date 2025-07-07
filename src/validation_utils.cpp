@@ -14,41 +14,71 @@
 
 ValidationResult validateSSID(const String& ssid)
 {
-    if (ssid.length() == 0) { return {false, "SSID не может быть пустым"}; }
-    if (ssid.length() > 32) { return {false, "SSID слишком длинный (максимум 32 символа)"}; }
+    if (ssid.length() == 0)
+    {
+        return {false, "SSID не может быть пустым"};
+    }
+    if (ssid.length() > 32)
+    {
+        return {false, "SSID слишком длинный (максимум 32 символа)"};
+    }
     return {true, ""};
 }
 
 ValidationResult validatePassword(const String& password)
 {
-    if (password.length() > 0 && password.length() < 8) { return {false, "Пароль должен содержать минимум 8 символов"}; }
-    if (password.length() > 63) { return {false, "Пароль слишком длинный (максимум 63 символа)"}; }
+    if (password.length() > 0 && password.length() < 8)
+    {
+        return {false, "Пароль должен содержать минимум 8 символов"};
+    }
+    if (password.length() > 63)
+    {
+        return {false, "Пароль слишком длинный (максимум 63 символа)"};
+    }
     return {true, ""};
 }
 
 ValidationResult validateMQTTServer(const String& server)
 {
-    if (server.length() == 0) { return {false, "MQTT сервер не может быть пустым"}; }
-    if (server.length() > 253) { return {false, "MQTT сервер слишком длинный"}; }
+    if (server.length() == 0)
+    {
+        return {false, "MQTT сервер не может быть пустым"};
+    }
+    if (server.length() > 253)
+    {
+        return {false, "MQTT сервер слишком длинный"};
+    }
     // Простая проверка на валидность hostname/IP
-    if (server.indexOf(' ') >= 0) { return {false, "MQTT сервер содержит недопустимые символы"}; }
+    if (server.indexOf(' ') >= 0)
+    {
+        return {false, "MQTT сервер содержит недопустимые символы"};
+    }
     return {true, ""};
 }
 
 ValidationResult validateMQTTPort(int port)
 {
-    if (port < CONFIG_MQTT_PORT_MIN || port > CONFIG_MQTT_PORT_MAX) { return {false, "MQTT порт должен быть в диапазоне 1-65535"}; }
+    if (port < CONFIG_MQTT_PORT_MIN || port > CONFIG_MQTT_PORT_MAX)
+    {
+        return {false, "MQTT порт должен быть в диапазоне 1-65535"};
+    }
     return {true, ""};
 }
 
 ValidationResult validateThingSpeakAPIKey(const String& apiKey)
 {
-    if (apiKey.length() == 0) { return {false, "ThingSpeak API ключ не может быть пустым"}; }
-    if (apiKey.length() != 16) { return {false, "ThingSpeak API ключ должен содержать 16 символов"}; }
-    // Проверяем, что содержит только допустимые символы
-    for (const char ch : apiKey)
+    if (apiKey.length() == 0)
     {
-        if (!isAlphaNumeric(ch))
+        return {false, "ThingSpeak API ключ не может быть пустым"};
+    }
+    if (apiKey.length() != 16)
+    {
+        return {false, "ThingSpeak API ключ должен содержать 16 символов"};
+    }
+    // Проверяем, что содержит только допустимые символы
+    for (const char character : apiKey)
+    {
+        if (!isAlphaNumeric(character))
         {
             return {false, "ThingSpeak API ключ содержит недопустимые символы"};
         }
@@ -61,7 +91,8 @@ ValidationResult validateInterval(unsigned long interval, unsigned long min_val,
 {
     if (interval < min_val || interval > max_val)
     {
-        const String message = String(name) + " должен быть в диапазоне " + String(min_val) + "-" + String(max_val) + " мс";
+        const String message =
+            String(name) + " должен быть в диапазоне " + String(min_val) + "-" + String(max_val) + " мс";
         return {false, message};
     }
     return {true, ""};
@@ -282,21 +313,21 @@ SensorValidationResult validateFullSensorData(const SensorData& data)
 // УТИЛИТЫ ВАЛИДАЦИИ
 // ============================================================================
 
-bool isValidIPAddress(const String& ip)
+bool isValidIPAddress(const String& ipAddress)
 {
     int parts = 0;
     int start = 0;
 
-    for (int i = 0; i <= ip.length(); ++i)
+    for (int i = 0; i <= ipAddress.length(); ++i)
     {
-        if (i == ip.length() || ip.charAt(i) == '.')
+        if (i == ipAddress.length() || ipAddress.charAt(i) == '.')
         {
             if (i == start)
             {
                 return false;  // Пустая часть
             }
 
-            String part = ip.substring(start, i);
+            String part = ipAddress.substring(start, i);
             int value = part.toInt();
 
             if (value < 0 || value > 255)
@@ -323,9 +354,9 @@ bool isValidHostname(const String& hostname)
         return false;
     }
 
-    for (char c : hostname)
+    for (char character : hostname)
     {
-        if (!isAlphaNumeric(c) && c != '.' && c != '-')
+        if (!isAlphaNumeric(character) && character != '.' && character != '-')
         {
             return false;
         }
@@ -343,7 +374,8 @@ bool isValidHostname(const String& hostname)
 
 String formatValidationErrors(const ConfigValidationResult& result)
 {
-    if (result.isValid) {
+    if (result.isValid)
+    {
         return "";
     }
 
@@ -357,7 +389,8 @@ String formatValidationErrors(const ConfigValidationResult& result)
 
 String formatSensorValidationErrors(const SensorValidationResult& result)
 {
-    if (result.isValid) {
+    if (result.isValid)
+    {
         return "";
     }
 

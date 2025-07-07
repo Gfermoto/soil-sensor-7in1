@@ -17,7 +17,7 @@ sys.path.insert(0, str(project_root))
 def test_wifi_logic():
     """Тест логики WiFi подключения"""
     print("Тестирование логики WiFi...")
-    
+
     # Тестируем различные состояния WiFi
     test_cases = [
         # (ssid, password, expected_ap_mode)
@@ -29,14 +29,14 @@ def test_wifi_logic():
         ("MyWiFi", "12345678", False),  # Минимальный пароль (8 символов) -> STA
         ("MyWiFi", "123456", True),  # Короткий пароль -> AP режим
     ]
-    
+
     passed = 0
     total = len(test_cases)
-    
+
     for ssid, password, expected_ap in test_cases:
         # Имитируем логику выбора режима WiFi
         should_ap = False
-        
+
         if len(ssid) == 0:
             should_ap = True
         elif len(ssid) > 32:
@@ -45,7 +45,7 @@ def test_wifi_logic():
             should_ap = True
         elif len(password) > 63:
             should_ap = True
-        
+
         if should_ap == expected_ap:
             passed += 1
             mode = "AP" if should_ap else "STA"
@@ -54,14 +54,14 @@ def test_wifi_logic():
             mode = "AP" if should_ap else "STA"
             expected_mode = "AP" if expected_ap else "STA"
             print(f"  ✗ SSID='{ssid[:10]}...', PWD='{password[:5]}...' -> {mode} (ожидалось {expected_mode})")
-    
+
     print(f"  Результат: {passed}/{total}")
     return passed == total
 
 def test_thingspeak_validation():
     """Тест валидации ThingSpeak"""
     print("Тестирование валидации ThingSpeak...")
-    
+
     # Тестируем различные конфигурации ThingSpeak
     test_cases = [
         # (api_key, channel_id, expected_valid)
@@ -76,18 +76,18 @@ def test_thingspeak_validation():
         ("ABCDEFGHIJKLMNOP", "123456", True),  # API ключ из букв
         ("1234567890123456", "1000000", True),  # Большой Channel ID
     ]
-    
+
     passed = 0
     total = len(test_cases)
-    
+
     for api_key, channel_id, expected in test_cases:
         # Имитируем логику валидации ThingSpeak
         is_valid = True
-        
+
         # Проверяем API ключ
         if len(api_key) != 16:
             is_valid = False
-        
+
         # Проверяем Channel ID
         try:
             channel_num = int(channel_id) if channel_id else 0
@@ -95,20 +95,20 @@ def test_thingspeak_validation():
                 is_valid = False
         except ValueError:
             is_valid = False
-        
+
         if is_valid == expected:
             passed += 1
             print(f"  ✓ API='{api_key[:8]}...', CH='{channel_id}' - правильно")
         else:
             print(f"  ✗ API='{api_key[:8]}...', CH='{channel_id}' - неправильно")
-    
+
     print(f"  Результат: {passed}/{total}")
     return passed == total
 
 def test_ota_validation():
     """Тест валидации OTA обновлений"""
     print("Тестирование валидации OTA...")
-    
+
     # Тестируем различные URL и SHA256
     test_cases = [
         # (url, sha256, expected_valid)
@@ -123,14 +123,14 @@ def test_ota_validation():
         ("https://github.com/user/repo/firmware.bin", "ZZZZZZ" + "a" * 58, False),  # Невалидный hex
         ("ftp://github.com/user/repo/firmware.bin", "a" * 64, False),  # FTP протокол
     ]
-    
+
     passed = 0
     total = len(test_cases)
-    
+
     for url, sha256, expected in test_cases:
         # Имитируем логику валидации OTA
         is_valid = True
-        
+
         # Проверяем URL
         if len(url) < 10:
             is_valid = False
@@ -138,7 +138,7 @@ def test_ota_validation():
             is_valid = False
         elif "github.com" not in url:
             is_valid = False
-        
+
         # Проверяем SHA256
         if len(sha256) != 64:
             is_valid = False
@@ -148,20 +148,20 @@ def test_ota_validation():
                 int(sha256, 16)
             except ValueError:
                 is_valid = False
-        
+
         if is_valid == expected:
             passed += 1
             print(f"  ✓ URL='{url[:30]}...', SHA256='{sha256[:8]}...' - правильно")
         else:
             print(f"  ✗ URL='{url[:30]}...', SHA256='{sha256[:8]}...' - неправильно")
-    
+
     print(f"  Результат: {passed}/{total}")
     return passed == total
 
 def test_memory_management():
     """Тест управления памятью"""
     print("Тестирование управления памятью...")
-    
+
     # Тестируем различные состояния памяти
     memory_scenarios = [
         # (free_heap, operation, expected_allowed)
@@ -174,21 +174,21 @@ def test_memory_management():
         (10000, "MQTT_PUBLISH", False),  # Недостаточно для MQTT
         (200000, "ANY_OPERATION", True), # Много памяти
     ]
-    
+
     passed = 0
     total = len(memory_scenarios)
-    
+
     for free_heap, operation, expected in memory_scenarios:
         # Имитируем логику проверки памяти
         is_allowed = True
-        
+
         if operation == "HTTP_REQUEST" and free_heap < 70000:
             is_allowed = False
         elif operation == "OTA_DOWNLOAD" and free_heap < 60000:
             is_allowed = False
         elif operation == "MQTT_PUBLISH" and free_heap < 20000:
             is_allowed = False
-        
+
         if is_allowed == expected:
             passed += 1
             result = "разрешено" if is_allowed else "запрещено"
@@ -197,14 +197,14 @@ def test_memory_management():
             result = "разрешено" if is_allowed else "запрещено"
             expected_result = "разрешено" if expected else "запрещено"
             print(f"  ✗ {free_heap} байт, {operation} - {result} (ожидалось {expected_result})")
-    
+
     print(f"  Результат: {passed}/{total}")
     return passed == total
 
 def test_error_handling():
     """Тест обработки ошибок"""
     print("Тестирование обработки ошибок...")
-    
+
     # Тестируем различные коды ошибок
     error_scenarios = [
         # (error_code, service, expected_action)
@@ -219,14 +219,14 @@ def test_error_handling():
         (500, "HTTP", "server_error"),
         (200, "HTTP", "success"),
     ]
-    
+
     passed = 0
     total = len(error_scenarios)
-    
+
     for error_code, service, expected_action in error_scenarios:
         # Имитируем логику обработки ошибок
         actual_action = "unknown"
-        
+
         if service == "ThingSpeak":
             if error_code == 200:
                 actual_action = "success"
@@ -249,20 +249,20 @@ def test_error_handling():
                 actual_action = "not_found"
             elif error_code >= 500:
                 actual_action = "server_error"
-        
+
         if actual_action == expected_action:
             passed += 1
             print(f"  ✓ {service} код {error_code} -> {actual_action}")
         else:
             print(f"  ✗ {service} код {error_code} -> {actual_action} (ожидалось {expected_action})")
-    
+
     print(f"  Результат: {passed}/{total}")
     return passed == total
 
 def main():
     """Главная функция"""
     print("=== ТЕСТЫ СИСТЕМНЫХ ФУНКЦИЙ JXCT ===")
-    
+
     tests = [
         ("WiFi логика", test_wifi_logic),
         ("ThingSpeak валидация", test_thingspeak_validation),
@@ -270,10 +270,10 @@ def main():
         ("Управление памятью", test_memory_management),
         ("Обработка ошибок", test_error_handling)
     ]
-    
+
     passed_tests = 0
     total_tests = len(tests)
-    
+
     for test_name, test_func in tests:
         print(f"\n[{test_name}]")
         try:
@@ -284,10 +284,10 @@ def main():
                 print(f"  ПРОВАЛЕН")
         except Exception as e:
             print(f"  ОШИБКА: {e}")
-    
+
     print(f"\n=== ИТОГ: {passed_tests}/{total_tests} ===")
     return passed_tests == total_tests
 
 if __name__ == "__main__":
     success = main()
-    sys.exit(0 if success else 1) 
+    sys.exit(0 if success else 1)

@@ -16,13 +16,13 @@ sys.path.insert(0, str(project_root))
 def test_temperature_range():
     """Тест диапазона температур"""
     print("Тестирование диапазона температур...")
-    
+
     valid_temps = [25.0, 0.0, -10.0, 50.0, 22.5]
     invalid_temps = [-100.0, 100.0, 999.0, -999.0]
-    
+
     passed = 0
     total = len(valid_temps) + len(invalid_temps)
-    
+
     # Проверяем валидные значения
     for temp in valid_temps:
         if -50.0 <= temp <= 80.0:  # Разумный диапазон для ESP32
@@ -30,7 +30,7 @@ def test_temperature_range():
             print(f"  ✓ {temp}°C - валидная")
         else:
             print(f"  ✗ {temp}°C - должна быть валидной")
-    
+
     # Проверяем невалидные значения
     for temp in invalid_temps:
         if not (-50.0 <= temp <= 80.0):
@@ -38,20 +38,20 @@ def test_temperature_range():
             print(f"  ✓ {temp}°C - правильно отклонена")
         else:
             print(f"  ✗ {temp}°C - должна быть отклонена")
-    
+
     print(f"  Результат: {passed}/{total}")
     return passed == total
 
 def test_humidity_range():
     """Тест диапазона влажности"""
     print("Тестирование диапазона влажности...")
-    
+
     valid_humidity = [0.0, 50.0, 100.0, 25.5, 75.0]
     invalid_humidity = [-10.0, 110.0, 200.0, -1.0]
-    
+
     passed = 0
     total = len(valid_humidity) + len(invalid_humidity)
-    
+
     # Проверяем валидные значения
     for hum in valid_humidity:
         if 0.0 <= hum <= 100.0:
@@ -59,7 +59,7 @@ def test_humidity_range():
             print(f"  ✓ {hum}% - валидная")
         else:
             print(f"  ✗ {hum}% - должна быть валидной")
-    
+
     # Проверяем невалидные значения
     for hum in invalid_humidity:
         if not (0.0 <= hum <= 100.0):
@@ -67,20 +67,20 @@ def test_humidity_range():
             print(f"  ✓ {hum}% - правильно отклонена")
         else:
             print(f"  ✗ {hum}% - должна быть отклонена")
-    
+
     print(f"  Результат: {passed}/{total}")
     return passed == total
 
 def test_ph_range():
     """Тест диапазона pH"""
     print("Тестирование диапазона pH...")
-    
+
     valid_ph = [0.0, 7.0, 14.0, 6.5, 8.2]
     invalid_ph = [-1.0, 15.0, 20.0, -5.0]
-    
+
     passed = 0
     total = len(valid_ph) + len(invalid_ph)
-    
+
     # Проверяем валидные значения
     for ph in valid_ph:
         if 0.0 <= ph <= 14.0:
@@ -88,7 +88,7 @@ def test_ph_range():
             print(f"  ✓ pH {ph} - валидный")
         else:
             print(f"  ✗ pH {ph} - должен быть валидным")
-    
+
     # Проверяем невалидные значения
     for ph in invalid_ph:
         if not (0.0 <= ph <= 14.0):
@@ -96,20 +96,20 @@ def test_ph_range():
             print(f"  ✓ pH {ph} - правильно отклонен")
         else:
             print(f"  ✗ pH {ph} - должен быть отклонен")
-    
+
     print(f"  Результат: {passed}/{total}")
     return passed == total
 
 def test_ec_range():
     """Тест диапазона EC"""
     print("Тестирование диапазона EC...")
-    
+
     valid_ec = [0.0, 1.5, 10.0, 2.3, 5.0]
     invalid_ec = [-1.0, 50.0, 100.0, -10.0]
-    
+
     passed = 0
     total = len(valid_ec) + len(invalid_ec)
-    
+
     # Проверяем валидные значения
     for ec in valid_ec:
         if 0.0 <= ec <= 20.0:  # Разумный диапазон для почвы
@@ -117,7 +117,7 @@ def test_ec_range():
             print(f"  ✓ EC {ec} - валидный")
         else:
             print(f"  ✗ EC {ec} - должен быть валидным")
-    
+
     # Проверяем невалидные значения
     for ec in invalid_ec:
         if not (0.0 <= ec <= 20.0):
@@ -125,20 +125,20 @@ def test_ec_range():
             print(f"  ✓ EC {ec} - правильно отклонен")
         else:
             print(f"  ✗ EC {ec} - должен быть отклонен")
-    
+
     print(f"  Результат: {passed}/{total}")
     return passed == total
 
 def test_project_structure():
     """Тест структуры проекта"""
     print("Тестирование структуры проекта...")
-    
+
     required_dirs = ["src", "include", "test", "scripts"]
     required_files = ["platformio.ini", "README.md", "CMakeLists.txt"]
-    
+
     passed = 0
     total = len(required_dirs) + len(required_files)
-    
+
     # Проверяем директории
     for dir_name in required_dirs:
         dir_path = project_root / dir_name
@@ -147,7 +147,7 @@ def test_project_structure():
             print(f"  ✓ {dir_name}/ - найдена")
         else:
             print(f"  ✗ {dir_name}/ - не найдена")
-    
+
     # Проверяем файлы
     for file_name in required_files:
         file_path = project_root / file_name
@@ -156,14 +156,14 @@ def test_project_structure():
             print(f"  ✓ {file_name} - найден")
         else:
             print(f"  ✗ {file_name} - не найден")
-    
+
     print(f"  Результат: {passed}/{total}")
     return passed == total
 
 def main():
     """Главная функция"""
     print("=== ТЕСТ ВАЛИДАЦИИ JXCT ===")
-    
+
     tests = [
         ("Диапазон температур", test_temperature_range),
         ("Диапазон влажности", test_humidity_range),
@@ -171,10 +171,10 @@ def main():
         ("Диапазон EC", test_ec_range),
         ("Структура проекта", test_project_structure)
     ]
-    
+
     passed_tests = 0
     total_tests = len(tests)
-    
+
     for test_name, test_func in tests:
         print(f"\n[{test_name}]")
         try:
@@ -185,7 +185,7 @@ def main():
                 print(f"  ПРОВАЛЕН")
         except Exception as e:
             print(f"  ОШИБКА: {e}")
-    
+
     print(f"\n=== ИТОГ: {passed_tests}/{total_tests} ===")
     return passed_tests == total_tests
 

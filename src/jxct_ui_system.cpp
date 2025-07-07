@@ -3,7 +3,7 @@
 // 🎨 ЕДИНЫЙ CSS ДЛЯ ВСЕХ СТРАНИЦ
 const char* getUnifiedCSS()
 {
-    static const char css[] = R"(
+    static const std::array<char, 8192> css = {R"(
 /* === JXCT UI DESIGN SYSTEM v2.3.1 === */
 * { box-sizing: border-box; }
 
@@ -278,8 +278,8 @@ input:focus, select:focus, textarea:focus {
 
 
 }
-    )";
-    return css;
+    )"};
+    return css.data();
 }
 
 // 🎯 ГЕНЕРАЦИЯ HTML КНОПОК

@@ -16,8 +16,9 @@ typedef signed short int16_t;
 typedef signed int int32_t;
 
 // Заглушки для Serial
-class SerialStub {
-public:
+class SerialStub
+{
+   public:
     void begin(unsigned long baud) {}
     void print(const char* str) {}
     void println(const char* str) {}
@@ -28,10 +29,16 @@ extern SerialStub Serial;
 
 // Заглушки для функций Arduino
 void delay(unsigned long ms) {}
-unsigned long millis() { return 0; }
+unsigned long millis()
+{
+    return 0;
+}
 void pinMode(int pin, int mode) {}
 void digitalWrite(int pin, int value) {}
-int digitalRead(int pin) { return 0; }
+int digitalRead(int pin)
+{
+    return 0;
+}
 
 // Константы
 #define HIGH 1
@@ -39,4 +46,4 @@ int digitalRead(int pin) { return 0; }
 #define INPUT 0
 #define OUTPUT 1
 
-#endif // ARDUINO_H_STUB
+#endif  // ARDUINO_H_STUB

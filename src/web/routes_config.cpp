@@ -151,8 +151,8 @@ void setupConfigRoutes()
 
             html += generateButton(ButtonType::PRIMARY, ButtonConfig{UI_ICON_SAVE, "Сохранить настройки", ""});
             html += "</form>";
-            html +=
-                generateButton(ButtonType::SECONDARY, ButtonConfig{UI_ICON_RESET, "Сбросить к умолчанию (1 сек + мин. фильтрация)", ""});
+            html += generateButton(ButtonType::SECONDARY,
+                                   ButtonConfig{UI_ICON_RESET, "Сбросить к умолчанию (1 сек + мин. фильтрация)", ""});
             html += "</form>";
             html += generatePageFooter();
 
@@ -160,87 +160,86 @@ void setupConfigRoutes()
         });
 
     // Обработчик сохранения настроек интервалов
-    webServer.on("/save_intervals", HTTP_POST,
-                 []()
-                 {
-                     logWebRequest("POST", "/save_intervals", webServer.client().remoteIP().toString());
+    webServer.on(
+        "/save_intervals", HTTP_POST,
+        []()
+        {
+            logWebRequest("POST", "/save_intervals", webServer.client().remoteIP().toString());
 
-                     // ✅ CSRF защита
-                     if (!checkCSRFSafety())
-                     {
-                         logWarnSafe("\1",
-                                 webServer.client().remoteIP().toString().c_str());
-                         const String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
-                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
-                         return;
-                     }
+            // ✅ CSRF защита
+            if (!checkCSRFSafety())
+            {
+                logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
+                const String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
+                webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
+                return;
+            }
 
-                     if (currentWiFiMode == WiFiMode::AP)
-                     {
-                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_PLAIN, "Недоступно в режиме точки доступа");
-                         return;
-                     }
+            if (currentWiFiMode == WiFiMode::AP)
+            {
+                webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_PLAIN, "Недоступно в режиме точки доступа");
+                return;
+            }
 
-                     // ======= ВАЛИДАЦИЯ ВХОДНЫХ ДАННЫХ =======
-                     const unsigned long sensorMs = webServer.arg("sensor_interval").toInt() * CONVERSION_SEC_TO_MS;
-                     const unsigned long mqttMs = webServer.arg("mqtt_interval").toInt() * CONVERSION_MIN_TO_MS;
-                     const unsigned long tsMs = webServer.arg("ts_interval").toInt() * CONVERSION_MIN_TO_MS;
-                     const unsigned long webMs = webServer.arg("web_interval").toInt() * CONVERSION_SEC_TO_MS;
+            // ======= ВАЛИДАЦИЯ ВХОДНЫХ ДАННЫХ =======
+            const unsigned long sensorMs = webServer.arg("sensor_interval").toInt() * CONVERSION_SEC_TO_MS;
+            const unsigned long mqttMs = webServer.arg("mqtt_interval").toInt() * CONVERSION_MIN_TO_MS;
+            const unsigned long tsMs = webServer.arg("ts_interval").toInt() * CONVERSION_MIN_TO_MS;
+            const unsigned long webMs = webServer.arg("web_interval").toInt() * CONVERSION_SEC_TO_MS;
 
-                     ValidationResult valSensor = validateSensorReadInterval(sensorMs);
-                     ValidationResult valMqtt = validateMQTTPublishInterval(mqttMs);
-                     ValidationResult valTs = validateThingSpeakInterval(tsMs);
+            ValidationResult valSensor = validateSensorReadInterval(sensorMs);
+            ValidationResult valMqtt = validateMQTTPublishInterval(mqttMs);
+            ValidationResult valTs = validateThingSpeakInterval(tsMs);
 
-                     if (!valSensor.isValid || !valMqtt.isValid || !valTs.isValid)
-                     {
-                         String html =
-                             generateErrorPage(HTTP_BAD_REQUEST, "Ошибка валидации интервалов: " +
-                                                                     String(!valSensor.isValid ? valSensor.message
-                                                                            : !valMqtt.isValid ? valMqtt.message
-                                                                                               : valTs.message));
-                         webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
-                         return;
-                     }
+            if (!valSensor.isValid || !valMqtt.isValid || !valTs.isValid)
+            {
+                String html = generateErrorPage(
+                    HTTP_BAD_REQUEST, "Ошибка валидации интервалов: " + String(!valSensor.isValid ? valSensor.message
+                                                                               : !valMqtt.isValid ? valMqtt.message
+                                                                                                  : valTs.message));
+                webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
+                return;
+            }
 
-                     // ======= СОХРАНЯЕМ НАСТРОЙКИ =======
-                     config.sensorReadInterval = sensorMs;
-                     config.mqttPublishInterval = mqttMs;
-                     config.thingSpeakInterval = tsMs;
-                     config.webUpdateInterval = webMs;
+            // ======= СОХРАНЯЕМ НАСТРОЙКИ =======
+            config.sensorReadInterval = sensorMs;
+            config.mqttPublishInterval = mqttMs;
+            config.thingSpeakInterval = tsMs;
+            config.webUpdateInterval = webMs;
 
-                     // Сохраняем пороги дельта-фильтра
-                     config.deltaTemperature = webServer.arg("delta_temp").toFloat();
-                     config.deltaHumidity = webServer.arg("delta_hum").toFloat();
-                     config.deltaPh = webServer.arg("delta_ph").toFloat();
-                     config.deltaEc = webServer.arg("delta_ec").toFloat();
-                     config.deltaNpk = webServer.arg("delta_npk").toFloat();
+            // Сохраняем пороги дельта-фильтра
+            config.deltaTemperature = webServer.arg("delta_temp").toFloat();
+            config.deltaHumidity = webServer.arg("delta_hum").toFloat();
+            config.deltaPh = webServer.arg("delta_ph").toFloat();
+            config.deltaEc = webServer.arg("delta_ec").toFloat();
+            config.deltaNpk = webServer.arg("delta_npk").toFloat();
 
-                     // Сохраняем настройки скользящего среднего
-                     config.movingAverageWindow = webServer.arg("avg_window").toInt();
-                     config.forcePublishCycles = webServer.arg("force_cycles").toInt();
+            // Сохраняем настройки скользящего среднего
+            config.movingAverageWindow = webServer.arg("avg_window").toInt();
+            config.forcePublishCycles = webServer.arg("force_cycles").toInt();
 
-                     // Сохраняем новые настройки алгоритма и фильтра выбросов
-                     config.filterAlgorithm = webServer.arg("filter_algo").toInt();
-                     config.outlierFilterEnabled = webServer.arg("outlier_filter").toInt();
+            // Сохраняем новые настройки алгоритма и фильтра выбросов
+            config.filterAlgorithm = webServer.arg("filter_algo").toInt();
+            config.outlierFilterEnabled = webServer.arg("outlier_filter").toInt();
 
-                     // Сохраняем в NVS
-                     saveConfig();
+            // Сохраняем в NVS
+            saveConfig();
 
-                     String html =
-                         "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' "
-                         "content='3;url=/intervals'>";
-                     html += "<title>" UI_ICON_SUCCESS " Настройки сохранены</title>";
-                     html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
-                     html += "<h1>" UI_ICON_SUCCESS " Настройки интервалов сохранены!</h1>";
-                     html += "<div class='msg msg-success'>" UI_ICON_SUCCESS " Новые настройки вступили в силу</div>";
-                     html += "<p><strong>Текущие интервалы:</strong><br>";
-                     html += "📊 Датчик: " + String(config.sensorReadInterval / CONVERSION_SEC_TO_MS) + " сек<br>";
-                     html += "📡 MQTT: " + String(config.mqttPublishInterval / CONVERSION_MIN_TO_MS) + " мин<br>";
-                     html += "📈 ThingSpeak: " + String(config.thingSpeakInterval / CONVERSION_MIN_TO_MS) + " мин</p>";
-                     html += "<p><em>Возврат к настройкам через 3 секунды...</em></p>";
-                     html += "</div>" + String(getToastHTML()) + "</body></html>";
-                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
-                 });
+            String html =
+                "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' "
+                "content='3;url=/intervals'>";
+            html += "<title>" UI_ICON_SUCCESS " Настройки сохранены</title>";
+            html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+            html += "<h1>" UI_ICON_SUCCESS " Настройки интервалов сохранены!</h1>";
+            html += "<div class='msg msg-success'>" UI_ICON_SUCCESS " Новые настройки вступили в силу</div>";
+            html += "<p><strong>Текущие интервалы:</strong><br>";
+            html += "📊 Датчик: " + String(config.sensorReadInterval / CONVERSION_SEC_TO_MS) + " сек<br>";
+            html += "📡 MQTT: " + String(config.mqttPublishInterval / CONVERSION_MIN_TO_MS) + " мин<br>";
+            html += "📈 ThingSpeak: " + String(config.thingSpeakInterval / CONVERSION_MIN_TO_MS) + " мин</p>";
+            html += "<p><em>Возврат к настройкам через 3 секунды...</em></p>";
+            html += "</div>" + String(getToastHTML()) + "</body></html>";
+            webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
+        });
 
     // Сброс интервалов к умолчанию
     webServer.on("/reset_intervals", HTTP_GET,
@@ -356,8 +355,7 @@ void setupConfigRoutes()
             // ✅ CSRF защита - критическая операция импорта конфигурации!
             if (!checkCSRFSafety())
             {
-                logWarnSafe("\1",
-                        webServer.client().remoteIP().toString().c_str());
+                logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
                 webServer.send(HTTP_FORBIDDEN, "application/json", "{\"error\":\"CSRF token invalid\"}");
                 importedJson = "";
                 return;

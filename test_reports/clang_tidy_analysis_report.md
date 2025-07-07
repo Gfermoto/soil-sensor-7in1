@@ -1,218 +1,189 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 07.07.2025 20:22
+**Дата анализа:** 07.07.2025 22:32
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 315
+- **Всего предупреждений:** 269
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
-### Читаемость (162 проблем)
-- `readability-braces-around-statements`: 47 случаев
-- `readability-identifier-length`: 37 случаев
+### Читаемость (137 проблем)
+- `readability-braces-around-statements`: 35 случаев
+- `readability-identifier-length`: 29 случаев
 - ``: 23 случаев
-- `readability-implicit-bool-conversion`: 17 случаев
 - `readability-static-accessed-through-instance`: 16 случаев
+- `readability-implicit-bool-conversion`: 12 случаев
 
-### Модернизация (48 проблем)
-- `modernize-avoid-c-arrays`: 12 случаев
-- `modernize-macro-to-enum`: 12 случаев
-- `modernize-raw-string-literal`: 9 случаев
-- `modernize-use-nullptr`: 5 случаев
-- `modernize-use-auto`: 5 случаев
+### Прочее (2 проблем)
+- `performance-enum-size`: 2 случаев
 
-### Прочее (1 проблем)
-- `performance-enum-size`: 1 случаев
+### Разное (85 проблем)
+- `misc-const-correctness`: 78 случаев
+- `misc-use-anonymous-namespace`: 6 случаев
+- `misc-use-internal-linkage`: 1 случаев
 
-### Потенциальные баги (24 проблем)
+### Потенциальные баги (23 проблем)
 - `bugprone-easily-swappable-parameters`: 15 случаев
 - `bugprone-branch-clone`: 5 случаев
 - `bugprone-narrowing-conversions`: 2 случаев
-- `bugprone-switch-missing-default-case`: 1 случаев
-- `bugprone-too-small-loop-variable`: 1 случаев
+- `bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp`: 1 случаев
 
-### Разное (80 проблем)
-- `misc-const-correctness`: 79 случаев
-- `misc-use-anonymous-namespace`: 1 случаев
+### Модернизация (22 проблем)
+- `modernize-raw-string-literal`: 9 случаев
+- `modernize-use-nullptr`: 5 случаев
+- `modernize-use-auto`: 5 случаев
+- `modernize-return-braced-init-list`: 1 случаев
+- `modernize-avoid-c-arrays`: 1 случаев
 
 ## 📁 ДЕТАЛЬНЫЙ АНАЛИЗ ПО ФАЙЛАМ
-### src/calibration_manager.cpp (5 предупреждений)
-**Читаемость:** 4 проблем
-- src\calibration_manager.cpp:55:12:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
-- src\calibration_manager.cpp:82:12:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
-- src\calibration_manager.cpp:190:53:: '*' has higher precedence than '+'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
-- ... и ещё 1 проблем
+### src/calibration_manager.cpp (6 предупреждений)
+**Читаемость:** 6 проблем
+- src\calibration_manager.cpp:24:9:: implicit conversion 'bool' -> 'int' [readability-implicit-bool-conversion]
+- src\calibration_manager.cpp:31:44:: redundant boolean literal supplied to boolean operator [readability-simplify-boolean-expr]
+- src\calibration_manager.cpp:56:12:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
+- ... и ещё 3 проблем
 
-**Модернизация:** 1 проблем
-- src\calibration_manager.cpp:150:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-
-### src/config.cpp (2 предупреждений)
-**Модернизация:** 2 проблем
-- src\config.cpp:19:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src\config.cpp:28:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+### src/config.cpp ✅ Проблем не найдено
 
 ### src/fake_sensor.cpp ✅ Проблем не найдено
 
-### src/jxct_format_utils.cpp (4 предупреждений)
+### src/jxct_format_utils.cpp (3 предупреждений)
 **Прочее:** 1 проблем
 - src\jxct_format_utils.cpp:7:12:: enum 'FormatType' uses a larger base type ('int', size: 4 bytes) than necessary for its value set, consider using 'std::uint8_t' (1 byte) as the base type to reduce its size [performance-enum-size]
 
-**Читаемость:** 2 проблем
-- src\jxct_format_utils.cpp:17:23:: parameter name 'p' is too short, expected at least 3 characters [readability-identifier-length]
-- src\jxct_format_utils.cpp:17:37:: parameter name 'ft' is too short, expected at least 3 characters [readability-identifier-length]
+**Разное:** 1 проблем
+- src\jxct_format_utils.cpp:23:13:: function 'formatFloat' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 
 **Потенциальные баги:** 1 проблем
-- src\jxct_format_utils.cpp:25:5:: if with identical then and else branches [bugprone-branch-clone]
+- src\jxct_format_utils.cpp:30:9:: switch has 2 consecutive identical branches [bugprone-branch-clone]
 
-### src/jxct_ui_system.cpp (1 предупреждений)
-**Модернизация:** 1 проблем
-- src\jxct_ui_system.cpp:6:18:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+### src/jxct_ui_system.cpp ✅ Проблем не найдено
 
 ### src/logger.cpp (2 предупреждений)
 **Читаемость:** 2 проблем
-- src\logger.cpp:194:9:: static member accessed through instance [readability-static-accessed-through-instance]
-- src\logger.cpp:200:73:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\logger.cpp:228:9:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\logger.cpp:235:73:: static member accessed through instance [readability-static-accessed-through-instance]
 
-### src/main.cpp (4 предупреждений)
+### src/main.cpp (3 предупреждений)
 **Модернизация:** 3 проблем
-- src\main.cpp:140:22:: use nullptr [modernize-use-nullptr]
-- src\main.cpp:203:55:: use nullptr [modernize-use-nullptr]
-- src\main.cpp:203:64:: use nullptr [modernize-use-nullptr]
+- src\main.cpp:141:22:: use nullptr [modernize-use-nullptr]
+- src\main.cpp:204:55:: use nullptr [modernize-use-nullptr]
+- src\main.cpp:204:64:: use nullptr [modernize-use-nullptr]
 
-**Читаемость:** 1 проблем
-- src\main.cpp:232:9:: implicit conversion 'NTPClient *' -> 'bool' [readability-implicit-bool-conversion]
-
-### src/modbus_sensor.cpp (57 предупреждений)
-**Читаемость:** 42 проблем
-- src\modbus_sensor.cpp:47:34:: pointer parameter 'data' can be pointer to const [readability-non-const-parameter]
-- src\modbus_sensor.cpp:56:17:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
-- src\modbus_sensor.cpp:70:34:: parameter name 'd' is too short, expected at least 3 characters [readability-identifier-length]
-- ... и ещё 39 проблем
-
-**Модернизация:** 6 проблем
-- src\modbus_sensor.cpp:84:12:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src\modbus_sensor.cpp:394:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
-- src\modbus_sensor.cpp:400:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
-- ... и ещё 3 проблем
-
-**Потенциальные баги:** 4 проблем
-- src\modbus_sensor.cpp:111:5:: switching on non-enum value without default case may not cover all cases [bugprone-switch-missing-default-case]
-- src\modbus_sensor.cpp:725:33:: loop variable has narrower type 'uint8_t' than iteration's upper bound 'int' [bugprone-too-small-loop-variable]
-- src\modbus_sensor.cpp:737:9:: if with identical then and else branches [bugprone-branch-clone]
-- ... и ещё 1 проблем
-
-**Разное:** 5 проблем
-- src\modbus_sensor.cpp:323:5:: variable 'pre_delay' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
-- src\modbus_sensor.cpp:327:5:: variable 'post_delay' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
-- src\modbus_sensor.cpp:499:5:: variable 'basic_success' of type 'int' can be declared 'const' [misc-const-correctness]
-- ... и ещё 2 проблем
-
-### src/mqtt_client.cpp (10 предупреждений)
-**Читаемость:** 7 проблем
-- src\mqtt_client.cpp:120:5:: do not use 'else' after 'return' [readability-else-after-return]
-- src\mqtt_client.cpp:201:9:: static member accessed through instance [readability-static-accessed-through-instance]
-- src\mqtt_client.cpp:506:28:: implicit conversion 'NTPClient *' -> 'bool' [readability-implicit-bool-conversion]
-- ... и ещё 4 проблем
-
-**Разное:** 2 проблем
-- src\mqtt_client.cpp:753:5:: variable 't' of type 'String' can be declared 'const' [misc-const-correctness]
-- src\mqtt_client.cpp:783:5:: variable 'currentTime' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
-
-**Модернизация:** 1 проблем
-- src\mqtt_client.cpp:807:12:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
-
-### src/ota_manager.cpp (18 предупреждений)
-**Читаемость:** 7 проблем
-- src\ota_manager.cpp:70:25:: implicit conversion 'const char *' -> 'bool' [readability-implicit-bool-conversion]
-- src\ota_manager.cpp:71:25:: implicit conversion 'WiFiClient *' -> 'bool' [readability-implicit-bool-conversion]
-- src\ota_manager.cpp:74:10:: implicit conversion 'const char *' -> 'bool' [readability-implicit-bool-conversion]
-- ... и ещё 4 проблем
-
-**Модернизация:** 4 проблем
-- src\ota_manager.cpp:227:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- src\ota_manager.cpp:338:5:: use auto when initializing with new to avoid duplicating the type name [modernize-use-auto]
-- src\ota_manager.cpp:361:5:: use auto when initializing with new to avoid duplicating the type name [modernize-use-auto]
-- ... и ещё 1 проблем
+### src/modbus_sensor.cpp (40 предупреждений)
+**Читаемость:** 27 проблем
+- src\modbus_sensor.cpp:48:34:: pointer parameter 'data' can be pointer to const [readability-non-const-parameter]
+- src\modbus_sensor.cpp:57:17:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
+- src\modbus_sensor.cpp:86:5:: multiple declarations in a single statement reduces readability [readability-isolate-declaration]
+- ... и ещё 24 проблем
 
 **Разное:** 6 проблем
-- src\ota_manager.cpp:238:9:: variable 'avail' of type 'size_t' (aka 'unsigned long long') can be declared 'const' [misc-const-correctness]
-- src\ota_manager.cpp:242:13:: variable 'toRead' of type 'size_t' (aka 'unsigned long long') can be declared 'const' [misc-const-correctness]
-- src\ota_manager.cpp:326:5:: variable 'initialHeap' of type 'size_t' (aka 'unsigned long long') can be declared 'const' [misc-const-correctness]
+- src\modbus_sensor.cpp:366:5:: variable 'pre_delay' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+- src\modbus_sensor.cpp:370:5:: variable 'post_delay' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+- src\modbus_sensor.cpp:426:13:: function 'readSingleRegister' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - ... и ещё 3 проблем
 
-**Потенциальные баги:** 1 проблем
-- src\ota_manager.cpp:554:25:: narrowing conversion from 'unsigned int' to signed type 'int' is implementation-defined [bugprone-narrowing-conversions]
+**Модернизация:** 5 проблем
+- src\modbus_sensor.cpp:438:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
+- src\modbus_sensor.cpp:444:13:: use auto when initializing with a cast to avoid duplicating the type name [modernize-use-auto]
+- src\modbus_sensor.cpp:603:53:: use nullptr [modernize-use-nullptr]
+- ... и ещё 2 проблем
+
+**Потенциальные баги:** 2 проблем
+- src\modbus_sensor.cpp:782:9:: if with identical then and else branches [bugprone-branch-clone]
+- src\modbus_sensor.cpp:799:22:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
+
+### src/mqtt_client.cpp (9 предупреждений)
+**Разное:** 3 проблем
+- src\mqtt_client.cpp:105:18:: function 'getCachedIP' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\mqtt_client.cpp:761:5:: variable 't' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\mqtt_client.cpp:791:5:: variable 'currentTime' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+
+**Читаемость:** 5 проблем
+- src\mqtt_client.cpp:206:9:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\mqtt_client.cpp:761:12:: variable name 't' is too short, expected at least 3 characters [readability-identifier-length]
+- src\mqtt_client.cpp:763:46:: statement should be inside braces [readability-braces-around-statements]
+- ... и ещё 2 проблем
+
+**Модернизация:** 1 проблем
+- src\mqtt_client.cpp:815:12:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
+
+### src/ota_manager.cpp (17 предупреждений)
+**Потенциальные баги:** 2 проблем
+- src\ota_manager.cpp:34:13:: declaration uses identifier '_printGuard', which is reserved in the global namespace [bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp]
+- src\ota_manager.cpp:564:25:: narrowing conversion from 'unsigned int' to signed type 'int' is implementation-defined [bugprone-narrowing-conversions]
+
+**Разное:** 8 проблем
+- src\ota_manager.cpp:34:13:: function '_printGuard' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\ota_manager.cpp:128:13:: function 'initializeDownload' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\ota_manager.cpp:209:13:: function 'downloadData' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- ... и ещё 5 проблем
+
+**Читаемость:** 4 проблем
+- src\ota_manager.cpp:227:10:: implicit conversion 'WiFiClient *' -> 'bool' [readability-implicit-bool-conversion]
+- src\ota_manager.cpp:349:10:: implicit conversion 'HTTPClient *' -> 'bool' [readability-implicit-bool-conversion]
+- src\ota_manager.cpp:372:10:: implicit conversion 'mbedtls_sha256_context *' -> 'bool' [readability-implicit-bool-conversion]
+- ... и ещё 1 проблем
+
+**Модернизация:** 3 проблем
+- src\ota_manager.cpp:348:5:: use auto when initializing with new to avoid duplicating the type name [modernize-use-auto]
+- src\ota_manager.cpp:371:5:: use auto when initializing with new to avoid duplicating the type name [modernize-use-auto]
+- src\ota_manager.cpp:398:5:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
 
 ### src/routes_calibration.cpp ✅ Проблем не найдено
 
-### src/sensor_compensation.cpp (22 предупреждений)
-**Модернизация:** 6 проблем
-- src\sensor_compensation.cpp:2:10:: inclusion of deprecated C++ header 'math.h'; consider using 'cmath' instead [modernize-deprecated-headers]
-- src\sensor_compensation.cpp:3:10:: inclusion of deprecated C++ header 'time.h'; consider using 'ctime' instead [modernize-deprecated-headers]
-- src\sensor_compensation.cpp:7:18:: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
-- ... и ещё 3 проблем
-
+### src/sensor_compensation.cpp (16 предупреждений)
 **Читаемость:** 14 проблем
-- src\sensor_compensation.cpp:26:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
-- src\sensor_compensation.cpp:30:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
-- src\sensor_compensation.cpp:34:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
+- src\sensor_compensation.cpp:29:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
+- src\sensor_compensation.cpp:33:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
+- src\sensor_compensation.cpp:37:19:: '*' has higher precedence than '-'; add parentheses to explicitly specify the order of operations [readability-math-missing-parentheses]
 - ... и ещё 11 проблем
 
 **Потенциальные баги:** 2 проблем
-- src\sensor_compensation.cpp:44:26:: 2 adjacent parameters of 'ECCompensationParams' of similar type ('float') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\sensor_compensation.cpp:69:53:: 3 adjacent parameters of 'correctNPK' of similar type ('float &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- src\sensor_compensation.cpp:48:26:: 2 adjacent parameters of 'ECCompensationParams' of similar type ('float') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- src\sensor_compensation.cpp:72:53:: 3 adjacent parameters of 'correctNPK' of similar type ('float &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
 
-### src/thingspeak_client.cpp (3 предупреждений)
-**Модернизация:** 1 проблем
-- src\thingspeak_client.cpp:6:10:: inclusion of deprecated C++ header 'ctype.h'; consider using 'cctype' instead [modernize-deprecated-headers]
+### src/thingspeak_client.cpp (1 предупреждений)
+**Читаемость:** 1 проблем
+- src\thingspeak_client.cpp:134:5:: do not use 'else' after 'return' [readability-else-after-return]
 
-**Читаемость:** 2 проблем
-- src\thingspeak_client.cpp:25:10:: implicit conversion 'char *' -> 'bool' [readability-implicit-bool-conversion]
-- src\thingspeak_client.cpp:121:5:: do not use 'else' after 'return' [readability-else-after-return]
-
-### src/validation_utils.cpp (9 предупреждений)
-**Читаемость:** 4 проблем
-- src\validation_utils.cpp:49:21:: variable name 'ch' is too short, expected at least 3 characters [readability-identifier-length]
-- src\validation_utils.cpp:285:37:: parameter name 'ip' is too short, expected at least 3 characters [readability-identifier-length]
-- src\validation_utils.cpp:326:15:: variable name 'c' is too short, expected at least 3 characters [readability-identifier-length]
-- ... и ещё 1 проблем
-
+### src/validation_utils.cpp (6 предупреждений)
 **Разное:** 5 проблем
-- src\validation_utils.cpp:299:13:: variable 'part' of type 'String' can be declared 'const' [misc-const-correctness]
-- src\validation_utils.cpp:300:13:: variable 'value' of type 'int' can be declared 'const' [misc-const-correctness]
-- src\validation_utils.cpp:326:10:: variable 'c' of type 'char' can be declared 'const' [misc-const-correctness]
+- src\validation_utils.cpp:330:13:: variable 'part' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\validation_utils.cpp:331:13:: variable 'value' of type 'int' can be declared 'const' [misc-const-correctness]
+- src\validation_utils.cpp:357:10:: variable 'character' of type 'char' can be declared 'const' [misc-const-correctness]
 - ... и ещё 2 проблем
 
-### src/wifi_manager.cpp (26 предупреждений)
-**Модернизация:** 13 проблем
-- src\wifi_manager.cpp:23:1:: replace macro with enum [modernize-macro-to-enum]
-- src\wifi_manager.cpp:23:9:: macro 'RESET_BUTTON_PIN' defines an integral constant; prefer an enum instead [modernize-macro-to-enum]
-- src\wifi_manager.cpp:24:9:: macro 'WIFI_RECONNECT_INTERVAL' defines an integral constant; prefer an enum instead [modernize-macro-to-enum]
-- ... и ещё 10 проблем
+**Читаемость:** 1 проблем
+- src\validation_utils.cpp:369:16:: redundant boolean literal in conditional return statement [readability-simplify-boolean-expr]
+
+### src/wifi_manager.cpp (14 предупреждений)
+**Прочее:** 1 проблем
+- src\wifi_manager.cpp:23:12:: enum 'WifiConstants' uses a larger base type ('uint32_t' (aka 'unsigned int'), size: 4 bytes) than necessary for its value set, consider using 'std::uint16_t' (2 bytes) as the base type to reduce its size [performance-enum-size]
 
 **Читаемость:** 8 проблем
-- src\wifi_manager.cpp:117:5:: static member accessed through instance [readability-static-accessed-through-instance]
-- src\wifi_manager.cpp:173:13:: static member accessed through instance [readability-static-accessed-through-instance]
-- src\wifi_manager.cpp:231:5:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\wifi_manager.cpp:118:5:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\wifi_manager.cpp:177:13:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\wifi_manager.cpp:235:5:: static member accessed through instance [readability-static-accessed-through-instance]
 - ... и ещё 5 проблем
 
 **Разное:** 5 проблем
-- src\wifi_manager.cpp:232:5:: variable 'apSsid' of type 'String' can be declared 'const' [misc-const-correctness]
-- src\wifi_manager.cpp:249:5:: variable 'hostname' of type 'String' can be declared 'const' [misc-const-correctness]
-- src\wifi_manager.cpp:259:9:: variable 'startTime' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
+- src\wifi_manager.cpp:236:5:: variable 'apSsid' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\wifi_manager.cpp:253:5:: variable 'hostname' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\wifi_manager.cpp:263:9:: variable 'startTime' of type 'unsigned long' can be declared 'const' [misc-const-correctness]
 - ... и ещё 2 проблем
 
 ### src/web/csrf_protection.cpp (6 предупреждений)
 **Разное:** 5 проблем
-- src\web\csrf_protection.cpp:67:5:: variable 'isValid' of type 'bool' can be declared 'const' [misc-const-correctness]
-- src\web\csrf_protection.cpp:86:5:: variable 'method' of type 'HTTPMethod' (aka 'http_method') can be declared 'const' [misc-const-correctness]
-- src\web\csrf_protection.cpp:108:5:: variable 'clientIP' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\web\csrf_protection.cpp:77:5:: variable 'isValid' of type 'bool' can be declared 'const' [misc-const-correctness]
+- src\web\csrf_protection.cpp:105:5:: variable 'method' of type 'HTTPMethod' (aka 'http_method') can be declared 'const' [misc-const-correctness]
+- src\web\csrf_protection.cpp:127:5:: variable 'clientIP' of type 'String' can be declared 'const' [misc-const-correctness]
 - ... и ещё 2 проблем
 
 **Модернизация:** 1 проблем
-- src\web\csrf_protection.cpp:80:12:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\csrf_protection.cpp:99:12:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
 ### src/web/error_handlers.cpp (9 предупреждений)
 **Потенциальные баги:** 2 проблем
@@ -220,52 +191,52 @@
 - src\web\error_handlers.cpp:24:17:: 3 adjacent parameters of 'HttpRequest' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
 
 **Разное:** 6 проблем
-- src\web\error_handlers.cpp:60:13:: variable 'uri' of type 'String' can be declared 'const' [misc-const-correctness]
-- src\web\error_handlers.cpp:61:13:: variable 'method' of type 'String' can be declared 'const' [misc-const-correctness]
-- src\web\error_handlers.cpp:67:13:: variable 'html' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\web\error_handlers.cpp:63:13:: variable 'uri' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\web\error_handlers.cpp:64:13:: variable 'method' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\web\error_handlers.cpp:70:13:: variable 'html' of type 'String' can be declared 'const' [misc-const-correctness]
 - ... и ещё 3 проблем
 
 **Читаемость:** 1 проблем
-- src\web\error_handlers.cpp:151:20:: redundant boolean literal in conditional return statement [readability-simplify-boolean-expr]
+- src\web\error_handlers.cpp:159:20:: redundant boolean literal in conditional return statement [readability-simplify-boolean-expr]
 
 ### src/web/routes_config.cpp (33 предупреждений)
 **Разное:** 6 проблем
 - src\web\routes_config.cpp:23:13:: function 'sendConfigExportJson' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- src\web\routes_config.cpp:190:22:: variable 'valSensor' of type 'ValidationResult' can be declared 'const' [misc-const-correctness]
-- src\web\routes_config.cpp:191:22:: variable 'valMqtt' of type 'ValidationResult' can be declared 'const' [misc-const-correctness]
+- src\web\routes_config.cpp:190:13:: variable 'valSensor' of type 'ValidationResult' can be declared 'const' [misc-const-correctness]
+- src\web\routes_config.cpp:191:13:: variable 'valMqtt' of type 'ValidationResult' can be declared 'const' [misc-const-correctness]
 - ... и ещё 3 проблем
 
 **Читаемость:** 26 проблем
-- src\web\routes_config.cpp:199:79:: conditional operator is used as sub-expression of parent conditional operator, refrain from using nested conditional operators [readability-avoid-nested-conditional-operator]
-- src\web\routes_config.cpp:405:25:: variable name 'up' is too short, expected at least 3 characters [readability-identifier-length]
-- src\web\routes_config.cpp:441:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
+- src\web\routes_config.cpp:198:82:: conditional operator is used as sub-expression of parent conditional operator, refrain from using nested conditional operators [readability-avoid-nested-conditional-operator]
+- src\web\routes_config.cpp:403:25:: variable name 'up' is too short, expected at least 3 characters [readability-identifier-length]
+- src\web\routes_config.cpp:439:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
 - ... и ещё 23 проблем
 
 **Модернизация:** 1 проблем
-- src\web\routes_config.cpp:361:68:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_config.cpp:359:68:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
 ### src/web/routes_data.cpp (43 предупреждений)
 **Модернизация:** 3 проблем
 - src\web\routes_data.cpp:10:10:: inclusion of deprecated C++ header 'time.h'; consider using 'ctime' instead [modernize-deprecated-headers]
-- src\web\routes_data.cpp:270:64:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-- src\web\routes_data.cpp:691:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_data.cpp:308:64:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_data.cpp:734:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
 **Разное:** 8 проблем
-- src\web\routes_data.cpp:92:5:: variable 'soil' of type 'int' can be declared 'const' [misc-const-correctness]
-- src\web\routes_data.cpp:138:9:: variable 'rainy' of type 'bool' can be declared 'const' [misc-const-correctness]
-- src\web\routes_data.cpp:250:9:: variable 'profileStr' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\web\routes_data.cpp:117:5:: variable 'soil' of type 'int' can be declared 'const' [misc-const-correctness]
+- src\web\routes_data.cpp:163:9:: variable 'rainy' of type 'bool' can be declared 'const' [misc-const-correctness]
+- src\web\routes_data.cpp:276:9:: variable 'profileStr' of type 'String' can be declared 'const' [misc-const-correctness]
 - ... и ещё 5 проблем
 
 **Читаемость:** 29 проблем
-- src\web\routes_data.cpp:137:13:: variable name 'm' is too short, expected at least 3 characters [readability-identifier-length]
-- src\web\routes_data.cpp:137:17:: implicit conversion 'struct tm *' -> 'bool' [readability-implicit-bool-conversion]
-- src\web\routes_data.cpp:330:20:: variable name 'ti' is too short, expected at least 3 characters [readability-identifier-length]
+- src\web\routes_data.cpp:162:13:: variable name 'm' is too short, expected at least 3 characters [readability-identifier-length]
+- src\web\routes_data.cpp:162:17:: implicit conversion 'struct tm *' -> 'bool' [readability-implicit-bool-conversion]
+- src\web\routes_data.cpp:369:20:: variable name 'ti' is too short, expected at least 3 characters [readability-identifier-length]
 - ... и ещё 26 проблем
 
 **Потенциальные баги:** 3 проблем
-- src\web\routes_data.cpp:162:13:: repeated branch body in conditional chain [bugprone-branch-clone]
-- src\web\routes_data.cpp:183:13:: repeated branch body in conditional chain [bugprone-branch-clone]
-- src\web\routes_data.cpp:189:13:: repeated branch body in conditional chain [bugprone-branch-clone]
+- src\web\routes_data.cpp:187:13:: repeated branch body in conditional chain [bugprone-branch-clone]
+- src\web\routes_data.cpp:208:13:: repeated branch body in conditional chain [bugprone-branch-clone]
+- src\web\routes_data.cpp:214:13:: repeated branch body in conditional chain [bugprone-branch-clone]
 
 ### src/web/routes_main.cpp (18 предупреждений)
 **Разное:** 18 проблем
@@ -276,14 +247,14 @@
 
 ### src/web/routes_ota.cpp (7 предупреждений)
 **Модернизация:** 5 проблем
-- src\web\routes_ota.cpp:43:81:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-- src\web\routes_ota.cpp:57:81:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-- src\web\routes_ota.cpp:441:65:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_ota.cpp:44:81:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_ota.cpp:58:81:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_ota.cpp:442:65:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 - ... и ещё 2 проблем
 
 **Разное:** 2 проблем
-- src\web\routes_ota.cpp:134:17:: variable 'uploadBtn' of type 'String' can be declared 'const' [misc-const-correctness]
-- src\web\routes_ota.cpp:351:13:: variable 'percent' of type 'size_t' (aka 'unsigned long long') can be declared 'const' [misc-const-correctness]
+- src\web\routes_ota.cpp:135:17:: variable 'uploadBtn' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\web\routes_ota.cpp:352:13:: variable 'percent' of type 'size_t' (aka 'unsigned long long') can be declared 'const' [misc-const-correctness]
 
 ### src/web/routes_reports.cpp (7 предупреждений)
 **Разное:** 7 проблем
@@ -296,14 +267,14 @@
 **Разное:** 5 проблем
 - src\web\routes_service.cpp:132:26:: variable 'html' of type 'String' can be declared 'const' [misc-const-correctness]
 - src\web\routes_service.cpp:144:22:: variable 'html' of type 'String' can be declared 'const' [misc-const-correctness]
-- src\web\routes_service.cpp:172:26:: variable 'html' of type 'String' can be declared 'const' [misc-const-correctness]
+- src\web\routes_service.cpp:171:26:: variable 'html' of type 'String' can be declared 'const' [misc-const-correctness]
 - ... и ещё 2 проблем
 
 ### src/web/web_templates.cpp (24 предупреждений)
 **Потенциальные баги:** 11 проблем
 - src\web\web_templates.cpp:12:14:: 2 adjacent parameters of 'PageInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
 - src\web\web_templates.cpp:23:14:: 4 adjacent parameters of 'FormInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\web\web_templates.cpp:37:20:: 5 adjacent parameters of 'InputFieldInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- src\web\web_templates.cpp:39:20:: 5 adjacent parameters of 'InputFieldInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
 - ... и ещё 8 проблем
 
 **Читаемость:** 13 проблем

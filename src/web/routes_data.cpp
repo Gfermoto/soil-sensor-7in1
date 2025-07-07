@@ -28,7 +28,8 @@ extern NTPClient* timeClient;
 // extern String getApSsid();  // объявлено в wifi_manager.h
 
 // Буфер для загрузки файлов (калибровка через /readings)
-namespace {
+namespace
+{
 File uploadFile;
 SoilProfile uploadProfile = SoilProfile::SAND;
 
@@ -45,44 +46,68 @@ RecValues computeRecommendations()
     const char* cropId = config.cropId;
     if (strlen(cropId) > 0)
     {
-        if (strcmp(cropId, "tomato") == 0) {
+        if (strcmp(cropId, "tomato") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE + 15, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE + 5};
-        } else if (strcmp(cropId, "cucumber") == 0) {
+        }
+        else if (strcmp(cropId, "cucumber") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE + 4, TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 600, TEST_DATA_PH_BASE - 0.1F,
                    TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE + 3};
         }
-        else if (strcmp(cropId, "pepper") == 0) {
+        else if (strcmp(cropId, "pepper") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE + 3, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE + 400, TEST_DATA_PH_BASE,
                    TEST_DATA_NPK_BASE + 13, TEST_DATA_NPK_BASE - 14, TEST_DATA_NPK_BASE + 4};
-        } else if (strcmp(cropId, "lettuce") == 0) {
+        }
+        else if (strcmp(cropId, "lettuce") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE,    TEST_DATA_HUM_BASE + 15, TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.3F,
                    TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE};
-        } else if (strcmp(cropId, "blueberry") == 0) {
+        }
+        else if (strcmp(cropId, "blueberry") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE - 1.3F,
                    TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
-        } else if (strcmp(cropId, "lawn") == 0) {
+        }
+        else if (strcmp(cropId, "lawn") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE - 10, TEST_DATA_EC_BASE - 400, TEST_DATA_PH_BASE,
                    TEST_DATA_NPK_BASE,  TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 5};
-        } else if (strcmp(cropId, "grape") == 0) {
+        }
+        else if (strcmp(cropId, "grape") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE - 5,  TEST_DATA_EC_BASE + 200, TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE};
-        } else if (strcmp(cropId, "conifer") == 0) {
+        }
+        else if (strcmp(cropId, "conifer") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE - 5,  TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.8F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 10};
-        } else if (strcmp(cropId, "strawberry") == 0) {
+        }
+        else if (strcmp(cropId, "strawberry") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE,     TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE - 0.3F,
                    TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
-        } else if (strcmp(cropId, "apple") == 0 || strcmp(cropId, "pear") == 0) {
+        }
+        else if (strcmp(cropId, "apple") == 0 || strcmp(cropId, "pear") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
-        } else if (strcmp(cropId, "cherry") == 0) {
+        }
+        else if (strcmp(cropId, "cherry") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE,    TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE + 100, TEST_DATA_PH_BASE + 0.2F,
                    TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
-        } else if (strcmp(cropId, "raspberry") == 0) {
+        }
+        else if (strcmp(cropId, "raspberry") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE - 100, TEST_DATA_PH_BASE - 0.1F,
                    TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 3};
-        } else if (strcmp(cropId, "currant") == 0) {
+        }
+        else if (strcmp(cropId, "currant") == 0)
+        {
             rec = {TEST_DATA_TEMP_BASE - 3, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.1F,
                    TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 16, TEST_DATA_NPK_BASE - 5};
         }
@@ -208,7 +233,7 @@ RecValues computeRecommendations()
 
     return rec;
 }
-}
+}  // namespace
 
 void handleReadingsUpload()  // ✅ Убираем static - функция extern в header
 {
@@ -242,16 +267,29 @@ void handleReadingsUpload()  // ✅ Убираем static - функция exter
     }
 }
 
-namespace {
+namespace
+{
 void handleProfileSave()
 {
     if (webServer.hasArg("soil_profile"))
     {
         String profileStr = webServer.arg("soil_profile");
-        if (profileStr == "sand") { config.soilProfile = 0; }
-        else if (profileStr == "loam") { config.soilProfile = 1; }
-        else if (profileStr == "peat") { config.soilProfile = 2; }
-        else if (profileStr == "clay") { config.soilProfile = 3; }
+        if (profileStr == "sand")
+        {
+            config.soilProfile = 0;
+        }
+        else if (profileStr == "loam")
+        {
+            config.soilProfile = 1;
+        }
+        else if (profileStr == "peat")
+        {
+            config.soilProfile = 2;
+        }
+        else if (profileStr == "clay")
+        {
+            config.soilProfile = 3;
+        }
 
         saveConfig();
         logSuccessSafe("\1", profileStr.c_str());
@@ -259,7 +297,7 @@ void handleProfileSave()
     webServer.sendHeader("Location", "/readings?toast=Профиль+сохранен", true);
     webServer.send(HTTP_REDIRECT, "text/plain", "Redirect");
 }
-}
+}  // namespace
 
 void sendSensorJson()  // ✅ Убираем static - функция extern в header
 {
@@ -318,7 +356,8 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
             {
                 timeClient->forceUpdate();
                 now = (time_t)timeClient->getEpochTime();
-                if (now < NTP_TIMESTAMP_2000) {
+                if (now < NTP_TIMESTAMP_2000)
+                {
                     return "Н/Д";
                 }
             }
@@ -328,17 +367,21 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
             }
         }
         struct tm* ti = localtime(&now);
-        if (!ti) {
+        if (!ti)
+        {
             return "Н/Д";
         }
         uint8_t m = ti->tm_mon + 1;
-        if (m == 12 || m == 1 || m == 2) {
+        if (m == 12 || m == 1 || m == 2)
+        {
             return "Зима";
         }
-        if (m >= 3 && m <= 5) {
+        if (m >= 3 && m <= 5)
+        {
             return "Весна";
         }
-        if (m >= 6 && m <= 8) {
+        if (m >= 6 && m <= 8)
+        {
             return "Лето";
         }
         return "Осень";
@@ -754,8 +797,7 @@ void setupDataRoutes()
                      // ✅ CSRF защита - критическая операция удаления!
                      if (!checkCSRFSafety())
                      {
-                         logWarnSafe("\1",
-                                 webServer.client().remoteIP().toString().c_str());
+                         logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
                          String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
                          webServer.send(403, "text/html; charset=utf-8", html);
                          return;
