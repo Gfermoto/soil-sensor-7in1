@@ -366,11 +366,11 @@ bool testModbusConnection()
     logSystem("Тест 2: Проверка временных задержек...");
     unsigned long start_time = micros();
     preTransmission();
-    unsigned long pre_delay = micros() - start_time;
+    const unsigned long pre_delay = micros() - start_time;
 
     start_time = micros();
     postTransmission();
-    unsigned long post_delay = micros() - start_time;
+    const unsigned long post_delay = micros() - start_time;
 
     logSystemSafe("\1", pre_delay);
     logSystemSafe("\1", post_delay);
@@ -438,13 +438,13 @@ static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float mu
 
         if (is_float)
         {
-            float* float_target = static_cast<float*>(target);
+            auto float_target = static_cast<float*>(target);
             *float_target = convertRegisterToFloat(raw_value, multiplier);
             logDebugSafe("\1", reg_name, *float_target);
         }
         else
         {
-            uint16_t* int_target = static_cast<uint16_t*>(target);
+            auto int_target = static_cast<uint16_t*>(target);
             *int_target = raw_value;
             logDebugSafe("\1", reg_name, *int_target);
         }
@@ -564,13 +564,13 @@ void readSensorData()
     logSensor("Чтение всех параметров JXCT 7-в-1 датчика...");
 
     // Читаем основные параметры (4 параметра)
-    int basic_success = readBasicParameters();
+    const int basic_success = readBasicParameters();
 
     // Читаем NPK параметры (3 параметра)
-    int npk_success = readNPKParameters();
+    const int npk_success = readNPKParameters();
 
     // Общий успех - все 7 параметров прочитаны
-    bool total_success = (basic_success == 4) && (npk_success == 3);
+    const bool total_success = (basic_success == 4) && (npk_success == 3);
 
     // Финализируем данные
     finalizeSensorData(total_success);
@@ -716,14 +716,14 @@ void addToMovingAverage(SensorData& data, const SensorData& newReading)
     }
 
     // Вычисляем скользящее среднее
-    data.temperature = calculateMovingAverage(data.temp_buffer, window_size, data.buffer_filled);
-    data.humidity = calculateMovingAverage(data.hum_buffer, window_size, data.buffer_filled);
-    data.ec = calculateMovingAverage(data.ec_buffer, window_size, data.buffer_filled);
-    data.ph = calculateMovingAverage(data.ph_buffer, window_size, data.buffer_filled);
-    data.nitrogen = calculateMovingAverage(data.n_buffer, window_size, data.buffer_filled);
-    data.phosphorus = calculateMovingAverage(data.p_buffer, window_size, data.buffer_filled);
-    data.potassium = calculateMovingAverage(data.k_buffer, window_size, data.buffer_filled);
-}
+        data.temperature = calculateMovingAverage(data.temp_buffer, window_size, data.buffer_filled);
+        data.humidity = calculateMovingAverage(data.hum_buffer, window_size, data.buffer_filled);
+        data.ec = calculateMovingAverage(data.ec_buffer, window_size, data.buffer_filled);
+        data.ph = calculateMovingAverage(data.ph_buffer, window_size, data.buffer_filled);
+        data.nitrogen = calculateMovingAverage(data.n_buffer, window_size, data.buffer_filled);
+        data.phosphorus = calculateMovingAverage(data.p_buffer, window_size, data.buffer_filled);
+        data.potassium = calculateMovingAverage(data.k_buffer, window_size, data.buffer_filled);
+    }
 
 float calculateMovingAverage(const float* buffer, uint8_t window_size, uint8_t filled)
 {

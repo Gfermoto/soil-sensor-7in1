@@ -154,11 +154,7 @@ static bool isFeatureAvailable(const String& feature)
     if (currentWiFiMode == WiFiMode::AP)
     {
         // Разрешенные функции в AP режиме
-        if (feature == "main" || feature == "save" || feature == "status")
-        {
-            return true;
-        }
-        return false;
+        return feature == "main" || feature == "save" || feature == "status";
     }
     return true;
 }

@@ -26,15 +26,15 @@ namespace
 {
 inline float k_h_N(float theta)
 {
-    return 1.8F - 0.024F * theta;
+    return 1.8F - (0.024F * theta);
 }
 inline float k_h_P(float theta)
 {
-    return 1.6F - 0.018F * theta;
+    return 1.6F - (0.018F * theta);
 }
 inline float k_h_K(float theta)
 {
-    return 1.9F - 0.021F * theta;
+    return 1.9F - (0.021F * theta);
 }
 }  // namespace
 
@@ -57,19 +57,19 @@ float correctEC(float ecRaw, const ECCompensationParams& params)  // NOLINT(misc
 
     // Шаг 2. Перевод к ECe (насыщенная паста)
     constexpr float THETA_SAT = 45.0F;  // %
-    const float k = SOIL_EC[static_cast<int>(params.soilType)].k;
-    return ec25 * powf(THETA_SAT / params.moisture, 1.0F + k);
+    const float soilCoeff = SOIL_EC[static_cast<int>(params.soilType)].k;
+    return ec25 * powf(THETA_SAT / params.moisture, 1.0F + soilCoeff);
 }
 
 // pH ----------------------------------------------------------------
-float correctPH(float phRaw, float T)
+float correctPH(float phRaw, float temperature)
 {
     // только температурная поправка (-0.003·ΔT)
-    return phRaw - 0.003F * (T - 25.0F);
+    return phRaw - (0.003F * (temperature - 25.0F));
 }
 
 // NPK ---------------------------------------------------------------
-void correctNPK(const ECCompensationParams& params, float& N, float& P, float& K)  // NOLINT(misc-use-internal-linkage)
+void correctNPK(const ECCompensationParams& params, float& nitrogen, float& phosphorus, float& potassium)  // NOLINT(misc-use-internal-linkage)
 {
     if (params.moisture < 25.0F || params.moisture > 60.0F)
     {
@@ -79,14 +79,14 @@ void correctNPK(const ECCompensationParams& params, float& N, float& P, float& K
     const int idx = static_cast<int>(params.soilType);
 
     // Температурная коррекция
-    N *= (1.0F - (k_t_N[idx] * (params.temperature - 25.0F)));
-    P *= (1.0F - (k_t_P[idx] * (params.temperature - 25.0F)));
-    K *= (1.0F - (k_t_K[idx] * (params.temperature - 25.0F)));
+    nitrogen *= (1.0F - (k_t_N[idx] * (params.temperature - 25.0F)));
+    phosphorus *= (1.0F - (k_t_P[idx] * (params.temperature - 25.0F)));
+    potassium *= (1.0F - (k_t_K[idx] * (params.temperature - 25.0F)));
 
     // Влажностная коррекция
-    N *= k_h_N(params.moisture);
-    P *= k_h_P(params.moisture);
-    K *= k_h_K(params.moisture);
+    nitrogen *= k_h_N(params.moisture);
+    phosphorus *= k_h_P(params.moisture);
+    potassium *= k_h_K(params.moisture);
 }
 
 // ✅ ТИПОБЕЗОПАСНЫЕ ВЕРСИИ (предотвращают перепутывание параметров)
@@ -103,14 +103,14 @@ void correctNPK(const EnvironmentalConditions& env, NPKReferences& npk, SoilType
 // ------------------------------------------------------------------
 
 // --- ОБРАТНАЯ СОВМЕСТИМОСТЬ: старые сигнатуры (тонкие обёртки) ---
-float correctEC(float ecRaw, float T, float theta, SoilType soil)
+float correctEC(float ecRaw, float temperature, float theta, SoilType soil)
 {
-    return correctEC(ecRaw, EnvironmentalConditions{T, theta}, soil);
+    return correctEC(ecRaw, EnvironmentalConditions{temperature, theta}, soil);
 }
 
-void correctNPK(float T, float theta, float& N, float& P, float& K, SoilType soil)
+void correctNPK(float temperature, float theta, float& nitrogen, float& phosphorus, float& potassium, SoilType soil)
 {
-    NPKReferences npk{N, P, K};
-    correctNPK(EnvironmentalConditions{T, theta}, npk, soil);
+    NPKReferences npk{nitrogen, phosphorus, potassium};
+    correctNPK(EnvironmentalConditions{temperature, theta}, npk, soil);
 }
 // ------------------------------------------------------------------

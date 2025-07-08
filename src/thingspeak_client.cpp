@@ -131,7 +131,7 @@ bool sendDataToThingSpeak()
         consecutiveFailCount = 0;             // обнуляем при успехе
         return true;
     }
-    else if (res == -301)
+    if (res == -301)
     {
         logWarn("ThingSpeak: таймаут (-301), повторим позже");
         strlcpy(thingSpeakLastErrorBuffer.data(), "Timeout -301", thingSpeakLastErrorBuffer.size());

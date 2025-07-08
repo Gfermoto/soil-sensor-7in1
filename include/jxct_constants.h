@@ -360,6 +360,7 @@ constexpr float TEST_DATA_NPK_INCREASE_N = 1.20F;  // +20%
 constexpr float TEST_DATA_NPK_INCREASE_P = 1.15F;  // +15%
 constexpr float TEST_DATA_NPK_INCREASE_K = 1.10F;  // +10%
 constexpr float TEST_DATA_NPK_DECREASE_N = 0.90F;  // -10%
+constexpr float TEST_DATA_NPK_DECREASE_P = 1.05F;  // +5%
 constexpr float TEST_DATA_NPK_DECREASE_K = 1.25F;  // +25%
 
 // ============================================================================

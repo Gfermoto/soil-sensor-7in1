@@ -414,7 +414,7 @@ def main():
     args = parser.parse_args()
 
     runner = PerformanceTestRunner(verbose=args.verbose)
-    success = runner.run_all_tests()
+        success = runner.run_all_tests()
 
     if not success:
         sys.exit(1)

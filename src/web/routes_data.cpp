@@ -114,7 +114,7 @@ RecValues computeRecommendations()
     }
 
     // 2. Коррекция по soilProfile (влажность и pH)
-    int soil = config.soilProfile;  // 0 sand,1 loam,2 peat,3 clay
+    const int soil = config.soilProfile;  // 0 sand,1 loam,2 peat,3 clay
     if (soil == 0)
     {
         rec.hum += -5; /* песок */
@@ -273,7 +273,7 @@ void handleProfileSave()
 {
     if (webServer.hasArg("soil_profile"))
     {
-        String profileStr = webServer.arg("soil_profile");
+        const String profileStr = webServer.arg("soil_profile");
         if (profileStr == "sand")
         {
             config.soilProfile = 0;
@@ -366,21 +366,21 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
                 return "Н/Д";
             }
         }
-        struct tm* ti = localtime(&now);
-        if (!ti)
+        struct tm* timeInfo = localtime(&now);
+        if (!timeInfo)
         {
             return "Н/Д";
         }
-        uint8_t m = ti->tm_mon + 1;
-        if (m == 12 || m == 1 || m == 2)
+        uint8_t month = timeInfo->tm_mon + 1;
+        if (month == 12 || month == 1 || month == 2)
         {
             return "Зима";
         }
-        if (m >= 3 && m <= 5)
+        if (month >= 3 && month <= 5)
         {
             return "Весна";
         }
-        if (m >= 6 && m <= 8)
+        if (month >= 6 && month <= 8)
         {
             return "Лето";
         }

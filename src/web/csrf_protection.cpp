@@ -102,7 +102,7 @@ String getCSRFHiddenField()
 bool checkCSRFSafety()
 {
     // GET запросы всегда безопасны (идемпотентные)
-    HTTPMethod method = webServer.method();
+    const HTTPMethod method = webServer.method();
     if (method == HTTP_GET || method == HTTP_HEAD || method == HTTP_OPTIONS)
     {
         return true;
@@ -133,7 +133,7 @@ bool checkCSRFSafety()
         return false;
     }
 
-    bool isValid = validateCSRFToken(csrfToken);
+    const bool isValid = validateCSRFToken(csrfToken);
 
     if (!isValid)
     {

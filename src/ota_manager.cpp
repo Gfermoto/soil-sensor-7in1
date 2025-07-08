@@ -243,7 +243,7 @@ static bool downloadData(HTTPClient& http, int contentLen,
     {
         esp_task_wdt_reset();
 
-        size_t avail = stream->available();
+        const size_t avail = stream->available();
         if (avail > 0)
         {
             lastActivity = millis();
@@ -333,7 +333,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
     logSystem("[OTA] Начинаем загрузку и обновление");
 
     // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: Проверяем общее состояние системы
-    size_t initialHeap = ESP.getFreeHeap();
+    const size_t initialHeap = ESP.getFreeHeap();
     logSystemSafe("\1", initialHeap);
 
     // УВЕЛИЧИВАЕМ ТРЕБОВАНИЯ К ПАМЯТИ для безопасности
@@ -382,7 +382,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
     mbedtls_sha256_starts_ret(shaCtx, 0);
 
     // Загрузка данных
-    bool downloadSuccess = downloadData(*http, contentLen, *shaCtx);
+    const bool downloadSuccess = downloadData(*http, contentLen, *shaCtx);
     http->end();
     delete http;
 
@@ -468,7 +468,7 @@ void triggerOtaInstall()
     // ИСПРАВЛЕНО: Устанавливаем статус успешного обновления ДО перезагрузки
     strlcpy(statusBuf.data(), "Обновление успешно!", sizeof(statusBuf));
 
-    bool result = downloadAndUpdate(pendingUpdateUrl, pendingUpdateSha256.c_str());
+    const bool result = downloadAndUpdate(pendingUpdateUrl, pendingUpdateSha256.c_str());
 
     // ИСПРАВЛЕНО: Этот код выполнится только если обновление действительно не удалось
     // (функция downloadAndUpdate перезагружает устройство при успехе)
@@ -561,7 +561,7 @@ void handleOTA()
     }
 
     String manifestContent = http.getString();
-    int contentLength = manifestContent.length();
+    const int contentLength = manifestContent.length();
     http.end();
 
     logSystemSafe("\1", contentLength);

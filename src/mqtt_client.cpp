@@ -758,14 +758,14 @@ void handleMqttCommand(const String& cmd)  // NOLINT(misc-use-internal-linkage)
 
 void mqttCallback(char* topic, byte* payload, unsigned int length)  // NOLINT(misc-use-internal-linkage)
 {
-    const String t = String(topic);
+    const String topic_str = String(topic);
     String message;
     for (unsigned int i = 0; i < length; ++i)
     {
         message += (char)payload[i];
     }
-    DEBUG_PRINTF("[mqttCallback] Получено сообщение: %s = %s\n", t.c_str(), message.c_str());
-    if (t == getCommandTopic() || t == getOtaCommandTopic())
+    DEBUG_PRINTF("[mqttCallback] Получено сообщение: %s = %s\n", topic_str.c_str(), message.c_str());
+    if (topic_str == getCommandTopic() || topic_str == getOtaCommandTopic())
     {
         handleMqttCommand(message);
     }
@@ -791,7 +791,7 @@ void invalidateHAConfigCache()  // NOLINT(misc-use-internal-linkage)
 // Функция получения IP с кэшированием
 static IPAddress getCachedIP(const char* hostname)  // NOLINT(misc-use-anonymous-namespace)
 {
-    unsigned long currentTime = millis();
+    const unsigned long currentTime = millis();
 
     // Проверяем кэш
     if (dnsCacheMqtt.isValid && strcmp(dnsCacheMqtt.hostname.data(), hostname) == 0 &&

@@ -297,7 +297,7 @@ void startSTAMode()
             }
             if (timeClient)
             {
-                unsigned long ntpStart = millis();
+                const unsigned long ntpStart = millis();
                 while (!timeClient->forceUpdate() &&
                        millis() - ntpStart < static_cast<unsigned long>(WifiConstants::NTP_TIMEOUT_MS))
                 {
@@ -325,7 +325,7 @@ bool checkResetButton()
 {
     static unsigned long pressStart = 0;
     static bool wasPressed = false;
-    bool isPressed = digitalRead(static_cast<uint8_t>(WifiConstants::RESET_BUTTON_PIN)) == LOW;
+    const bool isPressed = digitalRead(static_cast<uint8_t>(WifiConstants::RESET_BUTTON_PIN)) == LOW;
     if (isPressed && !wasPressed)
     {
         pressStart = millis();

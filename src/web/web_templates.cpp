@@ -179,8 +179,8 @@ String generateConfigSection(const String& title, const String& content,
 
 /**
  * @brief Генерация поля ввода
- * @param id ID элемента
- * @param name Имя элемента
+ * @param fieldId ID элемента
+ * @param fieldName Имя элемента
  * @param label Подпись
  * @param value Значение по умолчанию
  * @param type Тип поля (text, password, email, number)
@@ -188,13 +188,13 @@ String generateConfigSection(const String& title, const String& content,
  * @param placeholder Placeholder текст
  * @return HTML поле ввода
  */
-String generateInputField(const String& id, const String& name, const String& label, const String& value,
+String generateInputField(const String& fieldId, const String& fieldName, const String& label, const String& value,
                           const String& type, bool required,
                           const String& placeholder)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='form-group'>";
-    html += "<label for='" + id + "'>" + label + ":</label>";
-    html += "<input type='" + type + "' id='" + id + "' name='" + name + "' value='" + value + "'";
+    html += "<label for='" + fieldId + "'>" + label + ":</label>";
+    html += "<input type='" + type + "' id='" + fieldId + "' name='" + fieldName + "' value='" + value + "'";
     if (required)
     {
         html += " required";
@@ -216,18 +216,18 @@ String generateInputField(const InputFieldInfo& field)  // NOLINT(misc-use-inter
 
 /**
  * @brief Генерация поля чекбокса
- * @param id ID элемента
- * @param name Имя элемента
+ * @param fieldId ID элемента
+ * @param fieldName Имя элемента
  * @param label Подпись
  * @param checked Состояние чекбокса
  * @return HTML чекбокс
  */
-String generateCheckboxField(const String& id, const String& name, const String& label,
+String generateCheckboxField(const String& fieldId, const String& fieldName, const String& label,
                              bool checked)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='form-group'>";
-    html += "<label for='" + id + "'>" + label + ":</label>";
-    html += "<input type='checkbox' id='" + id + "' name='" + name + "'";
+    html += "<label for='" + fieldId + "'>" + label + ":</label>";
+    html += "<input type='checkbox' id='" + fieldId + "' name='" + fieldName + "'";
     if (checked)
     {
         html += " checked";
@@ -238,8 +238,8 @@ String generateCheckboxField(const String& id, const String& name, const String&
 
 /**
  * @brief Генерация числового поля с валидацией
- * @param id ID элемента
- * @param name Имя элемента
+ * @param fieldId ID элемента
+ * @param fieldName Имя элемента
  * @param label Подпись
  * @param value Значение по умолчанию
  * @param min Минимальное значение
@@ -247,12 +247,12 @@ String generateCheckboxField(const String& id, const String& name, const String&
  * @param step Шаг изменения
  * @return HTML числовое поле
  */
-String generateNumberField(const String& id, const String& name, const String& label, int value, int min, int max,
+String generateNumberField(const String& fieldId, const String& fieldName, const String& label, int value, int min, int max,
                            int step)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='form-group'>";
-    html += "<label for='" + id + "'>" + label + ":</label>";
-    html += "<input type='number' id='" + id + "' name='" + name + "' value='" + String(value) + "'";
+    html += "<label for='" + fieldId + "'>" + label + ":</label>";
+    html += "<input type='number' id='" + fieldId + "' name='" + fieldName + "' value='" + String(value) + "'";
     html += " min='" + String(min) + "' max='" + String(max) + "' step='" + String(step) + "'>";
     html += "</div>";
     return html;

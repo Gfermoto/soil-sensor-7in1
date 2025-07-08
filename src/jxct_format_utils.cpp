@@ -6,7 +6,7 @@
 namespace
 {
 // Строгая типизация для предотвращения ошибок
-enum class FormatType : std::uint8_t
+enum class FormatType : std::uint8_t // NOLINT(performance-enum-size)
 {
     INTEGER,
     FLOAT
@@ -26,7 +26,7 @@ std::string formatFloat(float value, const FormatOptions& options)
 {
     std::array<char, 8> buf;
 
-    switch (options.formatType)
+    switch (options.formatType)  // NOLINT(bugprone-branch-clone)
     {
         case FormatType::INTEGER:
             snprintf(buf.data(), buf.size(), "%d", static_cast<int>(lround(value)));
