@@ -388,9 +388,9 @@ void setupConfigRoutes()
             if (doc.containsKey("mqtt"))
             {
                 JsonObject mqtt = doc["mqtt"];
-                config.flags.mqttEnabled = mqtt["enabled"].as<bool>();
+                config.flags.mqttEnabled = mqtt["enabled"].as<bool>(); // NOLINT(readability-misplaced-array-index)
                 strlcpy(config.mqttServer, mqtt["server"].as<const char*>(), sizeof(config.mqttServer));
-                config.mqttPort = mqtt["port"].as<int>();
+                config.mqttPort = mqtt["port"].as<int>(); // NOLINT(readability-misplaced-array-index)
                 strlcpy(config.mqttUser, mqtt["user"].as<const char*>(), sizeof(config.mqttUser));
                 strlcpy(config.mqttPassword, mqtt["password"].as<const char*>(), sizeof(config.mqttPassword));
             }
@@ -439,43 +439,43 @@ void sendConfigExportJson()
 
     // MQTT
     JsonObject mqtt = root.createNestedObject("mqtt");
-    mqtt["enabled"] = (bool)config.flags.mqttEnabled;
-    mqtt["server"] = "YOUR_MQTT_SERVER_HERE";
-    mqtt["port"] = config.mqttPort;
-    mqtt["user"] = "YOUR_MQTT_USER_HERE";
-    mqtt["password"] = "YOUR_MQTT_PASSWORD_HERE";
+    mqtt["enabled"] = (bool)config.flags.mqttEnabled; // NOLINT(readability-misplaced-array-index)
+    mqtt["server"] = "YOUR_MQTT_SERVER_HERE"; // NOLINT(readability-misplaced-array-index)
+    mqtt["port"] = config.mqttPort; // NOLINT(readability-misplaced-array-index)
+    mqtt["user"] = "YOUR_MQTT_USER_HERE"; // NOLINT(readability-misplaced-array-index)
+    mqtt["password"] = "YOUR_MQTT_PASSWORD_HERE"; // NOLINT(readability-misplaced-array-index)
 
     // ThingSpeak
     JsonObject ts = root.createNestedObject("thingspeak");
-    ts["enabled"] = (bool)config.flags.thingSpeakEnabled;
-    ts["channel_id"] = "YOUR_CHANNEL_ID_HERE";
-    ts["api_key"] = "YOUR_API_KEY_HERE";
+    ts["enabled"] = (bool)config.flags.thingSpeakEnabled; // NOLINT(readability-misplaced-array-index)
+    ts["channel_id"] = "YOUR_CHANNEL_ID_HERE"; // NOLINT(readability-misplaced-array-index)
+    ts["api_key"] = "YOUR_API_KEY_HERE"; // NOLINT(readability-misplaced-array-index)
 
     // Intervals
     JsonObject intervals = root.createNestedObject("intervals");
-    intervals["sensor_read"] = config.sensorReadInterval;
-    intervals["mqtt_publish"] = config.mqttPublishInterval;
-    intervals["thingspeak"] = config.thingSpeakInterval;
-    intervals["web_update"] = config.webUpdateInterval;
+    intervals["sensor_read"] = config.sensorReadInterval; // NOLINT(readability-misplaced-array-index)
+    intervals["mqtt_publish"] = config.mqttPublishInterval; // NOLINT(readability-misplaced-array-index)
+    intervals["thingspeak"] = config.thingSpeakInterval; // NOLINT(readability-misplaced-array-index)
+    intervals["web_update"] = config.webUpdateInterval; // NOLINT(readability-misplaced-array-index)
 
     // Filters
     JsonObject filters = root.createNestedObject("filters");
-    filters["delta_temperature"] = config.deltaTemperature;
-    filters["delta_humidity"] = config.deltaHumidity;
-    filters["delta_ph"] = config.deltaPh;
-    filters["delta_ec"] = config.deltaEc;
-    filters["delta_npk"] = config.deltaNpk;
-    filters["moving_average_window"] = config.movingAverageWindow;
-    filters["force_publish_cycles"] = config.forcePublishCycles;
-    filters["filter_algorithm"] = config.filterAlgorithm;
-    filters["outlier_filter_enabled"] = config.outlierFilterEnabled;
+    filters["delta_temperature"] = config.deltaTemperature; // NOLINT(readability-misplaced-array-index)
+    filters["delta_humidity"] = config.deltaHumidity; // NOLINT(readability-misplaced-array-index)
+    filters["delta_ph"] = config.deltaPh; // NOLINT(readability-misplaced-array-index)
+    filters["delta_ec"] = config.deltaEc; // NOLINT(readability-misplaced-array-index)
+    filters["delta_npk"] = config.deltaNpk; // NOLINT(readability-misplaced-array-index)
+    filters["moving_average_window"] = config.movingAverageWindow; // NOLINT(readability-misplaced-array-index)
+    filters["force_publish_cycles"] = config.forcePublishCycles; // NOLINT(readability-misplaced-array-index)
+    filters["filter_algorithm"] = config.filterAlgorithm; // NOLINT(readability-misplaced-array-index)
+    filters["outlier_filter_enabled"] = config.outlierFilterEnabled; // NOLINT(readability-misplaced-array-index)
 
     // Device flags
     JsonObject device = root.createNestedObject("device");
-    device["use_real_sensor"] = (bool)config.flags.useRealSensor;
-    device["hass_enabled"] = (bool)config.flags.hassEnabled;
+    device["use_real_sensor"] = (bool)config.flags.useRealSensor; // NOLINT(readability-misplaced-array-index)
+    device["hass_enabled"] = (bool)config.flags.hassEnabled; // NOLINT(readability-misplaced-array-index)
 
-    root["export_timestamp"] = millis();
+    root["export_timestamp"] = millis(); // NOLINT(readability-misplaced-array-index)
 
     String json;
     serializeJson(root, json);
