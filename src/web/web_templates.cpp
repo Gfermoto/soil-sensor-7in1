@@ -57,10 +57,18 @@ struct InputFieldInfo
         const bool required;
         const String& placeholder;
 
-        Builder(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
-                const String& typeText, bool isRequired, const String& placeholderText)
-            : id(fieldId), name(fieldName), label(labelText), value(valueText), 
-              type(typeText), required(isRequired), placeholder(placeholderText) {}
+        // Используем именованные параметры для безопасности
+        Builder& setId(const String& fieldId) { const_cast<String&>(id) = fieldId; return *this; }
+        Builder& setName(const String& fieldName) { const_cast<String&>(name) = fieldName; return *this; }
+        Builder& setLabel(const String& labelText) { const_cast<String&>(label) = labelText; return *this; }
+        Builder& setValue(const String& valueText) { const_cast<String&>(value) = valueText; return *this; }
+        Builder& setType(const String& typeText) { const_cast<String&>(type) = typeText; return *this; }
+        Builder& setRequired(bool isRequired) { const_cast<bool&>(required) = isRequired; return *this; }
+        Builder& setPlaceholder(const String& placeholderText) { const_cast<String&>(placeholder) = placeholderText; return *this; }
+
+        // Конструктор по умолчанию
+        Builder() : id(String()), name(String()), label(String()), value(String()), 
+                    type(String()), required(false), placeholder(String()) {}
     };
 
     InputFieldInfo(const Builder& builder)
@@ -77,7 +85,10 @@ struct InputFieldInfo
     // Статический метод-фабрика для безопасного создания
     static InputFieldInfo create(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
                                 const String& typeText, bool isRequired, const String& placeholderText) {
-        return InputFieldInfo(Builder(fieldId, fieldName, labelText, valueText, typeText, isRequired, placeholderText));
+        Builder builder;
+        builder.setId(fieldId).setName(fieldName).setLabel(labelText).setValue(valueText)
+               .setType(typeText).setRequired(isRequired).setPlaceholder(placeholderText);
+        return InputFieldInfo(builder);
     }
 };
 
