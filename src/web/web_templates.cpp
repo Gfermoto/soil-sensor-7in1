@@ -68,7 +68,7 @@ struct InputFieldInfo
 
         // Конструктор по умолчанию
         Builder() : id(String()), name(String()), label(String()), value(String()), 
-                    type(String()), required(false), placeholder(String()) {}
+                    type(String()), placeholder(String()) {}
     };
 
     InputFieldInfo(const Builder& builder)
@@ -126,7 +126,7 @@ struct ConfigSectionInfo
     
     // Статический метод-фабрика для безопасного создания
     static ConfigSectionInfo create(const String& titleText, const String& contentText, const String& helpTextValue) {
-        return ConfigSectionInfo{titleText, contentText, helpTextValue};
+        return {titleText, contentText, helpTextValue};
     }
 };
 

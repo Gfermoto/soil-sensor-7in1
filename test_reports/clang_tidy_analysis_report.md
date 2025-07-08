@@ -1,12 +1,12 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 08.07.2025 23:52
+**Дата анализа:** 08.07.2025 23:57
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 39
+- **Всего предупреждений:** 37
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
 ### Читаемость (33 проблем)
@@ -18,8 +18,8 @@
 ### Прочее (1 проблем)
 - `performance-enum-size`: 1 случаев
 
-### Разное (3 проблем)
-- `misc-use-internal-linkage`: 3 случаев
+### Разное (1 проблем)
+- `misc-use-internal-linkage`: 1 случаев
 
 ### Модернизация (2 проблем)
 - `modernize-use-default-member-init`: 1 случаев
@@ -69,10 +69,7 @@
 
 ### src/web/csrf_protection.cpp ✅ Проблем не найдено
 
-### src/web/error_handlers.cpp (2 предупреждений)
-**Разное:** 2 проблем
-- src\web\error_handlers.cpp:197:6:: function 'logWebRequest' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- src\web\error_handlers.cpp:271:6:: function 'checkRouteAccess' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+### src/web/error_handlers.cpp ✅ Проблем не найдено
 
 ### src/web/routes_config.cpp (25 предупреждений)
 **Разное:** 1 проблем
@@ -96,7 +93,7 @@
 
 ### src/web/web_templates.cpp (2 предупреждений)
 **Модернизация:** 2 проблем
-- src\web\web_templates.cpp:57:20:: use default member initializer for 'required' [modernize-use-default-member-init]
+- src\web\web_templates.cpp:71:37:: member initializer for 'required' is redundant [modernize-use-default-member-init]
 - src\web\web_templates.cpp:91:16:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
 
 ## 🎯 РЕКОМЕНДАЦИИ ПО ПРИОРИТЕТАМ
