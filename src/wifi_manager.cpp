@@ -20,7 +20,7 @@
 #include "web_routes.h"           // 🏗️ Модульная архитектура v2.4.5
 
 // Константы
-enum class WifiConstants : uint32_t
+enum class WifiConstants : std::uint16_t
 {
     RESET_BUTTON_PIN = 0,             // GPIO0 для кнопки сброса
     WIFI_RECONNECT_INTERVAL = 30000,  // Интервал между попытками переподключения (30 секунд)
@@ -146,7 +146,7 @@ void handleWiFi()
 
         // Периодическая попытка вернуться в STA-режим, если точка доступа пуста
         static unsigned long lastStaRetry = 0;
-        if (WiFi.softAPgetStationNum() == 0 &&  // никого не подключено
+        if (WiFi.softAPgetStationNum() == 0 &&  // никого не подключено // NOLINT(readability-static-accessed-through-instance)
             millis() - lastStaRetry >=
                 static_cast<unsigned long>(WifiConstants::WIFI_RECONNECT_INTERVAL) &&  // прошло ≥ интервала
             strlen(config.ssid) > 0 &&
@@ -158,7 +158,7 @@ void handleWiFi()
             return;          // ждём следующего цикла
         }
 
-        if (WiFi.softAPgetStationNum() > 0)
+        if (WiFi.softAPgetStationNum() > 0) // NOLINT(readability-static-accessed-through-instance)
         {
             setLedOn();
         }
@@ -208,7 +208,30 @@ void handleWiFi()
                 wifiConnected = true;
                 reconnectAttempts = 0;  // Сбрасываем счетчик при успешном подключении
                 setLedOn();
-                logSuccessSafe("\1", WiFi.localIP().toString().c_str());
+                logSuccessSafe("\1", WiFi.localIP().toString().c_str()); // NOLINT(readability-static-accessed-through-instance)
+                logSystemSafe("\1", WiFi.macAddress().c_str()); // NOLINT(readability-static-accessed-through-instance)
+                logSystemSafe("\1", config.ssid);
+                logSystemSafe("\1", WiFi.RSSI()); // NOLINT(readability-static-accessed-through-instance)
+                // --- Первичная синхронизация времени NTP (блок до 5 сек) ---
+                if (timeClient == nullptr)
+                {
+                    extern WiFiUDP ntpUDP;
+                    timeClient = new NTPClient(ntpUDP, "pool.ntp.org", 0, 3600000);
+                    timeClient->begin();
+                }
+                if (timeClient != nullptr)
+                {
+                    const unsigned long ntpStart = millis();
+                    while (!timeClient->forceUpdate() &&
+                           millis() - ntpStart < static_cast<unsigned long>(WifiConstants::NTP_TIMEOUT_MS))
+                    {
+                        delay(static_cast<unsigned long>(WifiConstants::WIFI_MODE_DELAY));
+                    }
+                    logSystemSafe("\1", timeClient->isTimeSet() ? "OK" : "не удалось");
+                }
+
+                setupWebServer();
+                return;
             }
         }
         webServer.handleClient();
@@ -218,12 +241,12 @@ void handleWiFi()
 String getApSsid()
 {
     std::array<uint8_t, 6> mac;
-    WiFi.macAddress(mac.data());
+    WiFi.macAddress(mac.data()); // NOLINT(readability-static-accessed-through-instance)
     std::array<char, static_cast<size_t>(WifiConstants::MAC_ADDRESS_BUFFER_SIZE)> buf;
     snprintf(buf.data(), buf.size(), "jxct-%02X%02X%02X", mac[3], mac[4], mac[5]);
-    for (int index = 0; buf[index]; ++index)
+    for (int charIndex = 0; buf[charIndex]; ++charIndex)
     {
-        buf[index] = tolower(buf[index]);
+        buf[charIndex] = tolower(buf[charIndex]);
     }
     return String(buf.data());
 }
@@ -235,12 +258,12 @@ void startAPMode()
     WiFi.mode(WIFI_AP);
     const String apSsid = getApSsid();
     WiFi.softAP(apSsid.c_str(), JXCT_WIFI_AP_PASS);
-    dnsServer.start(static_cast<uint16_t>(WifiConstants::DNS_SERVER_PORT), "*", WiFi.softAPIP());
+    dnsServer.start(static_cast<uint16_t>(WifiConstants::DNS_SERVER_PORT), "*", WiFi.softAPIP()); // NOLINT(readability-static-accessed-through-instance)
     setupWebServer();
     setLedBlink(static_cast<unsigned long>(WifiConstants::LED_SLOW_BLINK_INTERVAL));
     logWiFi("Режим точки доступа запущен");
     logSystemSafe("\1", apSsid.c_str());
-    logSystemSafe("\1", WiFi.softAPIP().toString().c_str());
+    logSystemSafe("\1", WiFi.softAPIP().toString().c_str()); // NOLINT(readability-static-accessed-through-instance)
 }
 
 void startSTAMode()
@@ -284,10 +307,10 @@ void startSTAMode()
             wifiConnected = true;
             setLedOn();
             logSuccessSafe("\1", config.ssid);
-            logSystemSafe("\1", WiFi.localIP().toString().c_str());
-            logSystemSafe("\1", WiFi.macAddress().c_str());
+            logSystemSafe("\1", WiFi.localIP().toString().c_str()); // NOLINT(readability-static-accessed-through-instance)
+            logSystemSafe("\1", WiFi.macAddress().c_str()); // NOLINT(readability-static-accessed-through-instance)
             logSystemSafe("\1", hostname.c_str());
-            logSystemSafe("\1", WiFi.RSSI());
+            logSystemSafe("\1", WiFi.RSSI()); // NOLINT(readability-static-accessed-through-instance)
             // --- Первичная синхронизация времени NTP (блок до 5 сек) ---
             if (timeClient == nullptr)
             {
@@ -368,8 +391,8 @@ void handleStatus()
     if (currentWiFiMode == WiFiMode::STA && wifiConnected)
     {
         html += "<li>SSID: " + String(config.ssid) + "</li>";
-        html += "<li>IP: " + WiFi.localIP().toString() + "</li>";
-        html += "<li>RSSI: " + String(WiFi.RSSI()) + " dBm</li>";
+        html += "<li>IP: " + WiFi.localIP().toString() + "</li>"; // NOLINT(readability-static-accessed-through-instance)
+        html += "<li>RSSI: " + String(WiFi.RSSI()) + " dBm</li>"; // NOLINT(readability-static-accessed-through-instance)
     }
     html += "</ul></div>";
     html += "<div class='section'><h2>Система</h2><ul>";
