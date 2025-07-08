@@ -87,6 +87,23 @@ struct NumberFieldInfo
     }
 };
 
+struct ConfigSectionInfo
+{
+    const String& title;
+    const String& content;
+    const String& helpText;
+
+    ConfigSectionInfo(const String& titleText, const String& contentText, const String& helpTextValue) // NOLINT(bugprone-easily-swappable-parameters)
+        : title(titleText), content(contentText), helpText(helpTextValue)
+    {
+    }
+    
+    // Статический метод-фабрика для безопасного создания
+    static ConfigSectionInfo create(const String& titleText, const String& contentText, const String& helpTextValue) {
+        return ConfigSectionInfo(titleText, contentText, helpTextValue);
+    }
+};
+
 String generatePageHeader(const PageInfo& page)  // NOLINT(misc-use-internal-linkage)
 {
     const String iconStr = page.icon.length() > 0 ? page.icon + " " : "";
@@ -177,23 +194,27 @@ String generateForm(const String& actionUrl, const String& methodType, const Str
 
 /**
  * @brief Генерация секции конфигурации
- * @param title Заголовок секции
- * @param content Содержимое секции
- * @param helpText Текст подсказки (опционально)
+ * @param section Информация о секции
  * @return HTML секция
  */
-String generateConfigSection(const String& title, const String& content,
-                             const String& helpText)  // NOLINT(misc-use-internal-linkage)
+String generateConfigSection(const ConfigSectionInfo& section)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='section'>";
-    html += "<h2>" + title + "</h2>";
-    html += content;
-    if (helpText.length() > 0)
+    html += "<h2>" + section.title + "</h2>";
+    html += section.content;
+    if (section.helpText.length() > 0)
     {
-        html += "<div class='help'>" UI_ICON_INFO " " + helpText + "</div>";
+        html += "<div class='help'>" UI_ICON_INFO " " + section.helpText + "</div>";
     }
     html += "</div>";
     return html;
+}
+
+// Устаревшая версия для совместимости
+String generateConfigSection(const String& title, const String& content,
+                             const String& helpText)  // NOLINT(misc-use-internal-linkage)
+{
+    return generateConfigSection(ConfigSectionInfo::create(title, content, helpText));
 }
 
 /**
