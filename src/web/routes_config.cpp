@@ -352,7 +352,7 @@ void setupConfigRoutes()
 
             if (currentWiFiMode == WiFiMode::AP)
             {
-                webServer.send(HTTP_FORBIDDEN, "application/json", "{\"error\":\"Недоступно в режиме AP\"}");
+                webServer.send(HTTP_FORBIDDEN, "application/json", R"({"error":"Недоступно в режиме AP"})");
                 importedJson = "";
                 return;
             }

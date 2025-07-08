@@ -1,19 +1,18 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 08.07.2025 23:01
+**Дата анализа:** 08.07.2025 23:11
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 47
+- **Всего предупреждений:** 48
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
-### Читаемость (29 проблем)
+### Читаемость (33 проблем)
 - ``: 23 случаев
+- `readability-static-accessed-through-instance`: 7 случаев
 - `readability-implicit-bool-conversion`: 2 случаев
-- `readability-qualified-auto`: 2 случаев
-- `readability-static-accessed-through-instance`: 1 случаев
 - `readability-identifier-length`: 1 случаев
 
 ### Разное (7 проблем)
@@ -23,8 +22,8 @@
 ### Прочее (1 проблем)
 - `performance-enum-size`: 1 случаев
 
-### Модернизация (10 проблем)
-- `modernize-raw-string-literal`: 8 случаев
+### Модернизация (7 проблем)
+- `modernize-raw-string-literal`: 5 случаев
 - `modernize-use-default-member-init`: 1 случаев
 - `modernize-return-braced-init-list`: 1 случаев
 
@@ -50,15 +49,11 @@
 
 ### src/mqtt_client.cpp ✅ Проблем не найдено
 
-### src/ota_manager.cpp (5 предупреждений)
+### src/ota_manager.cpp (3 предупреждений)
 **Разное:** 3 проблем
 - src\ota_manager.cpp:34:13:: function 'printGuard' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - src\ota_manager.cpp:127:13:: function 'initializeDownload' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 - src\ota_manager.cpp:208:13:: function 'downloadData' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-
-**Читаемость:** 2 проблем
-- src\ota_manager.cpp:347:5:: 'auto http' can be declared as 'auto *http' [readability-qualified-auto]
-- src\ota_manager.cpp:370:5:: 'auto shaCtx' can be declared as 'auto *shaCtx' [readability-qualified-auto]
 
 ### src/routes_calibration.cpp ✅ Проблем не найдено
 
@@ -70,12 +65,15 @@
 
 ### src/validation_utils.cpp ✅ Проблем не найдено
 
-### src/wifi_manager.cpp (2 предупреждений)
+### src/wifi_manager.cpp (8 предупреждений)
 **Прочее:** 1 проблем
 - src\wifi_manager.cpp:23:12:: enum 'WifiConstants' uses a larger base type ('uint32_t' (aka 'unsigned int'), size: 4 bytes) than necessary for its value set, consider using 'std::uint16_t' (2 bytes) as the base type to reduce its size [performance-enum-size]
 
-**Читаемость:** 1 проблем
+**Читаемость:** 7 проблем
 - src\wifi_manager.cpp:118:5:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\wifi_manager.cpp:177:13:: static member accessed through instance [readability-static-accessed-through-instance]
+- src\wifi_manager.cpp:235:5:: static member accessed through instance [readability-static-accessed-through-instance]
+- ... и ещё 4 проблем
 
 ### src/web/csrf_protection.cpp ✅ Проблем не найдено
 
@@ -97,19 +95,17 @@
 - src\web\routes_config.cpp:446:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
 - ... и ещё 21 проблем
 
-### src/web/routes_data.cpp (2 предупреждений)
-**Модернизация:** 2 проблем
-- src\web\routes_data.cpp:321:64:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+### src/web/routes_data.cpp (1 предупреждений)
+**Модернизация:** 1 проблем
 - src\web\routes_data.cpp:793:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
 ### src/web/routes_main.cpp ✅ Проблем не найдено
 
-### src/web/routes_ota.cpp (5 предупреждений)
-**Модернизация:** 5 проблем
-- src\web\routes_ota.cpp:44:81:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-- src\web\routes_ota.cpp:58:81:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+### src/web/routes_ota.cpp (3 предупреждений)
+**Модернизация:** 3 проблем
 - src\web\routes_ota.cpp:442:65:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-- ... и ещё 2 проблем
+- src\web\routes_ota.cpp:451:61:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_ota.cpp:460:57:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
 ### src/web/routes_reports.cpp ✅ Проблем не найдено
 

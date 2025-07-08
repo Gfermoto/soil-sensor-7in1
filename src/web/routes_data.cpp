@@ -788,8 +788,7 @@ void setupDataRoutes()
                 R"(var statusHtml = invalid ? '<span class="red">Данные&nbsp;не&nbsp;валидны</span>' : '<span )"
                 R"(class="green">Данные&nbsp;валидны</span>';)";
             html +=
-                "var "
-                "seasonColor={'Лето':'green','Весна':'yellow','Осень':'yellow','Зима':'red','Н/Д':''}[d.season]||'';";
+                R"(var seasonColor={'Лето':'green','Весна':'yellow','Осень':'yellow','Зима':'red','Н/Д':''}[d.season]||'';)";
             html += "var seasonHtml=seasonColor?(`<span class=\\\"${seasonColor}\\\">${d.season}</span>`):d.season;";
             html += "document.getElementById('statusInfo').innerHTML=statusHtml+' | Сезон: '+seasonHtml;";
             html += "updateSeasonalAdjustments(d.season);";

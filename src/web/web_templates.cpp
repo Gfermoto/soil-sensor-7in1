@@ -68,7 +68,7 @@ struct InputFieldInfo
 
         // Конструктор по умолчанию
         Builder() : id(String()), name(String()), label(String()), value(String()), 
-                    type(String()), required(false), placeholder(String()) {}
+                    type(String()), required{}, placeholder(String()) {}
     };
 
     InputFieldInfo(const Builder& builder)
@@ -109,7 +109,7 @@ struct NumberFieldInfo
     
     // Статический метод-фабрика для безопасного создания
     static NumberFieldInfo create(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
-        return {fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum};
+        return NumberFieldInfo{fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum};
     }
 };
 

@@ -429,7 +429,7 @@ static void handleFirmwareUpload()
                 logSuccess("[OTA] Файл принят успешно, перезагрузка через 2 сек");
                 localUploadStatus = "success";
                 isLocalUploadActive = false;
-                webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":true}");
+                webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, R"({"ok":true})");
                 delay(OTA_DELAY_MS);
                 ESP.restart();
             }
@@ -439,7 +439,7 @@ static void handleFirmwareUpload()
                 Update.printError(Serial);
                 isLocalUploadActive = false;
                 localUploadStatus = "error";
-                webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":false,\"error\":\"not_finished\"}");
+                webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, R"({"ok":false,"error":"not_finished"})");
             }
         }
         else
@@ -448,7 +448,7 @@ static void handleFirmwareUpload()
             Update.printError(Serial);
             isLocalUploadActive = false;
             localUploadStatus = "error";
-            webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":false,\"error\":\"end_failed\"}");
+            webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, R"({"ok":false,"error":"end_failed"})");
         }
     }
     else if (upload.status == UPLOAD_FILE_ABORTED)
@@ -457,6 +457,6 @@ static void handleFirmwareUpload()
         Update.abort();
         isLocalUploadActive = false;
         localUploadStatus = "aborted";
-        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":false,\"error\":\"aborted\"}");
+        webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, R"({"ok":false,"error":"aborted"})");
     }
 }
