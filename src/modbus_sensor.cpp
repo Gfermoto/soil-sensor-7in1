@@ -245,10 +245,14 @@ float calculateMovingAverage(const float* buffer, MovingAverageParams params)
                 }
             }
         }
+        // Медианный фильтр: для чётного количества - среднее двух средних, для нечётного - средний элемент
+        const uint8_t mid_index = elements_to_use / 2;
         if (elements_to_use % 2 == 0) {
-            return (temp_values.at(elements_to_use / 2 - 1) + temp_values.at(elements_to_use / 2)) / 2.0F;
+            // Чётное количество элементов - берём среднее двух средних
+            return (temp_values.at(mid_index - 1) + temp_values.at(mid_index)) / 2.0F;
         } else {
-            return temp_values.at(elements_to_use / 2);
+            // Нечётное количество элементов - берём средний элемент
+            return temp_values.at(mid_index);
         }
     } else {
         float sum = 0.0F;
