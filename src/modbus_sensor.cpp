@@ -505,11 +505,12 @@ bool testModbusConnection()
 // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ СНИЖЕНИЯ ЦИКЛОМАТИЧЕСКОЙ СЛОЖНОСТИ
 // ============================================================================
 
+namespace {
 /**
  * @brief Финализация данных датчика (валидация, кэширование, скользящее среднее)
  * @param success Флаг успешности чтения всех параметров
  */
-static void finalizeSensorData(bool success)
+void finalizeSensorData(bool success)
 {
     sensorData.valid = success;
     sensorData.last_update = millis();
@@ -536,6 +537,7 @@ static void finalizeSensorData(bool success)
         logWarn("⚠️ Данные прочитаны, но не прошли валидацию");
         sensorData.valid = false;
     }
+}
 }
 
 // ============================================================================

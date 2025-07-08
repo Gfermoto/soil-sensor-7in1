@@ -52,20 +52,20 @@ NTPClient* timeClient = nullptr;  // NOLINT(misc-use-internal-linkage)
 const int RESET_BUTTON_PIN = 0;                     // GPIO0 для кнопки сброса
 const unsigned long STATUS_PRINT_INTERVAL = 30000;  // 30 секунд
 
-// Внутренняя инициализация Preferences (реализована ниже)
-static bool initPreferences();
-
-// Реализация инициализации Preferences (внутренняя)
-static bool initPreferences()
+namespace {
+// Внутренняя инициализация Preferences
+bool initPreferences()
 {
     return preferences.begin("jxct", false);
+}
 }
 
 // === ОПТИМИЗАЦИЯ 3.2: Интеллектуальный батчинг данных для группировки сетевых отправок ===
 // перемещены в анонимное пространство имён выше
 
+namespace {
 // ✅ Неблокирующая задача мониторинга кнопки сброса
-static void resetButtonTask(void* /*parameter*/)
+void resetButtonTask(void* /*parameter*/)
 {
     pinMode(RESET_BUTTON_PIN, INPUT_PULLUP);
     static unsigned long buttonPressTime = 0;
@@ -99,6 +99,7 @@ static void resetButtonTask(void* /*parameter*/)
         // ✅ Неблокирующая задержка - проверяем кнопку каждые 50мс
         vTaskDelay(50 / portTICK_PERIOD_MS);
     }
+}
 }
 
 #ifndef PIO_UNIT_TESTING

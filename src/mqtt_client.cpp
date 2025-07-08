@@ -101,8 +101,39 @@ const char* getMqttLastError()  // NOLINT(misc-use-internal-linkage)
     return mqttLastErrorBuffer.data();
 }
 
-// Forward declarations
-static IPAddress getCachedIP(const char* hostname);  // ✅ Внутренняя реализация, скрыта от других единиц трансляции
+// Forward declarations - убрано, так как функции перемещены в анонимное пространство имён
+
+namespace {
+// Функция получения IP с кэшированием (перемещена выше для видимости)
+IPAddress getCachedIP(const char* hostname)
+{
+    const unsigned long currentTime = millis();
+
+    // Проверяем кэш
+    if (dnsCacheMqtt.isValid && strcmp(dnsCacheMqtt.hostname.data(), hostname) == 0 &&
+        (currentTime - dnsCacheMqtt.cacheTime < DNS_CACHE_TTL))
+    {
+        DEBUG_PRINTF("[DNS] Используем кэшированный IP %s для %s\n", dnsCacheMqtt.cachedIP.toString().c_str(),
+                     hostname);
+        return dnsCacheMqtt.cachedIP;
+    }
+
+    // DNS запрос
+    IPAddress resolvedIP;
+    if (WiFi.hostByName(hostname, resolvedIP) != 0)  // NOLINT(readability-static-accessed-through-instance)
+    {
+        // Кэшируем результат
+        strlcpy(dnsCacheMqtt.hostname.data(), hostname, dnsCacheMqtt.hostname.size());
+        dnsCacheMqtt.cachedIP = resolvedIP;
+        dnsCacheMqtt.cacheTime = currentTime;
+        dnsCacheMqtt.isValid = true;
+        DEBUG_PRINTF("[DNS] Новый IP %s для %s кэширован\n", resolvedIP.toString().c_str(), hostname);
+        return resolvedIP;
+    }
+
+    return IPAddress{0, 0, 0, 0};  // Ошибка резолвинга
+}
+}
 
 // ✅ Оптимизированная функция getClientId с буфером
 static const char* getClientId()  // NOLINT(misc-use-anonymous-namespace)
@@ -787,32 +818,4 @@ void invalidateHAConfigCache()  // NOLINT(misc-use-internal-linkage)
     mqttLastErrorBuffer.fill('\0');
 }
 
-// Функция получения IP с кэшированием
-static IPAddress getCachedIP(const char* hostname)  // NOLINT(misc-use-anonymous-namespace)
-{
-    const unsigned long currentTime = millis();
 
-    // Проверяем кэш
-    if (dnsCacheMqtt.isValid && strcmp(dnsCacheMqtt.hostname.data(), hostname) == 0 &&
-        (currentTime - dnsCacheMqtt.cacheTime < DNS_CACHE_TTL))
-    {
-        DEBUG_PRINTF("[DNS] Используем кэшированный IP %s для %s\n", dnsCacheMqtt.cachedIP.toString().c_str(),
-                     hostname);
-        return dnsCacheMqtt.cachedIP;
-    }
-
-    // DNS запрос
-    IPAddress resolvedIP;
-    if (WiFi.hostByName(hostname, resolvedIP) != 0)  // NOLINT(readability-static-accessed-through-instance)
-    {
-        // Кэшируем результат
-        strlcpy(dnsCacheMqtt.hostname.data(), hostname, dnsCacheMqtt.hostname.size());
-        dnsCacheMqtt.cachedIP = resolvedIP;
-        dnsCacheMqtt.cacheTime = currentTime;
-        dnsCacheMqtt.isValid = true;
-        DEBUG_PRINTF("[DNS] Новый IP %s для %s кэширован\n", resolvedIP.toString().c_str(), hostname);
-        return resolvedIP;
-    }
-
-    return IPAddress{0, 0, 0, 0};  // Ошибка резолвинга
-}
