@@ -361,7 +361,7 @@ void setupConfigRoutes()
             if (!checkCSRFSafety())
             {
                 logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
-                webServer.send(HTTP_FORBIDDEN, "application/json", "{\"error\":\"CSRF token invalid\"}");
+                webServer.send(HTTP_FORBIDDEN, "application/json", R"({"error":"CSRF token invalid"})");
                 importedJson = "";
                 return;
             }

@@ -789,7 +789,7 @@ void setupDataRoutes()
                 R"(class="green">Данные&nbsp;валидны</span>';)";
             html +=
                 R"(var seasonColor={'Лето':'green','Весна':'yellow','Осень':'yellow','Зима':'red','Н/Д':''}[d.season]||'';)";
-            html += "var seasonHtml=seasonColor?(`<span class=\\\"${seasonColor}\\\">${d.season}</span>`):d.season;";
+            html += R"(var seasonHtml=seasonColor?(`<span class=\"${seasonColor}\">${d.season}</span>`):d.season;)";
             html += "document.getElementById('statusInfo').innerHTML=statusHtml+' | Сезон: '+seasonHtml;";
             html += "updateSeasonalAdjustments(d.season);";
             html +=

@@ -1,12 +1,12 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 08.07.2025 23:11
+**Дата анализа:** 08.07.2025 23:21
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 48
+- **Всего предупреждений:** 45
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
 ### Читаемость (33 проблем)
@@ -22,8 +22,8 @@
 ### Прочее (1 проблем)
 - `performance-enum-size`: 1 случаев
 
-### Модернизация (7 проблем)
-- `modernize-raw-string-literal`: 5 случаев
+### Модернизация (4 проблем)
+- `modernize-raw-string-literal`: 2 случаев
 - `modernize-use-default-member-init`: 1 случаев
 - `modernize-return-braced-init-list`: 1 случаев
 
@@ -97,15 +97,11 @@
 
 ### src/web/routes_data.cpp (1 предупреждений)
 **Модернизация:** 1 проблем
-- src\web\routes_data.cpp:793:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_data.cpp:792:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
 ### src/web/routes_main.cpp ✅ Проблем не найдено
 
-### src/web/routes_ota.cpp (3 предупреждений)
-**Модернизация:** 3 проблем
-- src\web\routes_ota.cpp:442:65:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-- src\web\routes_ota.cpp:451:61:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-- src\web\routes_ota.cpp:460:57:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+### src/web/routes_ota.cpp ✅ Проблем не найдено
 
 ### src/web/routes_reports.cpp ✅ Проблем не найдено
 
