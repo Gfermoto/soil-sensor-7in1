@@ -49,7 +49,7 @@ struct ECCompensationParams
     
     // Статический метод-фабрика для безопасного создания
     static ECCompensationParams create(float temp, float moist, SoilType soil) {
-        return ECCompensationParams(temp, moist, soil);
+        return {temp, moist, soil};
     }
 };
 

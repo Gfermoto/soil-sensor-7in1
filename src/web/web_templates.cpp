@@ -14,7 +14,7 @@ struct PageInfo
     
     // Статический метод-фабрика для безопасного создания
     static PageInfo create(const String& titleValue, const String& iconValue) {
-        return PageInfo(titleValue, iconValue);
+        return {titleValue, iconValue};
     }
 };
 
@@ -33,7 +33,7 @@ struct FormInfo
     
     // Статический метод-фабрика для безопасного создания
     static FormInfo create(const String& actionValue, const String& methodValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue) {
-        return FormInfo(actionValue, methodValue, formContentValue, buttonTextValue, buttonIconValue);
+        return {actionValue, methodValue, formContentValue, buttonTextValue, buttonIconValue};
     }
 };
 
@@ -109,7 +109,7 @@ struct NumberFieldInfo
     
     // Статический метод-фабрика для безопасного создания
     static NumberFieldInfo create(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
-        return NumberFieldInfo(fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum);
+        return {fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum};
     }
 };
 
@@ -126,7 +126,7 @@ struct ConfigSectionInfo
     
     // Статический метод-фабрика для безопасного создания
     static ConfigSectionInfo create(const String& titleText, const String& contentText, const String& helpTextValue) {
-        return ConfigSectionInfo(titleText, contentText, helpTextValue);
+        return {titleText, contentText, helpTextValue};
     }
 };
 

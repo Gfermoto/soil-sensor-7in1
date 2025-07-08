@@ -16,7 +16,7 @@ struct ValidationRange
     
     // Статический метод-фабрика для безопасного создания
     static ValidationRange create(int minValue, int maxValue) {
-        return ValidationRange(minValue, maxValue);
+        return {minValue, maxValue};
     }
 };
 
@@ -34,7 +34,7 @@ struct HttpRequest
     
     // Статический метод-фабрика для безопасного создания
     static HttpRequest create(const String& methodValue, const String& uriValue, const String& clientIPValue) {
-        return HttpRequest(methodValue, uriValue, clientIPValue);
+        return {methodValue, uriValue, clientIPValue};
     }
     
     // Типобезопасная версия с именованными параметрами
@@ -45,7 +45,7 @@ struct HttpRequest
     };
     
     static HttpRequest create(const CreateParams& params) {
-        return HttpRequest(params.method, params.uri, params.clientIP);
+        return {params.method, params.uri, params.clientIP};
     }
 };
 
