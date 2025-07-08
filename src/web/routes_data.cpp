@@ -39,10 +39,12 @@ struct RecValues
 };
 
 // Функции для сезонной коррекции NPK (убираем дублирование)
-void applySpringNPKCorrection(RecValues& rec, bool isGreenhouse)
+void applySpringNPKCorrection(RecValues& rec, bool isGreenhouse)  // NOLINT(misc-unused-parameters)
 {
     // Весенняя коррекция NPK: применяем стандартные коэффициенты
     // (логика упрощена - одинаковые коэффициенты для теплицы и открытого грунта)
+    // Параметр isGreenhouse оставлен для совместимости с интерфейсом
+    (void)isGreenhouse;  // Подавляем предупреждение о неиспользуемом параметре
     rec.n *= TEST_DATA_NPK_INCREASE_N;  // +20%
     rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
     rec.k *= TEST_DATA_NPK_INCREASE_K;  // +10%
