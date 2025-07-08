@@ -100,7 +100,7 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
         }
 
         const int comma = line.indexOf(',');
-        if (comma < 0)
+        if (static_cast<bool>(comma < 0))
         {
             continue;
         }
@@ -112,7 +112,7 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
 
     calibrationFile.close();
     logInfoSafe("\1", outCount, path);
-    return outCount > 0U;
+    return static_cast<bool>(outCount > 0U);
 }
 
 bool hasTable(SoilProfile profile)
