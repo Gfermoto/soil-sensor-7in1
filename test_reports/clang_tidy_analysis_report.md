@@ -1,12 +1,12 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 08.07.2025 23:21
+**Дата анализа:** 08.07.2025 23:24
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 45
+- **Всего предупреждений:** 43
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
 ### Читаемость (33 проблем)
@@ -22,8 +22,7 @@
 ### Прочее (1 проблем)
 - `performance-enum-size`: 1 случаев
 
-### Модернизация (4 проблем)
-- `modernize-raw-string-literal`: 2 случаев
+### Модернизация (2 проблем)
 - `modernize-use-default-member-init`: 1 случаев
 - `modernize-return-braced-init-list`: 1 случаев
 
@@ -82,12 +81,9 @@
 - src\web\error_handlers.cpp:207:6:: function 'logWebRequest' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 - src\web\error_handlers.cpp:277:6:: function 'checkRouteAccess' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 
-### src/web/routes_config.cpp (26 предупреждений)
+### src/web/routes_config.cpp (25 предупреждений)
 **Разное:** 1 проблем
 - src\web\routes_config.cpp:23:13:: function 'sendConfigExportJson' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-
-**Модернизация:** 1 проблем
-- src\web\routes_config.cpp:364:68:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
 **Читаемость:** 24 проблем
 - src\web\routes_config.cpp:444:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
@@ -95,9 +91,7 @@
 - src\web\routes_config.cpp:446:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
 - ... и ещё 21 проблем
 
-### src/web/routes_data.cpp (1 предупреждений)
-**Модернизация:** 1 проблем
-- src\web\routes_data.cpp:792:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+### src/web/routes_data.cpp ✅ Проблем не найдено
 
 ### src/web/routes_main.cpp ✅ Проблем не найдено
 
