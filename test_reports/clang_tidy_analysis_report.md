@@ -1,12 +1,12 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 08.07.2025 23:38
+**Дата анализа:** 08.07.2025 23:52
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 41
+- **Всего предупреждений:** 39
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
 ### Читаемость (33 проблем)
@@ -15,12 +15,11 @@
 - `readability-implicit-bool-conversion`: 2 случаев
 - `readability-identifier-length`: 1 случаев
 
-### Разное (5 проблем)
-- `misc-use-anonymous-namespace`: 3 случаев
-- `misc-use-internal-linkage`: 2 случаев
-
 ### Прочее (1 проблем)
 - `performance-enum-size`: 1 случаев
+
+### Разное (3 проблем)
+- `misc-use-internal-linkage`: 3 случаев
 
 ### Модернизация (2 проблем)
 - `modernize-use-default-member-init`: 1 случаев
@@ -54,9 +53,7 @@
 
 ### src/sensor_compensation.cpp ✅ Проблем не найдено
 
-### src/thingspeak_client.cpp (1 предупреждений)
-**Разное:** 1 проблем
-- src\thingspeak_client.cpp:16:20:: variable 'THINGSPEAK_API_URL' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+### src/thingspeak_client.cpp ✅ Проблем не найдено
 
 ### src/validation_utils.cpp ✅ Проблем не найдено
 
@@ -72,20 +69,19 @@
 
 ### src/web/csrf_protection.cpp ✅ Проблем не найдено
 
-### src/web/error_handlers.cpp (3 предупреждений)
-**Разное:** 3 проблем
-- src\web\error_handlers.cpp:194:6:: function 'logWebRequest' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- src\web\error_handlers.cpp:247:13:: function 'checkRouteAccess' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- src\web\error_handlers.cpp:264:6:: function 'checkRouteAccess' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+### src/web/error_handlers.cpp (2 предупреждений)
+**Разное:** 2 проблем
+- src\web\error_handlers.cpp:197:6:: function 'logWebRequest' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- src\web\error_handlers.cpp:271:6:: function 'checkRouteAccess' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 
 ### src/web/routes_config.cpp (25 предупреждений)
 **Разное:** 1 проблем
-- src\web\routes_config.cpp:23:13:: function 'sendConfigExportJson' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\web\routes_config.cpp:24:6:: function 'sendConfigExportJson' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 
 **Читаемость:** 24 проблем
+- src\web\routes_config.cpp:442:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
+- src\web\routes_config.cpp:443:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
 - src\web\routes_config.cpp:444:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
-- src\web\routes_config.cpp:445:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
-- src\web\routes_config.cpp:446:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
 - ... и ещё 21 проблем
 
 ### src/web/routes_data.cpp ✅ Проблем не найдено

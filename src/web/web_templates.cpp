@@ -54,7 +54,7 @@ struct InputFieldInfo
         const String& label;
         const String& value;
         const String& type;
-        const bool required;
+        const bool required = false;
         const String& placeholder;
 
         // Используем именованные параметры для безопасности
@@ -109,7 +109,7 @@ struct NumberFieldInfo
     
     // Статический метод-фабрика для безопасного создания
     static NumberFieldInfo create(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
-        return NumberFieldInfo{fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum};
+        return {fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum};
     }
 };
 
