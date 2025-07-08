@@ -129,7 +129,7 @@ void setupServiceRoutes()
                      if (!checkCSRFSafety())
                      {
                          logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
-                         String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
+                         const String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                          webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
                          return;
                      }
@@ -168,7 +168,7 @@ void setupServiceRoutes()
                      if (!checkCSRFSafety())
                      {
                          logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
-                         String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
+                         const String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
                          webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
                          return;
                      }
@@ -214,7 +214,7 @@ static String formatUptime(unsigned long milliseconds)
     unsigned long seconds = milliseconds / MILLISECONDS_IN_SECOND;
     unsigned long minutes = seconds / SECONDS_IN_MINUTE;
     unsigned long hours = minutes / MINUTES_IN_HOUR;
-    unsigned long days = hours / HOURS_IN_DAY;
+    const unsigned long days = hours / HOURS_IN_DAY;
 
     seconds %= SECONDS_IN_MINUTE;
     minutes %= MINUTES_IN_HOUR;

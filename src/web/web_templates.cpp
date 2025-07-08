@@ -6,38 +6,38 @@
 // Структуры для типобезопасности (предотвращение перепутывания параметров)
 struct PageInfo
 {
-    String title;
-    String icon;
+    const String& title;
+    const String& icon;
 
-    PageInfo(const String& titleText, const String& iconText) : title(titleText), icon(iconText) {}
+    PageInfo(const String& titleValue, const String& iconValue) : title(titleValue), icon(iconValue) {}  // NOLINT(bugprone-easily-swappable-parameters)
 };
 
 struct FormInfo
 {
-    String action;
-    String method;
-    String formContent;
-    String buttonText;
-    String buttonIcon;
+    const String& action;
+    const String& method;
+    const String& formContent;
+    const String& buttonText;
+    const String& buttonIcon;
 
-    FormInfo(const String& actionUrl, const String& methodType, const String& formContent, const String& buttonText, const String& buttonIcon)
-        : action(actionUrl), method(methodType), formContent(formContent), buttonText(buttonText), buttonIcon(buttonIcon)
+    FormInfo(const String& actionValue, const String& methodValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue)  // NOLINT(bugprone-easily-swappable-parameters)
+        : action(actionValue), method(methodValue), formContent(formContentValue), buttonText(buttonTextValue), buttonIcon(buttonIconValue)
     {
     }
 };
 
 struct InputFieldInfo
 {
-    String id;
-    String name;
-    String label;
-    String value;
-    String type;
-    bool required;
-    String placeholder;
+    const String& id;
+    const String& name;
+    const String& label;
+    const String& value;
+    const String& type;
+    const bool required;
+    const String& placeholder;
 
     InputFieldInfo(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
-                   const String& typeText, bool isRequired, const String& placeholderText)
+                   const String& typeText, bool isRequired, const String& placeholderText)  // NOLINT(bugprone-easily-swappable-parameters)
         : id(fieldId),
           name(fieldName),
           label(labelText),
@@ -59,14 +59,11 @@ struct NumberFieldInfo
     int max;
     int step;
 
-    NumberFieldInfo(const String& id, const String& name, const String& label, int value, int min, int max, int step)
-        : id(id), name(name), label(label), value(value), min(min), max(max), step(step)
+    NumberFieldInfo(const String& fieldId, const String& name, const String& label, int value, int min, int max, int step)  // NOLINT(bugprone-easily-swappable-parameters)
+        : id(fieldId), name(name), label(label), value(value), min(min), max(max), step(step)
     {
     }
 };
-
-// External function declarations
-extern String navHtml();
 
 String generatePageHeader(const String& title, const String& icon)  // NOLINT(misc-use-internal-linkage)
 {
@@ -116,7 +113,7 @@ String generateErrorPage(int errorCode, const String& errorMessage)  // NOLINT(m
 }
 
 String generateSuccessPage(const String& title, const String& message, const String& redirectUrl,
-                           int redirectDelay)  // NOLINT(misc-use-internal-linkage)
+                           int redirectDelay)  // NOLINT(misc-use-internal-linkage,bugprone-easily-swappable-parameters)
 {
     String content = "<h1>" UI_ICON_SUCCESS " " + title + "</h1>";
     content += "<div class='msg msg-success'>" UI_ICON_SUCCESS " " + message + "</div>";
@@ -141,7 +138,7 @@ String generateSuccessPage(const String& title, const String& message, const Str
  * @return HTML форма
  */
 String generateForm(const String& action, const String& method, const String& formContent, const String& buttonText,
-                    const String& buttonIcon)  // NOLINT(misc-use-internal-linkage)
+                    const String& buttonIcon)  // NOLINT(misc-use-internal-linkage,bugprone-easily-swappable-parameters)
 {
     String html = "<form action='" + action + "' method='" + method + "'>";
     html += formContent;
@@ -190,7 +187,7 @@ String generateConfigSection(const String& title, const String& content,
  */
 String generateInputField(const String& fieldId, const String& fieldName, const String& label, const String& value,
                           const String& type, bool required,
-                          const String& placeholder)  // NOLINT(misc-use-internal-linkage)
+                          const String& placeholder)  // NOLINT(misc-use-internal-linkage,bugprone-easily-swappable-parameters)
 {
     String html = "<div class='form-group'>";
     html += "<label for='" + fieldId + "'>" + label + ":</label>";
@@ -223,7 +220,7 @@ String generateInputField(const InputFieldInfo& field)  // NOLINT(misc-use-inter
  * @return HTML чекбокс
  */
 String generateCheckboxField(const String& fieldId, const String& fieldName, const String& label,
-                             bool checked)  // NOLINT(misc-use-internal-linkage)
+                             bool checked)  // NOLINT(misc-use-internal-linkage,bugprone-easily-swappable-parameters)
 {
     String html = "<div class='form-group'>";
     html += "<label for='" + fieldId + "'>" + label + ":</label>";
@@ -248,7 +245,7 @@ String generateCheckboxField(const String& fieldId, const String& fieldName, con
  * @return HTML числовое поле
  */
 String generateNumberField(const String& fieldId, const String& fieldName, const String& label, int value, int min, int max,
-                           int step)  // NOLINT(misc-use-internal-linkage)
+                           int step)  // NOLINT(misc-use-internal-linkage,bugprone-easily-swappable-parameters)
 {
     String html = "<div class='form-group'>";
     html += "<label for='" + fieldId + "'>" + label + ":</label>";

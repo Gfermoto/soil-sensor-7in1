@@ -187,13 +187,13 @@ void setupConfigRoutes()
             const unsigned long tsMs = webServer.arg("ts_interval").toInt() * CONVERSION_MIN_TO_MS;
             const unsigned long webMs = webServer.arg("web_interval").toInt() * CONVERSION_SEC_TO_MS;
 
-            const ValidationResult valSensor = validateSensorReadInterval(sensorMs);
-            const ValidationResult valMqtt = validateMQTTPublishInterval(mqttMs);
-            ValidationResult valTs = validateThingSpeakInterval(tsMs);
+            const auto valSensor = validateSensorReadInterval(sensorMs);
+            const auto valMqtt = validateMQTTPublishInterval(mqttMs);
+            auto valTs = validateThingSpeakInterval(tsMs);
 
             if (!valSensor.isValid || !valMqtt.isValid || !valTs.isValid)
             {
-                String html = generateErrorPage(
+                const String html = generateErrorPage(
                     HTTP_BAD_REQUEST, "Ошибка валидации интервалов: " + String(!valSensor.isValid ? valSensor.message
                                                                                : !valMqtt.isValid ? valMqtt.message
                                                                                                   : valTs.message));
@@ -366,7 +366,7 @@ void setupConfigRoutes()
             DeserializationError err = deserializeJson(doc, importedJson);
             if (err)
             {
-                String resp = String("{\"error\":\"Ошибка JSON: ") + err.c_str() + "\"}";
+                const String resp = String("{\"error\":\"Ошибка JSON: ") + err.c_str() + "\"}";
                 webServer.send(HTTP_BAD_REQUEST, "application/json", resp);
                 importedJson = "";
                 return;
@@ -400,8 +400,8 @@ void setupConfigRoutes()
         // uploadHandler: накапливаем файл
         []()
         {
-                HTTPUpload& upload = webServer.upload();
-    if (upload.status == UPLOAD_FILE_START)
+            HTTPUpload& upload = webServer.upload();
+            if (upload.status == UPLOAD_FILE_START)
             {
                 importedJson = "";
             }
@@ -477,6 +477,6 @@ static void sendConfigExportJson()
     String json;
     serializeJson(root, json);
 
-    webServer.sendHeader("Content-Disposition", "attachment; filename=\"jxct_config_" + String(millis()) + ".json\"");
+    webServer.sendHeader(R"(Content-Disposition)", R"(attachment; filename="jxct_config_)" + String(millis()) + R"(.json")");
     webServer.send(HTTP_OK, "application/json", json);
 }

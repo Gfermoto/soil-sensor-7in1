@@ -21,7 +21,7 @@ bool init()
         return true;
     }
 
-    if (LittleFS.begin(true) == 0)
+    if (!LittleFS.begin(true))
     {
         logError(String("LittleFS не инициализирован"));
         return false;
@@ -46,7 +46,7 @@ bool saveCsv(SoilProfile profile, Stream& fileStream)
     }
     const char* path = profileToFilename(profile);
 
-    File calibrationFile = LittleFS.open(path, "w");
+    auto calibrationFile = LittleFS.open(path, "w");
     if (!calibrationFile)
     {
         logErrorSafe("\1", path);
@@ -61,7 +61,7 @@ bool saveCsv(SoilProfile profile, Stream& fileStream)
 
     calibrationFile.close();
     logSuccessSafe("\1", path, calibrationFile.size());
-    return true;
+    return calibrationFile.size() > 0;
 }
 
 bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntries, size_t& outCount)
@@ -72,7 +72,7 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
         return false;
     }
     const char* path = profileToFilename(profile);
-    File calibrationFile = LittleFS.open(path, "r");
+    auto calibrationFile = LittleFS.open(path, "r");
     if (!calibrationFile)
     {
         logWarnSafe("\1", path);
@@ -84,7 +84,7 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
     {
         line = calibrationFile.readStringUntil('\n');
         line.trim();
-        if (line.length() == 0)
+        if (line.isEmpty())
         {
             continue;
         }
@@ -188,13 +188,10 @@ float applyCalibration(float rawValue, SoilProfile profile)
     if (upperRaw > lowerRaw)
     {
         const float ratio = (rawValue - lowerRaw) / (upperRaw - lowerRaw);
-        const float interpolatedCoeff = lowerCorr + ratio * (upperCorr - lowerCorr);
+        const float interpolatedCoeff = lowerCorr + (ratio * (upperCorr - lowerCorr));
         return rawValue * interpolatedCoeff;
     }
-    else
-    {
-        // Если нет интервала, используем ближайший коэффициент
-        return rawValue * lowerCorr;
-    }
+    // Если нет интервала, используем ближайший коэффициент
+    return rawValue * lowerCorr;
 }
 }  // namespace CalibrationManager

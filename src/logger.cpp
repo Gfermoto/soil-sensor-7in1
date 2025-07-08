@@ -200,7 +200,7 @@ void logMemoryUsage()
 
     Serial.print(COLOR_CYAN);
     Serial.print("🔧 Free heap: ");
-    Serial.print(ESP.getFreeHeap());
+    Serial.print(ESP.getFreeHeap());  // NOLINT(readability-static-accessed-through-instance)
     Serial.println(" bytes");
     Serial.print(COLOR_RESET);
 }
@@ -214,7 +214,7 @@ void logSystemInfo()
 
     Serial.print(COLOR_BLUE);
     Serial.print("ℹ️  ESP32 Chip ID: ");
-    Serial.println(ESP.getChipModel());
+    Serial.println(ESP.getChipModel());  // NOLINT(readability-static-accessed-through-instance)
     Serial.print(COLOR_RESET);
 }
 
@@ -228,11 +228,11 @@ void logWiFiStatus()
     if (WiFi.status() == WL_CONNECTED)
     {
         logWiFi("Подключен к " + WiFi.SSID() + ", IP: " + WiFi.localIP().toString() + ", RSSI: " + String(WiFi.RSSI()) +
-                " dBm");
+                " dBm");  // NOLINT(readability-static-accessed-through-instance)
     }
     else
     {
-        logWarn("WiFi не подключен (статус: " + String(WiFi.status()) + ")");
+        logWarn("WiFi не подключен (статус: " + String(WiFi.status()) + ")");  // NOLINT(readability-static-accessed-through-instance)
     }
 }
 

@@ -45,7 +45,7 @@ void setupMainRoutes()
                 if (webServer.hasArg("mqtt_enabled"))
                 {
                     const ValidationResult hostRes = validateMQTTServer(webServer.arg("mqtt_server"));
-                    ValidationResult portRes = validateMQTTPort(webServer.arg("mqtt_port").toInt());
+                    const ValidationResult portRes = validateMQTTPort(webServer.arg("mqtt_port").toInt());
                     if (!hostRes.isValid || !portRes.isValid)
                     {
                         const String msg = !hostRes.isValid ? hostRes.message : portRes.message;
@@ -56,7 +56,7 @@ void setupMainRoutes()
                 }
                 if (webServer.hasArg("ts_enabled"))
                 {
-                    ValidationResult tsRes = validateThingSpeakAPIKey(webServer.arg("ts_api_key"));
+                    const ValidationResult tsRes = validateThingSpeakAPIKey(webServer.arg("ts_api_key"));
                     if (!tsRes.isValid)
                     {
                         const String html = generateErrorPage(HTTP_BAD_REQUEST, tsRes.message);
@@ -180,7 +180,7 @@ void handleRoot()
     // Показываем остальные настройки только в режиме STA
     if (currentWiFiMode == WiFiMode::STA)
     {
-        String mqttChecked = config.flags.mqttEnabled ? " checked" : "";
+        const String mqttChecked = config.flags.mqttEnabled ? " checked" : "";
         html += "<div class='section'><h2>MQTT настройки</h2>";
         html +=
             "<div class='form-group'><label for='mqtt_enabled'>Включить MQTT:</label><input type='checkbox' "
@@ -202,12 +202,12 @@ void handleRoot()
             "<div class='form-group'><label for='mqtt_password'>MQTT пароль:</label><input type='password' "
             "id='mqtt_password' name='mqtt_password' value='" +
             String(config.mqttPassword) + "'></div>";
-        String hassChecked = config.flags.hassEnabled ? " checked" : "";
+        const String hassChecked = config.flags.hassEnabled ? " checked" : "";
         html +=
             "<div class='form-group'><label for='hass_enabled'>Интеграция с Home Assistant:</label><input "
             "type='checkbox' id='hass_enabled' name='hass_enabled'" +
             hassChecked + "></div></div>";
-        String tsChecked = config.flags.thingSpeakEnabled ? " checked" : "";
+        const String tsChecked = config.flags.thingSpeakEnabled ? " checked" : "";
         html += "<div class='section'><h2>ThingSpeak настройки</h2>";
         html +=
             "<div class='form-group'><label for='ts_enabled'>Включить ThingSpeak:</label><input type='checkbox' "
@@ -224,7 +224,7 @@ void handleRoot()
         html +=
             "<div style='color:#888;font-size:13px'>💡 Интервал публикации настраивается в разделе <a "
             "href='/intervals' style='color:#4CAF50'>Интервалы</a></div></div>";
-        String realSensorChecked = config.flags.useRealSensor ? " checked" : "";
+        const String realSensorChecked = config.flags.useRealSensor ? " checked" : "";
         html += "<div class='section'><h2>Датчик</h2>";
         html +=
             "<div class='form-group'><label for='real_sensor'>Реальный датчик:</label><input type='checkbox' "
@@ -233,7 +233,7 @@ void handleRoot()
 
         // ----------------- ⚙️ Компенсация датчиков -----------------
         html += "<div class='section'><h2>⚙️ Компенсация датчиков</h2>";
-        String calibChecked = config.flags.calibrationEnabled ? " checked" : "";
+        const String calibChecked = config.flags.calibrationEnabled ? " checked" : "";
         html +=
             "<div class='form-group'><label for='cal_enabled'>Включить компенсацию:</label><input type='checkbox' "
             "id='cal_enabled' name='cal_enabled'" +
@@ -293,16 +293,16 @@ void handleRoot()
                 ">Хвойные деревья</option>";
         html += "</select></div>";
         // Тип среды выращивания v2.6.1
-        String selectedEnvOutdoor = config.environmentType == 0 ? " selected" : "";
-        String selectedEnvGreenhouse = config.environmentType == 1 ? " selected" : "";
-        String selectedEnvIndoor = config.environmentType == 2 ? " selected" : "";
+        const String selectedEnvOutdoor = config.environmentType == 0 ? " selected" : "";
+        const String selectedEnvGreenhouse = config.environmentType == 1 ? " selected" : "";
+        const String selectedEnvIndoor = config.environmentType == 2 ? " selected" : "";
         html += "<div class='form-group'><label for='env_type'>Среда:</label><select id='env_type' name='env_type'>";
         html += String("<option value='0'") + selectedEnvOutdoor + ">Открытый грунт</option>";
         html += String("<option value='1'") + selectedEnvGreenhouse + ">Теплица</option>";
         html += String("<option value='2'") + selectedEnvIndoor + ">Комнатная</option></select></div>";
 
         // Сезонные коэффициенты
-        String seasonalChecked = config.flags.seasonalAdjustEnabled ? " checked" : "";
+        const String seasonalChecked = config.flags.seasonalAdjustEnabled ? " checked" : "";
         html +=
             "<div class='form-group'><label for='season_adj'>Учитывать сезонность:</label><input type='checkbox' "
             "id='season_adj' name='season_adj'" +

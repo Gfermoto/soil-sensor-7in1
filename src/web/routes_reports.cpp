@@ -28,15 +28,13 @@ struct TechnicalDebtMetrics
     float coverage;
 };
 
-// Глобальные переменные для кэширования отчётов
-static TestSummary lastTestSummary;         // NOLINT(misc-use-anonymous-namespace)
-static TechnicalDebtMetrics lastTechDebt;   // NOLINT(misc-use-anonymous-namespace)
-static unsigned long lastReportUpdate = 0;  // NOLINT(misc-use-anonymous-namespace)
-static const unsigned long REPORT_CACHE_TTL = REPORT_CACHE_TTL_MS;
+namespace {
+TestSummary lastTestSummary;
+TechnicalDebtMetrics lastTechDebt;
+unsigned long lastReportUpdate = 0;
+const unsigned long REPORT_CACHE_TTL = REPORT_CACHE_TTL_MS;
 
-// Функции для работы с отчётами
-// NOLINTNEXTLINE(misc-use-anonymous-namespace)
-static bool loadTestReport(const String& filename, TestSummary& summary)
+bool loadTestReport(const String& filename, TestSummary& summary)
 {
     if (!SPIFFS.exists(filename))
     {
@@ -73,8 +71,7 @@ static bool loadTestReport(const String& filename, TestSummary& summary)
     return true;
 }
 
-// NOLINTNEXTLINE(misc-use-anonymous-namespace)
-static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& debt)
+bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& debt)
 {
     if (!SPIFFS.exists(filename))
     {
@@ -115,8 +112,7 @@ static bool loadTechDebtReport(const String& filename, TechnicalDebtMetrics& deb
     return true;
 }
 
-// NOLINTNEXTLINE(misc-use-anonymous-namespace)
-static void updateReportsCache()
+void updateReportsCache()
 {
     const unsigned long now = millis();
     if (now - lastReportUpdate < REPORT_CACHE_TTL)
@@ -129,11 +125,10 @@ static void updateReportsCache()
     lastReportUpdate = now;
 }
 
-// NOLINTNEXTLINE(misc-use-anonymous-namespace)
-static String generateReportsHTML()
+String generateReportsHTML()
 {
     updateReportsCache();
-    String html = R"(
+    const String html = R"(
 <!DOCTYPE html>
 <html lang=\"en\">
 <head>
@@ -258,15 +253,14 @@ static String generateReportsHTML()
     return html;
 }
 
-// NOLINTNEXTLINE(misc-use-anonymous-namespace)
-static String generateReportsDashboardHTML()
+String generateReportsDashboardHTML()
 {
     updateReportsCache();
 
     const String statusIcon = lastTestSummary.success_rate >= 90 ? "[OK]" : "[WARNING]";
     const String statusColor = lastTestSummary.success_rate >= 90 ? "#28a745" : "#ffc107";
 
-    String html = R"(
+    const String html = R"(
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -396,6 +390,7 @@ static String generateReportsDashboardHTML()
 
     return html;
 }
+} // namespace
 
 void setupReportsRoutes()
 {
@@ -479,7 +474,7 @@ void setupReportsRoutes()
                  {
                      logWebRequest("GET", "/reports", webServer.client().remoteIP().toString());
 
-                     String html = generateReportsHTML();
+                     const String html = generateReportsHTML();
                      webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
                  });
 
@@ -489,7 +484,7 @@ void setupReportsRoutes()
                  {
                      logWebRequest("GET", "/reports/dashboard", webServer.client().remoteIP().toString());
 
-                     String html = generateReportsDashboardHTML();
+                     const String html = generateReportsDashboardHTML();
                      webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
                  });
 

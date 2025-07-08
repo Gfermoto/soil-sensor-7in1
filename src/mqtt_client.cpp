@@ -22,7 +22,7 @@
 extern NTPClient* timeClient;
 
 WiFiClient espClient;                // NOLINT(misc-use-internal-linkage)
-PubSubClient mqttClient(espClient);  // NOLINT(misc-use-internal-linkage)
+PubSubClient mqttClient(espClient);  // NOLINT(misc-use-internal-linkage,readability-static-accessed-through-instance)
 
 // ⬇️ Начало анонимного пространства — внутренняя реализация MQTT-клиента
 namespace
@@ -203,7 +203,7 @@ bool connectMQTT()  // NOLINT(misc-use-internal-linkage)
     DEBUG_PRINTLN("[КРИТИЧЕСКАЯ ОТЛАДКА] Попытка подключения к MQTT");
 
     // Проверка WiFi
-    if (WiFi.status() != WL_CONNECTED)
+    if (WiFi.status() != WL_CONNECTED)  // NOLINT(readability-static-accessed-through-instance)
     {
         ERROR_PRINTLN("[ОШИБКА] WiFi не подключен!");
         return false;
@@ -804,7 +804,7 @@ static IPAddress getCachedIP(const char* hostname)  // NOLINT(misc-use-anonymous
 
     // DNS запрос
     IPAddress resolvedIP;
-    if (WiFi.hostByName(hostname, resolvedIP))
+    if (WiFi.hostByName(hostname, resolvedIP) != 0)  // NOLINT(readability-static-accessed-through-instance)
     {
         // Кэшируем результат
         strlcpy(dnsCacheMqtt.hostname.data(), hostname, dnsCacheMqtt.hostname.size());
@@ -815,5 +815,5 @@ static IPAddress getCachedIP(const char* hostname)  // NOLINT(misc-use-anonymous
         return resolvedIP;
     }
 
-    return IPAddress(0, 0, 0, 0);  // Ошибка резолвинга
+    return IPAddress{0, 0, 0, 0};  // Ошибка резолвинга
 }

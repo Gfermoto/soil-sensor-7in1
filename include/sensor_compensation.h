@@ -38,16 +38,16 @@ struct EnvironmentalConditions
 
 struct NPKReferences
 {
-    float& nitrogen;    // мг/кг
-    float& phosphorus;  // мг/кг
-    float& potassium;   // мг/кг
+    float nitrogen;    // мг/кг
+    float phosphorus;  // мг/кг
+    float potassium;   // мг/кг
 };
 
 // (устаревшие функции компенсации удалены)
 
 float correctEC(float ecRaw, float T, float theta, SoilType soil);
 float correctPH(float phRaw, float T);
-void correctNPK(float T, float theta, float& N, float& P, float& K, SoilType soil);
+void correctNPK(float T, float theta, NPKReferences& npk, SoilType soil);
 
 // ✅ Новые типобезопасные версии (предотвращают перепутывание параметров)
 float correctEC(float ecRaw, const EnvironmentalConditions& env, SoilType soil);

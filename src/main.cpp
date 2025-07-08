@@ -53,10 +53,10 @@ const int RESET_BUTTON_PIN = 0;                     // GPIO0 для кнопки
 const unsigned long STATUS_PRINT_INTERVAL = 30000;  // 30 секунд
 
 // Внутренняя инициализация Preferences (реализована ниже)
-static bool initPreferences();  // NOLINT(misc-use-anonymous-namespace)
+bool initPreferences();
 
 // Реализация инициализации Preferences (внутренняя)
-static bool initPreferences()  // NOLINT(misc-use-anonymous-namespace)
+bool initPreferences()
 {
     return preferences.begin("jxct", false);
 }
@@ -65,7 +65,7 @@ static bool initPreferences()  // NOLINT(misc-use-anonymous-namespace)
 // перемещены в анонимное пространство имён выше
 
 // ✅ Неблокирующая задача мониторинга кнопки сброса
-static void resetButtonTask(void* /*parameter*/)  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
+void resetButtonTask(void* /*parameter*/)
 {
     pinMode(RESET_BUTTON_PIN, INPUT_PULLUP);
     static unsigned long buttonPressTime = 0;

@@ -363,13 +363,9 @@ bool isValidHostname(const String& hostname)
     }
 
     // Не должен начинаться или заканчиваться точкой или дефисом
-    if (hostname.charAt(0) == '.' || hostname.charAt(0) == '-' || hostname.charAt(hostname.length() - 1) == '.' ||
-        hostname.charAt(hostname.length() - 1) == '-')
-    {
-        return false;
-    }
-
-    return true;
+    return hostname.charAt(0) != '.' && hostname.charAt(0) != '-' &&
+           hostname.charAt(hostname.length() - 1) != '.' &&
+           hostname.charAt(hostname.length() - 1) != '-';
 }
 
 String formatValidationErrors(const ConfigValidationResult& result)
@@ -379,7 +375,7 @@ String formatValidationErrors(const ConfigValidationResult& result)
         return "";
     }
 
-    String formatted = "Ошибки валидации:\n";
+    String formatted = "Ошибки валидации:\n";  // NOLINT(misc-const-correctness) - изменяется в цикле
     for (const auto& error : result.errors)
     {
         formatted += "• " + error.field + ": " + error.message + "\n";
@@ -394,7 +390,7 @@ String formatSensorValidationErrors(const SensorValidationResult& result)
         return "";
     }
 
-    String formatted = "Ошибки валидации датчика:\n";
+    String formatted = "Ошибки валидации датчика:\n";  // NOLINT(misc-const-correctness) - изменяется в цикле
     for (const auto& error : result.errors)
     {
         formatted += "• " + error.field + ": " + error.message + "\n";

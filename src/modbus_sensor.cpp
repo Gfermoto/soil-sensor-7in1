@@ -6,6 +6,7 @@
  */
 #include "modbus_sensor.h"
 #include <Arduino.h>
+#include <algorithm>  // для std::min
 #include "calibration_manager.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "jxct_config_vars.h"
@@ -54,7 +55,7 @@ uint16_t calculateCRC16(const uint8_t* data, size_t length)
         crc ^= (uint16_t)data[i];
         for (int j = 0; j < 8; ++j)
         {
-            if (crc & 0x0001)
+            if ((crc & 0x0001) != 0)
             {
                 crc = (crc >> 1) ^ 0xA001;
             }
@@ -83,7 +84,9 @@ void updateIrrigationFlag(SensorData& data)
 {
     constexpr uint8_t WIN = 6;
     static std::array<float, WIN> buf = {NAN};
-    static uint8_t idx = 0, filled = 0, persist = 0;
+    static uint8_t idx = 0;
+    static uint8_t filled = 0;
+    static uint8_t persist = 0;
 
     float baseline = data.humidity;
     for (uint8_t i = 0; i < filled; ++i)
@@ -162,10 +165,11 @@ void applyCompensationIfEnabled(SensorData& data)
 
     data.ph = correctPH(phCalibrated, tempCalibrated);
 
-    data.nitrogen = nCalibrated;
-    data.phosphorus = pCalibrated;
-    data.potassium = kCalibrated;
-    correctNPK(tempCalibrated, humCalibrated, data.nitrogen, data.phosphorus, data.potassium, soil);
+    NPKReferences npk{data.nitrogen, data.phosphorus, data.potassium};
+    correctNPK(tempCalibrated, humCalibrated, npk, soil);
+    data.nitrogen = npk.nitrogen;
+    data.phosphorus = npk.phosphorus;
+    data.potassium = npk.potassium;
 
     // Обновляем остальные значения
     data.temperature = tempCalibrated;
@@ -233,10 +237,10 @@ void setupModbus()
     logSuccess("Пины SP3485E настроены");
 
     // Инициализация UART для Modbus
-    Serial2.begin(9600, SERIAL_8N1, MODBUS_RX_PIN, MODBUS_TX_PIN);
+    Serial2.begin(9600, SERIAL_8N1, MODBUS_RX_PIN, MODBUS_TX_PIN);  // NOLINT(readability-static-accessed-through-instance)
 
     // Настройка Modbus с обработчиками переключения режима
-    modbus.begin(JXCT_MODBUS_ID, Serial2);
+    modbus.begin(JXCT_MODBUS_ID, Serial2);  // NOLINT(readability-static-accessed-through-instance)
     modbus.preTransmission(preTransmission);    // Вызывается перед передачей
     modbus.postTransmission(postTransmission);  // Вызывается после передачи
 
@@ -297,24 +301,21 @@ bool readFirmwareVersion()
     logSensor("Запрос версии прошивки датчика...");
     const uint8_t result = modbus.readHoldingRegisters(0x07, 1);
 
-    if (result == modbus.ku8MBSuccess)
+    if (result == modbus.ku8MBSuccess)  // NOLINT(readability-static-accessed-through-instance)
     {
         const uint16_t version = modbus.getResponseBuffer(0);
         logSuccessSafe("\1", (version >> 8) & 0xFF, version & 0xFF);
         return true;
     }
-    else
-    {
-        logErrorSafe("\1", result);
-        printModbusError(result);
-        return false;
-    }
+    logErrorSafe("\1", result);
+    printModbusError(result);
+    return false;
 }
 
 bool readErrorStatus()
 {
     const uint8_t result = modbus.readHoldingRegisters(REG_ERROR_STATUS, 1);
-    if (result == modbus.ku8MBSuccess)
+    if (result == modbus.ku8MBSuccess)  // NOLINT(readability-static-accessed-through-instance)
     {
         sensorData.error_status = modbus.getResponseBuffer(0);
         return true;
@@ -330,11 +331,11 @@ bool changeDeviceAddress(uint8_t new_address)
     }
 
     const uint8_t result = modbus.writeSingleRegister(REG_DEVICE_ADDRESS, new_address);
-    if (result == modbus.ku8MBSuccess)
+    if (result == modbus.ku8MBSuccess)  // NOLINT(readability-static-accessed-through-instance)
     {
         // ✅ Неблокирующая задержка через vTaskDelay
         delay(100);  // ОТКАТ: Критичный timing для Modbus
-        modbus.begin(new_address, Serial2);
+        modbus.begin(new_address, Serial2);  // NOLINT(readability-static-accessed-through-instance)
         return true;
     }
     return false;
@@ -386,20 +387,20 @@ bool testModbusConnection()
 
     // Тест 3: Проверка конфигурации UART
     logSystem("Тест 3: Проверка конфигурации UART...");
-    if (Serial2.baudRate() == 9600)
+    if (Serial2.baudRate() == 9600)  // NOLINT(readability-static-accessed-through-instance)
     {
         logSuccess("Скорость UART настроена правильно: 9600");
     }
     else
     {
-        logErrorSafe("\1", Serial2.baudRate());
+        logErrorSafe("\1", Serial2.baudRate());  // NOLINT(readability-static-accessed-through-instance)
         return false;
     }
 
     // Тест 4: Попытка чтения регистра версии прошивки
     logSystem("Тест 4: Чтение версии прошивки...");
     const uint8_t result = modbus.readHoldingRegisters(0x00, 1);
-    if (result == modbus.ku8MBSuccess)
+    if (result == modbus.ku8MBSuccess)  // NOLINT(readability-static-accessed-through-instance)
     {
         logSuccess("Успешно прочитан регистр версии");
     }
@@ -432,30 +433,27 @@ static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float mu
     logDebugSafe("\1", reg_name, reg_addr);
     const uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
 
-    if (result == modbus.ku8MBSuccess)
+    if (result == modbus.ku8MBSuccess)  // NOLINT(readability-static-accessed-through-instance)
     {
         const uint16_t raw_value = modbus.getResponseBuffer(0);
 
         if (is_float)
         {
-            auto float_target = static_cast<float*>(target);
+            auto* float_target = static_cast<float*>(target);
             *float_target = convertRegisterToFloat(raw_value, multiplier);
             logDebugSafe("\1", reg_name, *float_target);
         }
         else
         {
-            auto int_target = static_cast<uint16_t*>(target);
+            auto* int_target = static_cast<uint16_t*>(target);
             *int_target = raw_value;
             logDebugSafe("\1", reg_name, *int_target);
         }
         return true;
     }
-    else
-    {
-        logErrorSafe("\1", reg_name, result);
-        printModbusError(result);
-        return false;
-    }
+    logErrorSafe("\1", reg_name, result);
+    printModbusError(result);
+    return false;
 }
 
 /**
@@ -689,15 +687,7 @@ void initMovingAverageBuffers(SensorData& data)
 
 void addToMovingAverage(SensorData& data, const SensorData& newReading)
 {
-    uint8_t window_size = config.movingAverageWindow;
-    if (window_size < 5)
-    {
-        window_size = 5;
-    }
-    if (window_size > 15)
-    {
-        window_size = 15;
-    }
+    uint8_t window_size = std::max(static_cast<uint8_t>(5), std::min(static_cast<uint8_t>(15), config.movingAverageWindow));
 
     // Обновляем буферы
     data.temp_buffer[data.buffer_index] = newReading.temperature;
@@ -716,16 +706,16 @@ void addToMovingAverage(SensorData& data, const SensorData& newReading)
     }
 
     // Вычисляем скользящее среднее
-        data.temperature = calculateMovingAverage(data.temp_buffer, window_size, data.buffer_filled);
-        data.humidity = calculateMovingAverage(data.hum_buffer, window_size, data.buffer_filled);
-        data.ec = calculateMovingAverage(data.ec_buffer, window_size, data.buffer_filled);
-        data.ph = calculateMovingAverage(data.ph_buffer, window_size, data.buffer_filled);
-        data.nitrogen = calculateMovingAverage(data.n_buffer, window_size, data.buffer_filled);
-        data.phosphorus = calculateMovingAverage(data.p_buffer, window_size, data.buffer_filled);
-        data.potassium = calculateMovingAverage(data.k_buffer, window_size, data.buffer_filled);
-    }
+    data.temperature = calculateMovingAverage(data.temp_buffer, window_size, data.buffer_filled);
+    data.humidity = calculateMovingAverage(data.hum_buffer, window_size, data.buffer_filled);
+    data.ec = calculateMovingAverage(data.ec_buffer, window_size, data.buffer_filled);
+    data.ph = calculateMovingAverage(data.ph_buffer, window_size, data.buffer_filled);
+    data.nitrogen = calculateMovingAverage(data.n_buffer, window_size, data.buffer_filled);
+    data.phosphorus = calculateMovingAverage(data.p_buffer, window_size, data.buffer_filled);
+    data.potassium = calculateMovingAverage(data.k_buffer, window_size, data.buffer_filled);
+}
 
-float calculateMovingAverage(const float* buffer, uint8_t window_size, uint8_t filled)
+float calculateMovingAverage(const float* buffer, uint8_t window_size, uint8_t filled)  // NOLINT(bugprone-easily-swappable-parameters)
 {
     if (filled == 0)
     {
@@ -733,24 +723,22 @@ float calculateMovingAverage(const float* buffer, uint8_t window_size, uint8_t f
     }
 
     // Берем последние filled элементов (или window_size, если filled >= window_size)
-    const uint8_t elements_to_use = (filled < window_size) ? filled : window_size;
+    const uint8_t elements_to_use = std::min(filled, window_size);
 
     // v2.4.1: Используем настраиваемый алгоритм (среднее или медиана)
-    extern Config config;
-
     if (config.filterAlgorithm == 1)
     {  // FILTER_ALGORITHM_MEDIAN
         // Создаем временный массив для медианы
         std::array<float, 15> temp_values{};  // Максимальный размер окна
-        for (int i = 0; i < elements_to_use; ++i)
+        for (uint8_t i = 0; i < elements_to_use; ++i)
         {
             temp_values.at(i) = buffer[i];
         }
 
         // Простая сортировка для медианы
-        for (int i = 0; i < elements_to_use - 1; ++i)
+        for (uint8_t i = 0; i < elements_to_use - 1; ++i)
         {
-            for (int j = 0; j < elements_to_use - i - 1; ++j)
+            for (uint8_t j = 0; j < elements_to_use - i - 1; ++j)
             {
                 if (temp_values.at(j) > temp_values.at(j + 1))
                 {
@@ -762,7 +750,7 @@ float calculateMovingAverage(const float* buffer, uint8_t window_size, uint8_t f
         }
 
         // Возвращаем медиану
-        if (elements_to_use % 2 == 0)
+        if (elements_to_use % 2 == 0)  // NOLINT(bugprone-branch-clone)
         {
             return (temp_values.at(elements_to_use / 2 - 1) + temp_values.at(elements_to_use / 2)) / 2.0F;
         }

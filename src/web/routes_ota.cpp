@@ -349,7 +349,7 @@ static void sendOtaStatusJson()
     {
         if (localUploadTotal > 0)
         {
-            size_t percent = (localUploadProgress * 100) / localUploadTotal;
+                            const size_t percent = (localUploadProgress * 100) / localUploadTotal;
             doc["status"] = "local " + String(percent) + "%";
         }
         else

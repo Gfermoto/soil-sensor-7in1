@@ -224,7 +224,7 @@ static bool downloadData(HTTPClient& http, int contentLen,
     }
 
     WiFiClient* stream = http.getStreamPtr();
-    if (!stream)
+    if (stream == nullptr)
     {
         strlcpy(statusBuf.data(), "Ошибка потока", sizeof(statusBuf));
         logError("[OTA] Не удалось получить поток данных");
@@ -346,7 +346,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
 
     // ИСПРАВЛЕНО: Создаем HTTP клиент в куче для экономии стека
     HTTPClient* http = new HTTPClient();
-    if (!http)
+    if (http == nullptr)
     {
         strlcpy(statusBuf.data(), "Ошибка создания HTTP клиента", sizeof(statusBuf));
         logError("[OTA] Не удалось создать HTTP клиент");
@@ -369,7 +369,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
 
     // ИСПРАВЛЕНО: Создаем SHA256 контекст в куче
     mbedtls_sha256_context* shaCtx = new mbedtls_sha256_context();
-    if (!shaCtx)
+    if (shaCtx == nullptr)
     {
         strlcpy(statusBuf.data(), "Ошибка создания SHA256 контекста", sizeof(statusBuf));
         logError("[OTA] Не удалось создать SHA256 контекст");
@@ -395,13 +395,13 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
 
     // Проверка SHA256
     strlcpy(statusBuf.data(), "Проверка", sizeof(statusBuf));
-    uint8_t digest[32];
-    mbedtls_sha256_finish_ret(shaCtx, digest);
+    std::array<uint8_t, 32> digest{};
+    mbedtls_sha256_finish_ret(shaCtx, digest.data());
     mbedtls_sha256_free(shaCtx);
     delete shaCtx;
 
     // Проверяем SHA256
-    if (!verifySha256(digest, expectedSha256))
+    if (!verifySha256(digest.data(), expectedSha256))
     {
         strlcpy(statusBuf.data(), "Неверная контрольная сумма", sizeof(statusBuf));
         logError("[OTA] SHA256 не совпадает");
@@ -511,7 +511,7 @@ void handleOTA()
 
     logSystemSafe("\1", debugCallCount, manifestUrlGlobal.data());
 
-    if (!clientPtr)
+    if (clientPtr == nullptr)
     {
         logError("[OTA] [DEBUG] clientPtr не задан - выходим");
         return;
@@ -561,13 +561,13 @@ void handleOTA()
     }
 
     String manifestContent = http.getString();
-    const int contentLength = manifestContent.length();
+    const unsigned int contentLength = manifestContent.length();
     http.end();
 
     logSystemSafe("\1", contentLength);
 
     // Показываем первые 200 символов для диагностики
-    String preview = manifestContent.substring(0, min(200, contentLength));
+    String preview = manifestContent.substring(0, std::min(200U, contentLength));
     logSystemSafe("\1", preview.c_str(), contentLength > 200 ? "..." : "");
 
     // Проверяем что это JSON

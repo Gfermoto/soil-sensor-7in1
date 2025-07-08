@@ -29,36 +29,46 @@ std::string formatFloat(float value, const FormatOptions& options)
     switch (options.formatType)  // NOLINT(bugprone-branch-clone)
     {
         case FormatType::INTEGER:
-            snprintf(buf.data(), buf.size(), "%d", static_cast<int>(lround(value)));
-            break;
         case FormatType::FLOAT:
-            snprintf(buf.data(), buf.size(), "%.*f", options.precision, value);
+            if (options.formatType == FormatType::INTEGER)
+            {
+                snprintf(buf.data(), buf.size(), "%d", static_cast<int>(lround(value)));
+            }
+            else
+            {
+                snprintf(buf.data(), buf.size(), "%.*f", options.precision, value);
+            }
             break;
     }
     return std::string(buf.data());
 }
 }  // namespace
 
+// NOLINTNEXTLINE(misc-use-internal-linkage)
 std::string format_moisture(float value)
 {
     return formatFloat(value, FormatOptions(1, FormatType::FLOAT));
 }
 
+// NOLINTNEXTLINE(misc-use-internal-linkage)
 std::string format_temperature(float value)
 {
     return formatFloat(value, FormatOptions(1, FormatType::FLOAT));
 }
 
+// NOLINTNEXTLINE(misc-use-internal-linkage)
 std::string format_ec(float value)
 {
     return formatFloat(value, FormatOptions(0, FormatType::INTEGER));
 }
 
+// NOLINTNEXTLINE(misc-use-internal-linkage)
 std::string format_ph(float value)
 {
     return formatFloat(value, FormatOptions(1, FormatType::FLOAT));
 }
 
+// NOLINTNEXTLINE(misc-use-internal-linkage)
 std::string format_npk(float value)
 {
     return formatFloat(value, FormatOptions(0, FormatType::INTEGER));

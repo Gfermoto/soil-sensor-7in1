@@ -21,7 +21,7 @@ struct HttpRequest
     String uri;
     String clientIP;
 
-    HttpRequest(const String& methodValue, const String& uriValue, const String& ipAddress)
+    HttpRequest(const String& methodValue, const String& uriValue, const String& ipAddress)  // NOLINT(bugprone-easily-swappable-parameters)
         : method(methodValue), uri(uriValue), clientIP(ipAddress)
     {
     }
@@ -32,24 +32,19 @@ struct HttpRequest
 namespace
 {
 
-bool validateInterval(const String& argName, int minValue, int maxValue, const String& description)
+// ✅ Типобезопасная версия (предотвращает перепутывание min/max)
+bool validateInterval(const String& argName, const ValidationRange& range, const String& description)
 {
     if (webServer.hasArg(argName))
     {
         const int value = webServer.arg(argName).toInt();
-        if (value < minValue || value > maxValue)
+        if (value < range.minValue || value > range.maxValue)
         {
-            logWarnSafe("\1", description.c_str(), value, minValue, maxValue);
+            logWarnSafe("\1", description.c_str(), value, range.minValue, range.maxValue);
             return false;
         }
     }
     return true;
-}
-
-// ✅ Типобезопасная версия (предотвращает перепутывание min/max)
-bool validateInterval(const String& argName, const ValidationRange& range, const String& description)
-{
-    return validateInterval(argName, range.minValue, range.maxValue, description);
 }
 
 }  // namespace
@@ -114,23 +109,23 @@ bool validateConfigInput(bool checkRequired)
     }
 
     // Валидация форматов данных
-    if (!validateInterval("mqtt_port", 1, 65535, "MQTT порт"))
+    if (!validateInterval("mqtt_port", ValidationRange(1, 65535), "MQTT порт"))
     {
         return false;
     }
-    if (!validateInterval("ntp_interval", 10000, 86400000, "NTP интервал"))
+    if (!validateInterval("ntp_interval", ValidationRange(10000, 86400000), "NTP интервал"))
     {
         return false;
     }
-    if (!validateInterval("sensor_read", 1000, 300000, "интервал чтения датчика"))
+    if (!validateInterval("sensor_read", ValidationRange(1000, 300000), "интервал чтения датчика"))
     {
         return false;
     }
-    if (!validateInterval("mqtt_publish", 1000, 3600000, "интервал MQTT публикации"))
+    if (!validateInterval("mqtt_publish", ValidationRange(1000, 3600000), "интервал MQTT публикации"))
     {
         return false;
     }
-    if (!validateInterval("thingspeak_interval", 15000, 7200000, "интервал ThingSpeak"))
+    if (!validateInterval("thingspeak_interval", ValidationRange(15000, 7200000), "интервал ThingSpeak"))
     {
         return false;
     }
@@ -238,7 +233,7 @@ bool checkRouteAccess(const String& routeName, const String& icon)
 {
     if (!isRouteAvailable(webServer.uri()))
     {
-        String html = generateApModeUnavailablePage(routeName, icon);
+        const String html = generateApModeUnavailablePage(routeName, icon);
         webServer.send(403, "text/html; charset=utf-8", html);
         return false;
     }

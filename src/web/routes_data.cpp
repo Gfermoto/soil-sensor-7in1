@@ -7,7 +7,7 @@
 #include <ArduinoJson.h>
 #include <LittleFS.h>
 #include <NTPClient.h>
-#include <time.h>
+#include <ctime>
 #include "../../include/jxct_config_vars.h"
 #include "../../include/jxct_constants.h"
 #include "../../include/jxct_format_utils.h"
@@ -159,7 +159,7 @@ RecValues computeRecommendations()
     {
         time_t now = time(nullptr);
         struct tm* timeInfo = localtime(&now);
-        const int month = timeInfo ? timeInfo->tm_mon + 1 : 1;
+        const int month = timeInfo != nullptr ? timeInfo->tm_mon + 1 : 1;
         const bool rainy = (month == 4 || month == 5 || month == 6 || month == 10);
 
         // Коррекция влажности и EC
@@ -177,7 +177,7 @@ RecValues computeRecommendations()
         // Коррекция NPK по сезону
         if (config.environmentType == 0)
         {  // Outdoor
-            if (month >= 3 && month <= 5)
+            if (month >= 3 && month <= 5)  // NOLINT(bugprone-branch-clone)
             {                                       // Весна
                 rec.n *= TEST_DATA_NPK_INCREASE_N;  // +20%
                 rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
@@ -204,7 +204,7 @@ RecValues computeRecommendations()
         }
         else if (config.environmentType == 1)
         {  // Greenhouse
-            if (month >= 3 && month <= 5)
+            if (month >= 3 && month <= 5)  // NOLINT(bugprone-branch-clone)
             {                                       // Весна
                 rec.n *= TEST_DATA_NPK_INCREASE_N;  // +25%
                 rec.p *= TEST_DATA_NPK_INCREASE_P;  // +20%
@@ -326,7 +326,7 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
     doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
     doc["irrigation"] = sensorData.recentIrrigation;
 
-    RecValues rec = computeRecommendations();
+    const RecValues rec = computeRecommendations();
     doc["rec_temperature"] = format_temperature(rec.t);
     doc["rec_humidity"] = format_moisture(rec.hum);
     doc["rec_ec"] = format_ec(rec.ec);
@@ -429,7 +429,7 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
     }
     doc["alerts"] = alerts;
 
-    doc["timestamp"] = (long)(timeClient ? timeClient->getEpochTime() : 0);
+    doc["timestamp"] = (long)(timeClient != nullptr ? timeClient->getEpochTime() : 0);
 
     String json;
     serializeJson(doc, json);
@@ -506,60 +506,60 @@ void setupDataRoutes()
             String recHeader = "Реком.";
             if (strlen(config.cropId) > 0)
             {
-                const char* id = config.cropId;
-                if (strcmp(id, "tomato") == 0)
+                const char* cropId = config.cropId;
+                if (strcmp(cropId, "tomato") == 0)
                 {
                     recHeader = "Томаты";
                 }
-                else if (strcmp(id, "cucumber") == 0)
+                else if (strcmp(cropId, "cucumber") == 0)
                 {
                     recHeader = "Огурцы";
                 }
-                else if (strcmp(id, "pepper") == 0)
+                else if (strcmp(cropId, "pepper") == 0)
                 {
                     recHeader = "Перец";
                 }
-                else if (strcmp(id, "lettuce") == 0)
+                else if (strcmp(cropId, "lettuce") == 0)
                 {
                     recHeader = "Салат";
                 }
-                else if (strcmp(id, "blueberry") == 0)
+                else if (strcmp(cropId, "blueberry") == 0)
                 {
                     recHeader = "Голубика";
                 }
-                else if (strcmp(id, "lawn") == 0)
+                else if (strcmp(cropId, "lawn") == 0)
                 {
                     recHeader = "Газон";
                 }
-                else if (strcmp(id, "grape") == 0)
+                else if (strcmp(cropId, "grape") == 0)
                 {
                     recHeader = "Виноград";
                 }
-                else if (strcmp(id, "conifer") == 0)
+                else if (strcmp(cropId, "conifer") == 0)
                 {
                     recHeader = "Хвойные";
                 }
-                else if (strcmp(id, "strawberry") == 0)
+                else if (strcmp(cropId, "strawberry") == 0)
                 {
                     recHeader = "Клубника";
                 }
-                else if (strcmp(id, "apple") == 0)
+                else if (strcmp(cropId, "apple") == 0)
                 {
                     recHeader = "Яблоня";
                 }
-                else if (strcmp(id, "pear") == 0)
+                else if (strcmp(cropId, "pear") == 0)
                 {
                     recHeader = "Груша";
                 }
-                else if (strcmp(id, "cherry") == 0)
+                else if (strcmp(cropId, "cherry") == 0)
                 {
                     recHeader = "Вишня";
                 }
-                else if (strcmp(id, "raspberry") == 0)
+                else if (strcmp(cropId, "raspberry") == 0)
                 {
                     recHeader = "Малина";
                 }
-                else if (strcmp(id, "currant") == 0)
+                else if (strcmp(cropId, "currant") == 0)
                 {
                     recHeader = "Смородина";
                 }
@@ -594,7 +594,7 @@ void setupDataRoutes()
             html += "</tbody></table></div>";
 
             // ======= КАЛИБРОВКА =======
-            bool csvPresent = CalibrationManager::hasTable(SoilProfile::SAND);  // custom.csv
+            const bool csvPresent = CalibrationManager::hasTable(SoilProfile::SAND);  // custom.csv
 
             html += "<div class='section'><h2>⚙️ Калибровка датчика</h2>";
 
@@ -850,14 +850,14 @@ void setupDataRoutes()
                      if (!checkCSRFSafety())
                      {
                          logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
-                         String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
+                         const String html = generateErrorPage(403, "Forbidden: Недействительный CSRF токен");
                          webServer.send(403, "text/html; charset=utf-8", html);
                          return;
                      }
 
                      CalibrationManager::init();
-                     bool removed = CalibrationManager::deleteTable(SoilProfile::SAND);
-                     String toast = removed ? "CSV+удален" : "CSV+не+найден";
+                     const bool removed = CalibrationManager::deleteTable(SoilProfile::SAND);
+                     const String toast = removed ? "CSV+удален" : "CSV+не+найден";
                      webServer.sendHeader("Location", String("/readings?toast=") + toast, true);
                      webServer.send(302, "text/plain", "Redirect");
                  });
@@ -927,6 +927,3 @@ void setupDataRoutes()
 
     logDebug("Маршруты данных настроены: /readings, /api/v1/sensor (json), /sensor_json [legacy]");
 }
-
-// Вспомогательная функция для получения SSID точки доступа
-extern String getApSsid();

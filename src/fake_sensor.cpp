@@ -36,9 +36,7 @@ void fakeSensorTask(void* pvParameters)
 
             // Конверсия в мг/кг (как в рекомендациях)
             constexpr float NPK_FACTOR = 6.5F;  // пересчёт мг/дм³ → мг/кг (ρ=1.3 г/см³, влажность ≈30%)
-            sensorData.nitrogen = nitrogen_mgdm3 * NPK_FACTOR;
-            sensorData.phosphorus = phosphorus_mgdm3 * NPK_FACTOR;
-            sensorData.potassium = potassium_mgdm3 * NPK_FACTOR;
+            NPKReferences npk{nitrogen_mgdm3 * NPK_FACTOR, phosphorus_mgdm3 * NPK_FACTOR, potassium_mgdm3 * NPK_FACTOR};
 
             sensorData.valid = true;
             sensorData.last_update = millis();  // ✅ Обновляем timestamp
@@ -49,9 +47,9 @@ void fakeSensorTask(void* pvParameters)
             sensorData.raw_ec = sensorData.ec;
             sensorData.raw_ph = sensorData.ph;
             // RAW до компенсации, но уже в правильных единицах (мг/кг)
-            sensorData.raw_nitrogen = sensorData.nitrogen;
-            sensorData.raw_phosphorus = sensorData.phosphorus;
-            sensorData.raw_potassium = sensorData.potassium;
+            sensorData.raw_nitrogen = npk.nitrogen;
+            sensorData.raw_phosphorus = npk.phosphorus;
+            sensorData.raw_potassium = npk.potassium;
 
             // Применяем компенсацию, если включена
             if (config.flags.calibrationEnabled)
@@ -86,8 +84,7 @@ void fakeSensorTask(void* pvParameters)
                 sensorData.ph = correctPH(sensorData.ph, sensorData.temperature);
 
                 // 3. NPK: зависимость от T, θ и типа почвы
-                correctNPK(sensorData.temperature, sensorData.humidity, sensorData.nitrogen, sensorData.phosphorus,
-                           sensorData.potassium, soil);
+                correctNPK(sensorData.temperature, sensorData.humidity, npk, soil);
             }
 
             DEBUG_PRINTLN("[fakeSensorTask] Сгенерированы тестовые данные датчика");

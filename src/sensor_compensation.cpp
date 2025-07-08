@@ -45,7 +45,7 @@ struct ECCompensationParams
     float moisture;
     SoilType soilType;
 
-    ECCompensationParams(float temp, float moist, SoilType soil) : temperature(temp), moisture(moist), soilType(soil) {}
+    ECCompensationParams(float temp, float moist, SoilType soil) : temperature(temp), moisture(moist), soilType(soil) {}  // NOLINT(bugprone-easily-swappable-parameters)
 };
 
 // ------------------------------------------------------------------
@@ -69,7 +69,7 @@ float correctPH(float phRaw, float temperature)
 }
 
 // NPK ---------------------------------------------------------------
-void correctNPK(const ECCompensationParams& params, float& nitrogen, float& phosphorus, float& potassium)  // NOLINT(misc-use-internal-linkage)
+void correctNPK(const ECCompensationParams& params, NPKReferences& npk)  // NOLINT(misc-use-internal-linkage)
 {
     if (params.moisture < 25.0F || params.moisture > 60.0F)
     {
@@ -79,14 +79,14 @@ void correctNPK(const ECCompensationParams& params, float& nitrogen, float& phos
     const int idx = static_cast<int>(params.soilType);
 
     // Температурная коррекция
-    nitrogen *= (1.0F - (k_t_N[idx] * (params.temperature - 25.0F)));
-    phosphorus *= (1.0F - (k_t_P[idx] * (params.temperature - 25.0F)));
-    potassium *= (1.0F - (k_t_K[idx] * (params.temperature - 25.0F)));
+    npk.nitrogen *= (1.0F - (k_t_N[idx] * (params.temperature - 25.0F)));
+    npk.phosphorus *= (1.0F - (k_t_P[idx] * (params.temperature - 25.0F)));
+    npk.potassium *= (1.0F - (k_t_K[idx] * (params.temperature - 25.0F)));
 
     // Влажностная коррекция
-    nitrogen *= k_h_N(params.moisture);
-    phosphorus *= k_h_P(params.moisture);
-    potassium *= k_h_K(params.moisture);
+    npk.nitrogen *= k_h_N(params.moisture);
+    npk.phosphorus *= k_h_P(params.moisture);
+    npk.potassium *= k_h_K(params.moisture);
 }
 
 // ✅ ТИПОБЕЗОПАСНЫЕ ВЕРСИИ (предотвращают перепутывание параметров)
@@ -98,7 +98,7 @@ float correctEC(float ecRaw, const EnvironmentalConditions& env, SoilType soil)
 
 void correctNPK(const EnvironmentalConditions& env, NPKReferences& npk, SoilType soil)
 {
-    correctNPK(ECCompensationParams(env.temperature, env.moisture, soil), npk.nitrogen, npk.phosphorus, npk.potassium);
+    correctNPK(ECCompensationParams(env.temperature, env.moisture, soil), npk);
 }
 // ------------------------------------------------------------------
 
@@ -108,9 +108,8 @@ float correctEC(float ecRaw, float temperature, float theta, SoilType soil)
     return correctEC(ecRaw, EnvironmentalConditions{temperature, theta}, soil);
 }
 
-void correctNPK(float temperature, float theta, float& nitrogen, float& phosphorus, float& potassium, SoilType soil)
+void correctNPK(float temperature, float theta, NPKReferences& npk, SoilType soil)
 {
-    NPKReferences npk{nitrogen, phosphorus, potassium};
     correctNPK(EnvironmentalConditions{temperature, theta}, npk, soil);
 }
 // ------------------------------------------------------------------
