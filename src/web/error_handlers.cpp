@@ -36,6 +36,17 @@ struct HttpRequest
     static HttpRequest create(const String& methodValue, const String& uriValue, const String& clientIPValue) {
         return HttpRequest(methodValue, uriValue, clientIPValue);
     }
+    
+    // Типобезопасная версия с именованными параметрами
+    struct CreateParams {
+        const String& method;
+        const String& uri;
+        const String& clientIP;
+    };
+    
+    static HttpRequest create(const CreateParams& params) {
+        return HttpRequest(params.method, params.uri, params.clientIP);
+    }
 };
 
 // Вспомогательные функции для валидации интервалов — скрыты во внутреннем безымянном пространстве имён,
@@ -186,10 +197,16 @@ void logWebRequest(const String& method, const String& uri, const String& client
     }
 }
 
-// NOLINTNEXTLINE(misc-use-anonymous-namespace)
-static void logWebRequest(const HttpRequest& request)
+// Типобезопасная версия с именованными параметрами
+struct LogWebRequestParams {
+    const String& method;
+    const String& uri;
+    const String& clientIP;
+};
+
+void logWebRequest(const LogWebRequestParams& params)
 {
-    logWebRequest(request.method, request.uri, request.clientIP);
+    logWebRequest(params.method, params.uri, params.clientIP);
 }
 
 /**
@@ -249,4 +266,15 @@ bool checkRouteAccess(const String& routeName, const String& icon)
         return false;
     }
     return true;
+}
+
+// Типобезопасная версия с именованными параметрами
+struct RouteAccessParams {
+    const String& routeName;
+    const String& icon;
+};
+
+bool checkRouteAccess(const RouteAccessParams& params)
+{
+    return checkRouteAccess(params.routeName, params.icon);
 }
