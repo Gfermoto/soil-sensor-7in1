@@ -18,10 +18,66 @@
 
 namespace {
 String importedJson;
-}  // namespace
 
-// Объявление static функции
-static void sendConfigExportJson();
+void sendConfigExportJson()
+{
+    logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
+
+    if (currentWiFiMode == WiFiMode::AP)
+    {
+        webServer.send(HTTP_FORBIDDEN, "application/json", "{\"error\":\"Недоступно в режиме точки доступа\"}");
+        return;
+    }
+
+    StaticJsonDocument<CONFIG_JSON_ROOT_SIZE> root;
+
+    // MQTT
+    JsonObject mqtt = root.createNestedObject("mqtt");
+    mqtt["enabled"] = (bool)config.flags.mqttEnabled; // NOLINT(readability-misplaced-array-index)
+    mqtt["server"] = "YOUR_MQTT_SERVER_HERE"; // NOLINT(readability-misplaced-array-index)
+    mqtt["port"] = config.mqttPort; // NOLINT(readability-misplaced-array-index)
+    mqtt["user"] = "YOUR_MQTT_USER_HERE"; // NOLINT(readability-misplaced-array-index)
+    mqtt["password"] = "YOUR_MQTT_PASSWORD_HERE"; // NOLINT(readability-misplaced-array-index)
+
+    // ThingSpeak
+    JsonObject thingSpeakJson = root.createNestedObject("thingspeak");
+    thingSpeakJson["enabled"] = (bool)config.flags.thingSpeakEnabled; // NOLINT(readability-misplaced-array-index)
+    thingSpeakJson["channel_id"] = "YOUR_CHANNEL_ID_HERE"; // NOLINT(readability-misplaced-array-index)
+    thingSpeakJson["api_key"] = "YOUR_API_KEY_HERE"; // NOLINT(readability-misplaced-array-index)
+
+    // Intervals
+    JsonObject intervals = root.createNestedObject("intervals");
+    intervals["sensor_read"] = config.sensorReadInterval; // NOLINT(readability-misplaced-array-index)
+    intervals["mqtt_publish"] = config.mqttPublishInterval; // NOLINT(readability-misplaced-array-index)
+    intervals["thingspeak"] = config.thingSpeakInterval; // NOLINT(readability-misplaced-array-index)
+    intervals["web_update"] = config.webUpdateInterval; // NOLINT(readability-misplaced-array-index)
+
+    // Filters
+    JsonObject filters = root.createNestedObject("filters");
+    filters["delta_temperature"] = config.deltaTemperature; // NOLINT(readability-misplaced-array-index)
+    filters["delta_humidity"] = config.deltaHumidity; // NOLINT(readability-misplaced-array-index)
+    filters["delta_ph"] = config.deltaPh; // NOLINT(readability-misplaced-array-index)
+    filters["delta_ec"] = config.deltaEc; // NOLINT(readability-misplaced-array-index)
+    filters["delta_npk"] = config.deltaNpk; // NOLINT(readability-misplaced-array-index)
+    filters["moving_average_window"] = config.movingAverageWindow; // NOLINT(readability-misplaced-array-index)
+    filters["force_publish_cycles"] = config.forcePublishCycles; // NOLINT(readability-misplaced-array-index)
+    filters["filter_algorithm"] = config.filterAlgorithm; // NOLINT(readability-misplaced-array-index)
+    filters["outlier_filter_enabled"] = config.outlierFilterEnabled; // NOLINT(readability-misplaced-array-index)
+
+    // Device flags
+    JsonObject device = root.createNestedObject("device");
+    device["use_real_sensor"] = (bool)config.flags.useRealSensor; // NOLINT(readability-misplaced-array-index)
+    device["hass_enabled"] = (bool)config.flags.hassEnabled; // NOLINT(readability-misplaced-array-index)
+
+    root["export_timestamp"] = millis(); // NOLINT(readability-misplaced-array-index)
+
+    String json;
+    serializeJson(root, json);
+
+    webServer.sendHeader(R"(Content-Disposition)", R"(attachment; filename="jxct_config_)" + String(millis()) + R"(.json")");
+    webServer.send(HTTP_OK, "application/json", json);
+}
+}  // namespace
 
 void setupConfigRoutes()
 {
@@ -341,7 +397,7 @@ void setupConfigRoutes()
                  });
 
     // API v1 конфигурация
-    webServer.on(API_CONFIG_EXPORT, HTTP_GET, [](){ sendConfigExportJson(); });
+    webServer.on(API_CONFIG_EXPORT, [](){ sendConfigExportJson(); });
 
     // Импорт конфигурации через multipart/form-data (файл JSON)
     webServer.on(
@@ -422,64 +478,4 @@ void setupConfigRoutes()
         });
 
     logDebug("Маршруты конфигурации настроены: /intervals, /config_manager, /api/v1/config/export");
-}
-
-// Определение функции вне namespace
-static void sendConfigExportJson()
-{
-    logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
-
-    if (currentWiFiMode == WiFiMode::AP)
-    {
-        webServer.send(HTTP_FORBIDDEN, "application/json", "{\"error\":\"Недоступно в режиме точки доступа\"}");
-        return;
-    }
-
-    StaticJsonDocument<CONFIG_JSON_ROOT_SIZE> root;
-
-    // MQTT
-    JsonObject mqtt = root.createNestedObject("mqtt");
-    mqtt["enabled"] = (bool)config.flags.mqttEnabled; // NOLINT(readability-misplaced-array-index)
-    mqtt["server"] = "YOUR_MQTT_SERVER_HERE"; // NOLINT(readability-misplaced-array-index)
-    mqtt["port"] = config.mqttPort; // NOLINT(readability-misplaced-array-index)
-    mqtt["user"] = "YOUR_MQTT_USER_HERE"; // NOLINT(readability-misplaced-array-index)
-    mqtt["password"] = "YOUR_MQTT_PASSWORD_HERE"; // NOLINT(readability-misplaced-array-index)
-
-    // ThingSpeak
-    JsonObject thingSpeakJson = root.createNestedObject("thingspeak");
-    thingSpeakJson["enabled"] = (bool)config.flags.thingSpeakEnabled; // NOLINT(readability-misplaced-array-index)
-    thingSpeakJson["channel_id"] = "YOUR_CHANNEL_ID_HERE"; // NOLINT(readability-misplaced-array-index)
-    thingSpeakJson["api_key"] = "YOUR_API_KEY_HERE"; // NOLINT(readability-misplaced-array-index)
-
-    // Intervals
-    JsonObject intervals = root.createNestedObject("intervals");
-    intervals["sensor_read"] = config.sensorReadInterval; // NOLINT(readability-misplaced-array-index)
-    intervals["mqtt_publish"] = config.mqttPublishInterval; // NOLINT(readability-misplaced-array-index)
-    intervals["thingspeak"] = config.thingSpeakInterval; // NOLINT(readability-misplaced-array-index)
-    intervals["web_update"] = config.webUpdateInterval; // NOLINT(readability-misplaced-array-index)
-
-    // Filters
-    JsonObject filters = root.createNestedObject("filters");
-    filters["delta_temperature"] = config.deltaTemperature; // NOLINT(readability-misplaced-array-index)
-    filters["delta_humidity"] = config.deltaHumidity; // NOLINT(readability-misplaced-array-index)
-    filters["delta_ph"] = config.deltaPh; // NOLINT(readability-misplaced-array-index)
-    filters["delta_ec"] = config.deltaEc; // NOLINT(readability-misplaced-array-index)
-    filters["delta_npk"] = config.deltaNpk; // NOLINT(readability-misplaced-array-index)
-    filters["moving_average_window"] = config.movingAverageWindow; // NOLINT(readability-misplaced-array-index)
-    filters["force_publish_cycles"] = config.forcePublishCycles; // NOLINT(readability-misplaced-array-index)
-    filters["filter_algorithm"] = config.filterAlgorithm; // NOLINT(readability-misplaced-array-index)
-    filters["outlier_filter_enabled"] = config.outlierFilterEnabled; // NOLINT(readability-misplaced-array-index)
-
-    // Device flags
-    JsonObject device = root.createNestedObject("device");
-    device["use_real_sensor"] = (bool)config.flags.useRealSensor; // NOLINT(readability-misplaced-array-index)
-    device["hass_enabled"] = (bool)config.flags.hassEnabled; // NOLINT(readability-misplaced-array-index)
-
-    root["export_timestamp"] = millis(); // NOLINT(readability-misplaced-array-index)
-
-    String json;
-    serializeJson(root, json);
-
-    webServer.sendHeader(R"(Content-Disposition)", R"(attachment; filename="jxct_config_)" + String(millis()) + R"(.json")");
-    webServer.send(HTTP_OK, "application/json", json);
 }
