@@ -182,20 +182,7 @@ bool isFeatureAvailable()
     return isFeatureAvailable("default");
 }
 
-void logWebRequest(const String& method, const String& uri, const String& clientIP)
-{
-    // Логирование только важных запросов, исключаем служебные
-    if (uri.startsWith("/sensor_json") || uri.startsWith(API_SENSOR))
-    {
-        // API запросы логируем на уровне DEBUG
-        logDebugSafe("\1", method.c_str(), uri.c_str(), clientIP.c_str());
-    }
-    else
-    {
-        // Обычные запросы на уровне INFO
-        logInfoSafe("\1", method.c_str(), uri.c_str(), clientIP.c_str());
-    }
-}
+
 
 // Типобезопасная версия с именованными параметрами
 struct LogWebRequestParams {
@@ -257,7 +244,7 @@ bool isRouteAvailable(const String& uri)
  * @brief Middleware для проверки доступности маршрута
  * Используется в каждом маршруте, который недоступен в AP режиме
  */
-bool checkRouteAccess(const String& routeName, const String& icon)
+static bool checkRouteAccess(const String& routeName, const String& icon)
 {
     if (!isRouteAvailable(webServer.uri()))
     {

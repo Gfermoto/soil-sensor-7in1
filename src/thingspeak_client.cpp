@@ -13,7 +13,7 @@
 extern NTPClient* timeClient;
 
 // URL для отправки данных в ThingSpeak
-const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";
+static const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";
 
 namespace
 {

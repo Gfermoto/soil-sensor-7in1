@@ -2,6 +2,8 @@
 
 #include <WebServer.h>
 #include "../src/wifi_manager.h"
+#include "jxct_strings.h"
+#include "logger.h"
 
 // Внешние зависимости
 extern WebServer webServer;
@@ -167,14 +169,6 @@ void handleCalibrationUpload();
 // ============================================================================
 
 /**
- * @brief Middleware для проверки доступности маршрута
- * @param routeName Имя маршрута
- * @param icon Иконка для отображения в интерфейсе
- * @return true если маршрут доступен
- */
-bool checkRouteAccess(const String& routeName, const String& icon);
-
-/**
  * @brief Проверка доступности маршрута в текущем режиме
  * @param uri URI запроса
  * @return true если маршрут доступен
@@ -193,7 +187,20 @@ bool isFeatureAvailable();
  * @param uri URI запроса
  * @param clientIP IP клиента
  */
-void logWebRequest(const String& method, const String& uri, const String& clientIP);
+inline void logWebRequest(const String& method, const String& uri, const String& clientIP)
+{
+    // Логирование только важных запросов, исключаем служебные
+    if (uri.startsWith("/sensor_json") || uri.startsWith(API_SENSOR))
+    {
+        // API запросы логируем на уровне DEBUG
+        logDebugSafe("\1", method.c_str(), uri.c_str(), clientIP.c_str());
+    }
+    else
+    {
+        // Обычные запросы на уровне INFO
+        logInfoSafe("\1", method.c_str(), uri.c_str(), clientIP.c_str());
+    }
+}
 
 // ============================================================================
 // ДОПОЛНИТЕЛЬНЫЕ ФУНКЦИИ ШАБЛОНОВ

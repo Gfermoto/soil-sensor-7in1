@@ -31,12 +31,15 @@ String pendingUpdateVersion = "";
 std::array<char, 8> guardSentinel = {"GUARD!"};  // часовой после URL, как раньше
 }  // namespace
 
-static void printGuard(
+namespace
+{
+void printGuard(
     const char* name, const char* tag,
     const char* current)
 {
     logErrorSafe("\1", name, tag, current);
 }
+}  // namespace
 
 void checkGuard(const char* tag)
 {
@@ -124,7 +127,9 @@ static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)  //
 }
 
 // Вспомогательная функция для инициализации загрузки
-static bool initializeDownload(HTTPClient& http, const String& binUrl,
+namespace
+{
+bool initializeDownload(HTTPClient& http, const String& binUrl,
                                int& contentLen)
 {
     esp_task_wdt_reset();
@@ -203,9 +208,12 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl,
 
     return true;
 }
+}  // namespace
 
 // Вспомогательная функция для загрузки данных
-static bool downloadData(HTTPClient& http, int contentLen,
+namespace
+{
+bool downloadData(HTTPClient& http, int contentLen,
                          mbedtls_sha256_context& shaCtx)
 {
     strlcpy(statusBuf.data(), "Загрузка", sizeof(statusBuf));
@@ -325,6 +333,7 @@ static bool downloadData(HTTPClient& http, int contentLen,
 
     return true;
 }
+}  // namespace
 
 // Основная функция загрузки и обновления (упрощенная)
 static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256)  // NOLINT(misc-use-anonymous-namespace)
