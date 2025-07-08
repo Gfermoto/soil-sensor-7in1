@@ -1,12 +1,12 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 08.07.2025 23:28
+**Дата анализа:** 08.07.2025 23:38
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 43
+- **Всего предупреждений:** 41
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
 ### Читаемость (33 проблем)
@@ -15,9 +15,9 @@
 - `readability-implicit-bool-conversion`: 2 случаев
 - `readability-identifier-length`: 1 случаев
 
-### Разное (7 проблем)
-- `misc-use-anonymous-namespace`: 4 случаев
-- `misc-use-internal-linkage`: 3 случаев
+### Разное (5 проблем)
+- `misc-use-anonymous-namespace`: 3 случаев
+- `misc-use-internal-linkage`: 2 случаев
 
 ### Прочее (1 проблем)
 - `performance-enum-size`: 1 случаев
@@ -48,11 +48,7 @@
 
 ### src/mqtt_client.cpp ✅ Проблем не найдено
 
-### src/ota_manager.cpp (3 предупреждений)
-**Разное:** 3 проблем
-- src\ota_manager.cpp:34:13:: function 'printGuard' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- src\ota_manager.cpp:127:13:: function 'initializeDownload' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- src\ota_manager.cpp:208:13:: function 'downloadData' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+### src/ota_manager.cpp ✅ Проблем не найдено
 
 ### src/routes_calibration.cpp ✅ Проблем не найдено
 
@@ -60,7 +56,7 @@
 
 ### src/thingspeak_client.cpp (1 предупреждений)
 **Разное:** 1 проблем
-- src\thingspeak_client.cpp:16:13:: variable 'THINGSPEAK_API_URL' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- src\thingspeak_client.cpp:16:20:: variable 'THINGSPEAK_API_URL' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 
 ### src/validation_utils.cpp ✅ Проблем не найдено
 
@@ -76,10 +72,11 @@
 
 ### src/web/csrf_protection.cpp ✅ Проблем не найдено
 
-### src/web/error_handlers.cpp (2 предупреждений)
-**Разное:** 2 проблем
-- src\web\error_handlers.cpp:207:6:: function 'logWebRequest' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- src\web\error_handlers.cpp:277:6:: function 'checkRouteAccess' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+### src/web/error_handlers.cpp (3 предупреждений)
+**Разное:** 3 проблем
+- src\web\error_handlers.cpp:194:6:: function 'logWebRequest' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- src\web\error_handlers.cpp:247:13:: function 'checkRouteAccess' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\web\error_handlers.cpp:264:6:: function 'checkRouteAccess' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 
 ### src/web/routes_config.cpp (25 предупреждений)
 **Разное:** 1 проблем
