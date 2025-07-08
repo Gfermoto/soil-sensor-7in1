@@ -12,11 +12,11 @@
 #include "wifi_manager.h"
 extern NTPClient* timeClient;
 
-// URL для отправки данных в ThingSpeak
-static const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";
-
 namespace
 {
+// URL для отправки данных в ThingSpeak
+const char* THINGSPEAK_API_URL = "https://api.thingspeak.com/update";
+
 unsigned long lastTsPublish = 0;
 int consecutiveFailCount = 0;  // счётчик подряд неудач
 

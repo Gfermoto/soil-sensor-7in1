@@ -164,8 +164,9 @@ void handleUploadError(const String& error)
     webServer.send(400, "text/html; charset=utf-8", html);
 }
 
-// NOLINTNEXTLINE(misc-use-anonymous-namespace)
-static bool isFeatureAvailable(const String& feature)
+namespace
+{
+bool isFeatureAvailable(const String& feature)
 {
     // Большинство функций недоступны в AP режиме
     if (currentWiFiMode == WiFiMode::AP)
@@ -175,6 +176,8 @@ static bool isFeatureAvailable(const String& feature)
     }
     return true;
 }
+
+}  // namespace
 
 // Перегрузка без параметров для обратной совместимости
 bool isFeatureAvailable()
@@ -244,7 +247,9 @@ bool isRouteAvailable(const String& uri)
  * @brief Middleware для проверки доступности маршрута
  * Используется в каждом маршруте, который недоступен в AP режиме
  */
-static bool checkRouteAccess(const String& routeName, const String& icon)
+namespace
+{
+bool checkRouteAccess(const String& routeName, const String& icon)
 {
     if (!isRouteAvailable(webServer.uri()))
     {
@@ -260,6 +265,8 @@ struct RouteAccessParams {
     const String& routeName;
     const String& icon;
 };
+
+}  // namespace
 
 bool checkRouteAccess(const RouteAccessParams& params)
 {

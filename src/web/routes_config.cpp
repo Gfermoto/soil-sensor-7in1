@@ -16,11 +16,12 @@
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
 
-// --- API v1 helpers ---
-static String importedJson;  // NOLINT(misc-use-anonymous-namespace)
+namespace {
+String importedJson;
+}  // namespace
 
-// Объявления локальных функций
-static void sendConfigExportJson();
+// Объявление функции вне namespace
+void sendConfigExportJson();
 
 void setupConfigRoutes()
 {
@@ -340,7 +341,7 @@ void setupConfigRoutes()
                  });
 
     // API v1 конфигурация
-    webServer.on(API_CONFIG_EXPORT, HTTP_GET, sendConfigExportJson);
+    webServer.on(API_CONFIG_EXPORT, HTTP_GET, [](){ sendConfigExportJson(); });
 
     // Импорт конфигурации через multipart/form-data (файл JSON)
     webServer.on(
@@ -423,11 +424,8 @@ void setupConfigRoutes()
     logDebug("Маршруты конфигурации настроены: /intervals, /config_manager, /api/v1/config/export");
 }
 
-// ---------------------------------------------------------------------------
-// API v1: /api/v1/config/export
-// ---------------------------------------------------------------------------
-// NOLINTNEXTLINE(misc-use-anonymous-namespace)
-static void sendConfigExportJson()
+// Определение функции вне namespace
+void sendConfigExportJson()
 {
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
 
