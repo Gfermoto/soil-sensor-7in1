@@ -20,8 +20,8 @@ namespace {
 String importedJson;
 }  // namespace
 
-// Объявление функции вне namespace
-void sendConfigExportJson();
+// Объявление static функции
+static void sendConfigExportJson();
 
 void setupConfigRoutes()
 {
@@ -425,7 +425,7 @@ void setupConfigRoutes()
 }
 
 // Определение функции вне namespace
-void sendConfigExportJson()
+static void sendConfigExportJson()
 {
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
 
@@ -446,10 +446,10 @@ void sendConfigExportJson()
     mqtt["password"] = "YOUR_MQTT_PASSWORD_HERE"; // NOLINT(readability-misplaced-array-index)
 
     // ThingSpeak
-    JsonObject ts = root.createNestedObject("thingspeak");
-    ts["enabled"] = (bool)config.flags.thingSpeakEnabled; // NOLINT(readability-misplaced-array-index)
-    ts["channel_id"] = "YOUR_CHANNEL_ID_HERE"; // NOLINT(readability-misplaced-array-index)
-    ts["api_key"] = "YOUR_API_KEY_HERE"; // NOLINT(readability-misplaced-array-index)
+    JsonObject thingSpeakJson = root.createNestedObject("thingspeak");
+    thingSpeakJson["enabled"] = (bool)config.flags.thingSpeakEnabled; // NOLINT(readability-misplaced-array-index)
+    thingSpeakJson["channel_id"] = "YOUR_CHANNEL_ID_HERE"; // NOLINT(readability-misplaced-array-index)
+    thingSpeakJson["api_key"] = "YOUR_API_KEY_HERE"; // NOLINT(readability-misplaced-array-index)
 
     // Intervals
     JsonObject intervals = root.createNestedObject("intervals");
