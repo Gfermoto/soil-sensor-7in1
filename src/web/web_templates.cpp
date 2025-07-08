@@ -47,22 +47,37 @@ struct InputFieldInfo
     const bool required;
     const String& placeholder;
 
-    InputFieldInfo(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
-                   const String& typeText, bool isRequired, const String& placeholderText) // NOLINT(bugprone-easily-swappable-parameters)
-        : id(fieldId),
-          name(fieldName),
-          label(labelText),
-          value(valueText),
-          type(typeText),
-          required(isRequired),
-          placeholder(placeholderText)
+    // Конструктор с именованными параметрами для безопасности
+    struct Builder {
+        const String& id;
+        const String& name;
+        const String& label;
+        const String& value;
+        const String& type;
+        const bool required;
+        const String& placeholder;
+
+        Builder(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
+                const String& typeText, bool isRequired, const String& placeholderText)
+            : id(fieldId), name(fieldName), label(labelText), value(valueText), 
+              type(typeText), required(isRequired), placeholder(placeholderText) {}
+    };
+
+    InputFieldInfo(const Builder& builder)
+        : id(builder.id),
+          name(builder.name),
+          label(builder.label),
+          value(builder.value),
+          type(builder.type),
+          required(builder.required),
+          placeholder(builder.placeholder)
     {
     }
     
     // Статический метод-фабрика для безопасного создания
     static InputFieldInfo create(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
                                 const String& typeText, bool isRequired, const String& placeholderText) {
-        return InputFieldInfo(fieldId, fieldName, labelText, valueText, typeText, isRequired, placeholderText);
+        return InputFieldInfo(Builder(fieldId, fieldName, labelText, valueText, typeText, isRequired, placeholderText));
     }
 };
 
