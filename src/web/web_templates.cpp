@@ -9,7 +9,7 @@ struct PageInfo
     const String& title;
     const String& icon;
 
-    PageInfo(const String& titleValue, const String& iconValue) : title(titleValue), icon(iconValue) {}  // NOLINT(bugprone-easily-swappable-parameters)
+    PageInfo(const String& titleValue, const String& iconValue) : title(titleValue), icon(iconValue) {}
 };
 
 struct FormInfo
@@ -20,7 +20,7 @@ struct FormInfo
     const String& buttonText;
     const String& buttonIcon;
 
-    FormInfo(const String& actionValue, const String& methodValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue)  // NOLINT(bugprone-easily-swappable-parameters)
+    FormInfo(const String& actionValue, const String& methodValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue)
         : action(actionValue), method(methodValue), formContent(formContentValue), buttonText(buttonTextValue), buttonIcon(buttonIconValue)
     {
     }
@@ -37,7 +37,7 @@ struct InputFieldInfo
     const String& placeholder;
 
     InputFieldInfo(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
-                   const String& typeText, bool isRequired, const String& placeholderText)  // NOLINT(bugprone-easily-swappable-parameters)
+                   const String& typeText, bool isRequired, const String& placeholderText)
         : id(fieldId),
           name(fieldName),
           label(labelText),
@@ -59,18 +59,18 @@ struct NumberFieldInfo
     int max;
     int step;
 
-    NumberFieldInfo(const String& fieldId, const String& name, const String& label, int value, int min, int max, int step)  // NOLINT(bugprone-easily-swappable-parameters)
-        : id(fieldId), name(name), label(label), value(value), min(min), max(max), step(step)
+    NumberFieldInfo(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum)
+        : id(fieldId), name(fieldName), label(labelText), value(valueNum), min(minNum), max(maxNum), step(stepNum)
     {
     }
 };
 
-String generatePageHeader(const String& title, const String& icon)  // NOLINT(misc-use-internal-linkage)
+String generatePageHeader(const String& titleText, const String& iconText)  // NOLINT(misc-use-internal-linkage)
 {
-    const String iconStr = icon.length() > 0 ? icon + " " : "";
+    const String iconStr = iconText.length() > 0 ? iconText + " " : "";
     String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'>";
     html += "<meta name='viewport' content='width=device-width, initial-scale=1.0'>";
-    html += "<title>" + iconStr + title + "</title>";
+    html += "<title>" + iconStr + titleText + "</title>";
     html += "<style>" + String(getUnifiedCSS()) + "</style>";
     html += "</head><body><div class='container'>";
     return html;
@@ -87,12 +87,12 @@ String generatePageFooter()  // NOLINT(misc-use-internal-linkage)
     return "</div>" + String(getToastHTML()) + "</body></html>";
 }
 
-String generateBasePage(const String& title, const String& content,
-                        const String& icon)  // NOLINT(misc-use-internal-linkage)
+String generateBasePage(const String& titleText, const String& contentText,
+                        const String& iconText)  // NOLINT(misc-use-internal-linkage)
 {
-    String html = generatePageHeader(title, icon);
+    String html = generatePageHeader(titleText, iconText);
     html += navHtml();
-    html += content;
+    html += contentText;
     html += generatePageFooter();
     return html;
 }
@@ -112,20 +112,20 @@ String generateErrorPage(int errorCode, const String& errorMessage)  // NOLINT(m
     return generateBasePage("Ошибка " + String(errorCode), content, UI_ICON_ERROR);
 }
 
-String generateSuccessPage(const String& title, const String& message, const String& redirectUrl,
-                           int redirectDelay)  // NOLINT(misc-use-internal-linkage,bugprone-easily-swappable-parameters)
+String generateSuccessPage(const String& titleText, const String& messageText, const String& redirectUrlText,
+                           int redirectDelaySeconds)  // NOLINT(misc-use-internal-linkage)
 {
-    String content = "<h1>" UI_ICON_SUCCESS " " + title + "</h1>";
-    content += "<div class='msg msg-success'>" UI_ICON_SUCCESS " " + message + "</div>";
+    String content = "<h1>" UI_ICON_SUCCESS " " + titleText + "</h1>";
+    content += "<div class='msg msg-success'>" UI_ICON_SUCCESS " " + messageText + "</div>";
 
-    if (redirectUrl.length() > 0)
+    if (redirectUrlText.length() > 0)
     {
-        content += "<p><em>Перенаправление через " + String(redirectDelay) + " секунд...</em></p>";
-        content += "<script>setTimeout(function(){window.location.href='" + redirectUrl + "';}, " +
-                   String(redirectDelay * JXCT_REDIRECT_DELAY_MS) + ");</script>";
+        content += "<p><em>Перенаправление через " + String(redirectDelaySeconds) + " секунд...</em></p>";
+        content += "<script>setTimeout(function(){window.location.href='" + redirectUrlText + "';}, " +
+                   String(redirectDelaySeconds * JXCT_REDIRECT_DELAY_MS) + ");</script>";
     }
 
-    return generateBasePage(title, content, UI_ICON_SUCCESS);
+    return generateBasePage(titleText, content, UI_ICON_SUCCESS);
 }
 
 /**
@@ -137,12 +137,12 @@ String generateSuccessPage(const String& title, const String& message, const Str
  * @param buttonIcon Иконка кнопки
  * @return HTML форма
  */
-String generateForm(const String& action, const String& method, const String& formContent, const String& buttonText,
-                    const String& buttonIcon)  // NOLINT(misc-use-internal-linkage,bugprone-easily-swappable-parameters)
+String generateForm(const String& actionUrl, const String& methodType, const String& formContentText, const String& buttonTextValue,
+                    const String& buttonIconValue)  // NOLINT(misc-use-internal-linkage)
 {
-    String html = "<form action='" + action + "' method='" + method + "'>";
-    html += formContent;
-    html += generateButton(ButtonType::PRIMARY, ButtonConfig{buttonIcon.c_str(), buttonText.c_str(), ""});
+    String html = "<form action='" + actionUrl + "' method='" + methodType + "'>";
+    html += formContentText;
+    html += generateButton(ButtonType::PRIMARY, ButtonConfig{buttonIconValue.c_str(), buttonTextValue.c_str(), ""});
     html += "</form>";
     return html;
 }
@@ -185,20 +185,20 @@ String generateConfigSection(const String& title, const String& content,
  * @param placeholder Placeholder текст
  * @return HTML поле ввода
  */
-String generateInputField(const String& fieldId, const String& fieldName, const String& label, const String& value,
-                          const String& type, bool required,
-                          const String& placeholder)  // NOLINT(misc-use-internal-linkage,bugprone-easily-swappable-parameters)
+String generateInputField(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
+                          const String& typeText, bool required,
+                          const String& placeholderText)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='form-group'>";
-    html += "<label for='" + fieldId + "'>" + label + ":</label>";
-    html += "<input type='" + type + "' id='" + fieldId + "' name='" + fieldName + "' value='" + value + "'";
+    html += "<label for='" + fieldId + "'>" + labelText + ":</label>";
+    html += "<input type='" + typeText + "' id='" + fieldId + "' name='" + fieldName + "' value='" + valueText + "'";
     if (required)
     {
         html += " required";
     }
-    if (placeholder.length() > 0)
+    if (placeholderText.length() > 0)
     {
-        html += " placeholder='" + placeholder + "'";
+        html += " placeholder='" + placeholderText + "'";
     }
     html += "></div>";
     return html;
@@ -219,11 +219,11 @@ String generateInputField(const InputFieldInfo& field)  // NOLINT(misc-use-inter
  * @param checked Состояние чекбокса
  * @return HTML чекбокс
  */
-String generateCheckboxField(const String& fieldId, const String& fieldName, const String& label,
-                             bool checked)  // NOLINT(misc-use-internal-linkage,bugprone-easily-swappable-parameters)
+String generateCheckboxField(const String& fieldId, const String& fieldName, const String& labelText,
+                             bool checked)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='form-group'>";
-    html += "<label for='" + fieldId + "'>" + label + ":</label>";
+    html += "<label for='" + fieldId + "'>" + labelText + ":</label>";
     html += "<input type='checkbox' id='" + fieldId + "' name='" + fieldName + "'";
     if (checked)
     {
@@ -244,13 +244,13 @@ String generateCheckboxField(const String& fieldId, const String& fieldName, con
  * @param step Шаг изменения
  * @return HTML числовое поле
  */
-String generateNumberField(const String& fieldId, const String& fieldName, const String& label, int value, int min, int max,
-                           int step)  // NOLINT(misc-use-internal-linkage,bugprone-easily-swappable-parameters)
+String generateNumberField(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum,
+                           int stepNum)  // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='form-group'>";
-    html += "<label for='" + fieldId + "'>" + label + ":</label>";
-    html += "<input type='number' id='" + fieldId + "' name='" + fieldName + "' value='" + String(value) + "'";
-    html += " min='" + String(min) + "' max='" + String(max) + "' step='" + String(step) + "'>";
+    html += "<label for='" + fieldId + "'>" + labelText + ":</label>";
+    html += "<input type='number' id='" + fieldId + "' name='" + fieldName + "' value='" + String(valueNum) + "'";
+    html += " min='" + String(minNum) + "' max='" + String(maxNum) + "' step='" + String(stepNum) + "'>";
     html += "</div>";
     return html;
 }
@@ -277,11 +277,11 @@ String generateFormError(const String& message)  // NOLINT(misc-use-internal-lin
  * @param icon Иконка страницы
  * @return Полная HTML страница
  */
-String generateApModeUnavailablePage(const String& title, const String& icon)  // NOLINT(misc-use-internal-linkage)
+String generateApModeUnavailablePage(const String& titleText, const String& iconText)  // NOLINT(misc-use-internal-linkage)
 {
-    String content = "<h1>" + icon + " " + title + "</h1>";
+    String content = "<h1>" + iconText + " " + titleText + "</h1>";
     content += "<div class='msg msg-error'>" UI_ICON_ERROR " Недоступно в режиме точки доступа</div>";
     content += "<p>Эта функция доступна только после подключения к WiFi сети.</p>";
 
-    return generateBasePage(title, content, icon);
+    return generateBasePage(titleText, content, iconText);
 }

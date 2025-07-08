@@ -61,10 +61,10 @@
     - [JavaScript API](#javascript-api)
 - [API документация](#api-dokumentatsiya)
   - [REST API](#rest-api)
-    - [GET apiv3.8.1sensor](#get-apiv3.8.1sensor)
-    - [GET apiv3.8.1config](#get-apiv3.8.1config)
-    - [POST apiv3.8.1config](#post-apiv3.8.1config)
-    - [GET apiv3.8.1status](#get-apiv3.8.1status)
+    - [GET apiv3.9.0sensor](#get-apiv3.9.0sensor)
+    - [GET apiv3.9.0config](#get-apiv3.9.0config)
+    - [POST apiv3.9.0config](#post-apiv3.9.0config)
+    - [GET apiv3.9.0status](#get-apiv3.9.0status)
   - [MQTT API](#mqtt-api)
     - [Топики для публикации](#Topiki-dlya-publikatsii)
     - [Топики для подписки](#Topiki-dlya-podpiski)
@@ -454,7 +454,7 @@ float applyCompensation(float calibratedValue, SensorData data) {
 /intervals          → Настройка интервалов
 /updates            → OTA обновления
 /service            → Сервисные функции
-/api/v3.8.1/sensor      → JSON API
+/api/v3.9.0/sensor      → JSON API
 ```
 
 ### 📱 Адаптивный дизайн {#Adaptivnyy-dizayn}
@@ -478,7 +478,7 @@ float applyCompensation(float calibratedValue, SensorData data) {
 #### JavaScript API {#javascript-api}
 ```javascript
 // Получение данных датчика
-fetch('/api/v3.8.1/sensor')
+fetch('/api/v3.9.0/sensor')
     .then(response => response.json())
     .then(data => updateDisplay(data));
 
@@ -492,7 +492,7 @@ setInterval(updateSensorData, 3000);
 
 ### 🌐 REST API {#rest-api}
 
-#### GET `/api/v3.8.1/sensor` {#get-apiv3.8.1sensor}
+#### GET `/api/v3.9.0/sensor` {#get-apiv3.9.0sensor}
 Получение текущих показаний датчика
 
 **Ответ:**
@@ -550,7 +550,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### GET `/api/v3.8.1/config` {#get-apiv3.8.1config}
+#### GET `/api/v3.9.0/config` {#get-apiv3.9.0config}
 Получение текущей конфигурации
 
 **Ответ:**
@@ -575,7 +575,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### POST `/api/v3.8.1/config` {#post-apiv3.8.1config}
+#### POST `/api/v3.9.0/config` {#post-apiv3.9.0config}
 Обновление конфигурации
 
 **Тело запроса:**
@@ -591,7 +591,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### GET `/api/v3.8.1/status` {#get-apiv3.8.1status}
+#### GET `/api/v3.9.0/status` {#get-apiv3.9.0status}
 Получение системного статуса
 
 **Ответ:**
@@ -898,8 +898,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.8.1
-- uses: actions/setup-python@v3.8.1
+      - uses: actions/checkout@v3.9.0
+- uses: actions/setup-python@v3.9.0
       - run: pip install platformio
       - run: pio run
       - run: pio test

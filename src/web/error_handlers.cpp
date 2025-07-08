@@ -11,7 +11,7 @@ struct ValidationRange
     int minValue;
     int maxValue;
 
-    ValidationRange(int min, int max) : minValue(min), maxValue(max) {}
+    ValidationRange(int minValue, int maxValue) : minValue(minValue), maxValue(maxValue) {}
 };
 
 // Структура для веб-запроса (предотвращение перепутывания String параметров)
@@ -21,8 +21,8 @@ struct HttpRequest
     String uri;
     String clientIP;
 
-    HttpRequest(const String& methodValue, const String& uriValue, const String& ipAddress)  // NOLINT(bugprone-easily-swappable-parameters)
-        : method(methodValue), uri(uriValue), clientIP(ipAddress)
+    HttpRequest(const String& methodValue, const String& uriValue, const String& clientIPValue)
+        : method(methodValue), uri(uriValue), clientIP(clientIPValue)
     {
     }
 };

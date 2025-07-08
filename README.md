@@ -11,7 +11,7 @@
 [![Tests](https://img.shields.io/badge/tests-100%25%20passing-brightgreen.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
 [![IoT](https://img.shields.io/badge/IoT-Smart%20Agriculture-blue.svg?style=for-the-badge)](https://github.com/Gfermoto/soil-sensor-7in1)
 
-**Версия:** 3.6.9 | **Дата:** 2025-07-03 | **Статус:** ✅ Production Ready
+**Версия:** 3.9.0 | **Дата:** 2025-07-08 | **Статус:** ✅ Production Ready
 
 ---
 

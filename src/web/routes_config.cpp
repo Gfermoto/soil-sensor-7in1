@@ -193,10 +193,15 @@ void setupConfigRoutes()
 
             if (!valSensor.isValid || !valMqtt.isValid || !valTs.isValid)
             {
-                const String html = generateErrorPage(
-                    HTTP_BAD_REQUEST, "Ошибка валидации интервалов: " + String(!valSensor.isValid ? valSensor.message
-                                                                               : !valMqtt.isValid ? valMqtt.message
-                                                                                                  : valTs.message));
+                String errorMessage = "Ошибка валидации интервалов: ";
+                if (!valSensor.isValid) {
+                    errorMessage += valSensor.message;
+                } else if (!valMqtt.isValid) {
+                    errorMessage += valMqtt.message;
+                } else {
+                    errorMessage += valTs.message;
+                }
+                const String html = generateErrorPage(HTTP_BAD_REQUEST, errorMessage);
                 webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
                 return;
             }

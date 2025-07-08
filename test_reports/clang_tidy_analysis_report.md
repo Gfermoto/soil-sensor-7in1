@@ -1,29 +1,30 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 08.07.2025 17:44
+**Дата анализа:** 08.07.2025 20:57
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 61
+- **Всего предупреждений:** 70
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
-### Читаемость (29 проблем)
+### Читаемость (32 проблем)
 - ``: 23 случаев
-- `readability-implicit-bool-conversion`: 2 случаев
+- `readability-implicit-bool-conversion`: 6 случаев
 - `readability-static-accessed-through-instance`: 2 случаев
-- `readability-avoid-nested-conditional-operator`: 1 случаев
 - `readability-identifier-length`: 1 случаев
 
-### Потенциальные баги (15 проблем)
-- `bugprone-easily-swappable-parameters`: 7 случаев
-- `bugprone-branch-clone`: 5 случаев
-- `bugprone-narrowing-conversions`: 2 случаев
+### Потенциальные баги (19 проблем)
+- `bugprone-easily-swappable-parameters`: 12 случаев
+- `bugprone-branch-clone`: 4 случаев
+- `bugprone-too-small-loop-variable`: 1 случаев
+- `bugprone-narrowing-conversions`: 1 случаев
 - `bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp`: 1 случаев
 
-### Разное (6 проблем)
+### Разное (8 проблем)
 - `misc-use-anonymous-namespace`: 6 случаев
+- `misc-use-internal-linkage`: 2 случаев
 
 ### Модернизация (10 проблем)
 - `modernize-raw-string-literal`: 8 случаев
@@ -33,10 +34,12 @@
 - `performance-enum-size`: 1 случаев
 
 ## 📁 ДЕТАЛЬНЫЙ АНАЛИЗ ПО ФАЙЛАМ
-### src/calibration_manager.cpp (2 предупреждений)
-**Читаемость:** 2 проблем
+### src/calibration_manager.cpp (6 предупреждений)
+**Читаемость:** 6 проблем
+- src\calibration_manager.cpp:31:9:: implicit conversion 'bool' -> 'int' [readability-implicit-bool-conversion]
 - src\calibration_manager.cpp:56:12:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
 - src\calibration_manager.cpp:83:12:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
+- ... и ещё 3 проблем
 
 ### src/config.cpp ✅ Проблем не найдено
 
@@ -44,7 +47,7 @@
 
 ### src/jxct_format_utils.cpp (1 предупреждений)
 **Потенциальные баги:** 1 проблем
-- src\jxct_format_utils.cpp:31:9:: switch has 2 consecutive identical branches [bugprone-branch-clone]
+- src\jxct_format_utils.cpp:33:13:: if with identical then and else branches [bugprone-branch-clone]
 
 ### src/jxct_ui_system.cpp ✅ Проблем не найдено
 
@@ -52,24 +55,26 @@
 **Читаемость:** 1 проблем
 - src\logger.cpp:228:9:: static member accessed through instance [readability-static-accessed-through-instance]
 
-### src/main.cpp ✅ Проблем не найдено
+### src/main.cpp (2 предупреждений)
+**Разное:** 2 проблем
+- src\main.cpp:56:6:: function 'initPreferences' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- src\main.cpp:68:6:: function 'resetButtonTask' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 
 ### src/modbus_sensor.cpp (3 предупреждений)
 **Разное:** 1 проблем
 - src\modbus_sensor.cpp:430:13:: function 'readSingleRegister' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 
 **Потенциальные баги:** 2 проблем
-- src\modbus_sensor.cpp:753:9:: if with identical then and else branches [bugprone-branch-clone]
+- src\modbus_sensor.cpp:741:33:: loop variable has narrower type 'uint8_t' than iteration's upper bound 'int' [bugprone-too-small-loop-variable]
 - src\modbus_sensor.cpp:770:22:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
 
 ### src/mqtt_client.cpp (1 предупреждений)
 **Разное:** 1 проблем
 - src\mqtt_client.cpp:105:18:: function 'getCachedIP' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 
-### src/ota_manager.cpp (7 предупреждений)
-**Потенциальные баги:** 2 проблем
+### src/ota_manager.cpp (6 предупреждений)
+**Потенциальные баги:** 1 проблем
 - src\ota_manager.cpp:34:13:: declaration uses identifier '_printGuard', which is reserved in the global namespace [bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp]
-- src\ota_manager.cpp:564:31:: narrowing conversion from 'unsigned int' to signed type 'int' is implementation-defined [bugprone-narrowing-conversions]
 
 **Разное:** 3 проблем
 - src\ota_manager.cpp:34:13:: function '_printGuard' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
@@ -97,22 +102,23 @@
 
 ### src/web/csrf_protection.cpp ✅ Проблем не найдено
 
-### src/web/error_handlers.cpp (1 предупреждений)
-**Потенциальные баги:** 1 проблем
+### src/web/error_handlers.cpp (2 предупреждений)
+**Потенциальные баги:** 2 проблем
 - src\web\error_handlers.cpp:14:21:: 2 adjacent parameters of 'ValidationRange' of similar type ('int') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- src\web\error_handlers.cpp:24:17:: 3 adjacent parameters of 'HttpRequest' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
 
-### src/web/routes_config.cpp (27 предупреждений)
+### src/web/routes_config.cpp (26 предупреждений)
 **Разное:** 1 проблем
 - src\web\routes_config.cpp:23:13:: function 'sendConfigExportJson' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 
-**Читаемость:** 25 проблем
-- src\web\routes_config.cpp:198:82:: conditional operator is used as sub-expression of parent conditional operator, refrain from using nested conditional operators [readability-avoid-nested-conditional-operator]
-- src\web\routes_config.cpp:439:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
-- src\web\routes_config.cpp:440:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
-- ... и ещё 22 проблем
-
 **Модернизация:** 1 проблем
-- src\web\routes_config.cpp:359:68:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_config.cpp:364:68:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+
+**Читаемость:** 24 проблем
+- src\web\routes_config.cpp:444:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
+- src\web\routes_config.cpp:445:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
+- src\web\routes_config.cpp:446:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
+- ... и ещё 21 проблем
 
 ### src/web/routes_data.cpp (5 предупреждений)
 **Потенциальные баги:** 3 проблем
@@ -137,12 +143,12 @@
 
 ### src/web/routes_service.cpp ✅ Проблем не найдено
 
-### src/web/web_templates.cpp (6 предупреждений)
-**Потенциальные баги:** 6 проблем
+### src/web/web_templates.cpp (10 предупреждений)
+**Потенциальные баги:** 10 проблем
+- src\web\web_templates.cpp:12:14:: 2 adjacent parameters of 'PageInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- src\web\web_templates.cpp:23:14:: 5 adjacent parameters of 'FormInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
 - src\web\web_templates.cpp:39:20:: 5 adjacent parameters of 'InputFieldInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\web\web_templates.cpp:68:27:: 2 adjacent parameters of 'generatePageHeader' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\web\web_templates.cpp:90:25:: 2 adjacent parameters of 'generateBasePage' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- ... и ещё 3 проблем
+- ... и ещё 7 проблем
 
 ## 🎯 РЕКОМЕНДАЦИИ ПО ПРИОРИТЕТАМ
 
