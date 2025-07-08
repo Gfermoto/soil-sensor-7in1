@@ -344,7 +344,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
     }
 
     // ИСПРАВЛЕНО: Создаем HTTP клиент в куче для экономии стека
-    auto http = new HTTPClient();
+    auto* http = new HTTPClient();
     if (http == nullptr)
     {
         strlcpy(statusBuf.data(), "Ошибка создания HTTP клиента", sizeof(statusBuf));
@@ -367,7 +367,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
     logSystemSafe("\1", contentLen);
 
     // ИСПРАВЛЕНО: Создаем SHA256 контекст в куче
-    auto shaCtx = new mbedtls_sha256_context();
+    auto* shaCtx = new mbedtls_sha256_context();
     if (shaCtx == nullptr)
     {
         strlcpy(statusBuf.data(), "Ошибка создания SHA256 контекста", sizeof(statusBuf));

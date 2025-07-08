@@ -1,41 +1,38 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 08.07.2025 22:07
+**Дата анализа:** 08.07.2025 23:01
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 62
+- **Всего предупреждений:** 47
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
-### Читаемость (33 проблем)
+### Читаемость (29 проблем)
 - ``: 23 случаев
-- `readability-implicit-bool-conversion`: 6 случаев
+- `readability-implicit-bool-conversion`: 2 случаев
 - `readability-qualified-auto`: 2 случаев
 - `readability-static-accessed-through-instance`: 1 случаев
 - `readability-identifier-length`: 1 случаев
 
-### Разное (9 проблем)
-- `misc-use-anonymous-namespace`: 9 случаев
-
-### Потенциальные баги (11 проблем)
-- `bugprone-easily-swappable-parameters`: 7 случаев
-- `bugprone-branch-clone`: 4 случаев
+### Разное (7 проблем)
+- `misc-use-anonymous-namespace`: 4 случаев
+- `misc-use-internal-linkage`: 3 случаев
 
 ### Прочее (1 проблем)
 - `performance-enum-size`: 1 случаев
 
-### Модернизация (8 проблем)
+### Модернизация (10 проблем)
 - `modernize-raw-string-literal`: 8 случаев
+- `modernize-use-default-member-init`: 1 случаев
+- `modernize-return-braced-init-list`: 1 случаев
 
 ## 📁 ДЕТАЛЬНЫЙ АНАЛИЗ ПО ФАЙЛАМ
-### src/calibration_manager.cpp (6 предупреждений)
-**Читаемость:** 6 проблем
-- src\calibration_manager.cpp:31:9:: implicit conversion 'bool' -> 'int' [readability-implicit-bool-conversion]
+### src/calibration_manager.cpp (2 предупреждений)
+**Читаемость:** 2 проблем
 - src\calibration_manager.cpp:56:12:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
 - src\calibration_manager.cpp:83:12:: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
-- ... и ещё 3 проблем
 
 ### src/config.cpp ✅ Проблем не найдено
 
@@ -47,23 +44,11 @@
 
 ### src/logger.cpp ✅ Проблем не найдено
 
-### src/main.cpp (3 предупреждений)
-**Разное:** 3 проблем
-- src\main.cpp:56:13:: function 'initPreferences' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- src\main.cpp:59:13:: function 'initPreferences' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- src\main.cpp:68:13:: function 'resetButtonTask' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+### src/main.cpp ✅ Проблем не найдено
 
-### src/modbus_sensor.cpp (3 предупреждений)
-**Разное:** 1 проблем
-- src\modbus_sensor.cpp:473:13:: function 'finalizeSensorData' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+### src/modbus_sensor.cpp ✅ Проблем не найдено
 
-**Потенциальные баги:** 2 проблем
-- src\modbus_sensor.cpp:664:51:: 2 adjacent parameters of 'calculateMovingAverage' of similar type ('uint8_t') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\modbus_sensor.cpp:682:9:: if with identical then and else branches [bugprone-branch-clone]
-
-### src/mqtt_client.cpp (1 предупреждений)
-**Разное:** 1 проблем
-- src\mqtt_client.cpp:105:18:: function 'getCachedIP' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+### src/mqtt_client.cpp ✅ Проблем не найдено
 
 ### src/ota_manager.cpp (5 предупреждений)
 **Разное:** 3 проблем
@@ -79,7 +64,9 @@
 
 ### src/sensor_compensation.cpp ✅ Проблем не найдено
 
-### src/thingspeak_client.cpp ✅ Проблем не найдено
+### src/thingspeak_client.cpp (1 предупреждений)
+**Разное:** 1 проблем
+- src\thingspeak_client.cpp:16:13:: variable 'THINGSPEAK_API_URL' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 
 ### src/validation_utils.cpp ✅ Проблем не найдено
 
@@ -92,7 +79,10 @@
 
 ### src/web/csrf_protection.cpp ✅ Проблем не найдено
 
-### src/web/error_handlers.cpp ✅ Проблем не найдено
+### src/web/error_handlers.cpp (2 предупреждений)
+**Разное:** 2 проблем
+- src\web\error_handlers.cpp:207:6:: function 'logWebRequest' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+- src\web\error_handlers.cpp:277:6:: function 'checkRouteAccess' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
 
 ### src/web/routes_config.cpp (26 предупреждений)
 **Разное:** 1 проблем
@@ -107,15 +97,10 @@
 - src\web\routes_config.cpp:446:5:: confusing array subscript expression, usually the index is inside the [] [readability-misplaced-array-index]
 - ... и ещё 21 проблем
 
-### src/web/routes_data.cpp (5 предупреждений)
-**Потенциальные баги:** 3 проблем
-- src\web\routes_data.cpp:187:13:: repeated branch body in conditional chain [bugprone-branch-clone]
-- src\web\routes_data.cpp:208:13:: repeated branch body in conditional chain [bugprone-branch-clone]
-- src\web\routes_data.cpp:214:13:: repeated branch body in conditional chain [bugprone-branch-clone]
-
+### src/web/routes_data.cpp (2 предупреждений)
 **Модернизация:** 2 проблем
-- src\web\routes_data.cpp:308:64:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
-- src\web\routes_data.cpp:786:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_data.cpp:321:64:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
+- src\web\routes_data.cpp:793:21:: escaped string literal can be written as a raw string literal [modernize-raw-string-literal]
 
 ### src/web/routes_main.cpp ✅ Проблем не найдено
 
@@ -130,17 +115,14 @@
 
 ### src/web/routes_service.cpp ✅ Проблем не найдено
 
-### src/web/web_templates.cpp (6 предупреждений)
-**Потенциальные баги:** 6 проблем
-- src\web\web_templates.cpp:40:20:: 5 adjacent parameters of 'InputFieldInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\web\web_templates.cpp:69:27:: 2 adjacent parameters of 'generatePageHeader' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\web\web_templates.cpp:91:25:: 2 adjacent parameters of 'generateBasePage' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- ... и ещё 3 проблем
+### src/web/web_templates.cpp (2 предупреждений)
+**Модернизация:** 2 проблем
+- src\web\web_templates.cpp:57:20:: use default member initializer for 'required' [modernize-use-default-member-init]
+- src\web\web_templates.cpp:91:16:: avoid repeating the return type from the declaration; use a braced initializer list instead [modernize-return-braced-init-list]
 
 ## 🎯 РЕКОМЕНДАЦИИ ПО ПРИОРИТЕТАМ
 
 ### 🔴 КРИТИЧЕСКИЕ (исправить немедленно)
-- Потенциальные баги - могут привести к неправильной работе
 
 ### 🟡 СРЕДНИЕ (исправить в ближайшее время)
 - Проблемы читаемости - затрудняют сопровождение кода
