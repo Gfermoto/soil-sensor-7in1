@@ -61,7 +61,7 @@ bool saveCsv(SoilProfile profile, Stream& fileStream)
 
     calibrationFile.close();
     logSuccessSafe("\1", path, calibrationFile.size());
-    return calibrationFile.size() > 0;
+    return calibrationFile.size() > 0U;
 }
 
 bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntries, size_t& outCount)
@@ -112,7 +112,7 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
 
     calibrationFile.close();
     logInfoSafe("\1", outCount, path);
-    return outCount > 0;
+    return outCount > 0U;
 }
 
 bool hasTable(SoilProfile profile)

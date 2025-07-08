@@ -221,9 +221,9 @@ String getApSsid()
     WiFi.macAddress(mac.data());
     std::array<char, static_cast<size_t>(WifiConstants::MAC_ADDRESS_BUFFER_SIZE)> buf;
     snprintf(buf.data(), buf.size(), "jxct-%02X%02X%02X", mac[3], mac[4], mac[5]);
-    for (int idx = 0; buf[idx]; ++idx)
+    for (int index = 0; buf[index]; ++index)
     {
-        buf[idx] = tolower(buf[idx]);
+        buf[index] = tolower(buf[index]);
     }
     return String(buf.data());
 }
