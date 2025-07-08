@@ -102,8 +102,7 @@ const char* getMqttLastError()  // NOLINT(misc-use-internal-linkage)
 }
 
 // Forward declarations
-static IPAddress getCachedIP(const char* hostname);  // ✅ Внутренняя реализация, скрыта от других единиц трансляции  //
-                                                     // NOLINT(misc-use-anonymous-namespace)
+static IPAddress getCachedIP(const char* hostname);  // ✅ Внутренняя реализация, скрыта от других единиц трансляции
 
 // ✅ Оптимизированная функция getClientId с буфером
 static const char* getClientId()  // NOLINT(misc-use-anonymous-namespace)

@@ -176,6 +176,89 @@ void applyCompensationIfEnabled(SensorData& data)
     data.humidity = humCalibrated;
 }
 
+bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)
+{
+    logDebugSafe("\1", reg_name, reg_addr);
+    const uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
+
+    if (result == ModbusMaster::ku8MBSuccess)
+    {
+        const uint16_t raw_value = modbus.getResponseBuffer(0);
+        if (is_float)
+        {
+            auto* float_target = static_cast<float*>(target);
+            *float_target = convertRegisterToFloat(raw_value, multiplier);
+            logDebugSafe("\1", reg_name, *float_target);
+        }
+        else
+        {
+            auto* int_target = static_cast<uint16_t*>(target);
+            *int_target = raw_value;
+            logDebugSafe("\1", reg_name, *int_target);
+        }
+        return true;
+    }
+    logErrorSafe("\1", reg_name, result);
+    printModbusError(result);
+    return false;
+}
+
+int readBasicParameters()
+{
+    int success_count = 0;
+    if (readSingleRegister(REG_PH, "pH", 0.01F, &sensorData.ph, true)) { success_count++; }
+    if (readSingleRegister(REG_SOIL_MOISTURE, "Влажность", 0.1F, &sensorData.humidity, true)) { success_count++; }
+    if (readSingleRegister(REG_SOIL_TEMP, "Температура", 0.1F, &sensorData.temperature, true)) { success_count++; }
+    if (readSingleRegister(REG_CONDUCTIVITY, "EC", 1.0F, &sensorData.ec, true)) { success_count++; }
+    return success_count;
+}
+
+int readNPKParameters()
+{
+    int success_count = 0;
+    if (readSingleRegister(REG_NITROGEN, "Азот", 1.0F, &sensorData.nitrogen, true)) { success_count++; }
+    if (readSingleRegister(REG_PHOSPHORUS, "Фосфор", 1.0F, &sensorData.phosphorus, true)) { success_count++; }
+    if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0F, &sensorData.potassium, true)) { success_count++; }
+    return success_count;
+}
+
+struct MovingAverageParams {
+    uint8_t window_size;
+    uint8_t filled;
+};
+
+float calculateMovingAverage(const float* buffer, MovingAverageParams params)
+{
+    if (params.filled == 0) { return 0.0F; }
+    const uint8_t elements_to_use = std::min(params.filled, params.window_size);
+    if (config.filterAlgorithm == 1) {
+        std::array<float, 15> temp_values{};
+        for (int i = 0; i < elements_to_use; ++i) {
+            temp_values.at(i) = buffer[i];
+        }
+        for (int i = 0; i < elements_to_use - 1; ++i) {
+            for (int j = 0; j < elements_to_use - i - 1; ++j) {
+                if (temp_values.at(j) > temp_values.at(j + 1)) {
+                    const float temp = temp_values.at(j);
+                    temp_values.at(j) = temp_values.at(j + 1);
+                    temp_values.at(j + 1) = temp;
+                }
+            }
+        }
+        if (elements_to_use % 2 == 0) {
+            return (temp_values.at(elements_to_use / 2 - 1) + temp_values.at(elements_to_use / 2)) / 2.0F;
+        } else {
+            return temp_values.at(elements_to_use / 2);
+        }
+    } else {
+        float sum = 0.0F;
+        for (int i = 0; i < elements_to_use; ++i) {
+            sum += buffer[i];
+        }
+        return sum / static_cast<float>(elements_to_use);
+    }
+}
+
 }  // namespace
 
 /**
@@ -419,112 +502,10 @@ bool testModbusConnection()
 // ============================================================================
 
 /**
- * @brief Чтение одного регистра с обработкой ошибок
- * @param reg_addr Адрес регистра
- * @param reg_name Название регистра для логирования
- * @param multiplier Множитель для конвертации
- * @param target Указатель на переменную для сохранения результата
- * @param is_float Флаг - сохранять как float или int
- * @return true если чтение успешно
- */
-static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target,
-                               bool is_float)  // NOLINT(misc-use-anonymous-namespace)
-{
-    logDebugSafe("\1", reg_name, reg_addr);
-    const uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
-
-    if (result == modbus.ku8MBSuccess)  // NOLINT(readability-static-accessed-through-instance)
-    {
-        const uint16_t raw_value = modbus.getResponseBuffer(0);
-
-        if (is_float)
-        {
-            auto* float_target = static_cast<float*>(target);
-            *float_target = convertRegisterToFloat(raw_value, multiplier);
-            logDebugSafe("\1", reg_name, *float_target);
-        }
-        else
-        {
-            auto* int_target = static_cast<uint16_t*>(target);
-            *int_target = raw_value;
-            logDebugSafe("\1", reg_name, *int_target);
-        }
-        return true;
-    }
-    logErrorSafe("\1", reg_name, result);
-    printModbusError(result);
-    return false;
-}
-
-/**
- * @brief Чтение основных параметров (температура, влажность, pH, EC)
- * @return Количество успешно прочитанных параметров
- */
-static int readBasicParameters()  // NOLINT(misc-use-anonymous-namespace)
-{
-    int success_count = 0;
-
-    // pH (÷ 100)
-    if (readSingleRegister(REG_PH, "pH", 0.01F, &sensorData.ph, true))
-    {
-        success_count++;
-    }
-
-    // Влажность (÷ 10)
-    if (readSingleRegister(REG_SOIL_MOISTURE, "Влажность", 0.1F, &sensorData.humidity, true))
-    {
-        success_count++;
-    }
-
-    // Температура (÷ 10)
-    if (readSingleRegister(REG_SOIL_TEMP, "Температура", 0.1F, &sensorData.temperature, true))
-    {
-        success_count++;
-    }
-
-    // EC (без деления)
-    if (readSingleRegister(REG_CONDUCTIVITY, "EC", 1.0F, &sensorData.ec, true))
-    {
-        success_count++;
-    }
-
-    return success_count;
-}
-
-/**
- * @brief Чтение NPK параметров (азот, фосфор, калий)
- * @return Количество успешно прочитанных параметров
- */
-static int readNPKParameters()  // NOLINT(misc-use-anonymous-namespace)
-{
-    int success_count = 0;
-
-    // Азот
-    if (readSingleRegister(REG_NITROGEN, "Азот", 1.0F, &sensorData.nitrogen, true))
-    {
-        success_count++;
-    }
-
-    // Фосфор
-    if (readSingleRegister(REG_PHOSPHORUS, "Фосфор", 1.0F, &sensorData.phosphorus, true))
-    {
-        success_count++;
-    }
-
-    // Калий
-    if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0F, &sensorData.potassium, true))
-    {
-        success_count++;
-    }
-
-    return success_count;
-}
-
-/**
  * @brief Финализация данных датчика (валидация, кэширование, скользящее среднее)
  * @param success Флаг успешности чтения всех параметров
  */
-static void finalizeSensorData(bool success)  // NOLINT(misc-use-anonymous-namespace)
+static void finalizeSensorData(bool success)
 {
     sensorData.valid = success;
     sensorData.last_update = millis();
@@ -706,69 +687,13 @@ void addToMovingAverage(SensorData& data, const SensorData& newReading)
     }
 
     // Вычисляем скользящее среднее
-    data.temperature = calculateMovingAverage(data.temp_buffer, window_size, data.buffer_filled);
-    data.humidity = calculateMovingAverage(data.hum_buffer, window_size, data.buffer_filled);
-    data.ec = calculateMovingAverage(data.ec_buffer, window_size, data.buffer_filled);
-    data.ph = calculateMovingAverage(data.ph_buffer, window_size, data.buffer_filled);
-    data.nitrogen = calculateMovingAverage(data.n_buffer, window_size, data.buffer_filled);
-    data.phosphorus = calculateMovingAverage(data.p_buffer, window_size, data.buffer_filled);
-    data.potassium = calculateMovingAverage(data.k_buffer, window_size, data.buffer_filled);
-}
-
-float calculateMovingAverage(const float* buffer, uint8_t window_size, uint8_t filled)  // NOLINT(bugprone-easily-swappable-parameters)
-{
-    if (filled == 0)
-    {
-        return 0.0F;
-    }
-
-    // Берем последние filled элементов (или window_size, если filled >= window_size)
-    const uint8_t elements_to_use = std::min(filled, window_size);
-
-    // v2.4.1: Используем настраиваемый алгоритм (среднее или медиана)
-    if (config.filterAlgorithm == 1)
-    {  // FILTER_ALGORITHM_MEDIAN
-        // Создаем временный массив для медианы
-        std::array<float, 15> temp_values{};  // Максимальный размер окна
-        for (uint8_t i = 0; i < elements_to_use; ++i)
-        {
-            temp_values.at(i) = buffer[i];
-        }
-
-        // Простая сортировка для медианы
-        for (uint8_t i = 0; i < elements_to_use - 1; ++i)
-        {
-            for (uint8_t j = 0; j < elements_to_use - i - 1; ++j)
-            {
-                if (temp_values.at(j) > temp_values.at(j + 1))
-                {
-                    const float temp = temp_values.at(j);
-                    temp_values.at(j) = temp_values.at(j + 1);
-                    temp_values.at(j + 1) = temp;
-                }
-            }
-        }
-
-        // Возвращаем медиану
-        if (elements_to_use % 2 == 0)  // NOLINT(bugprone-branch-clone)
-        {
-            return (temp_values.at(elements_to_use / 2 - 1) + temp_values.at(elements_to_use / 2)) / 2.0F;
-        }
-        else
-        {
-            return temp_values.at(elements_to_use / 2);
-        }
-    }
-    else
-    {
-        // FILTER_ALGORITHM_MEAN (по умолчанию)
-        float sum = 0.0F;
-        for (uint8_t i = 0; i < elements_to_use; ++i)
-        {
-            sum += buffer[i];
-        }
-        return sum / elements_to_use;
-    }
+    data.temperature = calculateMovingAverage(data.temp_buffer, {window_size, data.buffer_filled});
+    data.humidity = calculateMovingAverage(data.hum_buffer, {window_size, data.buffer_filled});
+    data.ec = calculateMovingAverage(data.ec_buffer, {window_size, data.buffer_filled});
+    data.ph = calculateMovingAverage(data.ph_buffer, {window_size, data.buffer_filled});
+    data.nitrogen = calculateMovingAverage(data.n_buffer, {window_size, data.buffer_filled});
+    data.phosphorus = calculateMovingAverage(data.p_buffer, {window_size, data.buffer_filled});
+    data.potassium = calculateMovingAverage(data.k_buffer, {window_size, data.buffer_filled});
 }
 
 // Функция для получения текущих данных датчика

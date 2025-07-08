@@ -38,6 +38,58 @@ struct RecValues
     float t, hum, ec, ph, n, p, k;
 };
 
+// Функции для сезонной коррекции NPK (убираем дублирование)
+void applySpringNPKCorrection(RecValues& rec, bool isGreenhouse)
+{
+    if (isGreenhouse) {
+        rec.n *= TEST_DATA_NPK_INCREASE_N;  // +25%
+        rec.p *= TEST_DATA_NPK_INCREASE_P;  // +20%
+        rec.k *= TEST_DATA_NPK_INCREASE_K;  // +15%
+    } else {
+        rec.n *= TEST_DATA_NPK_INCREASE_N;  // +20%
+        rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
+        rec.k *= TEST_DATA_NPK_INCREASE_K;  // +10%
+    }
+}
+
+void applySummerNPKCorrection(RecValues& rec, bool isGreenhouse)
+{
+    rec.n *= TEST_DATA_NPK_DECREASE_N;  // -10%
+    if (isGreenhouse) {
+        rec.p *= 1.10F;                     // +10%
+        rec.k *= TEST_DATA_NPK_DECREASE_K;  // +30%
+    } else {
+        rec.p *= 1.05F;                     // +5%
+        rec.k *= TEST_DATA_NPK_DECREASE_K;  // +25%
+    }
+}
+
+void applyAutumnNPKCorrection(RecValues& rec, bool isGreenhouse)
+{
+    if (isGreenhouse) {
+        rec.n *= TEST_DATA_NPK_INCREASE_N;  // +15%
+        rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
+        rec.k *= TEST_DATA_NPK_INCREASE_K;  // +20%
+    } else {
+        rec.n *= TEST_DATA_NPK_DECREASE_N;  // -20%
+        rec.p *= 1.10F;                     // +10%
+        rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15%
+    }
+}
+
+void applyWinterNPKCorrection(RecValues& rec, bool isGreenhouse)
+{
+    if (isGreenhouse) {
+        rec.n *= TEST_DATA_NPK_DECREASE_N;  // +5%
+        rec.p *= 1.10F;                     // +10%
+        rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15%
+    } else {
+        rec.n *= TEST_DATA_NPK_DECREASE_N;  // -30%
+        rec.p *= 1.05F;                     // +5%
+        rec.k *= TEST_DATA_NPK_DECREASE_K;  // +5%
+    }
+}
+
 RecValues computeRecommendations()
 {
     // 1. База по культуре или generic
@@ -175,59 +227,22 @@ RecValues computeRecommendations()
         }
 
         // Коррекция NPK по сезону
-        if (config.environmentType == 0)
-        {  // Outdoor
-            if (month >= 3 && month <= 5)  // NOLINT(bugprone-branch-clone)
-            {                                       // Весна
-                rec.n *= TEST_DATA_NPK_INCREASE_N;  // +20%
-                rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
-                rec.k *= TEST_DATA_NPK_INCREASE_K;  // +10%
-            }
-            else if (month >= 6 && month <= 8)
-            {                                       // Лето
-                rec.n *= TEST_DATA_NPK_DECREASE_N;  // -10%
-                rec.p *= 1.05F;                     // +5%
-                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +25%
-            }
-            else if (month >= 9 && month <= 11)
-            {                                       // Осень
-                rec.n *= TEST_DATA_NPK_DECREASE_N;  // -20%
-                rec.p *= 1.10F;                     // +10%
-                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15%
-            }
-            else
-            {                                       // Зима
-                rec.n *= TEST_DATA_NPK_DECREASE_N;  // -30%
-                rec.p *= 1.05F;                     // +5%
-                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +5%
-            }
+        const bool isGreenhouse = (config.environmentType == 1);
+        if (month >= 3 && month <= 5)
+        {                                       // Весна
+            applySpringNPKCorrection(rec, isGreenhouse);
         }
-        else if (config.environmentType == 1)
-        {  // Greenhouse
-            if (month >= 3 && month <= 5)  // NOLINT(bugprone-branch-clone)
-            {                                       // Весна
-                rec.n *= TEST_DATA_NPK_INCREASE_N;  // +25%
-                rec.p *= TEST_DATA_NPK_INCREASE_P;  // +20%
-                rec.k *= TEST_DATA_NPK_INCREASE_K;  // +15%
-            }
-            else if (month >= 6 && month <= 8)
-            {                                       // Лето
-                rec.n *= TEST_DATA_NPK_DECREASE_N;  // -10%
-                rec.p *= 1.10F;                     // +10%
-                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +30%
-            }
-            else if (month >= 9 && month <= 11)
-            {                                       // Осень
-                rec.n *= TEST_DATA_NPK_INCREASE_N;  // +15%
-                rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
-                rec.k *= TEST_DATA_NPK_INCREASE_K;  // +20%
-            }
-            else
-            {                                       // Зима
-                rec.n *= TEST_DATA_NPK_DECREASE_N;  // +5%
-                rec.p *= 1.10F;                     // +10%
-                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15%
-            }
+        else if (month >= 6 && month <= 8)
+        {                                       // Лето
+            applySummerNPKCorrection(rec, isGreenhouse);
+        }
+        else if (month >= 9 && month <= 11)
+        {                                       // Осень
+            applyAutumnNPKCorrection(rec, isGreenhouse);
+        }
+        else
+        {                                       // Зима
+            applyWinterNPKCorrection(rec, isGreenhouse);
         }
     }
 
@@ -758,12 +773,6 @@ void setupDataRoutes()
             html += "    'Зима': { n: '-30%', p: '+5%', k: '+5%' }";
             html += "  };";
             html += "  const envType = " + String(config.environmentType) + ";";
-            html += "  if(envType === 1) {";  // Теплица
-            html += "    adjustments['Весна'] = { n: '+25%', p: '+20%', k: '+15%' };";
-            html += "    adjustments['Лето'] = { n: '+10%', p: '+10%', k: '+30%' };";
-            html += "    adjustments['Осень'] = { n: '+15%', p: '+15%', k: '+20%' };";
-            html += "    adjustments['Зима'] = { n: '+5%', p: '+10%', k: '+15%' };";
-            html += "  }";
             html += "  const adj = adjustments[season] || { n: '', p: '', k: '' };";
             html += "  ['n', 'p', 'k'].forEach(elem => {";
             html += "    const span = document.getElementById(elem + '_season');";

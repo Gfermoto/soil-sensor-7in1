@@ -26,20 +26,10 @@ std::string formatFloat(float value, const FormatOptions& options)
 {
     std::array<char, 8> buf;
 
-    switch (options.formatType)  // NOLINT(bugprone-branch-clone)
-    {
-        case FormatType::INTEGER:
-        case FormatType::FLOAT:
-            if (options.formatType == FormatType::INTEGER)
-            {
-                snprintf(buf.data(), buf.size(), "%d", static_cast<int>(lround(value)));
-            }
-            else
-            {
-                snprintf(buf.data(), buf.size(), "%.*f", options.precision, value);
-            }
-            break;
-    }
+    snprintf(buf.data(), buf.size(), 
+             (options.formatType == FormatType::INTEGER) ? "%d" : "%.*f",
+             (options.formatType == FormatType::INTEGER) ? static_cast<int>(lround(value)) : options.precision,
+             (options.formatType == FormatType::INTEGER) ? 0 : value);
     return std::string(buf.data());
 }
 }  // namespace

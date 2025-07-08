@@ -11,7 +11,13 @@ struct ValidationRange
     int minValue;
     int maxValue;
 
-    ValidationRange(int minValue, int maxValue) : minValue(minValue), maxValue(maxValue) {}
+    ValidationRange(int minValue, int maxValue) // NOLINT(bugprone-easily-swappable-parameters)
+        : minValue(minValue), maxValue(maxValue) {}
+    
+    // Статический метод-фабрика для безопасного создания
+    static ValidationRange create(int minValue, int maxValue) {
+        return ValidationRange(minValue, maxValue);
+    }
 };
 
 // Структура для веб-запроса (предотвращение перепутывания String параметров)
@@ -21,9 +27,14 @@ struct HttpRequest
     String uri;
     String clientIP;
 
-    HttpRequest(const String& methodValue, const String& uriValue, const String& clientIPValue)
+    HttpRequest(const String& methodValue, const String& uriValue, const String& clientIPValue) // NOLINT(bugprone-easily-swappable-parameters)
         : method(methodValue), uri(uriValue), clientIP(clientIPValue)
     {
+    }
+    
+    // Статический метод-фабрика для безопасного создания
+    static HttpRequest create(const String& methodValue, const String& uriValue, const String& clientIPValue) {
+        return HttpRequest(methodValue, uriValue, clientIPValue);
     }
 };
 
@@ -109,23 +120,23 @@ bool validateConfigInput(bool checkRequired)
     }
 
     // Валидация форматов данных
-    if (!validateInterval("mqtt_port", ValidationRange(1, 65535), "MQTT порт"))
+    if (!validateInterval("mqtt_port", ValidationRange::create(1, 65535), "MQTT порт"))
     {
         return false;
     }
-    if (!validateInterval("ntp_interval", ValidationRange(10000, 86400000), "NTP интервал"))
+    if (!validateInterval("ntp_interval", ValidationRange::create(10000, 86400000), "NTP интервал"))
     {
         return false;
     }
-    if (!validateInterval("sensor_read", ValidationRange(1000, 300000), "интервал чтения датчика"))
+    if (!validateInterval("sensor_read", ValidationRange::create(1000, 300000), "интервал чтения датчика"))
     {
         return false;
     }
-    if (!validateInterval("mqtt_publish", ValidationRange(1000, 3600000), "интервал MQTT публикации"))
+    if (!validateInterval("mqtt_publish", ValidationRange::create(1000, 3600000), "интервал MQTT публикации"))
     {
         return false;
     }
-    if (!validateInterval("thingspeak_interval", ValidationRange(15000, 7200000), "интервал ThingSpeak"))
+    if (!validateInterval("thingspeak_interval", ValidationRange::create(15000, 7200000), "интервал ThingSpeak"))
     {
         return false;
     }

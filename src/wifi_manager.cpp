@@ -89,7 +89,7 @@ void updateLed()
 }
 
 // HTML для навигации
-String navHtml()  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
+String navHtml()
 {
     String html = "<div class='nav'>";
     html += "<a href='/'>" UI_ICON_CONFIG " Настройки</a>";
@@ -215,7 +215,7 @@ void handleWiFi()
     }
 }
 
-String getApSsid()  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
+String getApSsid()
 {
     std::array<uint8_t, 6> mac;
     WiFi.macAddress(mac.data()); // NOLINT(readability-static-accessed-through-instance)

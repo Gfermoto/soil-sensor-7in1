@@ -225,14 +225,14 @@ void logUptime()
 
 void logWiFiStatus()
 {
-    if (WiFi.status() == WL_CONNECTED)
+    if (WiFiClass::status() == WL_CONNECTED)
     {
         logWiFi("Подключен к " + WiFi.SSID() + ", IP: " + WiFi.localIP().toString() + ", RSSI: " + String(WiFi.RSSI()) +
                 " dBm");  // NOLINT(readability-static-accessed-through-instance)
     }
     else
     {
-        logWarn("WiFi не подключен (статус: " + String(WiFi.status()) + ")");  // NOLINT(readability-static-accessed-through-instance)
+        logWarn("WiFi не подключен (статус: " + String(WiFiClass::status()) + ")");  // NOLINT(readability-static-accessed-through-instance)
     }
 }
 

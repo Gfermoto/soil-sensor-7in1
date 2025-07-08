@@ -1,37 +1,33 @@
 # CLANG-TIDY ПОЛНЫЙ ОТЧЁТ АНАЛИЗА
-**Дата анализа:** 08.07.2025 20:57
+**Дата анализа:** 08.07.2025 22:07
 **Версия clang-tidy:** 20.1.0
 
 ## 📊 СТАТИСТИКА
 - **Всего файлов проанализировано:** 24
 - **Успешно проанализировано:** 24
 - **Ошибки анализа:** 0
-- **Всего предупреждений:** 70
+- **Всего предупреждений:** 62
 
 ## 🔍 КАТЕГОРИИ ПРОБЛЕМ
-### Читаемость (32 проблем)
+### Читаемость (33 проблем)
 - ``: 23 случаев
 - `readability-implicit-bool-conversion`: 6 случаев
-- `readability-static-accessed-through-instance`: 2 случаев
+- `readability-qualified-auto`: 2 случаев
+- `readability-static-accessed-through-instance`: 1 случаев
 - `readability-identifier-length`: 1 случаев
 
-### Потенциальные баги (19 проблем)
-- `bugprone-easily-swappable-parameters`: 12 случаев
+### Разное (9 проблем)
+- `misc-use-anonymous-namespace`: 9 случаев
+
+### Потенциальные баги (11 проблем)
+- `bugprone-easily-swappable-parameters`: 7 случаев
 - `bugprone-branch-clone`: 4 случаев
-- `bugprone-too-small-loop-variable`: 1 случаев
-- `bugprone-narrowing-conversions`: 1 случаев
-- `bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp`: 1 случаев
-
-### Разное (8 проблем)
-- `misc-use-anonymous-namespace`: 6 случаев
-- `misc-use-internal-linkage`: 2 случаев
-
-### Модернизация (10 проблем)
-- `modernize-raw-string-literal`: 8 случаев
-- `modernize-use-auto`: 2 случаев
 
 ### Прочее (1 проблем)
 - `performance-enum-size`: 1 случаев
+
+### Модернизация (8 проблем)
+- `modernize-raw-string-literal`: 8 случаев
 
 ## 📁 ДЕТАЛЬНЫЙ АНАЛИЗ ПО ФАЙЛАМ
 ### src/calibration_manager.cpp (6 предупреждений)
@@ -45,45 +41,39 @@
 
 ### src/fake_sensor.cpp ✅ Проблем не найдено
 
-### src/jxct_format_utils.cpp (1 предупреждений)
-**Потенциальные баги:** 1 проблем
-- src\jxct_format_utils.cpp:33:13:: if with identical then and else branches [bugprone-branch-clone]
+### src/jxct_format_utils.cpp ✅ Проблем не найдено
 
 ### src/jxct_ui_system.cpp ✅ Проблем не найдено
 
-### src/logger.cpp (1 предупреждений)
-**Читаемость:** 1 проблем
-- src\logger.cpp:228:9:: static member accessed through instance [readability-static-accessed-through-instance]
+### src/logger.cpp ✅ Проблем не найдено
 
-### src/main.cpp (2 предупреждений)
-**Разное:** 2 проблем
-- src\main.cpp:56:6:: function 'initPreferences' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
-- src\main.cpp:68:6:: function 'resetButtonTask' can be made static or moved into an anonymous namespace to enforce internal linkage [misc-use-internal-linkage]
+### src/main.cpp (3 предупреждений)
+**Разное:** 3 проблем
+- src\main.cpp:56:13:: function 'initPreferences' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\main.cpp:59:13:: function 'initPreferences' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\main.cpp:68:13:: function 'resetButtonTask' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 
 ### src/modbus_sensor.cpp (3 предупреждений)
 **Разное:** 1 проблем
-- src\modbus_sensor.cpp:430:13:: function 'readSingleRegister' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\modbus_sensor.cpp:473:13:: function 'finalizeSensorData' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 
 **Потенциальные баги:** 2 проблем
-- src\modbus_sensor.cpp:741:33:: loop variable has narrower type 'uint8_t' than iteration's upper bound 'int' [bugprone-too-small-loop-variable]
-- src\modbus_sensor.cpp:770:22:: narrowing conversion from 'int' to 'float' [bugprone-narrowing-conversions]
+- src\modbus_sensor.cpp:664:51:: 2 adjacent parameters of 'calculateMovingAverage' of similar type ('uint8_t') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- src\modbus_sensor.cpp:682:9:: if with identical then and else branches [bugprone-branch-clone]
 
 ### src/mqtt_client.cpp (1 предупреждений)
 **Разное:** 1 проблем
 - src\mqtt_client.cpp:105:18:: function 'getCachedIP' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 
-### src/ota_manager.cpp (6 предупреждений)
-**Потенциальные баги:** 1 проблем
-- src\ota_manager.cpp:34:13:: declaration uses identifier '_printGuard', which is reserved in the global namespace [bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp]
-
+### src/ota_manager.cpp (5 предупреждений)
 **Разное:** 3 проблем
-- src\ota_manager.cpp:34:13:: function '_printGuard' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- src\ota_manager.cpp:128:13:: function 'initializeDownload' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
-- src\ota_manager.cpp:209:13:: function 'downloadData' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\ota_manager.cpp:34:13:: function 'printGuard' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\ota_manager.cpp:127:13:: function 'initializeDownload' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
+- src\ota_manager.cpp:208:13:: function 'downloadData' declared 'static', move to anonymous namespace instead [misc-use-anonymous-namespace]
 
-**Модернизация:** 2 проблем
-- src\ota_manager.cpp:348:5:: use auto when initializing with new to avoid duplicating the type name [modernize-use-auto]
-- src\ota_manager.cpp:371:5:: use auto when initializing with new to avoid duplicating the type name [modernize-use-auto]
+**Читаемость:** 2 проблем
+- src\ota_manager.cpp:347:5:: 'auto http' can be declared as 'auto *http' [readability-qualified-auto]
+- src\ota_manager.cpp:370:5:: 'auto shaCtx' can be declared as 'auto *shaCtx' [readability-qualified-auto]
 
 ### src/routes_calibration.cpp ✅ Проблем не найдено
 
@@ -102,10 +92,7 @@
 
 ### src/web/csrf_protection.cpp ✅ Проблем не найдено
 
-### src/web/error_handlers.cpp (2 предупреждений)
-**Потенциальные баги:** 2 проблем
-- src\web\error_handlers.cpp:14:21:: 2 adjacent parameters of 'ValidationRange' of similar type ('int') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\web\error_handlers.cpp:24:17:: 3 adjacent parameters of 'HttpRequest' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+### src/web/error_handlers.cpp ✅ Проблем не найдено
 
 ### src/web/routes_config.cpp (26 предупреждений)
 **Разное:** 1 проблем
@@ -143,12 +130,12 @@
 
 ### src/web/routes_service.cpp ✅ Проблем не найдено
 
-### src/web/web_templates.cpp (10 предупреждений)
-**Потенциальные баги:** 10 проблем
-- src\web\web_templates.cpp:12:14:: 2 adjacent parameters of 'PageInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\web\web_templates.cpp:23:14:: 5 adjacent parameters of 'FormInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- src\web\web_templates.cpp:39:20:: 5 adjacent parameters of 'InputFieldInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
-- ... и ещё 7 проблем
+### src/web/web_templates.cpp (6 предупреждений)
+**Потенциальные баги:** 6 проблем
+- src\web\web_templates.cpp:40:20:: 5 adjacent parameters of 'InputFieldInfo' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- src\web\web_templates.cpp:69:27:: 2 adjacent parameters of 'generatePageHeader' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- src\web\web_templates.cpp:91:25:: 2 adjacent parameters of 'generateBasePage' of similar type ('const String &') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+- ... и ещё 3 проблем
 
 ## 🎯 РЕКОМЕНДАЦИИ ПО ПРИОРИТЕТАМ
 

@@ -46,6 +46,11 @@ struct ECCompensationParams
     SoilType soilType;
 
     ECCompensationParams(float temp, float moist, SoilType soil) : temperature(temp), moisture(moist), soilType(soil) {}  // NOLINT(bugprone-easily-swappable-parameters)
+    
+    // Статический метод-фабрика для безопасного создания
+    static ECCompensationParams create(float temp, float moist, SoilType soil) {
+        return ECCompensationParams(temp, moist, soil);
+    }
 };
 
 // ------------------------------------------------------------------
@@ -93,12 +98,12 @@ void correctNPK(const ECCompensationParams& params, NPKReferences& npk)  // NOLI
 // ------------------------------------------------------------------
 float correctEC(float ecRaw, const EnvironmentalConditions& env, SoilType soil)
 {
-    return correctEC(ecRaw, ECCompensationParams(env.temperature, env.moisture, soil));
+    return correctEC(ecRaw, ECCompensationParams::create(env.temperature, env.moisture, soil));
 }
 
 void correctNPK(const EnvironmentalConditions& env, NPKReferences& npk, SoilType soil)
 {
-    correctNPK(ECCompensationParams(env.temperature, env.moisture, soil), npk);
+    correctNPK(ECCompensationParams::create(env.temperature, env.moisture, soil), npk);
 }
 // ------------------------------------------------------------------
 

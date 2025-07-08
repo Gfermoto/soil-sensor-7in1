@@ -28,7 +28,7 @@ bool init()
     }
 
     // Создаем каталог /calibration при необходимости
-    if (LittleFS.exists("/calibration") == 0)
+    if (!LittleFS.exists("/calibration"))
     {
         LittleFS.mkdir("/calibration");
     }
@@ -121,7 +121,7 @@ bool hasTable(SoilProfile profile)
     {
         return false;
     }
-    return LittleFS.exists(profileToFilename(profile)) != 0;
+    return LittleFS.exists(profileToFilename(profile));
 }
 
 bool deleteTable(SoilProfile profile)
@@ -131,9 +131,9 @@ bool deleteTable(SoilProfile profile)
         return false;
     }
     const char* path = profileToFilename(profile);
-    if (LittleFS.exists(path) != 0)
+    if (LittleFS.exists(path))
     {
-        return LittleFS.remove(path) != 0;
+        return LittleFS.remove(path);
     }
     return false;
 }

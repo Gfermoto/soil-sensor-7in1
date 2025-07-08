@@ -31,10 +31,9 @@ String pendingUpdateVersion = "";
 std::array<char, 8> guardSentinel = {"GUARD!"};  // часовой после URL, как раньше
 }  // namespace
 
-static void _printGuard(
+static void printGuard(
     const char* name, const char* tag,
-    const char*
-        current)  // NOLINT(bugprone-reserved-identifier,cert-dcl37-c,cert-dcl51-cpp,misc-use-anonymous-namespace)
+    const char* current)
 {
     logErrorSafe("\1", name, tag, current);
 }
@@ -43,12 +42,12 @@ void checkGuard(const char* tag)
 {
     if (strncmp(guardGap.data(), "BEFORE", 6) != 0)
     {
-        _printGuard("GAP", tag, guardGap.data());
+        printGuard("GAP", tag, guardGap.data());
         strncpy(guardGap.data(), "BEFORE", 7);
     }
     if (strncmp(guardSentinel.data(), "GUARD!", 6) != 0)
     {
-        _printGuard("AFTER", tag, guardSentinel.data());
+        printGuard("AFTER", tag, guardSentinel.data());
         strncpy(guardSentinel.data(), "GUARD!", 7);
     }
 }
@@ -126,7 +125,7 @@ static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)  //
 
 // Вспомогательная функция для инициализации загрузки
 static bool initializeDownload(HTTPClient& http, const String& binUrl,
-                               int& contentLen)  // NOLINT(misc-use-anonymous-namespace)
+                               int& contentLen)
 {
     esp_task_wdt_reset();
     strlcpy(statusBuf.data(), "Подключение", sizeof(statusBuf));
@@ -207,7 +206,7 @@ static bool initializeDownload(HTTPClient& http, const String& binUrl,
 
 // Вспомогательная функция для загрузки данных
 static bool downloadData(HTTPClient& http, int contentLen,
-                         mbedtls_sha256_context& shaCtx)  // NOLINT(misc-use-anonymous-namespace)
+                         mbedtls_sha256_context& shaCtx)
 {
     strlcpy(statusBuf.data(), "Загрузка", sizeof(statusBuf));
 
@@ -345,7 +344,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
     }
 
     // ИСПРАВЛЕНО: Создаем HTTP клиент в куче для экономии стека
-    HTTPClient* http = new HTTPClient();
+    auto http = new HTTPClient();
     if (http == nullptr)
     {
         strlcpy(statusBuf.data(), "Ошибка создания HTTP клиента", sizeof(statusBuf));
@@ -368,7 +367,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
     logSystemSafe("\1", contentLen);
 
     // ИСПРАВЛЕНО: Создаем SHA256 контекст в куче
-    mbedtls_sha256_context* shaCtx = new mbedtls_sha256_context();
+    auto shaCtx = new mbedtls_sha256_context();
     if (shaCtx == nullptr)
     {
         strlcpy(statusBuf.data(), "Ошибка создания SHA256 контекста", sizeof(statusBuf));
