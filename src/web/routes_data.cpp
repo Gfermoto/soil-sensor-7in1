@@ -318,7 +318,7 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
     if (currentWiFiMode != WiFiMode::STA)
     {
-        webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_JSON, "{\"error\":\"AP mode\"}");
+        webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_JSON, R"({"error":"AP mode"})");
         return;
     }
 
@@ -782,11 +782,11 @@ void setupDataRoutes()
             html += "}";
 
             html +=
-                "var invalid = d.irrigation || d.alerts.length>0 || d.humidity<25 || d.temperature<5 || "
-                "d.temperature>40;";
+                R"(var invalid = d.irrigation || d.alerts.length>0 || d.humidity<25 || d.temperature<5 || )"
+                R"(d.temperature>40;)";
             html +=
-                "var statusHtml = invalid ? '<span class=\\\"red\\\">Данные&nbsp;не&nbsp;валидны</span>' : '<span "
-                "class=\\\"green\\\">Данные&nbsp;валидны</span>';";
+                R"(var statusHtml = invalid ? '<span class="red">Данные&nbsp;не&nbsp;валидны</span>' : '<span )"
+                R"(class="green">Данные&nbsp;валидны</span>';)";
             html +=
                 "var "
                 "seasonColor={'Лето':'green','Весна':'yellow','Осень':'yellow','Зима':'red','Н/Д':''}[d.season]||'';";

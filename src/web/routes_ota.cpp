@@ -41,11 +41,11 @@ void setupOtaRoutes()
                      logWebRequest("POST", "/api/ota/check", webServer.client().remoteIP().toString());
                      if (currentWiFiMode != WiFiMode::STA)
                      {
-                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_JSON, "{\"error\":\"unavailable\"}");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_JSON, R"({"error":"unavailable"})");
                          return;
                      }
                      triggerOtaCheck();  // уже включает handleOTA()
-                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":true}");
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, R"({"ok":true})");
                  });
 
     // API: установить найденное обновление
@@ -55,13 +55,13 @@ void setupOtaRoutes()
                      logWebRequest("POST", "/api/ota/install", webServer.client().remoteIP().toString());
                      if (currentWiFiMode != WiFiMode::STA)
                      {
-                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_JSON, "{\"error\":\"unavailable\"}");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_JSON, R"({"error":"unavailable"})");
                          return;
                      }
 
                      // Запускаем принудительную установку
                      triggerOtaInstall();
-                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, "{\"ok\":true}");
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, R"({"ok":true})");
                  });
 
     // HTML страница обновлений
@@ -279,7 +279,7 @@ void setupOtaRoutes()
             html += "\n";
             html += "document.getElementById('uploadForm').addEventListener('submit', e => {\n";
             html += "  e.preventDefault();\n";
-            html += "  const fileInput = document.querySelector('input[name=\"firmware\"]');\n";
+            html += R"(  const fileInput = document.querySelector('input[name="firmware"]');)" "\n";
             html += "  const file = fileInput.files[0];\n";
             html += "  \n";
             html += "  if (!file) {\n";
