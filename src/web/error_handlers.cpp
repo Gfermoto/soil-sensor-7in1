@@ -187,17 +187,7 @@ bool isFeatureAvailable()
 
 
 
-// Типобезопасная версия с именованными параметрами
-struct LogWebRequestParams {
-    const String& method;
-    const String& uri;
-    const String& clientIP;
-};
 
-void logWebRequest(const LogWebRequestParams& params)
-{
-    logWebRequest(params.method, params.uri, params.clientIP);
-}
 
 /**
  * @brief Генерация HTML ответа с ошибкой валидации
@@ -260,15 +250,4 @@ bool checkRouteAccess(const String& routeName, const String& icon)
     return true;
 }
 
-// Типобезопасная версия с именованными параметрами
-struct RouteAccessParams {
-    const String& routeName;
-    const String& icon;
-};
-
 }  // namespace
-
-bool checkRouteAccess(const RouteAccessParams& params)
-{
-    return checkRouteAccess(params.routeName, params.icon);
-}
