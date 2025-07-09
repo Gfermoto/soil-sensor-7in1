@@ -7,6 +7,7 @@
 #include "modbus_sensor.h"
 #include <Arduino.h>
 #include <algorithm>  // для std::min
+#include "advanced_filters.h"  // ✅ Улучшенная система фильтрации
 #include "calibration_manager.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "jxct_config_vars.h"
@@ -525,11 +526,14 @@ void finalizeSensorData(bool success)
     updateIrrigationFlag(sensorData);
     applyCompensationIfEnabled(sensorData);
 
+    // ✅ v3.10.0: Применяем улучшенную фильтрацию
+    AdvancedFilters::applyAdvancedFiltering(sensorData);
+
     addToMovingAverage(sensorData, sensorData);
 
     if (validateSensorData(sensorData))
     {
-        logSuccess("✅ Все параметры прочитаны и валидны");
+        logSuccess("✅ Все параметры прочитаны и валидны с улучшенной фильтрацией");
         sensorCache = {sensorData, true, millis()};
     }
     else
@@ -609,7 +613,8 @@ static void realSensorTask(void* /*pvParameters*/)  // NOLINT(misc-use-internal-
 
 void startRealSensorTask()
 {
-    xTaskCreate(realSensorTask, "RealSensor", 4096, nullptr, 1, nullptr);
+    // ✅ v3.10.0: Увеличиваем стек для задачи датчика из-за фильтрации
+    xTaskCreate(realSensorTask, "RealSensor", 8192, nullptr, 1, nullptr);
 }
 
 // Функция для вывода ошибок Modbus

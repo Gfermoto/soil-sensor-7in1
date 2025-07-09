@@ -10,6 +10,8 @@
 #include "jxct_device_info.h"
 #include "logger.h"
 #include "version.h"  // ✅ Централизованное управление версией
+#include "config.h"
+#include "jxct_constants.h"
 
 // Firmware version definition - теперь берется из централизованного файла version.h
 // const char* FIRMWARE_VERSION уже определена в version.h
@@ -97,6 +99,12 @@ void loadConfig()
     config.forcePublishCycles = preferences.getUChar("forceCycles", FORCE_PUBLISH_CYCLES);
     config.filterAlgorithm = preferences.getUChar("filterAlgo", 0);          // 0=среднее
     config.outlierFilterEnabled = preferences.getUChar("outlierFilter", 0);  // отключен для минимальной фильтрации
+
+    // v3.10.0: УЛУЧШЕННАЯ СИСТЕМА ФИЛЬТРАЦИИ
+    config.exponentialAlpha = preferences.getFloat("expAlpha", EXPONENTIAL_ALPHA_DEFAULT);
+    config.outlierThreshold = preferences.getFloat("outlierThresh", OUTLIER_THRESHOLD_DEFAULT);
+    config.kalmanEnabled = preferences.getUChar("kalmanEnabled", 0);  // 0=отключен по умолчанию
+    config.adaptiveFiltering = preferences.getUChar("adaptiveFilter", 0);  // 0=отключена по умолчанию
 
     // Soil profile и агро-поля
     config.soilProfile = preferences.getUChar("soilProfile", 0);
@@ -193,6 +201,12 @@ void saveConfig()
     preferences.putUChar("filterAlgo", config.filterAlgorithm);
     preferences.putUChar("outlierFilter", config.outlierFilterEnabled);
 
+    // v3.10.0: УЛУЧШЕННАЯ СИСТЕМА ФИЛЬТРАЦИИ
+    preferences.putFloat("expAlpha", config.exponentialAlpha);
+    preferences.putFloat("outlierThresh", config.outlierThreshold);
+    preferences.putUChar("kalmanEnabled", config.kalmanEnabled);
+    preferences.putUChar("adaptiveFilter", config.adaptiveFiltering);
+
     // Soil profile и агро-поля
     preferences.putUChar("soilProfile", config.soilProfile);
     preferences.putFloat("lat", config.latitude);
@@ -278,6 +292,12 @@ void resetConfig()
     config.forcePublishCycles = FORCE_PUBLISH_CYCLES;
     config.filterAlgorithm = 0;       // среднее
     config.outlierFilterEnabled = 0;  // отключен для минимальной фильтрации
+
+    // v3.10.0: Сброс настроек улучшенной фильтрации
+    config.exponentialAlpha = EXPONENTIAL_ALPHA_DEFAULT;
+    config.outlierThreshold = OUTLIER_THRESHOLD_DEFAULT;
+    config.kalmanEnabled = 0;         // отключен по умолчанию
+    config.adaptiveFiltering = 0;     // отключена по умолчанию
 
     // Soil profile и агро-поля
     config.soilProfile = 0;

@@ -90,11 +90,11 @@ struct __attribute__((packed)) Config
     float deltaEc;           // Порог EC (10-500 µS/cm)
     float deltaNpk;          // Порог NPK (1-50 mg/kg)
 
-    // v2.3.0: Настройки скользящего среднего (8 байт)
+    // v2.3.0: Настройки скользящего среднего (МИНИМАЛЬНАЯ ФИЛЬТРАЦИЯ)
     uint8_t movingAverageWindow;   // Размер окна (5-15 измерений)
     uint8_t forcePublishCycles;    // Принудительная публикация (5-50 циклов)
-    uint8_t filterAlgorithm;       // 0=среднее, 1=медиана
-    uint8_t outlierFilterEnabled;  // 0=отключен, 1=включен (>2σ)
+    uint8_t filterAlgorithm;       // 0=среднее
+    uint8_t outlierFilterEnabled;  // отключен для минимальной фильтрации
 
     // v2.5.1: Настройки калибровки
     uint8_t soilProfile;  // 0 = sand, 1 = loam, 2 = peat
@@ -111,6 +111,12 @@ struct __attribute__((packed)) Config
 
     // v2.6.1: Тип среды выращивания (0=outdoor,1=greenhouse,2=indoor)
     uint8_t environmentType;
+
+    // v3.10.0: УЛУЧШЕННАЯ СИСТЕМА ФИЛЬТРАЦИИ (8 байт)
+    float exponentialAlpha;  // Коэффициент экспоненциального сглаживания
+    float outlierThreshold;  // Порог выбросов (σ)
+    uint8_t kalmanEnabled;   // Фильтр Калмана (0=отключен, 1=включен)
+    uint8_t adaptiveFiltering;  // Адаптивная фильтрация (0=отключена, 1=включена)
 
     // Битовые поля для boolean флагов (экономия 4 байта)
     struct __attribute__((packed))

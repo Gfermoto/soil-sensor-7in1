@@ -13,6 +13,7 @@
 #include <WiFiUdp.h>
 #include <esp_ota_ops.h>
 #include <esp_task_wdt.h>
+#include "advanced_filters.h"  // ✅ Улучшенная система фильтрации
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "fake_sensor.h"
 #include "jxct_config_vars.h"
@@ -191,6 +192,10 @@ void setup()
     static std::unique_ptr<ISensor> gSensor = createSensorInstance();
     gSensor->begin();
 
+    // ✅ v3.10.0: Инициализация улучшенной системы фильтрации
+    AdvancedFilters::resetAllFilters();
+    logSuccess("Улучшенная система фильтрации инициализирована");
+
     // Legacy: оставляем старые задачи для поточного обновления sensorData
     if (config.flags.useRealSensor)
     {
@@ -257,6 +262,9 @@ void loop()
         {
             logWarn("Данные датчика недоступны");
         }
+
+        // ✅ v3.10.0: Статистика улучшенной фильтрации
+        AdvancedFilters::logFilterStatistics();
 
         logPrintSeparator("─", 60);
         lastStatusPrint = currentTime;

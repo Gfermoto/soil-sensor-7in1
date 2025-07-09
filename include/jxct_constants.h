@@ -117,6 +117,33 @@ constexpr float DEFAULT_DELTA_NPK = 10.0F;         // 10 mg/kg
 constexpr uint8_t DEFAULT_FORCE_PUBLISH_CYCLES = 10;  // Каждые 10 циклов
 
 // ============================================================================
+// УЛУЧШЕННАЯ СИСТЕМА ФИЛЬТРАЦИИ v3.10.0
+// ============================================================================
+
+// Экспоненциальное сглаживание (коэффициенты)
+constexpr float EXPONENTIAL_ALPHA_MIN = 0.1F;      // Минимальный коэффициент (сильное сглаживание)
+constexpr float EXPONENTIAL_ALPHA_MAX = 0.9F;      // Максимальный коэффициент (слабое сглаживание)
+constexpr float EXPONENTIAL_ALPHA_DEFAULT = 0.3F;  // По умолчанию (баланс)
+
+// Адаптивные пороги выбросов (множители стандартного отклонения)
+constexpr float OUTLIER_THRESHOLD_MIN = 1.5F;      // Минимальный порог (1.5σ)
+constexpr float OUTLIER_THRESHOLD_MAX = 4.0F;      // Максимальный порог (4.0σ)
+constexpr float OUTLIER_THRESHOLD_DEFAULT = 2.5F;  // По умолчанию (2.5σ)
+
+// Фильтр Калмана (параметры)
+constexpr float KALMAN_PROCESS_NOISE = 0.01F;      // Шум процесса
+constexpr float KALMAN_MEASUREMENT_NOISE = 0.1F;   // Шум измерений
+constexpr float KALMAN_INITIAL_UNCERTAINTY = 1.0F; // Начальная неопределенность
+
+// Калибровочные фильтры (компенсация систематических ошибок)
+constexpr float CALIBRATION_OFFSET_MAX = 10.0F;    // Максимальное смещение калибровки
+constexpr float CALIBRATION_DRIFT_MAX = 0.1F;      // Максимальный дрифт за час
+
+// Статистические параметры
+constexpr uint8_t STATISTICS_WINDOW_SIZE = 20;     // Окно для статистики
+constexpr float MIN_STANDARD_DEVIATION = 0.01F;    // Минимальное стандартное отклонение
+
+// ============================================================================
 // СТРОКОВЫЕ КОНСТАНТЫ
 // ============================================================================
 

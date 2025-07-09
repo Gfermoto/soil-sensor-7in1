@@ -63,6 +63,10 @@ void sendConfigExportJson()
     filters["force_publish_cycles"] = config.forcePublishCycles; // NOLINT(readability-misplaced-array-index)
     filters["filter_algorithm"] = config.filterAlgorithm; // NOLINT(readability-misplaced-array-index)
     filters["outlier_filter_enabled"] = config.outlierFilterEnabled; // NOLINT(readability-misplaced-array-index)
+    filters["adaptive_filtering"] = config.adaptiveFiltering; // NOLINT(readability-misplaced-array-index)
+    filters["kalman_enabled"] = config.kalmanEnabled; // NOLINT(readability-misplaced-array-index)
+    filters["exponential_alpha"] = config.exponentialAlpha; // NOLINT(readability-misplaced-array-index)
+    filters["outlier_threshold"] = config.outlierThreshold; // NOLINT(readability-misplaced-array-index)
 
     // Device flags
     JsonObject device = root.createNestedObject("device");
@@ -170,7 +174,7 @@ void setupConfigRoutes()
             html += "<div class='help'>" + String(CONFIG_DELTA_NPK_MIN) + "-" + String(CONFIG_DELTA_NPK_MAX) +
                     " mg/kg. Публикация при изменении более чем на это значение</div></div></div>";
 
-            html += "<div class='section'><h2>📈 Скользящее среднее</h2>";
+            html += "<div class='section'><h2>📈 Параметры фильтрации</h2>";
             html += "<div class='form-group'><label for='avg_window'>Размер окна усреднения:</label>";
             html += "<input type='number' id='avg_window' name='avg_window' min='" + String(CONFIG_AVG_WINDOW_MIN) +
                     "' max='" + String(CONFIG_AVG_WINDOW_MAX) + "' value='" + String(config.movingAverageWindow) +
@@ -192,25 +196,75 @@ void setupConfigRoutes()
                     ">Среднее арифметическое</option>";
             html += "<option value='1'" + String(config.filterAlgorithm == 1 ? " selected" : "") +
                     ">Медианное значение</option>";
+            html += "<option value='2'" + String(config.filterAlgorithm == 2 ? " selected" : "") +
+                    ">Экспоненциальное сглаживание</option>";
+            html += "<option value='3'" + String(config.filterAlgorithm == 3 ? " selected" : "") +
+                    ">Фильтр Калмана</option>";
             html += "</select>";
-            html += "<div class='help'>Среднее - быстрее, медиана - устойчивее к выбросам</div></div>";
+            html += "<div class='help'>Среднее - быстрее, медиана - устойчивее к выбросам, экспоненциальное - адаптивное, Калман - оптимальное</div></div>";
 
-            html += "<div class='form-group'><label for='outlier_filter'>Фильтр выбросов >2σ:</label>";
-            html += "<select id='outlier_filter' name='outlier_filter' required>";
-            html += "<option value='0'" + String(config.outlierFilterEnabled == 0 ? " selected" : "") +
-                    ">Отключен</option>";
-            html +=
-                "<option value='1'" + String(config.outlierFilterEnabled == 1 ? " selected" : "") + ">Включен</option>";
+            html += "<div class='form-group'><label><input type='checkbox' id='outlier_filter' name='outlier_filter'" +
+                    String(config.outlierFilterEnabled ? " checked" : "") + "> Включить фильтр выбросов</label></div>";
+            html += "<div class='form-group'><label for='outlier_threshold'>Порог выбросов (σ):</label>";
+            html += "<input type='number' id='outlier_threshold' name='outlier_threshold' min='1.0' max='5.0' step='0.1' value='" +
+                    String(config.outlierThreshold, 1) + "'>";
+            html += "<div class='help'>1.0-5.0. Значения, отходящие более чем на σ·std от среднего, игнорируются</div></div>";
+            html += "<p class='help' style='margin-top:10px'>Порядок обработки данных: <strong>1)</strong> при включённом чекбоксе выбросы, превышающие заданный порог σ, сразу отбрасываются; <strong>2)</strong> затем к оставшимся точкам применяется выбранный в выпадающем списке алгоритм (среднее, медиана, эксп. сглаживание или Калман); <strong>3)</strong> при включённой адаптивной фильтрации параметры автоматически подстраиваются под статистику последних измерений.</p>";
+
+            // Новые настройки улучшенной фильтрации
+            html += "<div class='section'><h2>🔧 Улучшенная фильтрация</h2>";
+            
+            html += "<div class='form-group'><label for='adaptive_filtering'>Адаптивная фильтрация:</label>";
+            html += "<select id='adaptive_filtering' name='adaptive_filtering' required>";
+            html += "<option value='0'" + String(config.adaptiveFiltering == 0 ? " selected" : "") +
+                    ">Отключена</option>";
+            html += "<option value='1'" + String(config.adaptiveFiltering == 1 ? " selected" : "") +
+                    ">Включена</option>";
             html += "</select>";
-            html +=
-                "<div class='help'>Автоматически отбрасывает измерения, отклоняющиеся более чем на 2 "
-                "сигма</div></div></div>";
+            html += "<div class='help'>Автоматически настраивает фильтрацию на основе статистики данных</div></div>";
+
+            html += "<div class='form-group'><label for='exp_alpha'>Коэффициент сглаживания (α):</label>";
+            html += "<input type='number' id='exp_alpha' name='exp_alpha' min='0.01' max='0.99' step='0.01' value='" +
+                    String(config.exponentialAlpha, 2) + "' required>";
+            html += "<div class='help'>0.01-0.99. Меньше = плавнее, больше = быстрее реакция. Для EC применяется α×0.7, для NPK - α×0.8</div></div>";
+
+            html += "</div>";  // закрываем секцию 'Улучшенная фильтрация'
 
             html += generateButton(ButtonType::PRIMARY, ButtonConfig{UI_ICON_SAVE, "Сохранить настройки", ""});
             html += "</form>";
             html += generateButton(ButtonType::SECONDARY,
                                    ButtonConfig{UI_ICON_RESET, "Сбросить к умолчанию (1 сек + мин. фильтрация)", ""});
             html += "</form>";
+            
+            // JavaScript для динамического управления полями
+            html += "<script>";
+            html += "function updateFieldVisibility() {";
+            html += "  const algo = document.getElementById('filter_algo').value;";
+            html += "  const expAlphaField = document.getElementById('exp_alpha').closest('.form-group');";
+            html += "  const outlierField = document.getElementById('outlier_threshold').closest('.form-group');";
+            html += "  const outlierCheckbox = document.getElementById('outlier_filter').closest('.form-group');";
+            html += "  const adaptiveField = document.getElementById('adaptive_filtering').closest('.form-group');";
+            html += "  ";
+            html += "  // Показываем/скрываем поля в зависимости от алгоритма";
+            html += "  if (algo == '2') {"; // Экспоненциальное сглаживание
+            html += "    expAlphaField.style.display = 'block';";
+            html += "    expAlphaField.querySelector('input').required = true;";
+            html += "  } else {";
+            html += "    expAlphaField.style.display = 'none';";
+            html += "    expAlphaField.querySelector('input').required = false;";
+            html += "  }";
+            html += "}";
+            html += "";
+            html += "// Инициализация при загрузке страницы";
+            html += "document.addEventListener('DOMContentLoaded', function() {";
+            html += "  updateFieldVisibility();";
+            html += "  ";
+            html += "  // Обработчики изменений";
+            html += "  document.getElementById('filter_algo').addEventListener('change', updateFieldVisibility);";
+            html += "  document.getElementById('outlier_filter').addEventListener('change', updateFieldVisibility);";
+            html += "});";
+            html += "</script>";
+            
             html += generatePageFooter();
 
             webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
@@ -282,7 +336,12 @@ void setupConfigRoutes()
 
             // Сохраняем новые настройки алгоритма и фильтра выбросов
             config.filterAlgorithm = webServer.arg("filter_algo").toInt();
-            config.outlierFilterEnabled = webServer.arg("outlier_filter").toInt();
+            config.outlierFilterEnabled = webServer.hasArg("outlier_filter") ? 1 : 0;
+
+            // Сохраняем новые настройки улучшенной фильтрации
+            config.adaptiveFiltering = webServer.arg("adaptive_filtering").toInt();
+            config.exponentialAlpha = webServer.arg("exp_alpha").toFloat();
+            config.outlierThreshold = webServer.arg("outlier_threshold").toFloat();
 
             // Сохраняем в NVS
             saveConfig();
@@ -329,6 +388,9 @@ void setupConfigRoutes()
                      config.forcePublishCycles = FORCE_PUBLISH_CYCLES;  // каждые 5 циклов
                      config.filterAlgorithm = 0;                        // среднее
                      config.outlierFilterEnabled = 0;                   // отключен
+                     config.adaptiveFiltering = 0;                     // отключена
+                     config.exponentialAlpha = 0.3f;                   // по умолчанию
+                     config.outlierThreshold = 2.0f;                   // по умолчанию
 
                      saveConfig();
 
