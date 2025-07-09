@@ -98,7 +98,6 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Классы</a> &#124;
 <a href="#func-members">Функции</a> &#124;
 <a href="#var-members">Переменные</a>  </div>
   <div class="headertitle"><div class="title">Файл routes_data.cpp</div></div>
@@ -110,7 +109,7 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 <div class="textblock"><code>#include &lt;ArduinoJson.h&gt;</code><br />
 <code>#include &lt;LittleFS.h&gt;</code><br />
 <code>#include &lt;NTPClient.h&gt;</code><br />
-<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;ctime&gt;</code><br />
 <code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">../../include/jxct_config_vars.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">../../include/jxct_constants.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__format__utils_8h_source.html">../../include/jxct_format_utils.h</a>&quot;</code><br />
@@ -125,26 +124,11 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 </div>
 <p><a href="routes__data_8cpp_source.html">См. исходные тексты.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Классы</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_rec_values.html">RecValues</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
-<tr class="memitem:ad30c0b8b33e60ccdb13f2e1cc08157c9" id="r_ad30c0b8b33e60ccdb13f2e1cc08157c9"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad30c0b8b33e60ccdb13f2e1cc08157c9">navHtml</a> ()</td></tr>
-<tr class="separator:ad30c0b8b33e60ccdb13f2e1cc08157c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc35370b803782f896c844976a9ad6ce" id="r_adc35370b803782f896c844976a9ad6ce"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc35370b803782f896c844976a9ad6ce">formatValue</a> (float value, const char *unit, int precision)</td></tr>
-<tr class="separator:adc35370b803782f896c844976a9ad6ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af857f35623b29612a3b4cc45dd6fff23" id="r_af857f35623b29612a3b4cc45dd6fff23"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af857f35623b29612a3b4cc45dd6fff23">getApSsid</a> ()</td></tr>
-<tr class="separator:af857f35623b29612a3b4cc45dd6fff23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc74086c185759ebabfbcd18b0abd9bd" id="r_adc74086c185759ebabfbcd18b0abd9bd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="struct_rec_values.html">RecValues</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc74086c185759ebabfbcd18b0abd9bd">computeRecommendations</a> ()</td></tr>
-<tr class="separator:adc74086c185759ebabfbcd18b0abd9bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43999630c470d7068023c4f423c0722c" id="r_a43999630c470d7068023c4f423c0722c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43999630c470d7068023c4f423c0722c">handleReadingsUpload</a> ()</td></tr>
 <tr class="memdesc:a43999630c470d7068023c4f423c0722c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик загрузки калибровочных файлов  <br /></td></tr>
 <tr class="separator:a43999630c470d7068023c4f423c0722c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abbd29afd9c684d507a0787906872c9d9" id="r_abbd29afd9c684d507a0787906872c9d9"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbd29afd9c684d507a0787906872c9d9">handleProfileSave</a> ()</td></tr>
-<tr class="separator:abbd29afd9c684d507a0787906872c9d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a636822ce9463007c8c3e5b10d00b26e1" id="r_a636822ce9463007c8c3e5b10d00b26e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a636822ce9463007c8c3e5b10d00b26e1">sendSensorJson</a> ()</td></tr>
 <tr class="memdesc:a636822ce9463007c8c3e5b10d00b26e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Отправка JSON данных датчиков  <br /></td></tr>
 <tr class="separator:a636822ce9463007c8c3e5b10d00b26e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -156,10 +140,6 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 Переменные</h2></td></tr>
 <tr class="memitem:ab4cd0eb2684ad54d1d0782f4ff75e07f" id="r_ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memItemLeft" align="right" valign="top">NTPClient *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">timeClient</a></td></tr>
 <tr class="separator:ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75f9cadda2a3d68252ebfeb55df86618" id="r_a75f9cadda2a3d68252ebfeb55df86618"><td class="memItemLeft" align="right" valign="top">static File&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75f9cadda2a3d68252ebfeb55df86618">uploadFile</a></td></tr>
-<tr class="separator:a75f9cadda2a3d68252ebfeb55df86618"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b77c83141abb779c6ed77f346019bc2" id="r_a0b77c83141abb779c6ed77f346019bc2"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155d">SoilProfile</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b77c83141abb779c6ed77f346019bc2">uploadProfile</a> = <a class="el" href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b">SoilProfile::SAND</a></td></tr>
-<tr class="separator:a0b77c83141abb779c6ed77f346019bc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Маршруты для работы с данными датчика </p>
@@ -167,123 +147,6 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 
 <p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a></p>
 </div><h2 class="groupheader">Функции</h2>
-<a id="adc74086c185759ebabfbcd18b0abd9bd" name="adc74086c185759ebabfbcd18b0abd9bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc74086c185759ebabfbcd18b0abd9bd">&#9670;&#160;</a></span>computeRecommendations()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static <a class="el" href="struct_rec_values.html">RecValues</a> computeRecommendations </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00039">39</a></p>
-
-</div>
-</div>
-<a id="adc35370b803782f896c844976a9ad6ce" name="adc35370b803782f896c844976a9ad6ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adc35370b803782f896c844976a9ad6ce">&#9670;&#160;</a></span>formatValue()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">String formatValue </td>
-          <td>(</td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>unit</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>precision</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="jxct__format__utils_8cpp_source.html">jxct_format_utils.cpp</a> строка <a class="el" href="jxct__format__utils_8cpp_source.html#l00046">46</a></p>
-
-</div>
-</div>
-<a id="af857f35623b29612a3b4cc45dd6fff23" name="af857f35623b29612a3b4cc45dd6fff23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af857f35623b29612a3b4cc45dd6fff23">&#9670;&#160;</a></span>getApSsid()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">String getApSsid </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="wifi__manager_8cpp_source.html">wifi_manager.cpp</a> строка <a class="el" href="wifi__manager_8cpp_source.html#l00217">217</a></p>
-
-</div>
-</div>
-<a id="abbd29afd9c684d507a0787906872c9d9" name="abbd29afd9c684d507a0787906872c9d9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abbd29afd9c684d507a0787906872c9d9">&#9670;&#160;</a></span>handleProfileSave()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void handleProfileSave </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00245">245</a></p>
-
-</div>
-</div>
 <a id="a43999630c470d7068023c4f423c0722c" name="a43999630c470d7068023c4f423c0722c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a43999630c470d7068023c4f423c0722c">&#9670;&#160;</a></span>handleReadingsUpload()</h2>
 
@@ -301,34 +164,7 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 
 <p>Обработчик загрузки калибровочных файлов </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00213">213</a></p>
-
-</div>
-</div>
-<a id="ad30c0b8b33e60ccdb13f2e1cc08157c9" name="ad30c0b8b33e60ccdb13f2e1cc08157c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad30c0b8b33e60ccdb13f2e1cc08157c9">&#9670;&#160;</a></span>navHtml()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">String navHtml </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="wifi__manager_8cpp_source.html">wifi_manager.cpp</a> строка <a class="el" href="wifi__manager_8cpp_source.html#l00093">93</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00252">252</a></p>
 
 </div>
 </div>
@@ -349,7 +185,7 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 
 <p>Отправка JSON данных датчиков </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00266">266</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00316">316</a></p>
 
 </div>
 </div>
@@ -370,7 +206,7 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 
 <p>Настройка маршрутов для данных датчиков </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00364">364</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00453">453</a></p>
 
 </div>
 </div>
@@ -395,55 +231,7 @@ $(function(){initNavTree('routes__data_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00044">44</a></p>
-
-</div>
-</div>
-<a id="a75f9cadda2a3d68252ebfeb55df86618" name="a75f9cadda2a3d68252ebfeb55df86618"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75f9cadda2a3d68252ebfeb55df86618">&#9670;&#160;</a></span>uploadFile</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">File uploadFile</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00031">31</a></p>
-
-</div>
-</div>
-<a id="a0b77c83141abb779c6ed77f346019bc2" name="a0b77c83141abb779c6ed77f346019bc2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0b77c83141abb779c6ed77f346019bc2">&#9670;&#160;</a></span>uploadProfile</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155d">SoilProfile</a> uploadProfile = <a class="el" href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b">SoilProfile::SAND</a></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00032">32</a></p>
+<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00049">49</a></p>
 
 </div>
 </div>

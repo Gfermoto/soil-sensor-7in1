@@ -105,6 +105,8 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 <div class="contents">
 <div class="textblock"><code>#include &lt;WebServer.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">../src/wifi_manager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__strings_8h_source.html">jxct_strings.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
 </div>
 <p><a href="web__routes_8h_source.html">См. исходные тексты.</a></p>
 <table class="memberdecls">
@@ -185,9 +187,6 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 <tr class="memitem:a39afb173dda384eaffde7b3c0f136af4" id="r_a39afb173dda384eaffde7b3c0f136af4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39afb173dda384eaffde7b3c0f136af4">handleCalibrationUpload</a> ()</td></tr>
 <tr class="memdesc:a39afb173dda384eaffde7b3c0f136af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик загрузки калибровочных данных  <br /></td></tr>
 <tr class="separator:a39afb173dda384eaffde7b3c0f136af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d52ae788bd99342b84e28a1af12392b" id="r_a6d52ae788bd99342b84e28a1af12392b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d52ae788bd99342b84e28a1af12392b">checkRouteAccess</a> (const String &amp;routeName, const String &amp;icon)</td></tr>
-<tr class="memdesc:a6d52ae788bd99342b84e28a1af12392b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Middleware для проверки доступности маршрута  <br /></td></tr>
-<tr class="separator:a6d52ae788bd99342b84e28a1af12392b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a195f4874889e332e6f540a518d6c51fe" id="r_a195f4874889e332e6f540a518d6c51fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a195f4874889e332e6f540a518d6c51fe">isRouteAvailable</a> (const String &amp;uri)</td></tr>
 <tr class="memdesc:a195f4874889e332e6f540a518d6c51fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверка доступности маршрута в текущем режиме  <br /></td></tr>
 <tr class="separator:a195f4874889e332e6f540a518d6c51fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -279,41 +278,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 <p>Middleware для проверки CSRF на POST запросах </p>
 <dl class="section return"><dt>Возвращает</dt><dd>true если запрос безопасен (GET или валидный CSRF токен) </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00099">99</a></p>
-
-</div>
-</div>
-<a id="a6d52ae788bd99342b84e28a1af12392b" name="a6d52ae788bd99342b84e28a1af12392b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d52ae788bd99342b84e28a1af12392b">&#9670;&#160;</a></span>checkRouteAccess()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool checkRouteAccess </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>routeName</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Middleware для проверки доступности маршрута </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">routeName</td><td>Имя маршрута </td></tr>
-    <tr><td class="paramname">icon</td><td>Иконка для отображения в интерфейсе </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>true если маршрут доступен</dd></dl>
-<p>Middleware для проверки доступности маршрута </p>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00185">185</a></p>
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00102">102</a></p>
 
 </div>
 </div>
@@ -326,12 +291,12 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
         <tr>
           <td class="memname">String generateApModeUnavailablePage </td>
           <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>titleText</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span>&#160;)</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>iconText</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -346,7 +311,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00185">185</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00347">347</a></p>
 
 </div>
 </div>
@@ -385,7 +350,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00025">25</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00165">165</a></p>
 
 </div>
 </div>
@@ -398,17 +363,17 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
         <tr>
           <td class="memname">String generateCheckboxField </td>
           <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>fieldId</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>fieldName</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>labelText</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -421,8 +386,8 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 <p>Генерация поля чекбокса </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">id</td><td>ID элемента </td></tr>
-    <tr><td class="paramname">name</td><td>Имя элемента </td></tr>
+    <tr><td class="paramname">fieldId</td><td>ID элемента </td></tr>
+    <tr><td class="paramname">fieldName</td><td>Имя элемента </td></tr>
     <tr><td class="paramname">label</td><td>Подпись </td></tr>
     <tr><td class="paramname">checked</td><td>Состояние чекбокса </td></tr>
   </table>
@@ -430,7 +395,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>HTML чекбокс </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00134">134</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00290">290</a></p>
 
 </div>
 </div>
@@ -453,23 +418,14 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>helpText</em></span>&#160;)</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>helpText</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Генерация секции конфигурации </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">title</td><td>Заголовок секции </td></tr>
-    <tr><td class="paramname">content</td><td>Содержимое секции </td></tr>
-    <tr><td class="paramname">helpText</td><td>Текст подсказки (опционально) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>HTML секция </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00084">84</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00240">240</a></p>
 
 </div>
 </div>
@@ -491,7 +447,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 <p>Генерация CSRF токена </p>
 <dl class="section return"><dt>Возвращает</dt><dd>Строка с уникальным CSRF токеном </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00028">28</a></p>
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00031">31</a></p>
 
 </div>
 </div>
@@ -524,7 +480,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница с ошибкой </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00034">34</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00171">171</a></p>
 
 </div>
 </div>
@@ -563,19 +519,8 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </div><div class="memdoc">
 
 <p>Генерация формы с общими элементами </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">action</td><td>URL для отправки формы </td></tr>
-    <tr><td class="paramname">method</td><td>HTTP метод (GET/POST) </td></tr>
-    <tr><td class="paramname">formContent</td><td>Содержимое формы </td></tr>
-    <tr><td class="paramname">buttonText</td><td>Текст кнопки отправки </td></tr>
-    <tr><td class="paramname">buttonIcon</td><td>Иконка кнопки </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>HTML форма </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00067">67</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00215">215</a></p>
 
 </div>
 </div>
@@ -603,7 +548,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>HTML блок с ошибкой </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00174">174</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00336">336</a></p>
 
 </div>
 </div>
@@ -636,37 +581,24 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>type</em></span>, </td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>type</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;text&quot;</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>required</em></span>, </td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>required</em></span><span class="paramdefsep"> = </span><span class="paramdefval">false</span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>placeholder</em></span>&#160;)</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>placeholder</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Генерация поля ввода </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>ID элемента </td></tr>
-    <tr><td class="paramname">name</td><td>Имя элемента </td></tr>
-    <tr><td class="paramname">label</td><td>Подпись </td></tr>
-    <tr><td class="paramname">value</td><td>Значение по умолчанию </td></tr>
-    <tr><td class="paramname">type</td><td>Тип поля (text, password, email, number) </td></tr>
-    <tr><td class="paramname">required</td><td>Обязательно ли поле </td></tr>
-    <tr><td class="paramname">placeholder</td><td>Placeholder текст </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>HTML поле ввода </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00108">108</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00275">275</a></p>
 
 </div>
 </div>
@@ -709,27 +641,14 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>step</em></span>&#160;)</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>step</em></span><span class="paramdefsep"> = </span><span class="paramdefval">1</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Генерация числового поля с валидацией </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">id</td><td>ID элемента </td></tr>
-    <tr><td class="paramname">name</td><td>Имя элемента </td></tr>
-    <tr><td class="paramname">label</td><td>Подпись </td></tr>
-    <tr><td class="paramname">value</td><td>Значение по умолчанию </td></tr>
-    <tr><td class="paramname">min</td><td>Минимальное значение </td></tr>
-    <tr><td class="paramname">max</td><td>Максимальное значение </td></tr>
-    <tr><td class="paramname">step</td><td>Шаг изменения </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>HTML числовое поле </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00158">158</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00325">325</a></p>
 
 </div>
 </div>
@@ -751,7 +670,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 <p>Генерация футера HTML страницы </p>
 <dl class="section return"><dt>Возвращает</dt><dd>HTML футер </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00020">20</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00150">150</a></p>
 
 </div>
 </div>
@@ -784,7 +703,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>HTML заголовок </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00009">9</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00145">145</a></p>
 
 </div>
 </div>
@@ -829,7 +748,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница с сообщением об успехе </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00043">43</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00180">180</a></p>
 
 </div>
 </div>
@@ -857,7 +776,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>HTML ответ с ошибкой </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00142">142</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00197">197</a></p>
 
 </div>
 </div>
@@ -879,7 +798,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 <p>Получение скрытого поля с CSRF токеном для форм </p>
 <dl class="section return"><dt>Возвращает</dt><dd>HTML строка с hidden input для CSRF токена </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00088">88</a></p>
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00091">91</a></p>
 
 </div>
 </div>
@@ -976,7 +895,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Обработчик загрузки калибровочных данных </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__calibration_8cpp_source.html">routes_calibration.cpp</a> строка <a class="el" href="routes__calibration_8cpp_source.html#l00089">89</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__calibration_8cpp_source.html">routes_calibration.cpp</a> строка <a class="el" href="routes__calibration_8cpp_source.html#l00092">92</a></p>
 
 </div>
 </div>
@@ -1003,7 +922,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
   </dd>
 </dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00158">158</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00213">213</a></p>
 
 </div>
 </div>
@@ -1081,7 +1000,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Обработчик загрузки калибровочных файлов </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00213">213</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00252">252</a></p>
 
 </div>
 </div>
@@ -1121,7 +1040,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Обработчик главной страницы (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>) </p>
 
-<p class="definition">См. определение в файле <a class="el" href="wifi__manager_8cpp_source.html">wifi_manager.cpp</a> строка <a class="el" href="wifi__manager_8cpp_source.html#l00405">405</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__main_8cpp_source.html">routes_main.cpp</a> строка <a class="el" href="routes__main_8cpp_source.html#l00161">161</a></p>
 
 </div>
 </div>
@@ -1142,7 +1061,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Обработчик страницы статуса (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>) </p>
 
-<p class="definition">См. определение в файле <a class="el" href="wifi__manager_8cpp_source.html">wifi_manager.cpp</a> строка <a class="el" href="wifi__manager_8cpp_source.html#l00353">353</a></p>
+<p class="definition">См. определение в файле <a class="el" href="wifi__manager_8cpp_source.html">wifi_manager.cpp</a> строка <a class="el" href="wifi__manager_8cpp_source.html#l00381">381</a></p>
 
 </div>
 </div>
@@ -1188,7 +1107,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
   </dd>
 </dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00093">93</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00159">159</a></p>
 
 </div>
 </div>
@@ -1209,7 +1128,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Инициализация CSRF защиты </p>
 
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00176">176</a></p>
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00177">177</a></p>
 
 </div>
 </div>
@@ -1231,7 +1150,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 <p>Проверка доступности функции в текущем режиме WiFi (без параметров) </p>
 <dl class="section return"><dt>Возвращает</dt><dd>true если функция доступна в текущем режиме </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00117">117</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00183">183</a></p>
 
 </div>
 </div>
@@ -1259,7 +1178,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>true если маршрут доступен </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00171">171</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00226">226</a></p>
 
 </div>
 </div>
@@ -1268,6 +1187,9 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">void logWebRequest </td>
@@ -1285,6 +1207,11 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
           <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>clientIP</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Логирование веб-запросов </p>
@@ -1297,7 +1224,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
   </dd>
 </dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00122">122</a></p>
+<p class="definition">См. определение в файле <a class="el" href="web__routes_8h_source.html">web_routes.h</a> строка <a class="el" href="web__routes_8h_source.html#l00190">190</a></p>
 
 </div>
 </div>
@@ -1325,7 +1252,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Строковое представление метода </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00149">149</a></p>
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00150">150</a></p>
 
 </div>
 </div>
@@ -1346,7 +1273,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Отправка JSON данных датчиков </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00266">266</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00316">316</a></p>
 
 </div>
 </div>
@@ -1367,7 +1294,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Настройка маршрутов калибровки </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__calibration_8cpp_source.html">routes_calibration.cpp</a> строка <a class="el" href="routes__calibration_8cpp_source.html#l00138">138</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__calibration_8cpp_source.html">routes_calibration.cpp</a> строка <a class="el" href="routes__calibration_8cpp_source.html#l00151">151</a></p>
 
 </div>
 </div>
@@ -1388,7 +1315,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Настройка маршрутов для конфигурации </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__config_8cpp_source.html">routes_config.cpp</a> строка <a class="el" href="routes__config_8cpp_source.html#l00030">30</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__config_8cpp_source.html">routes_config.cpp</a> строка <a class="el" href="routes__config_8cpp_source.html#l00082">82</a></p>
 
 </div>
 </div>
@@ -1409,7 +1336,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Настройка маршрутов для данных датчиков </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00364">364</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00453">453</a></p>
 
 </div>
 </div>
@@ -1430,7 +1357,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Настройка обработчиков ошибок (404, 500, и т.д.) </p>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00023">23</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00074">74</a></p>
 
 </div>
 </div>
@@ -1472,7 +1399,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Настройка маршрутов OTA обновлений </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__ota_8cpp_source.html">routes_ota.cpp</a> строка <a class="el" href="routes__ota_8cpp_source.html#l00028">28</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__ota_8cpp_source.html">routes_ota.cpp</a> строка <a class="el" href="routes__ota_8cpp_source.html#l00030">30</a></p>
 
 </div>
 </div>
@@ -1493,7 +1420,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Настройка маршрутов отчетов </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__reports_8cpp_source.html">routes_reports.cpp</a> строка <a class="el" href="routes__reports_8cpp_source.html#l00044">44</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__reports_8cpp_source.html">routes_reports.cpp</a> строка <a class="el" href="routes__reports_8cpp_source.html#l00395">395</a></p>
 
 </div>
 </div>
@@ -1514,7 +1441,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Настройка сервисных маршрутов (/reset, /status, /info) </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__service_8cpp_source.html">routes_service.cpp</a> строка <a class="el" href="routes__service_8cpp_source.html#l00042">42</a></p>
+<p class="definition">См. определение в файле <a class="el" href="routes__service_8cpp_source.html">routes_service.cpp</a> строка <a class="el" href="routes__service_8cpp_source.html#l00041">41</a></p>
 
 </div>
 </div>
@@ -1542,7 +1469,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>true если валидация прошла успешно </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00045">45</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00096">96</a></p>
 
 </div>
 </div>
@@ -1570,7 +1497,7 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>true если токен валиден </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00055">55</a></p>
+<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00058">58</a></p>
 
 </div>
 </div>

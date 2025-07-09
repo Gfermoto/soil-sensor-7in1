@@ -1,6 +1,13 @@
 var searchData=
 [
-  ['k_5fh_5fk_0',['k_h_K',['../sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a',1,'sensor_compensation.cpp']]],
-  ['k_5fh_5fn_1',['k_h_N',['../sensor__compensation_8cpp.html#adf2ddb83f2189c9159aa7fe534217ea4',1,'sensor_compensation.cpp']]],
-  ['k_5fh_5fp_2',['k_h_P',['../sensor__compensation_8cpp.html#ae64bff1823ab30991e51b8d57c23be39',1,'sensor_compensation.cpp']]]
+  ['init_0',['init',['../namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613',1,'CalibrationManager']]],
+  ['initcsrfprotection_1',['initCSRFProtection',['../csrf__protection_8cpp.html#ac922ac6444b8b990e13e3746ca931065',1,'initCSRFProtection():&#160;csrf_protection.cpp'],['../csrf__protection_8h.html#ac922ac6444b8b990e13e3746ca931065',1,'initCSRFProtection():&#160;csrf_protection.cpp'],['../web__routes_8h.html#ac922ac6444b8b990e13e3746ca931065',1,'initCSRFProtection():&#160;csrf_protection.cpp']]],
+  ['initmovingaveragebuffers_2',['initMovingAverageBuffers',['../modbus__sensor_8cpp.html#ae316f6943acb0b355ff8b0f878b08d04',1,'initMovingAverageBuffers(SensorData &amp;data):&#160;modbus_sensor.cpp'],['../modbus__sensor_8h.html#ae316f6943acb0b355ff8b0f878b08d04',1,'initMovingAverageBuffers(SensorData &amp;data):&#160;modbus_sensor.cpp']]],
+  ['inputfieldinfo_3',['InputFieldInfo',['../struct_input_field_info.html#a3e8efb5efb96ce8253469618d6c614ed',1,'InputFieldInfo']]],
+  ['invalidatehaconfigcache_4',['invalidateHAConfigCache',['../mqtt__client_8cpp.html#a78b590745e792368420169e642494895',1,'invalidateHAConfigCache():&#160;mqtt_client.cpp'],['../mqtt__client_8h.html#a78b590745e792368420169e642494895',1,'invalidateHAConfigCache():&#160;mqtt_client.cpp']]],
+  ['isconfigvalid_5',['isConfigValid',['../config_8cpp.html#aeb61f04cd3b4b68e8146d85c447d70d1',1,'isConfigValid():&#160;config.cpp'],['../jxct__config__vars_8h.html#aeb61f04cd3b4b68e8146d85c447d70d1',1,'isConfigValid():&#160;config.cpp']]],
+  ['isfeatureavailable_6',['isFeatureAvailable',['../error__handlers_8cpp.html#aef0848857422724f7d825dd8a33421b9',1,'isFeatureAvailable():&#160;error_handlers.cpp'],['../web__routes_8h.html#aef0848857422724f7d825dd8a33421b9',1,'isFeatureAvailable():&#160;error_handlers.cpp']]],
+  ['isrouteavailable_7',['isRouteAvailable',['../error__handlers_8cpp.html#a195f4874889e332e6f540a518d6c51fe',1,'isRouteAvailable(const String &amp;uri):&#160;error_handlers.cpp'],['../web__routes_8h.html#a195f4874889e332e6f540a518d6c51fe',1,'isRouteAvailable(const String &amp;uri):&#160;error_handlers.cpp']]],
+  ['isvalidhostname_8',['isValidHostname',['../validation__utils_8cpp.html#abf0e43fe7c5fd9b3439d01e4a0557259',1,'isValidHostname(const String &amp;hostname):&#160;validation_utils.cpp'],['../validation__utils_8h.html#abf0e43fe7c5fd9b3439d01e4a0557259',1,'isValidHostname(const String &amp;hostname):&#160;validation_utils.cpp']]],
+  ['isvalidipaddress_9',['isValidIPAddress',['../validation__utils_8cpp.html#a656f25f6039ad27197946f611133158a',1,'isValidIPAddress(const String &amp;ipAddress):&#160;validation_utils.cpp'],['../validation__utils_8h.html#a15290a120cd4c378e64893f11adbb4fd',1,'isValidIPAddress(const String &amp;ip):&#160;validation_utils.cpp']]]
 ];

@@ -106,55 +106,68 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
 
 <p>Реализация системы логгирования  
 <a href="#details">Подробнее...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
-<code>#include &lt;Arduino.h&gt;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="logger_8h_source.html">../include/logger.h</a>&quot;</code><br />
 <code>#include &lt;WiFi.h&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
 <code>#include &lt;cstdarg&gt;</code><br />
+<code>#include &lt;cstdio&gt;</code><br />
 </div>
 <p><a href="logger_8cpp_source.html">См. исходные тексты.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
-<tr class="memitem:a9ce43588b680fbf5d2269e785fc39f21" id="r_a9ce43588b680fbf5d2269e785fc39f21"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ce43588b680fbf5d2269e785fc39f21">getUptimeString</a> ()</td></tr>
-<tr class="separator:a9ce43588b680fbf5d2269e785fc39f21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab94ddc842b6a690863609c28cfa93590" id="r_ab94ddc842b6a690863609c28cfa93590"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab94ddc842b6a690863609c28cfa93590">getColorCode</a> (<a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</td></tr>
-<tr class="separator:ab94ddc842b6a690863609c28cfa93590"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac8e71aa24f9f13d9f1cf0a1c8a7e51f5" id="r_ac8e71aa24f9f13d9f1cf0a1c8a7e51f5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac8e71aa24f9f13d9f1cf0a1c8a7e51f5">logPrintHeader</a> (const char *title, <a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</td></tr>
-<tr class="separator:ac8e71aa24f9f13d9f1cf0a1c8a7e51f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ee301b7bb89647696628fbd93584d9e" id="r_a3ee301b7bb89647696628fbd93584d9e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ee301b7bb89647696628fbd93584d9e">logPrintSeparator</a> (const char *symbol, int length)</td></tr>
-<tr class="separator:a3ee301b7bb89647696628fbd93584d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef367594259e15c9df8b0caf3dfddba8" id="r_aef367594259e15c9df8b0caf3dfddba8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef367594259e15c9df8b0caf3dfddba8">logPrintBanner</a> (const char *text)</td></tr>
-<tr class="separator:aef367594259e15c9df8b0caf3dfddba8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a60baa11f08afed73f5a7bc5d31f698ce" id="r_a60baa11f08afed73f5a7bc5d31f698ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60baa11f08afed73f5a7bc5d31f698ce">logError</a> (const char *format,...)</td></tr>
-<tr class="separator:a60baa11f08afed73f5a7bc5d31f698ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34f49079ccda568e5054918ae4354431" id="r_a34f49079ccda568e5054918ae4354431"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34f49079ccda568e5054918ae4354431">logWarn</a> (const char *format,...)</td></tr>
-<tr class="separator:a34f49079ccda568e5054918ae4354431"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9b4ed01ba7a88bb5e22d1c84e0f0abf" id="r_ab9b4ed01ba7a88bb5e22d1c84e0f0abf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab9b4ed01ba7a88bb5e22d1c84e0f0abf">logInfo</a> (const char *format,...)</td></tr>
-<tr class="separator:ab9b4ed01ba7a88bb5e22d1c84e0f0abf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e536b98344ba271bbfc484cca848dbe" id="r_a1e536b98344ba271bbfc484cca848dbe"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e536b98344ba271bbfc484cca848dbe">logDebug</a> (const char *format,...)</td></tr>
-<tr class="separator:a1e536b98344ba271bbfc484cca848dbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54dab32db32234798ff063ccc0dde695" id="r_a54dab32db32234798ff063ccc0dde695"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54dab32db32234798ff063ccc0dde695">logSuccess</a> (const char *format,...)</td></tr>
-<tr class="separator:a54dab32db32234798ff063ccc0dde695"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a348f4af13be9d7c726e296e9b3c89b" id="r_a4a348f4af13be9d7c726e296e9b3c89b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a348f4af13be9d7c726e296e9b3c89b">logSensor</a> (const char *format,...)</td></tr>
-<tr class="separator:a4a348f4af13be9d7c726e296e9b3c89b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a220d54e17d73c281bb715f70bf6df9" id="r_a8a220d54e17d73c281bb715f70bf6df9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8a220d54e17d73c281bb715f70bf6df9">logWiFi</a> (const char *format,...)</td></tr>
-<tr class="separator:a8a220d54e17d73c281bb715f70bf6df9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace461ff84ce50a76653ec959a2436320" id="r_ace461ff84ce50a76653ec959a2436320"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace461ff84ce50a76653ec959a2436320">logMQTT</a> (const char *format,...)</td></tr>
-<tr class="separator:ace461ff84ce50a76653ec959a2436320"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2cfc49d3e5f87ebc351693b47c348e1" id="r_af2cfc49d3e5f87ebc351693b47c348e1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2cfc49d3e5f87ebc351693b47c348e1">logData</a> (const char *format,...)</td></tr>
-<tr class="separator:af2cfc49d3e5f87ebc351693b47c348e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6673a3ba037fc4ceda09f36e43cd7f14" id="r_a6673a3ba037fc4ceda09f36e43cd7f14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6673a3ba037fc4ceda09f36e43cd7f14">logSystem</a> (const char *format,...)</td></tr>
-<tr class="separator:a6673a3ba037fc4ceda09f36e43cd7f14"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07e106e3f19501a64fde4b0c6fa8d73a" id="r_a07e106e3f19501a64fde4b0c6fa8d73a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07e106e3f19501a64fde4b0c6fa8d73a">logUptime</a> ()</td></tr>
-<tr class="separator:a07e106e3f19501a64fde4b0c6fa8d73a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a73d33bdd74467a1ac7814b1a783f7f28" id="r_a73d33bdd74467a1ac7814b1a783f7f28"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73d33bdd74467a1ac7814b1a783f7f28">formatLogMessage</a> (const String &amp;message)</td></tr>
+<tr class="separator:a73d33bdd74467a1ac7814b1a783f7f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a646cbac39f467aafa298c8dae1ff0091" id="r_a646cbac39f467aafa298c8dae1ff0091"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a646cbac39f467aafa298c8dae1ff0091">logError</a> (const String &amp;message)</td></tr>
+<tr class="separator:a646cbac39f467aafa298c8dae1ff0091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70f38e65c2a4620bbf763080674010af" id="r_a70f38e65c2a4620bbf763080674010af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70f38e65c2a4620bbf763080674010af">logWarn</a> (const String &amp;message)</td></tr>
+<tr class="separator:a70f38e65c2a4620bbf763080674010af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a374e6f13f686b3de469c00c01d5fe1d3" id="r_a374e6f13f686b3de469c00c01d5fe1d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a374e6f13f686b3de469c00c01d5fe1d3">logInfo</a> (const String &amp;message)</td></tr>
+<tr class="separator:a374e6f13f686b3de469c00c01d5fe1d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aade0576f178f655d0f991ed324fd27ff" id="r_aade0576f178f655d0f991ed324fd27ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aade0576f178f655d0f991ed324fd27ff">logDebug</a> (const String &amp;message)</td></tr>
+<tr class="separator:aade0576f178f655d0f991ed324fd27ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d6cac9c78346491213dac197c0f9f3" id="r_a33d6cac9c78346491213dac197c0f9f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33d6cac9c78346491213dac197c0f9f3">logSuccess</a> (const String &amp;message)</td></tr>
+<tr class="separator:a33d6cac9c78346491213dac197c0f9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad52356734897533dd1ec07d78670a5bb" id="r_ad52356734897533dd1ec07d78670a5bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad52356734897533dd1ec07d78670a5bb">logSensor</a> (const String &amp;message)</td></tr>
+<tr class="separator:ad52356734897533dd1ec07d78670a5bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc98ed88066e0a808bb68d9a88ffa9c1" id="r_abc98ed88066e0a808bb68d9a88ffa9c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc98ed88066e0a808bb68d9a88ffa9c1">logWiFi</a> (const String &amp;message)</td></tr>
+<tr class="separator:abc98ed88066e0a808bb68d9a88ffa9c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3ae977a43dcf87df0dc3035a2983455" id="r_ae3ae977a43dcf87df0dc3035a2983455"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3ae977a43dcf87df0dc3035a2983455">logMQTT</a> (const String &amp;message)</td></tr>
+<tr class="separator:ae3ae977a43dcf87df0dc3035a2983455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d16d7846a1d3892a73f05af6286c36e" id="r_a8d16d7846a1d3892a73f05af6286c36e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d16d7846a1d3892a73f05af6286c36e">logHTTP</a> (const String &amp;message)</td></tr>
+<tr class="separator:a8d16d7846a1d3892a73f05af6286c36e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b60e3dbf53fc95c5a1ca77a6fec2643" id="r_a9b60e3dbf53fc95c5a1ca77a6fec2643"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b60e3dbf53fc95c5a1ca77a6fec2643">logSystem</a> (const String &amp;message)</td></tr>
+<tr class="separator:a9b60e3dbf53fc95c5a1ca77a6fec2643"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a994321edf88e16ea088cdbaf0f8a8177" id="r_a994321edf88e16ea088cdbaf0f8a8177"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a994321edf88e16ea088cdbaf0f8a8177">logData</a> (const String &amp;message)</td></tr>
+<tr class="separator:a994321edf88e16ea088cdbaf0f8a8177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33f45b00aaf104a528bb909059246d11" id="r_a33f45b00aaf104a528bb909059246d11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33f45b00aaf104a528bb909059246d11">logSeparator</a> ()</td></tr>
+<tr class="separator:a33f45b00aaf104a528bb909059246d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac14de3d3a99ad0c7f8ff459619f12278" id="r_ac14de3d3a99ad0c7f8ff459619f12278"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac14de3d3a99ad0c7f8ff459619f12278">logNewline</a> ()</td></tr>
+<tr class="separator:ac14de3d3a99ad0c7f8ff459619f12278"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab014807afa04f9783ed19c897cbdf54d" id="r_ab014807afa04f9783ed19c897cbdf54d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab014807afa04f9783ed19c897cbdf54d">logMemoryUsage</a> ()</td></tr>
 <tr class="separator:ab014807afa04f9783ed19c897cbdf54d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36865f00b6f06ee84213f5a5a1c3c45d" id="r_a36865f00b6f06ee84213f5a5a1c3c45d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36865f00b6f06ee84213f5a5a1c3c45d">logSystemInfo</a> ()</td></tr>
+<tr class="separator:a36865f00b6f06ee84213f5a5a1c3c45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07e106e3f19501a64fde4b0c6fa8d73a" id="r_a07e106e3f19501a64fde4b0c6fa8d73a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07e106e3f19501a64fde4b0c6fa8d73a">logUptime</a> ()</td></tr>
+<tr class="separator:a07e106e3f19501a64fde4b0c6fa8d73a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abf70e1b094519276f0363ac763f100ab" id="r_abf70e1b094519276f0363ac763f100ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf70e1b094519276f0363ac763f100ab">logWiFiStatus</a> ()</td></tr>
 <tr class="separator:abf70e1b094519276f0363ac763f100ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbb1feb235829ffa762eb8d2615b4864" id="r_abbb1feb235829ffa762eb8d2615b4864"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbb1feb235829ffa762eb8d2615b4864">setLogColor</a> (<a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</td></tr>
+<tr class="separator:abbb1feb235829ffa762eb8d2615b4864"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe2743f8bba1e6d306e147b47afb0943" id="r_abe2743f8bba1e6d306e147b47afb0943"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe2743f8bba1e6d306e147b47afb0943">resetLogColor</a> ()</td></tr>
+<tr class="separator:abe2743f8bba1e6d306e147b47afb0943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab94ddc842b6a690863609c28cfa93590" id="r_ab94ddc842b6a690863609c28cfa93590"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab94ddc842b6a690863609c28cfa93590">getColorCode</a> (<a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</td></tr>
+<tr class="separator:ab94ddc842b6a690863609c28cfa93590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc424edacf4b7c29b2a123afe3cbf575" id="r_adc424edacf4b7c29b2a123afe3cbf575"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adc424edacf4b7c29b2a123afe3cbf575">printHeader</a> (const String &amp;title, <a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</td></tr>
+<tr class="separator:adc424edacf4b7c29b2a123afe3cbf575"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf4270ba81bcf41a83b9c6822df051b8" id="r_acf4270ba81bcf41a83b9c6822df051b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf4270ba81bcf41a83b9c6822df051b8">printSubHeader</a> (const String &amp;title, <a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</td></tr>
+<tr class="separator:acf4270ba81bcf41a83b9c6822df051b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afff4c4e20076552958d756dbcdcbe366" id="r_afff4c4e20076552958d756dbcdcbe366"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afff4c4e20076552958d756dbcdcbe366">printTimeStamp</a> ()</td></tr>
+<tr class="separator:afff4c4e20076552958d756dbcdcbe366"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Переменные</h2></td></tr>
-<tr class="memitem:a16cca5b581e7f50a9cc5e838510ae6f5" id="r_a16cca5b581e7f50a9cc5e838510ae6f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> = <a class="el" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a></td></tr>
+<tr class="memitem:a16cca5b581e7f50a9cc5e838510ae6f5" id="r_a16cca5b581e7f50a9cc5e838510ae6f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> = <a class="el" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">LOG_DEBUG</a></td></tr>
 <tr class="separator:a16cca5b581e7f50a9cc5e838510ae6f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
@@ -162,6 +175,25 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
 
 <p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a></p>
 </div><h2 class="groupheader">Функции</h2>
+<a id="a73d33bdd74467a1ac7814b1a783f7f28" name="a73d33bdd74467a1ac7814b1a783f7f28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73d33bdd74467a1ac7814b1a783f7f28">&#9670;&#160;</a></span>formatLogMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String formatLogMessage </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00034">34</a></p>
+
+</div>
+</div>
 <a id="ab94ddc842b6a690863609c28cfa93590" name="ab94ddc842b6a690863609c28cfa93590"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab94ddc842b6a690863609c28cfa93590">&#9670;&#160;</a></span>getColorCode()</h2>
 
@@ -177,31 +209,12 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00027">27</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00250">250</a></p>
 
 </div>
 </div>
-<a id="a9ce43588b680fbf5d2269e785fc39f21" name="a9ce43588b680fbf5d2269e785fc39f21"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ce43588b680fbf5d2269e785fc39f21">&#9670;&#160;</a></span>getUptimeString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String getUptimeString </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00015">15</a></p>
-
-</div>
-</div>
-<a id="af2cfc49d3e5f87ebc351693b47c348e1" name="af2cfc49d3e5f87ebc351693b47c348e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af2cfc49d3e5f87ebc351693b47c348e1">&#9670;&#160;</a></span>logData()</h2>
+<a id="a994321edf88e16ea088cdbaf0f8a8177" name="a994321edf88e16ea088cdbaf0f8a8177"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a994321edf88e16ea088cdbaf0f8a8177">&#9670;&#160;</a></span>logData()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -209,22 +222,18 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
         <tr>
           <td class="memname">void logData </td>
           <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00244">244</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00170">170</a></p>
 
 </div>
 </div>
-<a id="a1e536b98344ba271bbfc484cca848dbe" name="a1e536b98344ba271bbfc484cca848dbe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e536b98344ba271bbfc484cca848dbe">&#9670;&#160;</a></span>logDebug()</h2>
+<a id="aade0576f178f655d0f991ed324fd27ff" name="aade0576f178f655d0f991ed324fd27ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aade0576f178f655d0f991ed324fd27ff">&#9670;&#160;</a></span>logDebug()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -232,22 +241,18 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
         <tr>
           <td class="memname">void logDebug </td>
           <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00148">148</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00079">79</a></p>
 
 </div>
 </div>
-<a id="a60baa11f08afed73f5a7bc5d31f698ce" name="a60baa11f08afed73f5a7bc5d31f698ce"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a60baa11f08afed73f5a7bc5d31f698ce">&#9670;&#160;</a></span>logError()</h2>
+<a id="a646cbac39f467aafa298c8dae1ff0091" name="a646cbac39f467aafa298c8dae1ff0091"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a646cbac39f467aafa298c8dae1ff0091">&#9670;&#160;</a></span>logError()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -255,22 +260,37 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
         <tr>
           <td class="memname">void logError </td>
           <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00088">88</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00040">40</a></p>
 
 </div>
 </div>
-<a id="ab9b4ed01ba7a88bb5e22d1c84e0f0abf" name="ab9b4ed01ba7a88bb5e22d1c84e0f0abf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab9b4ed01ba7a88bb5e22d1c84e0f0abf">&#9670;&#160;</a></span>logInfo()</h2>
+<a id="a8d16d7846a1d3892a73f05af6286c36e" name="a8d16d7846a1d3892a73f05af6286c36e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d16d7846a1d3892a73f05af6286c36e">&#9670;&#160;</a></span>logHTTP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logHTTP </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00144">144</a></p>
+
+</div>
+</div>
+<a id="a374e6f13f686b3de469c00c01d5fe1d3" name="a374e6f13f686b3de469c00c01d5fe1d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a374e6f13f686b3de469c00c01d5fe1d3">&#9670;&#160;</a></span>logInfo()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -278,17 +298,13 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
         <tr>
           <td class="memname">void logInfo </td>
           <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00128">128</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00066">66</a></p>
 
 </div>
 </div>
@@ -307,12 +323,12 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00290">290</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00194">194</a></p>
 
 </div>
 </div>
-<a id="ace461ff84ce50a76653ec959a2436320" name="ace461ff84ce50a76653ec959a2436320"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace461ff84ce50a76653ec959a2436320">&#9670;&#160;</a></span>logMQTT()</h2>
+<a id="ae3ae977a43dcf87df0dc3035a2983455" name="ae3ae977a43dcf87df0dc3035a2983455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3ae977a43dcf87df0dc3035a2983455">&#9670;&#160;</a></span>logMQTT()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -320,87 +336,37 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
         <tr>
           <td class="memname">void logMQTT </td>
           <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00224">224</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00131">131</a></p>
 
 </div>
 </div>
-<a id="aef367594259e15c9df8b0caf3dfddba8" name="aef367594259e15c9df8b0caf3dfddba8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef367594259e15c9df8b0caf3dfddba8">&#9670;&#160;</a></span>logPrintBanner()</h2>
+<a id="ac14de3d3a99ad0c7f8ff459619f12278" name="ac14de3d3a99ad0c7f8ff459619f12278"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac14de3d3a99ad0c7f8ff459619f12278">&#9670;&#160;</a></span>logNewline()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void logPrintBanner </td>
+          <td class="memname">void logNewline </td>
           <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>text</em></span></td><td>)</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00075">75</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00189">189</a></p>
 
 </div>
 </div>
-<a id="ac8e71aa24f9f13d9f1cf0a1c8a7e51f5" name="ac8e71aa24f9f13d9f1cf0a1c8a7e51f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac8e71aa24f9f13d9f1cf0a1c8a7e51f5">&#9670;&#160;</a></span>logPrintHeader()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void logPrintHeader </td>
-          <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00053">53</a></p>
-
-</div>
-</div>
-<a id="a3ee301b7bb89647696628fbd93584d9e" name="a3ee301b7bb89647696628fbd93584d9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3ee301b7bb89647696628fbd93584d9e">&#9670;&#160;</a></span>logPrintSeparator()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void logPrintSeparator </td>
-          <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>symbol</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00065">65</a></p>
-
-</div>
-</div>
-<a id="a4a348f4af13be9d7c726e296e9b3c89b" name="a4a348f4af13be9d7c726e296e9b3c89b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a348f4af13be9d7c726e296e9b3c89b">&#9670;&#160;</a></span>logSensor()</h2>
+<a id="ad52356734897533dd1ec07d78670a5bb" name="ad52356734897533dd1ec07d78670a5bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad52356734897533dd1ec07d78670a5bb">&#9670;&#160;</a></span>logSensor()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -408,12 +374,27 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
         <tr>
           <td class="memname">void logSensor </td>
           <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00105">105</a></p>
+
+</div>
+</div>
+<a id="a33f45b00aaf104a528bb909059246d11" name="a33f45b00aaf104a528bb909059246d11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33f45b00aaf104a528bb909059246d11">&#9670;&#160;</a></span>logSeparator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logSeparator </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -422,8 +403,8 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
 
 </div>
 </div>
-<a id="a54dab32db32234798ff063ccc0dde695" name="a54dab32db32234798ff063ccc0dde695"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54dab32db32234798ff063ccc0dde695">&#9670;&#160;</a></span>logSuccess()</h2>
+<a id="a33d6cac9c78346491213dac197c0f9f3" name="a33d6cac9c78346491213dac197c0f9f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33d6cac9c78346491213dac197c0f9f3">&#9670;&#160;</a></span>logSuccess()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -431,22 +412,18 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
         <tr>
           <td class="memname">void logSuccess </td>
           <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00168">168</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00092">92</a></p>
 
 </div>
 </div>
-<a id="a6673a3ba037fc4ceda09f36e43cd7f14" name="a6673a3ba037fc4ceda09f36e43cd7f14"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6673a3ba037fc4ceda09f36e43cd7f14">&#9670;&#160;</a></span>logSystem()</h2>
+<a id="a9b60e3dbf53fc95c5a1ca77a6fec2643" name="a9b60e3dbf53fc95c5a1ca77a6fec2643"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b60e3dbf53fc95c5a1ca77a6fec2643">&#9670;&#160;</a></span>logSystem()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -454,17 +431,32 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
         <tr>
           <td class="memname">void logSystem </td>
           <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00264">264</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00157">157</a></p>
+
+</div>
+</div>
+<a id="a36865f00b6f06ee84213f5a5a1c3c45d" name="a36865f00b6f06ee84213f5a5a1c3c45d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36865f00b6f06ee84213f5a5a1c3c45d">&#9670;&#160;</a></span>logSystemInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logSystemInfo </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00208">208</a></p>
 
 </div>
 </div>
@@ -483,12 +475,12 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00285">285</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00221">221</a></p>
 
 </div>
 </div>
-<a id="a34f49079ccda568e5054918ae4354431" name="a34f49079ccda568e5054918ae4354431"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a34f49079ccda568e5054918ae4354431">&#9670;&#160;</a></span>logWarn()</h2>
+<a id="a70f38e65c2a4620bbf763080674010af" name="a70f38e65c2a4620bbf763080674010af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70f38e65c2a4620bbf763080674010af">&#9670;&#160;</a></span>logWarn()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -496,22 +488,18 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
         <tr>
           <td class="memname">void logWarn </td>
           <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00108">108</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00053">53</a></p>
 
 </div>
 </div>
-<a id="a8a220d54e17d73c281bb715f70bf6df9" name="a8a220d54e17d73c281bb715f70bf6df9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a220d54e17d73c281bb715f70bf6df9">&#9670;&#160;</a></span>logWiFi()</h2>
+<a id="abc98ed88066e0a808bb68d9a88ffa9c1" name="abc98ed88066e0a808bb68d9a88ffa9c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc98ed88066e0a808bb68d9a88ffa9c1">&#9670;&#160;</a></span>logWiFi()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -519,17 +507,13 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
         <tr>
           <td class="memname">void logWiFi </td>
           <td>(</td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>...</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00204">204</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00118">118</a></p>
 
 </div>
 </div>
@@ -548,7 +532,110 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00295">295</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00226">226</a></p>
+
+</div>
+</div>
+<a id="adc424edacf4b7c29b2a123afe3cbf575" name="adc424edacf4b7c29b2a123afe3cbf575"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc424edacf4b7c29b2a123afe3cbf575">&#9670;&#160;</a></span>printHeader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printHeader </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00276">276</a></p>
+
+</div>
+</div>
+<a id="acf4270ba81bcf41a83b9c6822df051b8" name="acf4270ba81bcf41a83b9c6822df051b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf4270ba81bcf41a83b9c6822df051b8">&#9670;&#160;</a></span>printSubHeader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printSubHeader </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00285">285</a></p>
+
+</div>
+</div>
+<a id="afff4c4e20076552958d756dbcdcbe366" name="afff4c4e20076552958d756dbcdcbe366"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afff4c4e20076552958d756dbcdcbe366">&#9670;&#160;</a></span>printTimeStamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printTimeStamp </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00294">294</a></p>
+
+</div>
+</div>
+<a id="abe2743f8bba1e6d306e147b47afb0943" name="abe2743f8bba1e6d306e147b47afb0943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe2743f8bba1e6d306e147b47afb0943">&#9670;&#160;</a></span>resetLogColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void resetLogColor </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00245">245</a></p>
+
+</div>
+</div>
+<a id="abbb1feb235829ffa762eb8d2615b4864" name="abbb1feb235829ffa762eb8d2615b4864"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbb1feb235829ffa762eb8d2615b4864">&#9670;&#160;</a></span>setLogColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setLogColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00240">240</a></p>
 
 </div>
 </div>
@@ -560,12 +647,12 @@ $(function(){initNavTree('logger_8cpp.html',''); initResizable(true); });
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a> currentLogLevel = <a class="el" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a></td>
+          <td class="memname"><a class="el" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a> currentLogLevel = <a class="el" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">LOG_DEBUG</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00012">12</a></p>
+<p class="definition">См. определение в файле <a class="el" href="logger_8cpp_source.html">logger.cpp</a> строка <a class="el" href="logger_8cpp_source.html#l00013">13</a></p>
 
 </div>
 </div>

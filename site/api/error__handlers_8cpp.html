@@ -98,6 +98,7 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
 <a href="#func-members">Функции</a>  </div>
   <div class="headertitle"><div class="title">Файл error_handlers.cpp</div></div>
 </div><!--header-->
@@ -111,10 +112,17 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 </div>
 <p><a href="error__handlers_8cpp_source.html">См. исходные тексты.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_validation_range.html">ValidationRange</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_http_request.html">HttpRequest</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_http_request_1_1_create_params.html">HttpRequest::CreateParams</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
-<tr class="memitem:a0e90429a839236f7198d0c3c9fd1f65c" id="r_a0e90429a839236f7198d0c3c9fd1f65c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0e90429a839236f7198d0c3c9fd1f65c">validateInterval</a> (const String &amp;argName, int minValue, int maxValue, const String &amp;description)</td></tr>
-<tr class="separator:a0e90429a839236f7198d0c3c9fd1f65c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a833be2e68cb85aa95168dae9c9b128ef" id="r_a833be2e68cb85aa95168dae9c9b128ef"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a833be2e68cb85aa95168dae9c9b128ef">setupErrorHandlers</a> ()</td></tr>
 <tr class="memdesc:a833be2e68cb85aa95168dae9c9b128ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Настройка обработчиков ошибок (404, 500, и т.д.)  <br /></td></tr>
 <tr class="separator:a833be2e68cb85aa95168dae9c9b128ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -124,14 +132,9 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <tr class="memitem:a72ddd36cf01d539c0b2575750fa997dc" id="r_a72ddd36cf01d539c0b2575750fa997dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72ddd36cf01d539c0b2575750fa997dc">handleUploadError</a> (const String &amp;error)</td></tr>
 <tr class="memdesc:a72ddd36cf01d539c0b2575750fa997dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработка ошибок загрузки файлов  <br /></td></tr>
 <tr class="separator:a72ddd36cf01d539c0b2575750fa997dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a195ba09880daef6ce6c14eeceb61feec" id="r_a195ba09880daef6ce6c14eeceb61feec"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a195ba09880daef6ce6c14eeceb61feec">isFeatureAvailable</a> (const String &amp;feature)</td></tr>
-<tr class="separator:a195ba09880daef6ce6c14eeceb61feec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef0848857422724f7d825dd8a33421b9" id="r_aef0848857422724f7d825dd8a33421b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef0848857422724f7d825dd8a33421b9">isFeatureAvailable</a> ()</td></tr>
 <tr class="memdesc:aef0848857422724f7d825dd8a33421b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверка доступности функции в текущем режиме WiFi (без параметров)  <br /></td></tr>
 <tr class="separator:aef0848857422724f7d825dd8a33421b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a62e7c40bff885d97f6018743bec642" id="r_a1a62e7c40bff885d97f6018743bec642"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1a62e7c40bff885d97f6018743bec642">logWebRequest</a> (const String &amp;method, const String &amp;uri, const String &amp;clientIP)</td></tr>
-<tr class="memdesc:a1a62e7c40bff885d97f6018743bec642"><td class="mdescLeft">&#160;</td><td class="mdescRight">Логирование веб-запросов  <br /></td></tr>
-<tr class="separator:a1a62e7c40bff885d97f6018743bec642"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6fe24c5dc21b012791aecd16ab4dad96" id="r_a6fe24c5dc21b012791aecd16ab4dad96"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6fe24c5dc21b012791aecd16ab4dad96">generateValidationErrorResponse</a> (const String &amp;errorMsg)</td></tr>
 <tr class="memdesc:a6fe24c5dc21b012791aecd16ab4dad96"><td class="mdescLeft">&#160;</td><td class="mdescRight">Генерация HTML ответа с ошибкой валидации  <br /></td></tr>
 <tr class="separator:a6fe24c5dc21b012791aecd16ab4dad96"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,37 +144,8 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <tr class="memitem:a195f4874889e332e6f540a518d6c51fe" id="r_a195f4874889e332e6f540a518d6c51fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a195f4874889e332e6f540a518d6c51fe">isRouteAvailable</a> (const String &amp;uri)</td></tr>
 <tr class="memdesc:a195f4874889e332e6f540a518d6c51fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверка доступности маршрута в текущем режиме  <br /></td></tr>
 <tr class="separator:a195f4874889e332e6f540a518d6c51fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d52ae788bd99342b84e28a1af12392b" id="r_a6d52ae788bd99342b84e28a1af12392b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d52ae788bd99342b84e28a1af12392b">checkRouteAccess</a> (const String &amp;routeName, const String &amp;icon)</td></tr>
-<tr class="memdesc:a6d52ae788bd99342b84e28a1af12392b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP режиме  <br /></td></tr>
-<tr class="separator:a6d52ae788bd99342b84e28a1af12392b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
-<a id="a6d52ae788bd99342b84e28a1af12392b" name="a6d52ae788bd99342b84e28a1af12392b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6d52ae788bd99342b84e28a1af12392b">&#9670;&#160;</a></span>checkRouteAccess()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool checkRouteAccess </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>routeName</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Middleware для проверки доступности маршрута Используется в каждом маршруте, который недоступен в AP режиме </p>
-<p>Middleware для проверки доступности маршрута </p>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00185">185</a></p>
-
-</div>
-</div>
 <a id="a6fe24c5dc21b012791aecd16ab4dad96" name="a6fe24c5dc21b012791aecd16ab4dad96"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6fe24c5dc21b012791aecd16ab4dad96">&#9670;&#160;</a></span>generateValidationErrorResponse()</h2>
 
@@ -196,7 +170,7 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>HTML ответ с ошибкой </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00142">142</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00197">197</a></p>
 
 </div>
 </div>
@@ -223,7 +197,7 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
   </dd>
 </dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00158">158</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00213">213</a></p>
 
 </div>
 </div>
@@ -250,12 +224,12 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
   </dd>
 </dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00093">93</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00159">159</a></p>
 
 </div>
 </div>
 <a id="aef0848857422724f7d825dd8a33421b9" name="aef0848857422724f7d825dd8a33421b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef0848857422724f7d825dd8a33421b9">&#9670;&#160;</a></span>isFeatureAvailable() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#aef0848857422724f7d825dd8a33421b9">&#9670;&#160;</a></span>isFeatureAvailable()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -272,26 +246,7 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <p>Проверка доступности функции в текущем режиме WiFi (без параметров) </p>
 <dl class="section return"><dt>Возвращает</dt><dd>true если функция доступна в текущем режиме </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00117">117</a></p>
-
-</div>
-</div>
-<a id="a195ba09880daef6ce6c14eeceb61feec" name="a195ba09880daef6ce6c14eeceb61feec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a195ba09880daef6ce6c14eeceb61feec">&#9670;&#160;</a></span>isFeatureAvailable() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool isFeatureAvailable </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>feature</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00101">101</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00183">183</a></p>
 
 </div>
 </div>
@@ -319,45 +274,7 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>true если маршрут доступен </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00171">171</a></p>
-
-</div>
-</div>
-<a id="a1a62e7c40bff885d97f6018743bec642" name="a1a62e7c40bff885d97f6018743bec642"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a62e7c40bff885d97f6018743bec642">&#9670;&#160;</a></span>logWebRequest()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void logWebRequest </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>method</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>uri</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>clientIP</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Логирование веб-запросов </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">method</td><td>HTTP метод </td></tr>
-    <tr><td class="paramname">uri</td><td>URI запроса </td></tr>
-    <tr><td class="paramname">clientIP</td><td>IP клиента </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00122">122</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00226">226</a></p>
 
 </div>
 </div>
@@ -378,7 +295,7 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 
 <p>Настройка обработчиков ошибок (404, 500, и т.д.) </p>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00023">23</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00074">74</a></p>
 
 </div>
 </div>
@@ -406,40 +323,7 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>true если валидация прошла успешно </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00045">45</a></p>
-
-</div>
-</div>
-<a id="a0e90429a839236f7198d0c3c9fd1f65c" name="a0e90429a839236f7198d0c3c9fd1f65c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e90429a839236f7198d0c3c9fd1f65c">&#9670;&#160;</a></span>validateInterval()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool validateInterval </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>argName</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>minValue</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>maxValue</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>description</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00009">9</a></p>
+<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00096">96</a></p>
 
 </div>
 </div>

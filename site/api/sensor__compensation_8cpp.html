@@ -98,51 +98,57 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
 <a href="#func-members">Функции</a> &#124;
 <a href="#var-members">Переменные</a>  </div>
   <div class="headertitle"><div class="title">Файл sensor_compensation.cpp</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="sensor__compensation_8h_source.html">sensor_compensation.h</a>&quot;</code><br />
-<code>#include &lt;math.h&gt;</code><br />
-<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;cmath&gt;</code><br />
+<code>#include &lt;ctime&gt;</code><br />
 <code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
 </div>
 <p><a href="sensor__compensation_8cpp_source.html">См. исходные тексты.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_soil_e_c_coeff.html">SoilECCoeff</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_e_c_compensation_params.html">ECCompensationParams</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
-<tr class="memitem:adf2ddb83f2189c9159aa7fe534217ea4" id="r_adf2ddb83f2189c9159aa7fe534217ea4"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adf2ddb83f2189c9159aa7fe534217ea4">k_h_N</a> (float th)</td></tr>
-<tr class="separator:adf2ddb83f2189c9159aa7fe534217ea4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae64bff1823ab30991e51b8d57c23be39" id="r_ae64bff1823ab30991e51b8d57c23be39"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae64bff1823ab30991e51b8d57c23be39">k_h_P</a> (float th)</td></tr>
-<tr class="separator:ae64bff1823ab30991e51b8d57c23be39"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8360d274b958e7c50437c1374056b69a" id="r_a8360d274b958e7c50437c1374056b69a"><td class="memItemLeft" align="right" valign="top">static float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8360d274b958e7c50437c1374056b69a">k_h_K</a> (float th)</td></tr>
-<tr class="separator:a8360d274b958e7c50437c1374056b69a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af586e2e5563baee2b53964aff0e1467d" id="r_af586e2e5563baee2b53964aff0e1467d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af586e2e5563baee2b53964aff0e1467d">correctEC</a> (float ecRaw, float T, float theta, <a class="el" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
-<tr class="separator:af586e2e5563baee2b53964aff0e1467d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec93dd728b4450e4078a1e26954478e5" id="r_aec93dd728b4450e4078a1e26954478e5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec93dd728b4450e4078a1e26954478e5">correctPH</a> (float phRaw, float T)</td></tr>
-<tr class="separator:aec93dd728b4450e4078a1e26954478e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9d6b97073bca78fb526c17bdbf816a6" id="r_aa9d6b97073bca78fb526c17bdbf816a6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa9d6b97073bca78fb526c17bdbf816a6">correctNPK</a> (float T, float theta, float &amp;N, float &amp;P, float &amp;K, <a class="el" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
-<tr class="separator:aa9d6b97073bca78fb526c17bdbf816a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21c45594adeb869d4ef55bebf07903ed" id="r_a21c45594adeb869d4ef55bebf07903ed"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a21c45594adeb869d4ef55bebf07903ed">correctEC</a> (float ecRaw, const <a class="el" href="struct_e_c_compensation_params.html">ECCompensationParams</a> &amp;params)</td></tr>
+<tr class="separator:a21c45594adeb869d4ef55bebf07903ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b18cc61882f3a48a4f4acb7f9307f66" id="r_a7b18cc61882f3a48a4f4acb7f9307f66"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7b18cc61882f3a48a4f4acb7f9307f66">correctPH</a> (float phRaw, float temperature)</td></tr>
+<tr class="separator:a7b18cc61882f3a48a4f4acb7f9307f66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0d47028829e0cb7fb233d3acb3ef1e2" id="r_af0d47028829e0cb7fb233d3acb3ef1e2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0d47028829e0cb7fb233d3acb3ef1e2">correctNPK</a> (const <a class="el" href="struct_e_c_compensation_params.html">ECCompensationParams</a> &amp;params, <a class="el" href="struct_n_p_k_references.html">NPKReferences</a> &amp;npk)</td></tr>
+<tr class="separator:af0d47028829e0cb7fb233d3acb3ef1e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afafc0921b1ae4ac19063de1828f7ac4b" id="r_afafc0921b1ae4ac19063de1828f7ac4b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afafc0921b1ae4ac19063de1828f7ac4b">correctEC</a> (float ecRaw, const <a class="el" href="struct_environmental_conditions.html">EnvironmentalConditions</a> &amp;env, <a class="el" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
+<tr class="separator:afafc0921b1ae4ac19063de1828f7ac4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9406fc6bd5dad362d51fcf4547cd279a" id="r_a9406fc6bd5dad362d51fcf4547cd279a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9406fc6bd5dad362d51fcf4547cd279a">correctNPK</a> (const <a class="el" href="struct_environmental_conditions.html">EnvironmentalConditions</a> &amp;env, <a class="el" href="struct_n_p_k_references.html">NPKReferences</a> &amp;npk, <a class="el" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
+<tr class="separator:a9406fc6bd5dad362d51fcf4547cd279a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e1da2e71131eec41e98642456f51974" id="r_a1e1da2e71131eec41e98642456f51974"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e1da2e71131eec41e98642456f51974">correctEC</a> (float ecRaw, float temperature, float theta, <a class="el" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
+<tr class="separator:a1e1da2e71131eec41e98642456f51974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a34fa3f256bc992a947aff9d497c1bb14" id="r_a34fa3f256bc992a947aff9d497c1bb14"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a34fa3f256bc992a947aff9d497c1bb14">correctNPK</a> (float temperature, float theta, <a class="el" href="struct_n_p_k_references.html">NPKReferences</a> &amp;npk, <a class="el" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
+<tr class="separator:a34fa3f256bc992a947aff9d497c1bb14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Переменные</h2></td></tr>
-<tr class="memitem:acd870b1b4a3ad38428ccce7c467035a9" id="r_acd870b1b4a3ad38428ccce7c467035a9"><td class="memItemLeft" >struct {&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dec4751d3631f3f27c47bfa9580dcf7" id="r_a6dec4751d3631f3f27c47bfa9580dcf7"><td class="memItemLeft" >&#160;&#160;&#160;float&#160;&#160;&#160;<a class="el" href="#a9fc4cca635a26c692681a7071e379aa7">k</a>&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
-<tr class="separator:a6dec4751d3631f3f27c47bfa9580dcf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd870b1b4a3ad38428ccce7c467035a9" id="r_acd870b1b4a3ad38428ccce7c467035a9"><td class="memItemLeft" valign="top">}&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acd870b1b4a3ad38428ccce7c467035a9">SOIL_EC</a> []&#160;</td><td class="memItemRight" valign="bottom"></td></tr>
-<tr class="separator:acd870b1b4a3ad38428ccce7c467035a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb61fb124bb88094238c5222e85ac573" id="r_adb61fb124bb88094238c5222e85ac573"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb61fb124bb88094238c5222e85ac573">k_t_N</a> [5] = {0.0041f, 0.0038f, 0.0028f, 0.0032f, 0.0040f}</td></tr>
-<tr class="separator:adb61fb124bb88094238c5222e85ac573"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0a07071dd32b23e25ec31b21b140a28" id="r_ab0a07071dd32b23e25ec31b21b140a28"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0a07071dd32b23e25ec31b21b140a28">k_t_P</a> [5] = {0.0053f, 0.0049f, 0.0035f, 0.0042f, 0.0051f}</td></tr>
-<tr class="separator:ab0a07071dd32b23e25ec31b21b140a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aea817cd039de87e310da8044514f303e" id="r_aea817cd039de87e310da8044514f303e"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea817cd039de87e310da8044514f303e">k_t_K</a> [5] = {0.0032f, 0.0029f, 0.0018f, 0.0024f, 0.0031f}</td></tr>
-<tr class="separator:aea817cd039de87e310da8044514f303e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f1cf9b5f7629cc0ea95cd526fe7a992" id="r_a3f1cf9b5f7629cc0ea95cd526fe7a992"><td class="memItemLeft" align="right" valign="top">static constexpr std::array&lt; <a class="el" href="struct_soil_e_c_coeff.html">SoilECCoeff</a>, 5 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f1cf9b5f7629cc0ea95cd526fe7a992">SOIL_EC</a></td></tr>
+<tr class="separator:a3f1cf9b5f7629cc0ea95cd526fe7a992"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f39e14ad64313df667f1fbe45a375a4" id="r_a1f39e14ad64313df667f1fbe45a375a4"><td class="memItemLeft" align="right" valign="top">static constexpr std::array&lt; float, 5 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f39e14ad64313df667f1fbe45a375a4">k_t_N</a> = {0.0041F, 0.0038F, 0.0028F, 0.0032F, 0.0040F}</td></tr>
+<tr class="separator:a1f39e14ad64313df667f1fbe45a375a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a76a6ec6a53e83d545e9d241768f52a5b" id="r_a76a6ec6a53e83d545e9d241768f52a5b"><td class="memItemLeft" align="right" valign="top">static constexpr std::array&lt; float, 5 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a76a6ec6a53e83d545e9d241768f52a5b">k_t_P</a> = {0.0053F, 0.0049F, 0.0035F, 0.0042F, 0.0051F}</td></tr>
+<tr class="separator:a76a6ec6a53e83d545e9d241768f52a5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad376421968fecb262baf5726bc4448ea" id="r_ad376421968fecb262baf5726bc4448ea"><td class="memItemLeft" align="right" valign="top">static constexpr std::array&lt; float, 5 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad376421968fecb262baf5726bc4448ea">k_t_K</a> = {0.0032F, 0.0029F, 0.0018F, 0.0024F, 0.0031F}</td></tr>
+<tr class="separator:ad376421968fecb262baf5726bc4448ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
-<a id="af586e2e5563baee2b53964aff0e1467d" name="af586e2e5563baee2b53964aff0e1467d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af586e2e5563baee2b53964aff0e1467d">&#9670;&#160;</a></span>correctEC()</h2>
+<a id="a21c45594adeb869d4ef55bebf07903ed" name="a21c45594adeb869d4ef55bebf07903ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21c45594adeb869d4ef55bebf07903ed">&#9670;&#160;</a></span>correctEC() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -155,7 +161,58 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>T</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="struct_e_c_compensation_params.html">ECCompensationParams</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>params</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00058">58</a></p>
+
+</div>
+</div>
+<a id="afafc0921b1ae4ac19063de1828f7ac4b" name="afafc0921b1ae4ac19063de1828f7ac4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afafc0921b1ae4ac19063de1828f7ac4b">&#9670;&#160;</a></span>correctEC() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float correctEC </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ecRaw</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="struct_environmental_conditions.html">EnvironmentalConditions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>env</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00099">99</a></p>
+
+</div>
+</div>
+<a id="a1e1da2e71131eec41e98642456f51974" name="a1e1da2e71131eec41e98642456f51974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e1da2e71131eec41e98642456f51974">&#9670;&#160;</a></span>correctEC() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float correctEC </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ecRaw</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>temperature</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -170,12 +227,12 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00038">38</a></p>
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00111">111</a></p>
 
 </div>
 </div>
-<a id="aa9d6b97073bca78fb526c17bdbf816a6" name="aa9d6b97073bca78fb526c17bdbf816a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9d6b97073bca78fb526c17bdbf816a6">&#9670;&#160;</a></span>correctNPK()</h2>
+<a id="af0d47028829e0cb7fb233d3acb3ef1e2" name="af0d47028829e0cb7fb233d3acb3ef1e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0d47028829e0cb7fb233d3acb3ef1e2">&#9670;&#160;</a></span>correctNPK() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,27 +240,35 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
         <tr>
           <td class="memname">void correctNPK </td>
           <td>(</td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>T</em></span>, </td>
+          <td class="paramtype">const <a class="el" href="struct_e_c_compensation_params.html">ECCompensationParams</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>params</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>theta</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_n_p_k_references.html">NPKReferences</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>npk</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00077">77</a></p>
+
+</div>
+</div>
+<a id="a9406fc6bd5dad362d51fcf4547cd279a" name="a9406fc6bd5dad362d51fcf4547cd279a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9406fc6bd5dad362d51fcf4547cd279a">&#9670;&#160;</a></span>correctNPK() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void correctNPK </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_environmental_conditions.html">EnvironmentalConditions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>env</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float &amp;</td>          <td class="paramname"><span class="paramname"><em>N</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float &amp;</td>          <td class="paramname"><span class="paramname"><em>P</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float &amp;</td>          <td class="paramname"><span class="paramname"><em>K</em></span>, </td>
+          <td class="paramtype"><a class="el" href="struct_n_p_k_references.html">NPKReferences</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>npk</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -213,12 +278,45 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00057">57</a></p>
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00104">104</a></p>
 
 </div>
 </div>
-<a id="aec93dd728b4450e4078a1e26954478e5" name="aec93dd728b4450e4078a1e26954478e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec93dd728b4450e4078a1e26954478e5">&#9670;&#160;</a></span>correctPH()</h2>
+<a id="a34fa3f256bc992a947aff9d497c1bb14" name="a34fa3f256bc992a947aff9d497c1bb14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a34fa3f256bc992a947aff9d497c1bb14">&#9670;&#160;</a></span>correctNPK() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void correctNPK </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>temperature</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>theta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_n_p_k_references.html">NPKReferences</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>npk</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00116">116</a></p>
+
+</div>
+</div>
+<a id="a7b18cc61882f3a48a4f4acb7f9307f66" name="a7b18cc61882f3a48a4f4acb7f9307f66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b18cc61882f3a48a4f4acb7f9307f66">&#9670;&#160;</a></span>correctPH()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -231,115 +329,18 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>T</em></span>&#160;)</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>temperature</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00050">50</a></p>
-
-</div>
-</div>
-<a id="a8360d274b958e7c50437c1374056b69a" name="a8360d274b958e7c50437c1374056b69a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8360d274b958e7c50437c1374056b69a">&#9670;&#160;</a></span>k_h_K()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static float k_h_K </td>
-          <td>(</td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>th</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00031">31</a></p>
-
-</div>
-</div>
-<a id="adf2ddb83f2189c9159aa7fe534217ea4" name="adf2ddb83f2189c9159aa7fe534217ea4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adf2ddb83f2189c9159aa7fe534217ea4">&#9670;&#160;</a></span>k_h_N()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static float k_h_N </td>
-          <td>(</td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>th</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00023">23</a></p>
-
-</div>
-</div>
-<a id="ae64bff1823ab30991e51b8d57c23be39" name="ae64bff1823ab30991e51b8d57c23be39"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae64bff1823ab30991e51b8d57c23be39">&#9670;&#160;</a></span>k_h_P()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static float k_h_P </td>
-          <td>(</td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>th</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00027">27</a></p>
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00070">70</a></p>
 
 </div>
 </div>
 <h2 class="groupheader">Переменные</h2>
-<a id="a9fc4cca635a26c692681a7071e379aa7" name="a9fc4cca635a26c692681a7071e379aa7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9fc4cca635a26c692681a7071e379aa7">&#9670;&#160;</a></span>k</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float k</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00009">9</a></p>
-
-</div>
-</div>
-<a id="aea817cd039de87e310da8044514f303e" name="aea817cd039de87e310da8044514f303e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aea817cd039de87e310da8044514f303e">&#9670;&#160;</a></span>k_t_K</h2>
+<a id="ad376421968fecb262baf5726bc4448ea" name="ad376421968fecb262baf5726bc4448ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad376421968fecb262baf5726bc4448ea">&#9670;&#160;</a></span>k_t_K</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -348,7 +349,31 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float k_t_K[5] = {0.0032f, 0.0029f, 0.0018f, 0.0024f, 0.0031f}</td>
+          <td class="memname">std::array&lt;float, 5&gt; k_t_K = {0.0032F, 0.0029F, 0.0018F, 0.0024F, 0.0031F}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span><span class="mlabel constexpr">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00022">22</a></p>
+
+</div>
+</div>
+<a id="a1f39e14ad64313df667f1fbe45a375a4" name="a1f39e14ad64313df667f1fbe45a375a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f39e14ad64313df667f1fbe45a375a4">&#9670;&#160;</a></span>k_t_N</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::array&lt;float, 5&gt; k_t_N = {0.0041F, 0.0038F, 0.0028F, 0.0032F, 0.0040F}</td>
         </tr>
       </table>
   </td>
@@ -362,8 +387,8 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
 
 </div>
 </div>
-<a id="adb61fb124bb88094238c5222e85ac573" name="adb61fb124bb88094238c5222e85ac573"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb61fb124bb88094238c5222e85ac573">&#9670;&#160;</a></span>k_t_N</h2>
+<a id="a76a6ec6a53e83d545e9d241768f52a5b" name="a76a6ec6a53e83d545e9d241768f52a5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a76a6ec6a53e83d545e9d241768f52a5b">&#9670;&#160;</a></span>k_t_P</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -372,7 +397,7 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float k_t_N[5] = {0.0041f, 0.0038f, 0.0028f, 0.0032f, 0.0040f}</td>
+          <td class="memname">std::array&lt;float, 5&gt; k_t_P = {0.0053F, 0.0049F, 0.0035F, 0.0042F, 0.0051F}</td>
         </tr>
       </table>
   </td>
@@ -382,12 +407,12 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
 </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00018">18</a></p>
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00021">21</a></p>
 
 </div>
 </div>
-<a id="ab0a07071dd32b23e25ec31b21b140a28" name="ab0a07071dd32b23e25ec31b21b140a28"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab0a07071dd32b23e25ec31b21b140a28">&#9670;&#160;</a></span>k_t_P</h2>
+<a id="a3f1cf9b5f7629cc0ea95cd526fe7a992" name="a3f1cf9b5f7629cc0ea95cd526fe7a992"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f1cf9b5f7629cc0ea95cd526fe7a992">&#9670;&#160;</a></span>SOIL_EC</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -396,7 +421,7 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">float k_t_P[5] = {0.0053f, 0.0049f, 0.0035f, 0.0042f, 0.0051f}</td>
+          <td class="memname">std::array&lt;<a class="el" href="struct_soil_e_c_coeff.html">SoilECCoeff</a>, 5&gt; SOIL_EC</td>
         </tr>
       </table>
   </td>
@@ -405,30 +430,16 @@ $(function(){initNavTree('sensor__compensation_8cpp.html',''); initResizable(tru
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00019">19</a></p>
-
-</div>
-</div>
-<a id="acd870b1b4a3ad38428ccce7c467035a9" name="acd870b1b4a3ad38428ccce7c467035a9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd870b1b4a3ad38428ccce7c467035a9">&#9670;&#160;</a></span>[struct]</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct  { ... }  SOIL_EC[]</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<b>Инициализатор</b><div class="fragment"><div class="line">= {</div>
-<div class="line">    {0.15f},  </div>
-<div class="line">    {0.30f},  </div>
-<div class="line">    {0.10f},  </div>
-<div class="line">    {0.45f},  </div>
-<div class="line">    {0.18f}   </div>
-<div class="line">}</div>
+<b>Инициализатор</b><div class="fragment"><div class="line">= {{</div>
+<div class="line">    {0.15F},  </div>
+<div class="line">    {0.30F},  </div>
+<div class="line">    {0.10F},  </div>
+<div class="line">    {0.45F},  </div>
+<div class="line">    {0.18F}   </div>
+<div class="line">}}</div>
 </div><!-- fragment -->
+<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00012">12</a></p>
+
 </div>
 </div>
 </div><!-- contents -->

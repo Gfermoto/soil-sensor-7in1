@@ -7,6 +7,10 @@ var searchData=
   ['boot_5fbutton_4',['BOOT_BUTTON',['../jxct__config__vars_8h.html#ac1268edc13ca85789628d69528560051',1,'jxct_config_vars.h']]],
   ['buffer_5ffilled_5',['buffer_filled',['../struct_sensor_data.html#acf88a59ba1b4c48bcbe74e853e3ab7e7',1,'SensorData']]],
   ['buffer_5findex_6',['buffer_index',['../struct_sensor_data.html#a0b41fc80d82705a0a7adc521795623d7',1,'SensorData']]],
-  ['button_5fhold_5ftime_5fms_7',['BUTTON_HOLD_TIME_MS',['../jxct__config__vars_8h.html#a21bfc357c536666cbacb163b043d27ec',1,'jxct_config_vars.h']]],
-  ['buttontype_8',['ButtonType',['../jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153',1,'jxct_ui_system.h']]]
+  ['builder_7',['Builder',['../struct_input_field_info_1_1_builder.html',1,'InputFieldInfo::Builder'],['../struct_input_field_info_1_1_builder.html#ae4c65ca5052e000a89ee4781a9407e95',1,'InputFieldInfo::Builder::Builder()']]],
+  ['button_5fhold_5ftime_5fms_8',['BUTTON_HOLD_TIME_MS',['../jxct__config__vars_8h.html#a21bfc357c536666cbacb163b043d27ec',1,'jxct_config_vars.h']]],
+  ['buttonconfig_9',['ButtonConfig',['../struct_button_config.html',1,'']]],
+  ['buttonicon_10',['buttonIcon',['../struct_form_info.html#acceab1003152657e0653c05f088b04d3',1,'FormInfo']]],
+  ['buttontext_11',['buttonText',['../struct_form_info.html#a0de10bdfc14828a3c96e6fbb297e326e',1,'FormInfo']]],
+  ['buttontype_12',['ButtonType',['../jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153',1,'jxct_ui_system.h']]]
 ];

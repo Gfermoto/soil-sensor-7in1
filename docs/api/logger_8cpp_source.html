@@ -102,394 +102,403 @@ $(function(){initNavTree('logger_8cpp_source.html',''); initResizable(true); });
 <div class="contents">
 <a href="logger_8cpp.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="logger_8h.html">logger.h</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;WiFi.h&gt;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="logger_8h.html">../include/logger.h</a>&quot;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;WiFi.h&gt;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;array&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;cstdarg&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// Глобальная переменная уровня логгирования</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">   12</a></span><a class="code hl_enumeration" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a> <a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> = <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// Получение времени работы в читаемом формате</span></div>
-<div class="foldopen" id="foldopen00015" data-start="{" data-end="}">
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a9ce43588b680fbf5d2269e785fc39f21">   15</a></span>String <a class="code hl_function" href="logger_8cpp.html#a9ce43588b680fbf5d2269e785fc39f21">getUptimeString</a>()</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> totalSeconds = millis() / 1000;</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> hours = totalSeconds / 3600;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> minutes = (totalSeconds % 3600) / 60;</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> seconds = totalSeconds % 60;</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordflow">return</span> String(hours) + <span class="stringliteral">&quot;:&quot;</span> + (minutes &lt; 10 ? <span class="stringliteral">&quot;0&quot;</span> : <span class="stringliteral">&quot;&quot;</span>) + String(minutes) + <span class="stringliteral">&quot;:&quot;</span> + (seconds &lt; 10 ? <span class="stringliteral">&quot;0&quot;</span> : <span class="stringliteral">&quot;&quot;</span>) +</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>           String(seconds);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
-</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;cstdio&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// Глобальная переменная для уровня логгирования</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">   13</a></span><a class="code hl_enumeration" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a> <a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> = <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">LOG_DEBUG</a>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// Получение времени работы в читаемом формате</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="keyword">namespace</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>{</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>String getUptimeString()</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> milliseconds = millis();</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> seconds = milliseconds / 1000;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> minutes = seconds / 60;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> hours = minutes / 60;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keyword">const</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> days = hours / 24;</div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">// Функция для получения ANSI цвета из enum</span></div>
-<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590">   27</a></span><span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590">getColorCode</a>(<a class="code hl_enumeration" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">switch</span> (color)</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afbaa2d9547b5d3dd9f05984475f7c926da0">LogColor::RED</a>:</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afba9de0e5dd94e861317e74964bed179fa0">LogColor::GREEN</a>:</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a>;</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afba8a568e5f41b7e4da88fe5c4a00aad34e">LogColor::YELLOW</a>:</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a4534b577b74a58b0f4b7be027af664e0">COLOR_YELLOW</a>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f">LogColor::BLUE</a>:</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a23c70d699a5a775bc2e1ebeb8603f630">COLOR_BLUE</a>;</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afbac634ffea7195608364671ac52ee59a61">LogColor::MAGENTA</a>:</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749">LogColor::CYAN</a>:</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afbab5bf627e448384cf3a4c35121ca6008d">LogColor::WHITE</a>:</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a9b44987ffdc2af19b635206b94334b69">COLOR_WHITE</a>;</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f">LogColor::CYAN_DEFAULT</a>:</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        <span class="keywordflow">default</span>:</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>;</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    }</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>}</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    seconds %= 60;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    minutes %= 60;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    hours %= 24;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordflow">return</span> String(days) + <span class="stringliteral">&quot;д &quot;</span> + String(hours) + <span class="stringliteral">&quot;ч &quot;</span> + String(minutes) + <span class="stringliteral">&quot;м &quot;</span> + String(seconds) + <span class="stringliteral">&quot;с&quot;</span>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>}</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}  <span class="comment">// namespace</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a73d33bdd74467a1ac7814b1a783f7f28">   34</a></span>String <a class="code hl_function" href="logger_8cpp.html#a73d33bdd74467a1ac7814b1a783f7f28">formatLogMessage</a>(<span class="keyword">const</span> String&amp; message)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span> message;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
 </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">// Вывод заголовка секции</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">// Основные функции логгирования (String версии)</span></div>
+<div class="foldopen" id="foldopen00040" data-start="{" data-end="}">
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a646cbac39f467aafa298c8dae1ff0091">   40</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a646cbac39f467aafa298c8dae1ff0091">logError</a>(<span class="keyword">const</span> String&amp; message)</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>{</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473">LOG_ERROR</a>)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a>);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a1805ae11e986e60d931ddd9e54e12fe5">LOG_SYMBOL_ERROR</a> <span class="stringliteral">&quot; &quot;</span>);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    Serial.println(message);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
 <div class="foldopen" id="foldopen00053" data-start="{" data-end="}">
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="logger_8cpp.html#ac8e71aa24f9f13d9f1cf0a1c8a7e51f5">   53</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#ac8e71aa24f9f13d9f1cf0a1c8a7e51f5">logPrintHeader</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* title, <a class="code hl_enumeration" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a70f38e65c2a4620bbf763080674010af">   53</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a70f38e65c2a4620bbf763080674010af">logWarn</a>(<span class="keyword">const</span> String&amp; message)</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    Serial.println();</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    Serial.print(<a class="code hl_function" href="logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590">getColorCode</a>(color));</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a302607d6f585b7e9ba1c3eab8d2199d5">COLOR_BOLD</a>);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <a class="code hl_function" href="logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e">logPrintSeparator</a>(<span class="stringliteral">&quot;═&quot;</span>, 60);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    Serial.printf(<span class="stringliteral">&quot;  %s\n&quot;</span>, title);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_function" href="logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e">logPrintSeparator</a>(<span class="stringliteral">&quot;═&quot;</span>, 60);</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13">LOG_WARN</a>)</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    {</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a4534b577b74a58b0f4b7be027af664e0">COLOR_YELLOW</a>);</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a7e4fda439418c6c40322f686422d9780">LOG_SYMBOL_WARN</a>);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    Serial.println(message);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>}</div>
 </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">// Вывод разделителя</span></div>
-<div class="foldopen" id="foldopen00065" data-start="{" data-end="}">
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e">   65</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e">logPrintSeparator</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* symbol, <span class="keywordtype">int</span> length)</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>{</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; length; i++)</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    {</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>        Serial.print(symbol);</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    }</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    Serial.println();</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="foldopen" id="foldopen00066" data-start="{" data-end="}">
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a374e6f13f686b3de469c00c01d5fe1d3">   66</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a374e6f13f686b3de469c00c01d5fe1d3">logInfo</a>(<span class="keyword">const</span> String&amp; message)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>{</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a23c70d699a5a775bc2e1ebeb8603f630">COLOR_BLUE</a>);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a29ad49893877cde0893a8a0fef27fe90">LOG_SYMBOL_INFO</a>);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    Serial.println(message);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}</div>
 </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">// Вывод баннера</span></div>
-<div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="logger_8cpp.html#aef367594259e15c9df8b0caf3dfddba8">   75</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#aef367594259e15c9df8b0caf3dfddba8">logPrintBanner</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* text)</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>{</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    Serial.println();</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>);</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a302607d6f585b7e9ba1c3eab8d2199d5">COLOR_BOLD</a>);</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <a class="code hl_function" href="logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e">logPrintSeparator</a>(<span class="stringliteral">&quot;*&quot;</span>, 60);</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    Serial.printf(<span class="stringliteral">&quot;  %s\n&quot;</span>, text);</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <a class="code hl_function" href="logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e">logPrintSeparator</a>(<span class="stringliteral">&quot;*&quot;</span>, 60);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    Serial.println();</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="logger_8cpp.html#aade0576f178f655d0f991ed324fd27ff">   79</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#aade0576f178f655d0f991ed324fd27ff">logDebug</a>(<span class="keyword">const</span> String&amp; message)</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>{</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">LOG_DEBUG</a>)</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    {</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    }</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a20a52a9bc99086288ae7984b9a4ebc2b">LOG_SYMBOL_DEBUG</a>);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    Serial.println(message);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
 </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">// Основные функции логгирования</span></div>
-<div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce">   88</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce">logError</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...)</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>{</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473">LOG_ERROR</a>)</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    {</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a>);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a1805ae11e986e60d931ddd9e54e12fe5">LOG_SYMBOL_ERROR</a> <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="foldopen" id="foldopen00092" data-start="{" data-end="}">
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a33d6cac9c78346491213dac197c0f9f3">   92</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a33d6cac9c78346491213dac197c0f9f3">logSuccess</a>(<span class="keyword">const</span> String&amp; message)</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>{</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    {</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    }</div>
 <div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    std::va_list args;</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    va_start(args, format);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">char</span> buffer[256];</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    vsnprintf(buffer, <span class="keyword">sizeof</span>(buffer), format, args);</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>    va_end(args);</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a>);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a3f059e66d832311f77817c558143bc1f">LOG_SYMBOL_SUCCESS</a>);</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    Serial.println(message);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>}</div>
+</div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    Serial.println(buffer);</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>}</div>
+<div class="foldopen" id="foldopen00105" data-start="{" data-end="}">
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="logger_8cpp.html#ad52356734897533dd1ec07d78670a5bb">  105</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#ad52356734897533dd1ec07d78670a5bb">logSensor</a>(<span class="keyword">const</span> String&amp; message)</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>{</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a>);</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a88747f65ea7adeeda31222acace5fc11">LOG_SYMBOL_SENSOR</a>);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    Serial.println(message);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>}</div>
 </div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="foldopen" id="foldopen00108" data-start="{" data-end="}">
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431">  108</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431">logWarn</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...)</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>{</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13">LOG_WARN</a>)</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    {</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    }</div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a4534b577b74a58b0f4b7be027af664e0">COLOR_YELLOW</a>);</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a7e4fda439418c6c40322f686422d9780">LOG_SYMBOL_WARN</a>);</div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
-<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    std::va_list args;</div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    va_start(args, format);</div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordtype">char</span> buffer[256];</div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    vsnprintf(buffer, <span class="keyword">sizeof</span>(buffer), format, args);</div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    va_end(args);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="foldopen" id="foldopen00118" data-start="{" data-end="}">
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="logger_8cpp.html#abc98ed88066e0a808bb68d9a88ffa9c1">  118</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#abc98ed88066e0a808bb68d9a88ffa9c1">logWiFi</a>(<span class="keyword">const</span> String&amp; message)</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>{</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    {</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>    }</div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    Serial.println(buffer);</div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>}</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a9b85a144155d4ee001653d25ce7a8ba6">LOG_SYMBOL_WIFI</a>);</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    Serial.println(message);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>}</div>
 </div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
-<div class="foldopen" id="foldopen00128" data-start="{" data-end="}">
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf">  128</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf">logInfo</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...)</div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>{</div>
-<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
-<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    {</div>
-<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    }</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
-<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a23c70d699a5a775bc2e1ebeb8603f630">COLOR_BLUE</a>);</div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a29ad49893877cde0893a8a0fef27fe90">LOG_SYMBOL_INFO</a>);</div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    std::va_list args;</div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    va_start(args, format);</div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordtype">char</span> buffer[256];</div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    vsnprintf(buffer, <span class="keyword">sizeof</span>(buffer), format, args);</div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    va_end(args);</div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    Serial.println(buffer);</div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>}</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="foldopen" id="foldopen00131" data-start="{" data-end="}">
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="logger_8cpp.html#ae3ae977a43dcf87df0dc3035a2983455">  131</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#ae3ae977a43dcf87df0dc3035a2983455">logMQTT</a>(<span class="keyword">const</span> String&amp; message)</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>{</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    {</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>    }</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a23c70d699a5a775bc2e1ebeb8603f630">COLOR_BLUE</a>);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a80f904e66b58e997255b9a283394a107">LOG_SYMBOL_MQTT</a>);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    Serial.println(message);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>}</div>
 </div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="foldopen" id="foldopen00148" data-start="{" data-end="}">
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe">  148</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe">logDebug</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...)</div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>{</div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">LOG_DEBUG</a>)</div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    {</div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    }</div>
-<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a>);</div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a20a52a9bc99086288ae7984b9a4ebc2b">LOG_SYMBOL_DEBUG</a> <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    std::va_list args;</div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    va_start(args, format);</div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <span class="keywordtype">char</span> buffer[256];</div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    vsnprintf(buffer, <span class="keyword">sizeof</span>(buffer), format, args);</div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    va_end(args);</div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    Serial.println(buffer);</div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>}</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a8d16d7846a1d3892a73f05af6286c36e">  144</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a8d16d7846a1d3892a73f05af6286c36e">logHTTP</a>(<span class="keyword">const</span> String&amp; message)</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>{</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    {</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    }</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a>);</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a3b1858242a4856cb030b9b12625deb6b">LOG_SYMBOL_HTTP</a>);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    Serial.println(message);</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>}</div>
 </div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span> </div>
-<div class="foldopen" id="foldopen00168" data-start="{" data-end="}">
-<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695">  168</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695">logSuccess</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...)</div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>{</div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a>);</div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a3f059e66d832311f77817c558143bc1f">LOG_SYMBOL_SUCCESS</a> <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span> </div>
-<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    std::va_list args;</div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    va_start(args, format);</div>
-<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    <span class="keywordtype">char</span> buffer[256];</div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    vsnprintf(buffer, <span class="keyword">sizeof</span>(buffer), format, args);</div>
-<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    va_end(args);</div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span> </div>
-<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    Serial.println(buffer);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="foldopen" id="foldopen00157" data-start="{" data-end="}">
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a9b60e3dbf53fc95c5a1ca77a6fec2643">  157</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a9b60e3dbf53fc95c5a1ca77a6fec2643">logSystem</a>(<span class="keyword">const</span> String&amp; message)</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>{</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    {</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    }</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a9b44987ffdc2af19b635206b94334b69">COLOR_WHITE</a>);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    Serial.print(<span class="stringliteral">&quot;⚙️  &quot;</span>);</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    Serial.println(message);</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>}</div>
+</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
+<div class="foldopen" id="foldopen00170" data-start="{" data-end="}">
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a994321edf88e16ea088cdbaf0f8a8177">  170</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a994321edf88e16ea088cdbaf0f8a8177">logData</a>(<span class="keyword">const</span> String&amp; message)</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>{</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    {</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    }</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a4534b577b74a58b0f4b7be027af664e0">COLOR_YELLOW</a>);</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    Serial.print(<span class="stringliteral">&quot;📊 &quot;</span>);</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    Serial.println(message);</div>
 <div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>}</div>
 </div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="comment">// Специализированные функции</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="comment">// Специальные функции</span></div>
 <div class="foldopen" id="foldopen00184" data-start="{" data-end="}">
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b">  184</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b">logSensor</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...)</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a33f45b00aaf104a528bb909059246d11">  184</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a33f45b00aaf104a528bb909059246d11">logSeparator</a>()</div>
 <div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>{</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>    {</div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    }</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>);</div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a88747f65ea7adeeda31222acace5fc11">LOG_SYMBOL_SENSOR</a> <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>    std::va_list args;</div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    va_start(args, format);</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <span class="keywordtype">char</span> buffer[256];</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    vsnprintf(buffer, <span class="keyword">sizeof</span>(buffer), format, args);</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    va_end(args);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    Serial.println(<span class="stringliteral">&quot;────────────────────────────────────────────────────&quot;</span>);</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>}</div>
+</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
+<div class="foldopen" id="foldopen00189" data-start="{" data-end="}">
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno"><a class="line" href="logger_8cpp.html#ac14de3d3a99ad0c7f8ff459619f12278">  189</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#ac14de3d3a99ad0c7f8ff459619f12278">logNewline</a>()</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>{</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    Serial.println();</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>}</div>
+</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="foldopen" id="foldopen00194" data-start="{" data-end="}">
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno"><a class="line" href="logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d">  194</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d">logMemoryUsage</a>()</div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>{</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">LOG_DEBUG</a>)</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    {</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    }</div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    Serial.println(buffer);</div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>}</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>);</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    Serial.print(<span class="stringliteral">&quot;🔧 Free heap: &quot;</span>);</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    Serial.print(ESP.getFreeHeap());  <span class="comment">// NOLINT(readability-static-accessed-through-instance)</span></div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    Serial.println(<span class="stringliteral">&quot; bytes&quot;</span>);</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>}</div>
 </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
-<div class="foldopen" id="foldopen00204" data-start="{" data-end="}">
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a8a220d54e17d73c281bb715f70bf6df9">  204</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a8a220d54e17d73c281bb715f70bf6df9">logWiFi</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...)</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>{</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    {</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    }</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a>);</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a9b85a144155d4ee001653d25ce7a8ba6">LOG_SYMBOL_WIFI</a> <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
+<div class="foldopen" id="foldopen00208" data-start="{" data-end="}">
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a36865f00b6f06ee84213f5a5a1c3c45d">  208</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a36865f00b6f06ee84213f5a5a1c3c45d">logSystemInfo</a>()</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>{</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    {</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    }</div>
 <div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    std::va_list args;</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    va_start(args, format);</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <span class="keywordtype">char</span> buffer[256];</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    vsnprintf(buffer, <span class="keyword">sizeof</span>(buffer), format, args);</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    va_end(args);</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a23c70d699a5a775bc2e1ebeb8603f630">COLOR_BLUE</a>);</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>    Serial.print(<span class="stringliteral">&quot;ℹ️  ESP32 Chip ID: &quot;</span>);</div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    Serial.println(ESP.getChipModel());  <span class="comment">// NOLINT(readability-static-accessed-through-instance)</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>}</div>
+</div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>    Serial.println(buffer);</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>}</div>
+<div class="foldopen" id="foldopen00221" data-start="{" data-end="}">
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a07e106e3f19501a64fde4b0c6fa8d73a">  221</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a07e106e3f19501a64fde4b0c6fa8d73a">logUptime</a>()</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>{</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>    <a class="code hl_function" href="logger_8cpp.html#a9b60e3dbf53fc95c5a1ca77a6fec2643">logSystem</a>(getUptimeString());</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>}</div>
 </div>
-<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span> </div>
-<div class="foldopen" id="foldopen00224" data-start="{" data-end="}">
-<div class="line"><a id="l00224" name="l00224"></a><span class="lineno"><a class="line" href="logger_8cpp.html#ace461ff84ce50a76653ec959a2436320">  224</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#ace461ff84ce50a76653ec959a2436320">logMQTT</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...)</div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>{</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>    {</div>
-<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    }</div>
-<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
-<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a>);</div>
-<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a80f904e66b58e997255b9a283394a107">LOG_SYMBOL_MQTT</a> <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span> </div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>    std::va_list args;</div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    va_start(args, format);</div>
-<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>    <span class="keywordtype">char</span> buffer[256];</div>
-<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>    vsnprintf(buffer, <span class="keyword">sizeof</span>(buffer), format, args);</div>
-<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>    va_end(args);</div>
-<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>    Serial.println(buffer);</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>}</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="foldopen" id="foldopen00226" data-start="{" data-end="}">
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="logger_8cpp.html#abf70e1b094519276f0363ac763f100ab">  226</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#abf70e1b094519276f0363ac763f100ab">logWiFiStatus</a>()</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span>{</div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>    <span class="keywordflow">if</span> (WiFiClass::status() == WL_CONNECTED)</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span>    {</div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>        <a class="code hl_function" href="logger_8cpp.html#abc98ed88066e0a808bb68d9a88ffa9c1">logWiFi</a>(<span class="stringliteral">&quot;Подключен к &quot;</span> + WiFi.SSID() + <span class="stringliteral">&quot;, IP: &quot;</span> + WiFi.localIP().toString() + <span class="stringliteral">&quot;, RSSI: &quot;</span> + String(WiFi.RSSI()) +</div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>                <span class="stringliteral">&quot; dBm&quot;</span>);  <span class="comment">// NOLINT(readability-static-accessed-through-instance)</span></div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>    }</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>    <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>    {</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>        <a class="code hl_function" href="logger_8cpp.html#a70f38e65c2a4620bbf763080674010af">logWarn</a>(<span class="stringliteral">&quot;WiFi не подключен (статус: &quot;</span> + String(WiFiClass::status()) + <span class="stringliteral">&quot;)&quot;</span>);  <span class="comment">// NOLINT(readability-static-accessed-through-instance)</span></div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span>    }</div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>}</div>
 </div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span> </div>
-<div class="foldopen" id="foldopen00244" data-start="{" data-end="}">
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno"><a class="line" href="logger_8cpp.html#af2cfc49d3e5f87ebc351693b47c348e1">  244</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#af2cfc49d3e5f87ebc351693b47c348e1">logData</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...)</div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span>{</div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
-<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    {</div>
-<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>    }</div>
-<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a4534b577b74a58b0f4b7be027af664e0">COLOR_YELLOW</a>);</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#ab52ca48221cf6d89f8ebd189da180059">LOG_SYMBOL_DATA</a> <span class="stringliteral">&quot; &quot;</span>);</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
-<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>    std::va_list args;</div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    va_start(args, format);</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>    <span class="keywordtype">char</span> buffer[256];</div>
-<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>    vsnprintf(buffer, <span class="keyword">sizeof</span>(buffer), format, args);</div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>    va_end(args);</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>    Serial.println(buffer);</div>
-<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>}</div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span><span class="comment">// Функции для работы с цветами</span></div>
+<div class="foldopen" id="foldopen00240" data-start="{" data-end="}">
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno"><a class="line" href="logger_8cpp.html#abbb1feb235829ffa762eb8d2615b4864">  240</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#abbb1feb235829ffa762eb8d2615b4864">setLogColor</a>(<a class="code hl_enumeration" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span>{</div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>    Serial.print(<a class="code hl_function" href="logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590">getColorCode</a>(color));</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>}</div>
 </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="foldopen" id="foldopen00264" data-start="{" data-end="}">
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14">  264</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14">logSystem</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* format, ...)</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>{</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a> &lt; <a class="code hl_enumvalue" href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a>)</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    {</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    }</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a9b44987ffdc2af19b635206b94334b69">COLOR_WHITE</a>);</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a0c7e0aa41ab5cb38235c908e87aeb5ea">LOG_SYMBOL_SYSTEM</a>);</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
+<div class="foldopen" id="foldopen00245" data-start="{" data-end="}">
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="logger_8cpp.html#abe2743f8bba1e6d306e147b47afb0943">  245</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#abe2743f8bba1e6d306e147b47afb0943">resetLogColor</a>()</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>{</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span>}</div>
+</div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="foldopen" id="foldopen00250" data-start="{" data-end="}">
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno"><a class="line" href="logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590">  250</a></span><span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590">getColorCode</a>(<a class="code hl_enumeration" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</div>
+<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span>{</div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>    <span class="keywordflow">switch</span> (color)</div>
+<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span>    {</div>
+<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afbaa2d9547b5d3dd9f05984475f7c926da0">LogColor::RED</a>:</div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a>;</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afba9de0e5dd94e861317e74964bed179fa0">LogColor::GREEN</a>:</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a>;</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afba8a568e5f41b7e4da88fe5c4a00aad34e">LogColor::YELLOW</a>:</div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a4534b577b74a58b0f4b7be027af664e0">COLOR_YELLOW</a>;</div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f">LogColor::BLUE</a>:</div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a23c70d699a5a775bc2e1ebeb8603f630">COLOR_BLUE</a>;</div>
+<div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afbac634ffea7195608364671ac52ee59a61">LogColor::MAGENTA</a>:</div>
+<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a>;</div>
+<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749">LogColor::CYAN</a>:</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>;</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afbab5bf627e448384cf3a4c35121ca6008d">LogColor::WHITE</a>:</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a9b44987ffdc2af19b635206b94334b69">COLOR_WHITE</a>;</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>        <span class="keywordflow">case</span> <a class="code hl_enumvalue" href="logger_8h.html#a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f">LogColor::CYAN_DEFAULT</a>:</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>;</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>            <span class="keywordflow">return</span> <a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>;</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>    }</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>}</div>
+</div>
 <div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>    std::va_list args;</div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>    va_start(args, format);</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>    <span class="keywordtype">char</span> buffer[256];</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    vsnprintf(buffer, <span class="keyword">sizeof</span>(buffer), format, args);</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    va_end(args);</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    Serial.println(buffer);</div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>}</div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment">// Утилиты</span></div>
+<div class="foldopen" id="foldopen00276" data-start="{" data-end="}">
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno"><a class="line" href="logger_8cpp.html#adc424edacf4b7c29b2a123afe3cbf575">  276</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#adc424edacf4b7c29b2a123afe3cbf575">printHeader</a>(<span class="keyword">const</span> String&amp; title, <a class="code hl_enumeration" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>{</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>    Serial.print(<a class="code hl_function" href="logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590">getColorCode</a>(color));</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>    Serial.print(<span class="stringliteral">&quot;═══ &quot;</span>);</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>    Serial.print(title);</div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>    Serial.println(<span class="stringliteral">&quot; ═══&quot;</span>);</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>}</div>
 </div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span><span class="comment">// Утилиты</span></div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
 <div class="foldopen" id="foldopen00285" data-start="{" data-end="}">
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="logger_8cpp.html#a07e106e3f19501a64fde4b0c6fa8d73a">  285</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#a07e106e3f19501a64fde4b0c6fa8d73a">logUptime</a>()</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="logger_8cpp.html#acf4270ba81bcf41a83b9c6822df051b8">  285</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#acf4270ba81bcf41a83b9c6822df051b8">printSubHeader</a>(<span class="keyword">const</span> String&amp; title, <a class="code hl_enumeration" href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</div>
 <div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>{</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    <a class="code hl_function" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14">logSystem</a>(<span class="stringliteral">&quot;Время работы: %s&quot;</span>, <a class="code hl_function" href="logger_8cpp.html#a9ce43588b680fbf5d2269e785fc39f21">getUptimeString</a>().c_str());</div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>}</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>    Serial.print(<a class="code hl_function" href="logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590">getColorCode</a>(color));</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>    Serial.print(<span class="stringliteral">&quot;─── &quot;</span>);</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>    Serial.print(title);</div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>    Serial.println(<span class="stringliteral">&quot; ───&quot;</span>);</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>    Serial.print(<a class="code hl_define" href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>}</div>
 </div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
-<div class="foldopen" id="foldopen00290" data-start="{" data-end="}">
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno"><a class="line" href="logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d">  290</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d">logMemoryUsage</a>()</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>{</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>    <a class="code hl_function" href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14">logSystem</a>(<span class="stringliteral">&quot;Свободная память: %d байт&quot;</span>, ESP.getFreeHeap());</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>}</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="foldopen" id="foldopen00294" data-start="{" data-end="}">
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno"><a class="line" href="logger_8cpp.html#afff4c4e20076552958d756dbcdcbe366">  294</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#afff4c4e20076552958d756dbcdcbe366">printTimeStamp</a>()</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>{</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>    Serial.print(<span class="stringliteral">&quot;[&quot;</span>);</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    Serial.print(millis());</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    Serial.print(<span class="stringliteral">&quot;] &quot;</span>);</div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>}</div>
 </div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
-<div class="foldopen" id="foldopen00295" data-start="{" data-end="}">
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno"><a class="line" href="logger_8cpp.html#abf70e1b094519276f0363ac763f100ab">  295</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="logger_8cpp.html#abf70e1b094519276f0363ac763f100ab">logWiFiStatus</a>()</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>{</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>    <span class="keywordflow">if</span> (WiFi.status() == WL_CONNECTED)</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>    {</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>        <a class="code hl_function" href="logger_8cpp.html#a8a220d54e17d73c281bb715f70bf6df9">logWiFi</a>(<span class="stringliteral">&quot;Подключен к %s, IP: %s, RSSI: %d dBm&quot;</span>, WiFi.SSID().c_str(), WiFi.localIP().toString().c_str(),</div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>                WiFi.RSSI());</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>    }</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>    <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>    {</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>        <a class="code hl_function" href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431">logWarn</a>(<span class="stringliteral">&quot;WiFi не подключен (статус: %d)&quot;</span>, WiFi.status());</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>    }</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>}</div>
-</div>
-<div class="ttc" id="alogger_8cpp_html_a07e106e3f19501a64fde4b0c6fa8d73a"><div class="ttname"><a href="logger_8cpp.html#a07e106e3f19501a64fde4b0c6fa8d73a">logUptime</a></div><div class="ttdeci">void logUptime()</div><div class="ttdef"><b>Определения</b> <a href="#l00285">logger.cpp:285</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_a16cca5b581e7f50a9cc5e838510ae6f5"><div class="ttname"><a href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a></div><div class="ttdeci">LogLevel currentLogLevel</div><div class="ttdef"><b>Определения</b> <a href="#l00012">logger.cpp:12</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_a1e536b98344ba271bbfc484cca848dbe"><div class="ttname"><a href="logger_8cpp.html#a1e536b98344ba271bbfc484cca848dbe">logDebug</a></div><div class="ttdeci">void logDebug(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="#l00148">logger.cpp:148</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_a34f49079ccda568e5054918ae4354431"><div class="ttname"><a href="logger_8cpp.html#a34f49079ccda568e5054918ae4354431">logWarn</a></div><div class="ttdeci">void logWarn(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="#l00108">logger.cpp:108</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_a3ee301b7bb89647696628fbd93584d9e"><div class="ttname"><a href="logger_8cpp.html#a3ee301b7bb89647696628fbd93584d9e">logPrintSeparator</a></div><div class="ttdeci">void logPrintSeparator(const char *symbol, int length)</div><div class="ttdef"><b>Определения</b> <a href="#l00065">logger.cpp:65</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_a4a348f4af13be9d7c726e296e9b3c89b"><div class="ttname"><a href="logger_8cpp.html#a4a348f4af13be9d7c726e296e9b3c89b">logSensor</a></div><div class="ttdeci">void logSensor(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="#l00184">logger.cpp:184</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_a54dab32db32234798ff063ccc0dde695"><div class="ttname"><a href="logger_8cpp.html#a54dab32db32234798ff063ccc0dde695">logSuccess</a></div><div class="ttdeci">void logSuccess(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="#l00168">logger.cpp:168</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_a60baa11f08afed73f5a7bc5d31f698ce"><div class="ttname"><a href="logger_8cpp.html#a60baa11f08afed73f5a7bc5d31f698ce">logError</a></div><div class="ttdeci">void logError(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="#l00088">logger.cpp:88</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_a6673a3ba037fc4ceda09f36e43cd7f14"><div class="ttname"><a href="logger_8cpp.html#a6673a3ba037fc4ceda09f36e43cd7f14">logSystem</a></div><div class="ttdeci">void logSystem(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="#l00264">logger.cpp:264</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_a8a220d54e17d73c281bb715f70bf6df9"><div class="ttname"><a href="logger_8cpp.html#a8a220d54e17d73c281bb715f70bf6df9">logWiFi</a></div><div class="ttdeci">void logWiFi(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="#l00204">logger.cpp:204</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_a9ce43588b680fbf5d2269e785fc39f21"><div class="ttname"><a href="logger_8cpp.html#a9ce43588b680fbf5d2269e785fc39f21">getUptimeString</a></div><div class="ttdeci">String getUptimeString()</div><div class="ttdef"><b>Определения</b> <a href="#l00015">logger.cpp:15</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_ab014807afa04f9783ed19c897cbdf54d"><div class="ttname"><a href="logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d">logMemoryUsage</a></div><div class="ttdeci">void logMemoryUsage()</div><div class="ttdef"><b>Определения</b> <a href="#l00290">logger.cpp:290</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_ab94ddc842b6a690863609c28cfa93590"><div class="ttname"><a href="logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590">getColorCode</a></div><div class="ttdeci">const char * getColorCode(LogColor color)</div><div class="ttdef"><b>Определения</b> <a href="#l00027">logger.cpp:27</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_ab9b4ed01ba7a88bb5e22d1c84e0f0abf"><div class="ttname"><a href="logger_8cpp.html#ab9b4ed01ba7a88bb5e22d1c84e0f0abf">logInfo</a></div><div class="ttdeci">void logInfo(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="#l00128">logger.cpp:128</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_abf70e1b094519276f0363ac763f100ab"><div class="ttname"><a href="logger_8cpp.html#abf70e1b094519276f0363ac763f100ab">logWiFiStatus</a></div><div class="ttdeci">void logWiFiStatus()</div><div class="ttdef"><b>Определения</b> <a href="#l00295">logger.cpp:295</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_ac8e71aa24f9f13d9f1cf0a1c8a7e51f5"><div class="ttname"><a href="logger_8cpp.html#ac8e71aa24f9f13d9f1cf0a1c8a7e51f5">logPrintHeader</a></div><div class="ttdeci">void logPrintHeader(const char *title, LogColor color)</div><div class="ttdef"><b>Определения</b> <a href="#l00053">logger.cpp:53</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_ace461ff84ce50a76653ec959a2436320"><div class="ttname"><a href="logger_8cpp.html#ace461ff84ce50a76653ec959a2436320">logMQTT</a></div><div class="ttdeci">void logMQTT(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="#l00224">logger.cpp:224</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_aef367594259e15c9df8b0caf3dfddba8"><div class="ttname"><a href="logger_8cpp.html#aef367594259e15c9df8b0caf3dfddba8">logPrintBanner</a></div><div class="ttdeci">void logPrintBanner(const char *text)</div><div class="ttdef"><b>Определения</b> <a href="#l00075">logger.cpp:75</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_af2cfc49d3e5f87ebc351693b47c348e1"><div class="ttname"><a href="logger_8cpp.html#af2cfc49d3e5f87ebc351693b47c348e1">logData</a></div><div class="ttdeci">void logData(const char *format,...)</div><div class="ttdef"><b>Определения</b> <a href="#l00244">logger.cpp:244</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a07e106e3f19501a64fde4b0c6fa8d73a"><div class="ttname"><a href="logger_8cpp.html#a07e106e3f19501a64fde4b0c6fa8d73a">logUptime</a></div><div class="ttdeci">void logUptime()</div><div class="ttdef"><b>Определения</b> <a href="#l00221">logger.cpp:221</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a16cca5b581e7f50a9cc5e838510ae6f5"><div class="ttname"><a href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a></div><div class="ttdeci">LogLevel currentLogLevel</div><div class="ttdef"><b>Определения</b> <a href="#l00013">logger.cpp:13</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a33d6cac9c78346491213dac197c0f9f3"><div class="ttname"><a href="logger_8cpp.html#a33d6cac9c78346491213dac197c0f9f3">logSuccess</a></div><div class="ttdeci">void logSuccess(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00092">logger.cpp:92</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a33f45b00aaf104a528bb909059246d11"><div class="ttname"><a href="logger_8cpp.html#a33f45b00aaf104a528bb909059246d11">logSeparator</a></div><div class="ttdeci">void logSeparator()</div><div class="ttdef"><b>Определения</b> <a href="#l00184">logger.cpp:184</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a36865f00b6f06ee84213f5a5a1c3c45d"><div class="ttname"><a href="logger_8cpp.html#a36865f00b6f06ee84213f5a5a1c3c45d">logSystemInfo</a></div><div class="ttdeci">void logSystemInfo()</div><div class="ttdef"><b>Определения</b> <a href="#l00208">logger.cpp:208</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a374e6f13f686b3de469c00c01d5fe1d3"><div class="ttname"><a href="logger_8cpp.html#a374e6f13f686b3de469c00c01d5fe1d3">logInfo</a></div><div class="ttdeci">void logInfo(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00066">logger.cpp:66</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a646cbac39f467aafa298c8dae1ff0091"><div class="ttname"><a href="logger_8cpp.html#a646cbac39f467aafa298c8dae1ff0091">logError</a></div><div class="ttdeci">void logError(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00040">logger.cpp:40</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a70f38e65c2a4620bbf763080674010af"><div class="ttname"><a href="logger_8cpp.html#a70f38e65c2a4620bbf763080674010af">logWarn</a></div><div class="ttdeci">void logWarn(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00053">logger.cpp:53</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a73d33bdd74467a1ac7814b1a783f7f28"><div class="ttname"><a href="logger_8cpp.html#a73d33bdd74467a1ac7814b1a783f7f28">formatLogMessage</a></div><div class="ttdeci">String formatLogMessage(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00034">logger.cpp:34</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a8d16d7846a1d3892a73f05af6286c36e"><div class="ttname"><a href="logger_8cpp.html#a8d16d7846a1d3892a73f05af6286c36e">logHTTP</a></div><div class="ttdeci">void logHTTP(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00144">logger.cpp:144</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a994321edf88e16ea088cdbaf0f8a8177"><div class="ttname"><a href="logger_8cpp.html#a994321edf88e16ea088cdbaf0f8a8177">logData</a></div><div class="ttdeci">void logData(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00170">logger.cpp:170</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_a9b60e3dbf53fc95c5a1ca77a6fec2643"><div class="ttname"><a href="logger_8cpp.html#a9b60e3dbf53fc95c5a1ca77a6fec2643">logSystem</a></div><div class="ttdeci">void logSystem(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00157">logger.cpp:157</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_aade0576f178f655d0f991ed324fd27ff"><div class="ttname"><a href="logger_8cpp.html#aade0576f178f655d0f991ed324fd27ff">logDebug</a></div><div class="ttdeci">void logDebug(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00079">logger.cpp:79</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_ab014807afa04f9783ed19c897cbdf54d"><div class="ttname"><a href="logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d">logMemoryUsage</a></div><div class="ttdeci">void logMemoryUsage()</div><div class="ttdef"><b>Определения</b> <a href="#l00194">logger.cpp:194</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_ab94ddc842b6a690863609c28cfa93590"><div class="ttname"><a href="logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590">getColorCode</a></div><div class="ttdeci">const char * getColorCode(LogColor color)</div><div class="ttdef"><b>Определения</b> <a href="#l00250">logger.cpp:250</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_abbb1feb235829ffa762eb8d2615b4864"><div class="ttname"><a href="logger_8cpp.html#abbb1feb235829ffa762eb8d2615b4864">setLogColor</a></div><div class="ttdeci">void setLogColor(LogColor color)</div><div class="ttdef"><b>Определения</b> <a href="#l00240">logger.cpp:240</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_abc98ed88066e0a808bb68d9a88ffa9c1"><div class="ttname"><a href="logger_8cpp.html#abc98ed88066e0a808bb68d9a88ffa9c1">logWiFi</a></div><div class="ttdeci">void logWiFi(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00118">logger.cpp:118</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_abe2743f8bba1e6d306e147b47afb0943"><div class="ttname"><a href="logger_8cpp.html#abe2743f8bba1e6d306e147b47afb0943">resetLogColor</a></div><div class="ttdeci">void resetLogColor()</div><div class="ttdef"><b>Определения</b> <a href="#l00245">logger.cpp:245</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_abf70e1b094519276f0363ac763f100ab"><div class="ttname"><a href="logger_8cpp.html#abf70e1b094519276f0363ac763f100ab">logWiFiStatus</a></div><div class="ttdeci">void logWiFiStatus()</div><div class="ttdef"><b>Определения</b> <a href="#l00226">logger.cpp:226</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_ac14de3d3a99ad0c7f8ff459619f12278"><div class="ttname"><a href="logger_8cpp.html#ac14de3d3a99ad0c7f8ff459619f12278">logNewline</a></div><div class="ttdeci">void logNewline()</div><div class="ttdef"><b>Определения</b> <a href="#l00189">logger.cpp:189</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_acf4270ba81bcf41a83b9c6822df051b8"><div class="ttname"><a href="logger_8cpp.html#acf4270ba81bcf41a83b9c6822df051b8">printSubHeader</a></div><div class="ttdeci">void printSubHeader(const String &amp;title, LogColor color)</div><div class="ttdef"><b>Определения</b> <a href="#l00285">logger.cpp:285</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_ad52356734897533dd1ec07d78670a5bb"><div class="ttname"><a href="logger_8cpp.html#ad52356734897533dd1ec07d78670a5bb">logSensor</a></div><div class="ttdeci">void logSensor(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00105">logger.cpp:105</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_adc424edacf4b7c29b2a123afe3cbf575"><div class="ttname"><a href="logger_8cpp.html#adc424edacf4b7c29b2a123afe3cbf575">printHeader</a></div><div class="ttdeci">void printHeader(const String &amp;title, LogColor color)</div><div class="ttdef"><b>Определения</b> <a href="#l00276">logger.cpp:276</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_ae3ae977a43dcf87df0dc3035a2983455"><div class="ttname"><a href="logger_8cpp.html#ae3ae977a43dcf87df0dc3035a2983455">logMQTT</a></div><div class="ttdeci">void logMQTT(const String &amp;message)</div><div class="ttdef"><b>Определения</b> <a href="#l00131">logger.cpp:131</a></div></div>
+<div class="ttc" id="alogger_8cpp_html_afff4c4e20076552958d756dbcdcbe366"><div class="ttname"><a href="logger_8cpp.html#afff4c4e20076552958d756dbcdcbe366">printTimeStamp</a></div><div class="ttdeci">void printTimeStamp()</div><div class="ttdef"><b>Определения</b> <a href="#l00294">logger.cpp:294</a></div></div>
 <div class="ttc" id="alogger_8h_html"><div class="ttname"><a href="logger_8h.html">logger.h</a></div><div class="ttdoc">Система логгирования с красивым форматированием</div></div>
-<div class="ttc" id="alogger_8h_html_a0c7e0aa41ab5cb38235c908e87aeb5ea"><div class="ttname"><a href="logger_8h.html#a0c7e0aa41ab5cb38235c908e87aeb5ea">LOG_SYMBOL_SYSTEM</a></div><div class="ttdeci">#define LOG_SYMBOL_SYSTEM</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00046">logger.h:46</a></div></div>
-<div class="ttc" id="alogger_8h_html_a17f760256046df23dd0ab46602f04d02"><div class="ttname"><a href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a></div><div class="ttdeci">#define COLOR_RESET</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00049">logger.h:49</a></div></div>
-<div class="ttc" id="alogger_8h_html_a1805ae11e986e60d931ddd9e54e12fe5"><div class="ttname"><a href="logger_8h.html#a1805ae11e986e60d931ddd9e54e12fe5">LOG_SYMBOL_ERROR</a></div><div class="ttdeci">#define LOG_SYMBOL_ERROR</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00037">logger.h:37</a></div></div>
-<div class="ttc" id="alogger_8h_html_a20a52a9bc99086288ae7984b9a4ebc2b"><div class="ttname"><a href="logger_8h.html#a20a52a9bc99086288ae7984b9a4ebc2b">LOG_SYMBOL_DEBUG</a></div><div class="ttdeci">#define LOG_SYMBOL_DEBUG</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00040">logger.h:40</a></div></div>
+<div class="ttc" id="alogger_8h_html_a17f760256046df23dd0ab46602f04d02"><div class="ttname"><a href="logger_8h.html#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a></div><div class="ttdeci">#define COLOR_RESET</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00057">logger.h:57</a></div></div>
+<div class="ttc" id="alogger_8h_html_a1805ae11e986e60d931ddd9e54e12fe5"><div class="ttname"><a href="logger_8h.html#a1805ae11e986e60d931ddd9e54e12fe5">LOG_SYMBOL_ERROR</a></div><div class="ttdeci">#define LOG_SYMBOL_ERROR</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00039">logger.h:39</a></div></div>
+<div class="ttc" id="alogger_8h_html_a20a52a9bc99086288ae7984b9a4ebc2b"><div class="ttname"><a href="logger_8h.html#a20a52a9bc99086288ae7984b9a4ebc2b">LOG_SYMBOL_DEBUG</a></div><div class="ttdeci">#define LOG_SYMBOL_DEBUG</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00042">logger.h:42</a></div></div>
 <div class="ttc" id="alogger_8h_html_a23c70d699a5a775bc2e1ebeb8603f630"><div class="ttname"><a href="logger_8h.html#a23c70d699a5a775bc2e1ebeb8603f630">COLOR_BLUE</a></div><div class="ttdeci">#define COLOR_BLUE</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00053">logger.h:53</a></div></div>
-<div class="ttc" id="alogger_8h_html_a29ad49893877cde0893a8a0fef27fe90"><div class="ttname"><a href="logger_8h.html#a29ad49893877cde0893a8a0fef27fe90">LOG_SYMBOL_INFO</a></div><div class="ttdeci">#define LOG_SYMBOL_INFO</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00039">logger.h:39</a></div></div>
-<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afb"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a></div><div class="ttdeci">LogColor</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00021">logger.h:22</a></div></div>
-<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f">LogColor::BLUE</a></div><div class="ttdeci">@ BLUE</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00026">logger.h:26</a></div></div>
-<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f">LogColor::CYAN_DEFAULT</a></div><div class="ttdeci">@ CYAN_DEFAULT</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00030">logger.h:30</a></div></div>
-<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749">LogColor::CYAN</a></div><div class="ttdeci">@ CYAN</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00028">logger.h:28</a></div></div>
-<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afba8a568e5f41b7e4da88fe5c4a00aad34e"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afba8a568e5f41b7e4da88fe5c4a00aad34e">LogColor::YELLOW</a></div><div class="ttdeci">@ YELLOW</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00025">logger.h:25</a></div></div>
-<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afba9de0e5dd94e861317e74964bed179fa0"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afba9de0e5dd94e861317e74964bed179fa0">LogColor::GREEN</a></div><div class="ttdeci">@ GREEN</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00024">logger.h:24</a></div></div>
-<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afbaa2d9547b5d3dd9f05984475f7c926da0"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afbaa2d9547b5d3dd9f05984475f7c926da0">LogColor::RED</a></div><div class="ttdeci">@ RED</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00023">logger.h:23</a></div></div>
-<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afbab5bf627e448384cf3a4c35121ca6008d"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afbab5bf627e448384cf3a4c35121ca6008d">LogColor::WHITE</a></div><div class="ttdeci">@ WHITE</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00029">logger.h:29</a></div></div>
-<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afbac634ffea7195608364671ac52ee59a61"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afbac634ffea7195608364671ac52ee59a61">LogColor::MAGENTA</a></div><div class="ttdeci">@ MAGENTA</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00027">logger.h:27</a></div></div>
-<div class="ttc" id="alogger_8h_html_a302607d6f585b7e9ba1c3eab8d2199d5"><div class="ttname"><a href="logger_8h.html#a302607d6f585b7e9ba1c3eab8d2199d5">COLOR_BOLD</a></div><div class="ttdeci">#define COLOR_BOLD</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00057">logger.h:57</a></div></div>
-<div class="ttc" id="alogger_8h_html_a3f059e66d832311f77817c558143bc1f"><div class="ttname"><a href="logger_8h.html#a3f059e66d832311f77817c558143bc1f">LOG_SYMBOL_SUCCESS</a></div><div class="ttdeci">#define LOG_SYMBOL_SUCCESS</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00041">logger.h:41</a></div></div>
+<div class="ttc" id="alogger_8h_html_a29ad49893877cde0893a8a0fef27fe90"><div class="ttname"><a href="logger_8h.html#a29ad49893877cde0893a8a0fef27fe90">LOG_SYMBOL_INFO</a></div><div class="ttdeci">#define LOG_SYMBOL_INFO</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00041">logger.h:41</a></div></div>
+<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afb"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afb">LogColor</a></div><div class="ttdeci">LogColor</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00023">logger.h:24</a></div></div>
+<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f">LogColor::BLUE</a></div><div class="ttdeci">@ BLUE</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00028">logger.h:28</a></div></div>
+<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f">LogColor::CYAN_DEFAULT</a></div><div class="ttdeci">@ CYAN_DEFAULT</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00032">logger.h:32</a></div></div>
+<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749">LogColor::CYAN</a></div><div class="ttdeci">@ CYAN</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00030">logger.h:30</a></div></div>
+<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afba8a568e5f41b7e4da88fe5c4a00aad34e"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afba8a568e5f41b7e4da88fe5c4a00aad34e">LogColor::YELLOW</a></div><div class="ttdeci">@ YELLOW</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00027">logger.h:27</a></div></div>
+<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afba9de0e5dd94e861317e74964bed179fa0"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afba9de0e5dd94e861317e74964bed179fa0">LogColor::GREEN</a></div><div class="ttdeci">@ GREEN</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00026">logger.h:26</a></div></div>
+<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afbaa2d9547b5d3dd9f05984475f7c926da0"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afbaa2d9547b5d3dd9f05984475f7c926da0">LogColor::RED</a></div><div class="ttdeci">@ RED</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00025">logger.h:25</a></div></div>
+<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afbab5bf627e448384cf3a4c35121ca6008d"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afbab5bf627e448384cf3a4c35121ca6008d">LogColor::WHITE</a></div><div class="ttdeci">@ WHITE</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00031">logger.h:31</a></div></div>
+<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afbac634ffea7195608364671ac52ee59a61"><div class="ttname"><a href="logger_8h.html#a2b15c85f545a729e30a74239be429afbac634ffea7195608364671ac52ee59a61">LogColor::MAGENTA</a></div><div class="ttdeci">@ MAGENTA</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00029">logger.h:29</a></div></div>
+<div class="ttc" id="alogger_8h_html_a3b1858242a4856cb030b9b12625deb6b"><div class="ttname"><a href="logger_8h.html#a3b1858242a4856cb030b9b12625deb6b">LOG_SYMBOL_HTTP</a></div><div class="ttdeci">#define LOG_SYMBOL_HTTP</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00047">logger.h:47</a></div></div>
+<div class="ttc" id="alogger_8h_html_a3f059e66d832311f77817c558143bc1f"><div class="ttname"><a href="logger_8h.html#a3f059e66d832311f77817c558143bc1f">LOG_SYMBOL_SUCCESS</a></div><div class="ttdeci">#define LOG_SYMBOL_SUCCESS</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00043">logger.h:43</a></div></div>
 <div class="ttc" id="alogger_8h_html_a4534b577b74a58b0f4b7be027af664e0"><div class="ttname"><a href="logger_8h.html#a4534b577b74a58b0f4b7be027af664e0">COLOR_YELLOW</a></div><div class="ttdeci">#define COLOR_YELLOW</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00052">logger.h:52</a></div></div>
-<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a></div><div class="ttdeci">LogLevel</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00012">logger.h:13</a></div></div>
-<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473">LOG_ERROR</a></div><div class="ttdeci">@ LOG_ERROR</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00014">logger.h:14</a></div></div>
-<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a></div><div class="ttdeci">@ LOG_INFO</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00016">logger.h:16</a></div></div>
-<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">LOG_DEBUG</a></div><div class="ttdeci">@ LOG_DEBUG</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00017">logger.h:17</a></div></div>
-<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13">LOG_WARN</a></div><div class="ttdeci">@ LOG_WARN</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00015">logger.h:15</a></div></div>
-<div class="ttc" id="alogger_8h_html_a7e4fda439418c6c40322f686422d9780"><div class="ttname"><a href="logger_8h.html#a7e4fda439418c6c40322f686422d9780">LOG_SYMBOL_WARN</a></div><div class="ttdeci">#define LOG_SYMBOL_WARN</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00038">logger.h:38</a></div></div>
-<div class="ttc" id="alogger_8h_html_a80f904e66b58e997255b9a283394a107"><div class="ttname"><a href="logger_8h.html#a80f904e66b58e997255b9a283394a107">LOG_SYMBOL_MQTT</a></div><div class="ttdeci">#define LOG_SYMBOL_MQTT</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00044">logger.h:44</a></div></div>
+<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a></div><div class="ttdeci">LogLevel</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00014">logger.h:15</a></div></div>
+<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473">LOG_ERROR</a></div><div class="ttdeci">@ LOG_ERROR</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00016">logger.h:16</a></div></div>
+<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a></div><div class="ttdeci">@ LOG_INFO</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00018">logger.h:18</a></div></div>
+<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">LOG_DEBUG</a></div><div class="ttdeci">@ LOG_DEBUG</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00019">logger.h:19</a></div></div>
+<div class="ttc" id="alogger_8h_html_a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13"><div class="ttname"><a href="logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13">LOG_WARN</a></div><div class="ttdeci">@ LOG_WARN</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00017">logger.h:17</a></div></div>
+<div class="ttc" id="alogger_8h_html_a7e4fda439418c6c40322f686422d9780"><div class="ttname"><a href="logger_8h.html#a7e4fda439418c6c40322f686422d9780">LOG_SYMBOL_WARN</a></div><div class="ttdeci">#define LOG_SYMBOL_WARN</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00040">logger.h:40</a></div></div>
+<div class="ttc" id="alogger_8h_html_a80f904e66b58e997255b9a283394a107"><div class="ttname"><a href="logger_8h.html#a80f904e66b58e997255b9a283394a107">LOG_SYMBOL_MQTT</a></div><div class="ttdeci">#define LOG_SYMBOL_MQTT</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00046">logger.h:46</a></div></div>
 <div class="ttc" id="alogger_8h_html_a82573859711fce56f1aa0a76b18a9b18"><div class="ttname"><a href="logger_8h.html#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a></div><div class="ttdeci">#define COLOR_CYAN</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00055">logger.h:55</a></div></div>
-<div class="ttc" id="alogger_8h_html_a88747f65ea7adeeda31222acace5fc11"><div class="ttname"><a href="logger_8h.html#a88747f65ea7adeeda31222acace5fc11">LOG_SYMBOL_SENSOR</a></div><div class="ttdeci">#define LOG_SYMBOL_SENSOR</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00042">logger.h:42</a></div></div>
+<div class="ttc" id="alogger_8h_html_a88747f65ea7adeeda31222acace5fc11"><div class="ttname"><a href="logger_8h.html#a88747f65ea7adeeda31222acace5fc11">LOG_SYMBOL_SENSOR</a></div><div class="ttdeci">#define LOG_SYMBOL_SENSOR</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00044">logger.h:44</a></div></div>
 <div class="ttc" id="alogger_8h_html_a8deb0beccea721b35bdb1b4f7264fe75"><div class="ttname"><a href="logger_8h.html#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a></div><div class="ttdeci">#define COLOR_MAGENTA</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00054">logger.h:54</a></div></div>
 <div class="ttc" id="alogger_8h_html_a9b44987ffdc2af19b635206b94334b69"><div class="ttname"><a href="logger_8h.html#a9b44987ffdc2af19b635206b94334b69">COLOR_WHITE</a></div><div class="ttdeci">#define COLOR_WHITE</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00056">logger.h:56</a></div></div>
-<div class="ttc" id="alogger_8h_html_a9b85a144155d4ee001653d25ce7a8ba6"><div class="ttname"><a href="logger_8h.html#a9b85a144155d4ee001653d25ce7a8ba6">LOG_SYMBOL_WIFI</a></div><div class="ttdeci">#define LOG_SYMBOL_WIFI</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00043">logger.h:43</a></div></div>
-<div class="ttc" id="alogger_8h_html_ab52ca48221cf6d89f8ebd189da180059"><div class="ttname"><a href="logger_8h.html#ab52ca48221cf6d89f8ebd189da180059">LOG_SYMBOL_DATA</a></div><div class="ttdeci">#define LOG_SYMBOL_DATA</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00045">logger.h:45</a></div></div>
+<div class="ttc" id="alogger_8h_html_a9b85a144155d4ee001653d25ce7a8ba6"><div class="ttname"><a href="logger_8h.html#a9b85a144155d4ee001653d25ce7a8ba6">LOG_SYMBOL_WIFI</a></div><div class="ttdeci">#define LOG_SYMBOL_WIFI</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00045">logger.h:45</a></div></div>
 <div class="ttc" id="alogger_8h_html_ad86358bf19927183dd7b4ae215a29731"><div class="ttname"><a href="logger_8h.html#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a></div><div class="ttdeci">#define COLOR_RED</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00050">logger.h:50</a></div></div>
 <div class="ttc" id="alogger_8h_html_afc9149f5de51bd9ac4f5ebbfa153f018"><div class="ttname"><a href="logger_8h.html#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a></div><div class="ttdeci">#define COLOR_GREEN</div><div class="ttdef"><b>Определения</b> <a href="logger_8h_source.html#l00051">logger.h:51</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

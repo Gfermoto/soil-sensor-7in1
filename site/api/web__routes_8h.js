@@ -1,7 +1,6 @@
 var web__routes_8h =
 [
     [ "checkCSRFSafety", "web__routes_8h.html#a0320c55f4de318df92de8a73e8e7d828", null ],
-    [ "checkRouteAccess", "web__routes_8h.html#a6d52ae788bd99342b84e28a1af12392b", null ],
     [ "generateApModeUnavailablePage", "web__routes_8h.html#a1d57b5edf50f600cc5d02641cb4510a0", null ],
     [ "generateBasePage", "web__routes_8h.html#a03709c52c03116ff221a501c3f0c69b2", null ],
     [ "generateCheckboxField", "web__routes_8h.html#ae920cb227a775afac1415bab5339c623", null ],

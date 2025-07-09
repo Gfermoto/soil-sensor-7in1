@@ -43,11 +43,6 @@ var searchData=
   ['ui_5fsection_5fpadding_40',['UI_SECTION_PADDING',['../jxct__ui__system_8h.html#a2d52deefc5b60934f93d055171ae599a',1,'jxct_ui_system.h']]],
   ['ui_5ftransition_5ffast_41',['UI_TRANSITION_FAST',['../jxct__ui__system_8h.html#a9377f79f32bf678f828e7f7682fbeddc',1,'jxct_ui_system.h']]],
   ['ui_5ftransition_5fnormal_42',['UI_TRANSITION_NORMAL',['../jxct__ui__system_8h.html#aa64ee0313362e85e9592e801fac9460a',1,'jxct_ui_system.h']]],
-  ['updateavailable_43',['updateAvailable',['../ota__manager_8cpp.html#a0e63e50c659164484f1fa90343720cdd',1,'ota_manager.cpp']]],
-  ['updateirrigationflag_44',['updateIrrigationFlag',['../modbus__sensor_8cpp.html#a7dfe5a231d563e4498f0217c486af795',1,'modbus_sensor.cpp']]],
-  ['updateled_45',['updateLed',['../wifi__manager_8cpp.html#aa43f68b6c12da400ebbda9664b030944',1,'updateLed():&#160;wifi_manager.cpp'],['../wifi__manager_8h.html#aa43f68b6c12da400ebbda9664b030944',1,'updateLed():&#160;wifi_manager.cpp']]],
-  ['updatereportscache_46',['updateReportsCache',['../routes__reports_8cpp.html#acf9d1f0f51e54555af3eb95343030e86',1,'routes_reports.cpp']]],
-  ['uploadfile_47',['uploadFile',['../routes__calibration_8cpp.html#a75f9cadda2a3d68252ebfeb55df86618',1,'uploadFile:&#160;routes_calibration.cpp'],['../routes__data_8cpp.html#a75f9cadda2a3d68252ebfeb55df86618',1,'uploadFile:&#160;routes_data.cpp']]],
-  ['uploadprofile_48',['uploadProfile',['../routes__calibration_8cpp.html#a0b77c83141abb779c6ed77f346019bc2',1,'uploadProfile:&#160;routes_calibration.cpp'],['../routes__data_8cpp.html#a0b77c83141abb779c6ed77f346019bc2',1,'uploadProfile:&#160;routes_data.cpp']]],
-  ['urlinitialized_49',['urlInitialized',['../ota__manager_8cpp.html#af2b296c9a53db21d4f32a065eab66241',1,'ota_manager.cpp']]]
+  ['updateled_43',['updateLed',['../wifi__manager_8cpp.html#aa43f68b6c12da400ebbda9664b030944',1,'updateLed():&#160;wifi_manager.cpp'],['../wifi__manager_8h.html#aa43f68b6c12da400ebbda9664b030944',1,'updateLed():&#160;wifi_manager.cpp']]],
+  ['uri_44',['uri',['../struct_http_request.html#a6521bd8a35cbd5d4e41aae451192aa3e',1,'HttpRequest::uri'],['../struct_http_request_1_1_create_params.html#a893af02f7afde420a94825936f6fd3ba',1,'HttpRequest::CreateParams::uri']]]
 ];

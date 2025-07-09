@@ -1,11 +1,17 @@
 var searchData=
 [
-  ['n_0',['n',['../struct_rec_values.html#a33f921599e1cd50cdd79c3a323ec726f',1,'RecValues']]],
-  ['n_5fbuffer_1',['n_buffer',['../struct_sensor_data.html#a361f886f983491129d039fc97372fdcb',1,'SensorData']]],
-  ['nitrogen_2',['nitrogen',['../struct_sensor_data.html#a129ffaa95987191cf7c405525e156b4d',1,'SensorData']]],
-  ['nitrogenconfig_3',['nitrogenConfig',['../struct_home_assistant_config_cache.html#a1648454a3091eae140c338afcd5485e3',1,'HomeAssistantConfigCache']]],
-  ['npk_5fmax_5fvalid_4',['NPK_MAX_VALID',['../jxct__constants_8h.html#aaebb5540383c87446ec1d35469b2bd43',1,'jxct_constants.h']]],
-  ['ntp_5ftimestamp_5f2000_5',['NTP_TIMESTAMP_2000',['../jxct__constants_8h.html#abbebbf1bffd3bf96d66b8d974ffd4a2c',1,'jxct_constants.h']]],
-  ['ntpudp_6',['ntpUDP',['../main_8cpp.html#a22f33e7e05df58bb6145bb6e543e232a',1,'main.cpp']]],
-  ['ntpupdateinterval_7',['ntpUpdateInterval',['../struct_config_data.html#a2d2106d586c94e91e3d797d77deacdaf',1,'ConfigData']]]
+  ['ota_5fbuffer_5fsize_0',['OTA_BUFFER_SIZE',['../jxct__constants_8h.html#a22264a27d455a1be8245280540e34650',1,'jxct_constants.h']]],
+  ['ota_5fdelay_5fms_1',['OTA_DELAY_MS',['../jxct__constants_8h.html#af9671ec1272b5fe627548a9a5839975c',1,'jxct_constants.h']]],
+  ['ota_5fjson_5fdoc_5fsize_2',['OTA_JSON_DOC_SIZE',['../jxct__constants_8h.html#a952f6ffbe84382122e9734c64b2c2a1b',1,'jxct_constants.h']]],
+  ['ota_5fprogress_5flog_5fthreshold_3',['OTA_PROGRESS_LOG_THRESHOLD',['../jxct__constants_8h.html#a8a928039448dcc2c8bfe0a66c327a64c',1,'jxct_constants.h']]],
+  ['ota_5fstage_5fcheck_4',['OTA_STAGE_CHECK',['../jxct__constants_8h.html#a5adc70430d136402241bec2bda3ff44f',1,'jxct_constants.h']]],
+  ['ota_5fstage_5fconnection_5',['OTA_STAGE_CONNECTION',['../jxct__constants_8h.html#a67ceb925ddd7d10a6da1b44a2785c677',1,'jxct_constants.h']]],
+  ['ota_5fstage_5fdefault_6',['OTA_STAGE_DEFAULT',['../jxct__constants_8h.html#ae3e0b7f10f6fe85c7cebd35434aa46e9',1,'jxct_constants.h']]],
+  ['ota_5fstage_5fdownload_7',['OTA_STAGE_DOWNLOAD',['../jxct__constants_8h.html#a012ba3eb455180c359435d57ebc0b205',1,'jxct_constants.h']]],
+  ['ota_5fstage_5ffinish_8',['OTA_STAGE_FINISH',['../jxct__constants_8h.html#a64c516f5b18c9cf621e7ace9618ecfb1',1,'jxct_constants.h']]],
+  ['ota_5fstage_5finstall_9',['OTA_STAGE_INSTALL',['../jxct__constants_8h.html#a91060f3497ce6dc7f6336ae01ce37585',1,'jxct_constants.h']]],
+  ['ota_5fstage_5fverify_10',['OTA_STAGE_VERIFY',['../jxct__constants_8h.html#a3cd517ce43b8a36499d3da2eb0b4ff29',1,'jxct_constants.h']]],
+  ['ota_5ftimeout_11',['OTA_TIMEOUT',['../jxct__constants_8h.html#a4e82d246ba3af051580c6dc37dcaf8a3',1,'jxct_constants.h']]],
+  ['ota_5fupdate_5finterval_5fms_12',['OTA_UPDATE_INTERVAL_MS',['../jxct__constants_8h.html#aeae0cc4dca85ad5d9b5d5ac9e83c6c27',1,'jxct_constants.h']]],
+  ['ota_5fupdate_5furl_5ftemplate_13',['OTA_UPDATE_URL_TEMPLATE',['../jxct__constants_8h.html#ac2eb6652b9b3a0b6a91cf51ae6141291',1,'jxct_constants.h']]]
 ];

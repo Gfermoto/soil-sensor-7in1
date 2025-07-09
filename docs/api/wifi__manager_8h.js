@@ -6,7 +6,9 @@ var wifi__manager_8h =
       [ "STA", "wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6a971ab16c6e59a04d070cb8d8da13418e", null ]
     ] ],
     [ "checkResetButton", "wifi__manager_8h.html#ac90eb7c31515447a075eee8f395ac02f", null ],
+    [ "getApSsid", "wifi__manager_8h.html#af857f35623b29612a3b4cc45dd6fff23", null ],
     [ "handleWiFi", "wifi__manager_8h.html#aef11d16b4d8e760671e3487b2106b6b2", null ],
+    [ "navHtml", "wifi__manager_8h.html#ad30c0b8b33e60ccdb13f2e1cc08157c9", null ],
     [ "parseAndApplyConfig", "wifi__manager_8h.html#a62a0f48d52173eca4f1a069c96840851", null ],
     [ "resetConfig", "wifi__manager_8h.html#a6fa5204bcafe1db397da4a87b1690061", null ],
     [ "restartESP", "wifi__manager_8h.html#a40cec05f995ed2024366761fa28604a7", null ],

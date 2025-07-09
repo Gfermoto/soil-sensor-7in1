@@ -1,5 +1,6 @@
 var jxct__ui__system_8h =
 [
+    [ "ButtonConfig", "struct_button_config.html", "struct_button_config" ],
     [ "UI_BORDER_RADIUS", "jxct__ui__system_8h.html#ad15fc4d5c43f002ad00bc57f3dfd487c", null ],
     [ "UI_BUTTON_PADDING", "jxct__ui__system_8h.html#ab835eb27dcec3ac64adae2fbf1faba56", null ],
     [ "UI_COLOR_BG", "jxct__ui__system_8h.html#a04a3625848045f60e1d29c0561dd683b", null ],
@@ -56,7 +57,7 @@ var jxct__ui__system_8h =
       [ "WARNING", "jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5ea059e9861e0400dfbe05c98a841f3f96b", null ],
       [ "INFO", "jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5ea551b723eafd6a31d444fcb2f5920fbd3", null ]
     ] ],
-    [ "generateButton", "jxct__ui__system_8h.html#af67d399d8034386a7a70ae4b0b08a972", null ],
+    [ "generateButton", "jxct__ui__system_8h.html#ab544fbd8eec22a6da64c9c804981fa3e", null ],
     [ "getLoaderHTML", "jxct__ui__system_8h.html#a3a0ab8552fa88451ee4451e40d2058b3", null ],
     [ "getToastHTML", "jxct__ui__system_8h.html#afbda6d57dd082e7767c2c5e823951472", null ],
     [ "getUnifiedCSS", "jxct__ui__system_8h.html#a303ae6cee9693130ac22414e47140a1e", null ]

@@ -107,7 +107,8 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
 <code>#include &lt;NTPClient.h&gt;</code><br />
 <code>#include &lt;ThingSpeak.h&gt;</code><br />
 <code>#include &lt;WiFiClient.h&gt;</code><br />
-<code>#include &lt;ctype.h&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &lt;cctype&gt;</code><br />
 <code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__device__info_8h_source.html">jxct_device_info.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__format__utils_8h_source.html">jxct_format_utils.h</a>&quot;</code><br />
@@ -119,8 +120,6 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
-<tr class="memitem:a6b21b3f128c91055d8784740fcf05519" id="r_a6b21b3f128c91055d8784740fcf05519"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b21b3f128c91055d8784740fcf05519">trim</a> (char *s)</td></tr>
-<tr class="separator:a6b21b3f128c91055d8784740fcf05519"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:add7f50ba743d6501c1ad5e2dd4985e53" id="r_add7f50ba743d6501c1ad5e2dd4985e53"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#add7f50ba743d6501c1ad5e2dd4985e53">getThingSpeakLastPublish</a> ()</td></tr>
 <tr class="separator:add7f50ba743d6501c1ad5e2dd4985e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3f256ffaf18113d28229c8ae013b1f5" id="r_ae3f256ffaf18113d28229c8ae013b1f5"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3f256ffaf18113d28229c8ae013b1f5">getThingSpeakLastError</a> ()</td></tr>
@@ -134,16 +133,6 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
 Переменные</h2></td></tr>
 <tr class="memitem:ab4cd0eb2684ad54d1d0782f4ff75e07f" id="r_ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memItemLeft" align="right" valign="top">NTPClient *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">timeClient</a></td></tr>
 <tr class="separator:ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af914716ab642c858bca6b31ae976d15e" id="r_af914716ab642c858bca6b31ae976d15e"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af914716ab642c858bca6b31ae976d15e">THINGSPEAK_API_URL</a> = &quot;https://api.thingspeak.com/update&quot;</td></tr>
-<tr class="separator:af914716ab642c858bca6b31ae976d15e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2c15cb6759eb866fba42b090ffaf0d2a" id="r_a2c15cb6759eb866fba42b090ffaf0d2a"><td class="memItemLeft" align="right" valign="top">static unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2c15cb6759eb866fba42b090ffaf0d2a">lastTsPublish</a> = 0</td></tr>
-<tr class="separator:a2c15cb6759eb866fba42b090ffaf0d2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aedae80edba7020a78f8012b644ebf866" id="r_aedae80edba7020a78f8012b644ebf866"><td class="memItemLeft" align="right" valign="top">static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedae80edba7020a78f8012b644ebf866">consecutiveFailCount</a> = 0</td></tr>
-<tr class="separator:aedae80edba7020a78f8012b644ebf866"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf5c36e5da6f7c1b8394f1545ddee8c3" id="r_aaf5c36e5da6f7c1b8394f1545ddee8c3"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf5c36e5da6f7c1b8394f1545ddee8c3">thingSpeakLastPublishBuffer</a> [32] = &quot;0&quot;</td></tr>
-<tr class="separator:aaf5c36e5da6f7c1b8394f1545ddee8c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c731a0fe7f1eaaad5c96a1a7a62c001" id="r_a8c731a0fe7f1eaaad5c96a1a7a62c001"><td class="memItemLeft" align="right" valign="top">static char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8c731a0fe7f1eaaad5c96a1a7a62c001">thingSpeakLastErrorBuffer</a> [64] = &quot;&quot;</td></tr>
-<tr class="separator:a8c731a0fe7f1eaaad5c96a1a7a62c001"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
 <a id="ae3f256ffaf18113d28229c8ae013b1f5" name="ae3f256ffaf18113d28229c8ae013b1f5"></a>
@@ -161,7 +150,7 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00043">43</a></p>
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00059">59</a></p>
 
 </div>
 </div>
@@ -180,7 +169,7 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00039">39</a></p>
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00055">55</a></p>
 
 </div>
 </div>
@@ -199,7 +188,7 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00053">53</a></p>
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00069">69</a></p>
 
 </div>
 </div>
@@ -218,150 +207,11 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00048">48</a></p>
-
-</div>
-</div>
-<a id="a6b21b3f128c91055d8784740fcf05519" name="a6b21b3f128c91055d8784740fcf05519"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6b21b3f128c91055d8784740fcf05519">&#9670;&#160;</a></span>trim()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void trim </td>
-          <td>(</td>
-          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>s</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00021">21</a></p>
+<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00064">64</a></p>
 
 </div>
 </div>
 <h2 class="groupheader">Переменные</h2>
-<a id="aedae80edba7020a78f8012b644ebf866" name="aedae80edba7020a78f8012b644ebf866"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aedae80edba7020a78f8012b644ebf866">&#9670;&#160;</a></span>consecutiveFailCount</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">int consecutiveFailCount = 0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00018">18</a></p>
-
-</div>
-</div>
-<a id="a2c15cb6759eb866fba42b090ffaf0d2a" name="a2c15cb6759eb866fba42b090ffaf0d2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c15cb6759eb866fba42b090ffaf0d2a">&#9670;&#160;</a></span>lastTsPublish</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">unsigned long lastTsPublish = 0</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00017">17</a></p>
-
-</div>
-</div>
-<a id="af914716ab642c858bca6b31ae976d15e" name="af914716ab642c858bca6b31ae976d15e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af914716ab642c858bca6b31ae976d15e">&#9670;&#160;</a></span>THINGSPEAK_API_URL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char* THINGSPEAK_API_URL = &quot;https://api.thingspeak.com/update&quot;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00015">15</a></p>
-
-</div>
-</div>
-<a id="a8c731a0fe7f1eaaad5c96a1a7a62c001" name="a8c731a0fe7f1eaaad5c96a1a7a62c001"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c731a0fe7f1eaaad5c96a1a7a62c001">&#9670;&#160;</a></span>thingSpeakLastErrorBuffer</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char thingSpeakLastErrorBuffer[64] = &quot;&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00036">36</a></p>
-
-</div>
-</div>
-<a id="aaf5c36e5da6f7c1b8394f1545ddee8c3" name="aaf5c36e5da6f7c1b8394f1545ddee8c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf5c36e5da6f7c1b8394f1545ddee8c3">&#9670;&#160;</a></span>thingSpeakLastPublishBuffer</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">char thingSpeakLastPublishBuffer[32] = &quot;0&quot;</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00035">35</a></p>
-
-</div>
-</div>
 <a id="ab4cd0eb2684ad54d1d0782f4ff75e07f" name="ab4cd0eb2684ad54d1d0782f4ff75e07f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">&#9670;&#160;</a></span>timeClient</h2>
 
@@ -382,7 +232,7 @@ $(function(){initNavTree('thingspeak__client_8cpp.html',''); initResizable(true)
 </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00044">44</a></p>
+<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00049">49</a></p>
 
 </div>
 </div>

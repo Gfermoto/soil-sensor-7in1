@@ -1,18 +1,19 @@
 var wifi__manager_8cpp =
 [
-    [ "DNS_PORT", "wifi__manager_8cpp.html#ab1d3f5c08428c20521a92ca2fa20f46c", null ],
-    [ "LED_FAST_BLINK_INTERVAL", "wifi__manager_8cpp.html#acee9f1b2e26043c1faf414701d5f2cd5", null ],
-    [ "LED_SLOW_BLINK_INTERVAL", "wifi__manager_8cpp.html#a33356e35784640719595dbb9f3f3880c", null ],
-    [ "MAC_ADDRESS_BUFFER_SIZE", "wifi__manager_8cpp.html#a32fb8177ad85135e98b903bfd1f4cb2a", null ],
-    [ "NTP_TIMEOUT_MS", "wifi__manager_8cpp.html#ae7a8e3ed7d8d29f305caf472ae223f7a", null ],
-    [ "RESET_BUTTON_HOLD_TIME", "wifi__manager_8cpp.html#aaec0d3c1105e64f824a96a8ce71e2f9b", null ],
-    [ "RESET_BUTTON_PIN", "wifi__manager_8cpp.html#a56b64973bfd6514570671a2607122199", null ],
-    [ "RESTART_DELAY_MS", "wifi__manager_8cpp.html#a8eb2b8e1d79aadd90567f3452eae7cbc", null ],
-    [ "WIFI_MODE_DELAY", "wifi__manager_8cpp.html#adfbe35b61f15f636fb1862e48f1a765c", null ],
-    [ "WIFI_RECONNECT_INTERVAL", "wifi__manager_8cpp.html#ad0854f1671654054950c3e17aef87be9", null ],
+    [ "WifiConstants", "wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3", [
+      [ "RESET_BUTTON_PIN", "wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a793251760dac40c0cdb51628526faf34", null ],
+      [ "WIFI_RECONNECT_INTERVAL", "wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a7f7590ded6640ce9b8ae09921cd6ebd6", null ],
+      [ "LED_FAST_BLINK_INTERVAL", "wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a3e2ee68cf652cd628390f1229c4282ee", null ],
+      [ "LED_SLOW_BLINK_INTERVAL", "wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a2aa793152e07f106f8d9b46baa7de739", null ],
+      [ "WIFI_MODE_DELAY", "wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a3331beb0a8148a1ac673dabf27b88549", null ],
+      [ "NTP_TIMEOUT_MS", "wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a9e25f8f4f826e474d6b00600b162751e", null ],
+      [ "RESET_BUTTON_HOLD_TIME", "wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a452484feac01e8c37266a21d3d3ff64b", null ],
+      [ "RESTART_DELAY_MS", "wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3ab9993e0d7f6bf58161cb32c7baf74150", null ],
+      [ "DNS_SERVER_PORT", "wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a5522e9d5fd9cf70194fc37fe9f77ff54", null ],
+      [ "MAC_ADDRESS_BUFFER_SIZE", "wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3aa5a9710df8dc897f56c6456a006a5893", null ]
+    ] ],
     [ "checkResetButton", "wifi__manager_8cpp.html#ac90eb7c31515447a075eee8f395ac02f", null ],
     [ "getApSsid", "wifi__manager_8cpp.html#af857f35623b29612a3b4cc45dd6fff23", null ],
-    [ "handleRoot", "wifi__manager_8cpp.html#a8427468f39342a1990703e9f5ce7fd29", null ],
     [ "handleStatus", "wifi__manager_8cpp.html#a1e811785ccbaccda2e3e3457971720cb", null ],
     [ "handleWiFi", "wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2", null ],
     [ "navHtml", "wifi__manager_8cpp.html#ad30c0b8b33e60ccdb13f2e1cc08157c9", null ],
@@ -33,6 +34,7 @@ var wifi__manager_8cpp =
     [ "ledFastBlink", "wifi__manager_8cpp.html#abb4e2051d388569c5106a007f5ed6b36", null ],
     [ "ledLastToggle", "wifi__manager_8cpp.html#ad9c7d4c7f119b4c410067ff6563f156c", null ],
     [ "ledState", "wifi__manager_8cpp.html#ad43bbd53ee15610b1c213b0b6412d175", null ],
+    [ "ntpUDP", "wifi__manager_8cpp.html#a22f33e7e05df58bb6145bb6e543e232a", null ],
     [ "timeClient", "wifi__manager_8cpp.html#ab4cd0eb2684ad54d1d0782f4ff75e07f", null ],
     [ "wifiConnected", "wifi__manager_8cpp.html#ac542c876ea54085aa0173a9cd1e3251c", null ]
 ];

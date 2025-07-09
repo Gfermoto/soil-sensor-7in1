@@ -1,14 +1,16 @@
 var sensor__compensation_8cpp =
 [
-    [ "correctEC", "sensor__compensation_8cpp.html#af586e2e5563baee2b53964aff0e1467d", null ],
-    [ "correctNPK", "sensor__compensation_8cpp.html#aa9d6b97073bca78fb526c17bdbf816a6", null ],
-    [ "correctPH", "sensor__compensation_8cpp.html#aec93dd728b4450e4078a1e26954478e5", null ],
-    [ "k_h_K", "sensor__compensation_8cpp.html#a8360d274b958e7c50437c1374056b69a", null ],
-    [ "k_h_N", "sensor__compensation_8cpp.html#adf2ddb83f2189c9159aa7fe534217ea4", null ],
-    [ "k_h_P", "sensor__compensation_8cpp.html#ae64bff1823ab30991e51b8d57c23be39", null ],
-    [ "k", "sensor__compensation_8cpp.html#a9fc4cca635a26c692681a7071e379aa7", null ],
-    [ "k_t_K", "sensor__compensation_8cpp.html#aea817cd039de87e310da8044514f303e", null ],
-    [ "k_t_N", "sensor__compensation_8cpp.html#adb61fb124bb88094238c5222e85ac573", null ],
-    [ "k_t_P", "sensor__compensation_8cpp.html#ab0a07071dd32b23e25ec31b21b140a28", null ],
-    [ "SOIL_EC", "sensor__compensation_8cpp.html#acd870b1b4a3ad38428ccce7c467035a9", null ]
+    [ "SoilECCoeff", "struct_soil_e_c_coeff.html", "struct_soil_e_c_coeff" ],
+    [ "ECCompensationParams", "struct_e_c_compensation_params.html", "struct_e_c_compensation_params" ],
+    [ "correctEC", "sensor__compensation_8cpp.html#a21c45594adeb869d4ef55bebf07903ed", null ],
+    [ "correctEC", "sensor__compensation_8cpp.html#afafc0921b1ae4ac19063de1828f7ac4b", null ],
+    [ "correctEC", "sensor__compensation_8cpp.html#a1e1da2e71131eec41e98642456f51974", null ],
+    [ "correctNPK", "sensor__compensation_8cpp.html#af0d47028829e0cb7fb233d3acb3ef1e2", null ],
+    [ "correctNPK", "sensor__compensation_8cpp.html#a9406fc6bd5dad362d51fcf4547cd279a", null ],
+    [ "correctNPK", "sensor__compensation_8cpp.html#a34fa3f256bc992a947aff9d497c1bb14", null ],
+    [ "correctPH", "sensor__compensation_8cpp.html#a7b18cc61882f3a48a4f4acb7f9307f66", null ],
+    [ "k_t_K", "sensor__compensation_8cpp.html#ad376421968fecb262baf5726bc4448ea", null ],
+    [ "k_t_N", "sensor__compensation_8cpp.html#a1f39e14ad64313df667f1fbe45a375a4", null ],
+    [ "k_t_P", "sensor__compensation_8cpp.html#a76a6ec6a53e83d545e9d241768f52a5b", null ],
+    [ "SOIL_EC", "sensor__compensation_8cpp.html#a3f1cf9b5f7629cc0ea95cd526fe7a992", null ]
 ];

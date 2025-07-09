@@ -17,7 +17,5 @@ var searchData=
   ['ota_5fupdate_5finterval_5fms_14',['OTA_UPDATE_INTERVAL_MS',['../jxct__constants_8h.html#aeae0cc4dca85ad5d9b5d5ac9e83c6c27',1,'jxct_constants.h']]],
   ['ota_5fupdate_5furl_5ftemplate_15',['OTA_UPDATE_URL_TEMPLATE',['../jxct__constants_8h.html#ac2eb6652b9b3a0b6a91cf51ae6141291',1,'jxct_constants.h']]],
   ['ota_5fwatchdog_5ftimeout_5fsec_16',['OTA_WATCHDOG_TIMEOUT_SEC',['../jxct__config__vars_8h.html#a34bf95207114d92aae320115352794e5',1,'jxct_config_vars.h']]],
-  ['otacommandtopicbuffer_17',['otaCommandTopicBuffer',['../mqtt__client_8cpp.html#a35f256d87608b13739929b96361be87d',1,'mqtt_client.cpp']]],
-  ['otastatustopicbuffer_18',['otaStatusTopicBuffer',['../mqtt__client_8cpp.html#a97077e8e77af0bddb223979d23764f9b',1,'mqtt_client.cpp']]],
-  ['outline_19',['OUTLINE',['../jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153a6a656275b77dd69c1cc1f49c58859151',1,'jxct_ui_system.h']]]
+  ['outline_17',['OUTLINE',['../jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153a6a656275b77dd69c1cc1f49c58859151',1,'jxct_ui_system.h']]]
 ];

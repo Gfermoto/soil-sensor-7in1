@@ -7,7 +7,6 @@ var namespaces_dup =
       [ "init", "namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613", null ],
       [ "loadTable", "namespace_calibration_manager.html#a15db87f3fcb09c7f4c5abc69009cef89", null ],
       [ "profileToFilename", "namespace_calibration_manager.html#a24c0b11ea08e757ae404289fa38e33b3", null ],
-      [ "saveCsv", "namespace_calibration_manager.html#ade735ff876ef578fafeb7c46676bcf82", null ],
-      [ "_initialized", "namespace_calibration_manager.html#a903711cb7bab6d70f8401375f21d720c", null ]
+      [ "saveCsv", "namespace_calibration_manager.html#ade735ff876ef578fafeb7c46676bcf82", null ]
     ] ]
 ];

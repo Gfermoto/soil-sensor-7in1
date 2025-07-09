@@ -8,7 +8,7 @@ var searchData=
   ['web_5fserver_5ftask_5fstack_5fsize_5',['WEB_SERVER_TASK_STACK_SIZE',['../jxct__constants_8h.html#ab6cd27ccf48b9e8ab2d17ac4074d4465',1,'jxct_constants.h']]],
   ['web_5ftemplates_2ecpp_6',['web_templates.cpp',['../web__templates_8cpp.html',1,'']]],
   ['web_5fupdate_5finterval_7',['WEB_UPDATE_INTERVAL',['../jxct__config__vars_8h.html#a2f69cddbe3d15df4fdced0e36984cd7a',1,'jxct_config_vars.h']]],
-  ['webserver_8',['webServer',['../routes__calibration_8cpp.html#a6385fd6a6118223757bf00a8ba828562',1,'webServer:&#160;routes_calibration.cpp'],['../routes__config_8cpp.html#a6385fd6a6118223757bf00a8ba828562',1,'webServer:&#160;routes_config.cpp'],['../routes__ota_8cpp.html#a6385fd6a6118223757bf00a8ba828562',1,'webServer:&#160;routes_ota.cpp'],['../routes__service_8cpp.html#a6385fd6a6118223757bf00a8ba828562',1,'webServer:&#160;routes_service.cpp'],['../csrf__protection_8h.html#a6385fd6a6118223757bf00a8ba828562',1,'webServer:&#160;csrf_protection.h'],['../web__routes_8h.html#a6385fd6a6118223757bf00a8ba828562',1,'webServer:&#160;web_routes.h'],['../wifi__manager_8cpp.html#a87bbeba035b82cbe7777c65b4e9fede4',1,'webServer(DEFAULT_WEB_SERVER_PORT):&#160;wifi_manager.cpp']]],
+  ['webserver_8',['webServer',['../csrf__protection_8h.html#a6385fd6a6118223757bf00a8ba828562',1,'webServer:&#160;csrf_protection.h'],['../web__routes_8h.html#a6385fd6a6118223757bf00a8ba828562',1,'webServer:&#160;web_routes.h'],['../wifi__manager_8cpp.html#a87bbeba035b82cbe7777c65b4e9fede4',1,'webServer(DEFAULT_WEB_SERVER_PORT):&#160;wifi_manager.cpp']]],
   ['white_9',['WHITE',['../logger_8h.html#a2b15c85f545a729e30a74239be429afbab5bf627e448384cf3a4c35121ca6008d',1,'logger.h']]],
   ['wifi_5fap_5fpass_10',['WIFI_AP_PASS',['../jxct__config__vars_8h.html#a3408bc061b1888cfd751dad7b5e3d874',1,'jxct_config_vars.h']]],
   ['wifi_5fap_5fssid_11',['WIFI_AP_SSID',['../jxct__config__vars_8h.html#a8e19d13af09f7ed0afad391730f1e3e7',1,'jxct_config_vars.h']]],
@@ -18,9 +18,10 @@ var searchData=
   ['wifi_5fmanager_2ecpp_15',['wifi_manager.cpp',['../wifi__manager_8cpp.html',1,'']]],
   ['wifi_5fmanager_2eh_16',['wifi_manager.h',['../wifi__manager_8h.html',1,'']]],
   ['wifi_5fmax_5fattempts_17',['WIFI_MAX_ATTEMPTS',['../jxct__config__vars_8h.html#a670833d6bc4ebeab45f259d03c9362c1',1,'jxct_config_vars.h']]],
-  ['wifi_5fmode_5fdelay_18',['WIFI_MODE_DELAY',['../wifi__manager_8cpp.html#adfbe35b61f15f636fb1862e48f1a765c',1,'wifi_manager.cpp']]],
-  ['wifi_5freconnect_5finterval_19',['WIFI_RECONNECT_INTERVAL',['../wifi__manager_8cpp.html#ad0854f1671654054950c3e17aef87be9',1,'wifi_manager.cpp']]],
+  ['wifi_5fmode_5fdelay_18',['WIFI_MODE_DELAY',['../wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a3331beb0a8148a1ac673dabf27b88549',1,'wifi_manager.cpp']]],
+  ['wifi_5freconnect_5finterval_19',['WIFI_RECONNECT_INTERVAL',['../wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a7f7590ded6640ce9b8ae09921cd6ebd6',1,'wifi_manager.cpp']]],
   ['wifi_5fretry_5fdelay_5fms_20',['WIFI_RETRY_DELAY_MS',['../jxct__config__vars_8h.html#a04b848298b9a35170cd46e8ef3b88464',1,'jxct_config_vars.h']]],
   ['wificonnected_21',['wifiConnected',['../wifi__manager_8cpp.html#ac542c876ea54085aa0173a9cd1e3251c',1,'wifiConnected:&#160;wifi_manager.cpp'],['../wifi__manager_8h.html#ac542c876ea54085aa0173a9cd1e3251c',1,'wifiConnected:&#160;wifi_manager.cpp']]],
-  ['wifimode_22',['WiFiMode',['../wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6',1,'wifi_manager.h']]]
+  ['wificonstants_22',['WifiConstants',['../wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3',1,'wifi_manager.cpp']]],
+  ['wifimode_23',['WiFiMode',['../wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6',1,'wifi_manager.h']]]
 ];
