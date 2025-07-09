@@ -355,7 +355,7 @@ constexpr int TEST_DATA_EC_VARIATION_SMALL = 200;
 constexpr int TEST_DATA_EC_VARIATION_MIN = 100;
 
 // Факторы для NPK
-constexpr float TEST_DATA_NPK_FACTOR = 6.5F;       // пересчёт мг/дм³ → мг/кг
+constexpr float TEST_DATA_NPK_FACTOR = 6.5F;       // ИСПРАВЛЕНО: больше не используется, датчик JXCT выдаёт данные в мг/кг
 constexpr float TEST_DATA_NPK_INCREASE_N = 1.20F;  // +20%
 constexpr float TEST_DATA_NPK_INCREASE_P = 1.15F;  // +15%
 constexpr float TEST_DATA_NPK_INCREASE_K = 1.10F;  // +10%

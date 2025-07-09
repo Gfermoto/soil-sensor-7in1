@@ -29,14 +29,13 @@ void fakeSensorTask(void* pvParameters)
             sensorData.ec = 1000 + static_cast<float>(random(-200, 200));                  // 800..1200
             sensorData.ph = 6.5F + static_cast<float>(random(-20, 20)) / 10.0F;            // 4.5..8.5
 
-            // NPK в мг/дм³ (как в даташите)
-            const float nitrogen_mgdm3 = 30.0F + static_cast<float>(random(-10, 10));  // 20..40
-            const float phosphorus_mgdm3 = 15.0F + static_cast<float>(random(-5, 5));  // 10..20
-            const float potassium_mgdm3 = 20.0F + static_cast<float>(random(-5, 5));   // 15..25
+            // NPK в мг/кг (как в реальном датчике JXCT)
+            const float nitrogen_mgkg = 1000.0F + static_cast<float>(random(-200, 200));  // 800..1200
+            const float phosphorus_mgkg = 500.0F + static_cast<float>(random(-100, 100));  // 400..600
+            const float potassium_mgkg = 1000.0F + static_cast<float>(random(-200, 200));  // 800..1200
 
-            // Конверсия в мг/кг (как в рекомендациях)
-            constexpr float NPK_FACTOR = 6.5F;  // пересчёт мг/дм³ → мг/кг (ρ=1.3 г/см³, влажность ≈30%)
-            NPKReferences npk{nitrogen_mgdm3 * NPK_FACTOR, phosphorus_mgdm3 * NPK_FACTOR, potassium_mgdm3 * NPK_FACTOR};
+            // ИСПРАВЛЕНО: данные уже в мг/кг, конверсия не нужна
+            NPKReferences npk{nitrogen_mgkg, phosphorus_mgkg, potassium_mgkg};
 
             sensorData.valid = true;
             sensorData.last_update = millis();  // ✅ Обновляем timestamp

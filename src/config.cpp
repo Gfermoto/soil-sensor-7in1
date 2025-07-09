@@ -54,7 +54,7 @@ void loadConfig()
     preferences.getString("mqttDeviceName", config.mqttDeviceName, sizeof(config.mqttDeviceName));
     // Битовые поля boolean флагов
     config.flags.hassEnabled = preferences.getBool("hassEnabled", false);
-    config.flags.useRealSensor = preferences.getBool("useRealSensor", false);
+    config.flags.useRealSensor = preferences.getBool("useRealSensor", true);  // ИСПРАВЛЕНО: по умолчанию используем реальный датчик
     config.flags.mqttEnabled = preferences.getBool("mqttEnabled", false);
     config.flags.thingSpeakEnabled = preferences.getBool("tsEnabled", false);
     config.flags.calibrationEnabled = preferences.getBool("calEnabled", false);
