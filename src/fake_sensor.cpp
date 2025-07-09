@@ -51,6 +51,11 @@ void fakeSensorTask(void* pvParameters)
             sensorData.raw_phosphorus = npk.phosphorus;
             sensorData.raw_potassium = npk.potassium;
 
+            // КРИТИЧЕСКОЕ ИСПРАВЛЕНИЕ: всегда сохраняем NPK данные в sensorData
+            sensorData.nitrogen = npk.nitrogen;
+            sensorData.phosphorus = npk.phosphorus;
+            sensorData.potassium = npk.potassium;
+
             // Применяем компенсацию, если включена
             if (config.flags.calibrationEnabled)
             {
@@ -85,6 +90,11 @@ void fakeSensorTask(void* pvParameters)
 
                 // 3. NPK: зависимость от T, θ и типа почвы
                 correctNPK(sensorData.temperature, sensorData.humidity, npk, soil);
+                
+                // Сохраняем скорректированные NPK данные в sensorData
+                sensorData.nitrogen = npk.nitrogen;
+                sensorData.phosphorus = npk.phosphorus;
+                sensorData.potassium = npk.potassium;
             }
 
             DEBUG_PRINTLN("[fakeSensorTask] Сгенерированы тестовые данные датчика");
