@@ -53,7 +53,7 @@ bool saveCsv(SoilProfile profile, Stream& fileStream)
         return false;
     }
 
-    while (fileStream.available())
+    while (fileStream.available() > 0) // NOLINT(readability-implicit-bool-conversion)
     {
         const uint8_t dataByte = fileStream.read();
         calibrationFile.write(dataByte);
@@ -80,7 +80,7 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
     }
 
     String line;
-    while (calibrationFile.available() && outCount < maxEntries)
+    while (calibrationFile.available() > 0 && outCount < maxEntries) // NOLINT(readability-implicit-bool-conversion)
     {
         line = calibrationFile.readStringUntil('\n');
         line.trim();

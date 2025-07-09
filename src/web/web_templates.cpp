@@ -88,7 +88,7 @@ struct InputFieldInfo
         Builder builder;
         builder.setId(fieldId).setName(fieldName).setLabel(labelText).setValue(valueText)
                .setType(typeText).setRequired(isRequired).setPlaceholder(placeholderText);
-        return InputFieldInfo(builder);
+        return InputFieldInfo(builder); // NOLINT(modernize-return-braced-init-list)
     }
 };
 
@@ -109,7 +109,7 @@ struct NumberFieldInfo
     
     // Статический метод-фабрика для безопасного создания
     static NumberFieldInfo create(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
-        return {fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum};
+        return {fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum}; // NOLINT(modernize-return-braced-init-list)
     }
 };
 

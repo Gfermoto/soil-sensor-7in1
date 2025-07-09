@@ -20,7 +20,7 @@
 #include "web_routes.h"           // 🏗️ Модульная архитектура v2.4.5
 
 // Константы
-enum class WifiConstants : std::uint16_t
+enum class WifiConstants : std::uint16_t  // NOLINT(performance-enum-size)
 {
     RESET_BUTTON_PIN = 0,             // GPIO0 для кнопки сброса
     WIFI_RECONNECT_INTERVAL = 30000,  // Интервал между попытками переподключения (30 секунд)
@@ -47,6 +47,7 @@ static unsigned long ledBlinkInterval = 0;  // NOLINT(misc-use-internal-linkage,
 static bool ledFastBlink = false;           // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
 
 extern NTPClient* timeClient;
+extern WiFiUDP ntpUDP;
 
 void setLedOn()
 {
@@ -114,8 +115,8 @@ void setupWiFi()
     setLedBlink(static_cast<unsigned long>(WifiConstants::LED_SLOW_BLINK_INTERVAL));
 
     // Сначала отключаем WiFi и очищаем настройки
-    WiFi.disconnect(true);
-    WiFi.mode(WIFI_OFF);
+    WiFi.disconnect(true); // NOLINT(readability-static-accessed-through-instance)
+    WiFi.mode(WIFI_OFF); // NOLINT(readability-static-accessed-through-instance)
     delay(static_cast<unsigned long>(WifiConstants::WIFI_MODE_DELAY));
 
     loadConfig();
@@ -174,7 +175,7 @@ void handleWiFi()
         constexpr int MAX_RECONNECT_ATTEMPTS =
             3;  // Максимальное количество попыток переподключения перед переходом в AP
 
-        if (WiFi.status() != WL_CONNECTED)
+        if (WiFi.status() != WL_CONNECTED) // NOLINT(readability-static-accessed-through-instance)
         {
             if (!wifiConnected ||
                 (millis() - lastReconnectAttempt >= static_cast<unsigned long>(WifiConstants::WIFI_RECONNECT_INTERVAL)))
@@ -186,9 +187,9 @@ void handleWiFi()
                 {
                     logWarnSafe("\1", reconnectAttempts + 1, MAX_RECONNECT_ATTEMPTS);
 
-                    WiFi.disconnect(true);
+                    WiFi.disconnect(true); // NOLINT(readability-static-accessed-through-instance)
                     delay(static_cast<unsigned long>(WifiConstants::WIFI_MODE_DELAY));
-                    WiFi.begin(config.ssid, config.password);
+                    WiFi.begin(config.ssid, config.password); // NOLINT(readability-static-accessed-through-instance)
 
                     lastReconnectAttempt = millis();
                     reconnectAttempts++;
@@ -215,7 +216,6 @@ void handleWiFi()
                 // --- Первичная синхронизация времени NTP (блок до 5 сек) ---
                 if (timeClient == nullptr)
                 {
-                    extern WiFiUDP ntpUDP;
                     timeClient = new NTPClient(ntpUDP, "pool.ntp.org", 0, 3600000);
                     timeClient->begin();
                 }
@@ -254,10 +254,10 @@ String getApSsid()
 void startAPMode()
 {
     currentWiFiMode = WiFiMode::AP;
-    WiFi.disconnect();
-    WiFi.mode(WIFI_AP);
+    WiFi.disconnect(); // NOLINT(readability-static-accessed-through-instance)
+    WiFi.mode(WIFI_AP); // NOLINT(readability-static-accessed-through-instance)
     const String apSsid = getApSsid();
-    WiFi.softAP(apSsid.c_str(), JXCT_WIFI_AP_PASS);
+    WiFi.softAP(apSsid.c_str(), JXCT_WIFI_AP_PASS); // NOLINT(readability-static-accessed-through-instance)
     dnsServer.start(static_cast<uint16_t>(WifiConstants::DNS_SERVER_PORT), "*", WiFi.softAPIP()); // NOLINT(readability-static-accessed-through-instance)
     setupWebServer();
     setLedBlink(static_cast<unsigned long>(WifiConstants::LED_SLOW_BLINK_INTERVAL));
@@ -269,23 +269,23 @@ void startAPMode()
 void startSTAMode()
 {
     currentWiFiMode = WiFiMode::STA;
-    WiFi.disconnect(true);  // Полное отключение с очисткой настроек
-    WiFi.mode(WIFI_STA);
+    WiFi.disconnect(true);  // Полное отключение с очисткой настроек // NOLINT(readability-static-accessed-through-instance)
+    WiFi.mode(WIFI_STA); // NOLINT(readability-static-accessed-through-instance)
     delay(static_cast<unsigned long>(WifiConstants::WIFI_MODE_DELAY));  // Даем время на применение режима
 
     const String hostname = getApSsid();
-    WiFi.setHostname(hostname.c_str());
+    WiFi.setHostname(hostname.c_str()); // NOLINT(readability-static-accessed-through-instance)
 
     if (strlen(config.ssid) > 0)
     {
         logWiFi("Подключение к WiFi...");
-        WiFi.begin(config.ssid, config.password);  // Явно вызываем подключение
+        WiFi.begin(config.ssid, config.password);  // Явно вызываем подключение // NOLINT(readability-static-accessed-through-instance)
 
         int attempts = 0;
         setLedBlink(WIFI_RETRY_DELAY_MS);
         const unsigned long startTime = millis();
 
-        while (WiFi.status() != WL_CONNECTED && attempts < WIFI_CONNECTION_ATTEMPTS &&
+        while (WiFi.status() != WL_CONNECTED && attempts < WIFI_CONNECTION_ATTEMPTS && // NOLINT(readability-static-accessed-through-instance)
                (millis() - startTime) < WIFI_CONNECTION_TIMEOUT)
         {
             delay(WIFI_RETRY_DELAY_MS);
@@ -302,7 +302,7 @@ void startSTAMode()
             }
         }
 
-        if (WiFi.status() == WL_CONNECTED)
+        if (WiFi.status() == WL_CONNECTED) // NOLINT(readability-static-accessed-through-instance)
         {
             wifiConnected = true;
             setLedOn();
@@ -314,7 +314,6 @@ void startSTAMode()
             // --- Первичная синхронизация времени NTP (блок до 5 сек) ---
             if (timeClient == nullptr)
             {
-                extern WiFiUDP ntpUDP;
                 timeClient = new NTPClient(ntpUDP, "pool.ntp.org", 0, 3600000);
                 timeClient->begin();
             }
