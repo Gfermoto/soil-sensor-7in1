@@ -346,7 +346,7 @@ constexpr float TEST_DATA_TEMP_BASE = 20.0F;
 constexpr float TEST_DATA_HUM_BASE = 60.0F;
 constexpr int TEST_DATA_EC_BASE = 1200;
 constexpr float TEST_DATA_PH_BASE = 6.3F;
-constexpr int TEST_DATA_NPK_BASE = 25;
+constexpr int TEST_DATA_NPK_BASE = 1000;  // ИСПРАВЛЕНО: увеличено с 25 до 1000 мг/кг для соответствия агрономическим нормам
 
 // Вариации для тестовых данных
 constexpr float TEST_DATA_HUM_VARIATION = 10.0F;
