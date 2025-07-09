@@ -30,11 +30,12 @@ void fakeSensorTask(void* pvParameters)
             sensorData.ph = 6.5F + static_cast<float>(random(-20, 20)) / 10.0F;            // 4.5..8.5
 
             // NPK в мг/кг (как в реальном датчике JXCT)
-            const float nitrogen_mgkg = 1000.0F + static_cast<float>(random(-200, 200));  // 800..1200
-            const float phosphorus_mgkg = 500.0F + static_cast<float>(random(-100, 100));  // 400..600
-            const float potassium_mgkg = 1000.0F + static_cast<float>(random(-200, 200));  // 800..1200
+            // Генерируем данные в диапазоне реального датчика 0-2000 мг/кг
+            const float nitrogen_mgkg = 800.0F + static_cast<float>(random(-300, 300));   // 500..1100
+            const float phosphorus_mgkg = 400.0F + static_cast<float>(random(-200, 200));  // 200..600
+            const float potassium_mgkg = 800.0F + static_cast<float>(random(-300, 300));   // 500..1100
 
-            // ИСПРАВЛЕНО: данные уже в мг/кг, конверсия не нужна
+            // Данные уже в мг/кг, конверсия не нужна
             NPKReferences npk{nitrogen_mgkg, phosphorus_mgkg, potassium_mgkg};
 
             sensorData.valid = true;
