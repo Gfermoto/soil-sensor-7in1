@@ -22,7 +22,7 @@
     
     
       
-        <title>📂 Раздел "Разработка и аудит" (dev) - JXCT Soil Sensor v3.7.0</title>
+        <title>🏗️ JXCT Development Documentation - JXCT Soil Sensor v3.9.0</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#dev" class="md-skip">
+        <a href="#jxct-development-documentation" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href=".." title="JXCT Soil Sensor v3.7.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.7.0" data-md-component="logo">
+    <a href=".." title="JXCT Soil Sensor v3.9.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.9.0" data-md-component="logo">
       
   <img src="../assets/images/favicon.png" alt="logo">
 
@@ -107,13 +107,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            JXCT Soil Sensor v3.7.0
+            JXCT Soil Sensor v3.9.0
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              📂 Раздел "Разработка и аудит" (dev)
+              🏗️ JXCT Development Documentation
             
           </span>
         </div>
@@ -356,12 +356,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="JXCT Soil Sensor v3.7.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.7.0" data-md-component="logo">
+    <a href=".." title="JXCT Soil Sensor v3.9.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.9.0" data-md-component="logo">
       
   <img src="../assets/images/favicon.png" alt="logo">
 
     </a>
-    JXCT Soil Sensor v3.7.0
+    JXCT Soil Sensor v3.9.0
   </label>
   
     <div class="md-nav__source">
@@ -1010,19 +1010,112 @@
   
 
 
-<h1 id="dev">📂 Раздел "Разработка и аудит" (dev)<a class="headerlink" href="#dev" title="Постоянная ссылка">&para;</a></h1>
-<p>В этом разделе собраны ключевые документы для развития и контроля качества проекта:</p>
+<h1 id="jxct-development-documentation">🏗️ JXCT Development Documentation<a class="headerlink" href="#jxct-development-documentation" title="Постоянная ссылка">&para;</a></h1>
+<p><strong>Версия</strong>: 3.10.0<br />
+<strong>Последнее обновление</strong>: 22.01.2025<br />
+<strong>Статус</strong>: ✅ <strong>PRODUCTION READY - ТЕСТИРОВАНИЕ НА РЕАЛЬНОМ ЖЕЛЕЗЕ ЗАВЕРШЕНО</strong></p>
+<h2 id="_1">📋 Обзор<a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h2>
+<p>Данная папка содержит техническую документацию для разработчиков проекта JXCT Soil Sensor. Все документы обновлены после полного тестирования на реальном железе и значительного улучшения качества кода.</p>
+<h2 id="_2">📊 Текущий статус проекта<a class="headerlink" href="#_2" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_3">✅ <strong>Ключевые достижения</strong><a class="headerlink" href="#_3" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><a href="QA_AUDIT_REPORT/">🧪 QA Аудит</a> — результаты тестирования, аудит безопасности, рекомендации по улучшению.</li>
-<li><a href="REFACTORING_PLAN/">🔄 План рефакторинга</a> — стратегический план архитектурных и кодовых изменений.</li>
-<li><a href="TECHNICAL_DEBT_REPORT/">📉 Отчет технического долга</a> — анализ проблем, метрики, динамика долга.</li>
-<li><a href="ARCH_OVERALL/">🏗️ Архитектура</a> — описание архитектуры системы.</li>
+<li><strong>Тестирование на реальном железе</strong>: ✅ Завершено (ESP32 + датчик JXCT)</li>
+<li><strong>Production сборка</strong>: ✅ Оптимизирована (1,245,929 байт)</li>
+<li><strong>Clang-Tidy анализ</strong>: ✅ Значительно улучшен (70 предупреждений, -61%)</li>
+<li><strong>E2E тестирование</strong>: ✅ 100% успешность (10/10 тестов)</li>
+<li><strong>Native тестирование</strong>: ✅ 100% успешность (3/3 теста)</li>
+<li><strong>Комплексные тесты</strong>: ✅ 100% успешность (25/25 тестов)</li>
 </ul>
-<blockquote>
-<p>Все документы формируются на основе тестирования, анализа и решений профессиональной команды.</p>
-</blockquote>
+<h3 id="_4">📈 <strong>Метрики качества</strong><a class="headerlink" href="#_4" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Технический долг</strong>: 15 (Low) ✅</li>
+<li><strong>Безопасность</strong>: 9.0/10 (OWASP IoT Top 10) ✅</li>
+<li><strong>Покрытие тестов</strong>: 70.8% (техническое), 95% (функциональное) ✅</li>
+<li><strong>Документация</strong>: 95% покрытие ✅</li>
+</ul>
+<h2 id="_5">📁 Структура документации<a class="headerlink" href="#_5" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="testing_summary_reportmd">🧪 <strong>TESTING_SUMMARY_REPORT.md</strong><a class="headerlink" href="#testing_summary_reportmd" title="Постоянная ссылка">&para;</a></h3>
+<p>Полный отчет о тестировании на реальном железе.
+- <strong>Статус</strong>: ✅ Завершено
+- <strong>Устройство</strong>: ESP32 + датчик JXCT (COM6)
+- <strong>Результат</strong>: A+ (99/100)
+- <strong>Ключевые достижения</strong>: 100% успешность всех тестов</p>
+<h3 id="qa_audit_reportmd">🔍 <strong>QA_AUDIT_REPORT.md</strong><a class="headerlink" href="#qa_audit_reportmd" title="Постоянная ссылка">&para;</a></h3>
+<p>Полный отчет о качестве проекта после тестирования на реальном железе.
+- <strong>Оценка</strong>: A+ (99/100)
+- <strong>Статус</strong>: Production Ready
+- <strong>Ключевые достижения</strong>: Реальное железо протестировано, Clang-Tidy улучшен на 61%</p>
+<h3 id="technical_debt_reportmd">🗒️ <strong>TECHNICAL_DEBT_REPORT.md</strong><a class="headerlink" href="#technical_debt_reportmd" title="Постоянная ссылка">&para;</a></h3>
+<p>Детальный анализ технического долга и план его устранения.
+- <strong>Технический долг</strong>: 15 (Low)
+- <strong>Clang-Tidy</strong>: 70 предупреждений (-61% улучшение)
+- <strong>Критические проблемы</strong>: 19 (потенциальные баги)</p>
+<h3 id="refactoring_planmd">🔧 <strong>REFACTORING_PLAN.md</strong><a class="headerlink" href="#refactoring_planmd" title="Постоянная ссылка">&para;</a></h3>
+<p>План рефакторинга и статус выполнения задач.
+- <strong>Статус</strong>: 100% критических задач выполнено
+- <strong>Результат</strong>: Система полностью рефакторена</p>
+<h3 id="arch_overallmd">🏗️ <strong>ARCH_OVERALL.md</strong><a class="headerlink" href="#arch_overallmd" title="Постоянная ссылка">&para;</a></h3>
+<p>Общая архитектура системы и принципы проектирования.
+- <strong>Статус</strong>: Актуальная документация
+- <strong>Покрытие</strong>: Все компоненты описаны</p>
+<h2 id="_6">🚀 Быстрый старт для разработчиков<a class="headerlink" href="#_6" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_7"><strong>Требования</strong><a class="headerlink" href="#_7" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>PlatformIO</li>
+<li>Python 3.7+</li>
+<li>ESP32 SDK</li>
+<li>Реальное устройство ESP32 с датчиком JXCT</li>
+</ul>
+<h3 id="_8"><strong>Запуск тестов</strong><a class="headerlink" href="#_8" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Все тесты</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python<span class="w"> </span>scripts/run_all_tests.py
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Только Python тесты</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python<span class="w"> </span>scripts/run_simple_tests.py
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># ESP32 тесты</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>pio<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-e<span class="w"> </span>esp32dev-test
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="c1"># Native тесты (Windows)</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>pio<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-e<span class="w"> </span>native-windows
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># E2E тесты</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>pytest<span class="w"> </span>test/e2e/<span class="w"> </span>-v
+</span></code></pre></div>
+<h3 id="production"><strong>Production сборка</strong><a class="headerlink" href="#production" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Production версия</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>pio<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>esp32dev-production
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Загрузка на устройство</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>pio<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>esp32dev-production<span class="w"> </span>-t<span class="w"> </span>upload
+</span></code></pre></div>
+<h2 id="_9">🎯 Следующие шаги<a class="headerlink" href="#_9" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="1"><strong>Приоритет 1: Критические улучшения</strong><a class="headerlink" href="#1" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li>Устранение 19 потенциальных багов (Clang-Tidy)</li>
+<li>Улучшение читаемости кода (32 проблемы)</li>
+<li>Модернизация кода (10 проблем)</li>
+</ol>
+<h3 id="2"><strong>Приоритет 2: Расширение тестирования</strong><a class="headerlink" href="#2" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li>Повышение покрытия кода до 80%+</li>
+<li>Интеграционные тесты на ESP32</li>
+<li>CI/CD автоматизация</li>
+</ol>
+<h3 id="3"><strong>Приоритет 3: Мониторинг</strong><a class="headerlink" href="#3" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li>Мониторинг производительности в продакшене</li>
+<li>Анализ логов реальных устройств</li>
+<li>Оптимизация на основе реальных данных</li>
+</ol>
+<h2 id="_10">📞 Контакты<a class="headerlink" href="#_10" title="Постоянная ссылка">&para;</a></h2>
+<ul>
+<li><strong>Команда разработки</strong>: JXCT Development Team</li>
+<li><strong>Статус проекта</strong>: Production Ready</li>
+<li><strong>Последнее обновление</strong>: 22.01.2025</li>
+</ul>
 <hr />
-<p><strong>Навигация по проекту:</strong> <a href="../">Главная документация</a></p>
+<p><em>Документация обновлена после тестирования на реальном железе</em></p>
 
 
 

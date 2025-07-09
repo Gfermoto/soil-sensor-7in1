@@ -26,7 +26,7 @@
     
     
       
-        <title>🚀 Руководство по скриптам - JXCT Soil Sensor v3.7.0</title>
+        <title>🚀 Руководство по скриптам - JXCT Soil Sensor v3.9.0</title>
       
     
     
@@ -98,7 +98,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href=".." title="JXCT Soil Sensor v3.7.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.7.0" data-md-component="logo">
+    <a href=".." title="JXCT Soil Sensor v3.9.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.9.0" data-md-component="logo">
       
   <img src="../assets/images/favicon.png" alt="logo">
 
@@ -111,7 +111,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            JXCT Soil Sensor v3.7.0
+            JXCT Soil Sensor v3.9.0
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -362,12 +362,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="JXCT Soil Sensor v3.7.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.7.0" data-md-component="logo">
+    <a href=".." title="JXCT Soil Sensor v3.9.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.9.0" data-md-component="logo">
       
   <img src="../assets/images/favicon.png" alt="logo">
 
     </a>
-    JXCT Soil Sensor v3.7.0
+    JXCT Soil Sensor v3.9.0
   </label>
   
     <div class="md-nav__source">
@@ -1367,7 +1367,7 @@
 
 
 <h1 id="jxct">🚀 Руководство по скриптам JXCT<a class="headerlink" href="#jxct" title="Постоянная ссылка">&para;</a></h1>
-<p><strong>Версия:</strong> 1.0
+<p><strong>Версия:</strong> 3.10.0
 <strong>Дата:</strong> Июль 2025</p>
 <hr />
 <h2 id="Obzor">📋 Обзор<a class="headerlink" href="#Obzor" title="Постоянная ссылка">&para;</a></h2>
@@ -1457,14 +1457,14 @@
 </span></code></pre></div>
 <h2 id="Upravlenie-versiyami">🏷️ Управление версиями<a class="headerlink" href="#Upravlenie-versiyami" title="Постоянная ссылка">&para;</a></h2>
 <h3 id="release-manager">Release Manager<a class="headerlink" href="#release-manager" title="Постоянная ссылка">&para;</a></h3>
-<div class="language-powershell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c"># Поднять patch версию (3.6.2 -&gt; 3.6.3)</span>
+<div class="language-powershell highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c"># Поднять patch версию (3.10.0 -&gt; 3.10.1)</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">release</span><span class="p">.</span><span class="n">ps1</span> <span class="n">version</span> <span class="n">-Type</span> <span class="n">patch</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c"># Поднять minor версию (3.6.2 -&gt; 3.7.0)</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c"># Поднять minor версию (3.10.0 -&gt; 3.11.0)</span>
 </span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">release</span><span class="p">.</span><span class="n">ps1</span> <span class="n">version</span> <span class="n">-Type</span> <span class="n">minor</span>
 </span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
 </span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c"># Создать релиз с конкретной версией</span>
-</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">release</span><span class="p">.</span><span class="n">ps1</span> <span class="n">release</span> <span class="n">-Version</span> <span class="s2">&quot;3.6.3&quot;</span> <span class="n">-Message</span> <span class="s2">&quot;Новые функции&quot;</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">release</span><span class="p">.</span><span class="n">ps1</span> <span class="n">release</span> <span class="n">-Version</span> <span class="s2">&quot;3.10.1&quot;</span> <span class="n">-Message</span> <span class="s2">&quot;Новые функции&quot;</span>
 </span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
 </span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c"># Быстрый bump + релиз</span>
 </span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="p">.\</span><span class="n">scripts</span><span class="p">\</span><span class="n">release</span><span class="p">.</span><span class="n">ps1</span> <span class="n">bump</span> <span class="n">-Type</span> <span class="n">patch</span>
@@ -1474,7 +1474,7 @@
 </span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>python<span class="w"> </span>scripts/release_manager.py<span class="w"> </span>version<span class="w"> </span>--type<span class="w"> </span>patch
 </span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
 </span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="c1"># Создать релиз</span>
-</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>python<span class="w"> </span>scripts/release_manager.py<span class="w"> </span>release<span class="w"> </span>--version<span class="w"> </span><span class="s2">&quot;3.6.3&quot;</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>python<span class="w"> </span>scripts/release_manager.py<span class="w"> </span>release<span class="w"> </span>--version<span class="w"> </span><span class="s2">&quot;3.10.1&quot;</span>
 </span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
 </span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="c1"># Синхронизировать версии</span>
 </span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>python<span class="w"> </span>scripts/release_manager.py<span class="w"> </span>sync

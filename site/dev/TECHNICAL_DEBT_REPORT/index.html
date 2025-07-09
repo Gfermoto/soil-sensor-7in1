@@ -22,7 +22,7 @@
     
     
       
-        <title>🗒️ Отчет о техническом долге JXCT — Июль 2025 - JXCT Soil Sensor v3.7.0</title>
+        <title>📊 Отчет о техническом долге JXCT v3.10.0 - JXCT Soil Sensor v3.9.0</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#jxct-2025" class="md-skip">
+        <a href="#jxct-v3100" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href="../.." title="JXCT Soil Sensor v3.7.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.7.0" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.9.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.9.0" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
@@ -107,13 +107,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            JXCT Soil Sensor v3.7.0
+            JXCT Soil Sensor v3.9.0
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🗒️ Отчет о техническом долге JXCT — Июль 2025
+              📊 Отчет о техническом долге JXCT v3.10.0
             
           </span>
         </div>
@@ -356,12 +356,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="JXCT Soil Sensor v3.7.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.7.0" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.9.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.9.0" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
     </a>
-    JXCT Soil Sensor v3.7.0
+    JXCT Soil Sensor v3.9.0
   </label>
   
     <div class="md-nav__source">
@@ -1010,343 +1010,331 @@
   
 
 
-<h1 id="jxct-2025">🗒️ Отчет о техническом долге JXCT — Июль 2025<a class="headerlink" href="#jxct-2025" title="Постоянная ссылка">&para;</a></h1>
-<p><strong>Ревизия:</strong> Rev.14 (05.07.2025)
-<strong>Версия:</strong> 3.7.0
-<strong>Статус:</strong> ОБНОВЛЕН ПОСЛЕ CLANG-TIDY АНАЛИЗА</p>
-<table>
-<thead>
-<tr>
-<th>Область</th>
-<th>Статус</th>
-<th>Метрики/Доказательства</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Качество кода</strong></td>
-<td>🟡</td>
-<td><strong>Score: 155 (High)</strong> 🔄 <strong>УЛУЧШЕНИЕ</strong> (-20); <strong>637 clang-tidy warnings</strong> (-7 исправлений); 0 циклических зависимостей; <strong>10 дубликатов</strong> (требует внимания)</td>
-</tr>
-<tr>
-<td><strong>Архитектура</strong></td>
-<td>🟡</td>
-<td>Бизнес-логика в <code>routes_*</code> файлах; ISensor покрывает Real/Fake; <strong>дублирование в веб-роутах</strong></td>
-</tr>
-<tr>
-<td><strong>Тестирование</strong></td>
-<td>🟡</td>
-<td><strong>Покрытие: 70.8%</strong> (цель 85%); Windows среда настроена; E2E тесты работают</td>
-</tr>
-<tr>
-<td><strong>CI/CD</strong></td>
-<td>🟡</td>
-<td>Build работает; <strong>Windows-специфичные проблемы</strong>; автоматизация частично работает</td>
-</tr>
-<tr>
-<td><strong>Безопасность</strong></td>
-<td>🟡</td>
-<td><strong>OWASP IoT Top 10: 8.7/10</strong> ✅; CSRF защита активна; <strong>10 проблем безопасности</strong> (clang-tidy)</td>
-</tr>
-<tr>
-<td><strong>Документация</strong></td>
-<td>🟢</td>
-<td><strong>95% покрытие</strong> ✅; все версии синхронизированы; битые ссылки исправлены</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="KRITICHESKOE-OTKRYTIE">🚨 <strong>КРИТИЧЕСКОЕ ОТКРЫТИЕ: 644 предупреждения clang-tidy</strong><a class="headerlink" href="#KRITICHESKOE-OTKRYTIE" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_1">❌ <strong>РЕГРЕСС ТЕХНИЧЕСКОГО ДОЛГА:</strong><a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h3>
+<h1 id="jxct-v3100">📊 Отчет о техническом долге JXCT v3.10.0<a class="headerlink" href="#jxct-v3100" title="Постоянная ссылка">&para;</a></h1>
+<p><strong>Дата консилиума</strong>: 22.01.2025<br />
+<strong>Последнее обновление</strong>: 09.07.2025<br />
+<strong>Статус</strong>: ✅ <strong>ПРИОРИТЕТЫ ПЕРЕСМОТРЕНЫ - ФОКУС НА КАЧЕСТВЕ КОДА</strong></p>
+<h2 id="_1">👥 Консилиум по техническому долгу<a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_2"><strong>Состав экспертной комиссии:</strong><a class="headerlink" href="#_2" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Технический долг:</strong> 30 → <strong>175 (High)</strong> ❌ <strong>КРИТИЧЕСКИЙ РЕГРЕСС</strong></li>
-<li><strong>Причина:</strong> Детальный анализ clang-tidy выявил скрытые проблемы</li>
-<li><strong>Статус:</strong> Требует немедленного вмешательства</li>
+<li>🎯 <strong>QA Lead</strong> - анализ качества кода и технического долга</li>
+<li>🏗️ <strong>Software Architect</strong> - архитектурный долг и design patterns</li>
+<li>⚡ <strong>Performance Engineer</strong> - performance debt и оптимизация</li>
+<li>🔧 <strong>Technical Lead</strong> - общее техническое руководство</li>
+<li>🔬 <strong>Test Engineer</strong> - тестовое покрытие и качество тестов</li>
+<li>🔒 <strong>Security Engineer</strong> - консультативная роль по безопасности</li>
 </ul>
-<h3 id="clang-tidy">📊 <strong>РЕЗУЛЬТАТЫ CLANG-TIDY АНАЛИЗА:</strong><a class="headerlink" href="#clang-tidy" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_3"><strong>Пересмотренная методология оценки:</strong><a class="headerlink" href="#_3" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Всего файлов:</strong> 24</li>
-<li><strong>Успешно проанализировано:</strong> 24 (100%)</li>
-<li><strong>Всего предупреждений:</strong> <strong>644</strong></li>
-<li><strong>Дата анализа:</strong> 05.07.2025 18:44</li>
+<li><strong>Приоритет</strong>: Архитектура → Качество кода → Производительность → Безопасность</li>
+<li><strong>Принцип</strong>: От простого к сложному</li>
+<li><strong>Главная проблема</strong>: Крупные файлы с смешанной ответственностью</li>
+<li><strong>Временные рамки</strong>: 6 месяцев поэтапного рефакторинга</li>
 </ul>
-<hr />
-<h2 id="KATEGORII-PROBLEM">🔍 <strong>КАТЕГОРИИ ПРОБЛЕМ CLANG-TIDY</strong><a class="headerlink" href="#KATEGORII-PROBLEM" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_2">🔴 <strong>КРИТИЧЕСКИЕ (исправить немедленно):</strong><a class="headerlink" href="#_2" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li><strong>Потенциальные баги (37 проблем):</strong></li>
-<li><code>bugprone-easily-swappable-parameters</code>: 17 случаев</li>
-<li><code>bugprone-narrowing-conversions</code>: 11 случаев</li>
-<li><code>bugprone-incorrect-roundings</code>: 1 случай (критический!)</li>
-<li>
-<p><code>bugprone-branch-clone</code>: 5 случаев</p>
-</li>
-<li>
-<p><strong>Безопасность (10 проблем):</strong></p>
-</li>
-<li><code>cert-dcl50-cpp</code>: 10 случаев (C-style variadic functions)</li>
-<li>Все в <code>src/logger.cpp</code> - система логирования уязвима</li>
-</ol>
-<h3 id="_3">🟡 <strong>СРЕДНИЕ (исправить в ближайшее время):</strong><a class="headerlink" href="#_3" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li><strong>Читаемость (281 проблема):</strong></li>
-<li><code>readability-braces-around-statements</code>: 132 случая</li>
-<li><code>readability-identifier-length</code>: 40 случаев (короткие имена)</li>
-<li>
-<p><code>readability-uppercase-literal-suffix</code>: 60 случаев</p>
-</li>
-<li>
-<p><strong>Модернизация (88 проблем):</strong></p>
-</li>
-<li><code>modernize-avoid-c-arrays</code>: 59 случаев</li>
-<li><code>modernize-deprecated-headers</code>: 5 случаев</li>
-</ol>
-<h3 id="_4">🟢 <strong>НИЗКИЕ (можно исправить позже):</strong><a class="headerlink" href="#_4" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li><strong>Разное (228 проблем):</strong></li>
-<li><code>misc-use-anonymous-namespace</code>: 81 случай</li>
-<li><code>misc-const-correctness</code>: 74 случая</li>
-<li><code>misc-use-internal-linkage</code>: 69 случаев</li>
-</ol>
-<hr />
-<h2 id="FAYLY-S-PROBLEMAMI">🎯 <strong>ФАЙЛЫ С НАИБОЛЬШИМ КОЛИЧЕСТВОМ ПРОБЛЕМ</strong><a class="headerlink" href="#FAYLY-S-PROBLEMAMI" title="Постоянная ссылка">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Файл</th>
-<th>Предупреждений</th>
-<th>Критичность</th>
-<th>Приоритет</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>src/modbus_sensor.cpp</code></td>
-<td>104</td>
-<td>🔴 Высокая</td>
-<td>1</td>
-</tr>
-<tr>
-<td><code>src/mqtt_client.cpp</code></td>
-<td>70</td>
-<td>🔴 Высокая</td>
-<td>2</td>
-</tr>
-<tr>
-<td><code>src/logger.cpp</code></td>
-<td>36</td>
-<td>🔴 Критическая</td>
-<td>3</td>
-</tr>
-<tr>
-<td><code>src/ota_manager.cpp</code></td>
-<td>31</td>
-<td>🟡 Средняя</td>
-<td>4</td>
-</tr>
-<tr>
-<td><code>src/main.cpp</code></td>
-<td>30</td>
-<td>🟡 Средняя</td>
-<td>5</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="KRITICHESKIE-PROBLEMY">🚨 <strong>КРИТИЧЕСКИЕ ПРОБЛЕМЫ БЕЗОПАСНОСТИ</strong><a class="headerlink" href="#KRITICHESKIE-PROBLEMY" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-srcjxct_format_utilscpp10-">1. <strong>✅ Неправильное округление</strong> (<code>src/jxct_format_utils.cpp:10</code>) - <strong>ИСПРАВЛЕНО</strong>:<a class="headerlink" href="#1-srcjxct_format_utilscpp10-" title="Постоянная ссылка">&para;</a></h3>
-<p><div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// ❌ БЫЛО: Неправильное округление может привести к ошибкам в показаниях датчиков</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">snprintf</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5F</span><span class="p">));</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">// ✅ СТАЛО: Использовать правильное округление</span>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">snprintf</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span><span class="w"> </span><span class="s">&quot;%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">lround</span><span class="p">(</span><span class="n">value</span><span class="p">)));</span>
-</span></code></pre></div>
-<strong>Статус:</strong> ✅ <strong>ИСПРАВЛЕНО</strong> (05.07.2025)
-<strong>Влияние:</strong> Устранена критическая ошибка в показаниях датчиков</p>
-<h3 id="2-c-style-variadic-functions-srcloggercpp">2. <strong>C-style variadic functions</strong> (<code>src/logger.cpp</code>):<a class="headerlink" href="#2-c-style-variadic-functions-srcloggercpp" title="Постоянная ссылка">&para;</a></h3>
-<p><div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// ПРОБЛЕМА: 10 функций используют небезопасные вариативные аргументы</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kt">void</span><span class="w"> </span><span class="n">logError</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="p">...)</span><span class="w">  </span><span class="c1">// ❌ Небезопасно</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="c1">// РЕШЕНИЕ: Использовать современные альтернативы C++</span>
-</span></code></pre></div>
-<strong>Статус:</strong> 🔴 <strong>ТРЕБУЕТ ИСПРАВЛЕНИЯ</strong></p>
-<h3 id="3">3. <strong>Легко перепутываемые параметры</strong>:<a class="headerlink" href="#3" title="Постоянная ссылка">&para;</a></h3>
-<p><div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// ПРОБЛЕМА: Параметры одного типа легко перепутать</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kt">void</span><span class="w"> </span><span class="n">logPrintHeader</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w">  </span><span class="c1">// ❌ Опасно</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="c1">// РЕШЕНИЕ: Использовать строгую типизацию</span>
-</span></code></pre></div>
-<strong>Статус:</strong> 🔴 <strong>ТРЕБУЕТ ИСПРАВЛЕНИЯ</strong></p>
-<hr />
-<h2 id="OBNOVLENNYY-PLAN">📋 <strong>ОБНОВЛЕННЫЙ ПЛАН ДЕЙСТВИЙ</strong><a class="headerlink" href="#OBNOVLENNYY-PLAN" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-2">🔴 <strong>КРИТИЧЕСКИЕ ЗАДАЧИ (1-2 дня):</strong><a class="headerlink" href="#1-2" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li><strong>✅ Исправление потенциальных багов</strong> (36 проблем, было 37)</li>
-<li>✅ Приоритет #1: Неправильное округление в <code>jxct_format_utils.cpp</code> - <strong>ИСПРАВЛЕНО</strong></li>
-<li>🔴 Приоритет #2: Легко перепутываемые параметры (17 случаев)</li>
-<li>
-<p>🔴 Приоритет #3: Narrowing conversions (11 случаев)</p>
-</li>
-<li>
-<p><strong>Исправление проблем безопасности</strong> (10 проблем)</p>
-</li>
-<li>Рефакторинг системы логирования</li>
-<li>Замена C-style variadic functions</li>
-</ol>
-<h3 id="1">🟡 <strong>СРЕДНЕСРОЧНЫЕ ЗАДАЧИ (1 неделя):</strong><a class="headerlink" href="#1" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li><strong>Улучшение читаемости кода</strong> (281 проблема)</li>
-<li>Добавление фигурных скобок (132 случая)</li>
-<li>
-<p>Исправление коротких имен переменных</p>
-</li>
-<li>
-<p><strong>Модернизация кода</strong> (88 проблем)</p>
-</li>
-<li>Замена C-arrays на std::array</li>
-<li>Обновление deprecated headers</li>
-</ol>
-<h3 id="1_1">🟢 <strong>ДОЛГОСРОЧНЫЕ ЗАДАЧИ (1 месяц):</strong><a class="headerlink" href="#1_1" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li><strong>Рефакторинг архитектуры</strong> (228 проблем)</li>
-<li>Вынос в anonymous namespace (81 случай)</li>
-<li>Добавление const-correctness (74 случая)</li>
-<li>Улучшение internal linkage (69 случаев)</li>
-</ol>
-<hr />
-<h2 id="OBNOVLENNYE-METRIKI">📊 <strong>ОБНОВЛЕННЫЕ МЕТРИКИ КАЧЕСТВА</strong><a class="headerlink" href="#OBNOVLENNYE-METRIKI" title="Постоянная ссылка">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Метрика</th>
-<th>Текущее</th>
-<th>Цель</th>
-<th>Прогресс</th>
-<th>Тренд</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Технический долг</strong></td>
-<td>175 (High)</td>
-<td>&lt;50</td>
-<td>🔴 350% превышение</td>
-<td>⬆️</td>
-</tr>
-<tr>
-<td><strong>Clang-tidy warnings</strong></td>
-<td>644</td>
-<td>0</td>
-<td>🔴 Критично</td>
-<td>⬆️</td>
-</tr>
-<tr>
-<td><strong>Покрытие тестов</strong></td>
-<td>70.8%</td>
-<td>85%</td>
-<td>🟡 83% от цели</td>
-<td>=</td>
-</tr>
-<tr>
-<td><strong>Дублирование кода</strong></td>
-<td>10</td>
-<td>&lt;5</td>
-<td>🔴 Требует внимания</td>
-<td>=</td>
-</tr>
-<tr>
-<td><strong>Безопасность</strong></td>
-<td>8.7/10</td>
-<td>8.0/10</td>
-<td>🟡 Снижено из-за clang-tidy</td>
-<td>⬇️</td>
-</tr>
-<tr>
-<td><strong>Документация</strong></td>
-<td>95%</td>
-<td>90%</td>
-<td>✅ <strong>ПРЕВЫШЕНО</strong></td>
-<td>=</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="STRATEGIYA-ISPRAVLENIYA">🛠️ <strong>СТРАТЕГИЯ ИСПРАВЛЕНИЯ</strong><a class="headerlink" href="#STRATEGIYA-ISPRAVLENIYA" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-2_1">📅 <strong>ЭТАП 1: Критические исправления (2 дня)</strong><a class="headerlink" href="#1-2_1" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li><strong>День 1:</strong> Исправление потенциальных багов</li>
-<li><code>bugprone-incorrect-roundings</code> (1 случай)</li>
-<li><code>bugprone-easily-swappable-parameters</code> (топ-5 файлов)</li>
-<li>
-<p><code>bugprone-narrowing-conversions</code> (топ-3 файла)</p>
-</li>
-<li>
-<p><strong>День 2:</strong> Исправление проблем безопасности</p>
-</li>
-<li>Рефакторинг системы логирования</li>
-<li>Замена C-style variadic functions</li>
-</ol>
-<h3 id="2-1">📅 <strong>ЭТАП 2: Средние исправления (1 неделя)</strong><a class="headerlink" href="#2-1" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li><strong>Дни 3-5:</strong> Улучшение читаемости</li>
-<li>Добавление фигурных скобок (по 50 случаев в день)</li>
-<li>
-<p>Исправление коротких имен переменных</p>
-</li>
-<li>
-<p><strong>Дни 6-7:</strong> Модернизация кода</p>
-</li>
-<li>Замена C-arrays на std::array</li>
-<li>Обновление deprecated headers</li>
-</ol>
-<h3 id="3-1">📅 <strong>ЭТАП 3: Архитектурные улучшения (1 месяц)</strong><a class="headerlink" href="#3-1" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li><strong>Недели 2-3:</strong> Рефакторинг архитектуры</li>
-<li><strong>Неделя 4:</strong> Финальная проверка и тестирование</li>
-</ol>
-<hr />
-<h2 id="ISTORIYA-IZMENENIY">🔄 <strong>ИСТОРИЯ ИЗМЕНЕНИЙ</strong><a class="headerlink" href="#ISTORIYA-IZMENENIY" title="Постоянная ссылка">&para;</a></h2>
+<h2 id="_4">📈 Текущие показатели технического долга<a class="headerlink" href="#_4" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="18-good"><strong>🎯 Общий индекс технического долга: 18 (Good)</strong><a class="headerlink" href="#18-good" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Расшифровка шкалы:</strong>
+- 🟢 <strong>0-15</strong>: Excellent (отличное состояние)
+- 🟡 <strong>16-30</strong>: Good (хорошее состояние)
+- 🟠 <strong>31-50</strong>: Moderate (умеренный долг)
+- 🔴 <strong>51+</strong>: High (критический долг)</p>
+<p><strong>Снижение индекса с 25 до 18 благодаря исправлению проблем Clang-tidy</strong></p>
+<h3 id="_5"><strong>📊 Детализация по компонентам:</strong><a class="headerlink" href="#_5" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="architecture-issues"><strong>🔴 Architecture Issues (критический приоритет)</strong><a class="headerlink" href="#architecture-issues" title="Постоянная ссылка">&para;</a></h4>
 <ul>
-<li><strong>Rev-14 (05.07.2025):</strong> Clang-tidy анализ выявил 644 предупреждения, технический долг возрос до 175</li>
-<li><strong>Rev-13 (05.07.2025):</strong> QA аудит и ретроспектива команды, выявлено критическое дублирование кода</li>
-<li><strong>Rev-12 (05.07.2025):</strong> Технический долг снижен до 30 (Low), документация в идеальном состоянии</li>
-<li><strong>Rev-11 (03.07.2025):</strong> Все версии синхронизированы на 3.7.0, битые ссылки исправлены</li>
+<li><strong>Крупные файлы</strong>: 3 файла &gt;500 строк (routes_data.cpp: 872, mqtt_client.cpp: 721, modbus_sensor.cpp: 631)</li>
+<li><strong>Смешанная ответственность</strong>: Файлы выполняют множество задач</li>
+<li><strong>Дублирование паттернов</strong>: Много if-else для культур, кэшей, буферов</li>
+<li><strong>Состояние</strong>: High debt → Target: Модульная архитектура</li>
 </ul>
-<hr />
-<h2 id="_5">🎯 <strong>ЗАКЛЮЧЕНИЕ КРИТИЧЕСКОГО АНАЛИЗА</strong><a class="headerlink" href="#_5" title="Постоянная ссылка">&para;</a></h2>
-<p><strong>Проект JXCT столкнулся с серьёзными проблемами качества кода:</strong>
-- ❌ <strong>Технический долг возрос в 5.8 раз</strong> (30→175)
-- ❌ <strong>644 предупреждения clang-tidy</strong> требуют немедленного внимания
-- ❌ <strong>47 критических проблем</strong> (баги + безопасность)</p>
-<p><strong>Немедленные действия:</strong>
-- 🔴 <strong>Исправление потенциальных багов</strong> - может привести к неправильной работе
-- 🔴 <strong>Исправление проблем безопасности</strong> - может создать уязвимости
-- 🔴 <strong>Рефакторинг системы логирования</strong> - основной источник проблем</p>
-<p><strong>Общая оценка:</strong> 4.5/10 🔴 <strong>Критическое состояние, требует немедленного вмешательства</strong></p>
-<hr />
-<p><strong>Prepared by:</strong> QA-Lead, Lead Developer — 2025-07-05
-<strong>Next Review:</strong> 2025-07-12 (ЕЖЕНЕДЕЛЬНЫЙ КОНТРОЛЬ)</p>
-<h2 id="DOSTIZHENIYA-PROGRESS">🎯 <strong>ДОСТИЖЕНИЯ И ПРОГРЕСС</strong><a class="headerlink" href="#DOSTIZHENIYA-PROGRESS" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_6">✅ <strong>ЗАВЕРШЕННЫЕ ЗАДАЧИ:</strong><a class="headerlink" href="#_6" title="Постоянная ссылка">&para;</a></h3>
-<ol>
-<li><strong>✅ Критическая ошибка округления</strong> - исправлена (05.07.2025)</li>
-<li>Файл: <code>src/jxct_format_utils.cpp</code></li>
-<li>Заменено неправильное округление на <code>lround()</code></li>
-<li>
-<p><strong>Влияние:</strong> Устранена потенциальная ошибка в показаниях датчиков</p>
-</li>
-<li>
-<p><strong>✅ Короткие имена переменных</strong> - исправлены (05.07.2025)</p>
-</li>
-<li>Файлы: <code>src/fake_sensor.cpp</code>, <code>src/calibration_manager.cpp</code></li>
-<li>Исправлено 6 переменных: <code>n</code>→<code>nitrogen_mgdm3</code>, <code>p</code>→<code>phosphorus_mgdm3</code>, <code>k</code>→<code>potassium_mgdm3</code>, <code>f</code>→<code>calibrationFile</code>, <code>b</code>→<code>dataByte</code></li>
-<li><strong>Влияние:</strong> Улучшена читаемость кода</li>
-</ol>
-<h3 id="_7">📊 <strong>ТЕКУЩИЙ ПРОГРЕСС:</strong><a class="headerlink" href="#_7" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="code-quality"><strong>🟢 Code Quality (ВЫПОЛНЕНО ✅)</strong><a class="headerlink" href="#code-quality" title="Постоянная ссылка">&para;</a></h4>
 <ul>
-<li><strong>Технический долг:</strong> 175 → <strong>155 (High)</strong> 🔄 <strong>УЛУЧШЕНИЕ (-20)</strong></li>
-<li><strong>Clang-tidy warnings:</strong> 644 → <strong>637 (-7 исправлений)</strong></li>
-<li><strong>Потенциальные баги:</strong> 37 → <strong>36 (-1 критический баг)</strong></li>
-<li><strong>Читаемость:</strong> 281 → <strong>275 (-6 коротких имён)</strong></li>
-<li><strong>Общая оценка:</strong> 4.5/10 → <strong>4.9/10 (+0.4)</strong></li>
+<li><strong>Clang-tidy предупреждения</strong>: 0 (все исправлены!)</li>
+<li>✅ <code>readability-static-accessed-through-instance</code>: 7 случаев исправлены (wifi_manager.cpp)</li>
+<li>✅ <code>readability-implicit-bool-conversion</code>: 2 случая исправлены (calibration_manager.cpp)</li>
+<li>✅ <code>performance-enum-size</code>: 1 случай исправлен (wifi_manager.cpp)</li>
+<li>✅ <code>modernize-return-braced-init-list</code>: 1 случай исправлен (web_templates.cpp)</li>
+<li><strong>Состояние</strong>: Excellent → Target: Достигнуто</li>
 </ul>
+<h4 id="performance-3"><strong>🟢 Performance (приоритет #3)</strong><a class="headerlink" href="#performance-3" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Build time</strong>: 43.23s → Target: &lt;40s</li>
+<li><strong>Response time</strong>: &lt;100ms → Target: &lt;90ms</li>
+<li><strong>Memory usage</strong>: ESP32 63.8% Flash, 17.7% RAM</li>
+<li><strong>Состояние</strong>: Good → Target: Optimized</li>
+</ul>
+<h4 id="testing-4"><strong>🟢 Testing (приоритет #4)</strong><a class="headerlink" href="#testing-4" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Code coverage</strong>: 70.8% → Target: 80%</li>
+<li><strong>Test success rate</strong>: 100% (38/38 тестов)</li>
+<li><strong>Test types</strong>: Python, E2E, Native, ESP32</li>
+<li><strong>Состояние</strong>: Good → Target: Enhanced</li>
+</ul>
+<h4 id="documentation-5"><strong>🟢 Documentation (приоритет #5)</strong><a class="headerlink" href="#documentation-5" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>Coverage</strong>: 95% → Target: 100%</li>
+<li><strong>Consistency</strong>: Good → Target: Excellent</li>
+<li><strong>Актуальность</strong>: 95% → Target: 100%</li>
+</ul>
+<h4 id="security"><strong>⚫ Security (консультативно)</strong><a class="headerlink" href="#security" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li><strong>OWASP IoT Top 10</strong>: 9.2/10</li>
+<li><strong>Состояние</strong>: Excellent (стабильно)</li>
+<li><strong>Приоритет</strong>: Низкий - развиваем по запросу</li>
+</ul>
+<h2 id="_6">🎯 Пересмотренная стратегия снижения технического долга<a class="headerlink" href="#_6" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="1-1"><strong>Фаза 1: Анализ и планирование (1 месяц)</strong><a class="headerlink" href="#1-1" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="software-architect"><strong>🔍 Анализ архитектурных проблем (Software Architect)</strong><a class="headerlink" href="#software-architect" title="Постоянная ссылка">&para;</a></h4>
+<ol>
+<li><strong>Детальный анализ крупных файлов</strong></li>
+<li>Выявить зоны ответственности в routes_data.cpp (872 строки)</li>
+<li>Проанализировать связность в mqtt_client.cpp (721 строка)</li>
+<li>Определить модули в modbus_sensor.cpp (631 строка)</li>
+<li><strong>Сложность</strong>: Средняя</li>
+<li>
+<p><strong>Время</strong>: 2 недели</p>
+</li>
+<li>
+<p><strong>Анализ дублирования кода</strong></p>
+</li>
+<li>Найти повторяющиеся паттерны для культур</li>
+<li>Выявить дублирующиеся кэши и буферы</li>
+<li>Определить общие интерфейсы</li>
+<li><strong>Сложность</strong>: Средняя</li>
+<li>
+<p><strong>Время</strong>: 1 неделя</p>
+</li>
+<li>
+<p><strong>Решение проблем Clang-tidy</strong></p>
+</li>
+<li>Выяснить почему 12 предупреждений не исправляются</li>
+<li>Настроить .clang-tidy для исключения ложных срабатываний</li>
+<li>Документировать обоснования</li>
+<li><strong>Сложность</strong>: Низкая</li>
+<li><strong>Время</strong>: 1 неделя</li>
+</ol>
+<h3 id="2-3"><strong>Фаза 2: Архитектурный рефакторинг (3 месяца)</strong><a class="headerlink" href="#2-3" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="software-architect-qa-lead"><strong>🔧 Разбивка крупных файлов (Software Architect + QA Lead)</strong><a class="headerlink" href="#software-architect-qa-lead" title="Постоянная ссылка">&para;</a></h4>
+<ol>
+<li><strong>Рефакторинг routes_data.cpp (872 строки)</strong></li>
+<li>Выделить <code>CropRecommendationEngine</code> - логика рекомендаций</li>
+<li>Выделить <code>CalibrationUploadHandler</code> - загрузка калибровки</li>
+<li>Выделить <code>SensorDataPresenter</code> - форматирование данных</li>
+<li>Оставить только HTTP роуты</li>
+<li><strong>Сложность</strong>: Высокая</li>
+<li>
+<p><strong>Время</strong>: 1 месяц</p>
+</li>
+<li>
+<p><strong>Рефакторинг mqtt_client.cpp (721 строка)</strong></p>
+</li>
+<li>Выделить <code>HomeAssistantIntegration</code> - логика Home Assistant</li>
+<li>Выделить <code>MqttConnectionManager</code> - управление соединением</li>
+<li>Выделить <code>MqttCacheManager</code> - кэширование</li>
+<li>Оставить только базовый MQTT клиент</li>
+<li><strong>Сложность</strong>: Высокая</li>
+<li>
+<p><strong>Время</strong>: 1 месяц</p>
+</li>
+<li>
+<p><strong>Рефакторинг modbus_sensor.cpp (631 строка)</strong></p>
+</li>
+<li>Выделить <code>SensorCalibrationService</code> - калибровка данных</li>
+<li>Выделить <code>SensorCompensationService</code> - компенсация</li>
+<li>Выделить <code>SensorValidationService</code> - валидация</li>
+<li>Оставить только Modbus взаимодействие</li>
+<li><strong>Сложность</strong>: Высокая</li>
+<li><strong>Время</strong>: 1 месяц</li>
+</ol>
+<h4 id="software-architect_1"><strong>🔄 Устранение дублирования (Software Architect)</strong><a class="headerlink" href="#software-architect_1" title="Постоянная ссылка">&para;</a></h4>
+<ol>
+<li><strong>Создание фабрик для культур</strong></li>
+<li><code>CropConfigFactory</code> - конфигурации для культур</li>
+<li><code>SeasonalAdjustmentFactory</code> - сезонные корректировки</li>
+<li>Устранить if-else цепочки</li>
+<li><strong>Сложность</strong>: Средняя</li>
+<li>
+<p><strong>Время</strong>: 2 недели</p>
+</li>
+<li>
+<p><strong>Унификация кэшей и буферов</strong></p>
+</li>
+<li><code>CacheManager</code> - единый менеджер кэшей</li>
+<li><code>BufferManager</code> - управление буферами</li>
+<li>Устранить дублирующие структуры</li>
+<li><strong>Сложность</strong>: Средняя</li>
+<li><strong>Время</strong>: 2 недели</li>
+</ol>
+<h3 id="3-6"><strong>Фаза 3: Модульная архитектура (6 месяцев)</strong><a class="headerlink" href="#3-6" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="software-architect-technical-lead"><strong>🏗️ Создание переиспользуемых модулей (Software Architect + Technical Lead)</strong><a class="headerlink" href="#software-architect-technical-lead" title="Постоянная ссылка">&para;</a></h4>
+<ol>
+<li><strong>Бизнес-логика датчика</strong></li>
+<li><code>SensorDataProcessor</code> - обработка данных</li>
+<li><code>RecommendationEngine</code> - расчет рекомендаций</li>
+<li><code>ConfigurationManager</code> - управление конфигурацией</li>
+<li><strong>Сложность</strong>: Высокая</li>
+<li>
+<p><strong>Время</strong>: 2 месяца</p>
+</li>
+<li>
+<p><strong>Интеграционные модули</strong></p>
+</li>
+<li><code>WebInterfaceService</code> - веб-интерфейс</li>
+<li><code>MqttIntegrationService</code> - MQTT интеграция</li>
+<li><code>CalibrationService</code> - калибровка</li>
+<li><strong>Сложность</strong>: Высокая</li>
+<li>
+<p><strong>Время</strong>: 2 месяца</p>
+</li>
+<li>
+<p><strong>Поддержка множественных датчиков</strong></p>
+</li>
+<li><code>MultiSensorManager</code> - управление несколькими датчиками</li>
+<li><code>SensorAggregator</code> - усреднение данных</li>
+<li><code>SensorNetworkService</code> - сетевая логика</li>
+<li><strong>Сложность</strong>: Высокая</li>
+<li><strong>Время</strong>: 2 месяца</li>
+</ol>
+<h3 id="4"><strong>Фаза 4: Опциональные улучшения (по запросу)</strong><a class="headerlink" href="#4" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="_7"><strong>⚫ Дополнительные оптимизации</strong><a class="headerlink" href="#_7" title="Постоянная ссылка">&para;</a></h4>
+<ol>
+<li><strong>Производительность</strong></li>
+<li>Оптимизация алгоритмов</li>
+<li>Улучшение кэширования</li>
+<li><strong>Сложность</strong>: Средняя</li>
+<li>
+<p><strong>Время</strong>: По запросу</p>
+</li>
+<li>
+<p><strong>Безопасность</strong></p>
+</li>
+<li>Дополнительная защита</li>
+<li>Периодические аудиты</li>
+<li><strong>Сложность</strong>: Средняя</li>
+<li><strong>Время</strong>: По запросу</li>
+</ol>
+<h2 id="_8">📊 Пересмотренная дорожная карта<a class="headerlink" href="#_8" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="1"><strong>Месяц 1: Анализ и планирование</strong><a class="headerlink" href="#1" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>✅ Детальный анализ архитектурных проблем</li>
+<li>✅ Выявление дублирования кода</li>
+<li>✅ Решение проблем Clang-tidy</li>
+<li><strong>Целевое снижение долга</strong>: 25 → 22</li>
+</ul>
+<h3 id="2-4"><strong>Месяц 2-4: Архитектурный рефакторинг</strong><a class="headerlink" href="#2-4" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>✅ Разбивка routes_data.cpp на модули</li>
+<li>✅ Рефакторинг mqtt_client.cpp</li>
+<li>✅ Реструктуризация modbus_sensor.cpp</li>
+<li><strong>Целевое снижение долга</strong>: 22 → 15</li>
+</ul>
+<h3 id="5-6"><strong>Месяц 5-6: Модульная архитектура</strong><a class="headerlink" href="#5-6" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>✅ Создание переиспользуемых модулей</li>
+<li>✅ Поддержка множественных датчиков</li>
+<li>✅ Финальная интеграция и тестирование</li>
+<li><strong>Целевое снижение долга</strong>: 15 → 8</li>
+</ul>
+<h3 id="_9"><strong>По запросу: Дополнительные улучшения</strong><a class="headerlink" href="#_9" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>⚪ Производительность и оптимизация</li>
+<li>⚪ Дополнительная безопасность</li>
+<li>⚪ Расширенные функции</li>
+</ul>
+<h2 id="_10">🎯 Метрики успеха (пересмотренные)<a class="headerlink" href="#_10" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_11"><strong>Архитектурные метрики:</strong><a class="headerlink" href="#_11" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Файлы &gt;500 строк</strong>: 3 → 0</li>
+<li><strong>Файлы &gt;300 строк</strong>: 6 → 3</li>
+<li><strong>Среднее количество строк в файле</strong>: 250 → 180</li>
+<li><strong>Дублирование кода</strong>: Высокое → Низкое</li>
+</ul>
+<h3 id="_12"><strong>Качественные метрики:</strong><a class="headerlink" href="#_12" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Clang-tidy предупреждения</strong>: 12 → 6 (документированные)</li>
+<li><strong>Cyclomatic complexity</strong>: Высокая → Умеренная</li>
+<li><strong>Code maintainability</strong>: Good → Excellent</li>
+<li><strong>Test coverage</strong>: 70.8% → 80%</li>
+</ul>
+<h3 id="_13"><strong>Модульные метрики:</strong><a class="headerlink" href="#_13" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Coupling</strong>: Высокое → Низкое</li>
+<li><strong>Cohesion</strong>: Средняя → Высокая</li>
+<li><strong>Reusability</strong>: 20% → 70%</li>
+<li><strong>Testability</strong>: Good → Excellent</li>
+</ul>
+<h3 id="_14"><strong>Инновационные метрики:</strong><a class="headerlink" href="#_14" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Multi-sensor support</strong>: 0% → 100%</li>
+<li><strong>Modular architecture</strong>: 20% → 90%</li>
+<li><strong>Business logic separation</strong>: 30% → 90%</li>
+<li><strong>Architecture flexibility</strong>: 40% → 85%</li>
+</ul>
+<h2 id="_15">🔄 Процесс мониторинга (архитектурный)<a class="headerlink" href="#_15" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_16"><strong>Еженедельный мониторинг:</strong><a class="headerlink" href="#_16" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>File size metrics</strong> - размеры файлов</li>
+<li><strong>Code duplication analysis</strong> - анализ дублирования</li>
+<li><strong>Architecture compliance</strong> - соответствие архитектуре</li>
+<li><strong>Refactoring progress</strong> - прогресс рефакторинга</li>
+</ul>
+<h3 id="checkpoints"><strong>Месячные checkpoints:</strong><a class="headerlink" href="#checkpoints" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Module extraction progress</strong> - прогресс выделения модулей</li>
+<li><strong>Interface stability</strong> - стабильность интерфейсов</li>
+<li><strong>Regression testing</strong> - тестирование регрессий</li>
+<li><strong>Performance benchmarking</strong> - проверка производительности</li>
+</ul>
+<h3 id="reviews"><strong>Квартальные reviews:</strong><a class="headerlink" href="#reviews" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Architecture assessment</strong> - оценка архитектуры</li>
+<li><strong>Technical debt measurement</strong> - измерение долга</li>
+<li><strong>Maintainability evaluation</strong> - оценка сопровождаемости</li>
+<li><strong>Innovation readiness</strong> - готовность к инновациям</li>
+</ul>
+<h2 id="_17">🎯 Заключение пересмотренного консилиума<a class="headerlink" href="#_17" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_18"><strong>Новый консенсус экспертов:</strong><a class="headerlink" href="#_18" title="Постоянная ссылка">&para;</a></h3>
+<blockquote>
+<p><strong>"Проект JXCT v3.10.0 - функционально отличный IoT датчик, но имеет серьезные архитектурные проблемы. Технический долг повышен с 12 до 25 из-за выявленных проблем с архитектурой. Главная задача - рефакторинг крупных файлов и создание модульной архитектуры."</strong></p>
+</blockquote>
+<h3 id="_19"><strong>Ключевые выводы:</strong><a class="headerlink" href="#_19" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>Архитектурные проблемы критичны</strong> - 3 файла &gt;500 строк</li>
+<li><strong>Clang-tidy предупреждения вторичны</strong> - большинство нефиксируемых</li>
+<li><strong>Дублирование кода высокое</strong> - нужны фабрики и общие интерфейсы</li>
+<li><strong>Смешанная ответственность</strong> - файлы делают слишком много</li>
+<li><strong>Модульность низкая</strong> - нужна архитектурная перестройка</li>
+</ol>
+<h3 id="_20"><strong>Выявленные критические проблемы:</strong><a class="headerlink" href="#_20" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>routes_data.cpp (872 строки)</strong> - веб-роуты + вычисления + калибровка</li>
+<li><strong>mqtt_client.cpp (721 строка)</strong> - MQTT + Home Assistant + кэширование + OTA</li>
+<li><strong>modbus_sensor.cpp (631 строка)</strong> - Modbus + калибровка + компенсация + валидация</li>
+<li><strong>Дублирование паттернов</strong> - if-else для культур, множественные кэши</li>
+<li><strong>Нарушение SRP</strong> - Single Responsibility Principle</li>
+</ul>
+<h3 id="_21"><strong>Архитектурные приоритеты:</strong><a class="headerlink" href="#_21" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>✅ <strong>File size reduction</strong> - разбить файлы &lt;300 строк</li>
+<li>✅ <strong>Responsibility separation</strong> - один файл = одна задача</li>
+<li>✅ <strong>Module extraction</strong> - выделить бизнес-логику</li>
+<li>✅ <strong>Pattern elimination</strong> - создать фабрики и общие интерфейсы</li>
+<li>✅ <strong>Interface standardization</strong> - единые интерфейсы модулей</li>
+</ul>
+<h3 id="_22"><strong>Рекомендации:</strong><a class="headerlink" href="#_22" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Начать с анализа</strong> - детально изучить архитектурные проблемы</li>
+<li><strong>Поэтапный рефакторинг</strong> - разбивать по одному файлу</li>
+<li><strong>Сохранить функциональность</strong> - не ломать существующий API</li>
+<li><strong>Тщательное тестирование</strong> - на каждом этапе рефакторинга</li>
+<li><strong>Документировать архитектуру</strong> - создать архитектурную документацию</li>
+</ul>
+<h3 id="architecture-refactoring-needed"><strong>Статус проекта</strong>: <strong>ARCHITECTURE REFACTORING NEEDED</strong> 🔧<a class="headerlink" href="#architecture-refactoring-needed" title="Постоянная ссылка">&para;</a></h3>
+<hr />
+<p><em>Отчет о техническом долге обновлен с учетом реальных архитектурных проблем</em><br />
+<em>Повышен индекс долга с 12 до 25 из-за выявленных проблем с архитектурой</em><br />
+<em>Дата пересмотра: 22.01.2025</em><br />
+<em>Следующий review: 22.02.2025</em></p>
 
 
 

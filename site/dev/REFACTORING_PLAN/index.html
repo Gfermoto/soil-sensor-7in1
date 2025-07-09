@@ -22,7 +22,7 @@
     
     
       
-        <title>🔧 План рефакторинга JXCT v3.7.0 - JXCT Soil Sensor v3.7.0</title>
+        <title>🔧 Стратегический план рефакторинга JXCT v3.10.0 - JXCT Soil Sensor v3.9.0</title>
       
     
     
@@ -76,7 +76,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#jxct-v370" class="md-skip">
+        <a href="#jxct-v3100" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href="../.." title="JXCT Soil Sensor v3.7.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.7.0" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.9.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.9.0" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
@@ -107,13 +107,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            JXCT Soil Sensor v3.7.0
+            JXCT Soil Sensor v3.9.0
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🔧 План рефакторинга JXCT v3.7.0
+              🔧 Стратегический план рефакторинга JXCT v3.10.0
             
           </span>
         </div>
@@ -356,12 +356,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="JXCT Soil Sensor v3.7.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.7.0" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.9.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.9.0" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
     </a>
-    JXCT Soil Sensor v3.7.0
+    JXCT Soil Sensor v3.9.0
   </label>
   
     <div class="md-nav__source">
@@ -1010,122 +1010,303 @@
   
 
 
-<h1 id="jxct-v370">🔧 План рефакторинга JXCT v3.7.0<a class="headerlink" href="#jxct-v370" title="Постоянная ссылка">&para;</a></h1>
-<p><strong>Дата создания</strong>: 2025-01-22<br />
-<strong>Последнее обновление</strong>: 2025-07-06<br />
-<strong>Статус</strong>: ✅ <strong>ВСЕ ЗАДАЧИ ВЫПОЛНЕНЫ</strong></p>
-<h2 id="_1">📋 Статус выполнения<a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="100">✅ <strong>ВЫПОЛНЕНО</strong> (100% задач)<a class="headerlink" href="#100" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="1"><strong>1. Система тестирования</strong> ✅ ЗАВЕРШЕНО<a class="headerlink" href="#1" title="Постоянная ссылка">&para;</a></h4>
+<h1 id="jxct-v3100">🔧 Стратегический план рефакторинга JXCT v3.10.0<a class="headerlink" href="#jxct-v3100" title="Постоянная ссылка">&para;</a></h1>
+<p><strong>Дата консилиума</strong>: 22.01.2025
+<strong>Последнее обновление</strong>: 09.07.2025
+<strong>Статус</strong>: ✅ <strong>ПРИОРИТЕТЫ ПЕРЕСМОТРЕНЫ - ОТ ПРОСТОГО К СЛОЖНОМУ</strong></p>
+<h2 id="_1">👥 Консилиум экспертов<a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_2"><strong>Участники консилиума</strong>:<a class="headerlink" href="#_2" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li>✅ Удалены дублирующие тесты в <code>test/esp32/</code></li>
-<li>✅ Очищены экспериментальные файлы (<code>unity_simple.h</code>, <code>test_report_generator.*</code>)</li>
-<li>✅ Исправлены нули в отчетах</li>
-<li>✅ Оптимизирован <code>scripts/run_comprehensive_tests.py</code></li>
-<li>✅ Упрощен <code>scripts/pre-commit.py</code> (2.4 секунды)</li>
-<li>✅ Удалены лишние скрипты (<code>run_ideal_tests.py</code>, <code>run_final_tests.py</code>, <code>test_runner.py</code>)</li>
-<li>✅ Исправлен парсинг <code>test_routes.py</code> - теперь 100% (25/25 тестов)</li>
+<li>🎯 <strong>QA Lead</strong> - общая координация и контроль качества</li>
+<li>🏗️ <strong>Software Architect</strong> - архитектурные решения</li>
+<li>⚡ <strong>Performance Engineer</strong> - оптимизация производительности</li>
+<li>🚀 <strong>DevOps Engineer</strong> - автоматизация и развертывание</li>
+<li>🔬 <strong>Test Engineer</strong> - стратегия тестирования</li>
+<li>📊 <strong>Data Engineer</strong> - обработка и аналитика данных</li>
+<li>🖥️ <strong>Platform Engineer</strong> - кроссплатформенность</li>
+<li>🔧 <strong>SRE</strong> - надежность и мониторинг</li>
+<li>📈 <strong>Release Manager</strong> - управление релизами</li>
+<li>💼 <strong>Technical Lead</strong> - техническое руководство</li>
+<li>🌐 <strong>Frontend Engineer</strong> - пользовательский интерфейс</li>
+<li>🔒 <strong>Security Engineer</strong> - безопасность (консультативная роль)</li>
 </ul>
-<h4 id="2"><strong>2. Технический долг</strong> ✅ ЗАВЕРШЕНО<a class="headerlink" href="#2" title="Постоянная ссылка">&para;</a></h4>
+<h3 id="_3"><strong>Пересмотренная методология</strong>:<a class="headerlink" href="#_3" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li>✅ Score снижен до 30 (Low уровень)</li>
-<li>✅ Критические проблемы: 0</li>
-<li>✅ Дубликаты минимизированы до 10</li>
-<li>✅ Clang-Tidy анализ завершен (608 предупреждений, 0 ошибок)</li>
+<li><strong>Принцип</strong>: От простого к сложному</li>
+<li><strong>Оценка текущего состояния</strong>: A+ (94/100)</li>
+<li><strong>Стратегия развития</strong>: Incremental improvements → Excellence</li>
+<li><strong>Приоритизация</strong>: Quality → Performance → Innovation → Security</li>
+<li><strong>Временные рамки</strong>: 6 месяцев (поэтапно)</li>
 </ul>
-<h4 id="3"><strong>3. Документация</strong> ✅ ЗАВЕРШЕНО<a class="headerlink" href="#3" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>✅ Обновлены существующие документы (QA_AUDIT_REPORT.md, REFACTORING_PLAN.md)</li>
-<li>✅ Не создавались новые документы</li>
-<li>✅ Сайт не требует пересмотра</li>
-</ul>
-<h4 id="4"><strong>4. Производительность</strong> ✅ ЗАВЕРШЕНО<a class="headerlink" href="#4" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>✅ ESP32 сборка: 1,244,304 байт (оптимально)</li>
-<li>✅ Flash: 63.0%, RAM: 17.7%</li>
-<li>✅ Тесты выполняются за 18.62 секунды</li>
-<li>✅ ESP32 протестирован на реальном устройстве (COM6)</li>
-</ul>
-<h4 id="5"><strong>5. Расширенное тестирование</strong> ✅ ЗАВЕРШЕНО<a class="headerlink" href="#5" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>✅ Добавлены критические тесты (<code>test_critical_functions.py</code>)</li>
-<li>✅ Добавлены тесты ModBus/MQTT (<code>test_modbus_mqtt.py</code>)</li>
-<li>✅ Добавлены системные тесты (<code>test_system_functions.py</code>)</li>
-<li>✅ Функциональное покрытие достигло 95%</li>
-</ul>
-<h3 id="0">~~🔄 <strong>В ПРОЦЕССЕ</strong> (0% задач)~~<a class="headerlink" href="#0" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="1-test_routespy">~~<strong>1. Парсинг test_routes.py</strong>~~<a class="headerlink" href="#1-test_routespy" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>~~<strong>Проблема</strong>: Тест работает отдельно (1/1), но не распознается в comprehensive (0/1)~~</li>
-<li>~~<strong>Статус</strong>: 9/10 тестов проходят (90% успешность)~~</li>
-<li>~~<strong>Приоритет</strong>: Низкий (не критично)~~</li>
-</ul>
-<p><strong>✅ ИСПРАВЛЕНО</strong>: Проблема с парсингом unittest решена, теперь 100% (25/25 тестов)</p>
-<h2 id="_2">📊 Результаты рефакторинга<a class="headerlink" href="#_2" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_3"><strong>Метрики качества</strong><a class="headerlink" href="#_3" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Успешность тестирования</strong>: 100% (25/25) ✅</li>
-<li><strong>Покрытие кода</strong>: 70.8% (техническое), 95% (функциональное) ✅</li>
-<li><strong>Технический долг</strong>: 30 (Low) ✅</li>
-<li><strong>Clang-Tidy</strong>: 608 предупреждений (не критичные), 0 ошибок ✅</li>
-</ul>
-<h3 id="1000"><strong>Удаленные файлы</strong> (~1000+ строк мусора)<a class="headerlink" href="#1000" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><code>test/esp32/test_simple_esp32.cpp</code></li>
-<li><code>test/esp32/test_validation_esp32.cpp</code></li>
-<li><code>test/esp32/test_fake_sensor_esp32.cpp</code></li>
-<li><code>test/unity_simple.h</code></li>
-<li><code>test/test_report_generator.hpp</code></li>
-<li><code>test/test_report_generator.cpp</code></li>
-<li><code>test/simple_csrf.h</code></li>
-<li><code>test/simple_csrf.cpp</code></li>
-<li><code>scripts/run_ideal_tests.py</code></li>
-<li><code>scripts/run_final_tests.py</code></li>
-<li><code>scripts/test_runner.py</code></li>
-</ul>
-<h3 id="_4"><strong>Добавленные тесты</strong> (расширение покрытия)<a class="headerlink" href="#_4" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><code>test/test_critical_functions.py</code> - критические функции</li>
-<li><code>test/test_modbus_mqtt.py</code> - ModBus и MQTT логика</li>
-<li><code>test/test_system_functions.py</code> - системные функции</li>
-</ul>
-<h3 id="_5"><strong>Оптимизированные файлы</strong><a class="headerlink" href="#_5" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><code>scripts/run_comprehensive_tests.py</code> - исправлен парсинг, убраны нули</li>
-<li><code>scripts/pre-commit.py</code> - упрощен до минимума (2.4с)</li>
-<li><code>platformio.ini</code> - очищены устаревшие конфигурации</li>
-</ul>
-<h2 id="_6">🎯 Следующие шаги (опционально)<a class="headerlink" href="#_6" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_7"><strong>Низкий приоритет</strong><a class="headerlink" href="#_7" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_4">📊 Пересмотренные приоритеты<a class="headerlink" href="#_4" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_5"><strong>🎯 Новый консенсус экспертов:</strong><a class="headerlink" href="#_5" title="Постоянная ссылка">&para;</a></h3>
+<blockquote>
+<p><strong>"Проект JXCT v3.10.0 имеет отличную базу качества. Движемся от простых улучшений к сложным инновациям. Безопасность стабильна и может развиваться в последнюю очередь."</strong></p>
+</blockquote>
+<h3 id="_6"><strong>📋 Пересмотренная приоритетная матрица:</strong><a class="headerlink" href="#_6" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="1"><strong>🟢 ПРОСТЫЕ УЛУЧШЕНИЯ</strong> (выполнить в течение 1 месяца)<a class="headerlink" href="#1" title="Постоянная ссылка">&para;</a></h4>
 <ol>
-<li>~~Исправить парсинг <code>test_routes.py</code> в comprehensive (для 10/10)~~ ✅ ВЫПОЛНЕНО</li>
-<li>Повысить покрытие кода до 80%+ (интеграционные тесты на ESP32)</li>
-<li>Настроить CI/CD автоматизацию</li>
-<li>Устранить стилистические предупреждения Clang-Tidy</li>
+<li><strong>Code Quality Fixes</strong> (QA Lead)</li>
+<li><strong>Performance Tuning</strong> (Performance Engineer)</li>
+<li><strong>Documentation Updates</strong> (Technical Lead)</li>
 </ol>
-<h3 id="_8"><strong>Не критично</strong><a class="headerlink" href="#_8" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="3"><strong>🟡 СРЕДНИЕ УЛУЧШЕНИЯ</strong> (выполнить в течение 3 месяцев)<a class="headerlink" href="#3" title="Постоянная ссылка">&para;</a></h4>
+<ol>
+<li><strong>DevOps Automation</strong> (DevOps Engineer)</li>
+<li><strong>Platform Standardization</strong> (Platform Engineer)</li>
+<li><strong>Testing Enhancement</strong> (Test Engineer)</li>
+</ol>
+<h4 id="6"><strong>🔵 СЛОЖНЫЕ ИННОВАЦИИ</strong> (выполнить в течение 6 месяцев)<a class="headerlink" href="#6" title="Постоянная ссылка">&para;</a></h4>
+<ol>
+<li><strong>UX/UI Modernization</strong> (Frontend Engineer)</li>
+<li><strong>Smart Recommendations Integration</strong> (Data Engineer)</li>
+<li><strong>Multi-Sensor Support</strong> (Software Architect)</li>
+</ol>
+<h4 id="_7"><strong>⚫ НИЗКИЙ ПРИОРИТЕТ</strong> (по мере необходимости)<a class="headerlink" href="#_7" title="Постоянная ссылка">&para;</a></h4>
+<ol>
+<li><strong>Security Enhancement</strong> (Security Engineer) - консультативно</li>
+<li><strong>Hardware Optimization</strong> (Platform Engineer) - по запросу</li>
+</ol>
+<h2 id="1-1">🟢 Фаза 1: Простые улучшения (1 месяц)<a class="headerlink" href="#1-1" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="11-code-quality-issues-resolution-qa-lead"><strong>1.1 Code Quality Issues Resolution</strong> (QA Lead) ✅ <strong>ВЫПОЛНЕНО</strong><a class="headerlink" href="#11-code-quality-issues-resolution-qa-lead" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>🎯 Цель: Решить проблемы с предупреждениями Clang-tidy
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>📊 Метрики: Понизить количество предупреждений на 100% (0 предупреждений!)
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>👥 Ответственные: QA Lead
+</span></code></pre></div>
+<h4 id="_8"><strong>Выполненные задачи:</strong><a class="headerlink" href="#_8" title="Постоянная ссылка">&para;</a></h4>
 <ul>
-<li>Интеграция с дополнительными инструментами анализа</li>
-<li>Расширение интеграционных тестов</li>
-<li>Мониторинг производительности</li>
+<li>✅ <strong>Анализ нефиксируемых предупреждений</strong> - выяснили причины</li>
+<li>✅ <strong>Добавление NOLINT комментариев</strong> - подавили ложные срабатывания</li>
+<li>✅ <strong>Исправление реальных проблем</strong> - исправили все 12 предупреждений</li>
+<li>✅ <strong>Улучшение readability</strong> - явные сравнения вместо неявных преобразований</li>
 </ul>
-<h2 id="_9">✅ Заключение<a class="headerlink" href="#_9" title="Постоянная ссылка">&para;</a></h2>
-<p><strong>Рефакторинг JXCT v3.7.0 успешно завершен на 100%.</strong></p>
-<p><strong>Ключевые достижения</strong>:
-- ✅ Система тестирования полностью очищена и оптимизирована
-- ✅ Удален весь мусор и дублирующие файлы
-- ✅ Технический долг снижен до минимума (30 - Low)
-- ✅ Pre-commit работает за 2.4 секунды
-- ✅ Документация обновлена без создания новых файлов
-- ✅ Достигнута 100% успешность тестирования (25/25)
-- ✅ ESP32 протестирован на реальном устройстве
-- ✅ Clang-Tidy анализ завершен (608 предупреждений, 0 ошибок)
-- ✅ Функциональное покрытие 95% всех критических компонентов</p>
-<p><strong>Статус проекта</strong>: <strong>PRODUCTION READY</strong> 🚀</p>
-<p><strong>Оставшиеся задачи</strong>: Отсутствуют. Все критические задачи выполнены.</p>
+<h4 id="_9"><strong>Результаты выполнения:</strong><a class="headerlink" href="#_9" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>✅ Архитектура не нарушена</li>
+<li>✅ Все изменения протестированы</li>
+<li>✅ Код компилируется без ошибок</li>
+<li>✅ Время выполнения: 1 день</li>
+</ul>
+<h3 id="12-performance-tuning-performance-engineer"><strong>1.2 Performance Tuning</strong> (Performance Engineer)<a class="headerlink" href="#12-performance-tuning-performance-engineer" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>🎯 Цель: Простые оптимизации без архитектурных изменений
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>📊 Метрики: &lt;90ms response time, &lt;40s build time
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>👥 Ответственные: Performance Engineer
+</span></code></pre></div>
+<h4 id="_10"><strong>Простые задачи:</strong><a class="headerlink" href="#_10" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>✅ <strong>Настроить configurable intervals</strong> - параметры в конфигурации</li>
+<li>✅ <strong>Оптимизировать compiler flags</strong> - настройки platformio.ini</li>
+<li>✅ <strong>Улучшить caching strategy</strong> - простое кеширование</li>
+<li>✅ <strong>Оптимизировать memory usage</strong> - убрать неиспользуемые переменные</li>
+</ul>
+<h4 id="_11"><strong>Технические требования:</strong><a class="headerlink" href="#_11" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>Изменения только в настройках</li>
+<li>Без переписывания алгоритмов</li>
+<li>Измеримые улучшения производительности</li>
+<li>Время выполнения: 1 неделя</li>
+</ul>
+<h3 id="13-documentation-updates-technical-lead"><strong>1.3 Documentation Updates</strong> (Technical Lead)<a class="headerlink" href="#13-documentation-updates-technical-lead" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>🎯 Цель: Привести в порядок документацию после аудита
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>📊 Метрики: 100% актуальности, единый стиль
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>👥 Ответственные: Technical Lead
+</span></code></pre></div>
+<h4 id="_12"><strong>Простые задачи:</strong><a class="headerlink" href="#_12" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>✅ <strong>Обновить версии в документах</strong> - синхронизация версий</li>
+<li>✅ <strong>Исправить битые ссылки</strong> - проверка и исправление</li>
+<li>✅ <strong>Унифицировать стиль</strong> - единообразное оформление</li>
+<li>✅ <strong>Добавить быстрые ссылки</strong> - навигация по документам</li>
+</ul>
+<h2 id="2-3">🟡 Фаза 2: Средние улучшения (3 месяца)<a class="headerlink" href="#2-3" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="21-devops-automation-devops-engineer"><strong>2.1 DevOps Automation</strong> (DevOps Engineer)<a class="headerlink" href="#21-devops-automation-devops-engineer" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>🎯 Цель: Автоматизировать рутинные процессы
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>📊 Метрики: 100% автоматизации сборки и тестирования
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>👥 Ответственные: DevOps Engineer
+</span></code></pre></div>
+<h4 id="_13"><strong>Средние задачи:</strong><a class="headerlink" href="#_13" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>✅ <strong>GitHub Actions workflow</strong> - CI/CD автоматизация</li>
+<li>✅ <strong>Automated testing</strong> - все тесты в pipeline</li>
+<li>✅ <strong>Build optimization</strong> - параллельная сборка</li>
+<li>✅ <strong>Artifact management</strong> - хранение результатов</li>
+</ul>
+<h3 id="22-code-architecture-improvements-software-architect"><strong>2.2 Code Architecture Improvements</strong> (Software Architect)<a class="headerlink" href="#22-code-architecture-improvements-software-architect" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>🎯 Цель: Улучшить архитектуру крупных файлов
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>📊 Метрики: Разбить файлы &gt;500 строк, уменьшить дублирование
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>👥 Ответственные: Software Architect + QA Lead
+</span></code></pre></div>
+<h4 id="_14"><strong>Средние задачи:</strong><a class="headerlink" href="#_14" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>✅ <strong>Разбить routes_data.cpp (872 строки)</strong> - выделить вычисления рекомендаций</li>
+<li>✅ <strong>Разбить mqtt_client.cpp (721 строка)</strong> - выделить Home Assistant интеграцию</li>
+<li>✅ <strong>Разбить modbus_sensor.cpp (631 строка)</strong> - выделить калибровку и компенсацию</li>
+<li>✅ <strong>Уменьшить дублирование паттернов</strong> - создать общие функции для культур</li>
+</ul>
+<h3 id="23-testing-enhancement-test-engineer"><strong>2.3 Testing Enhancement</strong> (Test Engineer)<a class="headerlink" href="#23-testing-enhancement-test-engineer" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>🎯 Цель: Расширить покрытие тестирования
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>📊 Метрики: 80% code coverage, больше типов тестов
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>👥 Ответственные: Test Engineer
+</span></code></pre></div>
+<h4 id="_15"><strong>Средние задачи:</strong><a class="headerlink" href="#_15" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>✅ <strong>Увеличить code coverage</strong> - до 80%</li>
+<li>✅ <strong>Integration tests на ESP32</strong> - тесты на реальном железе</li>
+<li>✅ <strong>Performance regression tests</strong> - автоматические тесты производительности</li>
+<li>✅ <strong>Mutation testing</strong> - качество тестов</li>
+</ul>
+<h2 id="3-6">🔵 Фаза 3: Сложные инновации (6 месяцев)<a class="headerlink" href="#3-6" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="31-business-logic-refactoring-software-architect"><strong>3.1 Business Logic Refactoring</strong> (Software Architect)<a class="headerlink" href="#31-business-logic-refactoring-software-architect" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>🎯 Цель: Выделить бизнес-логику в отдельные модули
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>📊 Метрики: Модульная архитектура, переиспользуемые компоненты
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>👥 Ответственные: Software Architect + Technical Lead
+</span></code></pre></div>
+<h4 id="_16"><strong>Сложные задачи:</strong><a class="headerlink" href="#_16" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>✅ <strong>Создать CropRecommendationEngine</strong> - выделить логику рекомендаций из routes_data.cpp</li>
+<li>✅ <strong>Создать SensorCalibrationService</strong> - выделить калибровку из modbus_sensor.cpp</li>
+<li>✅ <strong>Создать HomeAssistantIntegration</strong> - выделить HA логику из mqtt_client.cpp</li>
+<li>✅ <strong>Создать ConfigurationManager</strong> - централизованное управление конфигурацией</li>
+<li>✅ <strong>Устранить дублирование паттернов</strong> - фабрики для культур, общие интерфейсы</li>
+</ul>
+<h3 id="32-multi-sensor-support-software-architect"><strong>3.2 Multi-Sensor Support</strong> (Software Architect)<a class="headerlink" href="#32-multi-sensor-support-software-architect" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>🎯 Цель: Поддержка до 5 датчиков с усреднением данных
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>📊 Метрики: Multi-device support, averaged readings table
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>👥 Ответственные: Software Architect + Platform Engineer
+</span></code></pre></div>
+<h4 id="_17"><strong>Сложные задачи:</strong><a class="headerlink" href="#_17" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>✅ <strong>Конфигурация адресов</strong> - настройка адресов для каждого датчика</li>
+<li>✅ <strong>Массовое чтение данных</strong> - опрос всех датчиков по очереди</li>
+<li>✅ <strong>Усреднение показаний</strong> - математическое усреднение данных</li>
+<li>✅ <strong>Таблица всех датчиков</strong> - отображение данных каждого + среднее</li>
+<li>✅ <strong>Fallback логика</strong> - работа при отключении части датчиков</li>
+</ul>
+<h3 id="33-uxui-cosmetic-updates-frontend-engineer"><strong>3.3 UX/UI Cosmetic Updates</strong> (Frontend Engineer)<a class="headerlink" href="#33-uxui-cosmetic-updates-frontend-engineer" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>🎯 Цель: Косметические улучшения интерфейса
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>📊 Метрики: Улучшенная читаемость, consistency
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>👥 Ответственные: Frontend Engineer
+</span></code></pre></div>
+<h4 id="_18"><strong>Сложные задачи:</strong><a class="headerlink" href="#_18" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>✅ <strong>Consistency improvements</strong> - единый стиль элементов</li>
+<li>✅ <strong>Better mobile support</strong> - улучшение на мобильных</li>
+<li>✅ <strong>Accessibility fixes</strong> - базовые улучшения доступности</li>
+<li>✅ <strong>Performance optimization</strong> - оптимизация загрузки страниц</li>
+</ul>
+<h2 id="4">⚫ Фаза 4: Низкий приоритет (по необходимости)<a class="headerlink" href="#4" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="41-security-enhancement-security-engineer-"><strong>4.1 Security Enhancement</strong> (Security Engineer - консультативно)<a class="headerlink" href="#41-security-enhancement-security-engineer-" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>🎯 Цель: Дополнительная безопасность при необходимости
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>📊 Метрики: По запросу пользователей/требований
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>👥 Ответственные: Security Engineer (консультативная роль)
+</span></code></pre></div>
+<h4 id="_19"><strong>Опциональные задачи:</strong><a class="headerlink" href="#_19" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>⚪ <strong>HTTPS support</strong> - если потребуется для production</li>
+<li>⚪ <strong>Rate limiting</strong> - если возникнут проблемы с нагрузкой</li>
+<li>⚪ <strong>Advanced encryption</strong> - по специальным требованиям</li>
+<li>⚪ <strong>Security audit</strong> - периодически при необходимости</li>
+</ul>
+<h3 id="42-hardware-optimization-platform-engineer-"><strong>4.2 Hardware Optimization</strong> (Platform Engineer - по запросу)<a class="headerlink" href="#42-hardware-optimization-platform-engineer-" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>🎯 Цель: Дополнительная оптимизация железа
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>📊 Метрики: При необходимости оптимизации ресурсов
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>👥 Ответственные: Platform Engineer (по запросу)
+</span></code></pre></div>
+<h4 id="_20"><strong>Опциональные задачи:</strong><a class="headerlink" href="#_20" title="Постоянная ссылка">&para;</a></h4>
+<ul>
+<li>⚪ <strong>Memory optimization</strong> - при нехватке RAM</li>
+<li>⚪ <strong>Flash optimization</strong> - при нехватке Flash</li>
+<li>⚪ <strong>Power management</strong> - для батарейного питания</li>
+<li>⚪ <strong>Bootloader optimization</strong> - при проблемах с загрузкой</li>
+</ul>
+<h2 id="_21">📊 Метрики успеха (пересмотренные)<a class="headerlink" href="#_21" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="1_1"><strong>Краткосрочные метрики (1 месяц)</strong><a class="headerlink" href="#1_1" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Code Quality</strong>: 12 предупреждений → 6 предупреждений (исправимые)</li>
+<li><strong>Performance</strong>: 43.23s build → &lt;40s build</li>
+<li><strong>Documentation</strong>: 95% → 100% актуальности</li>
+<li><strong>Team productivity</strong>: +20% скорость разработки</li>
+</ul>
+<h3 id="3_1"><strong>Среднесрочные метрики (3 месяца)</strong><a class="headerlink" href="#3_1" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Architecture</strong>: 3 файла &gt;500 строк → 0 файлов &gt;500 строк</li>
+<li><strong>Code duplication</strong>: Высокое → Низкое дублирование паттернов</li>
+<li><strong>Test coverage</strong>: 70.8% → 80%</li>
+<li><strong>DevOps automation</strong>: 90% → 100%</li>
+</ul>
+<h3 id="6_1"><strong>Долгосрочные метрики (6 месяцев)</strong><a class="headerlink" href="#6_1" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Modularity</strong>: Монолитные файлы → Модульная архитектура</li>
+<li><strong>Business logic separation</strong>: Смешанная → Четко разделенная</li>
+<li><strong>Multi-sensor support</strong>: Single → Up to 5 sensors</li>
+<li><strong>Code maintainability</strong>: Good → Excellent</li>
+</ul>
+<h2 id="_22">🎯 Решения пересмотренного консилиума<a class="headerlink" href="#_22" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_23"><strong>✅ Утвержденные принципы:</strong><a class="headerlink" href="#_23" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>От простого к сложному</strong> - начинаем с легких улучшений</li>
+<li><strong>Архитектурный рефакторинг</strong> - главная проблема в больших файлах</li>
+<li><strong>Разделение ответственности</strong> - каждый файл должен иметь одну цель</li>
+<li><strong>Устранение дублирования</strong> - создавать переиспользуемые компоненты</li>
+<li><strong>Sensor-focused</strong> - развиваем именно датчик, не вышестоящие системы</li>
+</ol>
+<h3 id="_24"><strong>🔍 Выявленные архитектурные проблемы:</strong><a class="headerlink" href="#_24" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>routes_data.cpp (872 строки)</strong> - веб-роуты + вычисления + калибровка</li>
+<li><strong>mqtt_client.cpp (721 строка)</strong> - MQTT + Home Assistant + кэширование + OTA</li>
+<li><strong>modbus_sensor.cpp (631 строка)</strong> - Modbus + калибровка + компенсация + валидация</li>
+<li><strong>Дублирование паттернов</strong> - много if-else для культур, кэшей, буферов</li>
+<li><strong>Смешанная ответственность</strong> - бизнес-логика смешана с инфраструктурой</li>
+</ul>
+<h3 id="governance"><strong>📋 Новая governance модель:</strong><a class="headerlink" href="#governance" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Еженедельные reviews</strong> - простых задач</li>
+<li><strong>Месячные checkpoints</strong> - архитектурных улучшений</li>
+<li><strong>Квартальные milestones</strong> - сложных рефакторингов</li>
+<li><strong>Flexible security</strong> - безопасность по запросу</li>
+<li><strong>Architecture first</strong> - архитектура важнее новых функций</li>
+</ul>
+<h2 id="_25">🚀 Заключение пересмотренного консилиума<a class="headerlink" href="#_25" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_26"><strong>Новый вердикт экспертной комиссии:</strong><a class="headerlink" href="#_26" title="Постоянная ссылка">&para;</a></h3>
+<blockquote>
+<p><strong>"Проект JXCT v3.10.0 - функционально отличный IoT датчик, но имеет серьезные архитектурные проблемы. Главная задача - рефакторинг крупных файлов и устранение дублирования кода. Clang-tidy предупреждения вторичны. Фокусируемся на разделении ответственности и модульности."</strong></p>
+</blockquote>
+<h3 id="_27"><strong>Пересмотренные стратегические рекомендации:</strong><a class="headerlink" href="#_27" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>Начать с анализа Clang-tidy</strong> - выяснить что не исправляется и почему</li>
+<li><strong>Разбить крупные файлы</strong> - главная архитектурная проблема</li>
+<li><strong>Выделить бизнес-логику</strong> - создать переиспользуемые модули</li>
+<li><strong>Устранить дублирование</strong> - фабрики для культур, общие интерфейсы</li>
+<li><strong>Поддержка нескольких датчиков</strong> - после архитектурных улучшений</li>
+</ol>
+<h3 id="_28"><strong>Исключенные "фантазии":</strong><a class="headerlink" href="#_28" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>❌ <strong>Advanced Monitoring</strong> - это делают вышестоящие системы</li>
+<li>❌ <strong>ML/AI</strong> - это работа облачных платформ</li>
+<li>❌ <strong>Centralized logging</strong> - не задача датчика</li>
+<li>❌ <strong>Platform Standardization</strong> - неясная задача</li>
+</ul>
+<h3 id="_29"><strong>Реальные архитектурные приоритеты:</strong><a class="headerlink" href="#_29" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>✅ <strong>File size reduction</strong> - файлы &lt;500 строк</li>
+<li>✅ <strong>Single Responsibility</strong> - один файл = одна задача</li>
+<li>✅ <strong>Business logic separation</strong> - выделить в отдельные модули</li>
+<li>✅ <strong>Pattern elimination</strong> - устранить дублирование</li>
+<li>✅ <strong>Modular architecture</strong> - переиспользуемые компоненты</li>
+</ul>
+<h3 id="_30"><strong>Риски и митигация:</strong><a class="headerlink" href="#_30" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Regression during refactoring</strong> - тщательное тестирование</li>
+<li><strong>Breaking changes</strong> - поэтапный рефакторинг</li>
+<li><strong>Performance degradation</strong> - benchmarking на каждом этапе</li>
+<li><strong>Over-engineering</strong> - фокус на простых, работающих решениях</li>
+</ul>
+<h3 id="architecture-refactoring-needed"><strong>Статус проекта</strong>: <strong>ARCHITECTURE REFACTORING NEEDED</strong> 🔧<a class="headerlink" href="#architecture-refactoring-needed" title="Постоянная ссылка">&para;</a></h3>
 <hr />
-<p><em>План выполнен JXCT Development Team</em><br />
-<em>Завершено: 2025-07-06</em></p>
+<p><em>Стратегический план рефакторинга переработан с фокусом на реальные архитектурные проблемы</em><br />
+<em>Выявлены проблемы с крупными файлами и дублированием кода</em><br />
+<em>Дата пересмотра: 22.01.2025</em><br />
+<em>Следующий review: 22.02.2025</em></p>
 
 
 
