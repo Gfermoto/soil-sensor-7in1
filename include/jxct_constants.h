@@ -19,12 +19,12 @@ constexpr unsigned long DEFAULT_MQTT_PUBLISH_INTERVAL = 30000;  // 30 секун
 constexpr unsigned long DEFAULT_THINGSPEAK_INTERVAL = 60000;    // 1 минута
 constexpr unsigned long DEFAULT_NTP_UPDATE_INTERVAL = 3600000;  // 1 час
 
-// Таймауты и задержки
-constexpr unsigned long MODBUS_CACHE_TIMEOUT = 5000;     // 5 секунд
-constexpr unsigned long MODBUS_RETRY_DELAY = 1000;       // 1 секунда
-constexpr unsigned long DNS_CACHE_TTL = 300000;          // 5 минут
-constexpr unsigned long MQTT_RECONNECT_INTERVAL = 5000;  // 5 секунд
-constexpr unsigned long SENSOR_JSON_CACHE_TTL = 1000;    // 1 секунда
+// Таймауты и задержки - ОПТИМИЗИРОВАННЫЕ
+constexpr unsigned long MODBUS_CACHE_TIMEOUT = 3000;     // 3 секунды (было 5) - более быстрый инвалидация кэша
+constexpr unsigned long MODBUS_RETRY_DELAY = 500;        // 0.5 секунды (было 1) - быстрые повторы
+constexpr unsigned long DNS_CACHE_TTL = 180000;          // 3 минуты (было 5) - более частые DNS запросы
+constexpr unsigned long MQTT_RECONNECT_INTERVAL = 3000;  // 3 секунды (было 5) - быстрые переподключения
+constexpr unsigned long SENSOR_JSON_CACHE_TTL = 500;     // 0.5 секунды (было 1) - более свежие данные
 
 // Системные интервалы
 constexpr unsigned long STATUS_PRINT_INTERVAL = 30000;    // 30 секунд

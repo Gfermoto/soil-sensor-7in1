@@ -5,11 +5,11 @@
 #define BOOT_BUTTON 0
 #define STATUS_LED_PIN 2
 
-// Интервалы (мс) - МАКСИМАЛЬНАЯ ОТЗЫВЧИВОСТЬ
-#define SENSOR_READ_INTERVAL 1000    // 1 сек - максимальная частота опроса датчика
-#define MQTT_PUBLISH_INTERVAL 60000  // 1 мин (было 5 мин) - увеличенная частота отправки
-#define THINGSPEAK_INTERVAL 900000   // 15 мин (было 15 сек) - соблюдение rate limit
-#define WEB_UPDATE_INTERVAL 5000     // 5 сек (было 10 сек) - улучшенная отзывчивость
+// Интервалы (мс) - ОПТИМИЗИРОВАННАЯ ПРОИЗВОДИТЕЛЬНОСТЬ
+#define SENSOR_READ_INTERVAL 2000    // 2 сек (было 1 сек) - оптимальный баланс точности и производительности
+#define MQTT_PUBLISH_INTERVAL 30000  // 30 сек (было 1 мин) - улучшенная отзывчивость MQTT
+#define THINGSPEAK_INTERVAL 600000   // 10 мин (было 15 мин) - более частые обновления
+#define WEB_UPDATE_INTERVAL 3000     // 3 сек (было 5 сек) - максимальная отзывчивость веб-интерфейса
 
 // Константы для системы - v2.5.0 подготовка к OTA
 #define HTTP_PORT 80                 // Порт веб-сервера
