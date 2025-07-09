@@ -45,7 +45,7 @@
 - **E2E тесты:** ≥70% веб-интерфейса ✅ **ДОСТИГНУТО**
 - **Security hotspots:** 105 → 80
 - **E2E тесты:** Playwright для Web UI
-- **Security audit:** OWASP IoT Top 10 ✅ **ЗАВЕРШЕНО (30.06.2025)**
+- **Security audit:** OWASP IoT Top 10 ✅ **ЗАВЕРШЕНО**
 
 ## 🚀 **Запуск тестов** {#Zapusk-testov}
 
@@ -127,7 +127,7 @@ pio check -e esp32dev
 - **E2E покрытие:** ≥70% веб-интерфейса ✅ **ДОСТИГНУТО**
 - **Security hotspots:** 105 → 80
 - **E2E тесты:** Playwright для Web UI
-- **Security audit:** OWASP IoT Top 10 ✅ **ЗАВЕРШЕНО (30.06.2025)**
+- **Security audit:** OWASP IoT Top 10 ✅ **ЗАВЕРШЕНО**
 
 ## 🛡️ **Безопасность тестирования:** {#Bezopasnost-testirovaniya}
 
@@ -245,9 +245,9 @@ struct ReportConfig {
 ### JSON отчёт {#json-otchyot}
 ```json
 {
-  "timestamp": "2025-07-05T12:00:00Z",
+  "timestamp": "2025-01-22T12:00:00Z",
   "project": "JXCT Soil Sensor",
-  "version": "3.6.7",
+  "version": "3.10.0",
   "summary": {
     "total_tests": 13,
     "passed_tests": 13,
@@ -364,5 +364,5 @@ void test_performance_new_feature() {
 ---
 
 **Автор**: EYERA Development Team
-**Версия**: 1.0.0
-**Дата**: 2025-07-05
+**Версия**: 3.10.0
+**Дата**: Январь 2025

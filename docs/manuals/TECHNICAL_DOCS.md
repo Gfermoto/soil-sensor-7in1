@@ -1,7 +1,7 @@
 # 🔧 Техническая документация JXCT 7-в-1
 
 **Дата:** Июль 2025
-**Версия:** 3.6.9
+**Версия:** 3.10.0
 **Автор:** JXCT Development Team
 
 ---
@@ -61,10 +61,10 @@
     - [JavaScript API](#javascript-api)
 - [API документация](#api-dokumentatsiya)
   - [REST API](#rest-api)
-    - [GET apiv3.9.0sensor](#get-apiv3.9.0sensor)
-    - [GET apiv3.9.0config](#get-apiv3.9.0config)
-    - [POST apiv3.9.0config](#post-apiv3.9.0config)
-    - [GET apiv3.9.0status](#get-apiv3.9.0status)
+    - [GET apiv1sensor](#get-apiv1sensor)
+- [GET apiv1config](#get-apiv1config)
+- [POST apiv1config](#post-apiv1config)
+- [GET apiv1status](#get-apiv1status)
   - [MQTT API](#mqtt-api)
     - [Топики для публикации](#Topiki-dlya-publikatsii)
     - [Топики для подписки](#Topiki-dlya-podpiski)
@@ -454,7 +454,7 @@ float applyCompensation(float calibratedValue, SensorData data) {
 /intervals          → Настройка интервалов
 /updates            → OTA обновления
 /service            → Сервисные функции
-/api/v3.9.0/sensor      → JSON API
+/api/v1/sensor      → JSON API
 ```
 
 ### 📱 Адаптивный дизайн {#Adaptivnyy-dizayn}
@@ -478,7 +478,7 @@ float applyCompensation(float calibratedValue, SensorData data) {
 #### JavaScript API {#javascript-api}
 ```javascript
 // Получение данных датчика
-fetch('/api/v3.9.0/sensor')
+fetch('/api/v1/sensor')
     .then(response => response.json())
     .then(data => updateDisplay(data));
 
@@ -492,7 +492,7 @@ setInterval(updateSensorData, 3000);
 
 ### 🌐 REST API {#rest-api}
 
-#### GET `/api/v3.9.0/sensor` {#get-apiv3.9.0sensor}
+#### GET `/api/v1/sensor` {#get-apiv1sensor}
 Получение текущих показаний датчика
 
 **Ответ:**
@@ -550,7 +550,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### GET `/api/v3.9.0/config` {#get-apiv3.9.0config}
+#### GET `/api/v1/config` {#get-apiv1config}
 Получение текущей конфигурации
 
 **Ответ:**
@@ -575,7 +575,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### POST `/api/v3.9.0/config` {#post-apiv3.9.0config}
+#### POST `/api/v1/config` {#post-apiv1config}
 Обновление конфигурации
 
 **Тело запроса:**
@@ -591,13 +591,13 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### GET `/api/v3.9.0/status` {#get-apiv3.9.0status}
+#### GET `/api/v1/status` {#get-apiv1status}
 Получение системного статуса
 
 **Ответ:**
 ```json
 {
-  "version": "3.6.9",
+  "version": "3.10.0",
   "uptime": 86400,
   "free_memory": 150000,
   "wifi_rssi": -45,
@@ -898,8 +898,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.9.0
-- uses: actions/setup-python@v3.9.0
+      - uses: actions/checkout@v4
+- uses: actions/setup-python@v4
       - run: pip install platformio
       - run: pio run
       - run: pio test
@@ -935,4 +935,4 @@ jobs:
 ---
 
 **© 2025 JXCT Development Team**
-*Версия 3.6.9 | Июль 2025*
+*Версия 3.10.0 | Июль 2025*

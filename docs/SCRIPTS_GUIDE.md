@@ -1,6 +1,6 @@
 # 🚀 Руководство по скриптам JXCT
 
-**Версия:** 1.0
+**Версия:** 3.10.0
 **Дата:** Июль 2025
 
 ---
@@ -118,14 +118,14 @@ python scripts/generate_ci_summary.py
 ### Release Manager {#release-manager}
 
 ```powershell
-# Поднять patch версию (3.6.2 -> 3.6.3)
+# Поднять patch версию (3.10.0 -> 3.10.1)
 .\scripts\release.ps1 version -Type patch
 
-# Поднять minor версию (3.6.2 -> 3.7.0)
+# Поднять minor версию (3.10.0 -> 3.11.0)
 .\scripts\release.ps1 version -Type minor
 
 # Создать релиз с конкретной версией
-.\scripts\release.ps1 release -Version "3.6.3" -Message "Новые функции"
+.\scripts\release.ps1 release -Version "3.10.1" -Message "Новые функции"
 
 # Быстрый bump + релиз
 .\scripts\release.ps1 bump -Type patch
@@ -138,7 +138,7 @@ python scripts/generate_ci_summary.py
 python scripts/release_manager.py version --type patch
 
 # Создать релиз
-python scripts/release_manager.py release --version "3.6.3"
+python scripts/release_manager.py release --version "3.10.1"
 
 # Синхронизировать версии
 python scripts/release_manager.py sync

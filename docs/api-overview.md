@@ -82,7 +82,7 @@ curl http://192.168.4.1/api/v1/system/health
 {
   "device": {
     "model": "JXCT-7in1",
-    "version": "3.6.7"
+    "version": "3.10.0"
   },
   "memory": {
     "free_heap": 228732,
