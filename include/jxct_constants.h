@@ -87,7 +87,7 @@ constexpr float SENSOR_PH_MAX = 14.0F;
 constexpr uint16_t SENSOR_EC_MIN = 0;
 constexpr uint16_t SENSOR_EC_MAX = 20000;
 constexpr uint16_t SENSOR_NPK_MIN = 0;
-constexpr uint16_t SENSOR_NPK_MAX = 9999;
+constexpr uint16_t SENSOR_NPK_MAX = 2000;  // ИСПРАВЛЕНО: соответствует максимальному значению датчика JXCT
 
 // Диапазоны конфигурации
 constexpr unsigned long CONFIG_INTERVAL_MIN = 1000;       // 1 секунда
