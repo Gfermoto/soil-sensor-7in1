@@ -385,7 +385,7 @@ constexpr float TEMP_MAX_VALID = 115.0F;
 constexpr float HUM_MIN_VALID = 0.0F;
 constexpr float HUM_MAX_VALID = 100.0F;
 constexpr int EC_MAX_VALID = 10000;
-constexpr int NPK_MAX_VALID = 1999;
+constexpr int NPK_MAX_VALID = 2000;  // ИСПРАВЛЕНО: соответствует максимальному значению датчика JXCT
 
 // Размеры JSON документов
 constexpr size_t SENSOR_JSON_DOC_SIZE = 512;
