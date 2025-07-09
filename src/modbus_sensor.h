@@ -18,9 +18,9 @@
 #define REG_ERROR_STATUS 0x0B      // Статус ошибок
 #define REG_DEVICE_ADDRESS 0x0C    // Адрес устройства
 
-// Допустимые пределы измерений
-#define MIN_TEMPERATURE -10.0
-#define MAX_TEMPERATURE 50.0
+// Допустимые пределы измерений (расширены для совместимости с веб-интерфейсом)
+#define MIN_TEMPERATURE -45.0
+#define MAX_TEMPERATURE 115.0
 #define MIN_HUMIDITY 0.0
 #define MAX_HUMIDITY 100.0
 #define MIN_EC 0.0

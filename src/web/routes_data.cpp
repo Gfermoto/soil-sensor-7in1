@@ -200,9 +200,10 @@ RecValues computeRecommendations()
     }
 
     // 3a. Конверсия NPK в мг/кг (датчик выдаёт мг/кг, таблица хранилась в мг/дм³ ~ экстракт 1:5)
-    rec.n *= TEST_DATA_NPK_FACTOR;
-    rec.p *= TEST_DATA_NPK_FACTOR;
-    rec.k *= TEST_DATA_NPK_FACTOR;
+    // ИСПРАВЛЕНО: убираем умножение, так как датчик и рекомендации уже в мг/кг
+    // rec.n *= TEST_DATA_NPK_FACTOR;
+    // rec.p *= TEST_DATA_NPK_FACTOR;
+    // rec.k *= TEST_DATA_NPK_FACTOR;
 
     // 4. Сезонная коррекция (только если включена)
     if (config.flags.seasonalAdjustEnabled)
