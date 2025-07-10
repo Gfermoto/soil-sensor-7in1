@@ -48,7 +48,7 @@ float applyExponentialSmoothing(float new_value, ExponentialSmoothingState& stat
 }
 
 // ============================================================================
-// АДАПТИВНЫЕ ПОРОГИ ВЫБРОСОВ
+// СТАТИСТИЧЕСКИЙ АНАЛИЗ
 // ============================================================================
 
 struct StatisticsBuffer {
@@ -63,6 +63,11 @@ struct StatisticsBuffer {
         values.fill(0.0F);
     }
 };
+
+// Объявления функций
+void updateStatistics(float new_value, StatisticsBuffer& buffer);
+bool isOutlier(float value, const StatisticsBuffer& buffer, float threshold_multiplier);
+float applyECSpecializedFilter(float raw_value);
 
 static StatisticsBuffer stats_temp;
 static StatisticsBuffer stats_hum;
@@ -169,6 +174,11 @@ static KalmanFilter kalman_k(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
 float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, bool enable_adaptive) {
     float filtered_value = raw_value;
     
+    // Специализированная фильтрация EC
+    if (type == FilterType::EC) {
+        filtered_value = applyECSpecializedFilter(raw_value);
+    }
+    
     // 1. Обновляем статистику для адаптивных порогов
     if (enable_adaptive) {
         StatisticsBuffer* buffer = nullptr;
@@ -183,10 +193,28 @@ float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, 
         }
         
         if (buffer) {
-            updateStatistics(raw_value, *buffer);
+            updateStatistics(filtered_value, *buffer);
             
             // Проверяем на выбросы
-            if (isOutlier(raw_value, *buffer, config.outlierThreshold)) {
+            float threshold = config.outlierThreshold;
+            
+            // Специальная обработка для EC - более строгие пороги
+            if (type == FilterType::EC) {
+                threshold = config.outlierThreshold * 0.7F; // Более строгий порог для EC
+                
+                // Дополнительная проверка для EC - если значение слишком сильно отличается от предыдущего
+                if (buffer->filled >= 5) { // Нужно минимум 5 измерений
+                    float last_value = buffer->values[(buffer->index - 1 + STATISTICS_WINDOW_SIZE) % STATISTICS_WINDOW_SIZE];
+                    float change_percent = abs(filtered_value - last_value) / last_value * 100.0F;
+                    
+                    // Если изменение больше 20% - считаем выбросом
+                    if (change_percent > 20.0F) {
+                        return buffer->mean;
+                    }
+                }
+            }
+            
+            if (isOutlier(filtered_value, *buffer, threshold)) {
                 // Возвращаем предыдущее значение вместо выброса
                 return buffer->mean;
             }
@@ -200,7 +228,7 @@ float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, 
     // Дифференцированные настройки для шумных параметров
     switch (type) {
         case FilterType::EC:
-            alpha = config.exponentialAlpha * 0.7F; // Более агрессивное сглаживание для EC
+            alpha = config.exponentialAlpha * 0.5F; // Очень агрессивное сглаживание для EC
             break;
         case FilterType::NITROGEN:
         case FilterType::PHOSPHORUS:
@@ -245,6 +273,104 @@ float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, 
     }
     
     return filtered_value;
+}
+
+// ============================================================================
+// СПЕЦИАЛИЗИРОВАННАЯ ФИЛЬТРАЦИЯ EC
+// ============================================================================
+
+struct ECFilterState {
+    std::array<float, 10> recent_values;  // Последние 10 значений
+    uint8_t index;
+    uint8_t filled;
+    float baseline;                       // Базовое значение
+    uint32_t last_spike_time;             // Время последнего выброса
+    uint8_t spike_count;                  // Счетчик выбросов
+    bool baseline_valid;
+    
+    ECFilterState() : index(0), filled(0), baseline(0.0F), 
+                     last_spike_time(0), spike_count(0), baseline_valid(false) {
+        recent_values.fill(0.0F);
+    }
+};
+
+static ECFilterState ec_filter_state;
+
+// Анализ паттерна выбросов EC
+bool isECSpikePattern(float new_value, float baseline) {
+    if (!ec_filter_state.baseline_valid) {
+        return false;
+    }
+    
+    float spike_threshold = baseline * 0.15F; // 15% от базового значения
+    float spike_height = new_value - baseline;
+    
+    // Проверяем, что это выброс вверх
+    if (spike_height < spike_threshold) {
+        return false;
+    }
+    
+    // Проверяем периодичность (если выбросы происходят регулярно)
+    uint32_t current_time = millis();
+    uint32_t time_since_last = current_time - ec_filter_state.last_spike_time;
+    
+    // Если выбросы происходят с интервалом 2-10 секунд - это паттерн
+    if (time_since_last > 2000 && time_since_last < 10000) {
+        ec_filter_state.spike_count++;
+        ec_filter_state.last_spike_time = current_time;
+        
+        // Если за последние 30 секунд было больше 3 выбросов - это системная проблема
+        if (ec_filter_state.spike_count > 3) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+// Обновление базового значения EC
+void updateECBaseline(float new_value) {
+    if (!ec_filter_state.baseline_valid) {
+        ec_filter_state.baseline = new_value;
+        ec_filter_state.baseline_valid = true;
+        return;
+    }
+    
+    // Медленное обновление базового значения (α = 0.1)
+    ec_filter_state.baseline = ec_filter_state.baseline * 0.9F + new_value * 0.1F;
+}
+
+// Специализированная фильтрация EC
+float applyECSpecializedFilter(float raw_value) {
+    // Обновляем историю значений
+    ec_filter_state.recent_values[ec_filter_state.index] = raw_value;
+    ec_filter_state.index = (ec_filter_state.index + 1) % 10;
+    if (ec_filter_state.filled < 10) ec_filter_state.filled++;
+    
+    // Обновляем базовое значение
+    updateECBaseline(raw_value);
+    
+    // Проверяем паттерн выбросов
+    if (isECSpikePattern(raw_value, ec_filter_state.baseline)) {
+        logSystemSafe("[EC_FILTER] Обнаружен паттерн выбросов: %.1f -> %.1f (база: %.1f)", 
+                     ec_filter_state.baseline, raw_value, ec_filter_state.baseline);
+        return ec_filter_state.baseline; // Возвращаем базовое значение
+    }
+    
+    // Дополнительная проверка на аномальные скачки
+    if (ec_filter_state.filled >= 3) {
+        float prev_value = ec_filter_state.recent_values[(ec_filter_state.index - 2 + 10) % 10];
+        float change_percent = abs(raw_value - prev_value) / prev_value * 100.0F;
+        
+        // Если изменение больше 25% - считаем выбросом
+        if (change_percent > 25.0F) {
+            logSystemSafe("[EC_FILTER] Аномальный скачок: %.1f -> %.1f (%.1f%%)", 
+                         prev_value, raw_value, change_percent);
+            return prev_value;
+        }
+    }
+    
+    return raw_value;
 }
 
 // ============================================================================
@@ -301,6 +427,9 @@ void resetAllFilters() {
     kalman_p.reset();
     kalman_k.reset();
     
+    // Сбрасываем специализированный фильтр EC
+    ec_filter_state = ECFilterState();
+    
     logSystem("[ADVANCED_FILTERS] Все фильтры сброшены");
 }
 
@@ -317,6 +446,12 @@ void logFilterStatistics() {
     logSystemSafe("N: μ=%.2f, σ=%.2f", stats_n.mean, stats_n.std_dev);
     logSystemSafe("P: μ=%.2f, σ=%.2f", stats_p.mean, stats_p.std_dev);
     logSystemSafe("K: μ=%.2f, σ=%.2f", stats_k.mean, stats_k.std_dev);
+    
+    // Диагностика специализированного фильтра EC
+    if (ec_filter_state.baseline_valid) {
+        logSystemSafe("EC Фильтр: база=%.1f, выбросов=%d", 
+                     ec_filter_state.baseline, ec_filter_state.spike_count);
+    }
 }
 
 } // namespace AdvancedFilters 
