@@ -10,9 +10,7 @@
 #include "../../include/calibration_manager.h"
 
 // Определение статического члена
-namespace {
-    std::map<SoilProfile, CalibrationTable> calibrationTables;
-}
+std::map<SoilProfile, CalibrationTable> SensorCalibrationService::calibrationTables;
 
 SensorCalibrationService::SensorCalibrationService() {
     logDebugSafe("SensorCalibrationService: Инициализация сервиса калибровки");
@@ -250,17 +248,14 @@ float SensorCalibrationService::applyCalibrationWithInterpolation(float rawValue
     return points[points.size() - 1].referenceValue;
 }
 
-namespace {
-float linearInterpolation(float value, float raw1, float ref1, float raw2, float ref2) {
-    if (raw2 == raw1) {
-        return ref1;
+float SensorCalibrationService::linearInterpolation(float x, float x1, float y1, float x2, float y2) const {
+    if (x2 == x1) {
+        return y1;
     }
-    return ref1 + (((ref2 - ref1) * (value - raw1)) / (raw2 - raw1));
+    return y1 + (((y2 - y1) * (x - x1)) / (x2 - x1));
 }
-} // end anonymous namespace
 
-namespace {
-bool parseCalibrationCSV(const String& csvData, CalibrationTable& table) {
+bool SensorCalibrationService::parseCalibrationCSV(const String& csvData, CalibrationTable& table) {
     // Простая реализация парсинга CSV
     // В реальной реализации здесь был бы более сложный парсер
 
@@ -318,10 +313,8 @@ bool parseCalibrationCSV(const String& csvData, CalibrationTable& table) {
 
     return table.isValid;
 }
-} // end anonymous namespace
 
-namespace {
-bool validateCalibrationPoints(const std::vector<CalibrationPoint>& points) {
+bool SensorCalibrationService::validateCalibrationPoints(const std::vector<CalibrationPoint>& points) const {
     if (points.empty()) {
         return true;
     }
@@ -335,4 +328,3 @@ bool validateCalibrationPoints(const std::vector<CalibrationPoint>& points) {
 
     return true;
 }
-} // end anonymous namespace

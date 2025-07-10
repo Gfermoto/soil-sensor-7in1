@@ -55,7 +55,7 @@ def test_config_validation():
             print(f"  ✗ SSID='{ssid}', MQTT={mqtt_enabled}, TS={ts_enabled} - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_calibration_logic():
     """Тест логики калибровки"""
@@ -114,7 +114,7 @@ def test_calibration_logic():
             print(f"  ✗ {raw_value} -> {result:.3f} (ожидалось {expected:.3f})")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_modbus_validation():
     """Тест валидации ModBus данных"""
@@ -163,7 +163,7 @@ def test_modbus_validation():
             print(f"  ✗ T={temp}, H={hum}, pH={ph}, EC={ec} - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_mqtt_connection_logic():
     """Тест логики MQTT подключения"""
@@ -202,7 +202,7 @@ def test_mqtt_connection_logic():
             print(f"  ✗ {server}:{port} - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_file_operations():
     """Тест файловых операций"""
@@ -240,7 +240,7 @@ def test_file_operations():
                 print(f"  ✗ {path} - не найдена")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def main():
     """Главная функция"""
@@ -260,17 +260,25 @@ def main():
     for test_name, test_func in tests:
         print(f"\n[{test_name}]")
         try:
-            if test_func():
-                print(f"  ПРОЙДЕН")
-                passed_tests += 1
-            else:
-                print(f"  ПРОВАЛЕН")
+            test_func()
+            print(f"  ПРОЙДЕН")
+            passed_tests += 1
+        except AssertionError as e:
+            print(f"  ПРОВАЛЕН: {e}")
         except Exception as e:
             print(f"  ОШИБКА: {e}")
 
     print(f"\n=== ИТОГ: {passed_tests}/{total_tests} ===")
-    return passed_tests == total_tests
+    assert passed_tests == total_tests, f"Ожидалось {total_tests} пройденных тестов, получено {passed_tests}"
 
 if __name__ == "__main__":
-    success = main()
-    sys.exit(0 if success else 1)
+    try:
+        main()
+        print("Все тесты пройдены успешно!")
+        sys.exit(0)
+    except AssertionError as e:
+        print(f"Тесты провалены: {e}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Критическая ошибка: {e}")
+        sys.exit(1)

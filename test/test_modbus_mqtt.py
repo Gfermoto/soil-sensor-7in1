@@ -58,7 +58,7 @@ def test_modbus_register_mapping():
             print(f"  ✗ Регистр 0x{reg_addr:04X}: не найден в карте")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_mqtt_topic_generation():
     """Тест генерации MQTT топиков"""
@@ -88,7 +88,7 @@ def test_mqtt_topic_generation():
             print(f"  ✗ {device_id} -> {generated_topic} (ожидалось {expected})")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_network_validation():
     """Тест валидации сетевых параметров"""
@@ -153,7 +153,7 @@ def test_network_validation():
             print(f"  ✗ '{address}' - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_sensor_data_filtering():
     """Тест фильтрации данных датчика"""
@@ -184,7 +184,7 @@ def test_sensor_data_filtering():
             print(f"  ✗ Данные {i+1}: среднее {avg:.1f} (ожидалось {expected:.1f})")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_windows_compatibility():
     """Тест совместимости с Windows"""
@@ -210,7 +210,7 @@ def test_windows_compatibility():
             print(f"  ✗ {test_name}")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def main():
     """Главная функция"""
@@ -230,17 +230,25 @@ def main():
     for test_name, test_func in tests:
         print(f"\n[{test_name}]")
         try:
-            if test_func():
-                print(f"  ПРОЙДЕН")
-                passed_tests += 1
-            else:
-                print(f"  ПРОВАЛЕН")
+            test_func()
+            print(f"  ПРОЙДЕН")
+            passed_tests += 1
+        except AssertionError as e:
+            print(f"  ПРОВАЛЕН: {e}")
         except Exception as e:
             print(f"  ОШИБКА: {e}")
 
     print(f"\n=== ИТОГ: {passed_tests}/{total_tests} ===")
-    return passed_tests == total_tests
+    assert passed_tests == total_tests, f"Ожидалось {total_tests} пройденных тестов, получено {passed_tests}"
 
 if __name__ == "__main__":
-    success = main()
-    sys.exit(0 if success else 1)
+    try:
+        main()
+        print("Все тесты пройдены успешно!")
+        sys.exit(0)
+    except AssertionError as e:
+        print(f"Тесты провалены: {e}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Критическая ошибка: {e}")
+        sys.exit(1)

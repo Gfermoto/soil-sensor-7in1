@@ -50,7 +50,7 @@ def test_basic_files():
             print(f"  ✗ {file_path}")
 
     print(f"  Результат: {passed}/{total} файлов найдено")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} файлов, найдено {passed}"
 
 def test_cpp_files():
     """Тест C++ файлов"""
@@ -70,7 +70,7 @@ def test_cpp_files():
     print(f"  H файлы: {len(h_files)}")
     print(f"  Валидные: {passed_files}/{total_files}")
 
-    return passed_files > 0
+    assert passed_files > 0, f"Не найдено валидных файлов из {total_files}"
 
 def test_python_files():
     """Тест Python файлов"""
@@ -85,7 +85,7 @@ def test_python_files():
             passed_files += 1
 
     print(f"  Python файлы: {passed_files}/{len(python_files)}")
-    return passed_files > 0
+    assert passed_files > 0, f"Не найдено валидных Python файлов из {len(python_files)}"
 
 def main():
     """Главная функция"""
@@ -103,17 +103,25 @@ def main():
     for test_name, test_func in tests:
         print(f"\n[{test_name}]")
         try:
-            if test_func():
-                print(f"  ПРОЙДЕН")
-                passed_tests += 1
-            else:
-                print(f"  ПРОВАЛЕН")
+            test_func()
+            print(f"  ПРОЙДЕН")
+            passed_tests += 1
+        except AssertionError as e:
+            print(f"  ПРОВАЛЕН: {e}")
         except Exception as e:
             print(f"  ОШИБКА: {e}")
 
     print(f"\n=== ИТОГ: {passed_tests}/{total_tests} ===")
-    return passed_tests == total_tests
+    assert passed_tests == total_tests, f"Ожидалось {total_tests} пройденных тестов, получено {passed_tests}"
 
 if __name__ == "__main__":
-    success = main()
-    sys.exit(0 if success else 1)
+    try:
+        main()
+        print("Все тесты пройдены успешно!")
+        sys.exit(0)
+    except AssertionError as e:
+        print(f"Тесты провалены: {e}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Критическая ошибка: {e}")
+        sys.exit(1)

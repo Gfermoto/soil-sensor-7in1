@@ -56,7 +56,7 @@ def test_wifi_logic():
             print(f"  ✗ SSID='{ssid[:10]}...', PWD='{password[:5]}...' -> {mode} (ожидалось {expected_mode})")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_thingspeak_validation():
     """Тест валидации ThingSpeak"""
@@ -103,7 +103,7 @@ def test_thingspeak_validation():
             print(f"  ✗ API='{api_key[:8]}...', CH='{channel_id}' - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_ota_validation():
     """Тест валидации OTA обновлений"""
@@ -156,7 +156,7 @@ def test_ota_validation():
             print(f"  ✗ URL='{url[:30]}...', SHA256='{sha256[:8]}...' - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_memory_management():
     """Тест управления памятью"""
@@ -199,7 +199,7 @@ def test_memory_management():
             print(f"  ✗ {free_heap} байт, {operation} - {result} (ожидалось {expected_result})")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def test_error_handling():
     """Тест обработки ошибок"""
@@ -257,7 +257,7 @@ def test_error_handling():
             print(f"  ✗ {service} код {error_code} -> {actual_action} (ожидалось {expected_action})")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
 
 def main():
     """Главная функция"""
@@ -277,17 +277,25 @@ def main():
     for test_name, test_func in tests:
         print(f"\n[{test_name}]")
         try:
-            if test_func():
-                print(f"  ПРОЙДЕН")
-                passed_tests += 1
-            else:
-                print(f"  ПРОВАЛЕН")
+            test_func()
+            print(f"  ПРОЙДЕН")
+            passed_tests += 1
+        except AssertionError as e:
+            print(f"  ПРОВАЛЕН: {e}")
         except Exception as e:
             print(f"  ОШИБКА: {e}")
 
     print(f"\n=== ИТОГ: {passed_tests}/{total_tests} ===")
-    return passed_tests == total_tests
+    assert passed_tests == total_tests, f"Ожидалось {total_tests} пройденных тестов, получено {passed_tests}"
 
 if __name__ == "__main__":
-    success = main()
-    sys.exit(0 if success else 1)
+    try:
+        main()
+        print("Все тесты пройдены успешно!")
+        sys.exit(0)
+    except AssertionError as e:
+        print(f"Тесты провалены: {e}")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Критическая ошибка: {e}")
+        sys.exit(1)

@@ -8,6 +8,7 @@
 #define ICROP_RECOMMENDATION_ENGINE_H
 
 #include <Arduino.h>
+#include "../sensor_compensation.h"  // Для SoilProfile
 
 // Структура для рекомендаций
 struct RecValues {
@@ -34,14 +35,7 @@ enum class EnvironmentType {
     INDOOR = 2
 };
 
-// Профили почвы (совместимость с существующим кодом)
-enum class SoilProfile {
-    SAND = 0,
-    LOAM = 1,
-    PEAT = 2,
-    CLAY = 3,
-    SANDPEAT = 4
-};
+// SoilProfile определен в sensor_compensation.h
 
 /**
  * @brief Интерфейс для движка рекомендаций по культурам

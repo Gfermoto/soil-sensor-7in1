@@ -15,6 +15,7 @@
 #include "jxct_device_info.h"
 #include "logger.h"
 #include "sensor_compensation.h"
+#include "business_services.h"
 
 ModbusMaster modbus;
 SensorData sensorData;
@@ -121,6 +122,7 @@ void applyCompensationIfEnabled(SensorData& data)
         return;
     }
 
+    // Преобразуем конфигурацию в типы бизнес-логики
     SoilType soil = SoilType::LOAM;
     SoilProfile profile = SoilProfile::SAND;
     switch (config.soilProfile)
@@ -146,35 +148,16 @@ void applyCompensationIfEnabled(SensorData& data)
             profile = SoilProfile::SANDPEAT;
             break;
         default:
-            // По умолчанию используем LOAM
             soil = SoilType::LOAM;
             profile = SoilProfile::LOAM;
             break;
     }
 
-    // Шаг 1: Применяем калибровочную таблицу CSV (лабораторная поверка)
-    const float tempCalibrated = CalibrationManager::applyCalibration(data.temperature, profile);
-    const float humCalibrated = CalibrationManager::applyCalibration(data.humidity, profile);
-    const float ecCalibrated = CalibrationManager::applyCalibration(data.ec, profile);
-    const float phCalibrated = CalibrationManager::applyCalibration(data.ph, profile);
-    const float nCalibrated = CalibrationManager::applyCalibration(data.nitrogen, profile);
-    const float pCalibrated = CalibrationManager::applyCalibration(data.phosphorus, profile);
-    const float kCalibrated = CalibrationManager::applyCalibration(data.potassium, profile);
+    // Шаг 1: Применяем калибровку через бизнес-сервис
+    getCalibrationService().applyCalibration(data, profile);
 
-    // Шаг 2: Применяем математическую компенсацию (температурная, влажностная)
-    data.ec = correctEC(ecCalibrated, tempCalibrated, humCalibrated, soil);
-
-            data.ph = correctPH(tempCalibrated, phCalibrated);
-
-    NPKReferences npk{data.nitrogen, data.phosphorus, data.potassium};
-            correctNPK(tempCalibrated, humCalibrated, soil, npk);
-    data.nitrogen = npk.nitrogen;
-    data.phosphorus = npk.phosphorus;
-    data.potassium = npk.potassium;
-
-    // Обновляем остальные значения
-    data.temperature = tempCalibrated;
-    data.humidity = humCalibrated;
+    // Шаг 2: Применяем компенсацию через бизнес-сервис
+    getCompensationService().applyCompensation(data, soil);
 }
 
 bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)

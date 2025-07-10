@@ -26,6 +26,14 @@
 #include "version.h"     // ✅ Централизованное управление версией
 #include "web_routes.h"  // ✅ CSRF защита
 #include "wifi_manager.h"
+#include "business/crop_recommendation_engine.h"
+#include "business/sensor_calibration_service.h"
+#include "business/sensor_compensation_service.h"
+
+// Глобальные экземпляры бизнес-сервисов
+extern CropRecommendationEngine gCropEngine;
+extern SensorCalibrationService gCalibrationService;
+extern SensorCompensationService gCompensationService;
 
 // Переменные для отслеживания времени
 namespace
@@ -49,9 +57,7 @@ bool pendingThingspeakPublish = false;
 WiFiUDP ntpUDP;                   // NOLINT(misc-use-internal-linkage)
 NTPClient* timeClient = nullptr;  // NOLINT(misc-use-internal-linkage)
 
-// Константы
-const int RESET_BUTTON_PIN = 0;                     // GPIO0 для кнопки сброса
-const unsigned long STATUS_PRINT_INTERVAL = 30000;  // 30 секунд
+// Константы определены в jxct_constants.h
 
 namespace {
 // Внутренняя инициализация Preferences

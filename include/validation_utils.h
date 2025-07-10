@@ -8,6 +8,7 @@
 
 #include <Arduino.h>
 #include <vector>
+#include "modbus_sensor.h"  // Для SensorData
 
 // ============================================================================
 // СТРУКТУРЫ РЕЗУЛЬТАТОВ ВАЛИДАЦИИ
@@ -69,31 +70,7 @@ struct ConfigData
     unsigned long ntpUpdateInterval;
 };
 
-// Упрощенная структура данных датчика для валидации
-struct SensorData
-{
-    float temperature;
-    float humidity;
-    float ph;
-    float ec;          // Исправлено: должно быть float
-    float nitrogen;    // Исправлено: должно быть float
-    float phosphorus;  // Исправлено: должно быть float
-    float potassium;   // Исправлено: должно быть float
-
-    // Сырые значения (до калибровки/компенсации)
-    float raw_temperature;
-    float raw_humidity;
-    float raw_ph;
-    float raw_ec;
-    float raw_nitrogen;
-    float raw_phosphorus;
-    float raw_potassium;
-
-    SensorData() : temperature(0), humidity(0), ph(0), ec(0),
-                   nitrogen(0), phosphorus(0), potassium(0),
-                   raw_temperature(0), raw_humidity(0), raw_ph(0), raw_ec(0),
-                   raw_nitrogen(0), raw_phosphorus(0), raw_potassium(0) {}
-};
+// SensorData определен в modbus_sensor.h
 
 // ============================================================================
 // ФУНКЦИИ ВАЛИДАЦИИ КОНФИГУРАЦИИ

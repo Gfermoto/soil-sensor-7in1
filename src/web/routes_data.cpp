@@ -19,6 +19,7 @@
 #include "../modbus_sensor.h"
 #include "../wifi_manager.h"
 #include "calibration_manager.h"
+#include "business_services.h"
 
 extern NTPClient* timeClient;
 
@@ -33,218 +34,54 @@ namespace
 File uploadFile;
 SoilProfile uploadProfile = SoilProfile::SAND;
 
-struct RecValues
-{
-    float t, hum, ec, ph, n, p, k;
-};
+// Используем RecValues из бизнес-сервиса
 
-// Функции для сезонной коррекции NPK (убираем дублирование)
-void applySpringNPKCorrection(RecValues& rec, bool isGreenhouse)  // NOLINT(misc-unused-parameters)
-{
-    // Весенняя коррекция NPK: применяем стандартные коэффициенты
-    // (логика упрощена - одинаковые коэффициенты для теплицы и открытого грунта)
-    // Параметр isGreenhouse оставлен для совместимости с интерфейсом
-    (void)isGreenhouse;  // Подавляем предупреждение о неиспользуемом параметре
-    rec.n *= TEST_DATA_NPK_INCREASE_N;  // +20%
-    rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
-    rec.k *= TEST_DATA_NPK_INCREASE_K;  // +10%
-}
-
-void applySummerNPKCorrection(RecValues& rec, bool isGreenhouse)
-{
-    rec.n *= TEST_DATA_NPK_DECREASE_N;  // -10%
-    if (isGreenhouse) {
-        rec.p *= 1.10F;                     // +10%
-        rec.k *= TEST_DATA_NPK_DECREASE_K;  // +30%
-    } else {
-        rec.p *= 1.05F;                     // +5%
-        rec.k *= TEST_DATA_NPK_DECREASE_K;  // +25%
-    }
-}
-
-void applyAutumnNPKCorrection(RecValues& rec, bool isGreenhouse)
-{
-    if (isGreenhouse) {
-        rec.n *= TEST_DATA_NPK_INCREASE_N;  // +15%
-        rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15%
-        rec.k *= TEST_DATA_NPK_INCREASE_K;  // +20%
-    } else {
-        rec.n *= TEST_DATA_NPK_DECREASE_N;  // -20%
-        rec.p *= 1.10F;                     // +10%
-        rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15%
-    }
-}
-
-void applyWinterNPKCorrection(RecValues& rec, bool isGreenhouse)
-{
-    if (isGreenhouse) {
-        rec.n *= TEST_DATA_NPK_DECREASE_N;  // +5%
-        rec.p *= 1.10F;                     // +10%
-        rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15%
-    } else {
-        rec.n *= TEST_DATA_NPK_DECREASE_N;  // -30%
-        rec.p *= 1.05F;                     // +5%
-        rec.k *= TEST_DATA_NPK_DECREASE_K;  // +5%
-    }
-}
+// Функции сезонной коррекции NPK перенесены в бизнес-сервис CropRecommendationEngine
 
 RecValues computeRecommendations()
 {
-    // 1. База по культуре или generic
-    RecValues rec{TEST_DATA_TEMP_BASE + 1, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE, TEST_DATA_PH_BASE,
-                  TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
-    const char* cropId = config.cropId;
-    if (strlen(cropId) > 0)
-    {
-        if (strcmp(cropId, "tomato") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE + 0.2F,
-                   TEST_DATA_NPK_BASE + 15, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE + 5};
-        }
-        else if (strcmp(cropId, "cucumber") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE + 4, TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 600, TEST_DATA_PH_BASE - 0.1F,
-                   TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE + 3};
-        }
-        else if (strcmp(cropId, "pepper") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE + 3, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE + 400, TEST_DATA_PH_BASE,
-                   TEST_DATA_NPK_BASE + 13, TEST_DATA_NPK_BASE - 14, TEST_DATA_NPK_BASE + 4};
-        }
-        else if (strcmp(cropId, "lettuce") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE,    TEST_DATA_HUM_BASE + 15, TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.3F,
-                   TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE};
-        }
-        else if (strcmp(cropId, "blueberry") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE - 1.3F,
-                   TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
-        }
-        else if (strcmp(cropId, "lawn") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE, TEST_DATA_HUM_BASE - 10, TEST_DATA_EC_BASE - 400, TEST_DATA_PH_BASE,
-                   TEST_DATA_NPK_BASE,  TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 5};
-        }
-        else if (strcmp(cropId, "grape") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE + 2, TEST_DATA_HUM_BASE - 5,  TEST_DATA_EC_BASE + 200, TEST_DATA_PH_BASE + 0.2F,
-                   TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 13, TEST_DATA_NPK_BASE};
-        }
-        else if (strcmp(cropId, "conifer") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE - 5,  TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.8F,
-                   TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 17, TEST_DATA_NPK_BASE - 10};
-        }
-        else if (strcmp(cropId, "strawberry") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE,     TEST_DATA_HUM_BASE + 10, TEST_DATA_EC_BASE + 300, TEST_DATA_PH_BASE - 0.3F,
-                   TEST_DATA_NPK_BASE + 10, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
-        }
-        else if (strcmp(cropId, "apple") == 0 || strcmp(cropId, "pear") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE,     TEST_DATA_PH_BASE + 0.2F,
-                   TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 5};
-        }
-        else if (strcmp(cropId, "cherry") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE,    TEST_DATA_HUM_BASE,      TEST_DATA_EC_BASE + 100, TEST_DATA_PH_BASE + 0.2F,
-                   TEST_DATA_NPK_BASE + 5, TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE};
-        }
-        else if (strcmp(cropId, "raspberry") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE - 2, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE - 100, TEST_DATA_PH_BASE - 0.1F,
-                   TEST_DATA_NPK_BASE + 5,  TEST_DATA_NPK_BASE - 15, TEST_DATA_NPK_BASE - 3};
-        }
-        else if (strcmp(cropId, "currant") == 0)
-        {
-            rec = {TEST_DATA_TEMP_BASE - 3, TEST_DATA_HUM_BASE + 5,  TEST_DATA_EC_BASE - 200, TEST_DATA_PH_BASE - 0.1F,
-                   TEST_DATA_NPK_BASE,      TEST_DATA_NPK_BASE - 16, TEST_DATA_NPK_BASE - 5};
-        }
+    // Используем бизнес-сервис для вычисления рекомендаций
+    const String cropId = String(config.cropId);
+    
+    // Преобразуем конфигурацию в типы бизнес-логики
+    SoilProfile soilProfile = SoilProfile::SAND;
+    EnvironmentType envType = EnvironmentType::OUTDOOR;
+    
+    switch (config.soilProfile) {
+        case 0: soilProfile = SoilProfile::SAND; break;
+        case 1: soilProfile = SoilProfile::LOAM; break;
+        case 2: soilProfile = SoilProfile::PEAT; break;
+        case 3: soilProfile = SoilProfile::CLAY; break;
+        case 4: soilProfile = SoilProfile::SANDPEAT; break;
+        default: soilProfile = SoilProfile::SAND; break;
     }
-
-    // 2. Коррекция по soilProfile (влажность и pH)
-    const int soil = config.soilProfile;  // 0 sand,1 loam,2 peat,3 clay
-    if (soil == 0)
-    {
-        rec.hum += -5; /* песок */
+    
+    switch (config.environmentType) {
+        case 1: envType = EnvironmentType::GREENHOUSE; break;
+        case 2: envType = EnvironmentType::INDOOR; break;
+        default: envType = EnvironmentType::OUTDOOR; break;
     }
-    else if (soil == 2)
-    {
-        rec.hum += TEST_DATA_HUM_VARIATION;
-        rec.ph -= 0.3F;
-    }
-    else if (soil == 3 || soil == 1)
-    {
-        rec.hum += 5; /* глина или суглинок */
-    }
-
-    // 3. Коррекция по environmentType
-    switch (config.environmentType)
-    {
-        case 1:  // greenhouse
-            rec.hum += TEST_DATA_HUM_VARIATION;
-            rec.ec += TEST_DATA_EC_VARIATION;
-            rec.n += 5;
-            rec.k += 5;
-            rec.t += 2;
-            break;
-        case 2:  // indoor
-            rec.hum += -5;
-            rec.ec -= TEST_DATA_EC_VARIATION_SMALL;
-            rec.t += 1;
-            break;
-        default:
-            // Outdoor (case 0) или неизвестное значение - без дополнительной коррекции
-            break;
-    }
-
-    // 3a. Конверсия NPK в мг/кг (датчик выдаёт мг/кг, таблица хранилась в мг/дм³ ~ экстракт 1:5)
-    // ИСПРАВЛЕНО: убираем умножение, так как датчик и рекомендации уже в мг/кг
-    // rec.n *= TEST_DATA_NPK_FACTOR;
-    // rec.p *= TEST_DATA_NPK_FACTOR;
-    // rec.k *= TEST_DATA_NPK_FACTOR;
-
-    // 4. Сезонная коррекция (только если включена)
-    if (config.flags.seasonalAdjustEnabled)
-    {
+    
+    // Получаем рекомендации от бизнес-сервиса
+    RecValues rec = getCropEngine().computeRecommendations(cropId, soilProfile, envType);
+    
+    // Применяем сезонную коррекцию если включена
+    if (config.flags.seasonalAdjustEnabled) {
         time_t now = time(nullptr);
         struct tm* timeInfo = localtime(&now);
         const int month = timeInfo != nullptr ? timeInfo->tm_mon + 1 : 1;
-        const bool rainy = (month == 4 || month == 5 || month == 6 || month == 10);
-
-        // Коррекция влажности и EC
-        if (rainy)
-        {
-            rec.hum += 5;
-            rec.ec -= TEST_DATA_EC_VARIATION_MIN;
-        }
-        else
-        {
-            rec.hum += -2;
-            rec.ec += TEST_DATA_EC_VARIATION_MIN;
-        }
-
-        // Коррекция NPK по сезону
+        
+        // Определяем сезон
+        Season season = Season::WINTER;
+        if (month >= 3 && month <= 5) season = Season::SPRING;
+        else if (month >= 6 && month <= 8) season = Season::SUMMER;
+        else if (month >= 9 && month <= 11) season = Season::AUTUMN;
+        else season = Season::WINTER;
+        
         const bool isGreenhouse = (config.environmentType == 1);
-        if (month >= 3 && month <= 5)
-        {                                       // Весна
-            applySpringNPKCorrection(rec, isGreenhouse);
-        }
-        else if (month >= 6 && month <= 8)
-        {                                       // Лето
-            applySummerNPKCorrection(rec, isGreenhouse);
-        }
-        else if (month >= 9 && month <= 11)
-        {                                       // Осень
-            applyAutumnNPKCorrection(rec, isGreenhouse);
-        }
-        else
-        {                                       // Зима
-            applyWinterNPKCorrection(rec, isGreenhouse);
-        }
+        getCropEngine().applySeasonalCorrection(rec, season, isGreenhouse);
     }
-
+    
     return rec;
 }
 }  // namespace
