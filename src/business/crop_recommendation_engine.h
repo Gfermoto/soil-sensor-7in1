@@ -45,6 +45,7 @@ struct RecommendationResult {
     String cropType;
     String growingType;
     String season;
+    String soilType;      // Добавляем тип почвы
     String recommendations;
     String healthStatus;
     String scientificNotes;
@@ -57,9 +58,10 @@ private:
     void initializeCropConfigs();
     CropConfig applySeasonalAdjustments(const CropConfig& base, const String& season);
     CropConfig applyGrowingTypeAdjustments(const CropConfig& base, const String& growingType);
-    String generateScientificRecommendations(const SensorData& data, const CropConfig& config, const String& cropType);
+    CropConfig applySoilTypeAdjustments(const CropConfig& base, const String& soilType);  // Добавляем метод
+    String generateScientificRecommendations(const SensorData& data, const CropConfig& config, const String& cropType, const String& soilType);
     String calculateSoilHealthStatus(const SensorData& data, const CropConfig& config);
-    String generateScientificNotes(const SensorData& data, const CropConfig& config, const String& cropType);
+    String generateScientificNotes(const SensorData& data, const CropConfig& config, const String& cropType, const String& soilType);
 
 public:
     CropRecommendationEngine();
@@ -69,7 +71,8 @@ public:
         const SensorData& data, 
         const String& cropType, 
         const String& growingType = "soil",
-        const String& season = "spring"
+        const String& season = "spring",
+        const String& soilType = "loam"  // Добавляем тип почвы
     );
     
     // Получение списка доступных культур
