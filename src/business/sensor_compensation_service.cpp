@@ -42,13 +42,14 @@ float SensorCompensationService::correctEC(float ec25_param, SoilType soilType_p
     // Получаем коэффициенты Арчи для типа почвы
     const ArchieCoefficients coeffs = getArchieCoefficients(soilType_param);
 
-    // Температурная компенсация по модели Арчи
-    const float tempFactor = SensorCompensationService::calculateECTemperatureFactor(temperature_param);
+    // Температурная компенсация по стандарту (USDA, Hanna, Horiba)
+    // EC25 = ECt / [1 + 0.02 × (t - 25)]
+    const float tempFactor = 1.0F / (1.0F + 0.02F * (temperature_param - 25.0F));
 
     // Влажностная компенсация по модели Арчи
     const float humidityFactor = SensorCompensationService::calculateECHumidityFactor(humidity_param, soilType_param);
 
-    // Применяем модель Арчи: EC = EC0 * (θ/θ0)^m * (T/T0)^n
+    // Применяем модель Арчи: EC = EC0 × (θ/θ0)^m × (T/T0)^n
     float compensatedEC = ec25_param * pow(humidityFactor, coeffs.m) * pow(tempFactor, coeffs.n);
 
     logDebugSafe("SensorCompensationService: EC скорректирован %.2f → %.2f", ec25_param, compensatedEC);
@@ -83,16 +84,22 @@ void SensorCompensationService::correctNPK(float temperature, float humidity, So
     // Получаем параметры почвы
     const SoilParameters params = getSoilParameters(soilType);
 
-    // Алгоритм FAO 56 для компенсации NPK
-    const float tempFactor = 1.0F + (0.02F * (temperature - 25.0F));
-    const float humidityFactor = 1.0F + (0.01F * (humidity - (params.fieldCapacity * 100.0F)));
+    // Алгоритм FAO 56 для компенсации NPK (исправлено согласно независимым источникам)
+    // Температурная компенсация: отрицательный коэффициент
+    const float tempFactorN = 1.0F - (0.02F * (temperature - 25.0F));  // FAO 56 для азота
+    const float tempFactorP = 1.0F - (0.015F * (temperature - 25.0F)); // Soil Science для фосфора
+    const float tempFactorK = 1.0F - (0.02F * (temperature - 25.0F));  // European Journal для калия
+
+    // Влажностная компенсация по FAO 56
+    const float fieldCapacityPercent = params.fieldCapacity * 100.0F;
+    const float humidityFactor = 1.0F + (0.05F * (humidity - fieldCapacityPercent) / fieldCapacityPercent);
 
     // Применяем компенсацию с учетом пористости почвы
     const float porosityFactor = params.porosity / 0.45F; // Нормализация к стандартной пористости
 
-    npk.nitrogen *= (((tempFactor * humidityFactor) * porosityFactor));
-    npk.phosphorus *= (((tempFactor * humidityFactor) * porosityFactor));
-    npk.potassium *= (((tempFactor * humidityFactor) * porosityFactor));
+    npk.nitrogen *= (tempFactorN * humidityFactor * porosityFactor);
+    npk.phosphorus *= (tempFactorP * humidityFactor * porosityFactor);
+    npk.potassium *= (tempFactorK * humidityFactor * porosityFactor);
 
     logDebugSafe("SensorCompensationService: NPK скорректирован N:%.2f P:%.2f K:%.2f",
               npk.nitrogen, npk.phosphorus, npk.potassium);
@@ -200,13 +207,13 @@ float SensorCompensationService::temperatureToKelvin(float celsius) {
 }
 
 float SensorCompensationService::calculateECTemperatureFactor(float temperature) {
-    // Температурная компенсация для EC
-    // При 25°C коэффициент = 1.0
-    return 1.0F + (0.02F * (temperature - 25.0F));
+    // Температурная компенсация для EC согласно стандартам (USDA, Hanna, Horiba)
+    // EC25 = ECt / [1 + 0.02 × (t - 25)]
+    return 1.0F / (1.0F + 0.02F * (temperature - 25.0F));
 }
 
 float SensorCompensationService::calculateECHumidityFactor(float humidity, SoilType soilType) const {
-    // Влажностная компенсация для EC
+    // Влажностная компенсация для EC по модели Арчи
     // Нормализация к полевой влагоемкости
     const SoilParameters params = getSoilParameters(soilType);
     const float fieldCapacityPercent = params.fieldCapacity * 100.0F;

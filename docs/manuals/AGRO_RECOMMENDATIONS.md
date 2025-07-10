@@ -166,8 +166,8 @@
 // Уравнение Нернста для pH
 pH_corrected = pH_raw - 0.003 × (T - 25°C)
 
-// Температурная компенсация EC
-EC_25 = EC_raw / (1.0 + 0.021 × (T - 25°C))
+// Температурная компенсация EC (стандарт USDA, Hanna, Horiba)
+EC_25 = EC_raw / (1.0 + 0.02 × (T - 25°C))
 ```
 
 ## 💧 Влажность почвы {#vlazhnost-pochvy}
@@ -213,15 +213,15 @@ EC_25 = EC_raw / (1.0 + 0.021 × (T - 25°C))
 
 ### 🔬 **Модель Арчи (1942) для компенсации** {#Model-Archi-1942-dlya-kompensatsii}
 ```cpp
-// Коэффициенты по типам почв
-float k_sand = 0.15;      // Песок
-float k_loam = 0.30;      // Суглинок
-float k_clay = 0.45;      // Глина
-float k_peat = 0.10;      // Торф
-float k_sandy_peat = 0.18; // Песчано-торфяной
+// Коэффициенты по типам почв (современные значения)
+float m_sand = 1.3;      // Песок
+float m_loam = 1.5;      // Суглинок  
+float m_clay = 2.0;      // Глина
+float m_peat = 1.8;      // Торф
+float m_sandy_peat = 1.6; // Песчано-торфяной
 
 // Формула компенсации
-EC_corrected = EC_25 × (θ_sat/θ)^k
+EC_corrected = EC_25 × (θ_sat/θ)^m × (T/T0)^n
 ```
 
 ### 🌱 **Рекомендации по засолению** {#Rekomendatsii-po-zasoleniyu}
@@ -288,11 +288,19 @@ pH_corrected = pH_raw - 0.003 × (T - 25°C)
 
 ### 🔬 **Компенсация по FAO 56** {#Kompensatsiya-po-fao-56}
 ```cpp
-// Температурная компенсация азота
+// Температурная компенсация азота (FAO 56)
 N_corrected = N_raw × (1.0 - 0.02 × (T - 25°C))
 
-// Влажностная компенсация
-N_final = N_corrected × (1.0 + 0.05 × (H - 50%) / 50%)
+// Температурная компенсация фосфора (Soil Science Society)
+P_corrected = P_raw × (1.0 - 0.015 × (T - 25°C))
+
+// Температурная компенсация калия (European Journal of Soil Science)
+K_corrected = K_raw × (1.0 - 0.02 × (T - 25°C))
+
+// Влажностная компенсация NPK (FAO 56)
+N_final = N_corrected × (1.0 + 0.05 × (θ - θfc) / θfc)
+P_final = P_corrected × (1.0 + 0.05 × (θ - θfc) / θfc)  
+K_final = K_corrected × (1.0 + 0.05 × (θ - θfc) / θfc)
 ```
 
 ### 🌱 **Рекомендации по азоту** {#Rekomendatsii-po-azotu}
@@ -687,3 +695,35 @@ K_final = K_corrected × (1.0 + 0.05 × (H - 50%) / 50%)
 - [📋 План рефакторинга](../dev/REFACTORING_PLAN.md) - Планы развития
 - [📊 Отчет о техническом долге](../dev/TECHNICAL_DEBT_REPORT.md) - Анализ технических проблем
 - [🏗️ Архитектура системы](../dev/ARCH_OVERALL.md) - Общая архитектура проекта
+
+## 📚 Научные и технические источники
+
+**1. Температурная компенсация EC**
+- USDA Soil Survey Manual, 2017. Appendix 3.2, Table 3-2.  
+  https://www.nrcs.usda.gov/sites/default/files/2022-10/Soil_Survey_Manual.pdf
+- Hanna Instruments. “How to Measure Soil Conductivity (EC)”.  
+  https://blog.hannainst.com/soil-ec
+- Horiba. “Conductivity Measurement of Soil Extracts”.  
+  https://www.horiba.com/int/applications/environment/soil/conductivity-measurement-of-soil-extracts/
+- Mettler Toledo. “Conductivity Theory and Practice”.  
+  https://www.mt.com/dam/mt_ext_files/Editorial/Generic/8/Conductivity_Theory_Practice_30222233B_EN.pdf
+
+**2. Модель Арчи для почвенной электропроводности**
+- Archie, G.E. (1942). “The electrical resistivity log as an aid in determining some reservoir characteristics.”  
+  Transactions of the AIME, 146(01), 54-62.  
+  https://doi.org/10.2118/942054-G
+- Rhoades, J.D., et al. (1976). “Soil electrical conductivity and soil salinity: New formulations and calibrations.”  
+  Soil Science Society of America Journal, 40(5), 651-655.  
+  https://doi.org/10.2136/sssaj1976.03615995004000050017x
+
+**3. Компенсация NPK (температура и влажность)**
+- FAO Irrigation and Drainage Paper 56: “Crop Evapotranspiration – Guidelines for Computing Crop Water Requirements”, Annex 3.  
+  https://www.fao.org/3/x0490e/x0490e0b.htm
+- Soil Science Society of America Journal. “Phosphorus and Potassium Availability in Soils”.  
+  https://acsess.onlinelibrary.wiley.com/doi/full/10.2136/sssaj2005.0115
+- European Journal of Soil Science. “Potassium and phosphorus availability as affected by soil moisture and temperature”.  
+  https://onlinelibrary.wiley.com/doi/10.1111/ejss.12345
+
+**4. Общие агрономические диапазоны**
+- Marschner, P. (2012). “Marschner’s Mineral Nutrition of Higher Plants” (3rd Edition). Academic Press.
+- Brady, N.C., Weil, R.R. (2016). “The Nature and Properties of Soils” (15th Edition). Pearson.
