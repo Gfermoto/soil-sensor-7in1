@@ -33,12 +33,18 @@
 
 # PlatformIO
 .pio/
+build/
 
 # Visual Studio Code
 .vscode/
 
 # Python virtual environment
 .venv/
+
+# Python cache
+.pytest_cache/
+__pycache__/
+*.pyc
 
 .DS_Store
 *.pyc
@@ -65,3 +71,9 @@ test_manifest.json
 
 # Временные файлы документации
 WEB_INTERFACE_IMPROVEMENTS.md
+
+# Автогенерируемые отчёты (оставляем только последние)
+test_reports/*.json
+test_reports/*.html
+test_reports/*.md
+!test_reports/README.md
