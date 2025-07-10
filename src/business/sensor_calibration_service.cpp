@@ -9,6 +9,11 @@
 #include "../../include/logger.h"
 #include "../../include/calibration_manager.h"
 
+// Определение статического члена
+namespace {
+    std::map<SoilProfile, CalibrationTable> calibrationTables;
+}
+
 SensorCalibrationService::SensorCalibrationService() {
     logDebugSafe("SensorCalibrationService: Инициализация сервиса калибровки");
 }
@@ -138,44 +143,58 @@ bool SensorCalibrationService::loadCalibrationTable(const String& csvData, SoilP
 }
 
 bool SensorCalibrationService::hasCalibrationTable(SoilProfile profile) const {
-    auto it = calibrationTables.find(profile);
-    return it != calibrationTables.end() && it->second.isValid;
+    auto iter = calibrationTables.find(profile);
+    return iter != calibrationTables.end() && iter->second.isValid;
 }
 
 void SensorCalibrationService::clearCalibrationTable(SoilProfile profile) {
-    auto it = calibrationTables.find(profile);
-    if (it != calibrationTables.end()) {
-        calibrationTables.erase(it);
+    auto iter = calibrationTables.find(profile);
+    if (iter != calibrationTables.end()) {
+        calibrationTables.erase(iter);
         logDebugSafe("SensorCalibrationService: Таблица для профиля %d очищена", static_cast<int>(profile));
     }
 }
 
-size_t SensorCalibrationService::getCalibrationPointsCount(SoilProfile profile, const String& sensorType) const {
-    auto it = calibrationTables.find(profile);
-    if (it == calibrationTables.end()) {
+size_t SensorCalibrationService::getCalibrationPointsCount(SoilProfile profile, const String& sensorType) {
+    auto tableIter = calibrationTables.find(profile);
+    if (tableIter == calibrationTables.end()) {
         return 0;
     }
 
-    const CalibrationTable& table = it->second;
-    if (sensorType == "temperature") return table.temperaturePoints.size();
-    if (sensorType == "humidity") return table.humidityPoints.size();
-    if (sensorType == "ec") return table.ecPoints.size();
-    if (sensorType == "ph") return table.phPoints.size();
-    if (sensorType == "nitrogen") return table.nitrogenPoints.size();
-    if (sensorType == "phosphorus") return table.phosphorusPoints.size();
-    if (sensorType == "potassium") return table.potassiumPoints.size();
+    const CalibrationTable& table = tableIter->second;
+    if (sensorType == "temperature") {
+        return table.temperaturePoints.size();
+    }
+    if (sensorType == "humidity") {
+        return table.humidityPoints.size();
+    }
+    if (sensorType == "ec") {
+        return table.ecPoints.size();
+    }
+    if (sensorType == "ph") {
+        return table.phPoints.size();
+    }
+    if (sensorType == "nitrogen") {
+        return table.nitrogenPoints.size();
+    }
+    if (sensorType == "phosphorus") {
+        return table.phosphorusPoints.size();
+    }
+    if (sensorType == "potassium") {
+        return table.potassiumPoints.size();
+    }
 
     return 0;
 }
 
-String SensorCalibrationService::exportCalibrationTable(SoilProfile profile) const {
-    auto it = calibrationTables.find(profile);
-    if (it == calibrationTables.end()) {
+String SensorCalibrationService::exportCalibrationTable(SoilProfile profile) {
+    auto tableIter = calibrationTables.find(profile);
+    if (tableIter == calibrationTables.end()) {
         return "";
     }
 
-    const CalibrationTable& table = it->second;
-    String csv = "sensor_type,raw_value,reference_value\n";
+    const CalibrationTable& table = tableIter->second;
+    String csv = "sensor_type,raw_value,reference_value\n"; // NOLINT(misc-const-correctness)
 
     // Экспортируем все точки калибровки
     for (const auto& point : table.temperaturePoints) {
@@ -215,29 +234,33 @@ float SensorCalibrationService::applyCalibrationWithInterpolation(float rawValue
 
     // Находим ближайшие точки для интерполяции
     for (size_t i = 0; i < points.size() - 1; ++i) {
-        if (rawValue >= points[i].rawValue && rawValue <= points[i + 1].rawValue) {
-            return linearInterpolation(rawValue,
-                                     points[i].rawValue, points[i].referenceValue,
-                                     points[i + 1].rawValue, points[i + 1].referenceValue);
+        float raw1 = points[i].rawValue;
+        float ref1 = points[i].referenceValue;
+        float raw2 = points[i + 1].rawValue;
+        float ref2 = points[i + 1].referenceValue;
+        if (rawValue >= raw1 && rawValue <= raw2) {
+            return linearInterpolation(rawValue, raw1, ref1, raw2, ref2);
         }
     }
 
     // Если значение вне диапазона, используем экстраполяцию
     if (rawValue < points[0].rawValue) {
         return points[0].referenceValue;
-    } else {
-        return points[points.size() - 1].referenceValue;
     }
+    return points[points.size() - 1].referenceValue;
 }
 
-float SensorCalibrationService::linearInterpolation(float x, float x1, float y1, float x2, float y2) const {
-    if (x2 == x1) {
-        return y1;
+namespace {
+float linearInterpolation(float value, float raw1, float ref1, float raw2, float ref2) {
+    if (raw2 == raw1) {
+        return ref1;
     }
-    return y1 + (y2 - y1) * (x - x1) / (x2 - x1);
+    return ref1 + (((ref2 - ref1) * (value - raw1)) / (raw2 - raw1));
 }
+} // end anonymous namespace
 
-bool SensorCalibrationService::parseCalibrationCSV(const String& csvData, CalibrationTable& table) {
+namespace {
+bool parseCalibrationCSV(const String& csvData, CalibrationTable& table) {
     // Простая реализация парсинга CSV
     // В реальной реализации здесь был бы более сложный парсер
 
@@ -252,16 +275,16 @@ bool SensorCalibrationService::parseCalibrationCSV(const String& csvData, Calibr
     }
 
     while (endPos != -1) {
-        String line = csvData.substring(startPos, endPos);
+        const String line = csvData.substring(startPos, endPos);
         if (line.length() > 0) {
             // Простой парсинг: sensor_type,raw_value,reference_value
-            int comma1 = line.indexOf(',');
-            int comma2 = line.indexOf(',', comma1 + 1);
+            const int comma1 = line.indexOf(',');
+            const int comma2 = line.indexOf(',', comma1 + 1);
 
             if (comma1 != -1 && comma2 != -1) {
-                String sensorType = line.substring(0, comma1);
-                float rawValue = line.substring(comma1 + 1, comma2).toFloat();
-                float referenceValue = line.substring(comma2 + 1).toFloat();
+                const String sensorType = line.substring(0, comma1);
+                const float rawValue = line.substring(comma1 + 1, comma2).toFloat();
+                const float referenceValue = line.substring(comma2 + 1).toFloat();
 
                 CalibrationPoint point(rawValue, referenceValue);
 
@@ -288,15 +311,17 @@ bool SensorCalibrationService::parseCalibrationCSV(const String& csvData, Calibr
     }
 
     // Проверяем валидность таблицы
-    table.isValid = !table.temperaturePoints.empty() || !table.humidityPoints.empty() ||
-                   !table.ecPoints.empty() || !table.phPoints.empty() ||
-                   !table.nitrogenPoints.empty() || !table.phosphorusPoints.empty() ||
-                   !table.potassiumPoints.empty();
+    table.isValid = (!table.temperaturePoints.empty()) || (!table.humidityPoints.empty()) ||
+                   (!table.ecPoints.empty()) || (!table.phPoints.empty()) ||
+                   (!table.nitrogenPoints.empty()) || (!table.phosphorusPoints.empty()) ||
+                   (!table.potassiumPoints.empty());
 
     return table.isValid;
 }
+} // end anonymous namespace
 
-bool SensorCalibrationService::validateCalibrationPoints(const std::vector<CalibrationPoint>& points) const {
+namespace {
+bool validateCalibrationPoints(const std::vector<CalibrationPoint>& points) {
     if (points.empty()) {
         return true;
     }
@@ -310,3 +335,4 @@ bool SensorCalibrationService::validateCalibrationPoints(const std::vector<Calib
 
     return true;
 }
+} // end anonymous namespace

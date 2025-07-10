@@ -69,13 +69,13 @@ private:
     void initializeSeasonalAdjustments();
 
     // Применение корректировки по профилю почвы
-    void applySoilProfileCorrection(RecValues& rec, SoilProfile soilProfile);
+    static void applySoilProfileCorrection(RecValues& rec, SoilProfile soilProfile);
 
     // Применение корректировки по типу окружающей среды
-    void applyEnvironmentCorrection(RecValues& rec, EnvironmentType envType);
+    static void applyEnvironmentCorrection(RecValues& rec, EnvironmentType envType);
 
     // Получение текущего сезона
-    Season getCurrentSeason() const;
+    static Season getCurrentSeason();
 
 public:
     /**

@@ -20,11 +20,11 @@ void SensorCompensationService::applyCompensation(SensorData& data, SoilType soi
     logDebugSafe("SensorCompensationService: Применение компенсации для типа почвы %d", static_cast<int>(soilType));
 
     // Применяем компенсацию к каждому параметру
-    data.ec = correctEC(data.ec, data.temperature, data.humidity, soilType);
-    data.ph = correctPH(data.ph, data.temperature);
+    data.ec = correctEC(data.ec, soilType, data.temperature, data.humidity);
+    data.ph = correctPH(data.ph, data.temperature); // pH, затем температура
 
     NPKReferences npk(data.nitrogen, data.phosphorus, data.potassium);
-    correctNPK(data.temperature, data.humidity, npk, soilType);
+    correctNPK(data.temperature, data.humidity, soilType, npk);
 
     data.nitrogen = npk.nitrogen;
     data.phosphorus = npk.phosphorus;
@@ -33,95 +33,103 @@ void SensorCompensationService::applyCompensation(SensorData& data, SoilType soi
     logDebugSafe("SensorCompensationService: Компенсация применена");
 }
 
-float SensorCompensationService::correctEC(float ec25, float temperature, float humidity, SoilType soilType) {
-    if (!validateCompensationInputs(temperature, humidity, soilType)) {
+float SensorCompensationService::correctEC(float ec25_param, SoilType soilType_param, float temperature_param, float humidity_param) {
+    if (!validateCompensationInputs(soilType_param, humidity_param, temperature_param)) {
         logDebugSafe("SensorCompensationService: Недопустимые входные данные для компенсации EC");
-        return ec25;
+        return ec25_param;
     }
 
     // Получаем коэффициенты Арчи для типа почвы
-    ArchieCoefficients coeffs = getArchieCoefficients(soilType);
+    const ArchieCoefficients coeffs = getArchieCoefficients(soilType_param);
 
     // Температурная компенсация по модели Арчи
-    float tempFactor = calculateECTemperatureFactor(temperature);
+    const float tempFactor = SensorCompensationService::calculateECTemperatureFactor(temperature_param);
 
     // Влажностная компенсация по модели Арчи
-    float humidityFactor = calculateECHumidityFactor(humidity, soilType);
+    const float humidityFactor = SensorCompensationService::calculateECHumidityFactor(humidity_param, soilType_param);
 
     // Применяем модель Арчи: EC = EC0 * (θ/θ0)^m * (T/T0)^n
-    float compensatedEC = ec25 * pow(humidityFactor, coeffs.m) * pow(tempFactor, coeffs.n);
+    float compensatedEC = ec25_param * pow(humidityFactor, coeffs.m) * pow(tempFactor, coeffs.n);
 
-    logDebugSafe("SensorCompensationService: EC скорректирован %.2f → %.2f", ec25, compensatedEC);
+    logDebugSafe("SensorCompensationService: EC скорректирован %.2f → %.2f", ec25_param, compensatedEC);
     return compensatedEC;
 }
 
-float SensorCompensationService::correctPH(float phRaw, float temperature) {
-    if (temperature < -50.0F || temperature > 100.0F) {
-        logDebugSafe("SensorCompensationService: Недопустимая температура для компенсации pH: %.2f", temperature);
-        return phRaw;
+// @param phRaw_param - исходное значение pH (первый параметр)
+// @param temperature_param - температура почвы (второй параметр)
+float SensorCompensationService::correctPH(float phRaw_param, float temperature_param) // NOLINT(bugprone-easily-swappable-parameters)
+{
+    if (temperature_param < -50.0F || temperature_param > 100.0F) {
+        logDebugSafe("SensorCompensationService: Недопустимая температура для компенсации pH: %.2f", temperature_param);
+        return phRaw_param;
     }
 
     // Уравнение Нернста для температурной компенсации pH
-    float tempKelvin = temperatureToKelvin(temperature);
-    float tempCorrection = (R * tempKelvin / F) * log(tempKelvin / T0) / log(10.0F);
+    const float tempKelvin = SensorCompensationService::temperatureToKelvin(temperature_param);
+    const float tempCorrection = ((R * tempKelvin) / F) * (log(tempKelvin / T0) / log(10.0F));
 
-    float compensatedPH = phRaw + tempCorrection;
+    const float compensatedPH = phRaw_param + tempCorrection;
 
-    logDebugSafe("SensorCompensationService: pH скорректирован %.2f → %.2f", phRaw, compensatedPH);
+    logDebugSafe("SensorCompensationService: pH скорректирован %.2f → %.2f", phRaw_param, compensatedPH);
     return compensatedPH;
 }
 
-void SensorCompensationService::correctNPK(float temperature, float humidity, NPKReferences& npk, SoilType soilType) {
-    if (!validateCompensationInputs(temperature, humidity, soilType)) {
+void SensorCompensationService::correctNPK(float temperature, float humidity, SoilType soilType, NPKReferences& npk) {
+    if (!validateCompensationInputs(soilType, humidity, temperature)) {
         logDebugSafe("SensorCompensationService: Недопустимые входные данные для компенсации NPK");
         return;
     }
 
     // Получаем параметры почвы
-    SoilParameters params = getSoilParameters(soilType);
+    const SoilParameters params = getSoilParameters(soilType);
 
     // Алгоритм FAO 56 для компенсации NPK
-    float tempFactor = 1.0F + 0.02F * (temperature - 25.0F);
-    float humidityFactor = 1.0F + 0.01F * (humidity - params.fieldCapacity * 100.0F);
+    const float tempFactor = 1.0F + (0.02F * (temperature - 25.0F));
+    const float humidityFactor = 1.0F + (0.01F * (humidity - (params.fieldCapacity * 100.0F)));
 
     // Применяем компенсацию с учетом пористости почвы
-    float porosityFactor = params.porosity / 0.45F; // Нормализация к стандартной пористости
+    const float porosityFactor = params.porosity / 0.45F; // Нормализация к стандартной пористости
 
-    npk.nitrogen *= tempFactor * humidityFactor * porosityFactor;
-    npk.phosphorus *= tempFactor * humidityFactor * porosityFactor;
-    npk.potassium *= tempFactor * humidityFactor * porosityFactor;
+    npk.nitrogen *= (((tempFactor * humidityFactor) * porosityFactor));
+    npk.phosphorus *= (((tempFactor * humidityFactor) * porosityFactor));
+    npk.potassium *= (((tempFactor * humidityFactor) * porosityFactor));
 
     logDebugSafe("SensorCompensationService: NPK скорректирован N:%.2f P:%.2f K:%.2f",
               npk.nitrogen, npk.phosphorus, npk.potassium);
 }
 
 float SensorCompensationService::getArchieCoefficient(SoilType soilType) const {
-    auto it = archieCoefficients.find(soilType);
-    if (it != archieCoefficients.end()) {
-        return it->second.m; // Возвращаем коэффициент цементации
+    auto iter = archieCoefficients.find(soilType);
+    if (iter != archieCoefficients.end()) {
+        return iter->second.m; // Возвращаем коэффициент цементации
     }
     return 1.5F; // Значение по умолчанию
 }
 
 float SensorCompensationService::getPorosity(SoilType soilType) const {
-    auto it = soilParameters.find(soilType);
-    if (it != soilParameters.end()) {
-        return it->second.porosity;
+    auto iter = soilParameters.find(soilType);
+    if (iter != soilParameters.end()) {
+        return iter->second.porosity;
     }
     return 0.45F; // Значение по умолчанию
 }
 
-bool SensorCompensationService::validateCompensationInputs(float temperature, float humidity, SoilType soilType) const {
-    if (temperature < -50.0F || temperature > 100.0F) {
+// @param soilType_param - тип почвы (первый параметр)
+// @param humidity_param - влажность (второй параметр) 
+// @param temperature_param - температура (третий параметр)
+// ВНИМАНИЕ: порядок параметров важен! soilType, humidity, temperature
+bool SensorCompensationService::validateCompensationInputs(SoilType soilType_param, float humidity_param, float temperature_param) const // NOLINT(bugprone-easily-swappable-parameters)
+{
+    if (temperature_param < -50.0F || temperature_param > 100.0F) {
         return false;
     }
 
-    if (humidity < 0.0F || humidity > 100.0F) {
+    if (humidity_param < 0.0F || humidity_param > 100.0F) {
         return false;
     }
 
     // Проверяем, что тип почвы валиден
-    switch (soilType) {
+    switch (soilType_param) {
         case SoilType::SAND:
         case SoilType::LOAM:
         case SoilType::PEAT:
@@ -133,23 +141,8 @@ bool SensorCompensationService::validateCompensationInputs(float temperature, fl
     }
 }
 
-SoilParameters SensorCompensationService::getSoilParameters(SoilType soilType) const {
-    auto it = soilParameters.find(soilType);
-    if (it != soilParameters.end()) {
-        return it->second;
-    }
-    return SoilParameters(); // Возвращаем значения по умолчанию
-}
-
-ArchieCoefficients SensorCompensationService::getArchieCoefficients(SoilType soilType) const {
-    auto it = archieCoefficients.find(soilType);
-    if (it != archieCoefficients.end()) {
-        return it->second;
-    }
-    return ArchieCoefficients(); // Возвращаем значения по умолчанию
-}
-
-void SensorCompensationService::initializeArchieCoefficients() {
+namespace {
+void initializeArchieCoefficients(std::map<SoilType, ArchieCoefficients>& archieCoefficients) {
     // Коэффициенты Арчи для разных типов почвы
     // Источник: Archie, G.E. (1942). The electrical resistivity log as an aid in determining some reservoir characteristics.
 
@@ -161,8 +154,14 @@ void SensorCompensationService::initializeArchieCoefficients() {
 
     logDebugSafe("SensorCompensationService: Коэффициенты Арчи инициализированы");
 }
+} // end anonymous namespace
 
-void SensorCompensationService::initializeSoilParameters() {
+void SensorCompensationService::initializeArchieCoefficients() {
+    ::initializeArchieCoefficients(archieCoefficients);
+}
+
+namespace {
+void initializeSoilParameters(std::map<SoilType, SoilParameters>& soilParameters) {
     // Параметры почвы для разных типов
     // Источник: FAO 56 - Crop evapotranspiration
 
@@ -174,22 +173,43 @@ void SensorCompensationService::initializeSoilParameters() {
 
     logDebugSafe("SensorCompensationService: Параметры почвы инициализированы");
 }
+} // end anonymous namespace
 
-float SensorCompensationService::temperatureToKelvin(float celsius) const {
+void SensorCompensationService::initializeSoilParameters() {
+    ::initializeSoilParameters(soilParameters);
+}
+
+SoilParameters SensorCompensationService::getSoilParameters(SoilType soilType) const { // NOLINT(readability-convert-member-functions-to-static)
+    auto iter = soilParameters.find(soilType);
+    if (iter != soilParameters.end()) {
+        return iter->second;
+    }
+    return {}; // Возвращаем значения по умолчанию
+}
+
+ArchieCoefficients SensorCompensationService::getArchieCoefficients(SoilType soilType) const { // NOLINT(readability-convert-member-functions-to-static)
+    auto iter = archieCoefficients.find(soilType);
+    if (iter != archieCoefficients.end()) {
+        return iter->second;
+    }
+    return {}; // Возвращаем значения по умолчанию
+}
+
+float SensorCompensationService::temperatureToKelvin(float celsius) {
     return celsius + 273.15F;
 }
 
-float SensorCompensationService::calculateECTemperatureFactor(float temperature) const {
+float SensorCompensationService::calculateECTemperatureFactor(float temperature) {
     // Температурная компенсация для EC
     // При 25°C коэффициент = 1.0
-    return 1.0F + 0.02F * (temperature - 25.0F);
+    return 1.0F + (0.02F * (temperature - 25.0F));
 }
 
 float SensorCompensationService::calculateECHumidityFactor(float humidity, SoilType soilType) const {
     // Влажностная компенсация для EC
     // Нормализация к полевой влагоемкости
-    SoilParameters params = getSoilParameters(soilType);
-    float fieldCapacityPercent = params.fieldCapacity * 100.0F;
+    const SoilParameters params = getSoilParameters(soilType);
+    const float fieldCapacityPercent = params.fieldCapacity * 100.0F;
 
-    return 1.0F + 0.01F * (humidity - fieldCapacityPercent);
+    return 1.0F + (0.01F * (humidity - fieldCapacityPercent));
 }

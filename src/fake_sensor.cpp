@@ -86,10 +86,10 @@ void fakeSensorTask(void* pvParameters)
                 sensorData.ec = correctEC(sensorData.ec, sensorData.temperature, sensorData.humidity, soil);
 
                 // 2. pH: температурная поправка
-                sensorData.ph = correctPH(sensorData.ph, sensorData.temperature);
+                sensorData.ph = correctPH(sensorData.temperature, sensorData.ph);
 
                 // 3. NPK: зависимость от T, θ и типа почвы
-                correctNPK(sensorData.temperature, sensorData.humidity, npk, soil);
+                correctNPK(sensorData.temperature, sensorData.humidity, soil, npk);
 
                 // Сохраняем скорректированные NPK данные в sensorData
                 sensorData.nitrogen = npk.nitrogen;

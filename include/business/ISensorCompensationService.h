@@ -36,23 +36,23 @@ public:
      * на основе модели Арчи (1942).
      *
      * @param ec25 EC при 25°C
+     * @param soilType Тип почвы
      * @param temperature Температура почвы
      * @param humidity Влажность почвы
-     * @param soilType Тип почвы
      * @return float Скомпенсированное значение EC
      */
-    virtual float correctEC(float ec25, float temperature, float humidity, SoilType soilType) = 0;
+    virtual float correctEC(float ec25, SoilType soilType, float temperature, float humidity) = 0;
 
     /**
      * @brief Компенсирует pH по уравнению Нернста
      *
      * Применяет температурную компенсацию к pH на основе уравнения Нернста.
      *
-     * @param phRaw Исходное значение pH
      * @param temperature Температура почвы
+     * @param phRaw Исходное значение pH
      * @return float Скомпенсированное значение pH
      */
-    virtual float correctPH(float phRaw, float temperature) = 0;
+    virtual float correctPH(float temperature, float phRaw) = 0;
 
     /**
      * @brief Компенсирует NPK по алгоритму FAO 56
@@ -62,10 +62,10 @@ public:
      *
      * @param temperature Температура почвы
      * @param humidity Влажность почвы
-     * @param npk NPK значения для компенсации
      * @param soilType Тип почвы
+     * @param npk NPK значения для компенсации
      */
-    virtual void correctNPK(float temperature, float humidity, NPKReferences& npk, SoilType soilType) = 0;
+    virtual void correctNPK(float temperature, float humidity, SoilType soilType, NPKReferences& npk) = 0;
 
     /**
      * @brief Получает коэффициент Арчи для типа почвы
@@ -86,12 +86,13 @@ public:
     /**
      * @brief Проверяет валидность входных данных для компенсации
      *
+     * @param soilType Тип почвы
      * @param temperature Температура
      * @param humidity Влажность
-     * @param soilType Тип почвы
      * @return true если данные валидны, false в противном случае
      */
-    virtual bool validateCompensationInputs(float temperature, float humidity, SoilType soilType) const = 0;
+    virtual bool validateCompensationInputs(SoilType soilType, float humidity, float temperature) const = 0;
 };
 
 #endif // ISENSOR_COMPENSATION_SERVICE_H
+ 

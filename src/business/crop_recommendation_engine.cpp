@@ -143,7 +143,7 @@ RecValues CropRecommendationEngine::computeRecommendations(const String& cropId,
                                                          const SoilProfile& soilProfile,
                                                          const EnvironmentType& envType) {
     // Получаем базовую конфигурацию для культуры
-    CropConfig config = getCropConfig(cropId);
+    const CropConfig config = getCropConfig(cropId);
 
     // Создаем структуру рекомендаций
     RecValues rec;
@@ -162,8 +162,8 @@ RecValues CropRecommendationEngine::computeRecommendations(const String& cropId,
     applyEnvironmentCorrection(rec, envType);
 
     // Применяем сезонные корректировки
-    Season currentSeason = getCurrentSeason();
-    bool isGreenhouse = (envType == EnvironmentType::GREENHOUSE);
+    const Season currentSeason = getCurrentSeason();
+    const bool isGreenhouse = (envType == EnvironmentType::GREENHOUSE);
     applySeasonalCorrection(rec, currentSeason, isGreenhouse);
 
     logDebugSafe("Рекомендации для культуры %s: T=%.1f, H=%.1f, EC=%.0f, pH=%.1f, N=%.0f, P=%.0f, K=%.0f",
@@ -175,12 +175,12 @@ RecValues CropRecommendationEngine::computeRecommendations(const String& cropId,
 void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec,
                                                      Season season,
                                                      bool isGreenhouse) {
-    auto it = seasonalAdjustments.find(season);
-    if (it == seasonalAdjustments.end()) {
+    auto iterator = seasonalAdjustments.find(season);
+    if (iterator == seasonalAdjustments.end()) {
         return; // Нет корректировки для данного сезона
     }
 
-    const SeasonalAdjustment& adjustment = it->second;
+    const SeasonalAdjustment& adjustment = iterator->second;
 
     // Применяем корректировки NPK
     rec.n *= adjustment.n_factor;
@@ -234,7 +234,8 @@ void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec,
     }
 }
 
-void CropRecommendationEngine::applySoilProfileCorrection(RecValues& rec, SoilProfile soilProfile) {
+namespace {
+void applySoilProfileCorrection(RecValues& rec, SoilProfile soilProfile) {
     switch (soilProfile) {
         case SoilProfile::SAND:
             rec.hum += -5;  // Песок - снижаем влажность
@@ -257,7 +258,7 @@ void CropRecommendationEngine::applySoilProfileCorrection(RecValues& rec, SoilPr
     }
 }
 
-void CropRecommendationEngine::applyEnvironmentCorrection(RecValues& rec, EnvironmentType envType) {
+void applyEnvironmentCorrection(RecValues& rec, EnvironmentType envType) {
     switch (envType) {
         case EnvironmentType::GREENHOUSE:
             rec.hum += TEST_DATA_HUM_VARIATION;  // +10%
@@ -277,13 +278,25 @@ void CropRecommendationEngine::applyEnvironmentCorrection(RecValues& rec, Enviro
             break;
     }
 }
+} // end anonymous namespace
 
-Season CropRecommendationEngine::getCurrentSeason() const {
+CropConfig CropRecommendationEngine::getCropConfig(const String& cropId) const { // NOLINT(readability-convert-member-functions-to-static)
+    auto configIter = cropConfigs.find(cropId);
+    if (configIter != cropConfigs.end()) {
+        return configIter->second;
+    }
+
+    // Возвращаем базовую конфигурацию если культура не найдена
+    logDebugSafe("Культура %s не найдена, используем базовую конфигурацию", cropId.c_str());
+    return cropConfigs.at("generic");
+}
+
+Season CropRecommendationEngine::getCurrentSeason() {
     // Получаем текущее время
     time_t now = time(nullptr);
     struct tm* timeInfo = localtime(&now);
 
-    if (!timeInfo) {
+    if (timeInfo == nullptr) {
         return Season::SPRING; // По умолчанию весна
     }
 
@@ -292,24 +305,14 @@ Season CropRecommendationEngine::getCurrentSeason() const {
     // Определяем сезон по месяцу
     if (month >= 3 && month <= 5) {
         return Season::SPRING;
-    } else if (month >= 6 && month <= 8) {
+    }
+    if (month >= 6 && month <= 8) {
         return Season::SUMMER;
-    } else if (month >= 9 && month <= 11) {
+    }
+    if (month >= 9 && month <= 11) {
         return Season::AUTUMN;
-    } else {
-        return Season::WINTER;
     }
-}
-
-CropConfig CropRecommendationEngine::getCropConfig(const String& cropId) const {
-    auto it = cropConfigs.find(cropId);
-    if (it != cropConfigs.end()) {
-        return it->second;
-    }
-
-    // Возвращаем базовую конфигурацию если культура не найдена
-    logDebugSafe("Культура %s не найдена, используем базовую конфигурацию", cropId.c_str());
-    return cropConfigs.at("generic");
+    return Season::WINTER;
 }
 
 bool CropRecommendationEngine::hasCropConfig(const String& cropId) const {

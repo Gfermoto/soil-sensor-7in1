@@ -71,10 +71,10 @@ private:
     void initializeSoilParameters();
 
     // Расчет температуры в Кельвинах
-    float temperatureToKelvin(float celsius) const;
+    static float temperatureToKelvin(float celsius);
 
     // Расчет коэффициента температурной компенсации для EC
-    float calculateECTemperatureFactor(float temperature) const;
+    static float calculateECTemperatureFactor(float temperature);
 
     // Расчет коэффициента влажностной компенсации для EC
     float calculateECHumidityFactor(float humidity, SoilType soilType) const;
@@ -104,12 +104,12 @@ public:
      * @brief Компенсирует EC по модели Арчи
      *
      * @param ec25 EC при 25°C
+     * @param soilType Тип почвы
      * @param temperature Температура почвы
      * @param humidity Влажность почвы
-     * @param soilType Тип почвы
      * @return float Скомпенсированное значение EC
      */
-    float correctEC(float ec25, float temperature, float humidity, SoilType soilType) override;
+    float correctEC(float ec25, SoilType soilType, float temperature, float humidity) override;
 
     /**
      * @brief Компенсирует pH по уравнению Нернста
@@ -118,7 +118,7 @@ public:
      * @param temperature Температура почвы
      * @return float Скомпенсированное значение pH
      */
-    float correctPH(float phRaw, float temperature) override;
+    float correctPH(float temperature, float phRaw) override;
 
     /**
      * @brief Компенсирует NPK по алгоритму FAO 56
@@ -128,7 +128,7 @@ public:
      * @param npk NPK значения для компенсации
      * @param soilType Тип почвы
      */
-    void correctNPK(float temperature, float humidity, NPKReferences& npk, SoilType soilType) override;
+    void correctNPK(float temperature, float humidity, SoilType soilType, NPKReferences& npk) override;
 
     /**
      * @brief Получает коэффициент Арчи для типа почвы
@@ -149,12 +149,12 @@ public:
     /**
      * @brief Проверяет валидность входных данных для компенсации
      *
+     * @param soilType Тип почвы
      * @param temperature Температура
      * @param humidity Влажность
-     * @param soilType Тип почвы
      * @return true если данные валидны, false в противном случае
      */
-    bool validateCompensationInputs(float temperature, float humidity, SoilType soilType) const override;
+    bool validateCompensationInputs(SoilType soilType, float humidity, float temperature) const override;
 
     /**
      * @brief Получает параметры почвы для типа

@@ -49,8 +49,8 @@ struct NPKReferences
 // (устаревшие функции компенсации удалены)
 
 float correctEC(float ecRaw, float T, float theta, SoilType soil);
-float correctPH(float phRaw, float T);
-void correctNPK(float T, float theta, NPKReferences& npk, SoilType soil);
+float correctPH(float T, float phRaw);
+void correctNPK(float T, float theta, SoilType soil, NPKReferences& npk);
 
 // ✅ Новые типобезопасные версии (предотвращают перепутывание параметров)
 float correctEC(float ecRaw, const EnvironmentalConditions& env, SoilType soil);

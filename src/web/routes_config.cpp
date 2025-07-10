@@ -389,8 +389,8 @@ void setupConfigRoutes()
                      config.filterAlgorithm = 0;                        // среднее
                      config.outlierFilterEnabled = 0;                   // отключен
                      config.adaptiveFiltering = 0;                     // отключена
-                     config.exponentialAlpha = 0.3f;                   // по умолчанию
-                     config.outlierThreshold = 2.0f;                   // по умолчанию
+                     config.exponentialAlpha = 0.3F;                   // по умолчанию
+                     config.outlierThreshold = 2.0F;                   // по умолчанию
 
                      saveConfig();
 

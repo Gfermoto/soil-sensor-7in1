@@ -21,30 +21,32 @@ namespace AdvancedFilters {
 // ============================================================================
 
 struct ExponentialSmoothingState {
-    float smoothed_value;
-    bool initialized;
-
-    ExponentialSmoothingState() : smoothed_value(0.0F), initialized(false) {}
+    float smoothed_value = 0.0F;
+    bool initialized = false;
 };
 
-static ExponentialSmoothingState exp_smooth_temp;
-static ExponentialSmoothingState exp_smooth_hum;
-static ExponentialSmoothingState exp_smooth_ec;
-static ExponentialSmoothingState exp_smooth_ph;
-static ExponentialSmoothingState exp_smooth_n;
-static ExponentialSmoothingState exp_smooth_p;
-static ExponentialSmoothingState exp_smooth_k;
+namespace {
+    ExponentialSmoothingState exp_smooth_temp;
+    ExponentialSmoothingState exp_smooth_hum;
+    ExponentialSmoothingState exp_smooth_ec;
+    ExponentialSmoothingState exp_smooth_ph;
+    ExponentialSmoothingState exp_smooth_n;
+    ExponentialSmoothingState exp_smooth_p;
+    ExponentialSmoothingState exp_smooth_k;
+}
 
-float applyExponentialSmoothing(float new_value, ExponentialSmoothingState& state, float alpha) {
-    if (!state.initialized) {
-        state.smoothed_value = new_value;
-        state.initialized = true;
-        return new_value;
+namespace {
+    float applyExponentialSmoothing(float new_value, ExponentialSmoothingState& state, float alpha) {
+        if (!state.initialized) {
+            state.smoothed_value = new_value;
+            state.initialized = true;
+            return new_value;
+        }
+
+        // Экспоненциальное сглаживание: S_t = α * X_t + (1-α) * S_{t-1}
+        state.smoothed_value = alpha * new_value + (1.0F - alpha) * state.smoothed_value;
+        return state.smoothed_value;
     }
-
-    // Экспоненциальное сглаживание: S_t = α * X_t + (1-α) * S_{t-1}
-    state.smoothed_value = alpha * new_value + (1.0F - alpha) * state.smoothed_value;
-    return state.smoothed_value;
 }
 
 // ============================================================================
@@ -53,71 +55,76 @@ float applyExponentialSmoothing(float new_value, ExponentialSmoothingState& stat
 
 struct StatisticsBuffer {
     std::array<float, STATISTICS_WINDOW_SIZE> values;
-    uint8_t index;
-    uint8_t filled;
-    float mean;
-    float std_dev;
-    bool valid;
+    uint8_t index = 0;
+    uint8_t filled = 0;
+    float mean = 0.0F;
+    float std_dev = 0.0F;
+    bool valid = false;
 
-    StatisticsBuffer() : index(0), filled(0), mean(0.0F), std_dev(0.0F), valid(false) {
-        values.fill(0.0F);
-    }
+    StatisticsBuffer() = default;
 };
 
 // Объявления функций
-void updateStatistics(float new_value, StatisticsBuffer& buffer);
-bool isOutlier(float value, const StatisticsBuffer& buffer, float threshold_multiplier);
+namespace {
 float applyECSpecializedFilter(float raw_value);
-
-static StatisticsBuffer stats_temp;
-static StatisticsBuffer stats_hum;
-static StatisticsBuffer stats_ec;
-static StatisticsBuffer stats_ph;
-static StatisticsBuffer stats_n;
-static StatisticsBuffer stats_p;
-static StatisticsBuffer stats_k;
-
-void updateStatistics(float new_value, StatisticsBuffer& buffer) {
-    // Добавляем новое значение
-    buffer.values[buffer.index] = new_value;
-    buffer.index = (buffer.index + 1) % STATISTICS_WINDOW_SIZE;
-
-    if (buffer.filled < STATISTICS_WINDOW_SIZE) {
-        buffer.filled++;
-    }
-
-    // Вычисляем среднее
-    float sum = 0.0F;
-    for (uint8_t i = 0; i < buffer.filled; ++i) {
-        sum += buffer.values[i];
-    }
-    buffer.mean = sum / static_cast<float>(buffer.filled);
-
-    // Вычисляем стандартное отклонение
-    float variance_sum = 0.0F;
-    for (uint8_t i = 0; i < buffer.filled; ++i) {
-        float diff = buffer.values[i] - buffer.mean;
-        variance_sum += diff * diff;
-    }
-    buffer.std_dev = sqrt(variance_sum / static_cast<float>(buffer.filled));
-
-    // Минимальное стандартное отклонение для стабильности
-    if (buffer.std_dev < MIN_STANDARD_DEVIATION) {
-        buffer.std_dev = MIN_STANDARD_DEVIATION;
-    }
-
-    buffer.valid = (buffer.filled >= 5); // Минимум 5 значений для статистики
 }
 
-bool isOutlier(float value, const StatisticsBuffer& buffer, float threshold_multiplier) {
-    if (!buffer.valid) {
-        return false; // Недостаточно данных для определения выброса
+namespace {
+    StatisticsBuffer stats_temp;
+    StatisticsBuffer stats_hum;
+    StatisticsBuffer stats_ec;
+    StatisticsBuffer stats_ph;
+    StatisticsBuffer stats_n;
+    StatisticsBuffer stats_p;
+    StatisticsBuffer stats_k;
+    
+    void updateStatistics(float new_value, StatisticsBuffer& buffer);
+    bool isOutlier(float value, const StatisticsBuffer& buffer, float threshold_multiplier);
+}
+
+namespace {
+    void updateStatistics(float new_value, StatisticsBuffer& buffer) {
+        // Добавляем новое значение
+        buffer.values[buffer.index] = new_value;
+        buffer.index = (buffer.index + 1) % STATISTICS_WINDOW_SIZE;
+
+        if (buffer.filled < STATISTICS_WINDOW_SIZE) {
+            buffer.filled++;
+        }
+
+        // Вычисляем среднее
+        float sum = 0.0F;
+        for (uint8_t i = 0; i < buffer.filled; ++i) {
+            sum += buffer.values[i];
+        }
+        buffer.mean = sum / static_cast<float>(buffer.filled);
+
+        // Вычисляем стандартное отклонение
+        float variance_sum = 0.0F;
+        for (uint8_t i = 0; i < buffer.filled; ++i) {
+            float diff = buffer.values[i] - buffer.mean;
+            variance_sum += diff * diff;
+        }
+        buffer.std_dev = sqrt(variance_sum / static_cast<float>(buffer.filled));
+
+        // Минимальное стандартное отклонение для стабильности
+        buffer.std_dev = std::max(buffer.std_dev, MIN_STANDARD_DEVIATION);
+
+        buffer.valid = (buffer.filled >= 5); // Минимум 5 значений для статистики
     }
+}
 
-    float deviation = abs(value - buffer.mean);
-    float threshold = threshold_multiplier * buffer.std_dev;
+namespace {
+    bool isOutlier(float value, const StatisticsBuffer& buffer, float threshold_multiplier) {
+        if (!buffer.valid) {
+            return false; // Недостаточно данных для определения выброса
+        }
 
-    return deviation > threshold;
+        const float deviation = abs(value - buffer.mean);
+        const float threshold = threshold_multiplier * buffer.std_dev;
+
+        return deviation > threshold;
+    }
 }
 
 // ============================================================================
@@ -125,14 +132,17 @@ bool isOutlier(float value, const StatisticsBuffer& buffer, float threshold_mult
 // ============================================================================
 
 struct KalmanFilter {
-    float x;      // Состояние (оценка)
-    float P;      // Ковариация ошибки оценки
+    float x = 0.0F;      // Состояние (оценка)
+    float P = KALMAN_INITIAL_UNCERTAINTY;      // Ковариация ошибки оценки
     float Q;      // Шум процесса
     float R;      // Шум измерений
-    bool initialized;
+    bool initialized = false;
 
-    KalmanFilter(float process_noise, float measurement_noise)
-        : x(0.0F), P(KALMAN_INITIAL_UNCERTAINTY), Q(process_noise), R(measurement_noise), initialized(false) {}
+    // @param process_noise_param - шум процесса (Q)
+    // @param measurement_noise_param - шум измерений (R)
+    // ВНИМАНИЕ: параметры легко перепутать! process_noise_param = Q, measurement_noise_param = R
+    KalmanFilter(float process_noise_param, float measurement_noise_param) // NOLINT(bugprone-easily-swappable-parameters)
+        : Q(process_noise_param), R(measurement_noise_param) {}
 
     float update(float measurement) {
         if (!initialized) {
@@ -142,12 +152,12 @@ struct KalmanFilter {
         }
 
         // Предсказание
-        float P_pred = P + Q;
+        const float P_pred = P + Q;
 
         // Обновление
-        float K = P_pred / (P_pred + R); // Коэффициент Калмана
-        x = x + K * (measurement - x);
-        P = (1.0F - K) * P_pred;
+        const float kalman_gain = P_pred / (P_pred + R); // Коэффициент Калмана
+        x = x + kalman_gain * (measurement - x);
+        P = (1.0F - kalman_gain) * P_pred;
 
         return x;
     }
@@ -159,43 +169,46 @@ struct KalmanFilter {
     }
 };
 
-static KalmanFilter kalman_temp(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
-static KalmanFilter kalman_hum(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
-static KalmanFilter kalman_ec(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
-static KalmanFilter kalman_ph(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
-static KalmanFilter kalman_n(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
-static KalmanFilter kalman_p(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
-static KalmanFilter kalman_k(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
+namespace {
+    KalmanFilter kalman_temp(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
+    KalmanFilter kalman_hum(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
+    KalmanFilter kalman_ec(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
+    KalmanFilter kalman_ph(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
+    KalmanFilter kalman_n(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
+    KalmanFilter kalman_p(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
+    KalmanFilter kalman_k(KALMAN_PROCESS_NOISE, KALMAN_MEASUREMENT_NOISE);
+}
 
 // ============================================================================
 // КОМБИНИРОВАННЫЙ ФИЛЬТР
 // ============================================================================
 
-float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, bool enable_adaptive) {
-    float filtered_value = raw_value;
+namespace {
+    float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, bool enable_adaptive) {
+        float filtered_value = raw_value;
 
-    // Специализированная фильтрация EC
-    if (type == FilterType::EC) {
-        filtered_value = applyECSpecializedFilter(raw_value);
-    }
-
-    // 1. Обновляем статистику для адаптивных порогов
-    if (enable_adaptive) {
-        StatisticsBuffer* buffer = nullptr;
-        switch (type) {
-            case FilterType::TEMPERATURE: buffer = &stats_temp; break;
-            case FilterType::HUMIDITY: buffer = &stats_hum; break;
-            case FilterType::EC: buffer = &stats_ec; break;
-            case FilterType::PH: buffer = &stats_ph; break;
-            case FilterType::NITROGEN: buffer = &stats_n; break;
-            case FilterType::PHOSPHORUS: buffer = &stats_p; break;
-            case FilterType::POTASSIUM: buffer = &stats_k; break;
+        // Специализированная фильтрация EC
+        if (type == FilterType::EC) {
+            filtered_value = applyECSpecializedFilter(raw_value);
         }
 
-        if (buffer) {
-            updateStatistics(filtered_value, *buffer);
+        // 1. Обновляем статистику для адаптивных порогов
+        if (enable_adaptive) { // NOLINT(readability-implicit-bool-conversion)
+            StatisticsBuffer* buffer = nullptr;
+            switch (type) {
+                case FilterType::TEMPERATURE: buffer = &stats_temp; break;
+                case FilterType::HUMIDITY: buffer = &stats_hum; break;
+                case FilterType::EC: buffer = &stats_ec; break;
+                case FilterType::PH: buffer = &stats_ph; break;
+                case FilterType::NITROGEN: buffer = &stats_n; break;
+                case FilterType::PHOSPHORUS: buffer = &stats_p; break;
+                case FilterType::POTASSIUM: buffer = &stats_k; break;
+            }
 
-            // Проверяем на выбросы
+            if (buffer != nullptr) {
+                updateStatistics(filtered_value, *buffer);
+
+                            // Проверяем на выбросы
             float threshold = config.outlierThreshold;
 
             // Специальная обработка для EC - более строгие пороги
@@ -203,9 +216,9 @@ float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, 
                 threshold = config.outlierThreshold * 0.7F; // Более строгий порог для EC
 
                 // Дополнительная проверка для EC - если значение слишком сильно отличается от предыдущего
-                if (buffer->filled >= 5) { // Нужно минимум 5 измерений
-                    float last_value = buffer->values[(buffer->index - 1 + STATISTICS_WINDOW_SIZE) % STATISTICS_WINDOW_SIZE];
-                    float change_percent = abs(filtered_value - last_value) / last_value * 100.0F;
+                if (buffer->filled >= 5U) { // Нужно минимум 5 измерений
+                    const float last_value = buffer->values[(buffer->index - 1 + STATISTICS_WINDOW_SIZE) % STATISTICS_WINDOW_SIZE];
+                    const float change_percent = abs(filtered_value - last_value) / last_value * 100.0F;
 
                     // Если изменение больше 20% - считаем выбросом
                     if (change_percent > 20.0F) {
@@ -214,7 +227,7 @@ float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, 
                 }
             }
 
-            if (isOutlier(filtered_value, *buffer, threshold)) {
+            if (isOutlier(filtered_value, *buffer, threshold)) { // NOLINT(readability-implicit-bool-conversion)
                 // Возвращаем предыдущее значение вместо выброса
                 return buffer->mean;
             }
@@ -250,12 +263,12 @@ float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, 
         case FilterType::POTASSIUM: exp_state = &exp_smooth_k; break;
     }
 
-    if (exp_state) {
+    if (exp_state != nullptr) {
         filtered_value = applyExponentialSmoothing(filtered_value, *exp_state, alpha);
     }
 
     // 3. Применяем фильтр Калмана (если включен)
-    if (enable_kalman) {
+    if (enable_kalman) { // NOLINT(readability-implicit-bool-conversion)
         KalmanFilter* kalman = nullptr;
         switch (type) {
             case FilterType::TEMPERATURE: kalman = &kalman_temp; break;
@@ -267,12 +280,13 @@ float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, 
             case FilterType::POTASSIUM: kalman = &kalman_k; break;
         }
 
-        if (kalman) {
+        if (kalman != nullptr) {
             filtered_value = kalman->update(filtered_value);
         }
     }
 
     return filtered_value;
+}
 }
 
 // ============================================================================
@@ -281,29 +295,29 @@ float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, 
 
 struct ECFilterState {
     std::array<float, 10> recent_values;  // Последние 10 значений
-    uint8_t index;
-    uint8_t filled;
-    float baseline;                       // Базовое значение
-    uint32_t last_spike_time;             // Время последнего выброса
-    uint8_t spike_count;                  // Счетчик выбросов
-    bool baseline_valid;
+    uint8_t index = 0;
+    uint8_t filled = 0;
+    float baseline = 0.0F;                       // Базовое значение
+    uint32_t last_spike_time = 0;             // Время последнего выброса
+    uint8_t spike_count = 0;                  // Счетчик выбросов
+    bool baseline_valid = false;
 
-    ECFilterState() : index(0), filled(0), baseline(0.0F),
-                     last_spike_time(0), spike_count(0), baseline_valid(false) {
-        recent_values.fill(0.0F);
-    }
+    ECFilterState() = default;
 };
 
-static ECFilterState ec_filter_state;
+namespace {
+    ECFilterState ec_filter_state;
+}
 
 // Анализ паттерна выбросов EC
-bool isECSpikePattern(float new_value, float baseline) {
-    if (!ec_filter_state.baseline_valid) {
+namespace {
+bool isECSpikePattern(ECFilterState& state) {
+    if (!state.baseline_valid) {
         return false;
     }
 
-    float spike_threshold = baseline * 0.15F; // 15% от базового значения
-    float spike_height = new_value - baseline;
+    const float spike_threshold = state.baseline * 0.15F; // 15% от базового значения
+    const float spike_height = state.recent_values[state.index] - state.baseline;
 
     // Проверяем, что это выброс вверх
     if (spike_height < spike_threshold) {
@@ -311,23 +325,25 @@ bool isECSpikePattern(float new_value, float baseline) {
     }
 
     // Проверяем периодичность (если выбросы происходят регулярно)
-    uint32_t current_time = millis();
-    uint32_t time_since_last = current_time - ec_filter_state.last_spike_time;
+    const uint32_t current_time = millis();
+    const uint32_t time_since_last = current_time - state.last_spike_time;
 
     // Если выбросы происходят с интервалом 2-10 секунд - это паттерн
     if (time_since_last > 2000 && time_since_last < 10000) {
-        ec_filter_state.spike_count++;
-        ec_filter_state.last_spike_time = current_time;
+        state.spike_count++;
+        state.last_spike_time = current_time;
 
         // Если за последние 30 секунд было больше 3 выбросов - это системная проблема
-        if (ec_filter_state.spike_count > 3) {
+        if (state.spike_count > 3U) {
             return true;
         }
     }
 
     return false;
 }
+}
 
+namespace {
 // Обновление базового значения EC
 void updateECBaseline(float new_value) {
     if (!ec_filter_state.baseline_valid) {
@@ -339,28 +355,32 @@ void updateECBaseline(float new_value) {
     // Медленное обновление базового значения (α = 0.1)
     ec_filter_state.baseline = ec_filter_state.baseline * 0.9F + new_value * 0.1F;
 }
+} // end anonymous namespace
 
+namespace {
 // Специализированная фильтрация EC
 float applyECSpecializedFilter(float raw_value) {
     // Обновляем историю значений
     ec_filter_state.recent_values[ec_filter_state.index] = raw_value;
     ec_filter_state.index = (ec_filter_state.index + 1) % 10;
-    if (ec_filter_state.filled < 10) ec_filter_state.filled++;
+    if (ec_filter_state.filled < 10U) {
+        ec_filter_state.filled++;
+    }
 
     // Обновляем базовое значение
     updateECBaseline(raw_value);
 
     // Проверяем паттерн выбросов
-    if (isECSpikePattern(raw_value, ec_filter_state.baseline)) {
+    if (isECSpikePattern(ec_filter_state)) { // NOLINT(readability-implicit-bool-conversion)
         logSystemSafe("[EC_FILTER] Обнаружен паттерн выбросов: %.1f -> %.1f (база: %.1f)",
                      ec_filter_state.baseline, raw_value, ec_filter_state.baseline);
         return ec_filter_state.baseline; // Возвращаем базовое значение
     }
 
     // Дополнительная проверка на аномальные скачки
-    if (ec_filter_state.filled >= 3) {
+    if (ec_filter_state.filled >= 3U) {
         float prev_value = ec_filter_state.recent_values[(ec_filter_state.index - 2 + 10) % 10];
-        float change_percent = abs(raw_value - prev_value) / prev_value * 100.0F;
+        const float change_percent = (abs(raw_value - prev_value) / prev_value) * 100.0F;
 
         // Если изменение больше 25% - считаем выбросом
         if (change_percent > 25.0F) {
@@ -372,31 +392,32 @@ float applyECSpecializedFilter(float raw_value) {
 
     return raw_value;
 }
+}
 
 // ============================================================================
 // ПУБЛИЧНЫЕ ФУНКЦИИ
 // ============================================================================
 
 void applyAdvancedFiltering(SensorData& data) {
-    if (!config.adaptiveFiltering && !config.kalmanEnabled) {
+    if (!static_cast<bool>(config.adaptiveFiltering) && !static_cast<bool>(config.kalmanEnabled)) {
         return; // Фильтрация отключена
     }
 
     // Применяем комбинированный фильтр ко всем параметрам
     data.temperature = applyCombinedFilter(data.temperature, FilterType::TEMPERATURE,
-                                         config.kalmanEnabled, config.adaptiveFiltering);
+                                         static_cast<bool>(config.kalmanEnabled), static_cast<bool>(config.adaptiveFiltering));
     data.humidity = applyCombinedFilter(data.humidity, FilterType::HUMIDITY,
-                                      config.kalmanEnabled, config.adaptiveFiltering);
+                                      static_cast<bool>(config.kalmanEnabled), static_cast<bool>(config.adaptiveFiltering));
     data.ec = applyCombinedFilter(data.ec, FilterType::EC,
-                                config.kalmanEnabled, config.adaptiveFiltering);
+                                static_cast<bool>(config.kalmanEnabled), static_cast<bool>(config.adaptiveFiltering));
     data.ph = applyCombinedFilter(data.ph, FilterType::PH,
-                                config.kalmanEnabled, config.adaptiveFiltering);
+                                static_cast<bool>(config.kalmanEnabled), static_cast<bool>(config.adaptiveFiltering));
     data.nitrogen = applyCombinedFilter(data.nitrogen, FilterType::NITROGEN,
-                                      config.kalmanEnabled, config.adaptiveFiltering);
+                                      static_cast<bool>(config.kalmanEnabled), static_cast<bool>(config.adaptiveFiltering));
     data.phosphorus = applyCombinedFilter(data.phosphorus, FilterType::PHOSPHORUS,
-                                        config.kalmanEnabled, config.adaptiveFiltering);
+                                        static_cast<bool>(config.kalmanEnabled), static_cast<bool>(config.adaptiveFiltering));
     data.potassium = applyCombinedFilter(data.potassium, FilterType::POTASSIUM,
-                                       config.kalmanEnabled, config.adaptiveFiltering);
+                                       static_cast<bool>(config.kalmanEnabled), static_cast<bool>(config.adaptiveFiltering));
 }
 
 void resetAllFilters() {
@@ -434,7 +455,7 @@ void resetAllFilters() {
 }
 
 void logFilterStatistics() {
-    if (!config.adaptiveFiltering) {
+    if (!static_cast<bool>(config.adaptiveFiltering)) {
         return;
     }
 
@@ -443,12 +464,12 @@ void logFilterStatistics() {
     logSystemSafe("Влажность: μ=%.2f, σ=%.2f", stats_hum.mean, stats_hum.std_dev);
     logSystemSafe("EC: μ=%.2f, σ=%.2f", stats_ec.mean, stats_ec.std_dev);
     logSystemSafe("pH: μ=%.2f, σ=%.2f", stats_ph.mean, stats_ph.std_dev);
-    logSystemSafe("N: μ=%.2f, σ=%.2f", stats_n.mean, stats_n.std_dev);
-    logSystemSafe("P: μ=%.2f, σ=%.2f", stats_p.mean, stats_p.std_dev);
-    logSystemSafe("K: μ=%.2f, σ=%.2f", stats_k.mean, stats_k.std_dev);
+    logSystemSafe("Nitrogen: μ=%.2f, σ=%.2f", stats_n.mean, stats_n.std_dev);
+    logSystemSafe("Phosphorus: μ=%.2f, σ=%.2f", stats_p.mean, stats_p.std_dev);
+    logSystemSafe("Potassium: μ=%.2f, σ=%.2f", stats_k.mean, stats_k.std_dev);
 
     // Диагностика специализированного фильтра EC
-    if (ec_filter_state.baseline_valid) {
+    if (ec_filter_state.baseline_valid) { // NOLINT(readability-implicit-bool-conversion)
         logSystemSafe("EC Фильтр: база=%.1f, выбросов=%d",
                      ec_filter_state.baseline, ec_filter_state.spike_count);
     }

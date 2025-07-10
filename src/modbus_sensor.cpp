@@ -164,10 +164,10 @@ void applyCompensationIfEnabled(SensorData& data)
     // Шаг 2: Применяем математическую компенсацию (температурная, влажностная)
     data.ec = correctEC(ecCalibrated, tempCalibrated, humCalibrated, soil);
 
-    data.ph = correctPH(phCalibrated, tempCalibrated);
+            data.ph = correctPH(tempCalibrated, phCalibrated);
 
     NPKReferences npk{data.nitrogen, data.phosphorus, data.potassium};
-    correctNPK(tempCalibrated, humCalibrated, npk, soil);
+            correctNPK(tempCalibrated, humCalibrated, soil, npk);
     data.nitrogen = npk.nitrogen;
     data.phosphorus = npk.phosphorus;
     data.potassium = npk.potassium;

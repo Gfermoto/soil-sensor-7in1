@@ -57,7 +57,7 @@ struct CalibrationTable {
 class SensorCalibrationService : public ISensorCalibrationService {
 private:
     // Калибровочные таблицы для разных профилей почвы
-    std::map<SoilProfile, CalibrationTable> calibrationTables;
+    static std::map<SoilProfile, CalibrationTable> calibrationTables;
 
     // Менеджер калибровки (для совместимости с существующим кодом)
     // CalibrationManager& calibrationManager; // Убрано - используем namespace
@@ -142,7 +142,7 @@ public:
      * @param sensorType Тип датчика
      * @return size_t Количество точек калибровки
      */
-    size_t getCalibrationPointsCount(SoilProfile profile, const String& sensorType) const;
+    static size_t getCalibrationPointsCount(SoilProfile profile, const String& sensorType);
 
     /**
      * @brief Экспортирует калибровочную таблицу в CSV
@@ -150,7 +150,8 @@ public:
      * @param profile Профиль почвы
      * @return String CSV данные калибровочной таблицы
      */
-    String exportCalibrationTable(SoilProfile profile) const;
+    static String exportCalibrationTable(SoilProfile profile);
 };
 
 #endif // SENSOR_CALIBRATION_SERVICE_H
+ 
