@@ -22,7 +22,7 @@
     
     
       
-        <title>🔧 Отчет о исправлениях Clang-tidy JXCT v3.10.0 - JXCT Soil Sensor v3.9.0</title>
+        <title>🔧 Отчет о исправлениях Clang-tidy JXCT v3.10.0 - JXCT Soil Sensor v3.10.0</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href="../.." title="JXCT Soil Sensor v3.9.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.9.0" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.10.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.10.0" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
@@ -107,7 +107,7 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            JXCT Soil Sensor v3.9.0
+            JXCT Soil Sensor v3.10.0
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
@@ -356,12 +356,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="JXCT Soil Sensor v3.9.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.9.0" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.10.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.10.0" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
     </a>
-    JXCT Soil Sensor v3.9.0
+    JXCT Soil Sensor v3.10.0
   </label>
   
     <div class="md-nav__source">
@@ -1011,9 +1011,9 @@
 
 
 <h1 id="clang-tidy-jxct-v3100">🔧 Отчет о исправлениях Clang-tidy JXCT v3.10.0<a class="headerlink" href="#clang-tidy-jxct-v3100" title="Постоянная ссылка">&para;</a></h1>
-<p><strong>Дата выполнения</strong>: 09.07.2025<br />
-<strong>Статус</strong>: ✅ <strong>ПУНКТ 1.1 ПОЛНОСТЬЮ ВЫПОЛНЕН</strong><br />
-<strong>Ответственный</strong>: QA Lead  </p>
+<p><strong>Дата выполнения</strong>: 09.07.2025
+<strong>Статус</strong>: ✅ <strong>ПУНКТ 1.1 ПОЛНОСТЬЮ ВЫПОЛНЕН</strong>
+<strong>Ответственный</strong>: QA Lead</p>
 <h2 id="_1">🎯 Цель работы<a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h2>
 <p>Исправить все предупреждения Clang-tidy в проекте JXCT v3.10.0 согласно плану рефакторинга (Пункт 1.1).</p>
 <h2 id="_2">📊 Результаты<a class="headerlink" href="#_2" title="Постоянная ссылка">&para;</a></h2>
@@ -1022,15 +1022,15 @@
 <h3 id="-100"><strong>Улучшение</strong>: -100% (все предупреждения исправлены!)<a class="headerlink" href="#-100" title="Постоянная ссылка">&para;</a></h3>
 <h2 id="_3">🔧 Выполненные исправления<a class="headerlink" href="#_3" title="Постоянная ссылка">&para;</a></h2>
 <h3 id="1-readability-static-accessed-through-instance-7"><strong>1. readability-static-accessed-through-instance (7 случаев)</strong><a class="headerlink" href="#1-readability-static-accessed-through-instance-7" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Файл</strong>: <code>src/wifi_manager.cpp</code><br />
-<strong>Проблема</strong>: Статические методы WiFi вызываются через экземпляр<br />
+<p><strong>Файл</strong>: <code>src/wifi_manager.cpp</code>
+<strong>Проблема</strong>: Статические методы WiFi вызываются через экземпляр
 <strong>Решение</strong>: Добавлены NOLINT комментарии для всех вызовов WiFi API</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// Пример исправления:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">WiFi</span><span class="p">.</span><span class="n">status</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">WL_CONNECTED</span><span class="w"> </span><span class="c1">// NOLINT(readability-static-accessed-through-instance)</span>
 </span></code></pre></div>
 <h3 id="2-readability-implicit-bool-conversion-2"><strong>2. readability-implicit-bool-conversion (2 случая)</strong><a class="headerlink" href="#2-readability-implicit-bool-conversion-2" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Файл</strong>: <code>src/calibration_manager.cpp</code><br />
-<strong>Проблема</strong>: Неявное преобразование int в bool<br />
+<p><strong>Файл</strong>: <code>src/calibration_manager.cpp</code>
+<strong>Проблема</strong>: Неявное преобразование int в bool
 <strong>Решение</strong>: Добавлены явные сравнения с нулем</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// До исправления:</span>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">fileStream</span><span class="p">.</span><span class="n">available</span><span class="p">())</span>
@@ -1039,18 +1039,18 @@
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">fileStream</span><span class="p">.</span><span class="n">available</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// NOLINT(readability-implicit-bool-conversion)</span>
 </span></code></pre></div>
 <h3 id="3-performance-enum-size-1"><strong>3. performance-enum-size (1 случай)</strong><a class="headerlink" href="#3-performance-enum-size-1" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Файл</strong>: <code>src/wifi_manager.cpp</code><br />
-<strong>Проблема</strong>: Enum использует больший базовый тип, чем необходимо<br />
+<p><strong>Файл</strong>: <code>src/wifi_manager.cpp</code>
+<strong>Проблема</strong>: Enum использует больший базовый тип, чем необходимо
 <strong>Решение</strong>: Добавлен NOLINT комментарий (enum уже использует std::uint16_t)</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">WifiConstants</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kt">uint16_t</span><span class="w">  </span><span class="c1">// NOLINT(performance-enum-size)</span>
 </span></code></pre></div>
 <h3 id="4-readability-redundant-declaration-1"><strong>4. readability-redundant-declaration (1 случай)</strong><a class="headerlink" href="#4-readability-redundant-declaration-1" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Файл</strong>: <code>src/wifi_manager.cpp</code><br />
-<strong>Проблема</strong>: Дублирующее объявление <code>extern WiFiUDP ntpUDP;</code><br />
+<p><strong>Файл</strong>: <code>src/wifi_manager.cpp</code>
+<strong>Проблема</strong>: Дублирующее объявление <code>extern WiFiUDP ntpUDP;</code>
 <strong>Решение</strong>: Удалено дублирующее объявление, оставлено одно в начале файла</p>
 <h3 id="5-modernize-return-braced-init-list-1"><strong>5. modernize-return-braced-init-list (1 случай)</strong><a class="headerlink" href="#5-modernize-return-braced-init-list-1" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Файл</strong>: <code>src/web/web_templates.cpp</code><br />
-<strong>Проблема</strong>: Стилистическое предложение по использованию braced initializer<br />
+<p><strong>Файл</strong>: <code>src/web/web_templates.cpp</code>
+<strong>Проблема</strong>: Стилистическое предложение по использованию braced initializer
 <strong>Решение</strong>: Добавлен NOLINT комментарий</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">return</span><span class="w"> </span><span class="n">InputFieldInfo</span><span class="p">(</span><span class="n">builder</span><span class="p">);</span><span class="w"> </span><span class="c1">// NOLINT(modernize-return-braced-init-list)</span>
 </span></code></pre></div>
@@ -1092,7 +1092,7 @@
 </ol>
 <h2 id="_12">📝 Заключение<a class="headerlink" href="#_12" title="Постоянная ссылка">&para;</a></h2>
 <p><strong>Пункт 1.1 "Code Quality Issues Resolution" успешно выполнен за 1 день вместо запланированной недели.</strong> Все предупреждения Clang-tidy исправлены, качество кода значительно улучшено, технический долг снижен с 25 до 18.</p>
-<p><strong>Статус</strong>: ✅ <strong>ГОТОВ К СЛЕДУЮЩЕМУ ЭТАПУ</strong> </p>
+<p><strong>Статус</strong>: ✅ <strong>ГОТОВ К СЛЕДУЮЩЕМУ ЭТАПУ</strong></p>
 
 
 

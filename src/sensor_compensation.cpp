@@ -46,7 +46,7 @@ struct ECCompensationParams
     SoilType soilType;
 
     ECCompensationParams(float temp, float moist, SoilType soil) : temperature(temp), moisture(moist), soilType(soil) {}  // NOLINT(bugprone-easily-swappable-parameters)
-    
+
     // Статический метод-фабрика для безопасного создания
     static ECCompensationParams create(float temp, float moist, SoilType soil) {
         return {temp, moist, soil};

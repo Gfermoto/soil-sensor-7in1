@@ -31,4 +31,7 @@ bool deleteTable(SoilProfile profile);
 
 // Преобразование профиля в имя файла
 const char* profileToFilename(SoilProfile profile);
+
+// Применение калибровочной таблицы к значению датчика
+float applyCalibration(float rawValue, SoilProfile profile);
 }  // namespace CalibrationManager

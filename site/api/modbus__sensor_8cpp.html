@@ -109,6 +109,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
 <div class="textblock"><code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a>&quot;</code><br />
 <code>#include &lt;Arduino.h&gt;</code><br />
 <code>#include &lt;algorithm&gt;</code><br />
+<code>#include &quot;<a class="el" href="advanced__filters_8h_source.html">advanced_filters.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="src_2calibration__manager_8h_source.html">calibration_manager.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="debug_8h_source.html">debug.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
@@ -198,7 +199,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00675">675</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00680">680</a></p>
 
 </div>
 </div>
@@ -217,7 +218,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00413">413</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00414">414</a></p>
 
 </div>
 </div>
@@ -240,7 +241,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00564">564</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00568">568</a></p>
 
 </div>
 </div>
@@ -259,7 +260,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00371">371</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00372">372</a></p>
 
 </div>
 </div>
@@ -278,7 +279,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00706">706</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00711">711</a></p>
 
 </div>
 </div>
@@ -297,7 +298,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00657">657</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00662">662</a></p>
 
 </div>
 </div>
@@ -319,7 +320,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
 <p>Завершение передачи данных </p>
 <p>Выключает передатчик и включает приемник с необходимой задержкой. Важно: Задержка 50 мкс необходима для корректного переключения режимов </p>
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00586">586</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00590">590</a></p>
 
 </div>
 </div>
@@ -341,7 +342,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
 <p>Подготовка к передаче данных </p>
 <p>Включает передатчик и отключает приемник с необходимой задержкой. Важно: Задержка 50 мкс необходима для стабилизации сигналов на шине RS-485 </p>
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00574">574</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00578">578</a></p>
 
 </div>
 </div>
@@ -360,7 +361,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00616">616</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00621">621</a></p>
 
 </div>
 </div>
@@ -379,7 +380,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00402">402</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00403">403</a></p>
 
 </div>
 </div>
@@ -398,7 +399,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00386">386</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00387">387</a></p>
 
 </div>
 </div>
@@ -417,7 +418,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00547">547</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00551">551</a></p>
 
 </div>
 </div>
@@ -444,7 +445,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
 </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00594">594</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00598">598</a></p>
 
 </div>
 </div>
@@ -466,7 +467,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
 <p>Инициализация Modbus и SP3485E. </p>
 <p>Настраивает пины управления SP3485E и инициализирует UART для Modbus. Важно: DE и RE управляются раздельно для лучшего контроля над временем переключения </p>
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00310">310</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00311">311</a></p>
 
 </div>
 </div>
@@ -485,7 +486,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00610">610</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00614">614</a></p>
 
 </div>
 </div>
@@ -504,7 +505,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00432">432</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00433">433</a></p>
 
 </div>
 </div>
@@ -530,7 +531,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
 <li>Проверяет возможность независимого управления передатчиком и приемником </li>
 </ol>
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00275">275</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00276">276</a></p>
 
 </div>
 </div>
@@ -549,7 +550,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00338">338</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00339">339</a></p>
 
 </div>
 </div>
@@ -566,7 +567,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00018">18</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00019">19</a></p>
 
 </div>
 </div>
@@ -582,7 +583,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00020">20</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00021">21</a></p>
 
 </div>
 </div>
@@ -598,7 +599,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00019">19</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00020">20</a></p>
 
 </div>
 </div>
@@ -614,7 +615,7 @@ $(function(){initNavTree('modbus__sensor_8cpp.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00021">21</a></p>
+<p class="definition">См. определение в файле <a class="el" href="modbus__sensor_8cpp_source.html">modbus_sensor.cpp</a> строка <a class="el" href="modbus__sensor_8cpp_source.html#l00022">22</a></p>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-08T21:02:05.479934",
+  "timestamp": "2025-07-10T16:52:50.413002",
   "version": "3.7.0",
   "platform": "Windows",
   "test_results": {
@@ -10,7 +10,7 @@
       "details": {
         "test/test_format.py": {
           "status": "PASS",
-          "output": "=== ТЕСТ ФОРМАТИРОВАНИЯ JXCT ===\n\n[Основные файлы]\nТестирование основных файлов...\n  ✓ src/main.cpp\n  ✓ src/validation_utils.cpp\n  ✓ platformio.ini\n  ✓ README.md\n  Результат: 4/4 файлов найдено\n  ПРОЙДЕН\n\n[C++ файлы]\nТестирование C++ файлов...\n  C++ файлы: 15\n  H файлы: 18\n  Валидные: 33/33\n  ПРОЙДЕН\n\n[Python файлы]\nТестирование Python файлов...\n  Python файлы: 27/27\n  ПРОЙДЕН\n\n=== ИТОГ: 3/3 ===\n",
+          "output": "=== ТЕСТ ФОРМАТИРОВАНИЯ JXCT ===\n\n[Основные файлы]\nТестирование основных файлов...\n  ✓ src/main.cpp\n  ✓ src/validation_utils.cpp\n  ✓ platformio.ini\n  ✓ README.md\n  Результат: 4/4 файлов найдено\n  ПРОЙДЕН\n\n[C++ файлы]\nТестирование C++ файлов...\n  C++ файлы: 16\n  H файлы: 19\n  Валидные: 35/35\n  ПРОЙДЕН\n\n[Python файлы]\nТестирование Python файлов...\n  Python файлы: 27/27\n  ПРОЙДЕН\n\n=== ИТОГ: 3/3 ===\n",
           "error": null,
           "test_count": 1
         },
@@ -24,7 +24,7 @@
     },
     "esp32_build": {
       "status": "PASS",
-      "firmware_size": 1260032
+      "firmware_size": 1272016
     },
     "esp32_tests": {
       "status": "SKIPPED",

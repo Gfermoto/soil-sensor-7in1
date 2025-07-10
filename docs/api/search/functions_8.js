@@ -20,6 +20,8 @@ var searchData=
   ['handleupdatestatus_17',['handleUpdateStatus',['../web__routes_8h.html#aca63e6b9c5fd7f5d563797216fb07b7c',1,'web_routes.h']]],
   ['handleuploaderror_18',['handleUploadError',['../error__handlers_8cpp.html#a72ddd36cf01d539c0b2575750fa997dc',1,'handleUploadError(const String &amp;error):&#160;error_handlers.cpp'],['../web__routes_8h.html#a72ddd36cf01d539c0b2575750fa997dc',1,'handleUploadError(const String &amp;error):&#160;error_handlers.cpp']]],
   ['handlewifi_19',['handleWiFi',['../wifi__manager_8cpp.html#aef11d16b4d8e760671e3487b2106b6b2',1,'handleWiFi():&#160;wifi_manager.cpp'],['../wifi__manager_8h.html#aef11d16b4d8e760671e3487b2106b6b2',1,'handleWiFi():&#160;wifi_manager.cpp']]],
-  ['hastable_20',['hasTable',['../namespace_calibration_manager.html#a1ee0f1f244cb68eaa7e47a79deb452b6',1,'CalibrationManager']]],
-  ['httprequest_21',['HttpRequest',['../struct_http_request.html#a8d0edc679da05e02e20b3e1c3d68468a',1,'HttpRequest']]]
+  ['hascalibrationtable_20',['hasCalibrationTable',['../class_sensor_calibration_service.html#abb57988a85d77e1ff27cdd1ea8039e3e',1,'SensorCalibrationService::hasCalibrationTable()'],['../class_i_sensor_calibration_service.html#af9876a3e5776debf1381b55c44ab6966',1,'ISensorCalibrationService::hasCalibrationTable()']]],
+  ['hascropconfig_21',['hasCropConfig',['../class_crop_recommendation_engine.html#afc4cb1ec3e2fecc0e1e8071e555c8fbf',1,'CropRecommendationEngine']]],
+  ['hastable_22',['hasTable',['../namespace_calibration_manager.html#a1ee0f1f244cb68eaa7e47a79deb452b6',1,'CalibrationManager']]],
+  ['httprequest_23',['HttpRequest',['../struct_http_request.html#a8d0edc679da05e02e20b3e1c3d68468a',1,'HttpRequest']]]
 ];

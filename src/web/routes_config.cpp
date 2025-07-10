@@ -213,7 +213,7 @@ void setupConfigRoutes()
 
             // Новые настройки улучшенной фильтрации
             html += "<div class='section'><h2>🔧 Улучшенная фильтрация</h2>";
-            
+
             html += "<div class='form-group'><label for='adaptive_filtering'>Адаптивная фильтрация:</label>";
             html += "<select id='adaptive_filtering' name='adaptive_filtering' required>";
             html += "<option value='0'" + String(config.adaptiveFiltering == 0 ? " selected" : "") +
@@ -235,7 +235,7 @@ void setupConfigRoutes()
             html += generateButton(ButtonType::SECONDARY,
                                    ButtonConfig{UI_ICON_RESET, "Сбросить к умолчанию (1 сек + мин. фильтрация)", ""});
             html += "</form>";
-            
+
             // JavaScript для динамического управления полями
             html += "<script>";
             html += "function updateFieldVisibility() {";
@@ -264,7 +264,7 @@ void setupConfigRoutes()
             html += "  document.getElementById('outlier_filter').addEventListener('change', updateFieldVisibility);";
             html += "});";
             html += "</script>";
-            
+
             html += generatePageFooter();
 
             webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);

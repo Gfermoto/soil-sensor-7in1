@@ -79,6 +79,20 @@ struct SensorData
     float nitrogen;    // Исправлено: должно быть float
     float phosphorus;  // Исправлено: должно быть float
     float potassium;   // Исправлено: должно быть float
+
+    // Сырые значения (до калибровки/компенсации)
+    float raw_temperature;
+    float raw_humidity;
+    float raw_ph;
+    float raw_ec;
+    float raw_nitrogen;
+    float raw_phosphorus;
+    float raw_potassium;
+
+    SensorData() : temperature(0), humidity(0), ph(0), ec(0),
+                   nitrogen(0), phosphorus(0), potassium(0),
+                   raw_temperature(0), raw_humidity(0), raw_ph(0), raw_ec(0),
+                   raw_nitrogen(0), raw_phosphorus(0), raw_potassium(0) {}
 };
 
 // ============================================================================

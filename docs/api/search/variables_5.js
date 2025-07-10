@@ -1,9 +1,21 @@
 var searchData=
 [
-  ['ec_0',['ec',['../struct_sensor_data.html#aa990acd0e7ae2bdc99a54069ffe36e41',1,'SensorData']]],
+  ['ec_0',['ec',['../struct_crop_config.html#adeef15ae99ba41875689af46d6259c2c',1,'CropConfig::ec'],['../struct_sensor_data.html#aa990acd0e7ae2bdc99a54069ffe36e41',1,'SensorData::ec'],['../struct_rec_values.html#a93613bd3e62e62e2e5348dbcdbf7141c',1,'RecValues::ec']]],
   ['ec_5fbuffer_1',['ec_buffer',['../struct_sensor_data.html#a43150919a4c14d363c38a617bb1ff12b',1,'SensorData']]],
-  ['ec_5fmax_5fvalid_2',['EC_MAX_VALID',['../jxct__constants_8h.html#ad6dfe79b28fcfdd9626fd937bae6660f',1,'jxct_constants.h']]],
-  ['error_5fstatus_3',['error_status',['../struct_sensor_data.html#ac4ca11b4574092a5d653f9c3a838e218',1,'SensorData']]],
-  ['errors_4',['errors',['../struct_config_validation_result.html#adfe9c7666685cd227d3a2c4d0e10efe1',1,'ConfigValidationResult::errors'],['../struct_sensor_validation_result.html#a41444c647d77a9f5f7b4c7d38e2abb8a',1,'SensorValidationResult::errors']]],
-  ['espclient_5',['espClient',['../mqtt__client_8cpp.html#abd77e757e4b3bb6f1e4b42b21ea9e040',1,'espClient:&#160;mqtt_client.cpp'],['../mqtt__client_8h.html#abd77e757e4b3bb6f1e4b42b21ea9e040',1,'espClient:&#160;mqtt_client.cpp'],['../thingspeak__client_8h.html#abd77e757e4b3bb6f1e4b42b21ea9e040',1,'espClient:&#160;mqtt_client.cpp']]]
+  ['ec_5ffilter_5fstate_2',['ec_filter_state',['../namespace_advanced_filters.html#a2ee1566c3da373ee047b16a59cfa439a',1,'AdvancedFilters']]],
+  ['ec_5fmax_5fvalid_3',['EC_MAX_VALID',['../jxct__constants_8h.html#ad6dfe79b28fcfdd9626fd937bae6660f',1,'jxct_constants.h']]],
+  ['ecpoints_4',['ecPoints',['../struct_calibration_table.html#a1f77c3ba4b807a6841d8cc57b1009f3e',1,'CalibrationTable']]],
+  ['error_5fstatus_5',['error_status',['../struct_sensor_data.html#ac4ca11b4574092a5d653f9c3a838e218',1,'SensorData']]],
+  ['errors_6',['errors',['../struct_config_validation_result.html#adfe9c7666685cd227d3a2c4d0e10efe1',1,'ConfigValidationResult::errors'],['../struct_sensor_validation_result.html#a41444c647d77a9f5f7b4c7d38e2abb8a',1,'SensorValidationResult::errors']]],
+  ['espclient_7',['espClient',['../mqtt__client_8cpp.html#abd77e757e4b3bb6f1e4b42b21ea9e040',1,'espClient:&#160;mqtt_client.cpp'],['../mqtt__client_8h.html#abd77e757e4b3bb6f1e4b42b21ea9e040',1,'espClient:&#160;mqtt_client.cpp'],['../thingspeak__client_8h.html#abd77e757e4b3bb6f1e4b42b21ea9e040',1,'espClient:&#160;mqtt_client.cpp']]],
+  ['exp_5fsmooth_5fec_8',['exp_smooth_ec',['../namespace_advanced_filters.html#a21db6065c187393665a1501120cca2c5',1,'AdvancedFilters']]],
+  ['exp_5fsmooth_5fhum_9',['exp_smooth_hum',['../namespace_advanced_filters.html#a67a4b55146d824dc9b6364829572c6ed',1,'AdvancedFilters']]],
+  ['exp_5fsmooth_5fk_10',['exp_smooth_k',['../namespace_advanced_filters.html#a3aea7b17b095f0f2667915a3f095b55b',1,'AdvancedFilters']]],
+  ['exp_5fsmooth_5fn_11',['exp_smooth_n',['../namespace_advanced_filters.html#a72c655988bdc904b350ccb709b2d1b74',1,'AdvancedFilters']]],
+  ['exp_5fsmooth_5fp_12',['exp_smooth_p',['../namespace_advanced_filters.html#a1d4fcfb23111fbd9b109056c2afb263d',1,'AdvancedFilters']]],
+  ['exp_5fsmooth_5fph_13',['exp_smooth_ph',['../namespace_advanced_filters.html#a76843f2a8342aa54f251d1165283d88a',1,'AdvancedFilters']]],
+  ['exp_5fsmooth_5ftemp_14',['exp_smooth_temp',['../namespace_advanced_filters.html#ac8bd4814e3de4d7bef137cd0849d1ec9',1,'AdvancedFilters']]],
+  ['exponential_5falpha_5fdefault_15',['EXPONENTIAL_ALPHA_DEFAULT',['../jxct__constants_8h.html#a6342a6a7cf6d926635b64cd22f19a373',1,'jxct_constants.h']]],
+  ['exponential_5falpha_5fmax_16',['EXPONENTIAL_ALPHA_MAX',['../jxct__constants_8h.html#a7dc955e195d4fdf33052bac2663183c8',1,'jxct_constants.h']]],
+  ['exponential_5falpha_5fmin_17',['EXPONENTIAL_ALPHA_MIN',['../jxct__constants_8h.html#a4dff4e4c96ebb028fb21ba64f7893373',1,'jxct_constants.h']]]
 ];

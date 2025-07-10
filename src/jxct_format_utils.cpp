@@ -26,7 +26,7 @@ std::string formatFloat(float value, const FormatOptions& options)
 {
     std::array<char, 8> buf;
 
-    snprintf(buf.data(), buf.size(), 
+    snprintf(buf.data(), buf.size(),
              (options.formatType == FormatType::INTEGER) ? "%d" : "%.*f",
              (options.formatType == FormatType::INTEGER) ? static_cast<int>(lround(value)) : options.precision,
              (options.formatType == FormatType::INTEGER) ? 0 : value);

@@ -62,10 +62,11 @@ var searchData=
   ['device_5fmanufacturer_59',['DEVICE_MANUFACTURER',['../version_8h.html#a83f77c2317b3d28560f91fffca64efea',1,'version.h']]],
   ['device_5fmodel_60',['DEVICE_MODEL',['../version_8h.html#acd8d2dccf471a5d0cbd070ff1bef8887',1,'version.h']]],
   ['device_5fsw_5fversion_61',['DEVICE_SW_VERSION',['../version_8h.html#aa6399036840a604f6b3bbbf93f7ecd3c',1,'version.h']]],
-  ['dns_5fcache_5fttl_62',['DNS_CACHE_TTL',['../jxct__constants_8h.html#a564c8f2937d070bba56544f0b63d8842',1,'jxct_constants.h']]],
-  ['dns_5fport_63',['DNS_PORT',['../jxct__config__vars_8h.html#ab1d3f5c08428c20521a92ca2fa20f46c',1,'jxct_config_vars.h']]],
-  ['dns_5fserver_5fport_64',['DNS_SERVER_PORT',['../wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a5522e9d5fd9cf70194fc37fe9f77ff54',1,'wifi_manager.cpp']]],
-  ['dnsserver_65',['dnsServer',['../wifi__manager_8cpp.html#a52c5394c861b62875409604eedc0fcd7',1,'wifi_manager.cpp']]],
-  ['downloadandupdate_66',['downloadAndUpdate',['../ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463',1,'ota_manager.cpp']]],
-  ['duplicated_5flines_67',['duplicated_lines',['../struct_technical_debt_metrics.html#ad65a2aec2bf57710c6ce49d3e5f37aad',1,'TechnicalDebtMetrics']]]
+  ['disconnect_62',['disconnect',['../class_i_mqtt_connection_manager.html#a5a8d84a9ccc793693200adc5d3df538b',1,'IMqttConnectionManager']]],
+  ['dns_5fcache_5fttl_63',['DNS_CACHE_TTL',['../jxct__constants_8h.html#a564c8f2937d070bba56544f0b63d8842',1,'jxct_constants.h']]],
+  ['dns_5fport_64',['DNS_PORT',['../jxct__config__vars_8h.html#ab1d3f5c08428c20521a92ca2fa20f46c',1,'jxct_config_vars.h']]],
+  ['dns_5fserver_5fport_65',['DNS_SERVER_PORT',['../wifi__manager_8cpp.html#a777d3a0d24c4d7d746f14df96bf298c3a5522e9d5fd9cf70194fc37fe9f77ff54',1,'wifi_manager.cpp']]],
+  ['dnsserver_66',['dnsServer',['../wifi__manager_8cpp.html#a52c5394c861b62875409604eedc0fcd7',1,'wifi_manager.cpp']]],
+  ['downloadandupdate_67',['downloadAndUpdate',['../ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463',1,'ota_manager.cpp']]],
+  ['duplicated_5flines_68',['duplicated_lines',['../struct_technical_debt_metrics.html#ad65a2aec2bf57710c6ce49d3e5f37aad',1,'TechnicalDebtMetrics']]]
 ];

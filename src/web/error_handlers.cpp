@@ -13,7 +13,7 @@ struct ValidationRange
 
     ValidationRange(int minValue, int maxValue) // NOLINT(bugprone-easily-swappable-parameters)
         : minValue(minValue), maxValue(maxValue) {}
-    
+
     // Статический метод-фабрика для безопасного создания
     static ValidationRange create(int minValue, int maxValue) {
         return {minValue, maxValue};
@@ -31,19 +31,19 @@ struct HttpRequest
         : method(methodValue), uri(uriValue), clientIP(clientIPValue)
     {
     }
-    
+
     // Статический метод-фабрика для безопасного создания
     static HttpRequest create(const String& methodValue, const String& uriValue, const String& clientIPValue) {
         return {methodValue, uriValue, clientIPValue};
     }
-    
+
     // Типобезопасная версия с именованными параметрами
     struct CreateParams {
         const String& method;
         const String& uri;
         const String& clientIP;
     };
-    
+
     static HttpRequest create(const CreateParams& params) {
         return {params.method, params.uri, params.clientIP};
     }

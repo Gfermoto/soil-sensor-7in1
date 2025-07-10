@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['sensorcache_0',['SensorCache',['../struct_sensor_cache.html',1,'']]],
-  ['sensordata_1',['SensorData',['../struct_sensor_data.html',1,'']]],
-  ['sensorvalidationresult_2',['SensorValidationResult',['../struct_sensor_validation_result.html',1,'']]],
-  ['soileccoeff_3',['SoilECCoeff',['../struct_soil_e_c_coeff.html',1,'']]]
+  ['npkreferences_0',['NPKReferences',['../struct_n_p_k_references.html',1,'']]],
+  ['numberfieldinfo_1',['NumberFieldInfo',['../struct_number_field_info.html',1,'']]]
 ];

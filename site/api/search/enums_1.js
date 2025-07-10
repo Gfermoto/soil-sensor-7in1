@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['logcolor_0',['LogColor',['../logger_8h.html#a2b15c85f545a729e30a74239be429afb',1,'logger.h']]],
-  ['loglevel_1',['LogLevel',['../logger_8h.html#a4ad2f3fcf504e54f0d7835fa6a4a5cd4',1,'logger.h']]]
+  ['environmenttype_0',['EnvironmentType',['../_i_crop_recommendation_engine_8h.html#a1de7cecb71b1f30091409b059b24e8d6',1,'ICropRecommendationEngine.h']]]
 ];

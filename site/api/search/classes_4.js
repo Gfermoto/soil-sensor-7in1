@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['httprequest_0',['HttpRequest',['../struct_http_request.html',1,'']]]
+  ['fakesensoradapter_0',['FakeSensorAdapter',['../class_fake_sensor_adapter.html',1,'']]],
+  ['forminfo_1',['FormInfo',['../struct_form_info.html',1,'']]]
 ];

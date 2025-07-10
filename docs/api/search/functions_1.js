@@ -1,5 +1,16 @@
 var searchData=
 [
   ['addtomovingaverage_0',['addToMovingAverage',['../modbus__sensor_8cpp.html#aa3a75ec1c2e64f7a20f651c168e3f82b',1,'addToMovingAverage(SensorData &amp;data, const SensorData &amp;newReading):&#160;modbus_sensor.cpp'],['../modbus__sensor_8h.html#aa3a75ec1c2e64f7a20f651c168e3f82b',1,'addToMovingAverage(SensorData &amp;data, const SensorData &amp;newReading):&#160;modbus_sensor.cpp']]],
-  ['applycalibration_1',['applyCalibration',['../namespace_calibration_manager.html#abb872938a17efb733eaf531bb5c0a1dc',1,'CalibrationManager']]]
+  ['applyadvancedfiltering_1',['applyAdvancedFiltering',['../namespace_advanced_filters.html#abfbf0e02e94828a4ad01afbfcc50bbca',1,'AdvancedFilters']]],
+  ['applycalibration_2',['applyCalibration',['../class_sensor_calibration_service.html#a40a2ed991a3ebdf300869c8f59312b9d',1,'SensorCalibrationService::applyCalibration()'],['../class_i_sensor_calibration_service.html#ae024a7b3fd62fcbfa0310bd9ca836b34',1,'ISensorCalibrationService::applyCalibration()'],['../namespace_calibration_manager.html#abb872938a17efb733eaf531bb5c0a1dc',1,'CalibrationManager::applyCalibration()']]],
+  ['applycalibrationwithinterpolation_3',['applyCalibrationWithInterpolation',['../class_sensor_calibration_service.html#a57225e91adfe129d4327aa2903473df1',1,'SensorCalibrationService']]],
+  ['applycombinedfilter_4',['applyCombinedFilter',['../namespace_advanced_filters.html#af81c441734362ca0f177a576d35ff7c6',1,'AdvancedFilters']]],
+  ['applycompensation_5',['applyCompensation',['../class_sensor_compensation_service.html#a6b4ab9b9b0c290dc067607ec63bd0b78',1,'SensorCompensationService::applyCompensation()'],['../class_i_sensor_compensation_service.html#a240c7f64bcde5b067b56e3f3cebd8d1b',1,'ISensorCompensationService::applyCompensation()']]],
+  ['applyecspecializedfilter_6',['applyECSpecializedFilter',['../namespace_advanced_filters.html#ad1453e8cb97e5912a02a793d83487470',1,'AdvancedFilters']]],
+  ['applyenvironmentcorrection_7',['applyEnvironmentCorrection',['../class_crop_recommendation_engine.html#a07cdf2b50de62a2976d8b4b18a66291b',1,'CropRecommendationEngine']]],
+  ['applyexponentialsmoothing_8',['applyExponentialSmoothing',['../namespace_advanced_filters.html#affb775d0038ed43ef56a8f53da52ddde',1,'AdvancedFilters']]],
+  ['applyseasonalcorrection_9',['applySeasonalCorrection',['../class_crop_recommendation_engine.html#a80d5dcf4a5b65a4540bd5999322fbd3d',1,'CropRecommendationEngine::applySeasonalCorrection()'],['../class_i_crop_recommendation_engine.html#a8fb69ec5ecc8eee64d51ce052cfaf141',1,'ICropRecommendationEngine::applySeasonalCorrection()']]],
+  ['applysinglecalibration_10',['applySingleCalibration',['../class_sensor_calibration_service.html#ac073021d9df7c94b7407eaaf54dbfd7b',1,'SensorCalibrationService::applySingleCalibration()'],['../class_i_sensor_calibration_service.html#aad01984f8f28237c4b768309eeed64c5',1,'ISensorCalibrationService::applySingleCalibration()']]],
+  ['applysoilprofilecorrection_11',['applySoilProfileCorrection',['../class_crop_recommendation_engine.html#ab193d248b0efa1665f068e83911b06d9',1,'CropRecommendationEngine']]],
+  ['archiecoefficients_12',['ArchieCoefficients',['../struct_archie_coefficients.html#aff4a33eb6716ad8b9189674cfb7beea6',1,'ArchieCoefficients::ArchieCoefficients()'],['../struct_archie_coefficients.html#a18fd767d9a2a43e085e4d58c39143f1d',1,'ArchieCoefficients::ArchieCoefficients(float cementation, float saturation, float porosity)']]]
 ];

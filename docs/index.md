@@ -2,6 +2,8 @@
 
 **Профессиональная IoT система мониторинга почвы на базе ESP32**
 
+**Статус:** ✅ **ГОТОВ К ПРОДАКШЕНУ** | **Версия:** 3.10.0 | **Обновлено:** 10.07.2025
+
 [![Version](https://img.shields.io/github/v/tag/Gfermoto/soil-sensor-7in1?color=blue&label=version)](https://github.com/Gfermoto/soil-sensor-7in1/releases)
 [![Platform](https://img.shields.io/badge/platform-ESP32-green.svg)](https://www.espressif.com/en/products/socs/esp32)
 [![License](https://img.shields.io/github/license/Gfermoto/soil-sensor-7in1?color=yellow&label=license)](https://github.com/Gfermoto/soil-sensor-7in1/blob/main/LICENSE)
@@ -124,4 +126,4 @@
 
 ---
 
-**EYERA Development Team** | Версия 3.10.0 | 2025
+**EYERA Development Team** | Версия 3.10.0 | 2025 | **Статус:** ✅ Готов к продакшену

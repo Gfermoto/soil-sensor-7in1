@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT 7-в-1 Датчик Почвы: Исходный файл src/business/sensor_compensation_service.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   </div>
+   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('sensor__compensation__service_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">sensor_compensation_service.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="sensor__compensation__service_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef SENSOR_COMPENSATION_SERVICE_H</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define SENSOR_COMPENSATION_SERVICE_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="sensor__compensation_8h.html">../../include/sensor_compensation.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="_i_sensor_compensation_service_8h.html">../../include/business/ISensorCompensationService.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="validation__utils_8h.html">../../include/validation_utils.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span></div>
+<div class="foldopen" id="foldopen00021" data-start="{" data-end="};">
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_archie_coefficients.html">   21</a></span><span class="keyword">struct </span><a class="code hl_function" href="struct_archie_coefficients.html#aff4a33eb6716ad8b9189674cfb7beea6">ArchieCoefficients</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="struct_archie_coefficients.html#a8a7dd1460f557fcba78a18a2ce4c1882">   22</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_archie_coefficients.html#a8a7dd1460f557fcba78a18a2ce4c1882">m</a>;  <span class="comment">// Коэффициент цементации</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="struct_archie_coefficients.html#a13e0d744c0b089788d8790905ee2985a">   23</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_archie_coefficients.html#a13e0d744c0b089788d8790905ee2985a">n</a>;  <span class="comment">// Коэффициент насыщенности</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_archie_coefficients.html#a320c05e5003f55503a3c8f336730259e">   24</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_archie_coefficients.html#a320c05e5003f55503a3c8f336730259e">a</a>;  <span class="comment">// Коэффициент пористости</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct_archie_coefficients.html#aff4a33eb6716ad8b9189674cfb7beea6">   26</a></span>    <a class="code hl_function" href="struct_archie_coefficients.html#aff4a33eb6716ad8b9189674cfb7beea6">ArchieCoefficients</a>() : <a class="code hl_variable" href="struct_archie_coefficients.html#a8a7dd1460f557fcba78a18a2ce4c1882">m</a>(1.5F), <a class="code hl_variable" href="struct_archie_coefficients.html#a13e0d744c0b089788d8790905ee2985a">n</a>(2.0F), <a class="code hl_variable" href="struct_archie_coefficients.html#a320c05e5003f55503a3c8f336730259e">a</a>(0.45F) {}</div>
+<div class="foldopen" id="foldopen00027" data-start="{" data-end="}">
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="struct_archie_coefficients.html#a18fd767d9a2a43e085e4d58c39143f1d">   27</a></span>    <a class="code hl_function" href="struct_archie_coefficients.html#a18fd767d9a2a43e085e4d58c39143f1d">ArchieCoefficients</a>(<span class="keywordtype">float</span> cementation, <span class="keywordtype">float</span> saturation, <span class="keywordtype">float</span> porosity)</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>        : <a class="code hl_variable" href="struct_archie_coefficients.html#a8a7dd1460f557fcba78a18a2ce4c1882">m</a>(cementation), <a class="code hl_variable" href="struct_archie_coefficients.html#a13e0d744c0b089788d8790905ee2985a">n</a>(saturation), <a class="code hl_variable" href="struct_archie_coefficients.html#a320c05e5003f55503a3c8f336730259e">a</a>(porosity) {}</div>
+</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
+</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span></div>
+<div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="struct_soil_parameters.html">   36</a></span><span class="keyword">struct </span><a class="code hl_function" href="struct_soil_parameters.html#a82a2f5722a3c73edb72eab37070c05eb">SoilParameters</a> {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="struct_soil_parameters.html#a91f6c1b2df01751d918c701c31422c6e">   37</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_soil_parameters.html#a91f6c1b2df01751d918c701c31422c6e">porosity</a>;      <span class="comment">// Пористость</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="struct_soil_parameters.html#a7aac06cefc41d9d25bbab65555695666">   38</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_soil_parameters.html#a7aac06cefc41d9d25bbab65555695666">bulkDensity</a>;   <span class="comment">// Объемная плотность</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="struct_soil_parameters.html#a8127688bbf9c43a6f2bdc9f8241ff1f8">   39</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_soil_parameters.html#a8127688bbf9c43a6f2bdc9f8241ff1f8">fieldCapacity</a>; <span class="comment">// Полевая влагоемкость</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_soil_parameters.html#a82a2f5722a3c73edb72eab37070c05eb">   41</a></span>    <a class="code hl_function" href="struct_soil_parameters.html#a82a2f5722a3c73edb72eab37070c05eb">SoilParameters</a>() : <a class="code hl_variable" href="struct_soil_parameters.html#a91f6c1b2df01751d918c701c31422c6e">porosity</a>(0.45F), <a class="code hl_variable" href="struct_soil_parameters.html#a7aac06cefc41d9d25bbab65555695666">bulkDensity</a>(1.40F), <a class="code hl_variable" href="struct_soil_parameters.html#a8127688bbf9c43a6f2bdc9f8241ff1f8">fieldCapacity</a>(0.20F) {}</div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="}">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="struct_soil_parameters.html#a60f1d32e3ae4dfefbc093ac0ca952a7b">   42</a></span>    <a class="code hl_function" href="struct_soil_parameters.html#a60f1d32e3ae4dfefbc093ac0ca952a7b">SoilParameters</a>(<span class="keywordtype">float</span> por, <span class="keywordtype">float</span> density, <span class="keywordtype">float</span> capacity)</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        : <a class="code hl_variable" href="struct_soil_parameters.html#a91f6c1b2df01751d918c701c31422c6e">porosity</a>(por), <a class="code hl_variable" href="struct_soil_parameters.html#a7aac06cefc41d9d25bbab65555695666">bulkDensity</a>(density), <a class="code hl_variable" href="struct_soil_parameters.html#a8127688bbf9c43a6f2bdc9f8241ff1f8">fieldCapacity</a>(capacity) {}</div>
+</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
+</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span></div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="};">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="class_sensor_compensation_service.html">   54</a></span><span class="keyword">class </span><a class="code hl_function" href="class_sensor_compensation_service.html#a433592cef86adadec3a1d137a3ad7821">SensorCompensationService</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_i_sensor_compensation_service.html">ISensorCompensationService</a> {</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// Коэффициенты Арчи для разных типов почвы</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="class_sensor_compensation_service.html#ad4e965b890ff3eada916e58400f1fa3b">   57</a></span>    std::map&lt;SoilType, ArchieCoefficients&gt; <a class="code hl_variable" href="class_sensor_compensation_service.html#ad4e965b890ff3eada916e58400f1fa3b">archieCoefficients</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">// Параметры почвы для разных типов</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="class_sensor_compensation_service.html#a0927ffcd90156c7c9b13178d07f02e24">   60</a></span>    std::map&lt;SoilType, SoilParameters&gt; <a class="code hl_variable" href="class_sensor_compensation_service.html#a0927ffcd90156c7c9b13178d07f02e24">soilParameters</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// Константы для расчетов</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="class_sensor_compensation_service.html#a3ae9afc6f72282ebb33a2597407b34cd">   63</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="class_sensor_compensation_service.html#a3ae9afc6f72282ebb33a2597407b34cd">R</a> = 8.314F;  <span class="comment">// Универсальная газовая постоянная (Дж/(моль·К))</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="class_sensor_compensation_service.html#a37c2bb9c46aafe180ba5ef124ff3d73f">   64</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="class_sensor_compensation_service.html#a37c2bb9c46aafe180ba5ef124ff3d73f">F</a> = 96485.0F; <span class="comment">// Постоянная Фарадея (Кл/моль)</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="class_sensor_compensation_service.html#ab2a4025fce969f7ff994f46489ebd475">   65</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">float</span> <a class="code hl_variable" href="class_sensor_compensation_service.html#ab2a4025fce969f7ff994f46489ebd475">T0</a> = 298.15F; <span class="comment">// Стандартная температура (25°C в Кельвинах)</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="comment">// Инициализация коэффициентов Арчи</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sensor_compensation_service.html#adbcd3d6b524b234cdd9cc2844cb8cc7f">initializeArchieCoefficients</a>();</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// Инициализация параметров почвы</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sensor_compensation_service.html#af55b3ff3b0a44c6863aef6519fefa889">initializeSoilParameters</a>();</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="comment">// Расчет температуры в Кельвинах</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_sensor_compensation_service.html#a29fa33a7ffd9b885cb746435c98f23e0">temperatureToKelvin</a>(<span class="keywordtype">float</span> celsius) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="comment">// Расчет коэффициента температурной компенсации для EC</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_sensor_compensation_service.html#a7bf9a0ca95a72501f12cc15239822149">calculateECTemperatureFactor</a>(<span class="keywordtype">float</span> temperature) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>    <span class="comment">// Расчет коэффициента влажностной компенсации для EC</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_sensor_compensation_service.html#a5288f2bc9043a0bab59783be6d244195">calculateECHumidityFactor</a>(<span class="keywordtype">float</span> humidity, <a class="code hl_enumeration" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soilType) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <a class="code hl_function" href="class_sensor_compensation_service.html#a433592cef86adadec3a1d137a3ad7821">SensorCompensationService</a>();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="class_sensor_compensation_service.html#a82260d6f41e363d42bb69b6648bc7aa3">   93</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_sensor_compensation_service.html#a82260d6f41e363d42bb69b6648bc7aa3">~SensorCompensationService</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sensor_compensation_service.html#a6b4ab9b9b0c290dc067607ec63bd0b78">applyCompensation</a>(<a class="code hl_struct" href="struct_sensor_data.html">SensorData</a>&amp; data, <a class="code hl_enumeration" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soilType) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_sensor_compensation_service.html#adbd26ec68b859b5d70e082459f8cc05d">correctEC</a>(<span class="keywordtype">float</span> ec25, <span class="keywordtype">float</span> temperature, <span class="keywordtype">float</span> humidity, <a class="code hl_enumeration" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soilType) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span></div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_sensor_compensation_service.html#a9731e281d097e995e939068b461b555b">correctPH</a>(<span class="keywordtype">float</span> phRaw, <span class="keywordtype">float</span> temperature) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_sensor_compensation_service.html#a15f02f1d9807efc981d732a9adc3ca34">correctNPK</a>(<span class="keywordtype">float</span> temperature, <span class="keywordtype">float</span> humidity, <a class="code hl_struct" href="struct_n_p_k_references.html">NPKReferences</a>&amp; npk, <a class="code hl_enumeration" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soilType) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_sensor_compensation_service.html#a08e4ed05ff96d3bb573a22372d9db076">getArchieCoefficient</a>(<a class="code hl_enumeration" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soilType) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">float</span> <a class="code hl_function" href="class_sensor_compensation_service.html#ac555cd253cbdbbf14ab13eb0da8544a5">getPorosity</a>(<a class="code hl_enumeration" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soilType) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_sensor_compensation_service.html#a047d40cb14431a5dce3cbe1592b937d5">validateCompensationInputs</a>(<span class="keywordtype">float</span> temperature, <span class="keywordtype">float</span> humidity, <a class="code hl_enumeration" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soilType) <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>    <a class="code hl_struct" href="struct_soil_parameters.html">SoilParameters</a> <a class="code hl_function" href="class_sensor_compensation_service.html#a7aadee4bf1e0b43eae1e22e9d4384676">getSoilParameters</a>(<a class="code hl_enumeration" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soilType) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <a class="code hl_struct" href="struct_archie_coefficients.html">ArchieCoefficients</a> <a class="code hl_function" href="class_sensor_compensation_service.html#aeaa7aaae9b5877afa6abb189ca0f1ed6">getArchieCoefficients</a>(<a class="code hl_enumeration" href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soilType) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>};</div>
+</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><span class="preprocessor">#endif </span><span class="comment">// SENSOR_COMPENSATION_SERVICE_H</span></div>
+<div class="ttc" id="a_i_sensor_compensation_service_8h_html"><div class="ttname"><a href="_i_sensor_compensation_service_8h.html">ISensorCompensationService.h</a></div><div class="ttdoc">Интерфейс для сервиса компенсации датчиков</div></div>
+<div class="ttc" id="aclass_i_sensor_compensation_service_html"><div class="ttname"><a href="class_i_sensor_compensation_service.html">ISensorCompensationService</a></div><div class="ttdoc">Интерфейс для сервиса компенсации датчиков</div><div class="ttdef"><b>Определения</b> <a href="_i_sensor_compensation_service_8h_source.html#l00020">ISensorCompensationService.h:20</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a047d40cb14431a5dce3cbe1592b937d5"><div class="ttname"><a href="class_sensor_compensation_service.html#a047d40cb14431a5dce3cbe1592b937d5">SensorCompensationService::validateCompensationInputs</a></div><div class="ttdeci">bool validateCompensationInputs(float temperature, float humidity, SoilType soilType) const override</div><div class="ttdoc">Проверяет валидность входных данных для компенсации</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00114">sensor_compensation_service.cpp:114</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a08e4ed05ff96d3bb573a22372d9db076"><div class="ttname"><a href="class_sensor_compensation_service.html#a08e4ed05ff96d3bb573a22372d9db076">SensorCompensationService::getArchieCoefficient</a></div><div class="ttdeci">float getArchieCoefficient(SoilType soilType) const override</div><div class="ttdoc">Получает коэффициент Арчи для типа почвы</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00098">sensor_compensation_service.cpp:98</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a0927ffcd90156c7c9b13178d07f02e24"><div class="ttname"><a href="class_sensor_compensation_service.html#a0927ffcd90156c7c9b13178d07f02e24">SensorCompensationService::soilParameters</a></div><div class="ttdeci">std::map&lt; SoilType, SoilParameters &gt; soilParameters</div><div class="ttdef"><b>Определения</b> <a href="#l00060">sensor_compensation_service.h:60</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a15f02f1d9807efc981d732a9adc3ca34"><div class="ttname"><a href="class_sensor_compensation_service.html#a15f02f1d9807efc981d732a9adc3ca34">SensorCompensationService::correctNPK</a></div><div class="ttdeci">void correctNPK(float temperature, float humidity, NPKReferences &amp;npk, SoilType soilType) override</div><div class="ttdoc">Компенсирует NPK по алгоритму FAO 56.</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00074">sensor_compensation_service.cpp:74</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a29fa33a7ffd9b885cb746435c98f23e0"><div class="ttname"><a href="class_sensor_compensation_service.html#a29fa33a7ffd9b885cb746435c98f23e0">SensorCompensationService::temperatureToKelvin</a></div><div class="ttdeci">float temperatureToKelvin(float celsius) const</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00178">sensor_compensation_service.cpp:178</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a37c2bb9c46aafe180ba5ef124ff3d73f"><div class="ttname"><a href="class_sensor_compensation_service.html#a37c2bb9c46aafe180ba5ef124ff3d73f">SensorCompensationService::F</a></div><div class="ttdeci">static constexpr float F</div><div class="ttdef"><b>Определения</b> <a href="#l00064">sensor_compensation_service.h:64</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a3ae9afc6f72282ebb33a2597407b34cd"><div class="ttname"><a href="class_sensor_compensation_service.html#a3ae9afc6f72282ebb33a2597407b34cd">SensorCompensationService::R</a></div><div class="ttdeci">static constexpr float R</div><div class="ttdef"><b>Определения</b> <a href="#l00063">sensor_compensation_service.h:63</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a433592cef86adadec3a1d137a3ad7821"><div class="ttname"><a href="class_sensor_compensation_service.html#a433592cef86adadec3a1d137a3ad7821">SensorCompensationService::SensorCompensationService</a></div><div class="ttdeci">SensorCompensationService()</div><div class="ttdoc">Конструктор</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00013">sensor_compensation_service.cpp:13</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a5288f2bc9043a0bab59783be6d244195"><div class="ttname"><a href="class_sensor_compensation_service.html#a5288f2bc9043a0bab59783be6d244195">SensorCompensationService::calculateECHumidityFactor</a></div><div class="ttdeci">float calculateECHumidityFactor(float humidity, SoilType soilType) const</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00188">sensor_compensation_service.cpp:188</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a6b4ab9b9b0c290dc067607ec63bd0b78"><div class="ttname"><a href="class_sensor_compensation_service.html#a6b4ab9b9b0c290dc067607ec63bd0b78">SensorCompensationService::applyCompensation</a></div><div class="ttdeci">void applyCompensation(SensorData &amp;data, SoilType soilType) override</div><div class="ttdoc">Применяет компенсацию к данным датчика</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00019">sensor_compensation_service.cpp:19</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a7aadee4bf1e0b43eae1e22e9d4384676"><div class="ttname"><a href="class_sensor_compensation_service.html#a7aadee4bf1e0b43eae1e22e9d4384676">SensorCompensationService::getSoilParameters</a></div><div class="ttdeci">SoilParameters getSoilParameters(SoilType soilType) const</div><div class="ttdoc">Получает параметры почвы для типа</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00136">sensor_compensation_service.cpp:136</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a7bf9a0ca95a72501f12cc15239822149"><div class="ttname"><a href="class_sensor_compensation_service.html#a7bf9a0ca95a72501f12cc15239822149">SensorCompensationService::calculateECTemperatureFactor</a></div><div class="ttdeci">float calculateECTemperatureFactor(float temperature) const</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00182">sensor_compensation_service.cpp:182</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a82260d6f41e363d42bb69b6648bc7aa3"><div class="ttname"><a href="class_sensor_compensation_service.html#a82260d6f41e363d42bb69b6648bc7aa3">SensorCompensationService::~SensorCompensationService</a></div><div class="ttdeci">virtual ~SensorCompensationService()=default</div><div class="ttdoc">Деструктор</div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_a9731e281d097e995e939068b461b555b"><div class="ttname"><a href="class_sensor_compensation_service.html#a9731e281d097e995e939068b461b555b">SensorCompensationService::correctPH</a></div><div class="ttdeci">float correctPH(float phRaw, float temperature) override</div><div class="ttdoc">Компенсирует pH по уравнению Нернста</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00058">sensor_compensation_service.cpp:58</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_ab2a4025fce969f7ff994f46489ebd475"><div class="ttname"><a href="class_sensor_compensation_service.html#ab2a4025fce969f7ff994f46489ebd475">SensorCompensationService::T0</a></div><div class="ttdeci">static constexpr float T0</div><div class="ttdef"><b>Определения</b> <a href="#l00065">sensor_compensation_service.h:65</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_ac555cd253cbdbbf14ab13eb0da8544a5"><div class="ttname"><a href="class_sensor_compensation_service.html#ac555cd253cbdbbf14ab13eb0da8544a5">SensorCompensationService::getPorosity</a></div><div class="ttdeci">float getPorosity(SoilType soilType) const override</div><div class="ttdoc">Получает пористость для типа почвы</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00106">sensor_compensation_service.cpp:106</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_ad4e965b890ff3eada916e58400f1fa3b"><div class="ttname"><a href="class_sensor_compensation_service.html#ad4e965b890ff3eada916e58400f1fa3b">SensorCompensationService::archieCoefficients</a></div><div class="ttdeci">std::map&lt; SoilType, ArchieCoefficients &gt; archieCoefficients</div><div class="ttdef"><b>Определения</b> <a href="#l00057">sensor_compensation_service.h:57</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_adbcd3d6b524b234cdd9cc2844cb8cc7f"><div class="ttname"><a href="class_sensor_compensation_service.html#adbcd3d6b524b234cdd9cc2844cb8cc7f">SensorCompensationService::initializeArchieCoefficients</a></div><div class="ttdeci">void initializeArchieCoefficients()</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00152">sensor_compensation_service.cpp:152</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_adbd26ec68b859b5d70e082459f8cc05d"><div class="ttname"><a href="class_sensor_compensation_service.html#adbd26ec68b859b5d70e082459f8cc05d">SensorCompensationService::correctEC</a></div><div class="ttdeci">float correctEC(float ec25, float temperature, float humidity, SoilType soilType) override</div><div class="ttdoc">Компенсирует EC по модели Арчи</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00036">sensor_compensation_service.cpp:36</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_aeaa7aaae9b5877afa6abb189ca0f1ed6"><div class="ttname"><a href="class_sensor_compensation_service.html#aeaa7aaae9b5877afa6abb189ca0f1ed6">SensorCompensationService::getArchieCoefficients</a></div><div class="ttdeci">ArchieCoefficients getArchieCoefficients(SoilType soilType) const</div><div class="ttdoc">Получает коэффициенты Арчи для типа почвы</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00144">sensor_compensation_service.cpp:144</a></div></div>
+<div class="ttc" id="aclass_sensor_compensation_service_html_af55b3ff3b0a44c6863aef6519fefa889"><div class="ttname"><a href="class_sensor_compensation_service.html#af55b3ff3b0a44c6863aef6519fefa889">SensorCompensationService::initializeSoilParameters</a></div><div class="ttdeci">void initializeSoilParameters()</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation__service_8cpp_source.html#l00165">sensor_compensation_service.cpp:165</a></div></div>
+<div class="ttc" id="asensor__compensation_8h_html"><div class="ttname"><a href="sensor__compensation_8h.html">sensor_compensation.h</a></div><div class="ttdoc">Алгоритмы коррекции показаний датчиков</div></div>
+<div class="ttc" id="asensor__compensation_8h_html_a547d6434d73984a5c1b06e2f34a88a6e"><div class="ttname"><a href="sensor__compensation_8h.html#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a></div><div class="ttdeci">SoilType</div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation_8h_source.html#l00023">sensor_compensation.h:24</a></div></div>
+<div class="ttc" id="astruct_archie_coefficients_html"><div class="ttname"><a href="struct_archie_coefficients.html">ArchieCoefficients</a></div><div class="ttdoc">Коэффициенты Арчи для разных типов почвы</div><div class="ttdef"><b>Определения</b> <a href="#l00021">sensor_compensation_service.h:21</a></div></div>
+<div class="ttc" id="astruct_archie_coefficients_html_a13e0d744c0b089788d8790905ee2985a"><div class="ttname"><a href="struct_archie_coefficients.html#a13e0d744c0b089788d8790905ee2985a">ArchieCoefficients::n</a></div><div class="ttdeci">float n</div><div class="ttdef"><b>Определения</b> <a href="#l00023">sensor_compensation_service.h:23</a></div></div>
+<div class="ttc" id="astruct_archie_coefficients_html_a18fd767d9a2a43e085e4d58c39143f1d"><div class="ttname"><a href="struct_archie_coefficients.html#a18fd767d9a2a43e085e4d58c39143f1d">ArchieCoefficients::ArchieCoefficients</a></div><div class="ttdeci">ArchieCoefficients(float cementation, float saturation, float porosity)</div><div class="ttdef"><b>Определения</b> <a href="#l00027">sensor_compensation_service.h:27</a></div></div>
+<div class="ttc" id="astruct_archie_coefficients_html_a320c05e5003f55503a3c8f336730259e"><div class="ttname"><a href="struct_archie_coefficients.html#a320c05e5003f55503a3c8f336730259e">ArchieCoefficients::a</a></div><div class="ttdeci">float a</div><div class="ttdef"><b>Определения</b> <a href="#l00024">sensor_compensation_service.h:24</a></div></div>
+<div class="ttc" id="astruct_archie_coefficients_html_a8a7dd1460f557fcba78a18a2ce4c1882"><div class="ttname"><a href="struct_archie_coefficients.html#a8a7dd1460f557fcba78a18a2ce4c1882">ArchieCoefficients::m</a></div><div class="ttdeci">float m</div><div class="ttdef"><b>Определения</b> <a href="#l00022">sensor_compensation_service.h:22</a></div></div>
+<div class="ttc" id="astruct_archie_coefficients_html_aff4a33eb6716ad8b9189674cfb7beea6"><div class="ttname"><a href="struct_archie_coefficients.html#aff4a33eb6716ad8b9189674cfb7beea6">ArchieCoefficients::ArchieCoefficients</a></div><div class="ttdeci">ArchieCoefficients()</div><div class="ttdef"><b>Определения</b> <a href="#l00026">sensor_compensation_service.h:26</a></div></div>
+<div class="ttc" id="astruct_n_p_k_references_html"><div class="ttname"><a href="struct_n_p_k_references.html">NPKReferences</a></div><div class="ttdef"><b>Определения</b> <a href="sensor__compensation_8h_source.html#l00039">sensor_compensation.h:40</a></div></div>
+<div class="ttc" id="astruct_sensor_data_html"><div class="ttname"><a href="struct_sensor_data.html">SensorData</a></div><div class="ttdef"><b>Определения</b> <a href="modbus__sensor_8h_source.html#l00034">modbus_sensor.h:35</a></div></div>
+<div class="ttc" id="astruct_soil_parameters_html"><div class="ttname"><a href="struct_soil_parameters.html">SoilParameters</a></div><div class="ttdoc">Параметры почвы</div><div class="ttdef"><b>Определения</b> <a href="#l00036">sensor_compensation_service.h:36</a></div></div>
+<div class="ttc" id="astruct_soil_parameters_html_a60f1d32e3ae4dfefbc093ac0ca952a7b"><div class="ttname"><a href="struct_soil_parameters.html#a60f1d32e3ae4dfefbc093ac0ca952a7b">SoilParameters::SoilParameters</a></div><div class="ttdeci">SoilParameters(float por, float density, float capacity)</div><div class="ttdef"><b>Определения</b> <a href="#l00042">sensor_compensation_service.h:42</a></div></div>
+<div class="ttc" id="astruct_soil_parameters_html_a7aac06cefc41d9d25bbab65555695666"><div class="ttname"><a href="struct_soil_parameters.html#a7aac06cefc41d9d25bbab65555695666">SoilParameters::bulkDensity</a></div><div class="ttdeci">float bulkDensity</div><div class="ttdef"><b>Определения</b> <a href="#l00038">sensor_compensation_service.h:38</a></div></div>
+<div class="ttc" id="astruct_soil_parameters_html_a8127688bbf9c43a6f2bdc9f8241ff1f8"><div class="ttname"><a href="struct_soil_parameters.html#a8127688bbf9c43a6f2bdc9f8241ff1f8">SoilParameters::fieldCapacity</a></div><div class="ttdeci">float fieldCapacity</div><div class="ttdef"><b>Определения</b> <a href="#l00039">sensor_compensation_service.h:39</a></div></div>
+<div class="ttc" id="astruct_soil_parameters_html_a82a2f5722a3c73edb72eab37070c05eb"><div class="ttname"><a href="struct_soil_parameters.html#a82a2f5722a3c73edb72eab37070c05eb">SoilParameters::SoilParameters</a></div><div class="ttdeci">SoilParameters()</div><div class="ttdef"><b>Определения</b> <a href="#l00041">sensor_compensation_service.h:41</a></div></div>
+<div class="ttc" id="astruct_soil_parameters_html_a91f6c1b2df01751d918c701c31422c6e"><div class="ttname"><a href="struct_soil_parameters.html#a91f6c1b2df01751d918c701c31422c6e">SoilParameters::porosity</a></div><div class="ttdeci">float porosity</div><div class="ttdef"><b>Определения</b> <a href="#l00037">sensor_compensation_service.h:37</a></div></div>
+<div class="ttc" id="avalidation__utils_8h_html"><div class="ttname"><a href="validation__utils_8h.html">validation_utils.h</a></div><div class="ttdoc">Заголовочный файл утилит валидации</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c609be0e70205f3a6024833e52bd2ac3.html">business</a></li><li class="navelem"><a class="el" href="sensor__compensation__service_8h.html">sensor_compensation_service.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

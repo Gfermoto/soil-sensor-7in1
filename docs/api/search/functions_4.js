@@ -7,5 +7,6 @@ var searchData=
   ['debugstatsinit_4',['debugStatsInit',['../debug__optimized_8h.html#ae3aab77ba55ab7c94378c6110d9a3050',1,'debug_optimized.h']]],
   ['debugstatsprint_5',['debugStatsPrint',['../debug__optimized_8h.html#a748fe53bf9a9627f05f3d3697ff26971',1,'debug_optimized.h']]],
   ['deletetable_6',['deleteTable',['../namespace_calibration_manager.html#a14e21e7fb1aa46aa781c20ee07271d12',1,'CalibrationManager']]],
-  ['downloadandupdate_7',['downloadAndUpdate',['../ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463',1,'ota_manager.cpp']]]
+  ['disconnect_7',['disconnect',['../class_i_mqtt_connection_manager.html#a5a8d84a9ccc793693200adc5d3df538b',1,'IMqttConnectionManager']]],
+  ['downloadandupdate_8',['downloadAndUpdate',['../ota__manager_8cpp.html#a79a35cc6faa209f36bab011a327fb463',1,'ota_manager.cpp']]]
 ];

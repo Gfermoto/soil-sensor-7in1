@@ -55,4 +55,4 @@ void logFilterStatistics();
 
 } // namespace AdvancedFilters
 
-#endif // ADVANCED_FILTERS_H 
+#endif // ADVANCED_FILTERS_H

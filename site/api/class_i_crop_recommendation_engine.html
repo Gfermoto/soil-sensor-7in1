@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT 7-в-1 Датчик Почвы: Класс ICropRecommendationEngine</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   </div>
+   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('class_i_crop_recommendation_engine.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="class_i_crop_recommendation_engine-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Класс ICropRecommendationEngine<span class="mlabels"><span class="mlabel abstract">abstract</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Интерфейс для движка рекомендаций по культурам  
+ <a href="#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_i_crop_recommendation_engine_8h_source.html">ICropRecommendationEngine.h</a>&gt;</code></p>
+<div class="dynheader">
+Граф наследования:ICropRecommendationEngine:</div>
+<div class="dyncontent">
+ <div class="center">
+  <img src="class_i_crop_recommendation_engine.png" usemap="#ICropRecommendationEngine_map" alt=""/>
+  <map id="ICropRecommendationEngine_map" name="ICropRecommendationEngine_map">
+<area href="class_crop_recommendation_engine.html" title="Движок рекомендаций по культурам" alt="CropRecommendationEngine" shape="rect" coords="0,56,177,80"/>
+  </map>
+</div></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a3f2d1e6c98a2c1c455316850d405e72d" id="r_a3f2d1e6c98a2c1c455316850d405e72d"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f2d1e6c98a2c1c455316850d405e72d">~ICropRecommendationEngine</a> ()=default</td></tr>
+<tr class="separator:a3f2d1e6c98a2c1c455316850d405e72d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a268ebdf97416ec91340a461316fc9b2e" id="r_a268ebdf97416ec91340a461316fc9b2e"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="struct_rec_values.html">RecValues</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a268ebdf97416ec91340a461316fc9b2e">computeRecommendations</a> (const String &amp;cropId, const <a class="el" href="_i_crop_recommendation_engine_8h.html#a87116560e912ab1a3abfce10db2f9042">SoilProfile</a> &amp;soilProfile, const <a class="el" href="_i_crop_recommendation_engine_8h.html#a1de7cecb71b1f30091409b059b24e8d6">EnvironmentType</a> &amp;envType)=0</td></tr>
+<tr class="memdesc:a268ebdf97416ec91340a461316fc9b2e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Вычисляет рекомендации для указанной культуры  <br /></td></tr>
+<tr class="separator:a268ebdf97416ec91340a461316fc9b2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fb69ec5ecc8eee64d51ce052cfaf141" id="r_a8fb69ec5ecc8eee64d51ce052cfaf141"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8fb69ec5ecc8eee64d51ce052cfaf141">applySeasonalCorrection</a> (<a class="el" href="struct_rec_values.html">RecValues</a> &amp;rec, <a class="el" href="_i_crop_recommendation_engine_8h.html#ace3a72289effba7c41de4a566bd3c300">Season</a> season, bool isGreenhouse)=0</td></tr>
+<tr class="memdesc:a8fb69ec5ecc8eee64d51ce052cfaf141"><td class="mdescLeft">&#160;</td><td class="mdescRight">Применяет сезонные корректировки к рекомендациям  <br /></td></tr>
+<tr class="separator:a8fb69ec5ecc8eee64d51ce052cfaf141"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Интерфейс для движка рекомендаций по культурам </p>
+<p>Определяет контракт для вычисления агрономических рекомендаций на основе типа культуры, профиля почвы и условий окружающей среды. </p>
+
+<p class="definition">См. определение в файле <a class="el" href="_i_crop_recommendation_engine_8h_source.html">ICropRecommendationEngine.h</a> строка <a class="el" href="_i_crop_recommendation_engine_8h_source.html#l00052">52</a></p>
+</div><h2 class="groupheader">Конструктор(ы)</h2>
+<a id="a3f2d1e6c98a2c1c455316850d405e72d" name="a3f2d1e6c98a2c1c455316850d405e72d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f2d1e6c98a2c1c455316850d405e72d">&#9670;&#160;</a></span>~ICropRecommendationEngine()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual ICropRecommendationEngine::~ICropRecommendationEngine </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel virtual">virtual</span><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a id="a8fb69ec5ecc8eee64d51ce052cfaf141" name="a8fb69ec5ecc8eee64d51ce052cfaf141"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8fb69ec5ecc8eee64d51ce052cfaf141">&#9670;&#160;</a></span>applySeasonalCorrection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void ICropRecommendationEngine::applySeasonalCorrection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_rec_values.html">RecValues</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>rec</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="_i_crop_recommendation_engine_8h.html#ace3a72289effba7c41de4a566bd3c300">Season</a></td>          <td class="paramname"><span class="paramname"><em>season</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>isGreenhouse</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Применяет сезонные корректировки к рекомендациям </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">rec</td><td>Рекомендации для корректировки </td></tr>
+    <tr><td class="paramname">season</td><td>Текущий сезон </td></tr>
+    <tr><td class="paramname">isGreenhouse</td><td>Признак теплицы </td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Замещается в <a class="el" href="class_crop_recommendation_engine.html#a80d5dcf4a5b65a4540bd5999322fbd3d">CropRecommendationEngine</a>.</p>
+
+</div>
+</div>
+<a id="a268ebdf97416ec91340a461316fc9b2e" name="a268ebdf97416ec91340a461316fc9b2e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a268ebdf97416ec91340a461316fc9b2e">&#9670;&#160;</a></span>computeRecommendations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual <a class="el" href="struct_rec_values.html">RecValues</a> ICropRecommendationEngine::computeRecommendations </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>cropId</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_i_crop_recommendation_engine_8h.html#a87116560e912ab1a3abfce10db2f9042">SoilProfile</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>soilProfile</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="_i_crop_recommendation_engine_8h.html#a1de7cecb71b1f30091409b059b24e8d6">EnvironmentType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>envType</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel pure-virtual">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Вычисляет рекомендации для указанной культуры </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">cropId</td><td>Идентификатор культуры (tomato, cucumber, etc.) </td></tr>
+    <tr><td class="paramname">soilProfile</td><td>Профиль почвы (SAND, LOAM, CLAY, PEAT, SANDPEAT) </td></tr>
+    <tr><td class="paramname">envType</td><td>Тип окружающей среды (OUTDOOR, GREENHOUSE, INDOOR) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd><a class="el" href="struct_rec_values.html">RecValues</a> Структура с рекомендуемыми значениями </dd></dl>
+
+<p>Замещается в <a class="el" href="class_crop_recommendation_engine.html#a0b8e282e77bd12e9d6efb5e95f6d63d9">CropRecommendationEngine</a>.</p>
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li>include/business/<a class="el" href="_i_crop_recommendation_engine_8h_source.html">ICropRecommendationEngine.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="class_i_crop_recommendation_engine.html">ICropRecommendationEngine</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

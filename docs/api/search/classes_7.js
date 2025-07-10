@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['npkreferences_0',['NPKReferences',['../struct_n_p_k_references.html',1,'']]],
-  ['numberfieldinfo_1',['NumberFieldInfo',['../struct_number_field_info.html',1,'']]]
+  ['kalmanfilter_0',['KalmanFilter',['../struct_advanced_filters_1_1_kalman_filter.html',1,'AdvancedFilters']]]
 ];

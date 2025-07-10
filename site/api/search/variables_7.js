@@ -16,8 +16,11 @@ var searchData=
   ['http_5fredirect_5fpermanent_13',['HTTP_REDIRECT_PERMANENT',['../jxct__constants_8h.html#a3a2afafac1a7f959cb39deda72f32547',1,'jxct_constants.h']]],
   ['http_5fredirect_5ftemporary_14',['HTTP_REDIRECT_TEMPORARY',['../jxct__constants_8h.html#ac850ff653880faf06e57dec2fd525a18',1,'jxct_constants.h']]],
   ['http_5fsee_5fother_15',['HTTP_SEE_OTHER',['../jxct__constants_8h.html#a6b403a509a6e8ba38a7d6406ac406fe4',1,'jxct_constants.h']]],
-  ['hum_5fbuffer_16',['hum_buffer',['../struct_sensor_data.html#a2202526bdd825aac6317285d8f6d679f',1,'SensorData']]],
-  ['hum_5fmax_5fvalid_17',['HUM_MAX_VALID',['../jxct__constants_8h.html#a2eba44199e27d42d3688e6c76bb5a518',1,'jxct_constants.h']]],
-  ['hum_5fmin_5fvalid_18',['HUM_MIN_VALID',['../jxct__constants_8h.html#a25fdc8731a119321d9130a46daacaeb8',1,'jxct_constants.h']]],
-  ['humidity_19',['humidity',['../struct_sensor_data.html#a29ce8f1d86589b1c5af915ec961742f2',1,'SensorData']]]
+  ['hum_16',['hum',['../struct_crop_config.html#aa65d1b6b7b45e65eb3bf9cd2d711ec10',1,'CropConfig::hum'],['../struct_rec_values.html#af5f8d5f555bee5aa71f30afabce004fd',1,'RecValues::hum']]],
+  ['hum_5fadjust_17',['hum_adjust',['../struct_seasonal_adjustment.html#aae058511c97e8820054b18f5d54693e8',1,'SeasonalAdjustment']]],
+  ['hum_5fbuffer_18',['hum_buffer',['../struct_sensor_data.html#a2202526bdd825aac6317285d8f6d679f',1,'SensorData']]],
+  ['hum_5fmax_5fvalid_19',['HUM_MAX_VALID',['../jxct__constants_8h.html#a2eba44199e27d42d3688e6c76bb5a518',1,'jxct_constants.h']]],
+  ['hum_5fmin_5fvalid_20',['HUM_MIN_VALID',['../jxct__constants_8h.html#a25fdc8731a119321d9130a46daacaeb8',1,'jxct_constants.h']]],
+  ['humidity_21',['humidity',['../struct_sensor_data.html#a29ce8f1d86589b1c5af915ec961742f2',1,'SensorData']]],
+  ['humiditypoints_22',['humidityPoints',['../struct_calibration_table.html#ae83d5b35d77ed007f63d5ba7bafd89fc',1,'CalibrationTable']]]
 ];

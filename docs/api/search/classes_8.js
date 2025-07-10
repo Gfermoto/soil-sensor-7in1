@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['pageinfo_0',['PageInfo',['../struct_page_info.html',1,'']]]
+  ['modbussensoradapter_0',['ModbusSensorAdapter',['../class_modbus_sensor_adapter.html',1,'']]]
 ];

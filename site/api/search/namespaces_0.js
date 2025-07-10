@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['calibrationmanager_0',['CalibrationManager',['../namespace_calibration_manager.html',1,'']]]
+  ['advancedfilters_0',['AdvancedFilters',['../namespace_advanced_filters.html',1,'']]]
 ];

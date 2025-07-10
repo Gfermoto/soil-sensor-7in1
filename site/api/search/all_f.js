@@ -17,5 +17,9 @@ var searchData=
   ['ota_5fupdate_5finterval_5fms_14',['OTA_UPDATE_INTERVAL_MS',['../jxct__constants_8h.html#aeae0cc4dca85ad5d9b5d5ac9e83c6c27',1,'jxct_constants.h']]],
   ['ota_5fupdate_5furl_5ftemplate_15',['OTA_UPDATE_URL_TEMPLATE',['../jxct__constants_8h.html#ac2eb6652b9b3a0b6a91cf51ae6141291',1,'jxct_constants.h']]],
   ['ota_5fwatchdog_5ftimeout_5fsec_16',['OTA_WATCHDOG_TIMEOUT_SEC',['../jxct__config__vars_8h.html#a34bf95207114d92aae320115352794e5',1,'jxct_config_vars.h']]],
-  ['outline_17',['OUTLINE',['../jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153a6a656275b77dd69c1cc1f49c58859151',1,'jxct_ui_system.h']]]
+  ['outdoor_17',['OUTDOOR',['../_i_crop_recommendation_engine_8h.html#a1de7cecb71b1f30091409b059b24e8d6ae54de3be93a9c7071403faf31de7ad84',1,'ICropRecommendationEngine.h']]],
+  ['outlier_5fthreshold_5fdefault_18',['OUTLIER_THRESHOLD_DEFAULT',['../jxct__constants_8h.html#aa1dda9f2e7d329a6ff95c0730dc09c2f',1,'jxct_constants.h']]],
+  ['outlier_5fthreshold_5fmax_19',['OUTLIER_THRESHOLD_MAX',['../jxct__constants_8h.html#ad1b401b59a1fe93e9fed6894e157944e',1,'jxct_constants.h']]],
+  ['outlier_5fthreshold_5fmin_20',['OUTLIER_THRESHOLD_MIN',['../jxct__constants_8h.html#ad9ef60a07a693cb4ef5321af4ae08490',1,'jxct_constants.h']]],
+  ['outline_21',['OUTLINE',['../jxct__ui__system_8h.html#ade2afc06707f0601599eae163ff95153a6a656275b77dd69c1cc1f49c58859151',1,'jxct_ui_system.h']]]
 ];

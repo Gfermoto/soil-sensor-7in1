@@ -11,7 +11,7 @@ struct PageInfo
 
     PageInfo(const String& titleValue, const String& iconValue) // NOLINT(bugprone-easily-swappable-parameters)
         : title(titleValue), icon(iconValue) {}
-    
+
     // Статический метод-фабрика для безопасного создания
     static PageInfo create(const String& titleValue, const String& iconValue) {
         return {titleValue, iconValue};
@@ -30,7 +30,7 @@ struct FormInfo
         : action(actionValue), method(methodValue), formContent(formContentValue), buttonText(buttonTextValue), buttonIcon(buttonIconValue)
     {
     }
-    
+
     // Статический метод-фабрика для безопасного создания
     static FormInfo create(const String& actionValue, const String& methodValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue) {
         return {actionValue, methodValue, formContentValue, buttonTextValue, buttonIconValue};
@@ -67,7 +67,7 @@ struct InputFieldInfo
         Builder& setPlaceholder(const String& placeholderText) { const_cast<String&>(placeholder) = placeholderText; return *this; }
 
         // Конструктор по умолчанию
-        Builder() : id(String()), name(String()), label(String()), value(String()), 
+        Builder() : id(String()), name(String()), label(String()), value(String()),
                     type(String()), placeholder(String()) {}
     };
 
@@ -81,7 +81,7 @@ struct InputFieldInfo
           placeholder(builder.placeholder)
     {
     }
-    
+
     // Статический метод-фабрика для безопасного создания
     static InputFieldInfo create(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
                                 const String& typeText, bool isRequired, const String& placeholderText) {
@@ -106,7 +106,7 @@ struct NumberFieldInfo
         : id(fieldId), name(fieldName), label(labelText), value(valueNum), min(minNum), max(maxNum), step(stepNum)
     {
     }
-    
+
     // Статический метод-фабрика для безопасного создания
     static NumberFieldInfo create(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
         return {fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum}; // NOLINT(modernize-return-braced-init-list)
@@ -123,7 +123,7 @@ struct ConfigSectionInfo
         : title(titleText), content(contentText), helpText(helpTextValue)
     {
     }
-    
+
     // Статический метод-фабрика для безопасного создания
     static ConfigSectionInfo create(const String& titleText, const String& contentText, const String& helpTextValue) {
         return {titleText, contentText, helpTextValue};

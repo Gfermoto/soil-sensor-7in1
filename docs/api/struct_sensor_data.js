@@ -1,5 +1,6 @@
 var struct_sensor_data =
 [
+    [ "SensorData", "struct_sensor_data.html#a9c7635edc250b312fc895fb9a34bf4fb", null ],
     [ "buffer_filled", "struct_sensor_data.html#acf88a59ba1b4c48bcbe74e853e3ab7e7", null ],
     [ "buffer_index", "struct_sensor_data.html#a0b41fc80d82705a0a7adc521795623d7", null ],
     [ "conductivity", "struct_sensor_data.html#aba644ee83b3bceceea0b6325fe00257e", null ],

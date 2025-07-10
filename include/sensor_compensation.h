@@ -41,6 +41,9 @@ struct NPKReferences
     float nitrogen;    // мг/кг
     float phosphorus;  // мг/кг
     float potassium;   // мг/кг
+
+    NPKReferences() : nitrogen(0), phosphorus(0), potassium(0) {}
+    NPKReferences(float n, float p, float k) : nitrogen(n), phosphorus(p), potassium(k) {}
 };
 
 // (устаревшие функции компенсации удалены)

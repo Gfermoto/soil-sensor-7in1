@@ -1,5 +1,6 @@
 var namespaces_dup =
 [
+    [ "AdvancedFilters", "namespace_advanced_filters.html", "namespace_advanced_filters" ],
     [ "CalibrationManager", "namespace_calibration_manager.html", [
       [ "applyCalibration", "namespace_calibration_manager.html#abb872938a17efb733eaf531bb5c0a1dc", null ],
       [ "deleteTable", "namespace_calibration_manager.html#a14e21e7fb1aa46aa781c20ee07271d12", null ],

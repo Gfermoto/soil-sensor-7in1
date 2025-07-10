@@ -13,5 +13,8 @@ var searchData=
   ['ota_5fstage_5fverify_10',['OTA_STAGE_VERIFY',['../jxct__constants_8h.html#a3cd517ce43b8a36499d3da2eb0b4ff29',1,'jxct_constants.h']]],
   ['ota_5ftimeout_11',['OTA_TIMEOUT',['../jxct__constants_8h.html#a4e82d246ba3af051580c6dc37dcaf8a3',1,'jxct_constants.h']]],
   ['ota_5fupdate_5finterval_5fms_12',['OTA_UPDATE_INTERVAL_MS',['../jxct__constants_8h.html#aeae0cc4dca85ad5d9b5d5ac9e83c6c27',1,'jxct_constants.h']]],
-  ['ota_5fupdate_5furl_5ftemplate_13',['OTA_UPDATE_URL_TEMPLATE',['../jxct__constants_8h.html#ac2eb6652b9b3a0b6a91cf51ae6141291',1,'jxct_constants.h']]]
+  ['ota_5fupdate_5furl_5ftemplate_13',['OTA_UPDATE_URL_TEMPLATE',['../jxct__constants_8h.html#ac2eb6652b9b3a0b6a91cf51ae6141291',1,'jxct_constants.h']]],
+  ['outlier_5fthreshold_5fdefault_14',['OUTLIER_THRESHOLD_DEFAULT',['../jxct__constants_8h.html#aa1dda9f2e7d329a6ff95c0730dc09c2f',1,'jxct_constants.h']]],
+  ['outlier_5fthreshold_5fmax_15',['OUTLIER_THRESHOLD_MAX',['../jxct__constants_8h.html#ad1b401b59a1fe93e9fed6894e157944e',1,'jxct_constants.h']]],
+  ['outlier_5fthreshold_5fmin_16',['OUTLIER_THRESHOLD_MIN',['../jxct__constants_8h.html#ad9ef60a07a693cb4ef5321af4ae08490',1,'jxct_constants.h']]]
 ];

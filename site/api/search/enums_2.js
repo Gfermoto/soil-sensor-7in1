@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['messagetype_0',['MessageType',['../jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5e',1,'jxct_ui_system.h']]]
+  ['filtertype_0',['FilterType',['../namespace_advanced_filters.html#a2ca4878176ecbc18c74ae65f1d54cd2c',1,'AdvancedFilters']]]
 ];

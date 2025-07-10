@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['error_5fhandlers_2ecpp_0',['error_handlers.cpp',['../error__handlers_8cpp.html',1,'']]]
+  ['debug_2eh_0',['debug.h',['../debug_8h.html',1,'']]],
+  ['debug_5foptimized_2eh_1',['debug_optimized.h',['../debug__optimized_8h.html',1,'']]]
 ];

@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT 7-в-1 Датчик Почвы: Исходный файл src/business/crop_recommendation_engine.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   </div>
+   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('crop__recommendation__engine_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">crop_recommendation_engine.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="crop__recommendation__engine_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef CROP_RECOMMENDATION_ENGINE_H</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define CROP_RECOMMENDATION_ENGINE_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;<a class="code" href="_i_crop_recommendation_engine_8h.html">../../include/business/ICropRecommendationEngine.h</a>&quot;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="jxct__constants_8h.html">../../include/jxct_constants.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span></div>
+<div class="foldopen" id="foldopen00020" data-start="{" data-end="};">
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="struct_crop_config.html">   20</a></span><span class="keyword">struct </span><a class="code hl_function" href="struct_crop_config.html#a143b4c57d738c2ff0f6beac940a7eb30">CropConfig</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_crop_config.html#a5ee5d1051a60a63fe377dc2d9d5d7fdb">   21</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_crop_config.html#a5ee5d1051a60a63fe377dc2d9d5d7fdb">temp</a>;  <span class="comment">// Температура (°C)</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="struct_crop_config.html#aa65d1b6b7b45e65eb3bf9cd2d711ec10">   22</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_crop_config.html#aa65d1b6b7b45e65eb3bf9cd2d711ec10">hum</a>;   <span class="comment">// Влажность (%)</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="struct_crop_config.html#adeef15ae99ba41875689af46d6259c2c">   23</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_crop_config.html#adeef15ae99ba41875689af46d6259c2c">ec</a>;    <span class="comment">// Электропроводность (μS/cm)</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_crop_config.html#af5b41b0e1f835a14681f201462c2099f">   24</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_crop_config.html#af5b41b0e1f835a14681f201462c2099f">ph</a>;    <span class="comment">// pH</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="struct_crop_config.html#a79b2efd4a7a97dca317f163fbf653cad">   25</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_crop_config.html#a79b2efd4a7a97dca317f163fbf653cad">n</a>;     <span class="comment">// Азот (mg/kg)</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct_crop_config.html#a55b9b81b4850139ba4f5b899ebbde132">   26</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_crop_config.html#a55b9b81b4850139ba4f5b899ebbde132">p</a>;     <span class="comment">// Фосфор (mg/kg)</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="struct_crop_config.html#ab3102a8c283a2e63843454131584f8f3">   27</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_crop_config.html#ab3102a8c283a2e63843454131584f8f3">k</a>;     <span class="comment">// Калий (mg/kg)</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="struct_crop_config.html#a143b4c57d738c2ff0f6beac940a7eb30">   29</a></span>    <a class="code hl_function" href="struct_crop_config.html#a143b4c57d738c2ff0f6beac940a7eb30">CropConfig</a>() : <a class="code hl_variable" href="struct_crop_config.html#a5ee5d1051a60a63fe377dc2d9d5d7fdb">temp</a>(0), <a class="code hl_variable" href="struct_crop_config.html#aa65d1b6b7b45e65eb3bf9cd2d711ec10">hum</a>(0), <a class="code hl_variable" href="struct_crop_config.html#adeef15ae99ba41875689af46d6259c2c">ec</a>(0), <a class="code hl_variable" href="struct_crop_config.html#af5b41b0e1f835a14681f201462c2099f">ph</a>(0), <a class="code hl_variable" href="struct_crop_config.html#a79b2efd4a7a97dca317f163fbf653cad">n</a>(0), <a class="code hl_variable" href="struct_crop_config.html#a55b9b81b4850139ba4f5b899ebbde132">p</a>(0), <a class="code hl_variable" href="struct_crop_config.html#ab3102a8c283a2e63843454131584f8f3">k</a>(0) {}</div>
+<div class="foldopen" id="foldopen00030" data-start="{" data-end="}">
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="struct_crop_config.html#a3d9b3deddea2502f42e66b93cff79385">   30</a></span>    <a class="code hl_function" href="struct_crop_config.html#a3d9b3deddea2502f42e66b93cff79385">CropConfig</a>(<span class="keywordtype">float</span> t, <span class="keywordtype">float</span> h, <span class="keywordtype">float</span> e, <span class="keywordtype">float</span> ph_val, <span class="keywordtype">float</span> nitrogen, <span class="keywordtype">float</span> phosphorus, <span class="keywordtype">float</span> potassium)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>        : <a class="code hl_variable" href="struct_crop_config.html#a5ee5d1051a60a63fe377dc2d9d5d7fdb">temp</a>(t), <a class="code hl_variable" href="struct_crop_config.html#aa65d1b6b7b45e65eb3bf9cd2d711ec10">hum</a>(h), <a class="code hl_variable" href="struct_crop_config.html#adeef15ae99ba41875689af46d6259c2c">ec</a>(e), <a class="code hl_variable" href="struct_crop_config.html#af5b41b0e1f835a14681f201462c2099f">ph</a>(ph_val), <a class="code hl_variable" href="struct_crop_config.html#a79b2efd4a7a97dca317f163fbf653cad">n</a>(nitrogen), <a class="code hl_variable" href="struct_crop_config.html#a55b9b81b4850139ba4f5b899ebbde132">p</a>(phosphorus), <a class="code hl_variable" href="struct_crop_config.html#ab3102a8c283a2e63843454131584f8f3">k</a>(potassium) {}</div>
+</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
+</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span></div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="};">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="struct_seasonal_adjustment.html">   39</a></span><span class="keyword">struct </span><a class="code hl_function" href="struct_seasonal_adjustment.html#a74dea0b108941102fc68f24fc3379c11">SeasonalAdjustment</a> {</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct_seasonal_adjustment.html#ab7bda82de534a0e752010067a05dc398">   40</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_seasonal_adjustment.html#ab7bda82de534a0e752010067a05dc398">n_factor</a>;  <span class="comment">// Коэффициент для азота</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="struct_seasonal_adjustment.html#afa6825ffca1be7888c345bedb3d54c99">   41</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_seasonal_adjustment.html#afa6825ffca1be7888c345bedb3d54c99">p_factor</a>;  <span class="comment">// Коэффициент для фосфора</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="struct_seasonal_adjustment.html#ac3557b91515415457e7158e840274e3e">   42</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_seasonal_adjustment.html#ac3557b91515415457e7158e840274e3e">k_factor</a>;  <span class="comment">// Коэффициент для калия</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_seasonal_adjustment.html#ad1430f47ff8f126aeb08551cbde5c569">   43</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_seasonal_adjustment.html#ad1430f47ff8f126aeb08551cbde5c569">temp_adjust</a>;  <span class="comment">// Корректировка температуры</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="struct_seasonal_adjustment.html#aae058511c97e8820054b18f5d54693e8">   44</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_seasonal_adjustment.html#aae058511c97e8820054b18f5d54693e8">hum_adjust</a>;   <span class="comment">// Корректировка влажности</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="struct_seasonal_adjustment.html#a74dea0b108941102fc68f24fc3379c11">   46</a></span>    <a class="code hl_function" href="struct_seasonal_adjustment.html#a74dea0b108941102fc68f24fc3379c11">SeasonalAdjustment</a>() : <a class="code hl_variable" href="struct_seasonal_adjustment.html#ab7bda82de534a0e752010067a05dc398">n_factor</a>(1.0F), <a class="code hl_variable" href="struct_seasonal_adjustment.html#afa6825ffca1be7888c345bedb3d54c99">p_factor</a>(1.0F), <a class="code hl_variable" href="struct_seasonal_adjustment.html#ac3557b91515415457e7158e840274e3e">k_factor</a>(1.0F), <a class="code hl_variable" href="struct_seasonal_adjustment.html#ad1430f47ff8f126aeb08551cbde5c569">temp_adjust</a>(0.0F), <a class="code hl_variable" href="struct_seasonal_adjustment.html#aae058511c97e8820054b18f5d54693e8">hum_adjust</a>(0.0F) {}</div>
+<div class="foldopen" id="foldopen00047" data-start="{" data-end="}">
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="struct_seasonal_adjustment.html#afc0282eea7cc35ff2e9794f65a2ba34f">   47</a></span>    <a class="code hl_function" href="struct_seasonal_adjustment.html#afc0282eea7cc35ff2e9794f65a2ba34f">SeasonalAdjustment</a>(<span class="keywordtype">float</span> n, <span class="keywordtype">float</span> p, <span class="keywordtype">float</span> k, <span class="keywordtype">float</span> temp, <span class="keywordtype">float</span> hum)</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        : <a class="code hl_variable" href="struct_seasonal_adjustment.html#ab7bda82de534a0e752010067a05dc398">n_factor</a>(n), <a class="code hl_variable" href="struct_seasonal_adjustment.html#afa6825ffca1be7888c345bedb3d54c99">p_factor</a>(p), <a class="code hl_variable" href="struct_seasonal_adjustment.html#ac3557b91515415457e7158e840274e3e">k_factor</a>(k), <a class="code hl_variable" href="struct_seasonal_adjustment.html#ad1430f47ff8f126aeb08551cbde5c569">temp_adjust</a>(temp), <a class="code hl_variable" href="struct_seasonal_adjustment.html#aae058511c97e8820054b18f5d54693e8">hum_adjust</a>(hum) {}</div>
+</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span></div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="};">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="class_crop_recommendation_engine.html">   57</a></span><span class="keyword">class </span><a class="code hl_function" href="class_crop_recommendation_engine.html#ae449fe9732b3cef2994a6e0097546c3f">CropRecommendationEngine</a> : <span class="keyword">public</span> <a class="code hl_class" href="class_i_crop_recommendation_engine.html">ICropRecommendationEngine</a> {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">// Конфигурации культур</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="class_crop_recommendation_engine.html#a6d28af6e5ffff33bb6a05dd5297cdd34">   60</a></span>    std::map&lt;String, CropConfig&gt; <a class="code hl_variable" href="class_crop_recommendation_engine.html#a6d28af6e5ffff33bb6a05dd5297cdd34">cropConfigs</a>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">// Сезонные корректировки</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="class_crop_recommendation_engine.html#a24271d05bb59c4acd68e38759922eab7">   63</a></span>    std::map&lt;Season, SeasonalAdjustment&gt; <a class="code hl_variable" href="class_crop_recommendation_engine.html#a24271d05bb59c4acd68e38759922eab7">seasonalAdjustments</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="comment">// Инициализация конфигураций культур</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_crop_recommendation_engine.html#a944782a20e1026533cab7336e5a6ec74">initializeCropConfigs</a>();</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="comment">// Инициализация сезонных корректировок</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_crop_recommendation_engine.html#af7394050801b675602b1e4e7833d32e5">initializeSeasonalAdjustments</a>();</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="comment">// Применение корректировки по профилю почвы</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_crop_recommendation_engine.html#ab193d248b0efa1665f068e83911b06d9">applySoilProfileCorrection</a>(RecValues&amp; rec, <a class="code hl_enumeration" href="_i_crop_recommendation_engine_8h.html#a87116560e912ab1a3abfce10db2f9042">SoilProfile</a> soilProfile);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="comment">// Применение корректировки по типу окружающей среды</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_crop_recommendation_engine.html#a07cdf2b50de62a2976d8b4b18a66291b">applyEnvironmentCorrection</a>(RecValues&amp; rec, <a class="code hl_enumeration" href="_i_crop_recommendation_engine_8h.html#a1de7cecb71b1f30091409b059b24e8d6">EnvironmentType</a> envType);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="comment">// Получение текущего сезона</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <a class="code hl_enumeration" href="_i_crop_recommendation_engine_8h.html#ace3a72289effba7c41de4a566bd3c300">Season</a> <a class="code hl_function" href="class_crop_recommendation_engine.html#a618ffb082cfce4e4f51f68ca5e5a152f">getCurrentSeason</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <a class="code hl_function" href="class_crop_recommendation_engine.html#ae449fe9732b3cef2994a6e0097546c3f">CropRecommendationEngine</a>();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="class_crop_recommendation_engine.html#a9969e51185afaf250226997d78f4e1fa">   91</a></span>    <span class="keyword">virtual</span> <a class="code hl_function" href="class_crop_recommendation_engine.html#a9969e51185afaf250226997d78f4e1fa">~CropRecommendationEngine</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    RecValues <a class="code hl_function" href="class_crop_recommendation_engine.html#a0b8e282e77bd12e9d6efb5e95f6d63d9">computeRecommendations</a>(<span class="keyword">const</span> String&amp; cropId,</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>                                   <span class="keyword">const</span> <a class="code hl_enumeration" href="_i_crop_recommendation_engine_8h.html#a87116560e912ab1a3abfce10db2f9042">SoilProfile</a>&amp; soilProfile,</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>                                   <span class="keyword">const</span> <a class="code hl_enumeration" href="_i_crop_recommendation_engine_8h.html#a1de7cecb71b1f30091409b059b24e8d6">EnvironmentType</a>&amp; envType) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_crop_recommendation_engine.html#a80d5dcf4a5b65a4540bd5999322fbd3d">applySeasonalCorrection</a>(RecValues&amp; rec,</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>                               <a class="code hl_enumeration" href="_i_crop_recommendation_engine_8h.html#ace3a72289effba7c41de4a566bd3c300">Season</a> season,</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>                               <span class="keywordtype">bool</span> isGreenhouse) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    <a class="code hl_struct" href="struct_crop_config.html">CropConfig</a> <a class="code hl_function" href="class_crop_recommendation_engine.html#a6730c7bd9db53aaedf04989ae4163d1e">getCropConfig</a>(<span class="keyword">const</span> String&amp; cropId) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span></div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="class_crop_recommendation_engine.html#afc4cb1ec3e2fecc0e1e8071e555c8fbf">hasCropConfig</a>(<span class="keyword">const</span> String&amp; cropId) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>};</div>
+</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="preprocessor">#endif </span><span class="comment">// CROP_RECOMMENDATION_ENGINE_H</span></div>
+<div class="ttc" id="a_i_crop_recommendation_engine_8h_html"><div class="ttname"><a href="_i_crop_recommendation_engine_8h.html">ICropRecommendationEngine.h</a></div><div class="ttdoc">Интерфейс для движка рекомендаций по культурам</div></div>
+<div class="ttc" id="a_i_crop_recommendation_engine_8h_html_a1de7cecb71b1f30091409b059b24e8d6"><div class="ttname"><a href="_i_crop_recommendation_engine_8h.html#a1de7cecb71b1f30091409b059b24e8d6">EnvironmentType</a></div><div class="ttdeci">EnvironmentType</div><div class="ttdef"><b>Определения</b> <a href="_i_crop_recommendation_engine_8h_source.html#l00031">ICropRecommendationEngine.h:31</a></div></div>
+<div class="ttc" id="a_i_crop_recommendation_engine_8h_html_a87116560e912ab1a3abfce10db2f9042"><div class="ttname"><a href="_i_crop_recommendation_engine_8h.html#a87116560e912ab1a3abfce10db2f9042">SoilProfile</a></div><div class="ttdeci">SoilProfile</div><div class="ttdef"><b>Определения</b> <a href="_i_crop_recommendation_engine_8h_source.html#l00038">ICropRecommendationEngine.h:38</a></div></div>
+<div class="ttc" id="a_i_crop_recommendation_engine_8h_html_ace3a72289effba7c41de4a566bd3c300"><div class="ttname"><a href="_i_crop_recommendation_engine_8h.html#ace3a72289effba7c41de4a566bd3c300">Season</a></div><div class="ttdeci">Season</div><div class="ttdef"><b>Определения</b> <a href="_i_crop_recommendation_engine_8h_source.html#l00024">ICropRecommendationEngine.h:24</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_a07cdf2b50de62a2976d8b4b18a66291b"><div class="ttname"><a href="class_crop_recommendation_engine.html#a07cdf2b50de62a2976d8b4b18a66291b">CropRecommendationEngine::applyEnvironmentCorrection</a></div><div class="ttdeci">void applyEnvironmentCorrection(RecValues &amp;rec, EnvironmentType envType)</div><div class="ttdef"><b>Определения</b> <a href="crop__recommendation__engine_8cpp_source.html#l00260">crop_recommendation_engine.cpp:260</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_a0b8e282e77bd12e9d6efb5e95f6d63d9"><div class="ttname"><a href="class_crop_recommendation_engine.html#a0b8e282e77bd12e9d6efb5e95f6d63d9">CropRecommendationEngine::computeRecommendations</a></div><div class="ttdeci">RecValues computeRecommendations(const String &amp;cropId, const SoilProfile &amp;soilProfile, const EnvironmentType &amp;envType) override</div><div class="ttdoc">Вычисляет рекомендации для указанной культуры</div><div class="ttdef"><b>Определения</b> <a href="crop__recommendation__engine_8cpp_source.html#l00142">crop_recommendation_engine.cpp:142</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_a24271d05bb59c4acd68e38759922eab7"><div class="ttname"><a href="class_crop_recommendation_engine.html#a24271d05bb59c4acd68e38759922eab7">CropRecommendationEngine::seasonalAdjustments</a></div><div class="ttdeci">std::map&lt; Season, SeasonalAdjustment &gt; seasonalAdjustments</div><div class="ttdef"><b>Определения</b> <a href="#l00063">crop_recommendation_engine.h:63</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_a618ffb082cfce4e4f51f68ca5e5a152f"><div class="ttname"><a href="class_crop_recommendation_engine.html#a618ffb082cfce4e4f51f68ca5e5a152f">CropRecommendationEngine::getCurrentSeason</a></div><div class="ttdeci">Season getCurrentSeason() const</div><div class="ttdef"><b>Определения</b> <a href="crop__recommendation__engine_8cpp_source.html#l00281">crop_recommendation_engine.cpp:281</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_a6730c7bd9db53aaedf04989ae4163d1e"><div class="ttname"><a href="class_crop_recommendation_engine.html#a6730c7bd9db53aaedf04989ae4163d1e">CropRecommendationEngine::getCropConfig</a></div><div class="ttdeci">CropConfig getCropConfig(const String &amp;cropId) const</div><div class="ttdoc">Получает конфигурацию для культуры</div><div class="ttdef"><b>Определения</b> <a href="crop__recommendation__engine_8cpp_source.html#l00304">crop_recommendation_engine.cpp:304</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_a6d28af6e5ffff33bb6a05dd5297cdd34"><div class="ttname"><a href="class_crop_recommendation_engine.html#a6d28af6e5ffff33bb6a05dd5297cdd34">CropRecommendationEngine::cropConfigs</a></div><div class="ttdeci">std::map&lt; String, CropConfig &gt; cropConfigs</div><div class="ttdef"><b>Определения</b> <a href="#l00060">crop_recommendation_engine.h:60</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_a80d5dcf4a5b65a4540bd5999322fbd3d"><div class="ttname"><a href="class_crop_recommendation_engine.html#a80d5dcf4a5b65a4540bd5999322fbd3d">CropRecommendationEngine::applySeasonalCorrection</a></div><div class="ttdeci">void applySeasonalCorrection(RecValues &amp;rec, Season season, bool isGreenhouse) override</div><div class="ttdoc">Применяет сезонные корректировки к рекомендациям</div><div class="ttdef"><b>Определения</b> <a href="crop__recommendation__engine_8cpp_source.html#l00175">crop_recommendation_engine.cpp:175</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_a944782a20e1026533cab7336e5a6ec74"><div class="ttname"><a href="class_crop_recommendation_engine.html#a944782a20e1026533cab7336e5a6ec74">CropRecommendationEngine::initializeCropConfigs</a></div><div class="ttdeci">void initializeCropConfigs()</div><div class="ttdef"><b>Определения</b> <a href="crop__recommendation__engine_8cpp_source.html#l00017">crop_recommendation_engine.cpp:17</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_a9969e51185afaf250226997d78f4e1fa"><div class="ttname"><a href="class_crop_recommendation_engine.html#a9969e51185afaf250226997d78f4e1fa">CropRecommendationEngine::~CropRecommendationEngine</a></div><div class="ttdeci">virtual ~CropRecommendationEngine()=default</div><div class="ttdoc">Деструктор</div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_ab193d248b0efa1665f068e83911b06d9"><div class="ttname"><a href="class_crop_recommendation_engine.html#ab193d248b0efa1665f068e83911b06d9">CropRecommendationEngine::applySoilProfileCorrection</a></div><div class="ttdeci">void applySoilProfileCorrection(RecValues &amp;rec, SoilProfile soilProfile)</div><div class="ttdef"><b>Определения</b> <a href="crop__recommendation__engine_8cpp_source.html#l00237">crop_recommendation_engine.cpp:237</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_ae449fe9732b3cef2994a6e0097546c3f"><div class="ttname"><a href="class_crop_recommendation_engine.html#ae449fe9732b3cef2994a6e0097546c3f">CropRecommendationEngine::CropRecommendationEngine</a></div><div class="ttdeci">CropRecommendationEngine()</div><div class="ttdoc">Конструктор</div><div class="ttdef"><b>Определения</b> <a href="crop__recommendation__engine_8cpp_source.html#l00012">crop_recommendation_engine.cpp:12</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_af7394050801b675602b1e4e7833d32e5"><div class="ttname"><a href="class_crop_recommendation_engine.html#af7394050801b675602b1e4e7833d32e5">CropRecommendationEngine::initializeSeasonalAdjustments</a></div><div class="ttdeci">void initializeSeasonalAdjustments()</div><div class="ttdef"><b>Определения</b> <a href="crop__recommendation__engine_8cpp_source.html#l00104">crop_recommendation_engine.cpp:104</a></div></div>
+<div class="ttc" id="aclass_crop_recommendation_engine_html_afc4cb1ec3e2fecc0e1e8071e555c8fbf"><div class="ttname"><a href="class_crop_recommendation_engine.html#afc4cb1ec3e2fecc0e1e8071e555c8fbf">CropRecommendationEngine::hasCropConfig</a></div><div class="ttdeci">bool hasCropConfig(const String &amp;cropId) const</div><div class="ttdoc">Проверяет наличие конфигурации для культуры</div><div class="ttdef"><b>Определения</b> <a href="crop__recommendation__engine_8cpp_source.html#l00315">crop_recommendation_engine.cpp:315</a></div></div>
+<div class="ttc" id="aclass_i_crop_recommendation_engine_html"><div class="ttname"><a href="class_i_crop_recommendation_engine.html">ICropRecommendationEngine</a></div><div class="ttdoc">Интерфейс для движка рекомендаций по культурам</div><div class="ttdef"><b>Определения</b> <a href="_i_crop_recommendation_engine_8h_source.html#l00052">ICropRecommendationEngine.h:52</a></div></div>
+<div class="ttc" id="ajxct__constants_8h_html"><div class="ttname"><a href="jxct__constants_8h.html">jxct_constants.h</a></div><div class="ttdoc">Централизованные константы системы JXCT.</div></div>
+<div class="ttc" id="astruct_crop_config_html"><div class="ttname"><a href="struct_crop_config.html">CropConfig</a></div><div class="ttdoc">Конфигурация культуры</div><div class="ttdef"><b>Определения</b> <a href="#l00020">crop_recommendation_engine.h:20</a></div></div>
+<div class="ttc" id="astruct_crop_config_html_a143b4c57d738c2ff0f6beac940a7eb30"><div class="ttname"><a href="struct_crop_config.html#a143b4c57d738c2ff0f6beac940a7eb30">CropConfig::CropConfig</a></div><div class="ttdeci">CropConfig()</div><div class="ttdef"><b>Определения</b> <a href="#l00029">crop_recommendation_engine.h:29</a></div></div>
+<div class="ttc" id="astruct_crop_config_html_a3d9b3deddea2502f42e66b93cff79385"><div class="ttname"><a href="struct_crop_config.html#a3d9b3deddea2502f42e66b93cff79385">CropConfig::CropConfig</a></div><div class="ttdeci">CropConfig(float t, float h, float e, float ph_val, float nitrogen, float phosphorus, float potassium)</div><div class="ttdef"><b>Определения</b> <a href="#l00030">crop_recommendation_engine.h:30</a></div></div>
+<div class="ttc" id="astruct_crop_config_html_a55b9b81b4850139ba4f5b899ebbde132"><div class="ttname"><a href="struct_crop_config.html#a55b9b81b4850139ba4f5b899ebbde132">CropConfig::p</a></div><div class="ttdeci">float p</div><div class="ttdef"><b>Определения</b> <a href="#l00026">crop_recommendation_engine.h:26</a></div></div>
+<div class="ttc" id="astruct_crop_config_html_a5ee5d1051a60a63fe377dc2d9d5d7fdb"><div class="ttname"><a href="struct_crop_config.html#a5ee5d1051a60a63fe377dc2d9d5d7fdb">CropConfig::temp</a></div><div class="ttdeci">float temp</div><div class="ttdef"><b>Определения</b> <a href="#l00021">crop_recommendation_engine.h:21</a></div></div>
+<div class="ttc" id="astruct_crop_config_html_a79b2efd4a7a97dca317f163fbf653cad"><div class="ttname"><a href="struct_crop_config.html#a79b2efd4a7a97dca317f163fbf653cad">CropConfig::n</a></div><div class="ttdeci">float n</div><div class="ttdef"><b>Определения</b> <a href="#l00025">crop_recommendation_engine.h:25</a></div></div>
+<div class="ttc" id="astruct_crop_config_html_aa65d1b6b7b45e65eb3bf9cd2d711ec10"><div class="ttname"><a href="struct_crop_config.html#aa65d1b6b7b45e65eb3bf9cd2d711ec10">CropConfig::hum</a></div><div class="ttdeci">float hum</div><div class="ttdef"><b>Определения</b> <a href="#l00022">crop_recommendation_engine.h:22</a></div></div>
+<div class="ttc" id="astruct_crop_config_html_ab3102a8c283a2e63843454131584f8f3"><div class="ttname"><a href="struct_crop_config.html#ab3102a8c283a2e63843454131584f8f3">CropConfig::k</a></div><div class="ttdeci">float k</div><div class="ttdef"><b>Определения</b> <a href="#l00027">crop_recommendation_engine.h:27</a></div></div>
+<div class="ttc" id="astruct_crop_config_html_adeef15ae99ba41875689af46d6259c2c"><div class="ttname"><a href="struct_crop_config.html#adeef15ae99ba41875689af46d6259c2c">CropConfig::ec</a></div><div class="ttdeci">float ec</div><div class="ttdef"><b>Определения</b> <a href="#l00023">crop_recommendation_engine.h:23</a></div></div>
+<div class="ttc" id="astruct_crop_config_html_af5b41b0e1f835a14681f201462c2099f"><div class="ttname"><a href="struct_crop_config.html#af5b41b0e1f835a14681f201462c2099f">CropConfig::ph</a></div><div class="ttdeci">float ph</div><div class="ttdef"><b>Определения</b> <a href="#l00024">crop_recommendation_engine.h:24</a></div></div>
+<div class="ttc" id="astruct_seasonal_adjustment_html_a74dea0b108941102fc68f24fc3379c11"><div class="ttname"><a href="struct_seasonal_adjustment.html#a74dea0b108941102fc68f24fc3379c11">SeasonalAdjustment::SeasonalAdjustment</a></div><div class="ttdeci">SeasonalAdjustment()</div><div class="ttdef"><b>Определения</b> <a href="#l00046">crop_recommendation_engine.h:46</a></div></div>
+<div class="ttc" id="astruct_seasonal_adjustment_html_aae058511c97e8820054b18f5d54693e8"><div class="ttname"><a href="struct_seasonal_adjustment.html#aae058511c97e8820054b18f5d54693e8">SeasonalAdjustment::hum_adjust</a></div><div class="ttdeci">float hum_adjust</div><div class="ttdef"><b>Определения</b> <a href="#l00044">crop_recommendation_engine.h:44</a></div></div>
+<div class="ttc" id="astruct_seasonal_adjustment_html_ab7bda82de534a0e752010067a05dc398"><div class="ttname"><a href="struct_seasonal_adjustment.html#ab7bda82de534a0e752010067a05dc398">SeasonalAdjustment::n_factor</a></div><div class="ttdeci">float n_factor</div><div class="ttdef"><b>Определения</b> <a href="#l00040">crop_recommendation_engine.h:40</a></div></div>
+<div class="ttc" id="astruct_seasonal_adjustment_html_ac3557b91515415457e7158e840274e3e"><div class="ttname"><a href="struct_seasonal_adjustment.html#ac3557b91515415457e7158e840274e3e">SeasonalAdjustment::k_factor</a></div><div class="ttdeci">float k_factor</div><div class="ttdef"><b>Определения</b> <a href="#l00042">crop_recommendation_engine.h:42</a></div></div>
+<div class="ttc" id="astruct_seasonal_adjustment_html_ad1430f47ff8f126aeb08551cbde5c569"><div class="ttname"><a href="struct_seasonal_adjustment.html#ad1430f47ff8f126aeb08551cbde5c569">SeasonalAdjustment::temp_adjust</a></div><div class="ttdeci">float temp_adjust</div><div class="ttdef"><b>Определения</b> <a href="#l00043">crop_recommendation_engine.h:43</a></div></div>
+<div class="ttc" id="astruct_seasonal_adjustment_html_afa6825ffca1be7888c345bedb3d54c99"><div class="ttname"><a href="struct_seasonal_adjustment.html#afa6825ffca1be7888c345bedb3d54c99">SeasonalAdjustment::p_factor</a></div><div class="ttdeci">float p_factor</div><div class="ttdef"><b>Определения</b> <a href="#l00041">crop_recommendation_engine.h:41</a></div></div>
+<div class="ttc" id="astruct_seasonal_adjustment_html_afc0282eea7cc35ff2e9794f65a2ba34f"><div class="ttname"><a href="struct_seasonal_adjustment.html#afc0282eea7cc35ff2e9794f65a2ba34f">SeasonalAdjustment::SeasonalAdjustment</a></div><div class="ttdeci">SeasonalAdjustment(float n, float p, float k, float temp, float hum)</div><div class="ttdef"><b>Определения</b> <a href="#l00047">crop_recommendation_engine.h:47</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c609be0e70205f3a6024833e52bd2ac3.html">business</a></li><li class="navelem"><a class="el" href="crop__recommendation__engine_8h.html">crop_recommendation_engine.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

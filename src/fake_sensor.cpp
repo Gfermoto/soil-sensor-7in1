@@ -90,7 +90,7 @@ void fakeSensorTask(void* pvParameters)
 
                 // 3. NPK: зависимость от T, θ и типа почвы
                 correctNPK(sensorData.temperature, sensorData.humidity, npk, soil);
-                
+
                 // Сохраняем скорректированные NPK данные в sensorData
                 sensorData.nitrogen = npk.nitrogen;
                 sensorData.phosphorus = npk.phosphorus;

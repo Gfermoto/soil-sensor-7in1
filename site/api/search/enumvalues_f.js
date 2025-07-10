@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['yellow_0',['YELLOW',['../logger_8h.html#a2b15c85f545a729e30a74239be429afba8a568e5f41b7e4da88fe5c4a00aad34e',1,'logger.h']]]
+  ['temperature_0',['TEMPERATURE',['../namespace_advanced_filters.html#a2ca4878176ecbc18c74ae65f1d54cd2cab976538812ef6e3e5881e245d5fc3c76',1,'AdvancedFilters']]]
 ];

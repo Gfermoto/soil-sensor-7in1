@@ -29,7 +29,9 @@ var NAVTREE =
       [ "Пространства имен", "namespaces.html", "namespaces_dup" ],
       [ "Члены пространств имен", "namespacemembers.html", [
         [ "Указатель", "namespacemembers.html", null ],
-        [ "Функции", "namespacemembers_func.html", null ]
+        [ "Функции", "namespacemembers_func.html", null ],
+        [ "Переменные", "namespacemembers_vars.html", null ],
+        [ "Перечисления", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
     [ "Классы", "annotated.html", [
@@ -37,7 +39,7 @@ var NAVTREE =
       [ "Алфавитный указатель классов", "classes.html", null ],
       [ "Иерархия классов", "hierarchy.html", "hierarchy" ],
       [ "Члены классов", "functions.html", [
-        [ "Указатель", "functions.html", null ],
+        [ "Указатель", "functions.html", "functions_dup" ],
         [ "Функции", "functions_func.html", null ],
         [ "Переменные", "functions_vars.html", null ],
         [ "Определения типов", "functions_type.html", null ]
@@ -59,11 +61,13 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_i_sensor_8h.html",
-"jxct__constants_8h.html#a1b3a318da7b009b1f31acac87ed4b651",
-"jxct__ui__system_8h.html#aa64ee0313362e85e9592e801fac9460a",
-"namespace_calibration_manager.html#aee9fe56519e509e44d7f936a7a4c3613",
-"struct_test_summary.html"
+"_i_crop_recommendation_engine_8h.html",
+"functions.html",
+"jxct__constants_8h.html#a9f358c4e2a454d1cc017d4af0dd9c3a8",
+"logger_8h.html#a7e4fda439418c6c40322f686422d9780",
+"routes__service_8cpp.html",
+"struct_rec_values.html",
+"web__templates_8cpp_source.html"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

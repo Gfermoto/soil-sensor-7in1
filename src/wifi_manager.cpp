@@ -131,7 +131,7 @@ void setupWiFi()
         logPrintSeparator("─", DEFAULT_SEPARATOR_LENGTH);
         return;
     }
-    
+
     logWiFi("Переход в режим AP (точка доступа)");
     startAPMode();
     logPrintSeparator("─", DEFAULT_SEPARATOR_LENGTH);
@@ -331,12 +331,12 @@ void startSTAMode()
             setupWebServer();
             return;
         }
-        
+
         logErrorSafe("\1", attempts);
         startAPMode();
         return;
     }
-    
+
     logWarn("SSID не задан, переход в AP");
     startAPMode();
 }
@@ -353,14 +353,14 @@ bool checkResetButton()
         setLedFastBlink();
         return false;
     }
-    
+
     if (!isPressed && wasPressed)
     {
         wasPressed = false;
         setLedBlink(static_cast<unsigned long>(WifiConstants::LED_SLOW_BLINK_INTERVAL));
         return false;
     }
-    
+
     if (isPressed && wasPressed)
     {
         if (millis() - pressStart >= static_cast<unsigned long>(WifiConstants::RESET_BUTTON_HOLD_TIME))

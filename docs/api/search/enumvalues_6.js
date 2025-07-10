@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['info_0',['INFO',['../jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5ea551b723eafd6a31d444fcb2f5920fbd3',1,'jxct_ui_system.h']]]
+  ['humidity_0',['HUMIDITY',['../namespace_advanced_filters.html#a2ca4878176ecbc18c74ae65f1d54cd2ca1bfd5cb0758595fd2f392b93a92e8fff',1,'AdvancedFilters']]]
 ];
