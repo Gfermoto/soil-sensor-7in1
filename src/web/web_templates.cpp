@@ -13,9 +13,6 @@ struct PageInfo
 private:
     PageInfo(const String& title, const String& icon) : title(title), icon(icon) {}
 public:
-    static PageInfo fromValues(const String& title, const String& icon) {
-        return PageInfo(title, icon);
-    }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
         String title;
@@ -27,12 +24,6 @@ public:
         }
     };
     static Builder builder() { return {}; }
-    static PageInfo createWithTitle(const String& title, const String& icon) {
-        return PageInfo(title, icon);
-    }
-    static PageInfo createWithIcon(const String& icon, const String& title) {
-        return PageInfo(title, icon);
-    }
 };
 
 struct FormInfo
@@ -46,9 +37,6 @@ private:
     FormInfo(const String& action, const String& method, const String& formContent, const String& buttonText, const String& buttonIcon)
         : action(action), method(method), formContent(formContent), buttonText(buttonText), buttonIcon(buttonIcon) {}
 public:
-    static FormInfo fromValues(const String& action, const String& method, const String& formContent, const String& buttonText, const String& buttonIcon) {
-        return FormInfo(action, method, formContent, buttonText, buttonIcon);
-    }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
         String action;
@@ -66,12 +54,6 @@ public:
         }
     };
     static Builder builder() { return {}; }
-    static FormInfo createWithAction(const String& action, const String& method, const String& formContent, const String& buttonText, const String& buttonIcon) {
-        return FormInfo(action, method, formContent, buttonText, buttonIcon);
-    }
-    static FormInfo createWithMethod(const String& method, const String& action, const String& formContent, const String& buttonText, const String& buttonIcon) {
-        return FormInfo(action, method, formContent, buttonText, buttonIcon);
-    }
 };
 
 struct InputFieldInfo
@@ -87,9 +69,6 @@ private:
     InputFieldInfo(const String& fieldId, const String& fieldName, const String& fieldLabel, const String& fieldValue, const String& fieldType, bool fieldRequired, const String& fieldPlaceholder)
         : id(fieldId), name(fieldName), label(fieldLabel), value(fieldValue), type(fieldType), required(fieldRequired), placeholder(fieldPlaceholder) {}
 public:
-    static InputFieldInfo fromValues(const String& fieldId, const String& fieldName, const String& fieldLabel, const String& fieldValue, const String& fieldType, bool fieldRequired, const String& fieldPlaceholder) {
-        return InputFieldInfo(fieldId, fieldName, fieldLabel, fieldValue, fieldType, fieldRequired, fieldPlaceholder);
-    }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
         String id;
@@ -113,12 +92,7 @@ public:
     };
     InputFieldInfo(const Builder& builder)
         : id(builder.id), name(builder.name), label(builder.label), value(builder.value), type(builder.type), required(builder.required), placeholder(builder.placeholder) {}
-    static InputFieldInfo createWithId(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText, const String& typeText, bool required, const String& placeholderText) {
-        return InputFieldInfo::fromValues(fieldId, fieldName, labelText, valueText, typeText, required, placeholderText);
-    }
-    static InputFieldInfo createWithName(const String& fieldName, const String& fieldId, const String& labelText, const String& valueText, const String& typeText, bool required, const String& placeholderText) {
-        return InputFieldInfo::fromValues(fieldId, fieldName, labelText, valueText, typeText, required, placeholderText);
-    }
+    static Builder builder() { return {}; }
 };
 
 struct NumberFieldInfo
@@ -134,9 +108,6 @@ private:
     NumberFieldInfo(const String& fieldId, const String& fieldName, const String& fieldLabel, int fieldValue, int fieldMin, int fieldMax, int fieldStep)
         : id(fieldId), name(fieldName), label(fieldLabel), value(fieldValue), min(fieldMin), max(fieldMax), step(fieldStep) {}
 public:
-    static NumberFieldInfo fromValues(const String& fieldId, const String& fieldName, const String& fieldLabel, int fieldValue, int fieldMin, int fieldMax, int fieldStep) {
-        return NumberFieldInfo(fieldId, fieldName, fieldLabel, fieldValue, fieldMin, fieldMax, fieldStep);
-    }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
         String id;
@@ -154,16 +125,10 @@ public:
         Builder& setMax(int maxNum) { max = maxNum; return *this; }
         Builder& setStep(int stepNum) { step = stepNum; return *this; }
         NumberFieldInfo build() const {
-            return NumberFieldInfo::fromValues(id, name, label, value, min, max, step);
+            return NumberFieldInfo(id, name, label, value, min, max, step);
         }
     };
     static Builder builder() { return {}; }
-    static NumberFieldInfo createWithId(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
-        return NumberFieldInfo::fromValues(fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum);
-    }
-    static NumberFieldInfo createWithName(const String& fieldName, const String& fieldId, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
-        return NumberFieldInfo::fromValues(fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum);
-    }
 };
 
 struct ConfigSectionInfo
@@ -175,9 +140,6 @@ private:
     ConfigSectionInfo(const String& title, const String& content, const String& helpText)
         : title(title), content(content), helpText(helpText) {}
 public:
-    static ConfigSectionInfo fromValues(const String& title, const String& content, const String& helpText) {
-        return ConfigSectionInfo(title, content, helpText);
-    }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
         String title;
@@ -191,12 +153,6 @@ public:
         }
     };
     static Builder builder() { return {}; }
-    static ConfigSectionInfo createWithTitle(const String& title, const String& content, const String& helpText) {
-        return ConfigSectionInfo(title, content, helpText);
-    }
-    static ConfigSectionInfo createWithContent(const String& content, const String& title, const String& helpText) {
-        return ConfigSectionInfo(title, content, helpText);
-    }
 };
 } // namespace
 

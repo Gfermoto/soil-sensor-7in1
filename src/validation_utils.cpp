@@ -23,9 +23,6 @@ private:
     IntervalValidation(unsigned long interval, unsigned long min, unsigned long max, const char* field_name)
         : interval(interval), min_val(min), max_val(max), field_name(field_name) {}
 public:
-    static IntervalValidation fromValues(unsigned long interval, unsigned long min, unsigned long max, const char* field_name) {
-        return {interval, min, max, field_name};
-    }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
         unsigned long val = 0;
@@ -37,7 +34,7 @@ public:
         Builder& maxValue(unsigned long maxVal) { max = maxVal; return *this; }
         Builder& fieldName(const char* fieldName) { name = fieldName; return *this; }
         IntervalValidation build() const {
-            return IntervalValidation::fromValues(val, min, max, name);
+            return IntervalValidation(val, min, max, name);
         }
     };
     static Builder builder() { return {}; }
