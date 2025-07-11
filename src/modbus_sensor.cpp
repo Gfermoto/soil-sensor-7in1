@@ -43,14 +43,14 @@ public:
     }
 };
 
-static float convertRegisterToFloat(const RegisterConversion& conversion) // NOLINT(misc-use-internal-linkage)
+float convertRegisterToFloat(const RegisterConversion& conversion)
 {
     return conversion.toFloat();
 }
 
-static unsigned long lastIrrigationTs = 0;  // время последнего полива (для фильтрации всплесков)
+unsigned long lastIrrigationTs = 0;  // время последнего полива (для фильтрации всплесков)
 
-static void debugPrintBuffer(const char* prefix, const uint8_t* buffer, size_t length)
+void debugPrintBuffer(const char* prefix, const uint8_t* buffer, size_t length)
 {
     if (currentLogLevel < LOG_DEBUG)
     {
@@ -70,7 +70,7 @@ static void debugPrintBuffer(const char* prefix, const uint8_t* buffer, size_t l
     logDebugSafe("\1", prefix, hex_str.c_str());
 }
 
-static uint16_t calculateCRC16(const uint8_t* data, size_t length)
+uint16_t calculateCRC16(const uint8_t* data, size_t length)
 {
     uint16_t crc = 0xFFFF;
 
@@ -93,7 +93,7 @@ static uint16_t calculateCRC16(const uint8_t* data, size_t length)
     return crc;
 }
 
-static void saveRawSnapshot(SensorData& data)
+void saveRawSnapshot(SensorData& data)
 {
     data.raw_temperature = data.temperature;
     data.raw_humidity = data.humidity;
@@ -104,7 +104,7 @@ static void saveRawSnapshot(SensorData& data)
     data.raw_potassium = data.potassium;
 }
 
-static void updateIrrigationFlag(SensorData& data)
+void updateIrrigationFlag(SensorData& data)
 {
     constexpr uint8_t WIN = 6;
     static std::array<float, WIN> buf = {NAN};
@@ -137,7 +137,7 @@ static void updateIrrigationFlag(SensorData& data)
     data.recentIrrigation = (millis() - lastIrrigationTs) <= (unsigned long)config.irrigationHoldMinutes * 60000UL;
 }
 
-static void applyCompensationIfEnabled(SensorData& data)
+void applyCompensationIfEnabled(SensorData& data)
 {
     if (!config.flags.calibrationEnabled)
     {
@@ -175,7 +175,7 @@ static void applyCompensationIfEnabled(SensorData& data)
     getCompensationService().applyCompensation(data, soil);
 }
 
-static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)
+bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)
 {
     logDebugSafe("\1", reg_name, reg_addr);
     const uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
@@ -202,7 +202,7 @@ static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float mu
     return false;
 }
 
-static int readBasicParameters()
+int readBasicParameters()
 {
     int success_count = 0;
     if (readSingleRegister(REG_PH, "pH", 0.01F, &sensorData.ph, true)) { success_count++; }
@@ -212,7 +212,7 @@ static int readBasicParameters()
     return success_count;
 }
 
-static int readNPKParameters()
+int readNPKParameters()
 {
     int success_count = 0;
     if (readSingleRegister(REG_NITROGEN, "Азот", 1.0F, &sensorData.nitrogen, true)) { success_count++; }
@@ -226,7 +226,7 @@ struct MovingAverageParams {
     uint8_t filled;
 };
 
-static float calculateMovingAverage(const float* buffer, MovingAverageParams params)
+float calculateMovingAverage(const float* buffer, MovingAverageParams params)
 {
     if (params.filled == 0) { return 0.0F; }
     const uint8_t elements_to_use = std::min(params.filled, params.window_size);
@@ -237,32 +237,22 @@ static float calculateMovingAverage(const float* buffer, MovingAverageParams par
         }
         for (int i = 0; i < elements_to_use - 1; ++i) {
             for (int j = 0; j < elements_to_use - i - 1; ++j) {
-                if (temp_values.at(j) > temp_values.at(j + 1)) {
-                    const float temp = temp_values.at(j);
-                    temp_values.at(j) = temp_values.at(j + 1);
-                    temp_values.at(j + 1) = temp;
+                if (temp_values[j] > temp_values[j + 1]) {
+                    std::swap(temp_values[j], temp_values[j + 1]);
                 }
             }
         }
-        // Медианный фильтр: для чётного количества - среднее двух средних, для нечётного - средний элемент
-        const uint8_t mid_index = elements_to_use / 2;
-        if (elements_to_use % 2 == 0) {  // NOLINT(bugprone-branch-clone)
-            // Чётное количество элементов - берём среднее двух средних
-            return (temp_values.at(mid_index - 1) + temp_values.at(mid_index)) / 2.0F;
-        } else {
-            // Нечётное количество элементов - берём средний элемент
-            return temp_values.at(mid_index);
-        }
+        return temp_values[elements_to_use / 2];
     } else {
         float sum = 0.0F;
         for (int i = 0; i < elements_to_use; ++i) {
             sum += buffer[i];
         }
-        return sum / static_cast<float>(elements_to_use);
+        return sum / elements_to_use;
     }
 }
 
-}  // namespace
+} // namespace
 
 /**
  * @brief Тестирование работы SP3485E
@@ -716,3 +706,4 @@ SensorData getSensorData()
 
     return result;
 }
+
