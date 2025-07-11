@@ -21,24 +21,12 @@
 #include "wifi_manager.h"
 extern NTPClient* timeClient;
 
-// Глобальные переменные (используются в других файлах через extern)
+// Глобальные переменные (объявлены в заголовочном файле)
 WiFiClient espClient;
 PubSubClient mqttClient(espClient);
 
 namespace {
-// Ранее static → внутреннее связывание
-bool mqttConnected = false;
-
-std::array<char, 128> mqttLastErrorBuffer = {""};
-
-// Буферы для идентификаторов и топиков
-std::array<char, 32> clientIdBuffer = {""};
-std::array<char, 128> statusTopicBuffer = {""};
-std::array<char, 128> commandTopicBuffer = {""};
-std::array<char, 128> otaStatusTopicBuffer = {""};
-std::array<char, 128> otaCommandTopicBuffer = {""};
-
-// Кэш Home Assistant discovery
+// Кэш для Home Assistant конфигураций
 struct HomeAssistantConfigCache
 {
     std::array<char, 512> tempConfig = {""};
@@ -53,16 +41,7 @@ struct HomeAssistantConfigCache
     std::array<char, 64> cachedTopicPrefix = {""};
 } haConfigCache;
 
-// Кэш топиков публикации
-std::array<std::array<char, 128>, 7> pubTopicCache = {{"", "", "", "", "", "", ""}};
-bool pubTopicCacheValid = false;
-
-// Кэш JSON датчиков
-std::array<char, 256> cachedSensorJson = {""};
-unsigned long lastCachedSensorTime = 0;
-bool sensorJsonCacheValid = false;
-
-// DNS-кэш
+// Кэш для DNS запросов
 struct DNSCache
 {
     std::array<char, HOSTNAME_BUFFER_SIZE> hostname = {""};
@@ -71,39 +50,26 @@ struct DNSCache
     bool isValid;
 } dnsCacheMqtt = {{""}, IPAddress(0, 0, 0, 0), 0, false};
 
-// -----------------------------
-// Вспомогательные функции OTA
-// -----------------------------
-const char* getOtaStatusTopic()
-{
-    if (otaStatusTopicBuffer[0] == '\0')
-    {
-        snprintf(otaStatusTopicBuffer.data(), otaStatusTopicBuffer.size(), "%s/ota/status", config.mqttTopicPrefix);
-    }
-    return otaStatusTopicBuffer.data();
-}
+// Кэш для топиков публикации
+std::array<std::array<char, 64>, 7> pubTopicCache = {{}};
+bool pubTopicCacheValid = false;
 
-const char* getOtaCommandTopic()
-{
-    if (otaCommandTopicBuffer[0] == '\0')
-    {
-        snprintf(otaCommandTopicBuffer.data(), otaCommandTopicBuffer.size(), "%s/ota/command", config.mqttTopicPrefix);
-    }
-    return otaCommandTopicBuffer.data();
-}
+// Буфер для последней ошибки MQTT
+std::array<char, 128> mqttLastErrorBuffer = {""};
 
-}  // namespace
+// Буферы для идентификаторов и топиков
+std::array<char, 32> clientIdBuffer = {""};
+std::array<char, 128> statusTopicBuffer = {""};
+std::array<char, 128> commandTopicBuffer = {""};
+std::array<char, 128> otaStatusTopicBuffer = {""};
+std::array<char, 128> otaCommandTopicBuffer = {""};
 
-// Публичный аксессор последней MQTT-ошибки
-const char* getMqttLastError()
-{
-    return mqttLastErrorBuffer.data();
-}
+// Кэш JSON датчиков
+std::array<char, 256> cachedSensorJson = {""};
+unsigned long lastCachedSensorTime = 0;
+bool sensorJsonCacheValid = false;
 
-// Forward declarations - убрано, так как функции перемещены в анонимное пространство имён
-
-namespace {
-// Функция получения IP с кэшированием (перемещена выше для видимости)
+// Функция получения IP с кэшированием
 IPAddress getCachedIP(const char* hostname)
 {
     const unsigned long currentTime = millis();
@@ -132,19 +98,38 @@ IPAddress getCachedIP(const char* hostname)
 
     return IPAddress{0, 0, 0, 0};  // Ошибка резолвинга
 }
+
+String getClientId()
+{
+    static String clientId;
+    if (clientId.length() == 0)
+    {
+        clientId = "JXCT_" + WiFi.macAddress();
+        clientId.replace(":", "");
+    }
+    return clientId;
+}
+}  // namespace
+
+// -----------------------------
+// Вспомогательные функции OTA
+// -----------------------------
+const char* getOtaStatusTopic()
+{
+    if (otaStatusTopicBuffer[0] == '\0')
+    {
+        snprintf(otaStatusTopicBuffer.data(), otaStatusTopicBuffer.size(), "%s/ota/status", config.mqttTopicPrefix);
+    }
+    return otaStatusTopicBuffer.data();
 }
 
-// ✅ Оптимизированная функция getClientId с буфером
-const char* getClientId()
+const char* getOtaCommandTopic()
 {
-    if (clientIdBuffer[0] == '\0')
-    {  // Кэшируем результат
-        std::array<uint8_t, 6> mac;
-        WiFi.macAddress(mac.data());
-        snprintf(clientIdBuffer.data(), clientIdBuffer.size(), "JXCT_%02X%02X%02X%02X%02X%02X", mac[0], mac[1], mac[2],
-                 mac[3], mac[4], mac[5]);
+    if (otaCommandTopicBuffer[0] == '\0')
+    {
+        snprintf(otaCommandTopicBuffer.data(), otaCommandTopicBuffer.size(), "%s/ota/command", config.mqttTopicPrefix);
     }
-    return clientIdBuffer.data();
+    return otaCommandTopicBuffer.data();
 }
 
 // ✅ Оптимизированная функция getMqttClientName
@@ -154,7 +139,7 @@ const char* getMqttClientName()
     {
         return config.mqttDeviceName;
     }
-    return getClientId();
+    return getClientId().c_str();
 }
 
 // ✅ Оптимизированная функция getStatusTopic с буфером
@@ -175,6 +160,10 @@ const char* getCommandTopic()
         snprintf(commandTopicBuffer.data(), commandTopicBuffer.size(), "%s/command", config.mqttTopicPrefix);
     }
     return commandTopicBuffer.data();
+}
+
+const char* getMqttLastError() {
+    return mqttLastErrorBuffer.data();
 }
 
 void publishAvailability(bool online)  // NOLINT(misc-use-internal-linkage)
@@ -214,7 +203,7 @@ void setupMQTT()  // NOLINT(misc-use-internal-linkage)
     if (mqttServerIP == IPAddress(0, 0, 0, 0))
     {
         ERROR_PRINTF("[DNS] Не удалось разрешить DNS для %s\n", config.mqttServer);
-        strlcpy(mqttLastErrorBuffer.data(), "Ошибка DNS резолвинга", mqttLastErrorBuffer.size());
+        strlcpy(mqttLastErrorBuffer.data(), "Ошибка DNS резолвинга", mqttLastErrorBuffer.size() - 1);
         return;
     }
 

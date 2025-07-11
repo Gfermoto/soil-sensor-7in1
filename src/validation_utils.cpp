@@ -9,89 +9,8 @@
 #include "logger.h"
 
 namespace {
-// Все функции и переменные, которые не используются вне этого файла, объявить static
-// Например:
-// static void myInternalFunction() { ... }
-// static int myInternalVar = 0;
-} // namespace
-
-// ============================================================================
-// ВАЛИДАЦИЯ КОНФИГУРАЦИИ
-// ============================================================================
-
-ValidationResult validateSSID(const String& ssid)
-{
-    if (ssid.length() == 0)
-    {
-        return {false, "SSID не может быть пустым"};
-    }
-    if (ssid.length() > 32)
-    {
-        return {false, "SSID слишком длинный (максимум 32 символа)"};
-    }
-    return {true, ""};
-}
-
-ValidationResult validatePassword(const String& password)
-{
-    if (password.length() > 0 && password.length() < 8)
-    {
-        return {false, "Пароль должен содержать минимум 8 символов"};
-    }
-    if (password.length() > 63)
-    {
-        return {false, "Пароль слишком длинный (максимум 63 символа)"};
-    }
-    return {true, ""};
-}
-
-ValidationResult validateMQTTServer(const String& server)
-{
-    if (server.length() == 0)
-    {
-        return {false, "MQTT сервер не может быть пустым"};
-    }
-    if (server.length() > 253)
-    {
-        return {false, "MQTT сервер слишком длинный"};
-    }
-    // Простая проверка на валидность hostname/IP
-    if (server.indexOf(' ') >= 0)
-    {
-        return {false, "MQTT сервер содержит недопустимые символы"};
-    }
-    return {true, ""};
-}
-
-ValidationResult validateMQTTPort(int port)
-{
-    if (port < CONFIG_MQTT_PORT_MIN || port > CONFIG_MQTT_PORT_MAX)
-    {
-        return {false, "MQTT порт должен быть в диапазоне 1-65535"};
-    }
-    return {true, ""};
-}
-
-ValidationResult validateThingSpeakAPIKey(const String& apiKey)
-{
-    if (apiKey.length() == 0)
-    {
-        return {false, "ThingSpeak API ключ не может быть пустым"};
-    }
-    if (apiKey.length() != 16)
-    {
-        return {false, "ThingSpeak API ключ должен содержать 16 символов"};
-    }
-    // Проверяем, что содержит только допустимые символы
-    for (const char character : apiKey)
-    {
-        if (!isAlphaNumeric(character))
-        {
-            return {false, "ThingSpeak API ключ содержит недопустимые символы"};
-        }
-    }
-    return {true, ""};
-}
+// Внутренние функции — только для этой единицы трансляции
+// (функции, объявленные в заголовочном файле, реализованы вне namespace)
 
 // Структура для устранения проблемы с легко перепутываемыми параметрами
 struct IntervalValidation {
@@ -134,6 +53,7 @@ static ValidationResult validateInterval(const IntervalValidation& params)
     }
     return {true, ""};
 }
+}  // namespace
 
 // Обратная совместимость
 ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val,
@@ -481,4 +401,69 @@ void logSensorValidationResult(const SensorValidationResult& result, const char*
             logWarnSafe("\1", error.field.c_str(), error.message.c_str());
         }
     }
+}
+
+ValidationResult validateSSID(const String& ssid)
+{
+    if (ssid.length() == 0)
+    {
+        return ValidationResult{false, "SSID не может быть пустым"};
+    }
+    if (ssid.length() > 32)
+    {
+        return ValidationResult{false, "SSID слишком длинный"};
+    }
+    return ValidationResult{true, ""};
+}
+
+ValidationResult validatePassword(const String& password)
+{
+    if (password.length() > 0 && password.length() < 8)
+    {
+        return ValidationResult{false, "Пароль должен содержать минимум 8 символов"};
+    }
+    if (password.length() > 63)
+    {
+        return ValidationResult{false, "Пароль слишком длинный"};
+    }
+    return ValidationResult{true, ""};
+}
+
+ValidationResult validateMQTTServer(const String& server)
+{
+    if (server.length() == 0)
+    {
+        return ValidationResult{false, "MQTT сервер не может быть пустым"};
+    }
+    if (server.length() > 253)
+    {
+        return ValidationResult{false, "MQTT сервер слишком длинный"};
+    }
+    if (!isValidHostname(server) && !isValidIPAddress(server))
+    {
+        return ValidationResult{false, "Недопустимый формат MQTT сервера"};
+    }
+    return ValidationResult{true, ""};
+}
+
+ValidationResult validateMQTTPort(int port)
+{
+    if (port < CONFIG_MQTT_PORT_MIN || port > CONFIG_MQTT_PORT_MAX)
+    {
+        return ValidationResult{false, "MQTT порт должен быть от " + String(CONFIG_MQTT_PORT_MIN) + " до " + String(CONFIG_MQTT_PORT_MAX)};
+    }
+    return ValidationResult{true, ""};
+}
+
+ValidationResult validateThingSpeakAPIKey(const String& apiKey)
+{
+    if (apiKey.length() == 0)
+    {
+        return ValidationResult{false, "API ключ ThingSpeak не может быть пустым"};
+    }
+    if (apiKey.length() > 16)
+    {
+        return ValidationResult{false, "API ключ ThingSpeak слишком длинный"};
+    }
+    return ValidationResult{true, ""};
 }

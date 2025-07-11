@@ -36,6 +36,37 @@ inline float k_h_K(float theta)
 {
     return 1.9F - (0.021F * theta);
 }
+
+// Внутренние функции — только для этой единицы трансляции
+float correctEC(float rawValue, float temperature, float compensationFactor)
+{
+    // Температурная компенсация EC
+    const float referenceTemp = 25.0f;
+    const float tempDiff = temperature - referenceTemp;
+    const float compensation = 1.0f + (compensationFactor * tempDiff / 100.0f);
+    return rawValue * compensation;
+}
+
+float correctPH(float rawValue, float temperature, float compensationFactor)
+{
+    // Температурная компенсация pH
+    const float referenceTemp = 25.0f;
+    const float tempDiff = temperature - referenceTemp;
+    const float compensation = 1.0f + (compensationFactor * tempDiff / 100.0f);
+    return rawValue * compensation;
+}
+
+float correctNPK(float rawValue, float temperature, float humidity, float compensationFactor)
+{
+    // Комплексная компенсация NPK с учётом температуры и влажности
+    const float referenceTemp = 25.0f;
+    const float referenceHumidity = 60.0f;
+    const float tempDiff = temperature - referenceTemp;
+    const float humidityDiff = humidity - referenceHumidity;
+    const float tempCompensation = 1.0f + (compensationFactor * tempDiff / 100.0f);
+    const float humidityCompensation = 1.0f + (compensationFactor * humidityDiff / 1000.0f);
+    return rawValue * tempCompensation * humidityCompensation;
+}
 }  // namespace
 
 // Строгая типизация для предотвращения ошибок

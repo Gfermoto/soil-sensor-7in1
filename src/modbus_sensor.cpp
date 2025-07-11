@@ -17,11 +17,11 @@
 #include "sensor_compensation.h"
 #include "business_services.h"
 
-// Глобальные переменные (используются в других файлах через extern)
+// Глобальные переменные (должны быть доступны через extern)
 ModbusMaster modbus;
 SensorData sensorData;
 SensorCache sensorCache;
-String sensorLastError = "";
+String sensorLastError;
 
 // Внутренние переменные и функции — только для этой единицы трансляции
 namespace {
