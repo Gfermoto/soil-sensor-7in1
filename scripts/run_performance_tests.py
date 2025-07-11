@@ -28,7 +28,7 @@ class PerformanceTestRunner:
         timestamp = time.strftime("%H:%M:%S")
         print(f"[{timestamp}] {level}: {message}")
 
-    def run_command(self, command: List[str], cwd: Path = None) -> tuple[int, str, str]:
+    def run_command(self, command: List[str], cwd: Path = None):
         """Запуск команды и возврат результата"""
         try:
             if self.verbose:
@@ -414,7 +414,7 @@ def main():
     args = parser.parse_args()
 
     runner = PerformanceTestRunner(verbose=args.verbose)
-        success = runner.run_all_tests()
+    success = runner.run_all_tests()
 
     if not success:
         sys.exit(1)

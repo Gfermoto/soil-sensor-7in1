@@ -13,6 +13,11 @@ from pathlib import Path
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))
 
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8')
+
 def check_file_encoding(file_path):
     """Проверка кодировки файла"""
     encodings = ['utf-8', 'cp1252', 'latin-1', 'ascii']

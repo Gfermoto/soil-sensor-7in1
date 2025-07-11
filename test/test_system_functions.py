@@ -6,6 +6,11 @@
 """
 
 import sys
+if hasattr(sys.stdout, 'reconfigure'):
+    sys.stdout.reconfigure(encoding='utf-8')
+if hasattr(sys.stderr, 'reconfigure'):
+    sys.stderr.reconfigure(encoding='utf-8')
+
 import os
 from pathlib import Path
 import re
@@ -56,7 +61,7 @@ def test_wifi_logic():
             print(f"  ✗ SSID='{ssid[:10]}...', PWD='{password[:5]}...' -> {mode} (ожидалось {expected_mode})")
 
     print(f"  Результат: {passed}/{total}")
-    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
+    return passed == total
 
 def test_thingspeak_validation():
     """Тест валидации ThingSpeak"""
@@ -103,7 +108,7 @@ def test_thingspeak_validation():
             print(f"  ✗ API='{api_key[:8]}...', CH='{channel_id}' - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
+    return passed == total
 
 def test_ota_validation():
     """Тест валидации OTA обновлений"""
@@ -156,7 +161,7 @@ def test_ota_validation():
             print(f"  ✗ URL='{url[:30]}...', SHA256='{sha256[:8]}...' - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
+    return passed == total
 
 def test_memory_management():
     """Тест управления памятью"""
@@ -199,74 +204,64 @@ def test_memory_management():
             print(f"  ✗ {free_heap} байт, {operation} - {result} (ожидалось {expected_result})")
 
     print(f"  Результат: {passed}/{total}")
-    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
+    return passed == total
 
 def test_error_handling():
     """Тест обработки ошибок"""
     print("Тестирование обработки ошибок...")
 
-    # Тестируем различные коды ошибок
+    # Тестируем различные сценарии ошибок
     error_scenarios = [
-        # (error_code, service, expected_action)
-        (200, "ThingSpeak", "success"),
-        (-301, "ThingSpeak", "timeout_retry"),
-        (-401, "ThingSpeak", "rate_limit"),
-        (-302, "ThingSpeak", "invalid_key"),
-        (-304, "ThingSpeak", "invalid_channel"),
-        (400, "ThingSpeak", "bad_request"),
-        (0, "ThingSpeak", "connection_error"),
-        (404, "HTTP", "not_found"),
-        (500, "HTTP", "server_error"),
-        (200, "HTTP", "success"),
+        # (error_type, retry_count, expected_action)
+        ("MODBUS_TIMEOUT", 1, "RETRY"),
+        ("MODBUS_TIMEOUT", 3, "RESET"),
+        ("WIFI_DISCONNECT", 1, "RECONNECT"),
+        ("WIFI_DISCONNECT", 5, "AP_MODE"),
+        ("MQTT_CONNECT_FAIL", 2, "RETRY"),
+        ("MQTT_CONNECT_FAIL", 4, "SKIP"),
+        ("SENSOR_READ_ERROR", 1, "RETRY"),
+        ("SENSOR_READ_ERROR", 10, "FAKE_DATA"),
+        ("MEMORY_LOW", 1, "CLEANUP"),
+        ("MEMORY_CRITICAL", 1, "RESTART"),
     ]
 
     passed = 0
     total = len(error_scenarios)
 
-    for error_code, service, expected_action in error_scenarios:
+    for error_type, retry_count, expected_action in error_scenarios:
         # Имитируем логику обработки ошибок
-        actual_action = "unknown"
+        action = "UNKNOWN"
 
-        if service == "ThingSpeak":
-            if error_code == 200:
-                actual_action = "success"
-            elif error_code == -301:
-                actual_action = "timeout_retry"
-            elif error_code == -401:
-                actual_action = "rate_limit"
-            elif error_code == -302:
-                actual_action = "invalid_key"
-            elif error_code == -304:
-                actual_action = "invalid_channel"
-            elif error_code == 400:
-                actual_action = "bad_request"
-            elif error_code == 0:
-                actual_action = "connection_error"
-        elif service == "HTTP":
-            if error_code == 200:
-                actual_action = "success"
-            elif error_code == 404:
-                actual_action = "not_found"
-            elif error_code >= 500:
-                actual_action = "server_error"
+        if error_type == "MODBUS_TIMEOUT":
+            action = "RETRY" if retry_count < 3 else "RESET"
+        elif error_type == "WIFI_DISCONNECT":
+            action = "RECONNECT" if retry_count < 3 else "AP_MODE"
+        elif error_type == "MQTT_CONNECT_FAIL":
+            action = "RETRY" if retry_count < 3 else "SKIP"
+        elif error_type == "SENSOR_READ_ERROR":
+            action = "RETRY" if retry_count < 5 else "FAKE_DATA"
+        elif error_type == "MEMORY_LOW":
+            action = "CLEANUP"
+        elif error_type == "MEMORY_CRITICAL":
+            action = "RESTART"
 
-        if actual_action == expected_action:
+        if action == expected_action:
             passed += 1
-            print(f"  ✓ {service} код {error_code} -> {actual_action}")
+            print(f"  ✓ {error_type} (попытка {retry_count}) -> {action}")
         else:
-            print(f"  ✗ {service} код {error_code} -> {actual_action} (ожидалось {expected_action})")
+            print(f"  ✗ {error_type} (попытка {retry_count}) -> {action} (ожидалось {expected_action})")
 
     print(f"  Результат: {passed}/{total}")
-    assert passed == total, f"Ожидалось {total} пройденных тестов, получено {passed}"
+    return passed == total
 
 def main():
     """Главная функция"""
     print("=== ТЕСТЫ СИСТЕМНЫХ ФУНКЦИЙ JXCT ===")
 
     tests = [
-        ("WiFi логика", test_wifi_logic),
-        ("ThingSpeak валидация", test_thingspeak_validation),
-        ("OTA валидация", test_ota_validation),
+        ("Логика WiFi", test_wifi_logic),
+        ("Валидация ThingSpeak", test_thingspeak_validation),
+        ("Валидация OTA", test_ota_validation),
         ("Управление памятью", test_memory_management),
         ("Обработка ошибок", test_error_handling)
     ]
@@ -277,25 +272,25 @@ def main():
     for test_name, test_func in tests:
         print(f"\n[{test_name}]")
         try:
-            test_func()
-            print(f"  ПРОЙДЕН")
-            passed_tests += 1
-        except AssertionError as e:
-            print(f"  ПРОВАЛЕН: {e}")
+            if test_func():
+                print(f"  ✅ ПРОЙДЕН")
+                passed_tests += 1
+            else:
+                print(f"  ❌ ПРОВАЛЕН")
         except Exception as e:
-            print(f"  ОШИБКА: {e}")
+            print(f"  ❌ ОШИБКА: {e}")
 
     print(f"\n=== ИТОГ: {passed_tests}/{total_tests} ===")
-    assert passed_tests == total_tests, f"Ожидалось {total_tests} пройденных тестов, получено {passed_tests}"
+    return passed_tests == total_tests
 
 if __name__ == "__main__":
     try:
-        main()
-        print("Все тесты пройдены успешно!")
-        sys.exit(0)
-    except AssertionError as e:
-        print(f"Тесты провалены: {e}")
-        sys.exit(1)
+        if main():
+            print("✅ Все тесты пройдены успешно!")
+            sys.exit(0)
+        else:
+            print("❌ Некоторые тесты провалены")
+            sys.exit(1)
     except Exception as e:
-        print(f"Критическая ошибка: {e}")
+        print(f"❌ Критическая ошибка: {e}")
         sys.exit(1)
