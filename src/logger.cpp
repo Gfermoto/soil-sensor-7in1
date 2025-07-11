@@ -225,7 +225,7 @@ void logUptime()
 
 void logWiFiStatus()
 {
-    if (WiFiClass::status() == WL_CONNECTED)
+    if (WiFiClass::status() == WL_CONNECTED) // NOLINT(bugprone-branch-clone)
     {
         logWiFi("Подключен к " + WiFi.SSID() + ", IP: " + WiFi.localIP().toString() + ", RSSI: " + String(WiFi.RSSI()) +
                 " dBm");  // NOLINT(readability-static-accessed-through-instance)

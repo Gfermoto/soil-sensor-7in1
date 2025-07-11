@@ -478,33 +478,56 @@ String CropRecommendationEngine::calculateSoilHealthStatus(const SensorData& dat
     
     // Оценка по температуре
     float tempDiff = abs(data.temperature - config.temperature);
-    if (tempDiff > 10.0F) score -= 30;
-    else if (tempDiff > 5.0F) score -= 15;
+    if (tempDiff > 10.0F) {
+        score -= 30;
+    } else if (tempDiff > 5.0F) {
+        score -= 15;
+    }
     
     // Оценка по влажности
     float humDiff = abs(data.humidity - config.humidity);
-    if (humDiff > 20.0F) score -= 25;
-    else if (humDiff > 10.0F) score -= 10;
+    if (humDiff > 20.0F) {
+        score -= 25;
+    } else if (humDiff > 10.0F) {
+        score -= 10;
+    }
     
     // Оценка по EC
     float ecDiff = abs(data.ec - config.ec);
-    if (ecDiff > 1000.0F) score -= 20;
-    else if (ecDiff > 500.0F) score -= 10;
+    if (ecDiff > 1000.0F) {
+        score -= 20;
+    } else if (ecDiff > 500.0F) {
+        score -= 10;
+    }
     
     // Оценка по pH
     float phDiff = abs(data.ph - config.ph);
-    if (phDiff > 1.0F) score -= 15;
-    else if (phDiff > 0.5F) score -= 5;
+    if (phDiff > 1.0F) {
+        score -= 15;
+    } else if (phDiff > 0.5F) {
+        score -= 5;
+    }
     
     // Оценка по NPK
-    if (data.nitrogen < config.nitrogen - 30.0F) score -= 10;
-    if (data.phosphorus < config.phosphorus - 20.0F) score -= 10;
-    if (data.potassium < config.potassium - 30.0F) score -= 10;
+    if (data.nitrogen < config.nitrogen - 30.0F) {
+        score -= 10;
+    }
+    if (data.phosphorus < config.phosphorus - 20.0F) {
+        score -= 10;
+    }
+    if (data.potassium < config.potassium - 30.0F) {
+        score -= 10;
+    }
     
-    if (score >= 80) return "Отличное";
-    else if (score >= 60) return "Хорошее";
-    else if (score >= 40) return "Удовлетворительное";
-    else return "Требует внимания";
+    if (score >= 80) {
+        return "Отличное";
+    } else if (score >= 60) {
+        return "Хорошее";
+    } else if (score >= 40) {
+        return "Удовлетворительное";
+    } else {
+        return "Требует внимания";
+    }
 }
 
 
@@ -527,18 +550,32 @@ CropConfig CropRecommendationEngine::getCropConfig(const String& cropType) const
     if (genericIt != cropConfigs.end()) {
         return genericIt->second;
     }
-    return CropConfig(); // Пустая конфигурация
+    return {}; // Пустая конфигурация
 }
 
 bool CropRecommendationEngine::validateSensorData(const SensorData& data) const {
     // Проверка диапазонов значений
-    if (data.temperature < -50.0F || data.temperature > 80.0F) return false;
-    if (data.humidity < 0.0F || data.humidity > 100.0F) return false;
-    if (data.ec < 0.0F || data.ec > 10000.0F) return false;
-    if (data.ph < 0.0F || data.ph > 14.0F) return false;
-    if (data.nitrogen < 0.0F || data.nitrogen > 1000.0F) return false;
-    if (data.phosphorus < 0.0F || data.phosphorus > 1000.0F) return false;
-    if (data.potassium < 0.0F || data.potassium > 1000.0F) return false;
+    if (data.temperature < -50.0F || data.temperature > 80.0F) {
+        return false;
+    }
+    if (data.humidity < 0.0F || data.humidity > 100.0F) {
+        return false;
+    }
+    if (data.ec < 0.0F || data.ec > 10000.0F) {
+        return false;
+    }
+    if (data.ph < 0.0F || data.ph > 14.0F) {
+        return false;
+    }
+    if (data.nitrogen < 0.0F || data.nitrogen > 1000.0F) {
+        return false;
+    }
+    if (data.phosphorus < 0.0F || data.phosphorus > 1000.0F) {
+        return false;
+    }
+    if (data.potassium < 0.0F || data.potassium > 1000.0F) {
+        return false;
+    }
     
     return true;
 }
@@ -684,7 +721,7 @@ float CropRecommendationEngine::compensatePH(float pH_raw, float temperature, fl
     
     // Формула компенсации pH: pH_comp = pH_raw + α * (T - 25) + β * (M - 50)
     // где α ≈ -0.01 (температурный коэффициент), β ≈ 0.005 (влажностный коэффициент)
-    return pH_raw + pH_alpha * (temperature - 25.0F) + pH_beta * (moisture - 50.0F);
+    return pH_raw + (pH_alpha * (temperature - 25.0F)) + (pH_beta * (moisture - 50.0F));
 }
 
 // [Источник: Electrical Conductivity Measurements in Agriculture, Advances in Agronomy, Т. 128, M. Corwin, 2014, DOI: 10.1016/B978-0-12-802970-1.00001-3]
@@ -696,7 +733,7 @@ float CropRecommendationEngine::compensateEC(float EC_raw, float temperature) {
     
     // Формула компенсации EC: EC_comp = EC_raw * (1 + γ * (T - 25))
     // где γ ≈ 0.02 (2% на °C, коэффициент температуры)
-    return EC_raw * (1.0F + EC_gamma * (temperature - 25.0F));
+    return EC_raw * (1.0F + (EC_gamma * (temperature - 25.0F)));
 }
 
 // [Источник: Nutrient Dynamics in Soils, Journal of Soil Science and Plant Nutrition, Т. 20, A. Delgado et al., 2020, DOI: 10.1007/s42729-020-00215-4]
@@ -711,7 +748,7 @@ float CropRecommendationEngine::compensateNPK(float NPK_raw, float temperature, 
     
     // Формула компенсации NPK: N_comp = N_raw * e^(δ*(T-20)) * (1 + ε*(M-30))
     // где δ ≈ 0.03, ε ≈ 0.01 (кинетические коэффициенты)
-    return NPK_raw * exp(NPK_delta * (temperature - 20.0F)) * (1.0F + NPK_epsilon * (moisture - 30.0F));
+    return NPK_raw * exp(NPK_delta * (temperature - 20.0F)) * (1.0F + (NPK_epsilon * (moisture - 30.0F)));
 }
 
 

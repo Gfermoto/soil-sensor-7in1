@@ -138,7 +138,7 @@ bool deleteTable(SoilProfile profile) // NOLINT(misc-use-internal-linkage)
     return false;
 }
 
-float applyCalibration(float rawValue, SoilProfile profile) // NOLINT(misc-use-internal-linkage)
+float applyCalibration(float rawValue, SoilProfile profile) // NOLINT(misc-use-internal-linkage, bugprone-easily-swappable-parameters)
 {
     // Если калибровочная таблица не загружена, возвращаем исходное значение
     if (!hasTable(profile))

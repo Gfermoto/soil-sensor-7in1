@@ -41,13 +41,13 @@ float SensorCompensationService::correctEC(float ec25_param, SoilType soilType_p
     }
 
     // Получаем коэффициенты Арчи для типа почвы
-    ArchieCoefficients coeffs = getArchieCoefficients(soilType_param);
+    const ArchieCoefficients coeffs = getArchieCoefficients(soilType_param);
     
     // Температурная компенсация по модели Арчи
-    float tempFactor = calculateECTemperatureFactor(temperature_param);
+    const float tempFactor = calculateECTemperatureFactor(temperature_param);
     
     // Влажностная компенсация по модели Арчи
-    float humidityFactor = calculateECHumidityFactor(humidity_param, soilType_param);
+    const float humidityFactor = calculateECHumidityFactor(humidity_param, soilType_param);
     
     // Применяем модель Арчи: EC = EC0 × (θ/θ0)^m × (T/T0)^n
     float compensatedEC = ec25_param * pow(humidityFactor, coeffs.m) * pow(tempFactor, coeffs.n);
@@ -83,17 +83,17 @@ void SensorCompensationService::correctNPK(float temperature, float humidity, So
     }
 
     // Получаем коэффициенты NPK для типа почвы
-    NPKCoefficients coeffs = getNPKCoefficients(soilType);
+    const NPKCoefficients coeffs = getNPKCoefficients(soilType);
     
     // Температурная компенсация: N_comp = N_raw × e^(δ(T-20))
-    float tempFactorN = exp(coeffs.delta_N * (temperature - 20.0F));
-    float tempFactorP = exp(coeffs.delta_P * (temperature - 20.0F));
-    float tempFactorK = exp(coeffs.delta_K * (temperature - 20.0F));
+    const float tempFactorN = exp(coeffs.delta_N * (temperature - 20.0F));
+    const float tempFactorP = exp(coeffs.delta_P * (temperature - 20.0F));
+    const float tempFactorK = exp(coeffs.delta_K * (temperature - 20.0F));
     
     // Влажностная компенсация: (1 + ε(M-30))
-    float moistureFactorN = 1.0F + coeffs.epsilon_N * (humidity - 30.0F);
-    float moistureFactorP = 1.0F + coeffs.epsilon_P * (humidity - 30.0F);
-    float moistureFactorK = 1.0F + coeffs.epsilon_K * (humidity - 30.0F);
+    const float moistureFactorN = 1.0F + (coeffs.epsilon_N * (humidity - 30.0F));
+    const float moistureFactorP = 1.0F + (coeffs.epsilon_P * (humidity - 30.0F));
+    const float moistureFactorK = 1.0F + (coeffs.epsilon_K * (humidity - 30.0F));
     
     // Применяем полную компенсацию: N_comp = N_raw × e^(δ(T-20)) × (1 + ε(M-30))
     npk.nitrogen *= tempFactorN * moistureFactorN;

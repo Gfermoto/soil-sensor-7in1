@@ -255,7 +255,7 @@ bool SensorCalibrationService::calculateECCalibration() {
 }
 
 String SensorCalibrationService::exportCalibrationToJSON() {
-    return "{\"status\":\"not_implemented\"}";
+    return R"({"status":"not_implemented"})";
 }
 
 bool SensorCalibrationService::importCalibrationFromJSON(const String& jsonData) {

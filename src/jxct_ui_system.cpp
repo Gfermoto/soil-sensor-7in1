@@ -283,7 +283,7 @@ input:focus, select:focus, textarea:focus {
 }
 
 // 🎯 ГЕНЕРАЦИЯ HTML КНОПОК
-String generateButton(ButtonType type, const ButtonConfig& config) // NOLINT(misc-use-internal-linkage)
+String generateButton(ButtonType type, const ButtonConfig& config) // NOLINT(misc-use-internal-linkage, bugprone-easily-swappable-parameters)
 {
     String cssClass = "btn ";
 

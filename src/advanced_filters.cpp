@@ -184,7 +184,8 @@ namespace {
 // ============================================================================
 
 namespace {
-    float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, bool enable_adaptive) {
+    float applyCombinedFilter(float raw_value, FilterType type, bool enable_kalman, bool enable_adaptive) // NOLINT(bugprone-easily-swappable-parameters)
+    {
         float filtered_value = raw_value;
 
         // Специализированная фильтрация EC
