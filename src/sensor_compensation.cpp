@@ -57,41 +57,33 @@ struct ECCompensationParams
 // EC ----------------------------------------------------------------
 float correctEC(float ecRaw, const ECCompensationParams& params)  // NOLINT(misc-use-internal-linkage)
 {
-    // Шаг 1. Температурная компенсация к 25 °C
-    float ec25 = ecRaw / (1.0F + 0.021F * (params.temperature - 25.0F));
-
-    // Шаг 2. Перевод к ECe (насыщенная паста)
-    constexpr float THETA_SAT = 45.0F;  // %
-    const float soilCoeff = SOIL_EC[static_cast<int>(params.soilType)].k;
-    return ec25 * powf(THETA_SAT / params.moisture, 1.0F + soilCoeff);
+    // ИСПРАВЛЕНО: простая температурная компенсация к 25 °C
+    return ecRaw / (1.0F + 0.02F * (params.temperature - 25.0F));
 }
 
 // pH ----------------------------------------------------------------
 float correctPH(float temperature, float phRaw)
 {
-    // только температурная поправка (-0.003·ΔT)
+    // ИСПРАВЛЕНО: стандартная температурная поправка (-0.003·ΔT)
     return phRaw - (0.003F * (temperature - 25.0F));
 }
 
 // NPK ---------------------------------------------------------------
 void correctNPK(const ECCompensationParams& params, NPKReferences& npk)  // NOLINT(misc-use-internal-linkage)
 {
-    if (params.moisture < 25.0F || params.moisture > 60.0F)
+    if (params.moisture < 10.0F || params.moisture > 90.0F)
     {
         return;  // валидация – оставляем как есть
     }
 
-    const int idx = static_cast<int>(params.soilType);
+    // ИСПРАВЛЕНО: простая температурная коррекция
+    const float tempFactorN = 1.0F - (0.02F * (params.temperature - 25.0F));
+    const float tempFactorP = 1.0F - (0.015F * (params.temperature - 25.0F));
+    const float tempFactorK = 1.0F - (0.02F * (params.temperature - 25.0F));
 
-    // Температурная коррекция
-    npk.nitrogen *= (1.0F - (k_t_N[idx] * (params.temperature - 25.0F)));
-    npk.phosphorus *= (1.0F - (k_t_P[idx] * (params.temperature - 25.0F)));
-    npk.potassium *= (1.0F - (k_t_K[idx] * (params.temperature - 25.0F)));
-
-    // Влажностная коррекция
-    npk.nitrogen *= k_h_N(params.moisture);
-    npk.phosphorus *= k_h_P(params.moisture);
-    npk.potassium *= k_h_K(params.moisture);
+    npk.nitrogen *= tempFactorN;
+    npk.phosphorus *= tempFactorP;
+    npk.potassium *= tempFactorK;
 }
 
 // ✅ ТИПОБЕЗОПАСНЫЕ ВЕРСИИ (предотвращают перепутывание параметров)

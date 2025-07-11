@@ -122,6 +122,8 @@ void applyCompensationIfEnabled(SensorData& data)
         return;
     }
 
+    logDebugSafe("✅ Применяем исправленную компенсацию датчика");
+
     // Преобразуем конфигурацию в типы бизнес-логики
     SoilType soil = SoilType::LOAM;
     SoilProfile profile = SoilProfile::SAND;

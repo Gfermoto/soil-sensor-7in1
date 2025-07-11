@@ -9,6 +9,7 @@
 #include "jxct_config_vars.h"
 #include "modbus_sensor.h"
 #include "sensor_compensation.h"
+#include "logger.h"  // ✅ Добавляем для logDebugSafe
 
 namespace
 {
@@ -59,6 +60,8 @@ void fakeSensorTask(void* pvParameters)
             // Применяем компенсацию, если включена
             if (config.flags.calibrationEnabled)
             {
+                logDebugSafe("✅ Применяем исправленную компенсацию датчика");
+                
                 SoilType soil;
                 switch (config.soilProfile)
                 {
@@ -82,13 +85,13 @@ void fakeSensorTask(void* pvParameters)
                         break;
                 }
 
-                // 1. EC: единоразовая температурная + влажностная компенсация
+                // 1. EC: температурная компенсация
                 sensorData.ec = correctEC(sensorData.ec, sensorData.temperature, sensorData.humidity, soil);
 
                 // 2. pH: температурная поправка
                 sensorData.ph = correctPH(sensorData.temperature, sensorData.ph);
 
-                // 3. NPK: зависимость от T, θ и типа почвы
+                // 3. NPK: температурная компенсация
                 correctNPK(sensorData.temperature, sensorData.humidity, soil, npk);
 
                 // Сохраняем скорректированные NPK данные в sensorData

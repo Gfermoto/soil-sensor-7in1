@@ -48,6 +48,18 @@ class CropRecommendationEngine : public ICropRecommendationEngine {
 private:
     std::map<String, CropConfig> cropConfigs;
     
+    // Коэффициенты компенсации датчиков [Источник: SSSA Journal, 2008; Advances in Agronomy, 2014]
+    const float pH_alpha = -0.01F;  // Температурный коэффициент для pH
+    const float pH_beta = 0.005F;   // Влажностный коэффициент для pH
+    const float EC_gamma = 0.02F;   // Температурный коэффициент для EC
+    const float NPK_delta = 0.03F;  // Температурный коэффициент для NPK
+    const float NPK_epsilon = 0.01F; // Влажностный коэффициент для NPK
+    
+    // Функции компенсации датчиков
+    float compensatePH(float pH_raw, float temperature, float moisture);
+    float compensateEC(float EC_raw, float temperature);
+    float compensateNPK(float NPK_raw, float temperature, float moisture);
+    
     void initializeCropConfigs();
     CropConfig applySeasonalAdjustments(const CropConfig& base, const String& season);
     CropConfig applyGrowingTypeAdjustments(const CropConfig& base, const String& growingType);
