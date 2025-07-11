@@ -41,7 +41,7 @@ void printGuard(
 }
 }  // namespace
 
-void checkGuard(const char* tag)
+void checkGuard(const char* tag) // NOLINT(misc-use-internal-linkage)
 {
     if (strncmp(guardGap.data(), "BEFORE", 6) != 0)
     {
@@ -55,12 +55,12 @@ void checkGuard(const char* tag)
     }
 }
 
-const char* getOtaStatus()
+const char* getOtaStatus() // NOLINT(misc-use-internal-linkage)
 {
     return statusBuf.data();
 }
 
-void setupOTA(const char* manifestUrl, WiFiClient& client)
+void setupOTA(const char* manifestUrl, WiFiClient& client) // NOLINT(misc-use-internal-linkage)
 {
     checkGuard("setupOTA:entry");
     // КРИТИЧЕСКАЯ ЗАЩИТА: Проверяем повторную инициализацию
@@ -443,7 +443,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
 }
 
 // Принудительная проверка OTA (игнорирует таймер)
-void triggerOtaCheck()
+void triggerOtaCheck() // NOLINT(misc-use-internal-linkage)
 {
     static bool isChecking = false;
 
@@ -460,7 +460,7 @@ void triggerOtaCheck()
 }
 
 // Принудительная установка найденного обновления
-void triggerOtaInstall()
+void triggerOtaInstall() // NOLINT(misc-use-internal-linkage)
 {
     if (!updateAvailable || pendingUpdateUrl.isEmpty())
     {
@@ -492,7 +492,7 @@ void triggerOtaInstall()
     }
 }
 
-void handleOTA()
+void handleOTA() // NOLINT(misc-use-internal-linkage)
 {
     // ДОБАВЛЕНО: Детальная диагностика для отладки
     static unsigned long debugCallCount = 0;

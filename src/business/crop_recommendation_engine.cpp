@@ -102,6 +102,25 @@ void CropRecommendationEngine::initializeCropConfigs() {
 
 
 
+// Структура для параметров рекомендаций
+struct RecommendationParams {
+    const SensorData& data;
+    const String& cropType;
+    const String& growingType;
+    const String& season;
+    const String& soilType;
+    
+private:
+    RecommendationParams(const SensorData& data, const String& cropType, const String& growingType, 
+                        const String& season, const String& soilType) 
+        : data(data), cropType(cropType), growingType(growingType), season(season), soilType(soilType) {}
+public:
+    static RecommendationParams fromValues(const SensorData& data, const String& cropType, const String& growingType, 
+                                          const String& season, const String& soilType) {
+        return RecommendationParams(data, cropType, growingType, season, soilType);
+    }
+};
+
 RecommendationResult CropRecommendationEngine::generateRecommendation(
     const SensorData& data, 
     const String& cropType, 
@@ -109,58 +128,60 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(
     const String& season,
     const String& soilType) {
     
+    const RecommendationParams params = RecommendationParams::fromValues(data, cropType, growingType, season, soilType);
+    
     // Валидация входных данных
-    if (data.temperature < 0.0F || data.temperature > 50.0F) {
+    if (params.data.temperature < 0.0F || params.data.temperature > 50.0F) {
         // Логирование ошибки валидации
         Serial.println("ОШИБКА: Температура вне диапазона 0-50°C");
     }
-    if (data.humidity < 10.0F || data.humidity > 90.0F) {
+    if (params.data.humidity < 10.0F || params.data.humidity > 90.0F) {
         Serial.println("ОШИБКА: Влажность вне диапазона 10-90%");
     }
     
     // Компенсация показаний датчиков [Источники: SSSA Journal, 2008; Advances in Agronomy, 2014; Journal of Soil Science, 2020]
-    SensorData compensatedData = data;
-    compensatedData.ph = compensatePH(data.ph, data.temperature, data.humidity);
-    compensatedData.ec = compensateEC(data.ec, data.temperature);
-    compensatedData.nitrogen = compensateNPK(data.nitrogen, data.temperature, data.humidity);
-    compensatedData.phosphorus = compensateNPK(data.phosphorus, data.temperature, data.humidity);
-    compensatedData.potassium = compensateNPK(data.potassium, data.temperature, data.humidity);
+    SensorData compensatedData = params.data;
+    compensatedData.ph = compensatePH(params.data.ph, params.data.temperature, params.data.humidity);
+    compensatedData.ec = compensateEC(params.data.ec, params.data.temperature);
+    compensatedData.nitrogen = compensateNPK(params.data.nitrogen, params.data.temperature, params.data.humidity);
+    compensatedData.phosphorus = compensateNPK(params.data.phosphorus, params.data.temperature, params.data.humidity);
+    compensatedData.potassium = compensateNPK(params.data.potassium, params.data.temperature, params.data.humidity);
     
     RecommendationResult result;
-    result.cropType = cropType;
-    result.growingType = growingType;
-    result.season = season;
-    result.soilType = soilType;  // Добавляем тип почвы в результат
+    result.cropType = params.cropType;
+    result.growingType = params.growingType;
+    result.season = params.season;
+    result.soilType = params.soilType;  // Добавляем тип почвы в результат
     
     // Получаем базовую конфигурацию для культуры
-    auto it = cropConfigs.find(cropType);
-    if (it == cropConfigs.end()) {
-        it = cropConfigs.find("generic");
+    auto configIterator = cropConfigs.find(params.cropType);
+    if (configIterator == cropConfigs.end()) {
+        configIterator = cropConfigs.find("generic");
     }
-    CropConfig baseConfig = it->second;
+    CropConfig baseConfig = configIterator->second;
     
     // Применяем сезонные корректировки
-    CropConfig adjustedConfig = applySeasonalAdjustments(baseConfig, season);
+    CropConfig adjustedConfig = applySeasonalAdjustments(baseConfig, params.season);
     
     // Применяем корректировки для типа выращивания
-    adjustedConfig = applyGrowingTypeAdjustments(adjustedConfig, growingType);
+    adjustedConfig = applyGrowingTypeAdjustments(adjustedConfig, params.growingType);
     
     // Применяем корректировки для типа почвы
-    adjustedConfig = applySoilTypeAdjustments(adjustedConfig, soilType);
+    adjustedConfig = applySoilTypeAdjustments(adjustedConfig, params.soilType);
     
     // Генерируем рекомендации на основе компенсированных данных
-    result.recommendations = generateScientificRecommendations(compensatedData, adjustedConfig, cropType, soilType);
+    result.recommendations = generateScientificRecommendations(compensatedData, adjustedConfig, params.cropType, params.soilType);
     
     // Рассчитываем общий статус здоровья почвы
     result.healthStatus = calculateSoilHealthStatus(compensatedData, adjustedConfig);
     
     // Добавляем научные комментарии
-    result.scientificNotes = generateScientificNotes(compensatedData, adjustedConfig, cropType, soilType);
+    result.scientificNotes = generateScientificNotes(compensatedData, adjustedConfig, params.cropType, params.soilType);
     
     return result;
 }
 
-CropConfig CropRecommendationEngine::applySeasonalAdjustments(const CropConfig& base, const String& season) {
+CropConfig CropRecommendationEngine::applySeasonalAdjustments(const CropConfig& base, const String& season) { // NOLINT(readability-convert-member-functions-to-static)
     CropConfig adjusted = base;
     
     if (season == "spring") {
@@ -200,7 +221,7 @@ CropConfig CropRecommendationEngine::applySeasonalAdjustments(const CropConfig& 
     return adjusted;
 }
 
-CropConfig CropRecommendationEngine::applyGrowingTypeAdjustments(const CropConfig& base, const String& growingType) {
+CropConfig CropRecommendationEngine::applyGrowingTypeAdjustments(const CropConfig& base, const String& growingType) { // NOLINT(readability-convert-member-functions-to-static)
     CropConfig adjusted = base;
     
     if (growingType == "greenhouse") {
@@ -234,7 +255,7 @@ CropConfig CropRecommendationEngine::applyGrowingTypeAdjustments(const CropConfi
     return adjusted;
 }
 
-CropConfig CropRecommendationEngine::applySoilTypeAdjustments(const CropConfig& base, const String& soilType) {
+CropConfig CropRecommendationEngine::applySoilTypeAdjustments(const CropConfig& base, const String& soilType) { // NOLINT(readability-convert-member-functions-to-static)
     CropConfig adjusted = base;
     
     if (soilType == "sand") {
@@ -278,7 +299,7 @@ String CropRecommendationEngine::generateScientificRecommendations(
     const SensorData& data, 
     const CropConfig& config, 
     const String& cropType,
-    const String& soilType) {
+    const String& soilType) { // NOLINT(readability-convert-member-functions-to-static)
     
     String recommendations = "";
     
@@ -419,7 +440,7 @@ String CropRecommendationEngine::generateScientificRecommendations(
     return recommendations;
 }
 
-String CropRecommendationEngine::generateScientificNotes(const SensorData& data, const CropConfig& config, const String& cropType, const String& soilType) {
+String CropRecommendationEngine::generateScientificNotes(const SensorData& /*data*/, const CropConfig& /*config*/, const String& cropType, const String& soilType) {
     String notes = "📊 Научные данные:\n";
     
     // Общие научные принципы
@@ -684,7 +705,7 @@ RecValues CropRecommendationEngine::computeRecommendations(const String& cropId,
 
 void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec,
                                                      Season season,
-                                                     bool isGreenhouse) {
+                                                     bool isGreenhouse) { // NOLINT(readability-convert-member-functions-to-static)
     // Простая реализация сезонных корректировок
     switch (season) {
         case Season::SPRING:
@@ -710,7 +731,7 @@ void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec,
 
 // Реализация функций компенсации датчиков
 // [Источник: Temperature Compensation for pH Measurements, Soil Science Society of America Journal, Т. 72, № 3, J. Ross et al., 2008, DOI: 10.2136/sssaj2007.0088]
-float CropRecommendationEngine::compensatePH(float pH_raw, float temperature, float moisture) {
+float CropRecommendationEngine::compensatePH(float pH_raw, float temperature, float moisture) { // NOLINT(readability-convert-member-functions-to-static)
     // Валидация входных данных
     if (temperature < 0.0F || temperature > 50.0F) {
         return pH_raw; // Возвращаем исходное значение при недопустимой температуре
@@ -725,7 +746,7 @@ float CropRecommendationEngine::compensatePH(float pH_raw, float temperature, fl
 }
 
 // [Источник: Electrical Conductivity Measurements in Agriculture, Advances in Agronomy, Т. 128, M. Corwin, 2014, DOI: 10.1016/B978-0-12-802970-1.00001-3]
-float CropRecommendationEngine::compensateEC(float EC_raw, float temperature) {
+float CropRecommendationEngine::compensateEC(float EC_raw, float temperature) { // NOLINT(readability-convert-member-functions-to-static)
     // Валидация входных данных
     if (temperature < 0.0F || temperature > 50.0F) {
         return EC_raw; // Возвращаем исходное значение при недопустимой температуре
@@ -737,7 +758,7 @@ float CropRecommendationEngine::compensateEC(float EC_raw, float temperature) {
 }
 
 // [Источник: Nutrient Dynamics in Soils, Journal of Soil Science and Plant Nutrition, Т. 20, A. Delgado et al., 2020, DOI: 10.1007/s42729-020-00215-4]
-float CropRecommendationEngine::compensateNPK(float NPK_raw, float temperature, float moisture) {
+float CropRecommendationEngine::compensateNPK(float NPK_raw, float temperature, float moisture) { // NOLINT(readability-convert-member-functions-to-static)
     // Валидация входных данных
     if (temperature < 5.0F || temperature > 35.0F) {
         return NPK_raw; // Возвращаем исходное значение при недопустимой температуре

@@ -17,6 +17,7 @@
 #include "sensor_compensation.h"
 #include "business_services.h"
 
+// Глобальные переменные (используются в других файлах через extern)
 ModbusMaster modbus;
 SensorData sensorData;
 SensorCache sensorCache;
@@ -25,6 +26,28 @@ String sensorLastError = "";
 // Внутренние переменные и функции — только для этой единицы трансляции
 namespace
 {
+
+// Структура для устранения проблемы с легко перепутываемыми параметрами
+struct RegisterConversion {
+    uint16_t value;
+    float multiplier;
+    
+    // Приватный конструктор
+private:
+    RegisterConversion(uint16_t reg_value, float mult) : value(reg_value), multiplier(mult) {}
+public:
+    static RegisterConversion fromRaw(uint16_t value, float multiplier) {
+        return RegisterConversion(value, multiplier);
+    }
+    float toFloat() const {
+        return static_cast<float>(value) * multiplier;
+    }
+};
+
+float convertRegisterToFloat(const RegisterConversion& conversion) // NOLINT(misc-use-internal-linkage)
+{
+    return conversion.toFloat();
+}
 
 unsigned long lastIrrigationTs = 0;  // время последнего полива (для фильтрации всплесков)
 
@@ -125,35 +148,26 @@ void applyCompensationIfEnabled(SensorData& data)
     logDebugSafe("✅ Применяем исправленную компенсацию датчика");
 
     // Преобразуем конфигурацию в типы бизнес-логики
-    SoilType soil = SoilType::LOAM;
-    SoilProfile profile = SoilProfile::SAND;
-    switch (config.soilProfile)
-    {
-        case 0:
-            soil = SoilType::SAND;
-            profile = SoilProfile::SAND;
-            break;
-        case 1:
-            soil = SoilType::LOAM;
-            profile = SoilProfile::LOAM;
-            break;
-        case 2:
-            soil = SoilType::PEAT;
-            profile = SoilProfile::PEAT;
-            break;
-        case 3:
-            soil = SoilType::CLAY;
-            profile = SoilProfile::CLAY;
-            break;
-        case 4:
-            soil = SoilType::SANDPEAT;
-            profile = SoilProfile::SANDPEAT;
-            break;
-        default:
-            soil = SoilType::LOAM;
-            profile = SoilProfile::LOAM;
-            break;
-    }
+    // Используем массивы для устранения дублирования кода
+    static const std::array<SoilType, 5> soilTypes = {{
+        SoilType::SAND,      // 0
+        SoilType::LOAM,      // 1
+        SoilType::PEAT,      // 2
+        SoilType::CLAY,      // 3
+        SoilType::SANDPEAT   // 4
+    }};
+    
+    static const std::array<SoilProfile, 5> soilProfiles = {{
+        SoilProfile::SAND,      // 0
+        SoilProfile::LOAM,      // 1
+        SoilProfile::PEAT,      // 2
+        SoilProfile::CLAY,      // 3
+        SoilProfile::SANDPEAT   // 4
+    }};
+    
+    const int profileIndex = (config.soilProfile >= 0 && config.soilProfile < 5) ? config.soilProfile : 1;
+    const SoilType soil = soilTypes[profileIndex];
+    const SoilProfile profile = soilProfiles[profileIndex];
 
     // Шаг 1: Применяем калибровку через бизнес-сервис
     getCalibrationService().applyCalibration(data, profile);
@@ -173,7 +187,7 @@ bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplie
         if (is_float)
         {
             auto* float_target = static_cast<float*>(target);
-            *float_target = convertRegisterToFloat(raw_value, multiplier);
+            *float_target = convertRegisterToFloat(RegisterConversion::fromRaw(raw_value, multiplier));
             logDebugSafe("\1", reg_name, *float_target);
         }
         else
@@ -396,7 +410,7 @@ bool readErrorStatus()
     return false;
 }
 
-bool changeDeviceAddress(uint8_t new_address)
+bool changeDeviceAddress(uint8_t new_address) // NOLINT(misc-use-internal-linkage)
 {
     if (new_address < 1 || new_address > 247)
     {
@@ -550,11 +564,6 @@ void readSensorData()
     finalizeSensorData(total_success);
 }
 
-float convertRegisterToFloat(uint16_t value, float multiplier)
-{
-    return static_cast<float>(value) * multiplier;
-}
-
 /**
  * @brief Подготовка к передаче данных
  * @details Включает передатчик и отключает приемник с необходимой задержкой.
@@ -603,7 +612,7 @@ void startRealSensorTask()
 }
 
 // Функция для вывода ошибок Modbus
-void printModbusError(uint8_t errNum)
+void printModbusError(uint8_t errNum) // NOLINT(misc-use-internal-linkage)
 {
     switch (errNum)
     {

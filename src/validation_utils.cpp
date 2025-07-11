@@ -86,16 +86,53 @@ ValidationResult validateThingSpeakAPIKey(const String& apiKey)
     return {true, ""};
 }
 
-ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val,
-                                  const char* name)
+// Структура для устранения проблемы с легко перепутываемыми параметрами
+struct IntervalValidation {
+    unsigned long interval;
+    unsigned long min_val;
+    unsigned long max_val;
+    const char* field_name;
+    
+private:
+    IntervalValidation(unsigned long interval, unsigned long min, unsigned long max, const char* field_name)
+        : interval(interval), min_val(min), max_val(max), field_name(field_name) {}
+public:
+    static IntervalValidation fromValues(unsigned long interval, unsigned long min, unsigned long max, const char* field_name) {
+        return IntervalValidation(interval, min, max, field_name);
+    }
+    // Builder для предотвращения ошибок с параметрами
+    struct Builder {
+        unsigned long val = 0;
+        unsigned long min = 0;
+        unsigned long max = 0;
+        const char* name = "";
+        Builder& interval(unsigned long value) { val = value; return *this; }
+        Builder& minValue(unsigned long minVal) { min = minVal; return *this; }
+        Builder& maxValue(unsigned long maxVal) { max = maxVal; return *this; }
+        Builder& fieldName(const char* fieldName) { name = fieldName; return *this; }
+        IntervalValidation build() const {
+            return IntervalValidation::fromValues(val, min, max, name);
+        }
+    };
+    static Builder builder() { return {}; }
+};
+
+ValidationResult validateInterval(const IntervalValidation& params)
 {
-    if (interval < min_val || interval > max_val)
+    if (params.interval < params.min_val || params.interval > params.max_val)
     {
         const String message =
-            String(name) + " должен быть в диапазоне " + String(min_val) + "-" + String(max_val) + " мс";
+            String(params.field_name) + " должен быть в диапазоне " + String(params.min_val) + "-" + String(params.max_val) + " мс";
         return {false, message};
     }
     return {true, ""};
+}
+
+// Обратная совместимость
+ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val,
+                                  const char* field_name)
+{
+    return validateInterval(IntervalValidation::fromValues(interval, min_val, max_val, field_name));
 }
 
 ValidationResult validateSensorReadInterval(unsigned long interval)

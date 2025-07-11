@@ -50,7 +50,7 @@ float SensorCompensationService::correctEC(float ec25_param, SoilType soilType_p
     const float humidityFactor = calculateECHumidityFactor(humidity_param, soilType_param);
     
     // Применяем модель Арчи: EC = EC0 × (θ/θ0)^m × (T/T0)^n
-    float compensatedEC = ec25_param * pow(humidityFactor, coeffs.m) * pow(tempFactor, coeffs.n);
+    float compensatedEC = ec25_param * (pow(humidityFactor, coeffs.m) * pow(tempFactor, coeffs.n));
     
     logDebugSafe("SensorCompensationService: EC скорректирован %.2f → %.2f (m=%.2f, n=%.2f, ΔT=%.1f°C)", 
                  ec25_param, compensatedEC, coeffs.m, coeffs.n, temperature_param - 25.0F);
@@ -96,9 +96,9 @@ void SensorCompensationService::correctNPK(float temperature, float humidity, So
     const float moistureFactorK = 1.0F + (coeffs.epsilon_K * (humidity - 30.0F));
     
     // Применяем полную компенсацию: N_comp = N_raw × e^(δ(T-20)) × (1 + ε(M-30))
-    npk.nitrogen *= tempFactorN * moistureFactorN;
-    npk.phosphorus *= tempFactorP * moistureFactorP;
-    npk.potassium *= tempFactorK * moistureFactorK;
+    npk.nitrogen *= (tempFactorN * moistureFactorN);
+    npk.phosphorus *= (tempFactorP * moistureFactorP);
+    npk.potassium *= (tempFactorK * moistureFactorK);
 
     logDebugSafe("SensorCompensationService: NPK скорректирован N:%.2f P:%.2f K:%.2f (δN=%.4f, εN=%.3f, ΔT=%.1f°C)",
                  npk.nitrogen, npk.phosphorus, npk.potassium, coeffs.delta_N, coeffs.epsilon_N, temperature - 20.0F);
@@ -185,7 +185,7 @@ void SensorCompensationService::initializeSoilParameters() {
     ::initializeSoilParameters(soilParameters);
 }
 
-void SensorCompensationService::initializeNPKCoefficients() {
+void SensorCompensationService::initializeNPKCoefficients() { // NOLINT(readability-convert-member-functions-to-static)
     // Коэффициенты NPK для разных типов почвы
     // Источник: [Delgado et al. (2020). DOI:10.1007/s42729-020-00215-4]
     

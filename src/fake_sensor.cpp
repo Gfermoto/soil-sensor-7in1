@@ -13,9 +13,9 @@
 
 namespace
 {
-void fakeSensorTask(void* pvParameters)
+void fakeSensorTask(void* parameters)
 {
-    (void)pvParameters;                                      // Suppress unused parameter warning
+    (void)parameters;                                        // Suppress unused parameter warning
     const TickType_t taskDelay = 1000 / portTICK_PERIOD_MS;  // 1 секунда
     const uint32_t dataGenerationInterval = 10;              // Генерация данных каждые 10 итераций
     uint32_t iterationCounter = 0;
@@ -65,28 +65,17 @@ void fakeSensorTask(void* pvParameters)
             {
                 logDebugSafe("✅ Применяем исправленную компенсацию датчика");
                 
-                SoilType soil;
-                switch (config.soilProfile)
-                {
-                    case 0:
-                        soil = SoilType::SAND;
-                        break;
-                    case 1:
-                        soil = SoilType::LOAM;
-                        break;
-                    case 2:
-                        soil = SoilType::PEAT;
-                        break;
-                    case 3:
-                        soil = SoilType::CLAY;
-                        break;
-                    case 4:
-                        soil = SoilType::SANDPEAT;
-                        break;
-                    default:
-                        soil = SoilType::LOAM;
-                        break;
-                }
+                // Используем массив для устранения дублирования кода
+                static const std::array<SoilType, 5> soilTypes = {{
+                    SoilType::SAND,      // 0
+                    SoilType::LOAM,      // 1
+                    SoilType::PEAT,      // 2
+                    SoilType::CLAY,      // 3
+                    SoilType::SANDPEAT   // 4
+                }};
+                
+                const int profileIndex = (config.soilProfile >= 0 && config.soilProfile < 5) ? config.soilProfile : 1;
+                const SoilType soil = soilTypes[profileIndex];
 
                 // 1. EC: температурная компенсация
                 sensorData.ec = correctEC(sensorData.ec, sensorData.temperature, sensorData.humidity, soil);

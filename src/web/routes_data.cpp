@@ -47,20 +47,26 @@ RecValues computeRecommendations()
     SoilProfile soilProfile = SoilProfile::SAND;
     EnvironmentType envType = EnvironmentType::OUTDOOR;
     
-    switch (config.soilProfile) {
-        case 0: soilProfile = SoilProfile::SAND; break;
-        case 1: soilProfile = SoilProfile::LOAM; break;
-        case 2: soilProfile = SoilProfile::PEAT; break;
-        case 3: soilProfile = SoilProfile::CLAY; break;
-        case 4: soilProfile = SoilProfile::SANDPEAT; break;
-        default: soilProfile = SoilProfile::SAND; break;
-    }
+    // Используем массивы для устранения дублирования кода
+    static const std::array<SoilProfile, 5> soilProfiles = {{
+        SoilProfile::SAND,      // 0
+        SoilProfile::LOAM,      // 1
+        SoilProfile::PEAT,      // 2
+        SoilProfile::CLAY,      // 3
+        SoilProfile::SANDPEAT   // 4
+    }};
     
-    switch (config.environmentType) {
-        case 1: envType = EnvironmentType::GREENHOUSE; break;
-        case 2: envType = EnvironmentType::INDOOR; break;
-        default: envType = EnvironmentType::OUTDOOR; break;
-    }
+    static const std::array<EnvironmentType, 3> envTypes = {{
+        EnvironmentType::OUTDOOR,    // 0
+        EnvironmentType::GREENHOUSE, // 1
+        EnvironmentType::INDOOR      // 2
+    }};
+    
+    const int soilIndex = (config.soilProfile >= 0 && config.soilProfile < 5) ? config.soilProfile : 0;
+    const int envIndex = (config.environmentType >= 0 && config.environmentType < 3) ? config.environmentType : 0;
+    
+    soilProfile = soilProfiles[soilIndex];
+    envType = envTypes[envIndex];
     
     // Получаем рекомендации от бизнес-сервиса
     RecValues rec = getCropEngine().computeRecommendations(cropId, soilProfile, envType);

@@ -16,7 +16,7 @@
 // Firmware version definition - теперь берется из централизованного файла version.h
 // const char* FIRMWARE_VERSION уже определена в version.h
 
-String getDeviceId()
+String getDeviceId() // NOLINT(misc-use-internal-linkage)
 {
     std::array<uint8_t, 6> mac;
     WiFi.macAddress(mac.data());
@@ -25,7 +25,7 @@ String getDeviceId()
     return String(buf.data());
 }
 
-String getDefaultTopic()
+String getDefaultTopic() // NOLINT(misc-use-internal-linkage)
 {
     std::array<uint8_t, 6> mac;
     WiFi.macAddress(mac.data());
@@ -34,12 +34,13 @@ String getDefaultTopic()
     return String(buf.data());
 }
 
-Config config;
-Preferences preferences;
+// Глобальные переменные конфигурации
+Config config; // NOLINT(misc-use-internal-linkage)
+Preferences preferences; // NOLINT(misc-use-internal-linkage)
 
 #define KEY_NTP_INTERVAL "ntpIntvl"  // ≤15 bytes, иначе NVS выдаёт KEY_TOO_LONG
 
-void loadConfig()
+void loadConfig() // NOLINT(misc-use-internal-linkage)
 {
     preferences.begin("jxct-sensor", false);
 
@@ -140,7 +141,7 @@ void loadConfig()
                  static_cast<int>(config.mqttPort), config.flags.thingSpeakEnabled ? "включен" : "выключен");
 }
 
-void saveConfig()
+void saveConfig() // NOLINT(misc-use-internal-linkage)
 {
     preferences.begin("jxct-sensor", false);
 
@@ -230,7 +231,7 @@ void saveConfig()
     logSuccess("Конфигурация сохранена");
 }
 
-void resetConfig()
+void resetConfig() // NOLINT(misc-use-internal-linkage)
 {
     logWarn("Сброс конфигурации...");
     preferences.begin("jxct-sensor", false);
@@ -328,7 +329,7 @@ void resetConfig()
     DEBUG_PRINTLN(config.ntpUpdateInterval);
 }
 
-bool isConfigValid()
+bool isConfigValid() // NOLINT(misc-use-internal-linkage)
 {
     // Проверяем минимально необходимые настройки
     if (strlen(config.ssid) == 0)

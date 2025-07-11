@@ -41,6 +41,6 @@ void invalidateHAConfigCache();
 void handleMqttCommand(const String& cmd);
 
 // Обработчик входящих MQTT сообщений
-void mqttCallback(char* topic, byte* payload, unsigned int length);
+void mqttCallback(const char* topic, const byte* payload, unsigned int length);
 
 #endif  // MQTT_CLIENT_H

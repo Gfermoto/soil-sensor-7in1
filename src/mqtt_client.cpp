@@ -21,12 +21,11 @@
 #include "wifi_manager.h"
 extern NTPClient* timeClient;
 
-WiFiClient espClient;                // NOLINT(misc-use-internal-linkage)
-PubSubClient mqttClient(espClient);  // NOLINT(misc-use-internal-linkage,readability-static-accessed-through-instance)
+// Глобальные переменные (используются в других файлах через extern)
+WiFiClient espClient;
+PubSubClient mqttClient(espClient);
 
-// ⬇️ Начало анонимного пространства — внутренняя реализация MQTT-клиента
-namespace
-{
+namespace {
 // Ранее static → внутреннее связывание
 bool mqttConnected = false;
 
@@ -96,7 +95,7 @@ const char* getOtaCommandTopic()
 }  // namespace
 
 // Публичный аксессор последней MQTT-ошибки
-const char* getMqttLastError()  // NOLINT(misc-use-internal-linkage)
+const char* getMqttLastError()
 {
     return mqttLastErrorBuffer.data();
 }
@@ -136,7 +135,7 @@ IPAddress getCachedIP(const char* hostname)
 }
 
 // ✅ Оптимизированная функция getClientId с буфером
-static const char* getClientId()  // NOLINT(misc-use-anonymous-namespace)
+const char* getClientId()
 {
     if (clientIdBuffer[0] == '\0')
     {  // Кэшируем результат
@@ -149,7 +148,7 @@ static const char* getClientId()  // NOLINT(misc-use-anonymous-namespace)
 }
 
 // ✅ Оптимизированная функция getMqttClientName
-static const char* getMqttClientName()  // NOLINT(misc-use-anonymous-namespace)
+const char* getMqttClientName()
 {
     if (strlen(config.mqttDeviceName) > 0)
     {
@@ -159,7 +158,7 @@ static const char* getMqttClientName()  // NOLINT(misc-use-anonymous-namespace)
 }
 
 // ✅ Оптимизированная функция getStatusTopic с буфером
-static const char* getStatusTopic()  // NOLINT(misc-use-anonymous-namespace)
+const char* getStatusTopic()
 {
     if (statusTopicBuffer[0] == '\0')
     {  // Кэшируем результат
@@ -169,7 +168,7 @@ static const char* getStatusTopic()  // NOLINT(misc-use-anonymous-namespace)
 }
 
 // ✅ Оптимизированная функция getCommandTopic с буфером
-static const char* getCommandTopic()  // NOLINT(misc-use-anonymous-namespace)
+const char* getCommandTopic()
 {
     if (commandTopicBuffer[0] == '\0')
     {  // Кэшируем результат
@@ -401,7 +400,7 @@ void handleMQTT()  // NOLINT(misc-use-internal-linkage)
 }
 
 // ДЕЛЬТА-ФИЛЬТР v2.2.1: Проверка необходимости публикации
-static bool shouldPublishMqtt()  // NOLINT(misc-use-anonymous-namespace)
+bool shouldPublishMqtt()
 {
     static int skipCounter = 0;
 
@@ -786,13 +785,13 @@ void handleMqttCommand(const String& cmd)  // NOLINT(misc-use-internal-linkage)
     }
 }
 
-void mqttCallback(char* topic, byte* payload, unsigned int length)  // NOLINT(misc-use-internal-linkage)
+void mqttCallback(const char* topic, const byte* payload, unsigned int length)  // NOLINT(misc-use-internal-linkage)
 {
     const String topic_str = String(topic);
     String message;
     for (unsigned int i = 0; i < length; ++i)
     {
-        message += (char)payload[i];
+        message += static_cast<char>(payload[i]);
     }
     DEBUG_PRINTF("[mqttCallback] Получено сообщение: %s = %s\n", topic_str.c_str(), message.c_str());
     if (topic_str == getCommandTopic() || topic_str == getOtaCommandTopic())

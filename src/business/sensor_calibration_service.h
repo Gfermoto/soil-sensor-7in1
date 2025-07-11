@@ -67,7 +67,7 @@ private:
                                           const std::vector<CalibrationPoint>& points) const;
 
     // Линейная интерполяция между двумя точками
-    float linearInterpolation(float x, float x1, float y1, float x2, float y2) const;
+    float linearInterpolation(float value, float x1, float y1, float x2, float y2) const;
 
     // Парсинг CSV данных калибровочной таблицы
     bool parseCalibrationCSV(const String& csvData, CalibrationTable& table);

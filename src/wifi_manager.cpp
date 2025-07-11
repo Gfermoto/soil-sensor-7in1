@@ -20,7 +20,7 @@
 #include "web_routes.h"           // 🏗️ Модульная архитектура v2.4.5
 
 // Константы
-enum class WifiConstants : std::uint16_t  // NOLINT(performance-enum-size)
+enum class WifiConstants : std::uint16_t
 {
     RESET_BUTTON_PIN = 0,             // GPIO0 для кнопки сброса
     WIFI_RECONNECT_INTERVAL = 30000,  // Интервал между попытками переподключения (30 секунд)
@@ -38,13 +38,14 @@ enum class WifiConstants : std::uint16_t  // NOLINT(performance-enum-size)
 bool wifiConnected = false;
 WiFiMode currentWiFiMode = WiFiMode::AP;
 WebServer webServer(DEFAULT_WEB_SERVER_PORT);  // Используем константу из jxct_constants.h
-static DNSServer dnsServer;                    // NOLINT(misc-use-anonymous-namespace)
 
-// Переменные для светодиода
-static unsigned long ledLastToggle = 0;     // NOLINT(misc-use-anonymous-namespace)
-static bool ledState = false;               // NOLINT(misc-use-anonymous-namespace)
-static unsigned long ledBlinkInterval = 0;  // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
-static bool ledFastBlink = false;           // NOLINT(misc-use-internal-linkage,misc-use-anonymous-namespace)
+namespace {
+DNSServer dnsServer;
+unsigned long ledLastToggle = 0;
+bool ledState = false;
+unsigned long ledBlinkInterval = 0;
+bool ledFastBlink = false;
+}
 
 extern NTPClient* timeClient;
 extern WiFiUDP ntpUDP;
@@ -90,7 +91,7 @@ void updateLed()
 }
 
 // HTML для навигации
-String navHtml()
+String navHtml() // NOLINT(misc-use-internal-linkage)
 {
     String html = "<div class='nav'>";
     html += "<a href='/'>" UI_ICON_CONFIG " Настройки</a>";
@@ -238,7 +239,7 @@ void handleWiFi()
     }
 }
 
-String getApSsid()
+String getApSsid() // NOLINT(misc-use-internal-linkage)
 {
     std::array<uint8_t, 6> mac;
     WiFi.macAddress(mac.data()); // NOLINT(readability-static-accessed-through-instance)
@@ -378,7 +379,7 @@ void restartESP()
     ESP.restart();
 }
 
-void handleStatus()
+void handleStatus() // NOLINT(misc-use-internal-linkage)
 {
     String html = "<!DOCTYPE html><html><head><meta charset='UTF-8'>";
     html += "<title>" UI_ICON_STATUS " Статус JXCT</title>";

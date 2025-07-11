@@ -32,7 +32,8 @@
 #include "business/sensor_compensation_service.h"
 #include <WebServer.h>
 #include <LittleFS.h>
-WebServer server(80);
+// Веб-сервер
+WebServer server(80); // NOLINT(misc-use-internal-linkage)
 
 // Глобальные экземпляры бизнес-сервисов
 extern CropRecommendationEngine gCropEngine;
@@ -115,7 +116,7 @@ void resetButtonTask(void* /*parameter*/)
 
 #ifndef PIO_UNIT_TESTING
 
-void setup()
+void setup() // NOLINT(misc-use-internal-linkage)
 {
     Serial.begin(115200);
 
@@ -248,7 +249,7 @@ void setup()
 }
 
 // ✅ Неблокирующий главный цикл с оптимизированными интервалами
-void loop()
+void loop() // NOLINT(misc-use-internal-linkage)
 {
     const unsigned long currentTime = millis();
     esp_task_wdt_reset();

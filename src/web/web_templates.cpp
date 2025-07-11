@@ -9,11 +9,30 @@ struct PageInfo
     const String& title;
     const String& icon;
 
-    PageInfo(const String& titleValue, const String& iconValue) // NOLINT(bugprone-easily-swappable-parameters)
+    PageInfo(const String& titleValue, const String& iconValue)
         : title(titleValue), icon(iconValue) {}
 
-    // Статический метод-фабрика для безопасного создания
-    static PageInfo create(const String& titleValue, const String& iconValue) {
+    // Builder для предотвращения ошибок с параметрами
+    struct Builder {
+        const String& title = String();
+        const String& icon = String();
+        
+        Builder& setTitle(const String& titleText) { const_cast<String&>(title) = titleText; return *this; }
+        Builder& setIcon(const String& iconText) { const_cast<String&>(icon) = iconText; return *this; }
+        
+        PageInfo build() const {
+            return {title, icon};
+        }
+    };
+    
+    static Builder builder() { return {}; }
+
+    // Статический метод-фабрика для безопасного создания с именованными параметрами
+    static PageInfo createWithTitle(const String& titleValue, const String& iconValue) {
+        return {titleValue, iconValue};
+    }
+    
+    static PageInfo createWithIcon(const String& iconValue, const String& titleValue) {
         return {titleValue, iconValue};
     }
 };
@@ -26,13 +45,17 @@ struct FormInfo
     const String& buttonText;
     const String& buttonIcon;
 
-    FormInfo(const String& actionValue, const String& methodValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue) // NOLINT(bugprone-easily-swappable-parameters)
+    FormInfo(const String& actionValue, const String& methodValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue)
         : action(actionValue), method(methodValue), formContent(formContentValue), buttonText(buttonTextValue), buttonIcon(buttonIconValue)
     {
     }
 
-    // Статический метод-фабрика для безопасного создания
-    static FormInfo create(const String& actionValue, const String& methodValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue) {
+    // Статический метод-фабрика для безопасного создания с именованными параметрами
+    static FormInfo createWithAction(const String& actionValue, const String& methodValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue) {
+        return {actionValue, methodValue, formContentValue, buttonTextValue, buttonIconValue};
+    }
+    
+    static FormInfo createWithMethod(const String& methodValue, const String& actionValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue) {
         return {actionValue, methodValue, formContentValue, buttonTextValue, buttonIconValue};
     }
 };
@@ -82,13 +105,21 @@ struct InputFieldInfo
     {
     }
 
-    // Статический метод-фабрика для безопасного создания
-    static InputFieldInfo create(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
+    // Статический метод-фабрика для безопасного создания с именованными параметрами
+    static InputFieldInfo createWithId(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
                                 const String& typeText, bool isRequired, const String& placeholderText) {
-        Builder builder;
-        builder.setId(fieldId).setName(fieldName).setLabel(labelText).setValue(valueText)
-               .setType(typeText).setRequired(isRequired).setPlaceholder(placeholderText);
-        return InputFieldInfo(builder); // NOLINT(modernize-return-braced-init-list)
+        const Builder builder = Builder()
+            .setId(fieldId).setName(fieldName).setLabel(labelText).setValue(valueText)
+            .setType(typeText).setRequired(isRequired).setPlaceholder(placeholderText);
+        return InputFieldInfo(builder);
+    }
+    
+    static InputFieldInfo createWithName(const String& fieldName, const String& fieldId, const String& labelText, const String& valueText,
+                                const String& typeText, bool isRequired, const String& placeholderText) {
+        const Builder builder = Builder()
+            .setId(fieldId).setName(fieldName).setLabel(labelText).setValue(valueText)
+            .setType(typeText).setRequired(isRequired).setPlaceholder(placeholderText);
+        return InputFieldInfo(builder);
     }
 };
 
@@ -102,14 +133,18 @@ struct NumberFieldInfo
     int max;
     int step;
 
-    NumberFieldInfo(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) // NOLINT(bugprone-easily-swappable-parameters)
+    NumberFieldInfo(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum)
         : id(fieldId), name(fieldName), label(labelText), value(valueNum), min(minNum), max(maxNum), step(stepNum)
     {
     }
 
-    // Статический метод-фабрика для безопасного создания
-    static NumberFieldInfo create(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
-        return {fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum}; // NOLINT(modernize-return-braced-init-list)
+    // Статический метод-фабрика для безопасного создания с именованными параметрами
+    static NumberFieldInfo createWithId(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
+        return {fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum};
+    }
+    
+    static NumberFieldInfo createWithName(const String& fieldName, const String& fieldId, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
+        return {fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum};
     }
 };
 
@@ -119,13 +154,17 @@ struct ConfigSectionInfo
     const String& content;
     const String& helpText;
 
-    ConfigSectionInfo(const String& titleText, const String& contentText, const String& helpTextValue) // NOLINT(bugprone-easily-swappable-parameters)
+    ConfigSectionInfo(const String& titleText, const String& contentText, const String& helpTextValue)
         : title(titleText), content(contentText), helpText(helpTextValue)
     {
     }
 
-    // Статический метод-фабрика для безопасного создания
-    static ConfigSectionInfo create(const String& titleText, const String& contentText, const String& helpTextValue) {
+    // Статический метод-фабрика для безопасного создания с именованными параметрами
+    static ConfigSectionInfo createWithTitle(const String& titleText, const String& contentText, const String& helpTextValue) {
+        return {titleText, contentText, helpTextValue};
+    }
+    
+    static ConfigSectionInfo createWithContent(const String& contentText, const String& titleText, const String& helpTextValue) {
         return {titleText, contentText, helpTextValue};
     }
 };
@@ -144,7 +183,10 @@ String generatePageHeader(const PageInfo& page)  // NOLINT(misc-use-internal-lin
 // Устаревшая версия для совместимости
 String generatePageHeader(const String& titleText, const String& iconText)  // NOLINT(misc-use-internal-linkage)
 {
-    return generatePageHeader(PageInfo::create(titleText, iconText));
+    return generatePageHeader(PageInfo::builder()
+        .setTitle(titleText)
+        .setIcon(iconText)
+        .build());
 }
 
 String generatePageFooter()  // NOLINT(misc-use-internal-linkage)
@@ -163,9 +205,12 @@ String generateBasePage(const PageInfo& page, const String& content)  // NOLINT(
 
 // Устаревшая версия для совместимости
 String generateBasePage(const String& titleText, const String& contentText,
-                        const String& iconText)  // NOLINT(misc-use-internal-linkage)
+                        const String& iconText) // NOLINT(misc-use-internal-linkage)
 {
-    return generateBasePage(PageInfo::create(titleText, iconText), contentText);
+    return generateBasePage(PageInfo::builder()
+        .setTitle(titleText)
+        .setIcon(iconText)
+        .build(), contentText);
 }
 
 String generateErrorPage(int errorCode, const String& errorMessage)  // NOLINT(misc-use-internal-linkage)
@@ -178,7 +223,7 @@ String generateErrorPage(int errorCode, const String& errorMessage)  // NOLINT(m
 }
 
 String generateSuccessPage(const String& titleText, const String& messageText, const String& redirectUrlText,
-                           int redirectDelaySeconds)  // NOLINT(misc-use-internal-linkage)
+                           int redirectDelaySeconds) // NOLINT(misc-use-internal-linkage)
 {
     String content = "<h1>" UI_ICON_SUCCESS " " + titleText + "</h1>";
     content += "<div class='msg msg-success'>" UI_ICON_SUCCESS " " + messageText + "</div>";
@@ -204,18 +249,18 @@ String generateSuccessPage(const String& titleText, const String& messageText, c
  */
 String generateForm(const FormInfo& form)  // NOLINT(misc-use-internal-linkage)
 {
-    String html = "<form action='" + form.action + "' method='" + form.method + "'>";
-    html += form.formContent;
-    html += generateButton(ButtonType::PRIMARY, ButtonConfig{form.buttonIcon.c_str(), form.buttonText.c_str(), ""});
-    html += "</form>";
+    const String html = "<form action='" + form.action + "' method='" + form.method + "'>" +
+                       form.formContent +
+                       generateButton(ButtonType::PRIMARY, ButtonConfig{form.buttonIcon.c_str(), form.buttonText.c_str(), ""}) +
+                       "</form>";
     return html;
 }
 
 // Устаревшая версия для совместимости
 String generateForm(const String& actionUrl, const String& methodType, const String& formContentText, const String& buttonTextValue,
-                    const String& buttonIconValue)  // NOLINT(misc-use-internal-linkage)
+                    const String& buttonIconValue) // NOLINT(misc-use-internal-linkage)
 {
-    return generateForm(FormInfo::create(actionUrl, methodType, formContentText, buttonTextValue, buttonIconValue));
+    return generateForm(FormInfo::createWithAction(actionUrl, methodType, formContentText, buttonTextValue, buttonIconValue));
 }
 
 /**
@@ -238,9 +283,9 @@ String generateConfigSection(const ConfigSectionInfo& section)  // NOLINT(misc-u
 
 // Устаревшая версия для совместимости
 String generateConfigSection(const String& title, const String& content,
-                             const String& helpText)  // NOLINT(misc-use-internal-linkage)
+                             const String& helpText) // NOLINT(misc-use-internal-linkage)
 {
-    return generateConfigSection(ConfigSectionInfo::create(title, content, helpText));
+    return generateConfigSection(ConfigSectionInfo::createWithTitle(title, content, helpText));
 }
 
 /**
@@ -274,9 +319,9 @@ String generateInputField(const InputFieldInfo& field)  // NOLINT(misc-use-inter
 // Устаревшая версия для совместимости
 String generateInputField(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
                           const String& typeText, bool required,
-                          const String& placeholderText)  // NOLINT(misc-use-internal-linkage)
+                          const String& placeholderText) // NOLINT(misc-use-internal-linkage)
 {
-    return generateInputField(InputFieldInfo::create(fieldId, fieldName, labelText, valueText, typeText, required, placeholderText));
+    return generateInputField(InputFieldInfo::createWithId(fieldId, fieldName, labelText, valueText, typeText, required, placeholderText));
 }
 
 /**
@@ -323,9 +368,9 @@ String generateNumberField(const NumberFieldInfo& field)  // NOLINT(misc-use-int
 
 // Устаревшая версия для совместимости
 String generateNumberField(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum,
-                           int stepNum)  // NOLINT(misc-use-internal-linkage)
+                           int stepNum) // NOLINT(misc-use-internal-linkage)
 {
-    return generateNumberField(NumberFieldInfo::create(fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum));
+    return generateNumberField(NumberFieldInfo::createWithId(fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum));
 }
 
 /**

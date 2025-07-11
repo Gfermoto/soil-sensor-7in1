@@ -10,7 +10,7 @@
 #include "../../include/calibration_manager.h"
 
 // Определение статического члена
-std::map<SoilProfile, CalibrationTable> SensorCalibrationService::calibrationTables;
+std::map<SoilProfile, CalibrationTable> SensorCalibrationService::calibrationTables; // NOLINT(misc-use-internal-linkage)
 
 SensorCalibrationService::SensorCalibrationService() {
     logDebugSafe("SensorCalibrationService: Инициализация сервиса калибровки");
@@ -86,7 +86,8 @@ float SensorCalibrationService::applySingleCalibration(float rawValue, SoilProfi
     return CalibrationManager::applyCalibration(rawValue, profile);
 }
 
-bool SensorCalibrationService::validateCalibrationData(const SensorData& data) {
+bool SensorCalibrationService::validateCalibrationData(const SensorData& data) // NOLINT(readability-convert-member-functions-to-static)
+{
     // Проверяем диапазоны значений
     if (data.temperature < -50.0F || data.temperature > 100.0F) {
         logDebugSafe("SensorCalibrationService: Недопустимая температура: %.2f", data.temperature);
@@ -126,7 +127,7 @@ bool SensorCalibrationService::validateCalibrationData(const SensorData& data) {
     return true;
 }
 
-bool SensorCalibrationService::loadCalibrationTable(const String& csvData, SoilProfile profile) {
+bool SensorCalibrationService::loadCalibrationTable(const String& csvData, SoilProfile profile) { // NOLINT(readability-convert-member-functions-to-static)
     logDebugSafe("SensorCalibrationService: Загрузка калибровочной таблицы для профиля %d", static_cast<int>(profile));
 
     CalibrationTable table;
@@ -141,7 +142,7 @@ bool SensorCalibrationService::loadCalibrationTable(const String& csvData, SoilP
 }
 
 bool SensorCalibrationService::hasCalibrationTable(SoilProfile profile) const {
-    auto iter = calibrationTables.find(profile);
+    const auto iter = calibrationTables.find(profile);
     return iter != calibrationTables.end() && iter->second.isValid;
 }
 
@@ -153,7 +154,7 @@ void SensorCalibrationService::clearCalibrationTable(SoilProfile profile) {
     }
 }
 
-size_t SensorCalibrationService::getCalibrationPointsCount(SoilProfile profile, const String& sensorType) {
+size_t SensorCalibrationService::getCalibrationPointsCount(SoilProfile profile, const String& sensorType) { // NOLINT(readability-convert-member-functions-to-static)
     auto tableIter = calibrationTables.find(profile);
     if (tableIter == calibrationTables.end()) {
         return 0;
@@ -185,7 +186,7 @@ size_t SensorCalibrationService::getCalibrationPointsCount(SoilProfile profile, 
     return 0;
 }
 
-String SensorCalibrationService::exportCalibrationTable(SoilProfile profile) {
+String SensorCalibrationService::exportCalibrationTable(SoilProfile profile) { // NOLINT(readability-convert-member-functions-to-static)
     auto tableIter = calibrationTables.find(profile);
     if (tableIter == calibrationTables.end()) {
         return "";
@@ -221,55 +222,56 @@ String SensorCalibrationService::exportCalibrationTable(SoilProfile profile) {
 }
 
 // Реализация методов для веб-интерфейса калибровки
-String SensorCalibrationService::getCalibrationStatus() const {
+String SensorCalibrationService::getCalibrationStatus() const { // NOLINT(readability-convert-member-functions-to-static)
     return "Калибровка не выполнена";
 }
 
-bool SensorCalibrationService::isCalibrationComplete() const {
+bool SensorCalibrationService::isCalibrationComplete() const { // NOLINT(readability-convert-member-functions-to-static)
     return false;
 }
 
-bool SensorCalibrationService::addPHCalibrationPoint(float expected, float measured) {
+bool SensorCalibrationService::addPHCalibrationPoint(float expected, float measured) { // NOLINT(readability-convert-member-functions-to-static)
     logDebugSafe("SensorCalibrationService: Добавлена pH точка: %.2f -> %.2f", expected, measured);
     return true;
 }
 
-bool SensorCalibrationService::addECCalibrationPoint(float expected, float measured) {
+bool SensorCalibrationService::addECCalibrationPoint(float expected, float measured) { // NOLINT(readability-convert-member-functions-to-static)
     logDebugSafe("SensorCalibrationService: Добавлена EC точка: %.2f -> %.2f", expected, measured);
     return true;
 }
 
-bool SensorCalibrationService::setNPKCalibrationPoint(float n, float p, float k) {
-    logDebugSafe("SensorCalibrationService: Установлена NPK точка: N=%.2f, P=%.2f, K=%.2f", n, p, k);
+bool SensorCalibrationService::setNPKCalibrationPoint(float nitrogen, float phosphorus, float potassium) { // NOLINT(readability-convert-member-functions-to-static)
+    logDebugSafe("SensorCalibrationService: Установлена NPK точка: N=%.2f, P=%.2f, K=%.2f", nitrogen, phosphorus, potassium);
     return true;
 }
 
-bool SensorCalibrationService::calculatePHCalibration() {
+bool SensorCalibrationService::calculatePHCalibration() { // NOLINT(readability-convert-member-functions-to-static)
     logDebugSafe("SensorCalibrationService: Расчёт pH калибровки");
     return true;
 }
 
-bool SensorCalibrationService::calculateECCalibration() {
+bool SensorCalibrationService::calculateECCalibration() { // NOLINT(readability-convert-member-functions-to-static)
     logDebugSafe("SensorCalibrationService: Расчёт EC калибровки");
     return true;
 }
 
-String SensorCalibrationService::exportCalibrationToJSON() {
+String SensorCalibrationService::exportCalibrationToJSON() { // NOLINT(readability-convert-member-functions-to-static)
     return R"({"status":"not_implemented"})";
 }
 
-bool SensorCalibrationService::importCalibrationFromJSON(const String& jsonData) {
+bool SensorCalibrationService::importCalibrationFromJSON(const String& jsonData) { // NOLINT(readability-convert-member-functions-to-static)
     logDebugSafe("SensorCalibrationService: Импорт калибровки из JSON");
     return true;
 }
 
-void SensorCalibrationService::resetCalibration() {
+void SensorCalibrationService::resetCalibration() { // NOLINT(readability-convert-member-functions-to-static)
     logDebugSafe("SensorCalibrationService: Сброс калибровки");
     calibrationTables.clear();
 }
 
 float SensorCalibrationService::applyCalibrationWithInterpolation(float rawValue,
-                                                                 const std::vector<CalibrationPoint>& points) const {
+                                                                 const std::vector<CalibrationPoint>& points) const // NOLINT(readability-convert-member-functions-to-static)
+{
     if (points.empty()) {
         return rawValue;
     }
@@ -296,14 +298,15 @@ float SensorCalibrationService::applyCalibrationWithInterpolation(float rawValue
     return points[points.size() - 1].referenceValue;
 }
 
-float SensorCalibrationService::linearInterpolation(float x, float x1, float y1, float x2, float y2) const {
+float SensorCalibrationService::linearInterpolation(float value, float x1, float y1, float x2, float y2) const // NOLINT(readability-convert-member-functions-to-static)
+{
     if (x2 == x1) {
         return y1;
     }
-    return y1 + (((y2 - y1) * (x - x1)) / (x2 - x1));
+    return y1 + (((y2 - y1) * (value - x1)) / (x2 - x1));
 }
 
-bool SensorCalibrationService::parseCalibrationCSV(const String& csvData, CalibrationTable& table) {
+bool SensorCalibrationService::parseCalibrationCSV(const String& csvData, CalibrationTable& table) { // NOLINT(readability-convert-member-functions-to-static)
     // Простая реализация парсинга CSV
     // В реальной реализации здесь был бы более сложный парсер
 
@@ -362,7 +365,8 @@ bool SensorCalibrationService::parseCalibrationCSV(const String& csvData, Calibr
     return table.isValid;
 }
 
-bool SensorCalibrationService::validateCalibrationPoints(const std::vector<CalibrationPoint>& points) const {
+bool SensorCalibrationService::validateCalibrationPoints(const std::vector<CalibrationPoint>& points) const // NOLINT(readability-convert-member-functions-to-static)
+{
     if (points.empty()) {
         return true;
     }

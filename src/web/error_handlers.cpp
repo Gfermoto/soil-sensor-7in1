@@ -11,12 +11,20 @@ struct ValidationRange
     int minValue;
     int maxValue;
 
-    ValidationRange(int minValue, int maxValue) // NOLINT(bugprone-easily-swappable-parameters)
+private:
+    ValidationRange(int minValue, int maxValue)
         : minValue(minValue), maxValue(maxValue) {}
-
-    // Статический метод-фабрика для безопасного создания
-    static ValidationRange create(int minValue, int maxValue) {
-        return {minValue, maxValue};
+public:
+    static ValidationRange fromValues(int minValue, int maxValue) {
+        return ValidationRange(minValue, maxValue);
+    }
+    // Статический метод-фабрика для безопасного создания с именованными параметрами
+    static ValidationRange createWithMin(int minValue, int maxValue) {
+        return ValidationRange::fromValues(minValue, maxValue);
+    }
+    
+    static ValidationRange createWithMax(int maxValue, int minValue) {
+        return ValidationRange::fromValues(minValue, maxValue);
     }
 };
 
@@ -27,14 +35,23 @@ struct HttpRequest
     String uri;
     String clientIP;
 
-    HttpRequest(const String& methodValue, const String& uriValue, const String& clientIPValue) // NOLINT(bugprone-easily-swappable-parameters)
+private:
+    HttpRequest(const String& methodValue, const String& uriValue, const String& clientIPValue)
         : method(methodValue), uri(uriValue), clientIP(clientIPValue)
     {
     }
+public:
+    static HttpRequest fromValues(const String& methodValue, const String& uriValue, const String& clientIPValue) {
+        return HttpRequest(methodValue, uriValue, clientIPValue);
+    }
 
-    // Статический метод-фабрика для безопасного создания
-    static HttpRequest create(const String& methodValue, const String& uriValue, const String& clientIPValue) {
-        return {methodValue, uriValue, clientIPValue};
+    // Статический метод-фабрика для безопасного создания с именованными параметрами
+    static HttpRequest createWithMethod(const String& methodValue, const String& uriValue, const String& clientIPValue) {
+        return HttpRequest::fromValues(methodValue, uriValue, clientIPValue);
+    }
+    
+    static HttpRequest createWithUri(const String& uriValue, const String& methodValue, const String& clientIPValue) {
+        return HttpRequest::fromValues(methodValue, uriValue, clientIPValue);
     }
 
     // Типобезопасная версия с именованными параметрами
@@ -45,7 +62,7 @@ struct HttpRequest
     };
 
     static HttpRequest create(const CreateParams& params) {
-        return {params.method, params.uri, params.clientIP};
+        return HttpRequest::fromValues(params.method, params.uri, params.clientIP);
     }
 };
 
@@ -131,23 +148,23 @@ bool validateConfigInput(bool checkRequired)
     }
 
     // Валидация форматов данных
-    if (!validateInterval("mqtt_port", ValidationRange::create(1, 65535), "MQTT порт"))
+    if (!validateInterval("mqtt_port", ValidationRange::createWithMin(1, 65535), "MQTT порт"))
     {
         return false;
     }
-    if (!validateInterval("ntp_interval", ValidationRange::create(10000, 86400000), "NTP интервал"))
+    if (!validateInterval("ntp_interval", ValidationRange::createWithMin(10000, 86400000), "NTP интервал"))
     {
         return false;
     }
-    if (!validateInterval("sensor_read", ValidationRange::create(1000, 300000), "интервал чтения датчика"))
+    if (!validateInterval("sensor_read", ValidationRange::createWithMin(1000, 300000), "интервал чтения датчика"))
     {
         return false;
     }
-    if (!validateInterval("mqtt_publish", ValidationRange::create(1000, 3600000), "интервал MQTT публикации"))
+    if (!validateInterval("mqtt_publish", ValidationRange::createWithMin(1000, 3600000), "интервал MQTT публикации"))
     {
         return false;
     }
-    if (!validateInterval("thingspeak_interval", ValidationRange::create(15000, 7200000), "интервал ThingSpeak"))
+    if (!validateInterval("thingspeak_interval", ValidationRange::createWithMin(15000, 7200000), "интервал ThingSpeak"))
     {
         return false;
     }
@@ -156,7 +173,7 @@ bool validateConfigInput(bool checkRequired)
     return true;
 }
 
-void handleUploadError(const String& error)
+void handleUploadError(const String& error) // NOLINT(misc-use-internal-linkage)
 {
     logErrorSafe("\1", error.c_str());
 
@@ -194,7 +211,7 @@ bool isFeatureAvailable()
  * @param errorMsg Сообщение об ошибке
  * @return HTML ответ с ошибкой
  */
-String generateValidationErrorResponse(const String& errorMsg)
+String generateValidationErrorResponse(const String& errorMsg) // NOLINT(misc-use-internal-linkage)
 {
     String content = "<h1>" UI_ICON_CONFIG " Настройки JXCT</h1>";
     content += generateFormError(errorMsg);
@@ -210,7 +227,7 @@ String generateValidationErrorResponse(const String& errorMsg)
  * @brief Обработка критических ошибок сервера
  * @param error Описание ошибки
  */
-void handleCriticalError(const String& error)
+void handleCriticalError(const String& error) // NOLINT(misc-use-internal-linkage)
 {
     logErrorSafe("\1", error.c_str());
 
@@ -223,7 +240,7 @@ void handleCriticalError(const String& error)
  * @param uri URI запроса
  * @return true если маршрут доступен
  */
-bool isRouteAvailable(const String& uri)
+bool isRouteAvailable(const String& uri) // NOLINT(misc-use-internal-linkage)
 {
     if (currentWiFiMode == WiFiMode::AP)
     {
