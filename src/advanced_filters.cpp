@@ -398,7 +398,8 @@ float applyECSpecializedFilter(float raw_value) {
 // ПУБЛИЧНЫЕ ФУНКЦИИ
 // ============================================================================
 
-void applyAdvancedFiltering(SensorData& data) {
+void applyAdvancedFiltering(SensorData& data) // NOLINT(misc-use-internal-linkage)
+{
     if (!static_cast<bool>(config.adaptiveFiltering) && !static_cast<bool>(config.kalmanEnabled)) {
         return; // Фильтрация отключена
     }
@@ -420,7 +421,8 @@ void applyAdvancedFiltering(SensorData& data) {
                                        static_cast<bool>(config.kalmanEnabled), static_cast<bool>(config.adaptiveFiltering));
 }
 
-void resetAllFilters() {
+void resetAllFilters() // NOLINT(misc-use-internal-linkage)
+{
     // Сбрасываем экспоненциальное сглаживание
     exp_smooth_temp.initialized = false;
     exp_smooth_hum.initialized = false;
@@ -454,7 +456,8 @@ void resetAllFilters() {
     logSystem("[ADVANCED_FILTERS] Все фильтры сброшены");
 }
 
-void logFilterStatistics() {
+void logFilterStatistics() // NOLINT(misc-use-internal-linkage)
+{
     if (!static_cast<bool>(config.adaptiveFiltering)) {
         return;
     }

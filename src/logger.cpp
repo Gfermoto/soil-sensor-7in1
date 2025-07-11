@@ -31,13 +31,13 @@ String getUptimeString()
 }
 }  // namespace
 
-String formatLogMessage(const String& message)
+String formatLogMessage(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     return message;
 }
 
 // Основные функции логгирования (String версии)
-void logError(const String& message)
+void logError(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     if (currentLogLevel < LOG_ERROR)
     {
@@ -50,7 +50,7 @@ void logError(const String& message)
     Serial.println(message);
 }
 
-void logWarn(const String& message)
+void logWarn(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     if (currentLogLevel < LOG_WARN)
     {
@@ -63,7 +63,7 @@ void logWarn(const String& message)
     Serial.println(message);
 }
 
-void logInfo(const String& message)
+void logInfo(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     if (currentLogLevel < LOG_INFO)
     {
@@ -76,7 +76,7 @@ void logInfo(const String& message)
     Serial.println(message);
 }
 
-void logDebug(const String& message)
+void logDebug(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     if (currentLogLevel < LOG_DEBUG)
     {
@@ -89,7 +89,7 @@ void logDebug(const String& message)
     Serial.println(message);
 }
 
-void logSuccess(const String& message)
+void logSuccess(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     if (currentLogLevel < LOG_INFO)
     {
@@ -102,7 +102,7 @@ void logSuccess(const String& message)
     Serial.println(message);
 }
 
-void logSensor(const String& message)
+void logSensor(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     if (currentLogLevel < LOG_INFO)
     {
@@ -115,7 +115,7 @@ void logSensor(const String& message)
     Serial.println(message);
 }
 
-void logWiFi(const String& message)
+void logWiFi(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     if (currentLogLevel < LOG_INFO)
     {
@@ -128,7 +128,7 @@ void logWiFi(const String& message)
     Serial.println(message);
 }
 
-void logMQTT(const String& message)
+void logMQTT(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     if (currentLogLevel < LOG_INFO)
     {
@@ -141,7 +141,7 @@ void logMQTT(const String& message)
     Serial.println(message);
 }
 
-void logHTTP(const String& message)
+void logHTTP(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     if (currentLogLevel < LOG_INFO)
     {
@@ -154,7 +154,7 @@ void logHTTP(const String& message)
     Serial.println(message);
 }
 
-void logSystem(const String& message)
+void logSystem(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     if (currentLogLevel < LOG_INFO)
     {
@@ -167,7 +167,7 @@ void logSystem(const String& message)
     Serial.println(message);
 }
 
-void logData(const String& message)
+void logData(const String& message) // NOLINT(misc-use-internal-linkage)
 {
     if (currentLogLevel < LOG_INFO)
     {
@@ -273,7 +273,7 @@ const char* getColorCode(LogColor color)
 }
 
 // Утилиты
-void printHeader(const String& title, LogColor color)
+void printHeader(const String& title, LogColor color) // NOLINT(misc-use-internal-linkage)
 {
     Serial.print(getColorCode(color));
     Serial.print("═══ ");
@@ -282,7 +282,7 @@ void printHeader(const String& title, LogColor color)
     Serial.print(COLOR_RESET);
 }
 
-void printSubHeader(const String& title, LogColor color)
+void printSubHeader(const String& title, LogColor color) // NOLINT(misc-use-internal-linkage)
 {
     Serial.print(getColorCode(color));
     Serial.print("─── ");

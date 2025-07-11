@@ -9,12 +9,12 @@ namespace
 bool _initialized = false;
 }
 
-const char* profileToFilename(SoilProfile /*profile*/)
+const char* profileToFilename(SoilProfile /*profile*/) // NOLINT(misc-use-internal-linkage)
 {
     return "/calibration/custom.csv";  // единый файл
 }
 
-bool init()
+bool init() // NOLINT(misc-use-internal-linkage)
 {
     if (_initialized)
     {
@@ -38,7 +38,7 @@ bool init()
     return true;
 }
 
-bool saveCsv(SoilProfile profile, Stream& fileStream)
+bool saveCsv(SoilProfile profile, Stream& fileStream) // NOLINT(misc-use-internal-linkage)
 {
     if (!init())
     {
@@ -64,7 +64,7 @@ bool saveCsv(SoilProfile profile, Stream& fileStream)
     return calibrationFile.size() > 0U;
 }
 
-bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntries, size_t& outCount)
+bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntries, size_t& outCount) // NOLINT(misc-use-internal-linkage)
 {
     outCount = 0;
     if (!init())
@@ -115,7 +115,7 @@ bool loadTable(SoilProfile profile, CalibrationEntry* outBuffer, size_t maxEntri
     return outCount > 0U; // NOLINT(readability-implicit-bool-conversion)
 }
 
-bool hasTable(SoilProfile profile)
+bool hasTable(SoilProfile profile) // NOLINT(misc-use-internal-linkage)
 {
     if (!init())
     {
@@ -124,7 +124,7 @@ bool hasTable(SoilProfile profile)
     return LittleFS.exists(profileToFilename(profile));
 }
 
-bool deleteTable(SoilProfile profile)
+bool deleteTable(SoilProfile profile) // NOLINT(misc-use-internal-linkage)
 {
     if (!init())
     {
@@ -138,7 +138,7 @@ bool deleteTable(SoilProfile profile)
     return false;
 }
 
-float applyCalibration(float rawValue, SoilProfile profile)
+float applyCalibration(float rawValue, SoilProfile profile) // NOLINT(misc-use-internal-linkage)
 {
     // Если калибровочная таблица не загружена, возвращаем исходное значение
     if (!hasTable(profile))

@@ -65,7 +65,7 @@ std::string format_npk(float value)
 }
 
 // Универсальная функция форматирования для веб-интерфейса
-String formatValue(float value, const char* unit, int precision)
+String formatValue(float value, const char* unit, int precision) // NOLINT(misc-use-internal-linkage)
 {
     std::array<char, 32> buf;
 
