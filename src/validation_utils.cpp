@@ -19,7 +19,7 @@ struct IntervalValidation {
     const char* field_name;
     
 private:
-    IntervalValidation(unsigned long interval, unsigned long min, unsigned long max, const char* field_name)
+    IntervalValidation(unsigned long interval, unsigned long min, unsigned long max, const char* field_name) // NOLINT(bugprone-easily-swappable-parameters)
         : interval(interval), min_val(min), max_val(max), field_name(field_name) {}
 public:
     // Builder для предотвращения ошибок с параметрами
@@ -190,7 +190,7 @@ ValidationResult validateNPKInternal(float value, const char* nutrient)
 
 // Публичные функции (обёртки для обратной совместимости)
 ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val,
-                                  const char* field_name)
+                                  const char* field_name) // NOLINT(bugprone-easily-swappable-parameters)
 {
     return validateIntervalInternal(IntervalValidation::builder()
         .interval(interval)
@@ -225,7 +225,7 @@ ValidationResult validateNTPInterval(unsigned long interval)
 // ============================================================================
 
 // Публичные функции валидации данных датчика
-ValidationResult validateRange(float value, float min_val, float max_val, const char* field_name)
+ValidationResult validateRange(float value, float min_val, float max_val, const char* field_name) // NOLINT(bugprone-easily-swappable-parameters)
 {
     return validateRangeInternal(RangeParams::builder()
         .setValue(value)

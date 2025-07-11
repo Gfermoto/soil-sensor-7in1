@@ -118,7 +118,7 @@ float SensorCompensationService::getPorosity(SoilType soilType) const {
     return 0.45F; // Значение по умолчанию
 }
 
-bool SensorCompensationService::validateCompensationInputs(SoilType soilTypeValue, float humidityValue, float temperatureValue) const
+bool SensorCompensationService::validateCompensationInputs(SoilType soilTypeValue, float humidityValue, float temperatureValue) const // NOLINT(bugprone-easily-swappable-parameters)
 {
     if (temperatureValue < -50.0F || temperatureValue > 100.0F) {
         return false;

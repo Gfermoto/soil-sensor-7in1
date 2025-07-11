@@ -36,7 +36,7 @@ inline float k_h_K(float theta)
 }
 
 // Внутренние функции — только для этой единицы трансляции
-float correctEC_internal(float rawValue, float temperature, float compensationFactor)
+float correctEC_internal(float rawValue, float temperature, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters)
 {
     const float referenceTemp = 25.0F;
     const float tempDiff = temperature - referenceTemp;
@@ -44,7 +44,7 @@ float correctEC_internal(float rawValue, float temperature, float compensationFa
     return rawValue * compensation;
 }
 
-float correctPH_internal(float rawValue, float temperature, float compensationFactor)
+float correctPH_internal(float rawValue, float temperature, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters)
 {
     const float referenceTemp = 25.0F;
     const float tempDiff = temperature - referenceTemp;
@@ -52,7 +52,7 @@ float correctPH_internal(float rawValue, float temperature, float compensationFa
     return rawValue * compensation;
 }
 
-float correctNPK_internal(float rawValue, float temperature, float humidity, float compensationFactor)
+float correctNPK_internal(float rawValue, float temperature, float humidity, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters)
 {
     const float referenceTemp = 25.0F;
     const float referenceHumidity = 60.0F;
