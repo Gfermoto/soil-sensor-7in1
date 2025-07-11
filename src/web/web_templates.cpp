@@ -3,6 +3,8 @@
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
 
+// Внутренние структуры и функции с внутренней связностью
+namespace {
 // Структуры для типобезопасности (предотвращение перепутывания параметров)
 struct PageInfo
 {
@@ -82,11 +84,11 @@ struct InputFieldInfo
     bool required;
     String placeholder;
 private:
-    InputFieldInfo(const String& id, const String& name, const String& label, const String& value, const String& type, bool required, const String& placeholder)
-        : id(id), name(name), label(label), value(value), type(type), required(required), placeholder(placeholder) {}
+    InputFieldInfo(const String& fieldId, const String& fieldName, const String& fieldLabel, const String& fieldValue, const String& fieldType, bool fieldRequired, const String& fieldPlaceholder)
+        : id(fieldId), name(fieldName), label(fieldLabel), value(fieldValue), type(fieldType), required(fieldRequired), placeholder(fieldPlaceholder) {}
 public:
-    static InputFieldInfo fromValues(const String& id, const String& name, const String& label, const String& value, const String& type, bool required, const String& placeholder) {
-        return InputFieldInfo(id, name, label, value, type, required, placeholder);
+    static InputFieldInfo fromValues(const String& fieldId, const String& fieldName, const String& fieldLabel, const String& fieldValue, const String& fieldType, bool fieldRequired, const String& fieldPlaceholder) {
+        return InputFieldInfo(fieldId, fieldName, fieldLabel, fieldValue, fieldType, fieldRequired, fieldPlaceholder);
     }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
@@ -97,7 +99,7 @@ public:
         String type;
         bool required = false;
         String placeholder;
-        Builder& setId(const String& fieldId) { id = fieldId; return *this; }
+        Builder& setId(const String& fieldIdValue) { id = fieldIdValue; return *this; }
         Builder& setName(const String& fieldName) { name = fieldName; return *this; }
         Builder& setLabel(const String& labelText) { label = labelText; return *this; }
         Builder& setValue(const String& valueText) { value = valueText; return *this; }
@@ -129,24 +131,24 @@ struct NumberFieldInfo
     int max;
     int step;
 private:
-    NumberFieldInfo(const String& id, const String& name, const String& label, int value, int min, int max, int step)
-        : id(id), name(name), label(label), value(value), min(min), max(max), step(step) {}
+    NumberFieldInfo(const String& fieldId, const String& fieldName, const String& fieldLabel, int fieldValue, int fieldMin, int fieldMax, int fieldStep)
+        : id(fieldId), name(fieldName), label(fieldLabel), value(fieldValue), min(fieldMin), max(fieldMax), step(fieldStep) {}
 public:
-    static NumberFieldInfo fromValues(const String& id, const String& name, const String& label, int value, int min, int max, int step) {
-        return NumberFieldInfo(id, name, label, value, min, max, step);
+    static NumberFieldInfo fromValues(const String& fieldId, const String& fieldName, const String& fieldLabel, int fieldValue, int fieldMin, int fieldMax, int fieldStep) {
+        return NumberFieldInfo(fieldId, fieldName, fieldLabel, fieldValue, fieldMin, fieldMax, fieldStep);
     }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
-        const String& id = String();
-        const String& name = String();
-        const String& label = String();
+        String id;
+        String name;
+        String label;
         int value = 0;
         int min = 0;
         int max = 100;
         int step = 1;
-        Builder& setId(const String& fieldId) { const_cast<String&>(id) = fieldId; return *this; }
-        Builder& setName(const String& fieldName) { const_cast<String&>(name) = fieldName; return *this; }
-        Builder& setLabel(const String& labelText) { const_cast<String&>(label) = labelText; return *this; }
+        Builder& setId(const String& fieldIdValue) { id = fieldIdValue; return *this; }
+        Builder& setName(const String& fieldName) { name = fieldName; return *this; }
+        Builder& setLabel(const String& labelText) { label = labelText; return *this; }
         Builder& setValue(int valueNum) { value = valueNum; return *this; }
         Builder& setMin(int minNum) { min = minNum; return *this; }
         Builder& setMax(int maxNum) { max = maxNum; return *this; }
@@ -196,6 +198,7 @@ public:
         return ConfigSectionInfo(title, content, helpText);
     }
 };
+} // namespace
 
 // Все функции и переменные, которые не используются вне этого файла, объявить static
 // Например:

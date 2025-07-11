@@ -9,8 +9,16 @@
 #include "../../include/logger.h"
 #include "../../include/calibration_manager.h"
 
-// Определение статического члена
-std::map<SoilProfile, CalibrationTable> SensorCalibrationService::calibrationTables; // NOLINT(misc-use-internal-linkage)
+// Внутренние переменные и функции
+namespace {
+// Внутренняя таблица калибровки с внутренней связностью
+std::map<SoilProfile, CalibrationTable> calibrationTablesInternal;
+} // namespace
+
+// Функция доступа к внутренней таблице калибровки
+std::map<SoilProfile, CalibrationTable>& getCalibrationTables() {
+    return calibrationTablesInternal;
+}
 
 SensorCalibrationService::SensorCalibrationService() {
     logDebugSafe("SensorCalibrationService: Инициализация сервиса калибровки");
@@ -30,7 +38,7 @@ void SensorCalibrationService::applyCalibration(SensorData& data, SoilProfile pr
 
     // Применяем калибровку к каждому параметру
     if (hasCalibrationTable(profile)) {
-        const CalibrationTable& table = calibrationTables[profile];
+        const CalibrationTable& table = getCalibrationTables()[profile];
 
         if (!table.temperaturePoints.empty()) {
             data.temperature = applyCalibrationWithInterpolation(data.temperature, table.temperaturePoints);
@@ -75,7 +83,7 @@ void SensorCalibrationService::applyCalibration(SensorData& data, SoilProfile pr
 
 float SensorCalibrationService::applySingleCalibration(float rawValue, SoilProfile profile) {
     if (hasCalibrationTable(profile)) {
-        const CalibrationTable& table = calibrationTables[profile];
+        const CalibrationTable& table = getCalibrationTables()[profile];
         // Для простоты используем первую доступную таблицу
         if (!table.temperaturePoints.empty()) {
             return applyCalibrationWithInterpolation(rawValue, table.temperaturePoints);
@@ -132,7 +140,7 @@ bool SensorCalibrationService::loadCalibrationTable(const String& csvData, SoilP
 
     CalibrationTable table;
     if (parseCalibrationCSV(csvData, table)) {
-        calibrationTables[profile] = table;
+        getCalibrationTables()[profile] = table;
         logDebugSafe("SensorCalibrationService: Таблица загружена успешно");
         return true;
     }
@@ -142,21 +150,21 @@ bool SensorCalibrationService::loadCalibrationTable(const String& csvData, SoilP
 }
 
 bool SensorCalibrationService::hasCalibrationTable(SoilProfile profile) const {
-    const auto iter = calibrationTables.find(profile);
-    return iter != calibrationTables.end() && iter->second.isValid;
+    const auto iter = getCalibrationTables().find(profile);
+    return iter != getCalibrationTables().end() && iter->second.isValid;
 }
 
 void SensorCalibrationService::clearCalibrationTable(SoilProfile profile) {
-    auto iter = calibrationTables.find(profile);
-    if (iter != calibrationTables.end()) {
-        calibrationTables.erase(iter);
+    auto iter = getCalibrationTables().find(profile);
+    if (iter != getCalibrationTables().end()) {
+        getCalibrationTables().erase(iter);
         logDebugSafe("SensorCalibrationService: Таблица для профиля %d очищена", static_cast<int>(profile));
     }
 }
 
 size_t SensorCalibrationService::getCalibrationPointsCount(SoilProfile profile, const String& sensorType) { // NOLINT(readability-convert-member-functions-to-static)
-    auto tableIter = calibrationTables.find(profile);
-    if (tableIter == calibrationTables.end()) {
+    auto tableIter = getCalibrationTables().find(profile);
+    if (tableIter == getCalibrationTables().end()) {
         return 0;
     }
 
@@ -187,8 +195,8 @@ size_t SensorCalibrationService::getCalibrationPointsCount(SoilProfile profile, 
 }
 
 String SensorCalibrationService::exportCalibrationTable(SoilProfile profile) { // NOLINT(readability-convert-member-functions-to-static)
-    auto tableIter = calibrationTables.find(profile);
-    if (tableIter == calibrationTables.end()) {
+    auto tableIter = getCalibrationTables().find(profile);
+    if (tableIter == getCalibrationTables().end()) {
         return "";
     }
 
@@ -266,7 +274,7 @@ bool SensorCalibrationService::importCalibrationFromJSON(const String& jsonData)
 
 void SensorCalibrationService::resetCalibration() { // NOLINT(readability-convert-member-functions-to-static)
     logDebugSafe("SensorCalibrationService: Сброс калибровки");
-    calibrationTables.clear();
+    getCalibrationTables().clear();
 }
 
 float SensorCalibrationService::applyCalibrationWithInterpolation(float rawValue,
@@ -298,12 +306,12 @@ float SensorCalibrationService::applyCalibrationWithInterpolation(float rawValue
     return points[points.size() - 1].referenceValue;
 }
 
-float SensorCalibrationService::linearInterpolation(float value, float x1, float y1, float x2, float y2) const // NOLINT(readability-convert-member-functions-to-static)
+float SensorCalibrationService::linearInterpolation(float value, float x1_coord, float y1_coord, float x2_coord, float y2_coord) const // NOLINT(readability-convert-member-functions-to-static)
 {
-    if (x2 == x1) {
-        return y1;
+    if (x2_coord == x1_coord) {
+        return y1_coord;
     }
-    return y1 + (((y2 - y1) * (value - x1)) / (x2 - x1));
+    return y1_coord + (((y2_coord - y1_coord) * (value - x1_coord)) / (x2_coord - x1_coord));
 }
 
 bool SensorCalibrationService::parseCalibrationCSV(const String& csvData, CalibrationTable& table) { // NOLINT(readability-convert-member-functions-to-static)

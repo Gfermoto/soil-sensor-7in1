@@ -18,13 +18,11 @@
 #include "business_services.h"
 
 // Глобальные переменные (должны быть доступны через extern)
-ModbusMaster modbus;
-SensorData sensorData;
-SensorCache sensorCache;
-String sensorLastError;
-
 // Внутренние переменные и функции — только для этой единицы трансляции
 namespace {
+// Внутренние переменные с внутренней связностью
+ModbusMaster modbus;
+String sensorLastError;
 
 // Структура для устранения проблемы с легко перепутываемыми параметрами
 struct RegisterConversion {
@@ -706,4 +704,16 @@ SensorData getSensorData()
 
     return result;
 }
+
+// Функции доступа к переменным из анонимного пространства имён
+ModbusMaster& getModbus() { return modbus; }
+String& getSensorLastError() { return sensorLastError; }
+
+// Функции доступа к глобальным переменным
+SensorData& getSensorDataRef() { return sensorData; }
+SensorCache& getSensorCache() { return sensorCache; }
+
+// Определение глобальных переменных
+SensorData sensorData;
+SensorCache sensorCache;
 

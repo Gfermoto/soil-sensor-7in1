@@ -41,30 +41,30 @@ inline float k_h_K(float theta)
 float correctEC(float rawValue, float temperature, float compensationFactor)
 {
     // Температурная компенсация EC
-    const float referenceTemp = 25.0f;
+    const float referenceTemp = 25.0F;
     const float tempDiff = temperature - referenceTemp;
-    const float compensation = 1.0f + (compensationFactor * tempDiff / 100.0f);
+    const float compensation = 1.0F + (compensationFactor * tempDiff / 100.0F);
     return rawValue * compensation;
 }
 
 float correctPH(float rawValue, float temperature, float compensationFactor)
 {
     // Температурная компенсация pH
-    const float referenceTemp = 25.0f;
+    const float referenceTemp = 25.0F;
     const float tempDiff = temperature - referenceTemp;
-    const float compensation = 1.0f + (compensationFactor * tempDiff / 100.0f);
+    const float compensation = 1.0F + (compensationFactor * tempDiff / 100.0F);
     return rawValue * compensation;
 }
 
 float correctNPK(float rawValue, float temperature, float humidity, float compensationFactor)
 {
     // Комплексная компенсация NPK с учётом температуры и влажности
-    const float referenceTemp = 25.0f;
-    const float referenceHumidity = 60.0f;
+    const float referenceTemp = 25.0F;
+    const float referenceHumidity = 60.0F;
     const float tempDiff = temperature - referenceTemp;
     const float humidityDiff = humidity - referenceHumidity;
-    const float tempCompensation = 1.0f + (compensationFactor * tempDiff / 100.0f);
-    const float humidityCompensation = 1.0f + (compensationFactor * humidityDiff / 1000.0f);
+    const float tempCompensation = 1.0F + (compensationFactor * tempDiff / 100.0F);
+    const float humidityCompensation = 1.0F + (compensationFactor * humidityDiff / 1000.0F);
     return rawValue * tempCompensation * humidityCompensation;
 }
 }  // namespace
@@ -72,30 +72,35 @@ float correctNPK(float rawValue, float temperature, float humidity, float compen
 // Строгая типизация для предотвращения ошибок
 struct ECCompensationParams
 {
+    float rawValue;
     float temperature;
-    float moisture;
-    SoilType soilType;
-
+    float compensationFactor;
 private:
-    ECCompensationParams(float temperature, float moisture, SoilType soilType)
-        : temperature(temperature), moisture(moisture), soilType(soilType) {}
+    ECCompensationParams(float rawValue, float temperature, float compensationFactor)
+        : rawValue(rawValue), temperature(temperature), compensationFactor(compensationFactor) {}
 public:
-    static ECCompensationParams fromValues(float temperature, float moisture, SoilType soilType) {
-        return ECCompensationParams(temperature, moisture, soilType);
+    static ECCompensationParams fromValues(float rawValue, float temperature, float compensationFactor) {
+        return ECCompensationParams(rawValue, temperature, compensationFactor);
     }
-    // Конструктор с именованными параметрами для предотвращения ошибок
+    // Builder для предотвращения ошибок с параметрами
     struct Builder {
-        float temp = 25.0F;
-        float moist = 50.0F;
-        SoilType soil = SoilType::LOAM;
-        Builder& temperature(float temp) { this->temp = temp; return *this; }
-        Builder& moisture(float moist) { this->moist = moist; return *this; }
-        Builder& soilType(SoilType soilType) { soil = soilType; return *this; }
+        float rawValue = 0.0F;
+        float temperature = 25.0F;
+        float compensationFactor = 2.0F;
+        Builder& setRawValue(float value) { rawValue = value; return *this; }
+        Builder& setTemperature(float temp) { temperature = temp; return *this; }
+        Builder& setCompensationFactor(float factor) { compensationFactor = factor; return *this; }
         ECCompensationParams build() const {
-            return ECCompensationParams::fromValues(temp, moist, soil);
+            return ECCompensationParams::fromValues(rawValue, temperature, compensationFactor);
         }
     };
     static Builder builder() { return {}; }
+    static ECCompensationParams createWithRawValue(float rawValue, float temperature, float compensationFactor) {
+        return ECCompensationParams::fromValues(rawValue, temperature, compensationFactor);
+    }
+    static ECCompensationParams createWithTemperature(float temperature, float rawValue, float compensationFactor) {
+        return ECCompensationParams::fromValues(rawValue, temperature, compensationFactor);
+    }
 };
 
 // ------------------------------------------------------------------
@@ -116,7 +121,7 @@ float correctPH(float temperature, float phRaw)
 // NPK ---------------------------------------------------------------
 static void correctNPK(const ECCompensationParams& params, NPKReferences& npk)
 {
-    if (params.moisture < 10.0F || params.moisture > 90.0F)
+    if (params.temperature < 10.0F || params.temperature > 90.0F)
     {
         return;  // валидация – оставляем как есть
     }
@@ -136,18 +141,18 @@ static void correctNPK(const ECCompensationParams& params, NPKReferences& npk)
 float correctEC(float ecRaw, const EnvironmentalConditions& env, SoilType soil)
 {
     return correctEC(ecRaw, ECCompensationParams::builder()
-        .temperature(env.temperature)
-        .moisture(env.moisture)
-        .soilType(soil)
+        .setRawValue(ecRaw)
+        .setTemperature(env.temperature)
+        .setCompensationFactor(2.0F)
         .build());
 }
 
 void correctNPK(const EnvironmentalConditions& env, NPKReferences& npk, SoilType soil)
 {
     correctNPK(ECCompensationParams::builder()
-        .temperature(env.temperature)
-        .moisture(env.moisture)
-        .soilType(soil)
+        .setRawValue(0.0F)
+        .setTemperature(env.temperature)
+        .setCompensationFactor(2.0F)
         .build(), npk);
 }
 // ------------------------------------------------------------------

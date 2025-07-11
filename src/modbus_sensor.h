@@ -89,10 +89,9 @@ struct SensorCache
     unsigned long timestamp;
 };
 
-extern ModbusMaster modbus;
 extern SensorData sensorData;
 extern SensorCache sensorCache;
-extern String sensorLastError;
+String& getSensorLastError();
 
 // Получение текущих данных датчика
 SensorData getSensorData();

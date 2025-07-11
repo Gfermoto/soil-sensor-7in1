@@ -103,13 +103,13 @@ void CropRecommendationEngine::initializeCropConfigs() {
 
 
 // Структура для параметров рекомендаций
-struct RecommendationParams {
+struct RecommendationParams
+{
     const SensorData& data;
     const String& cropType;
     const String& growingType;
     const String& season;
     const String& soilType;
-    
 private:
     RecommendationParams(const SensorData& data, const String& cropType, const String& growingType, 
                         const String& season, const String& soilType) 
@@ -121,16 +121,16 @@ public:
     }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
-        const SensorData& sensorData = SensorData{};
-        const String& crop = String();
-        const String& growing = String();
-        const String& seasonType = String();
-        const String& soil = String();
-        Builder& data(const SensorData& sensorData) { const_cast<SensorData&>(this->sensorData) = sensorData; return *this; }
-        Builder& cropType(const String& cropType) { const_cast<String&>(crop) = cropType; return *this; }
-        Builder& growingType(const String& growingType) { const_cast<String&>(growing) = growingType; return *this; }
-        Builder& season(const String& season) { const_cast<String&>(seasonType) = season; return *this; }
-        Builder& soilType(const String& soilType) { const_cast<String&>(soil) = soilType; return *this; }
+        SensorData sensorData;
+        String crop;
+        String growing;
+        String seasonType;
+        String soil;
+        Builder& data(const SensorData& sensorDataValue) { sensorData = sensorDataValue; return *this; }
+        Builder& cropType(const String& cropTypeValue) { crop = cropTypeValue; return *this; }
+        Builder& growingType(const String& growingTypeValue) { growing = growingTypeValue; return *this; }
+        Builder& season(const String& seasonValue) { seasonType = seasonValue; return *this; }
+        Builder& soilType(const String& soilTypeValue) { soil = soilTypeValue; return *this; }
         RecommendationParams build() const {
             return RecommendationParams::fromValues(sensorData, crop, growing, seasonType, soil);
         }
@@ -322,7 +322,7 @@ String CropRecommendationEngine::generateScientificRecommendations(
     const SensorData& data, 
     const CropConfig& config, 
     const String& cropType,
-    const String& soilType) { // NOLINT(readability-convert-member-functions-to-static)
+    const String& soilType) {
     
     String recommendations = "";
     
@@ -755,45 +755,45 @@ void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec,
 
 // Реализация функций компенсации датчиков
 // [Источник: Temperature Compensation for pH Measurements, Soil Science Society of America Journal, Т. 72, № 3, J. Ross et al., 2008, DOI: 10.2136/sssaj2007.0088]
-float CropRecommendationEngine::compensatePH(float pH_raw, float temperature, float moisture) { // NOLINT(readability-convert-member-functions-to-static)
+float CropRecommendationEngine::compensatePH(float pHRawValue, float temperatureValue, float moistureValue) { // NOLINT(readability-convert-member-functions-to-static)
     // Валидация входных данных
-    if (temperature < 0.0F || temperature > 50.0F) {
-        return pH_raw; // Возвращаем исходное значение при недопустимой температуре
+    if (temperatureValue < 0.0F || temperatureValue > 50.0F) {
+        return pHRawValue; // Возвращаем исходное значение при недопустимой температуре
     }
-    if (moisture < 10.0F || moisture > 90.0F) {
-        return pH_raw; // Возвращаем исходное значение при недопустимой влажности
+    if (moistureValue < 10.0F || moistureValue > 90.0F) {
+        return pHRawValue; // Возвращаем исходное значение при недопустимой влажности
     }
     
     // Формула компенсации pH: pH_comp = pH_raw + α * (T - 25) + β * (M - 50)
     // где α ≈ -0.01 (температурный коэффициент), β ≈ 0.005 (влажностный коэффициент)
-    return pH_raw + (pH_alpha * (temperature - 25.0F)) + (pH_beta * (moisture - 50.0F));
+    return pHRawValue + (pH_alpha * (temperatureValue - 25.0F)) + (pH_beta * (moistureValue - 50.0F));
 }
 
 // [Источник: Electrical Conductivity Measurements in Agriculture, Advances in Agronomy, Т. 128, M. Corwin, 2014, DOI: 10.1016/B978-0-12-802970-1.00001-3]
-float CropRecommendationEngine::compensateEC(float EC_raw, float temperature) { // NOLINT(readability-convert-member-functions-to-static)
+float CropRecommendationEngine::compensateEC(float ECRawValue, float temperatureValue) { // NOLINT(readability-convert-member-functions-to-static)
     // Валидация входных данных
-    if (temperature < 0.0F || temperature > 50.0F) {
-        return EC_raw; // Возвращаем исходное значение при недопустимой температуре
+    if (temperatureValue < 0.0F || temperatureValue > 50.0F) {
+        return ECRawValue; // Возвращаем исходное значение при недопустимой температуре
     }
     
     // Формула компенсации EC: EC_comp = EC_raw * (1 + γ * (T - 25))
     // где γ ≈ 0.02 (2% на °C, коэффициент температуры)
-    return EC_raw * (1.0F + (EC_gamma * (temperature - 25.0F)));
+    return ECRawValue * (1.0F + (EC_gamma * (temperatureValue - 25.0F)));
 }
 
 // [Источник: Nutrient Dynamics in Soils, Journal of Soil Science and Plant Nutrition, Т. 20, A. Delgado et al., 2020, DOI: 10.1007/s42729-020-00215-4]
-float CropRecommendationEngine::compensateNPK(float NPK_raw, float temperature, float moisture) { // NOLINT(readability-convert-member-functions-to-static)
+float CropRecommendationEngine::compensateNPK(float NPKRawValue, float temperatureValue, float moistureValue) { // NOLINT(readability-convert-member-functions-to-static)
     // Валидация входных данных
-    if (temperature < 5.0F || temperature > 35.0F) {
-        return NPK_raw; // Возвращаем исходное значение при недопустимой температуре
+    if (temperatureValue < 5.0F || temperatureValue > 35.0F) {
+        return NPKRawValue; // Возвращаем исходное значение при недопустимой температуре
     }
-    if (moisture < 20.0F || moisture > 80.0F) {
-        return NPK_raw; // Возвращаем исходное значение при недопустимой влажности
+    if (moistureValue < 20.0F || moistureValue > 80.0F) {
+        return NPKRawValue; // Возвращаем исходное значение при недопустимой влажности
     }
     
     // Формула компенсации NPK: N_comp = N_raw * e^(δ*(T-20)) * (1 + ε*(M-30))
     // где δ ≈ 0.03, ε ≈ 0.01 (кинетические коэффициенты)
-    return NPK_raw * exp(NPK_delta * (temperature - 20.0F)) * (1.0F + (NPK_epsilon * (moisture - 30.0F)));
+    return NPKRawValue * exp(NPK_delta * (temperatureValue - 20.0F)) * (1.0F + (NPK_epsilon * (moistureValue - 30.0F)));
 }
 
 

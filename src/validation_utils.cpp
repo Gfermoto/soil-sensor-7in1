@@ -55,8 +55,9 @@ static ValidationResult validateInterval(const IntervalValidation& params)
 }
 }  // namespace
 
-// Обратная совместимость
-ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val,
+// Внутренние функции валидации интервалов
+namespace {
+ValidationResult validateIntervalInternal(unsigned long interval, unsigned long min_val, unsigned long max_val,
                                   const char* field_name)
 {
     return validateInterval(IntervalValidation::builder()
@@ -67,32 +68,62 @@ ValidationResult validateInterval(unsigned long interval, unsigned long min_val,
         .build());
 }
 
+ValidationResult validateSensorReadIntervalInternal(unsigned long interval)
+{
+    return validateIntervalInternal(interval, CONFIG_INTERVAL_MIN, CONFIG_INTERVAL_MAX, "Интервал чтения датчика");
+}
+
+ValidationResult validateMQTTPublishIntervalInternal(unsigned long interval)
+{
+    return validateIntervalInternal(interval, CONFIG_INTERVAL_MIN, CONFIG_INTERVAL_MAX, "Интервал публикации MQTT");
+}
+
+ValidationResult validateThingSpeakIntervalInternal(unsigned long interval)
+{
+    return validateIntervalInternal(interval, CONFIG_THINGSPEAK_MIN, CONFIG_THINGSPEAK_MAX, "Интервал ThingSpeak");
+}
+
+ValidationResult validateNTPIntervalInternal(unsigned long interval)
+{
+    return validateIntervalInternal(interval, 10000, 86400000, "Интервал обновления NTP");
+}
+} // namespace
+
+// Публичные функции (обёртки для обратной совместимости)
+ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val,
+                                  const char* field_name)
+{
+    return validateIntervalInternal(interval, min_val, max_val, field_name);
+}
+
 ValidationResult validateSensorReadInterval(unsigned long interval)
 {
-    return validateInterval(interval, CONFIG_INTERVAL_MIN, CONFIG_INTERVAL_MAX, "Интервал чтения датчика");
+    return validateSensorReadIntervalInternal(interval);
 }
 
 ValidationResult validateMQTTPublishInterval(unsigned long interval)
 {
-    return validateInterval(interval, CONFIG_INTERVAL_MIN, CONFIG_INTERVAL_MAX, "Интервал публикации MQTT");
+    return validateMQTTPublishIntervalInternal(interval);
 }
 
 ValidationResult validateThingSpeakInterval(unsigned long interval)
 {
-    return validateInterval(interval, CONFIG_THINGSPEAK_MIN, CONFIG_THINGSPEAK_MAX, "Интервал ThingSpeak");
+    return validateThingSpeakIntervalInternal(interval);
 }
 
 ValidationResult validateNTPInterval(unsigned long interval)
 {
-    return validateInterval(interval, 10000, 86400000, "Интервал обновления NTP");
+    return validateNTPIntervalInternal(interval);
 }
 
 // ============================================================================
 // ВАЛИДАЦИЯ ДАННЫХ ДАТЧИКА
 // ============================================================================
 
+// Внутренние функции валидации данных датчика
+namespace {
 // Универсальная функция валидации диапазона
-ValidationResult validateRange(float value, float min_val, float max_val, const char* field_name)
+ValidationResult validateRangeInternal(float value, float min_val, float max_val, const char* field_name)
 {
     if (value < min_val || value > max_val)
     {
@@ -102,27 +133,27 @@ ValidationResult validateRange(float value, float min_val, float max_val, const 
     return {true, ""};
 }
 
-ValidationResult validateTemperature(float temperature)
+ValidationResult validateTemperatureInternal(float temperature)
 {
-    return validateRange(temperature, SENSOR_TEMP_MIN, SENSOR_TEMP_MAX, "Температура");
+    return validateRangeInternal(temperature, SENSOR_TEMP_MIN, SENSOR_TEMP_MAX, "Температура");
 }
 
-ValidationResult validateHumidity(float humidity)
+ValidationResult validateHumidityInternal(float humidity)
 {
-    return validateRange(humidity, SENSOR_HUMIDITY_MIN, SENSOR_HUMIDITY_MAX, "Влажность");
+    return validateRangeInternal(humidity, SENSOR_HUMIDITY_MIN, SENSOR_HUMIDITY_MAX, "Влажность");
 }
 
-ValidationResult validatePH(float phValue)
+ValidationResult validatePHInternal(float phValue)
 {
-    return validateRange(phValue, SENSOR_PH_MIN, SENSOR_PH_MAX, "pH");
+    return validateRangeInternal(phValue, SENSOR_PH_MIN, SENSOR_PH_MAX, "pH");
 }
 
-ValidationResult validateEC(float ecValue)
+ValidationResult validateECInternal(float ecValue)
 {
-    return validateRange(ecValue, SENSOR_EC_MIN, SENSOR_EC_MAX, "EC");
+    return validateRangeInternal(ecValue, SENSOR_EC_MIN, SENSOR_EC_MAX, "EC");
 }
 
-ValidationResult validateNPK(float value, const char* nutrient)
+ValidationResult validateNPKInternal(float value, const char* nutrient)
 {
     if (value < SENSOR_NPK_MIN || value > SENSOR_NPK_MAX)
     {
@@ -130,6 +161,38 @@ ValidationResult validateNPK(float value, const char* nutrient)
         return {false, message};
     }
     return {true, ""};
+}
+} // namespace
+
+// Публичные функции валидации данных датчика
+ValidationResult validateRange(float value, float min_val, float max_val, const char* field_name)
+{
+    return validateRangeInternal(value, min_val, max_val, field_name);
+}
+
+ValidationResult validateTemperature(float temperature)
+{
+    return validateTemperatureInternal(temperature);
+}
+
+ValidationResult validateHumidity(float humidity)
+{
+    return validateHumidityInternal(humidity);
+}
+
+ValidationResult validatePH(float phValue)
+{
+    return validatePHInternal(phValue);
+}
+
+ValidationResult validateEC(float ecValue)
+{
+    return validateECInternal(ecValue);
+}
+
+ValidationResult validateNPK(float value, const char* nutrient)
+{
+    return validateNPKInternal(value, nutrient);
 }
 
 // ============================================================================
@@ -190,28 +253,28 @@ ConfigValidationResult validateFullConfig(const ConfigData& config, bool checkRe
     }
 
     // Проверка интервалов
-    auto sensorIntervalResult = validateSensorReadInterval(config.sensorReadInterval);
+    auto sensorIntervalResult = validateSensorReadIntervalInternal(config.sensorReadInterval);
     if (!sensorIntervalResult.isValid)
     {
         result.isValid = false;
         result.errors.push_back({"sensor_read_interval", sensorIntervalResult.message});
     }
 
-    auto mqttIntervalResult = validateMQTTPublishInterval(config.mqttPublishInterval);
+    auto mqttIntervalResult = validateMQTTPublishIntervalInternal(config.mqttPublishInterval);
     if (!mqttIntervalResult.isValid)
     {
         result.isValid = false;
         result.errors.push_back({"mqtt_publish_interval", mqttIntervalResult.message});
     }
 
-    auto tsIntervalResult = validateThingSpeakInterval(config.thingspeakInterval);
+    auto tsIntervalResult = validateThingSpeakIntervalInternal(config.thingspeakInterval);
     if (!tsIntervalResult.isValid)
     {
         result.isValid = false;
         result.errors.push_back({"thingspeak_interval", tsIntervalResult.message});
     }
 
-    auto ntpIntervalResult = validateNTPInterval(config.ntpUpdateInterval);
+    auto ntpIntervalResult = validateNTPIntervalInternal(config.ntpUpdateInterval);
     if (!ntpIntervalResult.isValid)
     {
         result.isValid = false;
@@ -226,49 +289,49 @@ SensorValidationResult validateFullSensorData(const SensorData& data)
     SensorValidationResult result;
     result.isValid = true;
 
-    auto tempResult = validateTemperature(data.temperature);
+    auto tempResult = validateTemperatureInternal(data.temperature);
     if (!tempResult.isValid)
     {
         result.isValid = false;
         result.errors.push_back({"temperature", tempResult.message});
     }
 
-    auto humResult = validateHumidity(data.humidity);
+    auto humResult = validateHumidityInternal(data.humidity);
     if (!humResult.isValid)
     {
         result.isValid = false;
         result.errors.push_back({"humidity", humResult.message});
     }
 
-    auto phResult = validatePH(data.ph);
+    auto phResult = validatePHInternal(data.ph);
     if (!phResult.isValid)
     {
         result.isValid = false;
         result.errors.push_back({"ph", phResult.message});
     }
 
-    auto ecResult = validateEC(data.ec);
+    auto ecResult = validateECInternal(data.ec);
     if (!ecResult.isValid)
     {
         result.isValid = false;
         result.errors.push_back({"ec", ecResult.message});
     }
 
-    auto nitrogenResult = validateNPK(data.nitrogen, "Азот");
+    auto nitrogenResult = validateNPKInternal(data.nitrogen, "Азот");
     if (!nitrogenResult.isValid)
     {
         result.isValid = false;
         result.errors.push_back({"nitrogen", nitrogenResult.message});
     }
 
-    auto phosphorusResult = validateNPK(data.phosphorus, "Фосфор");
+    auto phosphorusResult = validateNPKInternal(data.phosphorus, "Фосфор");
     if (!phosphorusResult.isValid)
     {
         result.isValid = false;
         result.errors.push_back({"phosphorus", phosphorusResult.message});
     }
 
-    auto potassiumResult = validateNPK(data.potassium, "Калий");
+    auto potassiumResult = validateNPKInternal(data.potassium, "Калий");
     if (!potassiumResult.isValid)
     {
         result.isValid = false;

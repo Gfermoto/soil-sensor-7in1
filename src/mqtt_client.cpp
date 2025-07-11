@@ -21,7 +21,7 @@
 #include "wifi_manager.h"
 extern NTPClient* timeClient;
 
-// Глобальные переменные (объявлены в заголовочном файле)
+// Глобальные переменные (глобальное пространство имён)
 WiFiClient espClient;
 PubSubClient mqttClient(espClient);
 
@@ -110,6 +110,8 @@ String getClientId()
     return clientId;
 }
 }  // namespace
+
+// Удалить функции доступа к переменным с внутренней связностью (getEspClient, getMqttClient)
 
 // -----------------------------
 // Вспомогательные функции OTA

@@ -57,12 +57,12 @@ public:
     }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
-        const String& methodValue = String();
-        const String& uriValue = String();
-        const String& clientIPValue = String();
-        Builder& method(const String& method) { const_cast<String&>(methodValue) = method; return *this; }
-        Builder& uri(const String& uri) { const_cast<String&>(uriValue) = uri; return *this; }
-        Builder& clientIP(const String& clientIP) { const_cast<String&>(clientIPValue) = clientIP; return *this; }
+        String methodValue;
+        String uriValue;
+        String clientIPValue;
+        Builder& method(const String& method) { methodValue = method; return *this; }
+        Builder& uri(const String& uri) { uriValue = uri; return *this; }
+        Builder& clientIP(const String& clientIP) { clientIPValue = clientIP; return *this; }
         HttpRequest build() const {
             return HttpRequest::fromValues(methodValue, uriValue, clientIPValue);
         }
@@ -80,9 +80,9 @@ public:
 
     // Типобезопасная версия с именованными параметрами
     struct CreateParams {
-        const String& method;
-        const String& uri;
-        const String& clientIP;
+        String method;
+        String uri;
+        String clientIP;
     };
 
     static HttpRequest create(const CreateParams& params) {
@@ -197,13 +197,15 @@ bool validateConfigInput(bool checkRequired)
     return true;
 }
 
-void handleUploadError(const String& error) // NOLINT(misc-use-internal-linkage)
+namespace {
+void handleUploadError(const String& error)
 {
     logErrorSafe("\1", error.c_str());
 
     const String html = generateErrorPage(400, "Ошибка загрузки файла: " + error);
     webServer.send(400, "text/html; charset=utf-8", html);
 }
+} // namespace
 
 namespace
 {
@@ -235,7 +237,7 @@ bool isFeatureAvailable()
  * @param errorMsg Сообщение об ошибке
  * @return HTML ответ с ошибкой
  */
-String generateValidationErrorResponse(const String& errorMsg) // NOLINT(misc-use-internal-linkage)
+String generateValidationErrorResponse(const String& errorMsg)
 {
     String content = "<h1>" UI_ICON_CONFIG " Настройки JXCT</h1>";
     content += generateFormError(errorMsg);
@@ -251,7 +253,7 @@ String generateValidationErrorResponse(const String& errorMsg) // NOLINT(misc-us
  * @brief Обработка критических ошибок сервера
  * @param error Описание ошибки
  */
-void handleCriticalError(const String& error) // NOLINT(misc-use-internal-linkage)
+void handleCriticalError(const String& error)
 {
     logErrorSafe("\1", error.c_str());
 
@@ -264,7 +266,7 @@ void handleCriticalError(const String& error) // NOLINT(misc-use-internal-linkag
  * @param uri URI запроса
  * @return true если маршрут доступен
  */
-bool isRouteAvailable(const String& uri) // NOLINT(misc-use-internal-linkage)
+bool isRouteAvailable(const String& uri)
 {
     if (currentWiFiMode == WiFiMode::AP)
     {

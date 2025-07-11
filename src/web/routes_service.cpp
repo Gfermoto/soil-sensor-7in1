@@ -299,9 +299,9 @@ static void sendHealthJson()
     doc["sensor"]["enabled"] = (bool)config.flags.useRealSensor;
     doc["sensor"]["valid"] = sensorData.valid;
     doc["sensor"]["last_read"] = sensorData.last_update;
-    if (sensorLastError.length() > 0)
+    if (getSensorLastError().length() > 0)
     {
-        doc["sensor"]["last_error"] = sensorLastError;
+        doc["sensor"]["last_error"] = getSensorLastError();
     }
 
     // Current readings
@@ -339,7 +339,7 @@ static void sendServiceStatusJson()
     doc["thingspeak_last_error"] = getThingSpeakLastError();
     doc["hass_enabled"] = (bool)config.flags.hassEnabled;
     doc["sensor_ok"] = sensorData.valid;
-    doc["sensor_last_error"] = sensorLastError;
+    doc["sensor_last_error"] = getSensorLastError();
 
     String json;
     serializeJson(doc, json);

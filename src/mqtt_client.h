@@ -6,6 +6,7 @@
 #include <PubSubClient.h>
 #include <WiFi.h>
 
+// Функции доступа к MQTT клиентам
 extern WiFiClient espClient;
 extern PubSubClient mqttClient;
 extern bool mqttConnected;

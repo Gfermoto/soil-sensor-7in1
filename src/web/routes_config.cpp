@@ -19,7 +19,7 @@
 namespace {
 String importedJson;
 
-void sendConfigExportJson()
+static void sendConfigExportJson()
 {
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
 
