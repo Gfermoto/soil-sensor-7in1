@@ -18,17 +18,17 @@
 #define REG_ERROR_STATUS 0x0B      // Статус ошибок
 #define REG_DEVICE_ADDRESS 0x0C    // Адрес устройства
 
-// Допустимые пределы измерений (расширены для совместимости с веб-интерфейсом)
+// Допустимые пределы измерений (официальная документация JXCT 7-in-1)
 #define MIN_TEMPERATURE -45.0
 #define MAX_TEMPERATURE 115.0
 #define MIN_HUMIDITY 0.0
 #define MAX_HUMIDITY 100.0
 #define MIN_EC 0.0
-#define MAX_EC 20000.0
-#define MIN_PH 0.0
-#define MAX_PH 14.0
+#define MAX_EC 10000.0
+#define MIN_PH 3.0
+#define MAX_PH 9.0
 #define MIN_NPK 0.0
-#define MAX_NPK 2000.0
+#define MAX_NPK 1999.0
 
 // Структура для хранения данных с датчика
 struct SensorData
