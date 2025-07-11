@@ -24,6 +24,7 @@
 #include "sensor_factory.h"
 #include "thingspeak_client.h"
 #include "version.h"     // ✅ Централизованное управление версией
+#include "jxct_constants.h"  // ✅ Константы системы
 #include "web_routes.h"  // ✅ CSRF защита
 #include "wifi_manager.h"
 #include "business/crop_recommendation_engine.h"
@@ -74,13 +75,13 @@ namespace {
 // ✅ Неблокирующая задача мониторинга кнопки сброса
 void resetButtonTask(void* /*parameter*/)
 {
-    pinMode(RESET_BUTTON_PIN, INPUT_PULLUP);
+    pinMode(BOOT_BUTTON, INPUT_PULLUP);
     static unsigned long buttonPressTime = 0;
     static bool buttonPressed = false;
 
     while (true)
     {
-        const bool currentState = (digitalRead(RESET_BUTTON_PIN) == LOW);
+        const bool currentState = (digitalRead(BOOT_BUTTON) == LOW);
 
         if (currentState && !buttonPressed)
         {

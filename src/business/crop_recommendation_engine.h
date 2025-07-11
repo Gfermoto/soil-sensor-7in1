@@ -10,17 +10,10 @@
 #include <Arduino.h>
 #include <map>
 #include <vector>
+#include "business/ICropRecommendationEngine.h"
 
-// Структура для данных с датчиков
-struct SensorData {
-    float temperature;    // °C
-    float humidity;       // %
-    float ec;            // μS/cm
-    float ph;            // pH
-    float nitrogen;      // мг/кг
-    float phosphorus;    // мг/кг
-    float potassium;     // мг/кг
-};
+// Используем структуру SensorData из modbus_sensor.h
+#include "../modbus_sensor.h"
 
 // Структура конфигурации культуры
 struct CropConfig {
@@ -51,7 +44,7 @@ struct RecommendationResult {
     String scientificNotes;
 };
 
-class CropRecommendationEngine {
+class CropRecommendationEngine : public ICropRecommendationEngine {
 private:
     std::map<String, CropConfig> cropConfigs;
     
@@ -86,6 +79,15 @@ public:
     
     // Получение научных данных о культуре
     String getCropScientificInfo(const String& cropType) const;
+    
+    // Реализация интерфейса ICropRecommendationEngine
+    RecValues computeRecommendations(const String& cropId,
+                                   const SoilProfile& soilProfile,
+                                   const EnvironmentType& envType) override;
+    
+    void applySeasonalCorrection(RecValues& rec,
+                               Season season,
+                               bool isGreenhouse) override;
 };
 
 #endif // CROP_RECOMMENDATION_ENGINE_H

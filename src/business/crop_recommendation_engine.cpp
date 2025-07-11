@@ -11,7 +11,6 @@
 
 CropRecommendationEngine::CropRecommendationEngine() {
     initializeCropConfigs();
-    initializeSeasonalAdjustments();
 }
 
 void CropRecommendationEngine::initializeCropConfigs() {
@@ -101,43 +100,7 @@ void CropRecommendationEngine::initializeCropConfigs() {
     );
 }
 
-void CropRecommendationEngine::initializeSeasonalAdjustments() {
-    // Весенние корректировки
-    seasonalAdjustments[Season::SPRING] = SeasonalAdjustment(
-        TEST_DATA_NPK_INCREASE_N,  // +20% для азота
-        TEST_DATA_NPK_INCREASE_P,  // +15% для фосфора
-        TEST_DATA_NPK_INCREASE_K,  // +10% для калия
-        0.0F,  // без корректировки температуры
-        0.0F   // без корректировки влажности
-    );
 
-    // Летние корректировки
-    seasonalAdjustments[Season::SUMMER] = SeasonalAdjustment(
-        TEST_DATA_NPK_DECREASE_N,  // -10% для азота
-        1.10F,                     // +10% для фосфора (теплица)
-        TEST_DATA_NPK_DECREASE_K,  // +30% для калия (теплица)
-        0.0F,  // без корректировки температуры
-        0.0F   // без корректировки влажности
-    );
-
-    // Осенние корректировки
-    seasonalAdjustments[Season::AUTUMN] = SeasonalAdjustment(
-        TEST_DATA_NPK_INCREASE_N,  // +15% для азота (теплица)
-        TEST_DATA_NPK_INCREASE_P,  // +15% для фосфора (теплица)
-        TEST_DATA_NPK_INCREASE_K,  // +20% для калия (теплица)
-        0.0F,  // без корректировки температуры
-        0.0F   // без корректировки влажности
-    );
-
-    // Зимние корректировки
-    seasonalAdjustments[Season::WINTER] = SeasonalAdjustment(
-        TEST_DATA_NPK_DECREASE_N,  // +5% для азота (теплица)
-        1.10F,                     // +10% для фосфора (теплица)
-        TEST_DATA_NPK_DECREASE_K,  // +15% для калия (теплица)
-        0.0F,  // без корректировки температуры
-        0.0F   // без корректировки влажности
-    );
-}
 
 RecommendationResult CropRecommendationEngine::generateRecommendation(
     const SensorData& data, 
@@ -514,111 +477,7 @@ String CropRecommendationEngine::calculateSoilHealthStatus(const SensorData& dat
     else return "Требует внимания";
 }
 
-void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec,
-                                                     Season season,
-                                                     bool isGreenhouse) {
-    auto iterator = seasonalAdjustments.find(season);
-    if (iterator == seasonalAdjustments.end()) {
-        return; // Нет корректировки для данного сезона
-    }
 
-    const SeasonalAdjustment& adjustment = iterator->second;
-
-    // Применяем корректировки NPK
-    rec.n *= adjustment.n_factor;
-    rec.p *= adjustment.p_factor;
-    rec.k *= adjustment.k_factor;
-
-    // Применяем корректировки температуры и влажности
-    rec.t += adjustment.temp_adjust;
-    rec.hum += adjustment.hum_adjust;
-
-    // Дополнительные корректировки для теплицы
-    if (isGreenhouse) {
-        switch (season) {
-            case Season::SUMMER:
-                rec.p *= 1.10F;  // +10% для фосфора
-                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +30% для калия
-                break;
-            case Season::AUTUMN:
-                rec.n *= TEST_DATA_NPK_INCREASE_N;  // +15% для азота
-                rec.p *= TEST_DATA_NPK_INCREASE_P;  // +15% для фосфора
-                rec.k *= TEST_DATA_NPK_INCREASE_K;  // +20% для калия
-                break;
-            case Season::WINTER:
-                rec.n *= TEST_DATA_NPK_DECREASE_N;  // +5% для азота
-                rec.p *= 1.10F;  // +10% для фосфора
-                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15% для калия
-                break;
-            default:
-                break;
-        }
-    } else {
-        // Корректировки для открытого грунта
-        switch (season) {
-            case Season::SUMMER:
-                rec.p *= 1.05F;  // +5% для фосфора
-                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +25% для калия
-                break;
-            case Season::AUTUMN:
-                rec.n *= TEST_DATA_NPK_DECREASE_N;  // -20% для азота
-                rec.p *= 1.10F;  // +10% для фосфора
-                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +15% для калия
-                break;
-            case Season::WINTER:
-                rec.n *= TEST_DATA_NPK_DECREASE_N;  // -30% для азота
-                rec.p *= 1.05F;  // +5% для фосфора
-                rec.k *= TEST_DATA_NPK_DECREASE_K;  // +5% для калия
-                break;
-            default:
-                break;
-        }
-    }
-}
-
-void CropRecommendationEngine::applySoilProfileCorrection(RecValues& rec, SoilProfile soilProfile) {
-    switch (soilProfile) {
-        case SoilProfile::SAND:
-            rec.hum += -5;  // Песок - снижаем влажность
-            break;
-        case SoilProfile::PEAT:
-            rec.hum += TEST_DATA_HUM_VARIATION;  // Торф - увеличиваем влажность
-            rec.ph -= 0.3F;  // Снижаем pH
-            break;
-        case SoilProfile::CLAY:
-        case SoilProfile::LOAM:
-            rec.hum += 5;  // Глина или суглинок - увеличиваем влажность
-            break;
-        case SoilProfile::SANDPEAT:
-            // Песчано-торфяной - промежуточные значения
-            rec.hum += 0;
-            rec.ph -= 0.1F;
-            break;
-        default:
-            break;
-    }
-}
-
-void CropRecommendationEngine::applyEnvironmentCorrection(RecValues& rec, EnvironmentType envType) {
-    switch (envType) {
-        case EnvironmentType::GREENHOUSE:
-            rec.hum += TEST_DATA_HUM_VARIATION;  // +10%
-            rec.ec += TEST_DATA_EC_VARIATION;    // +500
-            rec.n += 5;
-            rec.k += 5;
-            rec.t += 2;
-            break;
-        case EnvironmentType::INDOOR:
-            rec.hum += -5;  // -5%
-            rec.ec -= TEST_DATA_EC_VARIATION_SMALL;  // -200
-            rec.t += 1;
-            break;
-        case EnvironmentType::OUTDOOR:
-        default:
-            // Без дополнительной корректировки
-            break;
-    }
-}
 
 std::vector<String> CropRecommendationEngine::getAvailableCrops() const {
     std::vector<String> crops;
@@ -730,30 +589,56 @@ String CropRecommendationEngine::getCropScientificInfo(const String& cropType) c
     return info;
 }
 
-Season CropRecommendationEngine::getCurrentSeason() {
-    // Получаем текущее время
-    time_t now = time(nullptr);
-    struct tm* timeInfo = localtime(&now);
-
-    if (timeInfo == nullptr) {
-        return Season::SPRING; // По умолчанию весна
+// Реализация интерфейса ICropRecommendationEngine
+RecValues CropRecommendationEngine::computeRecommendations(const String& cropId,
+                                                         const SoilProfile& soilProfile,
+                                                         const EnvironmentType& envType) {
+    RecValues rec = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F};
+    
+    // Получаем базовую конфигурацию культуры
+    auto it = cropConfigs.find(cropId);
+    if (it == cropConfigs.end()) {
+        it = cropConfigs.find("generic");
     }
-
-    int month = timeInfo->tm_mon + 1; // tm_mon начинается с 0
-
-    // Определяем сезон по месяцу
-    if (month >= 3 && month <= 5) {
-        return Season::SPRING;
+    
+    if (it != cropConfigs.end()) {
+        const CropConfig& config = it->second;
+        rec.t = config.temperature;
+        rec.hum = config.humidity;
+        rec.ec = config.ec;
+        rec.ph = config.ph;
+        rec.n = config.nitrogen;
+        rec.p = config.phosphorus;
+        rec.k = config.potassium;
     }
-    if (month >= 6 && month <= 8) {
-        return Season::SUMMER;
-    }
-    if (month >= 9 && month <= 11) {
-        return Season::AUTUMN;
-    }
-    return Season::WINTER;
+    
+    return rec;
 }
 
-bool CropRecommendationEngine::hasCropConfig(const String& cropId) const {
-    return cropConfigs.find(cropId) != cropConfigs.end();
+void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec,
+                                                     Season season,
+                                                     bool isGreenhouse) {
+    // Простая реализация сезонных корректировок
+    switch (season) {
+        case Season::SPRING:
+            rec.n *= 1.1F;  // +10% азота весной
+            break;
+        case Season::SUMMER:
+            rec.k *= 1.15F; // +15% калия летом
+            break;
+        case Season::AUTUMN:
+            rec.p *= 1.1F;  // +10% фосфора осенью
+            break;
+        case Season::WINTER:
+            rec.ec *= 0.9F; // -10% EC зимой
+            break;
+    }
+    
+    // Дополнительные корректировки для теплицы
+    if (isGreenhouse) {
+        rec.hum *= 1.1F;  // +10% влажности в теплице
+        rec.t += 2.0F;    // +2°C в теплице
+    }
 }
+
+
