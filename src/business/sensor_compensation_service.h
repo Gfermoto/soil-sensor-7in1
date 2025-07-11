@@ -44,6 +44,22 @@ struct SoilParameters {
 };
 
 /**
+ * @brief Коэффициенты NPK для разных типов почвы
+ *
+ * Содержит температурные и влажностные коэффициенты для NPK
+ * Источник: [Delgado et al. (2020). DOI:10.1007/s42729-020-00215-4]
+ */
+struct NPKCoefficients {
+    float delta_N, delta_P, delta_K;      // Температурные коэффициенты
+    float epsilon_N, epsilon_P, epsilon_K; // Влажностные коэффициенты
+
+    NPKCoefficients() : delta_N(0.0041F), delta_P(0.0053F), delta_K(0.0032F),
+                       epsilon_N(0.01F), epsilon_P(0.008F), epsilon_K(0.012F) {}
+    NPKCoefficients(float dN, float dP, float dK, float eN, float eP, float eK)
+        : delta_N(dN), delta_P(dP), delta_K(dK), epsilon_N(eN), epsilon_P(eP), epsilon_K(eK) {}
+};
+
+/**
  * @brief Сервис компенсации датчиков
  *
  * Реализует научные алгоритмы компенсации:
@@ -59,6 +75,9 @@ private:
     // Параметры почвы для разных типов
     std::map<SoilType, SoilParameters> soilParameters;
 
+    // Коэффициенты NPK для разных типов почвы
+    std::map<SoilType, NPKCoefficients> npkCoefficients;
+
     // Константы для расчетов
     static constexpr float R = 8.314F;  // Универсальная газовая постоянная (Дж/(моль·К))
     static constexpr float F = 96485.0F; // Постоянная Фарадея (Кл/моль)
@@ -69,6 +88,9 @@ private:
 
     // Инициализация параметров почвы
     void initializeSoilParameters();
+
+    // Инициализация коэффициентов NPK
+    void initializeNPKCoefficients();
 
     // Расчет температуры в Кельвинах
     static float temperatureToKelvin(float celsius);
@@ -171,6 +193,14 @@ public:
      * @return ArchieCoefficients Коэффициенты Арчи
      */
     ArchieCoefficients getArchieCoefficients(SoilType soilType) const;
+
+    /**
+     * @brief Получает коэффициенты NPK для типа почвы
+     *
+     * @param soilType Тип почвы
+     * @return NPKCoefficients Коэффициенты NPK
+     */
+    NPKCoefficients getNPKCoefficients(SoilType soilType) const;
 };
 
 #endif // SENSOR_COMPENSATION_SERVICE_H

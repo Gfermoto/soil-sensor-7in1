@@ -14,6 +14,7 @@ SensorCompensationService::SensorCompensationService() {
     logDebugSafe("SensorCompensationService: Инициализация сервиса компенсации");
     initializeArchieCoefficients();
     initializeSoilParameters();
+    initializeNPKCoefficients();
 }
 
 void SensorCompensationService::applyCompensation(SensorData& data, SoilType soilType) {
@@ -39,12 +40,20 @@ float SensorCompensationService::correctEC(float ec25_param, SoilType soilType_p
         return ec25_param;
     }
 
-    // ИСПРАВЛЕНО: Простая температурная компенсация EC по стандарту
-    // EC25 = ECt / [1 + 0.02 × (t - 25)]
-    const float compensatedEC = ec25_param / (1.0F + 0.02F * (temperature_param - 25.0F));
-
-    logDebugSafe("SensorCompensationService: EC скорректирован %.2f → %.2f (ΔT=%.1f°C)", 
-                 ec25_param, compensatedEC, temperature_param - 25.0F);
+    // Получаем коэффициенты Арчи для типа почвы
+    ArchieCoefficients coeffs = getArchieCoefficients(soilType_param);
+    
+    // Температурная компенсация по модели Арчи
+    float tempFactor = calculateECTemperatureFactor(temperature_param);
+    
+    // Влажностная компенсация по модели Арчи
+    float humidityFactor = calculateECHumidityFactor(humidity_param, soilType_param);
+    
+    // Применяем модель Арчи: EC = EC0 × (θ/θ0)^m × (T/T0)^n
+    float compensatedEC = ec25_param * pow(humidityFactor, coeffs.m) * pow(tempFactor, coeffs.n);
+    
+    logDebugSafe("SensorCompensationService: EC скорректирован %.2f → %.2f (m=%.2f, n=%.2f, ΔT=%.1f°C)", 
+                 ec25_param, compensatedEC, coeffs.m, coeffs.n, temperature_param - 25.0F);
     return compensatedEC;
 }
 
@@ -73,19 +82,26 @@ void SensorCompensationService::correctNPK(float temperature, float humidity, So
         return;
     }
 
-    // ИСПРАВЛЕНО: Простая температурная компенсация NPK
-    // При повышении температуры доступность NPK снижается
-    const float tempFactorN = 1.0F - (0.02F * (temperature - 25.0F));  // -2%/°C для азота
-    const float tempFactorP = 1.0F - (0.015F * (temperature - 25.0F)); // -1.5%/°C для фосфора
-    const float tempFactorK = 1.0F - (0.02F * (temperature - 25.0F));  // -2%/°C для калия
+    // Получаем коэффициенты NPK для типа почвы
+    NPKCoefficients coeffs = getNPKCoefficients(soilType);
+    
+    // Температурная компенсация: N_comp = N_raw × e^(δ(T-20))
+    float tempFactorN = exp(coeffs.delta_N * (temperature - 20.0F));
+    float tempFactorP = exp(coeffs.delta_P * (temperature - 20.0F));
+    float tempFactorK = exp(coeffs.delta_K * (temperature - 20.0F));
+    
+    // Влажностная компенсация: (1 + ε(M-30))
+    float moistureFactorN = 1.0F + coeffs.epsilon_N * (humidity - 30.0F);
+    float moistureFactorP = 1.0F + coeffs.epsilon_P * (humidity - 30.0F);
+    float moistureFactorK = 1.0F + coeffs.epsilon_K * (humidity - 30.0F);
+    
+    // Применяем полную компенсацию: N_comp = N_raw × e^(δ(T-20)) × (1 + ε(M-30))
+    npk.nitrogen *= tempFactorN * moistureFactorN;
+    npk.phosphorus *= tempFactorP * moistureFactorP;
+    npk.potassium *= tempFactorK * moistureFactorK;
 
-    // Применяем только температурную компенсацию
-    npk.nitrogen *= tempFactorN;
-    npk.phosphorus *= tempFactorP;
-    npk.potassium *= tempFactorK;
-
-    logDebugSafe("SensorCompensationService: NPK скорректирован N:%.2f P:%.2f K:%.2f (ΔT=%.1f°C)",
-                 npk.nitrogen, npk.phosphorus, npk.potassium, temperature - 25.0F);
+    logDebugSafe("SensorCompensationService: NPK скорректирован N:%.2f P:%.2f K:%.2f (δN=%.4f, εN=%.3f, ΔT=%.1f°C)",
+                 npk.nitrogen, npk.phosphorus, npk.potassium, coeffs.delta_N, coeffs.epsilon_N, temperature - 20.0F);
 }
 
 float SensorCompensationService::getArchieCoefficient(SoilType soilType) const {
@@ -169,6 +185,19 @@ void SensorCompensationService::initializeSoilParameters() {
     ::initializeSoilParameters(soilParameters);
 }
 
+void SensorCompensationService::initializeNPKCoefficients() {
+    // Коэффициенты NPK для разных типов почвы
+    // Источник: [Delgado et al. (2020). DOI:10.1007/s42729-020-00215-4]
+    
+    npkCoefficients[SoilType::SAND] = NPKCoefficients(0.0041F, 0.0053F, 0.0032F, 0.01F, 0.008F, 0.012F);
+    npkCoefficients[SoilType::LOAM] = NPKCoefficients(0.0038F, 0.0049F, 0.0029F, 0.009F, 0.007F, 0.011F);
+    npkCoefficients[SoilType::CLAY] = NPKCoefficients(0.0032F, 0.0042F, 0.0024F, 0.008F, 0.006F, 0.010F);
+    npkCoefficients[SoilType::PEAT] = NPKCoefficients(0.0028F, 0.0035F, 0.0018F, 0.012F, 0.009F, 0.015F);
+    npkCoefficients[SoilType::SANDPEAT] = NPKCoefficients(0.0040F, 0.0051F, 0.0031F, 0.010F, 0.008F, 0.012F);
+    
+    logDebugSafe("SensorCompensationService: Коэффициенты NPK инициализированы");
+}
+
 SoilParameters SensorCompensationService::getSoilParameters(SoilType soilType) const { // NOLINT(readability-convert-member-functions-to-static)
     auto iter = soilParameters.find(soilType);
     if (iter != soilParameters.end()) {
@@ -180,6 +209,14 @@ SoilParameters SensorCompensationService::getSoilParameters(SoilType soilType) c
 ArchieCoefficients SensorCompensationService::getArchieCoefficients(SoilType soilType) const { // NOLINT(readability-convert-member-functions-to-static)
     auto iter = archieCoefficients.find(soilType);
     if (iter != archieCoefficients.end()) {
+        return iter->second;
+    }
+    return {}; // Возвращаем значения по умолчанию
+}
+
+NPKCoefficients SensorCompensationService::getNPKCoefficients(SoilType soilType) const { // NOLINT(readability-convert-member-functions-to-static)
+    auto iter = npkCoefficients.find(soilType);
+    if (iter != npkCoefficients.end()) {
         return iter->second;
     }
     return {}; // Возвращаем значения по умолчанию
