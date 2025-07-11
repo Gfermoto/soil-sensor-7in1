@@ -22,8 +22,8 @@
 extern NTPClient* timeClient;
 
 // Глобальные переменные (глобальное пространство имён)
-WiFiClient espClient;
-PubSubClient mqttClient(espClient);
+static WiFiClient espClient; // NOLINT(misc-use-internal-linkage)
+static PubSubClient mqttClient(espClient); // NOLINT(misc-use-internal-linkage)
 
 namespace {
 // Forward declarations для всех внутренних функций
@@ -178,6 +178,10 @@ const char* getCommandTopic()
 const char* getMqttLastError() {
     return mqttLastErrorBuffer.data();
 }
+
+// Функции доступа к статическим переменным
+WiFiClient& getEspClient() { return espClient; }
+PubSubClient& getMqttClient() { return mqttClient; }
 
 // Все функции с NOLINT(misc-use-internal-linkage) теперь здесь
 void publishAvailabilityInternal(bool online)
@@ -837,7 +841,7 @@ void removeHomeAssistantConfig()
     removeHomeAssistantConfigInternal();
 }
 
-void handleMqttCommand(const String& cmd)
+void handleMqttCommand(const String& cmd) // NOLINT(misc-use-internal-linkage)
 {
     handleMqttCommandInternal(cmd);
 }

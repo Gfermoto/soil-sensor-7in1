@@ -88,23 +88,23 @@ struct ECCompensationParams
     static Builder builder() { return {}; }
 };
 
-float correctEC(const ECCompensationParams& params)
+static float correctEC(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
 {
     return correctEC_internal(params.rawValue, params.temperature, params.compensationFactor);
 }
 
-float correctPH(const ECCompensationParams& params)
+static float correctPH(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
 {
     return correctPH_internal(params.rawValue, params.temperature, params.compensationFactor);
 }
 
-float correctNPK(const ECCompensationParams& params)
+static float correctNPK(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
 {
     // Здесь rawValue — это NPK, temperature и humidity — из params
     return correctNPK_internal(params.rawValue, params.temperature, 60.0F, params.compensationFactor);
 }
 
-void correctNPK(const ECCompensationParams& params, NPKReferences& npk)
+static void correctNPK(const ECCompensationParams& params, NPKReferences& npk) // NOLINT(misc-use-internal-linkage)
 {
     if (params.temperature < 10.0F || params.temperature > 90.0F)
     {

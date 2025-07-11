@@ -206,7 +206,7 @@ bool isFeatureAvailable()
  * @param errorMsg Сообщение об ошибке
  * @return HTML ответ с ошибкой
  */
-String generateValidationErrorResponse(const String& errorMsg)
+static String generateValidationErrorResponse(const String& errorMsg) // NOLINT(misc-use-internal-linkage)
 {
     String content = "<h1>" UI_ICON_CONFIG " Настройки JXCT</h1>";
     content += generateFormError(errorMsg);
@@ -222,7 +222,7 @@ String generateValidationErrorResponse(const String& errorMsg)
  * @brief Обработка критических ошибок сервера
  * @param error Описание ошибки
  */
-void handleCriticalError(const String& error)
+static void handleCriticalError(const String& error) // NOLINT(misc-use-internal-linkage)
 {
     logErrorSafe("\1", error.c_str());
 
@@ -235,7 +235,7 @@ void handleCriticalError(const String& error)
  * @param uri URI запроса
  * @return true если маршрут доступен
  */
-bool isRouteAvailable(const String& uri)
+static bool isRouteAvailable(const String& uri) // NOLINT(misc-use-internal-linkage)
 {
     if (currentWiFiMode == WiFiMode::AP)
     {

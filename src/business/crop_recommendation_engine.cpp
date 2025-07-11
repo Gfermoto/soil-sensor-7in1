@@ -9,10 +9,12 @@
 #include "../../include/logger.h"
 #include <ctime>
 
+namespace {
 // Прототипы внутренних функций компенсации
-static float compensatePHInternal(float pHRawValue, float temperatureValue, float moistureValue);
-static float compensateECInternal(float ECRawValue, float temperatureValue);
-static float compensateNPKInternal(float NPKRawValue, float temperatureValue, float moistureValue);
+float compensatePHInternal(float pHRawValue, float temperatureValue, float moistureValue);
+float compensateECInternal(float ECRawValue, float temperatureValue);
+float compensateNPKInternal(float NPKRawValue, float temperatureValue, float moistureValue);
+} // namespace
 
 
 CropRecommendationEngine::CropRecommendationEngine() {
@@ -229,7 +231,10 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(
     return result;
 }
 
-static CropConfig applySeasonalAdjustments(const CropConfig& base, const String& season) {
+} // namespace
+
+namespace {
+CropConfig applySeasonalAdjustments(const CropConfig& base, const String& season) {
     CropConfig adjusted = base;
     
     if (season == "spring") {
@@ -269,7 +274,7 @@ static CropConfig applySeasonalAdjustments(const CropConfig& base, const String&
     return adjusted;
 }
 
-static CropConfig applyGrowingTypeAdjustments(const CropConfig& base, const String& growingType) {
+CropConfig applyGrowingTypeAdjustments(const CropConfig& base, const String& growingType) {
     CropConfig adjusted = base;
     
     if (growingType == "greenhouse") {
@@ -303,7 +308,7 @@ static CropConfig applyGrowingTypeAdjustments(const CropConfig& base, const Stri
     return adjusted;
 }
 
-static CropConfig applySoilTypeAdjustments(const CropConfig& base, const String& soilType) {
+CropConfig applySoilTypeAdjustments(const CropConfig& base, const String& soilType) {
     CropConfig adjusted = base;
     
     if (soilType == "sand") {
@@ -803,5 +808,7 @@ float CropRecommendationEngine::compensateEC(float ECRawValue, float temperature
 float CropRecommendationEngine::compensateNPK(float NPKRawValue, float temperatureValue, float moistureValue) {
     return compensateNPKInternal(NPKRawValue, temperatureValue, moistureValue);
 }
+
+} // namespace
 
 

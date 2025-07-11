@@ -200,22 +200,22 @@ ValidationResult validateInterval(unsigned long interval, unsigned long min_val,
         .build());
 }
 
-ValidationResult validateSensorReadInterval(unsigned long interval)
+static ValidationResult validateSensorReadInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage)
 {
     return validateSensorReadIntervalInternal(interval);
 }
 
-ValidationResult validateMQTTPublishInterval(unsigned long interval)
+static ValidationResult validateMQTTPublishInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage)
 {
     return validateMQTTPublishIntervalInternal(interval);
 }
 
-ValidationResult validateThingSpeakInterval(unsigned long interval)
+static ValidationResult validateThingSpeakInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage)
 {
     return validateThingSpeakIntervalInternal(interval);
 }
 
-ValidationResult validateNTPInterval(unsigned long interval)
+static ValidationResult validateNTPInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage)
 {
     return validateNTPIntervalInternal(interval);
 }
@@ -235,27 +235,27 @@ ValidationResult validateRange(float value, float min_val, float max_val, const 
         .build());
 }
 
-ValidationResult validateTemperature(float temperature)
+static ValidationResult validateTemperature(float temperature) // NOLINT(misc-use-internal-linkage)
 {
     return validateTemperatureInternal(temperature);
 }
 
-ValidationResult validateHumidity(float humidity)
+static ValidationResult validateHumidity(float humidity) // NOLINT(misc-use-internal-linkage)
 {
     return validateHumidityInternal(humidity);
 }
 
-ValidationResult validatePH(float phValue)
+static ValidationResult validatePH(float phValue) // NOLINT(misc-use-internal-linkage)
 {
     return validatePHInternal(phValue);
 }
 
-ValidationResult validateEC(float ecValue)
+static ValidationResult validateEC(float ecValue) // NOLINT(misc-use-internal-linkage)
 {
     return validateECInternal(ecValue);
 }
 
-ValidationResult validateNPK(float value, const char* nutrient)
+static ValidationResult validateNPK(float value, const char* nutrient) // NOLINT(misc-use-internal-linkage)
 {
     return validateNPKInternal(value, nutrient);
 }
