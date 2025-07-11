@@ -767,15 +767,9 @@ void handleMqttCommand(const String& cmd)  // NOLINT(misc-use-internal-linkage)
         triggerOtaCheck();
         handleOTA();
     }
-    else if (cmd == "ota_auto_on")
+    else if (cmd == "ota_auto_on" || cmd == "ota_auto_off")
     {
-        config.flags.autoOtaEnabled = 1;
-        saveConfig();
-        publishAvailability(true);
-    }
-    else if (cmd == "ota_auto_off")
-    {
-        config.flags.autoOtaEnabled = 0;
+        config.flags.autoOtaEnabled = (cmd == "ota_auto_on") ? 1 : 0;
         saveConfig();
         publishAvailability(true);
     }
