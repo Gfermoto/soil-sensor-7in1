@@ -52,37 +52,117 @@ static ValidationResult validateInterval(const IntervalValidation& params)
 }
 }  // namespace
 
+// Структуры для типобезопасности
+struct IntervalParams {
+    unsigned long interval;
+    unsigned long min_val;
+    unsigned long max_val;
+    const char* field_name;
+    
+    IntervalParams() : interval(0), min_val(0), max_val(0), field_name("") {}
+    
+public:
+    struct Builder {
+        unsigned long interval = 0;
+        unsigned long min_val = 0;
+        unsigned long max_val = 0;
+        const char* field_name = "";
+        Builder& setInterval(unsigned long val) { interval = val; return *this; }
+        Builder& setMinVal(unsigned long min) { min_val = min; return *this; }
+        Builder& setMaxVal(unsigned long max) { max_val = max; return *this; }
+        Builder& setFieldName(const char* name) { field_name = name; return *this; }
+        IntervalParams build() const {
+            IntervalParams result;
+            result.interval = interval;
+            result.min_val = min_val;
+            result.max_val = max_val;
+            result.field_name = field_name;
+            return result;
+        }
+    };
+    static Builder builder() { return {}; }
+};
+
+struct RangeParams {
+    float value;
+    float min_val;
+    float max_val;
+    const char* field_name;
+    
+    RangeParams() : value(0.0F), min_val(0.0F), max_val(0.0F), field_name("") {}
+    
+public:
+    struct Builder {
+        float value = 0.0F;
+        float min_val = 0.0F;
+        float max_val = 0.0F;
+        const char* field_name = "";
+        Builder& setValue(float val) { value = val; return *this; }
+        Builder& setMinVal(float min) { min_val = min; return *this; }
+        Builder& setMaxVal(float max) { max_val = max; return *this; }
+        Builder& setFieldName(const char* name) { field_name = name; return *this; }
+        RangeParams build() const {
+            RangeParams result;
+            result.value = value;
+            result.min_val = min_val;
+            result.max_val = max_val;
+            result.field_name = field_name;
+            return result;
+        }
+    };
+    static Builder builder() { return {}; }
+};
+
 // Внутренние функции валидации интервалов
 namespace {
-ValidationResult validateIntervalInternal(unsigned long interval, unsigned long min_val, unsigned long max_val,
-                                  const char* field_name)
+ValidationResult validateIntervalInternal(const IntervalParams& params)
 {
     return validateInterval(IntervalValidation::builder()
-        .interval(interval)
-        .minValue(min_val)
-        .maxValue(max_val)
-        .fieldName(field_name)
+        .interval(params.interval)
+        .minValue(params.min_val)
+        .maxValue(params.max_val)
+        .fieldName(params.field_name)
         .build());
 }
 
 ValidationResult validateSensorReadIntervalInternal(unsigned long interval)
 {
-    return validateIntervalInternal(interval, CONFIG_INTERVAL_MIN, CONFIG_INTERVAL_MAX, "Интервал чтения датчика");
+    return validateIntervalInternal(IntervalParams::builder()
+        .setInterval(interval)
+        .setMinVal(CONFIG_INTERVAL_MIN)
+        .setMaxVal(CONFIG_INTERVAL_MAX)
+        .setFieldName("Интервал чтения датчика")
+        .build());
 }
 
 ValidationResult validateMQTTPublishIntervalInternal(unsigned long interval)
 {
-    return validateIntervalInternal(interval, CONFIG_INTERVAL_MIN, CONFIG_INTERVAL_MAX, "Интервал публикации MQTT");
+    return validateIntervalInternal(IntervalParams::builder()
+        .setInterval(interval)
+        .setMinVal(CONFIG_INTERVAL_MIN)
+        .setMaxVal(CONFIG_INTERVAL_MAX)
+        .setFieldName("Интервал публикации MQTT")
+        .build());
 }
 
 ValidationResult validateThingSpeakIntervalInternal(unsigned long interval)
 {
-    return validateIntervalInternal(interval, CONFIG_THINGSPEAK_MIN, CONFIG_THINGSPEAK_MAX, "Интервал ThingSpeak");
+    return validateIntervalInternal(IntervalParams::builder()
+        .setInterval(interval)
+        .setMinVal(CONFIG_THINGSPEAK_MIN)
+        .setMaxVal(CONFIG_THINGSPEAK_MAX)
+        .setFieldName("Интервал ThingSpeak")
+        .build());
 }
 
 ValidationResult validateNTPIntervalInternal(unsigned long interval)
 {
-    return validateIntervalInternal(interval, 10000, 86400000, "Интервал обновления NTP");
+    return validateIntervalInternal(IntervalParams::builder()
+        .setInterval(interval)
+        .setMinVal(10000)
+        .setMaxVal(86400000)
+        .setFieldName("Интервал обновления NTP")
+        .build());
 }
 } // namespace
 
@@ -90,7 +170,12 @@ ValidationResult validateNTPIntervalInternal(unsigned long interval)
 ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val,
                                   const char* field_name)
 {
-    return validateIntervalInternal(interval, min_val, max_val, field_name);
+    return validateIntervalInternal(IntervalParams::builder()
+        .setInterval(interval)
+        .setMinVal(min_val)
+        .setMaxVal(max_val)
+        .setFieldName(field_name)
+        .build());
 }
 
 ValidationResult validateSensorReadInterval(unsigned long interval)
@@ -120,11 +205,11 @@ ValidationResult validateNTPInterval(unsigned long interval)
 // Внутренние функции валидации данных датчика
 namespace {
 // Универсальная функция валидации диапазона
-ValidationResult validateRangeInternal(float value, float min_val, float max_val, const char* field_name)
+ValidationResult validateRangeInternal(const RangeParams& params)
 {
-    if (value < min_val || value > max_val)
+    if (params.value < params.min_val || params.value > params.max_val)
     {
-        const String message = String(field_name) + " вне допустимого диапазона";
+        const String message = String(params.field_name) + " вне допустимого диапазона";
         return {false, message};
     }
     return {true, ""};
@@ -132,22 +217,42 @@ ValidationResult validateRangeInternal(float value, float min_val, float max_val
 
 ValidationResult validateTemperatureInternal(float temperature)
 {
-    return validateRangeInternal(temperature, SENSOR_TEMP_MIN, SENSOR_TEMP_MAX, "Температура");
+    return validateRangeInternal(RangeParams::builder()
+        .setValue(temperature)
+        .setMinVal(SENSOR_TEMP_MIN)
+        .setMaxVal(SENSOR_TEMP_MAX)
+        .setFieldName("Температура")
+        .build());
 }
 
 ValidationResult validateHumidityInternal(float humidity)
 {
-    return validateRangeInternal(humidity, SENSOR_HUMIDITY_MIN, SENSOR_HUMIDITY_MAX, "Влажность");
+    return validateRangeInternal(RangeParams::builder()
+        .setValue(humidity)
+        .setMinVal(SENSOR_HUMIDITY_MIN)
+        .setMaxVal(SENSOR_HUMIDITY_MAX)
+        .setFieldName("Влажность")
+        .build());
 }
 
 ValidationResult validatePHInternal(float phValue)
 {
-    return validateRangeInternal(phValue, SENSOR_PH_MIN, SENSOR_PH_MAX, "pH");
+    return validateRangeInternal(RangeParams::builder()
+        .setValue(phValue)
+        .setMinVal(SENSOR_PH_MIN)
+        .setMaxVal(SENSOR_PH_MAX)
+        .setFieldName("pH")
+        .build());
 }
 
 ValidationResult validateECInternal(float ecValue)
 {
-    return validateRangeInternal(ecValue, SENSOR_EC_MIN, SENSOR_EC_MAX, "EC");
+    return validateRangeInternal(RangeParams::builder()
+        .setValue(ecValue)
+        .setMinVal(SENSOR_EC_MIN)
+        .setMaxVal(SENSOR_EC_MAX)
+        .setFieldName("EC")
+        .build());
 }
 
 ValidationResult validateNPKInternal(float value, const char* nutrient)
@@ -164,7 +269,12 @@ ValidationResult validateNPKInternal(float value, const char* nutrient)
 // Публичные функции валидации данных датчика
 ValidationResult validateRange(float value, float min_val, float max_val, const char* field_name)
 {
-    return validateRangeInternal(value, min_val, max_val, field_name);
+    return validateRangeInternal(RangeParams::builder()
+        .setValue(value)
+        .setMinVal(min_val)
+        .setMaxVal(max_val)
+        .setFieldName(field_name)
+        .build());
 }
 
 ValidationResult validateTemperature(float temperature)
