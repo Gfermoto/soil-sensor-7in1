@@ -157,20 +157,99 @@ MockHttpResponse mock_api_handler(const MockHttpRequest& request)
             }
         }
     }
-    else if (request.path == "/api/calibration")
+    else if (request.path == "/api/calibration/status")
+    {
+        if (request.method == "GET")
+        {
+            response.body = R"({"status": "Калибровка не настроена", "complete": false})";
+        }
+    }
+    else if (request.path == "/api/calibration/ph/add")
     {
         if (request.method == "POST")
         {
-            // Обрабатываем калибровку
             if (mock_validate_json(request.body))
             {
-                response.body = mock_format_json_response("Calibration completed successfully");
+                response.body = R"({"success": true})";
             }
             else
             {
                 response.status_code = 400;
-                response.body = mock_format_json_response("Invalid calibration data", false);
+                response.body = R"({"success": false, "error": "Invalid JSON"})";
             }
+        }
+    }
+    else if (request.path == "/api/calibration/ec/add")
+    {
+        if (request.method == "POST")
+        {
+            if (mock_validate_json(request.body))
+            {
+                response.body = R"({"success": true})";
+            }
+            else
+            {
+                response.status_code = 400;
+                response.body = R"({"success": false, "error": "Invalid JSON"})";
+            }
+        }
+    }
+    else if (request.path == "/api/calibration/npk/set")
+    {
+        if (request.method == "POST")
+        {
+            if (mock_validate_json(request.body))
+            {
+                response.body = R"({"success": true})";
+            }
+            else
+            {
+                response.status_code = 400;
+                response.body = R"({"success": false, "error": "Invalid JSON"})";
+            }
+        }
+    }
+    else if (request.path == "/api/calibration/ph/calculate")
+    {
+        if (request.method == "POST")
+        {
+            response.body = R"({"success": true, "r_squared": 0.99})";
+        }
+    }
+    else if (request.path == "/api/calibration/ec/calculate")
+    {
+        if (request.method == "POST")
+        {
+            response.body = R"({"success": true, "r_squared": 0.99})";
+        }
+    }
+    else if (request.path == "/api/calibration/export")
+    {
+        if (request.method == "GET")
+        {
+            response.body = R"({"ph_points": [], "ec_points": [], "npk_zero": {}, "calculated": false})";
+        }
+    }
+    else if (request.path == "/api/calibration/import")
+    {
+        if (request.method == "POST")
+        {
+            if (mock_validate_json(request.body))
+            {
+                response.body = R"({"success": true})";
+            }
+            else
+            {
+                response.status_code = 400;
+                response.body = R"({"success": false, "error": "Failed to import calibration"})";
+            }
+        }
+    }
+    else if (request.path == "/api/calibration/reset")
+    {
+        if (request.method == "POST")
+        {
+            response.body = R"({"success": true})";
         }
     }
     else
@@ -370,37 +449,81 @@ void test_calibration_integration()
     processed_requests.clear();
     csrf_tokens.clear();
 
-    // Генерируем CSRF токен
-    std::string csrf_token = mock_api_csrf_token();
+    // Тест 1: Получение статуса калибровки
+    MockHttpRequest status_request;
+    status_request.method = "GET";
+    status_request.path = "/api/calibration/status";
 
-    // Тест калибровки с валидными данными
-    MockHttpRequest calibration_request;
-    calibration_request.method = "POST";
-    calibration_request.path = "/api/calibration";
-    calibration_request.body = R"({
-        "sensor_type": "temperature",
-        "calibration_points": [
-            {"input": 0, "output": 0.1},
-            {"input": 25, "output": 25.0},
-            {"input": 50, "output": 50.1}
-        ]
-    })";
-    calibration_request.headers["X-CSRF-Token"] = csrf_token;
+    MockHttpResponse status_response = mock_api_handler(status_request);
+    TEST_ASSERT_EQUAL(200, status_response.status_code);
+    TEST_ASSERT_TRUE(status_response.body.find("Калибровка не настроена") != std::string::npos);
 
-    MockHttpResponse calibration_response = mock_api_handler(calibration_request);
-    TEST_ASSERT_EQUAL(200, calibration_response.status_code);
-    TEST_ASSERT_TRUE(calibration_response.body.find("Calibration completed successfully") != std::string::npos);
+    // Тест 2: Добавление точки pH калибровки
+    MockHttpRequest ph_request;
+    ph_request.method = "POST";
+    ph_request.path = "/api/calibration/ph/add";
+    ph_request.body = R"({"expected": 7.0, "measured": 6.8})";
 
-    // Тест калибровки с невалидными данными
-    MockHttpRequest invalid_calibration_request;
-    invalid_calibration_request.method = "POST";
-    invalid_calibration_request.path = "/api/calibration";
-    invalid_calibration_request.body = "invalid calibration data";
-    invalid_calibration_request.headers["X-CSRF-Token"] = csrf_token;
+    MockHttpResponse ph_response = mock_api_handler(ph_request);
+    TEST_ASSERT_EQUAL(200, ph_response.status_code);
+    TEST_ASSERT_TRUE(ph_response.body.find("success") != std::string::npos);
 
-    MockHttpResponse invalid_calibration_response = mock_api_handler(invalid_calibration_request);
-    TEST_ASSERT_EQUAL(400, invalid_calibration_response.status_code);
-    TEST_ASSERT_TRUE(invalid_calibration_response.body.find("Invalid calibration data") != std::string::npos);
+    // Тест 3: Добавление точки EC калибровки
+    MockHttpRequest ec_request;
+    ec_request.method = "POST";
+    ec_request.path = "/api/calibration/ec/add";
+    ec_request.body = R"({"expected": 1.0, "measured": 0.95})";
+
+    MockHttpResponse ec_response = mock_api_handler(ec_request);
+    TEST_ASSERT_EQUAL(200, ec_response.status_code);
+    TEST_ASSERT_TRUE(ec_response.body.find("success") != std::string::npos);
+
+    // Тест 4: Установка NPK точки
+    MockHttpRequest npk_request;
+    npk_request.method = "POST";
+    npk_request.path = "/api/calibration/npk/set";
+    npk_request.body = R"({"n": 0.1, "p": 0.05, "k": 0.08})";
+
+    MockHttpResponse npk_response = mock_api_handler(npk_request);
+    TEST_ASSERT_EQUAL(200, npk_response.status_code);
+    TEST_ASSERT_TRUE(npk_response.body.find("success") != std::string::npos);
+
+    // Тест 5: Расчет pH калибровки
+    MockHttpRequest calc_ph_request;
+    calc_ph_request.method = "POST";
+    calc_ph_request.path = "/api/calibration/ph/calculate";
+
+    MockHttpResponse calc_ph_response = mock_api_handler(calc_ph_request);
+    TEST_ASSERT_EQUAL(200, calc_ph_response.status_code);
+    TEST_ASSERT_TRUE(calc_ph_response.body.find("r_squared") != std::string::npos);
+
+    // Тест 6: Экспорт калибровки
+    MockHttpRequest export_request;
+    export_request.method = "GET";
+    export_request.path = "/api/calibration/export";
+
+    MockHttpResponse export_response = mock_api_handler(export_request);
+    TEST_ASSERT_EQUAL(200, export_response.status_code);
+    TEST_ASSERT_TRUE(export_response.body.find("ph_points") != std::string::npos);
+
+    // Тест 7: Импорт калибровки
+    MockHttpRequest import_request;
+    import_request.method = "POST";
+    import_request.path = "/api/calibration/import";
+    import_request.body = R"({"ph_points": [], "ec_points": [], "npk_zero": {}, "calculated": false})";
+
+    MockHttpResponse import_response = mock_api_handler(import_request);
+    TEST_ASSERT_EQUAL(200, import_response.status_code);
+    TEST_ASSERT_TRUE(import_response.body.find("success") != std::string::npos);
+
+    // Тест 8: Сброс калибровки
+    MockHttpRequest reset_request;
+    reset_request.method = "POST";
+    reset_request.path = "/api/calibration/reset";
+
+    MockHttpResponse reset_response = mock_api_handler(reset_request);
+    TEST_ASSERT_EQUAL(200, reset_response.status_code);
+    TEST_ASSERT_TRUE(reset_response.body.find("success") != std::string::npos);
 }
 
 // Тест 7: Стресс-тест API

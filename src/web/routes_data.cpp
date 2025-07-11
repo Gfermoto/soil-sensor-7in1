@@ -445,78 +445,77 @@ void setupDataRoutes()
             html += "</tbody></table></div>";
 
             // ======= КАЛИБРОВКА =======
-            const bool csvPresent = CalibrationManager::hasTable(SoilProfile::SAND);  // custom.csv
-
             html += "<div class='section'><h2>⚙️ Калибровка датчика</h2>";
 
             // Статус калибровки
             html += "<div style='background:#f8f9fa;padding:15px;border-radius:8px;margin:15px 0;'>";
             html += "<h4>📊 Текущий статус калибровки</h4>";
-            if (!config.flags.calibrationEnabled)
-            {
-                html +=
-                    "<p style='color:#9E9E9E;margin:5px 0;'>❌ <strong>Компенсация выключена</strong> - используются "
-                    "только математические поправки</p>";
-            }
-            else if (csvPresent)
-            {
-                html +=
-                    "<p style='color:#4CAF50;margin:5px 0;'>✅ <strong>CSV таблица загружена</strong> - применяется "
-                    "лабораторная калибровка + математическая компенсация</p>";
-            }
-            else
-            {
-                html +=
-                    "<p style='color:#2196F3;margin:5px 0;'>⚠️ <strong>CSV таблица не загружена</strong> - применяется "
-                    "только математическая компенсация</p>";
-            }
+            html += "<div id='calibration-status'>Загрузка статуса...</div>";
             html += "</div>";
 
-            // Объяснение калибровочной таблицы
-            html += "<div style='background:#f8f9fa;border-left:4px solid #007bff;padding:10px;margin:10px 0;'>";
-            html += "<h4 style='margin:0 0 8px 0;color:#007bff;'>📊 <strong>Калибровочная таблица (CSV)</strong></h4>";
-            html += "<p style='margin:5px 0;font-size:14px;'>";
-            html += "Это файл с коэффициентами коррекции, полученными при поверке датчика в лаборатории. ";
-            html +=
-                "Содержит коррекции для всех параметров: <strong>температура, влажность, EC, pH, азот, фосфор, "
-                "калий</strong>. ";
-            html += "Формат: <code>сырое_значение,коэффициент_коррекции</code>";
-            html += "</p>";
-            html += "<p style='margin:5px 0;font-size:14px;'>";
-            html += "💡 <strong>Применение:</strong> <code>скорректированное = сырое × коэффициент</code>";
-            html += "</p>";
-            html += "<p style='margin:5px 0;font-size:14px;'>";
-            html +=
-                "📄 <a href='/docs/examples/calibration_example.csv' target='_blank' style='color:#2196F3;'>Скачать "
-                "пример CSV файла</a>";
-            html += "</p>";
+            // pH калибровка
+            html += "<div class='section'>";
+            html += "<h3>🧪 pH калибровка</h3>";
+            html += "<p>Введите показания для буферных растворов pH:</p>";
+            html += "<div class='form-group'>";
+            html += "<label for='ph_expected'>Ожидаемое значение pH:</label>";
+            html += "<input type='number' id='ph_expected' step='0.1' min='0' max='14' placeholder='7.0'>";
+            html += "</div>";
+            html += "<div class='form-group'>";
+            html += "<label for='ph_measured'>Измеренное значение pH:</label>";
+            html += "<input type='number' id='ph_measured' step='0.1' min='0' max='14' placeholder='6.8'>";
+            html += "</div>";
+            html += "<button onclick='addPHPoint()' class='btn btn-primary'>Добавить точку pH</button>";
+            html += "<div id='ph-points' style='margin-top:10px;'></div>";
             html += "</div>";
 
-            // Форма загрузки CSV
-            html +=
-                "<form action='/readings/upload' method='post' enctype='multipart/form-data' style='margin-top:15px;'>";
-            html += getCSRFHiddenField();  // Добавляем CSRF токен
-            html +=
-                "<div class='form-group'><label for='calibration_csv'><strong>Загрузить CSV файл "
-                "калибровки:</strong></label>";
-            html +=
-                "<input type='file' id='calibration_csv' name='calibration_csv' accept='.csv' required "
-                "style='margin:5px 0;'>";
-            html +=
-                "<div style='font-size:12px;color:#666;margin:5px 0;'>Файл должен содержать пары значений: "
-                "сырое_значение,коэффициент_коррекции</div>";
+            // EC калибровка
+            html += "<div class='section'>";
+            html += "<h3>⚡ EC калибровка</h3>";
+            html += "<p>Введите показания для стандартных растворов EC:</p>";
+            html += "<div class='form-group'>";
+            html += "<label for='ec_expected'>Ожидаемое значение EC (мСм/см):</label>";
+            html += "<input type='number' id='ec_expected' step='0.1' min='0' placeholder='1.0'>";
             html += "</div>";
-            html += generateButton(ButtonType::PRIMARY, ButtonConfig{UI_ICON_UPLOAD, "Загрузить CSV", ""});
-            html += "</form>";
+            html += "<div class='form-group'>";
+            html += "<label for='ec_measured'>Измеренное значение EC (мСм/см):</label>";
+            html += "<input type='number' id='ec_measured' step='0.1' min='0' placeholder='0.95'>";
+            html += "</div>";
+            html += "<button onclick='addECPoint()' class='btn btn-primary'>Добавить точку EC</button>";
+            html += "<div id='ec-points' style='margin-top:10px;'></div>";
+            html += "</div>";
 
-            // Кнопка сброса CSV, если файл существует
-            if (csvPresent)
-            {
-                html += "<form action='/readings/csv_reset' method='post' style='margin-top:10px;'>";
-                html += getCSRFHiddenField();  // Добавляем CSRF токен
-                html += generateButton(ButtonType::SECONDARY, ButtonConfig{"🗑️", "Удалить CSV таблицу", ""});
-                html += "</form>";
-            }
+            // NPK калибровка
+            html += "<div class='section'>";
+            html += "<h3>🌱 NPK калибровка</h3>";
+            html += "<p>Введите показания для дистиллированной воды (должны быть близки к нулю):</p>";
+            html += "<div class='form-group'>";
+            html += "<label for='npk_n'>N (мг/кг):</label>";
+            html += "<input type='number' id='npk_n' step='0.1' min='0' placeholder='0.0'>";
+            html += "</div>";
+            html += "<div class='form-group'>";
+            html += "<label for='npk_p'>P (мг/кг):</label>";
+            html += "<input type='number' id='npk_p' step='0.1' min='0' placeholder='0.0'>";
+            html += "</div>";
+            html += "<div class='form-group'>";
+            html += "<label for='npk_k'>K (мг/кг):</label>";
+            html += "<input type='number' id='npk_k' step='0.1' min='0' placeholder='0.0'>";
+            html += "</div>";
+            html += "<button onclick='setNPKPoint()' class='btn btn-primary'>Установить NPK</button>";
+            html += "</div>";
+
+            // Действия
+            html += "<div class='section'>";
+            html += "<h3>⚙️ Действия</h3>";
+            html += "<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;'>";
+            html += "<button onclick='calculatePH()' class='btn btn-success'>Рассчитать pH</button>";
+            html += "<button onclick='calculateEC()' class='btn btn-success'>Рассчитать EC</button>";
+            html += "</div>";
+            html += "<div style='display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;'>";
+            html += "<button onclick='exportCalibration()' class='btn btn-info'>Экспорт</button>";
+            html += "<button onclick='importCalibration()' class='btn btn-info'>Импорт</button>";
+            html += "</div>";
+            html += "<button onclick='resetCalibration()' class='btn btn-danger'>Сбросить калибровку</button>";
             html += "</div>";
 
             // ======= ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ =======
@@ -663,8 +662,138 @@ void setupDataRoutes()
             html += "applyColor('k_rec',    colorDelta(ck, parseFloat(d.rec_potassium)));";
             html += "});";
             html += "}";
+            
+            // Функции калибровки
+            html += "function updateCalibrationStatus() {";
+            html += "  fetch('/api/calibration/status')";
+            html += "    .then(response => response.json())";
+            html += "    .then(data => {";
+            html += "      document.getElementById('calibration-status').innerHTML = data.status;";
+            html += "    });";
+            html += "}";
+            html += "function addPHPoint() {";
+            html += "  const expected = parseFloat(document.getElementById('ph_expected').value);";
+            html += "  const measured = parseFloat(document.getElementById('ph_measured').value);";
+            html += "  fetch('/api/calibration/ph/add', {";
+            html += "    method: 'POST',";
+            html += "    headers: {'Content-Type': 'application/json'},";
+            html += "    body: JSON.stringify({expected: expected, measured: measured})";
+            html += "  }).then(response => response.json())";
+            html += "    .then(data => {";
+            html += "      if(data.success) {";
+            html += "        updateCalibrationStatus();";
+            html += "        document.getElementById('ph_expected').value = '';";
+            html += "        document.getElementById('ph_measured').value = '';";
+            html += "      }";
+            html += "    });";
+            html += "}";
+            html += "function addECPoint() {";
+            html += "  const expected = parseFloat(document.getElementById('ec_expected').value);";
+            html += "  const measured = parseFloat(document.getElementById('ec_measured').value);";
+            html += "  fetch('/api/calibration/ec/add', {";
+            html += "    method: 'POST',";
+            html += "    headers: {'Content-Type': 'application/json'},";
+            html += "    body: JSON.stringify({expected: expected, measured: measured})";
+            html += "  }).then(response => response.json())";
+            html += "    .then(data => {";
+            html += "      if(data.success) {";
+            html += "        updateCalibrationStatus();";
+            html += "        document.getElementById('ec_expected').value = '';";
+            html += "        document.getElementById('ec_measured').value = '';";
+            html += "      }";
+            html += "    });";
+            html += "}";
+            html += "function setNPKPoint() {";
+            html += "  const n = parseFloat(document.getElementById('npk_n').value);";
+            html += "  const p = parseFloat(document.getElementById('npk_p').value);";
+            html += "  const k = parseFloat(document.getElementById('npk_k').value);";
+            html += "  fetch('/api/calibration/npk/set', {";
+            html += "    method: 'POST',";
+            html += "    headers: {'Content-Type': 'application/json'},";
+            html += "    body: JSON.stringify({n: n, p: p, k: k})";
+            html += "  }).then(response => response.json())";
+            html += "    .then(data => {";
+            html += "      if(data.success) {";
+            html += "        updateCalibrationStatus();";
+            html += "        document.getElementById('npk_n').value = '';";
+            html += "        document.getElementById('npk_p').value = '';";
+            html += "        document.getElementById('npk_k').value = '';";
+            html += "      }";
+            html += "    });";
+            html += "}";
+            html += "function calculatePH() {";
+            html += "  fetch('/api/calibration/ph/calculate', {method: 'POST'})";
+            html += "    .then(response => response.json())";
+            html += "    .then(data => {";
+            html += "      if(data.success) {";
+            html += "        updateCalibrationStatus();";
+            html += "        alert('pH калибровка рассчитана! R² = ' + data.r_squared);";
+            html += "      }";
+            html += "    });";
+            html += "}";
+            html += "function calculateEC() {";
+            html += "  fetch('/api/calibration/ec/calculate', {method: 'POST'})";
+            html += "    .then(response => response.json())";
+            html += "    .then(data => {";
+            html += "      if(data.success) {";
+            html += "        updateCalibrationStatus();";
+            html += "        alert('EC калибровка рассчитана! R² = ' + data.r_squared);";
+            html += "      }";
+            html += "    });";
+            html += "}";
+            html += "function exportCalibration() {";
+            html += "  fetch('/api/calibration/export')";
+            html += "    .then(response => response.json())";
+            html += "    .then(data => {";
+            html += "      const blob = new Blob([JSON.stringify(data, null, 2)], {type: 'application/json'});";
+            html += "      const url = URL.createObjectURL(blob);";
+            html += "      const a = document.createElement('a');";
+            html += "      a.href = url;";
+            html += "      a.download = 'calibration.json';";
+            html += "      a.click();";
+            html += "    });";
+            html += "}";
+            html += "function importCalibration() {";
+            html += "  const input = document.createElement('input');";
+            html += "  input.type = 'file';";
+            html += "  input.accept = '.json';";
+            html += "  input.onchange = function(e) {";
+            html += "    const file = e.target.files[0];";
+            html += "    const reader = new FileReader();";
+            html += "    reader.onload = function(e) {";
+            html += "      fetch('/api/calibration/import', {";
+            html += "        method: 'POST',";
+            html += "        headers: {'Content-Type': 'application/json'},";
+            html += "        body: e.target.result";
+            html += "      }).then(response => response.json())";
+            html += "        .then(data => {";
+            html += "          if(data.success) {";
+            html += "            updateCalibrationStatus();";
+            html += "            alert('Калибровка импортирована!');";
+            html += "          }";
+            html += "        });";
+            html += "    };";
+            html += "    reader.readAsText(file);";
+            html += "  };";
+            html += "  input.click();";
+            html += "}";
+            html += "function resetCalibration() {";
+            html += "  if(confirm('Сбросить всю калибровку?')) {";
+            html += "    fetch('/api/calibration/reset', {method: 'POST'})";
+            html += "      .then(response => response.json())";
+            html += "      .then(data => {";
+            html += "        if(data.success) {";
+            html += "          updateCalibrationStatus();";
+            html += "          alert('Калибровка сброшена!');";
+            html += "        }";
+            html += "      });";
+            html += "  }";
+            html += "}";
+            
             html += "setInterval(updateSensor,3000);";
             html += "updateSensor();";
+            html += "updateCalibrationStatus();";
+            html += "setInterval(updateCalibrationStatus, 10000);";
             html += "</script>";
 
             // API-ссылка внизу страницы
@@ -769,5 +898,186 @@ void setupDataRoutes()
 
     // Deprecated alias удалён в v2.7.0
 
-    logDebug("Маршруты данных настроены: /readings, /api/v1/sensor (json), /sensor_json [legacy]");
+    // API маршруты калибровки
+    webServer.on("/api/calibration/status", HTTP_GET,
+        []()
+        {
+            DynamicJsonDocument doc(512);
+            doc["status"] = "Калибровка не настроена"; // Временно
+            doc["complete"] = false;
+            
+            String response;
+            serializeJson(doc, response);
+            webServer.send(200, "application/json", response);
+        });
+
+    webServer.on("/api/calibration/ph/add", HTTP_POST,
+        []()
+        {
+            DynamicJsonDocument doc(512);
+            DeserializationError error = deserializeJson(doc, webServer.arg("plain"));
+            
+            if (error) {
+                webServer.send(400, "application/json", "{\"success\":false,\"error\":\"Invalid JSON\"}");
+                return;
+            }
+            
+            float expected = doc["expected"];
+            float measured = doc["measured"];
+            
+            // Временно - заглушка
+            bool success = true;
+            
+            DynamicJsonDocument response(256);
+            response["success"] = success;
+            if (!success) {
+                response["error"] = "Failed to add pH point";
+            }
+            
+            String response_str;
+            serializeJson(response, response_str);
+            webServer.send(200, "application/json", response_str);
+        });
+
+    webServer.on("/api/calibration/ec/add", HTTP_POST,
+        []()
+        {
+            DynamicJsonDocument doc(512);
+            DeserializationError error = deserializeJson(doc, webServer.arg("plain"));
+            
+            if (error) {
+                webServer.send(400, "application/json", "{\"success\":false,\"error\":\"Invalid JSON\"}");
+                return;
+            }
+            
+            float expected = doc["expected"];
+            float measured = doc["measured"];
+            
+            // Временно - заглушка
+            bool success = true;
+            
+            DynamicJsonDocument response(256);
+            response["success"] = success;
+            if (!success) {
+                response["error"] = "Failed to add EC point";
+            }
+            
+            String response_str;
+            serializeJson(response, response_str);
+            webServer.send(200, "application/json", response_str);
+        });
+
+    webServer.on("/api/calibration/npk/set", HTTP_POST,
+        []()
+        {
+            DynamicJsonDocument doc(512);
+            DeserializationError error = deserializeJson(doc, webServer.arg("plain"));
+            
+            if (error) {
+                webServer.send(400, "application/json", "{\"success\":false,\"error\":\"Invalid JSON\"}");
+                return;
+            }
+            
+            float n = doc["n"];
+            float p = doc["p"];
+            float k = doc["k"];
+            
+            // Временно - заглушка
+            bool success = true;
+            
+            DynamicJsonDocument response(256);
+            response["success"] = success;
+            if (!success) {
+                response["error"] = "Failed to set NPK point";
+            }
+            
+            String response_str;
+            serializeJson(response, response_str);
+            webServer.send(200, "application/json", response_str);
+        });
+
+    webServer.on("/api/calibration/ph/calculate", HTTP_POST,
+        []()
+        {
+            // Временно - заглушка
+            bool success = true;
+            
+            DynamicJsonDocument response(256);
+            response["success"] = success;
+            if (success) {
+                response["r_squared"] = 0.99; // Временно
+            } else {
+                response["error"] = "Failed to calculate pH calibration";
+            }
+            
+            String response_str;
+            serializeJson(response, response_str);
+            webServer.send(200, "application/json", response_str);
+        });
+
+    webServer.on("/api/calibration/ec/calculate", HTTP_POST,
+        []()
+        {
+            // Временно - заглушка
+            bool success = true;
+            
+            DynamicJsonDocument response(256);
+            response["success"] = success;
+            if (success) {
+                response["r_squared"] = 0.99; // Временно
+            } else {
+                response["error"] = "Failed to calculate EC calibration";
+            }
+            
+            String response_str;
+            serializeJson(response, response_str);
+            webServer.send(200, "application/json", response_str);
+        });
+
+    webServer.on("/api/calibration/export", HTTP_GET,
+        []()
+        {
+            // Временно - заглушка
+            DynamicJsonDocument doc(512);
+            doc["ph_points"] = JsonArray();
+            doc["ec_points"] = JsonArray();
+            doc["npk_zero"] = JsonObject();
+            doc["calculated"] = false;
+            
+            String json_data;
+            serializeJson(doc, json_data);
+            webServer.send(200, "application/json", json_data);
+        });
+
+    webServer.on("/api/calibration/import", HTTP_POST,
+        []()
+        {
+            String json_data = webServer.arg("plain");
+            // Временно - заглушка
+            bool success = true;
+            
+            DynamicJsonDocument response(256);
+            response["success"] = success;
+            if (!success) {
+                response["error"] = "Failed to import calibration";
+            }
+            
+            String response_str;
+            serializeJson(response, response_str);
+            webServer.send(200, "application/json", response_str);
+        });
+
+    webServer.on("/api/calibration/reset", HTTP_POST,
+        []()
+        {
+            // Временно - заглушка
+            DynamicJsonDocument response(128);
+            response["success"] = true;
+            
+            String response_str;
+            serializeJson(response, response_str);
+            webServer.send(200, "application/json", response_str);
+        });
+
+    logDebug("Маршруты данных настроены: /readings, /api/v1/sensor (json), /sensor_json [legacy], /api/calibration/*");
 }

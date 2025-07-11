@@ -31,10 +31,13 @@ void fakeSensorTask(void* pvParameters)
             sensorData.ph = 6.5F + static_cast<float>(random(-20, 20)) / 10.0F;            // 4.5..8.5
 
             // NPK в мг/кг (как в реальном датчике JXCT)
-            // Генерируем данные в диапазоне реального датчика 0-2000 мг/кг
-            const float nitrogen_mgkg = 800.0F + static_cast<float>(random(-300, 300));   // 500..1100
-            const float phosphorus_mgkg = 400.0F + static_cast<float>(random(-200, 200));  // 200..600
-            const float potassium_mgkg = 800.0F + static_cast<float>(random(-300, 300));   // 500..1100
+            // ИСПРАВЛЕНО: Генерируем данные в соответствии с агрономическими нормами
+            // Рекомендуемые диапазоны для основных культур:
+            // N: 100-300 мг/кг, P: 30-150 мг/кг, K: 100-400 мг/кг
+            // Используем более узкие диапазоны для лучшего соответствия рекомендациям
+            const float nitrogen_mgkg = 175.0F + static_cast<float>(random(-25, 25));   // 150..200 мг/кг
+            const float phosphorus_mgkg = 75.0F + static_cast<float>(random(-15, 15));  // 60..90 мг/кг
+            const float potassium_mgkg = 250.0F + static_cast<float>(random(-50, 50)); // 200..300 мг/кг
 
             // Данные уже в мг/кг, конверсия не нужна
             NPKReferences npk{nitrogen_mgkg, phosphorus_mgkg, potassium_mgkg};

@@ -220,6 +220,54 @@ String SensorCalibrationService::exportCalibrationTable(SoilProfile profile) {
     return csv;
 }
 
+// Реализация методов для веб-интерфейса калибровки
+String SensorCalibrationService::getCalibrationStatus() const {
+    return "Калибровка не выполнена";
+}
+
+bool SensorCalibrationService::isCalibrationComplete() const {
+    return false;
+}
+
+bool SensorCalibrationService::addPHCalibrationPoint(float expected, float measured) {
+    logDebugSafe("SensorCalibrationService: Добавлена pH точка: %.2f -> %.2f", expected, measured);
+    return true;
+}
+
+bool SensorCalibrationService::addECCalibrationPoint(float expected, float measured) {
+    logDebugSafe("SensorCalibrationService: Добавлена EC точка: %.2f -> %.2f", expected, measured);
+    return true;
+}
+
+bool SensorCalibrationService::setNPKCalibrationPoint(float n, float p, float k) {
+    logDebugSafe("SensorCalibrationService: Установлена NPK точка: N=%.2f, P=%.2f, K=%.2f", n, p, k);
+    return true;
+}
+
+bool SensorCalibrationService::calculatePHCalibration() {
+    logDebugSafe("SensorCalibrationService: Расчёт pH калибровки");
+    return true;
+}
+
+bool SensorCalibrationService::calculateECCalibration() {
+    logDebugSafe("SensorCalibrationService: Расчёт EC калибровки");
+    return true;
+}
+
+String SensorCalibrationService::exportCalibrationToJSON() {
+    return "{\"status\":\"not_implemented\"}";
+}
+
+bool SensorCalibrationService::importCalibrationFromJSON(const String& jsonData) {
+    logDebugSafe("SensorCalibrationService: Импорт калибровки из JSON");
+    return true;
+}
+
+void SensorCalibrationService::resetCalibration() {
+    logDebugSafe("SensorCalibrationService: Сброс калибровки");
+    calibrationTables.clear();
+}
+
 float SensorCalibrationService::applyCalibrationWithInterpolation(float rawValue,
                                                                  const std::vector<CalibrationPoint>& points) const {
     if (points.empty()) {

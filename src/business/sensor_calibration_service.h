@@ -151,6 +151,18 @@ public:
      * @return String CSV данные калибровочной таблицы
      */
     static String exportCalibrationTable(SoilProfile profile);
+
+    // Методы для веб-интерфейса калибровки
+    String getCalibrationStatus() const;
+    bool isCalibrationComplete() const;
+    bool addPHCalibrationPoint(float expected, float measured);
+    bool addECCalibrationPoint(float expected, float measured);
+    bool setNPKCalibrationPoint(float n, float p, float k);
+    bool calculatePHCalibration();
+    bool calculateECCalibration();
+    String exportCalibrationToJSON();
+    bool importCalibrationFromJSON(const String& jsonData);
+    void resetCalibration();
 };
 
 #endif // SENSOR_CALIBRATION_SERVICE_H

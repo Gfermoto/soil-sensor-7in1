@@ -30,6 +30,9 @@
 #include "business/crop_recommendation_engine.h"
 #include "business/sensor_calibration_service.h"
 #include "business/sensor_compensation_service.h"
+#include <WebServer.h>
+#include <LittleFS.h>
+WebServer server(80);
 
 // Глобальные экземпляры бизнес-сервисов
 extern CropRecommendationEngine gCropEngine;
@@ -157,6 +160,14 @@ void setup()
         return;
     }
     logSuccess("Preferences инициализирован");
+
+    // Инициализация LittleFS
+    if (!LittleFS.begin(true))
+    {
+        logError("Ошибка инициализации LittleFS!");
+        return;
+    }
+    logSuccess("LittleFS инициализирован");
 
     // Загрузка конфигурации
     loadConfig();
