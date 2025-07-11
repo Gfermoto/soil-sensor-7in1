@@ -22,8 +22,8 @@
 extern NTPClient* timeClient;
 
 // Глобальные переменные (глобальное пространство имён)
-static WiFiClient espClient; // NOLINT(misc-use-internal-linkage)
-static PubSubClient mqttClient(espClient); // NOLINT(misc-use-internal-linkage)
+WiFiClient espClient; // NOLINT(misc-use-internal-linkage)
+PubSubClient mqttClient(espClient); // NOLINT(misc-use-internal-linkage)
 
 namespace {
 // Forward declarations для всех внутренних функций
@@ -846,7 +846,7 @@ void handleMqttCommand(const String& cmd) // NOLINT(misc-use-internal-linkage)
     handleMqttCommandInternal(cmd);
 }
 
-void mqttCallback(const char* topic, const byte* payload, unsigned int length)
+void mqttCallback(const char* topic, const byte* payload, unsigned int length) // NOLINT(misc-use-internal-linkage)
 {
     mqttCallbackInternal(topic, payload, length);
 }

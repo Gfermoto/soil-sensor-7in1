@@ -179,7 +179,7 @@ void SensorCompensationService::initializeSoilParameters() {
     ::initializeSoilParameters(soilParameters);
 }
 
-void SensorCompensationService::initializeNPKCoefficients() {
+void SensorCompensationService::initializeNPKCoefficients() { // NOLINT(readability-convert-member-functions-to-static)
     // Коэффициенты NPK для разных типов почвы
     // Источник: [Delgado et al. (2020). DOI:10.1007/s42729-020-00215-4]
     
@@ -192,7 +192,7 @@ void SensorCompensationService::initializeNPKCoefficients() {
     logDebugSafe("SensorCompensationService: Коэффициенты NPK инициализированы");
 }
 
-SoilParameters SensorCompensationService::getSoilParameters(SoilType soilType) const {
+SoilParameters SensorCompensationService::getSoilParameters(SoilType soilType) const { // NOLINT(readability-convert-member-functions-to-static)
     auto iter = soilParameters.find(soilType);
     if (iter != soilParameters.end()) {
         return iter->second;
@@ -200,7 +200,7 @@ SoilParameters SensorCompensationService::getSoilParameters(SoilType soilType) c
     return {}; // Возвращаем значения по умолчанию
 }
 
-ArchieCoefficients SensorCompensationService::getArchieCoefficients(SoilType soilType) const {
+ArchieCoefficients SensorCompensationService::getArchieCoefficients(SoilType soilType) const { // NOLINT(readability-convert-member-functions-to-static)
     auto iter = archieCoefficients.find(soilType);
     if (iter != archieCoefficients.end()) {
         return iter->second;
@@ -208,7 +208,7 @@ ArchieCoefficients SensorCompensationService::getArchieCoefficients(SoilType soi
     return {}; // Возвращаем значения по умолчанию
 }
 
-NPKCoefficients SensorCompensationService::getNPKCoefficients(SoilType soilType) const {
+NPKCoefficients SensorCompensationService::getNPKCoefficients(SoilType soilType) const { // NOLINT(readability-convert-member-functions-to-static)
     auto iter = npkCoefficients.find(soilType);
     if (iter != npkCoefficients.end()) {
         return iter->second;

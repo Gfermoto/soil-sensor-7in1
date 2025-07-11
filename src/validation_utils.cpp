@@ -33,7 +33,7 @@ public:
         Builder& maxValue(unsigned long maxVal) { max = maxVal; return *this; }
         Builder& fieldName(const char* fieldName) { name = fieldName; return *this; }
         IntervalValidation build() const {
-            return IntervalValidation(val, min, max, name);
+            return {val, min, max, name};
         }
     };
     static Builder builder() { return {}; }
@@ -193,22 +193,22 @@ ValidationResult validateInterval(unsigned long interval, unsigned long min_val,
         .build());
 }
 
-static ValidationResult validateSensorReadInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
+static ValidationResult validateSensorReadInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateSensorReadIntervalInternal(interval);
 }
 
-static ValidationResult validateMQTTPublishInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
+static ValidationResult validateMQTTPublishInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateMQTTPublishIntervalInternal(interval);
 }
 
-static ValidationResult validateThingSpeakInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
+static ValidationResult validateThingSpeakInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateThingSpeakIntervalInternal(interval);
 }
 
-static ValidationResult validateNTPInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
+static ValidationResult validateNTPInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateNTPIntervalInternal(interval);
 }

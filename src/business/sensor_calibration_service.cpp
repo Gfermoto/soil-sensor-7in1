@@ -16,7 +16,7 @@ std::map<SoilProfile, CalibrationTable> calibrationTablesInternal;
 } // namespace
 
 // Функция доступа к внутренней таблице калибровки
-std::map<SoilProfile, CalibrationTable>& getCalibrationTables() {
+std::map<SoilProfile, CalibrationTable>& getCalibrationTables() { // NOLINT(misc-use-internal-linkage)
     return calibrationTablesInternal;
 }
 

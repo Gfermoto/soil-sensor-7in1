@@ -706,12 +706,12 @@ SensorData getSensorData()
 }
 
 // Функции доступа к переменным из анонимного пространства имён
-ModbusMaster& getModbus() { return modbus; }
-String& getSensorLastError() { return sensorLastError; }
+ModbusMaster& getModbus() { return modbus; } // NOLINT(misc-use-internal-linkage)
+String& getSensorLastError() { return sensorLastError; } // NOLINT(misc-use-internal-linkage)
 
 // Функции доступа к глобальным переменным
-SensorData& getSensorDataRef() { return sensorData; }
-SensorCache& getSensorCache() { return sensorCache; }
+SensorData& getSensorDataRef() { return sensorData; } // NOLINT(misc-use-internal-linkage)
+SensorCache& getSensorCache() { return sensorCache; } // NOLINT(misc-use-internal-linkage)
 
 // Определение глобальных переменных
 SensorData sensorData;
