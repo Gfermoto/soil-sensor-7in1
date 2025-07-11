@@ -24,7 +24,7 @@ SensorCalibrationService::SensorCalibrationService() {
     logDebugSafe("SensorCalibrationService: Инициализация сервиса калибровки");
 }
 
-void SensorCalibrationService::applyCalibration(SensorData& data, SoilProfile profile) {
+void SensorCalibrationService::applyCalibration(SensorData& data, SoilProfile profile) { // NOLINT(readability-make-member-function-const)
     logDebugSafe("SensorCalibrationService: Применение калибровки для профиля %d", static_cast<int>(profile));
 
     // Сохраняем исходные значения

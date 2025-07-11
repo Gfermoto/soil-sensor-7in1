@@ -616,14 +616,14 @@ std::vector<String> CropRecommendationEngine::getAvailableCrops() const {
 }
 
 CropConfig CropRecommendationEngine::getCropConfig(const String& cropType) const {
-    auto it = cropConfigs.find(cropType);
-    if (it != cropConfigs.end()) {
-        return it->second;
+    auto cropIterator = cropConfigs.find(cropType);
+    if (cropIterator != cropConfigs.end()) {
+        return cropIterator->second;
     }
     // Возвращаем generic конфигурацию если культура не найдена
-    auto genericIt = cropConfigs.find("generic");
-    if (genericIt != cropConfigs.end()) {
-        return genericIt->second;
+    auto genericIterator = cropConfigs.find("generic");
+    if (genericIterator != cropConfigs.end()) {
+        return genericIterator->second;
     }
     return {}; // Пустая конфигурация
 }
@@ -738,13 +738,13 @@ RecValues CropRecommendationEngine::computeRecommendations(const String& cropId,
     RecValues rec = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F};
     
     // Получаем базовую конфигурацию культуры
-    auto it = cropConfigs.find(cropId);
-    if (it == cropConfigs.end()) {
-        it = cropConfigs.find("generic");
+    auto configIterator = cropConfigs.find(cropId);
+    if (configIterator == cropConfigs.end()) {
+        configIterator = cropConfigs.find("generic");
     }
     
-    if (it != cropConfigs.end()) {
-        const CropConfig& config = it->second;
+    if (configIterator != cropConfigs.end()) {
+        const CropConfig& config = configIterator->second;
         rec.t = config.temperature;
         rec.hum = config.humidity;
         rec.ec = config.ec;

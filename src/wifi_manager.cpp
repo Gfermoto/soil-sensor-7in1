@@ -20,7 +20,7 @@
 #include "web_routes.h"           // 🏗️ Модульная архитектура v2.4.5
 
 // Константы
-enum class WifiConstants : std::uint16_t
+enum class WifiConstants : std::uint16_t // NOLINT(performance-enum-size)
 {
     RESET_BUTTON_PIN = 0,             // GPIO0 для кнопки сброса
     WIFI_RECONNECT_INTERVAL = 30000,  // Интервал между попытками переподключения (30 секунд)

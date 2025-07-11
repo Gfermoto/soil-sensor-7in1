@@ -184,7 +184,7 @@ String generatePageHeader(const String& titleText, const String& iconText) // NO
     return generatePageHeaderImpl(PageInfo::builder().setTitle(titleText).setIcon(iconText).build());
 }
 
-static String generatePageFooter() // NOLINT(misc-use-internal-linkage)
+static String generatePageFooter() // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     return "</div>" + String(getToastHTML()) + "</body></html>";
 }

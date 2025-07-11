@@ -40,12 +40,10 @@ public:
 };
 
 struct RangeParams {
-    float value;
-    float min_val;
-    float max_val;
-    const char* field_name;
-    
-    RangeParams() : value(0.0F), min_val(0.0F), max_val(0.0F), field_name("") {}
+    float value = 0.0F;
+    float min_val = 0.0F;
+    float max_val = 0.0F;
+    const char* field_name = "";
     
 public:
     struct Builder {
@@ -58,12 +56,7 @@ public:
         Builder& setMaxVal(float max) { max_val = max; return *this; }
         Builder& setFieldName(const char* name) { field_name = name; return *this; }
         RangeParams build() const {
-            RangeParams result;
-            result.value = value;
-            result.min_val = min_val;
-            result.max_val = max_val;
-            result.field_name = field_name;
-            return result;
+            return {value, min_val, max_val, field_name};
         }
     };
     static Builder builder() { return {}; }
@@ -200,22 +193,22 @@ ValidationResult validateInterval(unsigned long interval, unsigned long min_val,
         .build());
 }
 
-static ValidationResult validateSensorReadInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage)
+static ValidationResult validateSensorReadInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     return validateSensorReadIntervalInternal(interval);
 }
 
-static ValidationResult validateMQTTPublishInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage)
+static ValidationResult validateMQTTPublishInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     return validateMQTTPublishIntervalInternal(interval);
 }
 
-static ValidationResult validateThingSpeakInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage)
+static ValidationResult validateThingSpeakInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     return validateThingSpeakIntervalInternal(interval);
 }
 
-static ValidationResult validateNTPInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage)
+static ValidationResult validateNTPInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     return validateNTPIntervalInternal(interval);
 }
@@ -235,27 +228,27 @@ ValidationResult validateRange(float value, float min_val, float max_val, const 
         .build());
 }
 
-static ValidationResult validateTemperature(float temperature) // NOLINT(misc-use-internal-linkage)
+static ValidationResult validateTemperature(float temperature) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     return validateTemperatureInternal(temperature);
 }
 
-static ValidationResult validateHumidity(float humidity) // NOLINT(misc-use-internal-linkage)
+static ValidationResult validateHumidity(float humidity) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     return validateHumidityInternal(humidity);
 }
 
-static ValidationResult validatePH(float phValue) // NOLINT(misc-use-internal-linkage)
+static ValidationResult validatePH(float phValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     return validatePHInternal(phValue);
 }
 
-static ValidationResult validateEC(float ecValue) // NOLINT(misc-use-internal-linkage)
+static ValidationResult validateEC(float ecValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     return validateECInternal(ecValue);
 }
 
-static ValidationResult validateNPK(float value, const char* nutrient) // NOLINT(misc-use-internal-linkage)
+static ValidationResult validateNPK(float value, const char* nutrient) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     return validateNPKInternal(value, nutrient);
 }

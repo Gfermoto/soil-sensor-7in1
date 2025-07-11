@@ -66,10 +66,9 @@ float correctNPK_internal(float rawValue, float temperature, float humidity, flo
 // Строгая типизация для предотвращения ошибок
 struct ECCompensationParams
 {
-    float rawValue;
-    float temperature;
-    float compensationFactor;
-    ECCompensationParams() : rawValue(0.0F), temperature(25.0F), compensationFactor(2.0F) {}
+    float rawValue = 0.0F;
+    float temperature = 25.0F;
+    float compensationFactor = 2.0F;
     struct Builder {
         float rawValue = 0.0F;
         float temperature = 25.0F;
@@ -88,23 +87,23 @@ struct ECCompensationParams
     static Builder builder() { return {}; }
 };
 
-static float correctEC(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
+float correctEC(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
 {
     return correctEC_internal(params.rawValue, params.temperature, params.compensationFactor);
 }
 
-static float correctPH(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
+float correctPH(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
 {
     return correctPH_internal(params.rawValue, params.temperature, params.compensationFactor);
 }
 
-static float correctNPK(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
+float correctNPK(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
 {
     // Здесь rawValue — это NPK, temperature и humidity — из params
     return correctNPK_internal(params.rawValue, params.temperature, 60.0F, params.compensationFactor);
 }
 
-static void correctNPK(const ECCompensationParams& params, NPKReferences& npk) // NOLINT(misc-use-internal-linkage)
+void correctNPK(const ECCompensationParams& params, NPKReferences& npk) // NOLINT(misc-use-internal-linkage)
 {
     if (params.temperature < 10.0F || params.temperature > 90.0F)
     {

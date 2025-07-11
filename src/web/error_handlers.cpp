@@ -8,10 +8,8 @@
 // Структура для типобезопасности (предотвращение перепутывания min/max)
 struct ValidationRange
 {
-    int minValue;
-    int maxValue;
-    
-    ValidationRange() : minValue(0), maxValue(0) {}
+    int minValue = 0;
+    int maxValue = 0;
     
 public:
     // Builder для предотвращения ошибок с параметрами
@@ -21,10 +19,7 @@ public:
         Builder& minValue(int minValue) { min = minValue; return *this; }
         Builder& maxValue(int maxValue) { max = maxValue; return *this; }
         ValidationRange build() const {
-            ValidationRange result;
-            result.minValue = min;
-            result.maxValue = max;
-            return result;
+            return {min, max};
         }
     };
     static Builder builder() { return {}; }
@@ -33,11 +28,9 @@ public:
 // Структура для веб-запроса (предотвращение перепутывания String параметров)
 struct HttpRequest
 {
-    String method;
-    String uri;
-    String clientIP;
-    
-    HttpRequest() : method(""), uri(""), clientIP("") {}
+    String method = "";
+    String uri = "";
+    String clientIP = "";
     
 public:
     // Builder для предотвращения ошибок с параметрами
@@ -206,7 +199,7 @@ bool isFeatureAvailable()
  * @param errorMsg Сообщение об ошибке
  * @return HTML ответ с ошибкой
  */
-static String generateValidationErrorResponse(const String& errorMsg) // NOLINT(misc-use-internal-linkage)
+static String generateValidationErrorResponse(const String& errorMsg) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     String content = "<h1>" UI_ICON_CONFIG " Настройки JXCT</h1>";
     content += generateFormError(errorMsg);
@@ -222,7 +215,7 @@ static String generateValidationErrorResponse(const String& errorMsg) // NOLINT(
  * @brief Обработка критических ошибок сервера
  * @param error Описание ошибки
  */
-static void handleCriticalError(const String& error) // NOLINT(misc-use-internal-linkage)
+static void handleCriticalError(const String& error) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     logErrorSafe("\1", error.c_str());
 
@@ -235,7 +228,7 @@ static void handleCriticalError(const String& error) // NOLINT(misc-use-internal
  * @param uri URI запроса
  * @return true если маршрут доступен
  */
-static bool isRouteAvailable(const String& uri) // NOLINT(misc-use-internal-linkage)
+static bool isRouteAvailable(const String& uri) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
 {
     if (currentWiFiMode == WiFiMode::AP)
     {
