@@ -8,32 +8,28 @@ struct PageInfo
 {
     const String& title;
     const String& icon;
-
-    PageInfo(const String& titleValue, const String& iconValue)
-        : title(titleValue), icon(iconValue) {}
-
+private:
+    PageInfo(const String& title, const String& icon) : title(title), icon(icon) {}
+public:
+    static PageInfo fromValues(const String& title, const String& icon) {
+        return PageInfo(title, icon);
+    }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
         const String& title = String();
         const String& icon = String();
-        
         Builder& setTitle(const String& titleText) { const_cast<String&>(title) = titleText; return *this; }
         Builder& setIcon(const String& iconText) { const_cast<String&>(icon) = iconText; return *this; }
-        
         PageInfo build() const {
-            return {title, icon};
+            return PageInfo::fromValues(title, icon);
         }
     };
-    
     static Builder builder() { return {}; }
-
-    // Статический метод-фабрика для безопасного создания с именованными параметрами
-    static PageInfo createWithTitle(const String& titleValue, const String& iconValue) {
-        return {titleValue, iconValue};
+    static PageInfo createWithTitle(const String& title, const String& icon) {
+        return PageInfo::fromValues(title, icon);
     }
-    
-    static PageInfo createWithIcon(const String& iconValue, const String& titleValue) {
-        return {titleValue, iconValue};
+    static PageInfo createWithIcon(const String& icon, const String& title) {
+        return PageInfo::fromValues(title, icon);
     }
 };
 
@@ -44,19 +40,18 @@ struct FormInfo
     const String& formContent;
     const String& buttonText;
     const String& buttonIcon;
-
-    FormInfo(const String& actionValue, const String& methodValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue)
-        : action(actionValue), method(methodValue), formContent(formContentValue), buttonText(buttonTextValue), buttonIcon(buttonIconValue)
-    {
+private:
+    FormInfo(const String& action, const String& method, const String& formContent, const String& buttonText, const String& buttonIcon)
+        : action(action), method(method), formContent(formContent), buttonText(buttonText), buttonIcon(buttonIcon) {}
+public:
+    static FormInfo fromValues(const String& action, const String& method, const String& formContent, const String& buttonText, const String& buttonIcon) {
+        return FormInfo(action, method, formContent, buttonText, buttonIcon);
     }
-
-    // Статический метод-фабрика для безопасного создания с именованными параметрами
-    static FormInfo createWithAction(const String& actionValue, const String& methodValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue) {
-        return {actionValue, methodValue, formContentValue, buttonTextValue, buttonIconValue};
+    static FormInfo createWithAction(const String& action, const String& method, const String& formContent, const String& buttonText, const String& buttonIcon) {
+        return FormInfo::fromValues(action, method, formContent, buttonText, buttonIcon);
     }
-    
-    static FormInfo createWithMethod(const String& methodValue, const String& actionValue, const String& formContentValue, const String& buttonTextValue, const String& buttonIconValue) {
-        return {actionValue, methodValue, formContentValue, buttonTextValue, buttonIconValue};
+    static FormInfo createWithMethod(const String& method, const String& action, const String& formContent, const String& buttonText, const String& buttonIcon) {
+        return FormInfo::fromValues(action, method, formContent, buttonText, buttonIcon);
     }
 };
 
@@ -69,8 +64,13 @@ struct InputFieldInfo
     const String& type;
     const bool required;
     const String& placeholder;
-
-    // Конструктор с именованными параметрами для безопасности
+private:
+    InputFieldInfo(const String& id, const String& name, const String& label, const String& value, const String& type, bool required, const String& placeholder)
+        : id(id), name(name), label(label), value(value), type(type), required(required), placeholder(placeholder) {}
+public:
+    static InputFieldInfo fromValues(const String& id, const String& name, const String& label, const String& value, const String& type, bool required, const String& placeholder) {
+        return InputFieldInfo(id, name, label, value, type, required, placeholder);
+    }
     struct Builder {
         const String& id;
         const String& name;
@@ -79,8 +79,6 @@ struct InputFieldInfo
         const String& type;
         const bool required = false;
         const String& placeholder;
-
-        // Используем именованные параметры для безопасности
         Builder& setId(const String& fieldId) { const_cast<String&>(id) = fieldId; return *this; }
         Builder& setName(const String& fieldName) { const_cast<String&>(name) = fieldName; return *this; }
         Builder& setLabel(const String& labelText) { const_cast<String&>(label) = labelText; return *this; }
@@ -88,38 +86,18 @@ struct InputFieldInfo
         Builder& setType(const String& typeText) { const_cast<String&>(type) = typeText; return *this; }
         Builder& setRequired(bool isRequired) { const_cast<bool&>(required) = isRequired; return *this; }
         Builder& setPlaceholder(const String& placeholderText) { const_cast<String&>(placeholder) = placeholderText; return *this; }
-
-        // Конструктор по умолчанию
-        Builder() : id(String()), name(String()), label(String()), value(String()),
-                    type(String()), placeholder(String()) {}
+        Builder() : id(String()), name(String()), label(String()), value(String()), type(String()), placeholder(String()) {}
+        InputFieldInfo build() const {
+            return InputFieldInfo::fromValues(id, name, label, value, type, required, placeholder);
+        }
     };
-
     InputFieldInfo(const Builder& builder)
-        : id(builder.id),
-          name(builder.name),
-          label(builder.label),
-          value(builder.value),
-          type(builder.type),
-          required(builder.required),
-          placeholder(builder.placeholder)
-    {
+        : id(builder.id), name(builder.name), label(builder.label), value(builder.value), type(builder.type), required(builder.required), placeholder(builder.placeholder) {}
+    static InputFieldInfo createWithId(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText, const String& typeText, bool required, const String& placeholderText) {
+        return InputFieldInfo::fromValues(fieldId, fieldName, labelText, valueText, typeText, required, placeholderText);
     }
-
-    // Статический метод-фабрика для безопасного создания с именованными параметрами
-    static InputFieldInfo createWithId(const String& fieldId, const String& fieldName, const String& labelText, const String& valueText,
-                                const String& typeText, bool isRequired, const String& placeholderText) {
-        const Builder builder = Builder()
-            .setId(fieldId).setName(fieldName).setLabel(labelText).setValue(valueText)
-            .setType(typeText).setRequired(isRequired).setPlaceholder(placeholderText);
-        return InputFieldInfo(builder);
-    }
-    
-    static InputFieldInfo createWithName(const String& fieldName, const String& fieldId, const String& labelText, const String& valueText,
-                                const String& typeText, bool isRequired, const String& placeholderText) {
-        const Builder builder = Builder()
-            .setId(fieldId).setName(fieldName).setLabel(labelText).setValue(valueText)
-            .setType(typeText).setRequired(isRequired).setPlaceholder(placeholderText);
-        return InputFieldInfo(builder);
+    static InputFieldInfo createWithName(const String& fieldName, const String& fieldId, const String& labelText, const String& valueText, const String& typeText, bool required, const String& placeholderText) {
+        return InputFieldInfo::fromValues(fieldId, fieldName, labelText, valueText, typeText, required, placeholderText);
     }
 };
 
@@ -132,19 +110,18 @@ struct NumberFieldInfo
     int min;
     int max;
     int step;
-
-    NumberFieldInfo(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum)
-        : id(fieldId), name(fieldName), label(labelText), value(valueNum), min(minNum), max(maxNum), step(stepNum)
-    {
+private:
+    NumberFieldInfo(const String& id, const String& name, const String& label, int value, int min, int max, int step)
+        : id(id), name(name), label(label), value(value), min(min), max(max), step(step) {}
+public:
+    static NumberFieldInfo fromValues(const String& id, const String& name, const String& label, int value, int min, int max, int step) {
+        return NumberFieldInfo(id, name, label, value, min, max, step);
     }
-
-    // Статический метод-фабрика для безопасного создания с именованными параметрами
     static NumberFieldInfo createWithId(const String& fieldId, const String& fieldName, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
-        return {fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum};
+        return NumberFieldInfo::fromValues(fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum);
     }
-    
     static NumberFieldInfo createWithName(const String& fieldName, const String& fieldId, const String& labelText, int valueNum, int minNum, int maxNum, int stepNum) {
-        return {fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum};
+        return NumberFieldInfo::fromValues(fieldId, fieldName, labelText, valueNum, minNum, maxNum, stepNum);
     }
 };
 
@@ -153,19 +130,18 @@ struct ConfigSectionInfo
     const String& title;
     const String& content;
     const String& helpText;
-
-    ConfigSectionInfo(const String& titleText, const String& contentText, const String& helpTextValue)
-        : title(titleText), content(contentText), helpText(helpTextValue)
-    {
+private:
+    ConfigSectionInfo(const String& title, const String& content, const String& helpText)
+        : title(title), content(content), helpText(helpText) {}
+public:
+    static ConfigSectionInfo fromValues(const String& title, const String& content, const String& helpText) {
+        return ConfigSectionInfo(title, content, helpText);
     }
-
-    // Статический метод-фабрика для безопасного создания с именованными параметрами
-    static ConfigSectionInfo createWithTitle(const String& titleText, const String& contentText, const String& helpTextValue) {
-        return {titleText, contentText, helpTextValue};
+    static ConfigSectionInfo createWithTitle(const String& title, const String& content, const String& helpText) {
+        return ConfigSectionInfo::fromValues(title, content, helpText);
     }
-    
-    static ConfigSectionInfo createWithContent(const String& contentText, const String& titleText, const String& helpTextValue) {
-        return {titleText, contentText, helpTextValue};
+    static ConfigSectionInfo createWithContent(const String& content, const String& title, const String& helpText) {
+        return ConfigSectionInfo::fromValues(title, content, helpText);
     }
 };
 

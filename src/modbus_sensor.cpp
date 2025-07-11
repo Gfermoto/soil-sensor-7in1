@@ -36,8 +36,8 @@ struct RegisterConversion {
 private:
     RegisterConversion(uint16_t reg_value, float mult) : value(reg_value), multiplier(mult) {}
 public:
-    static RegisterConversion fromRaw(uint16_t value, float multiplier) {
-        return RegisterConversion(value, multiplier);
+    static RegisterConversion fromRaw(uint16_t registerValue, float scaleMultiplier) {
+        return RegisterConversion(registerValue, scaleMultiplier);
     }
     float toFloat() const {
         return static_cast<float>(value) * multiplier;

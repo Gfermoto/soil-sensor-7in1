@@ -119,6 +119,23 @@ public:
                                           const String& season, const String& soilType) {
         return RecommendationParams(data, cropType, growingType, season, soilType);
     }
+    // Builder для предотвращения ошибок с параметрами
+    struct Builder {
+        const SensorData& sensorData = SensorData{};
+        const String& crop = String();
+        const String& growing = String();
+        const String& seasonType = String();
+        const String& soil = String();
+        Builder& data(const SensorData& sensorData) { const_cast<SensorData&>(this->sensorData) = sensorData; return *this; }
+        Builder& cropType(const String& cropType) { const_cast<String&>(crop) = cropType; return *this; }
+        Builder& growingType(const String& growingType) { const_cast<String&>(growing) = growingType; return *this; }
+        Builder& season(const String& season) { const_cast<String&>(seasonType) = season; return *this; }
+        Builder& soilType(const String& soilType) { const_cast<String&>(soil) = soilType; return *this; }
+        RecommendationParams build() const {
+            return RecommendationParams::fromValues(sensorData, crop, growing, seasonType, soil);
+        }
+    };
+    static Builder builder() { return {}; }
 };
 
 RecommendationResult CropRecommendationEngine::generateRecommendation(
@@ -128,7 +145,13 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(
     const String& season,
     const String& soilType) {
     
-    const RecommendationParams params = RecommendationParams::fromValues(data, cropType, growingType, season, soilType);
+    const RecommendationParams params = RecommendationParams::builder()
+        .data(data)
+        .cropType(cropType)
+        .growingType(growingType)
+        .season(season)
+        .soilType(soilType)
+        .build();
     
     // Валидация входных данных
     if (params.data.temperature < 0.0F || params.data.temperature > 50.0F) {

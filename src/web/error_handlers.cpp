@@ -18,6 +18,17 @@ public:
     static ValidationRange fromValues(int minValue, int maxValue) {
         return ValidationRange(minValue, maxValue);
     }
+    // Builder для предотвращения ошибок с параметрами
+    struct Builder {
+        int min = 0;
+        int max = 0;
+        Builder& minValue(int minValue) { min = minValue; return *this; }
+        Builder& maxValue(int maxValue) { max = maxValue; return *this; }
+        ValidationRange build() const {
+            return ValidationRange::fromValues(min, max);
+        }
+    };
+    static Builder builder() { return {}; }
     // Статический метод-фабрика для безопасного создания с именованными параметрами
     static ValidationRange createWithMin(int minValue, int maxValue) {
         return ValidationRange::fromValues(minValue, maxValue);
@@ -44,6 +55,19 @@ public:
     static HttpRequest fromValues(const String& methodValue, const String& uriValue, const String& clientIPValue) {
         return HttpRequest(methodValue, uriValue, clientIPValue);
     }
+    // Builder для предотвращения ошибок с параметрами
+    struct Builder {
+        const String& methodValue = String();
+        const String& uriValue = String();
+        const String& clientIPValue = String();
+        Builder& method(const String& method) { const_cast<String&>(methodValue) = method; return *this; }
+        Builder& uri(const String& uri) { const_cast<String&>(uriValue) = uri; return *this; }
+        Builder& clientIP(const String& clientIP) { const_cast<String&>(clientIPValue) = clientIP; return *this; }
+        HttpRequest build() const {
+            return HttpRequest::fromValues(methodValue, uriValue, clientIPValue);
+        }
+    };
+    static Builder builder() { return {}; }
 
     // Статический метод-фабрика для безопасного создания с именованными параметрами
     static HttpRequest createWithMethod(const String& methodValue, const String& uriValue, const String& clientIPValue) {

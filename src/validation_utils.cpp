@@ -132,7 +132,12 @@ ValidationResult validateInterval(const IntervalValidation& params)
 ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val,
                                   const char* field_name)
 {
-    return validateInterval(IntervalValidation::fromValues(interval, min_val, max_val, field_name));
+    return validateInterval(IntervalValidation::builder()
+        .interval(interval)
+        .minValue(min_val)
+        .maxValue(max_val)
+        .fieldName(field_name)
+        .build());
 }
 
 ValidationResult validateSensorReadInterval(unsigned long interval)
