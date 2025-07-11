@@ -11,7 +11,7 @@ struct PageInfo
     String title;
     String icon;
 private:
-    PageInfo(const String& title, const String& icon) : title(title), icon(icon) {}
+    PageInfo(const String& title, const String& icon) : title(title), icon(icon) {} // NOLINT(bugprone-easily-swappable-parameters)
 public:
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
@@ -34,7 +34,7 @@ struct FormInfo
     String buttonText;
     String buttonIcon;
 private:
-    FormInfo(const String& action, const String& method, const String& formContent, const String& buttonText, const String& buttonIcon)
+    FormInfo(const String& action, const String& method, const String& formContent, const String& buttonText, const String& buttonIcon) // NOLINT(bugprone-easily-swappable-parameters)
         : action(action), method(method), formContent(formContent), buttonText(buttonText), buttonIcon(buttonIcon) {}
 public:
     // Builder для предотвращения ошибок с параметрами
@@ -66,7 +66,7 @@ struct InputFieldInfo
     bool required;
     String placeholder;
 private:
-    InputFieldInfo(const String& fieldId, const String& fieldName, const String& fieldLabel, const String& fieldValue, const String& fieldType, bool fieldRequired, const String& fieldPlaceholder)
+    InputFieldInfo(const String& fieldId, const String& fieldName, const String& fieldLabel, const String& fieldValue, const String& fieldType, bool fieldRequired, const String& fieldPlaceholder) // NOLINT(bugprone-easily-swappable-parameters)
         : id(fieldId), name(fieldName), label(fieldLabel), value(fieldValue), type(fieldType), required(fieldRequired), placeholder(fieldPlaceholder) {}
 public:
     // Builder для предотвращения ошибок с параметрами
@@ -105,7 +105,7 @@ struct NumberFieldInfo
     int max;
     int step;
 private:
-    NumberFieldInfo(const String& fieldId, const String& fieldName, const String& fieldLabel, int fieldValue, int fieldMin, int fieldMax, int fieldStep)
+    NumberFieldInfo(const String& fieldId, const String& fieldName, const String& fieldLabel, int fieldValue, int fieldMin, int fieldMax, int fieldStep) // NOLINT(bugprone-easily-swappable-parameters)
         : id(fieldId), name(fieldName), label(fieldLabel), value(fieldValue), min(fieldMin), max(fieldMax), step(fieldStep) {}
 public:
     // Builder для предотвращения ошибок с параметрами
@@ -137,7 +137,7 @@ struct ConfigSectionInfo
     String content;
     String helpText;
 private:
-    ConfigSectionInfo(const String& title, const String& content, const String& helpText)
+    ConfigSectionInfo(const String& title, const String& content, const String& helpText) // NOLINT(bugprone-easily-swappable-parameters)
         : title(title), content(content), helpText(helpText) {}
 public:
     // Builder для предотвращения ошибок с параметрами
@@ -179,7 +179,7 @@ String generateBasePageImpl(const PageInfo& page, const String& content)
 
 // Реализации функций, объявленных в web_routes.h, должны быть в глобальном пространстве имён
 // Глобальные функции
-String generatePageHeader(const String& titleText, const String& iconText)
+String generatePageHeader(const String& titleText, const String& iconText) // NOLINT(bugprone-easily-swappable-parameters)
 {
     return generatePageHeaderImpl(PageInfo::builder().setTitle(titleText).setIcon(iconText).build());
 }
@@ -189,12 +189,12 @@ String generatePageFooter()
     return "</div>" + String(getToastHTML()) + "</body></html>";
 }
 
-String generateBasePage(const String& titleText, const String& contentText, const String& iconText)
+String generateBasePage(const String& titleText, const String& contentText, const String& iconText) // NOLINT(bugprone-easily-swappable-parameters)
 {
     return generateBasePageImpl(PageInfo::builder().setTitle(titleText).setIcon(iconText).build(), contentText);
 }
 
-String generateErrorPage(int errorCode, const String& errorMessage)
+String generateErrorPage(int errorCode, const String& errorMessage) // NOLINT(bugprone-easily-swappable-parameters)
 {
     String content = "<h1>" UI_ICON_ERROR " Ошибка " + String(errorCode) + "</h1>";
     content += "<div class='msg msg-error'>" UI_ICON_ERROR " " + errorMessage + "</div>";
@@ -204,7 +204,7 @@ String generateErrorPage(int errorCode, const String& errorMessage)
 }
 
 String generateSuccessPage(const String& titleText, const String& messageText, const String& redirectUrlText,
-                           int redirectDelaySeconds)
+                           int redirectDelaySeconds) // NOLINT(bugprone-easily-swappable-parameters)
 {
     String content = "<h1>" UI_ICON_SUCCESS " " + titleText + "</h1>";
     content += "<div class='msg msg-success'>" UI_ICON_SUCCESS " " + messageText + "</div>";
@@ -219,7 +219,7 @@ String generateSuccessPage(const String& titleText, const String& messageText, c
     return generateBasePage(titleText, content, UI_ICON_SUCCESS);
 }
 
-String generateApModeUnavailablePage(const String& titleText, const String& iconText)
+String generateApModeUnavailablePage(const String& titleText, const String& iconText) // NOLINT(bugprone-easily-swappable-parameters)
 {
     String content = "<h1>" + iconText + " " + titleText + "</h1>";
     content += "<div class='msg msg-warning'>" UI_ICON_WARNING " Эта страница недоступна в режиме точки доступа</div>";

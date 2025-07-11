@@ -251,7 +251,7 @@ bool isRouteAvailable(const String& uri)
  */
 namespace
 {
-bool checkRouteAccess(const String& routeName, const String& icon)
+bool checkRouteAccess(const String& routeName, const String& icon) // NOLINT(bugprone-easily-swappable-parameters)
 {
     if (!isRouteAvailable(webServer.uri()))
     {

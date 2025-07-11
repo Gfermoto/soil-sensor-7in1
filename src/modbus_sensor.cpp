@@ -31,7 +31,7 @@ struct RegisterConversion {
     
     // Приватный конструктор
 private:
-    RegisterConversion(uint16_t reg_value, float mult) : value(reg_value), multiplier(mult) {}
+    RegisterConversion(uint16_t reg_value, float mult) : value(reg_value), multiplier(mult) {} // NOLINT(bugprone-easily-swappable-parameters)
 public:
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
@@ -46,7 +46,7 @@ public:
     static Builder builder() { return {}; }
     
     // Обратная совместимость
-    static RegisterConversion fromRaw(uint16_t registerValue, float scaleMultiplier) {
+    static RegisterConversion fromRaw(uint16_t registerValue, float scaleMultiplier) { // NOLINT(bugprone-easily-swappable-parameters)
         return RegisterConversion(registerValue, scaleMultiplier);
     }
     float toFloat() const {

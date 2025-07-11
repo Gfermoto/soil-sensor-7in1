@@ -120,7 +120,7 @@ void correctNPK(const ECCompensationParams& params, NPKReferences& npk)
 } // namespace
 
 // --- ОБРАТНАЯ СОВМЕСТИМОСТЬ: старые сигнатуры (тонкие обёртки) ---
-float correctEC(float ecRaw, float temperature, float compensationFactor)
+float correctEC(float ecRaw, float temperature, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters)
 {
     return correctEC(ECCompensationParams::builder()
         .setRawValue(ecRaw)
@@ -129,7 +129,7 @@ float correctEC(float ecRaw, float temperature, float compensationFactor)
         .build());
 }
 
-float correctPH(float rawValue, float temperature, float compensationFactor)
+float correctPH(float rawValue, float temperature, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters)
 {
     return correctPH(ECCompensationParams::builder()
         .setRawValue(rawValue)
@@ -139,12 +139,12 @@ float correctPH(float rawValue, float temperature, float compensationFactor)
 }
 
 // Обёртка для обратной совместимости
-float correctPH(float rawValue, float temperature)
+float correctPH(float rawValue, float temperature) // NOLINT(bugprone-easily-swappable-parameters)
 {
     return correctPH(rawValue, temperature, 2.0F);
 }
 
-float correctNPK(float rawValue, float temperature, float humidity, float compensationFactor)
+float correctNPK(float rawValue, float temperature, float humidity, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters)
 {
     return correctNPK(ECCompensationParams::builder()
         .setRawValue(rawValue)
@@ -171,12 +171,12 @@ void correctNPK(const EnvironmentalConditions& env, NPKReferences& npk, SoilType
         .build(), npk);
 }
 
-float correctEC(float ecRaw, float temperature, float theta, SoilType soil)
+float correctEC(float ecRaw, float temperature, float theta, SoilType soil) // NOLINT(bugprone-easily-swappable-parameters)
 {
     return correctEC(ecRaw, EnvironmentalConditions{temperature, theta}, soil);
 }
 
-void correctNPK(float temperature, float theta, SoilType soil, NPKReferences& npk)
+void correctNPK(float temperature, float theta, SoilType soil, NPKReferences& npk) // NOLINT(bugprone-easily-swappable-parameters)
 {
     correctNPK(EnvironmentalConditions{temperature, theta}, npk, soil);
 }

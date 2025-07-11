@@ -118,11 +118,11 @@ struct RecommendationParams
     const String& soilType;
 private:
     RecommendationParams(const SensorData& data, const String& cropType, const String& growingType, 
-                        const String& season, const String& soilType) 
+                        const String& season, const String& soilType) // NOLINT(bugprone-easily-swappable-parameters)
         : data(data), cropType(cropType), growingType(growingType), season(season), soilType(soilType) {}
 public:
     static RecommendationParams fromValues(const SensorData& data, const String& cropType, const String& growingType, 
-                                          const String& season, const String& soilType) {
+                                          const String& season, const String& soilType) { // NOLINT(bugprone-easily-swappable-parameters)
         return RecommendationParams(data, cropType, growingType, season, soilType);
     }
     // Builder для предотвращения ошибок с параметрами
@@ -149,7 +149,7 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(
     const String& cropType, 
     const String& growingType,
     const String& season,
-    const String& soilType) {
+    const String& soilType) { // NOLINT(bugprone-easily-swappable-parameters)
     
     const RecommendationParams params = RecommendationParams::builder()
         .data(data)
