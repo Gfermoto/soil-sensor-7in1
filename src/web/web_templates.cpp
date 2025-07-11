@@ -184,7 +184,7 @@ String generatePageHeader(const String& titleText, const String& iconText) // NO
     return generatePageHeaderImpl(PageInfo::builder().setTitle(titleText).setIcon(iconText).build());
 }
 
-static String generatePageFooter() // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
+static String generatePageFooter() // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return "</div>" + String(getToastHTML()) + "</body></html>";
 }
@@ -194,7 +194,7 @@ String generateBasePage(const String& titleText, const String& contentText, cons
     return generateBasePageImpl(PageInfo::builder().setTitle(titleText).setIcon(iconText).build(), contentText);
 }
 
-String generateErrorPage(int errorCode, const String& errorMessage) // NOLINT(bugprone-easily-swappable-parameters)
+String generateErrorPage(int errorCode, const String& errorMessage) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     String content = "<h1>" UI_ICON_ERROR " Ошибка " + String(errorCode) + "</h1>";
     content += "<div class='msg msg-error'>" UI_ICON_ERROR " " + errorMessage + "</div>";
@@ -219,7 +219,7 @@ String generateSuccessPage(const String& titleText, const String& messageText, c
     return generateBasePage(titleText, content, UI_ICON_SUCCESS);
 }
 
-String generateApModeUnavailablePage(const String& titleText, const String& iconText) // NOLINT(bugprone-easily-swappable-parameters)
+String generateApModeUnavailablePage(const String& titleText, const String& iconText) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     String content = "<h1>" + iconText + " " + titleText + "</h1>";
     content += "<div class='msg msg-warning'>" UI_ICON_WARNING " Эта страница недоступна в режиме точки доступа</div>";

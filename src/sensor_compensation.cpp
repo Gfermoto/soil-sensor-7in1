@@ -143,7 +143,7 @@ float correctPH(float rawValue, float temperature) // NOLINT(bugprone-easily-swa
     return correctPH(rawValue, temperature, 2.0F);
 }
 
-float correctNPK(float rawValue, float temperature, float humidity, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
+float correctNPK(float rawValue, float temperature, float humidity, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage,misc-unused-parameters)
 {
     return correctNPK(ECCompensationParams::builder()
         .setRawValue(rawValue)

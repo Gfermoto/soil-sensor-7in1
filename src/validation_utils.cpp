@@ -228,27 +228,27 @@ ValidationResult validateRange(float value, float min_val, float max_val, const 
         .build());
 }
 
-static ValidationResult validateTemperature(float temperature) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
+static ValidationResult validateTemperature(float temperature) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateTemperatureInternal(temperature);
 }
 
-static ValidationResult validateHumidity(float humidity) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
+static ValidationResult validateHumidity(float humidity) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateHumidityInternal(humidity);
 }
 
-static ValidationResult validatePH(float phValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
+static ValidationResult validatePH(float phValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validatePHInternal(phValue);
 }
 
-static ValidationResult validateEC(float ecValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
+static ValidationResult validateEC(float ecValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateECInternal(ecValue);
 }
 
-static ValidationResult validateNPK(float value, const char* nutrient) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static)
+static ValidationResult validateNPK(float value, const char* nutrient) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateNPKInternal(value, nutrient);
 }
@@ -257,7 +257,7 @@ static ValidationResult validateNPK(float value, const char* nutrient) // NOLINT
 // КОМПЛЕКСНАЯ ВАЛИДАЦИЯ
 // ============================================================================
 
-ConfigValidationResult validateFullConfig(const ConfigData& config, bool checkRequired)
+ConfigValidationResult validateFullConfig(const ConfigData& config, bool checkRequired) // NOLINT(misc-use-internal-linkage)
 {
     ConfigValidationResult result;
     result.isValid = true;
@@ -342,7 +342,7 @@ ConfigValidationResult validateFullConfig(const ConfigData& config, bool checkRe
     return result;
 }
 
-SensorValidationResult validateFullSensorData(const SensorData& data)
+SensorValidationResult validateFullSensorData(const SensorData& data) // NOLINT(misc-use-internal-linkage)
 {
     SensorValidationResult result;
     result.isValid = true;
@@ -403,7 +403,7 @@ SensorValidationResult validateFullSensorData(const SensorData& data)
 // УТИЛИТЫ ВАЛИДАЦИИ
 // ============================================================================
 
-bool isValidIPAddress(const String& ipAddress)
+bool isValidIPAddress(const String& ipAddress) // NOLINT(misc-use-internal-linkage)
 {
     int parts = 0;
     int start = 0;
@@ -437,7 +437,7 @@ bool isValidIPAddress(const String& ipAddress)
     return parts == 4;
 }
 
-bool isValidHostname(const String& hostname)
+bool isValidHostname(const String& hostname) // NOLINT(misc-use-internal-linkage)
 {
     if (hostname.length() == 0 || hostname.length() > 253)
     {
@@ -458,7 +458,7 @@ bool isValidHostname(const String& hostname)
            hostname.charAt(hostname.length() - 1) != '-';
 }
 
-String formatValidationErrors(const ConfigValidationResult& result)
+String formatValidationErrors(const ConfigValidationResult& result) // NOLINT(misc-use-internal-linkage)
 {
     if (result.isValid)
     {
@@ -473,7 +473,7 @@ String formatValidationErrors(const ConfigValidationResult& result)
     return formatted;
 }
 
-String formatSensorValidationErrors(const SensorValidationResult& result)
+String formatSensorValidationErrors(const SensorValidationResult& result) // NOLINT(misc-use-internal-linkage)
 {
     if (result.isValid)
     {
@@ -492,7 +492,7 @@ String formatSensorValidationErrors(const SensorValidationResult& result)
 // ЛОГИРОВАНИЕ ВАЛИДАЦИИ
 // ============================================================================
 
-void logValidationResult(const ConfigValidationResult& result, const char* context)
+void logValidationResult(const ConfigValidationResult& result, const char* context) // NOLINT(misc-use-internal-linkage)
 {
     if (result.isValid)
     {
@@ -508,7 +508,7 @@ void logValidationResult(const ConfigValidationResult& result, const char* conte
     }
 }
 
-void logSensorValidationResult(const SensorValidationResult& result, const char* context)
+void logSensorValidationResult(const SensorValidationResult& result, const char* context) // NOLINT(misc-use-internal-linkage)
 {
     if (result.isValid)
     {
@@ -524,7 +524,7 @@ void logSensorValidationResult(const SensorValidationResult& result, const char*
     }
 }
 
-ValidationResult validateSSID(const String& ssid)
+ValidationResult validateSSID(const String& ssid) // NOLINT(misc-use-internal-linkage)
 {
     if (ssid.length() == 0)
     {
@@ -537,7 +537,7 @@ ValidationResult validateSSID(const String& ssid)
     return ValidationResult{true, ""};
 }
 
-ValidationResult validatePassword(const String& password)
+ValidationResult validatePassword(const String& password) // NOLINT(misc-use-internal-linkage)
 {
     if (password.length() > 0 && password.length() < 8)
     {
@@ -550,7 +550,7 @@ ValidationResult validatePassword(const String& password)
     return ValidationResult{true, ""};
 }
 
-ValidationResult validateMQTTServer(const String& server)
+ValidationResult validateMQTTServer(const String& server) // NOLINT(misc-use-internal-linkage)
 {
     if (server.length() == 0)
     {
@@ -567,7 +567,7 @@ ValidationResult validateMQTTServer(const String& server)
     return ValidationResult{true, ""};
 }
 
-ValidationResult validateMQTTPort(int port)
+ValidationResult validateMQTTPort(int port) // NOLINT(misc-use-internal-linkage)
 {
     if (port < CONFIG_MQTT_PORT_MIN || port > CONFIG_MQTT_PORT_MAX)
     {
@@ -576,7 +576,7 @@ ValidationResult validateMQTTPort(int port)
     return ValidationResult{true, ""};
 }
 
-ValidationResult validateThingSpeakAPIKey(const String& apiKey)
+ValidationResult validateThingSpeakAPIKey(const String& apiKey) // NOLINT(misc-use-internal-linkage)
 {
     if (apiKey.length() == 0)
     {
