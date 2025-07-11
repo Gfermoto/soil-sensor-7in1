@@ -98,7 +98,7 @@ private:
         : interval(interval), min_val(min), max_val(max), field_name(field_name) {}
 public:
     static IntervalValidation fromValues(unsigned long interval, unsigned long min, unsigned long max, const char* field_name) {
-        return IntervalValidation(interval, min, max, field_name);
+        return {interval, min, max, field_name};
     }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {

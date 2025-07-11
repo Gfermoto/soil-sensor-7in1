@@ -565,13 +565,14 @@ String CropRecommendationEngine::calculateSoilHealthStatus(const SensorData& dat
     
     if (score >= 80) {
         return "Отличное";
-    } else if (score >= 60) {
-        return "Хорошее";
-    } else if (score >= 40) {
-        return "Удовлетворительное";
-    } else {
-        return "Требует внимания";
     }
+    if (score >= 60) {
+        return "Хорошее";
+    }
+    if (score >= 40) {
+        return "Удовлетворительное";
+    }
+    return "Требует внимания";
 }
 
 

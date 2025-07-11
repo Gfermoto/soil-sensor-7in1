@@ -16,7 +16,7 @@ private:
         : minValue(minValue), maxValue(maxValue) {}
 public:
     static ValidationRange fromValues(int minValue, int maxValue) {
-        return ValidationRange(minValue, maxValue);
+        return {minValue, maxValue};
     }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {

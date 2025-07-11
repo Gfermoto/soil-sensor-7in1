@@ -86,7 +86,7 @@ public:
         Builder& setType(const String& typeText) { const_cast<String&>(type) = typeText; return *this; }
         Builder& setRequired(bool isRequired) { const_cast<bool&>(required) = isRequired; return *this; }
         Builder& setPlaceholder(const String& placeholderText) { const_cast<String&>(placeholder) = placeholderText; return *this; }
-        Builder() : id(String()), name(String()), label(String()), value(String()), type(String()), placeholder(String()) {}
+        Builder() = default;
         InputFieldInfo build() const {
             return InputFieldInfo::fromValues(id, name, label, value, type, required, placeholder);
         }
