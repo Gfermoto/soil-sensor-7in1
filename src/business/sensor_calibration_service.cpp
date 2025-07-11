@@ -138,7 +138,7 @@ bool SensorCalibrationService::validateCalibrationData(const SensorData& data) /
 bool SensorCalibrationService::loadCalibrationTable(const String& csvData, SoilProfile profile) { // NOLINT(readability-convert-member-functions-to-static)
     logDebugSafe("SensorCalibrationService: Загрузка калибровочной таблицы для профиля %d", static_cast<int>(profile));
 
-    CalibrationTable table;
+    CalibrationTable table; // NOLINT(misc-const-correctness)
     if (parseCalibrationCSV(csvData, table)) {
         getCalibrationTables()[profile] = table;
         logDebugSafe("SensorCalibrationService: Таблица загружена успешно");

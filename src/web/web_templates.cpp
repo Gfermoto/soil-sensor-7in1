@@ -179,7 +179,7 @@ String generateBasePageImpl(const PageInfo& page, const String& content)
 
 // Реализации функций, объявленных в web_routes.h, должны быть в глобальном пространстве имён
 // Глобальные функции
-String generatePageHeader(const String& titleText, const String& iconText) // NOLINT(bugprone-easily-swappable-parameters)
+String generatePageHeader(const String& titleText, const String& iconText) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     return generatePageHeaderImpl(PageInfo::builder().setTitle(titleText).setIcon(iconText).build());
 }
@@ -189,7 +189,7 @@ static String generatePageFooter() // NOLINT(misc-use-internal-linkage,readabili
     return "</div>" + String(getToastHTML()) + "</body></html>";
 }
 
-String generateBasePage(const String& titleText, const String& contentText, const String& iconText) // NOLINT(bugprone-easily-swappable-parameters)
+String generateBasePage(const String& titleText, const String& contentText, const String& iconText) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     return generateBasePageImpl(PageInfo::builder().setTitle(titleText).setIcon(iconText).build(), contentText);
 }
@@ -203,7 +203,7 @@ String generateErrorPage(int errorCode, const String& errorMessage) // NOLINT(bu
     return generateBasePage("Ошибка " + String(errorCode), content, UI_ICON_ERROR);
 }
 
-String generateSuccessPage(const String& titleText, const String& messageText, const String& redirectUrlText,
+String generateSuccessPage(const String& titleText, const String& messageText, const String& redirectUrlText, // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
                            int redirectDelaySeconds) // NOLINT(bugprone-easily-swappable-parameters)
 {
     String content = "<h1>" UI_ICON_SUCCESS " " + titleText + "</h1>";

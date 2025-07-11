@@ -183,7 +183,7 @@ ValidationResult validateNPKInternal(float value, const char* nutrient)
 
 // Публичные функции (обёртки для обратной совместимости)
 ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val,
-                                  const char* field_name) // NOLINT(bugprone-easily-swappable-parameters)
+                                  const char* field_name) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     return validateIntervalInternal(IntervalValidation::builder()
         .interval(interval)
@@ -218,7 +218,7 @@ static ValidationResult validateNTPInterval(unsigned long interval) // NOLINT(mi
 // ============================================================================
 
 // Публичные функции валидации данных датчика
-ValidationResult validateRange(float value, float min_val, float max_val, const char* field_name) // NOLINT(bugprone-easily-swappable-parameters)
+ValidationResult validateRange(float value, float min_val, float max_val, const char* field_name) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     return validateRangeInternal(RangeParams::builder()
         .setValue(value)

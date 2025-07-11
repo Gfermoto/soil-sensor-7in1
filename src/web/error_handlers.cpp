@@ -41,7 +41,7 @@ public:
         Builder& method(const String& method) { methodValue = method; return *this; }
         Builder& uri(const String& uri) { uriValue = uri; return *this; }
         Builder& clientIP(const String& clientIP) { clientIPValue = clientIP; return *this; }
-        HttpRequest build() const {
+        HttpRequest build() const { // NOLINT(readability-convert-member-functions-to-static)
             HttpRequest result;
             result.method = methodValue;
             result.uri = uriValue;
