@@ -75,13 +75,10 @@ struct ECCompensationParams
     float rawValue;
     float temperature;
     float compensationFactor;
-private:
-    ECCompensationParams(float rawValue, float temperature, float compensationFactor)
-        : rawValue(rawValue), temperature(temperature), compensationFactor(compensationFactor) {}
+    
+    ECCompensationParams() : rawValue(0.0F), temperature(25.0F), compensationFactor(2.0F) {}
+    
 public:
-    static ECCompensationParams fromValues(float rawValue, float temperature, float compensationFactor) {
-        return ECCompensationParams(rawValue, temperature, compensationFactor);
-    }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
         float rawValue = 0.0F;
@@ -91,16 +88,14 @@ public:
         Builder& setTemperature(float temp) { temperature = temp; return *this; }
         Builder& setCompensationFactor(float factor) { compensationFactor = factor; return *this; }
         ECCompensationParams build() const {
-            return ECCompensationParams::fromValues(rawValue, temperature, compensationFactor);
+            ECCompensationParams result;
+            result.rawValue = rawValue;
+            result.temperature = temperature;
+            result.compensationFactor = compensationFactor;
+            return result;
         }
     };
     static Builder builder() { return {}; }
-    static ECCompensationParams createWithRawValue(float rawValue, float temperature, float compensationFactor) {
-        return ECCompensationParams::fromValues(rawValue, temperature, compensationFactor);
-    }
-    static ECCompensationParams createWithTemperature(float temperature, float rawValue, float compensationFactor) {
-        return ECCompensationParams::fromValues(rawValue, temperature, compensationFactor);
-    }
 };
 
 // ------------------------------------------------------------------
