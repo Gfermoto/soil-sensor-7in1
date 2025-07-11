@@ -26,6 +26,18 @@ WiFiClient espClient;
 PubSubClient mqttClient(espClient);
 
 namespace {
+// Forward declarations для всех внутренних функций
+void publishAvailabilityInternal(bool online);
+void setupMQTTInternal();
+bool connectMQTTInternal();
+void handleMQTTInternal();
+void publishSensorDataInternal();
+void publishHomeAssistantConfigInternal();
+void removeHomeAssistantConfigInternal();
+void handleMqttCommandInternal(const String& cmd);
+void mqttCallbackInternal(const char* topic, const byte* payload, unsigned int length);
+void invalidateHAConfigCacheInternal();
+
 // Кэш для Home Assistant конфигураций
 struct HomeAssistantConfigCache
 {
@@ -109,7 +121,6 @@ String getClientId()
     }
     return clientId;
 }
-}  // namespace
 
 // Удалить функции доступа к переменным с внутренней связностью (getEspClient, getMqttClient)
 
@@ -168,7 +179,8 @@ const char* getMqttLastError() {
     return mqttLastErrorBuffer.data();
 }
 
-void publishAvailability(bool online)  // NOLINT(misc-use-internal-linkage)
+// Все функции с NOLINT(misc-use-internal-linkage) теперь здесь
+void publishAvailabilityInternal(bool online)
 {
     const char* topic = getStatusTopic();
     const char* payload = online ? "online" : "offline";
@@ -176,7 +188,7 @@ void publishAvailability(bool online)  // NOLINT(misc-use-internal-linkage)
     mqttClient.publish(topic, payload, true);
 }
 
-void setupMQTT()  // NOLINT(misc-use-internal-linkage)
+void setupMQTTInternal()
 {
     DEBUG_PRINTLN("[КРИТИЧЕСКАЯ ОТЛАДКА] Инициализация MQTT");
 
@@ -218,7 +230,7 @@ void setupMQTT()  // NOLINT(misc-use-internal-linkage)
     INFO_PRINTLN("[MQTT] Инициализация завершена с DNS кэшированием");
 }
 
-bool connectMQTT()  // NOLINT(misc-use-internal-linkage)
+bool connectMQTTInternal()
 {
     DEBUG_PRINTLN("[КРИТИЧЕСКАЯ ОТЛАДКА] Попытка подключения к MQTT");
 
@@ -326,19 +338,19 @@ bool connectMQTT()  // NOLINT(misc-use-internal-linkage)
         DEBUG_PRINTF("[MQTT] Подписались на OTA команды: %s\n", otaCmdTopic);
 
         // Публикуем статус availability
-        publishAvailability(true);
+        publishAvailabilityInternal(true);
 
         // Публикуем конфигурацию Home Assistant discovery если включено
         if (config.flags.hassEnabled)
         {
-            publishHomeAssistantConfig();
+            publishHomeAssistantConfigInternal();
         }
     }
 
     return result;
 }
 
-void handleMQTT()  // NOLINT(misc-use-internal-linkage)
+void handleMQTTInternal()
 {
     if (!config.flags.mqttEnabled)
     {
@@ -366,7 +378,7 @@ void handleMQTT()  // NOLINT(misc-use-internal-linkage)
         {
             lastReconnectAttempt = millis();
             logMQTT("Попытка переподключения...");
-            connectMQTT();
+            connectMQTTInternal();
         }
     }
     else
@@ -484,7 +496,7 @@ bool shouldPublishMqtt()
     return hasSignificantChange;
 }
 
-void publishSensorData()  // NOLINT(misc-use-internal-linkage)
+void publishSensorDataInternal()
 {
     DEBUG_PRINTF("[MQTT DEBUG] mqttEnabled=%d, connected=%d, valid=%d\n", config.flags.mqttEnabled,
                  mqttClient.connected(), sensorData.valid);
@@ -572,7 +584,7 @@ void publishSensorData()  // NOLINT(misc-use-internal-linkage)
     }
 }
 
-void publishHomeAssistantConfig()  // NOLINT(misc-use-internal-linkage)
+void publishHomeAssistantConfigInternal()
 {
     DEBUG_PRINTLN("[publishHomeAssistantConfig] Публикация discovery-конфигов Home Assistant...");
     if (!config.flags.mqttEnabled || !mqttClient.connected() || !config.flags.hassEnabled)
@@ -712,7 +724,7 @@ void publishHomeAssistantConfig()  // NOLINT(misc-use-internal-linkage)
     mqttLastErrorBuffer.fill('\0');
 }
 
-void removeHomeAssistantConfig()  // NOLINT(misc-use-internal-linkage)
+void removeHomeAssistantConfigInternal()
 {
     const String deviceIdStr = getDeviceId();
     const char* deviceId = deviceIdStr.c_str();
@@ -728,7 +740,7 @@ void removeHomeAssistantConfig()  // NOLINT(misc-use-internal-linkage)
     mqttLastErrorBuffer.fill('\0');
 }
 
-void handleMqttCommand(const String& cmd)  // NOLINT(misc-use-internal-linkage)
+void handleMqttCommandInternal(const String& cmd)
 {
     DEBUG_PRINT("[MQTT] Получена команда: ");
     DEBUG_PRINTLN(cmd);
@@ -743,15 +755,15 @@ void handleMqttCommand(const String& cmd)  // NOLINT(misc-use-internal-linkage)
     }
     else if (cmd == "publish_test")
     {
-        publishSensorData();
+        publishSensorDataInternal();
     }
     else if (cmd == "publish_discovery")
     {
-        publishHomeAssistantConfig();
+        publishHomeAssistantConfigInternal();
     }
     else if (cmd == "remove_discovery")
     {
-        removeHomeAssistantConfig();
+        removeHomeAssistantConfigInternal();
     }
     else if (cmd == "ota_check")
     {
@@ -762,7 +774,7 @@ void handleMqttCommand(const String& cmd)  // NOLINT(misc-use-internal-linkage)
     {
         config.flags.autoOtaEnabled = (cmd == "ota_auto_on") ? 1 : 0;
         saveConfig();
-        publishAvailability(true);
+        publishAvailabilityInternal(true);
     }
     else
     {
@@ -770,36 +782,79 @@ void handleMqttCommand(const String& cmd)  // NOLINT(misc-use-internal-linkage)
     }
 }
 
-void mqttCallback(const char* topic, const byte* payload, unsigned int length)  // NOLINT(misc-use-internal-linkage)
+void mqttCallbackInternal(const char* topic, const byte* payload, unsigned int length)
 {
     const String topic_str = String(topic);
-    String message;
-    for (unsigned int i = 0; i < length; ++i)
+    const String message = String((char*)payload, length);
+    
+    if (topic_str == getCommandTopic())
     {
-        message += static_cast<char>(payload[i]);
-    }
-    DEBUG_PRINTF("[mqttCallback] Получено сообщение: %s = %s\n", topic_str.c_str(), message.c_str());
-    if (topic_str == getCommandTopic() || topic_str == getOtaCommandTopic())
-    {
-        handleMqttCommand(message);
+        handleMqttCommandInternal(message);
     }
 }
 
-void invalidateHAConfigCache()  // NOLINT(misc-use-internal-linkage)
+void invalidateHAConfigCacheInternal()
 {
     // Реализация инвалидации кэша Home Assistant конфигураций
     haConfigCache.isValid = false;
-    haConfigCache.cachedDeviceId.fill('\0');
-    haConfigCache.cachedTopicPrefix.fill('\0');
-    haConfigCache.tempConfig.fill('\0');
-    haConfigCache.humConfig.fill('\0');
-    haConfigCache.ecConfig.fill('\0');
-    haConfigCache.phConfig.fill('\0');
-    haConfigCache.nitrogenConfig.fill('\0');
-    haConfigCache.phosphorusConfig.fill('\0');
-    haConfigCache.potassiumConfig.fill('\0');
-    INFO_PRINTLN("[MQTT] Кэш Home Assistant конфигураций инвалидирован");
-    mqttLastErrorBuffer.fill('\0');
+}
+
+} // namespace
+
+// Глобальные обёртки для функций, объявленных в заголовке
+void publishAvailability(bool online)
+{
+    publishAvailabilityInternal(online);
+}
+
+void setupMQTT()
+{
+    setupMQTTInternal();
+}
+
+bool connectMQTT()
+{
+    return connectMQTTInternal();
+}
+
+void handleMQTT()
+{
+    handleMQTTInternal();
+}
+
+void publishSensorData()
+{
+    publishSensorDataInternal();
+}
+
+void publishHomeAssistantConfig()
+{
+    publishHomeAssistantConfigInternal();
+}
+
+void removeHomeAssistantConfig()
+{
+    removeHomeAssistantConfigInternal();
+}
+
+void handleMqttCommand(const String& cmd)
+{
+    handleMqttCommandInternal(cmd);
+}
+
+void mqttCallback(const char* topic, const byte* payload, unsigned int length)
+{
+    mqttCallbackInternal(topic, payload, length);
+}
+
+void invalidateHAConfigCache()
+{
+    invalidateHAConfigCacheInternal();
+}
+
+const char* getMqttLastError()
+{
+    return mqttLastErrorBuffer.data();
 }
 
 

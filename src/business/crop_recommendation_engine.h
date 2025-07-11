@@ -15,6 +15,48 @@
 // Используем структуру SensorData из modbus_sensor.h
 #include "../modbus_sensor.h"
 
+// Структуры для устранения проблемы с легко перепутываемыми параметрами
+struct CropCompensationParams {
+    float rawValue;
+    float temperature;
+    float moisture;
+    
+private:
+    CropCompensationParams(float raw, float temp, float moist) : rawValue(raw), temperature(temp), moisture(moist) {}
+public:
+    struct Builder {
+        float rawValue = 0.0F;
+        float temperature = 25.0F;
+        float moisture = 60.0F;
+        Builder& setRawValue(float value) { rawValue = value; return *this; }
+        Builder& setTemperature(float temp) { temperature = temp; return *this; }
+        Builder& setMoisture(float moist) { moisture = moist; return *this; }
+        CropCompensationParams build() const {
+            return CropCompensationParams(rawValue, temperature, moisture);
+        }
+    };
+    static Builder builder() { return {}; }
+};
+
+struct CropECCompensationParams {
+    float rawValue;
+    float temperature;
+    
+private:
+    CropECCompensationParams(float raw, float temp) : rawValue(raw), temperature(temp) {}
+public:
+    struct Builder {
+        float rawValue = 0.0F;
+        float temperature = 25.0F;
+        Builder& setRawValue(float value) { rawValue = value; return *this; }
+        Builder& setTemperature(float temp) { temperature = temp; return *this; }
+        CropECCompensationParams build() const {
+            return CropECCompensationParams(rawValue, temperature);
+        }
+    };
+    static Builder builder() { return {}; }
+};
+
 // Структура конфигурации культуры
 struct CropConfig {
     float temperature;   // °C
@@ -59,6 +101,11 @@ private:
     float compensatePH(float pH_raw, float temperature, float moisture);
     float compensateEC(float EC_raw, float temperature);
     float compensateNPK(float NPK_raw, float temperature, float moisture);
+    
+    // Внутренние функции компенсации с Builder паттерном
+    float compensatePH(const CropCompensationParams& params);
+    float compensateEC(const CropECCompensationParams& params);
+    float compensateNPK(const CropCompensationParams& params);
     
     void initializeCropConfigs();
     CropConfig applySeasonalAdjustments(const CropConfig& base, const String& season);

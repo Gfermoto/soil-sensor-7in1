@@ -9,6 +9,12 @@
 #include "../../include/logger.h"
 #include <ctime>
 
+// Прототипы внутренних функций компенсации
+static float compensatePHInternal(float pHRawValue, float temperatureValue, float moistureValue);
+static float compensateECInternal(float ECRawValue, float temperatureValue);
+static float compensateNPKInternal(float NPKRawValue, float temperatureValue, float moistureValue);
+
+
 CropRecommendationEngine::CropRecommendationEngine() {
     initializeCropConfigs();
 }
@@ -164,11 +170,30 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(
     
     // Компенсация показаний датчиков [Источники: SSSA Journal, 2008; Advances in Agronomy, 2014; Journal of Soil Science, 2020]
     SensorData compensatedData = params.data;
-    compensatedData.ph = compensatePH(params.data.ph, params.data.temperature, params.data.humidity);
-    compensatedData.ec = compensateEC(params.data.ec, params.data.temperature);
-    compensatedData.nitrogen = compensateNPK(params.data.nitrogen, params.data.temperature, params.data.humidity);
-    compensatedData.phosphorus = compensateNPK(params.data.phosphorus, params.data.temperature, params.data.humidity);
-    compensatedData.potassium = compensateNPK(params.data.potassium, params.data.temperature, params.data.humidity);
+    compensatedData.ph = compensatePH(CropCompensationParams::builder()
+        .setRawValue(params.data.ph)
+        .setTemperature(params.data.temperature)
+        .setMoisture(params.data.humidity)
+        .build());
+    compensatedData.ec = compensateEC(CropECCompensationParams::builder()
+        .setRawValue(params.data.ec)
+        .setTemperature(params.data.temperature)
+        .build());
+    compensatedData.nitrogen = compensateNPK(CropCompensationParams::builder()
+        .setRawValue(params.data.nitrogen)
+        .setTemperature(params.data.temperature)
+        .setMoisture(params.data.humidity)
+        .build());
+    compensatedData.phosphorus = compensateNPK(CropCompensationParams::builder()
+        .setRawValue(params.data.phosphorus)
+        .setTemperature(params.data.temperature)
+        .setMoisture(params.data.humidity)
+        .build());
+    compensatedData.potassium = compensateNPK(CropCompensationParams::builder()
+        .setRawValue(params.data.potassium)
+        .setTemperature(params.data.temperature)
+        .setMoisture(params.data.humidity)
+        .build());
     
     RecommendationResult result;
     result.cropType = params.cropType;
@@ -204,7 +229,7 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(
     return result;
 }
 
-CropConfig CropRecommendationEngine::applySeasonalAdjustments(const CropConfig& base, const String& season) { // NOLINT(readability-convert-member-functions-to-static)
+static CropConfig applySeasonalAdjustments(const CropConfig& base, const String& season) {
     CropConfig adjusted = base;
     
     if (season == "spring") {
@@ -244,7 +269,7 @@ CropConfig CropRecommendationEngine::applySeasonalAdjustments(const CropConfig& 
     return adjusted;
 }
 
-CropConfig CropRecommendationEngine::applyGrowingTypeAdjustments(const CropConfig& base, const String& growingType) { // NOLINT(readability-convert-member-functions-to-static)
+static CropConfig applyGrowingTypeAdjustments(const CropConfig& base, const String& growingType) {
     CropConfig adjusted = base;
     
     if (growingType == "greenhouse") {
@@ -278,7 +303,7 @@ CropConfig CropRecommendationEngine::applyGrowingTypeAdjustments(const CropConfi
     return adjusted;
 }
 
-CropConfig CropRecommendationEngine::applySoilTypeAdjustments(const CropConfig& base, const String& soilType) { // NOLINT(readability-convert-member-functions-to-static)
+static CropConfig applySoilTypeAdjustments(const CropConfig& base, const String& soilType) {
     CropConfig adjusted = base;
     
     if (soilType == "sand") {
@@ -728,8 +753,8 @@ RecValues CropRecommendationEngine::computeRecommendations(const String& cropId,
 }
 
 void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec,
-                                                     Season season,
-                                                     bool isGreenhouse) { // NOLINT(readability-convert-member-functions-to-static)
+                                   Season season,
+                                   bool isGreenhouse) {
     // Простая реализация сезонных корректировок
     switch (season) {
         case Season::SPRING:
@@ -753,47 +778,30 @@ void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec,
     }
 }
 
-// Реализация функций компенсации датчиков
-// [Источник: Temperature Compensation for pH Measurements, Soil Science Society of America Journal, Т. 72, № 3, J. Ross et al., 2008, DOI: 10.2136/sssaj2007.0088]
-float CropRecommendationEngine::compensatePH(float pHRawValue, float temperatureValue, float moistureValue) { // NOLINT(readability-convert-member-functions-to-static)
-    // Валидация входных данных
-    if (temperatureValue < 0.0F || temperatureValue > 50.0F) {
-        return pHRawValue; // Возвращаем исходное значение при недопустимой температуре
-    }
-    if (moistureValue < 10.0F || moistureValue > 90.0F) {
-        return pHRawValue; // Возвращаем исходное значение при недопустимой влажности
-    }
-    
-    // Формула компенсации pH: pH_comp = pH_raw + α * (T - 25) + β * (M - 50)
-    // где α ≈ -0.01 (температурный коэффициент), β ≈ 0.005 (влажностный коэффициент)
-    return pHRawValue + (pH_alpha * (temperatureValue - 25.0F)) + (pH_beta * (moistureValue - 50.0F));
+// Обёртки для функций с легко перепутываемыми параметрами
+float CropRecommendationEngine::compensatePH(const CropCompensationParams& params) {
+    return compensatePHInternal(params.rawValue, params.temperature, params.moisture);
 }
 
-// [Источник: Electrical Conductivity Measurements in Agriculture, Advances in Agronomy, Т. 128, M. Corwin, 2014, DOI: 10.1016/B978-0-12-802970-1.00001-3]
-float CropRecommendationEngine::compensateEC(float ECRawValue, float temperatureValue) { // NOLINT(readability-convert-member-functions-to-static)
-    // Валидация входных данных
-    if (temperatureValue < 0.0F || temperatureValue > 50.0F) {
-        return ECRawValue; // Возвращаем исходное значение при недопустимой температуре
-    }
-    
-    // Формула компенсации EC: EC_comp = EC_raw * (1 + γ * (T - 25))
-    // где γ ≈ 0.02 (2% на °C, коэффициент температуры)
-    return ECRawValue * (1.0F + (EC_gamma * (temperatureValue - 25.0F)));
+float CropRecommendationEngine::compensateEC(const CropECCompensationParams& params) {
+    return compensateECInternal(params.rawValue, params.temperature);
 }
 
-// [Источник: Nutrient Dynamics in Soils, Journal of Soil Science and Plant Nutrition, Т. 20, A. Delgado et al., 2020, DOI: 10.1007/s42729-020-00215-4]
-float CropRecommendationEngine::compensateNPK(float NPKRawValue, float temperatureValue, float moistureValue) { // NOLINT(readability-convert-member-functions-to-static)
-    // Валидация входных данных
-    if (temperatureValue < 5.0F || temperatureValue > 35.0F) {
-        return NPKRawValue; // Возвращаем исходное значение при недопустимой температуре
-    }
-    if (moistureValue < 20.0F || moistureValue > 80.0F) {
-        return NPKRawValue; // Возвращаем исходное значение при недопустимой влажности
-    }
-    
-    // Формула компенсации NPK: N_comp = N_raw * e^(δ*(T-20)) * (1 + ε*(M-30))
-    // где δ ≈ 0.03, ε ≈ 0.01 (кинетические коэффициенты)
-    return NPKRawValue * exp(NPK_delta * (temperatureValue - 20.0F)) * (1.0F + (NPK_epsilon * (moistureValue - 30.0F)));
+float CropRecommendationEngine::compensateNPK(const CropCompensationParams& params) {
+    return compensateNPKInternal(params.rawValue, params.temperature, params.moisture);
+}
+
+// Обратная совместимость
+float CropRecommendationEngine::compensatePH(float pHRawValue, float temperatureValue, float moistureValue) {
+    return compensatePHInternal(pHRawValue, temperatureValue, moistureValue);
+}
+
+float CropRecommendationEngine::compensateEC(float ECRawValue, float temperatureValue) {
+    return compensateECInternal(ECRawValue, temperatureValue);
+}
+
+float CropRecommendationEngine::compensateNPK(float NPKRawValue, float temperatureValue, float moistureValue) {
+    return compensateNPKInternal(NPKRawValue, temperatureValue, moistureValue);
 }
 
 

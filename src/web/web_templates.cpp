@@ -154,16 +154,8 @@ public:
     };
     static Builder builder() { return {}; }
 };
-} // namespace
 
-// Все функции и переменные, которые не используются вне этого файла, объявить static
-// Например:
-// static void myInternalFunction() { ... }
-// static int myInternalVar = 0;
-
-namespace {
 // Внутренние функции — только для этой единицы трансляции
-// (функции, объявленные в заголовочном файле, реализованы вне namespace)
 String generatePageHeaderImpl(const PageInfo& page)
 {
     const String iconStr = page.icon.length() > 0 ? page.icon + " " : "";

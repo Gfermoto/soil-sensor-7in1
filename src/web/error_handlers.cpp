@@ -10,14 +10,10 @@ struct ValidationRange
 {
     int minValue;
     int maxValue;
-
-private:
-    ValidationRange(int minValue, int maxValue)
-        : minValue(minValue), maxValue(maxValue) {}
+    
+    ValidationRange() : minValue(0), maxValue(0) {}
+    
 public:
-    static ValidationRange fromValues(int minValue, int maxValue) {
-        return {minValue, maxValue};
-    }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
         int min = 0;
@@ -25,18 +21,13 @@ public:
         Builder& minValue(int minValue) { min = minValue; return *this; }
         Builder& maxValue(int maxValue) { max = maxValue; return *this; }
         ValidationRange build() const {
-            return ValidationRange::fromValues(min, max);
+            ValidationRange result;
+            result.minValue = min;
+            result.maxValue = max;
+            return result;
         }
     };
     static Builder builder() { return {}; }
-    // Статический метод-фабрика для безопасного создания с именованными параметрами
-    static ValidationRange createWithMin(int minValue, int maxValue) {
-        return ValidationRange::fromValues(minValue, maxValue);
-    }
-    
-    static ValidationRange createWithMax(int maxValue, int minValue) {
-        return ValidationRange::fromValues(minValue, maxValue);
-    }
 };
 
 // Структура для веб-запроса (предотвращение перепутывания String параметров)
@@ -45,16 +36,10 @@ struct HttpRequest
     String method;
     String uri;
     String clientIP;
-
-private:
-    HttpRequest(const String& methodValue, const String& uriValue, const String& clientIPValue)
-        : method(methodValue), uri(uriValue), clientIP(clientIPValue)
-    {
-    }
+    
+    HttpRequest() : method(""), uri(""), clientIP("") {}
+    
 public:
-    static HttpRequest fromValues(const String& methodValue, const String& uriValue, const String& clientIPValue) {
-        return HttpRequest(methodValue, uriValue, clientIPValue);
-    }
     // Builder для предотвращения ошибок с параметрами
     struct Builder {
         String methodValue;
@@ -64,30 +49,14 @@ public:
         Builder& uri(const String& uri) { uriValue = uri; return *this; }
         Builder& clientIP(const String& clientIP) { clientIPValue = clientIP; return *this; }
         HttpRequest build() const {
-            return HttpRequest::fromValues(methodValue, uriValue, clientIPValue);
+            HttpRequest result;
+            result.method = methodValue;
+            result.uri = uriValue;
+            result.clientIP = clientIPValue;
+            return result;
         }
     };
     static Builder builder() { return {}; }
-
-    // Статический метод-фабрика для безопасного создания с именованными параметрами
-    static HttpRequest createWithMethod(const String& methodValue, const String& uriValue, const String& clientIPValue) {
-        return HttpRequest::fromValues(methodValue, uriValue, clientIPValue);
-    }
-    
-    static HttpRequest createWithUri(const String& uriValue, const String& methodValue, const String& clientIPValue) {
-        return HttpRequest::fromValues(methodValue, uriValue, clientIPValue);
-    }
-
-    // Типобезопасная версия с именованными параметрами
-    struct CreateParams {
-        String method;
-        String uri;
-        String clientIP;
-    };
-
-    static HttpRequest create(const CreateParams& params) {
-        return HttpRequest::fromValues(params.method, params.uri, params.clientIP);
-    }
 };
 
 // Вспомогательные функции для валидации интервалов — скрыты во внутреннем безымянном пространстве имён,
@@ -172,23 +141,23 @@ bool validateConfigInput(bool checkRequired)
     }
 
     // Валидация форматов данных
-    if (!validateInterval("mqtt_port", ValidationRange::createWithMin(1, 65535), "MQTT порт"))
+    if (!validateInterval("mqtt_port", ValidationRange::builder().minValue(1).maxValue(65535).build(), "MQTT порт"))
     {
         return false;
     }
-    if (!validateInterval("ntp_interval", ValidationRange::createWithMin(10000, 86400000), "NTP интервал"))
+    if (!validateInterval("ntp_interval", ValidationRange::builder().minValue(10000).maxValue(86400000).build(), "NTP интервал"))
     {
         return false;
     }
-    if (!validateInterval("sensor_read", ValidationRange::createWithMin(1000, 300000), "интервал чтения датчика"))
+    if (!validateInterval("sensor_read", ValidationRange::builder().minValue(1000).maxValue(300000).build(), "интервал чтения датчика"))
     {
         return false;
     }
-    if (!validateInterval("mqtt_publish", ValidationRange::createWithMin(1000, 3600000), "интервал MQTT публикации"))
+    if (!validateInterval("mqtt_publish", ValidationRange::builder().minValue(1000).maxValue(3600000).build(), "интервал MQTT публикации"))
     {
         return false;
     }
-    if (!validateInterval("thingspeak_interval", ValidationRange::createWithMin(15000, 7200000), "интервал ThingSpeak"))
+    if (!validateInterval("thingspeak_interval", ValidationRange::builder().minValue(15000).maxValue(7200000).build(), "интервал ThingSpeak"))
     {
         return false;
     }

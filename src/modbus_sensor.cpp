@@ -33,6 +33,19 @@ struct RegisterConversion {
 private:
     RegisterConversion(uint16_t reg_value, float mult) : value(reg_value), multiplier(mult) {}
 public:
+    // Builder для предотвращения ошибок с параметрами
+    struct Builder {
+        uint16_t registerValue = 0;
+        float scaleMultiplier = 1.0F;
+        Builder& setRegisterValue(uint16_t value) { registerValue = value; return *this; }
+        Builder& setScaleMultiplier(float multiplier) { scaleMultiplier = multiplier; return *this; }
+        RegisterConversion build() const {
+            return RegisterConversion(registerValue, scaleMultiplier);
+        }
+    };
+    static Builder builder() { return {}; }
+    
+    // Обратная совместимость
     static RegisterConversion fromRaw(uint16_t registerValue, float scaleMultiplier) {
         return RegisterConversion(registerValue, scaleMultiplier);
     }
@@ -184,7 +197,10 @@ bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplie
         if (is_float)
         {
             auto* float_target = static_cast<float*>(target);
-            *float_target = convertRegisterToFloat(RegisterConversion::fromRaw(raw_value, multiplier));
+            *float_target = convertRegisterToFloat(RegisterConversion::builder()
+                .setRegisterValue(raw_value)
+                .setScaleMultiplier(multiplier)
+                .build());
             logDebugSafe("\1", reg_name, *float_target);
         }
         else
@@ -397,23 +413,7 @@ bool readErrorStatus()
     return false;
 }
 
-bool changeDeviceAddress(uint8_t new_address) // NOLINT(misc-use-internal-linkage)
-{
-    if (new_address < 1 || new_address > 247)
-    {
-        return false;
-    }
 
-    const uint8_t result = modbus.writeSingleRegister(REG_DEVICE_ADDRESS, new_address);
-    if (result == modbus.ku8MBSuccess)  // NOLINT(readability-static-accessed-through-instance)
-    {
-        // ✅ Неблокирующая задержка через vTaskDelay
-        delay(100);  // ОТКАТ: Критичный timing для Modbus
-        modbus.begin(new_address, Serial2);  // NOLINT(readability-static-accessed-through-instance)
-        return true;
-    }
-    return false;
-}
 
 // Добавляем функцию диагностики Modbus связи
 bool testModbusConnection()
