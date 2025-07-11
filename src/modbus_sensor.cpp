@@ -24,8 +24,7 @@ SensorCache sensorCache;
 String sensorLastError = "";
 
 // Внутренние переменные и функции — только для этой единицы трансляции
-namespace
-{
+namespace {
 
 // Структура для устранения проблемы с легко перепутываемыми параметрами
 struct RegisterConversion {
@@ -44,14 +43,14 @@ public:
     }
 };
 
-float convertRegisterToFloat(const RegisterConversion& conversion) // NOLINT(misc-use-internal-linkage)
+static float convertRegisterToFloat(const RegisterConversion& conversion) // NOLINT(misc-use-internal-linkage)
 {
     return conversion.toFloat();
 }
 
-unsigned long lastIrrigationTs = 0;  // время последнего полива (для фильтрации всплесков)
+static unsigned long lastIrrigationTs = 0;  // время последнего полива (для фильтрации всплесков)
 
-void debugPrintBuffer(const char* prefix, const uint8_t* buffer, size_t length)
+static void debugPrintBuffer(const char* prefix, const uint8_t* buffer, size_t length)
 {
     if (currentLogLevel < LOG_DEBUG)
     {
@@ -71,7 +70,7 @@ void debugPrintBuffer(const char* prefix, const uint8_t* buffer, size_t length)
     logDebugSafe("\1", prefix, hex_str.c_str());
 }
 
-uint16_t calculateCRC16(const uint8_t* data, size_t length)
+static uint16_t calculateCRC16(const uint8_t* data, size_t length)
 {
     uint16_t crc = 0xFFFF;
 
@@ -94,7 +93,7 @@ uint16_t calculateCRC16(const uint8_t* data, size_t length)
     return crc;
 }
 
-void saveRawSnapshot(SensorData& data)
+static void saveRawSnapshot(SensorData& data)
 {
     data.raw_temperature = data.temperature;
     data.raw_humidity = data.humidity;
@@ -105,7 +104,7 @@ void saveRawSnapshot(SensorData& data)
     data.raw_potassium = data.potassium;
 }
 
-void updateIrrigationFlag(SensorData& data)
+static void updateIrrigationFlag(SensorData& data)
 {
     constexpr uint8_t WIN = 6;
     static std::array<float, WIN> buf = {NAN};
@@ -138,7 +137,7 @@ void updateIrrigationFlag(SensorData& data)
     data.recentIrrigation = (millis() - lastIrrigationTs) <= (unsigned long)config.irrigationHoldMinutes * 60000UL;
 }
 
-void applyCompensationIfEnabled(SensorData& data)
+static void applyCompensationIfEnabled(SensorData& data)
 {
     if (!config.flags.calibrationEnabled)
     {
@@ -176,7 +175,7 @@ void applyCompensationIfEnabled(SensorData& data)
     getCompensationService().applyCompensation(data, soil);
 }
 
-bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)
+static bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplier, void* target, bool is_float)
 {
     logDebugSafe("\1", reg_name, reg_addr);
     const uint8_t result = modbus.readHoldingRegisters(reg_addr, 1);
@@ -203,7 +202,7 @@ bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplie
     return false;
 }
 
-int readBasicParameters()
+static int readBasicParameters()
 {
     int success_count = 0;
     if (readSingleRegister(REG_PH, "pH", 0.01F, &sensorData.ph, true)) { success_count++; }
@@ -213,7 +212,7 @@ int readBasicParameters()
     return success_count;
 }
 
-int readNPKParameters()
+static int readNPKParameters()
 {
     int success_count = 0;
     if (readSingleRegister(REG_NITROGEN, "Азот", 1.0F, &sensorData.nitrogen, true)) { success_count++; }
@@ -227,7 +226,7 @@ struct MovingAverageParams {
     uint8_t filled;
 };
 
-float calculateMovingAverage(const float* buffer, MovingAverageParams params)
+static float calculateMovingAverage(const float* buffer, MovingAverageParams params)
 {
     if (params.filled == 0) { return 0.0F; }
     const uint8_t elements_to_use = std::min(params.filled, params.window_size);

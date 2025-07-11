@@ -145,6 +145,11 @@ public:
     }
 };
 
+// Все функции и переменные, которые не используются вне этого файла, объявить static
+// Например:
+// static void myInternalFunction() { ... }
+// static int myInternalVar = 0;
+
 String generatePageHeader(const PageInfo& page)  // NOLINT(misc-use-internal-linkage)
 {
     const String iconStr = page.icon.length() > 0 ? page.icon + " " : "";

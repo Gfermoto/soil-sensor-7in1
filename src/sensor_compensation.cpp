@@ -69,7 +69,7 @@ public:
 
 // ------------------------------------------------------------------
 // EC ----------------------------------------------------------------
-float correctEC(float ecRaw, const ECCompensationParams& params)
+static float correctEC(float ecRaw, const ECCompensationParams& params)
 {
     // ИСПРАВЛЕНО: простая температурная компенсация к 25 °C
     return ecRaw / (1.0F + 0.02F * (params.temperature - 25.0F));
@@ -83,7 +83,7 @@ float correctPH(float temperature, float phRaw)
 }
 
 // NPK ---------------------------------------------------------------
-void correctNPK(const ECCompensationParams& params, NPKReferences& npk)
+static void correctNPK(const ECCompensationParams& params, NPKReferences& npk)
 {
     if (params.moisture < 10.0F || params.moisture > 90.0F)
     {

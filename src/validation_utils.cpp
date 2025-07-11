@@ -8,6 +8,13 @@
 #include "jxct_constants.h"
 #include "logger.h"
 
+namespace {
+// Все функции и переменные, которые не используются вне этого файла, объявить static
+// Например:
+// static void myInternalFunction() { ... }
+// static int myInternalVar = 0;
+} // namespace
+
 // ============================================================================
 // ВАЛИДАЦИЯ КОНФИГУРАЦИИ
 // ============================================================================
@@ -117,7 +124,7 @@ public:
     static Builder builder() { return {}; }
 };
 
-ValidationResult validateInterval(const IntervalValidation& params)
+static ValidationResult validateInterval(const IntervalValidation& params)
 {
     if (params.interval < params.min_val || params.interval > params.max_val)
     {
