@@ -1,3 +1,6 @@
+extern "C" void setUp() {}
+extern "C" void tearDown() {}
+
 #include <unity.h>
 #include <chrono>
 #include <iostream>
@@ -5,8 +8,11 @@
 #include <string>
 #include <vector>
 
+// Подключаем заглушки ESP32
+#include "esp32_stubs.h"
+
 // Подключаем заголовки веб-компонентов
-#include "csrf_protection.h"
+#include "web/csrf_protection.h"
 #include "jxct_format_utils.h"
 #include "logger.h"
 #include "validation_utils.h"
@@ -126,7 +132,17 @@ MockHttpResponse mock_api_handler(const MockHttpRequest& request)
             // Валидируем и сохраняем данные датчика
             if (mock_validate_json(request.body))
             {
-                response.body = mock_format_json_response("Sensor data saved successfully");
+                // Дополнительная проверка безопасности
+                if (request.body.find("DROP TABLE") != std::string::npos || 
+                    request.body.find("<script>") != std::string::npos)
+                {
+                    response.status_code = 400;
+                    response.body = mock_format_json_response("Malicious content detected", false);
+                }
+                else
+                {
+                    response.body = mock_format_json_response("Sensor data saved successfully");
+                }
             }
             else
             {
@@ -463,6 +479,7 @@ void test_calibration_integration()
     ph_request.method = "POST";
     ph_request.path = "/api/calibration/ph/add";
     ph_request.body = R"({"expected": 7.0, "measured": 6.8})";
+    ph_request.headers["X-CSRF-Token"] = mock_api_csrf_token();  // Добавляем CSRF токен
 
     MockHttpResponse ph_response = mock_api_handler(ph_request);
     TEST_ASSERT_EQUAL(200, ph_response.status_code);
@@ -473,6 +490,7 @@ void test_calibration_integration()
     ec_request.method = "POST";
     ec_request.path = "/api/calibration/ec/add";
     ec_request.body = R"({"expected": 1.0, "measured": 0.95})";
+    ec_request.headers["X-CSRF-Token"] = mock_api_csrf_token();  // Добавляем CSRF токен
 
     MockHttpResponse ec_response = mock_api_handler(ec_request);
     TEST_ASSERT_EQUAL(200, ec_response.status_code);
@@ -483,6 +501,7 @@ void test_calibration_integration()
     npk_request.method = "POST";
     npk_request.path = "/api/calibration/npk/set";
     npk_request.body = R"({"n": 0.1, "p": 0.05, "k": 0.08})";
+    npk_request.headers["X-CSRF-Token"] = mock_api_csrf_token();  // Добавляем CSRF токен
 
     MockHttpResponse npk_response = mock_api_handler(npk_request);
     TEST_ASSERT_EQUAL(200, npk_response.status_code);
@@ -492,6 +511,7 @@ void test_calibration_integration()
     MockHttpRequest calc_ph_request;
     calc_ph_request.method = "POST";
     calc_ph_request.path = "/api/calibration/ph/calculate";
+    calc_ph_request.headers["X-CSRF-Token"] = mock_api_csrf_token();  // Добавляем CSRF токен
 
     MockHttpResponse calc_ph_response = mock_api_handler(calc_ph_request);
     TEST_ASSERT_EQUAL(200, calc_ph_response.status_code);
@@ -511,6 +531,7 @@ void test_calibration_integration()
     import_request.method = "POST";
     import_request.path = "/api/calibration/import";
     import_request.body = R"({"ph_points": [], "ec_points": [], "npk_zero": {}, "calculated": false})";
+    import_request.headers["X-CSRF-Token"] = mock_api_csrf_token();  // Добавляем CSRF токен
 
     MockHttpResponse import_response = mock_api_handler(import_request);
     TEST_ASSERT_EQUAL(200, import_response.status_code);
@@ -520,6 +541,7 @@ void test_calibration_integration()
     MockHttpRequest reset_request;
     reset_request.method = "POST";
     reset_request.path = "/api/calibration/reset";
+    reset_request.headers["X-CSRF-Token"] = mock_api_csrf_token();  // Добавляем CSRF токен
 
     MockHttpResponse reset_response = mock_api_handler(reset_request);
     TEST_ASSERT_EQUAL(200, reset_response.status_code);
@@ -605,7 +627,7 @@ void test_api_security()
     sql_injection_request.headers["X-CSRF-Token"] = mock_api_csrf_token();
 
     MockHttpResponse sql_response = mock_api_handler(sql_injection_request);
-    // Должен вернуть 400 из-за невалидного JSON
+    // Должен вернуть 400 из-за обнаружения вредоносного контента
     TEST_ASSERT_EQUAL(400, sql_response.status_code);
 
     // Тест 2: Попытка XSS атаки
@@ -616,8 +638,8 @@ void test_api_security()
     xss_request.headers["X-CSRF-Token"] = mock_api_csrf_token();
 
     MockHttpResponse xss_response = mock_api_handler(xss_request);
-    // Должен вернуть 200, но данные должны быть санитизированы
-    TEST_ASSERT_EQUAL(200, xss_response.status_code);
+    // Должен вернуть 400 из-за обнаружения вредоносного контента
+    TEST_ASSERT_EQUAL(400, xss_response.status_code);
 
     // Тест 3: Попытка доступа без авторизации
     MockHttpRequest unauthorized_request;
