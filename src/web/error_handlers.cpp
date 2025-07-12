@@ -199,7 +199,7 @@ bool isFeatureAvailable()
  * @param errorMsg Сообщение об ошибке
  * @return HTML ответ с ошибкой
  */
-static String generateValidationErrorResponse(const String& errorMsg) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+String generateValidationErrorResponse(const String& errorMsg) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     String content = "<h1>" UI_ICON_CONFIG " Настройки JXCT</h1>";
     content += generateFormError(errorMsg);
@@ -215,7 +215,7 @@ static String generateValidationErrorResponse(const String& errorMsg) // NOLINT(
  * @brief Обработка критических ошибок сервера
  * @param error Описание ошибки
  */
-static void handleCriticalError(const String& error) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+void handleCriticalError(const String& error) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     logErrorSafe("\1", error.c_str());
 
@@ -228,7 +228,7 @@ static void handleCriticalError(const String& error) // NOLINT(misc-use-internal
  * @param uri URI запроса
  * @return true если маршрут доступен
  */
-static bool isRouteAvailable(const String& uri) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+bool isRouteAvailable(const String& uri) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     if (currentWiFiMode == WiFiMode::AP)
     {

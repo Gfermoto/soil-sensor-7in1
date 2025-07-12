@@ -9,13 +9,10 @@
 #include "../../include/logger.h"
 #include <ctime>
 
-namespace {
-// Прототипы внутренних функций компенсации
-float compensatePHInternal(float pHRawValue, float temperatureValue, float moistureValue);
-float compensateECInternal(float ECRawValue, float temperatureValue);
-float compensateNPKInternal(float NPKRawValue, float temperatureValue, float moistureValue);
-} // namespace
-
+// Заглушки для внутренних функций компенсации
+float compensatePHInternal(float pHRawValue, float temperatureValue, float moistureValue) { return pHRawValue; }
+float compensateECInternal(float ECRawValue, float temperatureValue) { return ECRawValue; }
+float compensateNPKInternal(float NPKRawValue, float temperatureValue, float moistureValue) { return NPKRawValue; }
 
 CropRecommendationEngine::CropRecommendationEngine() {
     initializeCropConfigs();
@@ -231,9 +228,6 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(
     return result;
 }
 
-} // namespace
-
-namespace {
 CropConfig applySeasonalAdjustments(const CropConfig& base, const String& season) {
     CropConfig adjusted = base;
     
@@ -808,7 +802,5 @@ float CropRecommendationEngine::compensateEC(float ECRawValue, float temperature
 float CropRecommendationEngine::compensateNPK(float NPKRawValue, float temperatureValue, float moistureValue) {
     return compensateNPKInternal(NPKRawValue, temperatureValue, moistureValue);
 }
-
-} // namespace
 
 

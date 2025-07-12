@@ -193,22 +193,22 @@ ValidationResult validateInterval(unsigned long interval, unsigned long min_val,
         .build());
 }
 
-static ValidationResult validateSensorReadInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateSensorReadInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateSensorReadIntervalInternal(interval);
 }
 
-static ValidationResult validateMQTTPublishInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateMQTTPublishInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateMQTTPublishIntervalInternal(interval);
 }
 
-static ValidationResult validateThingSpeakInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateThingSpeakInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateThingSpeakIntervalInternal(interval);
 }
 
-static ValidationResult validateNTPInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateNTPInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateNTPIntervalInternal(interval);
 }
@@ -228,27 +228,27 @@ ValidationResult validateRange(float value, float min_val, float max_val, const 
         .build());
 }
 
-static ValidationResult validateTemperature(float temperature) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateTemperature(float temperature) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateTemperatureInternal(temperature);
 }
 
-static ValidationResult validateHumidity(float humidity) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateHumidity(float humidity) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateHumidityInternal(humidity);
 }
 
-static ValidationResult validatePH(float phValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validatePH(float phValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validatePHInternal(phValue);
 }
 
-static ValidationResult validateEC(float ecValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateEC(float ecValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateECInternal(ecValue);
 }
 
-static ValidationResult validateNPK(float value, const char* nutrient) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateNPK(float value, const char* nutrient) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateNPKInternal(value, nutrient);
 }
