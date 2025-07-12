@@ -182,6 +182,7 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
     doc["raw_phosphorus"] = format_npk(sensorData.raw_phosphorus);
     doc["raw_potassium"] = format_npk(sensorData.raw_potassium);
     doc["irrigation"] = sensorData.recentIrrigation;
+    doc["valid"] = validateSensorData(sensorData);  // Флаг валидности по лимитам датчика
 
     const RecValues rec = computeRecommendations();
     doc["rec_temperature"] = format_temperature(rec.t);
@@ -348,10 +349,10 @@ void setupDataRoutes()
             html += "<li><strong>Тип среды</strong> (открытый грунт/теплица/помещение)</li>";
             html += "<li><strong>Цветовая индикация:</strong></li>";
             html += "<ul style='margin:5px 0;padding-left:15px;'>";
-            html += "<li>🟢 <strong>Зеленый:</strong> в норме</li>";
-            html += "<li>🟡 <strong>Желтый:</strong> близко к границам</li>";
-            html += "<li>🟠 <strong>Оранжевый:</strong> отклонение >20%</li>";
-            html += "<li>🔴 <strong>Красный:</strong> критическое отклонение</li>";
+            html += "<li>🟢 <strong>Зеленый:</strong> оптимальные условия измерения</li>";
+            html += "<li>🟠 <strong>Оранжевый:</strong> неоптимальные условия (влажность <25%, температура <5°C или >40°C)</li>";
+            html += "<li>🔵 <strong>Синий:</strong> полив активен (временная невалидность)</li>";
+            html += "<li>🔴 <strong>Красный:</strong> ошибки датчика (выход за физические пределы)</li>";
             html += "</ul>";
             html += "</ul>";
             html += "</div>";
@@ -543,7 +544,7 @@ void setupDataRoutes()
                 ".data{width:100%;border-collapse:collapse}.data th,.data td{border:1px solid "
                 "#ccc;padding:6px;text-align:center}.data "
                 "th{background:#f5f5f5}.green{color:#4CAF50}.yellow{color:#FFC107}.orange{color:#FF9800}.red{color:#"
-                "F44336}";
+                "F44336}.blue{color:#2196F3}";
             html += "</style>";
 
             html += "<script>";
