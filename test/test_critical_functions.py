@@ -60,7 +60,7 @@ def test_config_validation():
             print(f"  ✗ SSID='{ssid}', MQTT={mqtt_enabled}, TS={ts_enabled} - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Не все тесты конфигурации прошли: {passed}/{total}"
 
 def test_calibration_logic():
     """Тест логики калибровки"""
@@ -117,7 +117,7 @@ def test_calibration_logic():
             print(f"  ✗ {raw_value} -> {result:.3f} (ожидалось {expected:.3f})")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Не все тесты калибровки прошли: {passed}/{total}"
 
 def test_modbus_validation():
     """Тест валидации ModBus данных"""
@@ -163,7 +163,7 @@ def test_modbus_validation():
             print(f"  ✗ T={temp}, H={hum}, pH={ph}, EC={ec} - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Не все тесты валидации ModBus прошли: {passed}/{total}"
 
 def test_file_operations():
     """Тест файловых операций"""
@@ -199,7 +199,7 @@ def test_file_operations():
                 print(f"  ✗ {path} - не найдена")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Не все тесты файловых операций прошли: {passed}/{total}"
 
 def main():
     """Главная функция"""

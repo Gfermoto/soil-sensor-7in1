@@ -1,3 +1,14 @@
+/*
+ * ИНТЕГРАЦИОННЫЙ ТЕСТ КОМПОНЕНТОВ JXCT
+ * 
+ * ДЛЯ КОМПИЛЯЦИИ В WINDOWS:
+ * 1. Добавить в PATH: C:\Program Files\w64devkit\bin
+ * 2. Компилировать: g++ -std=c++17 -I../../include -I../../src test_component_interaction.cpp -o test_component_interaction
+ * 3. Запускать: ./test_component_interaction
+ * 
+ * ИЛИ использовать скрипт: python run_integration_tests.py
+ */
+
 extern "C" void setUp() {}
 extern "C" void tearDown() {}
 

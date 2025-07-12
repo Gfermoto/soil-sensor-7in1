@@ -1,8 +1,14 @@
 #ifndef MODBUS_SENSOR_H
 #define MODBUS_SENSOR_H
 
-#include <Arduino.h>
+#ifdef TEST_BUILD
+#include "esp32_stubs.h"
+#elif defined(ESP32) || defined(ARDUINO)
+#include "Arduino.h"
 #include <ModbusMaster.h>
+#else
+#include "esp32_stubs.h"
+#endif
 
 // 🔥 ВОССТАНОВЛЕНЫ РАБОЧИЕ РЕГИСТРЫ из официальной документации JXCT:
 // ✅ ПРАВИЛЬНЫЕ Modbus адреса (подтверждены документацией):

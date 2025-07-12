@@ -16,6 +16,7 @@
 #include "logger.h"
 #include "sensor_compensation.h"
 #include "business_services.h"
+#include "validation_utils.h"  // Для централизованной валидации
 
 // Глобальные переменные (должны быть доступны через extern)
 // Внутренние переменные и функции — только для этой единицы трансляции
@@ -340,32 +341,9 @@ void setupModbus()
 
 bool validateSensorData(SensorData& data)
 {
-    if (data.temperature < MIN_TEMPERATURE || data.temperature > MAX_TEMPERATURE)
-    {
-        return false;
-    }
-    if (data.humidity < MIN_HUMIDITY || data.humidity > MAX_HUMIDITY)
-    {
-        return false;
-    }
-    if (data.ec < MIN_EC || data.ec > MAX_EC)
-    {
-        return false;
-    }
-    if (data.ph < MIN_PH || data.ph > MAX_PH)
-    {
-        return false;
-    }
-    if (data.nitrogen < MIN_NPK || data.nitrogen > MAX_NPK)
-    {
-        return false;
-    }
-    if (data.phosphorus < MIN_NPK || data.phosphorus > MAX_NPK)
-    {
-        return false;
-    }
-    if (data.potassium < MIN_NPK || data.potassium > MAX_NPK)
-    {
+    auto result = validateFullSensorData(data);
+    if (!result.isValid) {
+        logSensorValidationResult(result, "modbus_sensor");
         return false;
     }
     return true;

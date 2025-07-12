@@ -1,5 +1,9 @@
 #pragma once
+#ifdef TEST_BUILD
+#include "../test/stubs/esp32_stubs.h"
+#else
 #include <Arduino.h>
+#endif
 
 // ========================================
 // JXCT UI DESIGN SYSTEM v2.3.1

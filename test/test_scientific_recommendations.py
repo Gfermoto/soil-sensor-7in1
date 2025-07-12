@@ -169,7 +169,9 @@ def test_scientific_recommendations():
         print(f"\n⚠️ Обнаружено {failed_tests} FAIL тестов!")
         sys.exit(1)
     
-    return results
+    # Возвращаем результаты для анализа
+    assert results is not None, "Результаты тестирования не должны быть None"
+    assert len(results) > 0, "Должны быть результаты тестирования"
 
 def simulate_recommendation_api(request_data):
     """Симулирует API рекомендаций"""

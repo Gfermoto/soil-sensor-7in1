@@ -46,7 +46,7 @@ class PreCommitHook:
 
         python_files = [
             "test/test_format.py",
-            "test/test_validation.py",
+            "test/test_critical_validation.py",
             "test/test_routes.py",
             "scripts/run_simple_tests.py",
             "scripts/run_comprehensive_tests.py",
@@ -71,10 +71,10 @@ class PreCommitHook:
         """Запуск критически важных тестов"""
         self.log("Запуск критических тестов...")
 
-        # Только самые важные тесты
+        # Только самые важные тесты - исключаем агроэкономические
         tests = [
             ("test/test_format.py", "Тест форматирования"),
-            ("test/test_validation.py", "Тест валидации")
+            ("test/test_critical_validation.py", "Критические тесты валидации")
         ]
 
         success = True

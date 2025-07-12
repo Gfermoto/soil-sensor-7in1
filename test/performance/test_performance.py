@@ -46,12 +46,8 @@ def test_validation_performance():
     print(f"  Скорость: {len(test_values)/duration:.0f} тестов/сек")
     
     # Проверяем производительность
-    if duration < 1.0:  # Должно быть быстрее 1 секунды
-        print("  ✅ Производительность валидации отличная")
-        return True
-    else:
-        print("  ⚠️ Производительность валидации требует оптимизации")
-        return False
+    assert duration < 1.0, f"Производительность валидации требует оптимизации: {duration:.3f}s"
+    print("  ✅ Производительность валидации отличная")
 
 def test_calculation_performance():
     """Тест производительности расчетов"""
@@ -82,12 +78,8 @@ def test_calculation_performance():
     print(f"  Скорость: {len(test_data)/duration:.0f} расчетов/сек")
     
     # Проверяем производительность
-    if duration < 0.5:  # Должно быть быстрее 0.5 секунды
-        print("  ✅ Производительность расчетов отличная")
-        return True
-    else:
-        print("  ⚠️ Производительность расчетов требует оптимизации")
-        return False
+    assert duration < 0.5, f"Производительность расчетов требует оптимизации: {duration:.3f}s"
+    print("  ✅ Производительность расчетов отличная")
 
 def test_memory_performance():
     """Тест производительности памяти"""
@@ -124,12 +116,8 @@ def test_memory_performance():
     print(f"  Скорость: {len(data_blocks)/duration:.0f} блоков/сек")
     
     # Проверяем производительность
-    if duration < 0.1:  # Должно быть быстрее 0.1 секунды
-        print("  ✅ Производительность памяти отличная")
-        return True
-    else:
-        print("  ⚠️ Производительность памяти требует оптимизации")
-        return False
+    assert duration < 0.1, f"Производительность памяти требует оптимизации: {duration:.3f}s"
+    print("  ✅ Производительность памяти отличная")
 
 def main():
     """Главная функция"""

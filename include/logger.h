@@ -6,7 +6,11 @@
 #ifndef LOGGER_H
 #define LOGGER_H
 
+#ifdef TEST_BUILD
+#include "../test/stubs/esp32_stubs.h"
+#else
 #include <Arduino.h>
+#endif
 #include <array>
 #include <utility>
 

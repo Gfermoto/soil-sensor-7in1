@@ -1,8 +1,18 @@
 #pragma once
 
-#include <Arduino.h>
+#ifdef TEST_BUILD
+#include "esp32_stubs.h"
+#elif defined(ESP32) || defined(ARDUINO)
+#ifdef TEST_BUILD
+#include "../test/stubs/esp32_stubs.h"
+#else
+#include "Arduino.h"
+#endif
 #include <FS.h>
 #include <LittleFS.h>
+#else
+#include "esp32_stubs.h"
+#endif
 #include "sensor_compensation.h"
 
 // Структура одной записи калибровочной таблицы (сырое значение -> скорректированное)

@@ -1,7 +1,11 @@
 #ifndef DEBUG_H
 #define DEBUG_H
 
+#ifdef TEST_BUILD
+#include "../test/stubs/esp32_stubs.h"
+#else
 #include <Arduino.h>
+#endif
 
 // Условная компиляция отладки
 // В релизной сборке весь отладочный код будет исключен из прошивки

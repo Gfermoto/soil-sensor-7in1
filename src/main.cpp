@@ -30,8 +30,14 @@
 #include "business/crop_recommendation_engine.h"
 #include "business/sensor_calibration_service.h"
 #include "business/sensor_compensation_service.h"
+#ifdef TEST_BUILD
+#include "esp32_stubs.h"
+#elif defined(ESP32) || defined(ARDUINO)
 #include <WebServer.h>
 #include <LittleFS.h>
+#else
+#include "test/stubs/esp32_stubs.h"
+#endif
 // Веб-сервер
 WebServer server(80); // NOLINT(misc-use-internal-linkage)
 

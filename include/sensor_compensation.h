@@ -1,6 +1,10 @@
 #pragma once
 
-#include <Arduino.h>
+#ifdef TEST_BUILD
+#include "../test/stubs/esp32_stubs.h"
+#else
+#include "Arduino.h"
+#endif
 
 /**
  * @file sensor_compensation.h

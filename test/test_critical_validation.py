@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Простой тест валидации для JXCT
-Версия: 1.1.0 (исправлена кодировка)
+КРИТИЧЕСКИЕ тесты валидации для JXCT
+Только тесты, которые ДОЛЖНЫ проходить для pre-commit
+Версия: 1.0.0
 """
 
 import sys
@@ -19,7 +20,7 @@ if hasattr(sys.stderr, 'reconfigure'):
     sys.stderr.reconfigure(encoding='utf-8')
 
 def test_temperature_range():
-    """Тест диапазона температур"""
+    """Тест диапазона температур - КРИТИЧЕСКИЙ"""
     print("Тестирование диапазона температур...")
 
     valid_temps = [25.0, 0.0, -10.0, 50.0, 22.5]
@@ -48,7 +49,7 @@ def test_temperature_range():
     assert passed == total, f"Не все тесты диапазона температур прошли: {passed}/{total}"
 
 def test_humidity_range():
-    """Тест диапазона влажности"""
+    """Тест диапазона влажности - КРИТИЧЕСКИЙ"""
     print("Тестирование диапазона влажности...")
 
     valid_humidity = [0.0, 50.0, 100.0, 25.5, 75.0]
@@ -77,7 +78,7 @@ def test_humidity_range():
     assert passed == total, f"Не все тесты диапазона влажности прошли: {passed}/{total}"
 
 def test_ph_range():
-    """Тест диапазона pH"""
+    """Тест диапазона pH - КРИТИЧЕСКИЙ"""
     print("Тестирование диапазона pH...")
 
     valid_ph = [0.0, 7.0, 14.0, 6.5, 8.2]
@@ -106,7 +107,7 @@ def test_ph_range():
     assert passed == total, f"Не все тесты диапазона pH прошли: {passed}/{total}"
 
 def test_ec_range():
-    """Тест диапазона EC"""
+    """Тест диапазона EC - КРИТИЧЕСКИЙ"""
     print("Тестирование диапазона EC...")
 
     valid_ec = [0.0, 1.5, 1000.0, 2300.0, 5000.0]
@@ -135,7 +136,7 @@ def test_ec_range():
     assert passed == total, f"Не все тесты диапазона EC прошли: {passed}/{total}"
 
 def test_project_structure():
-    """Тест структуры проекта"""
+    """Тест структуры проекта - КРИТИЧЕСКИЙ"""
     print("Тестирование структуры проекта...")
 
     required_dirs = ["src", "include", "test", "scripts"]
@@ -166,8 +167,8 @@ def test_project_structure():
     assert passed == total, f"Не все тесты структуры проекта прошли: {passed}/{total}"
 
 def main():
-    """Главная функция"""
-    print("=== ТЕСТ ВАЛИДАЦИИ JXCT ===")
+    """Главная функция - только критические тесты"""
+    print("=== КРИТИЧЕСКИЕ ТЕСТЫ ВАЛИДАЦИИ JXCT ===")
 
     tests = [
         ("Диапазон температур", test_temperature_range),
@@ -183,11 +184,9 @@ def main():
     for test_name, test_func in tests:
         print(f"\n[{test_name}]")
         try:
-            if test_func():
-                print(f"  ПРОЙДЕН")
-                passed_tests += 1
-            else:
-                print(f"  ПРОВАЛЕН")
+            test_func()
+            print(f"  ПРОЙДЕН")
+            passed_tests += 1
         except Exception as e:
             print(f"  ОШИБКА: {e}")
 
@@ -196,4 +195,4 @@ def main():
 
 if __name__ == "__main__":
     success = main()
-    sys.exit(0 if success else 1)
+    sys.exit(0 if success else 1) 

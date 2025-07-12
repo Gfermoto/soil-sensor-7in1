@@ -61,7 +61,7 @@ def test_wifi_logic():
             print(f"  ✗ SSID='{ssid[:10]}...', PWD='{password[:5]}...' -> {mode} (ожидалось {expected_mode})")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Не все тесты WiFi логики прошли: {passed}/{total}"
 
 def test_thingspeak_validation():
     """Тест валидации ThingSpeak"""
@@ -108,7 +108,7 @@ def test_thingspeak_validation():
             print(f"  ✗ API='{api_key[:8]}...', CH='{channel_id}' - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Не все тесты валидации ThingSpeak прошли: {passed}/{total}"
 
 def test_ota_validation():
     """Тест валидации OTA обновлений"""
@@ -161,7 +161,7 @@ def test_ota_validation():
             print(f"  ✗ URL='{url[:30]}...', SHA256='{sha256[:8]}...' - неправильно")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Не все тесты валидации OTA прошли: {passed}/{total}"
 
 def test_memory_management():
     """Тест управления памятью"""
@@ -204,7 +204,7 @@ def test_memory_management():
             print(f"  ✗ {free_heap} байт, {operation} - {result} (ожидалось {expected_result})")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Не все тесты управления памятью прошли: {passed}/{total}"
 
 def test_error_handling():
     """Тест обработки ошибок"""
@@ -252,7 +252,7 @@ def test_error_handling():
             print(f"  ✗ {error_type} (попытка {retry_count}) -> {action} (ожидалось {expected_action})")
 
     print(f"  Результат: {passed}/{total}")
-    return passed == total
+    assert passed == total, f"Не все тесты обработки ошибок прошли: {passed}/{total}"
 
 def main():
     """Главная функция"""

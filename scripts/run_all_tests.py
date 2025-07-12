@@ -141,8 +141,10 @@ class TestRunner:
                         "-I", str(self.project_root / "src"),
                         "-I", str(self.project_root / "test" / "stubs"),
                         "-I", str(self.project_root / "test" / "stubs" / "Unity" / "src"),
+                        "-DTEST_BUILD",  # Определяем макрос для тестовой сборки
                         str(test_file),
                         str(self.project_root / "test" / "stubs" / "Unity" / "src" / "unity.c"),
+                        str(self.project_root / "test" / "stubs" / "esp32_stubs.cpp"),
                         "-o", str(test_file.with_suffix(".exe"))
                     ]
                     
@@ -152,6 +154,8 @@ class TestRunner:
                         cwd=self.project_root,
                         capture_output=True,
                         text=True,
+                        encoding='utf-8',
+                        errors='replace',
                         timeout=60
                     )
                     
@@ -165,6 +169,8 @@ class TestRunner:
                             cwd=self.project_root,
                             capture_output=True,
                             text=True,
+                            encoding='utf-8',
+                            errors='replace',
                             timeout=30
                         )
                         
@@ -228,6 +234,8 @@ class TestRunner:
                 cwd=self.project_root,
                 capture_output=True,
                 text=True,
+                encoding='utf-8',
+                errors='replace',
                 timeout=180
             )
             

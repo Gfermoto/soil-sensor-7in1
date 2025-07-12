@@ -8,8 +8,14 @@
 #ifndef CSRF_PROTECTION_H
 #define CSRF_PROTECTION_H
 
-#include <Arduino.h>
+#ifdef TEST_BUILD
+#include "esp32_stubs.h"
+#elif defined(ESP32) || defined(ARDUINO)
+#include "Arduino.h"
 #include <WebServer.h>
+#else
+#include "esp32_stubs.h"
+#endif
 
 // Объявление webServer (определен в wifi_manager.cpp)
 extern WebServer webServer;

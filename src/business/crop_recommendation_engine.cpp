@@ -9,6 +9,7 @@
 #include "../../include/jxct_constants.h"
 #include "../../include/logger.h"
 #include <ctime>
+#include "validation_utils.h"  // Для централизованной валидации
 
 // Заглушки для внутренних функций компенсации
 float compensatePHInternal(float pHRawValue, float temperatureValue, float moistureValue) { return pHRawValue; }
@@ -160,12 +161,8 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(
         .build();
     
     // Валидация входных данных используя единые константы
-    if (params.data.temperature < SENSOR_TEMP_MIN || params.data.temperature > SENSOR_TEMP_MAX) {
-        // Логирование ошибки валидации
-        Serial.println("ОШИБКА: Температура вне диапазона датчика");
-    }
-    if (params.data.humidity < SENSOR_HUMIDITY_MIN || params.data.humidity > SENSOR_HUMIDITY_MAX) {
-        Serial.println("ОШИБКА: Влажность вне диапазона датчика");
+    if (!validateSensorData(params.data)) {
+        return {}; // Возвращаем пустой результат в случае ошибки валидации
     }
     
     // Компенсация показаний датчиков [Источники: SSSA Journal, 2008; Advances in Agronomy, 2014; Journal of Soil Science, 2020]
@@ -624,29 +621,11 @@ CropConfig CropRecommendationEngine::getCropConfig(const String& cropType) const
 }
 
 bool CropRecommendationEngine::validateSensorData(const SensorData& data) const {
-    // Проверка диапазонов значений используя единые константы
-    if (data.temperature < SENSOR_TEMP_MIN || data.temperature > SENSOR_TEMP_MAX) {
+    auto result = validateFullSensorData(data);
+    if (!result.isValid) {
+        logSensorValidationResult(result, "crop_recommendation_engine");
         return false;
     }
-    if (data.humidity < SENSOR_HUMIDITY_MIN || data.humidity > SENSOR_HUMIDITY_MAX) {
-        return false;
-    }
-    if (data.ec < SENSOR_EC_MIN || data.ec > SENSOR_EC_MAX) {
-        return false;
-    }
-    if (data.ph < SENSOR_PH_MIN || data.ph > SENSOR_PH_MAX) {
-        return false;
-    }
-    if (data.nitrogen < SENSOR_NPK_MIN || data.nitrogen > SENSOR_NPK_MAX) {
-        return false;
-    }
-    if (data.phosphorus < SENSOR_NPK_MIN || data.phosphorus > SENSOR_NPK_MAX) {
-        return false;
-    }
-    if (data.potassium < SENSOR_NPK_MIN || data.potassium > SENSOR_NPK_MAX) {
-        return false;
-    }
-    
     return true;
 }
 

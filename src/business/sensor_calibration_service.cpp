@@ -8,6 +8,7 @@
 #include "../../include/jxct_constants.h"
 #include "../../include/logger.h"
 #include "../../include/calibration_manager.h"
+#include "validation_utils.h"  // Для централизованной валидации
 
 // Внутренние переменные и функции
 namespace {
@@ -96,42 +97,11 @@ float SensorCalibrationService::applySingleCalibration(float rawValue, SoilProfi
 
 bool SensorCalibrationService::validateCalibrationData(const SensorData& data) // NOLINT(readability-convert-member-functions-to-static)
 {
-    // Проверяем диапазоны значений используя единые константы
-    if (data.temperature < SENSOR_TEMP_MIN || data.temperature > SENSOR_TEMP_MAX) {
-        logDebugSafe("SensorCalibrationService: Недопустимая температура: %.2f", data.temperature);
+    auto result = validateFullSensorData(data);
+    if (!result.isValid) {
+        logSensorValidationResult(result, "sensor_calibration_service");
         return false;
     }
-
-    if (data.humidity < SENSOR_HUMIDITY_MIN || data.humidity > SENSOR_HUMIDITY_MAX) {
-        logDebugSafe("SensorCalibrationService: Недопустимая влажность: %.2f", data.humidity);
-        return false;
-    }
-
-    if (data.ec < SENSOR_EC_MIN || data.ec > SENSOR_EC_MAX) {
-        logDebugSafe("SensorCalibrationService: Недопустимая EC: %.2f", data.ec);
-        return false;
-    }
-
-    if (data.ph < SENSOR_PH_MIN || data.ph > SENSOR_PH_MAX) {
-        logDebugSafe("SensorCalibrationService: Недопустимый pH: %.2f", data.ph);
-        return false;
-    }
-
-    if (data.nitrogen < SENSOR_NPK_MIN || data.nitrogen > SENSOR_NPK_MAX) {
-        logDebugSafe("SensorCalibrationService: Недопустимый азот: %.2f", data.nitrogen);
-        return false;
-    }
-
-    if (data.phosphorus < SENSOR_NPK_MIN || data.phosphorus > SENSOR_NPK_MAX) {
-        logDebugSafe("SensorCalibrationService: Недопустимый фосфор: %.2f", data.phosphorus);
-        return false;
-    }
-
-    if (data.potassium < SENSOR_NPK_MIN || data.potassium > SENSOR_NPK_MAX) {
-        logDebugSafe("SensorCalibrationService: Недопустимый калий: %.2f", data.potassium);
-        return false;
-    }
-
     return true;
 }
 

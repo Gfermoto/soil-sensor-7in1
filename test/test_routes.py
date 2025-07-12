@@ -64,7 +64,7 @@ def test_required_routes_exist():
     print(f"\n📊 Результат: {passed}/{total}")
     print(f"🎯 {'✅ ТЕСТ ПРОЙДЕН' if passed == total else '❌ ТЕСТ ПРОВАЛЕН'}")
     
-    return passed == total
+    assert passed == total, f"Не все обязательные маршруты найдены: {passed}/{total}"
 
 if __name__ == '__main__':
     success = test_required_routes_exist()

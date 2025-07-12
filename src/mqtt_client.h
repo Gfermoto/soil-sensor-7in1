@@ -1,10 +1,16 @@
 #ifndef MQTT_CLIENT_H
 #define MQTT_CLIENT_H
 
-#include <Arduino.h>
+#ifdef TEST_BUILD
+#include "esp32_stubs.h"
+#elif defined(ESP32) || defined(ARDUINO)
+#include "Arduino.h"
 #include <ArduinoJson.h>
 #include <PubSubClient.h>
 #include <WiFi.h>
+#else
+#include "esp32_stubs.h"
+#endif
 
 // Функции доступа к MQTT клиентам
 extern WiFiClient espClient;

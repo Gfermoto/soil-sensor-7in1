@@ -6,7 +6,11 @@
  * @details Объявления функций валидации конфигурации и данных датчика
  */
 
+#ifdef TEST_BUILD
+#include "../test/stubs/esp32_stubs.h"
+#else
 #include <Arduino.h>
+#endif
 #include <vector>
 #include "modbus_sensor.h"  // Для SensorData
 
