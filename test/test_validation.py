@@ -109,15 +109,15 @@ def test_ec_range():
     """Тест диапазона EC"""
     print("Тестирование диапазона EC...")
 
-    valid_ec = [0.0, 1.5, 10.0, 2.3, 5.0]
-    invalid_ec = [-1.0, 50.0, 100.0, -10.0]
+    valid_ec = [0.0, 1.5, 1000.0, 2300.0, 5000.0]
+    invalid_ec = [-1.0, 15000.0, 20000.0, -10.0]
 
     passed = 0
     total = len(valid_ec) + len(invalid_ec)
 
     # Проверяем валидные значения
     for ec in valid_ec:
-        if 0.0 <= ec <= 20.0:  # Разумный диапазон для почвы
+        if 0.0 <= ec <= 10000.0:  # Диапазон датчика JXCT 7-in-1
             passed += 1
             print(f"  ✓ EC {ec} - валидный")
         else:
@@ -125,7 +125,7 @@ def test_ec_range():
 
     # Проверяем невалидные значения
     for ec in invalid_ec:
-        if not (0.0 <= ec <= 20.0):
+        if not (0.0 <= ec <= 10000.0):
             passed += 1
             print(f"  ✓ EC {ec} - правильно отклонен")
         else:

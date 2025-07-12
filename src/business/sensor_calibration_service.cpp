@@ -96,38 +96,38 @@ float SensorCalibrationService::applySingleCalibration(float rawValue, SoilProfi
 
 bool SensorCalibrationService::validateCalibrationData(const SensorData& data) // NOLINT(readability-convert-member-functions-to-static)
 {
-    // Проверяем диапазоны значений
-    if (data.temperature < -50.0F || data.temperature > 100.0F) {
+    // Проверяем диапазоны значений используя единые константы
+    if (data.temperature < SENSOR_TEMP_MIN || data.temperature > SENSOR_TEMP_MAX) {
         logDebugSafe("SensorCalibrationService: Недопустимая температура: %.2f", data.temperature);
         return false;
     }
 
-    if (data.humidity < 0.0F || data.humidity > 100.0F) {
+    if (data.humidity < SENSOR_HUMIDITY_MIN || data.humidity > SENSOR_HUMIDITY_MAX) {
         logDebugSafe("SensorCalibrationService: Недопустимая влажность: %.2f", data.humidity);
         return false;
     }
 
-    if (data.ec < 0.0F || data.ec > 10000.0F) {
+    if (data.ec < SENSOR_EC_MIN || data.ec > SENSOR_EC_MAX) {
         logDebugSafe("SensorCalibrationService: Недопустимая EC: %.2f", data.ec);
         return false;
     }
 
-    if (data.ph < 0.0F || data.ph > 14.0F) {
+    if (data.ph < SENSOR_PH_MIN || data.ph > SENSOR_PH_MAX) {
         logDebugSafe("SensorCalibrationService: Недопустимый pH: %.2f", data.ph);
         return false;
     }
 
-    if (data.nitrogen < 0.0F || data.nitrogen > 1000.0F) {
+    if (data.nitrogen < SENSOR_NPK_MIN || data.nitrogen > SENSOR_NPK_MAX) {
         logDebugSafe("SensorCalibrationService: Недопустимый азот: %.2f", data.nitrogen);
         return false;
     }
 
-    if (data.phosphorus < 0.0F || data.phosphorus > 1000.0F) {
+    if (data.phosphorus < SENSOR_NPK_MIN || data.phosphorus > SENSOR_NPK_MAX) {
         logDebugSafe("SensorCalibrationService: Недопустимый фосфор: %.2f", data.phosphorus);
         return false;
     }
 
-    if (data.potassium < 0.0F || data.potassium > 1000.0F) {
+    if (data.potassium < SENSOR_NPK_MIN || data.potassium > SENSOR_NPK_MAX) {
         logDebugSafe("SensorCalibrationService: Недопустимый калий: %.2f", data.potassium);
         return false;
     }

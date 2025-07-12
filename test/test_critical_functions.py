@@ -128,7 +128,7 @@ def test_modbus_validation():
         # (temp, hum, ph, ec, n, p, k, expected_valid)
         (25.0, 50.0, 7.0, 1.5, 100, 50, 200, True),  # Нормальные значения
         (-10.0, 30.0, 6.5, 1.2, 80, 40, 150, True),  # Граничные значения
-        (80.0, 100.0, 14.0, 20.0, 999, 999, 999, True),  # Максимальные значения
+        (80.0, 100.0, 9.0, 10000.0, 999, 999, 999, True),  # Максимальные значения (pH 3-9, EC до 10000)
         (-60.0, 50.0, 7.0, 1.5, 100, 50, 200, False),  # Слишком низкая температура
         (25.0, 120.0, 7.0, 1.5, 100, 50, 200, False),  # Слишком высокая влажность
     ]
@@ -140,14 +140,14 @@ def test_modbus_validation():
         # Имитируем логику validateSensorData()
         is_valid = True
 
-        # Проверяем диапазоны
-        if temp < -50.0 or temp > 80.0:
+        # Проверяем диапазоны (единые константы датчика JXCT 7-in-1)
+        if temp < -45.0 or temp > 115.0:
             is_valid = False
         if hum < 0.0 or hum > 100.0:
             is_valid = False
-        if ph < 0.0 or ph > 14.0:
+        if ph < 3.0 or ph > 9.0:
             is_valid = False
-        if ec < 0.0 or ec > 20.0:
+        if ec < 0.0 or ec > 10000.0:
             is_valid = False
         if n < 0 or n > 1999:
             is_valid = False

@@ -6,6 +6,7 @@
 
 #include "crop_recommendation_engine.h"
 #include "../../include/jxct_config_vars.h"
+#include "../../include/jxct_constants.h"
 #include "../../include/logger.h"
 #include <ctime>
 
@@ -158,13 +159,13 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(
         .soilType(soilType)
         .build();
     
-    // Валидация входных данных
-    if (params.data.temperature < 0.0F || params.data.temperature > 50.0F) {
+    // Валидация входных данных используя единые константы
+    if (params.data.temperature < SENSOR_TEMP_MIN || params.data.temperature > SENSOR_TEMP_MAX) {
         // Логирование ошибки валидации
-        Serial.println("ОШИБКА: Температура вне диапазона 0-50°C");
+        Serial.println("ОШИБКА: Температура вне диапазона датчика");
     }
-    if (params.data.humidity < 10.0F || params.data.humidity > 90.0F) {
-        Serial.println("ОШИБКА: Влажность вне диапазона 10-90%");
+    if (params.data.humidity < SENSOR_HUMIDITY_MIN || params.data.humidity > SENSOR_HUMIDITY_MAX) {
+        Serial.println("ОШИБКА: Влажность вне диапазона датчика");
     }
     
     // Компенсация показаний датчиков [Источники: SSSA Journal, 2008; Advances in Agronomy, 2014; Journal of Soil Science, 2020]
@@ -623,26 +624,26 @@ CropConfig CropRecommendationEngine::getCropConfig(const String& cropType) const
 }
 
 bool CropRecommendationEngine::validateSensorData(const SensorData& data) const {
-    // Проверка диапазонов значений
-    if (data.temperature < -50.0F || data.temperature > 80.0F) {
+    // Проверка диапазонов значений используя единые константы
+    if (data.temperature < SENSOR_TEMP_MIN || data.temperature > SENSOR_TEMP_MAX) {
         return false;
     }
-    if (data.humidity < 0.0F || data.humidity > 100.0F) {
+    if (data.humidity < SENSOR_HUMIDITY_MIN || data.humidity > SENSOR_HUMIDITY_MAX) {
         return false;
     }
-    if (data.ec < 0.0F || data.ec > 10000.0F) {
+    if (data.ec < SENSOR_EC_MIN || data.ec > SENSOR_EC_MAX) {
         return false;
     }
-    if (data.ph < 0.0F || data.ph > 14.0F) {
+    if (data.ph < SENSOR_PH_MIN || data.ph > SENSOR_PH_MAX) {
         return false;
     }
-    if (data.nitrogen < 0.0F || data.nitrogen > 1000.0F) {
+    if (data.nitrogen < SENSOR_NPK_MIN || data.nitrogen > SENSOR_NPK_MAX) {
         return false;
     }
-    if (data.phosphorus < 0.0F || data.phosphorus > 1000.0F) {
+    if (data.phosphorus < SENSOR_NPK_MIN || data.phosphorus > SENSOR_NPK_MAX) {
         return false;
     }
-    if (data.potassium < 0.0F || data.potassium > 1000.0F) {
+    if (data.potassium < SENSOR_NPK_MIN || data.potassium > SENSOR_NPK_MAX) {
         return false;
     }
     

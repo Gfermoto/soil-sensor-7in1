@@ -77,17 +77,27 @@ constexpr unsigned long MODBUS_FRAME_DELAY = 100;        // 100 мс между 
 // ВАЛИДАЦИОННЫЕ КОНСТАНТЫ
 // ============================================================================
 
-// Диапазоны значений датчика
-constexpr float SENSOR_TEMP_MIN = -40.0F;
-constexpr float SENSOR_TEMP_MAX = 80.0F;
-constexpr float SENSOR_HUMIDITY_MIN = 0.0F;
-constexpr float SENSOR_HUMIDITY_MAX = 100.0F;
-constexpr float SENSOR_PH_MIN = 0.0F;
-constexpr float SENSOR_PH_MAX = 14.0F;
-constexpr uint16_t SENSOR_EC_MIN = 0;
-constexpr uint16_t SENSOR_EC_MAX = 20000;
-constexpr uint16_t SENSOR_NPK_MIN = 0;
-constexpr uint16_t SENSOR_NPK_MAX = 2000;  // ИСПРАВЛЕНО: соответствует максимальному значению датчика JXCT
+// ЕДИНЫЕ ДИАПАЗОНЫ ЗНАЧЕНИЙ ДАТЧИКА JXCT 7-in-1 (официальная документация)
+// Используются во всех частях системы для унификации валидации
+constexpr float SENSOR_TEMP_MIN = -45.0F;      // Минимальная температура датчика
+constexpr float SENSOR_TEMP_MAX = 115.0F;      // Максимальная температура датчика
+constexpr float SENSOR_HUMIDITY_MIN = 0.0F;    // Минимальная влажность
+constexpr float SENSOR_HUMIDITY_MAX = 100.0F;  // Максимальная влажность
+constexpr float SENSOR_PH_MIN = 3.0F;          // Минимальный pH (рабочий диапазон датчика)
+constexpr float SENSOR_PH_MAX = 9.0F;          // Максимальный pH (рабочий диапазон датчика)
+constexpr uint16_t SENSOR_EC_MIN = 0;          // Минимальная EC
+constexpr uint16_t SENSOR_EC_MAX = 10000;      // Максимальная EC (рабочий диапазон датчика)
+constexpr uint16_t SENSOR_NPK_MIN = 0;         // Минимальное значение NPK
+constexpr uint16_t SENSOR_NPK_MAX = 1999;      // Максимальное значение NPK (рабочий диапазон датчика)
+
+// АЛИАСЫ ДЛЯ ОБРАТНОЙ СОВМЕСТИМОСТИ
+// Эти константы теперь ссылаются на основные для унификации
+constexpr float TEMP_MIN_VALID = SENSOR_TEMP_MIN;
+constexpr float TEMP_MAX_VALID = SENSOR_TEMP_MAX;
+constexpr float HUM_MIN_VALID = SENSOR_HUMIDITY_MIN;
+constexpr float HUM_MAX_VALID = SENSOR_HUMIDITY_MAX;
+constexpr int EC_MAX_VALID = SENSOR_EC_MAX;
+constexpr int NPK_MAX_VALID = SENSOR_NPK_MAX;
 
 // Диапазоны конфигурации
 constexpr unsigned long CONFIG_INTERVAL_MIN = 1000;       // 1 секунда
@@ -406,13 +416,7 @@ constexpr int SUCCESS_RATE_THRESHOLD = 90;
 // NTP и время
 constexpr unsigned long NTP_TIMESTAMP_2000 = 946684800;  // 2000-01-01 00:00:00 UTC
 
-// Валидация сенсорных данных
-constexpr float TEMP_MIN_VALID = -45.0F;
-constexpr float TEMP_MAX_VALID = 115.0F;
-constexpr float HUM_MIN_VALID = 0.0F;
-constexpr float HUM_MAX_VALID = 100.0F;
-constexpr int EC_MAX_VALID = 10000;
-constexpr int NPK_MAX_VALID = 2000;  // ИСПРАВЛЕНО: соответствует максимальному значению датчика JXCT
+// Валидация сенсорных данных - теперь используется единая система выше
 
 // Размеры JSON документов
 constexpr size_t SENSOR_JSON_DOC_SIZE = 512;
