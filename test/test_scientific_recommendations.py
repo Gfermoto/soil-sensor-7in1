@@ -155,6 +155,20 @@ def test_scientific_recommendations():
     # Анализируем результаты
     analyze_results(results)
     
+    # Проверяем, есть ли FAIL тесты
+    failed_tests = 0
+    for result in results:
+        if "error" in result:
+            continue
+        validation = result.get("validation", {})
+        if validation.get("status") == "FAIL":
+            failed_tests += 1
+    
+    # Если есть FAIL тесты, завершаем с ненулевым кодом
+    if failed_tests > 0:
+        print(f"\n⚠️ Обнаружено {failed_tests} FAIL тестов!")
+        sys.exit(1)
+    
     return results
 
 def simulate_recommendation_api(request_data):
