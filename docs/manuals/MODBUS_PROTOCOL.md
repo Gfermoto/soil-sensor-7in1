@@ -440,22 +440,22 @@ for (int i = 0; i < 4; i++) {
 ### Допустимые диапазоны {#Dopustimye-diapazony}
 ```cpp
 bool validateSensorData(SensorData& data) {
-    // Температура: -10°C до +50°C
-    if (data.temperature < -10.0 || data.temperature > 50.0) return false;
+    // Температура: -45°C до +115°C (диапазон датчика JXCT 7-in-1)
+    if (data.temperature < SENSOR_TEMP_MIN || data.temperature > SENSOR_TEMP_MAX) return false;
 
     // Влажность: 0% до 100%
-    if (data.humidity < 0.0 || data.humidity > 100.0) return false;
+    if (data.humidity < SENSOR_HUMIDITY_MIN || data.humidity > SENSOR_HUMIDITY_MAX) return false;
 
-    // pH: 0 до 14
-    if (data.ph < 0.0 || data.ph > 14.0) return false;
+    // pH: 3.0 до 9.0 (рабочий диапазон датчика JXCT 7-in-1)
+    if (data.ph < SENSOR_PH_MIN || data.ph > SENSOR_PH_MAX) return false;
 
-    // EC: 0 до 20000 µS/cm
-    if (data.ec < 0.0 || data.ec > 20000.0) return false;
+    // EC: 0 до 10000 µS/cm (рабочий диапазон датчика JXCT 7-in-1)
+    if (data.ec < SENSOR_EC_MIN || data.ec > SENSOR_EC_MAX) return false;
 
-    // NPK: 0 до 2000 мг/кг
-    if (data.nitrogen < 0.0 || data.nitrogen > 2000.0) return false;
-    if (data.phosphorus < 0.0 || data.phosphorus > 2000.0) return false;
-    if (data.potassium < 0.0 || data.potassium > 2000.0) return false;
+    // NPK: 0 до 1999 мг/кг (рабочий диапазон датчика JXCT 7-in-1)
+    if (data.nitrogen < SENSOR_NPK_MIN || data.nitrogen > SENSOR_NPK_MAX) return false;
+    if (data.phosphorus < SENSOR_NPK_MIN || data.phosphorus > SENSOR_NPK_MAX) return false;
+    if (data.potassium < SENSOR_NPK_MIN || data.potassium > SENSOR_NPK_MAX) return false;
 
     return true;
 }
