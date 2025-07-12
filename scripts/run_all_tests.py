@@ -59,7 +59,7 @@ class TestRunner:
                 
                 # Выводим результат
                 if return_code == 0:
-                    print(f"   ✅ [{test_name}] УСПЕШНО")
+                    print(f"   ✅ [{test_name}] УСПЕШНО (код: {return_code})")
                     if stdout.strip():
                         print(f"   📤 Вывод:\n{stdout}")
                     self.results["passed"] += 1
@@ -129,10 +129,79 @@ class TestRunner:
         if integration_dir.exists():
             for test_file in integration_dir.glob("*.cpp"):
                 test_name = test_file.name
-                print(f"   📋 [{test_name}] C++ интеграционный тест (требует компиляции)")
-                # Пока пропускаем C++ тесты, так как они требуют компиляции
-                print(f"   ⏭️ [{test_name}] Пропущен (требует настройки компиляции)")
-                # НЕ добавляем в общее количество, так как тест пропущен по техническим причинам
+                print(f"   📋 [{test_name}] C++ интеграционный тест")
+                
+                # Компилируем и запускаем C++ тест
+                try:
+                    # Компилируем с помощью w64devkit
+                    compile_cmd = [
+                        "C:\\Program Files\\w64devkit\\bin\\g++.exe",
+                        "-std=c++17",
+                        "-I", str(self.project_root / "include"),
+                        "-I", str(self.project_root / "src"),
+                        "-I", str(self.project_root / "test" / "stubs"),
+                        "-I", str(self.project_root / "test" / "stubs" / "Unity" / "src"),
+                        str(test_file),
+                        str(self.project_root / "test" / "stubs" / "Unity" / "src" / "unity.c"),
+                        "-o", str(test_file.with_suffix(".exe"))
+                    ]
+                    
+                    print(f"   🔨 Компиляция {test_name}...")
+                    result = subprocess.run(
+                        compile_cmd,
+                        cwd=self.project_root,
+                        capture_output=True,
+                        text=True,
+                        timeout=60
+                    )
+                    
+                    if result.returncode == 0:
+                        # Запускаем скомпилированный тест
+                        exe_path = test_file.with_suffix(".exe")
+                        print(f"   🚀 Запуск {test_name}...")
+                        
+                        test_result = subprocess.run(
+                            [str(exe_path)],
+                            cwd=self.project_root,
+                            capture_output=True,
+                            text=True,
+                            timeout=30
+                        )
+                        
+                        if test_result.returncode == 0:
+                            print(f"   ✅ [{test_name}] УСПЕШНО")
+                            if test_result.stdout.strip():
+                                print(f"   📤 Вывод:\n{test_result.stdout}")
+                            self.results["passed"] += 1
+                        else:
+                            print(f"   ❌ [{test_name}] ПРОВАЛЕН (код: {test_result.returncode})")
+                            if test_result.stdout.strip():
+                                print(f"   📤 stdout:\n{test_result.stdout}")
+                            if test_result.stderr.strip():
+                                print(f"   📤 stderr:\n{test_result.stderr}")
+                            self.results["failed"] += 1
+                    else:
+                        print(f"   ❌ [{test_name}] ОШИБКА КОМПИЛЯЦИИ")
+                        if result.stderr.strip():
+                            print(f"   📤 stderr:\n{result.stderr}")
+                        self.results["failed"] += 1
+                        
+                except subprocess.TimeoutExpired:
+                    print(f"   ⏰ [{test_name}] ТАЙМАУТ")
+                    self.results["timeout"] += 1
+                except Exception as e:
+                    print(f"   💥 [{test_name}] ОШИБКА: {e}")
+                    self.results["errors"] += 1
+                finally:
+                    self.results["total"] += 1
+                    
+                    # Удаляем временный exe файл
+                    try:
+                        exe_path = test_file.with_suffix(".exe")
+                        if exe_path.exists():
+                            exe_path.unlink()
+                    except:
+                        pass
 
     def run_performance_tests(self):
         """Запускает тесты производительности"""

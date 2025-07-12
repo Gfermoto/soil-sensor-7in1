@@ -155,7 +155,7 @@ def test_scientific_recommendations():
     # Анализируем результаты
     analyze_results(results)
     
-    # Проверяем, есть ли FAIL тесты
+    # Проверяем, есть ли FAIL тесты (WARN не считается как FAIL)
     failed_tests = 0
     for result in results:
         if "error" in result:
@@ -464,7 +464,9 @@ def validate_recommendation(recommendation, crop, growing_type, season, soil_typ
     if soil_type == "peat":
         adjusted_config = recommendation.get("adjusted_config", {})
         if adjusted_config.get("ph", 7.0) > 6.0:
-            validation_result["status"] = "WARN"
+            # Для торфа это предупреждение, а не ошибка
+            if validation_result["status"] == "PASS":
+                validation_result["status"] = "WARN"
             validation_result["issues"].append("Торф обычно кислый, проверьте pH")
     
     if soil_type == "clay":
@@ -515,7 +517,7 @@ def analyze_results(results):
         validation = result.get("validation", {})
         status = validation.get("status", "UNKNOWN")
         
-        if status == "PASS":
+        if status == "PASS" or status == "WARN":
             passed_tests += 1
         elif status == "FAIL":
             failed_tests += 1
