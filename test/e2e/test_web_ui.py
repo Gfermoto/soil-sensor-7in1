@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
 """
-E2E тесты для веб-интерфейса JXCT
+E2E тесты веб-интерфейса JXCT
 Тестирует основные страницы и API endpoints
 """
 
-import requests
-import json
-import time
 import unittest
+import requests
+import time
+import sys
+from pathlib import Path
+
+# Принудительно устанавливаем stdout в utf-8 для Windows
+if hasattr(sys.stdout, 'encoding') and sys.stdout.encoding and sys.stdout.encoding.lower() not in ['utf-8', 'utf8']:
+    try:
+        sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf-8', buffering=1)
+    except Exception:
+        pass
+
+import json
 from typing import Dict, Any
 
 class JXCTWebUITests(unittest.TestCase):

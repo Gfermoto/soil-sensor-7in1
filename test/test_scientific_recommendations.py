@@ -7,7 +7,15 @@
 import json
 import requests
 import time
+import sys
 from datetime import datetime
+
+# Принудительно устанавливаем stdout в utf-8 для Windows
+if hasattr(sys.stdout, 'encoding') and sys.stdout.encoding and sys.stdout.encoding.lower() not in ['utf-8', 'utf8']:
+    try:
+        sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf-8', buffering=1)
+    except Exception:
+        pass
 
 # Сезонные корректировки (процентные множители) [Источник: FAO Fertilizer and Plant Nutrition Bulletin No. 19, FAO, 2008]
 seasonal_adjustments = {

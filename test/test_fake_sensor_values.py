@@ -7,6 +7,13 @@
 import random
 import sys
 
+# Принудительно устанавливаем stdout в utf-8 для Windows
+if hasattr(sys.stdout, 'encoding') and sys.stdout.encoding and sys.stdout.encoding.lower() not in ['utf-8', 'utf8']:
+    try:
+        sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf-8', buffering=1)
+    except Exception:
+        pass
+
 def test_fake_sensor_npk_values():
     """Тест NPK значений фейкового датчика"""
     print("🔬 ТЕСТ NPK ЗНАЧЕНИЙ ФЕЙКОВОГО ДАТЧИКА")

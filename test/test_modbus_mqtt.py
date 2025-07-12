@@ -11,6 +11,13 @@ from pathlib import Path
 import socket
 import time
 
+# Принудительно устанавливаем stdout в utf-8 для Windows
+if hasattr(sys.stdout, 'encoding') and sys.stdout.encoding and sys.stdout.encoding.lower() not in ['utf-8', 'utf8']:
+    try:
+        sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf-8', buffering=1)
+    except Exception:
+        pass
+
 # Добавляем путь к проекту
 project_root = Path(__file__).parent.parent
 sys.path.insert(0, str(project_root))

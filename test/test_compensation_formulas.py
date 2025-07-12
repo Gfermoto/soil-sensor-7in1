@@ -6,6 +6,14 @@
 """
 
 import math
+import sys
+
+# Принудительно устанавливаем stdout в utf-8 для Windows
+if hasattr(sys.stdout, 'encoding') and sys.stdout.encoding and sys.stdout.encoding.lower() not in ['utf-8', 'utf8']:
+    try:
+        sys.stdout = open(sys.stdout.fileno(), mode='w', encoding='utf-8', buffering=1)
+    except Exception:
+        pass
 
 def test_ec_temperature_compensation():
     """Тест температурной компенсации EC"""
