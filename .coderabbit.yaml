@@ -1,13 +1,56 @@
-features:
-  auto_review: true
-  suggest_tests: true
-  refactor: true
-  
-ignore_paths:
-  - "/lib/**"
-  - "/hardware/**"
+# CodeRabbit Configuration for JXCT Soil Sensor Project
+# Безопасная конфигурация - только анализ, без изменений
 
-embedded_settings:
-  platform: esp32
-  framework: arduino
-  board: esp32-s3-devkitc-1 
+# Основные настройки
+review:
+  # Анализ только изменённых файлов
+  diff_only: true
+  
+  # Безопасные проверки
+  checks:
+    - name: "Code Quality"
+      description: "Проверка качества кода"
+      severity: "info"
+      
+    - name: "Security"
+      description: "Базовая проверка безопасности"
+      severity: "warning"
+      
+    - name: "Performance"
+      description: "Проверка производительности"
+      severity: "info"
+
+# Настройки комментариев
+comments:
+  # Только информационные комментарии
+  level: "info"
+  
+  # БЕЗ автоматических исправлений
+  auto_fix: false
+  
+  # Максимум 5 комментариев на PR
+  max_comments: 5
+
+# Игнорируемые файлы
+ignore:
+  - "*.md"
+  - "*.txt"
+  - "*.json"
+  - "*.yaml"
+  - "*.yml"
+  - "docs/**"
+  - "test/**"
+  - "scripts/**"
+  - ".github/**"
+  - "platformio.ini"
+  - "include/version.h"
+
+# Безопасные правила
+rules:
+  - name: "No Breaking Changes"
+    description: "Запрет критических изменений"
+    severity: "error"
+    
+  - name: "Code Style"
+    description: "Проверка стиля кода"
+    severity: "info" 
