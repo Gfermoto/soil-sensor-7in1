@@ -1,0 +1,13 @@
+features:
+  auto_review: true
+  suggest_tests: true
+  refactor: true
+  
+ignore_paths:
+  - "/lib/**"
+  - "/hardware/**"
+
+embedded_settings:
+  platform: esp32
+  framework: arduino
+  board: esp32-s3-devkitc-1 
