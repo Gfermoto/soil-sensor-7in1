@@ -18,7 +18,6 @@ disable=
     R0914,  # too-many-locals
     R0915,  # too-many-statements
     W0621,  # redefined-outer-name
-    W0703,  # broad-except
     W0612,  # unused-variable
     W0611,  # unused-import
 
