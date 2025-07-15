@@ -1,22 +1,20 @@
 # GitHub Actions Labeler configuration
 # https://github.com/actions/labeler
 
-labels:
-  - label: core
-    files:
-      - src/**
-      - include/**
-  - label: docs
-    files:
-      - docs/**
-      - **/*.md
-  - label: tests
-    files:
-      - test/**
-  - label: ci
-    files:
-      - .github/workflows/**
-      - platformio.ini
-  - label: web
-    files:
-      - src/web/** 
+core:
+  - 'src/**'
+  - 'include/**'
+
+docs:
+  - 'docs/**'
+  - '**/*.md'
+
+tests:
+  - 'test/**'
+
+ci:
+  - '.github/workflows/**'
+  - 'platformio.ini'
+
+web:
+  - 'src/web/**' 
