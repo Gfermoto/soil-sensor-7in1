@@ -138,6 +138,10 @@ void resetButtonTask(void* /*parameter*/)
 }
 }  // namespace
 
+// TEST: CodeRabbit integration test - adding a comment to trigger review
+// This comment is added to test CodeRabbit functionality
+// It should trigger a code review when PR is created
+
 #ifndef PIO_UNIT_TESTING
 
 void setup()  // NOLINT(misc-use-internal-linkage)
