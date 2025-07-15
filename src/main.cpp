@@ -88,7 +88,7 @@ bool initFileSystem()
         {
             return true;
         }
-        logWarn("Попытка инициализации LittleFS %d/%d не удалась", attempt, maxRetries);
+        logWarnSafe("Попытка инициализации LittleFS %d/%d не удалась", attempt, maxRetries);
         delay(1000); // Пауза перед повторной попыткой
     }
     return false;
