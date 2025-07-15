@@ -1,14 +1,24 @@
-# Super-Linter temporarily disabled due to git checkout issues
-# Will be re-enabled after fixing the underlying git problems
-
 name: Super-Linter
 
 on:
-  workflow_dispatch:  # Manual trigger only
+  pull_request:
+    branches: [ main, master, develop ]
 
 jobs:
   super-linter:
     runs-on: ubuntu-latest
     steps:
-      - name: Super-Linter Disabled
-        run: echo "Super-Linter temporarily disabled - focusing on CodeRabbit integration" 
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Lint Code Base
+        uses: github/super-linter@v6
+        env:
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_CPP: true
+          VALIDATE_PYTHON: true
+          VALIDATE_MARKDOWN: true
+          VALIDATE_YAML: true
+          VALIDATE_JSON: true 
