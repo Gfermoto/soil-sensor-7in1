@@ -77,6 +77,22 @@ bool initPreferences()
 {
     return preferences.begin("jxct", false);
 }
+
+// Безопасная инициализация файловой системы с повторными попытками
+bool initFileSystem()
+{
+    const int maxRetries = 3;
+    for (int attempt = 1; attempt <= maxRetries; ++attempt)
+    {
+        if (LittleFS.begin(true))
+        {
+            return true;
+        }
+        logWarnSafe("Попытка инициализации LittleFS %d/%d не удалась", attempt, maxRetries);
+        delay(1000); // Пауза перед повторной попыткой
+    }
+    return false;
+}
 }  // namespace
 
 // === ОПТИМИЗАЦИЯ 3.2: Интеллектуальный батчинг данных для группировки сетевых отправок ===
@@ -162,21 +178,22 @@ void setup()  // NOLINT(misc-use-internal-linkage)
     esp_task_wdt_add(nullptr);
     logSuccess("Watchdog Timer активирован");
 
-    // Инициализация Preferences
+    // Инициализация Preferences для хранения конфигурации
     if (!initPreferences())
     {
-        logError("Ошибка инициализации Preferences!");
-        return;
+        logError("Критическая ошибка: не удалось инициализировать Preferences!");
+        // Попытка восстановления - перезапуск системы
+        ESP.restart();
     }
-    logSuccess("Preferences инициализирован");
+    logSuccess("Preferences инициализирован успешно");
 
-    // Инициализация LittleFS
-    if (!LittleFS.begin(true))
+    // Инициализация LittleFS с повторными попытками
+    if (!initFileSystem())
     {
-        logError("Ошибка инициализации LittleFS!");
-        return;
+        logError("Критическая ошибка: не удалось инициализировать файловую систему!");
+        ESP.restart();
     }
-    logSuccess("LittleFS инициализирован");
+    logSuccess("LittleFS инициализирован успешно");
 
     // Загрузка конфигурации
     loadConfig();
