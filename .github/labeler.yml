@@ -1,7 +1,7 @@
 # GitHub Actions Labeler configuration
 # https://github.com/actions/labeler
 
-'core':
+core:
   - 'src/**'
   - 'include/**'
 
