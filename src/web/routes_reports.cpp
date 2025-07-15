@@ -28,7 +28,8 @@ struct TechnicalDebtMetrics
     float coverage;
 };
 
-namespace {
+namespace
+{
 TestSummary lastTestSummary;
 TechnicalDebtMetrics lastTechDebt;
 unsigned long lastReportUpdate = 0;
@@ -293,8 +294,8 @@ String generateReportsDashboardHTML()
         .status-text {
             font-size: 1.5em;
             font-weight: bold;
-            color: )" +
-                  statusColor + R"(;
+            color: )" + statusColor +
+                        R"(;
             margin-bottom: 10px;
         }
         .quick-stats {
@@ -344,35 +345,35 @@ String generateReportsDashboardHTML()
     <div class="dashboard">
         <div class="summary-card">
             <div class="status-icon">)" +
-                  statusIcon + R"(</div>
+                        statusIcon + R"(</div>
             <div class="status-text">
-                )" +
-                  (lastTestSummary.success_rate >= 90 ? "System is stable" : "Attention required") + R"(
+                )" + (lastTestSummary.success_rate >= 90 ? "System is stable" : "Attention required") +
+                        R"(
             </div>
             <div style="color: #6c757d;">
                 Last testing: )" +
-                  lastTestSummary.timestamp + R"(
+                        lastTestSummary.timestamp + R"(
             </div>
 
             <div class="quick-stats">
                 <div class="stat-item">
                     <div class="stat-value">)" +
-                  String(lastTestSummary.success_rate, 0) + R"(%</div>
+                        String(lastTestSummary.success_rate, 0) + R"(%</div>
                     <div class="stat-label">Success Rate</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">)" +
-                  String(lastTestSummary.total) + R"(</div>
+                        String(lastTestSummary.total) + R"(</div>
                     <div class="stat-label">Tests</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">)" +
-                  String(lastTechDebt.code_smells) + R"(</div>
+                        String(lastTechDebt.code_smells) + R"(</div>
                     <div class="stat-label">Code Smells</div>
                 </div>
                 <div class="stat-item">
                     <div class="stat-value">)" +
-                  String(lastTechDebt.coverage, 0) + R"(%</div>
+                        String(lastTechDebt.coverage, 0) + R"(%</div>
                     <div class="stat-label">Coverage</div>
                 </div>
             </div>
@@ -390,7 +391,7 @@ String generateReportsDashboardHTML()
 
     return html;
 }
-} // namespace
+}  // namespace
 
 void setupReportsRoutes()
 {

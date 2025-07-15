@@ -10,19 +10,32 @@ struct ValidationRange
 {
     int minValue = 0;
     int maxValue = 0;
-    
-public:
+
+   public:
     // Builder для предотвращения ошибок с параметрами
-    struct Builder {
+    struct Builder
+    {
         int min = 0;
         int max = 0;
-        Builder& minValue(int minValue) { min = minValue; return *this; }
-        Builder& maxValue(int maxValue) { max = maxValue; return *this; }
-        ValidationRange build() const {
+        Builder& minValue(int minValue)
+        {
+            min = minValue;
+            return *this;
+        }
+        Builder& maxValue(int maxValue)
+        {
+            max = maxValue;
+            return *this;
+        }
+        ValidationRange build() const
+        {
             return {min, max};
         }
     };
-    static Builder builder() { return {}; }
+    static Builder builder()
+    {
+        return {};
+    }
 };
 
 // Структура для веб-запроса (предотвращение перепутывания String параметров)
@@ -31,17 +44,31 @@ struct HttpRequest
     String method = "";
     String uri = "";
     String clientIP = "";
-    
-public:
+
+   public:
     // Builder для предотвращения ошибок с параметрами
-    struct Builder {
+    struct Builder
+    {
         String methodValue;
         String uriValue;
         String clientIPValue;
-        Builder& method(const String& method) { methodValue = method; return *this; }
-        Builder& uri(const String& uri) { uriValue = uri; return *this; }
-        Builder& clientIP(const String& clientIP) { clientIPValue = clientIP; return *this; }
-        HttpRequest build() const { // NOLINT(readability-convert-member-functions-to-static)
+        Builder& method(const String& method)
+        {
+            methodValue = method;
+            return *this;
+        }
+        Builder& uri(const String& uri)
+        {
+            uriValue = uri;
+            return *this;
+        }
+        Builder& clientIP(const String& clientIP)
+        {
+            clientIPValue = clientIP;
+            return *this;
+        }
+        HttpRequest build() const
+        {  // NOLINT(readability-convert-member-functions-to-static)
             HttpRequest result;
             result.method = methodValue;
             result.uri = uriValue;
@@ -49,7 +76,10 @@ public:
             return result;
         }
     };
-    static Builder builder() { return {}; }
+    static Builder builder()
+    {
+        return {};
+    }
 };
 
 // Вспомогательные функции для валидации интервалов — скрыты во внутреннем безымянном пространстве имён,
@@ -138,19 +168,23 @@ bool validateConfigInput(bool checkRequired)
     {
         return false;
     }
-    if (!validateInterval("ntp_interval", ValidationRange::builder().minValue(10000).maxValue(86400000).build(), "NTP интервал"))
+    if (!validateInterval("ntp_interval", ValidationRange::builder().minValue(10000).maxValue(86400000).build(),
+                          "NTP интервал"))
     {
         return false;
     }
-    if (!validateInterval("sensor_read", ValidationRange::builder().minValue(1000).maxValue(300000).build(), "интервал чтения датчика"))
+    if (!validateInterval("sensor_read", ValidationRange::builder().minValue(1000).maxValue(300000).build(),
+                          "интервал чтения датчика"))
     {
         return false;
     }
-    if (!validateInterval("mqtt_publish", ValidationRange::builder().minValue(1000).maxValue(3600000).build(), "интервал MQTT публикации"))
+    if (!validateInterval("mqtt_publish", ValidationRange::builder().minValue(1000).maxValue(3600000).build(),
+                          "интервал MQTT публикации"))
     {
         return false;
     }
-    if (!validateInterval("thingspeak_interval", ValidationRange::builder().minValue(15000).maxValue(7200000).build(), "интервал ThingSpeak"))
+    if (!validateInterval("thingspeak_interval", ValidationRange::builder().minValue(15000).maxValue(7200000).build(),
+                          "интервал ThingSpeak"))
     {
         return false;
     }
@@ -159,7 +193,8 @@ bool validateConfigInput(bool checkRequired)
     return true;
 }
 
-namespace {
+namespace
+{
 void handleUploadError(const String& error)
 {
     logErrorSafe("\1", error.c_str());
@@ -167,7 +202,7 @@ void handleUploadError(const String& error)
     const String html = generateErrorPage(400, "Ошибка загрузки файла: " + error);
     webServer.send(400, "text/html; charset=utf-8", html);
 }
-} // namespace
+}  // namespace
 
 namespace
 {
@@ -190,16 +225,14 @@ bool isFeatureAvailable()
     return isFeatureAvailable("default");
 }
 
-
-
-
-
 /**
  * @brief Генерация HTML ответа с ошибкой валидации
  * @param errorMsg Сообщение об ошибке
  * @return HTML ответ с ошибкой
  */
-String generateValidationErrorResponse(const String& errorMsg) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+String generateValidationErrorResponse(
+    const String&
+        errorMsg)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     String content = "<h1>" UI_ICON_CONFIG " Настройки JXCT</h1>";
     content += generateFormError(errorMsg);
@@ -215,7 +248,9 @@ String generateValidationErrorResponse(const String& errorMsg) // NOLINT(misc-us
  * @brief Обработка критических ошибок сервера
  * @param error Описание ошибки
  */
-void handleCriticalError(const String& error) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+void handleCriticalError(
+    const String&
+        error)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     logErrorSafe("\1", error.c_str());
 
@@ -228,7 +263,9 @@ void handleCriticalError(const String& error) // NOLINT(misc-use-internal-linkag
  * @param uri URI запроса
  * @return true если маршрут доступен
  */
-bool isRouteAvailable(const String& uri) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+bool isRouteAvailable(
+    const String&
+        uri)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     if (currentWiFiMode == WiFiMode::AP)
     {
@@ -244,7 +281,7 @@ bool isRouteAvailable(const String& uri) // NOLINT(misc-use-internal-linkage,rea
  */
 namespace
 {
-bool checkRouteAccess(const String& routeName, const String& icon) // NOLINT(bugprone-easily-swappable-parameters)
+bool checkRouteAccess(const String& routeName, const String& icon)  // NOLINT(bugprone-easily-swappable-parameters)
 {
     if (!isRouteAvailable(webServer.uri()))
     {

@@ -1,0 +1,20 @@
+# GitHub Actions Labeler configuration
+# https://github.com/actions/labeler
+
+'core':
+  - 'src/**'
+  - 'include/**'
+
+'docs':
+  - 'docs/**'
+  - '**/*.md'
+
+'tests':
+  - 'test/**'
+
+'ci':
+  - '.github/workflows/**'
+  - 'platformio.ini'
+
+'web':
+  - 'src/web/**' 

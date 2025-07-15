@@ -1,11 +1,12 @@
 /*
  * ИНТЕГРАЦИОННЫЙ ТЕСТ КОМПОНЕНТОВ JXCT
- * 
+ *
  * ДЛЯ КОМПИЛЯЦИИ В WINDOWS:
  * 1. Добавить в PATH: C:\Program Files\w64devkit\bin
- * 2. Компилировать: g++ -std=c++17 -I../../include -I../../src test_component_interaction.cpp -o test_component_interaction
+ * 2. Компилировать: g++ -std=c++17 -I../../include -I../../src test_component_interaction.cpp -o
+ * test_component_interaction
  * 3. Запускать: ./test_component_interaction
- * 
+ *
  * ИЛИ использовать скрипт: python run_integration_tests.py
  */
 
@@ -23,11 +24,11 @@ extern "C" void tearDown() {}
 
 // Подключаем заголовки компонентов
 #include "calibration_manager.h"
-#include "web/csrf_protection.h"
 #include "jxct_format_utils.h"
 #include "logger.h"
 #include "sensor_compensation.h"
 #include "validation_utils.h"
+#include "web/csrf_protection.h"
 
 // Тестовые данные
 const std::string TEST_SENSOR_DATA = R"({
@@ -68,26 +69,25 @@ bool mock_validate_sensor_data(const std::string& data, std::vector<std::string>
         errors.push_back("Empty sensor data");
         return false;
     }
-    
+
     // Для конфигурационных данных проверяем наличие JSON структуры
     if (data.find("{") != std::string::npos && data.find("}") != std::string::npos)
     {
         // Это JSON данные - валидируем как конфигурацию
-        if (data.find("sensor_interval") != std::string::npos || 
-            data.find("calibration_enabled") != std::string::npos ||
-            data.find("mqtt_enabled") != std::string::npos)
+        if (data.find("sensor_interval") != std::string::npos ||
+            data.find("calibration_enabled") != std::string::npos || data.find("mqtt_enabled") != std::string::npos)
         {
             return true;  // Конфигурация валидна
         }
     }
-    
+
     // Для сенсорных данных проверяем наличие temperature
     if (data.find("temperature") == std::string::npos)
     {
         errors.push_back("Missing temperature field");
         return false;
     }
-    
+
     return true;
 }
 
@@ -359,7 +359,8 @@ void test_mqtt_thingspeak_integration()
     TEST_ASSERT_EQUAL(1, test_logs.size());
 
     // Проверяем, что все компоненты работают корректно
-    bool integration_success = sensor_valid && !formatted_data.empty() && !mqtt_payload.empty() && !thingspeak_payload.empty() && config_valid;
+    bool integration_success =
+        sensor_valid && !formatted_data.empty() && !mqtt_payload.empty() && !thingspeak_payload.empty() && config_valid;
     TEST_ASSERT_TRUE(integration_success);
 }
 

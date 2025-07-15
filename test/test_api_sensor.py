@@ -13,21 +13,21 @@ def test_sensor_api():
     """Тест API датчика"""
     print("🧪 ТЕСТ API ДАТЧИКА JXCT")
     print("=" * 50)
-    
+
     # Тестируем локальный API (если ESP32 подключен)
     test_urls = [
         "http://192.168.4.1/api/v1/sensor",
-        "http://192.168.2.74/api/v1/sensor", 
+        "http://192.168.2.74/api/v1/sensor",
         "http://localhost:8080/api/v1/sensor"
     ]
-    
+
     success = False
-    
+
     for url in test_urls:
         try:
             print(f"🔍 Тестируем {url}...")
             response = requests.get(url, timeout=5)
-            
+
             if response.status_code == 200:
                 data = response.json()
                 print(f"✅ API отвечает корректно")
@@ -44,15 +44,15 @@ def test_sensor_api():
                 break
             else:
                 print(f"❌ HTTP {response.status_code}")
-                
+
         except requests.exceptions.RequestException as e:
             print(f"⚠️ Не удалось подключиться: {e}")
             continue
-    
+
     if not success:
         print("⚠️ API недоступен - возможно, ESP32 не подключен")
         print("📝 Это нормально для тестирования без устройства")
-        
+
         # Создаем тестовые данные для демонстрации
         test_data = {
             "temperature": 25.5,
@@ -78,11 +78,11 @@ def test_sensor_api():
             "rec_potassium": 200,
             "valid": True
         }
-        
+
         print("📊 Тестовые данные для демонстрации:")
         for key, value in test_data.items():
             print(f"  {key}: {value}")
-    
+
     print(f"\n✅ ТЕСТ API ЗАВЕРШЕН")
     return True
 
@@ -96,4 +96,4 @@ def main():
         return 1
 
 if __name__ == "__main__":
-    sys.exit(main()) 
+    sys.exit(main())

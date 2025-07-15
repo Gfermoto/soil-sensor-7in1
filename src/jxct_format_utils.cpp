@@ -6,7 +6,7 @@
 namespace
 {
 // Строгая типизация для предотвращения ошибок
-enum class FormatType : std::uint8_t // NOLINT(performance-enum-size)
+enum class FormatType : std::uint8_t  // NOLINT(performance-enum-size)
 {
     INTEGER,
     FLOAT
@@ -26,8 +26,7 @@ std::string formatFloat(float value, const FormatOptions& options)
 {
     std::array<char, 8> buf;
 
-    snprintf(buf.data(), buf.size(),
-             (options.formatType == FormatType::INTEGER) ? "%d" : "%.*f",
+    snprintf(buf.data(), buf.size(), (options.formatType == FormatType::INTEGER) ? "%d" : "%.*f",
              (options.formatType == FormatType::INTEGER) ? static_cast<int>(lround(value)) : options.precision,
              (options.formatType == FormatType::INTEGER) ? 0 : value);
     return std::string(buf.data());
@@ -65,7 +64,7 @@ std::string format_npk(float value)
 }
 
 // Универсальная функция форматирования для веб-интерфейса
-String formatValue(float value, const char* unit, int precision) // NOLINT(misc-use-internal-linkage)
+String formatValue(float value, const char* unit, int precision)  // NOLINT(misc-use-internal-linkage)
 {
     std::array<char, 32> buf;
 

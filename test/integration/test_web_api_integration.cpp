@@ -12,10 +12,10 @@ extern "C" void tearDown() {}
 #include "esp32_stubs.h"
 
 // Подключаем заголовки веб-компонентов
-#include "web/csrf_protection.h"
 #include "jxct_format_utils.h"
 #include "logger.h"
 #include "validation_utils.h"
+#include "web/csrf_protection.h"
 #include "web_routes.h"
 
 // Мок HTTP запроса
@@ -133,7 +133,7 @@ MockHttpResponse mock_api_handler(const MockHttpRequest& request)
             if (mock_validate_json(request.body))
             {
                 // Дополнительная проверка безопасности
-                if (request.body.find("DROP TABLE") != std::string::npos || 
+                if (request.body.find("DROP TABLE") != std::string::npos ||
                     request.body.find("<script>") != std::string::npos)
                 {
                     response.status_code = 400;

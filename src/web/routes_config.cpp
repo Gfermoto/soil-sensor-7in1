@@ -16,7 +16,8 @@
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
 
-namespace {
+namespace
+{
 String importedJson;
 
 void sendConfigExportJson()
@@ -33,52 +34,53 @@ void sendConfigExportJson()
 
     // MQTT
     JsonObject mqtt = root.createNestedObject("mqtt");
-    mqtt["enabled"] = (bool)config.flags.mqttEnabled; // NOLINT(readability-misplaced-array-index)
-    mqtt["server"] = "YOUR_MQTT_SERVER_HERE"; // NOLINT(readability-misplaced-array-index)
-    mqtt["port"] = config.mqttPort; // NOLINT(readability-misplaced-array-index)
-    mqtt["user"] = "YOUR_MQTT_USER_HERE"; // NOLINT(readability-misplaced-array-index)
-    mqtt["password"] = "YOUR_MQTT_PASSWORD_HERE"; // NOLINT(readability-misplaced-array-index)
+    mqtt["enabled"] = (bool)config.flags.mqttEnabled;  // NOLINT(readability-misplaced-array-index)
+    mqtt["server"] = "YOUR_MQTT_SERVER_HERE";          // NOLINT(readability-misplaced-array-index)
+    mqtt["port"] = config.mqttPort;                    // NOLINT(readability-misplaced-array-index)
+    mqtt["user"] = "YOUR_MQTT_USER_HERE";              // NOLINT(readability-misplaced-array-index)
+    mqtt["password"] = "YOUR_MQTT_PASSWORD_HERE";      // NOLINT(readability-misplaced-array-index)
 
     // ThingSpeak
     JsonObject thingSpeakJson = root.createNestedObject("thingspeak");
-    thingSpeakJson["enabled"] = (bool)config.flags.thingSpeakEnabled; // NOLINT(readability-misplaced-array-index)
-    thingSpeakJson["channel_id"] = "YOUR_CHANNEL_ID_HERE"; // NOLINT(readability-misplaced-array-index)
-    thingSpeakJson["api_key"] = "YOUR_API_KEY_HERE"; // NOLINT(readability-misplaced-array-index)
+    thingSpeakJson["enabled"] = (bool)config.flags.thingSpeakEnabled;  // NOLINT(readability-misplaced-array-index)
+    thingSpeakJson["channel_id"] = "YOUR_CHANNEL_ID_HERE";             // NOLINT(readability-misplaced-array-index)
+    thingSpeakJson["api_key"] = "YOUR_API_KEY_HERE";                   // NOLINT(readability-misplaced-array-index)
 
     // Intervals
     JsonObject intervals = root.createNestedObject("intervals");
-    intervals["sensor_read"] = config.sensorReadInterval; // NOLINT(readability-misplaced-array-index)
-    intervals["mqtt_publish"] = config.mqttPublishInterval; // NOLINT(readability-misplaced-array-index)
-    intervals["thingspeak"] = config.thingSpeakInterval; // NOLINT(readability-misplaced-array-index)
-    intervals["web_update"] = config.webUpdateInterval; // NOLINT(readability-misplaced-array-index)
+    intervals["sensor_read"] = config.sensorReadInterval;    // NOLINT(readability-misplaced-array-index)
+    intervals["mqtt_publish"] = config.mqttPublishInterval;  // NOLINT(readability-misplaced-array-index)
+    intervals["thingspeak"] = config.thingSpeakInterval;     // NOLINT(readability-misplaced-array-index)
+    intervals["web_update"] = config.webUpdateInterval;      // NOLINT(readability-misplaced-array-index)
 
     // Filters
     JsonObject filters = root.createNestedObject("filters");
-    filters["delta_temperature"] = config.deltaTemperature; // NOLINT(readability-misplaced-array-index)
-    filters["delta_humidity"] = config.deltaHumidity; // NOLINT(readability-misplaced-array-index)
-    filters["delta_ph"] = config.deltaPh; // NOLINT(readability-misplaced-array-index)
-    filters["delta_ec"] = config.deltaEc; // NOLINT(readability-misplaced-array-index)
-    filters["delta_npk"] = config.deltaNpk; // NOLINT(readability-misplaced-array-index)
-    filters["moving_average_window"] = config.movingAverageWindow; // NOLINT(readability-misplaced-array-index)
-    filters["force_publish_cycles"] = config.forcePublishCycles; // NOLINT(readability-misplaced-array-index)
-    filters["filter_algorithm"] = config.filterAlgorithm; // NOLINT(readability-misplaced-array-index)
-    filters["outlier_filter_enabled"] = config.outlierFilterEnabled; // NOLINT(readability-misplaced-array-index)
-    filters["adaptive_filtering"] = config.adaptiveFiltering; // NOLINT(readability-misplaced-array-index)
-    filters["kalman_enabled"] = config.kalmanEnabled; // NOLINT(readability-misplaced-array-index)
-    filters["exponential_alpha"] = config.exponentialAlpha; // NOLINT(readability-misplaced-array-index)
-    filters["outlier_threshold"] = config.outlierThreshold; // NOLINT(readability-misplaced-array-index)
+    filters["delta_temperature"] = config.deltaTemperature;           // NOLINT(readability-misplaced-array-index)
+    filters["delta_humidity"] = config.deltaHumidity;                 // NOLINT(readability-misplaced-array-index)
+    filters["delta_ph"] = config.deltaPh;                             // NOLINT(readability-misplaced-array-index)
+    filters["delta_ec"] = config.deltaEc;                             // NOLINT(readability-misplaced-array-index)
+    filters["delta_npk"] = config.deltaNpk;                           // NOLINT(readability-misplaced-array-index)
+    filters["moving_average_window"] = config.movingAverageWindow;    // NOLINT(readability-misplaced-array-index)
+    filters["force_publish_cycles"] = config.forcePublishCycles;      // NOLINT(readability-misplaced-array-index)
+    filters["filter_algorithm"] = config.filterAlgorithm;             // NOLINT(readability-misplaced-array-index)
+    filters["outlier_filter_enabled"] = config.outlierFilterEnabled;  // NOLINT(readability-misplaced-array-index)
+    filters["adaptive_filtering"] = config.adaptiveFiltering;         // NOLINT(readability-misplaced-array-index)
+    filters["kalman_enabled"] = config.kalmanEnabled;                 // NOLINT(readability-misplaced-array-index)
+    filters["exponential_alpha"] = config.exponentialAlpha;           // NOLINT(readability-misplaced-array-index)
+    filters["outlier_threshold"] = config.outlierThreshold;           // NOLINT(readability-misplaced-array-index)
 
     // Device flags
     JsonObject device = root.createNestedObject("device");
-    device["use_real_sensor"] = (bool)config.flags.useRealSensor; // NOLINT(readability-misplaced-array-index)
-    device["hass_enabled"] = (bool)config.flags.hassEnabled; // NOLINT(readability-misplaced-array-index)
+    device["use_real_sensor"] = (bool)config.flags.useRealSensor;  // NOLINT(readability-misplaced-array-index)
+    device["hass_enabled"] = (bool)config.flags.hassEnabled;       // NOLINT(readability-misplaced-array-index)
 
-    root["export_timestamp"] = millis(); // NOLINT(readability-misplaced-array-index)
+    root["export_timestamp"] = millis();  // NOLINT(readability-misplaced-array-index)
 
     String json;
     serializeJson(root, json);
 
-    webServer.sendHeader(R"(Content-Disposition)", R"(attachment; filename="jxct_config_)" + String(millis()) + R"(.json")");
+    webServer.sendHeader(R"(Content-Disposition)",
+                         R"(attachment; filename="jxct_config_)" + String(millis()) + R"(.json")");
     webServer.send(HTTP_OK, "application/json", json);
 }
 }  // namespace
@@ -201,32 +203,45 @@ void setupConfigRoutes()
             html += "<option value='3'" + String(config.filterAlgorithm == 3 ? " selected" : "") +
                     ">Фильтр Калмана</option>";
             html += "</select>";
-            html += "<div class='help'>Среднее - быстрее, медиана - устойчивее к выбросам, экспоненциальное - адаптивное, Калман - оптимальное</div></div>";
+            html +=
+                "<div class='help'>Среднее - быстрее, медиана - устойчивее к выбросам, экспоненциальное - адаптивное, "
+                "Калман - оптимальное</div></div>";
 
             html += "<div class='form-group'><label><input type='checkbox' id='outlier_filter' name='outlier_filter'" +
                     String(config.outlierFilterEnabled ? " checked" : "") + "> Включить фильтр выбросов</label></div>";
             html += "<div class='form-group'><label for='outlier_threshold'>Порог выбросов (σ):</label>";
-            html += "<input type='number' id='outlier_threshold' name='outlier_threshold' min='1.0' max='5.0' step='0.1' value='" +
-                    String(config.outlierThreshold, 1) + "'>";
-            html += "<div class='help'>1.0-5.0. Значения, отходящие более чем на σ·std от среднего, игнорируются</div></div>";
-            html += "<p class='help' style='margin-top:10px'>Порядок обработки данных: <strong>1)</strong> при включённом чекбоксе выбросы, превышающие заданный порог σ, сразу отбрасываются; <strong>2)</strong> затем к оставшимся точкам применяется выбранный в выпадающем списке алгоритм (среднее, медиана, эксп. сглаживание или Калман); <strong>3)</strong> при включённой адаптивной фильтрации параметры автоматически подстраиваются под статистику последних измерений.</p>";
+            html +=
+                "<input type='number' id='outlier_threshold' name='outlier_threshold' min='1.0' max='5.0' step='0.1' "
+                "value='" +
+                String(config.outlierThreshold, 1) + "'>";
+            html +=
+                "<div class='help'>1.0-5.0. Значения, отходящие более чем на σ·std от среднего, "
+                "игнорируются</div></div>";
+            html +=
+                "<p class='help' style='margin-top:10px'>Порядок обработки данных: <strong>1)</strong> при включённом "
+                "чекбоксе выбросы, превышающие заданный порог σ, сразу отбрасываются; <strong>2)</strong> затем к "
+                "оставшимся точкам применяется выбранный в выпадающем списке алгоритм (среднее, медиана, эксп. "
+                "сглаживание или Калман); <strong>3)</strong> при включённой адаптивной фильтрации параметры "
+                "автоматически подстраиваются под статистику последних измерений.</p>";
 
             // Новые настройки улучшенной фильтрации
             html += "<div class='section'><h2>🔧 Улучшенная фильтрация</h2>";
 
             html += "<div class='form-group'><label for='adaptive_filtering'>Адаптивная фильтрация:</label>";
             html += "<select id='adaptive_filtering' name='adaptive_filtering' required>";
-            html += "<option value='0'" + String(config.adaptiveFiltering == 0 ? " selected" : "") +
-                    ">Отключена</option>";
-            html += "<option value='1'" + String(config.adaptiveFiltering == 1 ? " selected" : "") +
-                    ">Включена</option>";
+            html +=
+                "<option value='0'" + String(config.adaptiveFiltering == 0 ? " selected" : "") + ">Отключена</option>";
+            html +=
+                "<option value='1'" + String(config.adaptiveFiltering == 1 ? " selected" : "") + ">Включена</option>";
             html += "</select>";
             html += "<div class='help'>Автоматически настраивает фильтрацию на основе статистики данных</div></div>";
 
             html += "<div class='form-group'><label for='exp_alpha'>Коэффициент сглаживания (α):</label>";
             html += "<input type='number' id='exp_alpha' name='exp_alpha' min='0.01' max='0.99' step='0.01' value='" +
                     String(config.exponentialAlpha, 2) + "' required>";
-            html += "<div class='help'>0.01-0.99. Меньше = плавнее, больше = быстрее реакция. Для EC применяется α×0.7, для NPK - α×0.8</div></div>";
+            html +=
+                "<div class='help'>0.01-0.99. Меньше = плавнее, больше = быстрее реакция. Для EC применяется α×0.7, "
+                "для NPK - α×0.8</div></div>";
 
             html += "</div>";  // закрываем секцию 'Улучшенная фильтрация'
 
@@ -246,7 +261,7 @@ void setupConfigRoutes()
             html += "  const adaptiveField = document.getElementById('adaptive_filtering').closest('.form-group');";
             html += "  ";
             html += "  // Показываем/скрываем поля в зависимости от алгоритма";
-            html += "  if (algo == '2') {"; // Экспоненциальное сглаживание
+            html += "  if (algo == '2') {";  // Экспоненциальное сглаживание
             html += "    expAlphaField.style.display = 'block';";
             html += "    expAlphaField.querySelector('input').required = true;";
             html += "  } else {";
@@ -271,96 +286,101 @@ void setupConfigRoutes()
         });
 
     // Обработчик сохранения настроек интервалов
-    webServer.on(
-        "/save_intervals", HTTP_POST,
-        []()
-        {
-            logWebRequest("POST", "/save_intervals", webServer.client().remoteIP().toString());
+    webServer.on("/save_intervals", HTTP_POST,
+                 []()
+                 {
+                     logWebRequest("POST", "/save_intervals", webServer.client().remoteIP().toString());
 
-            // ✅ CSRF защита
-            if (!checkCSRFSafety())
-            {
-                logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
-                const String html = generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
-                webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
-                return;
-            }
+                     // ✅ CSRF защита
+                     if (!checkCSRFSafety())
+                     {
+                         logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
+                         const String html =
+                             generateErrorPage(HTTP_FORBIDDEN, "Forbidden: Недействительный CSRF токен");
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_HTML, html);
+                         return;
+                     }
 
-            if (currentWiFiMode == WiFiMode::AP)
-            {
-                webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_PLAIN, "Недоступно в режиме точки доступа");
-                return;
-            }
+                     if (currentWiFiMode == WiFiMode::AP)
+                     {
+                         webServer.send(HTTP_FORBIDDEN, HTTP_CONTENT_TYPE_PLAIN, "Недоступно в режиме точки доступа");
+                         return;
+                     }
 
-            // ======= ВАЛИДАЦИЯ ВХОДНЫХ ДАННЫХ =======
-            const unsigned long sensorMs = webServer.arg("sensor_interval").toInt() * CONVERSION_SEC_TO_MS;
-            const unsigned long mqttMs = webServer.arg("mqtt_interval").toInt() * CONVERSION_MIN_TO_MS;
-            const unsigned long tsMs = webServer.arg("ts_interval").toInt() * CONVERSION_MIN_TO_MS;
-            const unsigned long webMs = webServer.arg("web_interval").toInt() * CONVERSION_SEC_TO_MS;
+                     // ======= ВАЛИДАЦИЯ ВХОДНЫХ ДАННЫХ =======
+                     const unsigned long sensorMs = webServer.arg("sensor_interval").toInt() * CONVERSION_SEC_TO_MS;
+                     const unsigned long mqttMs = webServer.arg("mqtt_interval").toInt() * CONVERSION_MIN_TO_MS;
+                     const unsigned long tsMs = webServer.arg("ts_interval").toInt() * CONVERSION_MIN_TO_MS;
+                     const unsigned long webMs = webServer.arg("web_interval").toInt() * CONVERSION_SEC_TO_MS;
 
-            const auto valSensor = validateSensorReadInterval(sensorMs);
-            const auto valMqtt = validateMQTTPublishInterval(mqttMs);
-            auto valTs = validateThingSpeakInterval(tsMs);
+                     const auto valSensor = validateSensorReadInterval(sensorMs);
+                     const auto valMqtt = validateMQTTPublishInterval(mqttMs);
+                     auto valTs = validateThingSpeakInterval(tsMs);
 
-            if (!valSensor.isValid || !valMqtt.isValid || !valTs.isValid)
-            {
-                String errorMessage = "Ошибка валидации интервалов: ";
-                if (!valSensor.isValid) {
-                    errorMessage += valSensor.message;
-                } else if (!valMqtt.isValid) {
-                    errorMessage += valMqtt.message;
-                } else {
-                    errorMessage += valTs.message;
-                }
-                const String html = generateErrorPage(HTTP_BAD_REQUEST, errorMessage);
-                webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
-                return;
-            }
+                     if (!valSensor.isValid || !valMqtt.isValid || !valTs.isValid)
+                     {
+                         String errorMessage = "Ошибка валидации интервалов: ";
+                         if (!valSensor.isValid)
+                         {
+                             errorMessage += valSensor.message;
+                         }
+                         else if (!valMqtt.isValid)
+                         {
+                             errorMessage += valMqtt.message;
+                         }
+                         else
+                         {
+                             errorMessage += valTs.message;
+                         }
+                         const String html = generateErrorPage(HTTP_BAD_REQUEST, errorMessage);
+                         webServer.send(HTTP_BAD_REQUEST, HTTP_CONTENT_TYPE_HTML, html);
+                         return;
+                     }
 
-            // ======= СОХРАНЯЕМ НАСТРОЙКИ =======
-            config.sensorReadInterval = sensorMs;
-            config.mqttPublishInterval = mqttMs;
-            config.thingSpeakInterval = tsMs;
-            config.webUpdateInterval = webMs;
+                     // ======= СОХРАНЯЕМ НАСТРОЙКИ =======
+                     config.sensorReadInterval = sensorMs;
+                     config.mqttPublishInterval = mqttMs;
+                     config.thingSpeakInterval = tsMs;
+                     config.webUpdateInterval = webMs;
 
-            // Сохраняем пороги дельта-фильтра
-            config.deltaTemperature = webServer.arg("delta_temp").toFloat();
-            config.deltaHumidity = webServer.arg("delta_hum").toFloat();
-            config.deltaPh = webServer.arg("delta_ph").toFloat();
-            config.deltaEc = webServer.arg("delta_ec").toFloat();
-            config.deltaNpk = webServer.arg("delta_npk").toFloat();
+                     // Сохраняем пороги дельта-фильтра
+                     config.deltaTemperature = webServer.arg("delta_temp").toFloat();
+                     config.deltaHumidity = webServer.arg("delta_hum").toFloat();
+                     config.deltaPh = webServer.arg("delta_ph").toFloat();
+                     config.deltaEc = webServer.arg("delta_ec").toFloat();
+                     config.deltaNpk = webServer.arg("delta_npk").toFloat();
 
-            // Сохраняем настройки скользящего среднего
-            config.movingAverageWindow = webServer.arg("avg_window").toInt();
-            config.forcePublishCycles = webServer.arg("force_cycles").toInt();
+                     // Сохраняем настройки скользящего среднего
+                     config.movingAverageWindow = webServer.arg("avg_window").toInt();
+                     config.forcePublishCycles = webServer.arg("force_cycles").toInt();
 
-            // Сохраняем новые настройки алгоритма и фильтра выбросов
-            config.filterAlgorithm = webServer.arg("filter_algo").toInt();
-            config.outlierFilterEnabled = webServer.hasArg("outlier_filter") ? 1 : 0;
+                     // Сохраняем новые настройки алгоритма и фильтра выбросов
+                     config.filterAlgorithm = webServer.arg("filter_algo").toInt();
+                     config.outlierFilterEnabled = webServer.hasArg("outlier_filter") ? 1 : 0;
 
-            // Сохраняем новые настройки улучшенной фильтрации
-            config.adaptiveFiltering = webServer.arg("adaptive_filtering").toInt();
-            config.exponentialAlpha = webServer.arg("exp_alpha").toFloat();
-            config.outlierThreshold = webServer.arg("outlier_threshold").toFloat();
+                     // Сохраняем новые настройки улучшенной фильтрации
+                     config.adaptiveFiltering = webServer.arg("adaptive_filtering").toInt();
+                     config.exponentialAlpha = webServer.arg("exp_alpha").toFloat();
+                     config.outlierThreshold = webServer.arg("outlier_threshold").toFloat();
 
-            // Сохраняем в NVS
-            saveConfig();
+                     // Сохраняем в NVS
+                     saveConfig();
 
-            String html =
-                "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' "
-                "content='3;url=/intervals'>";
-            html += "<title>" UI_ICON_SUCCESS " Настройки сохранены</title>";
-            html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
-            html += "<h1>" UI_ICON_SUCCESS " Настройки интервалов сохранены!</h1>";
-            html += "<div class='msg msg-success'>" UI_ICON_SUCCESS " Новые настройки вступили в силу</div>";
-            html += "<p><strong>Текущие интервалы:</strong><br>";
-            html += "📊 Датчик: " + String(config.sensorReadInterval / CONVERSION_SEC_TO_MS) + " сек<br>";
-            html += "📡 MQTT: " + String(config.mqttPublishInterval / CONVERSION_MIN_TO_MS) + " мин<br>";
-            html += "📈 ThingSpeak: " + String(config.thingSpeakInterval / CONVERSION_MIN_TO_MS) + " мин</p>";
-            html += "<p><em>Возврат к настройкам через 3 секунды...</em></p>";
-            html += "</div>" + String(getToastHTML()) + "</body></html>";
-            webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
-        });
+                     String html =
+                         "<!DOCTYPE html><html><head><meta charset='UTF-8'><meta http-equiv='refresh' "
+                         "content='3;url=/intervals'>";
+                     html += "<title>" UI_ICON_SUCCESS " Настройки сохранены</title>";
+                     html += "<style>" + String(getUnifiedCSS()) + "</style></head><body><div class='container'>";
+                     html += "<h1>" UI_ICON_SUCCESS " Настройки интервалов сохранены!</h1>";
+                     html += "<div class='msg msg-success'>" UI_ICON_SUCCESS " Новые настройки вступили в силу</div>";
+                     html += "<p><strong>Текущие интервалы:</strong><br>";
+                     html += "📊 Датчик: " + String(config.sensorReadInterval / CONVERSION_SEC_TO_MS) + " сек<br>";
+                     html += "📡 MQTT: " + String(config.mqttPublishInterval / CONVERSION_MIN_TO_MS) + " мин<br>";
+                     html += "📈 ThingSpeak: " + String(config.thingSpeakInterval / CONVERSION_MIN_TO_MS) + " мин</p>";
+                     html += "<p><em>Возврат к настройкам через 3 секунды...</em></p>";
+                     html += "</div>" + String(getToastHTML()) + "</body></html>";
+                     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
+                 });
 
     // Сброс интервалов к умолчанию
     webServer.on("/reset_intervals", HTTP_GET,
@@ -388,9 +408,9 @@ void setupConfigRoutes()
                      config.forcePublishCycles = FORCE_PUBLISH_CYCLES;  // каждые 5 циклов
                      config.filterAlgorithm = 0;                        // среднее
                      config.outlierFilterEnabled = 0;                   // отключен
-                     config.adaptiveFiltering = 0;                     // отключена
-                     config.exponentialAlpha = 0.3F;                   // по умолчанию
-                     config.outlierThreshold = 2.0F;                   // по умолчанию
+                     config.adaptiveFiltering = 0;                      // отключена
+                     config.exponentialAlpha = 0.3F;                    // по умолчанию
+                     config.outlierThreshold = 2.0F;                    // по умолчанию
 
                      saveConfig();
 
@@ -459,7 +479,7 @@ void setupConfigRoutes()
                  });
 
     // API v1 конфигурация
-    webServer.on(API_CONFIG_EXPORT, [](){ sendConfigExportJson(); });
+    webServer.on(API_CONFIG_EXPORT, []() { sendConfigExportJson(); });
 
     // Импорт конфигурации через multipart/form-data (файл JSON)
     webServer.on(
@@ -506,9 +526,9 @@ void setupConfigRoutes()
             if (doc.containsKey("mqtt"))
             {
                 JsonObject mqtt = doc["mqtt"];
-                config.flags.mqttEnabled = mqtt["enabled"].as<bool>(); // NOLINT(readability-misplaced-array-index)
+                config.flags.mqttEnabled = mqtt["enabled"].as<bool>();  // NOLINT(readability-misplaced-array-index)
                 strlcpy(config.mqttServer, mqtt["server"].as<const char*>(), sizeof(config.mqttServer));
-                config.mqttPort = mqtt["port"].as<int>(); // NOLINT(readability-misplaced-array-index)
+                config.mqttPort = mqtt["port"].as<int>();  // NOLINT(readability-misplaced-array-index)
                 strlcpy(config.mqttUser, mqtt["user"].as<const char*>(), sizeof(config.mqttUser));
                 strlcpy(config.mqttPassword, mqtt["password"].as<const char*>(), sizeof(config.mqttPassword));
             }

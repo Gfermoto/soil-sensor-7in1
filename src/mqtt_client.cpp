@@ -22,10 +22,11 @@
 extern NTPClient* timeClient;
 
 // Глобальные переменные (глобальное пространство имён)
-WiFiClient espClient; // NOLINT(misc-use-internal-linkage)
-PubSubClient mqttClient(espClient); // NOLINT(misc-use-internal-linkage)
+WiFiClient espClient;                // NOLINT(misc-use-internal-linkage)
+PubSubClient mqttClient(espClient);  // NOLINT(misc-use-internal-linkage)
 
-namespace {
+namespace
+{
 // Forward declarations для всех внутренних функций
 void publishAvailabilityInternal(bool online);
 void setupMQTTInternal();
@@ -175,13 +176,20 @@ const char* getCommandTopic()
     return commandTopicBuffer.data();
 }
 
-const char* getMqttLastError() {
+const char* getMqttLastError()
+{
     return mqttLastErrorBuffer.data();
 }
 
 // Функции доступа к статическим переменным
-WiFiClient& getEspClient() { return espClient; }
-PubSubClient& getMqttClient() { return mqttClient; }
+WiFiClient& getEspClient()
+{
+    return espClient;
+}
+PubSubClient& getMqttClient()
+{
+    return mqttClient;
+}
 
 // Все функции с NOLINT(misc-use-internal-linkage) теперь здесь
 void publishAvailabilityInternal(bool online)
@@ -790,7 +798,7 @@ void mqttCallbackInternal(const char* topic, const byte* payload, unsigned int l
 {
     const String topic_str = String(topic);
     const String message = String((char*)payload, length);
-    
+
     if (topic_str == getCommandTopic())
     {
         handleMqttCommandInternal(message);
@@ -803,7 +811,7 @@ void invalidateHAConfigCacheInternal()
     haConfigCache.isValid = false;
 }
 
-} // namespace
+}  // namespace
 
 // Глобальные обёртки для функций, объявленных в заголовке
 void publishAvailability(bool online)
@@ -841,12 +849,12 @@ void removeHomeAssistantConfig()
     removeHomeAssistantConfigInternal();
 }
 
-void handleMqttCommand(const String& cmd) // NOLINT(misc-use-internal-linkage)
+void handleMqttCommand(const String& cmd)  // NOLINT(misc-use-internal-linkage)
 {
     handleMqttCommandInternal(cmd);
 }
 
-void mqttCallback(const char* topic, const byte* payload, unsigned int length) // NOLINT(misc-use-internal-linkage)
+void mqttCallback(const char* topic, const byte* payload, unsigned int length)  // NOLINT(misc-use-internal-linkage)
 {
     mqttCallbackInternal(topic, payload, length);
 }
@@ -860,5 +868,3 @@ const char* getMqttLastError()
 {
     return mqttLastErrorBuffer.data();
 }
-
-

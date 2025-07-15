@@ -14,9 +14,13 @@
 #include <esp_ota_ops.h>
 #include <esp_task_wdt.h>
 #include "advanced_filters.h"  // ✅ Улучшенная система фильтрации
+#include "business/crop_recommendation_engine.h"
+#include "business/sensor_calibration_service.h"
+#include "business/sensor_compensation_service.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "fake_sensor.h"
 #include "jxct_config_vars.h"
+#include "jxct_constants.h"  // ✅ Константы системы
 #include "logger.h"
 #include "modbus_sensor.h"
 #include "mqtt_client.h"
@@ -24,22 +28,18 @@
 #include "sensor_factory.h"
 #include "thingspeak_client.h"
 #include "version.h"     // ✅ Централизованное управление версией
-#include "jxct_constants.h"  // ✅ Константы системы
 #include "web_routes.h"  // ✅ CSRF защита
 #include "wifi_manager.h"
-#include "business/crop_recommendation_engine.h"
-#include "business/sensor_calibration_service.h"
-#include "business/sensor_compensation_service.h"
 #ifdef TEST_BUILD
 #include "esp32_stubs.h"
 #elif defined(ESP32) || defined(ARDUINO)
-#include <WebServer.h>
 #include <LittleFS.h>
+#include <WebServer.h>
 #else
 #include "test/stubs/esp32_stubs.h"
 #endif
 // Веб-сервер
-WebServer server(80); // NOLINT(misc-use-internal-linkage)
+WebServer server(80);  // NOLINT(misc-use-internal-linkage)
 
 // Глобальные экземпляры бизнес-сервисов
 extern CropRecommendationEngine gCropEngine;
@@ -70,18 +70,20 @@ NTPClient* timeClient = nullptr;  // NOLINT(misc-use-internal-linkage)
 
 // Константы определены в jxct_constants.h
 
-namespace {
+namespace
+{
 // Внутренняя инициализация Preferences
 bool initPreferences()
 {
     return preferences.begin("jxct", false);
 }
-}
+}  // namespace
 
 // === ОПТИМИЗАЦИЯ 3.2: Интеллектуальный батчинг данных для группировки сетевых отправок ===
 // перемещены в анонимное пространство имён выше
 
-namespace {
+namespace
+{
 // ✅ Неблокирующая задача мониторинга кнопки сброса
 void resetButtonTask(void* /*parameter*/)
 {
@@ -118,11 +120,11 @@ void resetButtonTask(void* /*parameter*/)
         vTaskDelay(50 / portTICK_PERIOD_MS);
     }
 }
-}
+}  // namespace
 
 #ifndef PIO_UNIT_TESTING
 
-void setup() // NOLINT(misc-use-internal-linkage)
+void setup()  // NOLINT(misc-use-internal-linkage)
 {
     Serial.begin(115200);
 
@@ -255,7 +257,7 @@ void setup() // NOLINT(misc-use-internal-linkage)
 }
 
 // ✅ Неблокирующий главный цикл с оптимизированными интервалами
-void loop() // NOLINT(misc-use-internal-linkage)
+void loop()  // NOLINT(misc-use-internal-linkage)
 {
     const unsigned long currentTime = millis();
     esp_task_wdt_reset();

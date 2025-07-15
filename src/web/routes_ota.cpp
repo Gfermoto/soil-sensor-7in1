@@ -132,7 +132,8 @@ void setupOtaRoutes()
             html += "</div>";
             html += "<form id='uploadForm' enctype='multipart/form-data'>";
             {
-                const String uploadBtn = generateButton(ButtonType::SECONDARY, ButtonConfig{"⬆️", "Загрузить прошивку", ""});
+                const String uploadBtn =
+                    generateButton(ButtonType::SECONDARY, ButtonConfig{"⬆️", "Загрузить прошивку", ""});
                 html += uploadBtn;
             }
             html += "</form></div>";
@@ -178,7 +179,8 @@ void setupOtaRoutes()
             html += "      isOtaActive = true;\n";
             html += "    } else if (status.includes('Загружено') && status.includes('%')) {\n";
             html += "      // Удаленная загрузка с процентами\n";
-            html += R"(      const percent = parseInt(status.match(/\d+/)[0]);)" "\n";
+            html += R"(      const percent = parseInt(status.match(/\d+/)[0]);)"
+                    "\n";
             html += "      showProgress('Загрузка обновления', percent);\n";
             html += "      isOtaActive = true;\n";
             html += "    } else if (status.includes('Загружено') && status.includes('КБ')) {\n";
@@ -279,7 +281,8 @@ void setupOtaRoutes()
             html += "\n";
             html += "document.getElementById('uploadForm').addEventListener('submit', e => {\n";
             html += "  e.preventDefault();\n";
-            html += R"(  const fileInput = document.querySelector('input[name="firmware"]');)" "\n";
+            html += R"(  const fileInput = document.querySelector('input[name="firmware"]');)"
+                    "\n";
             html += "  const file = fileInput.files[0];\n";
             html += "  \n";
             html += "  if (!file) {\n";
@@ -349,7 +352,7 @@ static void sendOtaStatusJson()
     {
         if (localUploadTotal > 0)
         {
-                            const size_t percent = (localUploadProgress * 100) / localUploadTotal;
+            const size_t percent = (localUploadProgress * 100) / localUploadTotal;
             doc["status"] = "local " + String(percent) + "%";
         }
         else

@@ -1,0 +1,76 @@
+# Stale Bot configuration for JXCT Soil Sensor Project
+# https://github.com/actions/stale
+
+# Number of days of inactivity before an issue becomes stale
+daysUntilStale: 60
+
+# Number of days of inactivity before a stale issue is closed
+daysUntilClose: 7
+
+# Issues with these labels will never be considered stale
+exemptAllLabels: true
+
+# Set to true to ignore issues in a project (defaults to false)
+exemptProjectCards: false
+
+# Set to true to ignore issues in a milestone (defaults to false)
+exemptMilestones: false
+
+# Set to true to ignore issues with an assignee (defaults to false)
+exemptAssignees: false
+
+# Set to true to ignore issues with a label (defaults to false)
+exemptLabels:
+  - "pinned"
+  - "security"
+  - "bug"
+  - "enhancement"
+  - "documentation"
+  - "good first issue"
+  - "help wanted"
+
+# Label to use when marking as stale
+staleLabel: "no-issue-activity"
+
+# Comment to post when marking as stale
+markComment: |
+  This issue has been automatically marked as stale because it has not had recent activity.
+  It will be closed if no further activity occurs. Thank you for your contributions.
+
+# Comment to post when closing a stale issue
+closeComment: |
+  This issue has been automatically closed due to inactivity.
+  If you believe this issue should remain open, please comment and it will be reopened.
+
+# Limit to one `stale` action per day and per issue
+limitPerRun: 1
+
+# Optionally, specify configuration for pull requests
+pullRequests:
+  # Number of days of inactivity before a PR becomes stale
+  daysUntilStale: 30
+  
+  # Number of days of inactivity before a stale PR is closed
+  daysUntilClose: 7
+  
+  # Label to use when marking as stale
+  staleLabel: "no-pr-activity"
+  
+  # Comment to post when marking as stale
+  markComment: |
+    This pull request has been automatically marked as stale because it has not had recent activity.
+    It will be closed if no further activity occurs. Thank you for your contributions.
+  
+  # Comment to post when closing a stale PR
+  closeComment: |
+    This pull request has been automatically closed due to inactivity.
+    If you believe this PR should remain open, please comment and it will be reopened.
+  
+  # Set to true to ignore PRs with an assignee (defaults to false)
+  exemptAssignees: false
+  
+  # Set to true to ignore PRs with a label (defaults to false)
+  exemptLabels:
+    - "work in progress"
+    - "draft"
+    - "ready for review" 

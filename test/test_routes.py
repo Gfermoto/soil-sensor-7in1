@@ -31,10 +31,10 @@ def test_required_routes_exist():
     """Тест наличия обязательных маршрутов"""
     print("🔗 ТЕСТ МАРШРУТОВ JXCT")
     print("=" * 40)
-    
+
     passed = 0
     total = len(REQUIRED_ROUTES)
-    
+
     for route, expected_file in REQUIRED_ROUTES.items():
         found = False
         for src_dir in SRC_DIRS:
@@ -57,13 +57,13 @@ def test_required_routes_exist():
                         break
                 if found:
                     break
-        
+
         if not found:
             print(f"  ❌ Маршрут '{route}' НЕ найден в {expected_file}")
-    
+
     print(f"\n📊 Результат: {passed}/{total}")
     print(f"🎯 {'✅ ТЕСТ ПРОЙДЕН' if passed == total else '❌ ТЕСТ ПРОВАЛЕН'}")
-    
+
     assert passed == total, f"Не все обязательные маршруты найдены: {passed}/{total}"
 
 if __name__ == '__main__':

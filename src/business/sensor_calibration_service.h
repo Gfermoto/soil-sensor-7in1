@@ -7,12 +7,12 @@
 #ifndef SENSOR_CALIBRATION_SERVICE_H
 #define SENSOR_CALIBRATION_SERVICE_H
 
+#include <Arduino.h>
 #include <map>
 #include <vector>
-#include <Arduino.h>
-#include "../../include/sensor_compensation.h"
 #include "../../include/business/ISensorCalibrationService.h"
 #include "../../include/calibration_manager.h"
+#include "../../include/sensor_compensation.h"
 #include "../../include/validation_utils.h"
 
 /**
@@ -20,13 +20,13 @@
  *
  * Содержит пару значений: исходное и эталонное
  */
-struct CalibrationPoint {
-    float rawValue;     // Исходное значение датчика
-    float referenceValue; // Эталонное значение
+struct CalibrationPoint
+{
+    float rawValue;        // Исходное значение датчика
+    float referenceValue;  // Эталонное значение
 
     CalibrationPoint() : rawValue(0), referenceValue(0) {}
-    CalibrationPoint(float raw, float reference)
-        : rawValue(raw), referenceValue(reference) {}
+    CalibrationPoint(float raw, float reference) : rawValue(raw), referenceValue(reference) {}
 };
 
 /**
@@ -34,7 +34,8 @@ struct CalibrationPoint {
  *
  * Содержит набор точек калибровки для конкретного профиля почвы
  */
-struct CalibrationTable {
+struct CalibrationTable
+{
     std::vector<CalibrationPoint> temperaturePoints;
     std::vector<CalibrationPoint> humidityPoints;
     std::vector<CalibrationPoint> ecPoints;
@@ -54,8 +55,9 @@ struct CalibrationTable {
  * Реализует логику применения калибровочных данных к показаниям датчиков,
  * включая загрузку калибровочных таблиц и их применение.
  */
-class SensorCalibrationService : public ISensorCalibrationService {
-private:
+class SensorCalibrationService : public ISensorCalibrationService
+{
+   private:
     // Калибровочные таблицы для разных профилей почвы
     static std::map<SoilProfile, CalibrationTable> calibrationTables;
 
@@ -63,8 +65,7 @@ private:
     // CalibrationManager& calibrationManager; // Убрано - используем namespace
 
     // Применение калибровки к значению с интерполяцией
-    float applyCalibrationWithInterpolation(float rawValue,
-                                          const std::vector<CalibrationPoint>& points) const;
+    float applyCalibrationWithInterpolation(float rawValue, const std::vector<CalibrationPoint>& points) const;
 
     // Линейная интерполяция между двумя точками
     float linearInterpolation(float value, float x1, float y1, float x2, float y2) const;
@@ -75,7 +76,7 @@ private:
     // Валидация калибровочных точек
     bool validateCalibrationPoints(const std::vector<CalibrationPoint>& points) const;
 
-public:
+   public:
     /**
      * @brief Конструктор
      */
@@ -165,5 +166,4 @@ public:
     void resetCalibration();
 };
 
-#endif // SENSOR_CALIBRATION_SERVICE_H
- 
+#endif  // SENSOR_CALIBRATION_SERVICE_H

@@ -1,0 +1,68 @@
+# Cursor AI Rules for JXCT Soil Sensor Project
+
+## Project Context
+This is a professional IoT soil monitoring system based on ESP32.
+Uses PlatformIO for development.
+Implements Modbus communication with sensors.
+Has web interface, OTA updates, and MQTT integration.
+
+## Code Standards
+- Follow C++17 standards
+- Use clear, descriptive variable names
+- Add comprehensive comments for complex logic
+- Follow ESP32 best practices
+- Implement proper error handling
+
+## Architecture Guidelines
+- Modular design with clear separation of concerns
+- Use header guards in all header files
+- Implement proper memory management
+- Follow embedded systems constraints
+
+## Testing
+- All code should be testable
+- Follow existing test patterns in the project
+- Ensure proper error handling and edge cases
+
+## Documentation
+- Update relevant documentation when making changes
+- Follow existing documentation patterns
+- Include technical details for complex implementations
+
+## ESP32 Specific
+- Use WiFi.h for network connectivity
+- Implement proper power management
+- Handle OTA updates safely
+- Use proper GPIO configurations
+- Implement watchdog timers
+
+## PlatformIO Integration
+- Follow PlatformIO project structure
+- Use proper build flags and configurations
+- Implement proper library dependencies
+- Follow PlatformIO best practices
+
+## IoT Best Practices
+- Implement proper error handling for network operations
+- Use secure communication protocols
+- Implement data validation
+- Handle sensor calibration properly
+- Implement proper logging and debugging
+
+## Memory Management
+- Be mindful of ESP32 memory constraints
+- Use proper string handling (avoid String class when possible)
+- Implement proper buffer management
+- Use static allocation when appropriate
+
+## Communication Protocols
+- Modbus RTU for sensor communication
+- MQTT for cloud communication
+- HTTP for web interface
+- WebSocket for real-time updates
+
+## Sensor Integration
+- Handle sensor calibration
+- Implement data filtering and validation
+- Use proper sampling rates
+- Handle sensor failures gracefully 

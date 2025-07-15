@@ -3,7 +3,8 @@
 #include <ctime>
 #include "jxct_config_vars.h"
 
-namespace {
+namespace
+{
 // --- коэффициенты ------------------------------------------------
 struct SoilECCoeff
 {
@@ -36,7 +37,8 @@ inline float k_h_K(float theta)
 }
 
 // Внутренние функции — только для этой единицы трансляции
-float correctEC_internal(float rawValue, float temperature, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters)
+float correctEC_internal(float rawValue, float temperature,
+                         float compensationFactor)  // NOLINT(bugprone-easily-swappable-parameters)
 {
     const float referenceTemp = 25.0F;
     const float tempDiff = temperature - referenceTemp;
@@ -44,7 +46,8 @@ float correctEC_internal(float rawValue, float temperature, float compensationFa
     return rawValue * compensation;
 }
 
-float correctPH_internal(float rawValue, float temperature, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters)
+float correctPH_internal(float rawValue, float temperature,
+                         float compensationFactor)  // NOLINT(bugprone-easily-swappable-parameters)
 {
     const float referenceTemp = 25.0F;
     const float tempDiff = temperature - referenceTemp;
@@ -52,7 +55,8 @@ float correctPH_internal(float rawValue, float temperature, float compensationFa
     return rawValue * compensation;
 }
 
-float correctNPK_internal(float rawValue, float temperature, float humidity, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters)
+float correctNPK_internal(float rawValue, float temperature, float humidity,
+                          float compensationFactor)  // NOLINT(bugprone-easily-swappable-parameters)
 {
     const float referenceTemp = 25.0F;
     const float referenceHumidity = 60.0F;
@@ -69,14 +73,28 @@ struct ECCompensationParams
     float rawValue = 0.0F;
     float temperature = 25.0F;
     float compensationFactor = 2.0F;
-    struct Builder {
+    struct Builder
+    {
         float rawValue = 0.0F;
         float temperature = 25.0F;
         float compensationFactor = 2.0F;
-        Builder& setRawValue(float value) { rawValue = value; return *this; }
-        Builder& setTemperature(float temp) { temperature = temp; return *this; }
-        Builder& setCompensationFactor(float factor) { compensationFactor = factor; return *this; }
-        ECCompensationParams build() const {
+        Builder& setRawValue(float value)
+        {
+            rawValue = value;
+            return *this;
+        }
+        Builder& setTemperature(float temp)
+        {
+            temperature = temp;
+            return *this;
+        }
+        Builder& setCompensationFactor(float factor)
+        {
+            compensationFactor = factor;
+            return *this;
+        }
+        ECCompensationParams build() const
+        {
             ECCompensationParams result;
             result.rawValue = rawValue;
             result.temperature = temperature;
@@ -84,26 +102,29 @@ struct ECCompensationParams
             return result;
         }
     };
-    static Builder builder() { return {}; }
+    static Builder builder()
+    {
+        return {};
+    }
 };
 
-float correctEC(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
+float correctEC(const ECCompensationParams& params)  // NOLINT(misc-use-internal-linkage)
 {
     return correctEC_internal(params.rawValue, params.temperature, params.compensationFactor);
 }
 
-float correctPH(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
+float correctPH(const ECCompensationParams& params)  // NOLINT(misc-use-internal-linkage)
 {
     return correctPH_internal(params.rawValue, params.temperature, params.compensationFactor);
 }
 
-float correctNPK(const ECCompensationParams& params) // NOLINT(misc-use-internal-linkage)
+float correctNPK(const ECCompensationParams& params)  // NOLINT(misc-use-internal-linkage)
 {
     // Здесь rawValue — это NPK, temperature и humidity — из params
     return correctNPK_internal(params.rawValue, params.temperature, 60.0F, params.compensationFactor);
 }
 
-void correctNPK(const ECCompensationParams& params, NPKReferences& npk) // NOLINT(misc-use-internal-linkage)
+void correctNPK(const ECCompensationParams& params, NPKReferences& npk)  // NOLINT(misc-use-internal-linkage)
 {
     if (params.temperature < 10.0F || params.temperature > 90.0F)
     {
@@ -116,66 +137,76 @@ void correctNPK(const ECCompensationParams& params, NPKReferences& npk) // NOLIN
     npk.phosphorus *= tempFactorP;
     npk.potassium *= tempFactorK;
 }
-} // namespace
+}  // namespace
 
 // --- ОБРАТНАЯ СОВМЕСТИМОСТЬ: старые сигнатуры (тонкие обёртки) ---
-float correctEC(float ecRaw, float temperature, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
+float correctEC(float ecRaw, float temperature,
+                float compensationFactor)  // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     return correctEC(ECCompensationParams::builder()
-        .setRawValue(ecRaw)
-        .setTemperature(temperature)
-        .setCompensationFactor(compensationFactor)
-        .build());
+                         .setRawValue(ecRaw)
+                         .setTemperature(temperature)
+                         .setCompensationFactor(compensationFactor)
+                         .build());
 }
 
-float correctPH(float rawValue, float temperature, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
+float correctPH(float rawValue, float temperature,
+                float compensationFactor)  // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     return correctPH(ECCompensationParams::builder()
-        .setRawValue(rawValue)
-        .setTemperature(temperature)
-        .setCompensationFactor(compensationFactor)
-        .build());
+                         .setRawValue(rawValue)
+                         .setTemperature(temperature)
+                         .setCompensationFactor(compensationFactor)
+                         .build());
 }
 
 // Обёртка для обратной совместимости
-float correctPH(float rawValue, float temperature) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
+float correctPH(float rawValue,
+                float temperature)  // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     return correctPH(rawValue, temperature, 2.0F);
 }
 
-float correctNPK(float rawValue, float temperature, float humidity, float compensationFactor) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage,misc-unused-parameters)
+float correctNPK(
+    float rawValue, float temperature, float humidity,
+    float
+        compensationFactor)  // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage,misc-unused-parameters)
 {
     return correctNPK(ECCompensationParams::builder()
-        .setRawValue(rawValue)
-        .setTemperature(temperature)
-        .setCompensationFactor(compensationFactor)
-        .build());
+                          .setRawValue(rawValue)
+                          .setTemperature(temperature)
+                          .setCompensationFactor(compensationFactor)
+                          .build());
 }
 
-float correctEC(float ecRaw, const EnvironmentalConditions& env, SoilType soil) // NOLINT(misc-use-internal-linkage)
+float correctEC(float ecRaw, const EnvironmentalConditions& env, SoilType soil)  // NOLINT(misc-use-internal-linkage)
 {
     return correctEC(ECCompensationParams::builder()
-        .setRawValue(ecRaw)
-        .setTemperature(env.temperature)
-        .setCompensationFactor(2.0F)
-        .build());
+                         .setRawValue(ecRaw)
+                         .setTemperature(env.temperature)
+                         .setCompensationFactor(2.0F)
+                         .build());
 }
 
-void correctNPK(const EnvironmentalConditions& env, NPKReferences& npk, SoilType soil) // NOLINT(misc-use-internal-linkage)
+void correctNPK(const EnvironmentalConditions& env, NPKReferences& npk,
+                SoilType soil)  // NOLINT(misc-use-internal-linkage)
 {
     correctNPK(ECCompensationParams::builder()
-        .setRawValue(0.0F)
-        .setTemperature(env.temperature)
-        .setCompensationFactor(2.0F)
-        .build(), npk);
+                   .setRawValue(0.0F)
+                   .setTemperature(env.temperature)
+                   .setCompensationFactor(2.0F)
+                   .build(),
+               npk);
 }
 
-float correctEC(float ecRaw, float temperature, float theta, SoilType soil) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
+float correctEC(float ecRaw, float temperature, float theta,
+                SoilType soil)  // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     return correctEC(ecRaw, EnvironmentalConditions{temperature, theta}, soil);
 }
 
-void correctNPK(float temperature, float theta, SoilType soil, NPKReferences& npk) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
+void correctNPK(float temperature, float theta, SoilType soil,
+                NPKReferences& npk)  // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     correctNPK(EnvironmentalConditions{temperature, theta}, npk, soil);
 }

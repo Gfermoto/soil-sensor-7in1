@@ -33,15 +33,13 @@ std::array<char, 8> guardSentinel = {"GUARD!"};  // часовой после UR
 
 namespace
 {
-void printGuard(
-    const char* name, const char* tag,
-    const char* current)
+void printGuard(const char* name, const char* tag, const char* current)
 {
     logErrorSafe("\1", name, tag, current);
 }
 }  // namespace
 
-void checkGuard(const char* tag) // NOLINT(misc-use-internal-linkage)
+void checkGuard(const char* tag)  // NOLINT(misc-use-internal-linkage)
 {
     if (strncmp(guardGap.data(), "BEFORE", 6) != 0)
     {
@@ -55,12 +53,12 @@ void checkGuard(const char* tag) // NOLINT(misc-use-internal-linkage)
     }
 }
 
-const char* getOtaStatus() // NOLINT(misc-use-internal-linkage)
+const char* getOtaStatus()  // NOLINT(misc-use-internal-linkage)
 {
     return statusBuf.data();
 }
 
-void setupOTA(const char* manifestUrl, WiFiClient& client) // NOLINT(misc-use-internal-linkage)
+void setupOTA(const char* manifestUrl, WiFiClient& client)  // NOLINT(misc-use-internal-linkage)
 {
     checkGuard("setupOTA:entry");
     // КРИТИЧЕСКАЯ ЗАЩИТА: Проверяем повторную инициализацию
@@ -129,8 +127,7 @@ static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)  //
 // Вспомогательная функция для инициализации загрузки
 namespace
 {
-bool initializeDownload(HTTPClient& http, const String& binUrl,
-                               int& contentLen)
+bool initializeDownload(HTTPClient& http, const String& binUrl, int& contentLen)
 {
     esp_task_wdt_reset();
     strlcpy(statusBuf.data(), "Подключение", sizeof(statusBuf));
@@ -213,8 +210,7 @@ bool initializeDownload(HTTPClient& http, const String& binUrl,
 // Вспомогательная функция для загрузки данных
 namespace
 {
-bool downloadData(HTTPClient& http, int contentLen,
-                         mbedtls_sha256_context& shaCtx)
+bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_context& shaCtx)
 {
     strlcpy(statusBuf.data(), "Загрузка", sizeof(statusBuf));
 
@@ -443,7 +439,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
 }
 
 // Принудительная проверка OTA (игнорирует таймер)
-void triggerOtaCheck() // NOLINT(misc-use-internal-linkage)
+void triggerOtaCheck()  // NOLINT(misc-use-internal-linkage)
 {
     static bool isChecking = false;
 
@@ -460,7 +456,7 @@ void triggerOtaCheck() // NOLINT(misc-use-internal-linkage)
 }
 
 // Принудительная установка найденного обновления
-void triggerOtaInstall() // NOLINT(misc-use-internal-linkage)
+void triggerOtaInstall()  // NOLINT(misc-use-internal-linkage)
 {
     if (!updateAvailable || pendingUpdateUrl.isEmpty())
     {
@@ -492,7 +488,7 @@ void triggerOtaInstall() // NOLINT(misc-use-internal-linkage)
     }
 }
 
-void handleOTA() // NOLINT(misc-use-internal-linkage)
+void handleOTA()  // NOLINT(misc-use-internal-linkage)
 {
     // ДОБАВЛЕНО: Детальная диагностика для отладки
     static unsigned long debugCallCount = 0;

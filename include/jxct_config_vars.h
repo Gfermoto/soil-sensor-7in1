@@ -113,9 +113,9 @@ struct __attribute__((packed)) Config
     uint8_t environmentType;
 
     // v3.10.0: УЛУЧШЕННАЯ СИСТЕМА ФИЛЬТРАЦИИ (8 байт)
-    float exponentialAlpha;  // Коэффициент экспоненциального сглаживания
-    float outlierThreshold;  // Порог выбросов (σ)
-    uint8_t kalmanEnabled;   // Фильтр Калмана (0=отключен, 1=включен)
+    float exponentialAlpha;     // Коэффициент экспоненциального сглаживания
+    float outlierThreshold;     // Порог выбросов (σ)
+    uint8_t kalmanEnabled;      // Фильтр Калмана (0=отключен, 1=включен)
     uint8_t adaptiveFiltering;  // Адаптивная фильтрация (0=отключена, 1=включена)
 
     // Битовые поля для boolean флагов (экономия 4 байта)

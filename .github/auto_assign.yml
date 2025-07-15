@@ -1,0 +1,13 @@
+# Auto Assign configuration
+# https://github.com/kentaro-m/auto-assign
+addReviewers: true
+addAssignees: true
+reviewers:
+  - Gfermoto
+assignees:
+  - Gfermoto
+skipKeywords:
+  - wip
+  - draft
+numberOfReviewers: 1
+numberOfAssignees: 1 

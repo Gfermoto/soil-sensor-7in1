@@ -142,8 +142,8 @@ void setupMainRoutes()
             saveConfig();
 
             // Отправка страницы успеха
-            const String html = generateSuccessPage("Настройки сохранены",
-                                              "Настройки сохранены успешно. Устройство перезагружается...", "/", 1);
+            const String html = generateSuccessPage(
+                "Настройки сохранены", "Настройки сохранены успешно. Устройство перезагружается...", "/", 1);
 
             webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_HTML, html);
 

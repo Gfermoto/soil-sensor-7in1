@@ -86,10 +86,10 @@ def test_new_feature():
     """Описание теста"""
     # Arrange
     input_data = "test"
-    
+
     # Act
     result = process_data(input_data)
-    
+
     # Assert
     assert result == "expected"
 ```
@@ -98,13 +98,13 @@ def test_new_feature():
 ```cpp
 void test_new_component() {
     TEST_CASE("Описание теста");
-    
+
     // Arrange
     Component component;
-    
+
     // Act
     bool result = component.process();
-    
+
     // Assert
     TEST_ASSERT_TRUE(result);
 }
@@ -176,4 +176,4 @@ python test/integration/run_integration_tests.py
 4. Создайте issue с подробным описанием
 
 ---
-*Последнее обновление: $(Get-Date -Format "yyyy-MM-dd")* 
+*Последнее обновление: $(Get-Date -Format "yyyy-MM-dd")*

@@ -4,10 +4,10 @@
 #ifdef TEST_BUILD
 #include "esp32_stubs.h"
 #elif defined(ESP32) || defined(ARDUINO)
-#include "Arduino.h"
 #include <ArduinoJson.h>
 #include <PubSubClient.h>
 #include <WiFi.h>
+#include "Arduino.h"
 #else
 #include "esp32_stubs.h"
 #endif

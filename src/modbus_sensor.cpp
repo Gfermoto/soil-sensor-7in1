@@ -6,8 +6,9 @@
  */
 #include "modbus_sensor.h"
 #include <Arduino.h>
-#include <algorithm>  // для std::min
+#include <algorithm>           // для std::min
 #include "advanced_filters.h"  // ✅ Улучшенная система фильтрации
+#include "business_services.h"
 #include "calibration_manager.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "jxct_config_vars.h"
@@ -15,42 +16,59 @@
 #include "jxct_device_info.h"
 #include "logger.h"
 #include "sensor_compensation.h"
-#include "business_services.h"
 #include "validation_utils.h"  // Для централизованной валидации
 
 // Глобальные переменные (должны быть доступны через extern)
 // Внутренние переменные и функции — только для этой единицы трансляции
-namespace {
+namespace
+{
 // Внутренние переменные с внутренней связностью
 ModbusMaster modbus;
 String sensorLastError;
 
 // Структура для устранения проблемы с легко перепутываемыми параметрами
-struct RegisterConversion {
+struct RegisterConversion
+{
     uint16_t value;
     float multiplier;
-    
+
     // Приватный конструктор
-private:
-    RegisterConversion(uint16_t reg_value, float mult) : value(reg_value), multiplier(mult) {} // NOLINT(bugprone-easily-swappable-parameters)
-public:
+   private:
+    RegisterConversion(uint16_t reg_value, float mult)
+        : value(reg_value), multiplier(mult) {}  // NOLINT(bugprone-easily-swappable-parameters)
+   public:
     // Builder для предотвращения ошибок с параметрами
-    struct Builder {
+    struct Builder
+    {
         uint16_t registerValue = 0;
         float scaleMultiplier = 1.0F;
-        Builder& setRegisterValue(uint16_t value) { registerValue = value; return *this; }
-        Builder& setScaleMultiplier(float multiplier) { scaleMultiplier = multiplier; return *this; }
-        RegisterConversion build() const {
+        Builder& setRegisterValue(uint16_t value)
+        {
+            registerValue = value;
+            return *this;
+        }
+        Builder& setScaleMultiplier(float multiplier)
+        {
+            scaleMultiplier = multiplier;
+            return *this;
+        }
+        RegisterConversion build() const
+        {
             return RegisterConversion(registerValue, scaleMultiplier);
         }
     };
-    static Builder builder() { return {}; }
-    
+    static Builder builder()
+    {
+        return {};
+    }
+
     // Обратная совместимость
-    static RegisterConversion fromRaw(uint16_t registerValue, float scaleMultiplier) { // NOLINT(bugprone-easily-swappable-parameters)
+    static RegisterConversion fromRaw(uint16_t registerValue, float scaleMultiplier)
+    {  // NOLINT(bugprone-easily-swappable-parameters)
         return RegisterConversion(registerValue, scaleMultiplier);
     }
-    float toFloat() const {
+    float toFloat() const
+    {
         return static_cast<float>(value) * multiplier;
     }
 };
@@ -161,21 +179,21 @@ void applyCompensationIfEnabled(SensorData& data)
     // Преобразуем конфигурацию в типы бизнес-логики
     // Используем массивы для устранения дублирования кода
     static const std::array<SoilType, 5> soilTypes = {{
-        SoilType::SAND,      // 0
-        SoilType::LOAM,      // 1
-        SoilType::PEAT,      // 2
-        SoilType::CLAY,      // 3
-        SoilType::SANDPEAT   // 4
+        SoilType::SAND,     // 0
+        SoilType::LOAM,     // 1
+        SoilType::PEAT,     // 2
+        SoilType::CLAY,     // 3
+        SoilType::SANDPEAT  // 4
     }};
-    
+
     static const std::array<SoilProfile, 5> soilProfiles = {{
-        SoilProfile::SAND,      // 0
-        SoilProfile::LOAM,      // 1
-        SoilProfile::PEAT,      // 2
-        SoilProfile::CLAY,      // 3
-        SoilProfile::SANDPEAT   // 4
+        SoilProfile::SAND,     // 0
+        SoilProfile::LOAM,     // 1
+        SoilProfile::PEAT,     // 2
+        SoilProfile::CLAY,     // 3
+        SoilProfile::SANDPEAT  // 4
     }};
-    
+
     const int profileIndex = (config.soilProfile >= 0 && config.soilProfile < 5) ? config.soilProfile : 1;
     const SoilType soil = soilTypes[profileIndex];
     const SoilProfile profile = soilProfiles[profileIndex];
@@ -198,10 +216,8 @@ bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplie
         if (is_float)
         {
             auto* float_target = static_cast<float*>(target);
-            *float_target = convertRegisterToFloat(RegisterConversion::builder()
-                .setRegisterValue(raw_value)
-                .setScaleMultiplier(multiplier)
-                .build());
+            *float_target = convertRegisterToFloat(
+                RegisterConversion::builder().setRegisterValue(raw_value).setScaleMultiplier(multiplier).build());
             logDebugSafe("\1", reg_name, *float_target);
         }
         else
@@ -220,54 +236,87 @@ bool readSingleRegister(uint16_t reg_addr, const char* reg_name, float multiplie
 int readBasicParameters()
 {
     int success_count = 0;
-    if (readSingleRegister(REG_PH, "pH", 0.01F, &sensorData.ph, true)) { success_count++; }
-    if (readSingleRegister(REG_SOIL_MOISTURE, "Влажность", 0.1F, &sensorData.humidity, true)) { success_count++; }
-    if (readSingleRegister(REG_SOIL_TEMP, "Температура", 0.1F, &sensorData.temperature, true)) { success_count++; }
-    if (readSingleRegister(REG_CONDUCTIVITY, "EC", 1.0F, &sensorData.ec, true)) { success_count++; }
+    if (readSingleRegister(REG_PH, "pH", 0.01F, &sensorData.ph, true))
+    {
+        success_count++;
+    }
+    if (readSingleRegister(REG_SOIL_MOISTURE, "Влажность", 0.1F, &sensorData.humidity, true))
+    {
+        success_count++;
+    }
+    if (readSingleRegister(REG_SOIL_TEMP, "Температура", 0.1F, &sensorData.temperature, true))
+    {
+        success_count++;
+    }
+    if (readSingleRegister(REG_CONDUCTIVITY, "EC", 1.0F, &sensorData.ec, true))
+    {
+        success_count++;
+    }
     return success_count;
 }
 
 int readNPKParameters()
 {
     int success_count = 0;
-    if (readSingleRegister(REG_NITROGEN, "Азот", 1.0F, &sensorData.nitrogen, true)) { success_count++; }
-    if (readSingleRegister(REG_PHOSPHORUS, "Фосфор", 1.0F, &sensorData.phosphorus, true)) { success_count++; }
-    if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0F, &sensorData.potassium, true)) { success_count++; }
+    if (readSingleRegister(REG_NITROGEN, "Азот", 1.0F, &sensorData.nitrogen, true))
+    {
+        success_count++;
+    }
+    if (readSingleRegister(REG_PHOSPHORUS, "Фосфор", 1.0F, &sensorData.phosphorus, true))
+    {
+        success_count++;
+    }
+    if (readSingleRegister(REG_POTASSIUM, "Калий", 1.0F, &sensorData.potassium, true))
+    {
+        success_count++;
+    }
     return success_count;
 }
 
-struct MovingAverageParams {
+struct MovingAverageParams
+{
     uint8_t window_size;
     uint8_t filled;
 };
 
 float calculateMovingAverage(const float* buffer, MovingAverageParams params)
 {
-    if (params.filled == 0) { return 0.0F; }
+    if (params.filled == 0)
+    {
+        return 0.0F;
+    }
     const uint8_t elements_to_use = std::min(params.filled, params.window_size);
-    if (config.filterAlgorithm == 1) {
+    if (config.filterAlgorithm == 1)
+    {
         std::array<float, 15> temp_values{};
-        for (int i = 0; i < elements_to_use; ++i) {
+        for (int i = 0; i < elements_to_use; ++i)
+        {
             temp_values.at(i) = buffer[i];
         }
-        for (int i = 0; i < elements_to_use - 1; ++i) {
-            for (int j = 0; j < elements_to_use - i - 1; ++j) {
-                if (temp_values[j] > temp_values[j + 1]) {
+        for (int i = 0; i < elements_to_use - 1; ++i)
+        {
+            for (int j = 0; j < elements_to_use - i - 1; ++j)
+            {
+                if (temp_values[j] > temp_values[j + 1])
+                {
                     std::swap(temp_values[j], temp_values[j + 1]);
                 }
             }
         }
         return temp_values[elements_to_use / 2];
-    } else {
+    }
+    else
+    {
         float sum = 0.0F;
-        for (int i = 0; i < elements_to_use; ++i) {
+        for (int i = 0; i < elements_to_use; ++i)
+        {
             sum += buffer[i];
         }
         return sum / elements_to_use;
     }
 }
 
-} // namespace
+}  // namespace
 
 /**
  * @brief Тестирование работы SP3485E
@@ -328,10 +377,11 @@ void setupModbus()
     logSuccess("Пины SP3485E настроены");
 
     // Инициализация UART для Modbus
-    Serial2.begin(9600, SERIAL_8N1, MODBUS_RX_PIN, MODBUS_TX_PIN);  // NOLINT(readability-static-accessed-through-instance)
+    Serial2.begin(9600, SERIAL_8N1, MODBUS_RX_PIN,
+                  MODBUS_TX_PIN);  // NOLINT(readability-static-accessed-through-instance)
 
     // Настройка Modbus с обработчиками переключения режима
-    modbus.begin(JXCT_MODBUS_ID, Serial2);  // NOLINT(readability-static-accessed-through-instance)
+    modbus.begin(JXCT_MODBUS_ID, Serial2);      // NOLINT(readability-static-accessed-through-instance)
     modbus.preTransmission(preTransmission);    // Вызывается перед передачей
     modbus.postTransmission(postTransmission);  // Вызывается после передачи
 
@@ -342,7 +392,8 @@ void setupModbus()
 bool validateSensorData(SensorData& data)
 {
     auto result = validateFullSensorData(data);
-    if (!result.isValid) {
+    if (!result.isValid)
+    {
         logSensorValidationResult(result, "modbus_sensor");
         return false;
     }
@@ -390,8 +441,6 @@ bool readErrorStatus()
     }
     return false;
 }
-
-
 
 // Добавляем функцию диагностики Modbus связи
 bool testModbusConnection()
@@ -470,7 +519,8 @@ bool testModbusConnection()
 // ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ ДЛЯ СНИЖЕНИЯ ЦИКЛОМАТИЧЕСКОЙ СЛОЖНОСТИ
 // ============================================================================
 
-namespace {
+namespace
+{
 /**
  * @brief Финализация данных датчика (валидация, кэширование, скользящее среднее)
  * @param success Флаг успешности чтения всех параметров
@@ -506,7 +556,7 @@ void finalizeSensorData(bool success)
         sensorData.valid = false;
     }
 }
-}
+}  // namespace
 
 // ============================================================================
 // ОСНОВНАЯ ФУНКЦИЯ ЧТЕНИЯ ДАТЧИКА (РЕФАКТОРИНГ)
@@ -577,7 +627,7 @@ void startRealSensorTask()
 }
 
 // Функция для вывода ошибок Modbus
-void printModbusError(uint8_t errNum) // NOLINT(misc-use-internal-linkage)
+void printModbusError(uint8_t errNum)  // NOLINT(misc-use-internal-linkage)
 {
     switch (errNum)
     {
@@ -638,7 +688,8 @@ void initMovingAverageBuffers(SensorData& data)
 
 void addToMovingAverage(SensorData& data, const SensorData& newReading)
 {
-    uint8_t window_size = std::max(static_cast<uint8_t>(5), std::min(static_cast<uint8_t>(15), config.movingAverageWindow));
+    uint8_t window_size =
+        std::max(static_cast<uint8_t>(5), std::min(static_cast<uint8_t>(15), config.movingAverageWindow));
 
     // Обновляем буферы
     data.temp_buffer[data.buffer_index] = newReading.temperature;
@@ -684,14 +735,25 @@ SensorData getSensorData()
 }
 
 // Функции доступа к переменным из анонимного пространства имён
-ModbusMaster& getModbus() { return modbus; } // NOLINT(misc-use-internal-linkage)
-String& getSensorLastError() { return sensorLastError; } // NOLINT(misc-use-internal-linkage)
+ModbusMaster& getModbus()
+{
+    return modbus;
+}  // NOLINT(misc-use-internal-linkage)
+String& getSensorLastError()
+{
+    return sensorLastError;
+}  // NOLINT(misc-use-internal-linkage)
 
 // Функции доступа к глобальным переменным
-SensorData& getSensorDataRef() { return sensorData; } // NOLINT(misc-use-internal-linkage)
-SensorCache& getSensorCache() { return sensorCache; } // NOLINT(misc-use-internal-linkage)
+SensorData& getSensorDataRef()
+{
+    return sensorData;
+}  // NOLINT(misc-use-internal-linkage)
+SensorCache& getSensorCache()
+{
+    return sensorCache;
+}  // NOLINT(misc-use-internal-linkage)
 
 // Определение глобальных переменных
 SensorData sensorData;
 SensorCache sensorCache;
-

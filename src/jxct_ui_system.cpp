@@ -1,7 +1,7 @@
 #include "jxct_ui_system.h"
 
 // 🎨 ЕДИНЫЙ CSS ДЛЯ ВСЕХ СТРАНИЦ
-const char* getUnifiedCSS() // NOLINT(misc-use-internal-linkage)
+const char* getUnifiedCSS()  // NOLINT(misc-use-internal-linkage)
 {
     static const std::array<char, 8192> css = {R"(
 /* === JXCT UI DESIGN SYSTEM v2.3.1 === */
@@ -283,7 +283,9 @@ input:focus, select:focus, textarea:focus {
 }
 
 // 🎯 ГЕНЕРАЦИЯ HTML КНОПОК
-String generateButton(ButtonType type, const ButtonConfig& config) // NOLINT(misc-use-internal-linkage, bugprone-easily-swappable-parameters)
+String generateButton(
+    ButtonType type,
+    const ButtonConfig& config)  // NOLINT(misc-use-internal-linkage, bugprone-easily-swappable-parameters)
 {
     String cssClass = "btn ";
 
@@ -317,7 +319,7 @@ String generateButton(ButtonType type, const ButtonConfig& config) // NOLINT(mis
 }
 
 // 🍞 TOAST УВЕДОМЛЕНИЯ
-const char* getToastHTML() // NOLINT(misc-use-internal-linkage)
+const char* getToastHTML()  // NOLINT(misc-use-internal-linkage)
 {
     return R"(
 <script>
@@ -357,7 +359,7 @@ window.addEventListener('load', function() {
 }
 
 // ⌛ ЛОАДЕР
-const char* getLoaderHTML() // NOLINT(misc-use-internal-linkage)
+const char* getLoaderHTML()  // NOLINT(misc-use-internal-linkage)
 {
     return "<div class='loader'></div>";
 }
