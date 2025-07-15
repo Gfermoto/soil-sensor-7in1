@@ -5,16 +5,16 @@ core:
   - 'src/**'
   - 'include/**'
 
-'docs':
+docs:
   - 'docs/**'
   - '**/*.md'
 
-'tests':
+tests:
   - 'test/**'
 
-'ci':
+ci:
   - '.github/workflows/**'
   - 'platformio.ini'
 
-'web':
+web:
   - 'src/web/**' 
