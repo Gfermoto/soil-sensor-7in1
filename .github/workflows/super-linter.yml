@@ -13,15 +13,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          
-      - name: Debug - List files
-        run: |
-          echo "Current directory: $(pwd)"
-          echo "Files in root:"
-          ls -la
-          echo "Files in .github:"
-          ls -la .github/ || echo "No .github directory"
+          fetch-depth: 1
           
       - name: Lint Code Base
         uses: github/super-linter@v6
@@ -35,5 +27,4 @@ jobs:
           VALIDATE_MARKDOWN: true
           VALIDATE_YAML: true
           VALIDATE_JSON: true
-          VALIDATE_BASH: true
-          LOG_LEVEL: DEBUG 
+          VALIDATE_BASH: true 
