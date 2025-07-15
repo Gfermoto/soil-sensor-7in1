@@ -12,16 +12,28 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          
+      - name: Debug - List files
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "Files in root:"
+          ls -la
+          echo "Files in .github:"
+          ls -la .github/ || echo "No .github directory"
+          
       - name: Lint Code Base
         uses: github/super-linter@v6
         env:
           VALIDATE_ALL_CODEBASE: false
           DEFAULT_BRANCH: main
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          FILTER_REGEX_EXCLUDE: 'docs/api/|build/|.pio/'
+          FILTER_REGEX_EXCLUDE: 'docs/api/|build/|.pio/|.git/'
           VALIDATE_CPP: true
           VALIDATE_PYTHON: true
           VALIDATE_MARKDOWN: true
           VALIDATE_YAML: true
           VALIDATE_JSON: true
-          VALIDATE_BASH: true 
+          VALIDATE_BASH: true
+          LOG_LEVEL: DEBUG 
