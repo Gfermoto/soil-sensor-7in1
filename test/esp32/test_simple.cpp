@@ -46,9 +46,11 @@ void RUN_UNITY_TESTS() {
     UNITY_END();
 }
 
-#ifdef PIO_UNIT_TESTING
+// Главная функция для тестового режима
 int main(int argc, char **argv) {
+    // Инициализация Arduino в тестовом режиме
+    init();
+    
     RUN_UNITY_TESTS();
     return 0;
-}
-#endif 
+} 
