@@ -1,5 +1,5 @@
 {
-  "timestamp": "2025-07-16T19:42:19.925121",
+  "timestamp": "2025-07-16T21:00:38.470837",
   "version": "3.7.0",
   "platform": "Windows",
   "test_results": {
@@ -30,5 +30,10 @@
       "status": "SKIPPED",
       "reason": "ESP32 не подключен"
     }
+  },
+  "summary": {
+    "total_categories": 3,
+    "passed_categories": 2,
+    "overall_status": "PASS"
   }
 }
