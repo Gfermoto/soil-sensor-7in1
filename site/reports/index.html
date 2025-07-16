@@ -47,9 +47,6 @@
         .nav a:hover {
             color: #2e7d32;
         }
-        .content {
-            padding: 2rem;
-        }
         .status-banner {
             background: #28a745;
             color: white;
@@ -57,7 +54,9 @@
             text-align: center;
             font-size: 1.2em;
             font-weight: bold;
-            margin-bottom: 2rem;
+        }
+        .content {
+            padding: 2rem;
         }
         .metrics-grid {
             display: grid;
@@ -87,104 +86,197 @@
             color: #6c757d;
             font-size: 0.9em;
         }
+        .progress-bar {
+            width: 100%;
+            height: 20px;
+            background-color: #e9ecef;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+            transition: width 0.3s ease;
+        }
+        .tech-debt-section {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
+        .tech-debt-section h3 {
+            color: #856404;
+            margin-top: 0;
+        }
+        .update-info {
+            background: #e8f5e8;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+        }
         .footer {
             background: #f8f9fa;
-            padding: 2rem;
             text-align: center;
-            color: #6c757d;
+            padding: 2rem;
             border-top: 1px solid #e9ecef;
+            color: #6c757d;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 500;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #1b5e20;
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #495057;
+        }
+        @media (max-width: 768px) {
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .content {
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🧪 Отчёты качества</h1>
-            <p>JXCT Soil Sensor - Автоматические отчёты качества кода</p>
+            <h1>🧪 Отчёты качества кода</h1>
+            <p>Автоматический мониторинг качества проекта JXCT Soil Sensor</p>
         </div>
-        
-        <div class="nav">
-            <a href="../">🏠 Главная</a>
-            <a href="../docs/">📚 Документация</a>
-            <a href="../api/">🔌 API</a>
-            <a href="dashboard.html">📊 Дашборд</a>
-        </div>
-        
+
         <div class="status-banner">
-            ✅ Система качества активна - Отчёты обновляются автоматически
+            ✅ Статус системы: Отлично (100.0% тестов прошло)
         </div>
-        
+
+        <div class="nav">
+            <a href="../index.html">🏠 Главная</a>
+            <a href="../html/index.html">📚 API Документация</a>
+            <a href="dashboard.html">📈 Дашборд</a>
+            <a href="test-summary.json">📄 JSON Отчёт</a>
+        </div>
+
         <div class="content">
+            <h2>📊 Сводка тестирования</h2>
             <div class="metrics-grid">
-                <div class="metric-card">
-                    <h3>🎯 Успешность тестов</h3>
-                    <div class="metric-value">100%</div>
-                    <div class="metric-label">Все тесты проходят успешно</div>
-                </div>
-                
                 <div class="metric-card">
                     <h3>📝 Всего тестов</h3>
                     <div class="metric-value">90</div>
-                    <div class="metric-label">Unit + Integration + E2E тесты</div>
+                    <div class="metric-label">Выполнено тестовых сценариев</div>
                 </div>
-                
                 <div class="metric-card">
-                    <h3>🔍 Code Smells</h3>
+                    <h3>✅ Успешных</h3>
+                    <div class="metric-value">90</div>
+                    <div class="metric-label">Тестов завершилось успешно</div>
+                </div>
+                <div class="metric-card">
+                    <h3>❌ Неудачных</h3>
                     <div class="metric-value">0</div>
-                    <div class="metric-label">Проблемы качества кода</div>
+                    <div class="metric-label">Тестов завершилось с ошибкой</div>
                 </div>
-                
                 <div class="metric-card">
-                    <h3>📊 Покрытие кода</h3>
-                    <div class="metric-value">100%</div>
-                    <div class="metric-label">Полное покрытие тестами</div>
-                </div>
-                
-                <div class="metric-card">
-                    <h3>🏆 Рейтинг качества</h3>
-                    <div class="metric-value">A+</div>
-                    <div class="metric-label">Отличное качество кода</div>
-                </div>
-                
-                <div class="metric-card">
-                    <h3>⚡ Производительность</h3>
-                    <div class="metric-value">95%</div>
-                    <div class="metric-label">Оптимизировано для ESP32</div>
+                    <h3>📈 Успешность</h3>
+                    <div class="metric-value">100.0%</div>
+                    <div class="metric-label">Процент успешных тестов</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100.0%;"></div>
+                    </div>
                 </div>
             </div>
-            
-            <div style="background: #e8f5e8; border: 1px solid #4caf50; border-radius: 8px; padding: 20px; margin-top: 30px;">
-                <h3>🎉 Статус проекта: ГОТОВ К ПРОДАКШЕНУ</h3>
-                <p>Проект JXCT Soil Sensor v3.10.1 прошёл все проверки качества и готов к использованию в продакшене.</p>
-                <ul>
-                    <li>✅ 100% покрытие тестами</li>
-                    <li>✅ 0 предупреждений clang-tidy</li>
-                    <li>✅ Оптимизированная производительность</li>
-                    <li>✅ Научно обоснованные алгоритмы</li>
-                    <li>✅ Полная автоматизация</li>
-                </ul>
+
+            <h2>🧪 Unit Tests Quality</h2>
+            <div class="update-info">
+                <h3>🎯 Покрытие критических алгоритмов</h3>
+                <p><em>Unit-тесты калибровки не найдены. Рекомендуется добавить тесты критических алгоритмов.</em></p>
+            </div>
+
+            <div class="tech-debt-section">
+                <h3>⚠️ Технический долг</h3>
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <h3>🔍 Code Smells</h3>
+                        <div class="metric-value">{code_smells}</div>
+                        <div class="metric-label">Проблем качества кода</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>📋 Дублирование</h3>
+                        <div class="metric-value">{duplicated_lines}</div>
+                        <div class="metric-label">Строк дублированного кода</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>🔄 Сложность</h3>
+                        <div class="metric-value">{complexity_issues}</div>
+                        <div class="metric-label">Функций высокой сложности</div>
+                    </div>
+                    <div class="metric-card">
+                        <h3>🔒 Безопасность</h3>
+                        <div class="metric-value">{security_hotspots}</div>
+                        <div class="metric-label">Потенциальных уязвимостей</div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 20px; padding: 15px; background: rgba(255,255,255,0.5); border-radius: 5px;">
+                    <strong>🏆 Рейтинг поддерживаемости:</strong> <span style="color: #856404; font-weight: bold;">{maintainability_rating}</span><br>
+                    <strong>💰 Долговой коэффициент:</strong> <span style="color: #856404; font-weight: bold;">{debt_ratio:.2f}%</span><br>
+                    <strong>🎯 Покрытие тестами:</strong> <span style="color: #856404; font-weight: bold;">{coverage:.1f}%</span>
+                </div>
+            </div>
+
+            <div class="update-info">
+                <h3>📅 Информация об обновлении</h3>
+                <p><strong>Последний отчёт:</strong> {test_summary.get('timestamp', 'Неизвестно')}</p>
+                <p><strong>Версия проекта:</strong> {tech_debt.get('version', 'Unknown')}</p>
+                <p><em>Отчёты обновляются автоматически при каждом запуске CI/CD pipeline</em></p>
+
+                <div style="margin-top: 15px;">
+                    <a href="test-summary.json" class="btn">📊 Полный отчёт тестов</a>
+                    <a href="technical-debt.json" class="btn btn-secondary">⚠️ Технический долг</a>
+                    <a href="../html/index.html" class="btn btn-secondary">📚 API Документация</a>
+                </div>
             </div>
         </div>
-        
+
         <div class="footer">
-            <p>📊 Отчёты обновляются автоматически при каждом коммите</p>
-            <p>🕒 Последнее обновление: <span id="last-update">Загрузка...</span></p>
+            <p>© 2025 JXCT Development Team | Система мониторинга качества кода v3.6.0</p>
+            <p>Автоматически сгенерировано {datetime.datetime.now().strftime('%d.%m.%Y в %H:%M')}</p>
         </div>
     </div>
-    
+
     <script>
-        // Обновляем время последнего обновления
-        document.getElementById('last-update').textContent = new Date().toLocaleString('ru-RU');
-        
-        // Загружаем актуальные метрики если доступны
-        fetch('metrics.json')
-            .then(response => response.json())
-            .then(data => {
-                console.log('Метрики загружены:', data);
-            })
-            .catch(error => {
-                console.log('Метрики будут доступны после первого запуска CI/CD');
-            });
+        // Автообновление каждые 10 минут
+        setTimeout(() => {{
+            location.reload();
+        }}, 600000);
+
+        // Добавляем анимацию для прогресс-бара
+        document.addEventListener('DOMContentLoaded', function() {{
+            const progressBars = document.querySelectorAll('.progress-fill');
+            progressBars.forEach(bar => {{
+                const width = bar.style.width;
+                bar.style.width = '0%';
+                setTimeout(() => {{
+                    bar.style.width = width;
+                }}, 500);
+            }});
+        }});
     </script>
 </body>
-</html> 
+</html>
