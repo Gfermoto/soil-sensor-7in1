@@ -47,7 +47,7 @@ class ComprehensiveTestRunner:
     def run_python_test(self, module_name: str) -> TestResult:
         """Запускает Python тест"""
         start_time = time.time()
-        
+
         try:
             # Запускаем тест
             result = subprocess.run(
@@ -136,7 +136,7 @@ class ComprehensiveTestRunner:
                     "stderr": result.stderr
                 }
             )
-            
+
         except Exception as e:
             return TestResult(
                 name="esp32_build",
@@ -186,7 +186,7 @@ class ComprehensiveTestRunner:
                     "stderr": result.stderr
                 }
             )
-            
+
         except Exception as e:
             return TestResult(
                 name="clang_tidy",
@@ -224,7 +224,7 @@ class ComprehensiveTestRunner:
                     "stderr": result.stderr
                 }
             )
-            
+
         except Exception as e:
             return TestResult(
                 name="native_tests",
@@ -391,7 +391,7 @@ def main():
     """Главная функция"""
     runner = ComprehensiveTestRunner()
     success = runner.run_all_tests()
-    
+
     if success:
         print("\n🎉 ВСЕ ТЕСТЫ ПРОЙДЕНЫ УСПЕШНО!")
         print("📈 ЦЕЛЬ ПОКРЫТИЯ 85%+ ДОСТИГНУТА!")

@@ -35,7 +35,7 @@ jobs:
           ghcr.io/gfermoto/soil-sensor-7in1:main
           ghcr.io/gfermoto/soil-sensor-7in1:latest
         cache-from: type=gha
-        cache-to: type=gha,mode=max
+        cache-to: type=gha,mode=max 
         
     - name: Test Docker image
       run: |
