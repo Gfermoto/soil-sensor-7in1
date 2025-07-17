@@ -41,8 +41,8 @@ WORKDIR /workspace
 # Копирование проекта
 COPY . .
 
-# Установка pre-commit hooks
-RUN pip3 install pre-commit && pre-commit install
+# Установка pre-commit (без установки hooks в CI)
+RUN pip3 install pre-commit
 
 # Настройка переменных окружения
 ENV PLATFORMIO_HOME_DIR=/workspace/.pio
