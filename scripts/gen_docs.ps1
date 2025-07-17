@@ -7,16 +7,11 @@ if (!(Test-Path "Doxyfile")) {
     exit 1
 }
 
-# Check for doxygen in PATH
-$doxygen = Get-Command doxygen -ErrorAction SilentlyContinue
-if (-not $doxygen) {
-    Write-Host "[gen_docs] Doxygen not found in PATH. Please install Doxygen and add it to PATH." -ForegroundColor Red
-    exit 1
-}
+$env:PATH += ";C:\Program Files\doxygen\bin"
 
 # Сначала генерируем Doxygen
 Write-Host "[gen_docs] Generating Doxygen documentation..." -ForegroundColor Cyan
-$doxyResult = doxygen Doxyfile
+$doxyResult = & "C:\Program Files\doxygen\bin\doxygen.exe" Doxyfile
 if ($LASTEXITCODE -ne 0) {
     Write-Host "[gen_docs] Doxygen generation failed!" -ForegroundColor Red
     exit 1
@@ -39,7 +34,7 @@ if (Test-Path "site/api/html/index.html") {
     Write-Host "[gen_docs] WARNING: Doxygen documentation not found after MkDocs build!" -ForegroundColor Yellow
     # Генерируем Doxygen заново, если MkDocs удалил
     Write-Host "[gen_docs] Regenerating Doxygen documentation..." -ForegroundColor Cyan
-    doxygen Doxyfile
+    & "C:\Program Files\doxygen\bin\doxygen.exe" Doxyfile
     if (Test-Path "site/api/html/index.html") {
         Write-Host "[gen_docs] Doxygen documentation restored" -ForegroundColor Green
     } else {
