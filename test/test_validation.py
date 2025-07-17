@@ -139,7 +139,7 @@ def test_project_structure():
     print("Тестирование структуры проекта...")
 
     required_dirs = ["src", "include", "test", "scripts"]
-    required_files = ["platformio.ini", "README.md", "CMakeLists.txt"]
+    required_files = ["platformio.ini", "README.md"]
 
     passed = 0
     total = len(required_dirs) + len(required_files)

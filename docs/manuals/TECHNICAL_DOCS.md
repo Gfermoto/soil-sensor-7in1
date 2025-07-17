@@ -61,10 +61,10 @@
     - [JavaScript API](#javascript-api)
 - [API документация](#api-dokumentatsiya)
   - [REST API](#rest-api)
-    - [GET apiv1sensor](#get-apiv1sensor)
-- [GET apiv1config](#get-apiv1config)
-- [POST apiv1config](#post-apiv1config)
-- [GET apiv1status](#get-apiv1status)
+    - [GET apiv3.10.1sensor](#get-apiv3.10.1sensor)
+- [GET apiv3.10.1config](#get-apiv3.10.1config)
+- [POST apiv3.10.1config](#post-apiv3.10.1config)
+- [GET apiv3.10.1status](#get-apiv3.10.1status)
   - [MQTT API](#mqtt-api)
     - [Топики для публикации](#Topiki-dlya-publikatsii)
     - [Топики для подписки](#Topiki-dlya-podpiski)
@@ -453,7 +453,7 @@ float applyCompensation(float calibratedValue, SensorData data) {
 /intervals          → Настройка интервалов
 /updates            → OTA обновления
 /service            → Сервисные функции
-/api/v1/sensor      → JSON API
+/api/v3.10.1/sensor      → JSON API
 ```
 
 ### 📱 Адаптивный дизайн {#Adaptivnyy-dizayn}
@@ -477,7 +477,7 @@ float applyCompensation(float calibratedValue, SensorData data) {
 #### JavaScript API {#javascript-api}
 ```javascript
 // Получение данных датчика
-fetch('/api/v1/sensor')
+fetch('/api/v3.10.1/sensor')
     .then(response => response.json())
     .then(data => updateDisplay(data));
 
@@ -491,7 +491,7 @@ setInterval(updateSensorData, 3000);
 
 ### 🌐 REST API {#rest-api}
 
-#### GET `/api/v1/sensor` {#get-apiv1sensor}
+#### GET `/api/v3.10.1/sensor` {#get-apiv3.10.1sensor}
 Получение текущих показаний датчика
 
 **Ответ:**
@@ -549,7 +549,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### GET `/api/v1/config` {#get-apiv1config}
+#### GET `/api/v3.10.1/config` {#get-apiv3.10.1config}
 Получение текущей конфигурации
 
 **Ответ:**
@@ -574,7 +574,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### POST `/api/v1/config` {#post-apiv1config}
+#### POST `/api/v3.10.1/config` {#post-apiv3.10.1config}
 Обновление конфигурации
 
 **Тело запроса:**
@@ -590,7 +590,7 @@ setInterval(updateSensorData, 3000);
 }
 ```
 
-#### GET `/api/v1/status` {#get-apiv1status}
+#### GET `/api/v3.10.1/status` {#get-apiv3.10.1status}
 Получение системного статуса
 
 **Ответ:**
@@ -897,8 +897,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-- uses: actions/setup-python@v4
+      - uses: actions/checkout@v3.10.1
+- uses: actions/setup-python@v3.10.1
       - run: pip install platformio
       - run: pio run
       - run: pio test
