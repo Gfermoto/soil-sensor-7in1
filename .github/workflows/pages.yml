@@ -50,12 +50,10 @@ jobs:
           
       - name: Generate Doxygen docs
         run: |
-          echo "=== Creating build directory ==="
-          mkdir -p build/doxygen
           echo "=== Generating Doxygen documentation ==="
           doxygen Doxyfile
           echo "=== Doxygen output ==="
-          ls -la build/doxygen/html/ || echo "Doxygen failed, continuing..."
+          ls -la docs/doxygen/html/ || echo "Doxygen failed, continuing..."
 
       - name: Build MkDocs site
         run: |
@@ -75,7 +73,7 @@ jobs:
         run: |
           echo "=== Copying Doxygen to site/api ==="
           mkdir -p site/api
-          cp -r build/doxygen/html/* site/api/ || echo "Doxygen copy failed, continuing..."
+          cp -r docs/doxygen/html/* site/api/ || echo "Doxygen copy failed, continuing..."
           echo "=== API directory contents ==="
           ls -la site/api/ || echo "API directory not found"
 
