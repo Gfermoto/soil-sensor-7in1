@@ -151,6 +151,7 @@ jobs:
           if [ -f "requirements.txt" ]; then
             pip install -r requirements.txt
           fi
+          pip install platformio
       
       - name: Generate version header
         run: python scripts/auto_version.py
@@ -216,6 +217,7 @@ jobs:
           if [ -f "requirements.txt" ]; then
             pip install -r requirements.txt
           fi
+          pip install platformio
       
       - name: Generate version header
         run: python scripts/auto_version.py
@@ -264,6 +266,7 @@ jobs:
           if [ -f "requirements.txt" ]; then
             pip install -r requirements.txt
           fi
+          pip install platformio
       - name: Run critical validation tests (BLOCKS CI)
         run: |
           python test/test_critical_validation.py
@@ -288,6 +291,7 @@ jobs:
           if [ -f "requirements.txt" ]; then
             pip install -r requirements.txt
           fi
+          pip install platformio
       - name: Run agroeconomic/experimental tests (DOES NOT BLOCK CI)
         run: |
           python test/test_fake_sensor_values.py
