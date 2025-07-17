@@ -148,4 +148,4 @@ jobs:
             dist/firmware.bin
             dist/manifest.json
         env:
-          GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }} 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
