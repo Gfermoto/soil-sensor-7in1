@@ -32,20 +32,10 @@ jobs:
           pip install -r requirements.txt
           pip install platformio
       
-      - name: Run ultra quick test
+      - name: Run CI-safe tests
         run: |
-          echo "Running ultra quick test suite..."
-          python scripts/ultra_quick_test.py
-      
-      - name: Run critical validation tests
-        run: |
-          echo "Running critical validation tests..."
-          python test/test_critical_validation.py
-      
-      - name: Run format tests
-        run: |
-          echo "Running format tests..."
-          python test/test_format.py
+          echo "Running CI-safe test suite..."
+          python scripts/ci_quick_test.py
       
       - name: Create test summary
         if: always()
