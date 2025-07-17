@@ -1,16 +1,24 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-🧪 Тесты покрытия с моками для JXCT
-Имитирует работу C++ модулей для тестирования покрытия
+Тесты покрытия с моками для JXCT
+Использует заглушки для тестирования без реального железа
 """
 
 import sys
+import os
 import json
 import time
 import math
 from pathlib import Path
 from typing import Dict, Any, List
 from dataclasses import dataclass
+
+# Устанавливаем кодировку для Windows
+if sys.platform == "win32":
+    import codecs
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.detach())
 
 # Добавляем путь к модулям
 sys.path.insert(0, str(Path(__file__).parent.parent / "scripts"))
@@ -542,7 +550,7 @@ class MockCoverageTester:
     
     def run_all_tests(self) -> List[Dict[str, Any]]:
         """Запускает все тесты с моками"""
-        print("🚀 ЗАПУСК ТЕСТОВ ПОКРЫТИЯ С МОКАМИ")
+        print("ЗАПУСК ТЕСТОВ ПОКРЫТИЯ С МОКАМИ")
         print("=" * 60)
         
         results = []
@@ -575,7 +583,7 @@ class MockCoverageTester:
 
 def main():
     """Главная функция"""
-    print("🧪 JXCT Mock Coverage Tests")
+    print("JXCT Mock Coverage Tests")  # Заменено с эмодзи на ASCII
     print("=" * 60)
     
     tester = MockCoverageTester()

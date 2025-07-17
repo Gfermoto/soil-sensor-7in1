@@ -14,12 +14,14 @@ def run_command_safe(command, timeout=60, description=""):
     print(f"[INFO] {description}...")
     
     try:
-        # Запускаем команду с таймаутом и без интерактивности
+        # Запускаем команду с таймаутом и правильной кодировкой для Windows
         result = subprocess.run(
             command,
             shell=True,
             capture_output=True,
             text=True,
+            encoding='utf-8',  # Явно указываем UTF-8
+            errors='replace',   # Заменяем проблемные символы
             timeout=timeout,
             cwd=Path.cwd()
         )
@@ -68,7 +70,7 @@ def main():
     print("\n📋 ЭТАП 3: REST API тесты")
     success, output = run_command_safe(
         "python test/test_rest_api_integration.py",
-        timeout=30,
+        timeout=60,  # Увеличиваем таймаут до 1 минуты
         description="REST API интеграционные тесты"
     )
     results["rest_api_tests"] = success

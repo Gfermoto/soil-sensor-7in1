@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
-🔍 Clang-tidy анализ для JXCT
+Clang-tidy анализ для JXCT
 Быстрый режим без зависаний
 """
 
@@ -9,9 +10,15 @@ import subprocess
 import argparse
 from pathlib import Path
 
+# Устанавливаем кодировку для Windows
+if sys.platform == "win32":
+    import codecs
+    sys.stdout = codecs.getwriter('utf-8')(sys.stdout.detach())
+    sys.stderr = codecs.getwriter('utf-8')(sys.stderr.detach())
+
 def run_clang_tidy_quick():
     """Быстрый анализ clang-tidy"""
-    print("[INFO] 🔍 Быстрый clang-tidy анализ...")
+    print("[INFO] Быстрый clang-tidy анализ...")
     
     # Проверяем только основные файлы
     main_files = [
