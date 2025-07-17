@@ -1,37 +1,71 @@
 # CodeRabbit Configuration for JXCT Soil Sensor Project
-# Безопасная конфигурация - только анализ, без изменений
+# Максимально полезное ревью - неограниченные комментарии, без изменений кода
 
 # Основные настройки
 review:
   # Анализ только изменённых файлов
   diff_only: true
   
-  # Безопасные проверки
+  # Детальные проверки для максимальной пользы
   checks:
     - name: "Code Quality"
-      description: "Проверка качества кода"
+      description: "Детальная проверка качества кода"
       severity: "info"
       
     - name: "Security"
-      description: "Базовая проверка безопасности"
+      description: "Комплексная проверка безопасности"
       severity: "warning"
       
     - name: "Performance"
-      description: "Проверка производительности"
+      description: "Анализ производительности"
+      severity: "info"
+      
+    - name: "Architecture"
+      description: "Проверка архитектурных решений"
+      severity: "info"
+      
+    - name: "Best Practices"
+      description: "Соответствие лучшим практикам"
+      severity: "info"
+      
+    - name: "ESP32 Compatibility"
+      description: "Совместимость с ESP32"
+      severity: "warning"
+      
+    - name: "Memory Management"
+      description: "Управление памятью"
+      severity: "warning"
+      
+    - name: "Error Handling"
+      description: "Обработка ошибок"
       severity: "info"
 
-# Настройки комментариев
+# Настройки комментариев - НЕОГРАНИЧЕННЫЕ
 comments:
-  # Только информационные комментарии
-  level: "info"
+  # Все уровни комментариев для максимальной пользы
+  level: "all"
   
-  # БЕЗ автоматических исправлений
+  # СТРОГО БЕЗ автоматических исправлений
   auto_fix: false
   
-  # Максимум 5 комментариев на PR
-  max_comments: 5
+  # НЕОГРАНИЧЕННОЕ количество комментариев
+  max_comments: 0  # 0 = без ограничений
+  
+  # Детальные комментарии
+  detailed: true
+  
+  # Включаем все типы комментариев
+  include:
+    - "suggestions"
+    - "questions"
+    - "observations"
+    - "improvements"
+    - "best_practices"
+    - "security_concerns"
+    - "performance_tips"
+    - "architecture_notes"
 
-# Игнорируемые файлы
+# Игнорируемые файлы (только критически важные)
 ignore:
   - "*.md"
   - "*.txt"
@@ -44,13 +78,57 @@ ignore:
   - ".github/**"
   - "platformio.ini"
   - "include/version.h"
+  - "VERSION"
+  - "CHANGELOG.md"
+  - "LICENSE"
 
-# Безопасные правила
+# Расширенные правила для максимальной пользы
 rules:
   - name: "No Breaking Changes"
     description: "Запрет критических изменений"
     severity: "error"
     
   - name: "Code Style"
-    description: "Проверка стиля кода"
-    severity: "info" 
+    description: "Проверка стиля кода C++17"
+    severity: "info"
+    
+  - name: "ESP32 Best Practices"
+    description: "Лучшие практики для ESP32"
+    severity: "info"
+    
+  - name: "Memory Safety"
+    description: "Безопасность памяти"
+    severity: "warning"
+    
+  - name: "Error Handling"
+    description: "Правильная обработка ошибок"
+    severity: "info"
+    
+  - name: "Documentation"
+    description: "Качество документации кода"
+    severity: "info"
+    
+  - name: "Modularity"
+    description: "Модульность и структура"
+    severity: "info"
+    
+  - name: "Performance"
+    description: "Оптимизация производительности"
+    severity: "info"
+
+# Дополнительные настройки для максимальной пользы
+settings:
+  # Детальный анализ
+  analysis_depth: "deep"
+  
+  # Включаем все проверки
+  enable_all_checks: true
+  
+  # Контекстный анализ
+  contextual_analysis: true
+  
+  # Анализ зависимостей
+  dependency_analysis: true
+  
+  # Проверка совместимости
+  compatibility_check: true 
