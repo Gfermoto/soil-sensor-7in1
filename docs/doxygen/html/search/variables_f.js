@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['p_0',['P',['../structAdvancedFilters_1_1KalmanFilter.html#a398d1dffc65492e0df8f1651fafe0421',1,'AdvancedFilters::KalmanFilter']]],
+  ['p_1',['p',['../structRecValues.html#a16338a277db1e53fc9f557a30777d3c5',1,'RecValues']]],
+  ['p_5fbuffer_2',['p_buffer',['../structSensorData.html#a7979bb38cf97b270df57bf7621259a0d',1,'SensorData']]],
+  ['passed_3',['passed',['../structTestSummary.html#acdeb57b76f73912124b9dc10e010c47f',1,'TestSummary']]],
+  ['password_4',['password',['../structConfigData.html#a16d6eaf819e4a207fcf52b3038347231',1,'ConfigData']]],
+  ['ph_5',['ph',['../structCropConfig.html#af5b41b0e1f835a14681f201462c2099f',1,'CropConfig::ph'],['../structSensorData.html#ae71019c6d425e1d48eca40c9ef0157f9',1,'SensorData::ph'],['../structRecValues.html#ac357ff48495f333eaf3e2b92fd21cf43',1,'RecValues::ph'],['../structSensorCalibration.html#ad2978d2635dafcaf7e84aabbc63b9ddb',1,'SensorCalibration::ph']]],
+  ['ph_5fbuffer_6',['ph_buffer',['../structSensorData.html#a69d50c2fa4a0055f90047fc19b2a7930',1,'SensorData']]],
+  ['phosphorus_7',['phosphorus',['../structCropConfig.html#ad8bc80ce5bb46ac63ccce6220a1d58eb',1,'CropConfig::phosphorus'],['../structSensorData.html#a05e9b50851e82dba2487bf1b0c770539',1,'SensorData::phosphorus'],['../structNPKReferences.html#a61b1f2dd836e1a4516238d75d845a45b',1,'NPKReferences::phosphorus']]],
+  ['phosphoruspoints_8',['phosphorusPoints',['../structCalibrationTable.html#a509c8bd6f1825b6b0d25a3c9b90094ac',1,'CalibrationTable']]],
+  ['phpoints_9',['phPoints',['../structCalibrationTable.html#acc74a70992cd7c3c28e4b86a98cfee36',1,'CalibrationTable']]],
+  ['points_10',['points',['../structPHCalibration.html#affd7f0dffe3d7682185c06da8f1b0f59',1,'PHCalibration::points'],['../structECCalibration.html#a274455be59637dc9bf633a708fa6b961',1,'ECCalibration::points']]],
+  ['porosity_11',['porosity',['../structSoilParameters.html#a91f6c1b2df01751d918c701c31422c6e',1,'SoilParameters']]],
+  ['potassium_12',['potassium',['../structCropConfig.html#a00cc52bc3426a4dda6749145540489c1',1,'CropConfig::potassium'],['../structSensorData.html#afa3d7a9345781758cec2e8bac97ac1d3',1,'SensorData::potassium'],['../structNPKReferences.html#a47588fe7f7ef8bc14d005b7a934144aa',1,'NPKReferences::potassium']]],
+  ['potassiumpoints_13',['potassiumPoints',['../structCalibrationTable.html#a760063dc126716d2a91a350521ca93f6',1,'CalibrationTable']]],
+  ['preferences_14',['preferences',['../config_8cpp.html#a6ea06cf7b8092a0adaf07614d7ece59d',1,'preferences:&#160;config.cpp'],['../jxct__config__vars_8h.html#a6ea06cf7b8092a0adaf07614d7ece59d',1,'preferences:&#160;config.cpp']]],
+  ['prev_5fec_15',['prev_ec',['../structSensorData.html#aa8a37e0d8651c3d73412c40f42934c2c',1,'SensorData']]],
+  ['prev_5fhumidity_16',['prev_humidity',['../structSensorData.html#aef31dc7b08499063bb728d0585cf4438',1,'SensorData']]],
+  ['prev_5fnitrogen_17',['prev_nitrogen',['../structSensorData.html#aa45648f478825f9cb4e327f3bba45944',1,'SensorData']]],
+  ['prev_5fph_18',['prev_ph',['../structSensorData.html#a895c584f0848993edcceceba4bd66456',1,'SensorData']]],
+  ['prev_5fphosphorus_19',['prev_phosphorus',['../structSensorData.html#a2b6a3e91720650c6d5076b47a1548b94',1,'SensorData']]],
+  ['prev_5fpotassium_20',['prev_potassium',['../structSensorData.html#abb4cf863801722def12904f626746a38',1,'SensorData']]],
+  ['prev_5ftemperature_21',['prev_temperature',['../structSensorData.html#afb0e9f9ada5f63dbbe113a85b4ce2299',1,'SensorData']]]
+];

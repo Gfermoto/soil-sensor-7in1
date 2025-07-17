@@ -1,0 +1,944 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor 7-in-1: Файл src/modbus_sensor.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
+   </div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('modbus__sensor_8h.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#define-members">Макросы</a> &#124;
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл modbus_sensor.h</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><code>#include &lt;ModbusMaster.h&gt;</code><br />
+<code>#include &quot;Arduino.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">jxct_constants.h</a>&quot;</code><br />
+</div>
+<p><a href="modbus__sensor_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSensorData.html">SensorData</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structSensorCache.html">SensorCache</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a1f0d81a7889405dddfd0740779103c1c" id="r_a1f0d81a7889405dddfd0740779103c1c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1f0d81a7889405dddfd0740779103c1c">REG_PH</a>&#160;&#160;&#160;0x0006</td></tr>
+<tr class="separator:a1f0d81a7889405dddfd0740779103c1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae81f2380d8a1a56150fef81dfff25cfc" id="r_ae81f2380d8a1a56150fef81dfff25cfc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae81f2380d8a1a56150fef81dfff25cfc">REG_SOIL_MOISTURE</a>&#160;&#160;&#160;0x0012</td></tr>
+<tr class="separator:ae81f2380d8a1a56150fef81dfff25cfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a183e5bdeda520ac205c6fa93a52e1ef4" id="r_a183e5bdeda520ac205c6fa93a52e1ef4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a183e5bdeda520ac205c6fa93a52e1ef4">REG_SOIL_TEMP</a>&#160;&#160;&#160;0x0013</td></tr>
+<tr class="separator:a183e5bdeda520ac205c6fa93a52e1ef4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4a11435c54c0c61a370f01ad74783dd" id="r_ae4a11435c54c0c61a370f01ad74783dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae4a11435c54c0c61a370f01ad74783dd">REG_CONDUCTIVITY</a>&#160;&#160;&#160;0x0015</td></tr>
+<tr class="separator:ae4a11435c54c0c61a370f01ad74783dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f80ba4d6b98c8b586f32a67189637c9" id="r_a9f80ba4d6b98c8b586f32a67189637c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9f80ba4d6b98c8b586f32a67189637c9">REG_NITROGEN</a>&#160;&#160;&#160;0x001E</td></tr>
+<tr class="separator:a9f80ba4d6b98c8b586f32a67189637c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6aa33492b3c99407fab5717bf51f3c58" id="r_a6aa33492b3c99407fab5717bf51f3c58"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6aa33492b3c99407fab5717bf51f3c58">REG_PHOSPHORUS</a>&#160;&#160;&#160;0x001F</td></tr>
+<tr class="separator:a6aa33492b3c99407fab5717bf51f3c58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f35ba14a2dedd4527dadfe5df270ecc" id="r_a2f35ba14a2dedd4527dadfe5df270ecc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2f35ba14a2dedd4527dadfe5df270ecc">REG_POTASSIUM</a>&#160;&#160;&#160;0x0020</td></tr>
+<tr class="separator:a2f35ba14a2dedd4527dadfe5df270ecc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a149baf37365c4dd67e8c37e211fe5afc" id="r_a149baf37365c4dd67e8c37e211fe5afc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a149baf37365c4dd67e8c37e211fe5afc">REG_FIRMWARE_VERSION</a>&#160;&#160;&#160;0x07</td></tr>
+<tr class="separator:a149baf37365c4dd67e8c37e211fe5afc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b707a93013b08d191303ed584a140d7" id="r_a9b707a93013b08d191303ed584a140d7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b707a93013b08d191303ed584a140d7">REG_CALIBRATION</a>&#160;&#160;&#160;0x08</td></tr>
+<tr class="separator:a9b707a93013b08d191303ed584a140d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac264831b378bd2513785f56a63a2cf9a" id="r_ac264831b378bd2513785f56a63a2cf9a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac264831b378bd2513785f56a63a2cf9a">REG_ERROR_STATUS</a>&#160;&#160;&#160;0x0B</td></tr>
+<tr class="separator:ac264831b378bd2513785f56a63a2cf9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9261d699774c32e6612b86d5ff383120" id="r_a9261d699774c32e6612b86d5ff383120"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9261d699774c32e6612b86d5ff383120">REG_DEVICE_ADDRESS</a>&#160;&#160;&#160;0x0C</td></tr>
+<tr class="separator:a9261d699774c32e6612b86d5ff383120"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5080f3f6bf208edce5de49e5117a5f2" id="r_ac5080f3f6bf208edce5de49e5117a5f2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5080f3f6bf208edce5de49e5117a5f2">MIN_TEMPERATURE</a>&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#aba092fd1c7310e40134f0bc95ae6547e">SENSOR_TEMP_MIN</a></td></tr>
+<tr class="separator:ac5080f3f6bf208edce5de49e5117a5f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af900a8b6b1e1763dd0e90e48fc2fb317" id="r_af900a8b6b1e1763dd0e90e48fc2fb317"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af900a8b6b1e1763dd0e90e48fc2fb317">MAX_TEMPERATURE</a>&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a31024a54806ee2efe49cd2c99fd5a78a">SENSOR_TEMP_MAX</a></td></tr>
+<tr class="separator:af900a8b6b1e1763dd0e90e48fc2fb317"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc7849e08d6e99a7e151cb4366ebc96d" id="r_abc7849e08d6e99a7e151cb4366ebc96d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc7849e08d6e99a7e151cb4366ebc96d">MIN_HUMIDITY</a>&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a9c63ed1a23642df5d6aba976397be257">SENSOR_HUMIDITY_MIN</a></td></tr>
+<tr class="separator:abc7849e08d6e99a7e151cb4366ebc96d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ae8ae01ff5a5ce2e90eca5fbc669d81" id="r_a4ae8ae01ff5a5ce2e90eca5fbc669d81"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ae8ae01ff5a5ce2e90eca5fbc669d81">MAX_HUMIDITY</a>&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#aa79f30db9ff75390e0254a848dd0bbc3">SENSOR_HUMIDITY_MAX</a></td></tr>
+<tr class="separator:a4ae8ae01ff5a5ce2e90eca5fbc669d81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6595c2759ec7982567a7648cc513465" id="r_ac6595c2759ec7982567a7648cc513465"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6595c2759ec7982567a7648cc513465">MIN_EC</a>&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a246f7e543a4fed75fdbcde68614299b5">SENSOR_EC_MIN</a></td></tr>
+<tr class="separator:ac6595c2759ec7982567a7648cc513465"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8060470295f959c8f0f60905d04691c1" id="r_a8060470295f959c8f0f60905d04691c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8060470295f959c8f0f60905d04691c1">MAX_EC</a>&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a9f7c84a54d65caeac7c47ba0a2b5bf30">SENSOR_EC_MAX</a></td></tr>
+<tr class="separator:a8060470295f959c8f0f60905d04691c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb31a7b73c962d56d9fca3209a95723e" id="r_aeb31a7b73c962d56d9fca3209a95723e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb31a7b73c962d56d9fca3209a95723e">MIN_PH</a>&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#aaea5e75d8ed5103a895ab69345e51f8e">SENSOR_PH_MIN</a></td></tr>
+<tr class="separator:aeb31a7b73c962d56d9fca3209a95723e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6035bff843569e704debcabd15c481d6" id="r_a6035bff843569e704debcabd15c481d6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6035bff843569e704debcabd15c481d6">MAX_PH</a>&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a66cabb5a09a885dfe9c920415a899f25">SENSOR_PH_MAX</a></td></tr>
+<tr class="separator:a6035bff843569e704debcabd15c481d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4ce924e7edbb024c3f5f25c42d64eca" id="r_ad4ce924e7edbb024c3f5f25c42d64eca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4ce924e7edbb024c3f5f25c42d64eca">MIN_NPK</a>&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a89872d4abc1e4808f175cdbfc032f4ce">SENSOR_NPK_MIN</a></td></tr>
+<tr class="separator:ad4ce924e7edbb024c3f5f25c42d64eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0db0c07c73c5ce97b292e0ff8414da3d" id="r_a0db0c07c73c5ce97b292e0ff8414da3d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0db0c07c73c5ce97b292e0ff8414da3d">MAX_NPK</a>&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#ac3c1dd8bdfb0337a839aed6c24c4d929">SENSOR_NPK_MAX</a></td></tr>
+<tr class="separator:a0db0c07c73c5ce97b292e0ff8414da3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a3ff54b4bc25eb08e654e0ddbc9d998d0" id="r_a3ff54b4bc25eb08e654e0ddbc9d998d0"><td class="memItemLeft" align="right" valign="top">String &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ff54b4bc25eb08e654e0ddbc9d998d0">getSensorLastError</a> ()</td></tr>
+<tr class="separator:a3ff54b4bc25eb08e654e0ddbc9d998d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fac607750afe2d74837248aeec2cfe0" id="r_a3fac607750afe2d74837248aeec2cfe0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSensorData.html">SensorData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fac607750afe2d74837248aeec2cfe0">getSensorData</a> ()</td></tr>
+<tr class="separator:a3fac607750afe2d74837248aeec2cfe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c4410314e55fce67a3c727cb1bf9520" id="r_a0c4410314e55fce67a3c727cb1bf9520"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c4410314e55fce67a3c727cb1bf9520">setupModbus</a> ()</td></tr>
+<tr class="memdesc:a0c4410314e55fce67a3c727cb1bf9520"><td class="mdescLeft">&#160;</td><td class="mdescRight">Инициализация Modbus и SP3485E.  <br /></td></tr>
+<tr class="separator:a0c4410314e55fce67a3c727cb1bf9520"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3a37446a712d9ae94e76304361d35d2" id="r_ac3a37446a712d9ae94e76304361d35d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3a37446a712d9ae94e76304361d35d2">readSensorData</a> ()</td></tr>
+<tr class="separator:ac3a37446a712d9ae94e76304361d35d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6444c2d436a57168cc75d4ef8529a6c8" id="r_a6444c2d436a57168cc75d4ef8529a6c8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6444c2d436a57168cc75d4ef8529a6c8">readFirmwareVersion</a> ()</td></tr>
+<tr class="separator:a6444c2d436a57168cc75d4ef8529a6c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b6b2ad640c9580fa45d8cbad28adf53" id="r_a8b6b2ad640c9580fa45d8cbad28adf53"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b6b2ad640c9580fa45d8cbad28adf53">readErrorStatus</a> ()</td></tr>
+<tr class="separator:a8b6b2ad640c9580fa45d8cbad28adf53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac87bc87eaf0bc01ebda5fe1bb44c88b" id="r_aac87bc87eaf0bc01ebda5fe1bb44c88b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aac87bc87eaf0bc01ebda5fe1bb44c88b">changeDeviceAddress</a> (uint8_t new_address)</td></tr>
+<tr class="separator:aac87bc87eaf0bc01ebda5fe1bb44c88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8a3b28ec8c21261d4e467da91a17a67" id="r_aa8a3b28ec8c21261d4e467da91a17a67"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8a3b28ec8c21261d4e467da91a17a67">validateSensorData</a> (<a class="el" href="structSensorData.html">SensorData</a> &amp;data)</td></tr>
+<tr class="separator:aa8a3b28ec8c21261d4e467da91a17a67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8eb8daa78bacfc8a930012162882aa9c" id="r_a8eb8daa78bacfc8a930012162882aa9c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8eb8daa78bacfc8a930012162882aa9c">getCachedData</a> (<a class="el" href="structSensorData.html">SensorData</a> &amp;data)</td></tr>
+<tr class="separator:a8eb8daa78bacfc8a930012162882aa9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca7d239567ef1281e0fd378082fd48ac" id="r_aca7d239567ef1281e0fd378082fd48ac"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aca7d239567ef1281e0fd378082fd48ac">convertRegisterToFloat</a> (uint16_t value, float multiplier)</td></tr>
+<tr class="separator:aca7d239567ef1281e0fd378082fd48ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c43d8a4afead0d0df29635242290377" id="r_a1c43d8a4afead0d0df29635242290377"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1c43d8a4afead0d0df29635242290377">preTransmission</a> ()</td></tr>
+<tr class="memdesc:a1c43d8a4afead0d0df29635242290377"><td class="mdescLeft">&#160;</td><td class="mdescRight">Подготовка к передаче данных  <br /></td></tr>
+<tr class="separator:a1c43d8a4afead0d0df29635242290377"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33b535e84f654e423bb627b25b7b3759" id="r_a33b535e84f654e423bb627b25b7b3759"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33b535e84f654e423bb627b25b7b3759">postTransmission</a> ()</td></tr>
+<tr class="memdesc:a33b535e84f654e423bb627b25b7b3759"><td class="mdescLeft">&#160;</td><td class="mdescRight">Завершение передачи данных  <br /></td></tr>
+<tr class="separator:a33b535e84f654e423bb627b25b7b3759"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adbf50656913748323cd03274af03c116" id="r_adbf50656913748323cd03274af03c116"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adbf50656913748323cd03274af03c116">printModbusError</a> (uint8_t errNum)</td></tr>
+<tr class="separator:adbf50656913748323cd03274af03c116"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f1a431da8f1feb8a64e2c5f887056df" id="r_a4f1a431da8f1feb8a64e2c5f887056df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f1a431da8f1feb8a64e2c5f887056df">startRealSensorTask</a> ()</td></tr>
+<tr class="separator:a4f1a431da8f1feb8a64e2c5f887056df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3a75ec1c2e64f7a20f651c168e3f82b" id="r_aa3a75ec1c2e64f7a20f651c168e3f82b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa3a75ec1c2e64f7a20f651c168e3f82b">addToMovingAverage</a> (<a class="el" href="structSensorData.html">SensorData</a> &amp;data, const <a class="el" href="structSensorData.html">SensorData</a> &amp;newReading)</td></tr>
+<tr class="separator:aa3a75ec1c2e64f7a20f651c168e3f82b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adacc51c210f3e18552641449ebdcc4a4" id="r_adacc51c210f3e18552641449ebdcc4a4"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adacc51c210f3e18552641449ebdcc4a4">calculateMovingAverage</a> (const float *buffer, uint8_t window_size, uint8_t filled)</td></tr>
+<tr class="separator:adacc51c210f3e18552641449ebdcc4a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae316f6943acb0b355ff8b0f878b08d04" id="r_ae316f6943acb0b355ff8b0f878b08d04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae316f6943acb0b355ff8b0f878b08d04">initMovingAverageBuffers</a> (<a class="el" href="structSensorData.html">SensorData</a> &amp;data)</td></tr>
+<tr class="separator:ae316f6943acb0b355ff8b0f878b08d04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8a1f5220dc77f33a89d14fe4d82442f" id="r_ab8a1f5220dc77f33a89d14fe4d82442f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8a1f5220dc77f33a89d14fe4d82442f">testSP3485E</a> ()</td></tr>
+<tr class="memdesc:ab8a1f5220dc77f33a89d14fe4d82442f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Тестирование работы SP3485E.  <br /></td></tr>
+<tr class="separator:ab8a1f5220dc77f33a89d14fe4d82442f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aedb09484ba8020afc57e9e9e26012bf1" id="r_aedb09484ba8020afc57e9e9e26012bf1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aedb09484ba8020afc57e9e9e26012bf1">testModbusConnection</a> ()</td></tr>
+<tr class="separator:aedb09484ba8020afc57e9e9e26012bf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a372e89ffe0abcaf103578a478d3b4b12" id="r_a372e89ffe0abcaf103578a478d3b4b12"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a372e89ffe0abcaf103578a478d3b4b12">testSerialConfigurations</a> ()</td></tr>
+<tr class="separator:a372e89ffe0abcaf103578a478d3b4b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:ae6ed671f3036da58a93991fca2a2329c" id="r_ae6ed671f3036da58a93991fca2a2329c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSensorData.html">SensorData</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae6ed671f3036da58a93991fca2a2329c">sensorData</a></td></tr>
+<tr class="separator:ae6ed671f3036da58a93991fca2a2329c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a90cc33c11a27aac5f56dcaac387c0d" id="r_a5a90cc33c11a27aac5f56dcaac387c0d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structSensorCache.html">SensorCache</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5a90cc33c11a27aac5f56dcaac387c0d">sensorCache</a></td></tr>
+<tr class="separator:a5a90cc33c11a27aac5f56dcaac387c0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Макросы</h2>
+<a id="a1f0d81a7889405dddfd0740779103c1c" name="a1f0d81a7889405dddfd0740779103c1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f0d81a7889405dddfd0740779103c1c">&#9670;&#160;</a></span>REG_PH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_PH&#160;&#160;&#160;0x0006</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae81f2380d8a1a56150fef81dfff25cfc" name="ae81f2380d8a1a56150fef81dfff25cfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae81f2380d8a1a56150fef81dfff25cfc">&#9670;&#160;</a></span>REG_SOIL_MOISTURE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_SOIL_MOISTURE&#160;&#160;&#160;0x0012</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a183e5bdeda520ac205c6fa93a52e1ef4" name="a183e5bdeda520ac205c6fa93a52e1ef4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a183e5bdeda520ac205c6fa93a52e1ef4">&#9670;&#160;</a></span>REG_SOIL_TEMP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_SOIL_TEMP&#160;&#160;&#160;0x0013</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4a11435c54c0c61a370f01ad74783dd" name="ae4a11435c54c0c61a370f01ad74783dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4a11435c54c0c61a370f01ad74783dd">&#9670;&#160;</a></span>REG_CONDUCTIVITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_CONDUCTIVITY&#160;&#160;&#160;0x0015</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f80ba4d6b98c8b586f32a67189637c9" name="a9f80ba4d6b98c8b586f32a67189637c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f80ba4d6b98c8b586f32a67189637c9">&#9670;&#160;</a></span>REG_NITROGEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_NITROGEN&#160;&#160;&#160;0x001E</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6aa33492b3c99407fab5717bf51f3c58" name="a6aa33492b3c99407fab5717bf51f3c58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6aa33492b3c99407fab5717bf51f3c58">&#9670;&#160;</a></span>REG_PHOSPHORUS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_PHOSPHORUS&#160;&#160;&#160;0x001F</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2f35ba14a2dedd4527dadfe5df270ecc" name="a2f35ba14a2dedd4527dadfe5df270ecc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2f35ba14a2dedd4527dadfe5df270ecc">&#9670;&#160;</a></span>REG_POTASSIUM</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_POTASSIUM&#160;&#160;&#160;0x0020</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a149baf37365c4dd67e8c37e211fe5afc" name="a149baf37365c4dd67e8c37e211fe5afc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a149baf37365c4dd67e8c37e211fe5afc">&#9670;&#160;</a></span>REG_FIRMWARE_VERSION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_FIRMWARE_VERSION&#160;&#160;&#160;0x07</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b707a93013b08d191303ed584a140d7" name="a9b707a93013b08d191303ed584a140d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b707a93013b08d191303ed584a140d7">&#9670;&#160;</a></span>REG_CALIBRATION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_CALIBRATION&#160;&#160;&#160;0x08</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac264831b378bd2513785f56a63a2cf9a" name="ac264831b378bd2513785f56a63a2cf9a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac264831b378bd2513785f56a63a2cf9a">&#9670;&#160;</a></span>REG_ERROR_STATUS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_ERROR_STATUS&#160;&#160;&#160;0x0B</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9261d699774c32e6612b86d5ff383120" name="a9261d699774c32e6612b86d5ff383120"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9261d699774c32e6612b86d5ff383120">&#9670;&#160;</a></span>REG_DEVICE_ADDRESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define REG_DEVICE_ADDRESS&#160;&#160;&#160;0x0C</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac5080f3f6bf208edce5de49e5117a5f2" name="ac5080f3f6bf208edce5de49e5117a5f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5080f3f6bf208edce5de49e5117a5f2">&#9670;&#160;</a></span>MIN_TEMPERATURE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_TEMPERATURE&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#aba092fd1c7310e40134f0bc95ae6547e">SENSOR_TEMP_MIN</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af900a8b6b1e1763dd0e90e48fc2fb317" name="af900a8b6b1e1763dd0e90e48fc2fb317"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af900a8b6b1e1763dd0e90e48fc2fb317">&#9670;&#160;</a></span>MAX_TEMPERATURE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_TEMPERATURE&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a31024a54806ee2efe49cd2c99fd5a78a">SENSOR_TEMP_MAX</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abc7849e08d6e99a7e151cb4366ebc96d" name="abc7849e08d6e99a7e151cb4366ebc96d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc7849e08d6e99a7e151cb4366ebc96d">&#9670;&#160;</a></span>MIN_HUMIDITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_HUMIDITY&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a9c63ed1a23642df5d6aba976397be257">SENSOR_HUMIDITY_MIN</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4ae8ae01ff5a5ce2e90eca5fbc669d81" name="a4ae8ae01ff5a5ce2e90eca5fbc669d81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ae8ae01ff5a5ce2e90eca5fbc669d81">&#9670;&#160;</a></span>MAX_HUMIDITY</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_HUMIDITY&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#aa79f30db9ff75390e0254a848dd0bbc3">SENSOR_HUMIDITY_MAX</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac6595c2759ec7982567a7648cc513465" name="ac6595c2759ec7982567a7648cc513465"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6595c2759ec7982567a7648cc513465">&#9670;&#160;</a></span>MIN_EC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_EC&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a246f7e543a4fed75fdbcde68614299b5">SENSOR_EC_MIN</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8060470295f959c8f0f60905d04691c1" name="a8060470295f959c8f0f60905d04691c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8060470295f959c8f0f60905d04691c1">&#9670;&#160;</a></span>MAX_EC</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_EC&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a9f7c84a54d65caeac7c47ba0a2b5bf30">SENSOR_EC_MAX</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aeb31a7b73c962d56d9fca3209a95723e" name="aeb31a7b73c962d56d9fca3209a95723e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb31a7b73c962d56d9fca3209a95723e">&#9670;&#160;</a></span>MIN_PH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_PH&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#aaea5e75d8ed5103a895ab69345e51f8e">SENSOR_PH_MIN</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6035bff843569e704debcabd15c481d6" name="a6035bff843569e704debcabd15c481d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6035bff843569e704debcabd15c481d6">&#9670;&#160;</a></span>MAX_PH</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_PH&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a66cabb5a09a885dfe9c920415a899f25">SENSOR_PH_MAX</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4ce924e7edbb024c3f5f25c42d64eca" name="ad4ce924e7edbb024c3f5f25c42d64eca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4ce924e7edbb024c3f5f25c42d64eca">&#9670;&#160;</a></span>MIN_NPK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MIN_NPK&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#a89872d4abc1e4808f175cdbfc032f4ce">SENSOR_NPK_MIN</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0db0c07c73c5ce97b292e0ff8414da3d" name="a0db0c07c73c5ce97b292e0ff8414da3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0db0c07c73c5ce97b292e0ff8414da3d">&#9670;&#160;</a></span>MAX_NPK</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define MAX_NPK&#160;&#160;&#160;<a class="el" href="jxct__constants_8h.html#ac3c1dd8bdfb0337a839aed6c24c4d929">SENSOR_NPK_MAX</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a3ff54b4bc25eb08e654e0ddbc9d998d0" name="a3ff54b4bc25eb08e654e0ddbc9d998d0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ff54b4bc25eb08e654e0ddbc9d998d0">&#9670;&#160;</a></span>getSensorLastError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String &amp; getSensorLastError </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3fac607750afe2d74837248aeec2cfe0" name="a3fac607750afe2d74837248aeec2cfe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fac607750afe2d74837248aeec2cfe0">&#9670;&#160;</a></span>getSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSensorData.html">SensorData</a> getSensorData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0c4410314e55fce67a3c727cb1bf9520" name="a0c4410314e55fce67a3c727cb1bf9520"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c4410314e55fce67a3c727cb1bf9520">&#9670;&#160;</a></span>setupModbus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupModbus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Инициализация Modbus и SP3485E. </p>
+<p>Настраивает пины управления SP3485E и инициализирует UART для Modbus. Важно: DE и RE управляются раздельно для лучшего контроля над временем переключения </p>
+
+</div>
+</div>
+<a id="ac3a37446a712d9ae94e76304361d35d2" name="ac3a37446a712d9ae94e76304361d35d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3a37446a712d9ae94e76304361d35d2">&#9670;&#160;</a></span>readSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void readSensorData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6444c2d436a57168cc75d4ef8529a6c8" name="a6444c2d436a57168cc75d4ef8529a6c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6444c2d436a57168cc75d4ef8529a6c8">&#9670;&#160;</a></span>readFirmwareVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool readFirmwareVersion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b6b2ad640c9580fa45d8cbad28adf53" name="a8b6b2ad640c9580fa45d8cbad28adf53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b6b2ad640c9580fa45d8cbad28adf53">&#9670;&#160;</a></span>readErrorStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool readErrorStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac87bc87eaf0bc01ebda5fe1bb44c88b" name="aac87bc87eaf0bc01ebda5fe1bb44c88b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac87bc87eaf0bc01ebda5fe1bb44c88b">&#9670;&#160;</a></span>changeDeviceAddress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool changeDeviceAddress </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>new_address</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8a3b28ec8c21261d4e467da91a17a67" name="aa8a3b28ec8c21261d4e467da91a17a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a3b28ec8c21261d4e467da91a17a67">&#9670;&#160;</a></span>validateSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool validateSensorData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSensorData.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8eb8daa78bacfc8a930012162882aa9c" name="a8eb8daa78bacfc8a930012162882aa9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eb8daa78bacfc8a930012162882aa9c">&#9670;&#160;</a></span>getCachedData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool getCachedData </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSensorData.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aca7d239567ef1281e0fd378082fd48ac" name="aca7d239567ef1281e0fd378082fd48ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca7d239567ef1281e0fd378082fd48ac">&#9670;&#160;</a></span>convertRegisterToFloat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float convertRegisterToFloat </td>
+          <td>(</td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>value</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>multiplier</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1c43d8a4afead0d0df29635242290377" name="a1c43d8a4afead0d0df29635242290377"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c43d8a4afead0d0df29635242290377">&#9670;&#160;</a></span>preTransmission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void preTransmission </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Подготовка к передаче данных </p>
+<p>Включает передатчик и отключает приемник с необходимой задержкой. Важно: Задержка 50 мкс необходима для стабилизации сигналов на шине RS-485 </p>
+
+</div>
+</div>
+<a id="a33b535e84f654e423bb627b25b7b3759" name="a33b535e84f654e423bb627b25b7b3759"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33b535e84f654e423bb627b25b7b3759">&#9670;&#160;</a></span>postTransmission()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void postTransmission </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Завершение передачи данных </p>
+<p>Выключает передатчик и включает приемник с необходимой задержкой. Важно: Задержка 50 мкс необходима для корректного переключения режимов </p>
+
+</div>
+</div>
+<a id="adbf50656913748323cd03274af03c116" name="adbf50656913748323cd03274af03c116"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adbf50656913748323cd03274af03c116">&#9670;&#160;</a></span>printModbusError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printModbusError </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>errNum</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4f1a431da8f1feb8a64e2c5f887056df" name="a4f1a431da8f1feb8a64e2c5f887056df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f1a431da8f1feb8a64e2c5f887056df">&#9670;&#160;</a></span>startRealSensorTask()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void startRealSensorTask </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa3a75ec1c2e64f7a20f651c168e3f82b" name="aa3a75ec1c2e64f7a20f651c168e3f82b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3a75ec1c2e64f7a20f651c168e3f82b">&#9670;&#160;</a></span>addToMovingAverage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void addToMovingAverage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSensorData.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structSensorData.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>newReading</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adacc51c210f3e18552641449ebdcc4a4" name="adacc51c210f3e18552641449ebdcc4a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adacc51c210f3e18552641449ebdcc4a4">&#9670;&#160;</a></span>calculateMovingAverage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float calculateMovingAverage </td>
+          <td>(</td>
+          <td class="paramtype">const float *</td>          <td class="paramname"><span class="paramname"><em>buffer</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>window_size</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>filled</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae316f6943acb0b355ff8b0f878b08d04" name="ae316f6943acb0b355ff8b0f878b08d04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae316f6943acb0b355ff8b0f878b08d04">&#9670;&#160;</a></span>initMovingAverageBuffers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initMovingAverageBuffers </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structSensorData.html">SensorData</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>data</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab8a1f5220dc77f33a89d14fe4d82442f" name="ab8a1f5220dc77f33a89d14fe4d82442f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8a1f5220dc77f33a89d14fe4d82442f">&#9670;&#160;</a></span>testSP3485E()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void testSP3485E </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Тестирование работы SP3485E. </p>
+<p>Проверяет корректность работы пинов DE и RE:</p><ol type="1">
+<li>Устанавливает оба пина в режим OUTPUT</li>
+<li>Проверяет переключение HIGH/LOW</li>
+<li>Проверяет возможность независимого управления передатчиком и приемником </li>
+</ol>
+
+</div>
+</div>
+<a id="aedb09484ba8020afc57e9e9e26012bf1" name="aedb09484ba8020afc57e9e9e26012bf1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedb09484ba8020afc57e9e9e26012bf1">&#9670;&#160;</a></span>testModbusConnection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool testModbusConnection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a372e89ffe0abcaf103578a478d3b4b12" name="a372e89ffe0abcaf103578a478d3b4b12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a372e89ffe0abcaf103578a478d3b4b12">&#9670;&#160;</a></span>testSerialConfigurations()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void testSerialConfigurations </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="ae6ed671f3036da58a93991fca2a2329c" name="ae6ed671f3036da58a93991fca2a2329c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae6ed671f3036da58a93991fca2a2329c">&#9670;&#160;</a></span>sensorData</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSensorData.html">SensorData</a> sensorData</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5a90cc33c11a27aac5f56dcaac387c0d" name="a5a90cc33c11a27aac5f56dcaac387c0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a90cc33c11a27aac5f56dcaac387c0d">&#9670;&#160;</a></span>sensorCache</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structSensorCache.html">SensorCache</a> sensorCache</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="modbus__sensor_8h.html">modbus_sensor.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

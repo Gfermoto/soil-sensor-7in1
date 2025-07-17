@@ -1,0 +1,7 @@
+var searchData=
+[
+  ['basicsensoradapter_0',['BasicSensorAdapter',['../classBasicSensorAdapter.html#a773a58c9867d8bb60dbad596505d10ed',1,'BasicSensorAdapter']]],
+  ['begin_1',['begin',['../classBasicSensorAdapter.html#aae826d03be1e4a98ebefe19e32839636',1,'BasicSensorAdapter::begin()'],['../classISensor.html#ad1404839a8965f45f6c2659dcb4333ba',1,'ISensor::begin()']]],
+  ['build_2',['build',['../structRecommendationParams_1_1Builder.html#a679a2955da5064f12bb8643e3dc044cf',1,'RecommendationParams::Builder::build()'],['../structCropCompensationParams_1_1Builder.html#a2757f47824a5c37868e1c7c0ae7f8ec2',1,'CropCompensationParams::Builder::build()'],['../structCropECCompensationParams_1_1Builder.html#a5a7037a51ecd48d56013a0000e76b9fa',1,'CropECCompensationParams::Builder::build()'],['../structValidationRange_1_1Builder.html#af859f4e36100b8f3c935bee6b7f036ad',1,'ValidationRange::Builder::build()'],['../structHttpRequest_1_1Builder.html#ab612743c44ab90765612a9e8b216bca5',1,'HttpRequest::Builder::build()']]],
+  ['builder_3',['builder',['../structRecommendationParams.html#a31b3c3fc98d73f3bfc1e4f01676da5eb',1,'RecommendationParams::builder()'],['../structCropCompensationParams.html#a1013ccb29597ab4e4b16ddd8b97bc8f2',1,'CropCompensationParams::builder()'],['../structCropECCompensationParams.html#af7897922930b8933666e3262e1ce7aed',1,'CropECCompensationParams::builder()'],['../structValidationRange.html#a465d11c47b8ac7b80ac1061471580d12',1,'ValidationRange::builder()'],['../structHttpRequest.html#a99a3ecf43e7345d152752fbcb0f382db',1,'HttpRequest::builder()']]]
+];

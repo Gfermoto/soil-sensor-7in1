@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor 7-in-1: Файл src/main.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
+   </div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('main_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл main.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Главный файл проекта JXCT датчика  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &lt;NTPClient.h&gt;</code><br />
+<code>#include &lt;WiFiClient.h&gt;</code><br />
+<code>#include &lt;WiFiClientSecure.h&gt;</code><br />
+<code>#include &lt;WiFiUdp.h&gt;</code><br />
+<code>#include &lt;esp_ota_ops.h&gt;</code><br />
+<code>#include &lt;esp_task_wdt.h&gt;</code><br />
+<code>#include &quot;<a class="el" href="advanced__filters_8h_source.html">advanced_filters.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="crop__recommendation__engine_8h_source.html">business/crop_recommendation_engine.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="src_2business_2sensor__calibration__service_8h_source.html">business/sensor_calibration_service.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sensor__compensation__service_8h_source.html">business/sensor_compensation_service.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="debug_8h_source.html">debug.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="fake__sensor_8h_source.html">fake_sensor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">jxct_constants.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mqtt__client_8h_source.html">mqtt_client.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="ota__manager_8h_source.html">ota_manager.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sensor__factory_8h_source.html">sensor_factory.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="thingspeak__client_8h_source.html">thingspeak_client.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="version_8h_source.html">version.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="web__routes_8h_source.html">web_routes.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">wifi_manager.h</a>&quot;</code><br />
+<code>#include &lt;LittleFS.h&gt;</code><br />
+<code>#include &lt;WebServer.h&gt;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a48f3f185be3ea2d153c347a157b38d42" id="r_a48f3f185be3ea2d153c347a157b38d42"><td class="memItemLeft" align="right" valign="top">WebServer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48f3f185be3ea2d153c347a157b38d42">server</a> (80)</td></tr>
+<tr class="separator:a48f3f185be3ea2d153c347a157b38d42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d" id="r_a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
+<tr class="separator:a4fc01d736fe50cf5b977f755b675f11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
+<tr class="separator:afe461d27b9c48d5921c00d521181f12f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a846779af5e07f808b2cee49916205a12" id="r_a846779af5e07f808b2cee49916205a12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCropRecommendationEngine.html">CropRecommendationEngine</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a846779af5e07f808b2cee49916205a12">gCropEngine</a></td></tr>
+<tr class="separator:a846779af5e07f808b2cee49916205a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2048f65bc87ffffe1cdadbacc0e95a58" id="r_a2048f65bc87ffffe1cdadbacc0e95a58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSensorCalibrationService.html">SensorCalibrationService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2048f65bc87ffffe1cdadbacc0e95a58">gCalibrationService</a></td></tr>
+<tr class="separator:a2048f65bc87ffffe1cdadbacc0e95a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18619e11a2ee0b61db56d4fd39fbc6c3" id="r_a18619e11a2ee0b61db56d4fd39fbc6c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSensorCompensationService.html">SensorCompensationService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18619e11a2ee0b61db56d4fd39fbc6c3">gCompensationService</a></td></tr>
+<tr class="separator:a18619e11a2ee0b61db56d4fd39fbc6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22f33e7e05df58bb6145bb6e543e232a" id="r_a22f33e7e05df58bb6145bb6e543e232a"><td class="memItemLeft" align="right" valign="top">WiFiUDP&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22f33e7e05df58bb6145bb6e543e232a">ntpUDP</a></td></tr>
+<tr class="separator:a22f33e7e05df58bb6145bb6e543e232a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4cd0eb2684ad54d1d0782f4ff75e07f" id="r_ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memItemLeft" align="right" valign="top">NTPClient *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">timeClient</a> = nullptr</td></tr>
+<tr class="separator:ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Главный файл проекта JXCT датчика </p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="a48f3f185be3ea2d153c347a157b38d42" name="a48f3f185be3ea2d153c347a157b38d42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48f3f185be3ea2d153c347a157b38d42">&#9670;&#160;</a></span>server()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">WebServer server </td>
+          <td>(</td>
+          <td class="paramtype">80</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4fc01d736fe50cf5b977f755b675f11d" name="a4fc01d736fe50cf5b977f755b675f11d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fc01d736fe50cf5b977f755b675f11d">&#9670;&#160;</a></span>setup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setup </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afe461d27b9c48d5921c00d521181f12f" name="afe461d27b9c48d5921c00d521181f12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe461d27b9c48d5921c00d521181f12f">&#9670;&#160;</a></span>loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a846779af5e07f808b2cee49916205a12" name="a846779af5e07f808b2cee49916205a12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a846779af5e07f808b2cee49916205a12">&#9670;&#160;</a></span>gCropEngine</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCropRecommendationEngine.html">CropRecommendationEngine</a> gCropEngine</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2048f65bc87ffffe1cdadbacc0e95a58" name="a2048f65bc87ffffe1cdadbacc0e95a58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2048f65bc87ffffe1cdadbacc0e95a58">&#9670;&#160;</a></span>gCalibrationService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSensorCalibrationService.html">SensorCalibrationService</a> gCalibrationService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a18619e11a2ee0b61db56d4fd39fbc6c3" name="a18619e11a2ee0b61db56d4fd39fbc6c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18619e11a2ee0b61db56d4fd39fbc6c3">&#9670;&#160;</a></span>gCompensationService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSensorCompensationService.html">SensorCompensationService</a> gCompensationService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22f33e7e05df58bb6145bb6e543e232a" name="a22f33e7e05df58bb6145bb6e543e232a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22f33e7e05df58bb6145bb6e543e232a">&#9670;&#160;</a></span>ntpUDP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">WiFiUDP ntpUDP</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4cd0eb2684ad54d1d0782f4ff75e07f" name="ab4cd0eb2684ad54d1d0782f4ff75e07f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">&#9670;&#160;</a></span>timeClient</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTPClient* timeClient = nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="main_8cpp.html">main.cpp</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

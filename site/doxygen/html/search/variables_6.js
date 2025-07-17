@@ -1,0 +1,8 @@
+var searchData=
+[
+  ['gcalibrationservice_0',['gCalibrationService',['../business__instances_8cpp.html#a2048f65bc87ffffe1cdadbacc0e95a58',1,'gCalibrationService:&#160;business_instances.cpp'],['../business__services_8cpp.html#a2048f65bc87ffffe1cdadbacc0e95a58',1,'gCalibrationService:&#160;business_instances.cpp'],['../main_8cpp.html#a2048f65bc87ffffe1cdadbacc0e95a58',1,'gCalibrationService:&#160;business_instances.cpp']]],
+  ['gcompensationservice_1',['gCompensationService',['../business__instances_8cpp.html#a18619e11a2ee0b61db56d4fd39fbc6c3',1,'gCompensationService:&#160;business_instances.cpp'],['../business__services_8cpp.html#a18619e11a2ee0b61db56d4fd39fbc6c3',1,'gCompensationService:&#160;business_instances.cpp'],['../main_8cpp.html#a18619e11a2ee0b61db56d4fd39fbc6c3',1,'gCompensationService:&#160;business_instances.cpp']]],
+  ['gcropengine_2',['gCropEngine',['../business__instances_8cpp.html#a846779af5e07f808b2cee49916205a12',1,'gCropEngine:&#160;business_instances.cpp'],['../business__services_8cpp.html#a846779af5e07f808b2cee49916205a12',1,'gCropEngine:&#160;business_instances.cpp'],['../main_8cpp.html#a846779af5e07f808b2cee49916205a12',1,'gCropEngine:&#160;business_instances.cpp']]],
+  ['growing_3',['growing',['../structRecommendationParams_1_1Builder.html#ae9d8907f70f9e21161e7e2ad847255a7',1,'RecommendationParams::Builder']]],
+  ['growingtype_4',['growingType',['../structRecommendationParams.html#a9733146aeb0c81901591b534d95769f7',1,'RecommendationParams::growingType'],['../structRecommendationResult.html#afdc7c64a7d23b9b24361ecce50dfda3b',1,'RecommendationResult::growingType']]]
+];

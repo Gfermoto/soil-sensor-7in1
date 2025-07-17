@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['failed_0',['failed',['../structTestSummary.html#a083f34fa2b73ba5a06e7000c28927b96',1,'TestSummary']]],
+  ['fake_5fsensor_2ecpp_1',['fake_sensor.cpp',['../fake__sensor_8cpp.html',1,'']]],
+  ['fake_5fsensor_2eh_2',['fake_sensor.h',['../fake__sensor_8h.html',1,'']]],
+  ['fake_5fsensor_5fadapter_2eh_3',['fake_sensor_adapter.h',['../fake__sensor__adapter_8h.html',1,'']]],
+  ['fakesensoradapter_4',['FakeSensorAdapter',['../classFakeSensorAdapter.html',1,'FakeSensorAdapter'],['../classFakeSensorAdapter.html#af18b89449d9a289d773170c66787bd23',1,'FakeSensorAdapter::FakeSensorAdapter()']]],
+  ['field_5',['field',['../structValidationError.html#afe37331a5cad29591a36872c97118ebe',1,'ValidationError']]],
+  ['fieldcapacity_6',['fieldCapacity',['../structSoilParameters.html#a8127688bbf9c43a6f2bdc9f8241ff1f8',1,'SoilParameters']]],
+  ['filled_7',['filled',['../structAdvancedFilters_1_1StatisticsBuffer.html#afac932f69242b718818af94cf6d009dc',1,'AdvancedFilters::StatisticsBuffer::filled'],['../structAdvancedFilters_1_1ECFilterState.html#ad8cdb74d930e392ca7058eaac9be9ac8',1,'AdvancedFilters::ECFilterState::filled']]],
+  ['filtertype_8',['FilterType',['../namespaceAdvancedFilters.html#a2ca4878176ecbc18c74ae65f1d54cd2c',1,'AdvancedFilters']]],
+  ['firmware_5fversion_9',['FIRMWARE_VERSION',['../jxct__device__info_8h.html#acf025b054301360475a0ec4542f74ff3',1,'FIRMWARE_VERSION:&#160;jxct_device_info.h'],['../version_8h.html#acf025b054301360475a0ec4542f74ff3',1,'FIRMWARE_VERSION:&#160;version.h']]],
+  ['firmware_5fversion_10',['firmware_version',['../structSensorData.html#afde3c50727e3e15ce3850afa8d73eff8',1,'SensorData']]],
+  ['force_5fpublish_5fcycles_11',['FORCE_PUBLISH_CYCLES',['../jxct__config__vars_8h.html#a68dcffe45eda49259202f133335e4c39',1,'jxct_config_vars.h']]],
+  ['format_5fec_12',['format_ec',['../jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483',1,'format_ec(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a39b2dedc3670adcf20a62a8d113d2483',1,'format_ec(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5fmoisture_13',['format_moisture',['../jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470',1,'format_moisture(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a3be478cef555484efe62159216f6d470',1,'format_moisture(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5fnpk_14',['format_npk',['../jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b',1,'format_npk(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#abdc9f6cdc05f0aa72eec54b3e904ca7b',1,'format_npk(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5fph_15',['format_ph',['../jxct__format__utils_8cpp.html#a416ab24406c338058778bbde7c4da152',1,'format_ph(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a416ab24406c338058778bbde7c4da152',1,'format_ph(float value):&#160;jxct_format_utils.cpp']]],
+  ['format_5ftemperature_16',['format_temperature',['../jxct__format__utils_8cpp.html#a9a843da2888c9b8014dd9506284f1351',1,'format_temperature(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a9a843da2888c9b8014dd9506284f1351',1,'format_temperature(float value):&#160;jxct_format_utils.cpp']]],
+  ['formatfloat_17',['formatFloat',['../jxct__format__utils_8h.html#a4c645ecf7e7e9c77e89235eabf53625c',1,'jxct_format_utils.h']]],
+  ['formatlogmessage_18',['formatLogMessage',['../logger_8cpp.html#a73d33bdd74467a1ac7814b1a783f7f28',1,'formatLogMessage(const String &amp;message):&#160;logger.cpp'],['../logger_8h.html#a73d33bdd74467a1ac7814b1a783f7f28',1,'formatLogMessage(const String &amp;message):&#160;logger.cpp']]],
+  ['formatlogmessagesafe_19',['formatLogMessageSafe',['../logger_8h.html#ac83141719078208430688a446513a86c',1,'logger.h']]],
+  ['formatsensorvalidationerrors_20',['formatSensorValidationErrors',['../validation__utils_8cpp.html#aecb050d7cbd49c3a3cb0dadcb72360c3',1,'formatSensorValidationErrors(const SensorValidationResult &amp;result):&#160;validation_utils.cpp'],['../validation__utils_8h.html#aecb050d7cbd49c3a3cb0dadcb72360c3',1,'formatSensorValidationErrors(const SensorValidationResult &amp;result):&#160;validation_utils.cpp']]],
+  ['formatuptime_21',['formatUptime',['../routes__service_8cpp.html#abfa915ba3c1d9d59ce0a664b2a1ac7f2',1,'routes_service.cpp']]],
+  ['formatvalidationerrors_22',['formatValidationErrors',['../validation__utils_8cpp.html#af447043f0553ccee92c72fb59009b1ec',1,'formatValidationErrors(const ConfigValidationResult &amp;result):&#160;validation_utils.cpp'],['../validation__utils_8h.html#af447043f0553ccee92c72fb59009b1ec',1,'formatValidationErrors(const ConfigValidationResult &amp;result):&#160;validation_utils.cpp']]],
+  ['formatvalue_23',['formatValue',['../jxct__format__utils_8cpp.html#adc35370b803782f896c844976a9ad6ce',1,'formatValue(float value, const char *unit, int precision):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#ac78af75db9fe02059342eed69de396e4',1,'formatValue(float value, const char *unit, int precision=2):&#160;jxct_format_utils.cpp']]],
+  ['fromvalues_24',['fromValues',['../structRecommendationParams.html#a5542073653688468ad2e0536f9cdfac8',1,'RecommendationParams']]]
+];

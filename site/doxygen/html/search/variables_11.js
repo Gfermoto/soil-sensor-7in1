@@ -1,0 +1,25 @@
+var searchData=
+[
+  ['r_0',['R',['../structAdvancedFilters_1_1KalmanFilter.html#a427e5b580150a677b5765f4fa0c78be4',1,'AdvancedFilters::KalmanFilter']]],
+  ['r_5fsquared_1',['r_squared',['../structPHCalibration.html#a5b62a4a848d893a64e9444bdbfde1070',1,'PHCalibration::r_squared'],['../structECCalibration.html#a1c822cb2f7b5a5f638735e98acd05f9a',1,'ECCalibration::r_squared']]],
+  ['raw_2',['raw',['../structCalibrationEntry.html#abf1254be84455b3cc41e4bb9e1e9dd16',1,'CalibrationEntry']]],
+  ['raw_5fec_3',['raw_ec',['../structSensorData.html#ac3f0a2a0fdf1fc1f1ccd9da06bf1aaff',1,'SensorData']]],
+  ['raw_5fhumidity_4',['raw_humidity',['../structSensorData.html#a03cdd5ca84b4a315fc15b2053a976c44',1,'SensorData']]],
+  ['raw_5fnitrogen_5',['raw_nitrogen',['../structSensorData.html#a6c18579c1d8089ae77459f3ff81a3c33',1,'SensorData']]],
+  ['raw_5fph_6',['raw_ph',['../structSensorData.html#a52fa7ffba8c0e5a3177f77e3b2583b20',1,'SensorData']]],
+  ['raw_5fphosphorus_7',['raw_phosphorus',['../structSensorData.html#ab84101974d645fbb4e64be1ac4f57ccb',1,'SensorData']]],
+  ['raw_5fpotassium_8',['raw_potassium',['../structSensorData.html#a6918481c09e8ca124cce3d630ccc1f4e',1,'SensorData']]],
+  ['raw_5ftemperature_9',['raw_temperature',['../structSensorData.html#ad4f2c5ac6721efbfb394d394e74cc369',1,'SensorData']]],
+  ['rawvalue_10',['rawValue',['../structCropCompensationParams.html#ac68a8ddc9b05ab24d142722935e58ddb',1,'CropCompensationParams::rawValue'],['../structCropCompensationParams_1_1Builder.html#a178d8b840f5ed2cc1d3b75c437052ac1',1,'CropCompensationParams::Builder::rawValue'],['../structCropECCompensationParams.html#aaea7291ec52df53ad5fcd89399c162f4',1,'CropECCompensationParams::rawValue'],['../structCropECCompensationParams_1_1Builder.html#aa3f259033a3147a2eaf13f7ea8122f98',1,'CropECCompensationParams::Builder::rawValue'],['../structCalibrationPoint.html#a99ff5dab554d4145430b07c26ca16050',1,'CalibrationPoint::rawValue']]],
+  ['recent_5fvalues_11',['recent_values',['../structAdvancedFilters_1_1ECFilterState.html#a88be821cddd6506790327ac1629ae4df',1,'AdvancedFilters::ECFilterState']]],
+  ['recentirrigation_12',['recentIrrigation',['../structSensorData.html#a209057037cdfa0f908f128c11a581f4a',1,'SensorData']]],
+  ['recommendations_13',['recommendations',['../structRecommendationResult.html#afb68ecc0cf88cb9eee2c16b3f0fe9ae6',1,'RecommendationResult']]],
+  ['referencevalue_14',['referenceValue',['../structCalibrationPoint.html#a5aaefc6d40fcd8b61be5b9b26e8c88d4',1,'CalibrationPoint']]],
+  ['report_5fcache_5fttl_5fms_15',['REPORT_CACHE_TTL_MS',['../jxct__constants_8h.html#a6e0684191970e6eba9a9f324bec14dc9',1,'jxct_constants.h']]],
+  ['reports_5fautorefresh_5finterval_5fms_16',['REPORTS_AUTOREFRESH_INTERVAL_MS',['../jxct__constants_8h.html#a388cf132b3a15fb4b29e070e51446295',1,'jxct_constants.h']]],
+  ['reports_5fjson_5fdoc_5flarge_5fsize_17',['REPORTS_JSON_DOC_LARGE_SIZE',['../jxct__constants_8h.html#aa8dff1c70704f2253a04a57fa04d215e',1,'jxct_constants.h']]],
+  ['reports_5fjson_5fdoc_5fsize_18',['REPORTS_JSON_DOC_SIZE',['../jxct__constants_8h.html#a63009532e7b32ae5bb837e6edfe0202a',1,'jxct_constants.h']]],
+  ['reset_5fbutton_5fpin_19',['RESET_BUTTON_PIN',['../jxct__constants_8h.html#a4a3aea0890a9c7d81ed2b359ee3ae200',1,'jxct_constants.h']]],
+  ['reset_5fbutton_5ftask_5fpriority_20',['RESET_BUTTON_TASK_PRIORITY',['../jxct__constants_8h.html#a2748e3aebe921d6d2f1965fb7b71bbfa',1,'jxct_constants.h']]],
+  ['reset_5fbutton_5ftask_5fstack_5fsize_21',['RESET_BUTTON_TASK_STACK_SIZE',['../jxct__constants_8h.html#af5ae137d7081e66e1cd43e5c8df7de05',1,'jxct_constants.h']]]
+];

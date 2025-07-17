@@ -1,0 +1,27 @@
+var validation__utils_8cpp =
+[
+    [ "validateInterval", "validation__utils_8cpp.html#a1a1e770ad345dd09684dbc5cf9fea341", null ],
+    [ "validateSensorReadInterval", "validation__utils_8cpp.html#a7f07d4d6084e7aa1d2de3a8b5661d9e3", null ],
+    [ "validateMQTTPublishInterval", "validation__utils_8cpp.html#a15f556efd2c016821186e4604e1d94a5", null ],
+    [ "validateThingSpeakInterval", "validation__utils_8cpp.html#a5b75ecc2060e8847777ac37a7b17baf2", null ],
+    [ "validateNTPInterval", "validation__utils_8cpp.html#affc3bd3259b06ba5eaaec72c6196886d", null ],
+    [ "validateRange", "validation__utils_8cpp.html#aee1ec6b01bc6185c471610c55ff89fb2", null ],
+    [ "validateTemperature", "validation__utils_8cpp.html#afe3a5befa4789b9ca6c7655d6281f888", null ],
+    [ "validateHumidity", "validation__utils_8cpp.html#a704129fdab28312c377892a04c574a4b", null ],
+    [ "validatePH", "validation__utils_8cpp.html#ace3036c7f158287e76837d83a09fac8a", null ],
+    [ "validateEC", "validation__utils_8cpp.html#a49ce4c78f239a0f993d8fd96dcb4e3e8", null ],
+    [ "validateNPK", "validation__utils_8cpp.html#a60ce7cf3c6ae19175789b058eaaede80", null ],
+    [ "validateFullConfig", "validation__utils_8cpp.html#aee4e9769246c3d2198f6aaa193cce9e1", null ],
+    [ "validateFullSensorData", "validation__utils_8cpp.html#a1b8529ff5465c73b043d27ad7d2e86f3", null ],
+    [ "isValidIPAddress", "validation__utils_8cpp.html#a656f25f6039ad27197946f611133158a", null ],
+    [ "isValidHostname", "validation__utils_8cpp.html#abf0e43fe7c5fd9b3439d01e4a0557259", null ],
+    [ "formatValidationErrors", "validation__utils_8cpp.html#af447043f0553ccee92c72fb59009b1ec", null ],
+    [ "formatSensorValidationErrors", "validation__utils_8cpp.html#aecb050d7cbd49c3a3cb0dadcb72360c3", null ],
+    [ "logValidationResult", "validation__utils_8cpp.html#a5b0b5f3adf97cc7910641d046b3e292c", null ],
+    [ "logSensorValidationResult", "validation__utils_8cpp.html#a90392289dbf6077016cdb0ce0cdc34f8", null ],
+    [ "validateSSID", "validation__utils_8cpp.html#af988ebb1f8e6e907df08f24a81d34c6b", null ],
+    [ "validatePassword", "validation__utils_8cpp.html#a9e87dd09b18043e14aeaf09bb1ed4577", null ],
+    [ "validateMQTTServer", "validation__utils_8cpp.html#aa496a6a13d80b8662e7dfea4fd9df479", null ],
+    [ "validateMQTTPort", "validation__utils_8cpp.html#a47bd7b80bf2f4f9b117609e7e1cc507c", null ],
+    [ "validateThingSpeakAPIKey", "validation__utils_8cpp.html#aed42aace8ccac73c73eb1440f8cd2afc", null ]
+];

@@ -1,0 +1,28 @@
+var logger_8cpp =
+[
+    [ "formatLogMessage", "logger_8cpp.html#a73d33bdd74467a1ac7814b1a783f7f28", null ],
+    [ "logError", "logger_8cpp.html#a646cbac39f467aafa298c8dae1ff0091", null ],
+    [ "logWarn", "logger_8cpp.html#a70f38e65c2a4620bbf763080674010af", null ],
+    [ "logInfo", "logger_8cpp.html#a374e6f13f686b3de469c00c01d5fe1d3", null ],
+    [ "logDebug", "logger_8cpp.html#aade0576f178f655d0f991ed324fd27ff", null ],
+    [ "logSuccess", "logger_8cpp.html#a33d6cac9c78346491213dac197c0f9f3", null ],
+    [ "logSensor", "logger_8cpp.html#ad52356734897533dd1ec07d78670a5bb", null ],
+    [ "logWiFi", "logger_8cpp.html#abc98ed88066e0a808bb68d9a88ffa9c1", null ],
+    [ "logMQTT", "logger_8cpp.html#ae3ae977a43dcf87df0dc3035a2983455", null ],
+    [ "logHTTP", "logger_8cpp.html#a8d16d7846a1d3892a73f05af6286c36e", null ],
+    [ "logSystem", "logger_8cpp.html#a9b60e3dbf53fc95c5a1ca77a6fec2643", null ],
+    [ "logData", "logger_8cpp.html#a994321edf88e16ea088cdbaf0f8a8177", null ],
+    [ "logSeparator", "logger_8cpp.html#a33f45b00aaf104a528bb909059246d11", null ],
+    [ "logNewline", "logger_8cpp.html#ac14de3d3a99ad0c7f8ff459619f12278", null ],
+    [ "logMemoryUsage", "logger_8cpp.html#ab014807afa04f9783ed19c897cbdf54d", null ],
+    [ "logSystemInfo", "logger_8cpp.html#a36865f00b6f06ee84213f5a5a1c3c45d", null ],
+    [ "logUptime", "logger_8cpp.html#a07e106e3f19501a64fde4b0c6fa8d73a", null ],
+    [ "logWiFiStatus", "logger_8cpp.html#abf70e1b094519276f0363ac763f100ab", null ],
+    [ "setLogColor", "logger_8cpp.html#abbb1feb235829ffa762eb8d2615b4864", null ],
+    [ "resetLogColor", "logger_8cpp.html#abe2743f8bba1e6d306e147b47afb0943", null ],
+    [ "getColorCode", "logger_8cpp.html#ab94ddc842b6a690863609c28cfa93590", null ],
+    [ "printHeader", "logger_8cpp.html#adc424edacf4b7c29b2a123afe3cbf575", null ],
+    [ "printSubHeader", "logger_8cpp.html#acf4270ba81bcf41a83b9c6822df051b8", null ],
+    [ "printTimeStamp", "logger_8cpp.html#afff4c4e20076552958d756dbcdcbe366", null ],
+    [ "currentLogLevel", "logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5", null ]
+];

@@ -1,0 +1,587 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor 7-in-1: Файл src/wifi_manager.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
+   </div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('wifi__manager_8cpp.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#enum-members">Перечисления</a> &#124;
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл wifi_manager.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Управление WiFi, веб-интерфейсом и индикацией  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">wifi_manager.h</a>&quot;</code><br />
+<code>#include &lt;NTPClient.h&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">jxct_constants.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__device__info_8h_source.html">jxct_device_info.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__format__utils_8h_source.html">jxct_format_utils.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__ui__system_8h_source.html">jxct_ui_system.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="mqtt__client_8h_source.html">mqtt_client.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="thingspeak__client_8h_source.html">thingspeak_client.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="csrf__protection_8h_source.html">web/csrf_protection.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="web__routes_8h_source.html">web_routes.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Перечисления</h2></td></tr>
+<tr class="memitem:a777d3a0d24c4d7d746f14df96bf298c3" id="r_a777d3a0d24c4d7d746f14df96bf298c3"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3">WifiConstants</a> : std::uint16_t { <br />
+&#160;&#160;<a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3a793251760dac40c0cdb51628526faf34">RESET_BUTTON_PIN</a> = 0
+, <a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3a7f7590ded6640ce9b8ae09921cd6ebd6">WIFI_RECONNECT_INTERVAL</a> = 30000
+, <a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3a3e2ee68cf652cd628390f1229c4282ee">LED_FAST_BLINK_INTERVAL</a> = 100
+, <a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3a2aa793152e07f106f8d9b46baa7de739">LED_SLOW_BLINK_INTERVAL</a> = 500
+, <br />
+&#160;&#160;<a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3a3331beb0a8148a1ac673dabf27b88549">WIFI_MODE_DELAY</a> = 100
+, <a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3a9e25f8f4f826e474d6b00600b162751e">NTP_TIMEOUT_MS</a> = 5000
+, <a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3a452484feac01e8c37266a21d3d3ff64b">RESET_BUTTON_HOLD_TIME</a> = 5000
+, <a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3ab9993e0d7f6bf58161cb32c7baf74150">RESTART_DELAY_MS</a> = 1000
+, <br />
+&#160;&#160;<a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3a5522e9d5fd9cf70194fc37fe9f77ff54">DNS_SERVER_PORT</a> = 53
+, <a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3aa5a9710df8dc897f56c6456a006a5893">MAC_ADDRESS_BUFFER_SIZE</a> = 20
+<br />
+ }</td></tr>
+<tr class="separator:a777d3a0d24c4d7d746f14df96bf298c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a87bbeba035b82cbe7777c65b4e9fede4" id="r_a87bbeba035b82cbe7777c65b4e9fede4"><td class="memItemLeft" align="right" valign="top">WebServer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a87bbeba035b82cbe7777c65b4e9fede4">webServer</a> (<a class="el" href="jxct__constants_8h.html#a4e987a55f2a52382b2e444e1e658eee9">DEFAULT_WEB_SERVER_PORT</a>)</td></tr>
+<tr class="separator:a87bbeba035b82cbe7777c65b4e9fede4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e4fd9a252cddb70e2b894b1bc6c0f5a" id="r_a3e4fd9a252cddb70e2b894b1bc6c0f5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e4fd9a252cddb70e2b894b1bc6c0f5a">setLedOn</a> ()</td></tr>
+<tr class="separator:a3e4fd9a252cddb70e2b894b1bc6c0f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab314091f4e2540ab48709ac656457472" id="r_ab314091f4e2540ab48709ac656457472"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab314091f4e2540ab48709ac656457472">setLedOff</a> ()</td></tr>
+<tr class="separator:ab314091f4e2540ab48709ac656457472"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f70031f46d0339f5c544c194dfe7ed7" id="r_a5f70031f46d0339f5c544c194dfe7ed7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f70031f46d0339f5c544c194dfe7ed7">setLedBlink</a> (unsigned long interval)</td></tr>
+<tr class="separator:a5f70031f46d0339f5c544c194dfe7ed7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4e589808cf702c83022456542ce6301" id="r_ab4e589808cf702c83022456542ce6301"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4e589808cf702c83022456542ce6301">setLedFastBlink</a> ()</td></tr>
+<tr class="separator:ab4e589808cf702c83022456542ce6301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa43f68b6c12da400ebbda9664b030944" id="r_aa43f68b6c12da400ebbda9664b030944"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa43f68b6c12da400ebbda9664b030944">updateLed</a> ()</td></tr>
+<tr class="separator:aa43f68b6c12da400ebbda9664b030944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad30c0b8b33e60ccdb13f2e1cc08157c9" id="r_ad30c0b8b33e60ccdb13f2e1cc08157c9"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad30c0b8b33e60ccdb13f2e1cc08157c9">navHtml</a> ()</td></tr>
+<tr class="separator:ad30c0b8b33e60ccdb13f2e1cc08157c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2a97dbe5f144cd247e3b15c6af7c767" id="r_ad2a97dbe5f144cd247e3b15c6af7c767"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2a97dbe5f144cd247e3b15c6af7c767">setupWiFi</a> ()</td></tr>
+<tr class="separator:ad2a97dbe5f144cd247e3b15c6af7c767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef11d16b4d8e760671e3487b2106b6b2" id="r_aef11d16b4d8e760671e3487b2106b6b2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef11d16b4d8e760671e3487b2106b6b2">handleWiFi</a> ()</td></tr>
+<tr class="separator:aef11d16b4d8e760671e3487b2106b6b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af857f35623b29612a3b4cc45dd6fff23" id="r_af857f35623b29612a3b4cc45dd6fff23"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af857f35623b29612a3b4cc45dd6fff23">getApSsid</a> ()</td></tr>
+<tr class="separator:af857f35623b29612a3b4cc45dd6fff23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b3d409b1449092a0b4efaace9c666a2" id="r_a9b3d409b1449092a0b4efaace9c666a2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b3d409b1449092a0b4efaace9c666a2">startAPMode</a> ()</td></tr>
+<tr class="separator:a9b3d409b1449092a0b4efaace9c666a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a1172dd684c9ed282dc5cb7e1ad1d7f" id="r_a0a1172dd684c9ed282dc5cb7e1ad1d7f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a1172dd684c9ed282dc5cb7e1ad1d7f">startSTAMode</a> ()</td></tr>
+<tr class="separator:a0a1172dd684c9ed282dc5cb7e1ad1d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac90eb7c31515447a075eee8f395ac02f" id="r_ac90eb7c31515447a075eee8f395ac02f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac90eb7c31515447a075eee8f395ac02f">checkResetButton</a> ()</td></tr>
+<tr class="separator:ac90eb7c31515447a075eee8f395ac02f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40cec05f995ed2024366761fa28604a7" id="r_a40cec05f995ed2024366761fa28604a7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a40cec05f995ed2024366761fa28604a7">restartESP</a> ()</td></tr>
+<tr class="separator:a40cec05f995ed2024366761fa28604a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e811785ccbaccda2e3e3457971720cb" id="r_a1e811785ccbaccda2e3e3457971720cb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e811785ccbaccda2e3e3457971720cb">handleStatus</a> ()</td></tr>
+<tr class="memdesc:a1e811785ccbaccda2e3e3457971720cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик страницы статуса (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>)  <br /></td></tr>
+<tr class="separator:a1e811785ccbaccda2e3e3457971720cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada2454c68167b49ab4f42817be2b4959" id="r_ada2454c68167b49ab4f42817be2b4959"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ada2454c68167b49ab4f42817be2b4959">setupWebServer</a> ()</td></tr>
+<tr class="separator:ada2454c68167b49ab4f42817be2b4959"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:ac542c876ea54085aa0173a9cd1e3251c" id="r_ac542c876ea54085aa0173a9cd1e3251c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac542c876ea54085aa0173a9cd1e3251c">wifiConnected</a> = false</td></tr>
+<tr class="separator:ac542c876ea54085aa0173a9cd1e3251c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd1ea40c3b78acfa354aed81da58e582" id="r_afd1ea40c3b78acfa354aed81da58e582"><td class="memItemLeft" align="right" valign="top"><a class="el" href="wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6">WiFiMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd1ea40c3b78acfa354aed81da58e582">currentWiFiMode</a> = <a class="el" href="wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6a0fd3f8dd5edc33b28db1162e15e8fcbc">WiFiMode::AP</a></td></tr>
+<tr class="separator:afd1ea40c3b78acfa354aed81da58e582"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4cd0eb2684ad54d1d0782f4ff75e07f" id="r_ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memItemLeft" align="right" valign="top">NTPClient *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">timeClient</a></td></tr>
+<tr class="separator:ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22f33e7e05df58bb6145bb6e543e232a" id="r_a22f33e7e05df58bb6145bb6e543e232a"><td class="memItemLeft" align="right" valign="top">WiFiUDP&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22f33e7e05df58bb6145bb6e543e232a">ntpUDP</a></td></tr>
+<tr class="separator:a22f33e7e05df58bb6145bb6e543e232a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Управление WiFi, веб-интерфейсом и индикацией </p>
+<p>Реализация логики подключения к WiFi, работы в режимах AP/STA, веб-конфигурирования, управления светодиодом и сервисных функций. </p>
+</div><h2 class="groupheader">Перечисления</h2>
+<a id="a777d3a0d24c4d7d746f14df96bf298c3" name="a777d3a0d24c4d7d746f14df96bf298c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a777d3a0d24c4d7d746f14df96bf298c3">&#9670;&#160;</a></span>WifiConstants</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a777d3a0d24c4d7d746f14df96bf298c3">WifiConstants</a> : std::uint16_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="a777d3a0d24c4d7d746f14df96bf298c3a793251760dac40c0cdb51628526faf34" name="a777d3a0d24c4d7d746f14df96bf298c3a793251760dac40c0cdb51628526faf34"></a>RESET_BUTTON_PIN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a777d3a0d24c4d7d746f14df96bf298c3a7f7590ded6640ce9b8ae09921cd6ebd6" name="a777d3a0d24c4d7d746f14df96bf298c3a7f7590ded6640ce9b8ae09921cd6ebd6"></a>WIFI_RECONNECT_INTERVAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a777d3a0d24c4d7d746f14df96bf298c3a3e2ee68cf652cd628390f1229c4282ee" name="a777d3a0d24c4d7d746f14df96bf298c3a3e2ee68cf652cd628390f1229c4282ee"></a>LED_FAST_BLINK_INTERVAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a777d3a0d24c4d7d746f14df96bf298c3a2aa793152e07f106f8d9b46baa7de739" name="a777d3a0d24c4d7d746f14df96bf298c3a2aa793152e07f106f8d9b46baa7de739"></a>LED_SLOW_BLINK_INTERVAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a777d3a0d24c4d7d746f14df96bf298c3a3331beb0a8148a1ac673dabf27b88549" name="a777d3a0d24c4d7d746f14df96bf298c3a3331beb0a8148a1ac673dabf27b88549"></a>WIFI_MODE_DELAY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a777d3a0d24c4d7d746f14df96bf298c3a9e25f8f4f826e474d6b00600b162751e" name="a777d3a0d24c4d7d746f14df96bf298c3a9e25f8f4f826e474d6b00600b162751e"></a>NTP_TIMEOUT_MS&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a777d3a0d24c4d7d746f14df96bf298c3a452484feac01e8c37266a21d3d3ff64b" name="a777d3a0d24c4d7d746f14df96bf298c3a452484feac01e8c37266a21d3d3ff64b"></a>RESET_BUTTON_HOLD_TIME&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a777d3a0d24c4d7d746f14df96bf298c3ab9993e0d7f6bf58161cb32c7baf74150" name="a777d3a0d24c4d7d746f14df96bf298c3ab9993e0d7f6bf58161cb32c7baf74150"></a>RESTART_DELAY_MS&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a777d3a0d24c4d7d746f14df96bf298c3a5522e9d5fd9cf70194fc37fe9f77ff54" name="a777d3a0d24c4d7d746f14df96bf298c3a5522e9d5fd9cf70194fc37fe9f77ff54"></a>DNS_SERVER_PORT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a777d3a0d24c4d7d746f14df96bf298c3aa5a9710df8dc897f56c6456a006a5893" name="a777d3a0d24c4d7d746f14df96bf298c3aa5a9710df8dc897f56c6456a006a5893"></a>MAC_ADDRESS_BUFFER_SIZE&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a87bbeba035b82cbe7777c65b4e9fede4" name="a87bbeba035b82cbe7777c65b4e9fede4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87bbeba035b82cbe7777c65b4e9fede4">&#9670;&#160;</a></span>webServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">WebServer webServer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="jxct__constants_8h.html#a4e987a55f2a52382b2e444e1e658eee9">DEFAULT_WEB_SERVER_PORT</a></td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e4fd9a252cddb70e2b894b1bc6c0f5a" name="a3e4fd9a252cddb70e2b894b1bc6c0f5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e4fd9a252cddb70e2b894b1bc6c0f5a">&#9670;&#160;</a></span>setLedOn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setLedOn </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab314091f4e2540ab48709ac656457472" name="ab314091f4e2540ab48709ac656457472"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab314091f4e2540ab48709ac656457472">&#9670;&#160;</a></span>setLedOff()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setLedOff </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f70031f46d0339f5c544c194dfe7ed7" name="a5f70031f46d0339f5c544c194dfe7ed7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f70031f46d0339f5c544c194dfe7ed7">&#9670;&#160;</a></span>setLedBlink()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setLedBlink </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>interval</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4e589808cf702c83022456542ce6301" name="ab4e589808cf702c83022456542ce6301"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4e589808cf702c83022456542ce6301">&#9670;&#160;</a></span>setLedFastBlink()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setLedFastBlink </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa43f68b6c12da400ebbda9664b030944" name="aa43f68b6c12da400ebbda9664b030944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa43f68b6c12da400ebbda9664b030944">&#9670;&#160;</a></span>updateLed()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void updateLed </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad30c0b8b33e60ccdb13f2e1cc08157c9" name="ad30c0b8b33e60ccdb13f2e1cc08157c9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad30c0b8b33e60ccdb13f2e1cc08157c9">&#9670;&#160;</a></span>navHtml()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String navHtml </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad2a97dbe5f144cd247e3b15c6af7c767" name="ad2a97dbe5f144cd247e3b15c6af7c767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2a97dbe5f144cd247e3b15c6af7c767">&#9670;&#160;</a></span>setupWiFi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupWiFi </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef11d16b4d8e760671e3487b2106b6b2" name="aef11d16b4d8e760671e3487b2106b6b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef11d16b4d8e760671e3487b2106b6b2">&#9670;&#160;</a></span>handleWiFi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleWiFi </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af857f35623b29612a3b4cc45dd6fff23" name="af857f35623b29612a3b4cc45dd6fff23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af857f35623b29612a3b4cc45dd6fff23">&#9670;&#160;</a></span>getApSsid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String getApSsid </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b3d409b1449092a0b4efaace9c666a2" name="a9b3d409b1449092a0b4efaace9c666a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b3d409b1449092a0b4efaace9c666a2">&#9670;&#160;</a></span>startAPMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void startAPMode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0a1172dd684c9ed282dc5cb7e1ad1d7f" name="a0a1172dd684c9ed282dc5cb7e1ad1d7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a1172dd684c9ed282dc5cb7e1ad1d7f">&#9670;&#160;</a></span>startSTAMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void startSTAMode </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac90eb7c31515447a075eee8f395ac02f" name="ac90eb7c31515447a075eee8f395ac02f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac90eb7c31515447a075eee8f395ac02f">&#9670;&#160;</a></span>checkResetButton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool checkResetButton </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a40cec05f995ed2024366761fa28604a7" name="a40cec05f995ed2024366761fa28604a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40cec05f995ed2024366761fa28604a7">&#9670;&#160;</a></span>restartESP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void restartESP </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1e811785ccbaccda2e3e3457971720cb" name="a1e811785ccbaccda2e3e3457971720cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e811785ccbaccda2e3e3457971720cb">&#9670;&#160;</a></span>handleStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик страницы статуса (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>) </p>
+
+</div>
+</div>
+<a id="ada2454c68167b49ab4f42817be2b4959" name="ada2454c68167b49ab4f42817be2b4959"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada2454c68167b49ab4f42817be2b4959">&#9670;&#160;</a></span>setupWebServer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupWebServer </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="ac542c876ea54085aa0173a9cd1e3251c" name="ac542c876ea54085aa0173a9cd1e3251c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac542c876ea54085aa0173a9cd1e3251c">&#9670;&#160;</a></span>wifiConnected</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool wifiConnected = false</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afd1ea40c3b78acfa354aed81da58e582" name="afd1ea40c3b78acfa354aed81da58e582"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd1ea40c3b78acfa354aed81da58e582">&#9670;&#160;</a></span>currentWiFiMode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6">WiFiMode</a> currentWiFiMode = <a class="el" href="wifi__manager_8h.html#aedfbbc69179e5329a61bb7578846c1b6a0fd3f8dd5edc33b28db1162e15e8fcbc">WiFiMode::AP</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4cd0eb2684ad54d1d0782f4ff75e07f" name="ab4cd0eb2684ad54d1d0782f4ff75e07f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">&#9670;&#160;</a></span>timeClient</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">NTPClient* timeClient</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a22f33e7e05df58bb6145bb6e543e232a" name="a22f33e7e05df58bb6145bb6e543e232a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22f33e7e05df58bb6145bb6e543e232a">&#9670;&#160;</a></span>ntpUDP</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">WiFiUDP ntpUDP</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="wifi__manager_8cpp.html">wifi_manager.cpp</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

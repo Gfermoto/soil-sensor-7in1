@@ -1,0 +1,766 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor 7-in-1: Структура SensorData</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
+   </div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('structSensorData.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Открытые атрибуты</a> &#124;
+<a href="structSensorData-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle"><div class="title">Структура SensorData</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Открытые атрибуты</h2></td></tr>
+<tr class="memitem:a0a1593ad64f79756c14d208ce7b17adb" id="r_a0a1593ad64f79756c14d208ce7b17adb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0a1593ad64f79756c14d208ce7b17adb">temperature</a></td></tr>
+<tr class="separator:a0a1593ad64f79756c14d208ce7b17adb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29ce8f1d86589b1c5af915ec961742f2" id="r_a29ce8f1d86589b1c5af915ec961742f2"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29ce8f1d86589b1c5af915ec961742f2">humidity</a></td></tr>
+<tr class="separator:a29ce8f1d86589b1c5af915ec961742f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa990acd0e7ae2bdc99a54069ffe36e41" id="r_aa990acd0e7ae2bdc99a54069ffe36e41"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa990acd0e7ae2bdc99a54069ffe36e41">ec</a></td></tr>
+<tr class="separator:aa990acd0e7ae2bdc99a54069ffe36e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae71019c6d425e1d48eca40c9ef0157f9" id="r_ae71019c6d425e1d48eca40c9ef0157f9"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae71019c6d425e1d48eca40c9ef0157f9">ph</a></td></tr>
+<tr class="separator:ae71019c6d425e1d48eca40c9ef0157f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a129ffaa95987191cf7c405525e156b4d" id="r_a129ffaa95987191cf7c405525e156b4d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a129ffaa95987191cf7c405525e156b4d">nitrogen</a></td></tr>
+<tr class="separator:a129ffaa95987191cf7c405525e156b4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05e9b50851e82dba2487bf1b0c770539" id="r_a05e9b50851e82dba2487bf1b0c770539"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a05e9b50851e82dba2487bf1b0c770539">phosphorus</a></td></tr>
+<tr class="separator:a05e9b50851e82dba2487bf1b0c770539"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa3d7a9345781758cec2e8bac97ac1d3" id="r_afa3d7a9345781758cec2e8bac97ac1d3"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa3d7a9345781758cec2e8bac97ac1d3">potassium</a></td></tr>
+<tr class="separator:afa3d7a9345781758cec2e8bac97ac1d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e1daf37ef4f33ec73aa3bd93fc3d42f" id="r_a3e1daf37ef4f33ec73aa3bd93fc3d42f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e1daf37ef4f33ec73aa3bd93fc3d42f">moisture</a></td></tr>
+<tr class="separator:a3e1daf37ef4f33ec73aa3bd93fc3d42f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba644ee83b3bceceea0b6325fe00257e" id="r_aba644ee83b3bceceea0b6325fe00257e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba644ee83b3bceceea0b6325fe00257e">conductivity</a></td></tr>
+<tr class="separator:aba644ee83b3bceceea0b6325fe00257e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afde3c50727e3e15ce3850afa8d73eff8" id="r_afde3c50727e3e15ce3850afa8d73eff8"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afde3c50727e3e15ce3850afa8d73eff8">firmware_version</a></td></tr>
+<tr class="separator:afde3c50727e3e15ce3850afa8d73eff8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4ca11b4574092a5d653f9c3a838e218" id="r_ac4ca11b4574092a5d653f9c3a838e218"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4ca11b4574092a5d653f9c3a838e218">error_status</a></td></tr>
+<tr class="separator:ac4ca11b4574092a5d653f9c3a838e218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a232e987cbc8cfe2b9977416c9e25554f" id="r_a232e987cbc8cfe2b9977416c9e25554f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a232e987cbc8cfe2b9977416c9e25554f">valid</a></td></tr>
+<tr class="separator:a232e987cbc8cfe2b9977416c9e25554f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6985f18dc44b23c48323f1f378e594db" id="r_a6985f18dc44b23c48323f1f378e594db"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6985f18dc44b23c48323f1f378e594db">isValid</a></td></tr>
+<tr class="separator:a6985f18dc44b23c48323f1f378e594db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad603dc902dc414959a862b8e4b2777f9" id="r_ad603dc902dc414959a862b8e4b2777f9"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad603dc902dc414959a862b8e4b2777f9">last_update</a></td></tr>
+<tr class="separator:ad603dc902dc414959a862b8e4b2777f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3cf8281a41a979e6d5d894b45c05ca0" id="r_ac3cf8281a41a979e6d5d894b45c05ca0"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3cf8281a41a979e6d5d894b45c05ca0">timestamp</a></td></tr>
+<tr class="separator:ac3cf8281a41a979e6d5d894b45c05ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb0e9f9ada5f63dbbe113a85b4ce2299" id="r_afb0e9f9ada5f63dbbe113a85b4ce2299"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb0e9f9ada5f63dbbe113a85b4ce2299">prev_temperature</a></td></tr>
+<tr class="separator:afb0e9f9ada5f63dbbe113a85b4ce2299"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef31dc7b08499063bb728d0585cf4438" id="r_aef31dc7b08499063bb728d0585cf4438"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef31dc7b08499063bb728d0585cf4438">prev_humidity</a></td></tr>
+<tr class="separator:aef31dc7b08499063bb728d0585cf4438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8a37e0d8651c3d73412c40f42934c2c" id="r_aa8a37e0d8651c3d73412c40f42934c2c"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8a37e0d8651c3d73412c40f42934c2c">prev_ec</a></td></tr>
+<tr class="separator:aa8a37e0d8651c3d73412c40f42934c2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a895c584f0848993edcceceba4bd66456" id="r_a895c584f0848993edcceceba4bd66456"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a895c584f0848993edcceceba4bd66456">prev_ph</a></td></tr>
+<tr class="separator:a895c584f0848993edcceceba4bd66456"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa45648f478825f9cb4e327f3bba45944" id="r_aa45648f478825f9cb4e327f3bba45944"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa45648f478825f9cb4e327f3bba45944">prev_nitrogen</a></td></tr>
+<tr class="separator:aa45648f478825f9cb4e327f3bba45944"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b6a3e91720650c6d5076b47a1548b94" id="r_a2b6a3e91720650c6d5076b47a1548b94"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b6a3e91720650c6d5076b47a1548b94">prev_phosphorus</a></td></tr>
+<tr class="separator:a2b6a3e91720650c6d5076b47a1548b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb4cf863801722def12904f626746a38" id="r_abb4cf863801722def12904f626746a38"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb4cf863801722def12904f626746a38">prev_potassium</a></td></tr>
+<tr class="separator:abb4cf863801722def12904f626746a38"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae86305145f71a026a5c398edab06f978" id="r_ae86305145f71a026a5c398edab06f978"><td class="memItemLeft" align="right" valign="top">unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae86305145f71a026a5c398edab06f978">last_mqtt_publish</a></td></tr>
+<tr class="separator:ae86305145f71a026a5c398edab06f978"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf53e2b2f0d5c70294c365f0d3990a9b" id="r_aaf53e2b2f0d5c70294c365f0d3990a9b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf53e2b2f0d5c70294c365f0d3990a9b">temp_buffer</a> [15]</td></tr>
+<tr class="separator:aaf53e2b2f0d5c70294c365f0d3990a9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2202526bdd825aac6317285d8f6d679f" id="r_a2202526bdd825aac6317285d8f6d679f"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2202526bdd825aac6317285d8f6d679f">hum_buffer</a> [15]</td></tr>
+<tr class="separator:a2202526bdd825aac6317285d8f6d679f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43150919a4c14d363c38a617bb1ff12b" id="r_a43150919a4c14d363c38a617bb1ff12b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43150919a4c14d363c38a617bb1ff12b">ec_buffer</a> [15]</td></tr>
+<tr class="separator:a43150919a4c14d363c38a617bb1ff12b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69d50c2fa4a0055f90047fc19b2a7930" id="r_a69d50c2fa4a0055f90047fc19b2a7930"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69d50c2fa4a0055f90047fc19b2a7930">ph_buffer</a> [15]</td></tr>
+<tr class="separator:a69d50c2fa4a0055f90047fc19b2a7930"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a361f886f983491129d039fc97372fdcb" id="r_a361f886f983491129d039fc97372fdcb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a361f886f983491129d039fc97372fdcb">n_buffer</a> [15]</td></tr>
+<tr class="separator:a361f886f983491129d039fc97372fdcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7979bb38cf97b270df57bf7621259a0d" id="r_a7979bb38cf97b270df57bf7621259a0d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7979bb38cf97b270df57bf7621259a0d">p_buffer</a> [15]</td></tr>
+<tr class="separator:a7979bb38cf97b270df57bf7621259a0d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47cd6d9e8ac34c2eaaf7517790d1f318" id="r_a47cd6d9e8ac34c2eaaf7517790d1f318"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a47cd6d9e8ac34c2eaaf7517790d1f318">k_buffer</a> [15]</td></tr>
+<tr class="separator:a47cd6d9e8ac34c2eaaf7517790d1f318"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b41fc80d82705a0a7adc521795623d7" id="r_a0b41fc80d82705a0a7adc521795623d7"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b41fc80d82705a0a7adc521795623d7">buffer_index</a></td></tr>
+<tr class="separator:a0b41fc80d82705a0a7adc521795623d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf88a59ba1b4c48bcbe74e853e3ab7e7" id="r_acf88a59ba1b4c48bcbe74e853e3ab7e7"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acf88a59ba1b4c48bcbe74e853e3ab7e7">buffer_filled</a></td></tr>
+<tr class="separator:acf88a59ba1b4c48bcbe74e853e3ab7e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad4f2c5ac6721efbfb394d394e74cc369" id="r_ad4f2c5ac6721efbfb394d394e74cc369"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad4f2c5ac6721efbfb394d394e74cc369">raw_temperature</a></td></tr>
+<tr class="separator:ad4f2c5ac6721efbfb394d394e74cc369"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03cdd5ca84b4a315fc15b2053a976c44" id="r_a03cdd5ca84b4a315fc15b2053a976c44"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a03cdd5ca84b4a315fc15b2053a976c44">raw_humidity</a></td></tr>
+<tr class="separator:a03cdd5ca84b4a315fc15b2053a976c44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac3f0a2a0fdf1fc1f1ccd9da06bf1aaff" id="r_ac3f0a2a0fdf1fc1f1ccd9da06bf1aaff"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3f0a2a0fdf1fc1f1ccd9da06bf1aaff">raw_ec</a></td></tr>
+<tr class="separator:ac3f0a2a0fdf1fc1f1ccd9da06bf1aaff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a52fa7ffba8c0e5a3177f77e3b2583b20" id="r_a52fa7ffba8c0e5a3177f77e3b2583b20"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a52fa7ffba8c0e5a3177f77e3b2583b20">raw_ph</a></td></tr>
+<tr class="separator:a52fa7ffba8c0e5a3177f77e3b2583b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c18579c1d8089ae77459f3ff81a3c33" id="r_a6c18579c1d8089ae77459f3ff81a3c33"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6c18579c1d8089ae77459f3ff81a3c33">raw_nitrogen</a></td></tr>
+<tr class="separator:a6c18579c1d8089ae77459f3ff81a3c33"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab84101974d645fbb4e64be1ac4f57ccb" id="r_ab84101974d645fbb4e64be1ac4f57ccb"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab84101974d645fbb4e64be1ac4f57ccb">raw_phosphorus</a></td></tr>
+<tr class="separator:ab84101974d645fbb4e64be1ac4f57ccb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6918481c09e8ca124cce3d630ccc1f4e" id="r_a6918481c09e8ca124cce3d630ccc1f4e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6918481c09e8ca124cce3d630ccc1f4e">raw_potassium</a></td></tr>
+<tr class="separator:a6918481c09e8ca124cce3d630ccc1f4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a209057037cdfa0f908f128c11a581f4a" id="r_a209057037cdfa0f908f128c11a581f4a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a209057037cdfa0f908f128c11a581f4a">recentIrrigation</a></td></tr>
+<tr class="separator:a209057037cdfa0f908f128c11a581f4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Данные класса</h2>
+<a id="a0a1593ad64f79756c14d208ce7b17adb" name="a0a1593ad64f79756c14d208ce7b17adb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0a1593ad64f79756c14d208ce7b17adb">&#9670;&#160;</a></span>temperature</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::temperature</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a29ce8f1d86589b1c5af915ec961742f2" name="a29ce8f1d86589b1c5af915ec961742f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29ce8f1d86589b1c5af915ec961742f2">&#9670;&#160;</a></span>humidity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::humidity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa990acd0e7ae2bdc99a54069ffe36e41" name="aa990acd0e7ae2bdc99a54069ffe36e41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa990acd0e7ae2bdc99a54069ffe36e41">&#9670;&#160;</a></span>ec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::ec</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae71019c6d425e1d48eca40c9ef0157f9" name="ae71019c6d425e1d48eca40c9ef0157f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae71019c6d425e1d48eca40c9ef0157f9">&#9670;&#160;</a></span>ph</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::ph</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a129ffaa95987191cf7c405525e156b4d" name="a129ffaa95987191cf7c405525e156b4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a129ffaa95987191cf7c405525e156b4d">&#9670;&#160;</a></span>nitrogen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::nitrogen</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a05e9b50851e82dba2487bf1b0c770539" name="a05e9b50851e82dba2487bf1b0c770539"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05e9b50851e82dba2487bf1b0c770539">&#9670;&#160;</a></span>phosphorus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::phosphorus</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afa3d7a9345781758cec2e8bac97ac1d3" name="afa3d7a9345781758cec2e8bac97ac1d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa3d7a9345781758cec2e8bac97ac1d3">&#9670;&#160;</a></span>potassium</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::potassium</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3e1daf37ef4f33ec73aa3bd93fc3d42f" name="a3e1daf37ef4f33ec73aa3bd93fc3d42f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e1daf37ef4f33ec73aa3bd93fc3d42f">&#9670;&#160;</a></span>moisture</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::moisture</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aba644ee83b3bceceea0b6325fe00257e" name="aba644ee83b3bceceea0b6325fe00257e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba644ee83b3bceceea0b6325fe00257e">&#9670;&#160;</a></span>conductivity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::conductivity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afde3c50727e3e15ce3850afa8d73eff8" name="afde3c50727e3e15ce3850afa8d73eff8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afde3c50727e3e15ce3850afa8d73eff8">&#9670;&#160;</a></span>firmware_version</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint16_t SensorData::firmware_version</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac4ca11b4574092a5d653f9c3a838e218" name="ac4ca11b4574092a5d653f9c3a838e218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4ca11b4574092a5d653f9c3a838e218">&#9670;&#160;</a></span>error_status</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SensorData::error_status</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a232e987cbc8cfe2b9977416c9e25554f" name="a232e987cbc8cfe2b9977416c9e25554f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a232e987cbc8cfe2b9977416c9e25554f">&#9670;&#160;</a></span>valid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SensorData::valid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6985f18dc44b23c48323f1f378e594db" name="a6985f18dc44b23c48323f1f378e594db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6985f18dc44b23c48323f1f378e594db">&#9670;&#160;</a></span>isValid</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SensorData::isValid</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad603dc902dc414959a862b8e4b2777f9" name="ad603dc902dc414959a862b8e4b2777f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad603dc902dc414959a862b8e4b2777f9">&#9670;&#160;</a></span>last_update</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long SensorData::last_update</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac3cf8281a41a979e6d5d894b45c05ca0" name="ac3cf8281a41a979e6d5d894b45c05ca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3cf8281a41a979e6d5d894b45c05ca0">&#9670;&#160;</a></span>timestamp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long SensorData::timestamp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afb0e9f9ada5f63dbbe113a85b4ce2299" name="afb0e9f9ada5f63dbbe113a85b4ce2299"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb0e9f9ada5f63dbbe113a85b4ce2299">&#9670;&#160;</a></span>prev_temperature</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::prev_temperature</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef31dc7b08499063bb728d0585cf4438" name="aef31dc7b08499063bb728d0585cf4438"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef31dc7b08499063bb728d0585cf4438">&#9670;&#160;</a></span>prev_humidity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::prev_humidity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa8a37e0d8651c3d73412c40f42934c2c" name="aa8a37e0d8651c3d73412c40f42934c2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a37e0d8651c3d73412c40f42934c2c">&#9670;&#160;</a></span>prev_ec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::prev_ec</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a895c584f0848993edcceceba4bd66456" name="a895c584f0848993edcceceba4bd66456"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a895c584f0848993edcceceba4bd66456">&#9670;&#160;</a></span>prev_ph</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::prev_ph</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa45648f478825f9cb4e327f3bba45944" name="aa45648f478825f9cb4e327f3bba45944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa45648f478825f9cb4e327f3bba45944">&#9670;&#160;</a></span>prev_nitrogen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::prev_nitrogen</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2b6a3e91720650c6d5076b47a1548b94" name="a2b6a3e91720650c6d5076b47a1548b94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b6a3e91720650c6d5076b47a1548b94">&#9670;&#160;</a></span>prev_phosphorus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::prev_phosphorus</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abb4cf863801722def12904f626746a38" name="abb4cf863801722def12904f626746a38"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb4cf863801722def12904f626746a38">&#9670;&#160;</a></span>prev_potassium</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::prev_potassium</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae86305145f71a026a5c398edab06f978" name="ae86305145f71a026a5c398edab06f978"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae86305145f71a026a5c398edab06f978">&#9670;&#160;</a></span>last_mqtt_publish</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned long SensorData::last_mqtt_publish</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaf53e2b2f0d5c70294c365f0d3990a9b" name="aaf53e2b2f0d5c70294c365f0d3990a9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf53e2b2f0d5c70294c365f0d3990a9b">&#9670;&#160;</a></span>temp_buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::temp_buffer[15]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2202526bdd825aac6317285d8f6d679f" name="a2202526bdd825aac6317285d8f6d679f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2202526bdd825aac6317285d8f6d679f">&#9670;&#160;</a></span>hum_buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::hum_buffer[15]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a43150919a4c14d363c38a617bb1ff12b" name="a43150919a4c14d363c38a617bb1ff12b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43150919a4c14d363c38a617bb1ff12b">&#9670;&#160;</a></span>ec_buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::ec_buffer[15]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a69d50c2fa4a0055f90047fc19b2a7930" name="a69d50c2fa4a0055f90047fc19b2a7930"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a69d50c2fa4a0055f90047fc19b2a7930">&#9670;&#160;</a></span>ph_buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::ph_buffer[15]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a361f886f983491129d039fc97372fdcb" name="a361f886f983491129d039fc97372fdcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a361f886f983491129d039fc97372fdcb">&#9670;&#160;</a></span>n_buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::n_buffer[15]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7979bb38cf97b270df57bf7621259a0d" name="a7979bb38cf97b270df57bf7621259a0d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7979bb38cf97b270df57bf7621259a0d">&#9670;&#160;</a></span>p_buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::p_buffer[15]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a47cd6d9e8ac34c2eaaf7517790d1f318" name="a47cd6d9e8ac34c2eaaf7517790d1f318"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47cd6d9e8ac34c2eaaf7517790d1f318">&#9670;&#160;</a></span>k_buffer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::k_buffer[15]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0b41fc80d82705a0a7adc521795623d7" name="a0b41fc80d82705a0a7adc521795623d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b41fc80d82705a0a7adc521795623d7">&#9670;&#160;</a></span>buffer_index</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SensorData::buffer_index</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acf88a59ba1b4c48bcbe74e853e3ab7e7" name="acf88a59ba1b4c48bcbe74e853e3ab7e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf88a59ba1b4c48bcbe74e853e3ab7e7">&#9670;&#160;</a></span>buffer_filled</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t SensorData::buffer_filled</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad4f2c5ac6721efbfb394d394e74cc369" name="ad4f2c5ac6721efbfb394d394e74cc369"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4f2c5ac6721efbfb394d394e74cc369">&#9670;&#160;</a></span>raw_temperature</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::raw_temperature</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a03cdd5ca84b4a315fc15b2053a976c44" name="a03cdd5ca84b4a315fc15b2053a976c44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03cdd5ca84b4a315fc15b2053a976c44">&#9670;&#160;</a></span>raw_humidity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::raw_humidity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac3f0a2a0fdf1fc1f1ccd9da06bf1aaff" name="ac3f0a2a0fdf1fc1f1ccd9da06bf1aaff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac3f0a2a0fdf1fc1f1ccd9da06bf1aaff">&#9670;&#160;</a></span>raw_ec</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::raw_ec</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a52fa7ffba8c0e5a3177f77e3b2583b20" name="a52fa7ffba8c0e5a3177f77e3b2583b20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a52fa7ffba8c0e5a3177f77e3b2583b20">&#9670;&#160;</a></span>raw_ph</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::raw_ph</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6c18579c1d8089ae77459f3ff81a3c33" name="a6c18579c1d8089ae77459f3ff81a3c33"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c18579c1d8089ae77459f3ff81a3c33">&#9670;&#160;</a></span>raw_nitrogen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::raw_nitrogen</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab84101974d645fbb4e64be1ac4f57ccb" name="ab84101974d645fbb4e64be1ac4f57ccb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab84101974d645fbb4e64be1ac4f57ccb">&#9670;&#160;</a></span>raw_phosphorus</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::raw_phosphorus</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6918481c09e8ca124cce3d630ccc1f4e" name="a6918481c09e8ca124cce3d630ccc1f4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6918481c09e8ca124cce3d630ccc1f4e">&#9670;&#160;</a></span>raw_potassium</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float SensorData::raw_potassium</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a209057037cdfa0f908f128c11a581f4a" name="a209057037cdfa0f908f128c11a581f4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a209057037cdfa0f908f128c11a581f4a">&#9670;&#160;</a></span>recentIrrigation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool SensorData::recentIrrigation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>Объявления и описания членов структуры находятся в файле:<ul>
+<li>src/<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="structSensorData.html">SensorData</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

@@ -4,7 +4,7 @@
 PROJECT_NAME           = "JXCT Soil Sensor 7-in-1"
 PROJECT_NUMBER         = 3.10.1
 PROJECT_BRIEF          = "IoT система мониторинга почвы на базе ESP32"
-OUTPUT_DIRECTORY       = docs/doxygen
+OUTPUT_DIRECTORY       = docs
 CREATE_SUBDIRS         = NO
 ALLOW_UNICODE_NAMES    = NO
 OUTPUT_LANGUAGE        = Russian
@@ -86,7 +86,7 @@ SKIP_FUNCTION_MACROS   = YES
 
 # Внешние ссылки
 TAGFILES               =
-GENERATE_TAGFILE       = docs/doxygen/jxct.tag
+GENERATE_TAGFILE       = doxygen/jxct.tag
 ALLEXTERNALS           = NO
 EXTERNAL_GROUPS        = YES
 EXTERNAL_PAGES         = YES
@@ -124,7 +124,7 @@ DOT_CLEANUP            = YES
 
 # HTML вывод
 GENERATE_HTML          = YES
-HTML_OUTPUT            = docs/doxygen/html
+HTML_OUTPUT            = doxygen/html
 HTML_FILE_EXTENSION    = .html
 HTML_HEADER            =
 HTML_FOOTER            =
@@ -182,7 +182,7 @@ EXTRA_SEARCH_MAPPINGS  =
 
 # LaTeX вывод
 GENERATE_LATEX         = NO
-LATEX_OUTPUT           = docs/doxygen/latex
+LATEX_OUTPUT           = doxygen/latex
 LATEX_CMD_NAME         = latex
 MAKEINDEX_CMD_NAME     = makeindex
 COMPACT_LATEX          = NO
@@ -202,7 +202,7 @@ LATEX_EMOJI_DIRECTORY  =
 
 # RTF вывод
 GENERATE_RTF           = NO
-RTF_OUTPUT             = docs/doxygen/rtf
+RTF_OUTPUT             = doxygen/rtf
 COMPACT_RTF            = NO
 RTF_HYPERLINKS         = NO
 RTF_STYLESHEET_FILE    =
@@ -211,20 +211,20 @@ RTF_SOURCE_CODE        = NO
 
 # Man страницы
 GENERATE_MAN           = NO
-MAN_OUTPUT             = docs/doxygen/man
+MAN_OUTPUT             = doxygen/man
 MAN_EXTENSION          = .3
 MAN_SUBDIR             =
 MAN_LINKS              = NO
 
 # XML вывод
 GENERATE_XML           = NO
-XML_OUTPUT             = docs/doxygen/xml
+XML_OUTPUT             = doxygen/xml
 XML_PROGRAMLISTING     = YES
 XML_NS_MEMB_FILE_SCOPE = NO
 
 # DocBook вывод
 GENERATE_DOCBOOK       = NO
-DOCBOOK_OUTPUT         = docs/doxygen/docbook
+DOCBOOK_OUTPUT         = doxygen/docbook
 
 # AutoGen Definitions
 GENERATE_AUTOGEN_DEF   = NO

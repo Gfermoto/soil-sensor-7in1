@@ -1,0 +1,386 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor 7-in-1: Исходный файл src/business/crop_recommendation_engine.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
+   </div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('crop__recommendation__engine_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">crop_recommendation_engine.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="crop__recommendation__engine_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef CROP_RECOMMENDATION_ENGINE_H</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define CROP_RECOMMENDATION_ENGINE_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;map&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &quot;<a class="code" href="ICropRecommendationEngine_8h.html">business/ICropRecommendationEngine.h</a>&quot;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// Используем структуру SensorData из modbus_sensor.h</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="modbus__sensor_8h.html">../modbus_sensor.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// Структуры для устранения проблемы с легко перепутываемыми параметрами</span></div>
+<div class="foldopen" id="foldopen00019" data-start="{" data-end="};">
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="structCropCompensationParams.html">   19</a></span><span class="keyword">struct </span>CropCompensationParams</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structCropCompensationParams.html#ac68a8ddc9b05ab24d142722935e58ddb">   21</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropCompensationParams.html#ac68a8ddc9b05ab24d142722935e58ddb">rawValue</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structCropCompensationParams.html#a30a5f1439ac6104d11563c1525154a9d">   22</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropCompensationParams.html#a30a5f1439ac6104d11563c1525154a9d">temperature</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="structCropCompensationParams.html#ab951a2533badafb2f1a1c5f139b04962">   23</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropCompensationParams.html#ab951a2533badafb2f1a1c5f139b04962">moisture</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    CropCompensationParams(<span class="keywordtype">float</span> raw, <span class="keywordtype">float</span> temp, <span class="keywordtype">float</span> moist) : <a class="code hl_variable" href="structCropCompensationParams.html#ac68a8ddc9b05ab24d142722935e58ddb">rawValue</a>(raw), <a class="code hl_variable" href="structCropCompensationParams.html#a30a5f1439ac6104d11563c1525154a9d">temperature</a>(temp), <a class="code hl_variable" href="structCropCompensationParams.html#ab951a2533badafb2f1a1c5f139b04962">moisture</a>(moist) {}</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>   <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00029" data-start="{" data-end="};">
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structCropCompensationParams_1_1Builder.html">   29</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structCropCompensationParams_1_1Builder.html">Builder</a></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structCropCompensationParams_1_1Builder.html#a178d8b840f5ed2cc1d3b75c437052ac1">   31</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropCompensationParams_1_1Builder.html#a178d8b840f5ed2cc1d3b75c437052ac1">rawValue</a> = 0.0F;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="structCropCompensationParams_1_1Builder.html#abce258c651950a0c3be602761f74bd2f">   32</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropCompensationParams_1_1Builder.html#abce258c651950a0c3be602761f74bd2f">temperature</a> = 25.0F;</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structCropCompensationParams_1_1Builder.html#a213e12c4d0b9eb564a3c4f415bee36e4">   33</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropCompensationParams_1_1Builder.html#a213e12c4d0b9eb564a3c4f415bee36e4">moisture</a> = 60.0F;</div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="}">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structCropCompensationParams_1_1Builder.html#ad2ed34830af6e32ae257efc33989591d">   34</a></span>        <a class="code hl_struct" href="structCropCompensationParams_1_1Builder.html">Builder</a>&amp; <a class="code hl_function" href="structCropCompensationParams_1_1Builder.html#ad2ed34830af6e32ae257efc33989591d">setRawValue</a>(<span class="keywordtype">float</span> value)</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>        {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>            <a class="code hl_variable" href="structCropCompensationParams_1_1Builder.html#a178d8b840f5ed2cc1d3b75c437052ac1">rawValue</a> = value;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>        }</div>
+</div>
+<div class="foldopen" id="foldopen00039" data-start="{" data-end="}">
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structCropCompensationParams_1_1Builder.html#a28dedafa9b5dd1cdb3fba7921732b66b">   39</a></span>        <a class="code hl_struct" href="structCropCompensationParams_1_1Builder.html">Builder</a>&amp; <a class="code hl_function" href="structCropCompensationParams_1_1Builder.html#a28dedafa9b5dd1cdb3fba7921732b66b">setTemperature</a>(<span class="keywordtype">float</span> temp)</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        {</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>            <a class="code hl_variable" href="structCropCompensationParams_1_1Builder.html#abce258c651950a0c3be602761f74bd2f">temperature</a> = temp;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>        }</div>
+</div>
+<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structCropCompensationParams_1_1Builder.html#a65d40006c64163e259839e1b3583b10d">   44</a></span>        <a class="code hl_struct" href="structCropCompensationParams_1_1Builder.html">Builder</a>&amp; <a class="code hl_function" href="structCropCompensationParams_1_1Builder.html#a65d40006c64163e259839e1b3583b10d">setMoisture</a>(<span class="keywordtype">float</span> moist)</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>        {</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>            <a class="code hl_variable" href="structCropCompensationParams_1_1Builder.html#a213e12c4d0b9eb564a3c4f415bee36e4">moisture</a> = moist;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        }</div>
+</div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="}">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structCropCompensationParams_1_1Builder.html#a2757f47824a5c37868e1c7c0ae7f8ec2">   49</a></span>        CropCompensationParams <a class="code hl_function" href="structCropCompensationParams_1_1Builder.html#a2757f47824a5c37868e1c7c0ae7f8ec2">build</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>            <span class="keywordflow">return</span> CropCompensationParams(<a class="code hl_variable" href="structCropCompensationParams_1_1Builder.html#a178d8b840f5ed2cc1d3b75c437052ac1">rawValue</a>, <a class="code hl_variable" href="structCropCompensationParams_1_1Builder.html#abce258c651950a0c3be602761f74bd2f">temperature</a>, <a class="code hl_variable" href="structCropCompensationParams_1_1Builder.html#a213e12c4d0b9eb564a3c4f415bee36e4">moisture</a>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        }</div>
+</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    };</div>
+</div>
+<div class="foldopen" id="foldopen00054" data-start="{" data-end="}">
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structCropCompensationParams.html#a1013ccb29597ab4e4b16ddd8b97bc8f2">   54</a></span>    <span class="keyword">static</span> <a class="code hl_struct" href="structCropCompensationParams_1_1Builder.html">Builder</a> <a class="code hl_function" href="structCropCompensationParams.html#a1013ccb29597ab4e4b16ddd8b97bc8f2">builder</a>()</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    {</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>        <span class="keywordflow">return</span> {};</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    }</div>
+</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>};</div>
+</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="foldopen" id="foldopen00060" data-start="{" data-end="};">
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="structCropECCompensationParams.html">   60</a></span><span class="keyword">struct </span>CropECCompensationParams</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structCropECCompensationParams.html#aaea7291ec52df53ad5fcd89399c162f4">   62</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropECCompensationParams.html#aaea7291ec52df53ad5fcd89399c162f4">rawValue</a>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structCropECCompensationParams.html#abf4c3895eb5688c173f8f86c0edc4d96">   63</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropECCompensationParams.html#abf4c3895eb5688c173f8f86c0edc4d96">temperature</a>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    CropECCompensationParams(<span class="keywordtype">float</span> raw, <span class="keywordtype">float</span> temp) : <a class="code hl_variable" href="structCropECCompensationParams.html#aaea7291ec52df53ad5fcd89399c162f4">rawValue</a>(raw), <a class="code hl_variable" href="structCropECCompensationParams.html#abf4c3895eb5688c173f8f86c0edc4d96">temperature</a>(temp) {}</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>   <span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00069" data-start="{" data-end="};">
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structCropECCompensationParams_1_1Builder.html">   69</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="structCropECCompensationParams_1_1Builder.html">Builder</a></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    {</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structCropECCompensationParams_1_1Builder.html#aa3f259033a3147a2eaf13f7ea8122f98">   71</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropECCompensationParams_1_1Builder.html#aa3f259033a3147a2eaf13f7ea8122f98">rawValue</a> = 0.0F;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structCropECCompensationParams_1_1Builder.html#aba536414d77234adde8a5e0b35a9e8f2">   72</a></span>        <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropECCompensationParams_1_1Builder.html#aba536414d77234adde8a5e0b35a9e8f2">temperature</a> = 25.0F;</div>
+<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structCropECCompensationParams_1_1Builder.html#a1ed86f5943bd2d6d9224f59f7a860155">   73</a></span>        <a class="code hl_struct" href="structCropECCompensationParams_1_1Builder.html">Builder</a>&amp; <a class="code hl_function" href="structCropECCompensationParams_1_1Builder.html#a1ed86f5943bd2d6d9224f59f7a860155">setRawValue</a>(<span class="keywordtype">float</span> value)</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        {</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            <a class="code hl_variable" href="structCropECCompensationParams_1_1Builder.html#aa3f259033a3147a2eaf13f7ea8122f98">rawValue</a> = value;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>        }</div>
+</div>
+<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="structCropECCompensationParams_1_1Builder.html#abc4bf117bd0ec5a9dac656581fe88d76">   78</a></span>        <a class="code hl_struct" href="structCropECCompensationParams_1_1Builder.html">Builder</a>&amp; <a class="code hl_function" href="structCropECCompensationParams_1_1Builder.html#abc4bf117bd0ec5a9dac656581fe88d76">setTemperature</a>(<span class="keywordtype">float</span> temp)</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>            <a class="code hl_variable" href="structCropECCompensationParams_1_1Builder.html#aba536414d77234adde8a5e0b35a9e8f2">temperature</a> = temp;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>            <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>        }</div>
+</div>
+<div class="foldopen" id="foldopen00083" data-start="{" data-end="}">
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="structCropECCompensationParams_1_1Builder.html#a5a7037a51ecd48d56013a0000e76b9fa">   83</a></span>        CropECCompensationParams <a class="code hl_function" href="structCropECCompensationParams_1_1Builder.html#a5a7037a51ecd48d56013a0000e76b9fa">build</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">        </span>{</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>            <span class="keywordflow">return</span> CropECCompensationParams(<a class="code hl_variable" href="structCropECCompensationParams_1_1Builder.html#aa3f259033a3147a2eaf13f7ea8122f98">rawValue</a>, <a class="code hl_variable" href="structCropECCompensationParams_1_1Builder.html#aba536414d77234adde8a5e0b35a9e8f2">temperature</a>);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        }</div>
+</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    };</div>
+</div>
+<div class="foldopen" id="foldopen00088" data-start="{" data-end="}">
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="structCropECCompensationParams.html#af7897922930b8933666e3262e1ce7aed">   88</a></span>    <span class="keyword">static</span> <a class="code hl_struct" href="structCropECCompensationParams_1_1Builder.html">Builder</a> <a class="code hl_function" href="structCropECCompensationParams.html#af7897922930b8933666e3262e1ce7aed">builder</a>()</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>        <span class="keywordflow">return</span> {};</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    }</div>
+</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>};</div>
+</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">// Структура конфигурации культуры</span></div>
+<div class="foldopen" id="foldopen00095" data-start="{" data-end="};">
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="structCropConfig.html">   95</a></span><span class="keyword">struct </span><a class="code hl_function" href="structCropConfig.html#a143b4c57d738c2ff0f6beac940a7eb30">CropConfig</a></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>{</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="structCropConfig.html#a6396b34ee06cddfafeb51a6fe8c6673b">   97</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropConfig.html#a6396b34ee06cddfafeb51a6fe8c6673b">temperature</a>;  <span class="comment">// °C</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="structCropConfig.html#a14d0adaf211511dade7d561244030dad">   98</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropConfig.html#a14d0adaf211511dade7d561244030dad">humidity</a>;     <span class="comment">// %</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="structCropConfig.html#adeef15ae99ba41875689af46d6259c2c">   99</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropConfig.html#adeef15ae99ba41875689af46d6259c2c">ec</a>;           <span class="comment">// μS/cm</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="structCropConfig.html#af5b41b0e1f835a14681f201462c2099f">  100</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropConfig.html#af5b41b0e1f835a14681f201462c2099f">ph</a>;           <span class="comment">// pH</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno"><a class="line" href="structCropConfig.html#ad320c47982971ef8abbb919252042203">  101</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropConfig.html#ad320c47982971ef8abbb919252042203">nitrogen</a>;     <span class="comment">// мг/кг</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="structCropConfig.html#ad8bc80ce5bb46ac63ccce6220a1d58eb">  102</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropConfig.html#ad8bc80ce5bb46ac63ccce6220a1d58eb">phosphorus</a>;   <span class="comment">// мг/кг</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="structCropConfig.html#a00cc52bc3426a4dda6749145540489c1">  103</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropConfig.html#a00cc52bc3426a4dda6749145540489c1">potassium</a>;    <span class="comment">// мг/кг</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="structCropConfig.html#a143b4c57d738c2ff0f6beac940a7eb30">  105</a></span>    <a class="code hl_function" href="structCropConfig.html#a143b4c57d738c2ff0f6beac940a7eb30">CropConfig</a>() : <a class="code hl_variable" href="structCropConfig.html#a6396b34ee06cddfafeb51a6fe8c6673b">temperature</a>(0), <a class="code hl_variable" href="structCropConfig.html#a14d0adaf211511dade7d561244030dad">humidity</a>(0), <a class="code hl_variable" href="structCropConfig.html#adeef15ae99ba41875689af46d6259c2c">ec</a>(0), <a class="code hl_variable" href="structCropConfig.html#af5b41b0e1f835a14681f201462c2099f">ph</a>(0), <a class="code hl_variable" href="structCropConfig.html#ad320c47982971ef8abbb919252042203">nitrogen</a>(0), <a class="code hl_variable" href="structCropConfig.html#ad8bc80ce5bb46ac63ccce6220a1d58eb">phosphorus</a>(0), <a class="code hl_variable" href="structCropConfig.html#a00cc52bc3426a4dda6749145540489c1">potassium</a>(0) {}</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="foldopen" id="foldopen00107" data-start="{" data-end="}">
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="structCropConfig.html#a8dc22a79055b2d188599219d13b6da63">  107</a></span>    <a class="code hl_function" href="structCropConfig.html#a8dc22a79055b2d188599219d13b6da63">CropConfig</a>(<span class="keywordtype">float</span> t, <span class="keywordtype">float</span> h, <span class="keywordtype">float</span> e, <span class="keywordtype">float</span> p, <span class="keywordtype">float</span> n, <span class="keywordtype">float</span> <a class="code hl_variable" href="structCropConfig.html#af5b41b0e1f835a14681f201462c2099f">ph</a>, <span class="keywordtype">float</span> k)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>        : <a class="code hl_variable" href="structCropConfig.html#a6396b34ee06cddfafeb51a6fe8c6673b">temperature</a>(t), <a class="code hl_variable" href="structCropConfig.html#a14d0adaf211511dade7d561244030dad">humidity</a>(h), <a class="code hl_variable" href="structCropConfig.html#adeef15ae99ba41875689af46d6259c2c">ec</a>(e), <a class="code hl_variable" href="structCropConfig.html#af5b41b0e1f835a14681f201462c2099f">ph</a>(p), <a class="code hl_variable" href="structCropConfig.html#ad320c47982971ef8abbb919252042203">nitrogen</a>(n), <a class="code hl_variable" href="structCropConfig.html#ad8bc80ce5bb46ac63ccce6220a1d58eb">phosphorus</a>(<a class="code hl_variable" href="structCropConfig.html#af5b41b0e1f835a14681f201462c2099f">ph</a>), <a class="code hl_variable" href="structCropConfig.html#a00cc52bc3426a4dda6749145540489c1">potassium</a>(k)</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    {</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    }</div>
+</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>};</div>
+</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="comment">// Структура результата рекомендаций</span></div>
+<div class="foldopen" id="foldopen00114" data-start="{" data-end="};">
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="structRecommendationResult.html">  114</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structRecommendationResult.html">RecommendationResult</a></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>{</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="structRecommendationResult.html#ac029fac45a2beb6f99011d7a49c919cf">  116</a></span>    String <a class="code hl_variable" href="structRecommendationResult.html#ac029fac45a2beb6f99011d7a49c919cf">cropType</a>;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="structRecommendationResult.html#afdc7c64a7d23b9b24361ecce50dfda3b">  117</a></span>    String <a class="code hl_variable" href="structRecommendationResult.html#afdc7c64a7d23b9b24361ecce50dfda3b">growingType</a>;</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="structRecommendationResult.html#a5ec536587029e3d69b125600f5701a2e">  118</a></span>    String <a class="code hl_variable" href="structRecommendationResult.html#a5ec536587029e3d69b125600f5701a2e">season</a>;</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="structRecommendationResult.html#ac4d2c62d783e2dd0904ddb89bf98c252">  119</a></span>    String <a class="code hl_variable" href="structRecommendationResult.html#ac4d2c62d783e2dd0904ddb89bf98c252">soilType</a>;  <span class="comment">// Добавляем тип почвы</span></div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="structRecommendationResult.html#afb68ecc0cf88cb9eee2c16b3f0fe9ae6">  120</a></span>    String <a class="code hl_variable" href="structRecommendationResult.html#afb68ecc0cf88cb9eee2c16b3f0fe9ae6">recommendations</a>;</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno"><a class="line" href="structRecommendationResult.html#a0f34697f68ccd584285b4142a97bc4f0">  121</a></span>    String <a class="code hl_variable" href="structRecommendationResult.html#a0f34697f68ccd584285b4142a97bc4f0">healthStatus</a>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="structRecommendationResult.html#a9111704f809f1092a8b643509117e1ba">  122</a></span>    String <a class="code hl_variable" href="structRecommendationResult.html#a9111704f809f1092a8b643509117e1ba">scientificNotes</a>;</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>};</div>
+</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span> </div>
+<div class="foldopen" id="foldopen00125" data-start="{" data-end="};">
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classCropRecommendationEngine.html">  125</a></span><span class="keyword">class </span><a class="code hl_function" href="classCropRecommendationEngine.html#ae449fe9732b3cef2994a6e0097546c3f">CropRecommendationEngine</a> : <span class="keyword">public</span> <a class="code hl_class" href="classICropRecommendationEngine.html">ICropRecommendationEngine</a></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>{</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>    std::map&lt;String, CropConfig&gt; cropConfigs;</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>    <span class="comment">// Коэффициенты компенсации датчиков [Источник: SSSA Journal, 2008; Advances in Agronomy, 2014]</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> pH_alpha = -0.01F;    <span class="comment">// Температурный коэффициент для pH</span></div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> pH_beta = 0.005F;     <span class="comment">// Влажностный коэффициент для pH</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> EC_gamma = 0.02F;     <span class="comment">// Температурный коэффициент для EC</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> NPK_delta = 0.03F;    <span class="comment">// Температурный коэффициент для NPK</span></div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>    <span class="keyword">const</span> <span class="keywordtype">float</span> NPK_epsilon = 0.01F;  <span class="comment">// Влажностный коэффициент для NPK</span></div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="comment">// Функции компенсации датчиков</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>    <span class="keywordtype">float</span> compensatePH(<span class="keywordtype">float</span> pH_raw, <span class="keywordtype">float</span> temperature, <span class="keywordtype">float</span> moisture);</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span>    <span class="keywordtype">float</span> compensateEC(<span class="keywordtype">float</span> EC_raw, <span class="keywordtype">float</span> temperature);</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>    <span class="keywordtype">float</span> compensateNPK(<span class="keywordtype">float</span> NPK_raw, <span class="keywordtype">float</span> temperature, <span class="keywordtype">float</span> moisture);</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>    <span class="comment">// Внутренние функции компенсации с Builder паттерном</span></div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span>    <span class="keywordtype">float</span> compensatePH(<span class="keyword">const</span> <a class="code hl_struct" href="structCropCompensationParams.html">CropCompensationParams</a>&amp; params);</div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span>    <span class="keywordtype">float</span> compensateEC(<span class="keyword">const</span> <a class="code hl_struct" href="structCropECCompensationParams.html">CropECCompensationParams</a>&amp; params);</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordtype">float</span> compensateNPK(<span class="keyword">const</span> <a class="code hl_struct" href="structCropCompensationParams.html">CropCompensationParams</a>&amp; params);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>    <span class="keywordtype">void</span> initializeCropConfigs();</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    <a class="code hl_struct" href="structCropConfig.html">CropConfig</a> applySeasonalAdjustments(<span class="keyword">const</span> <a class="code hl_struct" href="structCropConfig.html">CropConfig</a>&amp; base, <span class="keyword">const</span> String&amp; season);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>    <a class="code hl_struct" href="structCropConfig.html">CropConfig</a> applyGrowingTypeAdjustments(<span class="keyword">const</span> <a class="code hl_struct" href="structCropConfig.html">CropConfig</a>&amp; base, <span class="keyword">const</span> String&amp; growingType);</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <a class="code hl_struct" href="structCropConfig.html">CropConfig</a> applySoilTypeAdjustments(<span class="keyword">const</span> <a class="code hl_struct" href="structCropConfig.html">CropConfig</a>&amp; base, <span class="keyword">const</span> String&amp; soilType);  <span class="comment">// Добавляем метод</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    String generateScientificRecommendations(<span class="keyword">const</span> <a class="code hl_struct" href="structSensorData.html">SensorData</a>&amp; data, <span class="keyword">const</span> <a class="code hl_struct" href="structCropConfig.html">CropConfig</a>&amp; <a class="code hl_variable" href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a>, <span class="keyword">const</span> String&amp; cropType,</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>                                             <span class="keyword">const</span> String&amp; soilType);</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    String calculateSoilHealthStatus(<span class="keyword">const</span> <a class="code hl_struct" href="structSensorData.html">SensorData</a>&amp; data, <span class="keyword">const</span> <a class="code hl_struct" href="structCropConfig.html">CropConfig</a>&amp; <a class="code hl_variable" href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a>);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    String generateScientificNotes(<span class="keyword">const</span> <a class="code hl_struct" href="structSensorData.html">SensorData</a>&amp; data, <span class="keyword">const</span> <a class="code hl_struct" href="structCropConfig.html">CropConfig</a>&amp; <a class="code hl_variable" href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a>, <span class="keyword">const</span> String&amp; cropType,</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>                                   <span class="keyword">const</span> String&amp; soilType);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <a class="code hl_function" href="classCropRecommendationEngine.html#ae449fe9732b3cef2994a6e0097546c3f">CropRecommendationEngine</a>();</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span> </div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span>    <span class="comment">// Основной метод генерации рекомендаций</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>    <a class="code hl_struct" href="structRecommendationResult.html">RecommendationResult</a> <a class="code hl_function" href="classCropRecommendationEngine.html#a9ed0637318a2c91c089d9d483e79c9ee">generateRecommendation</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structSensorData.html">SensorData</a>&amp; data, <span class="keyword">const</span> String&amp; cropType,</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>                                                <span class="keyword">const</span> String&amp; growingType = <span class="stringliteral">&quot;soil&quot;</span>, <span class="keyword">const</span> String&amp; season = <span class="stringliteral">&quot;spring&quot;</span>,</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>                                                <span class="keyword">const</span> String&amp; soilType = <span class="stringliteral">&quot;loam&quot;</span>  <span class="comment">// Добавляем тип почвы</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>    );</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="comment">// Получение списка доступных культур</span></div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>    std::vector&lt;String&gt; <a class="code hl_function" href="classCropRecommendationEngine.html#a7354b5a34985337c3f8f7020970d3ec3">getAvailableCrops</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>    <span class="comment">// Получение конфигурации культуры</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <a class="code hl_struct" href="structCropConfig.html">CropConfig</a> <a class="code hl_function" href="classCropRecommendationEngine.html#a5d5577eb20020794535ce137e4d6008d">getCropConfig</a>(<span class="keyword">const</span> String&amp; cropType) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span>    <span class="comment">// Валидация данных с датчиков</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classCropRecommendationEngine.html#aa747684ad3c6fe0d29fe19ae82a401ec">validateSensorData</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structSensorData.html">SensorData</a>&amp; data) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>    <span class="comment">// Получение научных данных о культуре</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>    String <a class="code hl_function" href="classCropRecommendationEngine.html#a04df3f1f80fc2f250942b5d671168409">getCropScientificInfo</a>(<span class="keyword">const</span> String&amp; cropType) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span> </div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="comment">// Реализация интерфейса ICropRecommendationEngine</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    <a class="code hl_struct" href="structRecValues.html">RecValues</a> <a class="code hl_function" href="classCropRecommendationEngine.html#a0b8e282e77bd12e9d6efb5e95f6d63d9">computeRecommendations</a>(<span class="keyword">const</span> String&amp; cropId, <span class="keyword">const</span> <a class="code hl_enumeration" href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155d">SoilProfile</a>&amp; soilProfile,</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>                                     <span class="keyword">const</span> <a class="code hl_enumeration" href="ICropRecommendationEngine_8h.html#a1de7cecb71b1f30091409b059b24e8d6">EnvironmentType</a>&amp; envType) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span> </div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classCropRecommendationEngine.html#a80d5dcf4a5b65a4540bd5999322fbd3d">applySeasonalCorrection</a>(<a class="code hl_struct" href="structRecValues.html">RecValues</a>&amp; rec, <a class="code hl_enumeration" href="ICropRecommendationEngine_8h.html#ace3a72289effba7c41de4a566bd3c300">Season</a> season, <span class="keywordtype">bool</span> isGreenhouse) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>};</div>
+</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="preprocessor">#endif  </span><span class="comment">// CROP_RECOMMENDATION_ENGINE_H</span></div>
+<div class="ttc" id="aICropRecommendationEngine_8h_html"><div class="ttname"><a href="ICropRecommendationEngine_8h.html">ICropRecommendationEngine.h</a></div><div class="ttdoc">Интерфейс для движка рекомендаций по культурам</div></div>
+<div class="ttc" id="aICropRecommendationEngine_8h_html_a1de7cecb71b1f30091409b059b24e8d6"><div class="ttname"><a href="ICropRecommendationEngine_8h.html#a1de7cecb71b1f30091409b059b24e8d6">EnvironmentType</a></div><div class="ttdeci">EnvironmentType</div><div class="ttdef"><b>Определения</b> ICropRecommendationEngine.h:35</div></div>
+<div class="ttc" id="aICropRecommendationEngine_8h_html_ace3a72289effba7c41de4a566bd3c300"><div class="ttname"><a href="ICropRecommendationEngine_8h.html#ace3a72289effba7c41de4a566bd3c300">Season</a></div><div class="ttdeci">Season</div><div class="ttdef"><b>Определения</b> ICropRecommendationEngine.h:27</div></div>
+<div class="ttc" id="aclassCropRecommendationEngine_html_a04df3f1f80fc2f250942b5d671168409"><div class="ttname"><a href="classCropRecommendationEngine.html#a04df3f1f80fc2f250942b5d671168409">CropRecommendationEngine::getCropScientificInfo</a></div><div class="ttdeci">String getCropScientificInfo(const String &amp;cropType) const</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.cpp:795</div></div>
+<div class="ttc" id="aclassCropRecommendationEngine_html_a0b8e282e77bd12e9d6efb5e95f6d63d9"><div class="ttname"><a href="classCropRecommendationEngine.html#a0b8e282e77bd12e9d6efb5e95f6d63d9">CropRecommendationEngine::computeRecommendations</a></div><div class="ttdeci">RecValues computeRecommendations(const String &amp;cropId, const SoilProfile &amp;soilProfile, const EnvironmentType &amp;envType) override</div><div class="ttdoc">Вычисляет рекомендации для указанной культуры</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.cpp:878</div></div>
+<div class="ttc" id="aclassCropRecommendationEngine_html_a5d5577eb20020794535ce137e4d6008d"><div class="ttname"><a href="classCropRecommendationEngine.html#a5d5577eb20020794535ce137e4d6008d">CropRecommendationEngine::getCropConfig</a></div><div class="ttdeci">CropConfig getCropConfig(const String &amp;cropType) const</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.cpp:768</div></div>
+<div class="ttc" id="aclassCropRecommendationEngine_html_a7354b5a34985337c3f8f7020970d3ec3"><div class="ttname"><a href="classCropRecommendationEngine.html#a7354b5a34985337c3f8f7020970d3ec3">CropRecommendationEngine::getAvailableCrops</a></div><div class="ttdeci">std::vector&lt; String &gt; getAvailableCrops() const</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.cpp:758</div></div>
+<div class="ttc" id="aclassCropRecommendationEngine_html_a80d5dcf4a5b65a4540bd5999322fbd3d"><div class="ttname"><a href="classCropRecommendationEngine.html#a80d5dcf4a5b65a4540bd5999322fbd3d">CropRecommendationEngine::applySeasonalCorrection</a></div><div class="ttdeci">void applySeasonalCorrection(RecValues &amp;rec, Season season, bool isGreenhouse) override</div><div class="ttdoc">Применяет сезонные корректировки к рекомендациям</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.cpp:905</div></div>
+<div class="ttc" id="aclassCropRecommendationEngine_html_a9ed0637318a2c91c089d9d483e79c9ee"><div class="ttname"><a href="classCropRecommendationEngine.html#a9ed0637318a2c91c089d9d483e79c9ee">CropRecommendationEngine::generateRecommendation</a></div><div class="ttdeci">RecommendationResult generateRecommendation(const SensorData &amp;data, const String &amp;cropType, const String &amp;growingType=&quot;soil&quot;, const String &amp;season=&quot;spring&quot;, const String &amp;soilType=&quot;loam&quot;)</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.cpp:174</div></div>
+<div class="ttc" id="aclassCropRecommendationEngine_html_aa747684ad3c6fe0d29fe19ae82a401ec"><div class="ttname"><a href="classCropRecommendationEngine.html#aa747684ad3c6fe0d29fe19ae82a401ec">CropRecommendationEngine::validateSensorData</a></div><div class="ttdeci">bool validateSensorData(const SensorData &amp;data) const</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.cpp:784</div></div>
+<div class="ttc" id="aclassCropRecommendationEngine_html_ae449fe9732b3cef2994a6e0097546c3f"><div class="ttname"><a href="classCropRecommendationEngine.html#ae449fe9732b3cef2994a6e0097546c3f">CropRecommendationEngine::CropRecommendationEngine</a></div><div class="ttdeci">CropRecommendationEngine()</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.cpp:28</div></div>
+<div class="ttc" id="aclassICropRecommendationEngine_html"><div class="ttname"><a href="classICropRecommendationEngine.html">ICropRecommendationEngine</a></div><div class="ttdoc">Интерфейс для движка рекомендаций по культурам</div><div class="ttdef"><b>Определения</b> ICropRecommendationEngine.h:50</div></div>
+<div class="ttc" id="aconfig_8cpp_html_a4a8dd3a2de125b72d4fe6251a0a271b5"><div class="ttname"><a href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a></div><div class="ttdeci">Config config</div><div class="ttdef"><b>Определения</b> config.cpp:38</div></div>
+<div class="ttc" id="amodbus__sensor_8h_html"><div class="ttname"><a href="modbus__sensor_8h.html">modbus_sensor.h</a></div></div>
+<div class="ttc" id="asensor__compensation_8h_html_aaa92ab56ea828c0bcccad4564b21155d"><div class="ttname"><a href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155d">SoilProfile</a></div><div class="ttdeci">SoilProfile</div><div class="ttdef"><b>Определения</b> sensor_compensation.h:18</div></div>
+<div class="ttc" id="astructCropCompensationParams_1_1Builder_html"><div class="ttname"><a href="structCropCompensationParams_1_1Builder.html">CropCompensationParams::Builder</a></div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:30</div></div>
+<div class="ttc" id="astructCropCompensationParams_1_1Builder_html_a178d8b840f5ed2cc1d3b75c437052ac1"><div class="ttname"><a href="structCropCompensationParams_1_1Builder.html#a178d8b840f5ed2cc1d3b75c437052ac1">CropCompensationParams::Builder::rawValue</a></div><div class="ttdeci">float rawValue</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:31</div></div>
+<div class="ttc" id="astructCropCompensationParams_1_1Builder_html_a213e12c4d0b9eb564a3c4f415bee36e4"><div class="ttname"><a href="structCropCompensationParams_1_1Builder.html#a213e12c4d0b9eb564a3c4f415bee36e4">CropCompensationParams::Builder::moisture</a></div><div class="ttdeci">float moisture</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:33</div></div>
+<div class="ttc" id="astructCropCompensationParams_1_1Builder_html_a2757f47824a5c37868e1c7c0ae7f8ec2"><div class="ttname"><a href="structCropCompensationParams_1_1Builder.html#a2757f47824a5c37868e1c7c0ae7f8ec2">CropCompensationParams::Builder::build</a></div><div class="ttdeci">CropCompensationParams build() const</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:49</div></div>
+<div class="ttc" id="astructCropCompensationParams_1_1Builder_html_a28dedafa9b5dd1cdb3fba7921732b66b"><div class="ttname"><a href="structCropCompensationParams_1_1Builder.html#a28dedafa9b5dd1cdb3fba7921732b66b">CropCompensationParams::Builder::setTemperature</a></div><div class="ttdeci">Builder &amp; setTemperature(float temp)</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:39</div></div>
+<div class="ttc" id="astructCropCompensationParams_1_1Builder_html_a65d40006c64163e259839e1b3583b10d"><div class="ttname"><a href="structCropCompensationParams_1_1Builder.html#a65d40006c64163e259839e1b3583b10d">CropCompensationParams::Builder::setMoisture</a></div><div class="ttdeci">Builder &amp; setMoisture(float moist)</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:44</div></div>
+<div class="ttc" id="astructCropCompensationParams_1_1Builder_html_abce258c651950a0c3be602761f74bd2f"><div class="ttname"><a href="structCropCompensationParams_1_1Builder.html#abce258c651950a0c3be602761f74bd2f">CropCompensationParams::Builder::temperature</a></div><div class="ttdeci">float temperature</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:32</div></div>
+<div class="ttc" id="astructCropCompensationParams_1_1Builder_html_ad2ed34830af6e32ae257efc33989591d"><div class="ttname"><a href="structCropCompensationParams_1_1Builder.html#ad2ed34830af6e32ae257efc33989591d">CropCompensationParams::Builder::setRawValue</a></div><div class="ttdeci">Builder &amp; setRawValue(float value)</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:34</div></div>
+<div class="ttc" id="astructCropCompensationParams_html"><div class="ttname"><a href="structCropCompensationParams.html">CropCompensationParams</a></div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:20</div></div>
+<div class="ttc" id="astructCropCompensationParams_html_a1013ccb29597ab4e4b16ddd8b97bc8f2"><div class="ttname"><a href="structCropCompensationParams.html#a1013ccb29597ab4e4b16ddd8b97bc8f2">CropCompensationParams::builder</a></div><div class="ttdeci">static Builder builder()</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:54</div></div>
+<div class="ttc" id="astructCropCompensationParams_html_a30a5f1439ac6104d11563c1525154a9d"><div class="ttname"><a href="structCropCompensationParams.html#a30a5f1439ac6104d11563c1525154a9d">CropCompensationParams::temperature</a></div><div class="ttdeci">float temperature</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:22</div></div>
+<div class="ttc" id="astructCropCompensationParams_html_ab951a2533badafb2f1a1c5f139b04962"><div class="ttname"><a href="structCropCompensationParams.html#ab951a2533badafb2f1a1c5f139b04962">CropCompensationParams::moisture</a></div><div class="ttdeci">float moisture</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:23</div></div>
+<div class="ttc" id="astructCropCompensationParams_html_ac68a8ddc9b05ab24d142722935e58ddb"><div class="ttname"><a href="structCropCompensationParams.html#ac68a8ddc9b05ab24d142722935e58ddb">CropCompensationParams::rawValue</a></div><div class="ttdeci">float rawValue</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:21</div></div>
+<div class="ttc" id="astructCropConfig_html"><div class="ttname"><a href="structCropConfig.html">CropConfig</a></div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:96</div></div>
+<div class="ttc" id="astructCropConfig_html_a00cc52bc3426a4dda6749145540489c1"><div class="ttname"><a href="structCropConfig.html#a00cc52bc3426a4dda6749145540489c1">CropConfig::potassium</a></div><div class="ttdeci">float potassium</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:103</div></div>
+<div class="ttc" id="astructCropConfig_html_a143b4c57d738c2ff0f6beac940a7eb30"><div class="ttname"><a href="structCropConfig.html#a143b4c57d738c2ff0f6beac940a7eb30">CropConfig::CropConfig</a></div><div class="ttdeci">CropConfig()</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:105</div></div>
+<div class="ttc" id="astructCropConfig_html_a14d0adaf211511dade7d561244030dad"><div class="ttname"><a href="structCropConfig.html#a14d0adaf211511dade7d561244030dad">CropConfig::humidity</a></div><div class="ttdeci">float humidity</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:98</div></div>
+<div class="ttc" id="astructCropConfig_html_a6396b34ee06cddfafeb51a6fe8c6673b"><div class="ttname"><a href="structCropConfig.html#a6396b34ee06cddfafeb51a6fe8c6673b">CropConfig::temperature</a></div><div class="ttdeci">float temperature</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:97</div></div>
+<div class="ttc" id="astructCropConfig_html_a8dc22a79055b2d188599219d13b6da63"><div class="ttname"><a href="structCropConfig.html#a8dc22a79055b2d188599219d13b6da63">CropConfig::CropConfig</a></div><div class="ttdeci">CropConfig(float t, float h, float e, float p, float n, float ph, float k)</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:107</div></div>
+<div class="ttc" id="astructCropConfig_html_ad320c47982971ef8abbb919252042203"><div class="ttname"><a href="structCropConfig.html#ad320c47982971ef8abbb919252042203">CropConfig::nitrogen</a></div><div class="ttdeci">float nitrogen</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:101</div></div>
+<div class="ttc" id="astructCropConfig_html_ad8bc80ce5bb46ac63ccce6220a1d58eb"><div class="ttname"><a href="structCropConfig.html#ad8bc80ce5bb46ac63ccce6220a1d58eb">CropConfig::phosphorus</a></div><div class="ttdeci">float phosphorus</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:102</div></div>
+<div class="ttc" id="astructCropConfig_html_adeef15ae99ba41875689af46d6259c2c"><div class="ttname"><a href="structCropConfig.html#adeef15ae99ba41875689af46d6259c2c">CropConfig::ec</a></div><div class="ttdeci">float ec</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:99</div></div>
+<div class="ttc" id="astructCropConfig_html_af5b41b0e1f835a14681f201462c2099f"><div class="ttname"><a href="structCropConfig.html#af5b41b0e1f835a14681f201462c2099f">CropConfig::ph</a></div><div class="ttdeci">float ph</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:100</div></div>
+<div class="ttc" id="astructCropECCompensationParams_1_1Builder_html"><div class="ttname"><a href="structCropECCompensationParams_1_1Builder.html">CropECCompensationParams::Builder</a></div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:70</div></div>
+<div class="ttc" id="astructCropECCompensationParams_1_1Builder_html_a1ed86f5943bd2d6d9224f59f7a860155"><div class="ttname"><a href="structCropECCompensationParams_1_1Builder.html#a1ed86f5943bd2d6d9224f59f7a860155">CropECCompensationParams::Builder::setRawValue</a></div><div class="ttdeci">Builder &amp; setRawValue(float value)</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:73</div></div>
+<div class="ttc" id="astructCropECCompensationParams_1_1Builder_html_a5a7037a51ecd48d56013a0000e76b9fa"><div class="ttname"><a href="structCropECCompensationParams_1_1Builder.html#a5a7037a51ecd48d56013a0000e76b9fa">CropECCompensationParams::Builder::build</a></div><div class="ttdeci">CropECCompensationParams build() const</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:83</div></div>
+<div class="ttc" id="astructCropECCompensationParams_1_1Builder_html_aa3f259033a3147a2eaf13f7ea8122f98"><div class="ttname"><a href="structCropECCompensationParams_1_1Builder.html#aa3f259033a3147a2eaf13f7ea8122f98">CropECCompensationParams::Builder::rawValue</a></div><div class="ttdeci">float rawValue</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:71</div></div>
+<div class="ttc" id="astructCropECCompensationParams_1_1Builder_html_aba536414d77234adde8a5e0b35a9e8f2"><div class="ttname"><a href="structCropECCompensationParams_1_1Builder.html#aba536414d77234adde8a5e0b35a9e8f2">CropECCompensationParams::Builder::temperature</a></div><div class="ttdeci">float temperature</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:72</div></div>
+<div class="ttc" id="astructCropECCompensationParams_1_1Builder_html_abc4bf117bd0ec5a9dac656581fe88d76"><div class="ttname"><a href="structCropECCompensationParams_1_1Builder.html#abc4bf117bd0ec5a9dac656581fe88d76">CropECCompensationParams::Builder::setTemperature</a></div><div class="ttdeci">Builder &amp; setTemperature(float temp)</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:78</div></div>
+<div class="ttc" id="astructCropECCompensationParams_html"><div class="ttname"><a href="structCropECCompensationParams.html">CropECCompensationParams</a></div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:61</div></div>
+<div class="ttc" id="astructCropECCompensationParams_html_aaea7291ec52df53ad5fcd89399c162f4"><div class="ttname"><a href="structCropECCompensationParams.html#aaea7291ec52df53ad5fcd89399c162f4">CropECCompensationParams::rawValue</a></div><div class="ttdeci">float rawValue</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:62</div></div>
+<div class="ttc" id="astructCropECCompensationParams_html_abf4c3895eb5688c173f8f86c0edc4d96"><div class="ttname"><a href="structCropECCompensationParams.html#abf4c3895eb5688c173f8f86c0edc4d96">CropECCompensationParams::temperature</a></div><div class="ttdeci">float temperature</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:63</div></div>
+<div class="ttc" id="astructCropECCompensationParams_html_af7897922930b8933666e3262e1ce7aed"><div class="ttname"><a href="structCropECCompensationParams.html#af7897922930b8933666e3262e1ce7aed">CropECCompensationParams::builder</a></div><div class="ttdeci">static Builder builder()</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:88</div></div>
+<div class="ttc" id="astructRecValues_html"><div class="ttname"><a href="structRecValues.html">RecValues</a></div><div class="ttdef"><b>Определения</b> ICropRecommendationEngine.h:15</div></div>
+<div class="ttc" id="astructRecommendationResult_html"><div class="ttname"><a href="structRecommendationResult.html">RecommendationResult</a></div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:115</div></div>
+<div class="ttc" id="astructRecommendationResult_html_a0f34697f68ccd584285b4142a97bc4f0"><div class="ttname"><a href="structRecommendationResult.html#a0f34697f68ccd584285b4142a97bc4f0">RecommendationResult::healthStatus</a></div><div class="ttdeci">String healthStatus</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:121</div></div>
+<div class="ttc" id="astructRecommendationResult_html_a5ec536587029e3d69b125600f5701a2e"><div class="ttname"><a href="structRecommendationResult.html#a5ec536587029e3d69b125600f5701a2e">RecommendationResult::season</a></div><div class="ttdeci">String season</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:118</div></div>
+<div class="ttc" id="astructRecommendationResult_html_a9111704f809f1092a8b643509117e1ba"><div class="ttname"><a href="structRecommendationResult.html#a9111704f809f1092a8b643509117e1ba">RecommendationResult::scientificNotes</a></div><div class="ttdeci">String scientificNotes</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:122</div></div>
+<div class="ttc" id="astructRecommendationResult_html_ac029fac45a2beb6f99011d7a49c919cf"><div class="ttname"><a href="structRecommendationResult.html#ac029fac45a2beb6f99011d7a49c919cf">RecommendationResult::cropType</a></div><div class="ttdeci">String cropType</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:116</div></div>
+<div class="ttc" id="astructRecommendationResult_html_ac4d2c62d783e2dd0904ddb89bf98c252"><div class="ttname"><a href="structRecommendationResult.html#ac4d2c62d783e2dd0904ddb89bf98c252">RecommendationResult::soilType</a></div><div class="ttdeci">String soilType</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:119</div></div>
+<div class="ttc" id="astructRecommendationResult_html_afb68ecc0cf88cb9eee2c16b3f0fe9ae6"><div class="ttname"><a href="structRecommendationResult.html#afb68ecc0cf88cb9eee2c16b3f0fe9ae6">RecommendationResult::recommendations</a></div><div class="ttdeci">String recommendations</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:120</div></div>
+<div class="ttc" id="astructRecommendationResult_html_afdc7c64a7d23b9b24361ecce50dfda3b"><div class="ttname"><a href="structRecommendationResult.html#afdc7c64a7d23b9b24361ecce50dfda3b">RecommendationResult::growingType</a></div><div class="ttdeci">String growingType</div><div class="ttdef"><b>Определения</b> crop_recommendation_engine.h:117</div></div>
+<div class="ttc" id="astructSensorData_html"><div class="ttname"><a href="structSensorData.html">SensorData</a></div><div class="ttdef"><b>Определения</b> modbus_sensor.h:42</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="dir_c609be0e70205f3a6024833e52bd2ac3.html">business</a></li><li class="navelem"><a class="el" href="crop__recommendation__engine_8h.html">crop_recommendation_engine.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

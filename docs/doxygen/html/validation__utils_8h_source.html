@@ -1,0 +1,304 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor 7-in-1: Исходный файл include/validation_utils.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
+   </div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('validation__utils_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">validation_utils.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="validation__utils_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifdef TEST_BUILD</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;../test/stubs/esp32_stubs.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="modbus__sensor_8h.html">modbus_sensor.h</a>&quot;</span>  <span class="comment">// Для SensorData</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// СТРУКТУРЫ РЕЗУЛЬТАТОВ ВАЛИДАЦИИ</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span></div>
+<div class="foldopen" id="foldopen00024" data-start="{" data-end="};">
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="structValidationResult.html">   24</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="structValidationResult.html#ae2c6c08be51aa32f2b8991bbcc9c4625">   26</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structValidationResult.html#ae2c6c08be51aa32f2b8991bbcc9c4625">isValid</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structValidationResult.html#a53fbac7dfa578d7c9532106dbf325eba">   27</a></span>    String <a class="code hl_variable" href="structValidationResult.html#a53fbac7dfa578d7c9532106dbf325eba">message</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>};</div>
+</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span></div>
+<div class="foldopen" id="foldopen00033" data-start="{" data-end="};">
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="structValidationError.html">   33</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structValidationError.html">ValidationError</a></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="structValidationError.html#afe37331a5cad29591a36872c97118ebe">   35</a></span>    String <a class="code hl_variable" href="structValidationError.html#afe37331a5cad29591a36872c97118ebe">field</a>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structValidationError.html#a7d8199508641c0ffe90e1b15fe3cc82c">   36</a></span>    String <a class="code hl_variable" href="structValidationError.html#a7d8199508641c0ffe90e1b15fe3cc82c">message</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>};</div>
+</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span></div>
+<div class="foldopen" id="foldopen00042" data-start="{" data-end="};">
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structConfigValidationResult.html">   42</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structConfigValidationResult.html">ConfigValidationResult</a></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>{</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structConfigValidationResult.html#ae1533b894732e63a2322865fba65c499">   44</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structConfigValidationResult.html#ae1533b894732e63a2322865fba65c499">isValid</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structConfigValidationResult.html#adfe9c7666685cd227d3a2c4d0e10efe1">   45</a></span>    std::vector&lt;ValidationError&gt; <a class="code hl_variable" href="structConfigValidationResult.html#adfe9c7666685cd227d3a2c4d0e10efe1">errors</a>;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>};</div>
+</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span></div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structSensorValidationResult.html">   51</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structSensorValidationResult.html">SensorValidationResult</a></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structSensorValidationResult.html#acfa046237a82d060e944d05e093d26bf">   53</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structSensorValidationResult.html#acfa046237a82d060e944d05e093d26bf">isValid</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structSensorValidationResult.html#a41444c647d77a9f5f7b4c7d38e2abb8a">   54</a></span>    std::vector&lt;ValidationError&gt; <a class="code hl_variable" href="structSensorValidationResult.html#a41444c647d77a9f5f7b4c7d38e2abb8a">errors</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>};</div>
+</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment">// СТРУКТУРЫ ДАННЫХ (forward declarations)</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">// Упрощенная структура конфигурации для валидации</span></div>
+<div class="foldopen" id="foldopen00062" data-start="{" data-end="};">
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="structConfigData.html">   62</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structConfigData.html">ConfigData</a></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="structConfigData.html#ae280e01c917c44f8fdaea8ea803b2398">   64</a></span>    String <a class="code hl_variable" href="structConfigData.html#ae280e01c917c44f8fdaea8ea803b2398">ssid</a>;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="structConfigData.html#a16d6eaf819e4a207fcf52b3038347231">   65</a></span>    String <a class="code hl_variable" href="structConfigData.html#a16d6eaf819e4a207fcf52b3038347231">password</a>;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="structConfigData.html#a9680e7b026b5b2ca4fba7725a14b269a">   66</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structConfigData.html#a9680e7b026b5b2ca4fba7725a14b269a">mqttEnabled</a>;</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="structConfigData.html#a6f1dfd087cc2fb57f07e9c906c21318e">   67</a></span>    String <a class="code hl_variable" href="structConfigData.html#a6f1dfd087cc2fb57f07e9c906c21318e">mqttServer</a>;</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="structConfigData.html#aa3a6c46c326325f44c5cf551094e4012">   68</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="structConfigData.html#aa3a6c46c326325f44c5cf551094e4012">mqttPort</a>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structConfigData.html#a0297efbded709e911c6a26ec58b4d16f">   69</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structConfigData.html#a0297efbded709e911c6a26ec58b4d16f">thingSpeakEnabled</a>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="structConfigData.html#a38d97f1bfec0f08c3b4ffd4177866660">   70</a></span>    String <a class="code hl_variable" href="structConfigData.html#a38d97f1bfec0f08c3b4ffd4177866660">thingSpeakAPIKey</a>;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="structConfigData.html#ad39ef7e66372933b6db3bc612b36e149">   71</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="structConfigData.html#ad39ef7e66372933b6db3bc612b36e149">sensorReadInterval</a>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="structConfigData.html#a4cd4bdfc03b67b1a6d0a9c53f3d51148">   72</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="structConfigData.html#a4cd4bdfc03b67b1a6d0a9c53f3d51148">mqttPublishInterval</a>;</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="structConfigData.html#adb6ae912fb0f894f37e86eaeaf964800">   73</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="structConfigData.html#adb6ae912fb0f894f37e86eaeaf964800">thingspeakInterval</a>;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="structConfigData.html#a2d2106d586c94e91e3d797d77deacdaf">   74</a></span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_variable" href="structConfigData.html#a2d2106d586c94e91e3d797d77deacdaf">ntpUpdateInterval</a>;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>};</div>
+</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">// SensorData определен в modbus_sensor.h</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">// ФУНКЦИИ ВАЛИДАЦИИ КОНФИГУРАЦИИ</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#af988ebb1f8e6e907df08f24a81d34c6b">validateSSID</a>(<span class="keyword">const</span> String&amp; ssid);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#a9e87dd09b18043e14aeaf09bb1ed4577">validatePassword</a>(<span class="keyword">const</span> String&amp; password);</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#aa496a6a13d80b8662e7dfea4fd9df479">validateMQTTServer</a>(<span class="keyword">const</span> String&amp; <a class="code hl_function" href="main_8cpp.html#a48f3f185be3ea2d153c347a157b38d42">server</a>);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#a47bd7b80bf2f4f9b117609e7e1cc507c">validateMQTTPort</a>(<span class="keywordtype">int</span> port);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span></div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#aed42aace8ccac73c73eb1440f8cd2afc">validateThingSpeakAPIKey</a>(<span class="keyword">const</span> String&amp; apiKey);</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#a497c34deeef98edaac0de3ac1a3e10a8">validateInterval</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> interval, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> min_val, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> max_val,</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span>                                  <span class="keyword">const</span> <span class="keywordtype">char</span>* name);</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#a7f07d4d6084e7aa1d2de3a8b5661d9e3">validateSensorReadInterval</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> interval);</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#a15f556efd2c016821186e4604e1d94a5">validateMQTTPublishInterval</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> interval);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#a5b75ecc2060e8847777ac37a7b17baf2">validateThingSpeakInterval</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> interval);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#affc3bd3259b06ba5eaaec72c6196886d">validateNTPInterval</a>(<span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> interval);</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="comment">// ФУНКЦИИ ВАЛИДАЦИИ ДАННЫХ ДАТЧИКА</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#aee1ec6b01bc6185c471610c55ff89fb2">validateRange</a>(<span class="keywordtype">float</span> value, <span class="keywordtype">float</span> min_val, <span class="keywordtype">float</span> max_val, <span class="keyword">const</span> <span class="keywordtype">char</span>* field_name);</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span></div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#afe3a5befa4789b9ca6c7655d6281f888">validateTemperature</a>(<span class="keywordtype">float</span> temperature);</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#a704129fdab28312c377892a04c574a4b">validateHumidity</a>(<span class="keywordtype">float</span> humidity);</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#a9a22805be7f816c485280fdae9ad0fd9">validatePH</a>(<span class="keywordtype">float</span> ph);</div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#ad576be2a825399670a0d7ad52dfc8425">validateEC</a>(<span class="keywordtype">float</span> ec);</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span><a class="code hl_struct" href="structValidationResult.html">ValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#a60ce7cf3c6ae19175789b058eaaede80">validateNPK</a>(<span class="keywordtype">float</span> value, <span class="keyword">const</span> <span class="keywordtype">char</span>* nutrient);</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span><span class="comment">// КОМПЛЕКСНАЯ ВАЛИДАЦИЯ</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><a class="code hl_struct" href="structConfigValidationResult.html">ConfigValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#a50082e2c8fdc2515c34d4c5a38651242">validateFullConfig</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structConfigData.html">ConfigData</a>&amp; <a class="code hl_variable" href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a>, <span class="keywordtype">bool</span> checkRequired = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><a class="code hl_struct" href="structSensorValidationResult.html">SensorValidationResult</a> <a class="code hl_function" href="validation__utils_8h.html#a1b8529ff5465c73b043d27ad7d2e86f3">validateFullSensorData</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structSensorData.html">SensorData</a>&amp; data);</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="comment">// УТИЛИТЫ ВАЛИДАЦИИ</span></div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span></div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="keywordtype">bool</span> <a class="code hl_function" href="validation__utils_8h.html#a15290a120cd4c378e64893f11adbb4fd">isValidIPAddress</a>(<span class="keyword">const</span> String&amp; ip);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span></div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span><span class="keywordtype">bool</span> <a class="code hl_function" href="validation__utils_8h.html#abf0e43fe7c5fd9b3439d01e4a0557259">isValidHostname</a>(<span class="keyword">const</span> String&amp; hostname);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span>String <a class="code hl_function" href="validation__utils_8h.html#af447043f0553ccee92c72fb59009b1ec">formatValidationErrors</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structConfigValidationResult.html">ConfigValidationResult</a>&amp; result);</div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span></div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>String <a class="code hl_function" href="validation__utils_8h.html#aecb050d7cbd49c3a3cb0dadcb72360c3">formatSensorValidationErrors</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structSensorValidationResult.html">SensorValidationResult</a>&amp; result);</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span> </div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno">  258</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><span class="comment">// ЛОГИРОВАНИЕ ВАЛИДАЦИИ</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span><span class="comment">// ============================================================================</span></div>
+<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span></div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="keywordtype">void</span> <a class="code hl_function" href="validation__utils_8h.html#a5b0b5f3adf97cc7910641d046b3e292c">logValidationResult</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structConfigValidationResult.html">ConfigValidationResult</a>&amp; result, <span class="keyword">const</span> <span class="keywordtype">char</span>* context);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="keywordtype">void</span> <a class="code hl_function" href="validation__utils_8h.html#a90392289dbf6077016cdb0ce0cdc34f8">logSensorValidationResult</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structSensorValidationResult.html">SensorValidationResult</a>&amp; result, <span class="keyword">const</span> <span class="keywordtype">char</span>* context);</div>
+<div class="ttc" id="aconfig_8cpp_html_a4a8dd3a2de125b72d4fe6251a0a271b5"><div class="ttname"><a href="config_8cpp.html#a4a8dd3a2de125b72d4fe6251a0a271b5">config</a></div><div class="ttdeci">Config config</div><div class="ttdef"><b>Определения</b> config.cpp:38</div></div>
+<div class="ttc" id="amain_8cpp_html_a48f3f185be3ea2d153c347a157b38d42"><div class="ttname"><a href="main_8cpp.html#a48f3f185be3ea2d153c347a157b38d42">server</a></div><div class="ttdeci">WebServer server(80)</div></div>
+<div class="ttc" id="amodbus__sensor_8h_html"><div class="ttname"><a href="modbus__sensor_8h.html">modbus_sensor.h</a></div></div>
+<div class="ttc" id="astructConfigData_html"><div class="ttname"><a href="structConfigData.html">ConfigData</a></div><div class="ttdef"><b>Определения</b> validation_utils.h:63</div></div>
+<div class="ttc" id="astructConfigData_html_a0297efbded709e911c6a26ec58b4d16f"><div class="ttname"><a href="structConfigData.html#a0297efbded709e911c6a26ec58b4d16f">ConfigData::thingSpeakEnabled</a></div><div class="ttdeci">bool thingSpeakEnabled</div><div class="ttdef"><b>Определения</b> validation_utils.h:69</div></div>
+<div class="ttc" id="astructConfigData_html_a16d6eaf819e4a207fcf52b3038347231"><div class="ttname"><a href="structConfigData.html#a16d6eaf819e4a207fcf52b3038347231">ConfigData::password</a></div><div class="ttdeci">String password</div><div class="ttdef"><b>Определения</b> validation_utils.h:65</div></div>
+<div class="ttc" id="astructConfigData_html_a2d2106d586c94e91e3d797d77deacdaf"><div class="ttname"><a href="structConfigData.html#a2d2106d586c94e91e3d797d77deacdaf">ConfigData::ntpUpdateInterval</a></div><div class="ttdeci">unsigned long ntpUpdateInterval</div><div class="ttdef"><b>Определения</b> validation_utils.h:74</div></div>
+<div class="ttc" id="astructConfigData_html_a38d97f1bfec0f08c3b4ffd4177866660"><div class="ttname"><a href="structConfigData.html#a38d97f1bfec0f08c3b4ffd4177866660">ConfigData::thingSpeakAPIKey</a></div><div class="ttdeci">String thingSpeakAPIKey</div><div class="ttdef"><b>Определения</b> validation_utils.h:70</div></div>
+<div class="ttc" id="astructConfigData_html_a4cd4bdfc03b67b1a6d0a9c53f3d51148"><div class="ttname"><a href="structConfigData.html#a4cd4bdfc03b67b1a6d0a9c53f3d51148">ConfigData::mqttPublishInterval</a></div><div class="ttdeci">unsigned long mqttPublishInterval</div><div class="ttdef"><b>Определения</b> validation_utils.h:72</div></div>
+<div class="ttc" id="astructConfigData_html_a6f1dfd087cc2fb57f07e9c906c21318e"><div class="ttname"><a href="structConfigData.html#a6f1dfd087cc2fb57f07e9c906c21318e">ConfigData::mqttServer</a></div><div class="ttdeci">String mqttServer</div><div class="ttdef"><b>Определения</b> validation_utils.h:67</div></div>
+<div class="ttc" id="astructConfigData_html_a9680e7b026b5b2ca4fba7725a14b269a"><div class="ttname"><a href="structConfigData.html#a9680e7b026b5b2ca4fba7725a14b269a">ConfigData::mqttEnabled</a></div><div class="ttdeci">bool mqttEnabled</div><div class="ttdef"><b>Определения</b> validation_utils.h:66</div></div>
+<div class="ttc" id="astructConfigData_html_aa3a6c46c326325f44c5cf551094e4012"><div class="ttname"><a href="structConfigData.html#aa3a6c46c326325f44c5cf551094e4012">ConfigData::mqttPort</a></div><div class="ttdeci">int mqttPort</div><div class="ttdef"><b>Определения</b> validation_utils.h:68</div></div>
+<div class="ttc" id="astructConfigData_html_ad39ef7e66372933b6db3bc612b36e149"><div class="ttname"><a href="structConfigData.html#ad39ef7e66372933b6db3bc612b36e149">ConfigData::sensorReadInterval</a></div><div class="ttdeci">unsigned long sensorReadInterval</div><div class="ttdef"><b>Определения</b> validation_utils.h:71</div></div>
+<div class="ttc" id="astructConfigData_html_adb6ae912fb0f894f37e86eaeaf964800"><div class="ttname"><a href="structConfigData.html#adb6ae912fb0f894f37e86eaeaf964800">ConfigData::thingspeakInterval</a></div><div class="ttdeci">unsigned long thingspeakInterval</div><div class="ttdef"><b>Определения</b> validation_utils.h:73</div></div>
+<div class="ttc" id="astructConfigData_html_ae280e01c917c44f8fdaea8ea803b2398"><div class="ttname"><a href="structConfigData.html#ae280e01c917c44f8fdaea8ea803b2398">ConfigData::ssid</a></div><div class="ttdeci">String ssid</div><div class="ttdef"><b>Определения</b> validation_utils.h:64</div></div>
+<div class="ttc" id="astructConfigValidationResult_html"><div class="ttname"><a href="structConfigValidationResult.html">ConfigValidationResult</a></div><div class="ttdoc">Результат валидации конфигурации</div><div class="ttdef"><b>Определения</b> validation_utils.h:43</div></div>
+<div class="ttc" id="astructConfigValidationResult_html_adfe9c7666685cd227d3a2c4d0e10efe1"><div class="ttname"><a href="structConfigValidationResult.html#adfe9c7666685cd227d3a2c4d0e10efe1">ConfigValidationResult::errors</a></div><div class="ttdeci">std::vector&lt; ValidationError &gt; errors</div><div class="ttdef"><b>Определения</b> validation_utils.h:45</div></div>
+<div class="ttc" id="astructConfigValidationResult_html_ae1533b894732e63a2322865fba65c499"><div class="ttname"><a href="structConfigValidationResult.html#ae1533b894732e63a2322865fba65c499">ConfigValidationResult::isValid</a></div><div class="ttdeci">bool isValid</div><div class="ttdef"><b>Определения</b> validation_utils.h:44</div></div>
+<div class="ttc" id="astructSensorData_html"><div class="ttname"><a href="structSensorData.html">SensorData</a></div><div class="ttdef"><b>Определения</b> modbus_sensor.h:42</div></div>
+<div class="ttc" id="astructSensorValidationResult_html"><div class="ttname"><a href="structSensorValidationResult.html">SensorValidationResult</a></div><div class="ttdoc">Результат валидации данных датчика</div><div class="ttdef"><b>Определения</b> validation_utils.h:52</div></div>
+<div class="ttc" id="astructSensorValidationResult_html_a41444c647d77a9f5f7b4c7d38e2abb8a"><div class="ttname"><a href="structSensorValidationResult.html#a41444c647d77a9f5f7b4c7d38e2abb8a">SensorValidationResult::errors</a></div><div class="ttdeci">std::vector&lt; ValidationError &gt; errors</div><div class="ttdef"><b>Определения</b> validation_utils.h:54</div></div>
+<div class="ttc" id="astructSensorValidationResult_html_acfa046237a82d060e944d05e093d26bf"><div class="ttname"><a href="structSensorValidationResult.html#acfa046237a82d060e944d05e093d26bf">SensorValidationResult::isValid</a></div><div class="ttdeci">bool isValid</div><div class="ttdef"><b>Определения</b> validation_utils.h:53</div></div>
+<div class="ttc" id="astructValidationError_html"><div class="ttname"><a href="structValidationError.html">ValidationError</a></div><div class="ttdoc">Ошибка валидации с указанием поля</div><div class="ttdef"><b>Определения</b> validation_utils.h:34</div></div>
+<div class="ttc" id="astructValidationError_html_a7d8199508641c0ffe90e1b15fe3cc82c"><div class="ttname"><a href="structValidationError.html#a7d8199508641c0ffe90e1b15fe3cc82c">ValidationError::message</a></div><div class="ttdeci">String message</div><div class="ttdef"><b>Определения</b> validation_utils.h:36</div></div>
+<div class="ttc" id="astructValidationError_html_afe37331a5cad29591a36872c97118ebe"><div class="ttname"><a href="structValidationError.html#afe37331a5cad29591a36872c97118ebe">ValidationError::field</a></div><div class="ttdeci">String field</div><div class="ttdef"><b>Определения</b> validation_utils.h:35</div></div>
+<div class="ttc" id="astructValidationResult_html"><div class="ttname"><a href="structValidationResult.html">ValidationResult</a></div><div class="ttdoc">Результат валидации одного поля</div><div class="ttdef"><b>Определения</b> validation_utils.h:25</div></div>
+<div class="ttc" id="astructValidationResult_html_a53fbac7dfa578d7c9532106dbf325eba"><div class="ttname"><a href="structValidationResult.html#a53fbac7dfa578d7c9532106dbf325eba">ValidationResult::message</a></div><div class="ttdeci">String message</div><div class="ttdef"><b>Определения</b> validation_utils.h:27</div></div>
+<div class="ttc" id="astructValidationResult_html_ae2c6c08be51aa32f2b8991bbcc9c4625"><div class="ttname"><a href="structValidationResult.html#ae2c6c08be51aa32f2b8991bbcc9c4625">ValidationResult::isValid</a></div><div class="ttdeci">bool isValid</div><div class="ttdef"><b>Определения</b> validation_utils.h:26</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a15290a120cd4c378e64893f11adbb4fd"><div class="ttname"><a href="validation__utils_8h.html#a15290a120cd4c378e64893f11adbb4fd">isValidIPAddress</a></div><div class="ttdeci">bool isValidIPAddress(const String &amp;ip)</div><div class="ttdoc">Проверка валидности IP адреса</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:475</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a15f556efd2c016821186e4604e1d94a5"><div class="ttname"><a href="validation__utils_8h.html#a15f556efd2c016821186e4604e1d94a5">validateMQTTPublishInterval</a></div><div class="ttdeci">ValidationResult validateMQTTPublishInterval(unsigned long interval)</div><div class="ttdoc">Валидация интервала публикации MQTT.</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:254</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a1b8529ff5465c73b043d27ad7d2e86f3"><div class="ttname"><a href="validation__utils_8h.html#a1b8529ff5465c73b043d27ad7d2e86f3">validateFullSensorData</a></div><div class="ttdeci">SensorValidationResult validateFullSensorData(const SensorData &amp;data)</div><div class="ttdoc">Полная валидация данных датчика</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:414</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a47bd7b80bf2f4f9b117609e7e1cc507c"><div class="ttname"><a href="validation__utils_8h.html#a47bd7b80bf2f4f9b117609e7e1cc507c">validateMQTTPort</a></div><div class="ttdeci">ValidationResult validateMQTTPort(int port)</div><div class="ttdoc">Валидация MQTT порта</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:640</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a497c34deeef98edaac0de3ac1a3e10a8"><div class="ttname"><a href="validation__utils_8h.html#a497c34deeef98edaac0de3ac1a3e10a8">validateInterval</a></div><div class="ttdeci">ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val, const char *name)</div><div class="ttdoc">Валидация интервала (общая функция)</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:235</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a50082e2c8fdc2515c34d4c5a38651242"><div class="ttname"><a href="validation__utils_8h.html#a50082e2c8fdc2515c34d4c5a38651242">validateFullConfig</a></div><div class="ttdeci">ConfigValidationResult validateFullConfig(const ConfigData &amp;config, bool checkRequired=true)</div><div class="ttdoc">Полная валидация конфигурации</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:328</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a5b0b5f3adf97cc7910641d046b3e292c"><div class="ttname"><a href="validation__utils_8h.html#a5b0b5f3adf97cc7910641d046b3e292c">logValidationResult</a></div><div class="ttdeci">void logValidationResult(const ConfigValidationResult &amp;result, const char *context)</div><div class="ttdoc">Логирование результата валидации конфигурации</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:563</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a5b75ecc2060e8847777ac37a7b17baf2"><div class="ttname"><a href="validation__utils_8h.html#a5b75ecc2060e8847777ac37a7b17baf2">validateThingSpeakInterval</a></div><div class="ttdeci">ValidationResult validateThingSpeakInterval(unsigned long interval)</div><div class="ttdoc">Валидация интервала ThingSpeak.</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:261</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a60ce7cf3c6ae19175789b058eaaede80"><div class="ttname"><a href="validation__utils_8h.html#a60ce7cf3c6ae19175789b058eaaede80">validateNPK</a></div><div class="ttdeci">ValidationResult validateNPK(float value, const char *nutrient)</div><div class="ttdoc">Валидация NPK значений</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:316</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a704129fdab28312c377892a04c574a4b"><div class="ttname"><a href="validation__utils_8h.html#a704129fdab28312c377892a04c574a4b">validateHumidity</a></div><div class="ttdeci">ValidationResult validateHumidity(float humidity)</div><div class="ttdoc">Валидация влажности</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:295</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a7f07d4d6084e7aa1d2de3a8b5661d9e3"><div class="ttname"><a href="validation__utils_8h.html#a7f07d4d6084e7aa1d2de3a8b5661d9e3">validateSensorReadInterval</a></div><div class="ttdeci">ValidationResult validateSensorReadInterval(unsigned long interval)</div><div class="ttdoc">Валидация интервала чтения датчика</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:247</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a90392289dbf6077016cdb0ce0cdc34f8"><div class="ttname"><a href="validation__utils_8h.html#a90392289dbf6077016cdb0ce0cdc34f8">logSensorValidationResult</a></div><div class="ttdeci">void logSensorValidationResult(const SensorValidationResult &amp;result, const char *context)</div><div class="ttdoc">Логирование результата валидации датчика</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:580</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a9a22805be7f816c485280fdae9ad0fd9"><div class="ttname"><a href="validation__utils_8h.html#a9a22805be7f816c485280fdae9ad0fd9">validatePH</a></div><div class="ttdeci">ValidationResult validatePH(float ph)</div><div class="ttdoc">Валидация pH.</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:302</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_a9e87dd09b18043e14aeaf09bb1ed4577"><div class="ttname"><a href="validation__utils_8h.html#a9e87dd09b18043e14aeaf09bb1ed4577">validatePassword</a></div><div class="ttdeci">ValidationResult validatePassword(const String &amp;password)</div><div class="ttdoc">Валидация пароля WiFi.</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:610</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_aa496a6a13d80b8662e7dfea4fd9df479"><div class="ttname"><a href="validation__utils_8h.html#aa496a6a13d80b8662e7dfea4fd9df479">validateMQTTServer</a></div><div class="ttdeci">ValidationResult validateMQTTServer(const String &amp;server)</div><div class="ttdoc">Валидация MQTT сервера</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:623</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_abf0e43fe7c5fd9b3439d01e4a0557259"><div class="ttname"><a href="validation__utils_8h.html#abf0e43fe7c5fd9b3439d01e4a0557259">isValidHostname</a></div><div class="ttdeci">bool isValidHostname(const String &amp;hostname)</div><div class="ttdoc">Проверка валидности hostname.</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:509</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_ad576be2a825399670a0d7ad52dfc8425"><div class="ttname"><a href="validation__utils_8h.html#ad576be2a825399670a0d7ad52dfc8425">validateEC</a></div><div class="ttdeci">ValidationResult validateEC(float ec)</div><div class="ttdoc">Валидация электропроводности</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:309</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_aecb050d7cbd49c3a3cb0dadcb72360c3"><div class="ttname"><a href="validation__utils_8h.html#aecb050d7cbd49c3a3cb0dadcb72360c3">formatSensorValidationErrors</a></div><div class="ttdeci">String formatSensorValidationErrors(const SensorValidationResult &amp;result)</div><div class="ttdoc">Форматирование ошибок валидации датчика</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:544</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_aed42aace8ccac73c73eb1440f8cd2afc"><div class="ttname"><a href="validation__utils_8h.html#aed42aace8ccac73c73eb1440f8cd2afc">validateThingSpeakAPIKey</a></div><div class="ttdeci">ValidationResult validateThingSpeakAPIKey(const String &amp;apiKey)</div><div class="ttdoc">Валидация ThingSpeak API ключа</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:650</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_aee1ec6b01bc6185c471610c55ff89fb2"><div class="ttname"><a href="validation__utils_8h.html#aee1ec6b01bc6185c471610c55ff89fb2">validateRange</a></div><div class="ttdeci">ValidationResult validateRange(float value, float min_val, float max_val, const char *field_name)</div><div class="ttdoc">Универсальная функция валидации диапазона</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:280</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_af447043f0553ccee92c72fb59009b1ec"><div class="ttname"><a href="validation__utils_8h.html#af447043f0553ccee92c72fb59009b1ec">formatValidationErrors</a></div><div class="ttdeci">String formatValidationErrors(const ConfigValidationResult &amp;result)</div><div class="ttdoc">Форматирование ошибок валидации конфигурации</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:529</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_af988ebb1f8e6e907df08f24a81d34c6b"><div class="ttname"><a href="validation__utils_8h.html#af988ebb1f8e6e907df08f24a81d34c6b">validateSSID</a></div><div class="ttdeci">ValidationResult validateSSID(const String &amp;ssid)</div><div class="ttdoc">Валидация SSID.</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:597</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_afe3a5befa4789b9ca6c7655d6281f888"><div class="ttname"><a href="validation__utils_8h.html#afe3a5befa4789b9ca6c7655d6281f888">validateTemperature</a></div><div class="ttdeci">ValidationResult validateTemperature(float temperature)</div><div class="ttdoc">Валидация температуры</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:288</div></div>
+<div class="ttc" id="avalidation__utils_8h_html_affc3bd3259b06ba5eaaec72c6196886d"><div class="ttname"><a href="validation__utils_8h.html#affc3bd3259b06ba5eaaec72c6196886d">validateNTPInterval</a></div><div class="ttdeci">ValidationResult validateNTPInterval(unsigned long interval)</div><div class="ttdoc">Валидация интервала обновления NTP.</div><div class="ttdef"><b>Определения</b> validation_utils.cpp:268</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="validation__utils_8h.html">validation_utils.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

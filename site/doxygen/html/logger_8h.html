@@ -1,0 +1,1351 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor 7-in-1: Файл include/logger.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
+   </div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('logger_8h.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#define-members">Макросы</a> &#124;
+<a href="#enum-members">Перечисления</a> &#124;
+<a href="#func-members">Функции</a> &#124;
+<a href="#var-members">Переменные</a>  </div>
+  <div class="headertitle"><div class="title">Файл logger.h</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Система логгирования с красивым форматированием  
+<a href="#details">Подробнее...</a></p>
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &lt;array&gt;</code><br />
+<code>#include &lt;utility&gt;</code><br />
+</div>
+<p><a href="logger_8h_source.html">См. исходные тексты.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Макросы</h2></td></tr>
+<tr class="memitem:a1805ae11e986e60d931ddd9e54e12fe5" id="r_a1805ae11e986e60d931ddd9e54e12fe5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1805ae11e986e60d931ddd9e54e12fe5">LOG_SYMBOL_ERROR</a>&#160;&#160;&#160;&quot;❌&quot;</td></tr>
+<tr class="separator:a1805ae11e986e60d931ddd9e54e12fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e4fda439418c6c40322f686422d9780" id="r_a7e4fda439418c6c40322f686422d9780"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7e4fda439418c6c40322f686422d9780">LOG_SYMBOL_WARN</a>&#160;&#160;&#160;&quot;⚠️ &quot;</td></tr>
+<tr class="separator:a7e4fda439418c6c40322f686422d9780"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29ad49893877cde0893a8a0fef27fe90" id="r_a29ad49893877cde0893a8a0fef27fe90"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a29ad49893877cde0893a8a0fef27fe90">LOG_SYMBOL_INFO</a>&#160;&#160;&#160;&quot;ℹ️ &quot;</td></tr>
+<tr class="separator:a29ad49893877cde0893a8a0fef27fe90"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20a52a9bc99086288ae7984b9a4ebc2b" id="r_a20a52a9bc99086288ae7984b9a4ebc2b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a20a52a9bc99086288ae7984b9a4ebc2b">LOG_SYMBOL_DEBUG</a>&#160;&#160;&#160;&quot;🔧&quot;</td></tr>
+<tr class="separator:a20a52a9bc99086288ae7984b9a4ebc2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f059e66d832311f77817c558143bc1f" id="r_a3f059e66d832311f77817c558143bc1f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f059e66d832311f77817c558143bc1f">LOG_SYMBOL_SUCCESS</a>&#160;&#160;&#160;&quot;✅&quot;</td></tr>
+<tr class="separator:a3f059e66d832311f77817c558143bc1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88747f65ea7adeeda31222acace5fc11" id="r_a88747f65ea7adeeda31222acace5fc11"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a88747f65ea7adeeda31222acace5fc11">LOG_SYMBOL_SENSOR</a>&#160;&#160;&#160;&quot;📡&quot;</td></tr>
+<tr class="separator:a88747f65ea7adeeda31222acace5fc11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b85a144155d4ee001653d25ce7a8ba6" id="r_a9b85a144155d4ee001653d25ce7a8ba6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b85a144155d4ee001653d25ce7a8ba6">LOG_SYMBOL_WIFI</a>&#160;&#160;&#160;&quot;📶&quot;</td></tr>
+<tr class="separator:a9b85a144155d4ee001653d25ce7a8ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80f904e66b58e997255b9a283394a107" id="r_a80f904e66b58e997255b9a283394a107"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a80f904e66b58e997255b9a283394a107">LOG_SYMBOL_MQTT</a>&#160;&#160;&#160;&quot;🌐&quot;</td></tr>
+<tr class="separator:a80f904e66b58e997255b9a283394a107"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b1858242a4856cb030b9b12625deb6b" id="r_a3b1858242a4856cb030b9b12625deb6b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b1858242a4856cb030b9b12625deb6b">LOG_SYMBOL_HTTP</a>&#160;&#160;&#160;&quot;🌍&quot;</td></tr>
+<tr class="separator:a3b1858242a4856cb030b9b12625deb6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad86358bf19927183dd7b4ae215a29731" id="r_ad86358bf19927183dd7b4ae215a29731"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad86358bf19927183dd7b4ae215a29731">COLOR_RED</a>&#160;&#160;&#160;&quot;\033[31m&quot;</td></tr>
+<tr class="separator:ad86358bf19927183dd7b4ae215a29731"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc9149f5de51bd9ac4f5ebbfa153f018" id="r_afc9149f5de51bd9ac4f5ebbfa153f018"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc9149f5de51bd9ac4f5ebbfa153f018">COLOR_GREEN</a>&#160;&#160;&#160;&quot;\033[32m&quot;</td></tr>
+<tr class="separator:afc9149f5de51bd9ac4f5ebbfa153f018"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4534b577b74a58b0f4b7be027af664e0" id="r_a4534b577b74a58b0f4b7be027af664e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4534b577b74a58b0f4b7be027af664e0">COLOR_YELLOW</a>&#160;&#160;&#160;&quot;\033[33m&quot;</td></tr>
+<tr class="separator:a4534b577b74a58b0f4b7be027af664e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23c70d699a5a775bc2e1ebeb8603f630" id="r_a23c70d699a5a775bc2e1ebeb8603f630"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23c70d699a5a775bc2e1ebeb8603f630">COLOR_BLUE</a>&#160;&#160;&#160;&quot;\033[34m&quot;</td></tr>
+<tr class="separator:a23c70d699a5a775bc2e1ebeb8603f630"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8deb0beccea721b35bdb1b4f7264fe75" id="r_a8deb0beccea721b35bdb1b4f7264fe75"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8deb0beccea721b35bdb1b4f7264fe75">COLOR_MAGENTA</a>&#160;&#160;&#160;&quot;\033[35m&quot;</td></tr>
+<tr class="separator:a8deb0beccea721b35bdb1b4f7264fe75"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a82573859711fce56f1aa0a76b18a9b18" id="r_a82573859711fce56f1aa0a76b18a9b18"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a82573859711fce56f1aa0a76b18a9b18">COLOR_CYAN</a>&#160;&#160;&#160;&quot;\033[36m&quot;</td></tr>
+<tr class="separator:a82573859711fce56f1aa0a76b18a9b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b44987ffdc2af19b635206b94334b69" id="r_a9b44987ffdc2af19b635206b94334b69"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b44987ffdc2af19b635206b94334b69">COLOR_WHITE</a>&#160;&#160;&#160;&quot;\033[37m&quot;</td></tr>
+<tr class="separator:a9b44987ffdc2af19b635206b94334b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17f760256046df23dd0ab46602f04d02" id="r_a17f760256046df23dd0ab46602f04d02"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a17f760256046df23dd0ab46602f04d02">COLOR_RESET</a>&#160;&#160;&#160;&quot;\033[0m&quot;</td></tr>
+<tr class="separator:a17f760256046df23dd0ab46602f04d02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc15635060f0257c0fffc7a81d80ba27" id="r_abc15635060f0257c0fffc7a81d80ba27"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc15635060f0257c0fffc7a81d80ba27">logPrintHeader</a>&#160;&#160;&#160;<a class="el" href="logger_8cpp.html#adc424edacf4b7c29b2a123afe3cbf575">printHeader</a></td></tr>
+<tr class="separator:abc15635060f0257c0fffc7a81d80ba27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3293aba3c0d14b27e1cb79043a7a46f6" id="r_a3293aba3c0d14b27e1cb79043a7a46f6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3293aba3c0d14b27e1cb79043a7a46f6">logPrintSeparator</a>(symbol,  length)</td></tr>
+<tr class="separator:a3293aba3c0d14b27e1cb79043a7a46f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95f2819d6c1750e96e08587db9642a63" id="r_a95f2819d6c1750e96e08587db9642a63"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a95f2819d6c1750e96e08587db9642a63">logPrintBanner</a>(text)</td></tr>
+<tr class="separator:a95f2819d6c1750e96e08587db9642a63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
+Перечисления</h2></td></tr>
+<tr class="memitem:a4ad2f3fcf504e54f0d7835fa6a4a5cd4" id="r_a4ad2f3fcf504e54f0d7835fa6a4a5cd4"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a> : std::uint8_t { <a class="el" href="#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473">LOG_ERROR</a> = 0
+, <a class="el" href="#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13">LOG_WARN</a> = 1
+, <a class="el" href="#a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837">LOG_INFO</a> = 2
+, <a class="el" href="#a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e">LOG_DEBUG</a> = 3
+ }</td></tr>
+<tr class="separator:a4ad2f3fcf504e54f0d7835fa6a4a5cd4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b15c85f545a729e30a74239be429afb" id="r_a2b15c85f545a729e30a74239be429afb"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b15c85f545a729e30a74239be429afb">LogColor</a> : std::uint8_t { <br />
+&#160;&#160;<a class="el" href="#a2b15c85f545a729e30a74239be429afbaa2d9547b5d3dd9f05984475f7c926da0">RED</a> = 0
+, <a class="el" href="#a2b15c85f545a729e30a74239be429afba9de0e5dd94e861317e74964bed179fa0">GREEN</a> = 1
+, <a class="el" href="#a2b15c85f545a729e30a74239be429afba8a568e5f41b7e4da88fe5c4a00aad34e">YELLOW</a> = 2
+, <a class="el" href="#a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f">BLUE</a> = 3
+, <br />
+&#160;&#160;<a class="el" href="#a2b15c85f545a729e30a74239be429afbac634ffea7195608364671ac52ee59a61">MAGENTA</a> = 4
+, <a class="el" href="#a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749">CYAN</a> = 5
+, <a class="el" href="#a2b15c85f545a729e30a74239be429afbab5bf627e448384cf3a4c35121ca6008d">WHITE</a> = 6
+, <a class="el" href="#a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f">CYAN_DEFAULT</a> = 7
+<br />
+ }</td></tr>
+<tr class="separator:a2b15c85f545a729e30a74239be429afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a73d33bdd74467a1ac7814b1a783f7f28" id="r_a73d33bdd74467a1ac7814b1a783f7f28"><td class="memItemLeft" align="right" valign="top">String&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a73d33bdd74467a1ac7814b1a783f7f28">formatLogMessage</a> (const String &amp;message)</td></tr>
+<tr class="separator:a73d33bdd74467a1ac7814b1a783f7f28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a646cbac39f467aafa298c8dae1ff0091" id="r_a646cbac39f467aafa298c8dae1ff0091"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a646cbac39f467aafa298c8dae1ff0091">logError</a> (const String &amp;message)</td></tr>
+<tr class="separator:a646cbac39f467aafa298c8dae1ff0091"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70f38e65c2a4620bbf763080674010af" id="r_a70f38e65c2a4620bbf763080674010af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a70f38e65c2a4620bbf763080674010af">logWarn</a> (const String &amp;message)</td></tr>
+<tr class="separator:a70f38e65c2a4620bbf763080674010af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a374e6f13f686b3de469c00c01d5fe1d3" id="r_a374e6f13f686b3de469c00c01d5fe1d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a374e6f13f686b3de469c00c01d5fe1d3">logInfo</a> (const String &amp;message)</td></tr>
+<tr class="separator:a374e6f13f686b3de469c00c01d5fe1d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aade0576f178f655d0f991ed324fd27ff" id="r_aade0576f178f655d0f991ed324fd27ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aade0576f178f655d0f991ed324fd27ff">logDebug</a> (const String &amp;message)</td></tr>
+<tr class="separator:aade0576f178f655d0f991ed324fd27ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33d6cac9c78346491213dac197c0f9f3" id="r_a33d6cac9c78346491213dac197c0f9f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33d6cac9c78346491213dac197c0f9f3">logSuccess</a> (const String &amp;message)</td></tr>
+<tr class="separator:a33d6cac9c78346491213dac197c0f9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad52356734897533dd1ec07d78670a5bb" id="r_ad52356734897533dd1ec07d78670a5bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad52356734897533dd1ec07d78670a5bb">logSensor</a> (const String &amp;message)</td></tr>
+<tr class="separator:ad52356734897533dd1ec07d78670a5bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc98ed88066e0a808bb68d9a88ffa9c1" id="r_abc98ed88066e0a808bb68d9a88ffa9c1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc98ed88066e0a808bb68d9a88ffa9c1">logWiFi</a> (const String &amp;message)</td></tr>
+<tr class="separator:abc98ed88066e0a808bb68d9a88ffa9c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3ae977a43dcf87df0dc3035a2983455" id="r_ae3ae977a43dcf87df0dc3035a2983455"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae3ae977a43dcf87df0dc3035a2983455">logMQTT</a> (const String &amp;message)</td></tr>
+<tr class="separator:ae3ae977a43dcf87df0dc3035a2983455"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d16d7846a1d3892a73f05af6286c36e" id="r_a8d16d7846a1d3892a73f05af6286c36e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8d16d7846a1d3892a73f05af6286c36e">logHTTP</a> (const String &amp;message)</td></tr>
+<tr class="separator:a8d16d7846a1d3892a73f05af6286c36e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9b60e3dbf53fc95c5a1ca77a6fec2643" id="r_a9b60e3dbf53fc95c5a1ca77a6fec2643"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9b60e3dbf53fc95c5a1ca77a6fec2643">logSystem</a> (const String &amp;message)</td></tr>
+<tr class="separator:a9b60e3dbf53fc95c5a1ca77a6fec2643"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a994321edf88e16ea088cdbaf0f8a8177" id="r_a994321edf88e16ea088cdbaf0f8a8177"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a994321edf88e16ea088cdbaf0f8a8177">logData</a> (const String &amp;message)</td></tr>
+<tr class="separator:a994321edf88e16ea088cdbaf0f8a8177"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac83141719078208430688a446513a86c" id="r_ac83141719078208430688a446513a86c"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ac83141719078208430688a446513a86c"><td class="memTemplItemLeft" align="right" valign="top">String&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ac83141719078208430688a446513a86c">formatLogMessageSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ac83141719078208430688a446513a86c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad818ba4d072fb6a9a364afa42925a3ec" id="r_ad818ba4d072fb6a9a364afa42925a3ec"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ad818ba4d072fb6a9a364afa42925a3ec"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ad818ba4d072fb6a9a364afa42925a3ec">logErrorSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ad818ba4d072fb6a9a364afa42925a3ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbf7f45d915a4fb169e75a4f0a573fe1" id="r_acbf7f45d915a4fb169e75a4f0a573fe1"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:acbf7f45d915a4fb169e75a4f0a573fe1"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#acbf7f45d915a4fb169e75a4f0a573fe1">logWarnSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:acbf7f45d915a4fb169e75a4f0a573fe1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7aa003c7ba1e975cce3e5e166c340bcb" id="r_a7aa003c7ba1e975cce3e5e166c340bcb"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a7aa003c7ba1e975cce3e5e166c340bcb"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a7aa003c7ba1e975cce3e5e166c340bcb">logInfoSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a7aa003c7ba1e975cce3e5e166c340bcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af550a5f0c74d17796f43c93979519e95" id="r_af550a5f0c74d17796f43c93979519e95"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:af550a5f0c74d17796f43c93979519e95"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#af550a5f0c74d17796f43c93979519e95">logDebugSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:af550a5f0c74d17796f43c93979519e95"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a947ab35ef1c5244ba4a67c4f816eab0f" id="r_a947ab35ef1c5244ba4a67c4f816eab0f"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a947ab35ef1c5244ba4a67c4f816eab0f"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a947ab35ef1c5244ba4a67c4f816eab0f">logSuccessSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a947ab35ef1c5244ba4a67c4f816eab0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af76fc349877c2ee0cd1fef42c06445c5" id="r_af76fc349877c2ee0cd1fef42c06445c5"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:af76fc349877c2ee0cd1fef42c06445c5"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#af76fc349877c2ee0cd1fef42c06445c5">logSensorSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:af76fc349877c2ee0cd1fef42c06445c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2082483c0da4d187c86ea99258a4562" id="r_af2082483c0da4d187c86ea99258a4562"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:af2082483c0da4d187c86ea99258a4562"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#af2082483c0da4d187c86ea99258a4562">logWiFiSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:af2082483c0da4d187c86ea99258a4562"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac46cc446803bc3bacfa163e5b7facff9" id="r_ac46cc446803bc3bacfa163e5b7facff9"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ac46cc446803bc3bacfa163e5b7facff9"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ac46cc446803bc3bacfa163e5b7facff9">logMQTTSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ac46cc446803bc3bacfa163e5b7facff9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f44904a4ce3eced5d95e70227139356" id="r_a1f44904a4ce3eced5d95e70227139356"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a1f44904a4ce3eced5d95e70227139356"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a1f44904a4ce3eced5d95e70227139356">logHTTPSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a1f44904a4ce3eced5d95e70227139356"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4869858267c9cfd1b1e0bb3221825f6" id="r_ae4869858267c9cfd1b1e0bb3221825f6"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:ae4869858267c9cfd1b1e0bb3221825f6"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#ae4869858267c9cfd1b1e0bb3221825f6">logSystemSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ae4869858267c9cfd1b1e0bb3221825f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a606d1232524a0f9606f4ae86aedc8adf" id="r_a606d1232524a0f9606f4ae86aedc8adf"><td class="memTemplParams" colspan="2">template&lt;typename... Args&gt; </td></tr>
+<tr class="memitem:a606d1232524a0f9606f4ae86aedc8adf"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="#a606d1232524a0f9606f4ae86aedc8adf">logDataSafe</a> (const char *format, Args &amp;&amp;... args)</td></tr>
+<tr class="separator:a606d1232524a0f9606f4ae86aedc8adf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33f45b00aaf104a528bb909059246d11" id="r_a33f45b00aaf104a528bb909059246d11"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33f45b00aaf104a528bb909059246d11">logSeparator</a> ()</td></tr>
+<tr class="separator:a33f45b00aaf104a528bb909059246d11"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac14de3d3a99ad0c7f8ff459619f12278" id="r_ac14de3d3a99ad0c7f8ff459619f12278"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac14de3d3a99ad0c7f8ff459619f12278">logNewline</a> ()</td></tr>
+<tr class="separator:ac14de3d3a99ad0c7f8ff459619f12278"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab014807afa04f9783ed19c897cbdf54d" id="r_ab014807afa04f9783ed19c897cbdf54d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab014807afa04f9783ed19c897cbdf54d">logMemoryUsage</a> ()</td></tr>
+<tr class="separator:ab014807afa04f9783ed19c897cbdf54d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36865f00b6f06ee84213f5a5a1c3c45d" id="r_a36865f00b6f06ee84213f5a5a1c3c45d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a36865f00b6f06ee84213f5a5a1c3c45d">logSystemInfo</a> ()</td></tr>
+<tr class="separator:a36865f00b6f06ee84213f5a5a1c3c45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07e106e3f19501a64fde4b0c6fa8d73a" id="r_a07e106e3f19501a64fde4b0c6fa8d73a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a07e106e3f19501a64fde4b0c6fa8d73a">logUptime</a> ()</td></tr>
+<tr class="separator:a07e106e3f19501a64fde4b0c6fa8d73a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf70e1b094519276f0363ac763f100ab" id="r_abf70e1b094519276f0363ac763f100ab"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf70e1b094519276f0363ac763f100ab">logWiFiStatus</a> ()</td></tr>
+<tr class="separator:abf70e1b094519276f0363ac763f100ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbb1feb235829ffa762eb8d2615b4864" id="r_abbb1feb235829ffa762eb8d2615b4864"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abbb1feb235829ffa762eb8d2615b4864">setLogColor</a> (<a class="el" href="#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</td></tr>
+<tr class="separator:abbb1feb235829ffa762eb8d2615b4864"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe2743f8bba1e6d306e147b47afb0943" id="r_abe2743f8bba1e6d306e147b47afb0943"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abe2743f8bba1e6d306e147b47afb0943">resetLogColor</a> ()</td></tr>
+<tr class="separator:abe2743f8bba1e6d306e147b47afb0943"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab94ddc842b6a690863609c28cfa93590" id="r_ab94ddc842b6a690863609c28cfa93590"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab94ddc842b6a690863609c28cfa93590">getColorCode</a> (<a class="el" href="#a2b15c85f545a729e30a74239be429afb">LogColor</a> color)</td></tr>
+<tr class="separator:ab94ddc842b6a690863609c28cfa93590"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a490fd0c74359d15846ee34e31f95d4ae" id="r_a490fd0c74359d15846ee34e31f95d4ae"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a490fd0c74359d15846ee34e31f95d4ae">printHeader</a> (const String &amp;title, <a class="el" href="#a2b15c85f545a729e30a74239be429afb">LogColor</a> color=<a class="el" href="#a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f">LogColor::CYAN_DEFAULT</a>)</td></tr>
+<tr class="separator:a490fd0c74359d15846ee34e31f95d4ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60b1ec225359cd3c77533138b437f600" id="r_a60b1ec225359cd3c77533138b437f600"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a60b1ec225359cd3c77533138b437f600">printSubHeader</a> (const String &amp;title, <a class="el" href="#a2b15c85f545a729e30a74239be429afb">LogColor</a> color=<a class="el" href="#a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f">LogColor::BLUE</a>)</td></tr>
+<tr class="separator:a60b1ec225359cd3c77533138b437f600"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afff4c4e20076552958d756dbcdcbe366" id="r_afff4c4e20076552958d756dbcdcbe366"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afff4c4e20076552958d756dbcdcbe366">printTimeStamp</a> ()</td></tr>
+<tr class="separator:afff4c4e20076552958d756dbcdcbe366"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Переменные</h2></td></tr>
+<tr class="memitem:a16cca5b581e7f50a9cc5e838510ae6f5" id="r_a16cca5b581e7f50a9cc5e838510ae6f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a></td></tr>
+<tr class="separator:a16cca5b581e7f50a9cc5e838510ae6f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><p>Система логгирования с красивым форматированием </p>
+</div><h2 class="groupheader">Макросы</h2>
+<a id="a1805ae11e986e60d931ddd9e54e12fe5" name="a1805ae11e986e60d931ddd9e54e12fe5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1805ae11e986e60d931ddd9e54e12fe5">&#9670;&#160;</a></span>LOG_SYMBOL_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_SYMBOL_ERROR&#160;&#160;&#160;&quot;❌&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7e4fda439418c6c40322f686422d9780" name="a7e4fda439418c6c40322f686422d9780"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7e4fda439418c6c40322f686422d9780">&#9670;&#160;</a></span>LOG_SYMBOL_WARN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_SYMBOL_WARN&#160;&#160;&#160;&quot;⚠️ &quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a29ad49893877cde0893a8a0fef27fe90" name="a29ad49893877cde0893a8a0fef27fe90"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29ad49893877cde0893a8a0fef27fe90">&#9670;&#160;</a></span>LOG_SYMBOL_INFO</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_SYMBOL_INFO&#160;&#160;&#160;&quot;ℹ️ &quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a20a52a9bc99086288ae7984b9a4ebc2b" name="a20a52a9bc99086288ae7984b9a4ebc2b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20a52a9bc99086288ae7984b9a4ebc2b">&#9670;&#160;</a></span>LOG_SYMBOL_DEBUG</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_SYMBOL_DEBUG&#160;&#160;&#160;&quot;🔧&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3f059e66d832311f77817c558143bc1f" name="a3f059e66d832311f77817c558143bc1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f059e66d832311f77817c558143bc1f">&#9670;&#160;</a></span>LOG_SYMBOL_SUCCESS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_SYMBOL_SUCCESS&#160;&#160;&#160;&quot;✅&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a88747f65ea7adeeda31222acace5fc11" name="a88747f65ea7adeeda31222acace5fc11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88747f65ea7adeeda31222acace5fc11">&#9670;&#160;</a></span>LOG_SYMBOL_SENSOR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_SYMBOL_SENSOR&#160;&#160;&#160;&quot;📡&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b85a144155d4ee001653d25ce7a8ba6" name="a9b85a144155d4ee001653d25ce7a8ba6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b85a144155d4ee001653d25ce7a8ba6">&#9670;&#160;</a></span>LOG_SYMBOL_WIFI</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_SYMBOL_WIFI&#160;&#160;&#160;&quot;📶&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a80f904e66b58e997255b9a283394a107" name="a80f904e66b58e997255b9a283394a107"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80f904e66b58e997255b9a283394a107">&#9670;&#160;</a></span>LOG_SYMBOL_MQTT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_SYMBOL_MQTT&#160;&#160;&#160;&quot;🌐&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b1858242a4856cb030b9b12625deb6b" name="a3b1858242a4856cb030b9b12625deb6b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b1858242a4856cb030b9b12625deb6b">&#9670;&#160;</a></span>LOG_SYMBOL_HTTP</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define LOG_SYMBOL_HTTP&#160;&#160;&#160;&quot;🌍&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad86358bf19927183dd7b4ae215a29731" name="ad86358bf19927183dd7b4ae215a29731"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad86358bf19927183dd7b4ae215a29731">&#9670;&#160;</a></span>COLOR_RED</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COLOR_RED&#160;&#160;&#160;&quot;\033[31m&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afc9149f5de51bd9ac4f5ebbfa153f018" name="afc9149f5de51bd9ac4f5ebbfa153f018"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc9149f5de51bd9ac4f5ebbfa153f018">&#9670;&#160;</a></span>COLOR_GREEN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COLOR_GREEN&#160;&#160;&#160;&quot;\033[32m&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4534b577b74a58b0f4b7be027af664e0" name="a4534b577b74a58b0f4b7be027af664e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4534b577b74a58b0f4b7be027af664e0">&#9670;&#160;</a></span>COLOR_YELLOW</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COLOR_YELLOW&#160;&#160;&#160;&quot;\033[33m&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a23c70d699a5a775bc2e1ebeb8603f630" name="a23c70d699a5a775bc2e1ebeb8603f630"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23c70d699a5a775bc2e1ebeb8603f630">&#9670;&#160;</a></span>COLOR_BLUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COLOR_BLUE&#160;&#160;&#160;&quot;\033[34m&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8deb0beccea721b35bdb1b4f7264fe75" name="a8deb0beccea721b35bdb1b4f7264fe75"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8deb0beccea721b35bdb1b4f7264fe75">&#9670;&#160;</a></span>COLOR_MAGENTA</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COLOR_MAGENTA&#160;&#160;&#160;&quot;\033[35m&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a82573859711fce56f1aa0a76b18a9b18" name="a82573859711fce56f1aa0a76b18a9b18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82573859711fce56f1aa0a76b18a9b18">&#9670;&#160;</a></span>COLOR_CYAN</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COLOR_CYAN&#160;&#160;&#160;&quot;\033[36m&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b44987ffdc2af19b635206b94334b69" name="a9b44987ffdc2af19b635206b94334b69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b44987ffdc2af19b635206b94334b69">&#9670;&#160;</a></span>COLOR_WHITE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COLOR_WHITE&#160;&#160;&#160;&quot;\033[37m&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a17f760256046df23dd0ab46602f04d02" name="a17f760256046df23dd0ab46602f04d02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a17f760256046df23dd0ab46602f04d02">&#9670;&#160;</a></span>COLOR_RESET</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define COLOR_RESET&#160;&#160;&#160;&quot;\033[0m&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abc15635060f0257c0fffc7a81d80ba27" name="abc15635060f0257c0fffc7a81d80ba27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc15635060f0257c0fffc7a81d80ba27">&#9670;&#160;</a></span>logPrintHeader</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define logPrintHeader&#160;&#160;&#160;<a class="el" href="logger_8cpp.html#adc424edacf4b7c29b2a123afe3cbf575">printHeader</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3293aba3c0d14b27e1cb79043a7a46f6" name="a3293aba3c0d14b27e1cb79043a7a46f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3293aba3c0d14b27e1cb79043a7a46f6">&#9670;&#160;</a></span>logPrintSeparator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define logPrintSeparator</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>symbol</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_function" href="logger_8cpp.html#a33f45b00aaf104a528bb909059246d11">logSeparator</a>()</div>
+<div class="ttc" id="alogger_8cpp_html_a33f45b00aaf104a528bb909059246d11"><div class="ttname"><a href="logger_8cpp.html#a33f45b00aaf104a528bb909059246d11">logSeparator</a></div><div class="ttdeci">void logSeparator()</div><div class="ttdef"><b>Определения</b> logger.cpp:184</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a95f2819d6c1750e96e08587db9642a63" name="a95f2819d6c1750e96e08587db9642a63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95f2819d6c1750e96e08587db9642a63">&#9670;&#160;</a></span>logPrintBanner</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define logPrintBanner</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>text</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Макроопределение:</b><div class="fragment"><div class="line"><a class="code hl_function" href="logger_8cpp.html#adc424edacf4b7c29b2a123afe3cbf575">printHeader</a>(String(text), <a class="code hl_enumvalue" href="#a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749">LogColor::CYAN</a>)</div>
+<div class="ttc" id="alogger_8cpp_html_adc424edacf4b7c29b2a123afe3cbf575"><div class="ttname"><a href="logger_8cpp.html#adc424edacf4b7c29b2a123afe3cbf575">printHeader</a></div><div class="ttdeci">void printHeader(const String &amp;title, LogColor color)</div><div class="ttdef"><b>Определения</b> logger.cpp:277</div></div>
+<div class="ttc" id="alogger_8h_html_a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749"><div class="ttname"><a href="#a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749">LogColor::CYAN</a></div><div class="ttdeci">@ CYAN</div><div class="ttdef"><b>Определения</b> logger.h:34</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<h2 class="groupheader">Перечисления</h2>
+<a id="a4ad2f3fcf504e54f0d7835fa6a4a5cd4" name="a4ad2f3fcf504e54f0d7835fa6a4a5cd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">&#9670;&#160;</a></span>LogLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a> : std::uint8_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473" name="a4ad2f3fcf504e54f0d7835fa6a4a5cd4a230506cce5c68c3bac5a821c42ed3473"></a>LOG_ERROR&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13" name="a4ad2f3fcf504e54f0d7835fa6a4a5cd4ac8041ffa22bc823d4726701cdb13fc13"></a>LOG_WARN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837" name="a4ad2f3fcf504e54f0d7835fa6a4a5cd4a6e98ff471e3ce6c4ef2d75c37ee51837"></a>LOG_INFO&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e" name="a4ad2f3fcf504e54f0d7835fa6a4a5cd4ab9f002c6ffbfd511da8090213227454e"></a>LOG_DEBUG&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="a2b15c85f545a729e30a74239be429afb" name="a2b15c85f545a729e30a74239be429afb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b15c85f545a729e30a74239be429afb">&#9670;&#160;</a></span>LogColor</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#a2b15c85f545a729e30a74239be429afb">LogColor</a> : std::uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Элементы перечислений</th></tr><tr><td class="fieldname"><a id="a2b15c85f545a729e30a74239be429afbaa2d9547b5d3dd9f05984475f7c926da0" name="a2b15c85f545a729e30a74239be429afbaa2d9547b5d3dd9f05984475f7c926da0"></a>RED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2b15c85f545a729e30a74239be429afba9de0e5dd94e861317e74964bed179fa0" name="a2b15c85f545a729e30a74239be429afba9de0e5dd94e861317e74964bed179fa0"></a>GREEN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2b15c85f545a729e30a74239be429afba8a568e5f41b7e4da88fe5c4a00aad34e" name="a2b15c85f545a729e30a74239be429afba8a568e5f41b7e4da88fe5c4a00aad34e"></a>YELLOW&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f" name="a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f"></a>BLUE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2b15c85f545a729e30a74239be429afbac634ffea7195608364671ac52ee59a61" name="a2b15c85f545a729e30a74239be429afbac634ffea7195608364671ac52ee59a61"></a>MAGENTA&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749" name="a2b15c85f545a729e30a74239be429afba344dd8cd533280795b9db82ef0c92749"></a>CYAN&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2b15c85f545a729e30a74239be429afbab5bf627e448384cf3a4c35121ca6008d" name="a2b15c85f545a729e30a74239be429afbab5bf627e448384cf3a4c35121ca6008d"></a>WHITE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f" name="a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f"></a>CYAN_DEFAULT&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<h2 class="groupheader">Функции</h2>
+<a id="a73d33bdd74467a1ac7814b1a783f7f28" name="a73d33bdd74467a1ac7814b1a783f7f28"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73d33bdd74467a1ac7814b1a783f7f28">&#9670;&#160;</a></span>formatLogMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String formatLogMessage </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a646cbac39f467aafa298c8dae1ff0091" name="a646cbac39f467aafa298c8dae1ff0091"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a646cbac39f467aafa298c8dae1ff0091">&#9670;&#160;</a></span>logError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logError </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a70f38e65c2a4620bbf763080674010af" name="a70f38e65c2a4620bbf763080674010af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70f38e65c2a4620bbf763080674010af">&#9670;&#160;</a></span>logWarn()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logWarn </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a374e6f13f686b3de469c00c01d5fe1d3" name="a374e6f13f686b3de469c00c01d5fe1d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a374e6f13f686b3de469c00c01d5fe1d3">&#9670;&#160;</a></span>logInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logInfo </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aade0576f178f655d0f991ed324fd27ff" name="aade0576f178f655d0f991ed324fd27ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aade0576f178f655d0f991ed324fd27ff">&#9670;&#160;</a></span>logDebug()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logDebug </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33d6cac9c78346491213dac197c0f9f3" name="a33d6cac9c78346491213dac197c0f9f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33d6cac9c78346491213dac197c0f9f3">&#9670;&#160;</a></span>logSuccess()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logSuccess </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad52356734897533dd1ec07d78670a5bb" name="ad52356734897533dd1ec07d78670a5bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad52356734897533dd1ec07d78670a5bb">&#9670;&#160;</a></span>logSensor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logSensor </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abc98ed88066e0a808bb68d9a88ffa9c1" name="abc98ed88066e0a808bb68d9a88ffa9c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc98ed88066e0a808bb68d9a88ffa9c1">&#9670;&#160;</a></span>logWiFi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logWiFi </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae3ae977a43dcf87df0dc3035a2983455" name="ae3ae977a43dcf87df0dc3035a2983455"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3ae977a43dcf87df0dc3035a2983455">&#9670;&#160;</a></span>logMQTT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logMQTT </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8d16d7846a1d3892a73f05af6286c36e" name="a8d16d7846a1d3892a73f05af6286c36e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d16d7846a1d3892a73f05af6286c36e">&#9670;&#160;</a></span>logHTTP()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logHTTP </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9b60e3dbf53fc95c5a1ca77a6fec2643" name="a9b60e3dbf53fc95c5a1ca77a6fec2643"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b60e3dbf53fc95c5a1ca77a6fec2643">&#9670;&#160;</a></span>logSystem()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logSystem </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a994321edf88e16ea088cdbaf0f8a8177" name="a994321edf88e16ea088cdbaf0f8a8177"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a994321edf88e16ea088cdbaf0f8a8177">&#9670;&#160;</a></span>logData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logData </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac83141719078208430688a446513a86c" name="ac83141719078208430688a446513a86c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac83141719078208430688a446513a86c">&#9670;&#160;</a></span>formatLogMessageSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">String formatLogMessageSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad818ba4d072fb6a9a364afa42925a3ec" name="ad818ba4d072fb6a9a364afa42925a3ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad818ba4d072fb6a9a364afa42925a3ec">&#9670;&#160;</a></span>logErrorSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void logErrorSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acbf7f45d915a4fb169e75a4f0a573fe1" name="acbf7f45d915a4fb169e75a4f0a573fe1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbf7f45d915a4fb169e75a4f0a573fe1">&#9670;&#160;</a></span>logWarnSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void logWarnSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7aa003c7ba1e975cce3e5e166c340bcb" name="a7aa003c7ba1e975cce3e5e166c340bcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7aa003c7ba1e975cce3e5e166c340bcb">&#9670;&#160;</a></span>logInfoSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void logInfoSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af550a5f0c74d17796f43c93979519e95" name="af550a5f0c74d17796f43c93979519e95"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af550a5f0c74d17796f43c93979519e95">&#9670;&#160;</a></span>logDebugSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void logDebugSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a947ab35ef1c5244ba4a67c4f816eab0f" name="a947ab35ef1c5244ba4a67c4f816eab0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a947ab35ef1c5244ba4a67c4f816eab0f">&#9670;&#160;</a></span>logSuccessSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void logSuccessSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af76fc349877c2ee0cd1fef42c06445c5" name="af76fc349877c2ee0cd1fef42c06445c5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af76fc349877c2ee0cd1fef42c06445c5">&#9670;&#160;</a></span>logSensorSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void logSensorSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af2082483c0da4d187c86ea99258a4562" name="af2082483c0da4d187c86ea99258a4562"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2082483c0da4d187c86ea99258a4562">&#9670;&#160;</a></span>logWiFiSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void logWiFiSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac46cc446803bc3bacfa163e5b7facff9" name="ac46cc446803bc3bacfa163e5b7facff9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac46cc446803bc3bacfa163e5b7facff9">&#9670;&#160;</a></span>logMQTTSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void logMQTTSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f44904a4ce3eced5d95e70227139356" name="a1f44904a4ce3eced5d95e70227139356"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f44904a4ce3eced5d95e70227139356">&#9670;&#160;</a></span>logHTTPSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void logHTTPSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae4869858267c9cfd1b1e0bb3221825f6" name="ae4869858267c9cfd1b1e0bb3221825f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4869858267c9cfd1b1e0bb3221825f6">&#9670;&#160;</a></span>logSystemSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void logSystemSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a606d1232524a0f9606f4ae86aedc8adf" name="a606d1232524a0f9606f4ae86aedc8adf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a606d1232524a0f9606f4ae86aedc8adf">&#9670;&#160;</a></span>logDataSafe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... Args&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void logDataSafe </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>format</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...</td>          <td class="paramname"><span class="paramname"><em>args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33f45b00aaf104a528bb909059246d11" name="a33f45b00aaf104a528bb909059246d11"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33f45b00aaf104a528bb909059246d11">&#9670;&#160;</a></span>logSeparator()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logSeparator </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac14de3d3a99ad0c7f8ff459619f12278" name="ac14de3d3a99ad0c7f8ff459619f12278"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac14de3d3a99ad0c7f8ff459619f12278">&#9670;&#160;</a></span>logNewline()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logNewline </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab014807afa04f9783ed19c897cbdf54d" name="ab014807afa04f9783ed19c897cbdf54d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab014807afa04f9783ed19c897cbdf54d">&#9670;&#160;</a></span>logMemoryUsage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logMemoryUsage </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a36865f00b6f06ee84213f5a5a1c3c45d" name="a36865f00b6f06ee84213f5a5a1c3c45d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36865f00b6f06ee84213f5a5a1c3c45d">&#9670;&#160;</a></span>logSystemInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logSystemInfo </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a07e106e3f19501a64fde4b0c6fa8d73a" name="a07e106e3f19501a64fde4b0c6fa8d73a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07e106e3f19501a64fde4b0c6fa8d73a">&#9670;&#160;</a></span>logUptime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logUptime </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abf70e1b094519276f0363ac763f100ab" name="abf70e1b094519276f0363ac763f100ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf70e1b094519276f0363ac763f100ab">&#9670;&#160;</a></span>logWiFiStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logWiFiStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abbb1feb235829ffa762eb8d2615b4864" name="abbb1feb235829ffa762eb8d2615b4864"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abbb1feb235829ffa762eb8d2615b4864">&#9670;&#160;</a></span>setLogColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setLogColor </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a2b15c85f545a729e30a74239be429afb">LogColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abe2743f8bba1e6d306e147b47afb0943" name="abe2743f8bba1e6d306e147b47afb0943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe2743f8bba1e6d306e147b47afb0943">&#9670;&#160;</a></span>resetLogColor()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void resetLogColor </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab94ddc842b6a690863609c28cfa93590" name="ab94ddc842b6a690863609c28cfa93590"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab94ddc842b6a690863609c28cfa93590">&#9670;&#160;</a></span>getColorCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char * getColorCode </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#a2b15c85f545a729e30a74239be429afb">LogColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a490fd0c74359d15846ee34e31f95d4ae" name="a490fd0c74359d15846ee34e31f95d4ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a490fd0c74359d15846ee34e31f95d4ae">&#9670;&#160;</a></span>printHeader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printHeader </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a2b15c85f545a729e30a74239be429afb">LogColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#a2b15c85f545a729e30a74239be429afba2c237cb1d569e05608de5476a2f8114f">LogColor::CYAN_DEFAULT</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a60b1ec225359cd3c77533138b437f600" name="a60b1ec225359cd3c77533138b437f600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60b1ec225359cd3c77533138b437f600">&#9670;&#160;</a></span>printSubHeader()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printSubHeader </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a2b15c85f545a729e30a74239be429afb">LogColor</a></td>          <td class="paramname"><span class="paramname"><em>color</em></span><span class="paramdefsep"> = </span><span class="paramdefval"><a class="el" href="#a2b15c85f545a729e30a74239be429afba1b3e1ee9bff86431dea6b181365ba65f">LogColor::BLUE</a></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afff4c4e20076552958d756dbcdcbe366" name="afff4c4e20076552958d756dbcdcbe366"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afff4c4e20076552958d756dbcdcbe366">&#9670;&#160;</a></span>printTimeStamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printTimeStamp </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Переменные</h2>
+<a id="a16cca5b581e7f50a9cc5e838510ae6f5" name="a16cca5b581e7f50a9cc5e838510ae6f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16cca5b581e7f50a9cc5e838510ae6f5">&#9670;&#160;</a></span>currentLogLevel</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#a4ad2f3fcf504e54f0d7835fa6a4a5cd4">LogLevel</a> currentLogLevel</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="logger_8h.html">logger.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>
