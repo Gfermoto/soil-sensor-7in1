@@ -16,20 +16,23 @@
  */
 
 // Структуры для калибровочных данных
-struct CalibrationPoint {
-    float expected;    // Ожидаемое значение (эталон)
-    float measured;    // Измеренное значение датчика
+struct CalibrationPoint
+{
+    float expected;  // Ожидаемое значение (эталон)
+    float measured;  // Измеренное значение датчика
 };
 
-struct PHCalibration {
+struct PHCalibration
+{
     std::vector<CalibrationPoint> points;
     float coefficient_a;  // pH_corrected = a × pH_raw + b
     float coefficient_b;
-    float r_squared;      // Коэффициент детерминации
+    float r_squared;  // Коэффициент детерминации
     bool is_valid;
 };
 
-struct ECCalibration {
+struct ECCalibration
+{
     std::vector<CalibrationPoint> points;
     float coefficient_c;  // EC_corrected = c × EC_raw + d
     float coefficient_d;
@@ -37,14 +40,16 @@ struct ECCalibration {
     bool is_valid;
 };
 
-struct NPKCalibration {
-    float offset_nitrogen;    // NPK_corrected = NPK_raw + offset
+struct NPKCalibration
+{
+    float offset_nitrogen;  // NPK_corrected = NPK_raw + offset
     float offset_phosphorus;
     float offset_potassium;
     bool is_valid;
 };
 
-struct SensorCalibration {
+struct SensorCalibration
+{
     String sensor_id;
     String calibration_date;
     PHCalibration ph;
@@ -53,46 +58,47 @@ struct SensorCalibration {
     bool is_complete;
 };
 
-class SensorCalibrationService {
-private:
+class SensorCalibrationService
+{
+   private:
     SensorCalibration current_calibration;
-    
+
     // Расчёт коэффициентов линейной регрессии
-    bool calculateLinearRegression(const std::vector<CalibrationPoint>& points, 
-                                  float& slope, float& intercept, float& r_squared);
-    
+    bool calculateLinearRegression(const std::vector<CalibrationPoint>& points, float& slope, float& intercept,
+                                   float& r_squared);
+
     // Применение калибровки к сырым данным
     float applyPHCalibration(float raw_ph);
     float applyECCalibration(float raw_ec);
     void applyNPKCalibration(float& nitrogen, float& phosphorus, float& potassium);
 
-public:
+   public:
     SensorCalibrationService();
-    
+
     // Добавление калибровочных точек
     bool addPHCalibrationPoint(float expected, float measured);
     bool addECCalibrationPoint(float expected, float measured);
     bool setNPKCalibrationPoint(float measured_n, float measured_p, float measured_k);
-    
+
     // Расчёт калибровочных коэффициентов
     bool calculatePHCalibration();
     bool calculateECCalibration();
     bool calculateNPKCalibration();
-    
+
     // Применение калибровки к данным датчика
     void applyCalibration(float& ph, float& ec, float& nitrogen, float& phosphorus, float& potassium);
-    
+
     // Сериализация/десериализация калибровки
     String exportCalibrationToJSON();
     bool importCalibrationFromJSON(const String& json_data);
-    
+
     // Получение статуса калибровки
     bool isCalibrationComplete() const;
     String getCalibrationStatus() const;
-    
+
     // Сброс калибровки
     void resetCalibration();
-    
+
     // Валидация калибровки
     bool validateCalibration() const;
-}; 
+};

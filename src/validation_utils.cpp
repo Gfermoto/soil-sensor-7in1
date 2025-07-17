@@ -8,58 +8,107 @@
 #include "jxct_constants.h"
 #include "logger.h"
 
-namespace {
+namespace
+{
 // Внутренние функции — только для этой единицы трансляции
 
 // Структура для устранения проблемы с легко перепутываемыми параметрами
-struct IntervalValidation {
+struct IntervalValidation
+{
     unsigned long interval;
     unsigned long min_val;
     unsigned long max_val;
     const char* field_name;
-    
-private:
-    IntervalValidation(unsigned long interval, unsigned long min, unsigned long max, const char* field_name) // NOLINT(bugprone-easily-swappable-parameters)
-        : interval(interval), min_val(min), max_val(max), field_name(field_name) {}
-public:
+
+   private:
+    IntervalValidation(unsigned long interval, unsigned long min, unsigned long max,
+                       const char* field_name)  // NOLINT(bugprone-easily-swappable-parameters)
+        : interval(interval), min_val(min), max_val(max), field_name(field_name)
+    {
+    }
+
+   public:
     // Builder для предотвращения ошибок с параметрами
-    struct Builder {
+    struct Builder
+    {
         unsigned long val = 0;
         unsigned long min = 0;
         unsigned long max = 0;
         const char* name = "";
-        Builder& interval(unsigned long value) { val = value; return *this; }
-        Builder& minValue(unsigned long minVal) { min = minVal; return *this; }
-        Builder& maxValue(unsigned long maxVal) { max = maxVal; return *this; }
-        Builder& fieldName(const char* fieldName) { name = fieldName; return *this; }
-        IntervalValidation build() const {
+        Builder& interval(unsigned long value)
+        {
+            val = value;
+            return *this;
+        }
+        Builder& minValue(unsigned long minVal)
+        {
+            min = minVal;
+            return *this;
+        }
+        Builder& maxValue(unsigned long maxVal)
+        {
+            max = maxVal;
+            return *this;
+        }
+        Builder& fieldName(const char* fieldName)
+        {
+            name = fieldName;
+            return *this;
+        }
+        IntervalValidation build() const
+        {
             return {val, min, max, name};
         }
     };
-    static Builder builder() { return {}; }
+    static Builder builder()
+    {
+        return {};
+    }
 };
 
-struct RangeParams {
+struct RangeParams
+{
     float value = 0.0F;
     float min_val = 0.0F;
     float max_val = 0.0F;
     const char* field_name = "";
-    
-public:
-    struct Builder {
+
+   public:
+    struct Builder
+    {
         float value = 0.0F;
         float min_val = 0.0F;
         float max_val = 0.0F;
         const char* field_name = "";
-        Builder& setValue(float val) { value = val; return *this; }
-        Builder& setMinVal(float min) { min_val = min; return *this; }
-        Builder& setMaxVal(float max) { max_val = max; return *this; }
-        Builder& setFieldName(const char* name) { field_name = name; return *this; }
-        RangeParams build() const {
+        Builder& setValue(float val)
+        {
+            value = val;
+            return *this;
+        }
+        Builder& setMinVal(float min)
+        {
+            min_val = min;
+            return *this;
+        }
+        Builder& setMaxVal(float max)
+        {
+            max_val = max;
+            return *this;
+        }
+        Builder& setFieldName(const char* name)
+        {
+            field_name = name;
+            return *this;
+        }
+        RangeParams build() const
+        {
             return {value, min_val, max_val, field_name};
         }
     };
-    static Builder builder() { return {}; }
+    static Builder builder()
+    {
+        return {};
+    }
 };
 
 // Внутренние функции валидации
@@ -67,8 +116,8 @@ ValidationResult validateInterval(const IntervalValidation& params)
 {
     if (params.interval < params.min_val || params.interval > params.max_val)
     {
-        const String message =
-            String(params.field_name) + " должен быть в диапазоне " + String(params.min_val) + "-" + String(params.max_val) + " мс";
+        const String message = String(params.field_name) + " должен быть в диапазоне " + String(params.min_val) + "-" +
+                               String(params.max_val) + " мс";
         return {false, message};
     }
     return {true, ""};
@@ -82,41 +131,41 @@ ValidationResult validateIntervalInternal(const IntervalValidation& params)
 ValidationResult validateSensorReadIntervalInternal(unsigned long interval)
 {
     return validateIntervalInternal(IntervalValidation::builder()
-        .interval(interval)
-        .minValue(CONFIG_INTERVAL_MIN)
-        .maxValue(CONFIG_INTERVAL_MAX)
-        .fieldName("Интервал чтения датчика")
-        .build());
+                                        .interval(interval)
+                                        .minValue(CONFIG_INTERVAL_MIN)
+                                        .maxValue(CONFIG_INTERVAL_MAX)
+                                        .fieldName("Интервал чтения датчика")
+                                        .build());
 }
 
 ValidationResult validateMQTTPublishIntervalInternal(unsigned long interval)
 {
     return validateIntervalInternal(IntervalValidation::builder()
-        .interval(interval)
-        .minValue(CONFIG_INTERVAL_MIN)
-        .maxValue(CONFIG_INTERVAL_MAX)
-        .fieldName("Интервал публикации MQTT")
-        .build());
+                                        .interval(interval)
+                                        .minValue(CONFIG_INTERVAL_MIN)
+                                        .maxValue(CONFIG_INTERVAL_MAX)
+                                        .fieldName("Интервал публикации MQTT")
+                                        .build());
 }
 
 ValidationResult validateThingSpeakIntervalInternal(unsigned long interval)
 {
     return validateIntervalInternal(IntervalValidation::builder()
-        .interval(interval)
-        .minValue(CONFIG_THINGSPEAK_MIN)
-        .maxValue(CONFIG_THINGSPEAK_MAX)
-        .fieldName("Интервал ThingSpeak")
-        .build());
+                                        .interval(interval)
+                                        .minValue(CONFIG_THINGSPEAK_MIN)
+                                        .maxValue(CONFIG_THINGSPEAK_MAX)
+                                        .fieldName("Интервал ThingSpeak")
+                                        .build());
 }
 
 ValidationResult validateNTPIntervalInternal(unsigned long interval)
 {
     return validateIntervalInternal(IntervalValidation::builder()
-        .interval(interval)
-        .minValue(10000)
-        .maxValue(86400000)
-        .fieldName("Интервал обновления NTP")
-        .build());
+                                        .interval(interval)
+                                        .minValue(10000)
+                                        .maxValue(86400000)
+                                        .fieldName("Интервал обновления NTP")
+                                        .build());
 }
 
 // Универсальная функция валидации диапазона
@@ -133,41 +182,41 @@ ValidationResult validateRangeInternal(const RangeParams& params)
 ValidationResult validateTemperatureInternal(float temperature)
 {
     return validateRangeInternal(RangeParams::builder()
-        .setValue(temperature)
-        .setMinVal(SENSOR_TEMP_MIN)
-        .setMaxVal(SENSOR_TEMP_MAX)
-        .setFieldName("Температура")
-        .build());
+                                     .setValue(temperature)
+                                     .setMinVal(SENSOR_TEMP_MIN)
+                                     .setMaxVal(SENSOR_TEMP_MAX)
+                                     .setFieldName("Температура")
+                                     .build());
 }
 
 ValidationResult validateHumidityInternal(float humidity)
 {
     return validateRangeInternal(RangeParams::builder()
-        .setValue(humidity)
-        .setMinVal(SENSOR_HUMIDITY_MIN)
-        .setMaxVal(SENSOR_HUMIDITY_MAX)
-        .setFieldName("Влажность")
-        .build());
+                                     .setValue(humidity)
+                                     .setMinVal(SENSOR_HUMIDITY_MIN)
+                                     .setMaxVal(SENSOR_HUMIDITY_MAX)
+                                     .setFieldName("Влажность")
+                                     .build());
 }
 
 ValidationResult validatePHInternal(float phValue)
 {
     return validateRangeInternal(RangeParams::builder()
-        .setValue(phValue)
-        .setMinVal(SENSOR_PH_MIN)
-        .setMaxVal(SENSOR_PH_MAX)
-        .setFieldName("pH")
-        .build());
+                                     .setValue(phValue)
+                                     .setMinVal(SENSOR_PH_MIN)
+                                     .setMaxVal(SENSOR_PH_MAX)
+                                     .setFieldName("pH")
+                                     .build());
 }
 
 ValidationResult validateECInternal(float ecValue)
 {
     return validateRangeInternal(RangeParams::builder()
-        .setValue(ecValue)
-        .setMinVal(SENSOR_EC_MIN)
-        .setMaxVal(SENSOR_EC_MAX)
-        .setFieldName("EC")
-        .build());
+                                     .setValue(ecValue)
+                                     .setMinVal(SENSOR_EC_MIN)
+                                     .setMaxVal(SENSOR_EC_MAX)
+                                     .setFieldName("EC")
+                                     .build());
 }
 
 ValidationResult validateNPKInternal(float value, const char* nutrient)
@@ -179,36 +228,45 @@ ValidationResult validateNPKInternal(float value, const char* nutrient)
     }
     return {true, ""};
 }
-} // namespace
+}  // namespace
 
 // Публичные функции (обёртки для обратной совместимости)
-ValidationResult validateInterval(unsigned long interval, unsigned long min_val, unsigned long max_val,
-                                  const char* field_name) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
+ValidationResult validateInterval(
+    unsigned long interval, unsigned long min_val, unsigned long max_val,
+    const char* field_name)  // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
     return validateIntervalInternal(IntervalValidation::builder()
-        .interval(interval)
-        .minValue(min_val)
-        .maxValue(max_val)
-        .fieldName(field_name)
-        .build());
+                                        .interval(interval)
+                                        .minValue(min_val)
+                                        .maxValue(max_val)
+                                        .fieldName(field_name)
+                                        .build());
 }
 
-ValidationResult validateSensorReadInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateSensorReadInterval(
+    unsigned long
+        interval)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateSensorReadIntervalInternal(interval);
 }
 
-ValidationResult validateMQTTPublishInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateMQTTPublishInterval(
+    unsigned long
+        interval)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateMQTTPublishIntervalInternal(interval);
 }
 
-ValidationResult validateThingSpeakInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateThingSpeakInterval(
+    unsigned long
+        interval)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateThingSpeakIntervalInternal(interval);
 }
 
-ValidationResult validateNTPInterval(unsigned long interval) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateNTPInterval(
+    unsigned long
+        interval)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateNTPIntervalInternal(interval);
 }
@@ -218,37 +276,46 @@ ValidationResult validateNTPInterval(unsigned long interval) // NOLINT(misc-use-
 // ============================================================================
 
 // Публичные функции валидации данных датчика
-ValidationResult validateRange(float value, float min_val, float max_val, const char* field_name) // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
+ValidationResult validateRange(
+    float value, float min_val, float max_val,
+    const char* field_name)  // NOLINT(bugprone-easily-swappable-parameters,misc-use-internal-linkage)
 {
-    return validateRangeInternal(RangeParams::builder()
-        .setValue(value)
-        .setMinVal(min_val)
-        .setMaxVal(max_val)
-        .setFieldName(field_name)
-        .build());
+    return validateRangeInternal(
+        RangeParams::builder().setValue(value).setMinVal(min_val).setMaxVal(max_val).setFieldName(field_name).build());
 }
 
-ValidationResult validateTemperature(float temperature) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateTemperature(
+    float
+        temperature)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateTemperatureInternal(temperature);
 }
 
-ValidationResult validateHumidity(float humidity) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateHumidity(
+    float
+        humidity)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateHumidityInternal(humidity);
 }
 
-ValidationResult validatePH(float phValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validatePH(
+    float
+        phValue)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validatePHInternal(phValue);
 }
 
-ValidationResult validateEC(float ecValue) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateEC(
+    float
+        ecValue)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateECInternal(ecValue);
 }
 
-ValidationResult validateNPK(float value, const char* nutrient) // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
+ValidationResult validateNPK(
+    float value,
+    const char*
+        nutrient)  // NOLINT(misc-use-internal-linkage,readability-convert-member-functions-to-static,misc-use-anonymous-namespace)
 {
     return validateNPKInternal(value, nutrient);
 }
@@ -257,7 +324,8 @@ ValidationResult validateNPK(float value, const char* nutrient) // NOLINT(misc-u
 // КОМПЛЕКСНАЯ ВАЛИДАЦИЯ
 // ============================================================================
 
-ConfigValidationResult validateFullConfig(const ConfigData& config, bool checkRequired) // NOLINT(misc-use-internal-linkage)
+ConfigValidationResult validateFullConfig(const ConfigData& config,
+                                          bool checkRequired)  // NOLINT(misc-use-internal-linkage)
 {
     ConfigValidationResult result;
     result.isValid = true;
@@ -342,7 +410,7 @@ ConfigValidationResult validateFullConfig(const ConfigData& config, bool checkRe
     return result;
 }
 
-SensorValidationResult validateFullSensorData(const SensorData& data) // NOLINT(misc-use-internal-linkage)
+SensorValidationResult validateFullSensorData(const SensorData& data)  // NOLINT(misc-use-internal-linkage)
 {
     SensorValidationResult result;
     result.isValid = true;
@@ -403,7 +471,7 @@ SensorValidationResult validateFullSensorData(const SensorData& data) // NOLINT(
 // УТИЛИТЫ ВАЛИДАЦИИ
 // ============================================================================
 
-bool isValidIPAddress(const String& ipAddress) // NOLINT(misc-use-internal-linkage)
+bool isValidIPAddress(const String& ipAddress)  // NOLINT(misc-use-internal-linkage)
 {
     int parts = 0;
     int start = 0;
@@ -437,7 +505,7 @@ bool isValidIPAddress(const String& ipAddress) // NOLINT(misc-use-internal-linka
     return parts == 4;
 }
 
-bool isValidHostname(const String& hostname) // NOLINT(misc-use-internal-linkage)
+bool isValidHostname(const String& hostname)  // NOLINT(misc-use-internal-linkage)
 {
     if (hostname.length() == 0 || hostname.length() > 253)
     {
@@ -453,12 +521,11 @@ bool isValidHostname(const String& hostname) // NOLINT(misc-use-internal-linkage
     }
 
     // Не должен начинаться или заканчиваться точкой или дефисом
-    return hostname.charAt(0) != '.' && hostname.charAt(0) != '-' &&
-           hostname.charAt(hostname.length() - 1) != '.' &&
+    return hostname.charAt(0) != '.' && hostname.charAt(0) != '-' && hostname.charAt(hostname.length() - 1) != '.' &&
            hostname.charAt(hostname.length() - 1) != '-';
 }
 
-String formatValidationErrors(const ConfigValidationResult& result) // NOLINT(misc-use-internal-linkage)
+String formatValidationErrors(const ConfigValidationResult& result)  // NOLINT(misc-use-internal-linkage)
 {
     if (result.isValid)
     {
@@ -473,7 +540,7 @@ String formatValidationErrors(const ConfigValidationResult& result) // NOLINT(mi
     return formatted;
 }
 
-String formatSensorValidationErrors(const SensorValidationResult& result) // NOLINT(misc-use-internal-linkage)
+String formatSensorValidationErrors(const SensorValidationResult& result)  // NOLINT(misc-use-internal-linkage)
 {
     if (result.isValid)
     {
@@ -492,7 +559,8 @@ String formatSensorValidationErrors(const SensorValidationResult& result) // NOL
 // ЛОГИРОВАНИЕ ВАЛИДАЦИИ
 // ============================================================================
 
-void logValidationResult(const ConfigValidationResult& result, const char* context) // NOLINT(misc-use-internal-linkage)
+void logValidationResult(const ConfigValidationResult& result,
+                         const char* context)  // NOLINT(misc-use-internal-linkage)
 {
     if (result.isValid)
     {
@@ -508,7 +576,8 @@ void logValidationResult(const ConfigValidationResult& result, const char* conte
     }
 }
 
-void logSensorValidationResult(const SensorValidationResult& result, const char* context) // NOLINT(misc-use-internal-linkage)
+void logSensorValidationResult(const SensorValidationResult& result,
+                               const char* context)  // NOLINT(misc-use-internal-linkage)
 {
     if (result.isValid)
     {
@@ -524,7 +593,7 @@ void logSensorValidationResult(const SensorValidationResult& result, const char*
     }
 }
 
-ValidationResult validateSSID(const String& ssid) // NOLINT(misc-use-internal-linkage)
+ValidationResult validateSSID(const String& ssid)  // NOLINT(misc-use-internal-linkage)
 {
     if (ssid.length() == 0)
     {
@@ -537,7 +606,7 @@ ValidationResult validateSSID(const String& ssid) // NOLINT(misc-use-internal-li
     return ValidationResult{true, ""};
 }
 
-ValidationResult validatePassword(const String& password) // NOLINT(misc-use-internal-linkage)
+ValidationResult validatePassword(const String& password)  // NOLINT(misc-use-internal-linkage)
 {
     if (password.length() > 0 && password.length() < 8)
     {
@@ -550,7 +619,7 @@ ValidationResult validatePassword(const String& password) // NOLINT(misc-use-int
     return ValidationResult{true, ""};
 }
 
-ValidationResult validateMQTTServer(const String& server) // NOLINT(misc-use-internal-linkage)
+ValidationResult validateMQTTServer(const String& server)  // NOLINT(misc-use-internal-linkage)
 {
     if (server.length() == 0)
     {
@@ -567,16 +636,17 @@ ValidationResult validateMQTTServer(const String& server) // NOLINT(misc-use-int
     return ValidationResult{true, ""};
 }
 
-ValidationResult validateMQTTPort(int port) // NOLINT(misc-use-internal-linkage)
+ValidationResult validateMQTTPort(int port)  // NOLINT(misc-use-internal-linkage)
 {
     if (port < CONFIG_MQTT_PORT_MIN || port > CONFIG_MQTT_PORT_MAX)
     {
-        return ValidationResult{false, "MQTT порт должен быть от " + String(CONFIG_MQTT_PORT_MIN) + " до " + String(CONFIG_MQTT_PORT_MAX)};
+        return ValidationResult{
+            false, "MQTT порт должен быть от " + String(CONFIG_MQTT_PORT_MIN) + " до " + String(CONFIG_MQTT_PORT_MAX)};
     }
     return ValidationResult{true, ""};
 }
 
-ValidationResult validateThingSpeakAPIKey(const String& apiKey) // NOLINT(misc-use-internal-linkage)
+ValidationResult validateThingSpeakAPIKey(const String& apiKey)  // NOLINT(misc-use-internal-linkage)
 {
     if (apiKey.length() == 0)
     {

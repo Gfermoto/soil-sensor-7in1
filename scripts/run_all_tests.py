@@ -39,7 +39,7 @@ class TestRunner:
         print(f"\n🔍 [{test_name}] Запуск теста...")
         if description:
             print(f"   📝 {description}")
-        
+
         try:
             # Запускаем процесс
             process = subprocess.Popen(
@@ -51,12 +51,12 @@ class TestRunner:
                 errors='ignore',
                 cwd=self.project_root
             )
-            
+
             # Ждем завершения с таймаутом
             try:
                 stdout, stderr = process.communicate(timeout=timeout)
                 return_code = process.returncode
-                
+
                 # Выводим результат
                 if return_code == 0:
                     print(f"   ✅ [{test_name}] УСПЕШНО (код: {return_code})")
@@ -72,14 +72,14 @@ class TestRunner:
                         print(f"   📤 stderr:\n{stderr}")
                     self.results["failed"] += 1
                     return False
-                    
+
             except subprocess.TimeoutExpired:
                 print(f"   ⏰ [{test_name}] ТАЙМАУТ ({timeout}с)")
                 process.kill()
                 process.wait()
                 self.results["timeout"] += 1
                 return False
-                
+
         except Exception as e:
             print(f"   💥 [{test_name}] ОШИБКА: {e}")
             self.results["errors"] += 1
@@ -91,7 +91,7 @@ class TestRunner:
         """Запускает все Python тесты"""
         print("\n🐍 PYTHON ТЕСТЫ")
         print("-" * 40)
-        
+
         python_tests = [
             ("test_format.py", [sys.executable, "test/test_format.py"], 30, "Тестирование форматирования"),
             ("test_validation.py", [sys.executable, "test/test_validation.py"], 30, "Тестирование валидации"),
@@ -103,7 +103,7 @@ class TestRunner:
             ("test_compensation_formulas.py", [sys.executable, "test/test_compensation_formulas.py"], 60, "Тестирование формул компенсации"),
             ("test_scientific_recommendations.py", [sys.executable, "test/test_scientific_recommendations.py"], 120, "Тестирование научных рекомендаций"),
         ]
-        
+
         for test_name, command, timeout, description in python_tests:
             self.run_test_with_timeout(test_name, command, timeout, description)
 
@@ -111,11 +111,11 @@ class TestRunner:
         """Запускает E2E тесты"""
         print("\n🌐 E2E ТЕСТЫ")
         print("-" * 40)
-        
+
         e2e_tests = [
             ("test_web_ui.py", [sys.executable, "test/e2e/test_web_ui.py"], 60, "E2E тесты веб-интерфейса"),
         ]
-        
+
         for test_name, command, timeout, description in e2e_tests:
             self.run_test_with_timeout(test_name, command, timeout, description)
 
@@ -123,14 +123,14 @@ class TestRunner:
         """Запускает интеграционные тесты"""
         print("\n🔗 ИНТЕГРАЦИОННЫЕ ТЕСТЫ")
         print("-" * 40)
-        
+
         # Проверяем наличие интеграционных тестов
         integration_dir = self.project_root / "test" / "integration"
         if integration_dir.exists():
             for test_file in integration_dir.glob("*.cpp"):
                 test_name = test_file.name
                 print(f"   📋 [{test_name}] C++ интеграционный тест")
-                
+
                 # Компилируем и запускаем C++ тест
                 try:
                     # Компилируем с помощью w64devkit
@@ -147,7 +147,7 @@ class TestRunner:
                         str(self.project_root / "test" / "stubs" / "esp32_stubs.cpp"),
                         "-o", str(test_file.with_suffix(".exe"))
                     ]
-                    
+
                     print(f"   🔨 Компиляция {test_name}...")
                     result = subprocess.run(
                         compile_cmd,
@@ -158,12 +158,12 @@ class TestRunner:
                         errors='replace',
                         timeout=60
                     )
-                    
+
                     if result.returncode == 0:
                         # Запускаем скомпилированный тест
                         exe_path = test_file.with_suffix(".exe")
                         print(f"   🚀 Запуск {test_name}...")
-                        
+
                         test_result = subprocess.run(
                             [str(exe_path)],
                             cwd=self.project_root,
@@ -173,7 +173,7 @@ class TestRunner:
                             errors='replace',
                             timeout=30
                         )
-                        
+
                         if test_result.returncode == 0:
                             print(f"   ✅ [{test_name}] УСПЕШНО")
                             if test_result.stdout.strip():
@@ -191,7 +191,7 @@ class TestRunner:
                         if result.stderr.strip():
                             print(f"   📤 stderr:\n{result.stderr}")
                         self.results["failed"] += 1
-                        
+
                 except subprocess.TimeoutExpired:
                     print(f"   ⏰ [{test_name}] ТАЙМАУТ")
                     self.results["timeout"] += 1
@@ -200,7 +200,7 @@ class TestRunner:
                     self.results["errors"] += 1
                 finally:
                     self.results["total"] += 1
-                    
+
                     # Удаляем временный exe файл
                     try:
                         exe_path = test_file.with_suffix(".exe")
@@ -213,11 +213,11 @@ class TestRunner:
         """Запускает тесты производительности"""
         print("\n⚡ ТЕСТЫ ПРОИЗВОДИТЕЛЬНОСТИ")
         print("-" * 40)
-        
+
         perf_tests = [
             ("test_performance.py", [sys.executable, "test/performance/test_performance.py"], 120, "Тесты производительности"),
         ]
-        
+
         for test_name, command, timeout, description in perf_tests:
             self.run_test_with_timeout(test_name, command, timeout, description)
 
@@ -225,7 +225,7 @@ class TestRunner:
         """Запускает тесты ESP32"""
         print("\n🔧 ESP32 ТЕСТЫ")
         print("-" * 40)
-        
+
         try:
             # Проверяем сборку ESP32
             print("   🔨 Проверка сборки ESP32...")
@@ -238,7 +238,7 @@ class TestRunner:
                 errors='replace',
                 timeout=180
             )
-            
+
             if result.returncode == 0:
                 print("   ✅ Сборка ESP32 успешна")
                 self.results["passed"] += 1
@@ -246,7 +246,7 @@ class TestRunner:
                 print("   ❌ Сборка ESP32 провалена")
                 print(f"   📤 stderr:\n{result.stderr}")
                 self.results["failed"] += 1
-                
+
         except subprocess.TimeoutExpired:
             print("   ⏰ Сборка ESP32 превысила таймаут")
             self.results["timeout"] += 1
@@ -259,7 +259,7 @@ class TestRunner:
     def print_summary(self):
         """Выводит итоговую сводку"""
         duration = time.time() - self.start_time
-        
+
         print("\n" + "=" * 80)
         print("📊 ИТОГОВАЯ СВОДКА ТЕСТИРОВАНИЯ")
         print("=" * 80)
@@ -269,11 +269,11 @@ class TestRunner:
         print(f"❌ Провалено: {self.results['failed']}")
         print(f"⏰ Таймаут: {self.results['timeout']}")
         print(f"💥 Ошибки: {self.results['errors']}")
-        
+
         if self.results['total'] > 0:
             success_rate = (self.results['passed'] / self.results['total']) * 100
             print(f"📊 Успешность: {success_rate:.1f}%")
-            
+
             if success_rate >= 90:
                 print("🎉 Отличный результат!")
             elif success_rate >= 80:
@@ -284,23 +284,23 @@ class TestRunner:
                 print("🚨 Критический уровень")
         else:
             print("📊 Успешность: N/A (нет тестов)")
-        
+
         print("=" * 80)
 
     def run_all(self):
         """Запускает все тесты"""
         self.print_header()
-        
+
         # Запускаем все категории тестов
         self.run_python_tests()
         self.run_e2e_tests()
         self.run_integration_tests()
         self.run_performance_tests()
         self.run_esp32_tests()
-        
+
         # Выводим итоговую сводку
         self.print_summary()
-        
+
         # Возвращаем код выхода
         if self.results['failed'] > 0 or self.results['errors'] > 0:
             return 1

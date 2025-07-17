@@ -1,0 +1,102 @@
+# GitHub Apps Configuration for JXCT Soil Sensor Project
+# This file configures various bots and tools for improved development experience
+
+# Greptile - Code Search and Documentation
+greptile:
+  enabled: true
+  config:
+    search_patterns:
+      - "*.cpp"
+      - "*.h"
+      - "*.md"
+      - "*.yml"
+      - "*.yaml"
+    exclude_patterns:
+      - "build/*"
+      - ".pio/*"
+      - "docs/api/*"
+    documentation_focus:
+      - "README.md"
+      - "docs/"
+      - "*.md"
+
+# Codeball - Bug Prediction in PRs
+codeball:
+  enabled: true
+  config:
+    prediction_threshold: 0.7
+    analyze_patterns:
+      - "src/**/*.cpp"
+      - "include/**/*.h"
+      - "test/**/*.cpp"
+    ignore_files:
+      - "docs/**"
+      - "*.md"
+      - "*.yml"
+
+# ImgBot - Image Optimization
+imgbot:
+  enabled: true
+  config:
+    image_patterns:
+      - "docs/**/*.png"
+      - "docs/**/*.jpg"
+      - "docs/**/*.jpeg"
+      - "docs/**/*.gif"
+      - "docs/**/*.svg"
+    optimization_level: "high"
+    backup_original: true
+
+# Additional Bots Configuration
+bots:
+  # Dependabot - Dependency Updates
+  dependabot:
+    enabled: true
+    config:
+      update_schedule: "weekly"
+      target_branches:
+        - "main"
+        - "develop"
+      ignore_patterns:
+        - "platformio.ini"
+        - "requirements.txt"
+      
+  # Stale Bot - Issue Management
+  stale:
+    enabled: true
+    config:
+      stale_issue_message: |
+        This issue has been automatically marked as stale because it has not had recent activity.
+        It will be closed if no further activity occurs. Thank you for your contributions.
+      stale_pr_message: |
+        This pull request has been automatically marked as stale because it has not had recent activity.
+        It will be closed if no further activity occurs. Thank you for your contributions.
+      stale_issue_days: 60
+      stale_pr_days: 30
+      
+  # Welcome Bot - New Contributors
+  welcome:
+    enabled: true
+    config:
+      new_issue_comment: |
+        👋 Welcome to JXCT Soil Sensor project!
+        
+        Thank you for opening an issue. Please make sure to:
+        - [ ] Check existing issues for duplicates
+        - [ ] Provide detailed description of the problem
+        - [ ] Include ESP32 board type and PlatformIO version
+        - [ ] Add relevant logs if applicable
+        
+        For development questions, check our [documentation](docs/).
+        
+  # Auto Assign - PR Assignment
+  auto_assign:
+    enabled: true
+    config:
+      reviewers:
+        - "Gfermoto"
+      assignees:
+        - "Gfermoto"
+      skip_keywords:
+        - "wip"
+        - "draft" 

@@ -145,17 +145,17 @@ constexpr float OUTLIER_THRESHOLD_MAX = 4.0F;      // Максимальный �
 constexpr float OUTLIER_THRESHOLD_DEFAULT = 2.5F;  // По умолчанию (2.5σ)
 
 // Фильтр Калмана (параметры)
-constexpr float KALMAN_PROCESS_NOISE = 0.01F;      // Шум процесса
-constexpr float KALMAN_MEASUREMENT_NOISE = 0.1F;   // Шум измерений
-constexpr float KALMAN_INITIAL_UNCERTAINTY = 1.0F; // Начальная неопределенность
+constexpr float KALMAN_PROCESS_NOISE = 0.01F;       // Шум процесса
+constexpr float KALMAN_MEASUREMENT_NOISE = 0.1F;    // Шум измерений
+constexpr float KALMAN_INITIAL_UNCERTAINTY = 1.0F;  // Начальная неопределенность
 
 // Калибровочные фильтры (компенсация систематических ошибок)
-constexpr float CALIBRATION_OFFSET_MAX = 10.0F;    // Максимальное смещение калибровки
-constexpr float CALIBRATION_DRIFT_MAX = 0.1F;      // Максимальный дрифт за час
+constexpr float CALIBRATION_OFFSET_MAX = 10.0F;  // Максимальное смещение калибровки
+constexpr float CALIBRATION_DRIFT_MAX = 0.1F;    // Максимальный дрифт за час
 
 // Статистические параметры
-constexpr uint8_t STATISTICS_WINDOW_SIZE = 20;     // Окно для статистики
-constexpr float MIN_STANDARD_DEVIATION = 0.01F;    // Минимальное стандартное отклонение
+constexpr uint8_t STATISTICS_WINDOW_SIZE = 20;   // Окно для статистики
+constexpr float MIN_STANDARD_DEVIATION = 0.01F;  // Минимальное стандартное отклонение
 
 // ============================================================================
 // СТРОКОВЫЕ КОНСТАНТЫ
@@ -387,7 +387,7 @@ constexpr float TEST_DATA_TEMP_BASE = 20.0F;
 constexpr float TEST_DATA_HUM_BASE = 60.0F;
 constexpr int TEST_DATA_EC_BASE = 1200;
 constexpr float TEST_DATA_PH_BASE = 6.3F;
-constexpr int TEST_DATA_NPK_BASE = 800;   // ИСПРАВЛЕНО: соответствует реальным данным датчика JXCT
+constexpr int TEST_DATA_NPK_BASE = 800;  // ИСПРАВЛЕНО: соответствует реальным данным датчика JXCT
 
 // Вариации для тестовых данных
 constexpr float TEST_DATA_HUM_VARIATION = 10.0F;
@@ -396,7 +396,7 @@ constexpr int TEST_DATA_EC_VARIATION_SMALL = 200;
 constexpr int TEST_DATA_EC_VARIATION_MIN = 100;
 
 // Факторы для NPK
-constexpr float TEST_DATA_NPK_FACTOR = 6.5F;       // ИСПРАВЛЕНО: больше не используется, датчик JXCT выдаёт данные в мг/кг
+constexpr float TEST_DATA_NPK_FACTOR = 6.5F;  // ИСПРАВЛЕНО: больше не используется, датчик JXCT выдаёт данные в мг/кг
 constexpr float TEST_DATA_NPK_INCREASE_N = 1.20F;  // +20%
 constexpr float TEST_DATA_NPK_INCREASE_P = 1.15F;  // +15%
 constexpr float TEST_DATA_NPK_INCREASE_K = 1.10F;  // +10%

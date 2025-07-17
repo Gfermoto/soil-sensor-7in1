@@ -8,6 +8,6 @@
 #include "business/sensor_compensation_service.h"
 
 // Глобальные экземпляры бизнес-сервисов
-CropRecommendationEngine gCropEngine; // NOLINT(misc-use-internal-linkage)
-SensorCalibrationService gCalibrationService; // NOLINT(misc-use-internal-linkage)
-SensorCompensationService gCompensationService; // NOLINT(misc-use-internal-linkage) 
+CropRecommendationEngine gCropEngine;            // NOLINT(misc-use-internal-linkage)
+SensorCalibrationService gCalibrationService;    // NOLINT(misc-use-internal-linkage)
+SensorCompensationService gCompensationService;  // NOLINT(misc-use-internal-linkage)

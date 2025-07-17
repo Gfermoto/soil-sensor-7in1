@@ -3,20 +3,20 @@
  * @brief Работа с конфигурацией устройства
  * @details Загрузка, сохранение, сброс и валидация настроек устройства через NVS (Preferences).
  */
+#include "config.h"
 #include <WiFi.h>
 #include <array>
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "jxct_config_vars.h"
+#include "jxct_constants.h"
 #include "jxct_device_info.h"
 #include "logger.h"
 #include "version.h"  // ✅ Централизованное управление версией
-#include "config.h"
-#include "jxct_constants.h"
 
 // Firmware version definition - теперь берется из централизованного файла version.h
 // const char* FIRMWARE_VERSION уже определена в version.h
 
-String getDeviceId() // NOLINT(misc-use-internal-linkage)
+String getDeviceId()  // NOLINT(misc-use-internal-linkage)
 {
     std::array<uint8_t, 6> mac;
     WiFi.macAddress(mac.data());
@@ -25,7 +25,7 @@ String getDeviceId() // NOLINT(misc-use-internal-linkage)
     return String(buf.data());
 }
 
-String getDefaultTopic() // NOLINT(misc-use-internal-linkage)
+String getDefaultTopic()  // NOLINT(misc-use-internal-linkage)
 {
     std::array<uint8_t, 6> mac;
     WiFi.macAddress(mac.data());
@@ -35,12 +35,12 @@ String getDefaultTopic() // NOLINT(misc-use-internal-linkage)
 }
 
 // Глобальные переменные конфигурации
-Config config; // NOLINT(misc-use-internal-linkage)
-Preferences preferences; // NOLINT(misc-use-internal-linkage)
+Config config;            // NOLINT(misc-use-internal-linkage)
+Preferences preferences;  // NOLINT(misc-use-internal-linkage)
 
 #define KEY_NTP_INTERVAL "ntpIntvl"  // ≤15 bytes, иначе NVS выдаёт KEY_TOO_LONG
 
-void loadConfig() // NOLINT(misc-use-internal-linkage)
+void loadConfig()  // NOLINT(misc-use-internal-linkage)
 {
     preferences.begin("jxct-sensor", false);
 
@@ -57,7 +57,8 @@ void loadConfig() // NOLINT(misc-use-internal-linkage)
     preferences.getString("mqttDeviceName", config.mqttDeviceName, sizeof(config.mqttDeviceName));
     // Битовые поля boolean флагов
     config.flags.hassEnabled = preferences.getBool("hassEnabled", false);
-    config.flags.useRealSensor = preferences.getBool("useRealSensor", true);  // ИСПРАВЛЕНО: по умолчанию используем реальный датчик
+    config.flags.useRealSensor =
+        preferences.getBool("useRealSensor", true);  // ИСПРАВЛЕНО: по умолчанию используем реальный датчик
     config.flags.mqttEnabled = preferences.getBool("mqttEnabled", false);
     config.flags.thingSpeakEnabled = preferences.getBool("tsEnabled", false);
     config.flags.calibrationEnabled = preferences.getBool("calEnabled", false);
@@ -104,7 +105,7 @@ void loadConfig() // NOLINT(misc-use-internal-linkage)
     // v3.10.0: УЛУЧШЕННАЯ СИСТЕМА ФИЛЬТРАЦИИ
     config.exponentialAlpha = preferences.getFloat("expAlpha", EXPONENTIAL_ALPHA_DEFAULT);
     config.outlierThreshold = preferences.getFloat("outlierThresh", OUTLIER_THRESHOLD_DEFAULT);
-    config.kalmanEnabled = preferences.getUChar("kalmanEnabled", 0);  // 0=отключен по умолчанию
+    config.kalmanEnabled = preferences.getUChar("kalmanEnabled", 0);       // 0=отключен по умолчанию
     config.adaptiveFiltering = preferences.getUChar("adaptiveFilter", 0);  // 0=отключена по умолчанию
 
     // Soil profile и агро-поля
@@ -141,7 +142,7 @@ void loadConfig() // NOLINT(misc-use-internal-linkage)
                  static_cast<int>(config.mqttPort), config.flags.thingSpeakEnabled ? "включен" : "выключен");
 }
 
-void saveConfig() // NOLINT(misc-use-internal-linkage)
+void saveConfig()  // NOLINT(misc-use-internal-linkage)
 {
     preferences.begin("jxct-sensor", false);
 
@@ -231,7 +232,7 @@ void saveConfig() // NOLINT(misc-use-internal-linkage)
     logSuccess("Конфигурация сохранена");
 }
 
-void resetConfig() // NOLINT(misc-use-internal-linkage)
+void resetConfig()  // NOLINT(misc-use-internal-linkage)
 {
     logWarn("Сброс конфигурации...");
     preferences.begin("jxct-sensor", false);
@@ -297,8 +298,8 @@ void resetConfig() // NOLINT(misc-use-internal-linkage)
     // v3.10.0: Сброс настроек улучшенной фильтрации
     config.exponentialAlpha = EXPONENTIAL_ALPHA_DEFAULT;
     config.outlierThreshold = OUTLIER_THRESHOLD_DEFAULT;
-    config.kalmanEnabled = 0;         // отключен по умолчанию
-    config.adaptiveFiltering = 0;     // отключена по умолчанию
+    config.kalmanEnabled = 0;      // отключен по умолчанию
+    config.adaptiveFiltering = 0;  // отключена по умолчанию
 
     // Soil profile и агро-поля
     config.soilProfile = 0;
@@ -329,7 +330,7 @@ void resetConfig() // NOLINT(misc-use-internal-linkage)
     DEBUG_PRINTLN(config.ntpUpdateInterval);
 }
 
-bool isConfigValid() // NOLINT(misc-use-internal-linkage)
+bool isConfigValid()  // NOLINT(misc-use-internal-linkage)
 {
     // Проверяем минимально необходимые настройки
     if (strlen(config.ssid) == 0)

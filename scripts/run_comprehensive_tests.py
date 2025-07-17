@@ -251,7 +251,7 @@ class ComprehensiveTestRunner:
                             print(f"  [OK] test_modbus_mqtt.py: {passed_count}/{total_count}")
                             found_summary = True
                             break
-                
+
                 if not found_summary:
                     # Если не нашли итог, но тест прошел успешно, считаем что прошло 5/5
                     python_results["modbus_mqtt_tests"]["total"] = 5

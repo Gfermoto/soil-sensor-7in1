@@ -14,13 +14,15 @@
 // Включаем полное определение SensorData
 #include "modbus_sensor.h"
 
-namespace AdvancedFilters {
+namespace AdvancedFilters
+{
 
 // ============================================================================
 // ТИПЫ ФИЛЬТРОВ
 // ============================================================================
 
-enum class FilterType {
+enum class FilterType
+{
     TEMPERATURE,
     HUMIDITY,
     EC,
@@ -53,6 +55,6 @@ void resetAllFilters();
  */
 void logFilterStatistics();
 
-} // namespace AdvancedFilters
+}  // namespace AdvancedFilters
 
-#endif // ADVANCED_FILTERS_H
+#endif  // ADVANCED_FILTERS_H

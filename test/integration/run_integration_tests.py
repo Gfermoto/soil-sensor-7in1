@@ -13,7 +13,7 @@ from pathlib import Path
 def setup_compiler_path():
     """Настраивает PATH для компилятора w64devkit"""
     compiler_path = r"C:\Program Files\w64devkit\bin"
-    
+
     if platform.system() == "Windows":
         current_path = os.environ.get("PATH", "")
         if compiler_path not in current_path:
@@ -27,7 +27,7 @@ def setup_compiler_path():
 def check_compiler():
     """Проверяет доступность компилятора"""
     try:
-        result = subprocess.run(["g++", "--version"], 
+        result = subprocess.run(["g++", "--version"],
                               capture_output=True, text=True, encoding="utf-8", timeout=10)
         if result.returncode == 0:
             print("✅ Компилятор g++ доступен")
@@ -81,16 +81,16 @@ def compile_test(test_file, output_name):
 def run_test(executable):
     """Запускает скомпилированный тест"""
     print(f"🚀 Запуск теста: {executable}")
-    
+
     try:
-        result = subprocess.run([f"./{executable}"], 
+        result = subprocess.run([f"./{executable}"],
                               capture_output=True, text=True, encoding="utf-8", timeout=30)
         print(f"📊 Результат выполнения:")
         print(f"   Код возврата: {result.returncode}")
         print(f"   stdout:\n{result.stdout}")
         if result.stderr:
             print(f"   stderr:\n{result.stderr}")
-        
+
         return result.returncode == 0
     except subprocess.TimeoutExpired:
         print("❌ Таймаут при выполнении теста")
@@ -100,35 +100,35 @@ def main():
     """Главная функция"""
     print("🧪 ЗАПУСК ИНТЕГРАЦИОННЫХ ТЕСТОВ JXCT")
     print("=" * 50)
-    
+
     # Настраиваем PATH для компилятора
     setup_compiler_path()
-    
+
     # Проверяем доступность компилятора
     if not check_compiler():
         print("\n❌ Компилятор недоступен. Убедитесь, что w64devkit установлен.")
         print("   Путь: C:\\Program Files\\w64devkit\\bin")
         return 1
-    
+
     # Список тестов для компиляции
     tests = [
         ("test_component_interaction.cpp", "test_component_interaction"),
         ("test_web_api_integration.cpp", "test_web_api_integration")
     ]
-    
+
     success_count = 0
     total_count = len(tests)
-    
+
     for test_file, output_name in tests:
         test_path = Path(__file__).parent / test_file
-        
+
         if not test_path.exists():
             print(f"⚠️ Файл теста не найден: {test_file}")
             continue
-        
+
         print(f"\n📋 Тест: {test_file}")
         print("-" * 30)
-        
+
         # Компилируем тест
         if compile_test(test_path, output_name):
             # Запускаем тест
@@ -139,12 +139,12 @@ def main():
                 print(f"❌ Тест {test_file} ПРОВАЛЕН")
         else:
             print(f"❌ Ошибка компиляции {test_file}")
-    
+
     # Итоговый результат
     print(f"\n📊 ИТОГОВЫЙ РЕЗУЛЬТАТ:")
     print(f"   Пройдено: {success_count}/{total_count}")
     print(f"   Успешность: {(success_count/total_count)*100:.1f}%")
-    
+
     if success_count == total_count:
         print("🎉 ВСЕ ИНТЕГРАЦИОННЫЕ ТЕСТЫ ПРОЙДЕНЫ!")
         return 0
@@ -153,4 +153,4 @@ def main():
         return 1
 
 if __name__ == "__main__":
-    sys.exit(main()) 
+    sys.exit(main())

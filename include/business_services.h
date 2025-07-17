@@ -16,4 +16,4 @@ extern ICropRecommendationEngine& getCropEngine();
 extern ISensorCalibrationService& getCalibrationService();
 extern ISensorCompensationService& getCompensationService();
 
-#endif // BUSINESS_SERVICES_H 
+#endif  // BUSINESS_SERVICES_H

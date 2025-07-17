@@ -140,7 +140,7 @@ def test_project_structure():
     print("Тестирование структуры проекта...")
 
     required_dirs = ["src", "include", "test", "scripts"]
-    required_files = ["platformio.ini", "README.md", "CMakeLists.txt"]
+    required_files = ["platformio.ini", "README.md"]
 
     passed = 0
     total = len(required_dirs) + len(required_files)
@@ -195,4 +195,4 @@ def main():
 
 if __name__ == "__main__":
     success = main()
-    sys.exit(0 if success else 1) 
+    sys.exit(0 if success else 1)

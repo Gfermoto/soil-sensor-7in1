@@ -183,13 +183,11 @@ def main():
     for test_name, test_func in tests:
         print(f"\n[{test_name}]")
         try:
-            if test_func():
-                print(f"  ПРОЙДЕН")
-                passed_tests += 1
-            else:
-                print(f"  ПРОВАЛЕН")
+            test_func()  # Функции используют assert, поэтому не возвращают значения
+            print(f"  ПРОЙДЕН")
+            passed_tests += 1
         except Exception as e:
-            print(f"  ОШИБКА: {e}")
+            print(f"  ПРОВАЛЕН: {e}")
 
     print(f"\n=== ИТОГ: {passed_tests}/{total_tests} ===")
     return passed_tests == total_tests

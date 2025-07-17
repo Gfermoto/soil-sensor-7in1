@@ -61,7 +61,7 @@ const char* getThingSpeakLastError()
     return thingSpeakLastErrorBuffer.data();
 }
 
-void setupThingSpeak(WiFiClient& client) // NOLINT(misc-use-internal-linkage)
+void setupThingSpeak(WiFiClient& client)  // NOLINT(misc-use-internal-linkage)
 {
     ThingSpeak.begin(client);
 }

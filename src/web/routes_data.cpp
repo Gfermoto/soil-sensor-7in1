@@ -18,8 +18,8 @@
 #include "../../include/web_routes.h"
 #include "../modbus_sensor.h"
 #include "../wifi_manager.h"
-#include "calibration_manager.h"
 #include "business_services.h"
+#include "calibration_manager.h"
 
 extern NTPClient* timeClient;
 
@@ -42,52 +42,57 @@ RecValues computeRecommendations()
 {
     // Используем бизнес-сервис для вычисления рекомендаций
     const String cropId = String(config.cropId);
-    
+
     // Преобразуем конфигурацию в типы бизнес-логики
     SoilProfile soilProfile = SoilProfile::SAND;
     EnvironmentType envType = EnvironmentType::OUTDOOR;
-    
+
     // Используем массивы для устранения дублирования кода
     static const std::array<SoilProfile, 5> soilProfiles = {{
-        SoilProfile::SAND,      // 0
-        SoilProfile::LOAM,      // 1
-        SoilProfile::PEAT,      // 2
-        SoilProfile::CLAY,      // 3
-        SoilProfile::SANDPEAT   // 4
+        SoilProfile::SAND,     // 0
+        SoilProfile::LOAM,     // 1
+        SoilProfile::PEAT,     // 2
+        SoilProfile::CLAY,     // 3
+        SoilProfile::SANDPEAT  // 4
     }};
-    
+
     static const std::array<EnvironmentType, 3> envTypes = {{
-        EnvironmentType::OUTDOOR,    // 0
-        EnvironmentType::GREENHOUSE, // 1
-        EnvironmentType::INDOOR      // 2
+        EnvironmentType::OUTDOOR,     // 0
+        EnvironmentType::GREENHOUSE,  // 1
+        EnvironmentType::INDOOR       // 2
     }};
-    
+
     const int soilIndex = (config.soilProfile >= 0 && config.soilProfile < 5) ? config.soilProfile : 0;
     const int envIndex = (config.environmentType >= 0 && config.environmentType < 3) ? config.environmentType : 0;
-    
+
     soilProfile = soilProfiles[soilIndex];
     envType = envTypes[envIndex];
-    
+
     // Получаем рекомендации от бизнес-сервиса
     RecValues rec = getCropEngine().computeRecommendations(cropId, soilProfile, envType);
-    
+
     // Применяем сезонную коррекцию если включена
-    if (config.flags.seasonalAdjustEnabled) {
+    if (config.flags.seasonalAdjustEnabled)
+    {
         time_t now = time(nullptr);
         struct tm* timeInfo = localtime(&now);
         const int month = timeInfo != nullptr ? timeInfo->tm_mon + 1 : 1;
-        
+
         // Определяем сезон
         Season season = Season::WINTER;
-        if (month >= 3 && month <= 5) season = Season::SPRING;
-        else if (month >= 6 && month <= 8) season = Season::SUMMER;
-        else if (month >= 9 && month <= 11) season = Season::AUTUMN;
-        else season = Season::WINTER;
-        
+        if (month >= 3 && month <= 5)
+            season = Season::SPRING;
+        else if (month >= 6 && month <= 8)
+            season = Season::SUMMER;
+        else if (month >= 9 && month <= 11)
+            season = Season::AUTUMN;
+        else
+            season = Season::WINTER;
+
         const bool isGreenhouse = (config.environmentType == 1);
         getCropEngine().applySeasonalCorrection(rec, season, isGreenhouse);
     }
-    
+
     return rec;
 }
 }  // namespace
@@ -350,7 +355,9 @@ void setupDataRoutes()
             html += "<li><strong>Цветовая индикация:</strong></li>";
             html += "<ul style='margin:5px 0;padding-left:15px;'>";
             html += "<li>🟢 <strong>Зеленый:</strong> оптимальные условия измерения</li>";
-            html += "<li>🟠 <strong>Оранжевый:</strong> неоптимальные условия (влажность <25%, температура <5°C или >40°C)</li>";
+            html +=
+                "<li>🟠 <strong>Оранжевый:</strong> неоптимальные условия (влажность <25%, температура <5°C или "
+                ">40°C)</li>";
             html += "<li>🔵 <strong>Синий:</strong> полив активен (временная невалидность)</li>";
             html += "<li>🔴 <strong>Красный:</strong> ошибки датчика (выход за физические пределы)</li>";
             html += "</ul>";
@@ -625,12 +632,10 @@ void setupDataRoutes()
             html += "  });";
             html += "}";
 
-            html +=
-                R"(var invalid = d.irrigation || d.alerts.length>0 || d.humidity<25 || d.temperature<5 || )"
-                R"(d.temperature>40;)";
-            html +=
-                R"(var statusHtml = invalid ? '<span class="red">Данные&nbsp;не&nbsp;валидны</span>' : '<span )"
-                R"(class="green">Данные&nbsp;валидны</span>';)";
+            html += R"(var invalid = d.irrigation || d.alerts.length>0 || d.humidity<25 || d.temperature<5 || )"
+                    R"(d.temperature>40;)";
+            html += R"(var statusHtml = invalid ? '<span class="red">Данные&nbsp;не&nbsp;валидны</span>' : '<span )"
+                    R"(class="green">Данные&nbsp;валидны</span>';)";
             html +=
                 R"(var seasonColor={'Лето':'green','Весна':'yellow','Осень':'yellow','Зима':'red','Н/Д':''}[d.season]||'';)";
             html += R"(var seasonHtml=seasonColor?(`<span class=\"${seasonColor}\">${d.season}</span>`):d.season;)";
@@ -669,7 +674,7 @@ void setupDataRoutes()
             html += "applyColor('k_rec',    colorDelta(ck, parseFloat(d.rec_potassium)));";
             html += "});";
             html += "}";
-            
+
             // Функции калибровки
             html += "function updateCalibrationStatus() {";
             html += "  fetch('/api/calibration/status')";
@@ -796,7 +801,7 @@ void setupDataRoutes()
             html += "      });";
             html += "  }";
             html += "}";
-            
+
             html += "setInterval(updateSensor,3000);";
             html += "updateSensor();";
             html += "updateCalibrationStatus();";
@@ -907,184 +912,197 @@ void setupDataRoutes()
 
     // API маршруты калибровки
     webServer.on("/api/calibration/status", HTTP_GET,
-        []()
-        {
-            DynamicJsonDocument doc(512);
-            doc["status"] = "Калибровка не настроена"; // Временно
-            doc["complete"] = false;
-            
-            String response;
-            serializeJson(doc, response);
-            webServer.send(200, "application/json", response);
-        });
+                 []()
+                 {
+                     DynamicJsonDocument doc(512);
+                     doc["status"] = "Калибровка не настроена";  // Временно
+                     doc["complete"] = false;
+
+                     String response;
+                     serializeJson(doc, response);
+                     webServer.send(200, "application/json", response);
+                 });
 
     webServer.on("/api/calibration/ph/add", HTTP_POST,
-        []()
-        {
-            DynamicJsonDocument doc(512);
-            DeserializationError error = deserializeJson(doc, webServer.arg("plain"));
-            
-            if (error) {
-                webServer.send(400, "application/json", "{\"success\":false,\"error\":\"Invalid JSON\"}");
-                return;
-            }
-            
-            float expected = doc["expected"];
-            float measured = doc["measured"];
-            
-            // Временно - заглушка
-            bool success = true;
-            
-            DynamicJsonDocument response(256);
-            response["success"] = success;
-            if (!success) {
-                response["error"] = "Failed to add pH point";
-            }
-            
-            String response_str;
-            serializeJson(response, response_str);
-            webServer.send(200, "application/json", response_str);
-        });
+                 []()
+                 {
+                     DynamicJsonDocument doc(512);
+                     DeserializationError error = deserializeJson(doc, webServer.arg("plain"));
+
+                     if (error)
+                     {
+                         webServer.send(400, "application/json", "{\"success\":false,\"error\":\"Invalid JSON\"}");
+                         return;
+                     }
+
+                     float expected = doc["expected"];
+                     float measured = doc["measured"];
+
+                     // Временно - заглушка
+                     bool success = true;
+
+                     DynamicJsonDocument response(256);
+                     response["success"] = success;
+                     if (!success)
+                     {
+                         response["error"] = "Failed to add pH point";
+                     }
+
+                     String response_str;
+                     serializeJson(response, response_str);
+                     webServer.send(200, "application/json", response_str);
+                 });
 
     webServer.on("/api/calibration/ec/add", HTTP_POST,
-        []()
-        {
-            DynamicJsonDocument doc(512);
-            DeserializationError error = deserializeJson(doc, webServer.arg("plain"));
-            
-            if (error) {
-                webServer.send(400, "application/json", "{\"success\":false,\"error\":\"Invalid JSON\"}");
-                return;
-            }
-            
-            float expected = doc["expected"];
-            float measured = doc["measured"];
-            
-            // Временно - заглушка
-            bool success = true;
-            
-            DynamicJsonDocument response(256);
-            response["success"] = success;
-            if (!success) {
-                response["error"] = "Failed to add EC point";
-            }
-            
-            String response_str;
-            serializeJson(response, response_str);
-            webServer.send(200, "application/json", response_str);
-        });
+                 []()
+                 {
+                     DynamicJsonDocument doc(512);
+                     DeserializationError error = deserializeJson(doc, webServer.arg("plain"));
+
+                     if (error)
+                     {
+                         webServer.send(400, "application/json", "{\"success\":false,\"error\":\"Invalid JSON\"}");
+                         return;
+                     }
+
+                     float expected = doc["expected"];
+                     float measured = doc["measured"];
+
+                     // Временно - заглушка
+                     bool success = true;
+
+                     DynamicJsonDocument response(256);
+                     response["success"] = success;
+                     if (!success)
+                     {
+                         response["error"] = "Failed to add EC point";
+                     }
+
+                     String response_str;
+                     serializeJson(response, response_str);
+                     webServer.send(200, "application/json", response_str);
+                 });
 
     webServer.on("/api/calibration/npk/set", HTTP_POST,
-        []()
-        {
-            DynamicJsonDocument doc(512);
-            DeserializationError error = deserializeJson(doc, webServer.arg("plain"));
-            
-            if (error) {
-                webServer.send(400, "application/json", "{\"success\":false,\"error\":\"Invalid JSON\"}");
-                return;
-            }
-            
-            float n = doc["n"];
-            float p = doc["p"];
-            float k = doc["k"];
-            
-            // Временно - заглушка
-            bool success = true;
-            
-            DynamicJsonDocument response(256);
-            response["success"] = success;
-            if (!success) {
-                response["error"] = "Failed to set NPK point";
-            }
-            
-            String response_str;
-            serializeJson(response, response_str);
-            webServer.send(200, "application/json", response_str);
-        });
+                 []()
+                 {
+                     DynamicJsonDocument doc(512);
+                     DeserializationError error = deserializeJson(doc, webServer.arg("plain"));
+
+                     if (error)
+                     {
+                         webServer.send(400, "application/json", "{\"success\":false,\"error\":\"Invalid JSON\"}");
+                         return;
+                     }
+
+                     float n = doc["n"];
+                     float p = doc["p"];
+                     float k = doc["k"];
+
+                     // Временно - заглушка
+                     bool success = true;
+
+                     DynamicJsonDocument response(256);
+                     response["success"] = success;
+                     if (!success)
+                     {
+                         response["error"] = "Failed to set NPK point";
+                     }
+
+                     String response_str;
+                     serializeJson(response, response_str);
+                     webServer.send(200, "application/json", response_str);
+                 });
 
     webServer.on("/api/calibration/ph/calculate", HTTP_POST,
-        []()
-        {
-            // Временно - заглушка
-            bool success = true;
-            
-            DynamicJsonDocument response(256);
-            response["success"] = success;
-            if (success) {
-                response["r_squared"] = 0.99; // Временно
-            } else {
-                response["error"] = "Failed to calculate pH calibration";
-            }
-            
-            String response_str;
-            serializeJson(response, response_str);
-            webServer.send(200, "application/json", response_str);
-        });
+                 []()
+                 {
+                     // Временно - заглушка
+                     bool success = true;
+
+                     DynamicJsonDocument response(256);
+                     response["success"] = success;
+                     if (success)
+                     {
+                         response["r_squared"] = 0.99;  // Временно
+                     }
+                     else
+                     {
+                         response["error"] = "Failed to calculate pH calibration";
+                     }
+
+                     String response_str;
+                     serializeJson(response, response_str);
+                     webServer.send(200, "application/json", response_str);
+                 });
 
     webServer.on("/api/calibration/ec/calculate", HTTP_POST,
-        []()
-        {
-            // Временно - заглушка
-            bool success = true;
-            
-            DynamicJsonDocument response(256);
-            response["success"] = success;
-            if (success) {
-                response["r_squared"] = 0.99; // Временно
-            } else {
-                response["error"] = "Failed to calculate EC calibration";
-            }
-            
-            String response_str;
-            serializeJson(response, response_str);
-            webServer.send(200, "application/json", response_str);
-        });
+                 []()
+                 {
+                     // Временно - заглушка
+                     bool success = true;
+
+                     DynamicJsonDocument response(256);
+                     response["success"] = success;
+                     if (success)
+                     {
+                         response["r_squared"] = 0.99;  // Временно
+                     }
+                     else
+                     {
+                         response["error"] = "Failed to calculate EC calibration";
+                     }
+
+                     String response_str;
+                     serializeJson(response, response_str);
+                     webServer.send(200, "application/json", response_str);
+                 });
 
     webServer.on("/api/calibration/export", HTTP_GET,
-        []()
-        {
-            // Временно - заглушка
-            DynamicJsonDocument doc(512);
-            doc["ph_points"] = JsonArray();
-            doc["ec_points"] = JsonArray();
-            doc["npk_zero"] = JsonObject();
-            doc["calculated"] = false;
-            
-            String json_data;
-            serializeJson(doc, json_data);
-            webServer.send(200, "application/json", json_data);
-        });
+                 []()
+                 {
+                     // Временно - заглушка
+                     DynamicJsonDocument doc(512);
+                     doc["ph_points"] = JsonArray();
+                     doc["ec_points"] = JsonArray();
+                     doc["npk_zero"] = JsonObject();
+                     doc["calculated"] = false;
+
+                     String json_data;
+                     serializeJson(doc, json_data);
+                     webServer.send(200, "application/json", json_data);
+                 });
 
     webServer.on("/api/calibration/import", HTTP_POST,
-        []()
-        {
-            String json_data = webServer.arg("plain");
-            // Временно - заглушка
-            bool success = true;
-            
-            DynamicJsonDocument response(256);
-            response["success"] = success;
-            if (!success) {
-                response["error"] = "Failed to import calibration";
-            }
-            
-            String response_str;
-            serializeJson(response, response_str);
-            webServer.send(200, "application/json", response_str);
-        });
+                 []()
+                 {
+                     String json_data = webServer.arg("plain");
+                     // Временно - заглушка
+                     bool success = true;
+
+                     DynamicJsonDocument response(256);
+                     response["success"] = success;
+                     if (!success)
+                     {
+                         response["error"] = "Failed to import calibration";
+                     }
+
+                     String response_str;
+                     serializeJson(response, response_str);
+                     webServer.send(200, "application/json", response_str);
+                 });
 
     webServer.on("/api/calibration/reset", HTTP_POST,
-        []()
-        {
-            // Временно - заглушка
-            DynamicJsonDocument response(128);
-            response["success"] = true;
-            
-            String response_str;
-            serializeJson(response, response_str);
-            webServer.send(200, "application/json", response_str);
-        });
+                 []()
+                 {
+                     // Временно - заглушка
+                     DynamicJsonDocument response(128);
+                     response["success"] = true;
+
+                     String response_str;
+                     serializeJson(response, response_str);
+                     webServer.send(200, "application/json", response_str);
+                 });
 
     logDebug("Маршруты данных настроены: /readings, /api/v1/sensor (json), /sensor_json [legacy], /api/calibration/*");
 }

@@ -1,0 +1,16 @@
+# Auto-assign configuration
+# https://github.com/kentaro-m/auto-assign-action
+
+# Автоматическое назначение ревьюеров
+reviewers:
+  - Gfermoto
+
+# Автоматическое назначение assignees
+assignees:
+  - Gfermoto
+
+# Количество ревьюеров для назначения
+numberOfReviewers: 1
+
+# Количество assignees для назначения
+numberOfAssignees: 1 

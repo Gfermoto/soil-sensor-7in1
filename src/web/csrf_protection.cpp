@@ -28,7 +28,7 @@ const unsigned long CSRF_TOKEN_LIFETIME = 30 * 60 * 1000;  // 30 минут в �
 // БЕЗОПАСНАЯ ГЕНЕРАЦИЯ CSRF ТОКЕНОВ
 // ============================================================================
 
-String generateCSRFToken() // NOLINT(misc-use-internal-linkage)
+String generateCSRFToken()  // NOLINT(misc-use-internal-linkage)
 {
     // Используем различные источники энтропии для безопасности
     String token = "";
@@ -55,7 +55,7 @@ String generateCSRFToken() // NOLINT(misc-use-internal-linkage)
     return token;
 }
 
-bool validateCSRFToken(const String& token) // NOLINT(misc-use-internal-linkage)
+bool validateCSRFToken(const String& token)  // NOLINT(misc-use-internal-linkage)
 {
     // Если токен пустой или не инициализирован
     if (token.isEmpty() || currentCSRFToken.isEmpty())
@@ -88,7 +88,7 @@ bool validateCSRFToken(const String& token) // NOLINT(misc-use-internal-linkage)
     return isValid;
 }
 
-String getCSRFHiddenField() // NOLINT(misc-use-internal-linkage)
+String getCSRFHiddenField()  // NOLINT(misc-use-internal-linkage)
 {
     // Генерируем новый токен если текущий пустой или истек
     if (currentCSRFToken.isEmpty() || (millis() - tokenGeneratedTime) > CSRF_TOKEN_LIFETIME)

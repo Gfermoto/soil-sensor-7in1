@@ -8,8 +8,8 @@
 #define IMQTT_CONNECTION_MANAGER_H
 
 #include <Arduino.h>
-#include <WiFiClient.h>
 #include <PubSubClient.h>
+#include <WiFiClient.h>
 
 /**
  * @brief Интерфейс для менеджера MQTT соединений
@@ -17,8 +17,9 @@
  * Определяет контракт для управления подключениями к MQTT брокеру,
  * включая подключение, публикацию, подписку и обработку ошибок.
  */
-class IMqttConnectionManager {
-public:
+class IMqttConnectionManager
+{
+   public:
     virtual ~IMqttConnectionManager() = default;
 
     /**
@@ -88,4 +89,4 @@ public:
     virtual void setCallback(std::function<void(char*, uint8_t*, unsigned int)> callback) = 0;
 };
 
-#endif // IMQTT_CONNECTION_MANAGER_H
+#endif  // IMQTT_CONNECTION_MANAGER_H

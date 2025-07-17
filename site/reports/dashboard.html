@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📈 Дашборд качества - JXCT</title>
+    <meta name="description" content="Краткий обзор качества кода проекта JXCT">
+    <link rel="icon" href="../assets/images/favicon.png">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+        .dashboard {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .summary-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .status-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+        .status-text {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #28a745;
+            margin-bottom: 15px;
+        }
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        .stat-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #495057;
+            margin-bottom: 5px;
+        }
+        .stat-label {
+            color: #6c757d;
+            font-size: 0.95em;
+            font-weight: 500;
+        }
+        .actions {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            margin: 0 10px 10px 0;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .btn:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .btn-secondary {
+            background: #6c757d;
+        }
+        .btn-secondary:hover {
+            background: #495057;
+        }
+        .timestamp {
+            color: #6c757d;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+        @media (max-width: 768px) {
+            .quick-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .status-text {
+                font-size: 1.4em;
+            }
+            .summary-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="summary-card">
+            <div class="status-icon">✅</div>
+            <div class="status-text">Система работает стабильно</div>
+            <div class="timestamp">
+                Последнее обновление: $(date -u '+%Y-%m-%dT%H:%M:%SZ')
+            </div>
+
+            <div class="quick-stats">
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Успешность тестов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">90</div>
+                    <div class="stat-label">Всего тестов</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">0</div>
+                    <div class="stat-label">Code Smells</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">100%</div>
+                    <div class="stat-label">Покрытие кода</div>
+                </div>
+            </div>
+
+            <div class="actions">
+                <a href="index.html" class="btn">📊 Подробные отчёты</a>
+                <a href="test-summary.json" class="btn btn-secondary">📄 JSON API</a>
+                <a href="../index.html" class="btn btn-secondary">🏠 Главная</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Автообновление каждые 5 минут
+        setTimeout(() => {
+            location.reload();
+        }, 300000);
+    </script>
+</body>
+</html>

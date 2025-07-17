@@ -14,14 +14,17 @@ extern SensorCalibrationService gCalibrationService;
 extern SensorCompensationService gCompensationService;
 
 // Получение экземпляров бизнес-сервисов
-ICropRecommendationEngine& getCropEngine() { // NOLINT(misc-use-internal-linkage)
+ICropRecommendationEngine& getCropEngine()
+{  // NOLINT(misc-use-internal-linkage)
     return gCropEngine;
 }
 
-ISensorCalibrationService& getCalibrationService() { // NOLINT(misc-use-internal-linkage)
+ISensorCalibrationService& getCalibrationService()
+{  // NOLINT(misc-use-internal-linkage)
     return gCalibrationService;
 }
 
-ISensorCompensationService& getCompensationService() { // NOLINT(misc-use-internal-linkage)
+ISensorCompensationService& getCompensationService()
+{  // NOLINT(misc-use-internal-linkage)
     return gCompensationService;
-} 
+}

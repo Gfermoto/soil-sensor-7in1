@@ -17,8 +17,9 @@
  * Определяет контракт для применения научных алгоритмов компенсации
  * к показаниям датчиков (модель Арчи, уравнение Нернста, FAO 56).
  */
-class ISensorCompensationService {
-public:
+class ISensorCompensationService
+{
+   public:
     virtual ~ISensorCompensationService() = default;
 
     /**
@@ -94,5 +95,4 @@ public:
     virtual bool validateCompensationInputs(SoilType soilType, float humidity, float temperature) const = 0;
 };
 
-#endif // ISENSOR_COMPENSATION_SERVICE_H
- 
+#endif  // ISENSOR_COMPENSATION_SERVICE_H

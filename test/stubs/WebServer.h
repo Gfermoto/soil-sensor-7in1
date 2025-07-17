@@ -5,4 +5,4 @@
 
 // WebServer уже определен в esp32_stubs.h
 
-#endif // WEBSERVER_H 
+#endif  // WEBSERVER_H

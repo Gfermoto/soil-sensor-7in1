@@ -7,10 +7,10 @@
 #ifndef SENSOR_COMPENSATION_SERVICE_H
 #define SENSOR_COMPENSATION_SERVICE_H
 
-#include <map>
 #include <Arduino.h>
-#include "../../include/sensor_compensation.h"
+#include <map>
 #include "../../include/business/ISensorCompensationService.h"
+#include "../../include/sensor_compensation.h"
 #include "../../include/validation_utils.h"
 
 /**
@@ -18,14 +18,16 @@
  *
  * Содержит коэффициенты для модели Арчи (1942)
  */
-struct ArchieCoefficients {
+struct ArchieCoefficients
+{
     float m;  // Коэффициент цементации
     float n;  // Коэффициент насыщенности
     float a;  // Коэффициент пористости
 
     ArchieCoefficients() : m(1.5F), n(2.0F), a(0.45F) {}
-    ArchieCoefficients(float cementation, float saturation, float porosity)
-        : m(cementation), n(saturation), a(porosity) {}
+    ArchieCoefficients(float cementation, float saturation, float porosity) : m(cementation), n(saturation), a(porosity)
+    {
+    }
 };
 
 /**
@@ -33,14 +35,17 @@ struct ArchieCoefficients {
  *
  * Содержит физические параметры почвы
  */
-struct SoilParameters {
-    float porosity;      // Пористость
-    float bulkDensity;   // Объемная плотность
-    float fieldCapacity; // Полевая влагоемкость
+struct SoilParameters
+{
+    float porosity;       // Пористость
+    float bulkDensity;    // Объемная плотность
+    float fieldCapacity;  // Полевая влагоемкость
 
     SoilParameters() : porosity(0.45F), bulkDensity(1.40F), fieldCapacity(0.20F) {}
     SoilParameters(float por, float density, float capacity)
-        : porosity(por), bulkDensity(density), fieldCapacity(capacity) {}
+        : porosity(por), bulkDensity(density), fieldCapacity(capacity)
+    {
+    }
 };
 
 /**
@@ -49,14 +54,19 @@ struct SoilParameters {
  * Содержит температурные и влажностные коэффициенты для NPK
  * Источник: [Delgado et al. (2020). DOI:10.1007/s42729-020-00215-4]
  */
-struct NPKCoefficients {
-    float delta_N, delta_P, delta_K;      // Температурные коэффициенты
-    float epsilon_N, epsilon_P, epsilon_K; // Влажностные коэффициенты
+struct NPKCoefficients
+{
+    float delta_N, delta_P, delta_K;        // Температурные коэффициенты
+    float epsilon_N, epsilon_P, epsilon_K;  // Влажностные коэффициенты
 
-    NPKCoefficients() : delta_N(0.0041F), delta_P(0.0053F), delta_K(0.0032F),
-                       epsilon_N(0.01F), epsilon_P(0.008F), epsilon_K(0.012F) {}
+    NPKCoefficients()
+        : delta_N(0.0041F), delta_P(0.0053F), delta_K(0.0032F), epsilon_N(0.01F), epsilon_P(0.008F), epsilon_K(0.012F)
+    {
+    }
     NPKCoefficients(float dN, float dP, float dK, float eN, float eP, float eK)
-        : delta_N(dN), delta_P(dP), delta_K(dK), epsilon_N(eN), epsilon_P(eP), epsilon_K(eK) {}
+        : delta_N(dN), delta_P(dP), delta_K(dK), epsilon_N(eN), epsilon_P(eP), epsilon_K(eK)
+    {
+    }
 };
 
 /**
@@ -67,8 +77,9 @@ struct NPKCoefficients {
  * - Уравнение Нернста для pH
  * - Алгоритм FAO 56 для NPK
  */
-class SensorCompensationService : public ISensorCompensationService {
-private:
+class SensorCompensationService : public ISensorCompensationService
+{
+   private:
     // Коэффициенты Арчи для разных типов почвы
     std::map<SoilType, ArchieCoefficients> archieCoefficients;
 
@@ -79,9 +90,9 @@ private:
     std::map<SoilType, NPKCoefficients> npkCoefficients;
 
     // Константы для расчетов
-    static constexpr float R = 8.314F;  // Универсальная газовая постоянная (Дж/(моль·К))
-    static constexpr float F = 96485.0F; // Постоянная Фарадея (Кл/моль)
-    static constexpr float T0 = 298.15F; // Стандартная температура (25°C в Кельвинах)
+    static constexpr float R = 8.314F;    // Универсальная газовая постоянная (Дж/(моль·К))
+    static constexpr float F = 96485.0F;  // Постоянная Фарадея (Кл/моль)
+    static constexpr float T0 = 298.15F;  // Стандартная температура (25°C в Кельвинах)
 
     // Инициализация коэффициентов Арчи
     void initializeArchieCoefficients();
@@ -101,7 +112,7 @@ private:
     // Расчет коэффициента влажностной компенсации для EC
     float calculateECHumidityFactor(float humidity, SoilType soilType) const;
 
-public:
+   public:
     /**
      * @brief Конструктор
      *
@@ -203,4 +214,4 @@ public:
     NPKCoefficients getNPKCoefficients(SoilType soilType) const;
 };
 
-#endif // SENSOR_COMPENSATION_SERVICE_H
+#endif  // SENSOR_COMPENSATION_SERVICE_H

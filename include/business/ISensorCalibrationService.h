@@ -17,8 +17,9 @@
  * Определяет контракт для применения калибровочных данных к показаниям датчиков,
  * включая загрузку калибровочных таблиц и их применение.
  */
-class ISensorCalibrationService {
-public:
+class ISensorCalibrationService
+{
+   public:
     virtual ~ISensorCalibrationService() = default;
 
     /**
@@ -71,4 +72,4 @@ public:
     virtual void clearCalibrationTable(SoilProfile profile) = 0;
 };
 
-#endif // ISENSOR_CALIBRATION_SERVICE_H
+#endif  // ISENSOR_CALIBRATION_SERVICE_H

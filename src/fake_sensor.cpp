@@ -7,9 +7,9 @@
 #include <Arduino.h>
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "jxct_config_vars.h"
+#include "logger.h"  // ✅ Добавляем для logDebugSafe
 #include "modbus_sensor.h"
 #include "sensor_compensation.h"
-#include "logger.h"  // ✅ Добавляем для logDebugSafe
 
 namespace
 {
@@ -37,7 +37,7 @@ void fakeSensorTask(void* parameters)
             // Используем более узкие диапазоны для лучшего соответствия рекомендациям
             const float nitrogen_mgkg = 175.0F + static_cast<float>(random(-25, 25));   // 150..200 мг/кг
             const float phosphorus_mgkg = 75.0F + static_cast<float>(random(-15, 15));  // 60..90 мг/кг
-            const float potassium_mgkg = 250.0F + static_cast<float>(random(-50, 50)); // 200..300 мг/кг
+            const float potassium_mgkg = 250.0F + static_cast<float>(random(-50, 50));  // 200..300 мг/кг
 
             // Данные уже в мг/кг, конверсия не нужна
             NPKReferences npk{nitrogen_mgkg, phosphorus_mgkg, potassium_mgkg};
@@ -64,16 +64,16 @@ void fakeSensorTask(void* parameters)
             if (config.flags.calibrationEnabled)
             {
                 logDebugSafe("✅ Применяем исправленную компенсацию датчика");
-                
+
                 // Используем массив для устранения дублирования кода
                 static const std::array<SoilType, 5> soilTypes = {{
-                    SoilType::SAND,      // 0
-                    SoilType::LOAM,      // 1
-                    SoilType::PEAT,      // 2
-                    SoilType::CLAY,      // 3
-                    SoilType::SANDPEAT   // 4
+                    SoilType::SAND,     // 0
+                    SoilType::LOAM,     // 1
+                    SoilType::PEAT,     // 2
+                    SoilType::CLAY,     // 3
+                    SoilType::SANDPEAT  // 4
                 }};
-                
+
                 const int profileIndex = (config.soilProfile >= 0 && config.soilProfile < 5) ? config.soilProfile : 1;
                 const SoilType soil = soilTypes[profileIndex];
 

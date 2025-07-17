@@ -11,25 +11,28 @@
 #include "../sensor_compensation.h"  // Для SoilProfile
 
 // Структура для рекомендаций
-struct RecValues {
-    float t;      // Температура
-    float hum;    // Влажность
-    float ec;     // Электропроводность
-    float ph;     // pH
-    float n;      // Азот
-    float p;      // Фосфор
-    float k;      // Калий
+struct RecValues
+{
+    float t;    // Температура
+    float hum;  // Влажность
+    float ec;   // Электропроводность
+    float ph;   // pH
+    float n;    // Азот
+    float p;    // Фосфор
+    float k;    // Калий
 };
 
 // Перечисления для типов
-enum class Season {
+enum class Season
+{
     SPRING,
     SUMMER,
     AUTUMN,
     WINTER
 };
 
-enum class EnvironmentType {
+enum class EnvironmentType
+{
     OUTDOOR = 0,
     GREENHOUSE = 1,
     INDOOR = 2
@@ -43,8 +46,9 @@ enum class EnvironmentType {
  * Определяет контракт для вычисления агрономических рекомендаций
  * на основе типа культуры, профиля почвы и условий окружающей среды.
  */
-class ICropRecommendationEngine {
-public:
+class ICropRecommendationEngine
+{
+   public:
     virtual ~ICropRecommendationEngine() = default;
 
     /**
@@ -55,9 +59,8 @@ public:
      * @param envType Тип окружающей среды (OUTDOOR, GREENHOUSE, INDOOR)
      * @return RecValues Структура с рекомендуемыми значениями
      */
-    virtual RecValues computeRecommendations(const String& cropId,
-                                           const SoilProfile& soilProfile,
-                                           const EnvironmentType& envType) = 0;
+    virtual RecValues computeRecommendations(const String& cropId, const SoilProfile& soilProfile,
+                                             const EnvironmentType& envType) = 0;
 
     /**
      * @brief Применяет сезонные корректировки к рекомендациям
@@ -66,9 +69,7 @@ public:
      * @param season Текущий сезон
      * @param isGreenhouse Признак теплицы
      */
-    virtual void applySeasonalCorrection(RecValues& rec,
-                                       Season season,
-                                       bool isGreenhouse) = 0;
+    virtual void applySeasonalCorrection(RecValues& rec, Season season, bool isGreenhouse) = 0;
 };
 
-#endif // ICROP_RECOMMENDATION_ENGINE_H
+#endif  // ICROP_RECOMMENDATION_ENGINE_H
