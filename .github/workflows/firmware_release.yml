@@ -20,6 +20,8 @@ on:
 
 permissions:
   contents: write
+  packages: write
+  id-token: write
 
 jobs:
   build:
@@ -37,17 +39,6 @@ jobs:
         run: |
           pip install --upgrade platformio
           pio --version
-        continue-on-error: true
-
-      - name: Sync versions automatically
-        run: |
-          echo "🔄 Синхронизация версий..."
-          if [ -f "scripts/release_manager.py" ]; then
-            python scripts/release_manager.py sync
-            echo "✅ Версии синхронизированы"
-          else
-            echo "⚠️ Скрипт release_manager.py не найден, пропускаем синхронизацию"
-          fi
         continue-on-error: true
 
       - name: Verify VERSION file matches tag

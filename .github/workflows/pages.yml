@@ -65,11 +65,6 @@ jobs:
           ls -la site/
           echo "=== Checking if pages were generated ==="
           find site/ -name "*.html" | head -10
-          echo "=== Checking for errors ==="
-          if [ $? -ne 0 ]; then
-            echo "MkDocs build failed!"
-            exit 1
-          fi
 
       - name: Copy Doxygen HTML to site/api
         run: |

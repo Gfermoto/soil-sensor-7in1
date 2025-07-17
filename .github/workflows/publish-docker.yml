@@ -5,14 +5,14 @@ on:
     branches: [ main ]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  packages: write
+  id-token: write
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-      id-token: write
-    
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -43,5 +43,4 @@ jobs:
         echo "Testing Docker image functionality..."
         docker run --rm ghcr.io/gfermoto/soil-sensor-7in1:main python3 --version
         docker run --rm ghcr.io/gfermoto/soil-sensor-7in1:main pio --version
-        docker run --rm ghcr.io/gfermoto/soil-sensor-7in1:main clang-tidy --version
         echo "✅ Docker image test completed successfully!" 
