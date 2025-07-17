@@ -1,0 +1,25 @@
+var modbus__sensor_8cpp =
+[
+    [ "testSP3485E", "modbus__sensor_8cpp.html#ab8a1f5220dc77f33a89d14fe4d82442f", null ],
+    [ "setupModbus", "modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520", null ],
+    [ "validateSensorData", "modbus__sensor_8cpp.html#aa8a3b28ec8c21261d4e467da91a17a67", null ],
+    [ "getCachedData", "modbus__sensor_8cpp.html#a8eb8daa78bacfc8a930012162882aa9c", null ],
+    [ "readFirmwareVersion", "modbus__sensor_8cpp.html#a6444c2d436a57168cc75d4ef8529a6c8", null ],
+    [ "readErrorStatus", "modbus__sensor_8cpp.html#a8b6b2ad640c9580fa45d8cbad28adf53", null ],
+    [ "testModbusConnection", "modbus__sensor_8cpp.html#aedb09484ba8020afc57e9e9e26012bf1", null ],
+    [ "readSensorData", "modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2", null ],
+    [ "preTransmission", "modbus__sensor_8cpp.html#a1c43d8a4afead0d0df29635242290377", null ],
+    [ "postTransmission", "modbus__sensor_8cpp.html#a33b535e84f654e423bb627b25b7b3759", null ],
+    [ "realSensorTask", "modbus__sensor_8cpp.html#ae64cda2b754416ebb3bcb79f98176319", null ],
+    [ "startRealSensorTask", "modbus__sensor_8cpp.html#a4f1a431da8f1feb8a64e2c5f887056df", null ],
+    [ "printModbusError", "modbus__sensor_8cpp.html#adbf50656913748323cd03274af03c116", null ],
+    [ "initMovingAverageBuffers", "modbus__sensor_8cpp.html#ae316f6943acb0b355ff8b0f878b08d04", null ],
+    [ "addToMovingAverage", "modbus__sensor_8cpp.html#aa3a75ec1c2e64f7a20f651c168e3f82b", null ],
+    [ "getSensorData", "modbus__sensor_8cpp.html#a3fac607750afe2d74837248aeec2cfe0", null ],
+    [ "getModbus", "modbus__sensor_8cpp.html#a3008e41a02a9857f034bc685d5aadbc0", null ],
+    [ "getSensorLastError", "modbus__sensor_8cpp.html#a3ff54b4bc25eb08e654e0ddbc9d998d0", null ],
+    [ "getSensorDataRef", "modbus__sensor_8cpp.html#a353fd147ac312a9252179d62f52eb595", null ],
+    [ "getSensorCache", "modbus__sensor_8cpp.html#a0174826352a790616d0ad5c414972e68", null ],
+    [ "sensorData", "modbus__sensor_8cpp.html#ae6ed671f3036da58a93991fca2a2329c", null ],
+    [ "sensorCache", "modbus__sensor_8cpp.html#a5a90cc33c11a27aac5f56dcaac387c0d", null ]
+];
