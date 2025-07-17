@@ -211,12 +211,13 @@ ValidationResult validatePHInternal(float phValue)
 
 ValidationResult validateECInternal(float ecValue)
 {
-    return validateRangeInternal(RangeParams::builder()
-                                     .setValue(ecValue)
-                                     .setMinVal(SENSOR_EC_MIN)
-                                     .setMaxVal(SENSOR_EC_MAX)
-                                     .setFieldName("EC")
-                                     .build());
+    // EC должен быть больше 0 согласно документации
+    if (ecValue <= 0.0F || ecValue > SENSOR_EC_MAX)
+    {
+        const String message = "EC вне допустимого диапазона (0, " + String(SENSOR_EC_MAX) + "]";
+        return {false, message};
+    }
+    return {true, ""};
 }
 
 ValidationResult validateNPKInternal(float value, const char* nutrient)

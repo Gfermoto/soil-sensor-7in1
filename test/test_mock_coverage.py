@@ -32,17 +32,19 @@ class ValidationResult:
     warnings: List[str]
 
 class MockValidationUtils:
-    """Мок для validation_utils"""
+    """Мок для validation_utils с правильными диапазонами из документации"""
     
     @staticmethod
     def validateTemperature(value: float) -> ValidationResult:
-        if 0.0 <= value <= 40.0:
+        # Диапазон датчика JXCT 7-in-1: -45°C до 115°C
+        if -45.0 <= value <= 115.0:
             return ValidationResult(True, [], [])
         else:
-            return ValidationResult(False, [f"Температура {value}°C вне диапазона [0, 40]"], [])
+            return ValidationResult(False, [f"Температура {value}°C вне диапазона [-45, 115]"], [])
     
     @staticmethod
     def validateHumidity(value: float) -> ValidationResult:
+        # Диапазон датчика: 0-100%
         if 0.0 <= value <= 100.0:
             return ValidationResult(True, [], [])
         else:
@@ -50,38 +52,43 @@ class MockValidationUtils:
     
     @staticmethod
     def validatePH(value: float) -> ValidationResult:
-        if 0.0 <= value <= 14.0:
+        # Диапазон датчика JXCT 7-in-1: 3.0-9.0
+        if 3.0 <= value <= 9.0:
             return ValidationResult(True, [], [])
         else:
-            return ValidationResult(False, [f"pH {value} вне диапазона [0, 14]"], [])
+            return ValidationResult(False, [f"pH {value} вне диапазона [3.0, 9.0]"], [])
     
     @staticmethod
     def validateEC(value: float) -> ValidationResult:
-        if 0.0 < value <= 5000.0:
+        # Диапазон датчика: 0-10000 µS/cm
+        if 0.0 < value <= 10000.0:
             return ValidationResult(True, [], [])
         else:
-            return ValidationResult(False, [f"EC {value} мкСм/см вне диапазона (0, 5000]"], [])
+            return ValidationResult(False, [f"EC {value} мкСм/см вне диапазона (0, 10000]"], [])
     
     @staticmethod
     def validateNitrogen(value: float) -> ValidationResult:
-        if 0.0 <= value <= 200.0:
+        # Диапазон датчика: 0-1999 мг/кг
+        if 0.0 <= value <= 1999.0:
             return ValidationResult(True, [], [])
         else:
-            return ValidationResult(False, [f"Азот {value} мг/кг вне диапазона [0, 200]"], [])
+            return ValidationResult(False, [f"Азот {value} мг/кг вне диапазона [0, 1999]"], [])
     
     @staticmethod
     def validatePhosphorus(value: float) -> ValidationResult:
-        if 0.0 <= value <= 150.0:
+        # Диапазон датчика: 0-1999 мг/кг
+        if 0.0 <= value <= 1999.0:
             return ValidationResult(True, [], [])
         else:
-            return ValidationResult(False, [f"Фосфор {value} мг/кг вне диапазона [0, 150]"], [])
+            return ValidationResult(False, [f"Фосфор {value} мг/кг вне диапазона [0, 1999]"], [])
     
     @staticmethod
     def validatePotassium(value: float) -> ValidationResult:
-        if 0.0 <= value <= 300.0:
+        # Диапазон датчика: 0-1999 мг/кг
+        if 0.0 <= value <= 1999.0:
             return ValidationResult(True, [], [])
         else:
-            return ValidationResult(False, [f"Калий {value} мг/кг вне диапазона [0, 300]"], [])
+            return ValidationResult(False, [f"Калий {value} мг/кг вне диапазона [0, 1999]"], [])
     
     @staticmethod
     def validateFullSensorData(data: Dict[str, Any]) -> ValidationResult:
@@ -120,35 +127,39 @@ class MockValidationUtils:
         return ValidationResult(len(errors) == 0, errors, warnings)
 
 class MockCompensationUtils:
-    """Мок для sensor_compensation"""
+    """Мок для sensor_compensation с правильными формулами из документации"""
     
     @staticmethod
     def correctEC(ec: float, soil_type: int, temperature: float, humidity: float) -> float:
-        """Компенсация EC в зависимости от типа почвы и условий"""
-        # Коэффициенты компенсации для разных типов почвы
-        soil_coefficients = {
-            0: 1.0,   # SAND
-            1: 1.05,  # LOAM
-            2: 1.1,   # CLAY
-            3: 1.02   # SILT
+        """Компенсация EC по модели Арчи из документации"""
+        # Коэффициенты Арчи по типам почв из документации
+        archie_coefficients = {
+            0: {"m": 1.3, "n": 2.0, "a": 0.35},  # SAND
+            1: {"m": 1.5, "n": 2.0, "a": 0.45},  # LOAM
+            2: {"m": 2.0, "n": 2.5, "a": 0.50},  # CLAY
+            3: {"m": 1.8, "n": 2.2, "a": 0.80},  # PEAT
+            4: {"m": 1.6, "n": 2.1, "a": 0.60}   # SANDPEAT
         }
         
-        # Температурная компенсация
-        temp_coefficient = 1.0 + 0.02 * (temperature - 25.0) / 25.0
+        if soil_type not in archie_coefficients:
+            return ec  # Возвращаем исходное значение если тип почвы неизвестен
         
-        # Влажностная компенсация
-        humidity_coefficient = 1.0 + 0.01 * (humidity - 60.0) / 60.0
+        coef = archie_coefficients[soil_type]
+        T0 = 25.0  # Стандартная температура
+        theta0 = 30.0  # Полевая влагоемкость (30%)
         
-        soil_coef = soil_coefficients.get(soil_type, 1.0)
+        # Формула из документации: EC_comp = EC_raw * (θ/θ₀)^m * (T/T₀)^n
+        humidity_factor = (humidity / theta0) ** coef["m"]
+        temperature_factor = (temperature / T0) ** coef["n"]
         
-        return ec * soil_coef * temp_coefficient * humidity_coefficient
+        return ec * humidity_factor * temperature_factor
     
     @staticmethod
     def correctPH(temperature: float, ph: float) -> float:
-        """Компенсация pH в зависимости от температуры"""
-        # pH изменяется на 0.003 единицы на градус Цельсия
+        """Компенсация pH по уравнению Нернста из документации"""
+        # Формула из документации: pH_comp = pH_raw - 0.003 * (T - 25)
         temp_correction = 0.003 * (temperature - 25.0)
-        return ph + temp_correction
+        return ph - temp_correction
 
 class MockBusinessLogic:
     """Мок для бизнес-логики"""
@@ -277,18 +288,18 @@ class MockCoverageTester:
         print("🔍 Тест покрытия validation_utils (моки)")
         
         test_cases = [
-            # Температура
-            {"func": MockValidationUtils.validateTemperature, "valid": [20.0, 25.0, 30.0], "invalid": [-5.0, 50.0, 100.0]},
-            # Влажность
-            {"func": MockValidationUtils.validateHumidity, "valid": [30.0, 50.0, 80.0], "invalid": [-10.0, 110.0, 150.0]},
-            # pH
-            {"func": MockValidationUtils.validatePH, "valid": [5.5, 6.5, 7.5], "invalid": [0.0, 15.0, -5.0]},
-            # EC
-            {"func": MockValidationUtils.validateEC, "valid": [500.0, 1500.0, 3000.0], "invalid": [-100.0, 10000.0, 0.0]},
-            # NPK
-            {"func": MockValidationUtils.validateNitrogen, "valid": [20.0, 50.0, 100.0], "invalid": [-10.0, 200.0, 0.0]},
-            {"func": MockValidationUtils.validatePhosphorus, "valid": [10.0, 30.0, 80.0], "invalid": [-5.0, 150.0, 0.0]},
-            {"func": MockValidationUtils.validatePotassium, "valid": [15.0, 40.0, 120.0], "invalid": [-8.0, 250.0, 0.0]}
+            # Температура (диапазон датчика: -45°C до 115°C)
+            {"func": MockValidationUtils.validateTemperature, "valid": [-40.0, 20.0, 25.0, 30.0, 100.0], "invalid": [-50.0, 120.0, 150.0]},
+            # Влажность (диапазон: 0-100%)
+            {"func": MockValidationUtils.validateHumidity, "valid": [0.0, 30.0, 50.0, 80.0, 100.0], "invalid": [-10.0, 110.0, 150.0]},
+            # pH (диапазон датчика: 3.0-9.0)
+            {"func": MockValidationUtils.validatePH, "valid": [3.0, 5.5, 6.5, 7.5, 9.0], "invalid": [2.0, 10.0, -5.0]},
+            # EC (диапазон: 0-10000 µS/cm)
+            {"func": MockValidationUtils.validateEC, "valid": [100.0, 500.0, 1500.0, 3000.0, 10000.0], "invalid": [-100.0, 0.0, 15000.0]},
+            # NPK (диапазон: 0-1999 мг/кг)
+            {"func": MockValidationUtils.validateNitrogen, "valid": [0.0, 20.0, 50.0, 100.0, 1999.0], "invalid": [-10.0, 2500.0]},
+            {"func": MockValidationUtils.validatePhosphorus, "valid": [0.0, 10.0, 30.0, 80.0, 1999.0], "invalid": [-5.0, 2500.0]},
+            {"func": MockValidationUtils.validatePotassium, "valid": [0.0, 15.0, 40.0, 120.0, 1999.0], "invalid": [-8.0, 2500.0]}
         ]
         
         total_tests = 0
@@ -363,15 +374,15 @@ class MockCoverageTester:
         print("🔧 Тест покрытия формул компенсации (моки)")
         
         test_cases = [
-            # EC компенсация
-            {"ec": 1500.0, "soil_type": 1, "temp": 25.0, "humidity": 60.0},
-            {"ec": 2000.0, "soil_type": 2, "temp": 30.0, "humidity": 70.0},
-            {"ec": 1000.0, "soil_type": 0, "temp": 20.0, "humidity": 50.0},
+            # EC компенсация (разные типы почв)
+            {"ec": 1500.0, "soil_type": 1, "temp": 25.0, "humidity": 60.0},  # LOAM
+            {"ec": 2000.0, "soil_type": 2, "temp": 30.0, "humidity": 70.0},  # CLAY
+            {"ec": 1000.0, "soil_type": 0, "temp": 20.0, "humidity": 50.0},  # SAND
             
-            # pH компенсация
-            {"ph": 6.5, "temp": 25.0},
-            {"ph": 7.0, "temp": 30.0},
-            {"ph": 6.0, "temp": 20.0}
+            # pH компенсация (разные температуры)
+            {"ph": 6.5, "temp": 25.0},  # Стандартная температура
+            {"ph": 7.0, "temp": 30.0},  # Высокая температура
+            {"ph": 6.0, "temp": 20.0}   # Низкая температура
         ]
         
         total_tests = 0
