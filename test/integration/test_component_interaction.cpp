@@ -118,7 +118,7 @@ bool mock_validate_csrf_token(const std::string& token)
 // Тест 1: Валидация + Форматирование + Логирование
 void test_validation_formatting_logging_chain()
 {
-    TEST_CASE("Тест цепочки: валидация -> форматирование -> логирование");
+    // Тест цепочки: валидация -> форматирование -> логирование
 
     // Очищаем логи
     test_logs.clear();
@@ -148,7 +148,7 @@ void test_validation_formatting_logging_chain()
 // Тест 2: CSRF защита + Валидация конфигурации
 void test_csrf_config_validation_chain()
 {
-    TEST_CASE("Тест цепочки: CSRF защита -> валидация конфигурации");
+    // Тест цепочки: CSRF защита -> валидация конфигурации
 
     // Очищаем логи
     test_logs.clear();
@@ -179,7 +179,7 @@ void test_csrf_config_validation_chain()
 // Тест 3: Обработка ошибок в цепочке
 void test_error_handling_chain()
 {
-    TEST_CASE("Тест обработки ошибок в цепочке компонентов");
+    // Тест обработки ошибок в цепочке компонентов
 
     // Очищаем логи
     test_logs.clear();
@@ -217,7 +217,7 @@ void test_error_handling_chain()
 // Тест 4: Производительность цепочки операций
 void test_performance_chain()
 {
-    TEST_CASE("Тест производительности цепочки операций");
+    // Тест производительности цепочки операций
 
     const int ITERATIONS = 1000;
     auto start_time = std::chrono::high_resolution_clock::now();
@@ -250,7 +250,7 @@ void test_performance_chain()
 // Тест 5: Интеграция с калибровкой и компенсацией
 void test_calibration_compensation_integration()
 {
-    TEST_CASE("Тест интеграции калибровки и компенсации");
+    // Тест интеграции калибровки и компенсации
 
     // Очищаем логи
     test_logs.clear();
@@ -284,7 +284,7 @@ void test_calibration_compensation_integration()
 // Тест 6: Стресс-тест с множественными операциями
 void test_stress_multiple_operations()
 {
-    TEST_CASE("Стресс-тест с множественными операциями");
+    // Стресс-тест с множественными операциями
 
     const int CONCURRENT_OPERATIONS = 100;
     std::vector<bool> results;
@@ -329,7 +329,7 @@ void test_stress_multiple_operations()
 // Тест 7: Интеграция с MQTT и Thingspeak
 void test_mqtt_thingspeak_integration()
 {
-    TEST_CASE("Тест интеграции с MQTT и Thingspeak");
+    // Тест интеграции с MQTT и Thingspeak
 
     // Очищаем логи
     test_logs.clear();
@@ -367,7 +367,7 @@ void test_mqtt_thingspeak_integration()
 // Тест 8: Обработка сетевых ошибок
 void test_network_error_handling()
 {
-    TEST_CASE("Тест обработки сетевых ошибок");
+    // Тест обработки сетевых ошибок
 
     // Очищаем логи
     test_logs.clear();

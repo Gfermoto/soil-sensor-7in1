@@ -280,7 +280,7 @@ MockHttpResponse mock_api_handler(const MockHttpRequest& request)
 // Тест 1: Базовые GET запросы
 void test_basic_get_requests()
 {
-    TEST_CASE("Тест базовых GET запросов к API");
+    // Тест базовых GET запросов к API
 
     // Очищаем логи
     api_logs.clear();
@@ -312,7 +312,7 @@ void test_basic_get_requests()
 // Тест 2: POST запросы с CSRF защитой
 void test_post_requests_with_csrf()
 {
-    TEST_CASE("Тест POST запросов с CSRF защитой");
+    // Тест POST запросов с CSRF защитой
 
     // Очищаем логи и токены
     api_logs.clear();
@@ -359,7 +359,7 @@ void test_post_requests_with_csrf()
 // Тест 3: Валидация JSON данных
 void test_json_validation()
 {
-    TEST_CASE("Тест валидации JSON данных в API");
+    // Тест валидации JSON данных в API
 
     // Очищаем логи
     api_logs.clear();
@@ -404,7 +404,7 @@ void test_json_validation()
 // Тест 4: Обработка ошибок 404
 void test_404_error_handling()
 {
-    TEST_CASE("Тест обработки ошибок 404");
+    // Тест обработки ошибок 404
 
     // Очищаем логи
     api_logs.clear();
@@ -427,7 +427,7 @@ void test_404_error_handling()
 // Тест 5: Производительность API
 void test_api_performance()
 {
-    TEST_CASE("Тест производительности API");
+    // Тест производительности API
 
     const int ITERATIONS = 1000;
     auto start_time = std::chrono::high_resolution_clock::now();
@@ -458,7 +458,7 @@ void test_api_performance()
 // Тест 6: Интеграция калибровки
 void test_calibration_integration()
 {
-    TEST_CASE("Тест интеграции калибровки через API");
+    // Тест интеграции калибровки через API
 
     // Очищаем логи
     api_logs.clear();
@@ -551,7 +551,7 @@ void test_calibration_integration()
 // Тест 7: Стресс-тест API
 void test_api_stress()
 {
-    TEST_CASE("Стресс-тест API с множественными запросами");
+    // Стресс-тест API с множественными запросами
 
     const int CONCURRENT_REQUESTS = 100;
     std::vector<MockHttpResponse> responses;
@@ -612,7 +612,7 @@ void test_api_stress()
 // Тест 8: Безопасность API
 void test_api_security()
 {
-    TEST_CASE("Тест безопасности API");
+    // Тест безопасности API
 
     // Очищаем логи
     api_logs.clear();
