@@ -32,7 +32,7 @@ jobs:
       - name: Update repository description
         uses: actions/github-script@v7
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          github-token: ${{ secrets.REPO_TOKEN }}
           script: |
             const version = '${{ steps.version.outputs.version_clean }}';
             const description = `🌱 JXCT 7-в-1 Датчик Почвы (v${version}) - Профессиональная IoT система мониторинга почвы на базе ESP32 с Modbus RTU, MQTT и продвинутыми алгоритмами компенсации`;
