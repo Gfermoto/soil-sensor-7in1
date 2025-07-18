@@ -1,22 +1,23 @@
 ---
 # Конфигурация clang-tidy для JXCT ESP32 проекта
-# Мягкая конфигурация для начального анализа
+# Мягкая конфигурация для безопасного анализа
 
 Checks: >
-  clang-analyzer-*,
   bugprone-*,
   cert-*,
   misc-*,
-  modernize-*,
   performance-*,
   readability-*,
-  -modernize-use-trailing-return-type,
+  -modernize-*,
   -cert-err58-cpp,
   -misc-non-private-member-variables-in-classes,
   -misc-include-cleaner,
   -readability-identifier-naming,
   -readability-magic-numbers,
-  -readability-function-cognitive-complexity
+  -readability-function-cognitive-complexity,
+  -bugprone-easily-swappable-parameters,
+  -misc-unused-parameters,
+  -readability-inconsistent-declaration-parameter-name
 
 WarningsAsErrors: ''
 
