@@ -52,7 +52,7 @@ struct RegisterConversion
             scaleMultiplier = multiplier;
             return *this;
         }
-        RegisterConversion build() const
+        [[nodiscard]] RegisterConversion build() const
         {
             return RegisterConversion(registerValue, scaleMultiplier);
         }
@@ -67,7 +67,7 @@ struct RegisterConversion
     {  // NOLINT(bugprone-easily-swappable-parameters)
         return RegisterConversion(registerValue, scaleMultiplier);
     }
-    float toFloat() const
+    [[nodiscard]] float toFloat() const
     {
         return static_cast<float>(value) * multiplier;
     }

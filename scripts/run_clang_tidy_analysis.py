@@ -2,7 +2,10 @@
 # -*- coding: utf-8 -*-
 """
 Minimalistic clang-tidy analyzer for JXCT
+Использует систему исключений для правильно погашенных предупреждений
 """
+
+from clang_tidy_exclusions import filter_warnings
 
 import sys
 import os
@@ -48,10 +51,12 @@ def main():
         print(f'\n=== ANALYSIS {file_path} ===')
         stdout, stderr = run_clang_tidy(file_path)
         warnings = [line for line in stdout.split('\n') if 'warning:' in line]
-        total_warnings += len(warnings)
+        # Фильтруем правильно погашенные предупреждения
+        filtered_warnings = filter_warnings(warnings)
+        total_warnings += len(filtered_warnings)
         report_lines.append(f'\n## {file_path}')
-        if warnings:
-            for w in warnings:
+        if filtered_warnings:
+            for w in filtered_warnings:
                 print(f'[WARNING] {w}')
                 report_lines.append(f'- {w}')
         elif stderr:

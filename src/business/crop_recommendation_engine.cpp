@@ -11,6 +11,7 @@
 #include "../../include/logger.h"
 #include "validation_utils.h"  // Для централизованной валидации
 
+namespace {
 // Заглушки для внутренних функций компенсации
 float compensatePHInternal(float pHRawValue, float temperatureValue, float moistureValue)
 {
@@ -24,236 +25,6 @@ float compensateNPKInternal(float NPKRawValue, float temperatureValue, float moi
 {
     return NPKRawValue;
 }
-
-CropRecommendationEngine::CropRecommendationEngine()
-{
-    initializeCropConfigs();
-}
-
-void CropRecommendationEngine::initializeCropConfigs()
-{
-    // Базовые значения (generic) - научно обоснованные
-    cropConfigs["generic"] =
-        CropConfig(22.0F, 70.0F, 1500.0F, 6.5F,  // температура, влажность, EC, pH
-                   150.0F, 60.0F, 200.0F         // N, P, K (мг/кг) - ВАЛИДИРОВАНО: научные агрономические нормы
-        );
-
-    // ТОМАТЫ (Solanum lycopersicum) - [Источник: University of Florida IFAS Extension, B. Santos, 2019]
-    cropConfigs["tomato"] = CropConfig(24.0F, 75.0F, 2000.0F, 6.5F,  // pH 6.0-6.8, EC 1.5-3.0 mS/cm
-                                       200.0F, 80.0F, 300.0F         // N: 150-250, P: 50-100, K: 200-400 мг/кг
-    );
-
-    // ОГУРЦЫ (Cucumis sativus) - [Источник: USDA Natural Resources Conservation Service, 2020]
-    cropConfigs["cucumber"] = CropConfig(26.0F, 80.0F, 1800.0F, 6.5F,  // pH 6.0-7.0, EC 1.2-2.5 mS/cm
-                                         160.0F, 60.0F, 225.0F         // N: 120-200, P: 40-80, K: 150-300 мг/кг
-    );
-
-    // ПЕРЕЦ (Capsicum annuum) - [Источник: Cornell University Cooperative Extension, 2022]
-    cropConfigs["pepper"] = CropConfig(27.0F, 75.0F, 2100.0F, 6.5F,  // pH 6.0-7.0, EC 1.4-2.8 mS/cm
-                                       140.0F, 50.0F, 250.0F         // N: 100-180, P: 30-70, K: 150-350 мг/кг
-    );
-
-    // САЛАТ (Lactuca sativa) - [Источник: University of California Agriculture and Natural Resources, 2018]
-    cropConfigs["lettuce"] = CropConfig(18.0F, 85.0F, 1500.0F, 6.5F,  // pH 6.0-7.0, EC 1.0-2.0 mS/cm
-                                        115.0F, 35.0F, 175.0F         // N: 80-150, P: 20-50, K: 100-250 мг/кг
-    );
-
-    // ЧЕРНИКА (Vaccinium corymbosum) - [Источник: Michigan State University Extension, A. Schilder, 2021]
-    cropConfigs["blueberry"] = CropConfig(20.0F, 75.0F, 1200.0F, 5.0F,  // pH 4.5-5.5, EC 0.8-1.5 mS/cm
-                                          75.0F, 30.0F, 60.0F           // N: 50-100, P: 20-40, K: 40-80 мг/кг
-    );
-
-    // ГАЗОН (Lawn) - научные данные Turfgrass Science
-    cropConfigs["lawn"] = CropConfig(20.0F, 60.0F, 1000.0F, 6.5F,  // pH 6.0-7.0, EC 0.8-1.5 mS/cm
-                                     100.0F, 40.0F, 80.0F          // N: 80-120, P: 30-50, K: 60-100 мг/кг
-    );
-
-    // ВИНОГРАД (Vitis vinifera) - научные данные American Journal of Enology
-    cropConfigs["grape"] = CropConfig(24.0F, 65.0F, 1500.0F, 6.5F,  // pH 6.0-7.5, EC 1.0-2.0 mS/cm
-                                      120.0F, 50.0F, 150.0F         // N: 100-140, P: 40-60, K: 120-180 мг/кг
-    );
-
-    // ХВОЙНЫЕ (Conifer) - научные данные Forest Science
-    cropConfigs["conifer"] = CropConfig(18.0F, 65.0F, 1000.0F, 5.8F,  // pH 5.5-6.5, EC 0.5-1.2 mS/cm
-                                        60.0F, 25.0F, 50.0F           // N: 50-70, P: 20-30, K: 40-60 мг/кг
-    );
-
-    // КЛУБНИКА (Fragaria × ananassa) - научные данные HortScience
-    cropConfigs["strawberry"] = CropConfig(22.0F, 80.0F, 1600.0F, 6.0F,  // pH 5.5-6.5, EC 1.2-2.0 mS/cm
-                                           130.0F, 55.0F, 150.0F         // N: 110-150, P: 45-65, K: 130-170 мг/кг
-    );
-
-    // ЯБЛОНИ (Malus domestica) - научные данные Journal of Horticultural Science
-    cropConfigs["apple"] = CropConfig(20.0F, 70.0F, 1200.0F, 6.5F,  // pH 6.0-7.0, EC 1.0-1.8 mS/cm
-                                      110.0F, 45.0F, 130.0F         // N: 90-130, P: 35-55, K: 110-150 мг/кг
-    );
-    cropConfigs["pear"] = cropConfigs["apple"];  // Используем ту же конфигурацию
-
-    // ВИШНЯ (Prunus avium) - научные данные HortScience
-    cropConfigs["cherry"] = CropConfig(22.0F, 70.0F, 1300.0F, 6.5F,  // pH 6.0-7.0, EC 1.0-1.8 mS/cm
-                                       120.0F, 50.0F, 140.0F         // N: 100-140, P: 40-60, K: 120-160 мг/кг
-    );
-
-    // МАЛИНА (Rubus idaeus) - научные данные Acta Horticulturae
-    cropConfigs["raspberry"] = CropConfig(20.0F, 75.0F, 1100.0F, 6.0F,  // pH 5.5-6.5, EC 0.8-1.5 mS/cm
-                                          100.0F, 40.0F, 120.0F         // N: 80-120, P: 30-50, K: 100-140 мг/кг
-    );
-
-    // СМОРОДИНА (Ribes spp.) - научные данные HortScience
-    cropConfigs["currant"] = CropConfig(18.0F, 75.0F, 1000.0F, 6.0F,  // pH 5.5-6.5, EC 0.8-1.3 mS/cm
-                                        80.0F, 35.0F, 100.0F          // N: 70-90, P: 30-40, K: 90-110 мг/кг
-    );
-}
-
-// Структура для параметров рекомендаций
-struct RecommendationParams
-{
-    const SensorData& data;
-    const String& cropType;
-    const String& growingType;
-    const String& season;
-    const String& soilType;
-
-   private:
-    RecommendationParams(const SensorData& data, const String& cropType, const String& growingType,
-                         const String& season, const String& soilType)  // NOLINT(bugprone-easily-swappable-parameters)
-        : data(data), cropType(cropType), growingType(growingType), season(season), soilType(soilType)
-    {
-    }
-
-   public:
-    static RecommendationParams fromValues(const SensorData& data, const String& cropType, const String& growingType,
-                                           const String& season, const String& soilType)
-    {  // NOLINT(bugprone-easily-swappable-parameters)
-        return RecommendationParams(data, cropType, growingType, season, soilType);
-    }
-    // Builder для предотвращения ошибок с параметрами
-    struct Builder
-    {
-        SensorData sensorData;
-        String crop;
-        String growing;
-        String seasonType;
-        String soil;
-        Builder& data(const SensorData& sensorDataValue)
-        {
-            sensorData = sensorDataValue;
-            return *this;
-        }
-        Builder& cropType(const String& cropTypeValue)
-        {
-            crop = cropTypeValue;
-            return *this;
-        }
-        Builder& growingType(const String& growingTypeValue)
-        {
-            growing = growingTypeValue;
-            return *this;
-        }
-        Builder& season(const String& seasonValue)
-        {
-            seasonType = seasonValue;
-            return *this;
-        }
-        Builder& soilType(const String& soilTypeValue)
-        {
-            soil = soilTypeValue;
-            return *this;
-        }
-        RecommendationParams build() const
-        {
-            return RecommendationParams::fromValues(sensorData, crop, growing, seasonType, soil);
-        }
-    };
-    static Builder builder()
-    {
-        return {};
-    }
-};
-
-RecommendationResult CropRecommendationEngine::generateRecommendation(const SensorData& data, const String& cropType,
-                                                                      const String& growingType, const String& season,
-                                                                      const String& soilType)
-{  // NOLINT(bugprone-easily-swappable-parameters)
-
-    const RecommendationParams params = RecommendationParams::builder()
-                                            .data(data)
-                                            .cropType(cropType)
-                                            .growingType(growingType)
-                                            .season(season)
-                                            .soilType(soilType)
-                                            .build();
-
-    // Валидация входных данных используя единые константы
-    if (!validateSensorData(params.data))
-    {
-        return {};  // Возвращаем пустой результат в случае ошибки валидации
-    }
-
-    // Компенсация показаний датчиков [Источники: SSSA Journal, 2008; Advances in Agronomy, 2014; Journal of Soil
-    // Science, 2020]
-    SensorData compensatedData = params.data;
-    compensatedData.ph = compensatePH(CropCompensationParams::builder()
-                                          .setRawValue(params.data.ph)
-                                          .setTemperature(params.data.temperature)
-                                          .setMoisture(params.data.humidity)
-                                          .build());
-    compensatedData.ec = compensateEC(CropECCompensationParams::builder()
-                                          .setRawValue(params.data.ec)
-                                          .setTemperature(params.data.temperature)
-                                          .build());
-    compensatedData.nitrogen = compensateNPK(CropCompensationParams::builder()
-                                                 .setRawValue(params.data.nitrogen)
-                                                 .setTemperature(params.data.temperature)
-                                                 .setMoisture(params.data.humidity)
-                                                 .build());
-    compensatedData.phosphorus = compensateNPK(CropCompensationParams::builder()
-                                                   .setRawValue(params.data.phosphorus)
-                                                   .setTemperature(params.data.temperature)
-                                                   .setMoisture(params.data.humidity)
-                                                   .build());
-    compensatedData.potassium = compensateNPK(CropCompensationParams::builder()
-                                                  .setRawValue(params.data.potassium)
-                                                  .setTemperature(params.data.temperature)
-                                                  .setMoisture(params.data.humidity)
-                                                  .build());
-
-    RecommendationResult result;
-    result.cropType = params.cropType;
-    result.growingType = params.growingType;
-    result.season = params.season;
-    result.soilType = params.soilType;  // Добавляем тип почвы в результат
-
-    // Получаем базовую конфигурацию для культуры
-    auto configIterator = cropConfigs.find(params.cropType);
-    if (configIterator == cropConfigs.end())
-    {
-        configIterator = cropConfigs.find("generic");
-    }
-    CropConfig baseConfig = configIterator->second;
-
-    // Применяем сезонные корректировки
-    CropConfig adjustedConfig = applySeasonalAdjustments(baseConfig, params.season);
-
-    // Применяем корректировки для типа выращивания
-    adjustedConfig = applyGrowingTypeAdjustments(adjustedConfig, params.growingType);
-
-    // Применяем корректировки для типа почвы
-    adjustedConfig = applySoilTypeAdjustments(adjustedConfig, params.soilType);
-
-    // Генерируем рекомендации на основе компенсированных данных
-    result.recommendations =
-        generateScientificRecommendations(compensatedData, adjustedConfig, params.cropType, params.soilType);
-
-    // Рассчитываем общий статус здоровья почвы
-    result.healthStatus = calculateSoilHealthStatus(compensatedData, adjustedConfig);
-
-    // Добавляем научные комментарии
-    result.scientificNotes = generateScientificNotes(compensatedData, adjustedConfig, params.cropType, params.soilType);
-
-    return result;
-}
-
 CropConfig applySeasonalAdjustments(const CropConfig& base, const String& season)
 {
     CropConfig adjusted = base;
@@ -404,6 +175,238 @@ CropConfig applySoilTypeAdjustments(const CropConfig& base, const String& soilTy
 
     return adjusted;
 }
+} // namespace
+
+CropRecommendationEngine::CropRecommendationEngine()
+{
+    initializeCropConfigs();
+}
+
+void CropRecommendationEngine::initializeCropConfigs()
+{
+    // Базовые значения (generic) - научно обоснованные
+    cropConfigs["generic"] =
+        CropConfig(22.0F, 70.0F, 1500.0F, 6.5F,  // температура, влажность, EC, pH
+                   150.0F, 60.0F, 200.0F         // N, P, K (мг/кг) - ВАЛИДИРОВАНО: научные агрономические нормы
+        );
+
+    // ТОМАТЫ (Solanum lycopersicum) - [Источник: University of Florida IFAS Extension, B. Santos, 2019]
+    cropConfigs["tomato"] = CropConfig(24.0F, 75.0F, 2000.0F, 6.5F,  // pH 6.0-6.8, EC 1.5-3.0 mS/cm
+                                       200.0F, 80.0F, 300.0F         // N: 150-250, P: 50-100, K: 200-400 мг/кг
+    );
+
+    // ОГУРЦЫ (Cucumis sativus) - [Источник: USDA Natural Resources Conservation Service, 2020]
+    cropConfigs["cucumber"] = CropConfig(26.0F, 80.0F, 1800.0F, 6.5F,  // pH 6.0-7.0, EC 1.2-2.5 mS/cm
+                                         160.0F, 60.0F, 225.0F         // N: 120-200, P: 40-80, K: 150-300 мг/кг
+    );
+
+    // ПЕРЕЦ (Capsicum annuum) - [Источник: Cornell University Cooperative Extension, 2022]
+    cropConfigs["pepper"] = CropConfig(27.0F, 75.0F, 2100.0F, 6.5F,  // pH 6.0-7.0, EC 1.4-2.8 mS/cm
+                                       140.0F, 50.0F, 250.0F         // N: 100-180, P: 30-70, K: 150-350 мг/кг
+    );
+
+    // САЛАТ (Lactuca sativa) - [Источник: University of California Agriculture and Natural Resources, 2018]
+    cropConfigs["lettuce"] = CropConfig(18.0F, 85.0F, 1500.0F, 6.5F,  // pH 6.0-7.0, EC 1.0-2.0 mS/cm
+                                        115.0F, 35.0F, 175.0F         // N: 80-150, P: 20-50, K: 100-250 мг/кг
+    );
+
+    // ЧЕРНИКА (Vaccinium corymbosum) - [Источник: Michigan State University Extension, A. Schilder, 2021]
+    cropConfigs["blueberry"] = CropConfig(20.0F, 75.0F, 1200.0F, 5.0F,  // pH 4.5-5.5, EC 0.8-1.5 mS/cm
+                                          75.0F, 30.0F, 60.0F           // N: 50-100, P: 20-40, K: 40-80 мг/кг
+    );
+
+    // ГАЗОН (Lawn) - научные данные Turfgrass Science
+    cropConfigs["lawn"] = CropConfig(20.0F, 60.0F, 1000.0F, 6.5F,  // pH 6.0-7.0, EC 0.8-1.5 mS/cm
+                                     100.0F, 40.0F, 80.0F          // N: 80-120, P: 30-50, K: 60-100 мг/кг
+    );
+
+    // ВИНОГРАД (Vitis vinifera) - научные данные American Journal of Enology
+    cropConfigs["grape"] = CropConfig(24.0F, 65.0F, 1500.0F, 6.5F,  // pH 6.0-7.5, EC 1.0-2.0 mS/cm
+                                      120.0F, 50.0F, 150.0F         // N: 100-140, P: 40-60, K: 120-180 мг/кг
+    );
+
+    // ХВОЙНЫЕ (Conifer) - научные данные Forest Science
+    cropConfigs["conifer"] = CropConfig(18.0F, 65.0F, 1000.0F, 5.8F,  // pH 5.5-6.5, EC 0.5-1.2 mS/cm
+                                        60.0F, 25.0F, 50.0F           // N: 50-70, P: 20-30, K: 40-60 мг/кг
+    );
+
+    // КЛУБНИКА (Fragaria × ananassa) - научные данные HortScience
+    cropConfigs["strawberry"] = CropConfig(22.0F, 80.0F, 1600.0F, 6.0F,  // pH 5.5-6.5, EC 1.2-2.0 mS/cm
+                                           130.0F, 55.0F, 150.0F         // N: 110-150, P: 45-65, K: 130-170 мг/кг
+    );
+
+    // ЯБЛОНИ (Malus domestica) - научные данные Journal of Horticultural Science
+    cropConfigs["apple"] = CropConfig(20.0F, 70.0F, 1200.0F, 6.5F,  // pH 6.0-7.0, EC 1.0-1.8 mS/cm
+                                      110.0F, 45.0F, 130.0F         // N: 90-130, P: 35-55, K: 110-150 мг/кг
+    );
+    cropConfigs["pear"] = cropConfigs["apple"];  // Используем ту же конфигурацию
+
+    // ВИШНЯ (Prunus avium) - научные данные HortScience
+    cropConfigs["cherry"] = CropConfig(22.0F, 70.0F, 1300.0F, 6.5F,  // pH 6.0-7.0, EC 1.0-1.8 mS/cm
+                                       120.0F, 50.0F, 140.0F         // N: 100-140, P: 40-60, K: 120-160 мг/кг
+    );
+
+    // МАЛИНА (Rubus idaeus) - научные данные Acta Horticulturae
+    cropConfigs["raspberry"] = CropConfig(20.0F, 75.0F, 1100.0F, 6.0F,  // pH 5.5-6.5, EC 0.8-1.5 mS/cm
+                                          100.0F, 40.0F, 120.0F         // N: 80-120, P: 30-50, K: 100-140 мг/кг
+    );
+
+    // СМОРОДИНА (Ribes spp.) - научные данные HortScience
+    cropConfigs["currant"] = CropConfig(18.0F, 75.0F, 1000.0F, 6.0F,  // pH 5.5-6.5, EC 0.8-1.3 mS/cm
+                                        80.0F, 35.0F, 100.0F          // N: 70-90, P: 30-40, K: 90-110 мг/кг
+    );
+}
+
+// Структура для параметров рекомендаций
+struct RecommendationParams
+{
+    const SensorData& data;
+    const String& cropType;
+    const String& growingType;
+    const String& season;
+    const String& soilType;
+
+   private:
+    RecommendationParams(const SensorData& data, const String& cropType, const String& growingType,
+                         const String& season, const String& soilType)  // NOLINT(bugprone-easily-swappable-parameters)
+        : data(data), cropType(cropType), growingType(growingType), season(season), soilType(soilType)
+    {
+    }
+
+   public:
+    static RecommendationParams fromValues(const SensorData& data, const String& cropType, const String& growingType,
+                                           const String& season, const String& soilType)
+    {  // NOLINT(bugprone-easily-swappable-parameters)
+        return RecommendationParams(data, cropType, growingType, season, soilType);
+    }
+    // Builder для предотвращения ошибок с параметрами
+    struct Builder
+    {
+        SensorData sensorData;
+        String crop;
+        String growing;
+        String seasonType;
+        String soil;
+        Builder& data(const SensorData& sensorDataValue)
+        {
+            sensorData = sensorDataValue;
+            return *this;
+        }
+        Builder& cropType(const String& cropTypeValue)
+        {
+            crop = cropTypeValue;
+            return *this;
+        }
+        Builder& growingType(const String& growingTypeValue)
+        {
+            growing = growingTypeValue;
+            return *this;
+        }
+        Builder& season(const String& seasonValue)
+        {
+            seasonType = seasonValue;
+            return *this;
+        }
+        Builder& soilType(const String& soilTypeValue)
+        {
+            soil = soilTypeValue;
+            return *this;
+        }
+        [[nodiscard]] RecommendationParams build() const
+        {
+            return RecommendationParams::fromValues(sensorData, crop, growing, seasonType, soil);
+        }
+    };
+    static Builder builder()
+    {
+        return {};
+    }
+};
+
+RecommendationResult CropRecommendationEngine::generateRecommendation(const SensorData& data, const String& cropType,
+                                                                      const String& growingType, const String& season,
+                                                                      const String& soilType)
+{  // NOLINT(bugprone-easily-swappable-parameters)
+
+    const RecommendationParams params = RecommendationParams::builder()
+                                            .data(data)
+                                            .cropType(cropType)
+                                            .growingType(growingType)
+                                            .season(season)
+                                            .soilType(soilType)
+                                            .build();
+
+    // Валидация входных данных используя единые константы
+    if (!validateSensorData(params.data))
+    {
+        return {};  // Возвращаем пустой результат в случае ошибки валидации
+    }
+
+    // Компенсация показаний датчиков [Источники: SSSA Journal, 2008; Advances in Agronomy, 2014; Journal of Soil
+    // Science, 2020]
+    SensorData compensatedData = params.data;
+    compensatedData.ph = compensatePH(CropCompensationParams::builder()
+                                          .setRawValue(params.data.ph)
+                                          .setTemperature(params.data.temperature)
+                                          .setMoisture(params.data.humidity)
+                                          .build());
+    compensatedData.ec = compensateEC(CropECCompensationParams::builder()
+                                          .setRawValue(params.data.ec)
+                                          .setTemperature(params.data.temperature)
+                                          .build());
+    compensatedData.nitrogen = compensateNPK(CropCompensationParams::builder()
+                                                 .setRawValue(params.data.nitrogen)
+                                                 .setTemperature(params.data.temperature)
+                                                 .setMoisture(params.data.humidity)
+                                                 .build());
+    compensatedData.phosphorus = compensateNPK(CropCompensationParams::builder()
+                                                   .setRawValue(params.data.phosphorus)
+                                                   .setTemperature(params.data.temperature)
+                                                   .setMoisture(params.data.humidity)
+                                                   .build());
+    compensatedData.potassium = compensateNPK(CropCompensationParams::builder()
+                                                  .setRawValue(params.data.potassium)
+                                                  .setTemperature(params.data.temperature)
+                                                  .setMoisture(params.data.humidity)
+                                                  .build());
+
+    RecommendationResult result;
+    result.cropType = params.cropType;
+    result.growingType = params.growingType;
+    result.season = params.season;
+    result.soilType = params.soilType;  // Добавляем тип почвы в результат
+
+    // Получаем базовую конфигурацию для культуры
+    auto configIterator = cropConfigs.find(params.cropType);
+    if (configIterator == cropConfigs.end())
+    {
+        configIterator = cropConfigs.find("generic");
+    }
+    CropConfig baseConfig = configIterator->second;
+
+    // Применяем сезонные корректировки
+    CropConfig adjustedConfig = applySeasonalAdjustments(baseConfig, params.season);
+
+    // Применяем корректировки для типа выращивания
+    adjustedConfig = applyGrowingTypeAdjustments(adjustedConfig, params.growingType);
+
+    // Применяем корректировки для типа почвы
+    adjustedConfig = applySoilTypeAdjustments(adjustedConfig, params.soilType);
+
+    // Генерируем рекомендации на основе компенсированных данных
+    result.recommendations =
+        generateScientificRecommendations(compensatedData, adjustedConfig, params.cropType, params.soilType);
+
+    // Рассчитываем общий статус здоровья почвы
+    result.healthStatus = calculateSoilHealthStatus(compensatedData, adjustedConfig);
+
+    // Добавляем научные комментарии
+    result.scientificNotes = generateScientificNotes(compensatedData, adjustedConfig, params.cropType, params.soilType);
+
+    return result;
+}
+
+
 
 String CropRecommendationEngine::generateScientificRecommendations(const SensorData& data, const CropConfig& config,
                                                                    const String& cropType, const String& soilType)

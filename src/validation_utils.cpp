@@ -55,7 +55,7 @@ struct IntervalValidation
             name = fieldName;
             return *this;
         }
-        IntervalValidation build() const
+        [[nodiscard]] IntervalValidation build() const
         {
             return {val, min, max, name};
         }
@@ -100,7 +100,7 @@ struct RangeParams
             field_name = name;
             return *this;
         }
-        RangeParams build() const
+        [[nodiscard]] RangeParams build() const
         {
             return {value, min_val, max_val, field_name};
         }

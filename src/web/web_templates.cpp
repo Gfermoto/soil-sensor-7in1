@@ -31,7 +31,7 @@ struct PageInfo
             icon = iconText;
             return *this;
         }
-        PageInfo build() const
+        [[nodiscard]] PageInfo build() const
         {
             return PageInfo(title, icon);
         }
@@ -91,7 +91,7 @@ struct FormInfo
             buttonIcon = icon;
             return *this;
         }
-        FormInfo build() const
+        [[nodiscard]] FormInfo build() const
         {
             return FormInfo(action, method, formContent, buttonText, buttonIcon);
         }
@@ -173,7 +173,7 @@ struct InputFieldInfo
             return *this;
         }
         Builder() = default;
-        InputFieldInfo build() const
+        [[nodiscard]] InputFieldInfo build() const
         {
             return InputFieldInfo(id, name, label, value, type, required, placeholder);
         }
@@ -263,7 +263,7 @@ struct NumberFieldInfo
             step = stepNum;
             return *this;
         }
-        NumberFieldInfo build() const
+        [[nodiscard]] NumberFieldInfo build() const
         {
             return NumberFieldInfo(id, name, label, value, min, max, step);
         }
@@ -309,7 +309,7 @@ struct ConfigSectionInfo
             helpText = helpTextValue;
             return *this;
         }
-        ConfigSectionInfo build() const
+        [[nodiscard]] ConfigSectionInfo build() const
         {
             return ConfigSectionInfo(title, content, helpText);
         }
