@@ -17,6 +17,17 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
+    - name: Debug environment
+      run: |
+        echo "=== Debug Information ==="
+        echo "GITHUB_ACTOR: $GITHUB_ACTOR"
+        echo "GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
+        echo "Working directory: $(pwd)"
+        echo "Files in directory:"
+        ls -la
+        echo "Dockerfile exists: $(test -f Dockerfile && echo 'YES' || echo 'NO')"
+        echo "Requirements.txt exists: $(test -f requirements.txt && echo 'YES' || echo 'NO')"
+      
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
       

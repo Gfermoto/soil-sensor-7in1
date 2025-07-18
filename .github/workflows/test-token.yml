@@ -1,0 +1,45 @@
+name: Test REPO_TOKEN
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-token:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test REPO_TOKEN access
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.REPO_TOKEN }}
+          script: |
+            try {
+              const repo = await github.rest.repos.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+              console.log('✅ REPO_TOKEN работает!');
+              console.log('📋 Репозиторий:', repo.data.name);
+              console.log('📝 Описание:', repo.data.description);
+              console.log('🏠 Homepage:', repo.data.homepage);
+            } catch (error) {
+              console.log('❌ Ошибка с REPO_TOKEN:', error.message);
+            }
+      
+      - name: Test GITHUB_TOKEN access
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            try {
+              const repo = await github.rest.repos.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo
+              });
+              console.log('✅ GITHUB_TOKEN работает!');
+              console.log('📋 Репозиторий:', repo.data.name);
+            } catch (error) {
+              console.log('❌ Ошибка с GITHUB_TOKEN:', error.message);
+            } 
