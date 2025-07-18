@@ -27,7 +27,7 @@ struct ValidationRange
             max = maxValue;
             return *this;
         }
-        ValidationRange build() const
+        [[nodiscard]] ValidationRange build() const
         {
             return {min, max};
         }
@@ -67,8 +67,8 @@ struct HttpRequest
             clientIPValue = clientIP;
             return *this;
         }
-        HttpRequest build() const
-        {  // NOLINT(readability-convert-member-functions-to-static)
+        [[nodiscard]]         static HttpRequest build()
+        {
             HttpRequest result;
             result.method = methodValue;
             result.uri = uriValue;

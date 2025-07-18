@@ -160,7 +160,7 @@ struct RecommendationParams
             soil = soilTypeValue;
             return *this;
         }
-        RecommendationParams build() const
+        [[nodiscard]] RecommendationParams build() const
         {
             return RecommendationParams::fromValues(sensorData, crop, growing, seasonType, soil);
         }

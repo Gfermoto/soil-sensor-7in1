@@ -93,7 +93,7 @@ struct ECCompensationParams
             compensationFactor = factor;
             return *this;
         }
-        ECCompensationParams build() const
+        [[nodiscard]] ECCompensationParams build() const
         {
             ECCompensationParams result;
             result.rawValue = rawValue;

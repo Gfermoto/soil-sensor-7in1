@@ -207,6 +207,16 @@ void setSensorRange(float min, float max) {
 
 ## 🚀 БЫСТРЫЕ КОМАНДЫ
 
+### Настройка GitHub CLI:
+```powershell
+# Добавить GitHub CLI в PATH (если не работает)
+$env:PATH += ";C:\Program Files\GitHub CLI"
+
+# Проверить статус
+gh --version
+gh auth status
+```
+
 ### Ежедневная работа:
 ```bash
 python scripts/ultra_quick_test.py  # 5 секунд, без зависаний
@@ -220,6 +230,21 @@ python scripts/run_simple_tests.py  # 2 минуты, автоматизиров
 ### Отладка:
 ```bash
 python -m pytest test/test_validation.py -v
+```
+
+### GitHub CLI команды:
+```bash
+# Создать PR
+gh pr create --title "Title" --body "Description" --base main --head branch-name
+
+# Просмотреть PR
+gh pr view PR_NUMBER
+
+# Открыть PR в браузере
+gh pr view PR_NUMBER --web
+
+# Проверить статус репозитория
+gh repo view
 ```
 
 ## 🔄 РЕЛИЗ И ОБНОВЛЕНИЕ САЙТА (ОТРАБОТАННАЯ ПОСЛЕДОВАТЕЛЬНОСТЬ!)
