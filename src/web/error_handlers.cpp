@@ -67,7 +67,7 @@ struct HttpRequest
             clientIPValue = clientIP;
             return *this;
         }
-        [[nodiscard]]         static HttpRequest build()
+        [[nodiscard]] HttpRequest build() const
         {
             HttpRequest result;
             result.method = methodValue;
