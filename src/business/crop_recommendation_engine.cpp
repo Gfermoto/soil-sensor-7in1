@@ -11,6 +11,7 @@
 #include "../../include/logger.h"
 #include "validation_utils.h"  // Для централизованной валидации
 
+namespace {
 // Заглушки для внутренних функций компенсации
 float compensatePHInternal(float pHRawValue, float temperatureValue, float moistureValue)
 {
@@ -24,6 +25,157 @@ float compensateNPKInternal(float NPKRawValue, float temperatureValue, float moi
 {
     return NPKRawValue;
 }
+CropConfig applySeasonalAdjustments(const CropConfig& base, const String& season)
+{
+    CropConfig adjusted = base;
+
+    if (season == "spring")
+    {
+        // Весна: активный рост, потребность в азоте [Источник: FAO Fertilizer and Plant Nutrition Bulletin No. 19, FAO,
+        // 2008]
+        adjusted.temperature += 0.0F;
+        adjusted.humidity += 0.0F;
+        adjusted.ec += 0.0F;
+        adjusted.nitrogen *= 1.15F;    // +15% для активного роста
+        adjusted.phosphorus *= 1.10F;  // +10% для развития корней
+        adjusted.potassium *= 1.12F;   // +12% для устойчивости
+    }
+    else if (season == "summer")
+    {
+        // Лето: жаркий период, потребность в калии [Источник: FAO Fertilizer and Plant Nutrition Bulletin No. 19, FAO,
+        // 2008]
+        adjusted.temperature += 2.0F;
+        adjusted.humidity -= 5.0F;
+        adjusted.ec += 200.0F;
+        adjusted.nitrogen *= 1.08F;    // +8% для вегетации
+        adjusted.phosphorus *= 1.05F;  // +5% стабильно
+        adjusted.potassium *= 1.18F;   // +18% для жаростойкости
+    }
+    else if (season == "autumn")
+    {
+        // Осень: подготовка к зиме, потребность в фосфоре [Источник: FAO Fertilizer and Plant Nutrition Bulletin No.
+        // 19, FAO, 2008]
+        adjusted.temperature -= 1.0F;
+        adjusted.humidity += 5.0F;
+        adjusted.ec -= 100.0F;
+        adjusted.nitrogen *= 1.02F;    // +2% минимально
+        adjusted.phosphorus *= 1.12F;  // +12% для подготовки к зиме
+        adjusted.potassium *= 1.15F;   // +15% для морозостойкости
+    }
+    else if (season == "winter")
+    {
+        // Зима: период покоя, сниженные потребности [Источник: FAO Fertilizer and Plant Nutrition Bulletin No. 19, FAO,
+        // 2008]
+        adjusted.temperature -= 3.0F;
+        adjusted.humidity += 10.0F;
+        adjusted.ec -= 200.0F;
+        adjusted.nitrogen *= 0.85F;    // -15% период покоя
+        adjusted.phosphorus *= 1.08F;  // +8% для корневой системы
+        adjusted.potassium *= 1.10F;   // +10% для устойчивости
+    }
+
+    return adjusted;
+}
+
+CropConfig applyGrowingTypeAdjustments(const CropConfig& base, const String& growingType)
+{
+    CropConfig adjusted = base;
+
+    if (growingType == "greenhouse")
+    {
+        // Теплица: контролируемая среда, интенсивное выращивание [Источник: Protected Cultivation Guidelines, USDA,
+        // 2015]
+        adjusted.temperature += 3.0F;
+        adjusted.humidity += 10.0F;
+        adjusted.ec += 300.0F;         // Более интенсивное питание
+        adjusted.nitrogen *= 1.25F;    // +25% интенсивное выращивание
+        adjusted.phosphorus *= 1.20F;  // +20% развитие корней
+        adjusted.potassium *= 1.22F;   // +22% качество плодов
+    }
+    else if (growingType == "hydroponics")
+    {
+        // Гидропоника: точный контроль питательных веществ [Источник: Hydroponic Crop Production, Acta Horticulturae,
+        // 2018]
+        adjusted.ec += 500.0F;         // Высокая концентрация питательных веществ
+        adjusted.nitrogen *= 1.40F;    // +40% точное питание
+        adjusted.phosphorus *= 1.30F;  // +30% доступность
+        adjusted.potassium *= 1.35F;   // +35% качество
+    }
+    else if (growingType == "aeroponics")
+    {
+        // Аэропоника: максимальная эффективность [Источник: Aeroponic Systems, Journal of Agricultural Engineering,
+        // 2019]
+        adjusted.ec += 400.0F;
+        adjusted.nitrogen *= 1.35F;    // +35% эффективность
+        adjusted.phosphorus *= 1.25F;  // +25% развитие
+        adjusted.potassium *= 1.30F;   // +30% качество
+    }
+    else if (growingType == "organic")
+    {
+        // Органическое выращивание: естественные процессы [Источник: Organic Farming Guidelines, IFOAM, 2020]
+        adjusted.ec -= 200.0F;         // Более низкая концентрация солей
+        adjusted.nitrogen *= 0.85F;    // -15% органический азот
+        adjusted.phosphorus *= 0.90F;  // -10% медленное высвобождение
+        adjusted.potassium *= 0.88F;   // -12% органический калий
+    }
+
+    return adjusted;
+}
+
+CropConfig applySoilTypeAdjustments(const CropConfig& base, const String& soilType)
+{
+    CropConfig adjusted = base;
+
+    if (soilType == "sand")
+    {
+        // Песчаная почва: плохое удержание влаги и питательных веществ [Источник: Soil Fertility Manual, International
+        // Plant Nutrition Institute, 2020]
+        adjusted.humidity -= 5.0F;
+        adjusted.ec -= 200.0F;
+        adjusted.nitrogen *= 1.25F;    // +25% вымывание
+        adjusted.phosphorus *= 1.15F;  // +15% связывание
+        adjusted.potassium *= 1.20F;   // +20% вымывание
+    }
+    else if (soilType == "loam")
+    {
+        // Суглинистая почва: оптимальные условия - без изменений
+    }
+    else if (soilType == "clay")
+    {
+        // Глинистая почва: хорошее удержание, но плохая аэрация [Источник: Soil Fertility Manual, International Plant
+        // Nutrition Institute, 2020]
+        adjusted.humidity += 10.0F;
+        adjusted.ec -= 400.0F;
+        adjusted.nitrogen *= 0.90F;    // -10% удержание
+        adjusted.phosphorus *= 0.85F;  // -15% связывание
+        adjusted.potassium *= 0.92F;   // -8% удержание
+    }
+    else if (soilType == "peat")
+    {
+        // Торфяная почва: кислая, богатая органическим веществом [Источник: Soil Fertility Manual, International Plant
+        // Nutrition Institute, 2020]
+        adjusted.humidity += 10.0F;
+        adjusted.ec -= 100.0F;
+        adjusted.ph -= 0.5F;
+        adjusted.nitrogen *= 1.15F;    // +15% органический азот
+        adjusted.phosphorus *= 1.10F;  // +10% доступность
+        adjusted.potassium *= 1.05F;   // +5% стабильно
+    }
+    else if (soilType == "sandpeat")
+    {
+        // Песчано-торфяная смесь: компромисс [Источник: Soil Fertility Manual, International Plant Nutrition Institute,
+        // 2020]
+        adjusted.humidity += 2.0F;
+        adjusted.ec -= 50.0F;
+        adjusted.ph -= 0.2F;
+        adjusted.nitrogen *= 1.10F;    // +10% умеренное вымывание
+        adjusted.phosphorus *= 1.05F;  // +5% умеренное связывание
+        adjusted.potassium *= 1.02F;   // +2% минимальная корректировка
+    }
+
+    return adjusted;
+}
+} // namespace
 
 CropRecommendationEngine::CropRecommendationEngine()
 {
@@ -254,156 +406,7 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(const Sens
     return result;
 }
 
-CropConfig applySeasonalAdjustments(const CropConfig& base, const String& season)
-{
-    CropConfig adjusted = base;
 
-    if (season == "spring")
-    {
-        // Весна: активный рост, потребность в азоте [Источник: FAO Fertilizer and Plant Nutrition Bulletin No. 19, FAO,
-        // 2008]
-        adjusted.temperature += 0.0F;
-        adjusted.humidity += 0.0F;
-        adjusted.ec += 0.0F;
-        adjusted.nitrogen *= 1.15F;    // +15% для активного роста
-        adjusted.phosphorus *= 1.10F;  // +10% для развития корней
-        adjusted.potassium *= 1.12F;   // +12% для устойчивости
-    }
-    else if (season == "summer")
-    {
-        // Лето: жаркий период, потребность в калии [Источник: FAO Fertilizer and Plant Nutrition Bulletin No. 19, FAO,
-        // 2008]
-        adjusted.temperature += 2.0F;
-        adjusted.humidity -= 5.0F;
-        adjusted.ec += 200.0F;
-        adjusted.nitrogen *= 1.08F;    // +8% для вегетации
-        adjusted.phosphorus *= 1.05F;  // +5% стабильно
-        adjusted.potassium *= 1.18F;   // +18% для жаростойкости
-    }
-    else if (season == "autumn")
-    {
-        // Осень: подготовка к зиме, потребность в фосфоре [Источник: FAO Fertilizer and Plant Nutrition Bulletin No.
-        // 19, FAO, 2008]
-        adjusted.temperature -= 1.0F;
-        adjusted.humidity += 5.0F;
-        adjusted.ec -= 100.0F;
-        adjusted.nitrogen *= 1.02F;    // +2% минимально
-        adjusted.phosphorus *= 1.12F;  // +12% для подготовки к зиме
-        adjusted.potassium *= 1.15F;   // +15% для морозостойкости
-    }
-    else if (season == "winter")
-    {
-        // Зима: период покоя, сниженные потребности [Источник: FAO Fertilizer and Plant Nutrition Bulletin No. 19, FAO,
-        // 2008]
-        adjusted.temperature -= 3.0F;
-        adjusted.humidity += 10.0F;
-        adjusted.ec -= 200.0F;
-        adjusted.nitrogen *= 0.85F;    // -15% период покоя
-        adjusted.phosphorus *= 1.08F;  // +8% для корневой системы
-        adjusted.potassium *= 1.10F;   // +10% для устойчивости
-    }
-
-    return adjusted;
-}
-
-CropConfig applyGrowingTypeAdjustments(const CropConfig& base, const String& growingType)
-{
-    CropConfig adjusted = base;
-
-    if (growingType == "greenhouse")
-    {
-        // Теплица: контролируемая среда, интенсивное выращивание [Источник: Protected Cultivation Guidelines, USDA,
-        // 2015]
-        adjusted.temperature += 3.0F;
-        adjusted.humidity += 10.0F;
-        adjusted.ec += 300.0F;         // Более интенсивное питание
-        adjusted.nitrogen *= 1.25F;    // +25% интенсивное выращивание
-        adjusted.phosphorus *= 1.20F;  // +20% развитие корней
-        adjusted.potassium *= 1.22F;   // +22% качество плодов
-    }
-    else if (growingType == "hydroponics")
-    {
-        // Гидропоника: точный контроль питательных веществ [Источник: Hydroponic Crop Production, Acta Horticulturae,
-        // 2018]
-        adjusted.ec += 500.0F;         // Высокая концентрация питательных веществ
-        adjusted.nitrogen *= 1.40F;    // +40% точное питание
-        adjusted.phosphorus *= 1.30F;  // +30% доступность
-        adjusted.potassium *= 1.35F;   // +35% качество
-    }
-    else if (growingType == "aeroponics")
-    {
-        // Аэропоника: максимальная эффективность [Источник: Aeroponic Systems, Journal of Agricultural Engineering,
-        // 2019]
-        adjusted.ec += 400.0F;
-        adjusted.nitrogen *= 1.35F;    // +35% эффективность
-        adjusted.phosphorus *= 1.25F;  // +25% развитие
-        adjusted.potassium *= 1.30F;   // +30% качество
-    }
-    else if (growingType == "organic")
-    {
-        // Органическое выращивание: естественные процессы [Источник: Organic Farming Guidelines, IFOAM, 2020]
-        adjusted.ec -= 200.0F;         // Более низкая концентрация солей
-        adjusted.nitrogen *= 0.85F;    // -15% органический азот
-        adjusted.phosphorus *= 0.90F;  // -10% медленное высвобождение
-        adjusted.potassium *= 0.88F;   // -12% органический калий
-    }
-
-    return adjusted;
-}
-
-CropConfig applySoilTypeAdjustments(const CropConfig& base, const String& soilType)
-{
-    CropConfig adjusted = base;
-
-    if (soilType == "sand")
-    {
-        // Песчаная почва: плохое удержание влаги и питательных веществ [Источник: Soil Fertility Manual, International
-        // Plant Nutrition Institute, 2020]
-        adjusted.humidity -= 5.0F;
-        adjusted.ec -= 200.0F;
-        adjusted.nitrogen *= 1.25F;    // +25% вымывание
-        adjusted.phosphorus *= 1.15F;  // +15% связывание
-        adjusted.potassium *= 1.20F;   // +20% вымывание
-    }
-    else if (soilType == "loam")
-    {
-        // Суглинистая почва: оптимальные условия - без изменений
-    }
-    else if (soilType == "clay")
-    {
-        // Глинистая почва: хорошее удержание, но плохая аэрация [Источник: Soil Fertility Manual, International Plant
-        // Nutrition Institute, 2020]
-        adjusted.humidity += 10.0F;
-        adjusted.ec -= 400.0F;
-        adjusted.nitrogen *= 0.90F;    // -10% удержание
-        adjusted.phosphorus *= 0.85F;  // -15% связывание
-        adjusted.potassium *= 0.92F;   // -8% удержание
-    }
-    else if (soilType == "peat")
-    {
-        // Торфяная почва: кислая, богатая органическим веществом [Источник: Soil Fertility Manual, International Plant
-        // Nutrition Institute, 2020]
-        adjusted.humidity += 10.0F;
-        adjusted.ec -= 100.0F;
-        adjusted.ph -= 0.5F;
-        adjusted.nitrogen *= 1.15F;    // +15% органический азот
-        adjusted.phosphorus *= 1.10F;  // +10% доступность
-        adjusted.potassium *= 1.05F;   // +5% стабильно
-    }
-    else if (soilType == "sandpeat")
-    {
-        // Песчано-торфяная смесь: компромисс [Источник: Soil Fertility Manual, International Plant Nutrition Institute,
-        // 2020]
-        adjusted.humidity += 2.0F;
-        adjusted.ec -= 50.0F;
-        adjusted.ph -= 0.2F;
-        adjusted.nitrogen *= 1.10F;    // +10% умеренное вымывание
-        adjusted.phosphorus *= 1.05F;  // +5% умеренное связывание
-        adjusted.potassium *= 1.02F;   // +2% минимальная корректировка
-    }
-
-    return adjusted;
-}
 
 String CropRecommendationEngine::generateScientificRecommendations(const SensorData& data, const CropConfig& config,
                                                                    const String& cropType, const String& soilType)
