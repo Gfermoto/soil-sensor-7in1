@@ -70,9 +70,14 @@ jobs:
         run: |
           echo "=== Copying Doxygen to site/api ==="
           mkdir -p site/api
-          cp -r docs/doxygen/html/* site/api/ || echo "Doxygen copy failed, continuing..."
-          echo "=== API directory contents ==="
-          ls -la site/api/ || echo "API directory not found"
+          if [ -d "docs/doxygen/html" ]; then
+            cp -r docs/doxygen/html/* site/api/
+            echo "=== API directory contents ==="
+            ls -la site/api/
+          else
+            echo "Doxygen directory not found, creating placeholder"
+            echo "<html><body><h1>API Documentation</h1><p>Doxygen documentation will be generated here.</p></body></html>" > site/api/index.html
+          fi
 
       - name: Add .nojekyll
         run: touch site/.nojekyll
