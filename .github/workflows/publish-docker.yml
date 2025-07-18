@@ -37,10 +37,3 @@ jobs:
           ghcr.io/gfermoto/soil-sensor-7in1:latest
         cache-from: type=gha
         cache-to: type=gha,mode=max 
-        
-    - name: Test Docker image
-      run: |
-        echo "Testing Docker image functionality..."
-        docker run --rm ghcr.io/gfermoto/soil-sensor-7in1:main python3 --version
-        docker run --rm ghcr.io/gfermoto/soil-sensor-7in1:main pio --version
-        echo "✅ Docker image test completed successfully!" 

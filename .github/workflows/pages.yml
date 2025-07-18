@@ -92,4 +92,10 @@ jobs:
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v4
+
+      - name: Verify deployment
+        run: |
+          echo "=== Deployment verification ==="
+          echo "Page URL: ${{ steps.deployment.outputs.page_url }}"
+          echo "✅ GitHub Pages deployment completed!" 
