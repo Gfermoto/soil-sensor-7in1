@@ -34,10 +34,9 @@ python scripts/run_simple_tests.py
 
 # Сборка ESP32
 pio run -e esp32dev
-
-# Статический анализ
-python scripts/run_clang_tidy_analysis.py
 ```
+
+📖 **Подробное руководство:** [📋 Руководство по скриптам](docs/SCRIPTS_GUIDE.md)
 
 ---
 
@@ -138,8 +137,9 @@ pio run -e esp32dev-production
 ### 🛠️ Разработка
 - [🧪 Руководство по тестированию](docs/TESTING_GUIDE.md)
 - [📝 Быстрая справка по тестам](docs/TESTING_QUICK_REFERENCE.md)
-- [🔄 План рефакторинга](docs/dev/REFACTORING_PLAN.md)
 - [📋 Руководство по скриптам](docs/SCRIPTS_GUIDE.md)
+- [🔍 Аудит clang-tidy](docs/dev/CLANG_TIDY_FINAL_REPORT.md)
+- [🔄 План рефакторинга](docs/dev/REFACTORING_PLAN.md)
 
 ### 🔌 API
 - [📡 API обзор](docs/api-overview.md)
@@ -151,18 +151,14 @@ pio run -e esp32dev-production
 
 ### Автоматизированные тесты
 ```bash
-# Ультра-быстрое тестирование
+# Ультра-быстрое тестирование (5 секунд)
 python scripts/ultra_quick_test.py
 
-# Полное тестирование
+# Полное тестирование (2 минуты)
 python scripts/run_simple_tests.py
-
-# Python unit-тесты
-python -m pytest test/test_validation.py test/test_compensation_formulas.py
-
-# Native C++ тесты
-pio test -e native
 ```
+
+📖 **Подробное руководство:** [🧪 Руководство по тестированию](docs/TESTING_GUIDE.md)
 
 ### Покрытие тестами
 - **Всего тестов:** 65+

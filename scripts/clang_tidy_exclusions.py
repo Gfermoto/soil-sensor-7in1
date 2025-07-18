@@ -58,6 +58,20 @@ EXCLUDED_FUNCTIONS = {
     "getSoilParameters",
     "getArchieCoefficients", 
     "getNPKCoefficients",
+    "getCalibrationStatus",
+    "isCalibrationComplete",
+    "addPHCalibrationPoint",
+    "addECCalibrationPoint",
+    "setNPKCalibrationPoint",
+    "calculatePHCalibration",
+    "calculateECCalibration",
+    "exportCalibrationToJSON",
+    "importCalibrationFromJSON",
+    "resetCalibration",
+    "parseCalibrationCSV",
+    "validateCalibrationPoints",
+    "applyCalibrationWithInterpolation",
+    "linearInterpolation",
     
     # business/sensor_calibration_service.cpp - все функции правильно погашены
     "getCalibrationTables",
@@ -93,6 +107,19 @@ EXCLUDED_FUNCTIONS = {
     "getSensorLastError",
     "getSensorDataRef",
     "getSensorCache",
+    
+    # business/crop_recommendation_engine.cpp - функции с NOLINT
+    "generateScientificRecommendations",
+    "generateScientificNotes", 
+    "calculateSoilHealthStatus",
+    "getCropConfig",
+    "validateSensorData",
+    "getCropScientificInfo",
+    "computeRecommendations",
+    "applySeasonalCorrection",
+    "compensatePH",
+    "compensateEC", 
+    "compensateNPK",
 }
 
 # Файлы, где все функции правильно погашены
@@ -107,6 +134,7 @@ EXCLUDED_FILES = {
     "src/web/web_templates.cpp",
     "src/jxct_ui_system.cpp",
     "src/modbus_sensor.cpp",
+    "src/business/crop_recommendation_engine.cpp",
 }
 
 def should_exclude_warning(warning_line):

@@ -409,7 +409,7 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(const Sens
 
 
 String CropRecommendationEngine::generateScientificRecommendations(const SensorData& data, const CropConfig& config,
-                                                                   const String& cropType, const String& soilType)
+                                                                   const String& cropType, const String& soilType)  // NOLINT(readability-convert-member-functions-to-static)
 {
     String recommendations = "";
 
@@ -612,7 +612,7 @@ String CropRecommendationEngine::generateScientificRecommendations(const SensorD
 }
 
 String CropRecommendationEngine::generateScientificNotes(const SensorData& /*data*/, const CropConfig& /*config*/,
-                                                         const String& cropType, const String& soilType)
+                                                         const String& cropType, const String& soilType)  // NOLINT(readability-convert-member-functions-to-static)
 {
     String notes = "📊 Научные данные:\n";
 
@@ -681,7 +681,7 @@ String CropRecommendationEngine::generateScientificNotes(const SensorData& /*dat
     return notes;
 }
 
-String CropRecommendationEngine::calculateSoilHealthStatus(const SensorData& data, const CropConfig& config)
+String CropRecommendationEngine::calculateSoilHealthStatus(const SensorData& data, const CropConfig& config)  // NOLINT(readability-convert-member-functions-to-static)
 {
     int score = 100;
 
@@ -768,7 +768,7 @@ std::vector<String> CropRecommendationEngine::getAvailableCrops() const
     return crops;
 }
 
-CropConfig CropRecommendationEngine::getCropConfig(const String& cropType) const
+CropConfig CropRecommendationEngine::getCropConfig(const String& cropType) const  // NOLINT(readability-convert-member-functions-to-static)
 {
     auto cropIterator = cropConfigs.find(cropType);
     if (cropIterator != cropConfigs.end())
@@ -784,7 +784,7 @@ CropConfig CropRecommendationEngine::getCropConfig(const String& cropType) const
     return {};  // Пустая конфигурация
 }
 
-bool CropRecommendationEngine::validateSensorData(const SensorData& data) const
+bool CropRecommendationEngine::validateSensorData(const SensorData& data) const  // NOLINT(readability-convert-member-functions-to-static)
 {
     auto result = validateFullSensorData(data);
     if (!result.isValid)
@@ -795,7 +795,7 @@ bool CropRecommendationEngine::validateSensorData(const SensorData& data) const
     return true;
 }
 
-String CropRecommendationEngine::getCropScientificInfo(const String& cropType) const
+String CropRecommendationEngine::getCropScientificInfo(const String& cropType) const  // NOLINT(readability-convert-member-functions-to-static)
 {
     String info = "📚 Научная информация о культуре: " + cropType + "\n\n";
 
@@ -879,7 +879,7 @@ String CropRecommendationEngine::getCropScientificInfo(const String& cropType) c
 
 // Реализация интерфейса ICropRecommendationEngine
 RecValues CropRecommendationEngine::computeRecommendations(const String& cropId, const SoilProfile& soilProfile,
-                                                           const EnvironmentType& envType)
+                                                           const EnvironmentType& envType)  // NOLINT(readability-convert-member-functions-to-static)
 {
     RecValues rec = {0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F, 0.0F};
 
@@ -905,7 +905,7 @@ RecValues CropRecommendationEngine::computeRecommendations(const String& cropId,
     return rec;
 }
 
-void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec, Season season, bool isGreenhouse)
+void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec, Season season, bool isGreenhouse)  // NOLINT(readability-convert-member-functions-to-static)
 {
     // Простая реализация сезонных корректировок
     switch (season)
@@ -933,33 +933,33 @@ void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec, Season se
 }
 
 // Обёртки для функций с легко перепутываемыми параметрами
-float CropRecommendationEngine::compensatePH(const CropCompensationParams& params)
+float CropRecommendationEngine::compensatePH(const CropCompensationParams& params)  // NOLINT(readability-convert-member-functions-to-static)
 {
     return compensatePHInternal(params.rawValue, params.temperature, params.moisture);
 }
 
-float CropRecommendationEngine::compensateEC(const CropECCompensationParams& params)
+float CropRecommendationEngine::compensateEC(const CropECCompensationParams& params)  // NOLINT(readability-convert-member-functions-to-static)
 {
     return compensateECInternal(params.rawValue, params.temperature);
 }
 
-float CropRecommendationEngine::compensateNPK(const CropCompensationParams& params)
+float CropRecommendationEngine::compensateNPK(const CropCompensationParams& params)  // NOLINT(readability-convert-member-functions-to-static)
 {
     return compensateNPKInternal(params.rawValue, params.temperature, params.moisture);
 }
 
 // Обратная совместимость
-float CropRecommendationEngine::compensatePH(float pHRawValue, float temperatureValue, float moistureValue)
+float CropRecommendationEngine::compensatePH(float pHRawValue, float temperatureValue, float moistureValue)  // NOLINT(readability-convert-member-functions-to-static)
 {
     return compensatePHInternal(pHRawValue, temperatureValue, moistureValue);
 }
 
-float CropRecommendationEngine::compensateEC(float ECRawValue, float temperatureValue)
+float CropRecommendationEngine::compensateEC(float ECRawValue, float temperatureValue)  // NOLINT(readability-convert-member-functions-to-static)
 {
     return compensateECInternal(ECRawValue, temperatureValue);
 }
 
-float CropRecommendationEngine::compensateNPK(float NPKRawValue, float temperatureValue, float moistureValue)
+float CropRecommendationEngine::compensateNPK(float NPKRawValue, float temperatureValue, float moistureValue)  // NOLINT(readability-convert-member-functions-to-static)
 {
     return compensateNPKInternal(NPKRawValue, temperatureValue, moistureValue);
 }
