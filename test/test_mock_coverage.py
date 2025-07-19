@@ -421,12 +421,22 @@ class MockCoverageTester:
                 original_ph = case["ph"]
                 compensated_ph = MockCompensationUtils.correctPH(case["temp"], case["ph"])
                 
-                # Проверяем, что компенсация применена
-                if abs(compensated_ph - original_ph) > 0.001:
-                    passed_tests += 1
-                    print(f"   ✅ pH компенсация: {original_ph:.2f} → {compensated_ph:.2f}")
+                # Проверяем, что компенсация работает корректно
+                # При стандартной температуре 25°C компенсация не применяется (это нормально)
+                if case["temp"] == 25.0:
+                    # При стандартной температуре pH не должен изменяться
+                    if abs(compensated_ph - original_ph) < 0.001:
+                        passed_tests += 1
+                        print(f"   ✅ pH компенсация: {original_ph:.2f} → {compensated_ph:.2f} (стандартная температура)")
+                    else:
+                        print(f"   ❌ pH компенсация: {original_ph:.2f} → {compensated_ph:.2f} (должна быть без изменений)")
                 else:
-                    print(f"   ⚠️ pH компенсация: {original_ph:.2f} → {compensated_ph:.2f} (не изменилось)")
+                    # При других температурах компенсация должна применяться
+                    if abs(compensated_ph - original_ph) > 0.001:
+                        passed_tests += 1
+                        print(f"   ✅ pH компенсация: {original_ph:.2f} → {compensated_ph:.2f}")
+                    else:
+                        print(f"   ⚠️ pH компенсация: {original_ph:.2f} → {compensated_ph:.2f} (не изменилось)")
             except Exception as e:
                 print(f"   ❌ pH компенсация: Ошибка - {e}")
         
