@@ -94,29 +94,27 @@ CropConfig applyGrowingTypeAdjustments(const CropConfig& base, const String& gro
     }
     else if (growingType == "hydroponics")
     {
-        // Гидропоника: точный контроль питательных веществ [Источник: Hydroponic Crop Production, Acta Horticulturae,
-        // 2018]
+        // Гидропоника: точный контроль питательных веществ [Источник: Journal of Plant Nutrition, 2021]
         adjusted.ec += 500.0F;         // Высокая концентрация питательных веществ
-        adjusted.nitrogen *= 1.40F;    // +40% точное питание
-        adjusted.phosphorus *= 1.30F;  // +30% доступность
-        adjusted.potassium *= 1.35F;   // +35% качество
+        adjusted.nitrogen *= 1.32F;    // +32% точное питание (документация: 1.32)
+        adjusted.phosphorus *= 1.33F;  // +33% доступность (документация: 1.33)
+        adjusted.potassium *= 1.20F;   // +20% качество (документация: 1.20)
     }
     else if (growingType == "aeroponics")
     {
-        // Аэропоника: максимальная эффективность [Источник: Aeroponic Systems, Journal of Agricultural Engineering,
-        // 2019]
+        // Аэропоника: максимальная эффективность [Источник: Journal of Plant Nutrition, 2021]
         adjusted.ec += 400.0F;
-        adjusted.nitrogen *= 1.35F;    // +35% эффективность
-        adjusted.phosphorus *= 1.25F;  // +25% развитие
-        adjusted.potassium *= 1.30F;   // +30% качество
+        adjusted.nitrogen *= 1.25F;    // +25% эффективность (документация: 1.25)
+        adjusted.phosphorus *= 1.25F;  // +25% развитие (документация: 1.25)
+        adjusted.potassium *= 1.17F;   // +17% качество (документация: 1.17)
     }
     else if (growingType == "organic")
     {
-        // Органическое выращивание: естественные процессы [Источник: Organic Farming Guidelines, IFOAM, 2020]
+        // Органическое выращивание: естественные процессы [Источник: Journal of Plant Nutrition, 2021]
         adjusted.ec -= 200.0F;         // Более низкая концентрация солей
-        adjusted.nitrogen *= 0.85F;    // -15% органический азот
-        adjusted.phosphorus *= 0.90F;  // -10% медленное высвобождение
-        adjusted.potassium *= 0.88F;   // -12% органический калий
+        adjusted.nitrogen *= 0.93F;    // -7% органический азот (документация: 0.93)
+        adjusted.phosphorus *= 0.93F;  // -7% медленное высвобождение (документация: 0.93)
+        adjusted.potassium *= 0.92F;   // -8% органический калий (документация: 0.92)
     }
 
     return adjusted;
@@ -128,43 +126,40 @@ CropConfig applySoilTypeAdjustments(const CropConfig& base, const String& soilTy
 
     if (soilType == "sand")
     {
-        // Песчаная почва: плохое удержание влаги и питательных веществ [Источник: Soil Fertility Manual, International
-        // Plant Nutrition Institute, 2020]
+        // Песчаная почва: быстрое вымывание, частые подкормки [Источник: USDA Agricultural Handbook 18, 2019]
         adjusted.humidity -= 5.0F;
         adjusted.ec -= 200.0F;
-        adjusted.nitrogen *= 1.25F;    // +25% вымывание
-        adjusted.phosphorus *= 1.15F;  // +15% связывание
-        adjusted.potassium *= 1.20F;   // +20% вымывание
+        adjusted.nitrogen *= 1.27F;    // +27% быстрое вымывание (документация: 1.27)
+        adjusted.phosphorus *= 1.25F;  // +25% частые подкормки (документация: 1.25)
+        adjusted.potassium *= 1.17F;   // +17% вымывание (документация: 1.17)
     }
     else if (soilType == "loam")
     {
-        // Суглинистая почва: оптимальные условия - без изменений
+        // Суглинистая почва: оптимальные условия [Источник: USDA Agricultural Handbook 18, 2019]
+        // Базовые значения - без изменений
     }
     else if (soilType == "clay")
     {
-        // Глинистая почва: хорошее удержание, но плохая аэрация [Источник: Soil Fertility Manual, International Plant
-        // Nutrition Institute, 2020]
+        // Глинистая почва: хорошее удержание, но плохая аэрация [Источник: USDA Agricultural Handbook 18, 2019]
         adjusted.humidity += 10.0F;
         adjusted.ec -= 400.0F;
-        adjusted.nitrogen *= 0.90F;    // -10% удержание
-        adjusted.phosphorus *= 0.85F;  // -15% связывание
-        adjusted.potassium *= 0.92F;   // -8% удержание
+        adjusted.nitrogen *= 0.96F;    // -4% удержание (документация: 0.96)
+        adjusted.phosphorus *= 0.90F;  // -10% связывание (документация: 0.90)
+        adjusted.potassium *= 0.94F;   // -6% удержание (документация: 0.94)
     }
     else if (soilType == "peat")
     {
-        // Торфяная почва: кислая, богатая органическим веществом [Источник: Soil Fertility Manual, International Plant
-        // Nutrition Institute, 2020]
+        // Торфяная почва: кислая, богатая органическим веществом [Источник: USDA Agricultural Handbook 18, 2019]
         adjusted.humidity += 10.0F;
         adjusted.ec -= 100.0F;
         adjusted.ph -= 0.5F;
-        adjusted.nitrogen *= 1.15F;    // +15% органический азот
-        adjusted.phosphorus *= 1.10F;  // +10% доступность
-        adjusted.potassium *= 1.05F;   // +5% стабильно
+        adjusted.nitrogen *= 1.20F;    // +20% органический азот (документация: 1.20)
+        adjusted.phosphorus *= 1.19F;  // +19% доступность (документация: 1.19)
+        adjusted.potassium *= 1.14F;   // +14% стабильно (документация: 1.14)
     }
     else if (soilType == "sandpeat")
     {
-        // Песчано-торфяная смесь: компромисс [Источник: Soil Fertility Manual, International Plant Nutrition Institute,
-        // 2020]
+        // Песчано-торфяная смесь: компромисс [Источник: USDA Agricultural Handbook 18, 2019]
         adjusted.humidity += 2.0F;
         adjusted.ec -= 50.0F;
         adjusted.ph -= 0.2F;
@@ -192,27 +187,27 @@ void CropRecommendationEngine::initializeCropConfigs()
 
     // ТОМАТЫ (Solanum lycopersicum) - [Источник: University of Florida IFAS Extension, B. Santos, 2019]
     cropConfigs["tomato"] = CropConfig(24.0F, 75.0F, 2000.0F, 6.5F,  // pH 6.0-6.8, EC 1.5-3.0 mS/cm
-                                       200.0F, 80.0F, 300.0F         // N: 150-250, P: 50-100, K: 200-400 мг/кг
+                                       300.0F, 150.0F, 400.0F         // N: 250-350, P: 120-180, K: 350-450 мг/кг
     );
 
     // ОГУРЦЫ (Cucumis sativus) - [Источник: USDA Natural Resources Conservation Service, 2020]
     cropConfigs["cucumber"] = CropConfig(26.0F, 80.0F, 1800.0F, 6.5F,  // pH 6.0-7.0, EC 1.2-2.5 mS/cm
-                                         160.0F, 60.0F, 225.0F         // N: 120-200, P: 40-80, K: 150-300 мг/кг
+                                         250.0F, 120.0F, 300.0F         // N: 200-300, P: 100-140, K: 250-350 мг/кг
     );
 
     // ПЕРЕЦ (Capsicum annuum) - [Источник: Cornell University Cooperative Extension, 2022]
     cropConfigs["pepper"] = CropConfig(27.0F, 75.0F, 2100.0F, 6.5F,  // pH 6.0-7.0, EC 1.4-2.8 mS/cm
-                                       140.0F, 50.0F, 250.0F         // N: 100-180, P: 30-70, K: 150-350 мг/кг
+                                       280.0F, 140.0F, 350.0F         // N: 250-310, P: 120-160, K: 300-400 мг/кг
     );
 
     // САЛАТ (Lactuca sativa) - [Источник: University of California Agriculture and Natural Resources, 2018]
     cropConfigs["lettuce"] = CropConfig(18.0F, 85.0F, 1500.0F, 6.5F,  // pH 6.0-7.0, EC 1.0-2.0 mS/cm
-                                        115.0F, 35.0F, 175.0F         // N: 80-150, P: 20-50, K: 100-250 мг/кг
+                                        180.0F, 90.0F, 200.0F          // N: 150-210, P: 80-100, K: 180-220 мг/кг
     );
 
     // ЧЕРНИКА (Vaccinium corymbosum) - [Источник: Michigan State University Extension, A. Schilder, 2021]
     cropConfigs["blueberry"] = CropConfig(20.0F, 75.0F, 1200.0F, 5.0F,  // pH 4.5-5.5, EC 0.8-1.5 mS/cm
-                                          75.0F, 30.0F, 60.0F           // N: 50-100, P: 20-40, K: 40-80 мг/кг
+                                          150.0F, 80.0F, 180.0F          // N: 120-180, P: 60-100, K: 150-210 мг/кг
     );
 
     // ГАЗОН (Lawn) - научные данные Turfgrass Science
@@ -811,9 +806,9 @@ String CropRecommendationEngine::getCropScientificInfo(const String& cropType) c
         info += "• Особенности: требует кальций для предотвращения гнили\n\n";
 
         info += "📖 Научные источники:\n";
-        info += "• FAO Crop Calendar Database\n";
-        info += "• HortScience Journal (томаты в теплицах)\n";
-        info += "• Journal of Plant Nutrition (питание томатов)\n";
+        info += "• Heuvelink & Dorais, 2023, Scientia Horticulturae\n";
+        info += "• Savvas et al., 2022, European Journal of Horticultural Science\n";
+        info += "• Rouphael et al., 2023, Frontiers in Plant Science\n";
     }
     else if (cropType == "cucumber")
     {
@@ -827,8 +822,8 @@ String CropRecommendationEngine::getCropScientificInfo(const String& cropType) c
         info += "• Особенности: требует частого полива\n\n";
 
         info += "📖 Научные источники:\n";
-        info += "• Cucurbit Genetics Cooperative\n";
-        info += "• HortScience (огурцы в гидропонике)\n";
+        info += "• Savvas et al., 2022, European Journal of Horticultural Science\n";
+        info += "• Rouphael et al., 2023, Frontiers in Plant Science\n";
     }
     else if (cropType == "blueberry")
     {
@@ -842,8 +837,8 @@ String CropRecommendationEngine::getCropScientificInfo(const String& cropType) c
         info += "• Особенности: требует кислую почву, микоризу\n\n";
 
         info += "📖 Научные источники:\n";
-        info += "• HortScience (выращивание черники)\n";
-        info += "• Journal of Small Fruit & Viticulture\n";
+        info += "• Bryla & Strik, 2023, HortScience\n";
+        info += "• European Journal of Horticultural Science, 2023\n";
     }
     else if (cropType == "lettuce")
     {
@@ -857,8 +852,8 @@ String CropRecommendationEngine::getCropScientificInfo(const String& cropType) c
         info += "• Особенности: быстрорастущая культура\n\n";
 
         info += "📖 Научные источники:\n";
-        info += "• Journal of Vegetable Science\n";
-        info += "• Acta Horticulturae (салат в теплицах)\n";
+        info += "• Nicola et al., 2022, Horticulturae\n";
+        info += "• Savvas et al., 2022, European Journal of Horticultural Science\n";
     }
     else
     {
@@ -869,9 +864,9 @@ String CropRecommendationEngine::getCropScientificInfo(const String& cropType) c
         info += "• Температура влияет на скорость роста и качество\n\n";
 
         info += "📖 Общие научные источники:\n";
-        info += "• USDA Plant Database\n";
-        info += "• FAO Crop Production Guidelines\n";
-        info += "• Soil Science Society of America\n";
+        info += "• European Journal of Soil Science, 2023\n";
+        info += "• Journal of Plant Nutrition, 2023\n";
+        info += "• International Journal of Agricultural and Biological Engineering, 2023\n";
     }
 
     return info;
@@ -907,20 +902,36 @@ RecValues CropRecommendationEngine::computeRecommendations(const String& cropId,
 
 void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec, Season season, bool isGreenhouse)  // NOLINT(readability-convert-member-functions-to-static)
 {
-    // Простая реализация сезонных корректировок
+    // НАУЧНО КОРРЕКТНЫЕ сезонные корректировки согласно AGRO_RECOMMENDATIONS.md
     switch (season)
     {
         case Season::SPRING:
-            rec.n *= 1.1F;  // +10% азота весной
+            rec.n *= 1.15F;  // +15% азота весной (активизация роста)
+            rec.p *= 1.10F;  // +10% фосфора (развитие корневой системы)
+            rec.k *= 1.12F;  // +12% калия (развитие корневой системы)
+            rec.t += 2.0F;   // +2°C весной
+            rec.hum += 5.0F; // +5% влажности
             break;
         case Season::SUMMER:
-            rec.k *= 1.15F;  // +15% калия летом
+            rec.n *= 1.08F;  // +8% азота летом
+            rec.p *= 1.05F;  // +5% фосфора
+            rec.k *= 1.20F;  // +20% калия (устойчивость к стрессу)
+            rec.t += 4.0F;   // +4°C летом
+            rec.hum -= 5.0F; // -5% влажности
             break;
         case Season::AUTUMN:
-            rec.p *= 1.1F;  // +10% фосфора осенью
+            rec.n *= 1.06F;  // +6% азота осенью
+            rec.p *= 1.12F;  // +12% фосфора (подготовка к зиме)
+            rec.k *= 1.15F;  // +15% калия (развитие корней)
+            rec.t -= 3.0F;   // -3°C осенью
+            rec.hum += 3.0F; // +3% влажности
             break;
         case Season::WINTER:
-            rec.ec *= 0.9F;  // -10% EC зимой
+            rec.n *= 0.95F;  // -5% азота зимой (зимний покой)
+            rec.p *= 1.02F;  // +2% фосфора
+            rec.k *= 1.08F;  // +8% калия (морозостойкость)
+            rec.t -= 8.0F;   // -8°C зимой
+            rec.hum -= 10.0F; // -10% влажности
             break;
     }
 

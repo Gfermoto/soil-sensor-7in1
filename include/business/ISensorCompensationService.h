@@ -93,6 +93,21 @@ class ISensorCompensationService
      * @return true если данные валидны, false в противном случае
      */
     virtual bool validateCompensationInputs(SoilType soilType, float humidity, float temperature) const = 0;
+
+    /**
+     * @brief Инициализирует коэффициенты Арчи
+     */
+    virtual void initializeArchieCoefficients() = 0;
+
+    /**
+     * @brief Инициализирует параметры почвы
+     */
+    virtual void initializeSoilParameters() = 0;
+
+    /**
+     * @brief Инициализирует коэффициенты NPK
+     */
+    virtual void initializeNPKCoefficients() = 0;
 };
 
 #endif  // ISENSOR_COMPENSATION_SERVICE_H
