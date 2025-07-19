@@ -1,0 +1,4 @@
+# Демонстрация работы Advanced Code Quality Analysis
+# Этот файл будет удален после демонстрации
+
+print("Advanced Code Quality Analysis работает!") 
