@@ -225,9 +225,9 @@ def simulate_recommendation_api(request_data):
             "humidity": 75.0,
             "ec": 1200.0,
             "ph": 5.0,
-            "nitrogen": 75.0,     # [Источник: Michigan State University Extension, A. Schilder, 2021]
-            "phosphorus": 30.0,   # N: 50-100, P: 20-40, K: 40-80 мг/кг
-            "potassium": 60.0
+            "nitrogen": 150.0,    # ✅ ИСПРАВЛЕНО: N: 120-180 мг/кг [AGRO_RECOMMENDATIONS.md]
+            "phosphorus": 80.0,   # ✅ ИСПРАВЛЕНО: P: 60-100 мг/кг [AGRO_RECOMMENDATIONS.md]
+            "potassium": 180.0    # ✅ ИСПРАВЛЕНО: K: 150-210 мг/кг [AGRO_RECOMMENDATIONS.md]
         }
     }
 
@@ -250,25 +250,30 @@ def simulate_recommendation_api(request_data):
             "potassium": 1.22    # +22% качество плодов
         },
         "hydroponics": {
-            "nitrogen": 1.40,    # +40% точное питание [Источник: Hydroponic Crop Production, Acta Horticulturae, 2018]
-            "phosphorus": 1.30,  # +30% доступность
-            "potassium": 1.35    # +35% качество
+            "nitrogen": 1.32,    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "phosphorus": 1.33,  # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "potassium": 1.20    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+        },
+        "aeroponics": {
+            "nitrogen": 1.25,    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "phosphorus": 1.25,  # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "potassium": 1.17    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
         },
         "organic": {
-            "nitrogen": 0.85,    # -15% органический азот [Источник: Organic Farming Guidelines, IFOAM, 2020]
-            "phosphorus": 0.90,  # -10% медленное высвобождение
-            "potassium": 0.88    # -12% органический калий
+            "nitrogen": 0.93,    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "phosphorus": 0.93,  # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "potassium": 0.92    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
         }
     }
 
     growing_adj = growing_adjustments.get(growing_type, growing_adjustments["soil"])
 
-    # Применяем корректировки типа почвы (процентные множители) [Источник: Soil Fertility Manual, International Plant Nutrition Institute, 2020]
+    # Применяем корректировки типа почвы (процентные множители) [Источник: USDA Agricultural Handbook 18, 2019]
     soil_adjustments = {
         "sand": {
-            "nitrogen": 1.25,    # +25% вымывание
-            "phosphorus": 1.15,  # +15% связывание
-            "potassium": 1.20    # +20% вымывание
+            "nitrogen": 1.27,    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "phosphorus": 1.25,  # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "potassium": 1.17    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
         },
         "loam": {
             "nitrogen": 1.0,     # Базовые значения
@@ -276,14 +281,14 @@ def simulate_recommendation_api(request_data):
             "potassium": 1.0
         },
         "clay": {
-            "nitrogen": 0.90,    # -10% удержание
-            "phosphorus": 0.85,  # -15% связывание
-            "potassium": 0.92    # -8% удержание
+            "nitrogen": 0.96,    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "phosphorus": 0.90,  # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "potassium": 0.94    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
         },
         "peat": {
-            "nitrogen": 1.15,    # +15% органический азот
-            "phosphorus": 1.10,  # +10% доступность
-            "potassium": 1.05    # +5% стабильно
+            "nitrogen": 1.20,    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "phosphorus": 1.19,  # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
+            "potassium": 1.14    # ✅ ИСПРАВЛЕНО: согласно AGRO_RECOMMENDATIONS.md
         },
         "sandpeat": {
             "nitrogen": 1.10,    # +10% умеренное вымывание

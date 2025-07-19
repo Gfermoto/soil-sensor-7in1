@@ -12,8 +12,8 @@ def test_validation():
     """Тест валидации"""
     try:
         result = subprocess.run(
-            "python -c \"import sys; sys.path.append('test'); import test_validation; print('OK')\"",
-            shell=True, capture_output=True, text=True, timeout=10
+            [sys.executable, "-c", "import sys; sys.path.append('test'); import test_validation; print('OK')"],
+            capture_output=False, text=True, timeout=10, cwd=Path(__file__).parent.parent
         )
         return result.returncode == 0
     except:
@@ -23,8 +23,8 @@ def test_compensation():
     """Тест компенсации"""
     try:
         result = subprocess.run(
-            "python -c \"import sys; sys.path.append('test'); import test_compensation_formulas; print('OK')\"",
-            shell=True, capture_output=True, text=True, timeout=10
+            [sys.executable, "-c", "import sys; sys.path.append('test'); import test_compensation_formulas; print('OK')"],
+            capture_output=False, text=True, timeout=10, cwd=Path(__file__).parent.parent
         )
         return result.returncode == 0
     except:
