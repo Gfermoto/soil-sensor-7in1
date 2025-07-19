@@ -47,10 +47,17 @@ jobs:
         echo '</coverage>' >> test_reports/coverage.xml
 
     - name: SonarCloud Scan
-      uses: SonarSource/sonarcloud-github-action@master
+      uses: sonarqube-quality-gate-action@master
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        scanMetadataReportFile: .scannerwork/report-task.txt
+        args: >
+          -Dsonar.organization=gfermoto
+          -Dsonar.projectKey=Gfermoto_soil-sensor-7in1
+          -Dsonar.sources=src
+          -Dsonar.tests=test
+          -Dsonar.host.url=https://sonarcloud.io
 
     - name: Upload coverage reports
       uses: actions/upload-artifact@v4
@@ -91,31 +98,9 @@ jobs:
             body: '## 🔍 SonarCloud Analysis Results\n\n### 📊 Quality Gate Status\n- **Reliability:** A\n- **Security:** A\n- **Maintainability:** A\n- **Coverage:** 85%+\n\n### 🎯 Key Metrics\n- **Code Smells:** 0\n- **Bugs:** 0\n- **Vulnerabilities:** 0\n- **Security Hotspots:** 0\n- **Duplicated Lines:** < 3%\n\n### 📈 Coverage Report\n- **Overall Coverage:** 85.2%\n- **Critical Functions:** 100%\n- **Business Logic:** 100%\n- **Web Interface:** 100%\n\n### 🔧 Technical Debt\n- **Technical Debt Ratio:** < 5%\n- **SQALE Rating:** A\n\n[View full report on SonarCloud](https://sonarcloud.io/dashboard?id=Gfermoto_soil-sensor-7in1)'
           });
 
-    - name: Update README with SonarCloud badge
-      if: github.ref == 'refs/heads/main'
-      run: |
-        # Обновляем README с badge SonarCloud
-        sed -i 's|![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)|![SonarCloud](https://sonarcloud.io/api/project_badges/measure?project=Gfermoto_soil-sensor-7in1&metric=alert_status)|' README.md || true
-        sed -i 's|![Quality Gate Status](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)|![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Gfermoto_soil-sensor-7in1&metric=alert_status)|' README.md || true
-        
-        # Добавляем badge если его нет
-        if ! grep -q "sonarcloud.io" README.md; then
-          echo "" >> README.md
-          echo "## 🔍 Code Quality" >> README.md
-          echo "" >> README.md
-          echo "[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Gfermoto_soil-sensor-7in1&metric=alert_status)](https://sonarcloud.io/dashboard?id=Gfermoto_soil-sensor-7in1)" >> README.md
-          echo "[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Gfermoto_soil-sensor-7in1&metric=coverage)](https://sonarcloud.io/dashboard?id=Gfermoto_soil-sensor-7in1)" >> README.md
-          echo "[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=Gfermoto_soil-sensor-7in1&metric=sqale_index)](https://sonarcloud.io/dashboard?id=Gfermoto_soil-sensor-7in1)" >> README.md
-          echo "[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=Gfermoto_soil-sensor-7in1&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=Gfermoto_soil-sensor-7in1)" >> README.md
-          echo "[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=Gfermoto_soil-sensor-7in1&metric=security_rating)](https://sonarcloud.io/dashboard?id=Gfermoto_soil-sensor-7in1)" >> README.md
-          echo "[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=Gfermoto_soil-sensor-7in1&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=Gfermoto_soil-sensor-7in1)" >> README.md
-        fi
-
-    - name: Commit README changes
-      if: github.ref == 'refs/heads/main'
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add README.md
-        git commit -m "docs: Add SonarCloud quality badges" || exit 0
-        git push 
+    - name: SonarCloud Quality Gate Check
+      uses: sonarqube-quality-gate-action@master
+      env:
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      with:
+        scanMetadataReportFile: .scannerwork/report-task.txt 
