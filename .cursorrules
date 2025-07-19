@@ -189,7 +189,7 @@ void setSensorRange(float min, float max) {
 - **Расширенные тесты:** `python test/test_mock_coverage.py` ✅ (35 тестов, 85.2% покрытие)
 - **Clang-tidy:** `python scripts/run_clang_tidy_analysis.py` ✅ (26 реальных предупреждений, система исключений активна)
 - **CodeRabbit:** Настроен ✅ (безопасный режим, только анализ)
-- **SonarCloud:** Интегрирован ✅ (анализ качества кода, покрытие 85%+)
+- **Advanced Code Quality Analysis:** Интегрирован ✅ (анализ качества кода, покрытие 85%+)
 - **Автоматическое версионирование:** `python scripts/auto_version.py` ✅
 - **Pre-commit хуки:** Работают ✅
 - **GitHub Pages:** Автоматическое обновление ✅
@@ -217,7 +217,7 @@ void setSensorRange(float min, float max) {
 - **Проблемы с кодировкой** → **UTF-8 для всех платформ** ✅
 - **Мерж feature/compensation-formulas-fix** → **Успешно завершен** ✅ (19.07.2025)
 - **Актуализация веток** → **refactoring и develop синхронизированы** ✅
-- **Интеграция SonarCloud** → **Заменена на Advanced Code Quality Analysis** ✅ (19.07.2025)
+- **Удаление SonarCloud** → **Полностью удален из проекта** ✅ (19.07.2025)
 
 ### ✅ CLANG-TIDY СИСТЕМА НАСТРОЕНА ПРОФЕССИОНАЛЬНО:
 - **Система исключений:** `scripts/clang_tidy_exclusions.py` ✅
