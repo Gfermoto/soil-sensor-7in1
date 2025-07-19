@@ -1,0 +1,60 @@
+name: SonarCloud Working Analysis
+
+on:
+  push:
+    branches: [ main, refactoring, develop ]
+  workflow_dispatch:
+
+jobs:
+  sonarcloud:
+    name: SonarCloud Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'zulu'
+        java-version: '17'
+
+    - name: Cache SonarCloud packages
+      uses: actions/cache@v3
+      with:
+        path: ~/.sonar/cache
+        key: ${{ runner.os }}-sonar
+        restore-keys: ${{ runner.os }}-sonar
+
+    - name: SonarCloud Scan
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      run: |
+        echo "Starting SonarCloud analysis..."
+        echo "Project: Gfermoto_soil-sensor-7in1"
+        echo "Organization: gfermoto"
+        echo "Sources: src"
+        
+        # Скачиваем SonarCloud Scanner
+        curl -sSLo $HOME/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
+        unzip -o $HOME/sonar-scanner.zip -d $HOME/
+        export PATH=$PATH:$HOME/sonar-scanner-4.8.0.2856-linux/bin
+        
+        # Создаем sonar-project.properties
+        cat > sonar-project.properties << EOF
+        sonar.projectKey=Gfermoto_soil-sensor-7in1
+        sonar.organization=gfermoto
+        sonar.projectName=JXCT Soil Sensor 7-in-1
+        sonar.projectVersion=3.11.1
+        sonar.sources=src
+        sonar.tests=test
+        sonar.exclusions=**/*.md,**/*.txt,**/*.json,**/*.yaml,**/*.yml,**/*.pdf,**/*.log,**/*.tmp,**/*.cache,docs/**,test_reports/**,scripts/**,.github/**,site/**,.pio/**,bindings/**,data/**,.vscode/**,.cursor/**,.pytest_cache/**,.githooks/**,include/**,*.h
+        sonar.host.url=https://sonarcloud.io
+        EOF
+        
+        # Запускаем анализ
+        sonar-scanner
+        
+        echo "Analysis completed successfully!" 
