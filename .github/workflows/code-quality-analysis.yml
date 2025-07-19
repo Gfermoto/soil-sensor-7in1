@@ -55,35 +55,8 @@ jobs:
         echo "📋 Создание отчета о качестве кода..."
         mkdir -p test_reports
         
-        # Создаем JSON отчет о качестве
-        cat > test_reports/quality-report.json << EOF
-        {
-          "timestamp": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
-          "project": "JXCT Soil Sensor",
-          "version": "3.11.1",
-          "quality_metrics": {
-            "test_coverage": 85.2,
-            "static_analysis_score": 95,
-            "code_smells": 0,
-            "duplicated_lines": 0,
-            "technical_debt": "0h",
-            "reliability_rating": "A",
-            "security_rating": "A",
-            "maintainability_rating": "A"
-          },
-          "test_results": {
-            "total_tests": 35,
-            "passed_tests": 35,
-            "failed_tests": 0,
-            "success_rate": 100.0
-          },
-          "static_analysis": {
-            "clang_tidy_warnings": 26,
-            "cppcheck_issues": 0,
-            "python_lint_score": 9.5
-          }
-        }
-        EOF
+        # Запускаем наш продвинутый анализ качества
+        python scripts/advanced_quality_analysis.py
 
     - name: Upload quality reports
       uses: actions/upload-artifact@v4
@@ -97,9 +70,30 @@ jobs:
       uses: actions/github-script@v6
       with:
         script: |
+          const fs = require('fs');
+          let qualityReport = {};
+          try {
+            qualityReport = JSON.parse(fs.readFileSync('test_reports/quality-report.json', 'utf8'));
+          } catch (e) {
+            console.log('Could not read quality report:', e.message);
+          }
+          
+          const metrics = qualityReport.quality_metrics || {};
+          const overallScore = metrics.overall_score || 'N/A';
+          const testCoverage = metrics.test_coverage || 'N/A';
+          const reliability = metrics.reliability_rating || 'N/A';
+          
+          const body = '## 🔍 Advanced Code Quality Analysis Results\n\n' +
+            '### 📊 Quality Metrics\n' +
+            '- **Overall Score:** ' + overallScore + '/100\n' +
+            '- **Test Coverage:** ' + testCoverage + '%\n' +
+            '- **Reliability:** ' + reliability + '\n\n' +
+            (overallScore >= 80 ? '✅ **Quality Gate: PASSED**' : '⚠️ **Quality Gate: NEEDS IMPROVEMENT**') + '\n\n' +
+            '[View detailed reports in artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})';
+          
           await github.rest.issues.createComment({
             owner: context.repo.owner,
             repo: context.repo.repo,
             issue_number: context.issue.number,
-            body: '## 🔍 Code Quality Analysis Results\n\n### 📊 Quality Metrics\n- **Test Coverage:** 85.2%\n- **Static Analysis Score:** 95/100\n- **Code Smells:** 0\n- **Duplicated Lines:** 0\n- **Technical Debt:** 0h\n\n### 🎯 Ratings\n- **Reliability:** A\n- **Security:** A\n- **Maintainability:** A\n\n### 🧪 Test Results\n- **Total Tests:** 35\n- **Passed:** 35 (100%)\n- **Failed:** 0\n\n### 🔧 Static Analysis\n- **Clang-tidy Warnings:** 26 (filtered)\n- **Cppcheck Issues:** 0\n- **Python Lint Score:** 9.5/10\n\n✅ **Quality Gate: PASSED**\n\n[View detailed reports in artifacts](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})'
+            body: body
           }); 
