@@ -36,4 +36,17 @@ jobs:
         echo "Project: Gfermoto_soil-sensor-7in1"
         echo "Organization: gfermoto"
         echo "Sources: src"
+        
+        # Скачиваем SonarCloud Scanner
+        curl -sSLo $HOME/sonar-scanner.zip https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.8.0.2856-linux.zip
+        unzip -o $HOME/sonar-scanner.zip -d $HOME/
+        export PATH=$PATH:$HOME/sonar-scanner-4.8.0.2856-linux/bin
+        
+        # Запускаем анализ
+        sonar-scanner \
+          -Dsonar.organization=gfermoto \
+          -Dsonar.projectKey=Gfermoto_soil-sensor-7in1 \
+          -Dsonar.sources=src \
+          -Dsonar.host.url=https://sonarcloud.io
+        
         echo "Analysis completed successfully!" 
