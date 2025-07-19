@@ -217,7 +217,7 @@ void setSensorRange(float min, float max) {
 - **Проблемы с кодировкой** → **UTF-8 для всех платформ** ✅
 - **Мерж feature/compensation-formulas-fix** → **Успешно завершен** ✅ (19.07.2025)
 - **Актуализация веток** → **refactoring и develop синхронизированы** ✅
-- **Удаление SonarCloud** → **Полностью удален из проекта** ✅ (19.07.2025)
+
 
 ### ✅ CLANG-TIDY СИСТЕМА НАСТРОЕНА ПРОФЕССИОНАЛЬНО:
 - **Система исключений:** `scripts/clang_tidy_exclusions.py` ✅
