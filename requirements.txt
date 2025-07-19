@@ -6,3 +6,10 @@ mkdocs-awesome-pages-plugin>=2.9.0
 # E2E Testing Dependencies
 requests>=2.31.0
 urllib3>=2.0.0
+
+# Testing and Coverage Dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0
+coverage>=7.0.0
+pytest-html>=3.0.0
+pytest-xdist>=3.0.0
