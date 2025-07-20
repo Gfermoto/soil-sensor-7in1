@@ -6,8 +6,7 @@
 
 import subprocess
 import sys
-import os
-from pathlib import Path
+# Removed unused imports as suggested by CodeRabbit
 
 def run_with_timeout(cmd, timeout=60):
     """Запускает команду с таймаутом"""

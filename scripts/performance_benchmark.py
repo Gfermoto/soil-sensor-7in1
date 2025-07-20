@@ -21,8 +21,11 @@ from datetime import datetime
 # Константы для IoT системы
 MEMORY_THRESHOLD_MB = 320  # ESP32 RAM limit
 FLASH_THRESHOLD_MB = 4     # ESP32 Flash limit
-RESPONSE_TIME_THRESHOLD_MS = 10000  # Максимальное время ответа (10 секунд)
-COMPENSATION_TIME_THRESHOLD_MS = 5000  # Максимальное время компенсации (5 секунд)
+# ESP32 IoT Performance Thresholds
+# Note: These thresholds are higher than general web performance (<100ms) 
+# due to ESP32 hardware limitations and sensor processing requirements
+RESPONSE_TIME_THRESHOLD_MS = 1000  # Максимальное время ответа (1 секунда) - ESP32 web server
+COMPENSATION_TIME_THRESHOLD_MS = 500  # Максимальное время компенсации (500ms) - sensor algorithms
 
 @dataclass
 class BenchmarkResult:

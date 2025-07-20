@@ -105,9 +105,9 @@ def main():
         ]):
             # Это ложные ошибки ESP32/Arduino - игнорируем
             files_with_errors += 1
-            print(f"   OK")
+            print("   OK")
         else:
-            print(f"   OK")
+            print("   OK")
         
         # Добавляем в отчет
         report_lines.append(f'### {file_name}')

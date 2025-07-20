@@ -16,7 +16,7 @@ def test_validation():
             capture_output=False, text=True, timeout=10, cwd=Path(__file__).parent.parent
         )
         return result.returncode == 0
-    except:
+    except Exception:
         return False
 
 def test_compensation():
@@ -27,7 +27,7 @@ def test_compensation():
             capture_output=False, text=True, timeout=10, cwd=Path(__file__).parent.parent
         )
         return result.returncode == 0
-    except:
+    except Exception:
         return False
 
 def test_build():
@@ -54,7 +54,7 @@ def test_adaptive_filters():
             capture_output=False, text=True, timeout=10, cwd=Path(__file__).parent.parent
         )
         return result.returncode == 0
-    except:
+    except Exception:
         return False
 
 
