@@ -245,7 +245,7 @@ class CodeQualityAnalyzer:
         print("="*60)
         
         # Запуск всех этапов анализа
-        test_results = self.run_tests()
+        self.run_tests()  # Запускаем тесты для проверки
         static_warnings = self.run_static_analysis()
         python_score = self.analyze_python_code()
         test_coverage = self.generate_coverage_report()
@@ -258,7 +258,8 @@ class CodeQualityAnalyzer:
         
         # Возвращаем статус
         quality_score = report["quality_metrics"]["overall_score"]
-        return quality_score >= 80  # Успех если качество >= 80%
+        QUALITY_THRESHOLD = int(os.getenv('QUALITY_THRESHOLD', '80'))
+        return quality_score >= QUALITY_THRESHOLD  # Настраиваемый порог качества
 
 def main():
     analyzer = CodeQualityAnalyzer()

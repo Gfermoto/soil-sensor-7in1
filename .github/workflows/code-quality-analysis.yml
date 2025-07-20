@@ -39,9 +39,8 @@ jobs:
     - name: Static code analysis
       run: |
         echo "🔍 Статический анализ кода..."
-        # Временно отключен из-за проблем с компиляцией
-        # python scripts/run_clang_tidy_analysis.py
-        echo "✅ Статический анализ пропущен (будет исправлен позже)"
+        # TODO: Re-enable clang-tidy analysis once compilation issues are resolved
+        echo "⚠️ Clang-tidy analysis temporarily disabled - compilation issues"
 
     - name: Python code quality
       run: |
