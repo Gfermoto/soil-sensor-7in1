@@ -113,8 +113,12 @@ bool SensorCalibrationService::calculateLinearRegression(const std::vector<Calib
     }
     
     // Расчёт средних значений
-    float sum_x = 0.0f, sum_y = 0.0f, sum_xy = 0.0f, sum_x2 = 0.0f, sum_y2 = 0.0f;
-    const size_t n = points.size();
+    float sum_x = 0.0F;
+    float sum_y = 0.0F;
+    float sum_xy = 0.0F;
+    float sum_x2 = 0.0F;
+    float sum_y2 = 0.0F;
+    const size_t num_points = points.size();
     
     for (const auto& point : points) {
         float x = point.rawValue;
@@ -127,12 +131,12 @@ bool SensorCalibrationService::calculateLinearRegression(const std::vector<Calib
         sum_y2 += y * y;
     }
     
-    float mean_x = sum_x / n;
-    float mean_y = sum_y / n;
+    float mean_x = sum_x / num_points;
+    float mean_y = sum_y / num_points;
     
     // Расчёт коэффициентов линейной регрессии
-    float numerator = n * sum_xy - sum_x * sum_y;
-    float denominator = n * sum_x2 - sum_x * sum_x;
+    float numerator = (num_points * sum_xy) - (sum_x * sum_y);
+    float denominator = (num_points * sum_x2) - (sum_x * sum_x);
     
     if (fabs(denominator) < 1e-10f) {
         logWarn("Деление на ноль в линейной регрессии");
@@ -143,7 +147,7 @@ bool SensorCalibrationService::calculateLinearRegression(const std::vector<Calib
     intercept = mean_y - slope * mean_x;
     
     // Расчёт коэффициента детерминации R²
-    float ss_tot = sum_y2 - sum_y * sum_y / n;
+    float ss_tot = sum_y2 - sum_y * sum_y / num_points;
     float ss_res = 0.0f;
     
     for (const auto& point : points) {

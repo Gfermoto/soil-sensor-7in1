@@ -43,7 +43,7 @@ WebServer server(80);  // NOLINT(misc-use-internal-linkage)
 
 // Глобальные экземпляры бизнес-сервисов
 extern CropRecommendationEngine gCropEngine;
-extern SensorCalibrationService gCalibrationService;  // Единый сервис калибровки
+// extern SensorCalibrationService gCalibrationService;  // Убрано - объявлен в unified_calibration_service.cpp
 extern SensorCompensationService gCompensationService;
 
 // Переменные для отслеживания времени

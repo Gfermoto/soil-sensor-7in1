@@ -77,11 +77,11 @@ def main():
     print()
     
     report_lines = [
-        '# 🔍 Clang-tidy Professional Analysis JXCT',
+        '# Clang-tidy Professional Analysis JXCT',
         f'**Дата:** {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}',
         f'**Файлов проверено:** {len(cpp_files)}',
         '',
-        '## 📊 Результаты анализа',
+        '## Результаты анализа',
         ''
     ]
 
@@ -96,7 +96,7 @@ def main():
         if filtered_warnings:
             files_with_warnings += 1
             total_warnings += len(filtered_warnings)
-            print(f"   ⚠️  {len(filtered_warnings)} warnings")
+            print(f"   WARNING: {len(filtered_warnings)} warnings")
             # Показываем подробности предупреждений
             for w in filtered_warnings:
                 print(f"      {w}")
@@ -117,9 +117,9 @@ def main():
         elif stderr and any(phrase in stderr.lower() for phrase in [
             "error while processing", "found compiler error", "suppressed"
         ]):
-            report_lines.append('- ⚠️ **Ложные ошибки ESP32** (игнорируются)')
+            report_lines.append('- WARNING: **Ложные ошибки ESP32** (игнорируются)')
         else:
-            report_lines.append('- ✅ Без предупреждений')
+            report_lines.append('- OK: Без предупреждений')
         report_lines.append('')
 
     # Итоговая статистика
@@ -135,13 +135,13 @@ def main():
 
     # Сохраняем отчет
     report_lines.extend([
-        '## 📈 Статистика',
+        '## Статистика',
         f'- **Файлов с предупреждениями:** {files_with_warnings}',
         f'- **Файлов с ложными ошибками ESP32:** {files_with_errors}',
         f'- **Файлов без проблем:** {len(cpp_files) - files_with_warnings - files_with_errors}',
         f'- **Всего предупреждений:** {total_warnings}',
         '',
-        f'**Статус:** {"✅ Отлично" if total_warnings == 0 else "⚠️ Требует внимания" if total_warnings < 5 else "❌ Требует исправления"}'
+        f'**Статус:** {"OK: Отлично" if total_warnings == 0 else "WARNING: Требует внимания" if total_warnings < 5 else "ERROR: Требует исправления"}'
     ])
     
     os.makedirs(os.path.dirname(REPORT_PATH), exist_ok=True)

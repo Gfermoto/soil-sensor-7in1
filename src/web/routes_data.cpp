@@ -23,7 +23,7 @@
 #include "../../include/sensor_calibration_service.h"
 
 extern NTPClient* timeClient;
-extern SensorCalibrationService gCalibrationService;
+// extern SensorCalibrationService gCalibrationService;  // Убрано - объявлен в unified_calibration_service.cpp
 
 // Внешние зависимости (уже объявлены в заголовочных файлах)
 // extern String navHtml();  // объявлено в wifi_manager.h
