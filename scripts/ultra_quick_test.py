@@ -33,9 +33,17 @@ def test_compensation():
 def test_build():
     """Проверка сборки"""
     try:
+        # Проверяем наличие прошивки
         firmware = Path(".pio/build/esp32dev/firmware.bin")
-        return firmware.exists() and firmware.stat().st_size > 500000  # Минимум 500KB
-    except:
+        if firmware.exists():
+            size = firmware.stat().st_size
+            print(f"   📦 Размер: {size:,} байт")
+            return size > 500000  # Минимум 500KB
+        else:
+            print("   ⚠️ Прошивка не найдена")
+            return False
+    except Exception as e:
+        print(f"   ❌ Ошибка: {e}")
         return False
 
 def test_adaptive_filters():
@@ -48,6 +56,8 @@ def test_adaptive_filters():
         return result.returncode == 0
     except:
         return False
+
+
 
 def main():
     print("⚡ УЛЬТРА-БЫСТРОЕ ТЕСТИРОВАНИЕ")

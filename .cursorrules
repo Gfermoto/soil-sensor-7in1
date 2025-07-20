@@ -130,6 +130,7 @@ test/
 scripts/
 ├── ultra_quick_test.py     # Ультра-быстрое тестирование ✅ РАБОТАЕТ
 ├── run_simple_tests.py     # Полное тестирование ✅ РАБОТАЕТ
+├── professional_static_analysis.py  # Профессиональный анализ ✅ РАБОТАЕТ
 ├── run_clang_tidy_analysis.py  # Clang-tidy с фильтрацией ✅ РАБОТАЕТ
 ├── clang_tidy_exclusions.py    # Система исключений ✅ РАБОТАЕТ
 └── auto_version.py         # Версионирование ✅ РАБОТАЕТ
@@ -273,6 +274,11 @@ python scripts/ultra_quick_test.py  # 5 секунд, без зависаний
 ### Полная проверка:
 ```bash
 python scripts/run_simple_tests.py  # 2 минуты, автоматизированно
+```
+
+### Профессиональный анализ:
+```bash
+python scripts/professional_static_analysis.py  # Статический анализ
 ```
 
 ### Анализ качества кода:

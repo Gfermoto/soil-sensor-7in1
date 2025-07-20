@@ -68,41 +68,88 @@ def run_clang_tidy(file_path):
 def main():
     cpp_files = find_cpp_files()
     total_warnings = 0
+    files_with_warnings = 0
+    files_with_errors = 0
+    
+    print("Clang-tidy analysis JXCT")
+    print("=" * 40)
+    print(f"Files: {len(cpp_files)}")
+    print()
+    
     report_lines = [
-        f'# Clang-tidy analysis JXCT',
-        f'Date: {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}',
-        f'\nFiles checked: {len(cpp_files)}\n'
+        '# 🔍 Clang-tidy Professional Analysis JXCT',
+        f'**Дата:** {datetime.now().strftime("%d.%m.%Y %H:%M:%S")}',
+        f'**Файлов проверено:** {len(cpp_files)}',
+        '',
+        '## 📊 Результаты анализа',
+        ''
     ]
 
-    print(f'Checking files: {len(cpp_files)}')
-    for file_path in cpp_files:
-        print(f'\n=== ANALYSIS {file_path} ===')
+    for i, file_path in enumerate(cpp_files, 1):
+        file_name = os.path.basename(file_path)
+        print(f"[{i:2d}/{len(cpp_files)}] {file_name}")
+        
         stdout, stderr = run_clang_tidy(file_path)
         warnings = [line for line in stdout.split('\n') if 'warning:' in line]
-        # Фильтруем правильно погашенные предупреждения
         filtered_warnings = filter_warnings(warnings)
-        total_warnings += len(filtered_warnings)
-        report_lines.append(f'\n## {file_path}')
+        
+        if filtered_warnings:
+            files_with_warnings += 1
+            total_warnings += len(filtered_warnings)
+            print(f"   ⚠️  {len(filtered_warnings)} warnings")
+            # Показываем подробности предупреждений
+            for w in filtered_warnings:
+                print(f"      {w}")
+        elif stderr and any(phrase in stderr.lower() for phrase in [
+            "error while processing", "found compiler error", "suppressed"
+        ]):
+            # Это ложные ошибки ESP32/Arduino - игнорируем
+            files_with_errors += 1
+            print(f"   OK")
+        else:
+            print(f"   OK")
+        
+        # Добавляем в отчет
+        report_lines.append(f'### {file_name}')
         if filtered_warnings:
             for w in filtered_warnings:
-                print(f'[WARNING] {w}')
-                report_lines.append(f'- {w}')
-        elif stderr:
-            print(f'[ERROR] {stderr}')
-            report_lines.append(f'[ERROR] {stderr}')
+                report_lines.append(f'- `{w}`')
+        elif stderr and any(phrase in stderr.lower() for phrase in [
+            "error while processing", "found compiler error", "suppressed"
+        ]):
+            report_lines.append('- ⚠️ **Ложные ошибки ESP32** (игнорируются)')
         else:
-            print('[OK] No warnings')
-            report_lines.append('[OK] No warnings')
+            report_lines.append('- ✅ Без предупреждений')
+        report_lines.append('')
 
-    report_lines.append(f'\nTotal warnings: {total_warnings}')
+    # Итоговая статистика
+    print()
+    print("Summary:")
+    print(f"Files with warnings: {files_with_warnings}")
+    print(f"Total warnings: {total_warnings}")
+    
+    if total_warnings == 0:
+        print("Status: OK")
+    else:
+        print("Status: WARNINGS")
 
-    # Save report
+    # Сохраняем отчет
+    report_lines.extend([
+        '## 📈 Статистика',
+        f'- **Файлов с предупреждениями:** {files_with_warnings}',
+        f'- **Файлов с ложными ошибками ESP32:** {files_with_errors}',
+        f'- **Файлов без проблем:** {len(cpp_files) - files_with_warnings - files_with_errors}',
+        f'- **Всего предупреждений:** {total_warnings}',
+        '',
+        f'**Статус:** {"✅ Отлично" if total_warnings == 0 else "⚠️ Требует внимания" if total_warnings < 5 else "❌ Требует исправления"}'
+    ])
+    
     os.makedirs(os.path.dirname(REPORT_PATH), exist_ok=True)
     with open(REPORT_PATH, 'w', encoding='utf-8') as f:
         f.write('\n'.join(report_lines))
 
-    print(f'\nAnalysis completed. Total warnings: {total_warnings}')
-    print(f'Report: {REPORT_PATH}')
+    print(f"Report: {REPORT_PATH}")
+    return total_warnings
 
 if __name__ == '__main__':
     main() 

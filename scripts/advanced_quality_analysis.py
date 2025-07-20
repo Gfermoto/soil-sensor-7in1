@@ -48,8 +48,8 @@ class CodeQualityAnalyzer:
         print("🔍 Статический анализ кода...")
         
         try:
-            # Clang-tidy анализ
-            result = subprocess.run([sys.executable, "scripts/run_clang_tidy_analysis.py"], 
+            # Professional static analysis
+            result = subprocess.run([sys.executable, "scripts/professional_static_analysis.py"], 
                                   capture_output=True, text=True, timeout=60)
             
             if result.returncode == 0:

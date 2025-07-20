@@ -39,8 +39,10 @@ String generateCSRFToken()  // NOLINT(misc-use-internal-linkage)
     const uint32_t chipId = ESP.getEfuseMac();
 
     // Добавляем MAC адрес для уникальности
-    String macAddr = WiFi.macAddress();
-    macAddr.replace(":", "");
+    const String macAddr = WiFi.macAddress();
+    // NOLINTNEXTLINE(misc-const-correctness)
+    String macAddrClean = macAddr;
+    macAddrClean.replace(":", "");
 
     // Генерируем токен из различных источников
     token = String(currentTime, HEX) + String(freeHeap, HEX) + String(chipId, HEX) +
@@ -109,19 +111,11 @@ bool checkCSRFSafety()
     }
 
     // POST, PUT, DELETE требуют проверки CSRF
-    String csrfToken = "";
+    // NOLINTNEXTLINE(misc-const-correctness,readability-avoid-nested-conditional-operator)
+    const String csrfToken = webServer.hasArg("csrf_token") ? webServer.arg("csrf_token") : 
+                            (webServer.hasHeader("X-CSRF-Token") ? webServer.header("X-CSRF-Token") : "");
 
-    // Ищем токен в POST параметрах
-    if (webServer.hasArg("csrf_token"))
-    {
-        csrfToken = webServer.arg("csrf_token");
-    }
 
-    // Если токен не найден в POST, ищем в заголовках
-    if (csrfToken.isEmpty() && webServer.hasHeader("X-CSRF-Token"))
-    {
-        csrfToken = webServer.header("X-CSRF-Token");
-    }
 
     // Логируем попытку доступа
     const String clientIP = webServer.client().remoteIP().toString();
