@@ -47,7 +47,7 @@ SensorCalibrationService::SensorCalibrationService()
 bool SensorCalibrationService::addPHCalibrationPoint(float expected, float measured)
 {
     // Валидация входных данных
-    if (expected < 0.0f || expected > 14.0f || measured < 0.0f || measured > 14.0f) {
+    if (expected < 0.0F || expected > 14.0F || measured < 0.0F || measured > 14.0F) {
         logWarn("Недопустимые значения pH калибровки: expected=" + String(expected) + ", measured=" + String(measured));
         return false;
     }
@@ -66,7 +66,7 @@ bool SensorCalibrationService::addPHCalibrationPoint(float expected, float measu
 bool SensorCalibrationService::addECCalibrationPoint(float expected, float measured)
 {
     // Валидация входных данных
-    if (expected < 0.0f || measured < 0.0f) {
+    if (expected < 0.0F || measured < 0.0F) {
         logWarn("Недопустимые значения EC калибровки: expected=" + String(expected) + ", measured=" + String(measured));
         return false;
     }
@@ -85,7 +85,7 @@ bool SensorCalibrationService::addECCalibrationPoint(float expected, float measu
 bool SensorCalibrationService::setNPKCalibrationPoint(float measured_n, float measured_p, float measured_k)
 {
     // Валидация входных данных
-    if (measured_n < 0.0f || measured_p < 0.0f || measured_k < 0.0f) {
+    if (measured_n < 0.0F || measured_p < 0.0F || measured_k < 0.0F) {
         logWarn("Недопустимые значения NPK калибровки: N=" + String(measured_n) + ", P=" + String(measured_p) + ", K=" + String(measured_k));
         return false;
     }
@@ -138,7 +138,7 @@ bool SensorCalibrationService::calculateLinearRegression(const std::vector<Calib
     float numerator = (num_points * sum_xy) - (sum_x * sum_y);
     float denominator = (num_points * sum_x2) - (sum_x * sum_x);
     
-    if (fabs(denominator) < 1e-10f) {
+    if (fabs(denominator) < 1e-10F) {
         logWarn("Деление на ноль в линейной регрессии");
         return false;
     }
@@ -147,8 +147,8 @@ bool SensorCalibrationService::calculateLinearRegression(const std::vector<Calib
     intercept = mean_y - slope * mean_x;
     
     // Расчёт коэффициента детерминации R²
-    float ss_tot = sum_y2 - sum_y * sum_y / num_points;
-    float ss_res = 0.0f;
+    float ss_tot = sum_y2 - (sum_y * sum_y) / num_points;
+    float ss_res = 0.0F;
     
     for (const auto& point : points) {
         float y_pred = slope * point.rawValue + intercept;
@@ -156,7 +156,7 @@ bool SensorCalibrationService::calculateLinearRegression(const std::vector<Calib
         ss_res += residual * residual;
     }
     
-    r_squared = 1.0f - (ss_res / ss_tot);
+    r_squared = 1.0F - (ss_res / ss_tot);
     
     logDebug("Линейная регрессия: slope=" + String(slope) + ", intercept=" + String(intercept) + ", R²=" + String(r_squared));
     return true;
@@ -232,8 +232,7 @@ float SensorCalibrationService::applyPHCalibration(float raw_ph)
     float calibrated_ph = current_calibration.ph.coefficient_a * raw_ph + current_calibration.ph.coefficient_b;
     
     // Ограничение диапазона pH
-    if (calibrated_ph < 0.0f) calibrated_ph = 0.0f;
-    if (calibrated_ph > 14.0f) calibrated_ph = 14.0f;
+    calibrated_ph = std::max(0.0F, std::min(14.0F, calibrated_ph));
     
     logDebug("pH калибровка: " + String(raw_ph) + " -> " + String(calibrated_ph));
     return calibrated_ph;
@@ -249,7 +248,7 @@ float SensorCalibrationService::applyECCalibration(float raw_ec)
     float calibrated_ec = current_calibration.ec.coefficient_c * raw_ec + current_calibration.ec.coefficient_d;
     
     // Ограничение диапазона EC
-    if (calibrated_ec < 0.0f) calibrated_ec = 0.0f;
+    calibrated_ec = std::max(0.0F, calibrated_ec);
     
     logDebug("EC калибровка: " + String(raw_ec) + " -> " + String(calibrated_ec));
     return calibrated_ec;
@@ -267,9 +266,9 @@ void SensorCalibrationService::applyNPKCalibration(float& nitrogen, float& phosp
     potassium += current_calibration.npk.offset_potassium;
     
     // Ограничение диапазона NPK
-    if (nitrogen < 0.0f) nitrogen = 0.0f;
-    if (phosphorus < 0.0f) phosphorus = 0.0f;
-    if (potassium < 0.0f) potassium = 0.0f;
+    nitrogen = std::max(0.0F, nitrogen);
+    phosphorus = std::max(0.0F, phosphorus);
+    potassium = std::max(0.0F, potassium);
     
     logDebug("NPK калибровка применена");
 }
@@ -366,11 +365,11 @@ float SensorCalibrationService::applyCalibrationWithInterpolation(float rawValue
 
 float SensorCalibrationService::linearInterpolation(float value, float x1, float y1, float x2, float y2) const
 {
-    if (fabs(x2 - x1) < 1e-10f) {
+    if (fabs(x2 - x1) < 1e-10F) {
         return y1;  // Избегаем деления на ноль
     }
     
-    return y1 + (y2 - y1) * (value - x1) / (x2 - x1);
+    return y1 + (((y2 - y1) * (value - x1)) / (x2 - x1));
 }
 
 // ============================================================================
@@ -412,13 +411,27 @@ size_t SensorCalibrationService::getCalibrationPointsCount(int profile, const St
     
     const auto& table = it->second;
     
-    if (sensorType == "temperature") return table.temperaturePoints.size();
-    if (sensorType == "humidity") return table.humidityPoints.size();
-    if (sensorType == "ec") return table.ecPoints.size();
-    if (sensorType == "ph") return table.phPoints.size();
-    if (sensorType == "nitrogen") return table.nitrogenPoints.size();
-    if (sensorType == "phosphorus") return table.phosphorusPoints.size();
-    if (sensorType == "potassium") return table.potassiumPoints.size();
+    if (sensorType == "temperature") {
+        return table.temperaturePoints.size();
+    }
+    if (sensorType == "humidity") {
+        return table.humidityPoints.size();
+    }
+    if (sensorType == "ec") {
+        return table.ecPoints.size();
+    }
+    if (sensorType == "ph") {
+        return table.phPoints.size();
+    }
+    if (sensorType == "nitrogen") {
+        return table.nitrogenPoints.size();
+    }
+    if (sensorType == "phosphorus") {
+        return table.phosphorusPoints.size();
+    }
+    if (sensorType == "potassium") {
+        return table.potassiumPoints.size();
+    }
     
     return 0;
 }
@@ -627,14 +640,14 @@ bool SensorCalibrationService::importCalibrationFromJSON(const String& json_data
     if (doc.containsKey("ph")) {
         JsonObject ph_obj = doc["ph"];
         current_calibration.ph.is_valid = ph_obj["is_valid"] | false;
-        current_calibration.ph.coefficient_a = ph_obj["coefficient_a"] | 1.0f;
-        current_calibration.ph.coefficient_b = ph_obj["coefficient_b"] | 0.0f;
-        current_calibration.ph.r_squared = ph_obj["r_squared"] | 0.0f;
+        current_calibration.ph.coefficient_a = ph_obj["coefficient_a"] | 1.0F;
+        current_calibration.ph.coefficient_b = ph_obj["coefficient_b"] | 0.0F;
+        current_calibration.ph.r_squared = ph_obj["r_squared"] | 0.0F;
         
         current_calibration.ph.points.clear();
         JsonArray ph_points = ph_obj["points"];
         for (JsonObject point_obj : ph_points) {
-            CalibrationPoint point(point_obj["measured"] | 0.0f, point_obj["expected"] | 0.0f);
+            CalibrationPoint point(point_obj["measured"] | 0.0F, point_obj["expected"] | 0.0F);
             current_calibration.ph.points.push_back(point);
         }
     }
@@ -643,14 +656,14 @@ bool SensorCalibrationService::importCalibrationFromJSON(const String& json_data
     if (doc.containsKey("ec")) {
         JsonObject ec_obj = doc["ec"];
         current_calibration.ec.is_valid = ec_obj["is_valid"] | false;
-        current_calibration.ec.coefficient_c = ec_obj["coefficient_c"] | 1.0f;
-        current_calibration.ec.coefficient_d = ec_obj["coefficient_d"] | 0.0f;
-        current_calibration.ec.r_squared = ec_obj["r_squared"] | 0.0f;
+        current_calibration.ec.coefficient_c = ec_obj["coefficient_c"] | 1.0F;
+        current_calibration.ec.coefficient_d = ec_obj["coefficient_d"] | 0.0F;
+        current_calibration.ec.r_squared = ec_obj["r_squared"] | 0.0F;
         
         current_calibration.ec.points.clear();
         JsonArray ec_points = ec_obj["points"];
         for (JsonObject point_obj : ec_points) {
-            CalibrationPoint point(point_obj["measured"] | 0.0f, point_obj["expected"] | 0.0f);
+            CalibrationPoint point(point_obj["measured"] | 0.0F, point_obj["expected"] | 0.0F);
             current_calibration.ec.points.push_back(point);
         }
     }
@@ -659,9 +672,9 @@ bool SensorCalibrationService::importCalibrationFromJSON(const String& json_data
     if (doc.containsKey("npk")) {
         JsonObject npk_obj = doc["npk"];
         current_calibration.npk.is_valid = npk_obj["is_valid"] | false;
-        current_calibration.npk.offset_nitrogen = npk_obj["offset_nitrogen"] | 0.0f;
-        current_calibration.npk.offset_phosphorus = npk_obj["offset_phosphorus"] | 0.0f;
-        current_calibration.npk.offset_potassium = npk_obj["offset_potassium"] | 0.0f;
+        current_calibration.npk.offset_nitrogen = npk_obj["offset_nitrogen"] | 0.0F;
+        current_calibration.npk.offset_phosphorus = npk_obj["offset_phosphorus"] | 0.0F;
+        current_calibration.npk.offset_potassium = npk_obj["offset_potassium"] | 0.0F;
     }
     
     logInfo("Калибровка импортирована из JSON");
@@ -726,20 +739,20 @@ void SensorCalibrationService::resetCalibration()
     // Сброс текущей калибровки
     current_calibration.ph.points.clear();
     current_calibration.ph.is_valid = false;
-    current_calibration.ph.coefficient_a = 1.0f;
-    current_calibration.ph.coefficient_b = 0.0f;
-    current_calibration.ph.r_squared = 0.0f;
+    current_calibration.ph.coefficient_a = 1.0F;
+    current_calibration.ph.coefficient_b = 0.0F;
+    current_calibration.ph.r_squared = 0.0F;
     
     current_calibration.ec.points.clear();
     current_calibration.ec.is_valid = false;
-    current_calibration.ec.coefficient_c = 1.0f;
-    current_calibration.ec.coefficient_d = 0.0f;
-    current_calibration.ec.r_squared = 0.0f;
+    current_calibration.ec.coefficient_c = 1.0F;
+    current_calibration.ec.coefficient_d = 0.0F;
+    current_calibration.ec.r_squared = 0.0F;
     
     current_calibration.npk.is_valid = false;
-    current_calibration.npk.offset_nitrogen = 0.0f;
-    current_calibration.npk.offset_phosphorus = 0.0f;
-    current_calibration.npk.offset_potassium = 0.0f;
+    current_calibration.npk.offset_nitrogen = 0.0F;
+    current_calibration.npk.offset_phosphorus = 0.0F;
+    current_calibration.npk.offset_potassium = 0.0F;
     
     current_calibration.is_complete = false;
     
@@ -760,13 +773,27 @@ bool SensorCalibrationService::validateCalibration() const
 bool SensorCalibrationService::validateCalibrationData(const SensorData& data)
 {
     // Простая валидация данных датчика
-    if (data.temperature < -50.0f || data.temperature > 100.0f) return false;
-    if (data.humidity < 0.0f || data.humidity > 100.0f) return false;
-    if (data.ec < 0.0f || data.ec > 10000.0f) return false;
-    if (data.ph < 0.0f || data.ph > 14.0f) return false;
-    if (data.nitrogen < 0.0f || data.nitrogen > 2000.0f) return false;
-    if (data.phosphorus < 0.0f || data.phosphorus > 2000.0f) return false;
-    if (data.potassium < 0.0f || data.potassium > 2000.0f) return false;
+    if (data.temperature < -50.0F || data.temperature > 100.0F) {
+        return false;
+    }
+    if (data.humidity < 0.0F || data.humidity > 100.0F) {
+        return false;
+    }
+    if (data.ec < 0.0F || data.ec > 10000.0F) {
+        return false;
+    }
+    if (data.ph < 0.0F || data.ph > 14.0F) {
+        return false;
+    }
+    if (data.nitrogen < 0.0F || data.nitrogen > 2000.0F) {
+        return false;
+    }
+    if (data.phosphorus < 0.0F || data.phosphorus > 2000.0F) {
+        return false;
+    }
+    if (data.potassium < 0.0F || data.potassium > 2000.0F) {
+        return false;
+    }
     
     return true;
 } 
