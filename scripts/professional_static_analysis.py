@@ -6,7 +6,7 @@
 
 import subprocess
 import sys
-# Removed unused imports as suggested by CodeRabbit
+# All imports are used in the script
 
 def run_with_timeout(cmd, timeout=60):
     """Запускает команду с таймаутом"""

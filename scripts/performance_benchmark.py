@@ -574,7 +574,7 @@ def main():
         if report.summary["failed"] > 0:
             print("❌ Performance Benchmarks: FAIL")
             sys.exit(1)
-        elif report.summary["warned"] > 3:  # Только много предупреждений = WARN
+        elif report.summary["warned"] > 3:  # More than 3 warnings indicate systematic issues
             print("⚠️ Performance Benchmarks: WARN")
             sys.exit(2)
         else:

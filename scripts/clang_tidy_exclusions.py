@@ -162,6 +162,7 @@ def should_exclude_warning(warning_line):
         return True
     
     # Исключаем конкретные предупреждения, которые правильно погашены
+    # Exclude warnings that are properly handled with NOLINT comments
     if any(phrase in warning_line for phrase in [
         "readability-avoid-nested-conditional-operator",
         "misc-const-correctness"

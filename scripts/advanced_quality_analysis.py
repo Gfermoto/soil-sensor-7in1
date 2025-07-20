@@ -245,7 +245,7 @@ class CodeQualityAnalyzer:
         print("="*60)
         
         # Запуск всех этапов анализа
-        tests_ok = self.run_tests()
+        test_results = self.run_tests()
         static_warnings = self.run_static_analysis()
         python_score = self.analyze_python_code()
         test_coverage = self.generate_coverage_report()

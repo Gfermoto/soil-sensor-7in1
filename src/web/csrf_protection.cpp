@@ -112,7 +112,8 @@ bool checkCSRFSafety()
 
     // POST, PUT, DELETE требуют проверки CSRF
     // NOLINTNEXTLINE(misc-const-correctness,readability-avoid-nested-conditional-operator)
-    const String csrfToken = webServer.hasArg("csrf_token") ? webServer.arg("csrf_token") : 
+        // Check POST parameters first, then headers as fallback
+    const String csrfToken = webServer.hasArg("csrf_token") ? webServer.arg("csrf_token") :
                             (webServer.hasHeader("X-CSRF-Token") ? webServer.header("X-CSRF-Token") : "");
 
 
