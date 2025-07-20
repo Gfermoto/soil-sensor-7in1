@@ -15,7 +15,7 @@
 #include <esp_task_wdt.h>
 #include "advanced_filters.h"  // ✅ Улучшенная система фильтрации
 #include "business/crop_recommendation_engine.h"
-#include "business/sensor_calibration_service.h"
+#include "../include/sensor_calibration_service.h"  // Единый сервис калибровки
 #include "business/sensor_compensation_service.h"
 #include "debug.h"  // ✅ Добавляем систему условной компиляции
 #include "fake_sensor.h"
@@ -43,7 +43,7 @@ WebServer server(80);  // NOLINT(misc-use-internal-linkage)
 
 // Глобальные экземпляры бизнес-сервисов
 extern CropRecommendationEngine gCropEngine;
-extern SensorCalibrationService gCalibrationService;
+extern SensorCalibrationService gCalibrationService;  // Единый сервис калибровки
 extern SensorCompensationService gCompensationService;
 
 // Переменные для отслеживания времени

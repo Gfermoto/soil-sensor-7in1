@@ -20,8 +20,10 @@
 #include "../wifi_manager.h"
 #include "business_services.h"
 #include "calibration_manager.h"
+#include "../../include/sensor_calibration_service.h"
 
 extern NTPClient* timeClient;
+extern SensorCalibrationService gCalibrationService;
 
 // Внешние зависимости (уже объявлены в заголовочных файлах)
 // extern String navHtml();  // объявлено в wifi_manager.h
@@ -917,8 +919,8 @@ void setupDataRoutes()
                  []()
                  {
                      DynamicJsonDocument doc(512);
-                     doc["status"] = "Калибровка не настроена";  // Временно
-                     doc["complete"] = false;
+                     doc["status"] = gCalibrationService.getCalibrationStatus();
+                     doc["complete"] = gCalibrationService.isCalibrationComplete();
 
                      String response;
                      serializeJson(doc, response);
@@ -940,8 +942,8 @@ void setupDataRoutes()
                      float expected = doc["expected"];
                      float measured = doc["measured"];
 
-                     // Временно - заглушка
-                     bool success = true;
+                     // Реальная логика калибровки
+                     bool success = gCalibrationService.addPHCalibrationPoint(expected, measured);
 
                      DynamicJsonDocument response(256);
                      response["success"] = success;
@@ -970,8 +972,8 @@ void setupDataRoutes()
                      float expected = doc["expected"];
                      float measured = doc["measured"];
 
-                     // Временно - заглушка
-                     bool success = true;
+                     // Реальная логика калибровки
+                     bool success = gCalibrationService.addECCalibrationPoint(expected, measured);
 
                      DynamicJsonDocument response(256);
                      response["success"] = success;
@@ -1001,8 +1003,8 @@ void setupDataRoutes()
                      float phosphorus = doc["p"];
                      float potassium = doc["k"];
 
-                     // Временно - заглушка
-                     bool success = true;
+                     // Реальная логика калибровки
+                     bool success = gCalibrationService.setNPKCalibrationPoint(nitrogen, phosphorus, potassium);
 
                      DynamicJsonDocument response(256);
                      response["success"] = success;
@@ -1019,14 +1021,15 @@ void setupDataRoutes()
     webServer.on("/api/calibration/ph/calculate", HTTP_POST,
                  []()
                  {
-                     // Временно - заглушка
-                     bool success = true;
+                     // Реальная логика расчёта калибровки
+                     bool success = gCalibrationService.calculatePHCalibration();
 
                      DynamicJsonDocument response(256);
                      response["success"] = success;
                      if (success)
                      {
-                         response["r_squared"] = 0.99;  // Временно
+                         // Получаем R² из калибровки (нужно добавить геттер)
+                         response["r_squared"] = 0.99;  // Временно, пока не добавим геттер
                      }
                      else
                      {
@@ -1041,14 +1044,15 @@ void setupDataRoutes()
     webServer.on("/api/calibration/ec/calculate", HTTP_POST,
                  []()
                  {
-                     // Временно - заглушка
-                     bool success = true;
+                     // Реальная логика расчёта калибровки
+                     bool success = gCalibrationService.calculateECCalibration();
 
                      DynamicJsonDocument response(256);
                      response["success"] = success;
                      if (success)
                      {
-                         response["r_squared"] = 0.99;  // Временно
+                         // Получаем R² из калибровки (нужно добавить геттер)
+                         response["r_squared"] = 0.99;  // Временно, пока не добавим геттер
                      }
                      else
                      {
@@ -1063,17 +1067,9 @@ void setupDataRoutes()
     webServer.on("/api/calibration/export", HTTP_GET,
                  []()
                  {
-                     // Временно - заглушка
-                     DynamicJsonDocument doc(512);
-                     doc["ph_points"] = JsonArray();
-                     doc["ec_points"] = JsonArray();
-                     doc["npk_zero"] = JsonObject();
-                     doc["calculated"] = false;
-
-                     String json_data;  // NOLINT(misc-const-correctness)
-                     serializeJson(doc, json_data);
-                     const String response_data = json_data;
-                     webServer.send(200, "application/json", response_data);
+                     // Реальная логика экспорта калибровки
+                     String json_data = gCalibrationService.exportCalibrationToJSON();
+                     webServer.send(200, "application/json", json_data);
                  });
 
     webServer.on("/api/calibration/import", HTTP_POST,
@@ -1081,8 +1077,8 @@ void setupDataRoutes()
                  {
                      // NOLINTNEXTLINE(misc-const-correctness)
     String json_data = webServer.arg("plain");
-                     // Временно - заглушка
-                     bool success = true;
+                     // Реальная логика импорта калибровки
+                     bool success = gCalibrationService.importCalibrationFromJSON(json_data);
 
                      DynamicJsonDocument response(256);
                      response["success"] = success;
@@ -1099,7 +1095,9 @@ void setupDataRoutes()
     webServer.on("/api/calibration/reset", HTTP_POST,
                  []()
                  {
-                     // Временно - заглушка
+                     // Реальная логика сброса калибровки
+                     gCalibrationService.resetCalibration();
+                     
                      DynamicJsonDocument response(128);
                      response["success"] = true;
 
