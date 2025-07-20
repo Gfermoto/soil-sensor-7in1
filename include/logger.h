@@ -77,10 +77,12 @@ void logSystem(const String& message);
 void logData(const String& message);
 
 // Современная C++ альтернатива с template parameter pack
+// cppcheck-suppress wrongPrintfScanfArgNum
 template <typename... Args>
 String formatLogMessageSafe(const char* format, Args&&... args)
 {
     std::array<char, 512> buffer;
+    // NOLINTNEXTLINE(cppcoreguidelines-pro-type-vararg, hicpp-vararg)
     int result = snprintf(buffer.data(), buffer.size(), format, std::forward<Args>(args)...);
     if (result < 0)
     {

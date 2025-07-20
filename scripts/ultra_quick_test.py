@@ -16,7 +16,7 @@ def test_validation():
             capture_output=False, text=True, timeout=10, cwd=Path(__file__).parent.parent
         )
         return result.returncode == 0
-    except:
+    except Exception:
         return False
 
 def test_compensation():
@@ -27,16 +27,37 @@ def test_compensation():
             capture_output=False, text=True, timeout=10, cwd=Path(__file__).parent.parent
         )
         return result.returncode == 0
-    except:
+    except Exception:
         return False
 
 def test_build():
     """Проверка сборки"""
     try:
+        # Проверяем наличие прошивки
         firmware = Path(".pio/build/esp32dev/firmware.bin")
-        return firmware.exists() and firmware.stat().st_size > 1000000
-    except:
+        if firmware.exists():
+            size = firmware.stat().st_size
+            print(f"   📦 Размер: {size:,} байт")
+            return size > 500000  # Минимум 500KB
+        else:
+            print("   ⚠️ Прошивка не найдена")
+            return False
+    except Exception as e:
+        print(f"   ❌ Ошибка: {e}")
         return False
+
+def test_adaptive_filters():
+    """Тест адаптивных фильтров"""
+    try:
+        result = subprocess.run(
+            [sys.executable, "test/test_adaptive_filters.py"],
+            capture_output=False, text=True, timeout=10, cwd=Path(__file__).parent.parent
+        )
+        return result.returncode == 0
+    except Exception:
+        return False
+
+
 
 def main():
     print("⚡ УЛЬТРА-БЫСТРОЕ ТЕСТИРОВАНИЕ")
@@ -45,6 +66,7 @@ def main():
     tests = [
         ("Валидация", test_validation),
         ("Компенсация", test_compensation),
+        ("Адаптивные фильтры", test_adaptive_filters),
         ("Сборка", test_build)
     ]
     

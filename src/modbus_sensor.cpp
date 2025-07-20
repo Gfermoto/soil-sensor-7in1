@@ -312,7 +312,7 @@ float calculateMovingAverage(const float* buffer, MovingAverageParams params)
         {
             sum += buffer[i];
         }
-        return sum / elements_to_use;
+        return sum / static_cast<float>(elements_to_use);
     }
 }
 

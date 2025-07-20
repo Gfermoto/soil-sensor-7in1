@@ -110,8 +110,9 @@ void setupOtaRoutes()
             // Кнопки проверки и установки
             html += "<div style='display:flex;gap:10px;flex-wrap:wrap;'>";
             {
-                String btnCheck = generateButton(ButtonType::OUTLINE, ButtonConfig{"🔍", "Проверить обновления", ""});
-                btnCheck.replace("<button ", "<button id='btnCheck' ");
+                    // NOLINTNEXTLINE(misc-const-correctness)
+    String btnCheck = generateButton(ButtonType::OUTLINE, ButtonConfig{"🔍", "Проверить обновления", ""});
+    btnCheck.replace("<button ", "<button id='btnCheck' ");
                 html += btnCheck;
             }
             html +=

@@ -80,14 +80,15 @@ RecValues computeRecommendations()
 
         // Определяем сезон
         Season season = Season::WINTER;
-        if (month >= 3 && month <= 5)
+        if (month >= 3 && month <= 5) {
             season = Season::SPRING;
-        else if (month >= 6 && month <= 8)
+        } else if (month >= 6 && month <= 8) {
             season = Season::SUMMER;
-        else if (month >= 9 && month <= 11)
+        } else if (month >= 9 && month <= 11) {
             season = Season::AUTUMN;
-        else
+        } else {
             season = Season::WINTER;
+        }
 
         const bool isGreenhouse = (config.environmentType == 1);
         getCropEngine().applySeasonalCorrection(rec, season, isGreenhouse);
@@ -877,7 +878,8 @@ void setupDataRoutes()
                 // Если файл не найден, создаем его на лету
                 webServer.sendHeader("Content-Type", "text/csv");
                 webServer.sendHeader("Content-Disposition", "attachment; filename=\"calibration_example.csv\"");
-                String csvContent = "# Пример калибровочной таблицы для JXCT датчика\n";
+                // NOLINTNEXTLINE(misc-const-correctness)
+    String csvContent = "# Пример калибровочной таблицы для JXCT датчика\n";
                 csvContent += "# Формат: сырое_значение,коэффициент_коррекции\n";
                 csvContent +=
                     "# Коэффициент применяется как: скорректированное_значение = сырое_значение * коэффициент\n\n";
@@ -995,9 +997,9 @@ void setupDataRoutes()
                          return;
                      }
 
-                     float n = doc["n"];
-                     float p = doc["p"];
-                     float k = doc["k"];
+                     float nitrogen = doc["n"];
+                     float phosphorus = doc["p"];
+                     float potassium = doc["k"];
 
                      // Временно - заглушка
                      bool success = true;
@@ -1068,15 +1070,17 @@ void setupDataRoutes()
                      doc["npk_zero"] = JsonObject();
                      doc["calculated"] = false;
 
-                     String json_data;
+                     String json_data;  // NOLINT(misc-const-correctness)
                      serializeJson(doc, json_data);
-                     webServer.send(200, "application/json", json_data);
+                     const String response_data = json_data;
+                     webServer.send(200, "application/json", response_data);
                  });
 
     webServer.on("/api/calibration/import", HTTP_POST,
                  []()
                  {
-                     String json_data = webServer.arg("plain");
+                     // NOLINTNEXTLINE(misc-const-correctness)
+    String json_data = webServer.arg("plain");
                      // Временно - заглушка
                      bool success = true;
 
