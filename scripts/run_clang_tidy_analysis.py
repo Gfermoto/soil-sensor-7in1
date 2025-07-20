@@ -34,13 +34,27 @@ def run_clang_tidy(file_path):
             '-std=c++17',
             '-I', 'include',
             '-I', 'test/stubs',
+            '-I', '.pio/libdeps/esp32dev/PubSubClient/src',
+            '-I', '.pio/libdeps/esp32dev/ArduinoJson/src',
+            '-I', '.pio/libdeps/esp32dev/ModbusMaster/src',
+            '-I', '.pio/libdeps/esp32dev/NTPClient/src',
+            '-I', '.pio/libdeps/esp32dev/ThingSpeak/src',
             '-D', 'ESP32',
             '-D', 'ARDUINO_ARCH_ESP32',
             '-D', 'ARDUINO=10800',
             '-D', 'ARDUINO_ESP32_DEV',
             '-D', 'F_CPU=240000000L',
             '-D', 'HAVE_CONFIG_H',
-            '-D', 'UNITY_INCLUDE_CONFIG_H'
+            '-D', 'UNITY_INCLUDE_CONFIG_H',
+            '-D', 'ARDUINO_LOOP_STACK_SIZE=8192',
+            '-D', 'CONFIG_FREERTOS_HZ=1000',
+            '-D', 'LED_BUILTIN=2',
+            '-D', 'BOOT_BUTTON=0',
+            '-D', 'DEBUG_MODE',
+            '-D', 'INFO_MODE',
+            '-D', 'MQTT_MAX_PACKET_SIZE=1024',
+            '-D', 'MQTT_KEEPALIVE=60',
+            '-D', 'MQTT_SOCKET_TIMEOUT=15'
         ]
         
         result = subprocess.run([
