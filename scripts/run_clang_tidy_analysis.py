@@ -29,10 +29,24 @@ def find_cpp_files():
 
 def run_clang_tidy(file_path):
     try:
+        # Добавляем пути к заголовочным файлам ESP32/Arduino
+        compile_flags = [
+            '-std=c++17',
+            '-I', 'include',
+            '-I', 'test/stubs',
+            '-D', 'ESP32',
+            '-D', 'ARDUINO_ARCH_ESP32',
+            '-D', 'ARDUINO=10800',
+            '-D', 'ARDUINO_ESP32_DEV',
+            '-D', 'F_CPU=240000000L',
+            '-D', 'HAVE_CONFIG_H',
+            '-D', 'UNITY_INCLUDE_CONFIG_H'
+        ]
+        
         result = subprocess.run([
-            CLANG_TIDY, file_path, '--', '-std=c++17'
-        ], capture_output=True, text=True, timeout=60)
-        return result.stdout, result.stderr
+            CLANG_TIDY, file_path, '--'
+        ] + compile_flags, capture_output=True, text=True, timeout=60, encoding='utf-8', errors='ignore')
+        return result.stdout or '', result.stderr or ''
     except Exception as e:
         return '', str(e)
 

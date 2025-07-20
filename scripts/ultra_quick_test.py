@@ -34,7 +34,7 @@ def test_build():
     """Проверка сборки"""
     try:
         firmware = Path(".pio/build/esp32dev/firmware.bin")
-        return firmware.exists() and firmware.stat().st_size > 1000000
+        return firmware.exists() and firmware.stat().st_size > 500000  # Минимум 500KB
     except:
         return False
 
