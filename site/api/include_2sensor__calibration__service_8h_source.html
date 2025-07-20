@@ -1,0 +1,261 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.13.2"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>JXCT Soil Sensor 7-in-1: Исходный файл include/sensor_calibration_service.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="clipboard.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
+   </div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.13.2 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Поиск',true);
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('include_2sensor__calibration__service_8h_source.html',''); initResizable(true); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Загрузка...</div>
+<div class="SRStatus" id="Searching">Поиск...</div>
+<div class="SRStatus" id="NoMatches">Не найдено</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">sensor_calibration_service.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="include_2sensor__calibration__service_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#ifdef TEST_BUILD</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;../test/stubs/esp32_stubs.h&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;ArduinoJson.h&gt;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="comment">// Структуры для калибровочных данных</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">struct </span><a class="code hl_struct" href="structCalibrationPoint.html">CalibrationPoint</a></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="structCalibrationPoint.html#afaa050b771582e286953fe2527dc27f7">   21</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCalibrationPoint.html#afaa050b771582e286953fe2527dc27f7">expected</a>;  <span class="comment">// Ожидаемое значение (эталон)</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="structCalibrationPoint.html#a1681dd4a208700268b870076c9e2e24a">   22</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structCalibrationPoint.html#a1681dd4a208700268b870076c9e2e24a">measured</a>;  <span class="comment">// Измеренное значение датчика</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>};</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="foldopen" id="foldopen00025" data-start="{" data-end="};">
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="structPHCalibration.html">   25</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structPHCalibration.html">PHCalibration</a></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="structPHCalibration.html#affd7f0dffe3d7682185c06da8f1b0f59">   27</a></span>    std::vector&lt;CalibrationPoint&gt; <a class="code hl_variable" href="structPHCalibration.html#affd7f0dffe3d7682185c06da8f1b0f59">points</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="structPHCalibration.html#a7e55f6527ed360de05e0c4d79c45d819">   28</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structPHCalibration.html#a7e55f6527ed360de05e0c4d79c45d819">coefficient_a</a>;  <span class="comment">// pH_corrected = a × pH_raw + b</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="structPHCalibration.html#aa4cfdfe9dfcd4f53690639c562217ee8">   29</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structPHCalibration.html#aa4cfdfe9dfcd4f53690639c562217ee8">coefficient_b</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="structPHCalibration.html#a5b62a4a848d893a64e9444bdbfde1070">   30</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structPHCalibration.html#a5b62a4a848d893a64e9444bdbfde1070">r_squared</a>;  <span class="comment">// Коэффициент детерминации</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="structPHCalibration.html#a9d7d3135dd006b214c88fb76ac9c8cf1">   31</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structPHCalibration.html#a9d7d3135dd006b214c88fb76ac9c8cf1">is_valid</a>;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>};</div>
+</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="foldopen" id="foldopen00034" data-start="{" data-end="};">
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="structECCalibration.html">   34</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structECCalibration.html">ECCalibration</a></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>{</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structECCalibration.html#a274455be59637dc9bf633a708fa6b961">   36</a></span>    std::vector&lt;CalibrationPoint&gt; <a class="code hl_variable" href="structECCalibration.html#a274455be59637dc9bf633a708fa6b961">points</a>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structECCalibration.html#a53f0ea4bb84111351ba65b0d837a8340">   37</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structECCalibration.html#a53f0ea4bb84111351ba65b0d837a8340">coefficient_c</a>;  <span class="comment">// EC_corrected = c × EC_raw + d</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structECCalibration.html#a05449a38b6b5a1d7308efe503d83ab06">   38</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structECCalibration.html#a05449a38b6b5a1d7308efe503d83ab06">coefficient_d</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structECCalibration.html#a1c822cb2f7b5a5f638735e98acd05f9a">   39</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structECCalibration.html#a1c822cb2f7b5a5f638735e98acd05f9a">r_squared</a>;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structECCalibration.html#a915577341a84da8154c4f625792c4f42">   40</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structECCalibration.html#a915577341a84da8154c4f625792c4f42">is_valid</a>;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>};</div>
+</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="foldopen" id="foldopen00043" data-start="{" data-end="};">
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structNPKCalibration.html">   43</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structNPKCalibration.html">NPKCalibration</a></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structNPKCalibration.html#a8cc8980b9b8a4f15afd97d0000f885d4">   45</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structNPKCalibration.html#a8cc8980b9b8a4f15afd97d0000f885d4">offset_nitrogen</a>;  <span class="comment">// NPK_corrected = NPK_raw + offset</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structNPKCalibration.html#a38399b64286f16e0d2caf20e60d65f8f">   46</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structNPKCalibration.html#a38399b64286f16e0d2caf20e60d65f8f">offset_phosphorus</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structNPKCalibration.html#ad334e95fe920bb1ff72394297dd5afe6">   47</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="structNPKCalibration.html#ad334e95fe920bb1ff72394297dd5afe6">offset_potassium</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structNPKCalibration.html#a1c8434baf6e444b2759e7f63d9936b67">   48</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structNPKCalibration.html#a1c8434baf6e444b2759e7f63d9936b67">is_valid</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="foldopen" id="foldopen00051" data-start="{" data-end="};">
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="structSensorCalibration.html">   51</a></span><span class="keyword">struct </span><a class="code hl_struct" href="structSensorCalibration.html">SensorCalibration</a></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="structSensorCalibration.html#a7df4dce3d4ec988eb91a5b2130c35bf4">   53</a></span>    String <a class="code hl_variable" href="structSensorCalibration.html#a7df4dce3d4ec988eb91a5b2130c35bf4">sensor_id</a>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="structSensorCalibration.html#a5f97c4c9e3386caef11f1f1d24031f22">   54</a></span>    String <a class="code hl_variable" href="structSensorCalibration.html#a5f97c4c9e3386caef11f1f1d24031f22">calibration_date</a>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="structSensorCalibration.html#ad2978d2635dafcaf7e84aabbc63b9ddb">   55</a></span>    <a class="code hl_struct" href="structPHCalibration.html">PHCalibration</a> <a class="code hl_variable" href="structSensorCalibration.html#ad2978d2635dafcaf7e84aabbc63b9ddb">ph</a>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="structSensorCalibration.html#af6b09d60bbadce1c33b7fc2cb95a0ac9">   56</a></span>    <a class="code hl_struct" href="structECCalibration.html">ECCalibration</a> <a class="code hl_variable" href="structSensorCalibration.html#af6b09d60bbadce1c33b7fc2cb95a0ac9">ec</a>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="structSensorCalibration.html#ab5ccbc59d2b79f8ee7615ae89e1994cc">   57</a></span>    <a class="code hl_struct" href="structNPKCalibration.html">NPKCalibration</a> <a class="code hl_variable" href="structSensorCalibration.html#ab5ccbc59d2b79f8ee7615ae89e1994cc">npk</a>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="structSensorCalibration.html#a8415551d0a8d36fd2ce35c70f2eb98b1">   58</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="structSensorCalibration.html#a8415551d0a8d36fd2ce35c70f2eb98b1">is_complete</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>};</div>
+</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">class </span><a class="code hl_class" href="classSensorCalibrationService.html">SensorCalibrationService</a></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>{</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>   <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <a class="code hl_struct" href="structSensorCalibration.html">SensorCalibration</a> current_calibration;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>    <span class="comment">// Расчёт коэффициентов линейной регрессии</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keywordtype">bool</span> calculateLinearRegression(<span class="keyword">const</span> std::vector&lt;CalibrationPoint&gt;&amp; points, <span class="keywordtype">float</span>&amp; slope, <span class="keywordtype">float</span>&amp; intercept,</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                                   <span class="keywordtype">float</span>&amp; r_squared);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="comment">// Применение калибровки к сырым данным</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">float</span> applyPHCalibration(<span class="keywordtype">float</span> raw_ph);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordtype">float</span> applyECCalibration(<span class="keywordtype">float</span> raw_ec);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keywordtype">void</span> applyNPKCalibration(<span class="keywordtype">float</span>&amp; nitrogen, <span class="keywordtype">float</span>&amp; phosphorus, <span class="keywordtype">float</span>&amp; potassium);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>   <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a443e4ac913b89829d484bcc6580bf916">   76</a></span>    <a class="code hl_function" href="classSensorCalibrationService.html#a443e4ac913b89829d484bcc6580bf916">SensorCalibrationService</a>();</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="comment">// Добавление калибровочных точек</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a0876648a825a42d6e13fe12f1da3d027">   79</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorCalibrationService.html#a0876648a825a42d6e13fe12f1da3d027">addPHCalibrationPoint</a>(<span class="keywordtype">float</span> expected, <span class="keywordtype">float</span> measured);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a9837694143edfe2123188f790b1dd84e">   80</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorCalibrationService.html#a9837694143edfe2123188f790b1dd84e">addECCalibrationPoint</a>(<span class="keywordtype">float</span> expected, <span class="keywordtype">float</span> measured);</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a391efc96fcf9ec612761a269be44385d">   81</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorCalibrationService.html#a391efc96fcf9ec612761a269be44385d">setNPKCalibrationPoint</a>(<span class="keywordtype">float</span> measured_n, <span class="keywordtype">float</span> measured_p, <span class="keywordtype">float</span> measured_k);</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    <span class="comment">// Расчёт калибровочных коэффициентов</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a42089b7ee8916f3cb322f1815da47a16">   84</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorCalibrationService.html#a42089b7ee8916f3cb322f1815da47a16">calculatePHCalibration</a>();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a7c6f752577b999d4ede62a7d7e90ec29">   85</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorCalibrationService.html#a7c6f752577b999d4ede62a7d7e90ec29">calculateECCalibration</a>();</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#ac32dabe371de4d9ec9eb59f3d37aed20">   86</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorCalibrationService.html#ac32dabe371de4d9ec9eb59f3d37aed20">calculateNPKCalibration</a>();</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="comment">// Применение калибровки к данным датчика</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a925828aa33345f9fd5bf8cee89d43003">   89</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSensorCalibrationService.html#a925828aa33345f9fd5bf8cee89d43003">applyCalibration</a>(<span class="keywordtype">float</span>&amp; ph, <span class="keywordtype">float</span>&amp; ec, <span class="keywordtype">float</span>&amp; nitrogen, <span class="keywordtype">float</span>&amp; phosphorus, <span class="keywordtype">float</span>&amp; potassium);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="comment">// Сериализация/десериализация калибровки</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#aff7e797251e50a5b32f51aca2819e529">   92</a></span>    String <a class="code hl_function" href="classSensorCalibrationService.html#aff7e797251e50a5b32f51aca2819e529">exportCalibrationToJSON</a>();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a1f6fc3abea9eff4975604f2c426db7ed">   93</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorCalibrationService.html#a1f6fc3abea9eff4975604f2c426db7ed">importCalibrationFromJSON</a>(<span class="keyword">const</span> String&amp; json_data);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <span class="comment">// Получение статуса калибровки</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a1eab743addca249d06ed5bff08339d38">   96</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorCalibrationService.html#a1eab743addca249d06ed5bff08339d38">isCalibrationComplete</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a829a61a49e6edf9bd55d2285c1c7581a">   97</a></span>    String <a class="code hl_function" href="classSensorCalibrationService.html#a829a61a49e6edf9bd55d2285c1c7581a">getCalibrationStatus</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    <span class="comment">// Сброс калибровки</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a369106a8349078064a3e980340f42de3">  100</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classSensorCalibrationService.html#a369106a8349078064a3e980340f42de3">resetCalibration</a>();</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="comment">// Валидация калибровки</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classSensorCalibrationService.html#a00656cab3331194e8f8411c2f57a1c88">  103</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classSensorCalibrationService.html#a00656cab3331194e8f8411c2f57a1c88">validateCalibration</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>};</div>
+<div class="ttc" id="aclassSensorCalibrationService_html"><div class="ttname"><a href="classSensorCalibrationService.html">SensorCalibrationService</a></div><div class="ttdoc">Сервис калибровки датчиков</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:59</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a00656cab3331194e8f8411c2f57a1c88"><div class="ttname"><a href="classSensorCalibrationService.html#a00656cab3331194e8f8411c2f57a1c88">SensorCalibrationService::validateCalibration</a></div><div class="ttdeci">bool validateCalibration() const</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a0876648a825a42d6e13fe12f1da3d027"><div class="ttname"><a href="classSensorCalibrationService.html#a0876648a825a42d6e13fe12f1da3d027">SensorCalibrationService::addPHCalibrationPoint</a></div><div class="ttdeci">bool addPHCalibrationPoint(float expected, float measured)</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a1eab743addca249d06ed5bff08339d38"><div class="ttname"><a href="classSensorCalibrationService.html#a1eab743addca249d06ed5bff08339d38">SensorCalibrationService::isCalibrationComplete</a></div><div class="ttdeci">bool isCalibrationComplete() const</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a1f6fc3abea9eff4975604f2c426db7ed"><div class="ttname"><a href="classSensorCalibrationService.html#a1f6fc3abea9eff4975604f2c426db7ed">SensorCalibrationService::importCalibrationFromJSON</a></div><div class="ttdeci">bool importCalibrationFromJSON(const String &amp;json_data)</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a369106a8349078064a3e980340f42de3"><div class="ttname"><a href="classSensorCalibrationService.html#a369106a8349078064a3e980340f42de3">SensorCalibrationService::resetCalibration</a></div><div class="ttdeci">void resetCalibration()</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a391efc96fcf9ec612761a269be44385d"><div class="ttname"><a href="classSensorCalibrationService.html#a391efc96fcf9ec612761a269be44385d">SensorCalibrationService::setNPKCalibrationPoint</a></div><div class="ttdeci">bool setNPKCalibrationPoint(float measured_n, float measured_p, float measured_k)</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a42089b7ee8916f3cb322f1815da47a16"><div class="ttname"><a href="classSensorCalibrationService.html#a42089b7ee8916f3cb322f1815da47a16">SensorCalibrationService::calculatePHCalibration</a></div><div class="ttdeci">bool calculatePHCalibration()</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a443e4ac913b89829d484bcc6580bf916"><div class="ttname"><a href="classSensorCalibrationService.html#a443e4ac913b89829d484bcc6580bf916">SensorCalibrationService::SensorCalibrationService</a></div><div class="ttdeci">SensorCalibrationService()</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a7c6f752577b999d4ede62a7d7e90ec29"><div class="ttname"><a href="classSensorCalibrationService.html#a7c6f752577b999d4ede62a7d7e90ec29">SensorCalibrationService::calculateECCalibration</a></div><div class="ttdeci">bool calculateECCalibration()</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a829a61a49e6edf9bd55d2285c1c7581a"><div class="ttname"><a href="classSensorCalibrationService.html#a829a61a49e6edf9bd55d2285c1c7581a">SensorCalibrationService::getCalibrationStatus</a></div><div class="ttdeci">String getCalibrationStatus() const</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a925828aa33345f9fd5bf8cee89d43003"><div class="ttname"><a href="classSensorCalibrationService.html#a925828aa33345f9fd5bf8cee89d43003">SensorCalibrationService::applyCalibration</a></div><div class="ttdeci">void applyCalibration(float &amp;ph, float &amp;ec, float &amp;nitrogen, float &amp;phosphorus, float &amp;potassium)</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_a9837694143edfe2123188f790b1dd84e"><div class="ttname"><a href="classSensorCalibrationService.html#a9837694143edfe2123188f790b1dd84e">SensorCalibrationService::addECCalibrationPoint</a></div><div class="ttdeci">bool addECCalibrationPoint(float expected, float measured)</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_ac32dabe371de4d9ec9eb59f3d37aed20"><div class="ttname"><a href="classSensorCalibrationService.html#ac32dabe371de4d9ec9eb59f3d37aed20">SensorCalibrationService::calculateNPKCalibration</a></div><div class="ttdeci">bool calculateNPKCalibration()</div></div>
+<div class="ttc" id="aclassSensorCalibrationService_html_aff7e797251e50a5b32f51aca2819e529"><div class="ttname"><a href="classSensorCalibrationService.html#aff7e797251e50a5b32f51aca2819e529">SensorCalibrationService::exportCalibrationToJSON</a></div><div class="ttdeci">String exportCalibrationToJSON()</div></div>
+<div class="ttc" id="astructCalibrationPoint_html"><div class="ttname"><a href="structCalibrationPoint.html">CalibrationPoint</a></div><div class="ttdoc">Точка калибровки</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:24</div></div>
+<div class="ttc" id="astructCalibrationPoint_html_a1681dd4a208700268b870076c9e2e24a"><div class="ttname"><a href="structCalibrationPoint.html#a1681dd4a208700268b870076c9e2e24a">CalibrationPoint::measured</a></div><div class="ttdeci">float measured</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:22</div></div>
+<div class="ttc" id="astructCalibrationPoint_html_afaa050b771582e286953fe2527dc27f7"><div class="ttname"><a href="structCalibrationPoint.html#afaa050b771582e286953fe2527dc27f7">CalibrationPoint::expected</a></div><div class="ttdeci">float expected</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:21</div></div>
+<div class="ttc" id="astructECCalibration_html"><div class="ttname"><a href="structECCalibration.html">ECCalibration</a></div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:35</div></div>
+<div class="ttc" id="astructECCalibration_html_a05449a38b6b5a1d7308efe503d83ab06"><div class="ttname"><a href="structECCalibration.html#a05449a38b6b5a1d7308efe503d83ab06">ECCalibration::coefficient_d</a></div><div class="ttdeci">float coefficient_d</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:38</div></div>
+<div class="ttc" id="astructECCalibration_html_a1c822cb2f7b5a5f638735e98acd05f9a"><div class="ttname"><a href="structECCalibration.html#a1c822cb2f7b5a5f638735e98acd05f9a">ECCalibration::r_squared</a></div><div class="ttdeci">float r_squared</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:39</div></div>
+<div class="ttc" id="astructECCalibration_html_a274455be59637dc9bf633a708fa6b961"><div class="ttname"><a href="structECCalibration.html#a274455be59637dc9bf633a708fa6b961">ECCalibration::points</a></div><div class="ttdeci">std::vector&lt; CalibrationPoint &gt; points</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:36</div></div>
+<div class="ttc" id="astructECCalibration_html_a53f0ea4bb84111351ba65b0d837a8340"><div class="ttname"><a href="structECCalibration.html#a53f0ea4bb84111351ba65b0d837a8340">ECCalibration::coefficient_c</a></div><div class="ttdeci">float coefficient_c</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:37</div></div>
+<div class="ttc" id="astructECCalibration_html_a915577341a84da8154c4f625792c4f42"><div class="ttname"><a href="structECCalibration.html#a915577341a84da8154c4f625792c4f42">ECCalibration::is_valid</a></div><div class="ttdeci">bool is_valid</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:40</div></div>
+<div class="ttc" id="astructNPKCalibration_html"><div class="ttname"><a href="structNPKCalibration.html">NPKCalibration</a></div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:44</div></div>
+<div class="ttc" id="astructNPKCalibration_html_a1c8434baf6e444b2759e7f63d9936b67"><div class="ttname"><a href="structNPKCalibration.html#a1c8434baf6e444b2759e7f63d9936b67">NPKCalibration::is_valid</a></div><div class="ttdeci">bool is_valid</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:48</div></div>
+<div class="ttc" id="astructNPKCalibration_html_a38399b64286f16e0d2caf20e60d65f8f"><div class="ttname"><a href="structNPKCalibration.html#a38399b64286f16e0d2caf20e60d65f8f">NPKCalibration::offset_phosphorus</a></div><div class="ttdeci">float offset_phosphorus</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:46</div></div>
+<div class="ttc" id="astructNPKCalibration_html_a8cc8980b9b8a4f15afd97d0000f885d4"><div class="ttname"><a href="structNPKCalibration.html#a8cc8980b9b8a4f15afd97d0000f885d4">NPKCalibration::offset_nitrogen</a></div><div class="ttdeci">float offset_nitrogen</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:45</div></div>
+<div class="ttc" id="astructNPKCalibration_html_ad334e95fe920bb1ff72394297dd5afe6"><div class="ttname"><a href="structNPKCalibration.html#ad334e95fe920bb1ff72394297dd5afe6">NPKCalibration::offset_potassium</a></div><div class="ttdeci">float offset_potassium</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:47</div></div>
+<div class="ttc" id="astructPHCalibration_html"><div class="ttname"><a href="structPHCalibration.html">PHCalibration</a></div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:26</div></div>
+<div class="ttc" id="astructPHCalibration_html_a5b62a4a848d893a64e9444bdbfde1070"><div class="ttname"><a href="structPHCalibration.html#a5b62a4a848d893a64e9444bdbfde1070">PHCalibration::r_squared</a></div><div class="ttdeci">float r_squared</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:30</div></div>
+<div class="ttc" id="astructPHCalibration_html_a7e55f6527ed360de05e0c4d79c45d819"><div class="ttname"><a href="structPHCalibration.html#a7e55f6527ed360de05e0c4d79c45d819">PHCalibration::coefficient_a</a></div><div class="ttdeci">float coefficient_a</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:28</div></div>
+<div class="ttc" id="astructPHCalibration_html_a9d7d3135dd006b214c88fb76ac9c8cf1"><div class="ttname"><a href="structPHCalibration.html#a9d7d3135dd006b214c88fb76ac9c8cf1">PHCalibration::is_valid</a></div><div class="ttdeci">bool is_valid</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:31</div></div>
+<div class="ttc" id="astructPHCalibration_html_aa4cfdfe9dfcd4f53690639c562217ee8"><div class="ttname"><a href="structPHCalibration.html#aa4cfdfe9dfcd4f53690639c562217ee8">PHCalibration::coefficient_b</a></div><div class="ttdeci">float coefficient_b</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:29</div></div>
+<div class="ttc" id="astructPHCalibration_html_affd7f0dffe3d7682185c06da8f1b0f59"><div class="ttname"><a href="structPHCalibration.html#affd7f0dffe3d7682185c06da8f1b0f59">PHCalibration::points</a></div><div class="ttdeci">std::vector&lt; CalibrationPoint &gt; points</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:27</div></div>
+<div class="ttc" id="astructSensorCalibration_html"><div class="ttname"><a href="structSensorCalibration.html">SensorCalibration</a></div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:52</div></div>
+<div class="ttc" id="astructSensorCalibration_html_a5f97c4c9e3386caef11f1f1d24031f22"><div class="ttname"><a href="structSensorCalibration.html#a5f97c4c9e3386caef11f1f1d24031f22">SensorCalibration::calibration_date</a></div><div class="ttdeci">String calibration_date</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:54</div></div>
+<div class="ttc" id="astructSensorCalibration_html_a7df4dce3d4ec988eb91a5b2130c35bf4"><div class="ttname"><a href="structSensorCalibration.html#a7df4dce3d4ec988eb91a5b2130c35bf4">SensorCalibration::sensor_id</a></div><div class="ttdeci">String sensor_id</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:53</div></div>
+<div class="ttc" id="astructSensorCalibration_html_a8415551d0a8d36fd2ce35c70f2eb98b1"><div class="ttname"><a href="structSensorCalibration.html#a8415551d0a8d36fd2ce35c70f2eb98b1">SensorCalibration::is_complete</a></div><div class="ttdeci">bool is_complete</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:58</div></div>
+<div class="ttc" id="astructSensorCalibration_html_ab5ccbc59d2b79f8ee7615ae89e1994cc"><div class="ttname"><a href="structSensorCalibration.html#ab5ccbc59d2b79f8ee7615ae89e1994cc">SensorCalibration::npk</a></div><div class="ttdeci">NPKCalibration npk</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:57</div></div>
+<div class="ttc" id="astructSensorCalibration_html_ad2978d2635dafcaf7e84aabbc63b9ddb"><div class="ttname"><a href="structSensorCalibration.html#ad2978d2635dafcaf7e84aabbc63b9ddb">SensorCalibration::ph</a></div><div class="ttdeci">PHCalibration ph</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:55</div></div>
+<div class="ttc" id="astructSensorCalibration_html_af6b09d60bbadce1c33b7fc2cb95a0ac9"><div class="ttname"><a href="structSensorCalibration.html#af6b09d60bbadce1c33b7fc2cb95a0ac9">SensorCalibration::ec</a></div><div class="ttdeci">ECCalibration ec</div><div class="ttdef"><b>Определения</b> sensor_calibration_service.h:56</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><a class="el" href="include_2sensor__calibration__service_8h.html">sensor_calibration_service.h</a></li>
+    <li class="footer">Создано системой <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.13.2 </li>
+  </ul>
+</div>
+</body>
+</html>

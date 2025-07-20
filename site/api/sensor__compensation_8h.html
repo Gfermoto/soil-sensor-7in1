@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл include/sensor_compensation.h</title>
+<title>JXCT Soil Sensor 7-in-1: Файл include/sensor_compensation.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -107,15 +107,15 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
 
 <p>Алгоритмы коррекции показаний датчиков  
 <a href="#details">Подробнее...</a></p>
-<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<div class="textblock"><code>#include &quot;Arduino.h&quot;</code><br />
 </div>
 <p><a href="sensor__compensation_8h_source.html">См. исходные тексты.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Классы</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_environmental_conditions.html">EnvironmentalConditions</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEnvironmentalConditions.html">EnvironmentalConditions</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_n_p_k_references.html">NPKReferences</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structNPKReferences.html">NPKReferences</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
@@ -127,12 +127,6 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
 , <a class="el" href="#aaa92ab56ea828c0bcccad4564b21155da062285f4ae598699cec7d4b2e3a7fac2">CLAY</a> = 3
 , <br />
 &#160;&#160;<a class="el" href="#aaa92ab56ea828c0bcccad4564b21155da7668b00d953ed05d4e494e67757cf0ab">SANDPEAT</a> = 4
-, <a class="el" href="#aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b">SAND</a> = 0
-, <a class="el" href="#aaa92ab56ea828c0bcccad4564b21155da053c3b9443919054c42fe7115e111e36">LOAM</a> = 1
-, <a class="el" href="#aaa92ab56ea828c0bcccad4564b21155da2238fb7511b33ddb5f91ab723f0c3add">PEAT</a> = 2
-, <br />
-&#160;&#160;<a class="el" href="#aaa92ab56ea828c0bcccad4564b21155da062285f4ae598699cec7d4b2e3a7fac2">CLAY</a> = 3
-, <a class="el" href="#aaa92ab56ea828c0bcccad4564b21155da7668b00d953ed05d4e494e67757cf0ab">SANDPEAT</a> = 4
 <br />
  }</td></tr>
 <tr class="separator:aaa92ab56ea828c0bcccad4564b21155d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -151,20 +145,18 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
 Функции</h2></td></tr>
 <tr class="memitem:af586e2e5563baee2b53964aff0e1467d" id="r_af586e2e5563baee2b53964aff0e1467d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af586e2e5563baee2b53964aff0e1467d">correctEC</a> (float ecRaw, float T, float theta, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
 <tr class="separator:af586e2e5563baee2b53964aff0e1467d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec93dd728b4450e4078a1e26954478e5" id="r_aec93dd728b4450e4078a1e26954478e5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec93dd728b4450e4078a1e26954478e5">correctPH</a> (float phRaw, float T)</td></tr>
-<tr class="separator:aec93dd728b4450e4078a1e26954478e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2bb88520b65f44965f20d8301e81f86" id="r_ae2bb88520b65f44965f20d8301e81f86"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae2bb88520b65f44965f20d8301e81f86">correctNPK</a> (float T, float theta, <a class="el" href="struct_n_p_k_references.html">NPKReferences</a> &amp;npk, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
-<tr class="separator:ae2bb88520b65f44965f20d8301e81f86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afafc0921b1ae4ac19063de1828f7ac4b" id="r_afafc0921b1ae4ac19063de1828f7ac4b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afafc0921b1ae4ac19063de1828f7ac4b">correctEC</a> (float ecRaw, const <a class="el" href="struct_environmental_conditions.html">EnvironmentalConditions</a> &amp;env, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
+<tr class="memitem:ac0fa58b3f7b7eda140b84c054a62db71" id="r_ac0fa58b3f7b7eda140b84c054a62db71"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0fa58b3f7b7eda140b84c054a62db71">correctPH</a> (float T, float phRaw)</td></tr>
+<tr class="separator:ac0fa58b3f7b7eda140b84c054a62db71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a183d2dfc2de22145300e91ce25f93339" id="r_a183d2dfc2de22145300e91ce25f93339"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a183d2dfc2de22145300e91ce25f93339">correctNPK</a> (float T, float theta, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil, <a class="el" href="structNPKReferences.html">NPKReferences</a> &amp;npk)</td></tr>
+<tr class="separator:a183d2dfc2de22145300e91ce25f93339"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afafc0921b1ae4ac19063de1828f7ac4b" id="r_afafc0921b1ae4ac19063de1828f7ac4b"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afafc0921b1ae4ac19063de1828f7ac4b">correctEC</a> (float ecRaw, const <a class="el" href="structEnvironmentalConditions.html">EnvironmentalConditions</a> &amp;env, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
 <tr class="separator:afafc0921b1ae4ac19063de1828f7ac4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9406fc6bd5dad362d51fcf4547cd279a" id="r_a9406fc6bd5dad362d51fcf4547cd279a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9406fc6bd5dad362d51fcf4547cd279a">correctNPK</a> (const <a class="el" href="struct_environmental_conditions.html">EnvironmentalConditions</a> &amp;env, <a class="el" href="struct_n_p_k_references.html">NPKReferences</a> &amp;npk, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
+<tr class="memitem:a9406fc6bd5dad362d51fcf4547cd279a" id="r_a9406fc6bd5dad362d51fcf4547cd279a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9406fc6bd5dad362d51fcf4547cd279a">correctNPK</a> (const <a class="el" href="structEnvironmentalConditions.html">EnvironmentalConditions</a> &amp;env, <a class="el" href="structNPKReferences.html">NPKReferences</a> &amp;npk, <a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a> soil)</td></tr>
 <tr class="separator:a9406fc6bd5dad362d51fcf4547cd279a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Алгоритмы коррекции показаний датчиков </p>
 <p>Этот модуль содержит функции для температурной, влажностной, pH-зависимой и EC-зависимой компенсации. </p>
-
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8h_source.html">sensor_compensation.h</a></p>
 </div><h2 class="groupheader">Перечисления</h2>
 <a id="aaa92ab56ea828c0bcccad4564b21155d" name="aaa92ab56ea828c0bcccad4564b21155d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aaa92ab56ea828c0bcccad4564b21155d">&#9670;&#160;</a></span>SoilProfile</h2>
@@ -176,7 +168,7 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class <a class="el" href="_i_crop_recommendation_engine_8h.html#a87116560e912ab1a3abfce10db2f9042">SoilProfile</a> : uint8_t</td>
+          <td class="memname">enum class <a class="el" href="#aaa92ab56ea828c0bcccad4564b21155d">SoilProfile</a> : uint8_t</td>
         </tr>
       </table>
   </td>
@@ -191,14 +183,7 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
 <tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155da2238fb7511b33ddb5f91ab723f0c3add" name="aaa92ab56ea828c0bcccad4564b21155da2238fb7511b33ddb5f91ab723f0c3add"></a>PEAT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155da062285f4ae598699cec7d4b2e3a7fac2" name="aaa92ab56ea828c0bcccad4564b21155da062285f4ae598699cec7d4b2e3a7fac2"></a>CLAY&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155da7668b00d953ed05d4e494e67757cf0ab" name="aaa92ab56ea828c0bcccad4564b21155da7668b00d953ed05d4e494e67757cf0ab"></a>SANDPEAT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b" name="aaa92ab56ea828c0bcccad4564b21155dadd8b86e783c5b75c7c9224089b4f239b"></a>SAND&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155da053c3b9443919054c42fe7115e111e36" name="aaa92ab56ea828c0bcccad4564b21155da053c3b9443919054c42fe7115e111e36"></a>LOAM&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155da2238fb7511b33ddb5f91ab723f0c3add" name="aaa92ab56ea828c0bcccad4564b21155da2238fb7511b33ddb5f91ab723f0c3add"></a>PEAT&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155da062285f4ae598699cec7d4b2e3a7fac2" name="aaa92ab56ea828c0bcccad4564b21155da062285f4ae598699cec7d4b2e3a7fac2"></a>CLAY&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="aaa92ab56ea828c0bcccad4564b21155da7668b00d953ed05d4e494e67757cf0ab" name="aaa92ab56ea828c0bcccad4564b21155da7668b00d953ed05d4e494e67757cf0ab"></a>SANDPEAT&#160;</td><td class="fielddoc"></td></tr>
 </table>
-
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8h_source.html">sensor_compensation.h</a> строка <a class="el" href="sensor__compensation_8h_source.html#l00013">13</a></p>
 
 </div>
 </div>
@@ -229,41 +214,11 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
 <tr><td class="fieldname"><a id="a547d6434d73984a5c1b06e2f34a88a6ea7668b00d953ed05d4e494e67757cf0ab" name="a547d6434d73984a5c1b06e2f34a88a6ea7668b00d953ed05d4e494e67757cf0ab"></a>SANDPEAT&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8h_source.html">sensor_compensation.h</a> строка <a class="el" href="sensor__compensation_8h_source.html#l00023">23</a></p>
-
 </div>
 </div>
 <h2 class="groupheader">Функции</h2>
-<a id="afafc0921b1ae4ac19063de1828f7ac4b" name="afafc0921b1ae4ac19063de1828f7ac4b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afafc0921b1ae4ac19063de1828f7ac4b">&#9670;&#160;</a></span>correctEC() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">float correctEC </td>
-          <td>(</td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ecRaw</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="struct_environmental_conditions.html">EnvironmentalConditions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>env</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00099">99</a></p>
-
-</div>
-</div>
 <a id="af586e2e5563baee2b53964aff0e1467d" name="af586e2e5563baee2b53964aff0e1467d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af586e2e5563baee2b53964aff0e1467d">&#9670;&#160;</a></span>correctEC() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af586e2e5563baee2b53964aff0e1467d">&#9670;&#160;</a></span>correctEC() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -291,73 +246,10 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00111">111</a></p>
-
 </div>
 </div>
-<a id="a9406fc6bd5dad362d51fcf4547cd279a" name="a9406fc6bd5dad362d51fcf4547cd279a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9406fc6bd5dad362d51fcf4547cd279a">&#9670;&#160;</a></span>correctNPK() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void correctNPK </td>
-          <td>(</td>
-          <td class="paramtype">const <a class="el" href="struct_environmental_conditions.html">EnvironmentalConditions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>env</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_n_p_k_references.html">NPKReferences</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>npk</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00104">104</a></p>
-
-</div>
-</div>
-<a id="ae2bb88520b65f44965f20d8301e81f86" name="ae2bb88520b65f44965f20d8301e81f86"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae2bb88520b65f44965f20d8301e81f86">&#9670;&#160;</a></span>correctNPK() <span class="overload">[2/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void correctNPK </td>
-          <td>(</td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>T</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>theta</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="struct_n_p_k_references.html">NPKReferences</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>npk</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00116">116</a></p>
-
-</div>
-</div>
-<a id="aec93dd728b4450e4078a1e26954478e5" name="aec93dd728b4450e4078a1e26954478e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aec93dd728b4450e4078a1e26954478e5">&#9670;&#160;</a></span>correctPH()</h2>
+<a id="ac0fa58b3f7b7eda140b84c054a62db71" name="ac0fa58b3f7b7eda140b84c054a62db71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0fa58b3f7b7eda140b84c054a62db71">&#9670;&#160;</a></span>correctPH()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -365,17 +257,98 @@ $(function(){initNavTree('sensor__compensation_8h.html',''); initResizable(true)
         <tr>
           <td class="memname">float correctPH </td>
           <td>(</td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>phRaw</em></span>, </td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>T</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>T</em></span>&#160;)</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>phRaw</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="sensor__compensation_8cpp_source.html">sensor_compensation.cpp</a> строка <a class="el" href="sensor__compensation_8cpp_source.html#l00070">70</a></p>
+</div>
+</div>
+<a id="a183d2dfc2de22145300e91ce25f93339" name="a183d2dfc2de22145300e91ce25f93339"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a183d2dfc2de22145300e91ce25f93339">&#9670;&#160;</a></span>correctNPK() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void correctNPK </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>T</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>theta</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structNPKReferences.html">NPKReferences</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>npk</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afafc0921b1ae4ac19063de1828f7ac4b" name="afafc0921b1ae4ac19063de1828f7ac4b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afafc0921b1ae4ac19063de1828f7ac4b">&#9670;&#160;</a></span>correctEC() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float correctEC </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ecRaw</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structEnvironmentalConditions.html">EnvironmentalConditions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>env</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9406fc6bd5dad362d51fcf4547cd279a" name="a9406fc6bd5dad362d51fcf4547cd279a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9406fc6bd5dad362d51fcf4547cd279a">&#9670;&#160;</a></span>correctNPK() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void correctNPK </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structEnvironmentalConditions.html">EnvironmentalConditions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>env</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structNPKReferences.html">NPKReferences</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>npk</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="#a547d6434d73984a5c1b06e2f34a88a6e">SoilType</a></td>          <td class="paramname"><span class="paramname"><em>soil</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

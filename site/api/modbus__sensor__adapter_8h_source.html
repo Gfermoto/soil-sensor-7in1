@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Исходный файл src/modbus_sensor_adapter.h</title>
+<title>JXCT Soil Sensor 7-in-1: Исходный файл src/modbus_sensor_adapter.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -104,23 +104,23 @@ $(function(){initNavTree('modbus__sensor__adapter_8h_source.html',''); initResiz
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="basic__sensor__adapter_8h.html">basic_sensor_adapter.h</a>&quot;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
 <div class="foldopen" id="foldopen00004" data-start="{" data-end="};">
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="class_modbus_sensor_adapter.html">    4</a></span><span class="keyword">class </span><a class="code hl_function" href="class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084">ModbusSensorAdapter</a> : <span class="keyword">public</span> <a class="code hl_function" href="class_basic_sensor_adapter.html#a773a58c9867d8bb60dbad596505d10ed">BasicSensorAdapter</a></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="classModbusSensorAdapter.html">    4</a></span><span class="keyword">class </span><a class="code hl_function" href="classModbusSensorAdapter.html#ad37d2e543823d07d8affa45e49384084">ModbusSensorAdapter</a> : <span class="keyword">public</span> <a class="code hl_function" href="classBasicSensorAdapter.html#a773a58c9867d8bb60dbad596505d10ed">BasicSensorAdapter</a></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>   <span class="keyword">public</span>:</div>
 <div class="foldopen" id="foldopen00007" data-start="{" data-end="}">
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084">    7</a></span>    <a class="code hl_function" href="class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084">ModbusSensorAdapter</a>()</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>        : <a class="code hl_function" href="class_basic_sensor_adapter.html#a773a58c9867d8bb60dbad596505d10ed">BasicSensorAdapter</a>(<span class="stringliteral">&quot;ModbusSensor&quot;</span>, []() { <a class="code hl_function" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520">setupModbus</a>(); }, []() { <a class="code hl_function" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2">readSensorData</a>(); }, &amp;<a class="code hl_variable" href="modbus__sensor_8cpp.html#ae6ed671f3036da58a93991fca2a2329c">sensorData</a>)</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classModbusSensorAdapter.html#ad37d2e543823d07d8affa45e49384084">    7</a></span>    <a class="code hl_function" href="classModbusSensorAdapter.html#ad37d2e543823d07d8affa45e49384084">ModbusSensorAdapter</a>()</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>        : <a class="code hl_function" href="classBasicSensorAdapter.html#a773a58c9867d8bb60dbad596505d10ed">BasicSensorAdapter</a>(<span class="stringliteral">&quot;ModbusSensor&quot;</span>, []() { <a class="code hl_function" href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520">setupModbus</a>(); }, []() { <a class="code hl_function" href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2">readSensorData</a>(); }, &amp;<a class="code hl_variable" href="modbus__sensor_8cpp.html#ae6ed671f3036da58a93991fca2a2329c">sensorData</a>)</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    {</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    }</div>
 </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>};</div>
 </div>
 <div class="ttc" id="abasic__sensor__adapter_8h_html"><div class="ttname"><a href="basic__sensor__adapter_8h.html">basic_sensor_adapter.h</a></div></div>
-<div class="ttc" id="aclass_basic_sensor_adapter_html_a773a58c9867d8bb60dbad596505d10ed"><div class="ttname"><a href="class_basic_sensor_adapter.html#a773a58c9867d8bb60dbad596505d10ed">BasicSensorAdapter::BasicSensorAdapter</a></div><div class="ttdeci">constexpr BasicSensorAdapter(const char *n, InitFn initFn, AcquireFn acquireFn, SensorData *shared)</div><div class="ttdef"><b>Определения</b> <a href="basic__sensor__adapter_8h_source.html#l00012">basic_sensor_adapter.h:12</a></div></div>
-<div class="ttc" id="aclass_modbus_sensor_adapter_html_ad37d2e543823d07d8affa45e49384084"><div class="ttname"><a href="class_modbus_sensor_adapter.html#ad37d2e543823d07d8affa45e49384084">ModbusSensorAdapter::ModbusSensorAdapter</a></div><div class="ttdeci">ModbusSensorAdapter()</div><div class="ttdef"><b>Определения</b> <a href="#l00007">modbus_sensor_adapter.h:7</a></div></div>
-<div class="ttc" id="amodbus__sensor_8cpp_html_a0c4410314e55fce67a3c727cb1bf9520"><div class="ttname"><a href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520">setupModbus</a></div><div class="ttdeci">void setupModbus()</div><div class="ttdoc">Инициализация Modbus и SP3485E.</div><div class="ttdef"><b>Определения</b> <a href="modbus__sensor_8cpp_source.html#l00311">modbus_sensor.cpp:311</a></div></div>
-<div class="ttc" id="amodbus__sensor_8cpp_html_ac3a37446a712d9ae94e76304361d35d2"><div class="ttname"><a href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2">readSensorData</a></div><div class="ttdeci">void readSensorData()</div><div class="ttdef"><b>Определения</b> <a href="modbus__sensor_8cpp_source.html#l00551">modbus_sensor.cpp:551</a></div></div>
-<div class="ttc" id="amodbus__sensor_8cpp_html_ae6ed671f3036da58a93991fca2a2329c"><div class="ttname"><a href="modbus__sensor_8cpp.html#ae6ed671f3036da58a93991fca2a2329c">sensorData</a></div><div class="ttdeci">SensorData sensorData</div><div class="ttdef"><b>Определения</b> <a href="modbus__sensor_8cpp_source.html#l00020">modbus_sensor.cpp:20</a></div></div>
+<div class="ttc" id="aclassBasicSensorAdapter_html_a773a58c9867d8bb60dbad596505d10ed"><div class="ttname"><a href="classBasicSensorAdapter.html#a773a58c9867d8bb60dbad596505d10ed">BasicSensorAdapter::BasicSensorAdapter</a></div><div class="ttdeci">constexpr BasicSensorAdapter(const char *n, InitFn initFn, AcquireFn acquireFn, SensorData *shared)</div><div class="ttdef"><b>Определения</b> basic_sensor_adapter.h:12</div></div>
+<div class="ttc" id="aclassModbusSensorAdapter_html_ad37d2e543823d07d8affa45e49384084"><div class="ttname"><a href="classModbusSensorAdapter.html#ad37d2e543823d07d8affa45e49384084">ModbusSensorAdapter::ModbusSensorAdapter</a></div><div class="ttdeci">ModbusSensorAdapter()</div><div class="ttdef"><b>Определения</b> modbus_sensor_adapter.h:7</div></div>
+<div class="ttc" id="amodbus__sensor_8cpp_html_a0c4410314e55fce67a3c727cb1bf9520"><div class="ttname"><a href="modbus__sensor_8cpp.html#a0c4410314e55fce67a3c727cb1bf9520">setupModbus</a></div><div class="ttdeci">void setupModbus()</div><div class="ttdoc">Инициализация Modbus и SP3485E.</div><div class="ttdef"><b>Определения</b> modbus_sensor.cpp:363</div></div>
+<div class="ttc" id="amodbus__sensor_8cpp_html_ac3a37446a712d9ae94e76304361d35d2"><div class="ttname"><a href="modbus__sensor_8cpp.html#ac3a37446a712d9ae94e76304361d35d2">readSensorData</a></div><div class="ttdeci">void readSensorData()</div><div class="ttdef"><b>Определения</b> modbus_sensor.cpp:565</div></div>
+<div class="ttc" id="amodbus__sensor_8cpp_html_ae6ed671f3036da58a93991fca2a2329c"><div class="ttname"><a href="modbus__sensor_8cpp.html#ae6ed671f3036da58a93991fca2a2329c">sensorData</a></div><div class="ttdeci">SensorData sensorData</div><div class="ttdef"><b>Определения</b> modbus_sensor.cpp:758</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

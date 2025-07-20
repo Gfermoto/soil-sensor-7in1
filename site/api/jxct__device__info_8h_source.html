@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Исходный файл include/jxct_device_info.h</title>
+<title>JXCT Soil Sensor 7-in-1: Исходный файл include/jxct_device_info.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -108,12 +108,16 @@ $(function(){initNavTree('jxct__device__info_8h_source.html',''); initResizable(
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// Firmware version constant (workaround for JXCT_VERSION macro issue)</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">extern</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_variable" href="jxct__device__info_8h.html#acf025b054301360475a0ec4542f74ff3">FIRMWARE_VERSION</a>;</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>String <a class="code hl_function" href="jxct__device__info_8h.html#aa1f35b9688dbf1109436ad91c42901aa">getDeviceId</a>();</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>String <a class="code hl_function" href="jxct__device__info_8h.html#a74bdf2231a5ebe05de0f3a0b4c538023">getDefaultTopic</a>();</div>
-<div class="ttc" id="ajxct__device__info_8h_html_a74bdf2231a5ebe05de0f3a0b4c538023"><div class="ttname"><a href="jxct__device__info_8h.html#a74bdf2231a5ebe05de0f3a0b4c538023">getDefaultTopic</a></div><div class="ttdeci">String getDefaultTopic()</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00028">config.cpp:28</a></div></div>
-<div class="ttc" id="ajxct__device__info_8h_html_aa1f35b9688dbf1109436ad91c42901aa"><div class="ttname"><a href="jxct__device__info_8h.html#aa1f35b9688dbf1109436ad91c42901aa">getDeviceId</a></div><div class="ttdeci">String getDeviceId()</div><div class="ttdef"><b>Определения</b> <a href="config_8cpp_source.html#l00019">config.cpp:19</a></div></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#ifdef TEST_BUILD</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;../test/stubs/esp32_stubs.h&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;Arduino.h&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>String <a class="code hl_function" href="jxct__device__info_8h.html#aa1f35b9688dbf1109436ad91c42901aa">getDeviceId</a>();</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>String <a class="code hl_function" href="jxct__device__info_8h.html#a74bdf2231a5ebe05de0f3a0b4c538023">getDefaultTopic</a>();</div>
+<div class="ttc" id="ajxct__device__info_8h_html_a74bdf2231a5ebe05de0f3a0b4c538023"><div class="ttname"><a href="jxct__device__info_8h.html#a74bdf2231a5ebe05de0f3a0b4c538023">getDefaultTopic</a></div><div class="ttdeci">String getDefaultTopic()</div><div class="ttdef"><b>Определения</b> config.cpp:28</div></div>
+<div class="ttc" id="ajxct__device__info_8h_html_aa1f35b9688dbf1109436ad91c42901aa"><div class="ttname"><a href="jxct__device__info_8h.html#aa1f35b9688dbf1109436ad91c42901aa">getDeviceId</a></div><div class="ttdeci">String getDeviceId()</div><div class="ttdef"><b>Определения</b> config.cpp:19</div></div>
 <div class="ttc" id="ajxct__device__info_8h_html_acf025b054301360475a0ec4542f74ff3"><div class="ttname"><a href="jxct__device__info_8h.html#acf025b054301360475a0ec4542f74ff3">FIRMWARE_VERSION</a></div><div class="ttdeci">const char * FIRMWARE_VERSION</div></div>
 <div class="ttc" id="aversion_8h_html"><div class="ttname"><a href="version_8h.html">version.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->

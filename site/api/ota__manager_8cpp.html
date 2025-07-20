@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл src/ota_manager.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/ota_manager.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -115,9 +115,7 @@ $(function(){initNavTree('ota__manager_8cpp.html',''); initResizable(true); });
 <code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="version_8h_source.html">version.h</a>&quot;</code><br />
-</div>
-<p><a href="ota__manager_8cpp_source.html">См. исходные тексты.</a></p>
-<table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
 <tr class="memitem:ace424db218f3dfab484ebd7f61d44fcf" id="r_ace424db218f3dfab484ebd7f61d44fcf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace424db218f3dfab484ebd7f61d44fcf">checkGuard</a> (const char *tag)</td></tr>
@@ -153,39 +151,6 @@ $(function(){initNavTree('ota__manager_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00044">44</a></p>
-
-</div>
-</div>
-<a id="a79a35cc6faa209f36bab011a327fb463" name="a79a35cc6faa209f36bab011a327fb463"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79a35cc6faa209f36bab011a327fb463">&#9670;&#160;</a></span>downloadAndUpdate()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static bool downloadAndUpdate </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>binUrl</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>expectedSha256</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00339">339</a></p>
-
 </div>
 </div>
 <a id="a51f9f9bafeb2f56a3456ebf48a76c7b9" name="a51f9f9bafeb2f56a3456ebf48a76c7b9"></a>
@@ -202,27 +167,6 @@ $(function(){initNavTree('ota__manager_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00058">58</a></p>
-
-</div>
-</div>
-<a id="a3caeaca3fcbd288827f42df9af8b7f08" name="a3caeaca3fcbd288827f42df9af8b7f08"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3caeaca3fcbd288827f42df9af8b7f08">&#9670;&#160;</a></span>handleOTA()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleOTA </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00495">495</a></p>
 
 </div>
 </div>
@@ -244,46 +188,6 @@ $(function(){initNavTree('ota__manager_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00063">63</a></p>
-
-</div>
-</div>
-<a id="aab62f74691b98553d395b694e0807ae4" name="aab62f74691b98553d395b694e0807ae4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab62f74691b98553d395b694e0807ae4">&#9670;&#160;</a></span>triggerOtaCheck()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void triggerOtaCheck </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00446">446</a></p>
-
-</div>
-</div>
-<a id="a2463eda06898e53e0ca3b3a819c995ae" name="a2463eda06898e53e0ca3b3a819c995ae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2463eda06898e53e0ca3b3a819c995ae">&#9670;&#160;</a></span>triggerOtaInstall()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void triggerOtaInstall </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00463">463</a></p>
 
 </div>
 </div>
@@ -314,7 +218,85 @@ $(function(){initNavTree('ota__manager_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="ota__manager_8cpp_source.html">ota_manager.cpp</a> строка <a class="el" href="ota__manager_8cpp_source.html#l00119">119</a></p>
+</div>
+</div>
+<a id="a79a35cc6faa209f36bab011a327fb463" name="a79a35cc6faa209f36bab011a327fb463"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a79a35cc6faa209f36bab011a327fb463">&#9670;&#160;</a></span>downloadAndUpdate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static bool downloadAndUpdate </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>binUrl</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>expectedSha256</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aab62f74691b98553d395b694e0807ae4" name="aab62f74691b98553d395b694e0807ae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab62f74691b98553d395b694e0807ae4">&#9670;&#160;</a></span>triggerOtaCheck()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void triggerOtaCheck </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2463eda06898e53e0ca3b3a819c995ae" name="a2463eda06898e53e0ca3b3a819c995ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2463eda06898e53e0ca3b3a819c995ae">&#9670;&#160;</a></span>triggerOtaInstall()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void triggerOtaInstall </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3caeaca3fcbd288827f42df9af8b7f08" name="a3caeaca3fcbd288827f42df9af8b7f08"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3caeaca3fcbd288827f42df9af8b7f08">&#9670;&#160;</a></span>handleOTA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleOTA </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

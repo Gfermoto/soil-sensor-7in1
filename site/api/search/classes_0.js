@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['archiecoefficients_0',['ArchieCoefficients',['../struct_archie_coefficients.html',1,'']]]
+  ['archiecoefficients_0',['ArchieCoefficients',['../structArchieCoefficients.html',1,'']]]
 ];

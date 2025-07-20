@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Исходный файл include/debug_optimized.h</title>
+<title>JXCT Soil Sensor 7-in-1: Исходный файл include/debug_optimized.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -374,15 +374,15 @@ $(function(){initNavTree('debug__optimized_8h_source.html',''); initResizable(tr
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span><span class="preprocessor">    Serial.println(x)</span></div>
 </div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno"><a class="line" href="debug__optimized_8h.html#afd5d375337ca9d6bebf6b03bc3b7af43">  263</a></span><span class="preprocessor">#define CRITICAL_DEBUG_PRINTF(fmt, ...) Serial.printf(&quot;[CRITICAL] &quot; fmt, ##__VA_ARGS__)</span></div>
-<div class="ttc" id="adebug__optimized_8h_html_a106b655aa8faea8942757638731ebf0d"><div class="ttname"><a href="debug__optimized_8h.html#a106b655aa8faea8942757638731ebf0d">debugPrintHexBuffer</a></div><div class="ttdeci">void debugPrintHexBuffer(const char *prefix, const uint8_t *buffer, size_t length)</div><div class="ttdoc">Отладочная печать буфера в HEX формате (оптимизированная)</div><div class="ttdef"><b>Определения</b> <a href="#l00145">debug_optimized.h:145</a></div></div>
-<div class="ttc" id="adebug__optimized_8h_html_a3b1c1240a45bf11367e496c24a1c354d"><div class="ttname"><a href="debug__optimized_8h.html#a3b1c1240a45bf11367e496c24a1c354d">debugConditionalPrint</a></div><div class="ttdeci">void debugConditionalPrint(int level, const char *format,...)</div><div class="ttdoc">Условная отладочная печать с проверкой уровня логирования</div><div class="ttdef"><b>Определения</b> <a href="#l00125">debug_optimized.h:125</a></div></div>
-<div class="ttc" id="adebug__optimized_8h_html_a4002fe059558510a239058a9dda387a6"><div class="ttname"><a href="debug__optimized_8h.html#a4002fe059558510a239058a9dda387a6">debugPrintStatus</a></div><div class="ttdeci">void debugPrintStatus(const char *module, bool status, const char *details=nullptr)</div><div class="ttdoc">Отладочная печать состояния системы (компактная)</div><div class="ttdef"><b>Определения</b> <a href="#l00169">debug_optimized.h:169</a></div></div>
-<div class="ttc" id="adebug__optimized_8h_html_a748fe53bf9a9627f05f3d3697ff26971"><div class="ttname"><a href="debug__optimized_8h.html#a748fe53bf9a9627f05f3d3697ff26971">debugStatsPrint</a></div><div class="ttdeci">void debugStatsPrint()</div><div class="ttdef"><b>Определения</b> <a href="#l00245">debug_optimized.h:245</a></div></div>
-<div class="ttc" id="adebug__optimized_8h_html_a795c0e9d5464893e565a264b0fb6e75e"><div class="ttname"><a href="debug__optimized_8h.html#a795c0e9d5464893e565a264b0fb6e75e">debugStatsIncrement</a></div><div class="ttdeci">void debugStatsIncrement(const char *category)</div><div class="ttdef"><b>Определения</b> <a href="#l00244">debug_optimized.h:244</a></div></div>
-<div class="ttc" id="adebug__optimized_8h_html_ae3aab77ba55ab7c94378c6110d9a3050"><div class="ttname"><a href="debug__optimized_8h.html#ae3aab77ba55ab7c94378c6110d9a3050">debugStatsInit</a></div><div class="ttdeci">void debugStatsInit()</div><div class="ttdef"><b>Определения</b> <a href="#l00243">debug_optimized.h:243</a></div></div>
+<div class="ttc" id="adebug__optimized_8h_html_a106b655aa8faea8942757638731ebf0d"><div class="ttname"><a href="debug__optimized_8h.html#a106b655aa8faea8942757638731ebf0d">debugPrintHexBuffer</a></div><div class="ttdeci">void debugPrintHexBuffer(const char *prefix, const uint8_t *buffer, size_t length)</div><div class="ttdoc">Отладочная печать буфера в HEX формате (оптимизированная)</div><div class="ttdef"><b>Определения</b> debug_optimized.h:145</div></div>
+<div class="ttc" id="adebug__optimized_8h_html_a3b1c1240a45bf11367e496c24a1c354d"><div class="ttname"><a href="debug__optimized_8h.html#a3b1c1240a45bf11367e496c24a1c354d">debugConditionalPrint</a></div><div class="ttdeci">void debugConditionalPrint(int level, const char *format,...)</div><div class="ttdoc">Условная отладочная печать с проверкой уровня логирования</div><div class="ttdef"><b>Определения</b> debug_optimized.h:125</div></div>
+<div class="ttc" id="adebug__optimized_8h_html_a4002fe059558510a239058a9dda387a6"><div class="ttname"><a href="debug__optimized_8h.html#a4002fe059558510a239058a9dda387a6">debugPrintStatus</a></div><div class="ttdeci">void debugPrintStatus(const char *module, bool status, const char *details=nullptr)</div><div class="ttdoc">Отладочная печать состояния системы (компактная)</div><div class="ttdef"><b>Определения</b> debug_optimized.h:169</div></div>
+<div class="ttc" id="adebug__optimized_8h_html_a748fe53bf9a9627f05f3d3697ff26971"><div class="ttname"><a href="debug__optimized_8h.html#a748fe53bf9a9627f05f3d3697ff26971">debugStatsPrint</a></div><div class="ttdeci">void debugStatsPrint()</div><div class="ttdef"><b>Определения</b> debug_optimized.h:245</div></div>
+<div class="ttc" id="adebug__optimized_8h_html_a795c0e9d5464893e565a264b0fb6e75e"><div class="ttname"><a href="debug__optimized_8h.html#a795c0e9d5464893e565a264b0fb6e75e">debugStatsIncrement</a></div><div class="ttdeci">void debugStatsIncrement(const char *category)</div><div class="ttdef"><b>Определения</b> debug_optimized.h:244</div></div>
+<div class="ttc" id="adebug__optimized_8h_html_ae3aab77ba55ab7c94378c6110d9a3050"><div class="ttname"><a href="debug__optimized_8h.html#ae3aab77ba55ab7c94378c6110d9a3050">debugStatsInit</a></div><div class="ttdeci">void debugStatsInit()</div><div class="ttdef"><b>Определения</b> debug_optimized.h:243</div></div>
 <div class="ttc" id="ajxct__constants_8h_html"><div class="ttname"><a href="jxct__constants_8h.html">jxct_constants.h</a></div><div class="ttdoc">Централизованные константы системы JXCT.</div></div>
-<div class="ttc" id="ajxct__constants_8h_html_a0b03dd1b6198155aa8fb66f3f0dc1413"><div class="ttname"><a href="jxct__constants_8h.html#a0b03dd1b6198155aa8fb66f3f0dc1413">LOG_LEVEL_DEBUG</a></div><div class="ttdeci">constexpr int LOG_LEVEL_DEBUG</div><div class="ttdef"><b>Определения</b> <a href="jxct__constants_8h_source.html#l00210">jxct_constants.h:210</a></div></div>
-<div class="ttc" id="alogger_8cpp_html_a16cca5b581e7f50a9cc5e838510ae6f5"><div class="ttname"><a href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a></div><div class="ttdeci">LogLevel currentLogLevel</div><div class="ttdef"><b>Определения</b> <a href="logger_8cpp_source.html#l00013">logger.cpp:13</a></div></div>
+<div class="ttc" id="ajxct__constants_8h_html_a0b03dd1b6198155aa8fb66f3f0dc1413"><div class="ttname"><a href="jxct__constants_8h.html#a0b03dd1b6198155aa8fb66f3f0dc1413">LOG_LEVEL_DEBUG</a></div><div class="ttdeci">constexpr int LOG_LEVEL_DEBUG</div><div class="ttdef"><b>Определения</b> jxct_constants.h:224</div></div>
+<div class="ttc" id="alogger_8cpp_html_a16cca5b581e7f50a9cc5e838510ae6f5"><div class="ttname"><a href="logger_8cpp.html#a16cca5b581e7f50a9cc5e838510ae6f5">currentLogLevel</a></div><div class="ttdeci">LogLevel currentLogLevel</div><div class="ttdef"><b>Определения</b> logger.cpp:13</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

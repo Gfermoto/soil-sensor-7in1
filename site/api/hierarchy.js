@@ -1,54 +1,58 @@
 var hierarchy =
 [
-    [ "ArchieCoefficients", "struct_archie_coefficients.html", null ],
-    [ "InputFieldInfo::Builder", "struct_input_field_info_1_1_builder.html", null ],
-    [ "ButtonConfig", "struct_button_config.html", null ],
-    [ "CalibrationEntry", "struct_calibration_entry.html", null ],
-    [ "CalibrationPoint", "struct_calibration_point.html", null ],
-    [ "CalibrationTable", "struct_calibration_table.html", null ],
-    [ "ConfigData", "struct_config_data.html", null ],
-    [ "ConfigSectionInfo", "struct_config_section_info.html", null ],
-    [ "ConfigValidationResult", "struct_config_validation_result.html", null ],
-    [ "HttpRequest::CreateParams", "struct_http_request_1_1_create_params.html", null ],
-    [ "CropConfig", "struct_crop_config.html", null ],
-    [ "ECCompensationParams", "struct_e_c_compensation_params.html", null ],
-    [ "AdvancedFilters::ECFilterState", "struct_advanced_filters_1_1_e_c_filter_state.html", null ],
-    [ "EnvironmentalConditions", "struct_environmental_conditions.html", null ],
-    [ "AdvancedFilters::ExponentialSmoothingState", "struct_advanced_filters_1_1_exponential_smoothing_state.html", null ],
-    [ "FormInfo", "struct_form_info.html", null ],
-    [ "HttpRequest", "struct_http_request.html", null ],
-    [ "ICropRecommendationEngine", "class_i_crop_recommendation_engine.html", [
-      [ "CropRecommendationEngine", "class_crop_recommendation_engine.html", null ]
+    [ "ArchieCoefficients", "structArchieCoefficients.html", null ],
+    [ "CropCompensationParams::Builder", "structCropCompensationParams_1_1Builder.html", null ],
+    [ "CropECCompensationParams::Builder", "structCropECCompensationParams_1_1Builder.html", null ],
+    [ "HttpRequest::Builder", "structHttpRequest_1_1Builder.html", null ],
+    [ "RecommendationParams::Builder", "structRecommendationParams_1_1Builder.html", null ],
+    [ "ValidationRange::Builder", "structValidationRange_1_1Builder.html", null ],
+    [ "ButtonConfig", "structButtonConfig.html", null ],
+    [ "CalibrationEntry", "structCalibrationEntry.html", null ],
+    [ "CalibrationPoint", "structCalibrationPoint.html", null ],
+    [ "CalibrationTable", "structCalibrationTable.html", null ],
+    [ "ConfigData", "structConfigData.html", null ],
+    [ "ConfigValidationResult", "structConfigValidationResult.html", null ],
+    [ "CropCompensationParams", "structCropCompensationParams.html", null ],
+    [ "CropConfig", "structCropConfig.html", null ],
+    [ "CropECCompensationParams", "structCropECCompensationParams.html", null ],
+    [ "ECCalibration", "structECCalibration.html", null ],
+    [ "AdvancedFilters::ECFilterState", "structAdvancedFilters_1_1ECFilterState.html", null ],
+    [ "EnvironmentalConditions", "structEnvironmentalConditions.html", null ],
+    [ "AdvancedFilters::ExponentialSmoothingState", "structAdvancedFilters_1_1ExponentialSmoothingState.html", null ],
+    [ "HttpRequest", "structHttpRequest.html", null ],
+    [ "ICropRecommendationEngine", "classICropRecommendationEngine.html", [
+      [ "CropRecommendationEngine", "classCropRecommendationEngine.html", null ]
     ] ],
-    [ "IMqttConnectionManager", "class_i_mqtt_connection_manager.html", null ],
-    [ "InputFieldInfo", "struct_input_field_info.html", null ],
-    [ "ISensor", "class_i_sensor.html", [
-      [ "BasicSensorAdapter", "class_basic_sensor_adapter.html", [
-        [ "FakeSensorAdapter", "class_fake_sensor_adapter.html", null ],
-        [ "ModbusSensorAdapter", "class_modbus_sensor_adapter.html", null ]
+    [ "IMqttConnectionManager", "classIMqttConnectionManager.html", null ],
+    [ "ISensor", "classISensor.html", [
+      [ "BasicSensorAdapter", "classBasicSensorAdapter.html", [
+        [ "FakeSensorAdapter", "classFakeSensorAdapter.html", null ],
+        [ "ModbusSensorAdapter", "classModbusSensorAdapter.html", null ]
       ] ]
     ] ],
-    [ "ISensorCalibrationService", "class_i_sensor_calibration_service.html", [
-      [ "SensorCalibrationService", "class_sensor_calibration_service.html", null ]
+    [ "ISensorCalibrationService", "classISensorCalibrationService.html", [
+      [ "SensorCalibrationService", "classSensorCalibrationService.html", null ]
     ] ],
-    [ "ISensorCompensationService", "class_i_sensor_compensation_service.html", [
-      [ "SensorCompensationService", "class_sensor_compensation_service.html", null ]
+    [ "ISensorCompensationService", "classISensorCompensationService.html", [
+      [ "SensorCompensationService", "classSensorCompensationService.html", null ]
     ] ],
-    [ "AdvancedFilters::KalmanFilter", "struct_advanced_filters_1_1_kalman_filter.html", null ],
-    [ "NPKReferences", "struct_n_p_k_references.html", null ],
-    [ "NumberFieldInfo", "struct_number_field_info.html", null ],
-    [ "PageInfo", "struct_page_info.html", null ],
-    [ "RecValues", "struct_rec_values.html", null ],
-    [ "SeasonalAdjustment", "struct_seasonal_adjustment.html", null ],
-    [ "SensorCache", "struct_sensor_cache.html", null ],
-    [ "SensorData", "struct_sensor_data.html", null ],
-    [ "SensorValidationResult", "struct_sensor_validation_result.html", null ],
-    [ "SoilECCoeff", "struct_soil_e_c_coeff.html", null ],
-    [ "SoilParameters", "struct_soil_parameters.html", null ],
-    [ "AdvancedFilters::StatisticsBuffer", "struct_advanced_filters_1_1_statistics_buffer.html", null ],
-    [ "TechnicalDebtMetrics", "struct_technical_debt_metrics.html", null ],
-    [ "TestSummary", "struct_test_summary.html", null ],
-    [ "ValidationError", "struct_validation_error.html", null ],
-    [ "ValidationRange", "struct_validation_range.html", null ],
-    [ "ValidationResult", "struct_validation_result.html", null ]
+    [ "AdvancedFilters::KalmanFilter", "structAdvancedFilters_1_1KalmanFilter.html", null ],
+    [ "NPKCalibration", "structNPKCalibration.html", null ],
+    [ "NPKCoefficients", "structNPKCoefficients.html", null ],
+    [ "NPKReferences", "structNPKReferences.html", null ],
+    [ "PHCalibration", "structPHCalibration.html", null ],
+    [ "RecommendationParams", "structRecommendationParams.html", null ],
+    [ "RecommendationResult", "structRecommendationResult.html", null ],
+    [ "RecValues", "structRecValues.html", null ],
+    [ "SensorCache", "structSensorCache.html", null ],
+    [ "SensorCalibration", "structSensorCalibration.html", null ],
+    [ "SensorData", "structSensorData.html", null ],
+    [ "SensorValidationResult", "structSensorValidationResult.html", null ],
+    [ "SoilParameters", "structSoilParameters.html", null ],
+    [ "AdvancedFilters::StatisticsBuffer", "structAdvancedFilters_1_1StatisticsBuffer.html", null ],
+    [ "TechnicalDebtMetrics", "structTechnicalDebtMetrics.html", null ],
+    [ "TestSummary", "structTestSummary.html", null ],
+    [ "ValidationError", "structValidationError.html", null ],
+    [ "ValidationRange", "structValidationRange.html", null ],
+    [ "ValidationResult", "structValidationResult.html", null ]
 ];

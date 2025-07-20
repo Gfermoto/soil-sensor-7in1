@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['fakesensoradapter_0',['FakeSensorAdapter',['../class_fake_sensor_adapter.html#af18b89449d9a289d773170c66787bd23',1,'FakeSensorAdapter']]],
+  ['fakesensoradapter_0',['FakeSensorAdapter',['../classFakeSensorAdapter.html#af18b89449d9a289d773170c66787bd23',1,'FakeSensorAdapter']]],
   ['format_5fec_1',['format_ec',['../jxct__format__utils_8cpp.html#a39b2dedc3670adcf20a62a8d113d2483',1,'format_ec(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a39b2dedc3670adcf20a62a8d113d2483',1,'format_ec(float value):&#160;jxct_format_utils.cpp']]],
   ['format_5fmoisture_2',['format_moisture',['../jxct__format__utils_8cpp.html#a3be478cef555484efe62159216f6d470',1,'format_moisture(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#a3be478cef555484efe62159216f6d470',1,'format_moisture(float value):&#160;jxct_format_utils.cpp']]],
   ['format_5fnpk_3',['format_npk',['../jxct__format__utils_8cpp.html#abdc9f6cdc05f0aa72eec54b3e904ca7b',1,'format_npk(float value):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#abdc9f6cdc05f0aa72eec54b3e904ca7b',1,'format_npk(float value):&#160;jxct_format_utils.cpp']]],
@@ -13,5 +13,5 @@ var searchData=
   ['formatuptime_10',['formatUptime',['../routes__service_8cpp.html#abfa915ba3c1d9d59ce0a664b2a1ac7f2',1,'routes_service.cpp']]],
   ['formatvalidationerrors_11',['formatValidationErrors',['../validation__utils_8cpp.html#af447043f0553ccee92c72fb59009b1ec',1,'formatValidationErrors(const ConfigValidationResult &amp;result):&#160;validation_utils.cpp'],['../validation__utils_8h.html#af447043f0553ccee92c72fb59009b1ec',1,'formatValidationErrors(const ConfigValidationResult &amp;result):&#160;validation_utils.cpp']]],
   ['formatvalue_12',['formatValue',['../jxct__format__utils_8cpp.html#adc35370b803782f896c844976a9ad6ce',1,'formatValue(float value, const char *unit, int precision):&#160;jxct_format_utils.cpp'],['../jxct__format__utils_8h.html#ac78af75db9fe02059342eed69de396e4',1,'formatValue(float value, const char *unit, int precision=2):&#160;jxct_format_utils.cpp']]],
-  ['forminfo_13',['FormInfo',['../struct_form_info.html#a94cacf69cf7718ff49461c0af4529270',1,'FormInfo']]]
+  ['fromvalues_13',['fromValues',['../structRecommendationParams.html#a5542073653688468ad2e0536f9cdfac8',1,'RecommendationParams']]]
 ];

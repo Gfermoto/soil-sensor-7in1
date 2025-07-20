@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['basicsensoradapter_0',['BasicSensorAdapter',['../class_basic_sensor_adapter.html',1,'']]],
-  ['builder_1',['Builder',['../struct_input_field_info_1_1_builder.html',1,'InputFieldInfo']]],
-  ['buttonconfig_2',['ButtonConfig',['../struct_button_config.html',1,'']]]
+  ['basicsensoradapter_0',['BasicSensorAdapter',['../classBasicSensorAdapter.html',1,'']]],
+  ['builder_1',['Builder',['../structCropCompensationParams_1_1Builder.html',1,'CropCompensationParams::Builder'],['../structCropECCompensationParams_1_1Builder.html',1,'CropECCompensationParams::Builder'],['../structHttpRequest_1_1Builder.html',1,'HttpRequest::Builder'],['../structRecommendationParams_1_1Builder.html',1,'RecommendationParams::Builder'],['../structValidationRange_1_1Builder.html',1,'ValidationRange::Builder']]],
+  ['buttonconfig_2',['ButtonConfig',['../structButtonConfig.html',1,'']]]
 ];

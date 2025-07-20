@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл src/thingspeak_client.h</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/thingspeak_client.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -126,25 +126,6 @@ $(function(){initNavTree('thingspeak__client_8h.html',''); initResizable(true); 
 <tr class="separator:abd77e757e4b3bb6f1e4b42b21ea9e040"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
-<a id="ae3f256ffaf18113d28229c8ae013b1f5" name="ae3f256ffaf18113d28229c8ae013b1f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3f256ffaf18113d28229c8ae013b1f5">&#9670;&#160;</a></span>getThingSpeakLastError()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const char * getThingSpeakLastError </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00059">59</a></p>
-
-</div>
-</div>
 <a id="add7f50ba743d6501c1ad5e2dd4985e53" name="add7f50ba743d6501c1ad5e2dd4985e53"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#add7f50ba743d6501c1ad5e2dd4985e53">&#9670;&#160;</a></span>getThingSpeakLastPublish()</h2>
 
@@ -160,26 +141,22 @@ $(function(){initNavTree('thingspeak__client_8h.html',''); initResizable(true); 
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00055">55</a></p>
-
 </div>
 </div>
-<a id="aaef2ba5628e59244986aa0c0f40b58cf" name="aaef2ba5628e59244986aa0c0f40b58cf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaef2ba5628e59244986aa0c0f40b58cf">&#9670;&#160;</a></span>sendDataToThingSpeak()</h2>
+<a id="ae3f256ffaf18113d28229c8ae013b1f5" name="ae3f256ffaf18113d28229c8ae013b1f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3f256ffaf18113d28229c8ae013b1f5">&#9670;&#160;</a></span>getThingSpeakLastError()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool sendDataToThingSpeak </td>
+          <td class="memname">const char * getThingSpeakLastError </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00069">69</a></p>
 
 </div>
 </div>
@@ -198,7 +175,22 @@ $(function(){initNavTree('thingspeak__client_8h.html',''); initResizable(true); 
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="thingspeak__client_8cpp_source.html">thingspeak_client.cpp</a> строка <a class="el" href="thingspeak__client_8cpp_source.html#l00064">64</a></p>
+</div>
+</div>
+<a id="aaef2ba5628e59244986aa0c0f40b58cf" name="aaef2ba5628e59244986aa0c0f40b58cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaef2ba5628e59244986aa0c0f40b58cf">&#9670;&#160;</a></span>sendDataToThingSpeak()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool sendDataToThingSpeak </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -222,8 +214,6 @@ $(function(){initNavTree('thingspeak__client_8h.html',''); initResizable(true); 
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00024">24</a></p>
 
 </div>
 </div>

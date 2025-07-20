@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл src/web/routes_service.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/web/routes_service.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -119,9 +119,7 @@ $(function(){initNavTree('routes__service_8cpp.html',''); initResizable(true); }
 <code>#include &quot;<a class="el" href="mqtt__client_8h_source.html">../mqtt_client.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="thingspeak__client_8h_source.html">../thingspeak_client.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">../wifi_manager.h</a>&quot;</code><br />
-</div>
-<p><a href="routes__service_8cpp_source.html">См. исходные тексты.</a></p>
-<table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
 <tr class="memitem:a12d3ed3cb7af947fa5b68db68fa23ba6" id="r_a12d3ed3cb7af947fa5b68db68fa23ba6"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a12d3ed3cb7af947fa5b68db68fa23ba6">sendHealthJson</a> ()</td></tr>
@@ -137,36 +135,7 @@ $(function(){initNavTree('routes__service_8cpp.html',''); initResizable(true); }
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Сервисные маршруты для диагностики и управления </p>
 <p>Обработка запросов здоровья системы, статуса сервисов, перезагрузки и OTA обновлений </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__service_8cpp_source.html">routes_service.cpp</a></p>
 </div><h2 class="groupheader">Функции</h2>
-<a id="abfa915ba3c1d9d59ce0a664b2a1ac7f2" name="abfa915ba3c1d9d59ce0a664b2a1ac7f2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abfa915ba3c1d9d59ce0a664b2a1ac7f2">&#9670;&#160;</a></span>formatUptime()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static String formatUptime </td>
-          <td>(</td>
-          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>milliseconds</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="routes__service_8cpp_source.html">routes_service.cpp</a> строка <a class="el" href="routes__service_8cpp_source.html#l00212">212</a></p>
-
-</div>
-</div>
 <a id="a12d3ed3cb7af947fa5b68db68fa23ba6" name="a12d3ed3cb7af947fa5b68db68fa23ba6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a12d3ed3cb7af947fa5b68db68fa23ba6">&#9670;&#160;</a></span>sendHealthJson()</h2>
 
@@ -189,8 +158,6 @@ $(function(){initNavTree('routes__service_8cpp.html',''); initResizable(true); }
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="routes__service_8cpp_source.html">routes_service.cpp</a> строка <a class="el" href="routes__service_8cpp_source.html#l00242">242</a></p>
 
 </div>
 </div>
@@ -217,7 +184,30 @@ $(function(){initNavTree('routes__service_8cpp.html',''); initResizable(true); }
 </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="routes__service_8cpp_source.html">routes_service.cpp</a> строка <a class="el" href="routes__service_8cpp_source.html#l00326">326</a></p>
+</div>
+</div>
+<a id="abfa915ba3c1d9d59ce0a664b2a1ac7f2" name="abfa915ba3c1d9d59ce0a664b2a1ac7f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfa915ba3c1d9d59ce0a664b2a1ac7f2">&#9670;&#160;</a></span>formatUptime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static String formatUptime </td>
+          <td>(</td>
+          <td class="paramtype">unsigned long</td>          <td class="paramname"><span class="paramname"><em>milliseconds</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -237,8 +227,6 @@ $(function(){initNavTree('routes__service_8cpp.html',''); initResizable(true); }
 </div><div class="memdoc">
 
 <p>Настройка сервисных маршрутов (/reset, /status, /info) </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__service_8cpp_source.html">routes_service.cpp</a> строка <a class="el" href="routes__service_8cpp_source.html#l00041">41</a></p>
 
 </div>
 </div>

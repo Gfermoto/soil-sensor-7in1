@@ -1,6 +1,10 @@
 var crop__recommendation__engine_8h =
 [
-    [ "CropConfig", "struct_crop_config.html", "struct_crop_config" ],
-    [ "SeasonalAdjustment", "struct_seasonal_adjustment.html", "struct_seasonal_adjustment" ],
-    [ "CropRecommendationEngine", "class_crop_recommendation_engine.html", "class_crop_recommendation_engine" ]
+    [ "CropCompensationParams", "structCropCompensationParams.html", "structCropCompensationParams" ],
+    [ "CropCompensationParams::Builder", "structCropCompensationParams_1_1Builder.html", "structCropCompensationParams_1_1Builder" ],
+    [ "CropECCompensationParams", "structCropECCompensationParams.html", "structCropECCompensationParams" ],
+    [ "CropECCompensationParams::Builder", "structCropECCompensationParams_1_1Builder.html", "structCropECCompensationParams_1_1Builder" ],
+    [ "CropConfig", "structCropConfig.html", "structCropConfig" ],
+    [ "RecommendationResult", "structRecommendationResult.html", "structRecommendationResult" ],
+    [ "CropRecommendationEngine", "classCropRecommendationEngine.html", "classCropRecommendationEngine" ]
 ];

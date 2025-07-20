@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл src/mqtt_client.h</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/mqtt_client.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -103,10 +103,10 @@ $(function(){initNavTree('mqtt__client_8h.html',''); initResizable(true); });
   <div class="headertitle"><div class="title">Файл mqtt_client.h</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
-<code>#include &lt;ArduinoJson.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;ArduinoJson.h&gt;</code><br />
 <code>#include &lt;PubSubClient.h&gt;</code><br />
 <code>#include &lt;WiFi.h&gt;</code><br />
+<code>#include &quot;Arduino.h&quot;</code><br />
 </div>
 <p><a href="mqtt__client_8h_source.html">См. исходные тексты.</a></p>
 <table class="memberdecls">
@@ -132,8 +132,8 @@ $(function(){initNavTree('mqtt__client_8h.html',''); initResizable(true); });
 <tr class="separator:a78b590745e792368420169e642494895"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a58d6760f5e7f2aaf28fbb2155942d579" id="r_a58d6760f5e7f2aaf28fbb2155942d579"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58d6760f5e7f2aaf28fbb2155942d579">handleMqttCommand</a> (const String &amp;cmd)</td></tr>
 <tr class="separator:a58d6760f5e7f2aaf28fbb2155942d579"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f06b273defaebb581fdf1adc8969f40" id="r_a6f06b273defaebb581fdf1adc8969f40"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f06b273defaebb581fdf1adc8969f40">mqttCallback</a> (char *topic, byte *payload, unsigned int length)</td></tr>
-<tr class="separator:a6f06b273defaebb581fdf1adc8969f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee48b9097aaffe8238bbeae09e8fd944" id="r_aee48b9097aaffe8238bbeae09e8fd944"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aee48b9097aaffe8238bbeae09e8fd944">mqttCallback</a> (const char *topic, const byte *payload, unsigned int length)</td></tr>
+<tr class="separator:aee48b9097aaffe8238bbeae09e8fd944"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Переменные</h2></td></tr>
@@ -145,25 +145,6 @@ $(function(){initNavTree('mqtt__client_8h.html',''); initResizable(true); });
 <tr class="separator:a1da8e8d4c027f4c08db8b493b99e12da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
-<a id="ab5a788a03971cae1e5e641ae9b1d7fe0" name="ab5a788a03971cae1e5e641ae9b1d7fe0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab5a788a03971cae1e5e641ae9b1d7fe0">&#9670;&#160;</a></span>connectMQTT()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool connectMQTT </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00231">231</a></p>
-
-</div>
-</div>
 <a id="ae7138b08148b127ef0202b5cc7ad389e" name="ae7138b08148b127ef0202b5cc7ad389e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae7138b08148b127ef0202b5cc7ad389e">&#9670;&#160;</a></span>getMqttLastError()</h2>
 
@@ -178,169 +159,6 @@ $(function(){initNavTree('mqtt__client_8h.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00099">99</a></p>
-
-</div>
-</div>
-<a id="a926aeaa7d52ebd60e289af8d6ef98600" name="a926aeaa7d52ebd60e289af8d6ef98600"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a926aeaa7d52ebd60e289af8d6ef98600">&#9670;&#160;</a></span>handleMQTT()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleMQTT </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00351">351</a></p>
-
-</div>
-</div>
-<a id="a58d6760f5e7f2aaf28fbb2155942d579" name="a58d6760f5e7f2aaf28fbb2155942d579"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a58d6760f5e7f2aaf28fbb2155942d579">&#9670;&#160;</a></span>handleMqttCommand()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleMqttCommand </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>cmd</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00741">741</a></p>
-
-</div>
-</div>
-<a id="a78b590745e792368420169e642494895" name="a78b590745e792368420169e642494895"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a78b590745e792368420169e642494895">&#9670;&#160;</a></span>invalidateHAConfigCache()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void invalidateHAConfigCache </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00804">804</a></p>
-
-</div>
-</div>
-<a id="a6f06b273defaebb581fdf1adc8969f40" name="a6f06b273defaebb581fdf1adc8969f40"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f06b273defaebb581fdf1adc8969f40">&#9670;&#160;</a></span>mqttCallback()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void mqttCallback </td>
-          <td>(</td>
-          <td class="paramtype">char *</td>          <td class="paramname"><span class="paramname"><em>topic</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">byte *</td>          <td class="paramname"><span class="paramname"><em>payload</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00789">789</a></p>
-
-</div>
-</div>
-<a id="aaa9510911ee8e47743efa916df00c13b" name="aaa9510911ee8e47743efa916df00c13b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa9510911ee8e47743efa916df00c13b">&#9670;&#160;</a></span>publishAvailability()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void publishAvailability </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>online</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00181">181</a></p>
-
-</div>
-</div>
-<a id="ac49364afe5be3cf4e718ab09d67017da" name="ac49364afe5be3cf4e718ab09d67017da"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac49364afe5be3cf4e718ab09d67017da">&#9670;&#160;</a></span>publishHomeAssistantConfig()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void publishHomeAssistantConfig </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00585">585</a></p>
-
-</div>
-</div>
-<a id="a9d23c1c2b3b5f9613a2215945494badb" name="a9d23c1c2b3b5f9613a2215945494badb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d23c1c2b3b5f9613a2215945494badb">&#9670;&#160;</a></span>publishSensorData()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void publishSensorData </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00497">497</a></p>
-
-</div>
-</div>
-<a id="a7a9b6d18074276b45340af02c443924a" name="a7a9b6d18074276b45340af02c443924a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a9b6d18074276b45340af02c443924a">&#9670;&#160;</a></span>removeHomeAssistantConfig()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void removeHomeAssistantConfig </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00725">725</a></p>
 
 </div>
 </div>
@@ -359,7 +177,167 @@ $(function(){initNavTree('mqtt__client_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00189">189</a></p>
+</div>
+</div>
+<a id="ab5a788a03971cae1e5e641ae9b1d7fe0" name="ab5a788a03971cae1e5e641ae9b1d7fe0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5a788a03971cae1e5e641ae9b1d7fe0">&#9670;&#160;</a></span>connectMQTT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool connectMQTT </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a926aeaa7d52ebd60e289af8d6ef98600" name="a926aeaa7d52ebd60e289af8d6ef98600"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a926aeaa7d52ebd60e289af8d6ef98600">&#9670;&#160;</a></span>handleMQTT()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleMQTT </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9d23c1c2b3b5f9613a2215945494badb" name="a9d23c1c2b3b5f9613a2215945494badb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9d23c1c2b3b5f9613a2215945494badb">&#9670;&#160;</a></span>publishSensorData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void publishSensorData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac49364afe5be3cf4e718ab09d67017da" name="ac49364afe5be3cf4e718ab09d67017da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac49364afe5be3cf4e718ab09d67017da">&#9670;&#160;</a></span>publishHomeAssistantConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void publishHomeAssistantConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa9510911ee8e47743efa916df00c13b" name="aaa9510911ee8e47743efa916df00c13b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa9510911ee8e47743efa916df00c13b">&#9670;&#160;</a></span>publishAvailability()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void publishAvailability </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>online</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a9b6d18074276b45340af02c443924a" name="a7a9b6d18074276b45340af02c443924a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a9b6d18074276b45340af02c443924a">&#9670;&#160;</a></span>removeHomeAssistantConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void removeHomeAssistantConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a78b590745e792368420169e642494895" name="a78b590745e792368420169e642494895"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a78b590745e792368420169e642494895">&#9670;&#160;</a></span>invalidateHAConfigCache()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void invalidateHAConfigCache </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a58d6760f5e7f2aaf28fbb2155942d579" name="a58d6760f5e7f2aaf28fbb2155942d579"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58d6760f5e7f2aaf28fbb2155942d579">&#9670;&#160;</a></span>handleMqttCommand()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleMqttCommand </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>cmd</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aee48b9097aaffe8238bbeae09e8fd944" name="aee48b9097aaffe8238bbeae09e8fd944"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee48b9097aaffe8238bbeae09e8fd944">&#9670;&#160;</a></span>mqttCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void mqttCallback </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>topic</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const byte *</td>          <td class="paramname"><span class="paramname"><em>payload</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned int</td>          <td class="paramname"><span class="paramname"><em>length</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -383,8 +361,6 @@ $(function(){initNavTree('mqtt__client_8h.html',''); initResizable(true); });
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="mqtt__client_8cpp_source.html">mqtt_client.cpp</a> строка <a class="el" href="mqtt__client_8cpp_source.html#l00024">24</a></p>
 
 </div>
 </div>

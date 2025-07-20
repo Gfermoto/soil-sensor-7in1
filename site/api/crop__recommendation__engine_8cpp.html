@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл src/business/crop_recommendation_engine.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/business/crop_recommendation_engine.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -97,6 +97,9 @@ $(function(){initNavTree('crop__recommendation__engine_8cpp.html',''); initResiz
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#func-members">Функции</a>  </div>
   <div class="headertitle"><div class="title">Файл crop_recommendation_engine.cpp</div></div>
 </div><!--header-->
 <div class="contents">
@@ -104,17 +107,175 @@ $(function(){initNavTree('crop__recommendation__engine_8cpp.html',''); initResiz
 <p>Реализация движка рекомендаций по культурам  
 <a href="#details">Подробнее...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="crop__recommendation__engine_8h_source.html">crop_recommendation_engine.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">../../include/jxct_config_vars.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="logger_8h_source.html">../../include/logger.h</a>&quot;</code><br />
 <code>#include &lt;ctime&gt;</code><br />
-</div>
-<p><a href="crop__recommendation__engine_8cpp_source.html">См. исходные тексты.</a></p>
+<code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">../../include/jxct_config_vars.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">../../include/jxct_constants.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="logger_8h_source.html">../../include/logger.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="validation__utils_8h_source.html">validation_utils.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRecommendationParams.html">RecommendationParams</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRecommendationParams_1_1Builder.html">RecommendationParams::Builder</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:a6875f9609c03530614608cf63548b19d" id="r_a6875f9609c03530614608cf63548b19d"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6875f9609c03530614608cf63548b19d">compensatePHInternal</a> (float pHRawValue, float temperatureValue, float moistureValue)</td></tr>
+<tr class="separator:a6875f9609c03530614608cf63548b19d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65ee2eb89935cdb909da750ca153c2e7" id="r_a65ee2eb89935cdb909da750ca153c2e7"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a65ee2eb89935cdb909da750ca153c2e7">compensateECInternal</a> (float ECRawValue, float temperatureValue)</td></tr>
+<tr class="separator:a65ee2eb89935cdb909da750ca153c2e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2df14d4854b2ddc0f5c61bd9372a984e" id="r_a2df14d4854b2ddc0f5c61bd9372a984e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2df14d4854b2ddc0f5c61bd9372a984e">compensateNPKInternal</a> (float NPKRawValue, float temperatureValue, float moistureValue)</td></tr>
+<tr class="separator:a2df14d4854b2ddc0f5c61bd9372a984e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d9f608ac1a54cf50c6962d1fd9e643f" id="r_a6d9f608ac1a54cf50c6962d1fd9e643f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCropConfig.html">CropConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6d9f608ac1a54cf50c6962d1fd9e643f">applySeasonalAdjustments</a> (const <a class="el" href="structCropConfig.html">CropConfig</a> &amp;base, const String &amp;season)</td></tr>
+<tr class="separator:a6d9f608ac1a54cf50c6962d1fd9e643f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90e7bb05ccb5ef0c224050c22ddf7330" id="r_a90e7bb05ccb5ef0c224050c22ddf7330"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCropConfig.html">CropConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a90e7bb05ccb5ef0c224050c22ddf7330">applyGrowingTypeAdjustments</a> (const <a class="el" href="structCropConfig.html">CropConfig</a> &amp;base, const String &amp;growingType)</td></tr>
+<tr class="separator:a90e7bb05ccb5ef0c224050c22ddf7330"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad389b9a72db017bea3289440e818dec5" id="r_ad389b9a72db017bea3289440e818dec5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structCropConfig.html">CropConfig</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad389b9a72db017bea3289440e818dec5">applySoilTypeAdjustments</a> (const <a class="el" href="structCropConfig.html">CropConfig</a> &amp;base, const String &amp;soilType)</td></tr>
+<tr class="separator:ad389b9a72db017bea3289440e818dec5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Реализация движка рекомендаций по культурам </p>
 <p>Вычисляет агрономические рекомендации на основе типа культуры и условий </p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="a6875f9609c03530614608cf63548b19d" name="a6875f9609c03530614608cf63548b19d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6875f9609c03530614608cf63548b19d">&#9670;&#160;</a></span>compensatePHInternal()</h2>
 
-<p class="definition">См. определение в файле <a class="el" href="crop__recommendation__engine_8cpp_source.html">crop_recommendation_engine.cpp</a></p>
-</div></div><!-- contents -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float compensatePHInternal </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>pHRawValue</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>temperatureValue</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>moistureValue</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a65ee2eb89935cdb909da750ca153c2e7" name="a65ee2eb89935cdb909da750ca153c2e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65ee2eb89935cdb909da750ca153c2e7">&#9670;&#160;</a></span>compensateECInternal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float compensateECInternal </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ECRawValue</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>temperatureValue</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2df14d4854b2ddc0f5c61bd9372a984e" name="a2df14d4854b2ddc0f5c61bd9372a984e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2df14d4854b2ddc0f5c61bd9372a984e">&#9670;&#160;</a></span>compensateNPKInternal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float compensateNPKInternal </td>
+          <td>(</td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>NPKRawValue</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>temperatureValue</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>moistureValue</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6d9f608ac1a54cf50c6962d1fd9e643f" name="a6d9f608ac1a54cf50c6962d1fd9e643f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d9f608ac1a54cf50c6962d1fd9e643f">&#9670;&#160;</a></span>applySeasonalAdjustments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCropConfig.html">CropConfig</a> applySeasonalAdjustments </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structCropConfig.html">CropConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>base</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>season</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a90e7bb05ccb5ef0c224050c22ddf7330" name="a90e7bb05ccb5ef0c224050c22ddf7330"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90e7bb05ccb5ef0c224050c22ddf7330">&#9670;&#160;</a></span>applyGrowingTypeAdjustments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCropConfig.html">CropConfig</a> applyGrowingTypeAdjustments </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structCropConfig.html">CropConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>base</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>growingType</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad389b9a72db017bea3289440e818dec5" name="ad389b9a72db017bea3289440e818dec5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad389b9a72db017bea3289440e818dec5">&#9670;&#160;</a></span>applySoilTypeAdjustments()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structCropConfig.html">CropConfig</a> applySoilTypeAdjustments </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structCropConfig.html">CropConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>base</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>soilType</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
