@@ -2,9 +2,10 @@
 #include <sstream>
 #include <iomanip>
 #include <strings.h>
-#include <mbedtls/sha256.h> // Added for mbedtls SHA256 functions
-#include <cstring> // Added for memcmp
-#include <string> // Added for String
+#include <mbedtls/sha256.h>
+#include <cstring>
+#include <string>
+#include <WString.h> // Добавляю для String
 
 namespace
 {
@@ -36,20 +37,10 @@ bool verifySha256Digest(const uint8_t* data, size_t dataLen, const uint8_t* expe
     mbedtls_sha256_context shaCtx;
     mbedtls_sha256_init(&shaCtx);
     
-    if (mbedtls_sha256_starts(&shaCtx, 0) != 0) {
-        mbedtls_sha256_free(&shaCtx);
-        return false;
-    }
-    
-    if (mbedtls_sha256_update(&shaCtx, data, dataLen) != 0) {
-        mbedtls_sha256_free(&shaCtx);
-        return false;
-    }
-    
-    if (mbedtls_sha256_finish(&shaCtx, calculatedDigest) != 0) {
-        mbedtls_sha256_free(&shaCtx);
-        return false;
-    }
+    // mbedtls функции возвращают void, поэтому просто вызываем их
+    mbedtls_sha256_starts(&shaCtx, 0);
+    mbedtls_sha256_update(&shaCtx, data, dataLen);
+    mbedtls_sha256_finish(&shaCtx, calculatedDigest);
     
     mbedtls_sha256_free(&shaCtx);
     
@@ -57,9 +48,9 @@ bool verifySha256Digest(const uint8_t* data, size_t dataLen, const uint8_t* expe
     return memcmp(calculatedDigest, expectedDigest, 32) == 0;
 }
 
-// Совместимая функция со старой сигнатурой
+}  // namespace
+
+// Глобальная функция для совместимости с ota_manager.cpp
 bool verifySha256Digest(const uint8_t* calcDigest, const char* expectedHex) {
     return isSha256HexEqual(calcDigest, expectedHex);
-}
-
-}  // namespace 
+} 
