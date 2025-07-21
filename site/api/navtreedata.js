@@ -24,13 +24,12 @@
 */
 var NAVTREE =
 [
-  [ "JXCT 7-в-1 Датчик Почвы", "index.html", [
+  [ "JXCT Soil Sensor 7-in-1", "index.html", [
     [ "Пространства имен", "namespaces.html", [
       [ "Пространства имен", "namespaces.html", "namespaces_dup" ],
       [ "Члены пространств имен", "namespacemembers.html", [
         [ "Указатель", "namespacemembers.html", null ],
         [ "Функции", "namespacemembers_func.html", null ],
-        [ "Переменные", "namespacemembers_vars.html", null ],
         [ "Перечисления", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
@@ -61,13 +60,13 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_i_crop_recommendation_engine_8h.html",
-"functions.html",
-"jxct__constants_8h.html#a9f358c4e2a454d1cc017d4af0dd9c3a8",
-"logger_8h.html#a7e4fda439418c6c40322f686422d9780",
-"routes__service_8cpp.html",
-"struct_rec_values.html",
-"web__templates_8cpp_source.html"
+"ICropRecommendationEngine_8h.html",
+"fake__sensor_8h_source.html",
+"jxct__constants_8h.html#a921d1345eebedb569ba46c07be781d2e",
+"logger_8h.html#a646cbac39f467aafa298c8dae1ff0091",
+"src_2calibration__manager_8h.html",
+"structSensorData.html#a6985f18dc44b23c48323f1f378e594db",
+"wifi__manager_8h.html#aef11d16b4d8e760671e3487b2106b6b2"
 ];
 
 var SYNCONMSG = 'нажмите на выключить для синхронизации панелей';

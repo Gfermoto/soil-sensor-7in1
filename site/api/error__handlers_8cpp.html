@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл src/web/error_handlers.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/web/error_handlers.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -109,16 +109,16 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <code>#include &quot;<a class="el" href="logger_8h_source.html">../../include/logger.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="web__routes_8h_source.html">../../include/web_routes.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">../wifi_manager.h</a>&quot;</code><br />
-</div>
-<p><a href="error__handlers_8cpp_source.html">См. исходные тексты.</a></p>
-<table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Классы</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_validation_range.html">ValidationRange</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structValidationRange.html">ValidationRange</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_http_request.html">HttpRequest</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structValidationRange_1_1Builder.html">ValidationRange::Builder</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_http_request_1_1_create_params.html">HttpRequest::CreateParams</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHttpRequest.html">HttpRequest</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structHttpRequest_1_1Builder.html">HttpRequest::Builder</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -129,9 +129,6 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <tr class="memitem:a15eab9f9a3dc97d41a860ab966800fa6" id="r_a15eab9f9a3dc97d41a860ab966800fa6"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a15eab9f9a3dc97d41a860ab966800fa6">validateConfigInput</a> (bool checkRequired)</td></tr>
 <tr class="memdesc:a15eab9f9a3dc97d41a860ab966800fa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Валидация входных данных конфигурации  <br /></td></tr>
 <tr class="separator:a15eab9f9a3dc97d41a860ab966800fa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72ddd36cf01d539c0b2575750fa997dc" id="r_a72ddd36cf01d539c0b2575750fa997dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a72ddd36cf01d539c0b2575750fa997dc">handleUploadError</a> (const String &amp;error)</td></tr>
-<tr class="memdesc:a72ddd36cf01d539c0b2575750fa997dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработка ошибок загрузки файлов  <br /></td></tr>
-<tr class="separator:a72ddd36cf01d539c0b2575750fa997dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef0848857422724f7d825dd8a33421b9" id="r_aef0848857422724f7d825dd8a33421b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aef0848857422724f7d825dd8a33421b9">isFeatureAvailable</a> ()</td></tr>
 <tr class="memdesc:aef0848857422724f7d825dd8a33421b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверка доступности функции в текущем режиме WiFi (без параметров)  <br /></td></tr>
 <tr class="separator:aef0848857422724f7d825dd8a33421b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -146,138 +143,6 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 <tr class="separator:a195f4874889e332e6f540a518d6c51fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
-<a id="a6fe24c5dc21b012791aecd16ab4dad96" name="a6fe24c5dc21b012791aecd16ab4dad96"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6fe24c5dc21b012791aecd16ab4dad96">&#9670;&#160;</a></span>generateValidationErrorResponse()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String generateValidationErrorResponse </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>errorMsg</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Генерация HTML ответа с ошибкой валидации </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">errorMsg</td><td>Сообщение об ошибке </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>HTML ответ с ошибкой </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00197">197</a></p>
-
-</div>
-</div>
-<a id="a200ff078a206ee5a0b44bc0c5411f3f5" name="a200ff078a206ee5a0b44bc0c5411f3f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a200ff078a206ee5a0b44bc0c5411f3f5">&#9670;&#160;</a></span>handleCriticalError()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleCriticalError </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>error</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработка критических ошибок сервера </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">error</td><td>Описание ошибки </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00213">213</a></p>
-
-</div>
-</div>
-<a id="a72ddd36cf01d539c0b2575750fa997dc" name="a72ddd36cf01d539c0b2575750fa997dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72ddd36cf01d539c0b2575750fa997dc">&#9670;&#160;</a></span>handleUploadError()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleUploadError </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>error</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработка ошибок загрузки файлов </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">error</td><td>Описание ошибки </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00159">159</a></p>
-
-</div>
-</div>
-<a id="aef0848857422724f7d825dd8a33421b9" name="aef0848857422724f7d825dd8a33421b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef0848857422724f7d825dd8a33421b9">&#9670;&#160;</a></span>isFeatureAvailable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool isFeatureAvailable </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Проверка доступности функции в текущем режиме WiFi (без параметров) </p>
-<dl class="section return"><dt>Возвращает</dt><dd>true если функция доступна в текущем режиме </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00183">183</a></p>
-
-</div>
-</div>
-<a id="a195f4874889e332e6f540a518d6c51fe" name="a195f4874889e332e6f540a518d6c51fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a195f4874889e332e6f540a518d6c51fe">&#9670;&#160;</a></span>isRouteAvailable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool isRouteAvailable </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>uri</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Проверка доступности маршрута в текущем режиме </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">uri</td><td>URI запроса </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>true если маршрут доступен </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00226">226</a></p>
-
-</div>
-</div>
 <a id="a833be2e68cb85aa95168dae9c9b128ef" name="a833be2e68cb85aa95168dae9c9b128ef"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a833be2e68cb85aa95168dae9c9b128ef">&#9670;&#160;</a></span>setupErrorHandlers()</h2>
 
@@ -294,8 +159,6 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 </div><div class="memdoc">
 
 <p>Настройка обработчиков ошибок (404, 500, и т.д.) </p>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00074">74</a></p>
 
 </div>
 </div>
@@ -323,7 +186,102 @@ $(function(){initNavTree('error__handlers_8cpp.html',''); initResizable(true); }
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>true если валидация прошла успешно </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00096">96</a></p>
+</div>
+</div>
+<a id="aef0848857422724f7d825dd8a33421b9" name="aef0848857422724f7d825dd8a33421b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef0848857422724f7d825dd8a33421b9">&#9670;&#160;</a></span>isFeatureAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isFeatureAvailable </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверка доступности функции в текущем режиме WiFi (без параметров) </p>
+<dl class="section return"><dt>Возвращает</dt><dd>true если функция доступна в текущем режиме </dd></dl>
+
+</div>
+</div>
+<a id="a6fe24c5dc21b012791aecd16ab4dad96" name="a6fe24c5dc21b012791aecd16ab4dad96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fe24c5dc21b012791aecd16ab4dad96">&#9670;&#160;</a></span>generateValidationErrorResponse()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateValidationErrorResponse </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>errorMsg</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация HTML ответа с ошибкой валидации </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorMsg</td><td>Сообщение об ошибке </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML ответ с ошибкой </dd></dl>
+
+</div>
+</div>
+<a id="a200ff078a206ee5a0b44bc0c5411f3f5" name="a200ff078a206ee5a0b44bc0c5411f3f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a200ff078a206ee5a0b44bc0c5411f3f5">&#9670;&#160;</a></span>handleCriticalError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleCriticalError </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>error</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработка критических ошибок сервера </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">error</td><td>Описание ошибки </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a195f4874889e332e6f540a518d6c51fe" name="a195f4874889e332e6f540a518d6c51fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a195f4874889e332e6f540a518d6c51fe">&#9670;&#160;</a></span>isRouteAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isRouteAvailable </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>uri</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверка доступности маршрута в текущем режиме </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uri</td><td>URI запроса </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true если маршрут доступен </dd></dl>
 
 </div>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл include/web_routes.h</title>
+<title>JXCT Soil Sensor 7-in-1: Файл include/web_routes.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -178,15 +178,6 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 <tr class="memitem:a43999630c470d7068023c4f423c0722c" id="r_a43999630c470d7068023c4f423c0722c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43999630c470d7068023c4f423c0722c">handleReadingsUpload</a> ()</td></tr>
 <tr class="memdesc:a43999630c470d7068023c4f423c0722c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик загрузки калибровочных файлов  <br /></td></tr>
 <tr class="separator:a43999630c470d7068023c4f423c0722c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a74cbd7893b5cf9b3fa5fd34a4fb985ba" id="r_a74cbd7893b5cf9b3fa5fd34a4fb985ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a74cbd7893b5cf9b3fa5fd34a4fb985ba">setupCalibrationRoutes</a> ()</td></tr>
-<tr class="memdesc:a74cbd7893b5cf9b3fa5fd34a4fb985ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Настройка маршрутов калибровки  <br /></td></tr>
-<tr class="separator:a74cbd7893b5cf9b3fa5fd34a4fb985ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a845819f66f38cc796aa80b1b34bf1062" id="r_a845819f66f38cc796aa80b1b34bf1062"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a845819f66f38cc796aa80b1b34bf1062">handleCalibration</a> ()</td></tr>
-<tr class="memdesc:a845819f66f38cc796aa80b1b34bf1062"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик страницы калибровки  <br /></td></tr>
-<tr class="separator:a845819f66f38cc796aa80b1b34bf1062"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39afb173dda384eaffde7b3c0f136af4" id="r_a39afb173dda384eaffde7b3c0f136af4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a39afb173dda384eaffde7b3c0f136af4">handleCalibrationUpload</a> ()</td></tr>
-<tr class="memdesc:a39afb173dda384eaffde7b3c0f136af4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Обработчик загрузки калибровочных данных  <br /></td></tr>
-<tr class="separator:a39afb173dda384eaffde7b3c0f136af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a195f4874889e332e6f540a518d6c51fe" id="r_a195f4874889e332e6f540a518d6c51fe"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a195f4874889e332e6f540a518d6c51fe">isRouteAvailable</a> (const String &amp;uri)</td></tr>
 <tr class="memdesc:a195f4874889e332e6f540a518d6c51fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Проверка доступности маршрута в текущем режиме  <br /></td></tr>
 <tr class="separator:a195f4874889e332e6f540a518d6c51fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -260,175 +251,6 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 <tr class="separator:a6385fd6a6118223757bf00a8ba828562"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
-<a id="a0320c55f4de318df92de8a73e8e7d828" name="a0320c55f4de318df92de8a73e8e7d828"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0320c55f4de318df92de8a73e8e7d828">&#9670;&#160;</a></span>checkCSRFSafety()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool checkCSRFSafety </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Middleware для проверки CSRF на POST запросах </p>
-<dl class="section return"><dt>Возвращает</dt><dd>true если запрос безопасен (GET или валидный CSRF токен) </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00102">102</a></p>
-
-</div>
-</div>
-<a id="a1d57b5edf50f600cc5d02641cb4510a0" name="a1d57b5edf50f600cc5d02641cb4510a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1d57b5edf50f600cc5d02641cb4510a0">&#9670;&#160;</a></span>generateApModeUnavailablePage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String generateApModeUnavailablePage </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>titleText</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>iconText</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Генерация страницы "Недоступно в AP режиме". </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">title</td><td>Заголовок страницы </td></tr>
-    <tr><td class="paramname">icon</td><td>Иконка страницы </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00347">347</a></p>
-
-</div>
-</div>
-<a id="a03709c52c03116ff221a501c3f0c69b2" name="a03709c52c03116ff221a501c3f0c69b2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a03709c52c03116ff221a501c3f0c69b2">&#9670;&#160;</a></span>generateBasePage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String generateBasePage </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>content</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Генерация базовой HTML структуры с навигацией </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">title</td><td>Заголовок страницы </td></tr>
-    <tr><td class="paramname">content</td><td>Содержимое страницы </td></tr>
-    <tr><td class="paramname">icon</td><td>Иконка страницы (опционально) </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00165">165</a></p>
-
-</div>
-</div>
-<a id="ae920cb227a775afac1415bab5339c623" name="ae920cb227a775afac1415bab5339c623"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae920cb227a775afac1415bab5339c623">&#9670;&#160;</a></span>generateCheckboxField()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String generateCheckboxField </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>fieldId</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>fieldName</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>labelText</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>checked</em></span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Генерация поля чекбокса </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">fieldId</td><td>ID элемента </td></tr>
-    <tr><td class="paramname">fieldName</td><td>Имя элемента </td></tr>
-    <tr><td class="paramname">label</td><td>Подпись </td></tr>
-    <tr><td class="paramname">checked</td><td>Состояние чекбокса </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>HTML чекбокс </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00290">290</a></p>
-
-</div>
-</div>
-<a id="a6ea1f07e47da42a04aa3dbf1829ceb61" name="a6ea1f07e47da42a04aa3dbf1829ceb61"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6ea1f07e47da42a04aa3dbf1829ceb61">&#9670;&#160;</a></span>generateConfigSection()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String generateConfigSection </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>content</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>helpText</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Генерация секции конфигурации </p>
-
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00240">240</a></p>
-
-</div>
-</div>
 <a id="ab27a975e89338b0b23a40e028b1ae9b2" name="ab27a975e89338b0b23a40e028b1ae9b2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab27a975e89338b0b23a40e028b1ae9b2">&#9670;&#160;</a></span>generateCSRFToken()</h2>
 
@@ -447,40 +269,510 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 <p>Генерация CSRF токена </p>
 <dl class="section return"><dt>Возвращает</dt><dd>Строка с уникальным CSRF токеном </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00031">31</a></p>
-
 </div>
 </div>
-<a id="a104303f7b44cf43e481a713261d52457" name="a104303f7b44cf43e481a713261d52457"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a104303f7b44cf43e481a713261d52457">&#9670;&#160;</a></span>generateErrorPage()</h2>
+<a id="a936ecd18be81531b306c2c4705f7e860" name="a936ecd18be81531b306c2c4705f7e860"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a936ecd18be81531b306c2c4705f7e860">&#9670;&#160;</a></span>validateCSRFToken()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">String generateErrorPage </td>
+          <td class="memname">bool validateCSRFToken </td>
           <td>(</td>
-          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>errorCode</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>token</em></span></td><td>)</td>
           <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>errorMessage</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Генерация страницы ошибки </p>
+<p>Проверка CSRF токена </p>
 <dl class="params"><dt>Аргументы</dt><dd>
   <table class="params">
-    <tr><td class="paramname">errorCode</td><td>Код ошибки </td></tr>
-    <tr><td class="paramname">errorMessage</td><td>Сообщение об ошибке </td></tr>
+    <tr><td class="paramname">token</td><td>Токен для проверки </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница с ошибкой </dd></dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true если токен валиден </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00171">171</a></p>
+</div>
+</div>
+<a id="aab8be89322026594573b8f3c8064bbbc" name="aab8be89322026594573b8f3c8064bbbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab8be89322026594573b8f3c8064bbbc">&#9670;&#160;</a></span>getCSRFHiddenField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String getCSRFHiddenField </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Получение скрытого поля с CSRF токеном для форм </p>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML строка с hidden input для CSRF токена </dd></dl>
+
+</div>
+</div>
+<a id="a0320c55f4de318df92de8a73e8e7d828" name="a0320c55f4de318df92de8a73e8e7d828"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0320c55f4de318df92de8a73e8e7d828">&#9670;&#160;</a></span>checkCSRFSafety()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool checkCSRFSafety </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Middleware для проверки CSRF на POST запросах </p>
+<dl class="section return"><dt>Возвращает</dt><dd>true если запрос безопасен (GET или валидный CSRF токен) </dd></dl>
+
+</div>
+</div>
+<a id="ac922ac6444b8b990e13e3746ca931065" name="ac922ac6444b8b990e13e3746ca931065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac922ac6444b8b990e13e3746ca931065">&#9670;&#160;</a></span>initCSRFProtection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initCSRFProtection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Инициализация CSRF защиты </p>
+
+</div>
+</div>
+<a id="ad9d33eff9bf83f09111cc522049930bc" name="ad9d33eff9bf83f09111cc522049930bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9d33eff9bf83f09111cc522049930bc">&#9670;&#160;</a></span>methodToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String methodToString </td>
+          <td>(</td>
+          <td class="paramtype">HTTPMethod</td>          <td class="paramname"><span class="paramname"><em>method</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Преобразование HTTP метода в строку </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>HTTP метод </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Строковое представление метода </dd></dl>
+
+</div>
+</div>
+<a id="a6a7cf6b6ba01d34721e1a47ea65af867" name="a6a7cf6b6ba01d34721e1a47ea65af867"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a7cf6b6ba01d34721e1a47ea65af867">&#9670;&#160;</a></span>setupMainRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupMainRoutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Настройка основных маршрутов (/, /save, /status) </p>
+
+</div>
+</div>
+<a id="a8427468f39342a1990703e9f5ce7fd29" name="a8427468f39342a1990703e9f5ce7fd29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8427468f39342a1990703e9f5ce7fd29">&#9670;&#160;</a></span>handleRoot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleRoot </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик главной страницы (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>) </p>
+
+</div>
+</div>
+<a id="a1e811785ccbaccda2e3e3457971720cb" name="a1e811785ccbaccda2e3e3457971720cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e811785ccbaccda2e3e3457971720cb">&#9670;&#160;</a></span>handleStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик страницы статуса (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>) </p>
+
+</div>
+</div>
+<a id="a0e7c19a3399afd6ceae18c4512cca24c" name="a0e7c19a3399afd6ceae18c4512cca24c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e7c19a3399afd6ceae18c4512cca24c">&#9670;&#160;</a></span>setupConfigRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupConfigRoutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Настройка маршрутов для конфигурации </p>
+
+</div>
+</div>
+<a id="a66a3c3cf6ad057d6d3dbceda7f120a73" name="a66a3c3cf6ad057d6d3dbceda7f120a73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a66a3c3cf6ad057d6d3dbceda7f120a73">&#9670;&#160;</a></span>handleIntervals()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleIntervals </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик страницы настроек интервалов </p>
+
+</div>
+</div>
+<a id="a2cb21fe9b6b83094c18247812977bb85" name="a2cb21fe9b6b83094c18247812977bb85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2cb21fe9b6b83094c18247812977bb85">&#9670;&#160;</a></span>handleAdvanced()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleAdvanced </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик страницы сложных настроек (лог, алгоритм, временная зона) </p>
+
+</div>
+</div>
+<a id="a806651e5fe403b18cc043dfdaf34ab12" name="a806651e5fe403b18cc043dfdaf34ab12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a806651e5fe403b18cc043dfdaf34ab12">&#9670;&#160;</a></span>handleApiConfigImport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleApiConfigImport </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик API импорта конфигурации </p>
+
+</div>
+</div>
+<a id="ae13d89074e240a307ef4ad70c6acd5f0" name="ae13d89074e240a307ef4ad70c6acd5f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae13d89074e240a307ef4ad70c6acd5f0">&#9670;&#160;</a></span>handleApiConfigExport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleApiConfigExport </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик API экспорта конфигурации </p>
+
+</div>
+</div>
+<a id="a32c74f47a23de058ee90a43af2dff066" name="a32c74f47a23de058ee90a43af2dff066"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32c74f47a23de058ee90a43af2dff066">&#9670;&#160;</a></span>setupServiceRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupServiceRoutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Настройка сервисных маршрутов (/reset, /status, /info) </p>
+
+</div>
+</div>
+<a id="a28576d900afa7ce8f3f4177cb38f61b9" name="a28576d900afa7ce8f3f4177cb38f61b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28576d900afa7ce8f3f4177cb38f61b9">&#9670;&#160;</a></span>handleReset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleReset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик сброса системы </p>
+
+</div>
+</div>
+<a id="ad77ad5405e56bcd9287e86ed07e065c3" name="ad77ad5405e56bcd9287e86ed07e065c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad77ad5405e56bcd9287e86ed07e065c3">&#9670;&#160;</a></span>handleInfo()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleInfo </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик информации о системе </p>
+
+</div>
+</div>
+<a id="aca63e6b9c5fd7f5d563797216fb07b7c" name="aca63e6b9c5fd7f5d563797216fb07b7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca63e6b9c5fd7f5d563797216fb07b7c">&#9670;&#160;</a></span>handleUpdateStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleUpdateStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик обновления статуса </p>
+
+</div>
+</div>
+<a id="aed1136f683a386e56678e05fc3747972" name="aed1136f683a386e56678e05fc3747972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed1136f683a386e56678e05fc3747972">&#9670;&#160;</a></span>setupDataRoutes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupDataRoutes </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Настройка маршрутов для данных датчиков </p>
+
+</div>
+</div>
+<a id="a636822ce9463007c8c3e5b10d00b26e1" name="a636822ce9463007c8c3e5b10d00b26e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a636822ce9463007c8c3e5b10d00b26e1">&#9670;&#160;</a></span>sendSensorJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void sendSensorJson </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Отправка JSON данных датчиков </p>
+
+</div>
+</div>
+<a id="a8d9f48b293b7ec9974c1d7241436529b" name="a8d9f48b293b7ec9974c1d7241436529b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d9f48b293b7ec9974c1d7241436529b">&#9670;&#160;</a></span>handleReadings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleReadings </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик главной страницы показаний </p>
+
+</div>
+</div>
+<a id="a43999630c470d7068023c4f423c0722c" name="a43999630c470d7068023c4f423c0722c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43999630c470d7068023c4f423c0722c">&#9670;&#160;</a></span>handleReadingsUpload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleReadingsUpload </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработчик загрузки калибровочных файлов </p>
+
+</div>
+</div>
+<a id="a195f4874889e332e6f540a518d6c51fe" name="a195f4874889e332e6f540a518d6c51fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a195f4874889e332e6f540a518d6c51fe">&#9670;&#160;</a></span>isRouteAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isRouteAvailable </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>uri</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверка доступности маршрута в текущем режиме </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">uri</td><td>URI запроса </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true если маршрут доступен </dd></dl>
+
+</div>
+</div>
+<a id="aef0848857422724f7d825dd8a33421b9" name="aef0848857422724f7d825dd8a33421b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef0848857422724f7d825dd8a33421b9">&#9670;&#160;</a></span>isFeatureAvailable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isFeatureAvailable </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Проверка доступности функции в текущем режиме WiFi (без параметров) </p>
+<dl class="section return"><dt>Возвращает</dt><dd>true если функция доступна в текущем режиме </dd></dl>
+
+</div>
+</div>
+<a id="a1a62e7c40bff885d97f6018743bec642" name="a1a62e7c40bff885d97f6018743bec642"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a62e7c40bff885d97f6018743bec642">&#9670;&#160;</a></span>logWebRequest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void logWebRequest </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>method</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>uri</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>clientIP</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Логирование веб-запросов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">method</td><td>HTTP метод </td></tr>
+    <tr><td class="paramname">uri</td><td>URI запроса </td></tr>
+    <tr><td class="paramname">clientIP</td><td>IP клиента </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -520,35 +812,33 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Генерация формы с общими элементами </p>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00215">215</a></p>
-
 </div>
 </div>
-<a id="af68ca26d269d5d8ea7fa42fc78a5a919" name="af68ca26d269d5d8ea7fa42fc78a5a919"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af68ca26d269d5d8ea7fa42fc78a5a919">&#9670;&#160;</a></span>generateFormError()</h2>
+<a id="a6ea1f07e47da42a04aa3dbf1829ceb61" name="a6ea1f07e47da42a04aa3dbf1829ceb61"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ea1f07e47da42a04aa3dbf1829ceb61">&#9670;&#160;</a></span>generateConfigSection()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">String generateFormError </td>
+          <td class="memname">String generateConfigSection </td>
           <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>content</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>helpText</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Генерация сообщения об ошибке в форме </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">message</td><td>Текст сообщения </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>HTML блок с ошибкой </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00336">336</a></p>
+<p>Генерация секции конфигурации </p>
 
 </div>
 </div>
@@ -598,7 +888,38 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Генерация поля ввода </p>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00275">275</a></p>
+</div>
+</div>
+<a id="ae920cb227a775afac1415bab5339c623" name="ae920cb227a775afac1415bab5339c623"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae920cb227a775afac1415bab5339c623">&#9670;&#160;</a></span>generateCheckboxField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateCheckboxField </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>id</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>name</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>label</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>checked</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация поля чекбокса </p>
 
 </div>
 </div>
@@ -648,18 +969,35 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Генерация числового поля с валидацией </p>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00325">325</a></p>
-
 </div>
 </div>
-<a id="ad4f3a6e85baef9b2d3e2aec977c3a321" name="ad4f3a6e85baef9b2d3e2aec977c3a321"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad4f3a6e85baef9b2d3e2aec977c3a321">&#9670;&#160;</a></span>generatePageFooter()</h2>
+<a id="af68ca26d269d5d8ea7fa42fc78a5a919" name="af68ca26d269d5d8ea7fa42fc78a5a919"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af68ca26d269d5d8ea7fa42fc78a5a919">&#9670;&#160;</a></span>generateFormError()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">String generatePageFooter </td>
+          <td class="memname">String generateFormError </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>message</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация сообщения об ошибке в форме </p>
+
+</div>
+</div>
+<a id="a833be2e68cb85aa95168dae9c9b128ef" name="a833be2e68cb85aa95168dae9c9b128ef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a833be2e68cb85aa95168dae9c9b128ef">&#9670;&#160;</a></span>setupErrorHandlers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void setupErrorHandlers </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
@@ -667,10 +1005,58 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p>Генерация футера HTML страницы </p>
-<dl class="section return"><dt>Возвращает</dt><dd>HTML футер </dd></dl>
+<p>Настройка обработчиков ошибок (404, 500, и т.д.) </p>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00150">150</a></p>
+</div>
+</div>
+<a id="ad738b39272f7fc383f5bb83814fb1a67" name="ad738b39272f7fc383f5bb83814fb1a67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad738b39272f7fc383f5bb83814fb1a67">&#9670;&#160;</a></span>validateConfigInput()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool validateConfigInput </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>checkRequired</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Валидация входных данных конфигурации </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">checkRequired</td><td>Проверять ли обязательные поля </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>true если валидация прошла успешно </dd></dl>
+
+</div>
+</div>
+<a id="a72ddd36cf01d539c0b2575750fa997dc" name="a72ddd36cf01d539c0b2575750fa997dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72ddd36cf01d539c0b2575750fa997dc">&#9670;&#160;</a></span>handleUploadError()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void handleUploadError </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>error</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Обработка ошибок загрузки файлов </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">error</td><td>Описание ошибки </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -703,7 +1089,56 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>HTML заголовок </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00145">145</a></p>
+</div>
+</div>
+<a id="ad4f3a6e85baef9b2d3e2aec977c3a321" name="ad4f3a6e85baef9b2d3e2aec977c3a321"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad4f3a6e85baef9b2d3e2aec977c3a321">&#9670;&#160;</a></span>generatePageFooter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generatePageFooter </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация футера HTML страницы </p>
+<dl class="section return"><dt>Возвращает</dt><dd>HTML футер </dd></dl>
+
+</div>
+</div>
+<a id="a104303f7b44cf43e481a713261d52457" name="a104303f7b44cf43e481a713261d52457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a104303f7b44cf43e481a713261d52457">&#9670;&#160;</a></span>generateErrorPage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateErrorPage </td>
+          <td>(</td>
+          <td class="paramtype">int</td>          <td class="paramname"><span class="paramname"><em>errorCode</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>errorMessage</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация страницы ошибки </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">errorCode</td><td>Код ошибки </td></tr>
+    <tr><td class="paramname">errorMessage</td><td>Сообщение об ошибке </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница с ошибкой </dd></dl>
 
 </div>
 </div>
@@ -748,7 +1183,42 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница с сообщением об успехе </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="web__templates_8cpp_source.html">web_templates.cpp</a> строка <a class="el" href="web__templates_8cpp_source.html#l00180">180</a></p>
+</div>
+</div>
+<a id="a03709c52c03116ff221a501c3f0c69b2" name="a03709c52c03116ff221a501c3f0c69b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03709c52c03116ff221a501c3f0c69b2">&#9670;&#160;</a></span>generateBasePage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String generateBasePage </td>
+          <td>(</td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>content</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Генерация базовой HTML структуры с навигацией </p>
+<dl class="params"><dt>Аргументы</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">title</td><td>Заголовок страницы </td></tr>
+    <tr><td class="paramname">content</td><td>Содержимое страницы </td></tr>
+    <tr><td class="paramname">icon</td><td>Иконка страницы (опционально) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Возвращает</dt><dd>Полная HTML страница </dd></dl>
 
 </div>
 </div>
@@ -776,127 +1246,6 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </dl>
 <dl class="section return"><dt>Возвращает</dt><dd>HTML ответ с ошибкой </dd></dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00197">197</a></p>
-
-</div>
-</div>
-<a id="aab8be89322026594573b8f3c8064bbbc" name="aab8be89322026594573b8f3c8064bbbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab8be89322026594573b8f3c8064bbbc">&#9670;&#160;</a></span>getCSRFHiddenField()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String getCSRFHiddenField </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Получение скрытого поля с CSRF токеном для форм </p>
-<dl class="section return"><dt>Возвращает</dt><dd>HTML строка с hidden input для CSRF токена </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00091">91</a></p>
-
-</div>
-</div>
-<a id="a2cb21fe9b6b83094c18247812977bb85" name="a2cb21fe9b6b83094c18247812977bb85"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2cb21fe9b6b83094c18247812977bb85">&#9670;&#160;</a></span>handleAdvanced()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleAdvanced </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик страницы сложных настроек (лог, алгоритм, временная зона) </p>
-
-</div>
-</div>
-<a id="ae13d89074e240a307ef4ad70c6acd5f0" name="ae13d89074e240a307ef4ad70c6acd5f0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae13d89074e240a307ef4ad70c6acd5f0">&#9670;&#160;</a></span>handleApiConfigExport()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleApiConfigExport </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик API экспорта конфигурации </p>
-
-</div>
-</div>
-<a id="a806651e5fe403b18cc043dfdaf34ab12" name="a806651e5fe403b18cc043dfdaf34ab12"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a806651e5fe403b18cc043dfdaf34ab12">&#9670;&#160;</a></span>handleApiConfigImport()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleApiConfigImport </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик API импорта конфигурации </p>
-
-</div>
-</div>
-<a id="a845819f66f38cc796aa80b1b34bf1062" name="a845819f66f38cc796aa80b1b34bf1062"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a845819f66f38cc796aa80b1b34bf1062">&#9670;&#160;</a></span>handleCalibration()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleCalibration </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик страницы калибровки </p>
-
-</div>
-</div>
-<a id="a39afb173dda384eaffde7b3c0f136af4" name="a39afb173dda384eaffde7b3c0f136af4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a39afb173dda384eaffde7b3c0f136af4">&#9670;&#160;</a></span>handleCalibrationUpload()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleCalibrationUpload </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик загрузки калибровочных данных </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__calibration_8cpp_source.html">routes_calibration.cpp</a> строка <a class="el" href="routes__calibration_8cpp_source.html#l00092">92</a></p>
-
 </div>
 </div>
 <a id="a200ff078a206ee5a0b44bc0c5411f3f5" name="a200ff078a206ee5a0b44bc0c5411f3f5"></a>
@@ -922,463 +1271,28 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
   </dd>
 </dl>
 
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00213">213</a></p>
-
 </div>
 </div>
-<a id="ad77ad5405e56bcd9287e86ed07e065c3" name="ad77ad5405e56bcd9287e86ed07e065c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad77ad5405e56bcd9287e86ed07e065c3">&#9670;&#160;</a></span>handleInfo()</h2>
+<a id="a1d57b5edf50f600cc5d02641cb4510a0" name="a1d57b5edf50f600cc5d02641cb4510a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d57b5edf50f600cc5d02641cb4510a0">&#9670;&#160;</a></span>generateApModeUnavailablePage()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void handleInfo </td>
+          <td class="memname">String generateApModeUnavailablePage </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик информации о системе </p>
-
-</div>
-</div>
-<a id="a66a3c3cf6ad057d6d3dbceda7f120a73" name="a66a3c3cf6ad057d6d3dbceda7f120a73"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66a3c3cf6ad057d6d3dbceda7f120a73">&#9670;&#160;</a></span>handleIntervals()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleIntervals </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик страницы настроек интервалов </p>
-
-</div>
-</div>
-<a id="a8d9f48b293b7ec9974c1d7241436529b" name="a8d9f48b293b7ec9974c1d7241436529b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8d9f48b293b7ec9974c1d7241436529b">&#9670;&#160;</a></span>handleReadings()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleReadings </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик главной страницы показаний </p>
-
-</div>
-</div>
-<a id="a43999630c470d7068023c4f423c0722c" name="a43999630c470d7068023c4f423c0722c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a43999630c470d7068023c4f423c0722c">&#9670;&#160;</a></span>handleReadingsUpload()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleReadingsUpload </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик загрузки калибровочных файлов </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00252">252</a></p>
-
-</div>
-</div>
-<a id="a28576d900afa7ce8f3f4177cb38f61b9" name="a28576d900afa7ce8f3f4177cb38f61b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a28576d900afa7ce8f3f4177cb38f61b9">&#9670;&#160;</a></span>handleReset()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleReset </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик сброса системы </p>
-
-</div>
-</div>
-<a id="a8427468f39342a1990703e9f5ce7fd29" name="a8427468f39342a1990703e9f5ce7fd29"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8427468f39342a1990703e9f5ce7fd29">&#9670;&#160;</a></span>handleRoot()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleRoot </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик главной страницы (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>) </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__main_8cpp_source.html">routes_main.cpp</a> строка <a class="el" href="routes__main_8cpp_source.html#l00161">161</a></p>
-
-</div>
-</div>
-<a id="a1e811785ccbaccda2e3e3457971720cb" name="a1e811785ccbaccda2e3e3457971720cb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1e811785ccbaccda2e3e3457971720cb">&#9670;&#160;</a></span>handleStatus()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleStatus </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик страницы статуса (уже существует в <a class="el" href="wifi__manager_8cpp.html" title="Управление WiFi, веб-интерфейсом и индикацией">wifi_manager.cpp</a>) </p>
-
-<p class="definition">См. определение в файле <a class="el" href="wifi__manager_8cpp_source.html">wifi_manager.cpp</a> строка <a class="el" href="wifi__manager_8cpp_source.html#l00381">381</a></p>
-
-</div>
-</div>
-<a id="aca63e6b9c5fd7f5d563797216fb07b7c" name="aca63e6b9c5fd7f5d563797216fb07b7c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aca63e6b9c5fd7f5d563797216fb07b7c">&#9670;&#160;</a></span>handleUpdateStatus()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleUpdateStatus </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработчик обновления статуса </p>
-
-</div>
-</div>
-<a id="a72ddd36cf01d539c0b2575750fa997dc" name="a72ddd36cf01d539c0b2575750fa997dc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a72ddd36cf01d539c0b2575750fa997dc">&#9670;&#160;</a></span>handleUploadError()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void handleUploadError </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>error</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Обработка ошибок загрузки файлов </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">error</td><td>Описание ошибки </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00159">159</a></p>
-
-</div>
-</div>
-<a id="ac922ac6444b8b990e13e3746ca931065" name="ac922ac6444b8b990e13e3746ca931065"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac922ac6444b8b990e13e3746ca931065">&#9670;&#160;</a></span>initCSRFProtection()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void initCSRFProtection </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Инициализация CSRF защиты </p>
-
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00177">177</a></p>
-
-</div>
-</div>
-<a id="aef0848857422724f7d825dd8a33421b9" name="aef0848857422724f7d825dd8a33421b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef0848857422724f7d825dd8a33421b9">&#9670;&#160;</a></span>isFeatureAvailable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool isFeatureAvailable </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Проверка доступности функции в текущем режиме WiFi (без параметров) </p>
-<dl class="section return"><dt>Возвращает</dt><dd>true если функция доступна в текущем режиме </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00183">183</a></p>
-
-</div>
-</div>
-<a id="a195f4874889e332e6f540a518d6c51fe" name="a195f4874889e332e6f540a518d6c51fe"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a195f4874889e332e6f540a518d6c51fe">&#9670;&#160;</a></span>isRouteAvailable()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool isRouteAvailable </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>uri</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Проверка доступности маршрута в текущем режиме </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">uri</td><td>URI запроса </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>true если маршрут доступен </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00226">226</a></p>
-
-</div>
-</div>
-<a id="a1a62e7c40bff885d97f6018743bec642" name="a1a62e7c40bff885d97f6018743bec642"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1a62e7c40bff885d97f6018743bec642">&#9670;&#160;</a></span>logWebRequest()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void logWebRequest </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>method</em></span>, </td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>title</em></span>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>uri</em></span>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>clientIP</em></span>&#160;)</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p>Логирование веб-запросов </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">method</td><td>HTTP метод </td></tr>
-    <tr><td class="paramname">uri</td><td>URI запроса </td></tr>
-    <tr><td class="paramname">clientIP</td><td>IP клиента </td></tr>
-  </table>
-  </dd>
-</dl>
-
-<p class="definition">См. определение в файле <a class="el" href="web__routes_8h_source.html">web_routes.h</a> строка <a class="el" href="web__routes_8h_source.html#l00190">190</a></p>
-
-</div>
-</div>
-<a id="ad9d33eff9bf83f09111cc522049930bc" name="ad9d33eff9bf83f09111cc522049930bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9d33eff9bf83f09111cc522049930bc">&#9670;&#160;</a></span>methodToString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String methodToString </td>
-          <td>(</td>
-          <td class="paramtype">HTTPMethod</td>          <td class="paramname"><span class="paramname"><em>method</em></span></td><td>)</td>
-          <td></td>
+          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>icon</em></span>&#160;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Преобразование HTTP метода в строку </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">method</td><td>HTTP метод </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>Строковое представление метода </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00150">150</a></p>
-
-</div>
-</div>
-<a id="a636822ce9463007c8c3e5b10d00b26e1" name="a636822ce9463007c8c3e5b10d00b26e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a636822ce9463007c8c3e5b10d00b26e1">&#9670;&#160;</a></span>sendSensorJson()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void sendSensorJson </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Отправка JSON данных датчиков </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00316">316</a></p>
-
-</div>
-</div>
-<a id="a74cbd7893b5cf9b3fa5fd34a4fb985ba" name="a74cbd7893b5cf9b3fa5fd34a4fb985ba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74cbd7893b5cf9b3fa5fd34a4fb985ba">&#9670;&#160;</a></span>setupCalibrationRoutes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setupCalibrationRoutes </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Настройка маршрутов калибровки </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__calibration_8cpp_source.html">routes_calibration.cpp</a> строка <a class="el" href="routes__calibration_8cpp_source.html#l00151">151</a></p>
-
-</div>
-</div>
-<a id="a0e7c19a3399afd6ceae18c4512cca24c" name="a0e7c19a3399afd6ceae18c4512cca24c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0e7c19a3399afd6ceae18c4512cca24c">&#9670;&#160;</a></span>setupConfigRoutes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setupConfigRoutes </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Настройка маршрутов для конфигурации </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__config_8cpp_source.html">routes_config.cpp</a> строка <a class="el" href="routes__config_8cpp_source.html#l00086">86</a></p>
-
-</div>
-</div>
-<a id="aed1136f683a386e56678e05fc3747972" name="aed1136f683a386e56678e05fc3747972"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aed1136f683a386e56678e05fc3747972">&#9670;&#160;</a></span>setupDataRoutes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setupDataRoutes </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Настройка маршрутов для данных датчиков </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__data_8cpp_source.html">routes_data.cpp</a> строка <a class="el" href="routes__data_8cpp_source.html#l00453">453</a></p>
-
-</div>
-</div>
-<a id="a833be2e68cb85aa95168dae9c9b128ef" name="a833be2e68cb85aa95168dae9c9b128ef"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a833be2e68cb85aa95168dae9c9b128ef">&#9670;&#160;</a></span>setupErrorHandlers()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setupErrorHandlers </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Настройка обработчиков ошибок (404, 500, и т.д.) </p>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00074">74</a></p>
-
-</div>
-</div>
-<a id="a6a7cf6b6ba01d34721e1a47ea65af867" name="a6a7cf6b6ba01d34721e1a47ea65af867"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a7cf6b6ba01d34721e1a47ea65af867">&#9670;&#160;</a></span>setupMainRoutes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setupMainRoutes </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Настройка основных маршрутов (/, /save, /status) </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__main_8cpp_source.html">routes_main.cpp</a> строка <a class="el" href="routes__main_8cpp_source.html#l00009">9</a></p>
+<p>Генерация страницы "Недоступно в AP режиме". </p>
 
 </div>
 </div>
@@ -1399,8 +1313,6 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 
 <p>Настройка маршрутов OTA обновлений </p>
 
-<p class="definition">См. определение в файле <a class="el" href="routes__ota_8cpp_source.html">routes_ota.cpp</a> строка <a class="el" href="routes__ota_8cpp_source.html#l00030">30</a></p>
-
 </div>
 </div>
 <a id="a1330f997c3d2a043a5ac4efc8f9906e7" name="a1330f997c3d2a043a5ac4efc8f9906e7"></a>
@@ -1419,85 +1331,6 @@ $(function(){initNavTree('web__routes_8h.html',''); initResizable(true); });
 </div><div class="memdoc">
 
 <p>Настройка маршрутов отчетов </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__reports_8cpp_source.html">routes_reports.cpp</a> строка <a class="el" href="routes__reports_8cpp_source.html#l00395">395</a></p>
-
-</div>
-</div>
-<a id="a32c74f47a23de058ee90a43af2dff066" name="a32c74f47a23de058ee90a43af2dff066"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32c74f47a23de058ee90a43af2dff066">&#9670;&#160;</a></span>setupServiceRoutes()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void setupServiceRoutes </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Настройка сервисных маршрутов (/reset, /status, /info) </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__service_8cpp_source.html">routes_service.cpp</a> строка <a class="el" href="routes__service_8cpp_source.html#l00041">41</a></p>
-
-</div>
-</div>
-<a id="ad738b39272f7fc383f5bb83814fb1a67" name="ad738b39272f7fc383f5bb83814fb1a67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad738b39272f7fc383f5bb83814fb1a67">&#9670;&#160;</a></span>validateConfigInput()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool validateConfigInput </td>
-          <td>(</td>
-          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>checkRequired</em></span><span class="paramdefsep"> = </span><span class="paramdefval">true</span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Валидация входных данных конфигурации </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">checkRequired</td><td>Проверять ли обязательные поля </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>true если валидация прошла успешно </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="error__handlers_8cpp_source.html">error_handlers.cpp</a> строка <a class="el" href="error__handlers_8cpp_source.html#l00096">96</a></p>
-
-</div>
-</div>
-<a id="a936ecd18be81531b306c2c4705f7e860" name="a936ecd18be81531b306c2c4705f7e860"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a936ecd18be81531b306c2c4705f7e860">&#9670;&#160;</a></span>validateCSRFToken()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool validateCSRFToken </td>
-          <td>(</td>
-          <td class="paramtype">const String &amp;</td>          <td class="paramname"><span class="paramname"><em>token</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Проверка CSRF токена </p>
-<dl class="params"><dt>Аргументы</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">token</td><td>Токен для проверки </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Возвращает</dt><dd>true если токен валиден </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00058">58</a></p>
 
 </div>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл src/web/routes_ota.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/web/routes_ota.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -114,9 +114,7 @@ $(function(){initNavTree('routes__ota_8cpp.html',''); initResizable(true); });
 <code>#include &quot;<a class="el" href="web__routes_8h_source.html">../../include/web_routes.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">../wifi_manager.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ota__manager_8h_source.html">ota_manager.h</a>&quot;</code><br />
-</div>
-<p><a href="routes__ota_8cpp_source.html">См. исходные тексты.</a></p>
-<table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
 <tr class="memitem:a5f391e260218b4827e75c958f389decc" id="r_a5f391e260218b4827e75c958f389decc"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f391e260218b4827e75c958f389decc">sendOtaStatusJson</a> ()</td></tr>
@@ -128,33 +126,6 @@ $(function(){initNavTree('routes__ota_8cpp.html',''); initResizable(true); });
 <tr class="separator:ae58a54419ee068a06deeb05bf1e771f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Функции</h2>
-<a id="aa15bea881a160885a361e129a35c07e7" name="aa15bea881a160885a361e129a35c07e7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa15bea881a160885a361e129a35c07e7">&#9670;&#160;</a></span>handleFirmwareUpload()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">static void handleFirmwareUpload </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="routes__ota_8cpp_source.html">routes_ota.cpp</a> строка <a class="el" href="routes__ota_8cpp_source.html#l00376">376</a></p>
-
-</div>
-</div>
 <a id="a5f391e260218b4827e75c958f389decc" name="a5f391e260218b4827e75c958f389decc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5f391e260218b4827e75c958f389decc">&#9670;&#160;</a></span>sendOtaStatusJson()</h2>
 
@@ -178,7 +149,30 @@ $(function(){initNavTree('routes__ota_8cpp.html',''); initResizable(true); });
 </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="routes__ota_8cpp_source.html">routes_ota.cpp</a> строка <a class="el" href="routes__ota_8cpp_source.html#l00343">343</a></p>
+</div>
+</div>
+<a id="aa15bea881a160885a361e129a35c07e7" name="aa15bea881a160885a361e129a35c07e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa15bea881a160885a361e129a35c07e7">&#9670;&#160;</a></span>handleFirmwareUpload()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void handleFirmwareUpload </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -198,8 +192,6 @@ $(function(){initNavTree('routes__ota_8cpp.html',''); initResizable(true); });
 </div><div class="memdoc">
 
 <p>Настройка маршрутов OTA обновлений </p>
-
-<p class="definition">См. определение в файле <a class="el" href="routes__ota_8cpp_source.html">routes_ota.cpp</a> строка <a class="el" href="routes__ota_8cpp_source.html#l00030">30</a></p>
 
 </div>
 </div>

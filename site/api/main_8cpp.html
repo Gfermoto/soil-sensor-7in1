@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл src/main.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/main.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -114,9 +114,13 @@ $(function(){initNavTree('main_8cpp.html',''); initResizable(true); });
 <code>#include &lt;esp_ota_ops.h&gt;</code><br />
 <code>#include &lt;esp_task_wdt.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="advanced__filters_8h_source.html">advanced_filters.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="crop__recommendation__engine_8h_source.html">business/crop_recommendation_engine.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="src_2business_2sensor__calibration__service_8h_source.html">business/sensor_calibration_service.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="sensor__compensation__service_8h_source.html">business/sensor_compensation_service.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="debug_8h_source.html">debug.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="fake__sensor_8h_source.html">fake_sensor.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">jxct_constants.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">modbus_sensor.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="mqtt__client_8h_source.html">mqtt_client.h</a>&quot;</code><br />
@@ -126,11 +130,13 @@ $(function(){initNavTree('main_8cpp.html',''); initResizable(true); });
 <code>#include &quot;<a class="el" href="version_8h_source.html">version.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="web__routes_8h_source.html">web_routes.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="wifi__manager_8h_source.html">wifi_manager.h</a>&quot;</code><br />
-</div>
-<p><a href="main_8cpp_source.html">См. исходные тексты.</a></p>
-<table class="memberdecls">
+<code>#include &lt;LittleFS.h&gt;</code><br />
+<code>#include &lt;WebServer.h&gt;</code><br />
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Функции</h2></td></tr>
+<tr class="memitem:a48f3f185be3ea2d153c347a157b38d42" id="r_a48f3f185be3ea2d153c347a157b38d42"><td class="memItemLeft" align="right" valign="top">WebServer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a48f3f185be3ea2d153c347a157b38d42">server</a> (80)</td></tr>
+<tr class="separator:a48f3f185be3ea2d153c347a157b38d42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4fc01d736fe50cf5b977f755b675f11d" id="r_a4fc01d736fe50cf5b977f755b675f11d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4fc01d736fe50cf5b977f755b675f11d">setup</a> ()</td></tr>
 <tr class="separator:a4fc01d736fe50cf5b977f755b675f11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe461d27b9c48d5921c00d521181f12f" id="r_afe461d27b9c48d5921c00d521181f12f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afe461d27b9c48d5921c00d521181f12f">loop</a> ()</td></tr>
@@ -138,36 +144,34 @@ $(function(){initNavTree('main_8cpp.html',''); initResizable(true); });
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Переменные</h2></td></tr>
+<tr class="memitem:a846779af5e07f808b2cee49916205a12" id="r_a846779af5e07f808b2cee49916205a12"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classCropRecommendationEngine.html">CropRecommendationEngine</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a846779af5e07f808b2cee49916205a12">gCropEngine</a></td></tr>
+<tr class="separator:a846779af5e07f808b2cee49916205a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2048f65bc87ffffe1cdadbacc0e95a58" id="r_a2048f65bc87ffffe1cdadbacc0e95a58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSensorCalibrationService.html">SensorCalibrationService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2048f65bc87ffffe1cdadbacc0e95a58">gCalibrationService</a></td></tr>
+<tr class="separator:a2048f65bc87ffffe1cdadbacc0e95a58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18619e11a2ee0b61db56d4fd39fbc6c3" id="r_a18619e11a2ee0b61db56d4fd39fbc6c3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSensorCompensationService.html">SensorCompensationService</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a18619e11a2ee0b61db56d4fd39fbc6c3">gCompensationService</a></td></tr>
+<tr class="separator:a18619e11a2ee0b61db56d4fd39fbc6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a22f33e7e05df58bb6145bb6e543e232a" id="r_a22f33e7e05df58bb6145bb6e543e232a"><td class="memItemLeft" align="right" valign="top">WiFiUDP&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22f33e7e05df58bb6145bb6e543e232a">ntpUDP</a></td></tr>
 <tr class="separator:a22f33e7e05df58bb6145bb6e543e232a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab4cd0eb2684ad54d1d0782f4ff75e07f" id="r_ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memItemLeft" align="right" valign="top">NTPClient *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab4cd0eb2684ad54d1d0782f4ff75e07f">timeClient</a> = nullptr</td></tr>
 <tr class="separator:ab4cd0eb2684ad54d1d0782f4ff75e07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaef35518e8271022cf7cfca55d8c86d4" id="r_aaef35518e8271022cf7cfca55d8c86d4"><td class="memItemLeft" align="right" valign="top">const int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaef35518e8271022cf7cfca55d8c86d4">RESET_BUTTON_PIN</a> = 0</td></tr>
-<tr class="separator:aaef35518e8271022cf7cfca55d8c86d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab04f92e3fb6eeb5d01d3cc19653805a1" id="r_ab04f92e3fb6eeb5d01d3cc19653805a1"><td class="memItemLeft" align="right" valign="top">const unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab04f92e3fb6eeb5d01d3cc19653805a1">STATUS_PRINT_INTERVAL</a> = 30000</td></tr>
-<tr class="separator:ab04f92e3fb6eeb5d01d3cc19653805a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Главный файл проекта JXCT датчика </p>
-
-<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a></p>
 </div><h2 class="groupheader">Функции</h2>
-<a id="afe461d27b9c48d5921c00d521181f12f" name="afe461d27b9c48d5921c00d521181f12f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afe461d27b9c48d5921c00d521181f12f">&#9670;&#160;</a></span>loop()</h2>
+<a id="a48f3f185be3ea2d153c347a157b38d42" name="a48f3f185be3ea2d153c347a157b38d42"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48f3f185be3ea2d153c347a157b38d42">&#9670;&#160;</a></span>server()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void loop </td>
+          <td class="memname">WebServer server </td>
           <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td class="paramtype">80</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00233">233</a></p>
 
 </div>
 </div>
@@ -186,11 +190,92 @@ $(function(){initNavTree('main_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00108">108</a></p>
+</div>
+</div>
+<a id="afe461d27b9c48d5921c00d521181f12f" name="afe461d27b9c48d5921c00d521181f12f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe461d27b9c48d5921c00d521181f12f">&#9670;&#160;</a></span>loop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void loop </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
 <h2 class="groupheader">Переменные</h2>
+<a id="a846779af5e07f808b2cee49916205a12" name="a846779af5e07f808b2cee49916205a12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a846779af5e07f808b2cee49916205a12">&#9670;&#160;</a></span>gCropEngine</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classCropRecommendationEngine.html">CropRecommendationEngine</a> gCropEngine</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2048f65bc87ffffe1cdadbacc0e95a58" name="a2048f65bc87ffffe1cdadbacc0e95a58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2048f65bc87ffffe1cdadbacc0e95a58">&#9670;&#160;</a></span>gCalibrationService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSensorCalibrationService.html">SensorCalibrationService</a> gCalibrationService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a18619e11a2ee0b61db56d4fd39fbc6c3" name="a18619e11a2ee0b61db56d4fd39fbc6c3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18619e11a2ee0b61db56d4fd39fbc6c3">&#9670;&#160;</a></span>gCompensationService</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classSensorCompensationService.html">SensorCompensationService</a> gCompensationService</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="a22f33e7e05df58bb6145bb6e543e232a" name="a22f33e7e05df58bb6145bb6e543e232a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a22f33e7e05df58bb6145bb6e543e232a">&#9670;&#160;</a></span>ntpUDP</h2>
 
@@ -202,40 +287,6 @@ $(function(){initNavTree('main_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00049">49</a></p>
-
-</div>
-</div>
-<a id="aaef35518e8271022cf7cfca55d8c86d4" name="aaef35518e8271022cf7cfca55d8c86d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaef35518e8271022cf7cfca55d8c86d4">&#9670;&#160;</a></span>RESET_BUTTON_PIN</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const int RESET_BUTTON_PIN = 0</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00053">53</a></p>
-
-</div>
-</div>
-<a id="ab04f92e3fb6eeb5d01d3cc19653805a1" name="ab04f92e3fb6eeb5d01d3cc19653805a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab04f92e3fb6eeb5d01d3cc19653805a1">&#9670;&#160;</a></span>STATUS_PRINT_INTERVAL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const unsigned long STATUS_PRINT_INTERVAL = 30000</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00054">54</a></p>
 
 </div>
 </div>
@@ -250,8 +301,6 @@ $(function(){initNavTree('main_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="main_8cpp_source.html">main.cpp</a> строка <a class="el" href="main_8cpp_source.html#l00050">50</a></p>
 
 </div>
 </div>

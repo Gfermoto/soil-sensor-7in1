@@ -22,7 +22,7 @@
     
     
       
-        <title>🔄 ПЛАН РЕФАКТОРИНГА JXCT - JXCT Soil Sensor v3.10.1</title>
+        <title>🔄 КОМПЛЕКСНЫЙ ПЛАН РЕФАКТОРИНГА JXCT - JXCT Soil Sensor v3.11.0</title>
       
     
     
@@ -94,7 +94,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href="../.." title="JXCT Soil Sensor v3.10.1" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.10.1" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.11.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.11.0" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
@@ -107,13 +107,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            JXCT Soil Sensor v3.10.1
+            JXCT Soil Sensor v3.11.0
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🔄 ПЛАН РЕФАКТОРИНГА JXCT
+              🔄 КОМПЛЕКСНЫЙ ПЛАН РЕФАКТОРИНГА JXCT
             
           </span>
         </div>
@@ -356,12 +356,12 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="JXCT Soil Sensor v3.10.1" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.10.1" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.11.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.11.0" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
     </a>
-    JXCT Soil Sensor v3.10.1
+    JXCT Soil Sensor v3.11.0
   </label>
   
     <div class="md-nav__source">
@@ -1010,161 +1010,332 @@
   
 
 
-<h1 id="jxct">🔄 ПЛАН РЕФАКТОРИНГА JXCT<a class="headerlink" href="#jxct" title="Постоянная ссылка">&para;</a></h1>
-<p><strong>Дата:</strong> 18.07.2025<br />
-<strong>Версия:</strong> 3.11.0<br />
-<strong>Статус:</strong> Активный план улучшений</p>
+<h1 id="jxct">🔄 КОМПЛЕКСНЫЙ ПЛАН РЕФАКТОРИНГА JXCT<a class="headerlink" href="#jxct" title="Постоянная ссылка">&para;</a></h1>
+<p><strong>Дата:</strong> 19.07.2025
+<strong>Версия:</strong> 3.11.1
+<strong>Статус:</strong> Фаза 3 - Архитектурные улучшения (ветка refactoring)</p>
 <hr />
-<h2 id="17072025">📋 ТЕКУЩЕЕ СОСТОЯНИЕ (АКТУАЛЬНО НА 17.07.2025)<a class="headerlink" href="#17072025" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_1">🎯 МЕТРИКИ КАЧЕСТВА<a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Технический долг:</strong> 25/100 (низкий)</li>
-<li><strong>Clang-Tidy:</strong> 142 предупреждения (быстрый режим)</li>
-<li><strong>Тесты:</strong> 35 тестов (100% проходимость)</li>
-<li><strong>Покрытие кода:</strong> 85.2% (превышена цель 85%)</li>
-<li><strong>Статус:</strong> Production Ready ✅</li>
-</ul>
-<h3 id="_2">✅ РЕАЛЬНЫЕ ДОСТИЖЕНИЯ<a class="headerlink" href="#_2" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Все тесты проходят:</strong> 100% успешность</li>
-<li><strong>Сборка ESP32:</strong> 1,302,768 байт (стабильная)</li>
-<li><strong>Python тесты:</strong> 50+ тестов валидации и компенсации</li>
-<li><strong>REST API тесты:</strong> Интеграционные тесты работают</li>
-<li><strong>Mock тесты:</strong> 65+ тестов с моками</li>
-<li><strong>Graceful degradation:</strong> Работа без железа</li>
-</ul>
-<h3 id="_3">⚠️ КРИТИЧЕСКИЕ ПРОБЛЕМЫ<a class="headerlink" href="#_3" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>125 предупреждений Clang-Tidy</strong> требуют исправления</li>
-<li><strong>Документация устарела</strong> - не отражает реальное состояние</li>
-<li><strong>Несистемный подход</strong> к обновлению документации</li>
-</ul>
-<hr />
-<h2 id="_4">🚀 ПЛАН РЕФАКТОРИНГА<a class="headerlink" href="#_4" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-clang-tidy-1-2">Фаза 1: Исправление Clang-Tidy (1-2 недели)<a class="headerlink" href="#1-clang-tidy-1-2" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="1-36">Приоритет 1: Потенциальные баги (36 проблем)<a class="headerlink" href="#1-36" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Цель:</strong> Исправить все <code>bugprone-easily-swappable-parameters</code></p>
-<p><strong>Файлы для исправления:</strong>
-- <code>src/advanced_filters.cpp</code> (2 проблемы)
-- <code>src/calibration_manager.cpp</code> (1 проблема)
-- <code>src/jxct_ui_system.cpp</code> (1 проблема)
-- <code>src/modbus_sensor.cpp</code> (2 проблемы)
-- <code>src/sensor_compensation.cpp</code> (7 проблем)
-- <code>src/validation_utils.cpp</code> (3 проблемы)
-- <code>src/business/crop_recommendation_engine.cpp</code> (9 проблем)
-- <code>src/business/sensor_compensation_service.cpp</code> (1 проблема)
-- <code>src/web/web_templates.cpp</code> (10 проблем)</p>
-<p><strong>Стратегия:</strong>
-1. Использовать именованные параметры
-2. Создать структуры для группировки параметров
-3. Добавить валидацию входных данных</p>
-<h4 id="2-37">Приоритет 2: Проблемы читаемости (37 проблем)<a class="headerlink" href="#2-37" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Цель:</strong> Исправить <code>readability-convert-member-functions-to-static</code></p>
-<p><strong>Стратегия:</strong>
-1. Сделать методы статическими где возможно
-2. Добавить const квалификаторы
-3. Улучшить именование функций</p>
-<h4 id="3-52">Приоритет 3: Разное (52 проблемы)<a class="headerlink" href="#3-52" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Цель:</strong> Исправить <code>misc-use-internal-linkage</code> и <code>misc-unused-parameters</code></p>
-<p><strong>Стратегия:</strong>
-1. Использовать анонимные пространства имён
-2. Убрать неиспользуемые параметры
-3. Улучшить внутренние связи</p>
-<h3 id="2-1">Фаза 2: Системное обновление документации (1 неделя)<a class="headerlink" href="#2-1" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="_5">Проблемы текущей документации<a class="headerlink" href="#_5" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><strong>Устаревшие даты</strong> - не соответствует реальности</li>
-<li><strong>Неактуальные метрики</strong> - не отражают достижения</li>
-<li><strong>Разрозненность</strong> - нет единого подхода</li>
-</ul>
-<h4 id="_6">План исправления<a class="headerlink" href="#_6" title="Постоянная ссылка">&para;</a></h4>
+<h2 id="_1">🎯 ЦЕЛИ РЕФАКТОРИНГА<a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_2">Основные цели:<a class="headerlink" href="#_2" title="Постоянная ссылка">&para;</a></h3>
 <ol>
-<li><strong>Обновить все .md файлы</strong> с актуальными данными</li>
-<li><strong>Синхронизировать метрики</strong> с реальными результатами</li>
-<li><strong>Создать единую систему</strong> обновления документации</li>
-<li><strong>Автоматизировать</strong> процесс обновления</li>
+<li><strong>Модульность</strong> - разделение монолитного main.cpp</li>
+<li><strong>Производительность</strong> - оптимизация критических путей</li>
+<li><strong>Расширяемость</strong> - подготовка к новым функциям</li>
+<li><strong>Поддерживаемость</strong> - упрощение разработки</li>
 </ol>
-<h3 id="3-3-4">Фаза 3: Архитектурные улучшения (3-4 недели)<a class="headerlink" href="#3-3-4" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="_7">Разделение крупных файлов<a class="headerlink" href="#_7" title="Постоянная ссылка">&para;</a></h4>
+<h3 id="_3">Критерии успеха:<a class="headerlink" href="#_3" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><code>src/business/crop_recommendation_engine.cpp</code> (34 предупреждения)</li>
-<li><code>src/web/web_templates.cpp</code> (15 предупреждений)</li>
-<li><code>src/validation_utils.cpp</code> (17 предупреждений)</li>
-</ul>
-<h4 id="_8">Устранение дублирования<a class="headerlink" href="#_8" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li><code>src/web/routes_calibration.cpp</code> ↔ <code>src/web/routes_data.cpp</code></li>
-<li>Создать общие компоненты</li>
-</ul>
-<h4 id="-">Выделение бизнес-логики<a class="headerlink" href="#-" title="Постоянная ссылка">&para;</a></h4>
-<ul>
-<li>Создать отдельные сервисы</li>
-<li>Улучшить модульность</li>
-<li>Добавить интерфейсы</li>
+<li>✅ Размер main.cpp &lt; 200 строк</li>
+<li>✅ Модули &lt; 500 строк каждый</li>
+<li>✅ Интерфейсы для всех сервисов</li>
+<li>✅ Отсутствие дублирования кода</li>
+<li>✅ 100% прохождение тестов</li>
+<li>✅ Clang-tidy без предупреждений</li>
 </ul>
 <hr />
-<h2 id="_9">📊 МЕТРИКИ УСПЕХА<a class="headerlink" href="#_9" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1">Критерии завершения Фазы 1<a class="headerlink" href="#1" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_4">📊 ТЕКУЩЕЕ СОСТОЯНИЕ<a class="headerlink" href="#_4" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_5">Размеры файлов (строки кода):<a class="headerlink" href="#_5" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>main.cpp:</strong> 330 строк (требуется &lt; 200)</li>
+<li><strong>routes_data.cpp:</strong> 1,009 строк (требуется &lt; 500)</li>
+<li><strong>crop_recommendation_engine.cpp:</strong> 875 строк (требуется &lt; 500)</li>
+<li><strong>mqtt_client.cpp:</strong> 759 строк (требуется &lt; 500)</li>
+<li><strong>modbus_sensor.cpp:</strong> 666 строк (требуется &lt; 500)</li>
+</ul>
+<h3 id="_6">Технический долг:<a class="headerlink" href="#_6" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Clang-tidy:</strong> 0 предупреждений ✅</li>
+<li><strong>Тесты:</strong> 100% успешность ✅</li>
+<li><strong>Сборка:</strong> 1,303,168 байт ✅</li>
+<li><strong>Advanced Code Quality Analysis:</strong> 87.5/100 (B рейтинг) ✅</li>
+</ul>
+<h2 id="-">🚨 ЧЕК-ЛИСТ КРИТИЧЕСКИХ РИСКОВ ПЕРЕД РЕФАКТОРИНГОМ<a class="headerlink" href="#-" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_7">⚠️ ВЫСОКИЙ РИСК<a class="headerlink" href="#_7" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>main.cpp</strong> - Центральный файл, изменения могут сломать всю систему</li>
+<li><strong>config.cpp</strong> - Конфигурация системы, критична для работы</li>
+<li><strong>modbus_sensor.cpp</strong> - Коммуникация с датчиками, высокий риск потери данных</li>
+<li><strong>mqtt_client.cpp</strong> - Сетевая коммуникация, может нарушить IoT функциональность</li>
+<li><strong>wifi_manager.cpp</strong> - Подключение к сети, критично для работы</li>
+</ul>
+<h3 id="_8">⚠️ СРЕДНИЙ РИСК<a class="headerlink" href="#_8" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>validation_utils.cpp</strong> - Валидация данных, влияет на качество измерений</li>
+<li><strong>sensor_compensation.cpp</strong> - Компенсация датчиков, влияет на точность</li>
+<li><strong>web/</strong>* - Веб-интерфейс, может нарушить пользовательский опыт</li>
+<li><strong>business/</strong>* - Бизнес-логика, влияет на рекомендации</li>
+</ul>
+<h3 id="_9">✅ НИЗКИЙ РИСК<a class="headerlink" href="#_9" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>logger.cpp</strong> - Логирование, можно безопасно рефакторить</li>
+<li><strong>jxct_format_utils.cpp</strong> - Утилиты форматирования</li>
+<li><strong>fake_sensor.cpp</strong> - Тестовые данные</li>
+</ul>
+<h3 id="_10">🔗 ЗАВИСИМОСТИ С ВЫСОКОЙ СТОИМОСТЬЮ ИЗМЕНЕНИЙ<a class="headerlink" href="#_10" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>ESP32 Arduino Framework</strong> - Изменения могут потребовать обновления библиотек</li>
+<li><strong>Modbus RTU протокол</strong> - Изменения могут нарушить совместимость с датчиками</li>
+<li><strong>MQTT интеграция</strong> - Изменения могут нарушить IoT функциональность</li>
+<li><strong>SPIFFS файловая система</strong> - Изменения могут привести к потере данных</li>
+<li><strong>OTA обновления</strong> - Изменения могут нарушить процесс обновления</li>
+</ol>
+<h3 id="20072025">📊 АУДИТ КАЧЕСТВА (20.07.2025)<a class="headerlink" href="#20072025" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Clang-tidy:</strong> 0 предупреждений ✅</li>
+<li><strong>Покрытие тестов:</strong> 85.2% ✅</li>
+<li><strong>Количество тестов:</strong> 65 ✅</li>
+<li><strong>Сборка:</strong> Успешна ✅</li>
+<li><strong>Статический анализ:</strong> Профессиональное качество ✅</li>
+</ul>
+<hr />
+<h2 id="_11">🔄 ФАЗЫ РЕФАКТОРИНГА<a class="headerlink" href="#_11" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="1-clang-tidy">✅ Фаза 1: Clang-tidy очистка (ЗАВЕРШЕНА)<a class="headerlink" href="#1-clang-tidy" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Статус:</strong> Завершена</li>
+<li><strong>Результат:</strong> 0 предупреждений clang-tidy</li>
+<li><strong>Ветка:</strong> main</li>
+</ul>
+<h3 id="2">✅ Фаза 2: Консолидация документации (ЗАВЕРШЕНА)<a class="headerlink" href="#2" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Статус:</strong> Завершена</li>
+<li><strong>Результат:</strong> 4 основных документа + README</li>
+<li><strong>Ветка:</strong> main</li>
+</ul>
+<h3 id="3">🔄 Фаза 3: Архитектурные улучшения (АКТИВНАЯ)<a class="headerlink" href="#3" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Статус:</strong> В процессе</li>
+<li><strong>Ветка:</strong> refactoring</li>
+<li><strong>Прогресс:</strong> Созданы инструменты безопасности + Advanced Code Quality Analysis</li>
+</ul>
+<h3 id="4">📋 Фаза 4: Оптимизация производительности (ПЛАНИРУЕТСЯ)<a class="headerlink" href="#4" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Цель:</strong> Улучшение скорости работы</li>
+<li><strong>Метрики:</strong> Время компенсации &lt; 50ms, ответ веб-интерфейса &lt; 1000ms</li>
+</ul>
+<h3 id="5">📋 Фаза 5: Расширение функциональности (ПЛАНИРУЕТСЯ)<a class="headerlink" href="#5" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li><strong>Цель:</strong> Подготовка к новым функциям</li>
+<li><strong>Направления:</strong> Новые датчики, алгоритмы, интеграции</li>
+</ul>
+<hr />
+<h2 id="_12">🛠️ СОЗДАННЫЕ ИНСТРУМЕНТЫ БЕЗОПАСНОСТИ<a class="headerlink" href="#_12" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="1-scriptsperformance_benchmarkpy-">1. <strong>scripts/performance_benchmark.py</strong> - Бенчмарки производительности<a class="headerlink" href="#1-scriptsperformance_benchmarkpy-" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>Измерение размера прошивки</li>
+<li>Анализ использования памяти</li>
+<li>Тестирование скорости компенсации</li>
+<li>Проверка времени ответа веб-интерфейса</li>
+<li>Анализ скорости статического анализа</li>
+</ul>
+<h3 id="2-testtest_refactoring_safetypy-">2. <strong>test/test_refactoring_safety.py</strong> - Тесты безопасности рефакторинга<a class="headerlink" href="#2-testtest_refactoring_safetypy-" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>Проверка API endpoints</li>
+<li>Валидация структур данных</li>
+<li>Контроль бизнес-интерфейсов</li>
+<li>Тестирование обратной совместимости</li>
+<li>Проверка компиляции и тестов</li>
+<li>Анализ безопасности памяти</li>
+</ul>
+<h3 id="3-scriptsarchitecture_validatorpy-">3. <strong>scripts/architecture_validator.py</strong> - Валидатор архитектуры<a class="headerlink" href="#3-scriptsarchitecture_validatorpy-" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>Проверка принципа единственной ответственности</li>
+<li>Валидация инверсии зависимостей</li>
+<li>Контроль разделения интерфейсов</li>
+<li>Проверка принципа открытости/закрытости</li>
+<li>Валидация принципа подстановки Лисков</li>
+<li>Анализ циклических зависимостей</li>
+</ul>
+<h3 id="4-docsdevrefactoring_logmd-">4. <strong>docs/dev/REFACTORING_LOG.md</strong> - Лог изменений<a class="headerlink" href="#4-docsdevrefactoring_logmd-" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>Отслеживание всех изменений</li>
+<li>Документирование решений</li>
+<li>Контроль метрик</li>
+</ul>
+<h3 id="5-scriptsrefactoring_preparationpy-">5. <strong>scripts/refactoring_preparation.py</strong> - Интегрированный набор инструментов<a class="headerlink" href="#5-scriptsrefactoring_preparationpy-" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>Запуск всех проверок одним скриптом</li>
+<li>Генерация комплексного отчёта</li>
+<li>Рекомендации по рефакторингу</li>
+</ul>
+<h3 id="6-scriptsadvanced_quality_analysispy-">6. <strong>scripts/advanced_quality_analysis.py</strong> - Продвинутый анализ качества<a class="headerlink" href="#6-scriptsadvanced_quality_analysispy-" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>Комплексные тесты (ультра-быстрые + полные)</li>
+<li>Статический анализ (Clang-tidy с системой исключений)</li>
+<li>Python анализ (Pylint, Black, Flake8)</li>
+<li>Генерация JSON отчетов</li>
+<li>Автоматические рекомендации</li>
+</ul>
+<h3 id="7-githubworkflowscode-quality-analysisyml-github-actions-workflow">7. <strong>.github/workflows/code-quality-analysis.yml</strong> - GitHub Actions workflow<a class="headerlink" href="#7-githubworkflowscode-quality-analysisyml-github-actions-workflow" title="Постоянная ссылка">&para;</a></h3>
+<ul>
+<li>Автоматический запуск при push/PR</li>
+<li>Интеграция с PR комментариями</li>
+<li>Загрузка артефактов (JSON + HTML отчеты)</li>
+<li>Реальные метрики вместо хардкода</li>
+</ul>
+<hr />
+<h2 id="refactoring">🎯 СЛЕДУЮЩИЕ ШАГИ (ВЕТКА refactoring)<a class="headerlink" href="#refactoring" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_13">✅ Созданы инструменты безопасности<a class="headerlink" href="#_13" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>scripts/performance_benchmark.py</strong> - Бенчмарки производительности</li>
+<li><strong>test/test_refactoring_safety.py</strong> - Тесты безопасности рефакторинга</li>
+<li><strong>scripts/architecture_validator.py</strong> - Валидатор архитектуры</li>
+<li><strong>docs/dev/REFACTORING_LOG.md</strong> - Лог изменений</li>
+<li><strong>scripts/refactoring_preparation.py</strong> - Интегрированный набор инструментов</li>
+<li><strong>scripts/advanced_quality_analysis.py</strong> - Продвинутый анализ качества</li>
+<li><strong>.github/workflows/code-quality-analysis.yml</strong> - GitHub Actions workflow</li>
+</ol>
+<h3 id="_14">🔄 Текущие задачи:<a class="headerlink" href="#_14" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>Анализ main.cpp</strong> - выявление модулей для выделения</li>
+<li><strong>Создание интерфейсов</strong> - абстракции для сервисов</li>
+<li><strong>Рефакторинг дублирования</strong> - устранение повторяющегося кода</li>
+<li><strong>Тестирование изменений</strong> - проверка функциональности</li>
+<li><strong>Формирование прошивки</strong> - проверка работоспособности</li>
+<li><strong>Мерж в main</strong> - только после полного тестирования</li>
+</ol>
+<hr />
+<h2 id="_15">🚀 КОМАНДЫ ДЛЯ РАБОТЫ<a class="headerlink" href="#_15" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_16">Подготовка к рефакторингу:<a class="headerlink" href="#_16" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Полная подготовка (все инструменты)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>python<span class="w"> </span>scripts/refactoring_preparation.py
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># Advanced Code Quality Analysis</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>python<span class="w"> </span>scripts/advanced_quality_analysis.py
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Отдельные инструменты</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>python<span class="w"> </span>scripts/performance_benchmark.py
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>python<span class="w"> </span>test/test_refactoring_safety.py
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>python<span class="w"> </span>scripts/architecture_validator.py
+</span></code></pre></div>
+<h3 id="_17">Стандартные тесты:<a class="headerlink" href="#_17" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Быстрые тесты (5 сек)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python<span class="w"> </span>scripts/ultra_quick_test.py
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># Полные тесты (2 мин)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>python<span class="w"> </span>scripts/run_simple_tests.py
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># Статический анализ</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>python<span class="w"> </span>scripts/run_clang_tidy_analysis.py
+</span></code></pre></div>
+<h3 id="_18">Сборка и проверка:<a class="headerlink" href="#_18" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># Сборка ESP32</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>pio<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>esp32dev
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># Production сборка</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>pio<span class="w"> </span>run<span class="w"> </span>-e<span class="w"> </span>esp32dev-production
+</span></code></pre></div>
+<hr />
+<h2 id="_19">📋 ПЛАН АРХИТЕКТУРНЫХ ИЗМЕНЕНИЙ<a class="headerlink" href="#_19" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="1-maincpp">1. Анализ и разделение main.cpp<a class="headerlink" href="#1-maincpp" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Цель:</strong> Уменьшить размер с 330 до &lt; 200 строк</p>
+<p><strong>Модули для выделения:</strong>
+- <strong>SystemInitializer</strong> - инициализация системы
+- <strong>TaskManager</strong> - управление задачами FreeRTOS
+- <strong>EventProcessor</strong> - обработка событий
+- <strong>HealthMonitor</strong> - мониторинг здоровья системы</p>
+<h3 id="2_1">2. Создание интерфейсов<a class="headerlink" href="#2_1" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Цель:</strong> Абстракции для всех сервисов</p>
+<p><strong>Интерфейсы для создания:</strong>
+- <strong>ISystemInitializer</strong> - инициализация системы
+- <strong>ITaskManager</strong> - управление задачами
+- <strong>IEventProcessor</strong> - обработка событий
+- <strong>IHealthMonitor</strong> - мониторинг здоровья</p>
+<h3 id="3_1">3. Рефакторинг дублирования<a class="headerlink" href="#3_1" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Цель:</strong> Устранение повторяющегося кода</p>
+<p><strong>Области для рефакторинга:</strong>
+- Обработка ошибок
+- Логирование
+- Валидация данных
+- Сетевые операции</p>
+<h3 id="4_1">4. Оптимизация производительности<a class="headerlink" href="#4_1" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Цель:</strong> Улучшение критических путей</p>
+<p><strong>Оптимизации:</strong>
+- Кэширование данных
+- Батчинг операций
+- Оптимизация алгоритмов
+- Управление памятью</p>
+<hr />
+<h2 id="_20">🚨 КРИТИЧЕСКИЕ ПРАВИЛА<a class="headerlink" href="#_20" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_21">✅ ОБЯЗАТЕЛЬНО:<a class="headerlink" href="#_21" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>Тестирование после каждого изменения</strong></li>
+<li><strong>Документирование всех решений</strong></li>
+<li><strong>Соблюдение принципов SOLID</strong></li>
+<li><strong>Обратная совместимость API</strong></li>
+<li><strong>Безопасность памяти</strong></li>
+</ol>
+<h3 id="_22">❌ ЗАПРЕЩЕНО:<a class="headerlink" href="#_22" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>Изменение публичных API без обоснования</strong></li>
+<li><strong>Удаление тестов без замены</strong></li>
+<li><strong>Нарушение принципов IoT безопасности</strong></li>
+<li><strong>Увеличение размера прошивки &gt; 10%</strong></li>
+<li><strong>Снижение покрытия тестами</strong></li>
+</ol>
+<hr />
+<h2 id="_23">📊 МЕТРИКИ КОНТРОЛЯ<a class="headerlink" href="#_23" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_24">Производительность:<a class="headerlink" href="#_24" title="Постоянная ссылка">&para;</a></h3>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Clang-Tidy предупреждений ≤ 50</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Потенциальных багов = 0</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Проблем читаемости ≤ 10</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Размер прошивки &lt; 1.5MB</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Использование памяти &lt; 320MB</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Время компенсации &lt; 50ms</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Время ответа веб-интерфейса &lt; 1000ms</li>
 </ul>
-<h3 id="2">Критерии завершения Фазы 2<a class="headerlink" href="#2" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_25">Качество кода:<a class="headerlink" href="#_25" title="Постоянная ссылка">&para;</a></h3>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Вся документация актуальна на текущую дату</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Метрики соответствуют реальности</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Система автоматического обновления работает</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Clang-tidy: 0 предупреждений</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Тесты: 100% успешность</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Покрытие тестами &gt; 85%</li>
 </ul>
-<h3 id="3">Критерии завершения Фазы 3<a class="headerlink" href="#3" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="_26">Архитектура:<a class="headerlink" href="#_26" title="Постоянная ссылка">&para;</a></h3>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Крупных файлов ≤ 500 строк</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Дублирование ≤ 5%</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Модульность ≥ 8/10</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> main.cpp &lt; 200 строк</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Модули &lt; 500 строк каждый</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Интерфейсы для всех сервисов</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Отсутствие дублирования кода</li>
 </ul>
 <hr />
-<h2 id="_10">🛠️ ИНСТРУМЕНТЫ И ПРОЦЕССЫ<a class="headerlink" href="#_10" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_11">Автоматизация<a class="headerlink" href="#_11" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="_27">🔍 АНАЛИЗ РИСКОВ<a class="headerlink" href="#_27" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_28">Высокий риск:<a class="headerlink" href="#_28" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>Нарушение API совместимости</strong> - может сломать интеграции</li>
+<li><strong>Увеличение размера прошивки</strong> - превышение лимитов ESP32</li>
+<li><strong>Снижение производительности</strong> - критично для IoT</li>
+</ol>
+<h3 id="_29">Средний риск:<a class="headerlink" href="#_29" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>Сложность отладки</strong> - новые модули могут усложнить диагностику</li>
+<li><strong>Время разработки</strong> - рефакторинг может затянуться</li>
+</ol>
+<h3 id="_30">Низкий риск:<a class="headerlink" href="#_30" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>Изменение внутренней структуры</strong> - не влияет на внешний API</li>
+</ol>
+<hr />
+<h2 id="_31">📞 ЭСКАЛАЦИЯ<a class="headerlink" href="#_31" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="_32">При возникновении проблем:<a class="headerlink" href="#_32" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>Остановить рефакторинг</strong></li>
+<li><strong>Создать issue с описанием проблемы</strong></li>
+<li><strong>Откатиться к последней стабильной версии</strong></li>
+<li><strong>Провести анализ причин</strong></li>
+<li><strong>Скорректировать план</strong></li>
+</ol>
+<h3 id="_33">Контакты для консультаций:<a class="headerlink" href="#_33" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Быстрое тестирование:</strong> <code>python scripts/ultra_quick_test.py</code></li>
-<li><strong>Полное тестирование:</strong> <code>python scripts/run_simple_tests.py</code></li>
-<li><strong>Clang-Tidy:</strong> <code>python scripts/run_clang_tidy_analysis.py</code></li>
-</ul>
-<h3 id="cicd">CI/CD интеграция<a class="headerlink" href="#cicd" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li>Автоматические проверки при PR</li>
-<li>Отчёты о качестве кода</li>
-<li>Блокировка при критических проблемах</li>
-</ul>
-<h3 id="_12">Мониторинг прогресса<a class="headerlink" href="#_12" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li>Еженедельные отчёты</li>
-<li>Метрики качества</li>
-<li>Тренды улучшений</li>
+<li><strong>Архитектурные вопросы:</strong> Документация в <code>docs/dev/</code></li>
+<li><strong>Технические проблемы:</strong> Issues в GitHub</li>
+<li><strong>Критические решения:</strong> PR с детальным описанием</li>
 </ul>
 <hr />
-<h2 id="_13">🎯 ОЖИДАЕМЫЕ РЕЗУЛЬТАТЫ<a class="headerlink" href="#_13" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1_1">После Фазы 1<a class="headerlink" href="#1_1" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li>Качество кода: A+ (Clang-Tidy ≤ 50)</li>
-<li>Надёжность: улучшение на 30%</li>
-<li>Читаемость: улучшение на 40%</li>
-</ul>
-<h3 id="2_1">После Фазы 2<a class="headerlink" href="#2_1" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li>Документация: 100% актуальность</li>
-<li>Системность: единый подход</li>
-<li>Автоматизация: обновление без ручного труда</li>
-</ul>
-<h3 id="3_1">После Фазы 3<a class="headerlink" href="#3_1" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li>Модульность: 8/10</li>
-<li>Масштабируемость: улучшение на 70%</li>
-<li>Производительность: улучшение на 20%</li>
-</ul>
+<h2 id="_34">🎯 ЗАКЛЮЧЕНИЕ<a class="headerlink" href="#_34" title="Постоянная ссылка">&para;</a></h2>
+<p>Рефакторинг JXCT - это стратегическое улучшение архитектуры IoT системы.
+Все изменения должны быть тщательно протестированы и задокументированы.</p>
+<p><strong>Приоритет:</strong> Безопасность и стабильность превыше скорости изменений.</p>
+<p><strong>Следующий шаг:</strong> Запуск <code>python scripts/advanced_quality_analysis.py</code> для полной диагностики качества кода.</p>
 <hr />
-<p><strong>Статус:</strong> Активный план улучшений<br />
-<strong>Следующий обзор:</strong> 25.07.2025 </p>
+<p><em>Последнее обновление: 19.07.2025</em><br />
+<em>Версия плана: 3.2</em> </p>
 
 
 

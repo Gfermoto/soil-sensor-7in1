@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл src/config.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/config.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -107,18 +107,16 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
 
 <p>Работа с конфигурацией устройства  
 <a href="#details">Подробнее...</a></p>
-<div class="textblock"><code>#include &lt;WiFi.h&gt;</code><br />
+<div class="textblock"><code>#include &quot;config.h&quot;</code><br />
+<code>#include &lt;WiFi.h&gt;</code><br />
 <code>#include &lt;array&gt;</code><br />
 <code>#include &quot;<a class="el" href="debug_8h_source.html">debug.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__config__vars_8h_source.html">jxct_config_vars.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">jxct_constants.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__device__info_8h_source.html">jxct_device_info.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="logger_8h_source.html">logger.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="version_8h_source.html">version.h</a>&quot;</code><br />
-<code>#include &quot;config.h&quot;</code><br />
-<code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">jxct_constants.h</a>&quot;</code><br />
-</div>
-<p><a href="config_8cpp_source.html">См. исходные тексты.</a></p>
-<table class="memberdecls">
+</div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Макросы</h2></td></tr>
 <tr class="memitem:a9ccd2b50755f4e9983b7f4773a19469f" id="r_a9ccd2b50755f4e9983b7f4773a19469f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ccd2b50755f4e9983b7f4773a19469f">KEY_NTP_INTERVAL</a>&#160;&#160;&#160;&quot;ntpIntvl&quot;</td></tr>
@@ -149,8 +147,6 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Работа с конфигурацией устройства </p>
 <p>Загрузка, сохранение, сброс и валидация настроек устройства через NVS (Preferences). </p>
-
-<p class="definition">См. определение в файле <a class="el" href="config_8cpp_source.html">config.cpp</a></p>
 </div><h2 class="groupheader">Макросы</h2>
 <a id="a9ccd2b50755f4e9983b7f4773a19469f" name="a9ccd2b50755f4e9983b7f4773a19469f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9ccd2b50755f4e9983b7f4773a19469f">&#9670;&#160;</a></span>KEY_NTP_INTERVAL</h2>
@@ -164,30 +160,9 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="config_8cpp_source.html">config.cpp</a> строка <a class="el" href="config_8cpp_source.html#l00040">40</a></p>
-
 </div>
 </div>
 <h2 class="groupheader">Функции</h2>
-<a id="a74bdf2231a5ebe05de0f3a0b4c538023" name="a74bdf2231a5ebe05de0f3a0b4c538023"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a74bdf2231a5ebe05de0f3a0b4c538023">&#9670;&#160;</a></span>getDefaultTopic()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String getDefaultTopic </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="config_8cpp_source.html">config.cpp</a> строка <a class="el" href="config_8cpp_source.html#l00028">28</a></p>
-
-</div>
-</div>
 <a id="aa1f35b9688dbf1109436ad91c42901aa" name="aa1f35b9688dbf1109436ad91c42901aa"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1f35b9688dbf1109436ad91c42901aa">&#9670;&#160;</a></span>getDeviceId()</h2>
 
@@ -203,26 +178,22 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="config_8cpp_source.html">config.cpp</a> строка <a class="el" href="config_8cpp_source.html#l00019">19</a></p>
-
 </div>
 </div>
-<a id="aeb61f04cd3b4b68e8146d85c447d70d1" name="aeb61f04cd3b4b68e8146d85c447d70d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb61f04cd3b4b68e8146d85c447d70d1">&#9670;&#160;</a></span>isConfigValid()</h2>
+<a id="a74bdf2231a5ebe05de0f3a0b4c538023" name="a74bdf2231a5ebe05de0f3a0b4c538023"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a74bdf2231a5ebe05de0f3a0b4c538023">&#9670;&#160;</a></span>getDefaultTopic()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool isConfigValid </td>
+          <td class="memname">String getDefaultTopic </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="config_8cpp_source.html">config.cpp</a> строка <a class="el" href="config_8cpp_source.html#l00331">331</a></p>
 
 </div>
 </div>
@@ -241,7 +212,22 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="config_8cpp_source.html">config.cpp</a> строка <a class="el" href="config_8cpp_source.html#l00042">42</a></p>
+</div>
+</div>
+<a id="a688d00bbabd28fbaf9e0c50eca3adeae" name="a688d00bbabd28fbaf9e0c50eca3adeae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a688d00bbabd28fbaf9e0c50eca3adeae">&#9670;&#160;</a></span>saveConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void saveConfig </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -260,26 +246,22 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="config_8cpp_source.html">config.cpp</a> строка <a class="el" href="config_8cpp_source.html#l00233">233</a></p>
-
 </div>
 </div>
-<a id="a688d00bbabd28fbaf9e0c50eca3adeae" name="a688d00bbabd28fbaf9e0c50eca3adeae"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a688d00bbabd28fbaf9e0c50eca3adeae">&#9670;&#160;</a></span>saveConfig()</h2>
+<a id="aeb61f04cd3b4b68e8146d85c447d70d1" name="aeb61f04cd3b4b68e8146d85c447d70d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb61f04cd3b4b68e8146d85c447d70d1">&#9670;&#160;</a></span>isConfigValid()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void saveConfig </td>
+          <td class="memname">bool isConfigValid </td>
           <td>(</td>
           <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="config_8cpp_source.html">config.cpp</a> строка <a class="el" href="config_8cpp_source.html#l00143">143</a></p>
 
 </div>
 </div>
@@ -296,8 +278,6 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="config_8cpp_source.html">config.cpp</a> строка <a class="el" href="config_8cpp_source.html#l00037">37</a></p>
-
 </div>
 </div>
 <a id="a6ea06cf7b8092a0adaf07614d7ece59d" name="a6ea06cf7b8092a0adaf07614d7ece59d"></a>
@@ -311,8 +291,6 @@ $(function(){initNavTree('config_8cpp.html',''); initResizable(true); });
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="config_8cpp_source.html">config.cpp</a> строка <a class="el" href="config_8cpp_source.html#l00038">38</a></p>
 
 </div>
 </div>

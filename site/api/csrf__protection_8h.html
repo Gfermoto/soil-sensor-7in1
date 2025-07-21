@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл include/web/csrf_protection.h</title>
+<title>JXCT Soil Sensor 7-in-1: Файл include/web/csrf_protection.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -106,8 +106,8 @@ $(function(){initNavTree('csrf__protection_8h.html',''); initResizable(true); })
 
 <p>Заголовочный файл для CSRF защиты  
 <a href="#details">Подробнее...</a></p>
-<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
-<code>#include &lt;WebServer.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;WebServer.h&gt;</code><br />
+<code>#include &quot;Arduino.h&quot;</code><br />
 </div>
 <p><a href="csrf__protection_8h_source.html">См. исходные тексты.</a></p>
 <table class="memberdecls">
@@ -135,28 +135,7 @@ $(function(){initNavTree('csrf__protection_8h.html',''); initResizable(true); })
 <div class="textblock"><p>Заголовочный файл для CSRF защиты </p>
 <dl class="section date"><dt>Дата</dt><dd>2025-01-22 </dd></dl>
 <dl class="section author"><dt>Автор</dt><dd>AI Assistant </dd></dl>
-
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8h_source.html">csrf_protection.h</a></p>
 </div><h2 class="groupheader">Функции</h2>
-<a id="a0320c55f4de318df92de8a73e8e7d828" name="a0320c55f4de318df92de8a73e8e7d828"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0320c55f4de318df92de8a73e8e7d828">&#9670;&#160;</a></span>checkCSRFSafety()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool checkCSRFSafety </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00102">102</a></p>
-
-</div>
-</div>
 <a id="ab27a975e89338b0b23a40e028b1ae9b2" name="ab27a975e89338b0b23a40e028b1ae9b2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab27a975e89338b0b23a40e028b1ae9b2">&#9670;&#160;</a></span>generateCSRFToken()</h2>
 
@@ -171,65 +150,6 @@ $(function(){initNavTree('csrf__protection_8h.html',''); initResizable(true); })
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00031">31</a></p>
-
-</div>
-</div>
-<a id="aab8be89322026594573b8f3c8064bbbc" name="aab8be89322026594573b8f3c8064bbbc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab8be89322026594573b8f3c8064bbbc">&#9670;&#160;</a></span>getCSRFHiddenField()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String getCSRFHiddenField </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00091">91</a></p>
-
-</div>
-</div>
-<a id="ac922ac6444b8b990e13e3746ca931065" name="ac922ac6444b8b990e13e3746ca931065"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac922ac6444b8b990e13e3746ca931065">&#9670;&#160;</a></span>initCSRFProtection()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void initCSRFProtection </td>
-          <td>(</td>
-          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00177">177</a></p>
-
-</div>
-</div>
-<a id="ad9d33eff9bf83f09111cc522049930bc" name="ad9d33eff9bf83f09111cc522049930bc"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad9d33eff9bf83f09111cc522049930bc">&#9670;&#160;</a></span>methodToString()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">String methodToString </td>
-          <td>(</td>
-          <td class="paramtype">HTTPMethod</td>          <td class="paramname"><span class="paramname"><em>method</em></span></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00150">150</a></p>
 
 </div>
 </div>
@@ -248,7 +168,73 @@ $(function(){initNavTree('csrf__protection_8h.html',''); initResizable(true); })
       </table>
 </div><div class="memdoc">
 
-<p class="definition">См. определение в файле <a class="el" href="csrf__protection_8cpp_source.html">csrf_protection.cpp</a> строка <a class="el" href="csrf__protection_8cpp_source.html#l00058">58</a></p>
+</div>
+</div>
+<a id="aab8be89322026594573b8f3c8064bbbc" name="aab8be89322026594573b8f3c8064bbbc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab8be89322026594573b8f3c8064bbbc">&#9670;&#160;</a></span>getCSRFHiddenField()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String getCSRFHiddenField </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0320c55f4de318df92de8a73e8e7d828" name="a0320c55f4de318df92de8a73e8e7d828"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0320c55f4de318df92de8a73e8e7d828">&#9670;&#160;</a></span>checkCSRFSafety()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool checkCSRFSafety </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac922ac6444b8b990e13e3746ca931065" name="ac922ac6444b8b990e13e3746ca931065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac922ac6444b8b990e13e3746ca931065">&#9670;&#160;</a></span>initCSRFProtection()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void initCSRFProtection </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad9d33eff9bf83f09111cc522049930bc" name="ad9d33eff9bf83f09111cc522049930bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad9d33eff9bf83f09111cc522049930bc">&#9670;&#160;</a></span>methodToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">String methodToString </td>
+          <td>(</td>
+          <td class="paramtype">HTTPMethod</td>          <td class="paramname"><span class="paramname"><em>method</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

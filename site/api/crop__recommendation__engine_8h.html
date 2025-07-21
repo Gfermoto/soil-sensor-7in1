@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл src/business/crop_recommendation_engine.h</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/business/crop_recommendation_engine.h</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -105,30 +105,34 @@ $(function(){initNavTree('crop__recommendation__engine_8h.html',''); initResizab
 
 <p>Реализация движка рекомендаций по культурам  
 <a href="#details">Подробнее...</a></p>
-<div class="textblock"><code>#include &lt;map&gt;</code><br />
-<code>#include &lt;Arduino.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="_i_crop_recommendation_engine_8h_source.html">../../include/business/ICropRecommendationEngine.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">../../include/jxct_constants.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;Arduino.h&gt;</code><br />
+<code>#include &lt;map&gt;</code><br />
+<code>#include &lt;vector&gt;</code><br />
+<code>#include &quot;<a class="el" href="ICropRecommendationEngine_8h_source.html">business/ICropRecommendationEngine.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="modbus__sensor_8h_source.html">../modbus_sensor.h</a>&quot;</code><br />
 </div>
 <p><a href="crop__recommendation__engine_8h_source.html">См. исходные тексты.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Классы</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_crop_config.html">CropConfig</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Конфигурация культуры  <a href="struct_crop_config.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCropCompensationParams.html">CropCompensationParams</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_seasonal_adjustment.html">SeasonalAdjustment</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Сезонная корректировка  <a href="struct_seasonal_adjustment.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCropCompensationParams_1_1Builder.html">CropCompensationParams::Builder</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_crop_recommendation_engine.html">CropRecommendationEngine</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Движок рекомендаций по культурам  <a href="class_crop_recommendation_engine.html#details">Подробнее...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCropECCompensationParams.html">CropECCompensationParams</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCropECCompensationParams_1_1Builder.html">CropECCompensationParams::Builder</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structCropConfig.html">CropConfig</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structRecommendationResult.html">RecommendationResult</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCropRecommendationEngine.html">CropRecommendationEngine</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Реализация движка рекомендаций по культурам </p>
 <p>Вычисляет агрономические рекомендации на основе типа культуры и условий </p>
-
-<p class="definition">См. определение в файле <a class="el" href="crop__recommendation__engine_8h_source.html">crop_recommendation_engine.h</a></p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

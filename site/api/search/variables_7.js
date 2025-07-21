@@ -2,7 +2,7 @@ var searchData=
 [
   ['hass_5fconfig_5fsuffix_0',['HASS_CONFIG_SUFFIX',['../jxct__constants_8h.html#a4bae8e2361c67765c52dee65bad786ec',1,'jxct_constants.h']]],
   ['hass_5fdiscovery_5fprefix_1',['HASS_DISCOVERY_PREFIX',['../jxct__constants_8h.html#a29476cce48d3c057ff38741926ac71db',1,'jxct_constants.h']]],
-  ['helptext_2',['helpText',['../struct_config_section_info.html#ad775de27d0ca0251afc6fd1d6252d79e',1,'ConfigSectionInfo']]],
+  ['healthstatus_2',['healthStatus',['../structRecommendationResult.html#a0f34697f68ccd584285b4142a97bc4f0',1,'RecommendationResult']]],
   ['hostname_5fbuffer_5fsize_3',['HOSTNAME_BUFFER_SIZE',['../jxct__constants_8h.html#abec991a26cb2aa3678ef2c898d73c233',1,'jxct_constants.h']]],
   ['hours_5fin_5fday_4',['HOURS_IN_DAY',['../jxct__constants_8h.html#afce6d7b07dddca700627968cbd49cf3f',1,'jxct_constants.h']]],
   ['http_5fbad_5frequest_5',['HTTP_BAD_REQUEST',['../jxct__constants_8h.html#ad8293a590a80876694618b34687275f1',1,'jxct_constants.h']]],
@@ -16,11 +16,10 @@ var searchData=
   ['http_5fredirect_5fpermanent_13',['HTTP_REDIRECT_PERMANENT',['../jxct__constants_8h.html#a3a2afafac1a7f959cb39deda72f32547',1,'jxct_constants.h']]],
   ['http_5fredirect_5ftemporary_14',['HTTP_REDIRECT_TEMPORARY',['../jxct__constants_8h.html#ac850ff653880faf06e57dec2fd525a18',1,'jxct_constants.h']]],
   ['http_5fsee_5fother_15',['HTTP_SEE_OTHER',['../jxct__constants_8h.html#a6b403a509a6e8ba38a7d6406ac406fe4',1,'jxct_constants.h']]],
-  ['hum_16',['hum',['../struct_crop_config.html#aa65d1b6b7b45e65eb3bf9cd2d711ec10',1,'CropConfig::hum'],['../struct_rec_values.html#af5f8d5f555bee5aa71f30afabce004fd',1,'RecValues::hum']]],
-  ['hum_5fadjust_17',['hum_adjust',['../struct_seasonal_adjustment.html#aae058511c97e8820054b18f5d54693e8',1,'SeasonalAdjustment']]],
-  ['hum_5fbuffer_18',['hum_buffer',['../struct_sensor_data.html#a2202526bdd825aac6317285d8f6d679f',1,'SensorData']]],
-  ['hum_5fmax_5fvalid_19',['HUM_MAX_VALID',['../jxct__constants_8h.html#a2eba44199e27d42d3688e6c76bb5a518',1,'jxct_constants.h']]],
-  ['hum_5fmin_5fvalid_20',['HUM_MIN_VALID',['../jxct__constants_8h.html#a25fdc8731a119321d9130a46daacaeb8',1,'jxct_constants.h']]],
-  ['humidity_21',['humidity',['../struct_sensor_data.html#a29ce8f1d86589b1c5af915ec961742f2',1,'SensorData']]],
-  ['humiditypoints_22',['humidityPoints',['../struct_calibration_table.html#ae83d5b35d77ed007f63d5ba7bafd89fc',1,'CalibrationTable']]]
+  ['hum_16',['hum',['../structRecValues.html#af5f8d5f555bee5aa71f30afabce004fd',1,'RecValues']]],
+  ['hum_5fbuffer_17',['hum_buffer',['../structSensorData.html#a2202526bdd825aac6317285d8f6d679f',1,'SensorData']]],
+  ['hum_5fmax_5fvalid_18',['HUM_MAX_VALID',['../jxct__constants_8h.html#a2eba44199e27d42d3688e6c76bb5a518',1,'jxct_constants.h']]],
+  ['hum_5fmin_5fvalid_19',['HUM_MIN_VALID',['../jxct__constants_8h.html#a25fdc8731a119321d9130a46daacaeb8',1,'jxct_constants.h']]],
+  ['humidity_20',['humidity',['../structCropConfig.html#a14d0adaf211511dade7d561244030dad',1,'CropConfig::humidity'],['../structSensorData.html#a29ce8f1d86589b1c5af915ec961742f2',1,'SensorData::humidity']]],
+  ['humiditypoints_21',['humidityPoints',['../structCalibrationTable.html#ae83d5b35d77ed007f63d5ba7bafd89fc',1,'CalibrationTable']]]
 ];

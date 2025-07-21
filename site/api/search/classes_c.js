@@ -1,12 +1,11 @@
 var searchData=
 [
-  ['seasonaladjustment_0',['SeasonalAdjustment',['../struct_seasonal_adjustment.html',1,'']]],
-  ['sensorcache_1',['SensorCache',['../struct_sensor_cache.html',1,'']]],
-  ['sensorcalibrationservice_2',['SensorCalibrationService',['../class_sensor_calibration_service.html',1,'']]],
-  ['sensorcompensationservice_3',['SensorCompensationService',['../class_sensor_compensation_service.html',1,'']]],
-  ['sensordata_4',['SensorData',['../struct_sensor_data.html',1,'']]],
-  ['sensorvalidationresult_5',['SensorValidationResult',['../struct_sensor_validation_result.html',1,'']]],
-  ['soileccoeff_6',['SoilECCoeff',['../struct_soil_e_c_coeff.html',1,'']]],
-  ['soilparameters_7',['SoilParameters',['../struct_soil_parameters.html',1,'']]],
-  ['statisticsbuffer_8',['StatisticsBuffer',['../struct_advanced_filters_1_1_statistics_buffer.html',1,'AdvancedFilters']]]
+  ['sensorcache_0',['SensorCache',['../structSensorCache.html',1,'']]],
+  ['sensorcalibration_1',['SensorCalibration',['../structSensorCalibration.html',1,'']]],
+  ['sensorcalibrationservice_2',['SensorCalibrationService',['../classSensorCalibrationService.html',1,'']]],
+  ['sensorcompensationservice_3',['SensorCompensationService',['../classSensorCompensationService.html',1,'']]],
+  ['sensordata_4',['SensorData',['../structSensorData.html',1,'']]],
+  ['sensorvalidationresult_5',['SensorValidationResult',['../structSensorValidationResult.html',1,'']]],
+  ['soilparameters_6',['SoilParameters',['../structSoilParameters.html',1,'']]],
+  ['statisticsbuffer_7',['StatisticsBuffer',['../structAdvancedFilters_1_1StatisticsBuffer.html',1,'AdvancedFilters']]]
 ];

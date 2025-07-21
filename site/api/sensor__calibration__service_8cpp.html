@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.13.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>JXCT 7-в-1 Датчик Почвы: Файл src/business/sensor_calibration_service.cpp</title>
+<title>JXCT Soil Sensor 7-in-1: Файл src/business/sensor_calibration_service.cpp</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -27,9 +27,9 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">JXCT 7-в-1 Датчик Почвы<span id="projectnumber">&#160;3.6.7</span>
+   <div id="projectname">JXCT Soil Sensor 7-in-1<span id="projectnumber">&#160;3.10.1</span>
    </div>
-   <div id="projectbrief">Документация API для датчика почвы JXCT 7-в-1</div>
+   <div id="projectbrief">IoT система мониторинга почвы на базе ESP32</div>
   </td>
  </tr>
  </tbody>
@@ -97,24 +97,47 @@ $(function(){initNavTree('sensor__calibration__service_8cpp.html',''); initResiz
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#func-members">Функции</a>  </div>
   <div class="headertitle"><div class="title">Файл sensor_calibration_service.cpp</div></div>
 </div><!--header-->
 <div class="contents">
 
 <p>Реализация сервиса калибровки датчиков  
 <a href="#details">Подробнее...</a></p>
-<div class="textblock"><code>#include &quot;<a class="el" href="sensor__calibration__service_8h_source.html">sensor_calibration_service.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="src_2business_2sensor__calibration__service_8h_source.html">sensor_calibration_service.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="include_2calibration__manager_8h_source.html">../../include/calibration_manager.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="jxct__constants_8h_source.html">../../include/jxct_constants.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="logger_8h_source.html">../../include/logger.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="include_2calibration__manager_8h_source.html">../../include/calibration_manager.h</a>&quot;</code><br />
-</div>
-<p><a href="sensor__calibration__service_8cpp_source.html">См. исходные тексты.</a></p>
+<code>#include &quot;<a class="el" href="validation__utils_8h_source.html">validation_utils.h</a>&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Функции</h2></td></tr>
+<tr class="memitem:abab1dae6416ffacbbb2b44dbc79938f6" id="r_abab1dae6416ffacbbb2b44dbc79938f6"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155d">SoilProfile</a>, <a class="el" href="structCalibrationTable.html">CalibrationTable</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abab1dae6416ffacbbb2b44dbc79938f6">getCalibrationTables</a> ()</td></tr>
+<tr class="separator:abab1dae6416ffacbbb2b44dbc79938f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
 <div class="textblock"><p>Реализация сервиса калибровки датчиков </p>
 <p>Применяет калибровочные данные к показаниям датчиков </p>
+</div><h2 class="groupheader">Функции</h2>
+<a id="abab1dae6416ffacbbb2b44dbc79938f6" name="abab1dae6416ffacbbb2b44dbc79938f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abab1dae6416ffacbbb2b44dbc79938f6">&#9670;&#160;</a></span>getCalibrationTables()</h2>
 
-<p class="definition">См. определение в файле <a class="el" href="sensor__calibration__service_8cpp_source.html">sensor_calibration_service.cpp</a></p>
-</div></div><!-- contents -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt; <a class="el" href="sensor__compensation_8h.html#aaa92ab56ea828c0bcccad4564b21155d">SoilProfile</a>, <a class="el" href="structCalibrationTable.html">CalibrationTable</a> &gt; &amp; getCalibrationTables </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
