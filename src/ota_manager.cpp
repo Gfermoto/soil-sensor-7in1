@@ -45,11 +45,13 @@ void checkGuard(const char* tag)  // NOLINT(misc-use-internal-linkage)
     {
         printGuard("GAP", tag, guardGap.data());
         strncpy(guardGap.data(), "BEFORE", 7);
+        guardGap[guardGap.size() - 1] = '\0';
     }
     if (strncmp(guardSentinel.data(), "GUARD!", 6) != 0)
     {
         printGuard("AFTER", tag, guardSentinel.data());
         strncpy(guardSentinel.data(), "GUARD!", 7);
+        guardSentinel[guardSentinel.size() - 1] = '\0';
     }
 }
 

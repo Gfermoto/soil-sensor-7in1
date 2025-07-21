@@ -230,6 +230,7 @@ void setupMQTTInternal()
     {
         ERROR_PRINTF("[DNS] Не удалось разрешить DNS для %s\n", config.mqttServer);
         strlcpy(mqttLastErrorBuffer.data(), "Ошибка DNS резолвинга", mqttLastErrorBuffer.size() - 1);
+        mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
         return;
     }
 
@@ -292,46 +293,57 @@ bool connectMQTTInternal()
         case -4:
             DEBUG_PRINTLN("Тайм-аут подключения");
             strncpy(mqttLastErrorBuffer.data(), "Тайм-аут подключения", mqttLastErrorBuffer.size() - 1);
+            mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
             break;
         case -3:
             DEBUG_PRINTLN("Соединение потеряно");
             strncpy(mqttLastErrorBuffer.data(), "Соединение потеряно", mqttLastErrorBuffer.size() - 1);
+            mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
             break;
         case -2:
             DEBUG_PRINTLN("Ошибка подключения");
             strncpy(mqttLastErrorBuffer.data(), "Ошибка подключения", mqttLastErrorBuffer.size() - 1);
+            mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
             break;
         case -1:
             DEBUG_PRINTLN("Отключено");
             strncpy(mqttLastErrorBuffer.data(), "Отключено", mqttLastErrorBuffer.size() - 1);
+            mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
             break;
         case 0:
             DEBUG_PRINTLN("Подключено");
             strncpy(mqttLastErrorBuffer.data(), "Подключено", mqttLastErrorBuffer.size() - 1);
+            mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
             break;
         case 1:
             DEBUG_PRINTLN("Неверный протокол");
             strncpy(mqttLastErrorBuffer.data(), "Неверный протокол", mqttLastErrorBuffer.size() - 1);
+            mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
             break;
         case 2:
             DEBUG_PRINTLN("Неверный ID клиента");
             strncpy(mqttLastErrorBuffer.data(), "Неверный ID клиента", mqttLastErrorBuffer.size() - 1);
+            mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
             break;
         case 3:
             DEBUG_PRINTLN("Сервер недоступен");
             strncpy(mqttLastErrorBuffer.data(), "Сервер недоступен", mqttLastErrorBuffer.size() - 1);
+            mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
             break;
         case 4:
             DEBUG_PRINTLN("Неверные учетные данные");
             strncpy(mqttLastErrorBuffer.data(), "Неверные учетные данные", mqttLastErrorBuffer.size() - 1);
+            mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
             break;
         case 5:
             DEBUG_PRINTLN("Не авторизован");
             strncpy(mqttLastErrorBuffer.data(), "Не авторизован", mqttLastErrorBuffer.size() - 1);
+            mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
             break;
         default:
             DEBUG_PRINTLN("Неизвестная ошибка");
             strncpy(mqttLastErrorBuffer.data(), "Неизвестная ошибка", mqttLastErrorBuffer.size() - 1);
+            mqttLastErrorBuffer[mqttLastErrorBuffer.size() - 1] = '\0';
             break;
     }
 
