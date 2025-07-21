@@ -10,6 +10,8 @@
 #include "../../include/jxct_constants.h"
 #include "../../include/logger.h"
 #include "validation_utils.h"  // Для централизованной валидации
+#include "sensor_compensation_service.h"
+#include "business_services.h" // Для getCompensationService()
 
 namespace {
 // Заглушки для внутренних функций компенсации
@@ -944,33 +946,37 @@ void CropRecommendationEngine::applySeasonalCorrection(RecValues& rec, Season se
 }
 
 // Обёртки для функций с легко перепутываемыми параметрами
-float CropRecommendationEngine::compensatePH(const CropCompensationParams& params)  // NOLINT(readability-convert-member-functions-to-static)
+float CropRecommendationEngine::compensatePH(const CropCompensationParams& params)
 {
-    return compensatePHInternal(params.rawValue, params.temperature, params.moisture);
+    return getCompensationService().correctPH(params.temperature, params.rawValue);
 }
 
-float CropRecommendationEngine::compensateEC(const CropECCompensationParams& params)  // NOLINT(readability-convert-member-functions-to-static)
+float CropRecommendationEngine::compensateEC(const CropECCompensationParams& params)
 {
-    return compensateECInternal(params.rawValue, params.temperature);
+    // CropECCompensationParams не содержит soilType и moisture, используем значения по умолчанию
+    return getCompensationService().correctEC(params.rawValue, SoilType::LOAM, params.temperature, 60.0F);
 }
 
-float CropRecommendationEngine::compensateNPK(const CropCompensationParams& params)  // NOLINT(readability-convert-member-functions-to-static)
+float CropRecommendationEngine::compensateNPK(const CropCompensationParams& params)
 {
-    return compensateNPKInternal(params.rawValue, params.temperature, params.moisture);
+    NPKReferences npk{params.rawValue, params.rawValue, params.rawValue};
+    getCompensationService().correctNPK(params.temperature, params.moisture, SoilType::LOAM, npk);
+    return npk.nitrogen;
 }
 
-// Обратная совместимость
-float CropRecommendationEngine::compensatePH(float pHRawValue, float temperatureValue, float moistureValue)  // NOLINT(readability-convert-member-functions-to-static)
+float CropRecommendationEngine::compensatePH(float pHRawValue, float temperatureValue, float /*moistureValue*/)
 {
-    return compensatePHInternal(pHRawValue, temperatureValue, moistureValue);
+    return getCompensationService().correctPH(temperatureValue, pHRawValue);
 }
 
-float CropRecommendationEngine::compensateEC(float ECRawValue, float temperatureValue)  // NOLINT(readability-convert-member-functions-to-static)
+float CropRecommendationEngine::compensateEC(float ECRawValue, float temperatureValue)
 {
-    return compensateECInternal(ECRawValue, temperatureValue);
+    return getCompensationService().correctEC(ECRawValue, SoilType::LOAM, temperatureValue, 60.0F);
 }
 
-float CropRecommendationEngine::compensateNPK(float NPKRawValue, float temperatureValue, float moistureValue)  // NOLINT(readability-convert-member-functions-to-static)
+float CropRecommendationEngine::compensateNPK(float NPKRawValue, float temperatureValue, float moistureValue)
 {
-    return compensateNPKInternal(NPKRawValue, temperatureValue, moistureValue);
+    NPKReferences npk{NPKRawValue, NPKRawValue, NPKRawValue};
+    getCompensationService().correctNPK(temperatureValue, moistureValue, SoilType::LOAM, npk);
+    return npk.nitrogen;
 }

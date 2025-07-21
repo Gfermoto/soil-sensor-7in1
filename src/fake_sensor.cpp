@@ -10,6 +10,7 @@
 #include "logger.h"  // ✅ Добавляем для logDebugSafe
 #include "modbus_sensor.h"
 #include "sensor_compensation.h"
+#include "business_services.h" // Для getCompensationService()
 
 namespace
 {
@@ -78,13 +79,13 @@ void fakeSensorTask(void* parameters)
                 const SoilType soil = soilTypes[profileIndex];
 
                 // 1. EC: температурная компенсация
-                sensorData.ec = correctEC(sensorData.ec, sensorData.temperature, sensorData.humidity, soil);
+                sensorData.ec = getCompensationService().correctEC(sensorData.ec, soil, sensorData.temperature, sensorData.humidity);
 
                 // 2. pH: температурная поправка
-                sensorData.ph = correctPH(sensorData.temperature, sensorData.ph);
+                sensorData.ph = getCompensationService().correctPH(sensorData.temperature, sensorData.ph);
 
                 // 3. NPK: температурная компенсация
-                correctNPK(sensorData.temperature, sensorData.humidity, soil, npk);
+                getCompensationService().correctNPK(sensorData.temperature, sensorData.humidity, soil, npk);
 
                 // Сохраняем скорректированные NPK данные в sensorData
                 sensorData.nitrogen = npk.nitrogen;
@@ -102,12 +103,8 @@ void fakeSensorTask(void* parameters)
         vTaskDelay(taskDelay);
     }
 }
+} // конец анонимного namespace
 
-// forward declaration; реализация глобальная ниже
-void startFakeSensorTask();
-}  // anonymous namespace
-
-// Определение-обёртка с внешним связыванием
 void startFakeSensorTask()
 {
     xTaskCreate(fakeSensorTask, "FakeSensor", 4096, nullptr, 1, nullptr);
