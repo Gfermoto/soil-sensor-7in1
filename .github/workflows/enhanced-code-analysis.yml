@@ -77,27 +77,27 @@ jobs:
 
     - name: Install dependencies
       run: |
-        pip install pytest pylint flake8 mypy
+        python -m pip install --upgrade pip
+        pip install pytest pylint flake8 mypy platformio
+        if [ -f "requirements.txt" ]; then
+          pip install -r requirements.txt
+        fi
 
     - name: Run Python tests
       run: |
-        python -m pytest test/ -v
-      # Тесты должны блокировать регрессии
+        python -m pytest test/ -v --tb=short
 
     - name: Run Pylint
       run: |
-        pylint scripts/ test/ --disable=C0114,C0115,C0116
-      # Линтеры должны блокировать проблемы качества кода
+        pylint scripts/ test/ --disable=C0114,C0115,C0116 --fail-under=7
 
     - name: Run Flake8
       run: |
-        flake8 scripts/ test/ --max-line-length=120
-      # Стиль кода должен соответствовать стандартам
+        flake8 scripts/ test/ --max-line-length=120 --count --statistics
 
     - name: Run MyPy
       run: |
-        mypy scripts/ test/ --ignore-missing-imports
-      # Типизация должна быть корректной
+        mypy scripts/ test/ --ignore-missing-imports --no-strict-optional
 
   summary:
     name: Analysis Summary

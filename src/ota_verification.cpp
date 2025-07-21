@@ -2,31 +2,64 @@
 #include <sstream>
 #include <iomanip>
 #include <strings.h>
+#include <mbedtls/sha256.h> // Added for mbedtls SHA256 functions
+#include <cstring> // Added for memcmp
+#include <string> // Added for String
 
 namespace
 {
 bool isSha256HexEqual(const uint8_t* calcDigest, const char* expectedHex)
 {
-    std::ostringstream oss;
-    for (int i = 0; i < 32; ++i)
-    {
-        oss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(calcDigest[i]);
+    if (calcDigest == nullptr || expectedHex == nullptr) {
+        return false;
     }
-    std::string hexString = oss.str();
+    
+    // Конвертируем вычисленный digest в hex строку
+    String hexString = "";
+    for (int i = 0; i < 32; i++) {
+        char hex[3];
+        snprintf(hex, sizeof(hex), "%02x", calcDigest[i]);
+        hexString += hex;
+    }
+    
+    // Сравниваем без учета регистра
     return strcasecmp(hexString.c_str(), expectedHex) == 0;
 }
 
 bool verifySha256Digest(const uint8_t* data, size_t dataLen, const uint8_t* expectedDigest) {
-    // TODO: Implement proper SHA256 verification
-    // For now, return true as placeholder
-    return true;
+    if (data == nullptr || expectedDigest == nullptr || dataLen == 0) {
+        return false;
+    }
+    
+    // Вычисляем SHA256 от данных
+    uint8_t calculatedDigest[32];
+    mbedtls_sha256_context shaCtx;
+    mbedtls_sha256_init(&shaCtx);
+    
+    if (mbedtls_sha256_starts(&shaCtx, 0) != 0) {
+        mbedtls_sha256_free(&shaCtx);
+        return false;
+    }
+    
+    if (mbedtls_sha256_update(&shaCtx, data, dataLen) != 0) {
+        mbedtls_sha256_free(&shaCtx);
+        return false;
+    }
+    
+    if (mbedtls_sha256_finish(&shaCtx, calculatedDigest) != 0) {
+        mbedtls_sha256_free(&shaCtx);
+        return false;
+    }
+    
+    mbedtls_sha256_free(&shaCtx);
+    
+    // Сравниваем с ожидаемым digest
+    return memcmp(calculatedDigest, expectedDigest, 32) == 0;
 }
 
 // Совместимая функция со старой сигнатурой
 bool verifySha256Digest(const uint8_t* calcDigest, const char* expectedHex) {
-    // TODO: Implement proper SHA256 verification
-    // For now, return true as placeholder
-    return true;
+    return isSha256HexEqual(calcDigest, expectedHex);
 }
 
 }  // namespace 
