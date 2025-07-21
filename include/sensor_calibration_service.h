@@ -10,6 +10,37 @@
 #include <map>
 #include "modbus_sensor.h"  // Для структуры SensorData
 
+// ============================================================================
+// КОНСТАНТЫ СТАНДАРТНЫХ РАСТВОРОВ ДЛЯ КАЛИБРОВКИ
+// ============================================================================
+
+/**
+ * @brief Стандартные буферные растворы для pH калибровки
+ * 
+ * Используются для точной калибровки pH датчиков
+ * Максимум 6 стандартных растворов
+ */
+namespace StandardBuffers {
+    // pH буферные растворы (стандартные)
+    constexpr float PH_4_01 = 4.01F;    // Кислый буфер
+    constexpr float PH_6_86 = 6.86F;    // Нейтральный буфер
+    constexpr float PH_7_00 = 7.00F;    // Нейтральный буфер
+    constexpr float PH_9_18 = 9.18F;    // Щелочной буфер
+    constexpr float PH_10_01 = 10.01F;  // Высокий щелочной буфер
+    
+    // EC стандартные растворы (KCl)
+    constexpr float EC_1413_US = 1413.0F;    // 1413 µS/cm
+    constexpr float EC_1_413_MS = 1.413F;    // 1.413 mS/cm
+    constexpr float EC_12_88_MS = 12.88F;    // 12.88 mS/cm
+    constexpr float EC_0_1413_MS = 0.1413F;  // 0.1413 mS/cm
+    
+    // Максимальное количество калибровочных точек
+    constexpr size_t MAX_PH_POINTS = 6;   // pH буферные растворы
+    constexpr size_t MAX_EC_POINTS = 5;   // EC стандартные растворы
+    constexpr size_t MAX_NPK_POINTS = 3;  // NPK калибровка (обычно 1-3 точки)
+    constexpr size_t MAX_TOTAL_POINTS = MAX_PH_POINTS + MAX_EC_POINTS + MAX_NPK_POINTS;
+}
+
 /**
  * @file sensor_calibration_service.h
  * @brief Единая система калибровки и поверки датчиков

@@ -586,12 +586,12 @@ String SensorCalibrationService::exportCalibrationToJSON()
 {
     // Рассчитываем необходимый размер для JSON документа
     // Основная структура: sensor_id, calibration_date, is_complete
-    // pH: is_valid, coefficient_a, coefficient_b, r_squared + массив точек (до 20 точек)
-    // EC: is_valid, coefficient_c, coefficient_d, r_squared + массив точек (до 20 точек)  
+    // pH: is_valid, coefficient_a, coefficient_b, r_squared + массив точек (до 6 буферных растворов)
+    // EC: is_valid, coefficient_c, coefficient_d, r_squared + массив точек (до 5 стандартных растворов)  
     // NPK: is_valid, offset_nitrogen, offset_phosphorus, offset_potassium
     // Каждая точка: expected, measured (2 поля)
-    // Безопасный размер: 4KB для поддержки до 50 калибровочных точек
-    DynamicJsonDocument doc(4096);
+    // Реалистичный размер: 2KB для поддержки до 15 калибровочных точек (StandardBuffers::MAX_TOTAL_POINTS)
+    DynamicJsonDocument doc(2048);
     
     // Основная информация
     doc["sensor_id"] = current_calibration.sensor_id;
@@ -641,8 +641,8 @@ String SensorCalibrationService::exportCalibrationToJSON()
 bool SensorCalibrationService::importCalibrationFromJSON(const String& json_data)
 {
     // Рассчитываем необходимый размер для JSON документа
-    // Аналогично exportCalibrationToJSON - 4KB для поддержки до 50 калибровочных точек
-    DynamicJsonDocument doc(4096);
+    // Аналогично exportCalibrationToJSON - 2KB для поддержки до 15 калибровочных точек (StandardBuffers::MAX_TOTAL_POINTS)
+    DynamicJsonDocument doc(2048);
     DeserializationError error = deserializeJson(doc, json_data);
     
     if (error) {
