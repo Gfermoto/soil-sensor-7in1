@@ -26,9 +26,4 @@ jobs:
         continue-on-error: true
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v3
-        # Security issues должны блокировать CI
-      - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v3
-        if: always()
-        with:
-          sarif_file: ../codeql-database/results.sarif 
+        # Security issues должны блокировать CI 

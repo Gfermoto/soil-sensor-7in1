@@ -22,7 +22,6 @@ jobs:
       uses: github/codeql-action/init@v3
       with:
         languages: cpp, python
-        config-file: ./.github/codeql/codeql-config.yml
       continue-on-error: true
 
     - name: Autobuild
