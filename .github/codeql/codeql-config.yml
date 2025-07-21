@@ -1,0 +1,39 @@
+name: "CodeQL Config"
+
+# Конфигурация для анализа C++ и Python кода в IoT проекте
+queries:
+  # Включаем все стандартные запросы безопасности
+  - uses: security-and-quality
+  # Дополнительные запросы для C++
+  - uses: security-and-quality@cpp
+  # Дополнительные запросы для Python  
+  - uses: security-and-quality@python
+  # Кастомные запросы для embedded/IoT
+  - uses: security-extended@cpp
+  - uses: security-extended@python
+
+# Исключаем тестовые файлы и заглушки
+paths-ignore:
+  - "test/**"
+  - "test_stubs/**"
+  - "docs/**"
+  - "site/**"
+  - ".github/**"
+  - "scripts/**"
+  - "*.md"
+
+# Настройки для C++ анализа
+paths:
+  - "src/**"
+  - "include/**"
+  - "main.cpp"
+  - "platformio.ini"
+
+# Дополнительные настройки для embedded разработки
+query-filters:
+  - include:
+      tags contain: security
+  - include:
+      tags contain: correctness
+  - exclude:
+      tags contain: experimental 

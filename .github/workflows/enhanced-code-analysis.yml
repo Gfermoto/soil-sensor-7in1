@@ -1,0 +1,116 @@
+name: "Enhanced Code Analysis"
+
+on:
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  codeql-analysis:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v3
+      with:
+        languages: cpp, python
+        config-file: ./.github/codeql/codeql-config.yml
+
+    - name: Autobuild
+      uses: github/codeql-action/autobuild@v3
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v3
+
+  static-analysis:
+    name: Static Analysis (Cppcheck + Clang-Tidy)
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install PlatformIO
+      run: |
+        pip install platformio
+
+    - name: Run Cppcheck
+      run: |
+        pio check -e static-analysis
+        echo "✅ Cppcheck analysis completed"
+
+    - name: Run Clang-Tidy (if available)
+      run: |
+        python scripts/run_clang_tidy_analysis.py
+        echo "✅ Clang-Tidy analysis completed"
+
+  python-analysis:
+    name: Python Code Analysis
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install pytest pylint flake8 mypy
+
+    - name: Run Python tests
+      run: |
+        python -m pytest test/ -v
+
+    - name: Run Pylint
+      run: |
+        pylint scripts/ test/ --disable=C0114,C0115,C0116
+
+    - name: Run Flake8
+      run: |
+        flake8 scripts/ test/ --max-line-length=120
+
+    - name: Run MyPy
+      run: |
+        mypy scripts/ test/ --ignore-missing-imports
+
+  summary:
+    name: Analysis Summary
+    runs-on: ubuntu-latest
+    needs: [codeql-analysis, static-analysis, python-analysis]
+    
+    steps:
+    - name: Generate Summary
+      run: |
+        echo "🔍 Code Analysis Summary"
+        echo "========================"
+        echo "✅ CodeQL Analysis: Completed"
+        echo "✅ Static Analysis (Cppcheck): Completed" 
+        echo "✅ Clang-Tidy Analysis: Completed"
+        echo "✅ Python Tests: Completed"
+        echo "✅ Python Linting: Completed"
+        echo ""
+        echo "📊 Analysis Tools:"
+        echo "- CodeQL: Security vulnerabilities, bugs, code smells"
+        echo "- Cppcheck: C++ static analysis, memory leaks, undefined behavior"
+        echo "- Clang-Tidy: C++ style, performance, modern C++"
+        echo "- Pytest: Python test coverage and validation"
+        echo "- Pylint/Flake8: Python code quality and style"
+        echo ""
+        echo "🎯 Total Coverage: CodeRabbit + CodeQL + Cppcheck + Clang-Tidy + Python tools" 
