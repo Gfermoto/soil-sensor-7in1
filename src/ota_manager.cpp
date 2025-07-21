@@ -174,7 +174,8 @@ bool initializeDownload(HTTPClient& http, const String& binUrl, int& contentLen)
 
     if (code != HTTP_CODE_OK)
     {
-        snprintf(statusBuf.data(), sizeof(statusBuf), "Ошибка HTTP %d", code);
+        strlcpy(statusBuf.data(), "Ошибка HTTP ", sizeof(statusBuf));
+        strlcat(statusBuf.data(), String(code).c_str(), sizeof(statusBuf));
         logErrorSafe("\1", code);
         return false;
     }
@@ -273,13 +274,17 @@ bool downloadData(HTTPClient& http, int contentLen, mbedtls_sha256_context& shaC
             {
                 if (isChunked)
                 {
-                    snprintf(statusBuf.data(), sizeof(statusBuf), "Загружено %dКБ", (int)(totalDownloaded / 1024));
+                    strlcpy(statusBuf.data(), "Загружено ", sizeof(statusBuf));
+                    strlcat(statusBuf.data(), String((int)(totalDownloaded / 1024)).c_str(), sizeof(statusBuf));
+                    strlcat(statusBuf.data(), "КБ", sizeof(statusBuf));
                 }
                 else
                 {
                     const int percent =
                         static_cast<int>((totalDownloaded * 100ULL) / static_cast<unsigned long long>(contentLen));
-                    snprintf(statusBuf.data(), sizeof(statusBuf), "Загружено %d%%", percent);
+                    strlcpy(statusBuf.data(), "Загружено ", sizeof(statusBuf));
+                    strlcat(statusBuf.data(), String(percent).c_str(), sizeof(statusBuf));
+                    strlcat(statusBuf.data(), "%", sizeof(statusBuf));
                 }
                 logSystemSafe("\1", static_cast<long long>(totalDownloaded));
                 lastProgress = millis();
@@ -534,7 +539,8 @@ void handleOTA()  // NOLINT(misc-use-internal-linkage)
 
     if (code != HTTP_CODE_OK)
     {
-        snprintf(statusBuf.data(), sizeof(statusBuf), "Ошибка манифеста %d", code);
+        strlcpy(statusBuf.data(), "Ошибка манифеста ", sizeof(statusBuf));
+        strlcat(statusBuf.data(), String(code).c_str(), sizeof(statusBuf));
         logErrorSafe("\1", code);
 
         // Дополнительная диагностика для популярных ошибок
@@ -638,7 +644,8 @@ void handleOTA()  // NOLINT(misc-use-internal-linkage)
     pendingUpdateSha256 = String(sha256);
     pendingUpdateVersion = String(newVersion);
 
-    snprintf(statusBuf.data(), sizeof(statusBuf), "Доступно обновление: %s", newVersion);
+    strlcpy(statusBuf.data(), "Доступно обновление: ", sizeof(statusBuf));
+    strlcat(statusBuf.data(), newVersion, sizeof(statusBuf));
     logSystem("[OTA] [DEBUG] ✅ ОБНОВЛЕНИЕ НАЙДЕНО!");
     logSystemSafe("\1", JXCT_VERSION_STRING);
     logSystemSafe("\1", newVersion);
