@@ -149,7 +149,7 @@ bool SensorCalibrationService::calculateLinearRegression(const std::vector<Calib
     intercept = mean_y - slope * mean_x;
     
     // Расчёт коэффициента детерминации R²
-    float ss_tot = sum_y2 - (sum_y * sum_y) / num_points;
+    float ss_tot = sum_y2 - ((sum_y * sum_y) / num_points);
     float ss_res = 0.0F;
     
     for (const auto& point : points) {
@@ -575,7 +575,7 @@ bool SensorCalibrationService::validateCalibrationPoints(const std::vector<Calib
         }
     }
     
-    return true;
+    return true;  // NOLINT(readability-simplify-boolean-expr) - Все проверки пройдены успешно
 }
 
 // ============================================================================
