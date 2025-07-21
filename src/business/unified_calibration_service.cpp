@@ -19,6 +19,7 @@
 SensorCalibrationService gCalibrationService;
 
 // Статические переменные класса
+// NOLINTNEXTLINE(misc-use-internal-linkage)
 std::map<int, CalibrationTable> SensorCalibrationService::calibrationTables;
 
 // ============================================================================
@@ -104,6 +105,7 @@ bool SensorCalibrationService::setNPKCalibrationPoint(float measured_n, float me
 // МЕТОДЫ РАСЧЁТА КАЛИБРОВОЧНЫХ КОЭФФИЦИЕНТОВ
 // ============================================================================
 
+// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 bool SensorCalibrationService::calculateLinearRegression(const std::vector<CalibrationPoint>& points, 
                                                         float& slope, float& intercept, float& r_squared)
 {
@@ -206,6 +208,7 @@ bool SensorCalibrationService::calculateECCalibration()
     return success;
 }
 
+// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 bool SensorCalibrationService::calculateNPKCalibration()
 {
     // NPK калибровка уже установлена в setNPKCalibrationPoint
@@ -222,6 +225,7 @@ bool SensorCalibrationService::calculateNPKCalibration()
 // МЕТОДЫ ПРИМЕНЕНИЯ КАЛИБРОВКИ
 // ============================================================================
 
+// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 float SensorCalibrationService::applyPHCalibration(float raw_ph)
 {
     if (!current_calibration.ph.is_valid) {
@@ -238,6 +242,7 @@ float SensorCalibrationService::applyPHCalibration(float raw_ph)
     return calibrated_ph;
 }
 
+// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 float SensorCalibrationService::applyECCalibration(float raw_ec)
 {
     if (!current_calibration.ec.is_valid) {
@@ -254,6 +259,7 @@ float SensorCalibrationService::applyECCalibration(float raw_ec)
     return calibrated_ec;
 }
 
+// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 void SensorCalibrationService::applyNPKCalibration(float& nitrogen, float& phosphorus, float& potassium)
 {
     if (!current_calibration.npk.is_valid) {
@@ -273,11 +279,11 @@ void SensorCalibrationService::applyNPKCalibration(float& nitrogen, float& phosp
     logDebug("NPK калибровка применена");
 }
 
-void SensorCalibrationService::applyCalibration(float& ph, float& ec, float& nitrogen, float& phosphorus, float& potassium)
+void SensorCalibrationService::applyCalibration(float& ph_value, float& ec_value, float& nitrogen, float& phosphorus, float& potassium)
 {
     // Применение калибровки к каждому параметру
-    ph = applyPHCalibration(ph);
-    ec = applyECCalibration(ec);
+    ph_value = applyPHCalibration(ph_value);
+    ec_value = applyECCalibration(ec_value);
     applyNPKCalibration(nitrogen, phosphorus, potassium);
     
     logDebug("Калибровка применена ко всем параметрам");
@@ -308,6 +314,7 @@ void SensorCalibrationService::applyCalibration(SensorData& data, int profile)
     logDebug("Продвинутая калибровка применена для профиля " + String(profile));
 }
 
+// NOLINTNEXTLINE(readability-make-member-function-const)
 float SensorCalibrationService::applySingleCalibration(float rawValue, int profile)
 {
     // Простая интерполяция по калибровочной таблице
@@ -363,13 +370,13 @@ float SensorCalibrationService::applyCalibrationWithInterpolation(float rawValue
     return rawValue;  // fallback
 }
 
-float SensorCalibrationService::linearInterpolation(float value, float x1, float y1, float x2, float y2) const
+float SensorCalibrationService::linearInterpolation(float value, float x1_value, float y1_value, float x2_value, float y2_value) const
 {
-    if (fabs(x2 - x1) < 1e-10F) {
-        return y1;  // Избегаем деления на ноль
+    if (fabs(x2_value - x1_value) < 1e-10F) {
+        return y1_value;  // Избегаем деления на ноль
     }
     
-    return y1 + (((y2 - y1) * (value - x1)) / (x2 - x1));
+    return y1_value + (((y2_value - y1_value) * (value - x1_value)) / (x2_value - x1_value));
 }
 
 // ============================================================================
@@ -390,12 +397,14 @@ bool SensorCalibrationService::loadCalibrationTable(const String& csvData, int p
     return true;
 }
 
+// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 bool SensorCalibrationService::hasCalibrationTable(int profile) const
 {
     return calibrationTables.find(profile) != calibrationTables.end() && 
            calibrationTables.at(profile).isValid;
 }
 
+// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 void SensorCalibrationService::clearCalibrationTable(int profile)
 {
     calibrationTables.erase(profile);
@@ -404,12 +413,12 @@ void SensorCalibrationService::clearCalibrationTable(int profile)
 
 size_t SensorCalibrationService::getCalibrationPointsCount(int profile, const String& sensorType)
 {
-    auto it = calibrationTables.find(profile);
-    if (it == calibrationTables.end() || !it->second.isValid) {
+    auto table_iter = calibrationTables.find(profile);
+    if (table_iter == calibrationTables.end() || !table_iter->second.isValid) {
         return 0;
     }
     
-    const auto& table = it->second;
+    const auto& table = table_iter->second;
     
     if (sensorType == "temperature") {
         return table.temperaturePoints.size();
@@ -438,12 +447,12 @@ size_t SensorCalibrationService::getCalibrationPointsCount(int profile, const St
 
 String SensorCalibrationService::exportCalibrationTable(int profile)
 {
-    auto it = calibrationTables.find(profile);
-    if (it == calibrationTables.end() || !it->second.isValid) {
+    auto table_iter = calibrationTables.find(profile);
+    if (table_iter == calibrationTables.end() || !table_iter->second.isValid) {
         return "";
     }
     
-    const auto& table = it->second;
+    const auto& table = table_iter->second;
     String csv = "# Калибровочная таблица для профиля " + String(profile) + "\n";
     csv += "# Формат: raw_value,reference_value\n";
     
@@ -551,6 +560,7 @@ bool SensorCalibrationService::parseCalibrationCSV(const String& csvData, Calibr
     return table.isValid;
 }
 
+// NOLINTNEXTLINE(readability-simplify-boolean-expr)
 bool SensorCalibrationService::validateCalibrationPoints(const std::vector<CalibrationPoint>& points) const
 {
     if (points.size() < 2) {
@@ -691,6 +701,7 @@ String SensorCalibrationService::getCalibrationStatus() const
     
     // pH статус
     status += "pH: ";
+    // NOLINTNEXTLINE(bugprone-branch-clone)
     if (current_calibration.ph.is_valid) {
         status += "✅ Валидна (R²=" + String(current_calibration.ph.r_squared, 3) + 
                   ", точек: " + String(current_calibration.ph.points.size()) + ")";
@@ -701,6 +712,7 @@ String SensorCalibrationService::getCalibrationStatus() const
     
     // EC статус
     status += "EC: ";
+    // NOLINTNEXTLINE(bugprone-branch-clone)
     if (current_calibration.ec.is_valid) {
         status += "✅ Валидна (R²=" + String(current_calibration.ec.r_squared, 3) + 
                   ", точек: " + String(current_calibration.ec.points.size()) + ")";
@@ -759,11 +771,12 @@ void SensorCalibrationService::resetCalibration()
     logInfo("Калибровка сброшена");
 }
 
+// NOLINTNEXTLINE(readability-convert-member-functions-to-static)
 bool SensorCalibrationService::validateCalibration() const
 {
     // Проверяем валидность всех компонентов калибровки
-    bool ph_valid = current_calibration.ph.is_valid && current_calibration.ph.r_squared > 0.8f;
-    bool ec_valid = current_calibration.ec.is_valid && current_calibration.ec.r_squared > 0.8f;
+    bool ph_valid = current_calibration.ph.is_valid && current_calibration.ph.r_squared > 0.8F;
+    bool ec_valid = current_calibration.ec.is_valid && current_calibration.ec.r_squared > 0.8F;
     bool npk_valid = current_calibration.npk.is_valid;
     
     // Калибровка считается валидной, если хотя бы один компонент валиден
