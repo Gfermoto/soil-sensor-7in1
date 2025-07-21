@@ -116,6 +116,7 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)  // NOLINT(misc-use-i
 
 static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)  // NOLINT(misc-use-anonymous-namespace)
 {
+    // NOSONAR: ручной hex-encoding, безопасно, нет sprintf, переполнение исключено
     std::array<char, 65> calcHex;
     const char hex_chars[] = "0123456789abcdef";
     for (int i = 0; i < 32; ++i)
