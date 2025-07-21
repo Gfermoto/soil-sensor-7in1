@@ -17,6 +17,16 @@
 namespace AdvancedFilters
 {
 
+constexpr float EXP_SMOOTHING_ALPHA_DEFAULT = 1.0F;
+constexpr uint8_t STATISTICS_MIN_COUNT = 5;
+// STATISTICS_WINDOW_SIZE и MIN_STANDARD_DEVIATION должны быть определены в jxct_constants.h, если нет — определить здесь:
+#ifndef STATISTICS_WINDOW_SIZE
+constexpr uint8_t STATISTICS_WINDOW_SIZE = 15;
+#endif
+#ifndef MIN_STANDARD_DEVIATION
+constexpr float MIN_STANDARD_DEVIATION = 0.01F;
+#endif
+
 // ============================================================================
 // ЭКСПОНЕНЦИАЛЬНОЕ СГЛАЖИВАНИЕ
 // ============================================================================
@@ -124,7 +134,7 @@ void updateStatistics(float new_value, StatisticsBuffer& buffer)
     // Минимальное стандартное отклонение для стабильности
     buffer.std_dev = std::max(buffer.std_dev, MIN_STANDARD_DEVIATION);
 
-    buffer.valid = (buffer.filled >= 5);  // Минимум 5 значений для статистики
+    buffer.valid = (buffer.filled >= STATISTICS_MIN_COUNT);  // Минимум 5 значений для статистики
 }
 }  // namespace
 

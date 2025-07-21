@@ -21,6 +21,30 @@
 #include "business_services.h"
 #include "calibration_manager.h"
 #include "../../include/sensor_calibration_service.h"
+#include <array>
+
+// ===================== КОНСТАНТЫ =====================
+constexpr size_t JSON_RESPONSE_SIZE = 256;
+constexpr size_t JSON_IMPORT_SIZE = 2048;
+constexpr size_t JSON_SMALL_SIZE = 128;
+constexpr int HTTP_TIMEOUT_MS = 15000;
+constexpr int SOIL_PROFILE_COUNT = 5;
+constexpr int ENV_TYPE_COUNT = 3;
+
+// ===================== ВСПОМОГАТЕЛЬНЫЕ ФУНКЦИИ =====================
+namespace {
+static String getRecHeaderByCropId(const char* cropId) {
+    if (cropId == nullptr || strlen(cropId) == 0) { return "Реком."; }
+    if (strcmp(cropId, "tomato") == 0) { return "Томаты"; }
+    if (strcmp(cropId, "cucumber") == 0) { return "Огурцы"; }
+    if (strcmp(cropId, "pepper") == 0) { return "Перец"; }
+    if (strcmp(cropId, "lettuce") == 0) { return "Салат"; }
+    if (strcmp(cropId, "blueberry") == 0) { return "Голубика"; }
+    if (strcmp(cropId, "lawn") == 0) { return "Газон"; }
+    if (strcmp(cropId, "grape") == 0) { return "Виноград"; }
+    return "Реком.";
+}
+}  // namespace
 
 extern NTPClient* timeClient;
 // extern SensorCalibrationService gCalibrationService;  // Убрано - объявлен в unified_calibration_service.cpp
@@ -399,67 +423,7 @@ void setupDataRoutes()
             html += "</div>";
 
             // Заголовок 4-го столбца: выбранная культура или «Реком.»
-            String recHeader = "Реком.";
-            if (strlen(config.cropId) > 0)
-            {
-                const char* cropId = config.cropId;
-                if (strcmp(cropId, "tomato") == 0)
-                {
-                    recHeader = "Томаты";
-                }
-                else if (strcmp(cropId, "cucumber") == 0)
-                {
-                    recHeader = "Огурцы";
-                }
-                else if (strcmp(cropId, "pepper") == 0)
-                {
-                    recHeader = "Перец";
-                }
-                else if (strcmp(cropId, "lettuce") == 0)
-                {
-                    recHeader = "Салат";
-                }
-                else if (strcmp(cropId, "blueberry") == 0)
-                {
-                    recHeader = "Голубика";
-                }
-                else if (strcmp(cropId, "lawn") == 0)
-                {
-                    recHeader = "Газон";
-                }
-                else if (strcmp(cropId, "grape") == 0)
-                {
-                    recHeader = "Виноград";
-                }
-                else if (strcmp(cropId, "conifer") == 0)
-                {
-                    recHeader = "Хвойные";
-                }
-                else if (strcmp(cropId, "strawberry") == 0)
-                {
-                    recHeader = "Клубника";
-                }
-                else if (strcmp(cropId, "apple") == 0)
-                {
-                    recHeader = "Яблоня";
-                }
-                else if (strcmp(cropId, "pear") == 0)
-                {
-                    recHeader = "Груша";
-                }
-                else if (strcmp(cropId, "cherry") == 0)
-                {
-                    recHeader = "Вишня";
-                }
-                else if (strcmp(cropId, "raspberry") == 0)
-                {
-                    recHeader = "Малина";
-                }
-                else if (strcmp(cropId, "currant") == 0)
-                {
-                    recHeader = "Смородина";
-                }
-            }
+            String recHeader = getRecHeaderByCropId(config.cropId);
 
             html += "<div class='section'><table class='data'><thead><tr><th></th><th>RAW</th><th>Компенс.</th><th>" +
                     recHeader + "</th></tr></thead><tbody>";

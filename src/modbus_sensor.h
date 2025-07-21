@@ -10,19 +10,23 @@
 #include "esp32_stubs.h"
 #endif
 
-// 🔥 ВОССТАНОВЛЕНЫ РАБОЧИЕ РЕГИСТРЫ из официальной документации JXCT:
-// ✅ ПРАВИЛЬНЫЕ Modbus адреса (подтверждены документацией):
-#define REG_PH 0x0006              // pH почвы (÷100)
-#define REG_SOIL_MOISTURE 0x0012   // Влажность почвы (÷10)
-#define REG_SOIL_TEMP 0x0013       // Температура почвы (÷10)
-#define REG_CONDUCTIVITY 0x0015    // Электропроводность (как есть)
-#define REG_NITROGEN 0x001E        // Азот (как есть)
-#define REG_PHOSPHORUS 0x001F      // Фосфор (как есть)
-#define REG_POTASSIUM 0x0020       // Калий (как есть)
-#define REG_FIRMWARE_VERSION 0x07  // Версия прошивки
-#define REG_CALIBRATION 0x08       // Калибровка
-#define REG_ERROR_STATUS 0x0B      // Статус ошибок
-#define REG_DEVICE_ADDRESS 0x0C    // Адрес устройства
+// ===================== КОНСТАНТЫ MODBUS И ДАННЫХ =====================
+constexpr uint16_t REG_PH = 0x0006;
+constexpr uint16_t REG_SOIL_MOISTURE = 0x0012;
+constexpr uint16_t REG_SOIL_TEMP = 0x0013;
+constexpr uint16_t REG_CONDUCTIVITY = 0x0015;
+constexpr uint16_t REG_NITROGEN = 0x001E;
+constexpr uint16_t REG_PHOSPHORUS = 0x001F;
+constexpr uint16_t REG_POTASSIUM = 0x0020;
+constexpr uint16_t REG_FIRMWARE_VERSION = 0x07;
+constexpr uint16_t REG_CALIBRATION = 0x08;
+constexpr uint16_t REG_ERROR_STATUS = 0x0B;
+constexpr uint16_t REG_DEVICE_ADDRESS = 0x0C;
+constexpr size_t SENSOR_BUFFER_SIZE = 15;
+constexpr float SENSOR_DEFAULT_FLOAT = 0.0F;
+constexpr float SENSOR_DEFAULT_SCALE = 1.0F;
+constexpr int SENSOR_MAX_VALUE = 1000;
+constexpr int SENSOR_MIN_VALUE = 100;
 
 // Допустимые пределы измерений (используем единые константы из jxct_constants.h)
 #include "jxct_constants.h"
@@ -67,13 +71,13 @@ struct SensorData
     unsigned long last_mqtt_publish;  // Время последней публикации MQTT
 
     // СКОЛЬЗЯЩЕЕ СРЕДНЕЕ v2.3.0: Кольцевые буферы для усреднения
-    float temp_buffer[15];  // Буфер температуры (макс 15 значений)
-    float hum_buffer[15];   // Буфер влажности
-    float ec_buffer[15];    // Буфер EC
-    float ph_buffer[15];    // Буфер pH
-    float n_buffer[15];     // Буфер азота
-    float p_buffer[15];     // Буфер фосфора
-    float k_buffer[15];     // Буфер калия
+    float temp_buffer[SENSOR_BUFFER_SIZE];  // Буфер температуры (макс 15 значений)
+    float hum_buffer[SENSOR_BUFFER_SIZE];   // Буфер влажности
+    float ec_buffer[SENSOR_BUFFER_SIZE];    // Буфер EC
+    float ph_buffer[SENSOR_BUFFER_SIZE];    // Буфер pH
+    float n_buffer[SENSOR_BUFFER_SIZE];     // Буфер азота
+    float p_buffer[SENSOR_BUFFER_SIZE];     // Буфер фосфора
+    float k_buffer[SENSOR_BUFFER_SIZE];     // Буфер калия
     uint8_t buffer_index;   // Текущий индекс в буферах
     uint8_t buffer_filled;  // Количество заполненных элементов (0-15)
 

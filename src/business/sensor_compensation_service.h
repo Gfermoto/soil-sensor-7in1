@@ -13,6 +13,48 @@
 #include "../../include/sensor_compensation.h"
 #include "../../include/validation_utils.h"
 
+// ===================== КОНСТАНТЫ ДЛЯ КОМПЕНСАЦИИ =====================
+constexpr float UNIVERSAL_GAS_CONSTANT = 8.314F;
+constexpr float FARADAY_CONSTANT = 96485.0F;
+constexpr float STANDARD_TEMP_K = 298.15F;
+constexpr float DEFAULT_POROSITY = 0.45F;
+constexpr float DEFAULT_CEMENTATION = 1.5F;
+constexpr float DEFAULT_SATURATION = 2.0F;
+constexpr float DEFAULT_EPSILON_N = 0.01F;
+constexpr float DEFAULT_EPSILON_P = 0.008F;
+constexpr float DEFAULT_EPSILON_K = 0.012F;
+constexpr float DEFAULT_DELTA_N = 0.0041F;
+constexpr float DEFAULT_DELTA_P = 0.0053F;
+constexpr float DEFAULT_DELTA_K = 0.0032F;
+constexpr float NPK_SAND_EPSILON_N = 0.011F;
+constexpr float NPK_SAND_EPSILON_P = 0.009F;
+constexpr float NPK_SAND_EPSILON_K = 0.013F;
+constexpr float NPK_LOAM_DELTA_N = 0.0039F;
+constexpr float NPK_LOAM_DELTA_P = 0.0050F;
+constexpr float NPK_LOAM_DELTA_K = 0.0030F;
+constexpr float NPK_LOAM_EPSILON_N = 0.010F;
+constexpr float NPK_LOAM_EPSILON_P = 0.008F;
+constexpr float NPK_LOAM_EPSILON_K = 0.012F;
+constexpr float NPK_CLAY_DELTA_N = 0.0033F;
+constexpr float NPK_CLAY_DELTA_P = 0.0043F;
+constexpr float NPK_CLAY_DELTA_K = 0.0025F;
+constexpr float NPK_CLAY_EPSILON_N = 0.009F;
+constexpr float NPK_CLAY_EPSILON_P = 0.007F;
+constexpr float NPK_CLAY_EPSILON_K = 0.011F;
+constexpr float NPK_PEAT_DELTA_N = 0.0029F;
+constexpr float NPK_PEAT_DELTA_P = 0.0036F;
+constexpr float NPK_PEAT_DELTA_K = 0.0019F;
+constexpr float NPK_PEAT_EPSILON_N = 0.013F;
+constexpr float NPK_PEAT_EPSILON_P = 0.010F;
+constexpr float NPK_PEAT_EPSILON_K = 0.016F;
+constexpr float NPK_SANDPEAT_DELTA_N = 0.0041F;
+constexpr float NPK_SANDPEAT_DELTA_P = 0.0052F;
+constexpr float NPK_SANDPEAT_DELTA_K = 0.0032F;
+constexpr float NPK_SANDPEAT_EPSILON_N = 0.011F;
+constexpr float NPK_SANDPEAT_EPSILON_P = 0.009F;
+constexpr float NPK_SANDPEAT_EPSILON_K = 0.013F;
+// ===================== КОНСТАНТЫ ДЛЯ КОМПЕНСАЦИИ =====================
+
 /**
  * @brief Коэффициенты Арчи для разных типов почвы
  *
@@ -24,7 +66,7 @@ struct ArchieCoefficients
     float n;  // Коэффициент насыщенности
     float a;  // Коэффициент пористости
 
-    ArchieCoefficients() : m(1.5F), n(2.0F), a(0.45F) {}
+    ArchieCoefficients() : m(DEFAULT_CEMENTATION), n(DEFAULT_SATURATION), a(DEFAULT_POROSITY) {}
     ArchieCoefficients(float cementation, float saturation, float porosity) : m(cementation), n(saturation), a(porosity)
     {
     }
@@ -41,7 +83,7 @@ struct SoilParameters
     float bulkDensity;    // Объемная плотность
     float fieldCapacity;  // Полевая влагоемкость
 
-    SoilParameters() : porosity(0.45F), bulkDensity(1.40F), fieldCapacity(0.20F) {}
+    SoilParameters() : porosity(DEFAULT_POROSITY), bulkDensity(1.40F), fieldCapacity(0.20F) {}
     SoilParameters(float por, float density, float capacity)
         : porosity(por), bulkDensity(density), fieldCapacity(capacity)
     {
@@ -60,7 +102,7 @@ struct NPKCoefficients
     float epsilon_N, epsilon_P, epsilon_K;  // Влажностные коэффициенты
 
     NPKCoefficients()
-        : delta_N(0.0041F), delta_P(0.0053F), delta_K(0.0032F), epsilon_N(0.01F), epsilon_P(0.008F), epsilon_K(0.012F)
+        : delta_N(DEFAULT_DELTA_N), delta_P(DEFAULT_DELTA_P), delta_K(DEFAULT_DELTA_K), epsilon_N(DEFAULT_EPSILON_N), epsilon_P(DEFAULT_EPSILON_P), epsilon_K(DEFAULT_EPSILON_K)
     {
     }
     NPKCoefficients(float dN, float dP, float dK, float eN, float eP, float eK)
@@ -90,9 +132,9 @@ class SensorCompensationService : public ISensorCompensationService
     std::map<SoilType, NPKCoefficients> npkCoefficients;
 
     // Константы для расчетов
-    static constexpr float R = 8.314F;    // Универсальная газовая постоянная (Дж/(моль·К))
-    static constexpr float F = 96485.0F;  // Постоянная Фарадея (Кл/моль)
-    static constexpr float T0 = 298.15F;  // Стандартная температура (25°C в Кельвинах)
+    static constexpr float R = UNIVERSAL_GAS_CONSTANT;    // Универсальная газовая постоянная (Дж/(моль·К))
+    static constexpr float F = FARADAY_CONSTANT;  // Постоянная Фарадея (Кл/моль)
+    static constexpr float T0 = STANDARD_TEMP_K;  // Стандартная температура (25°C в Кельвинах)
 
     // Инициализация коэффициентов Арчи
     void initializeArchieCoefficients();

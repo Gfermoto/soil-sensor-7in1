@@ -11,59 +11,63 @@ struct SoilECCoeff
     float k;
 };
 
-constexpr std::array<SoilECCoeff, 5> SOIL_EC = {{
-    {0.15F},  // SAND
-    {0.30F},  // LOAM
-    {0.10F},  // PEAT
-    {0.45F},  // CLAY
-    {0.18F}   // SANDPEAT
-}};
-
-constexpr std::array<float, 5> k_t_N = {0.0041F, 0.0038F, 0.0028F, 0.0032F, 0.0040F};
-constexpr std::array<float, 5> k_t_P = {0.0053F, 0.0049F, 0.0035F, 0.0042F, 0.0051F};
-constexpr std::array<float, 5> k_t_K = {0.0032F, 0.0029F, 0.0018F, 0.0024F, 0.0031F};
+constexpr float SOIL_EC_SAND = 0.15F;
+constexpr float SOIL_EC_LOAM = 0.30F;
+constexpr float SOIL_EC_PEAT = 0.10F;
+constexpr float SOIL_EC_CLAY = 0.45F;
+constexpr float SOIL_EC_SANDPEAT = 0.18F;
+constexpr std::array<float, 5> SOIL_EC_VALUES = {SOIL_EC_SAND, SOIL_EC_LOAM, SOIL_EC_PEAT, SOIL_EC_CLAY, SOIL_EC_SANDPEAT};
+constexpr std::array<float, 5> K_T_N = {0.0041F, 0.0038F, 0.0028F, 0.0032F, 0.0040F};
+constexpr std::array<float, 5> K_T_P = {0.0053F, 0.0049F, 0.0035F, 0.0042F, 0.0051F};
+constexpr std::array<float, 5> K_T_K = {0.0032F, 0.0029F, 0.0018F, 0.0024F, 0.0031F};
+constexpr float K_H_N_A = 1.8F;
+constexpr float K_H_N_B = 0.024F;
+constexpr float K_H_P_A = 1.6F;
+constexpr float K_H_P_B = 0.018F;
+constexpr float K_H_K_A = 1.9F;
+constexpr float K_H_K_B = 0.021F;
+constexpr float REFERENCE_TEMP = 25.0F;
+constexpr float COMPENSATION_BASE = 1.0F;
+constexpr float COMPENSATION_DIV = 100.0F;
 
 inline float k_h_N(float theta)
 {
-    return 1.8F - (0.024F * theta);
+    return K_H_N_A - (K_H_N_B * theta);
 }
 inline float k_h_P(float theta)
 {
-    return 1.6F - (0.018F * theta);
+    return K_H_P_A - (K_H_P_B * theta);
 }
 inline float k_h_K(float theta)
 {
-    return 1.9F - (0.021F * theta);
+    return K_H_K_A - (K_H_K_B * theta);
 }
 
 // Внутренние функции — только для этой единицы трансляции
 float correctEC_internal(float rawValue, float temperature,
                          float compensationFactor)  // NOLINT(bugprone-easily-swappable-parameters)
 {
-    const float referenceTemp = 25.0F;
-    const float tempDiff = temperature - referenceTemp;
-    const float compensation = 1.0F + (compensationFactor * tempDiff / 100.0F);
+    const float tempDiff = temperature - REFERENCE_TEMP;
+    const float compensation = COMPENSATION_BASE + (compensationFactor * tempDiff / COMPENSATION_DIV);
     return rawValue * compensation;
 }
 
 float correctPH_internal(float rawValue, float temperature,
                          float compensationFactor)  // NOLINT(bugprone-easily-swappable-parameters)
 {
-    const float referenceTemp = 25.0F;
-    const float tempDiff = temperature - referenceTemp;
-    const float compensation = 1.0F + (compensationFactor * tempDiff / 100.0F);
+    const float tempDiff = temperature - REFERENCE_TEMP;
+    const float compensation = COMPENSATION_BASE + (compensationFactor * tempDiff / COMPENSATION_DIV);
     return rawValue * compensation;
 }
 
 float correctNPK_internal(float rawValue, float temperature, float humidity,
                           float compensationFactor)  // NOLINT(bugprone-easily-swappable-parameters)
 {
-    const float referenceTemp = 25.0F;
     const float referenceHumidity = 60.0F;
-    const float tempDiff = temperature - referenceTemp;
+    const float tempDiff = temperature - REFERENCE_TEMP;
     const float humidityDiff = humidity - referenceHumidity;
-    const float tempCompensation = 1.0F + (compensationFactor * tempDiff / 100.0F);
-    const float humidityCompensation = 1.0F + (compensationFactor * humidityDiff / 1000.0F);
+    const float tempCompensation = COMPENSATION_BASE + (compensationFactor * tempDiff / COMPENSATION_DIV);
+    const float humidityCompensation = COMPENSATION_BASE + (compensationFactor * humidityDiff / 1000.0F);
     return rawValue * tempCompensation * humidityCompensation;
 }
 
