@@ -82,22 +82,22 @@ jobs:
     - name: Run Python tests
       run: |
         python -m pytest test/ -v
-      continue-on-error: true
+      # Тесты должны блокировать регрессии
 
     - name: Run Pylint
       run: |
         pylint scripts/ test/ --disable=C0114,C0115,C0116
-      continue-on-error: true
+      # Линтеры должны блокировать проблемы качества кода
 
     - name: Run Flake8
       run: |
         flake8 scripts/ test/ --max-line-length=120
-      continue-on-error: true
+      # Стиль кода должен соответствовать стандартам
 
     - name: Run MyPy
       run: |
         mypy scripts/ test/ --ignore-missing-imports
-      continue-on-error: true
+      # Типизация должна быть корректной
 
   summary:
     name: Analysis Summary
