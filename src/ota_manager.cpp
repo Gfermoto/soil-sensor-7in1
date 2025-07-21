@@ -11,6 +11,8 @@
 #include "jxct_config_vars.h"
 #include "logger.h"
 #include "version.h"
+#include <sstream>
+#include <iomanip>
 
 // Глобальные переменные для OTA 2.0
 namespace
@@ -118,16 +120,13 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)  // NOLINT(misc-use-i
 
 static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)  // NOLINT(misc-use-anonymous-namespace)
 {
-    // NOSONAR: ручной hex-encoding, безопасно, нет sprintf, переполнение исключено
-    std::array<char, 65> calcHex;
-    const char hex_chars[] = "0123456789abcdef";
+    std::ostringstream oss;
     for (int i = 0; i < 32; ++i)
     {
-        calcHex[i * 2]     = hex_chars[(calcDigest[i] >> 4) & 0x0F];
-        calcHex[i * 2 + 1] = hex_chars[calcDigest[i] & 0x0F];
+        oss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(calcDigest[i]);
     }
-    calcHex[64] = '\0';
-    return strcasecmp(calcHex.data(), expectedHex) == 0;
+    std::string calcHex = oss.str();
+    return strcasecmp(calcHex.c_str(), expectedHex) == 0;
 }
 
 // Вспомогательная функция для инициализации загрузки
