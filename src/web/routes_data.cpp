@@ -78,7 +78,12 @@ RecValues computeRecommendations()
     {
         time_t now = time(nullptr);
         struct tm* timeInfo = localtime(&now);
-        const int month = timeInfo != nullptr ? timeInfo->tm_mon + 1 : 1;
+        int month = 1;  // Январь по умолчанию
+        if (timeInfo != nullptr) {
+            month = timeInfo->tm_mon + 1;
+        } else {
+            logWarn("localtime() вернул nullptr, используем январь по умолчанию");
+        }
 
         // Определяем сезон
         Season season = Season::WINTER;
@@ -300,6 +305,29 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
     String json;
     serializeJson(doc, json);
     webServer.send(HTTP_OK, HTTP_CONTENT_TYPE_JSON, json);
+}
+
+// Вспомогательная функция для обработки калибровки
+// NOLINTNEXTLINE(misc-use-internal-linkage)
+void handleCalibrationCalculation(bool (*calculationFunc)(), const String& sensorType)
+{
+    bool success = calculationFunc();
+    
+    DynamicJsonDocument response(256);
+    response["success"] = success;
+    if (success)
+    {
+        // Получаем R² из калибровки (нужно добавить геттер)
+        response["r_squared"] = 0.99;  // Временно, пока не добавим геттер
+    }
+    else
+    {
+        response["error"] = "Failed to calculate " + sensorType + " calibration";
+    }
+
+    String response_str;
+    serializeJson(response, response_str);
+    webServer.send(200, "application/json", response_str);
 }
 
 void setupDataRoutes()
@@ -1021,47 +1049,13 @@ void setupDataRoutes()
     webServer.on("/api/calibration/ph/calculate", HTTP_POST,
                  []()
                  {
-                     // Реальная логика расчёта калибровки
-                     bool success = gCalibrationService.calculatePHCalibration();
-
-                     DynamicJsonDocument response(256);
-                     response["success"] = success;
-                     if (success)
-                     {
-                         // Получаем R² из калибровки (нужно добавить геттер)
-                         response["r_squared"] = 0.99;  // Временно, пока не добавим геттер
-                     }
-                     else
-                     {
-                         response["error"] = "Failed to calculate pH calibration";
-                     }
-
-                     String response_str;
-                     serializeJson(response, response_str);
-                     webServer.send(200, "application/json", response_str);
+                     handleCalibrationCalculation([]() { return gCalibrationService.calculatePHCalibration(); }, "pH");
                  });
 
     webServer.on("/api/calibration/ec/calculate", HTTP_POST,
                  []()
                  {
-                     // Реальная логика расчёта калибровки
-                     bool success = gCalibrationService.calculateECCalibration();
-
-                     DynamicJsonDocument response(256);
-                     response["success"] = success;
-                     if (success)
-                     {
-                         // Получаем R² из калибровки (нужно добавить геттер)
-                         response["r_squared"] = 0.99;  // Временно, пока не добавим геттер
-                     }
-                     else
-                     {
-                         response["error"] = "Failed to calculate EC calibration";
-                     }
-
-                     String response_str;
-                     serializeJson(response, response_str);
-                     webServer.send(200, "application/json", response_str);
+                     handleCalibrationCalculation([]() { return gCalibrationService.calculateECCalibration(); }, "EC");
                  });
 
     webServer.on("/api/calibration/export", HTTP_GET,
