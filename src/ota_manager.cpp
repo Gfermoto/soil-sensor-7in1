@@ -118,15 +118,15 @@ void setupOTA(const char* manifestUrl, WiFiClient& client)  // NOLINT(misc-use-i
     checkGuard("setupOTA:exit");
 }
 
-static bool verifySha256(const uint8_t* calcDigest, const char* expectedHex)  // NOLINT(misc-use-anonymous-namespace)
+static bool isSha256HexEqual(const uint8_t* calcDigest, const char* expectedHex)  // NOLINT(misc-use-anonymous-namespace)
 {
     std::ostringstream oss;
     for (int i = 0; i < 32; ++i)
     {
         oss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(calcDigest[i]);
     }
-    std::string calcHex = oss.str();
-    return strcasecmp(calcHex.c_str(), expectedHex) == 0;
+    std::string hexString = oss.str();
+    return strcasecmp(hexString.c_str(), expectedHex) == 0;
 }
 
 // Вспомогательная функция для инициализации загрузки
@@ -410,7 +410,7 @@ static bool downloadAndUpdate(const String& binUrl, const char* expectedSha256) 
     delete shaCtx;
 
     // Проверяем SHA256
-    if (!verifySha256(digest.data(), expectedSha256))
+    if (!isSha256HexEqual(digest.data(), expectedSha256))
     {
         strlcpy(statusBuf.data(), "Неверная контрольная сумма", sizeof(statusBuf));
         logError("[OTA] SHA256 не совпадает");
