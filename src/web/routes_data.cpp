@@ -1069,7 +1069,11 @@ void setupDataRoutes()
                  {
                      // Реальная логика экспорта калибровки
                      String json_data = gCalibrationService.exportCalibrationToJSON();
-                     webServer.send(200, "application/json", json_data);
+                     if (json_data.isEmpty()) {
+                         webServer.send(500, "application/json", "{\"error\":\"Failed to export calibration\"}");
+                     } else {
+                         webServer.send(200, "application/json", json_data);
+                     }
                  });
 
     webServer.on("/api/calibration/import", HTTP_POST,
@@ -1077,6 +1081,18 @@ void setupDataRoutes()
                  {
                      // NOLINTNEXTLINE(misc-const-correctness)
     String json_data = webServer.arg("plain");
+                     
+                     // Валидация JSON данных перед импортом
+                     if (json_data.isEmpty()) {
+                         DynamicJsonDocument response(256);
+                         response["error"] = "Empty JSON data";
+                         response["success"] = false;
+                         String response_str;
+                         serializeJson(response, response_str);
+                         webServer.send(400, "application/json", response_str);
+                         return;
+                     }
+                     
                      // Реальная логика импорта калибровки
                      bool success = gCalibrationService.importCalibrationFromJSON(json_data);
 
