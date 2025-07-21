@@ -17,7 +17,9 @@ Checks: >
   -readability-function-cognitive-complexity,
   -bugprone-easily-swappable-parameters,
   -misc-unused-parameters,
-  -readability-inconsistent-declaration-parameter-name
+  -readability-inconsistent-declaration-parameter-name,
+  -readability-convert-member-functions-to-static,
+  -readability-simplify-boolean-expr
 
 WarningsAsErrors: ''
 

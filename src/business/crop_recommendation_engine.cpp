@@ -347,25 +347,11 @@ RecommendationResult CropRecommendationEngine::generateRecommendation(const Sens
                                           .setTemperature(params.data.temperature)
                                           .setMoisture(params.data.humidity)
                                           .build());
-    compensatedData.ec = compensateEC(CropECCompensationParams::builder()
-                                          .setRawValue(params.data.ec)
-                                          .setTemperature(params.data.temperature)
-                                          .build());
-    compensatedData.nitrogen = compensateNPK(CropCompensationParams::builder()
-                                                 .setRawValue(params.data.nitrogen)
-                                                 .setTemperature(params.data.temperature)
-                                                 .setMoisture(params.data.humidity)
-                                                 .build());
-    compensatedData.phosphorus = compensateNPK(CropCompensationParams::builder()
-                                                   .setRawValue(params.data.phosphorus)
-                                                   .setTemperature(params.data.temperature)
-                                                   .setMoisture(params.data.humidity)
-                                                   .build());
-    compensatedData.potassium = compensateNPK(CropCompensationParams::builder()
-                                                  .setRawValue(params.data.potassium)
-                                                  .setTemperature(params.data.temperature)
-                                                  .setMoisture(params.data.humidity)
-                                                  .build());
+    compensatedData.ec = compensateEC(params.data.ec, params.data.temperature, params.data.humidity, parseSoilType(params.soilType));
+    NPKReferences npk = compensateNPK(params.data.nitrogen, params.data.phosphorus, params.data.potassium, params.data.temperature, params.data.humidity, parseSoilType(params.soilType));
+    compensatedData.nitrogen = npk.nitrogen;
+    compensatedData.phosphorus = npk.phosphorus;
+    compensatedData.potassium = npk.potassium;
 
     RecommendationResult result;
     result.cropType = params.cropType;
@@ -951,32 +937,45 @@ float CropRecommendationEngine::compensatePH(const CropCompensationParams& param
     return getCompensationService().correctPH(params.temperature, params.rawValue);
 }
 
-float CropRecommendationEngine::compensateEC(const CropECCompensationParams& params)
-{
-    // CropECCompensationParams не содержит soilType и moisture, используем значения по умолчанию
-    return getCompensationService().correctEC(params.rawValue, SoilType::LOAM, params.temperature, 60.0F);
+// Новая реализация EC compensation
+float CropRecommendationEngine::compensateEC(float EC_raw, float temperature, float humidity, SoilType soilType) {
+    return getCompensationService().correctEC(EC_raw, soilType, temperature, humidity);
 }
 
-float CropRecommendationEngine::compensateNPK(const CropCompensationParams& params)
-{
-    NPKReferences npk{params.rawValue, params.rawValue, params.rawValue};
-    getCompensationService().correctNPK(params.temperature, params.moisture, SoilType::LOAM, npk);
+// Новая реализация NPK compensation
+NPKReferences CropRecommendationEngine::compensateNPK(float N_raw, float P_raw, float K_raw, float temperature, float humidity, SoilType soilType) {
+    NPKReferences npk{N_raw, P_raw, K_raw};
+    getCompensationService().correctNPK(temperature, humidity, soilType, npk);
+    return npk;
+}
+
+// Старые методы (оставлены для совместимости)
+float CropRecommendationEngine::compensateEC(float EC_raw, float temperature) {
+    return compensateEC(EC_raw, temperature, 60.0F, SoilType::LOAM);
+}
+
+float CropRecommendationEngine::compensateNPK(float NPK_raw, float temperature, float moisture) {
+    NPKReferences npk{NPK_raw, NPK_raw, NPK_raw};
+    getCompensationService().correctNPK(temperature, moisture, SoilType::LOAM, npk);
     return npk.nitrogen;
 }
 
-float CropRecommendationEngine::compensatePH(float pHRawValue, float temperatureValue, float /*moistureValue*/)
-{
-    return getCompensationService().correctPH(temperatureValue, pHRawValue);
-}
-
-float CropRecommendationEngine::compensateEC(float ECRawValue, float temperatureValue)
-{
-    return getCompensationService().correctEC(ECRawValue, SoilType::LOAM, temperatureValue, 60.0F);
-}
-
-float CropRecommendationEngine::compensateNPK(float NPKRawValue, float temperatureValue, float moistureValue)
-{
-    NPKReferences npk{NPKRawValue, NPKRawValue, NPKRawValue};
-    getCompensationService().correctNPK(temperatureValue, moistureValue, SoilType::LOAM, npk);
-    return npk.nitrogen;
+SoilType CropRecommendationEngine::parseSoilType(const String& soilTypeStr) {
+    if (soilTypeStr == "sand") { 
+        return SoilType::SAND; 
+    }
+    if (soilTypeStr == "loam") { 
+        return SoilType::LOAM; 
+    }
+    if (soilTypeStr == "clay") { 
+        return SoilType::CLAY; 
+    }
+    if (soilTypeStr == "peat") { 
+        return SoilType::PEAT; 
+    }
+    if (soilTypeStr == "sandpeat") { 
+        return SoilType::SANDPEAT; 
+    }
+    // Значение по умолчанию
+    return SoilType::LOAM;
 }

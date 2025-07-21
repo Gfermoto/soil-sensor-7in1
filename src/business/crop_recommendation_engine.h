@@ -136,13 +136,24 @@ class CropRecommendationEngine : public ICropRecommendationEngine
 
     // Функции компенсации датчиков
     float compensatePH(float pH_raw, float temperature, float moisture);
-    float compensateEC(float EC_raw, float temperature);
-    float compensateNPK(float NPK_raw, float temperature, float moisture);
+    // (Удалено) float compensateEC(float EC_raw, float temperature);
+    // (Удалено) float compensateNPK(float NPK_raw, float temperature, float moisture);
 
     // Внутренние функции компенсации с Builder паттерном
     float compensatePH(const CropCompensationParams& params);
     float compensateEC(const CropECCompensationParams& params);
     float compensateNPK(const CropCompensationParams& params);
+
+    // Новые перегруженные методы компенсации
+    float compensateEC(float EC_raw, float temperature, float humidity, SoilType soilType);
+    NPKReferences compensateNPK(float N_raw, float P_raw, float K_raw, float temperature, float humidity, SoilType soilType);
+    // Старые методы (оставлены для совместимости, deprecated)
+    [[deprecated("Use compensateEC with soilType and humidity")]]
+    float compensateEC(float EC_raw, float temperature);
+    [[deprecated("Use compensateNPK with all elements and soilType")]]
+    float compensateNPK(float NPK_raw, float temperature, float moisture);
+    // Парсер типа почвы
+    static SoilType parseSoilType(const String& soilTypeStr);
 
     void initializeCropConfigs();
     CropConfig applySeasonalAdjustments(const CropConfig& base, const String& season);
