@@ -3,8 +3,8 @@
 
 # Основные настройки
 review:
-  # Анализ только изменённых файлов
-  diff_only: true
+  # ПОЛНЫЙ анализ всех файлов для аудита
+  diff_only: false
 
   # Детальные проверки для максимальной пользы
   checks:
@@ -65,7 +65,7 @@ comments:
     - "performance_tips"
     - "architecture_notes"
 
-# Игнорируемые файлы (только критически важные)
+# Игнорируемые файлы (только документация и конфиги)
 ignore:
   - "*.md"
   - "*.txt"
@@ -73,8 +73,6 @@ ignore:
   - "*.yaml"
   - "*.yml"
   - "docs/**"
-  - "test/**"
-  - "scripts/**"
   - ".github/**"
   - "platformio.ini"
   - "include/version.h"
