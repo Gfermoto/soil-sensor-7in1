@@ -897,8 +897,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3.11.0
-- uses: actions/setup-python@v3.11.0
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
       - run: pip install platformio
       - run: pio run
       - run: pio test
