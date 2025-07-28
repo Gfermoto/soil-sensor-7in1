@@ -1,9 +1,9 @@
 # 📊 API документация JXCT 7-в-1
 
 **Дата:** Июль 2025
-**Версия API:** v3.10.1
+**Версия API:** v3.11.0
 
-REST API для интеграции с JXCT Soil Sensor v3.10.1
+REST API для интеграции с JXCT Soil Sensor v3.11.0
 
 ### 🔗 Связанная документация {#Svyazannaya-dokumentatsiya}
 - **[🖥️ C++ API](https://gfermoto.github.io/soil-sensor-7in1/api/index.html)** - Документация исходного кода
@@ -17,7 +17,7 @@ REST API для интеграции с JXCT Soil Sensor v3.10.1
   - [Связанная документация](#Svyazannaya-dokumentatsiya)
 - [Содержание](#Soderzhanie)
 - [Доступ к API](#Dostup-k-api)
-  - [Таблица актуальных эндпоинтов (API v3.10.1)](#Tablitsa-aktualnyh-endpointov-api-v3.10.1)
+  - [Таблица актуальных эндпоинтов (API v3.11.0)](#Tablitsa-aktualnyh-endpointov-api-v3.11.0)
   - [УстаревшиеDEPRECATED эндпоинты](#Ustarevshiedeprecated-endpointy)
 - [Веб-страницы](#Veb-stranitsy)
   - [GET  - Настройки](#get-Nastroyki)
@@ -59,26 +59,26 @@ REST API для интеграции с JXCT Soil Sensor v3.10.1
 
 **Все endpoints открыты** - авторизация не требуется.
 
-### 📋 Таблица актуальных эндпоинтов (API v3.10.1) {#Tablitsa-aktualnyh-endpointov-api-v3.10.1}
+### 📋 Таблица актуальных эндпоинтов (API v3.11.0) {#Tablitsa-aktualnyh-endpointov-api-v3.11.0}
 
 | Метод | Путь | Описание |
 |-------|------|----------|
-| GET   | `/api/v3.10.1/sensor`         | Основные данные датчика (JSON) |
-| GET   | `/api/v3.10.1/system/health`  | Полная диагностика устройства  |
-| GET   | `/api/v3.10.1/system/status`  | Краткий статус сервисов        |
-| POST  | `/api/v3.10.1/system/reset`   | Сброс настроек (307 на `/reset`) |
-| POST  | `/api/v3.10.1/system/reboot`  | Перезагрузка (307 на `/reboot`) |
-| GET   | `/api/v3.10.1/config/export`  | Скачать конфигурацию (JSON, без паролей) |
-| POST  | `/api/v3.10.1/config/import`  | Импорт конфигурации            |
+| GET   | `/api/v3.11.0/sensor`         | Основные данные датчика (JSON) |
+| GET   | `/api/v3.11.0/system/health`  | Полная диагностика устройства  |
+| GET   | `/api/v3.11.0/system/status`  | Краткий статус сервисов        |
+| POST  | `/api/v3.11.0/system/reset`   | Сброс настроек (307 на `/reset`) |
+| POST  | `/api/v3.11.0/system/reboot`  | Перезагрузка (307 на `/reboot`) |
+| GET   | `/api/v3.11.0/config/export`  | Скачать конфигурацию (JSON, без паролей) |
+| POST  | `/api/v3.11.0/config/import`  | Импорт конфигурации            |
 
 ### 🕑 Устаревшие/DEPRECATED эндпоинты {#Ustarevshiedeprecated-endpointy}
 
 | Метод | Путь | Описание |
 |-------|------|----------|
 | GET   | `/sensor_json`           | Те же данные (legacy, будет удалён в будущих версиях) |
-| GET   | `/api/sensor`            | DEPRECATED alias → `/api/v3.10.1/sensor` |
-| GET   | `/api/config/export`     | DEPRECATED alias → `/api/v3.10.1/config/export` |
-| POST  | `/api/config/import`     | DEPRECATED alias → `/api/v3.10.1/config/import` |
+| GET   | `/api/sensor`            | DEPRECATED alias → `/api/v3.11.0/sensor` |
+| GET   | `/api/config/export`     | DEPRECATED alias → `/api/v3.11.0/config/export` |
+| POST  | `/api/config/import`     | DEPRECATED alias → `/api/v3.11.0/config/import` |
 | POST  | `/reset`                 | Legacy сброс (будет удалён) |
 | POST  | `/reboot`                | Legacy перезагрузка (будет удалён) |
 | GET   | `/health`                | Старый путь диагностики |

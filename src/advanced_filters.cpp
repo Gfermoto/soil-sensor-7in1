@@ -160,7 +160,7 @@ struct KalmanFilter
     // @param measurement_noise_param - шум измерений (R)
     // ВНИМАНИЕ: параметры легко перепутать! process_noise_param = Q, measurement_noise_param = R
     KalmanFilter(float process_noise_param,
-                 float measurement_noise_param)  // NOLINT(bugprone-easily-swappable-parameters)
+                 float measurement_noise_param)
         : Q(process_noise_param), R(measurement_noise_param)
     {
     }

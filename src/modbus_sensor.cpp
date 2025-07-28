@@ -36,7 +36,7 @@ struct RegisterConversion
     // Приватный конструктор
    private:
     RegisterConversion(uint16_t reg_value, float mult)
-        : value(reg_value), multiplier(mult) {}  // NOLINT(bugprone-easily-swappable-parameters)
+        : value(reg_value), multiplier(mult) {}
    public:
     // Builder для предотвращения ошибок с параметрами
     struct Builder
