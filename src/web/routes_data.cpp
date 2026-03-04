@@ -14,7 +14,7 @@
 #include "../../include/jxct_strings.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
-#include "../../include/web/csrf_protection.h"  // 🔒 CSRF защита
+#include "../../include/web/csrf_protection.h"
 #include "../../include/web_routes.h"
 #include "../modbus_sensor.h"
 #include "../wifi_manager.h"
@@ -98,7 +98,7 @@ SoilProfile uploadProfile = SoilProfile::SAND;
 
 }  // namespace
 
-void handleReadingsUpload()  // ✅ Убираем static - функция extern в header
+void handleReadingsUpload()
 {
     HTTPUpload& upload = webServer.upload();
     if (upload.status == UPLOAD_FILE_START)
@@ -162,7 +162,7 @@ void handleProfileSave()
 }
 }  // namespace
 
-// ✅ Функция для безопасной санитизации JSON строк
+// Санитизация JSON строк
 String sanitizeForJson(const String& input) {
     String sanitized = input;
     sanitized.replace("\\", "\\\\");  // Сначала обратные слеши
@@ -176,7 +176,7 @@ String sanitizeForJson(const String& input) {
     return sanitized;
 }
 
-void sendSensorJson()  // ✅ Убираем static - функция extern в header
+void sendSensorJson()
 {
     // unified JSON response for sensor data
     logWebRequest("GET", webServer.uri(), webServer.client().remoteIP().toString());
@@ -235,7 +235,7 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
     doc["valid"] = isDataValid;
     doc["measurement_status"] = validationStatus;
 
-    // ❌ ОТКЛЮЧАЕМ СТАРУЮ СИСТЕМУ - используем только новый системный алгоритм
+    // Используется только новый системный алгоритм
     // RecValues rec = computeRecommendations();
     // doc["rec_temperature"] = format_temperature(rec.t);
     // doc["rec_humidity"] = format_moisture(rec.hum);
@@ -256,16 +256,16 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
         npk, soilType, sensorData.ph);
     doc["nutrient_interactions"] = antagonismRecommendations;
     
-    // ✅ Дополнительная проверка: если cropId пустой, устанавливаем "none"
+    // Если cropId пустой, устанавливаем "none"
     if (strlen(config.cropId) == 0) {
         strlcpy(config.cropId, "none", sizeof(config.cropId));
         logDebugSafe("JSON API: cropId was empty, set to 'none'");
     }
     
-    // ✅ Добавляем cropId в JSON (БЕЗОПАСНО)
+            // cropId в JSON
                 doc["crop_id"] = sanitizeForJson(String(config.cropId));
             
-            // ✅ ОТЛАДОЧНОЕ ЛОГИРОВАНИЕ для проблемы отображения культуры
+            // Отладочное логирование культуры
             logDebugSafe("JSON API: cropId='%s', len=%d, envType=%d", 
                         config.cropId, strlen(config.cropId), config.environmentType);
     
@@ -273,21 +273,21 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
     bool lenCheck = strlen(config.cropId) > 0;
     bool strCheck = strcmp(config.cropId, "none") != 0;
     
-    // ✅ crop_specific_recommendations обрабатывается ниже в системном алгоритме
+    // crop_specific_recommendations обрабатывается в системном алгоритме
     
     // ============================================================================
     // ОПТИМИЗИРОВАННЫЙ АЛГОРИТМ: Только необходимые расчеты
     // ============================================================================
     
-    // ✅ ОПТИМИЗАЦИЯ: Определяем сезон ОДИН РАЗ
+    // Сезон определяется один раз
     const char* seasonName = getCurrentSeasonName();
     
-    // ✅ ОПТИМИЗАЦИЯ: Простая конвертация VWC → ASM для второй колонки
+    // Конвертация VWC → ASM для второй колонки
     SensorCompensationService compensationService;
     float asmHumidity = compensationService.vwcToAsm(sensorData.humidity / 100.0F, soilType);
     doc["humidity"] = format_moisture(asmHumidity);
     
-    // ✅ ВОЗВРАЩАЕМ УМНЫЕ РЕКОМЕНДАЦИИ
+    // Рекомендации по культуре
     if (lenCheck && strCheck) {
         // Используем научно компенсированные значения для умных рекомендаций
         NPKReferences scientificNPK;
@@ -304,7 +304,7 @@ void sendSensorJson()  // ✅ Убираем static - функция extern в h
         doc["crop_specific_recommendations"] = "";
     }
     
-    // ✅ РЕКОМЕНДУЕМЫЕ ЗНАЧЕНИЯ ДЛЯ ВЫБРАННОЙ КУЛЬТУРЫ
+    // Рекомендуемые значения для культуры
     CropConfig cropConfig = getCropEngine().getCropConfig(String(config.cropId));
     doc["rec_temperature"] = format_temperature(cropConfig.temperature);
     doc["rec_humidity"] = format_moisture(cropConfig.humidity);
@@ -1009,7 +1009,7 @@ void setupDataRoutes()
                  {
                      logWebRequest("POST", "/readings/csv_reset", webServer.client().remoteIP().toString());
 
-                     // ✅ CSRF защита - критическая операция удаления!
+                     // CSRF защита
                      if (!checkCSRFSafety())
                      {
                          logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());

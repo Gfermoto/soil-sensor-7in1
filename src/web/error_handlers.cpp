@@ -87,7 +87,7 @@ struct HttpRequest
 namespace
 {
 
-// ✅ Типобезопасная версия (предотвращает перепутывание min/max)
+// Типобезопасная версия (предотвращает перепутывание min/max)
 bool validateInterval(const String& argName, const ValidationRange& range, const String& description)
 {
     if (webServer.hasArg(argName))

@@ -360,18 +360,18 @@ def main():
     cpp_code = corrector.generate_cpp_code(corrections)
     
     # Save C++ code
-    with open("asm_corrections.cpp", "w", encoding="utf-8") as f:
+    with open("docs/asm_corrections.cpp", "w", encoding="utf-8") as f:
         f.write(cpp_code)
-    print("✅ C++ code saved to asm_corrections.cpp")
+    print("C++ code saved to docs/asm_corrections.cpp")
     
     # Generate report
     print("📊 Generating report...")
     report = corrector.generate_report(corrections)
     
     # Save report
-    with open("ASM_CORRECTION_REPORT.md", "w", encoding="utf-8") as f:
+    with open("docs/dev/ASM_CORRECTION_REPORT.md", "w", encoding="utf-8") as f:
         f.write(report)
-    print("✅ Report saved to ASM_CORRECTION_REPORT.md")
+    print("Report saved to docs/dev/ASM_CORRECTION_REPORT.md")
     
     # Show critical corrections
     critical_corrections = [(crop_id, data) for crop_id, data in corrections.items() 

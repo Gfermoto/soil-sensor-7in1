@@ -1,142 +1,29 @@
-# 🧪 БЫСТРАЯ СПРАВКА: ТЕСТИРОВАНИЕ JXCT
+# Тестирование — быстрая справка
 
-**Версия:** 3.10.0 | **Дата:** 22.01.2025 | **Успешность:** 100%
+## Команды
 
----
-
-## 🎯 ОБЩАЯ СВОДКА {#OBShchAYa-SVODKA}
-
-| Тип тестов | Количество | Успешно | Время | Статус |
-|------------|------------|---------|-------|--------|
-| **Unit (Native)** | 67 | 67 | 3.7с | ✅ |
-| **E2E (ESP32)** | 23 | 23 | 2.7с | ✅ |
-| **Итого** | **90** | **90** | **5.2с** | ✅ |
-
----
-
-## 🚀 БЫСТРЫЙ ЗАПУСК (актуально) {#BYSTRYY-ZAPUSK}
-
-### Unit тесты (native) {#unit-testy}
 ```bash
 pio test -e native
-```
-
-### Python тесты и property-based {#python-tests}
-```bash
 python -m pytest test/ --maxfail=1 -q
+python scripts/run_simple_tests.py
 ```
 
-### E2E тесты (с реальным устройством) {#e2e-testy}
+## E2E
+
 ```bash
-set JXCT_DEVICE_IP=192.168.2.66  # Windows cmd
-# PowerShell: $env:JXCT_DEVICE_IP="192.168.2.66"
-# bash/zsh:  export JXCT_DEVICE_IP=192.168.2.66
+export JXCT_DEVICE_IP=192.168.2.65
 python -m pytest test/test_api_schema.py test/e2e/test_web_ui.py -q
 ```
 
-### Анализ статическим анализатором {#Analiz-tehnicheskogo-dolga}
+## Анализ
+
 ```bash
 python scripts/run_clang_tidy_analysis.py
 pio check -e static-analysis
 ```
 
-### Комплексное тестирование (быстрый набор) {#Kompleksnoe-testirovanie}
-```bash
-python scripts/run_simple_tests.py
-```
+## Метрики
 
----
-
-## 📊 ДЕТАЛЬНАЯ РАЗБИВКА {#DETALNAYa-RAZBIVKA}
-
-### Состояние набора тестов (актуально)
-- Все основные Python тесты — ✅
-- Native C++ sanity suite — ✅
-- ESP32 unit (Unity) — исключены из CI, запуск вручную при необходимости
-
-### Важные заметки
-- Для E2E необходимо действующее устройство и IP (`JXCT_DEVICE_IP`)
-- `/status` — HTML, не JSON (это ожидаемо в тестах)
-
----
-
-## 📈 МЕТРИКИ КАЧЕСТВА {#METRIKI-KAChESTVA}
-
-### Покрытие кода {#Pokrytie-koda}
-Общее: ~70.8% (актуальные числа см. в отчете CI)
-
-### Производительность {#Proizvoditelnost}
-- ⚡ Время отклика API: < 100ms
-- 💾 Память (heap): < 50KB
-- 🔄 CPU нагрузка: < 15%
-
-### Безопасность {#Bezopasnost}
-- ✅ CSRF защита активна
-- ✅ Валидация входных данных
-- ✅ Безопасные заголовки
-
----
-
-## 🔍 ТЕХНИЧЕСКИЙ ДОЛГ {#TEHNIChESKIY-DOLG}
-
-**Score:** 90/100 (Medium)
-
-### Критические проблемы {#Kriticheskie-problemy}
-- 🔴 20 high-priority clang-tidy предупреждений
-- 🟡 10 дублированных блоков кода
-- 🟡 149 medium-priority предупреждений
-
----
-
-## 📋 ОТЧЕТЫ {#OTChETY}
-
-### Главные отчеты {#Glavnye-otchety}
-
-### JSON отчеты {#json-otchety}
-- `test_reports/` — формируются скриптами CI (без ручного добавления markdown-отчетов)
-
----
-
-## ✅ ГОТОВНОСТЬ {#GOTOVNOST}
-
-- **Демонстрация заказчику:** ✅ ГОТОВ
-- **Production:** После исправления high-priority issues
-- **Общая оценка:** 8.5/10
-
----
-
-## 🔧 НАСТРОЙКА ТЕСТОВ {#NASTROYKA-TESTOV}
-
-### Конфигурация E2E тестов {#Konfiguratsiya-e2e-testov}
-```python
-# test/e2e/test_web_ui.py
-ESP32_IP = "192.168.8.158"  # IP адрес ESP32
-TIMEOUT = 10  # Таймаут в секундах
-```
-
-### Запуск на реальном оборудовании {#Zapusk-na-realnom-oborudovanii}
-1. Подключите ESP32 к сети
-2. Убедитесь, что IP адрес правильный
-3. Запустите E2E тесты
-
----
-
-## 🚨 УСТРАНЕНИЕ ПРОБЛЕМ {#USTRANENIE-PROBLEM}
-
-### Тесты не проходят {#Testy-ne-prohodyat}
-1. Проверьте подключение к ESP32
-2. Убедитесь, что устройство работает
-3. Проверьте логи: `pio device monitor`
-
-### Медленные тесты {#Medlennye-testy}
-1. Оптимизируйте сетевые запросы
-2. Уменьшите таймауты
-3. Используйте параллельное выполнение
-
----
-
-## 📞 ПОДДЕРЖКА {#PODDERZhKA}
-
-- **Документация:** [Главная страница](index.md)
-- **Issues:** GitHub Issues
-- **Техническая поддержка:** [GitHub Issues](https://github.com/Gfermoto/soil-sensor-7in1/issues)
+- Покрытие: ~70.8%
+- Unit: 67, E2E: 23
+- Clang-tidy: 125+ предупреждений

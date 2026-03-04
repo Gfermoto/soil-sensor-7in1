@@ -9,3 +9,4 @@ urllib3>=2.0.0
 hypothesis>=6.88.0
 jsonschema>=4.22.0
 pytest-timeout>=2.4.0
+selenium>=4.0.0

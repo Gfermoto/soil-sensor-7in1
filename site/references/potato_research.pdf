@@ -1,0 +1,3175 @@
+
+
+<!DOCTYPE html>
+<!-- Shared\CommonRzLayout.cshtml -->
+
+<html lang="en">
+<head>
+    
+    <!-- UoiViewSupport.Across21CommonHeadContent -->
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="HandheldFriendly" content="True" />
+<meta name="MobileOptimized" content="320" />
+<meta name="msapplication-TileColor" content="#191919">
+<meta name="theme-color" content="#ffffff">
+<link rel="apple-touch-icon" sizes="180x180" href="https://www.uidaho.edu/apple-touch-icon.png?v=2" />
+<link rel="icon" type="image/png" sizes="32x32" href="https://www.uidaho.edu/favicon-32x32.png?v=2" />
+<link rel="icon" type="image/png" sizes="16x16" href="https://www.uidaho.edu/favicon-16x16.png?v=2" />
+<link rel="mask-icon" href="https://www.uidaho.edu/safari-pinned-tab.svg?v=2" color="#191919" />
+<link rel="shortcut icon" href="https://www.uidaho.edu/favicon.ico?v=2" />
+
+
+    
+    <script src="/Scripts/uoi/UidahoModule.js?v=220721" type="module"></script>
+
+    
+    <!-- UidViewSupport.GetCommonHeadHtml() -->
+<script src="https://www.google.com/recaptcha/enterprise.js?render=6LckxJ8kAAAAALEWlYNX4PHHEqV6gC5Lu75vmoFf">
+</script>
+
+
+    
+    
+
+    <meta name="author" content="" />
+    <meta name="description" content="Find information that interests you by searching through our publications catalog at the University of Idaho College of Agricultural and Life Sciences." />
+
+    
+    <meta property="og:url" content="https://www.uidaho.edu/extension/publications" />
+
+    
+    <link rel="manifest" href="https://www.uidaho.edu/manifest.json?v=180808" />
+
+    <!-- RenderSection( "HeadAddlHtml" ) -->
+     <!-- Across21GeneralRzLayout.cshtml > section HeadAddlHtml -->
+
+
+
+	<title>Publications | University of Idaho Extension</title>
+
+
+	
+	<meta name="GaCategory" content="Publications" />
+
+	
+
+	<meta property="og:title" content="Publications" />
+
+	<meta property="og:description" 
+			content="Find information that interests you by searching through our publications catalog at the University of Idaho College of Agricultural and Life Sciences." />
+
+	<meta property="og:image" content="https://www.uidaho.edu/-/media/uidaho-responsive/images/extension/publications/1200x675-recent-publications.jpg?rev=cde6c429e8444e11bfd92828dec8ea0d" />
+
+	
+	<script src="/bundles/head.js?v=SO079hoysuNvlDHfX9T44EQ-q3xDdq3IXtlTiBisPGA1"></script>
+
+
+	
+	<script>
+		(function() {
+			var cx = '003722609249022682995:ko1icfwpoom';
+			var gcse = document.createElement('script');
+			gcse.type = 'text/javascript';
+			gcse.async = true;
+			gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(gcse, s);
+		})();
+	</script>
+
+	<script>
+		// Init UIdaho object, for .Design.JavaScript.UIdahoObject.  -CMA 180314.
+		window.UIdaho = window.UIdaho || {};
+		UIdaho.q      = [];
+	</script>
+
+	
+	<!-- RenderSection( "HeadAddlHtml" ) -->
+	 <!-- Chrome.cshtml > section HeadAddlHtml -->
+
+
+	 <!-- ChromeLayoutHead() -->
+	<!-- UidahoHelpers.Pre21OnlyCommonHeadContent() -->
+<!-- UoiViewSupport.Pre21OnlyCommonHeadContent -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" 
+			href="/css/styles.min.css?v=240416">
+	<!-- VisitorIdentification -->
+
+
+
+	
+	<!-- Fields[ "Head" ] ) -->
+	
+	<!-- Fields[ "Javascript" ] ) -->
+	
+
+</head>
+
+<!-- RenderBody() -->
+
+
+
+
+
+<!-- Shared\Across21GeneralRzLayout.cshtml -->
+<body class="">
+
+<!-- Google Tag Manager -->
+<noscript>
+	<iframe src="//www.googletagmanager.com/ns.html?id=GTM-NRPFL7"
+						height="0" width="0" style="display:none;visibility:hidden">
+	</iframe>
+</noscript>
+<script>
+	(function (w, d, s, l, i) {
+		w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+				new Date().getTime(), event: 'gtm.js'
+		}); 
+		var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; 
+		j.async = true; 
+		j.src = '//www.googletagmanager.com/gtm.js?id=' + i + dl; 
+		f.parentNode.insertBefore(j, f);
+	})(window, document, 'script', 'dataLayer', 'GTM-NRPFL7');
+</script>
+<!-- End Google Tag Manager -->
+
+
+<div class="ui-obj-animation-wrapper">
+	<!-- RenderBody() -->
+	
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+<!-- Views\Chrome.cshtml -->
+
+<!-- Placeholder( "header" ) -->
+
+
+
+
+
+ 
+
+
+ 
+
+
+
+<!-- GlobalHeader.cshtml -->
+
+<header class="ui-obj-header">
+    <nav class="ghf-cta">
+        
+        <div id="ghf-sb-search" class="ghf-sb-search">
+            <span class="ghf-sb-icon-search icon-magnifying-glass"></span>
+            <input class="ghf-sb-search-input" placeholder="Search..." type="search" value="" name="ghf-search" id="ghf-search">
+            <div class="ghf-search-button icon-magnifying-glass"></div>
+        </div>
+        <ul>
+            
+                    <li><a href="/admissions/apply">Apply</a></li>
+                    <li><a href="/giving">Give</a></li>
+                    <li><a href="/admissions/visit-idaho">Visit</a></li>
+        </ul>
+    </nav>
+
+		 <!-- Masthead() -->
+	<div class="ghf-masthead">
+
+		<a href="/" class="ghf-logo-link">
+			
+			<img class="ghf-logo" src="/-/media/uidaho-responsive/images/default-placeholders/u-of-i-logo-2018.svg?rev=0bd927f23bde440bbbe52a30d627baa3" 
+					alt="University of Idaho official logo" 
+					style="" />
+
+			<img class="ghf-logo-mobile" src="/-/media/uidaho-responsive/images/default-placeholders/i-banner-gold-2018.svg?rev=e7da020c38254894a227f4a4e60fec8a" 
+					alt="University of Idaho - I Banner" style="" />
+		</a>
+
+		<div class="ghf-hamburger-menu">
+			<a href="#">
+				<span class="icon-hamburger"></span>
+				<span class="ghf-menu-text">Menu</span>
+			</a>
+		</div>
+
+		<nav class="ghf-primary-nav">
+			<ul class="ghf-primary-nav-top-level">
+						<li>
+								<div class="ghf-nav-text"><a data-menu="#mm-prospective-students" href="/admissions">Prospective Students <span class="icon-down-arrow"></span></a></div>
+						</li>
+						<li>
+								<div class="ghf-nav-text"><a data-menu="#mm-current-students" href="/current-students">Current Students <span class="icon-down-arrow"></span></a></div>
+						</li>
+						<li>
+								<div class="ghf-nav-text"><a data-menu="#mm-parents" href="/student-affairs/parents">Parents <span class="icon-down-arrow"></span></a></div>
+						</li>
+						<li>
+								<div class="ghf-nav-text"><a data-menu="#mm-alumni" href="/alumni">Alumni <span class="icon-down-arrow"></span></a></div>
+						</li>
+						<li>
+								<div class="ghf-nav-text"><a data-menu="#mm-faculty-staff" href="/governance/faculty-staff">Faculty &amp; Staff <span class="icon-down-arrow"></span></a></div>
+						</li>
+			</ul>
+		</nav>
+
+		 <!-- MegaMenus() -->
+	<div class="gfh-mega-menus">
+				<div class="ghf-mega-menu" id="mm-prospective-students">
+					<span class="mm-caret"></span>
+					<div class="ghf-mega-menu-content">
+						<div class="ghf-mega-menu-promo">
+							<img src="/-/media/uidaho-responsive/images/home/global-headers/3d-tour.jpg?rev=7c232946e4d24279b37e58621df2d191" alt="An aerial view of University of Idaho&#39;s Moscow campus."/>
+							<div class="ghf-mega-menu-promo-text">
+								<h3>Virtual Tour</h3>
+								<p>Experience University of Idaho with a virtual tour.   <a href="/admissions/visit-idaho/virtual-tour">Explore now</a></p>
+							</div>
+						</div>
+
+								<div class="ghf-mega-menu-list">
+										<h3>Explore</h3>
+										<ul>
+													<li><a href="https://uidaho.emsicc.com">Discover a Career</a></li>
+													<li><a href="/degree-finder">Find a Major</a></li>
+													<li><a href="/student-life">Experience U of I Life</a></li>
+										</ul>
+								</div>
+								<div class="ghf-mega-menu-list">
+										<h3>More Resources</h3>
+										<ul>
+													<li><a href="/admissions/admitted">Admitted Students</a></li>
+													<li><a href="/admissions/international">International Students</a></li>
+													<li><a href="/student-affairs/parents">Parents</a></li>
+										</ul>
+								</div>
+								<div class="ghf-mega-menu-list">
+										<h3>Take Action</h3>
+										<ul>
+													<li><a href="/financial-aid">Find Financial Aid</a></li>
+													<li><a href="/registrar/calendar">View Deadlines</a></li>
+													<li><a href="/admissions/apply/admissions-counselors">Find Your Rep</a></li>
+										</ul>
+								</div>
+
+						<div class="ghf-mega-menu-buttons">
+									<a class="ghf-mega-button" href="/admissions/apply">Apply</a>
+									<a class="ghf-mega-button" href="/admissions/rfi">Request Info</a>
+									<a class="ghf-mega-button" href="/admissions/visit-idaho">Visit</a>
+						</div>
+					</div>
+				</div>
+				<div class="ghf-mega-menu" id="mm-current-students">
+					<span class="mm-caret"></span>
+					<div class="ghf-mega-menu-content">
+						<div class="ghf-mega-menu-promo">
+							<img src="/-/media/uidaho-responsive/images/home/global-headers/cs-bikes.jpg?rev=972ebfe0320f498ebef0add2cc3032ab" alt="Two students ride down Greek Row in the fall, amid changing leaves."/>
+							<div class="ghf-mega-menu-promo-text">
+								<h3>Title IX</h3>
+								<p>Helping to ensure U of I is a safe and engaging place for students to learn and be successful.  <a href="/ocri/title-nine">Read about Title IX.</a></p>
+							</div>
+						</div>
+
+								<div class="ghf-mega-menu-list">
+										<h3>Get Involved</h3>
+										<ul>
+													<li><a href="/current-students/student-involvement">Clubs &amp; Volunteer Opportunities</a></li>
+													<li><a href="/current-students/recwell">Recreation and Wellbeing</a></li>
+													<li><a href="/current-students/student-involvement/asui">Student Government</a></li>
+													<li><a href="/current-students/sustainability">Student Sustainability Cooperative</a></li>
+										</ul>
+								</div>
+								<div class="ghf-mega-menu-list">
+										<h3>Resources</h3>
+										<ul>
+													<li><a href="/current-students/academic-support">Academic Assistance</a></li>
+													<li><a href="/infrastructure/pss">Safety &amp; Security</a></li>
+													<li><a href="/current-students/career-services">Career Services</a></li>
+													<li><a href="/current-students/health-wellness">Health &amp; Wellness Services</a></li>
+													<li><a href="/ocri/title-nine">Title IX</a></li>
+										</ul>
+								</div>
+								<div class="ghf-mega-menu-list">
+										<h3>Top Links</h3>
+										<ul>
+													<li><a href="/registrar/registration">Register for Classes</a></li>
+													<li><a href="/registrar/calendar">Dates &amp; Deadlines</a></li>
+													<li><a href="/financial-aid">Financial Aid</a></li>
+													<li><a href="/sustainability">Sustainable Solutions</a></li>
+													<li><a href="http://www.lib.uidaho.edu/">U of I Library</a></li>
+													<li><a href="https://my.uidaho.edu">Visit MyUI</a></li>
+										</ul>
+								</div>
+
+						<div class="ghf-mega-menu-buttons">
+									<a class="ghf-mega-button" href="https://canvas.uidaho.edu/">Access Canvas</a>
+									<a class="ghf-mega-button" href="https://vandals.uidaho.edu/?utm_source=vandalmail&amp;utm_medium=button&amp;utm_campaign=saem-global">Check Email</a>
+									<a class="ghf-mega-button" href="https://my.uidaho.edu">Access MyUI</a>
+									<a class="ghf-mega-button" href="https://futurevandals.uidaho.edu/manage/login?realm=&amp;r=/portal/mysuccess">Log In To SlateConnect</a>
+						</div>
+					</div>
+				</div>
+				<div class="ghf-mega-menu" id="mm-parents">
+					<span class="mm-caret"></span>
+					<div class="ghf-mega-menu-content">
+						<div class="ghf-mega-menu-promo">
+							<img src="/-/media/uidaho-responsive/images/home/global-headers/parents.jpg?rev=972c6132cd144c099fb4bba6f65b5ffb" alt="A mother and son stand on the practice field of the P1FCU-Kibbie Activity Center."/>
+							<div class="ghf-mega-menu-promo-text">
+								<h3>Upcoming Events</h3>
+								<p>  <a href="/student-affairs/events">Review the events calendar.</a></p>
+							</div>
+						</div>
+
+								<div class="ghf-mega-menu-list">
+										<h3>Stay Connected</h3>
+										<ul>
+													<li><a href="/events">Upcoming Events</a></li>
+													<li><a href="/student-affairs/parents/newsletter">Vandal Family Newsletter</a></li>
+													<li><a href="/news/here-we-have-idaho">Here We Have Idaho Magazine</a></li>
+										</ul>
+								</div>
+								<div class="ghf-mega-menu-list">
+										<h3>Resources</h3>
+										<ul>
+													<li><a href="/financial-aid">Financial Aid</a></li>
+													<li><a href="/student-life/live-on-campus">Living on Campus</a></li>
+										</ul>
+								</div>
+								<div class="ghf-mega-menu-list">
+										<h3>More Resources</h3>
+										<ul>
+													<li><a href="/student-affairs/parents/safety">Campus Safety </a></li>
+													<li><a href="/about/locations/moscow">About Moscow</a></li>
+										</ul>
+								</div>
+
+						<div class="ghf-mega-menu-buttons">
+									<a class="ghf-mega-button" href="/current-students/student-involvement">Get Involved</a>
+									<a class="ghf-mega-button" href="/student-affairs/dean-of-students">Contact the Dean of Students</a>
+						</div>
+					</div>
+				</div>
+				<div class="ghf-mega-menu" id="mm-alumni">
+					<span class="mm-caret"></span>
+					<div class="ghf-mega-menu-content">
+						<div class="ghf-mega-menu-promo">
+							<img src="/-/media/uidaho-responsive/images/home/global-headers/homecoming.jpg?rev=b149f37210844b8a90a0d97fac5082a8" alt="The homecoming fireworks"/>
+							<div class="ghf-mega-menu-promo-text">
+								<h3>Homecoming</h3>
+								<p>The largest Vandal Family reunion of the year.  <a href="/events/signature-events/homecoming">Check dates.</a></p>
+							</div>
+						</div>
+
+								<div class="ghf-mega-menu-list">
+										<h3>Benefits and Services</h3>
+										<ul>
+													<li><a href="/current-students/career-services">Career Services</a></li>
+													<li><a href="/alumni/get-involved/travel">Vandal Voyagers Program</a></li>
+													<li><a href="/alumni/benefits-and-services/vandal-license-plate">Vandal License Plate</a></li>
+										</ul>
+								</div>
+								<div class="ghf-mega-menu-list">
+										<h3>Get Involved</h3>
+										<ul>
+													<li><a href="/alumni/benefits-and-services/class-notes">Submit Class Notes</a></li>
+													<li><a href="/giving">Make a Gift</a></li>
+													<li><a href="/alumni/events">View Events</a></li>
+										</ul>
+								</div>
+								<div class="ghf-mega-menu-list">
+										<h3>Stay Connected</h3>
+										<ul>
+													<li><a href="/alumni/get-involved/chapters">Alumni Chapters</a></li>
+													<li><a href="/news/here-we-have-idaho">University Magazine</a></li>
+													<li><a href="/alumni/benefits-and-services/vibe">Alumni Newsletter</a></li>
+										</ul>
+								</div>
+
+						<div class="ghf-mega-menu-buttons">
+									<a class="ghf-mega-button" href="/alumni/update">Update Your Info</a>
+									<a class="ghf-mega-button" href="/alumni/get-involved/grow-the-gold">Nominate a Future Vandal</a>
+						</div>
+					</div>
+				</div>
+				<div class="ghf-mega-menu" id="mm-faculty-staff">
+					<span class="mm-caret"></span>
+					<div class="ghf-mega-menu-content">
+						<div class="ghf-mega-menu-promo">
+							<img src="/-/media/uidaho-responsive/images/home/global-headers/advising.jpg?rev=3770352fb244407a9619a8423784e272" alt="A student works at a computer"/>
+							<div class="ghf-mega-menu-promo-text">
+								<h3>SlateConnect</h3>
+								<p>U of I&#39;s web-based retention and advising tool provides an efficient way to guide and support students on their road to graduation.  <a href="http://futurevandals.uidaho.edu/manage">Login to SlateConnect.</a></p>
+							</div>
+						</div>
+
+								<div class="ghf-mega-menu-list">
+										<h3>Common Tools</h3>
+										<ul>
+													<li><a href="/governance/policy/policies/apm">Administrative Procedures Manual (APM)</a></li>
+													<li><a href="https://canvas.uidaho.edu/">Canvas</a></li>
+													<li><a href="https://banner.uidaho.edu/StudentRegistrationSsb/ssb/term/termSelection?mode=search ">Class Schedule</a></li>
+													<li><a href="https://support.uidaho.edu/TDClient/40/Portal/Home/">OIT Tech Support</a></li>
+										</ul>
+								</div>
+								<div class="ghf-mega-menu-list">
+										<h3>Resources</h3>
+										<ul>
+													<li><a href="/registrar/calendar">Academic Dates &amp; Deadlines</a></li>
+													<li><a href="/governance">Governance</a></li>
+													<li><a href="http://www.lib.uidaho.edu/">U of I Library</a></li>
+													<li><a href="/infrastructure/pss">Safety &amp; Security</a></li>
+										</ul>
+								</div>
+								<div class="ghf-mega-menu-list">
+										<h3>Services</h3>
+										<ul>
+													<li><a href="/governance/faculty-staff/uira">U of I Retirees Association</a></li>
+													<li><a href="/governance/faculty-senate">Faculty Senate</a></li>
+													<li><a href="/governance/staff-council">Staff Council</a></li>
+										</ul>
+								</div>
+
+						<div class="ghf-mega-menu-buttons">
+									<a class="ghf-mega-button" href="http://mail.uidaho.edu">Access Email</a>
+									<a class="ghf-mega-button" href="https://my.uidaho.edu">Access MyUI</a>
+									<a class="ghf-mega-button" href="/human-resources">Visit Human Resources</a>
+						</div>
+					</div>
+				</div>
+	</div>
+  
+	</div>
+  
+
+    <div class="ghf-small-search">
+        <input type="search" placeholder="Search..." />
+        <div class="ghf-search-button icon-magnifying-glass"></div>
+    </div>
+    <div class="ghf-auxillary-nav-wrapper">
+        <div class="ghf-auxillary-nav-inner">
+            <nav class="ghf-secondary-nav">
+                <ul>
+                            <li><a href="/academics">Academics</a></li>
+                            <li><a href="/admissions">Admissions</a></li>
+                            <li><a href="/student-life">Student Life</a></li>
+                            <li><a href="/research">Research</a></li>
+                            <li><a href="/outreach">Outreach</a></li>
+                            <li><a href="/about">About</a></li>
+                            <li><a href="/president">Leadership</a></li>
+                </ul>
+            </nav>
+            <nav class="ghf-tertiary-nav">
+                <ul>
+                            <li><a href="http://govandals.com/">Athletics</a></li>
+                            <li><a href="/events">Events</a></li>
+                            <li><a href="/news">News</a></li>
+                            <li><a href="https://directory.uidaho.edu/">Directory</a></li>
+                            <li><a href="/az-index">A - Z</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="ui-obj-mobile-nav">
+	<nav>
+		<ul class="ghf-mobilenav-primary">
+					<li>
+							<a href="/admissions">Prospective Students</a>
+					</li>
+					<li>
+							<a href="/current-students">Current Students</a>
+					</li>
+					<li>
+							<a href="/student-affairs/parents">Parents</a>
+					</li>
+					<li>
+							<a href="/alumni">Alumni</a>
+					</li>
+					<li>
+							<a href="/governance/faculty-staff">Faculty &amp; Staff</a>
+					</li>
+		</ul>
+
+		
+		<div class="ghf-mobilenav-secondary">
+			<div class="ghf-secondary-nav-group">
+				<h3>Topic Areas</h3>
+				<ul>
+									<li><a href="/academics">Academics</a></li>
+									<li><a href="/admissions">Admissions</a></li>
+									<li><a href="/student-life">Student Life</a></li>
+									<li><a href="/research">Research</a></li>
+									<li><a href="/outreach">Outreach</a></li>
+									<li><a href="/about">About</a></li>
+									<li><a href="/president">Leadership</a></li>
+				</ul>
+			</div>
+			<div class="ghf-secondary-nav-group">
+				<h3>Resources</h3>
+				<ul>
+									<li><a href="http://govandals.com/">Athletics</a></li>
+									<li><a href="/events">Events</a></li>
+									<li><a href="/news">News</a></li>
+									<li><a href="https://directory.uidaho.edu/">Directory</a></li>
+									<li><a href="/az-index">A - Z</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</div>
+
+
+<!-- Placeholder( "emergency" ) -->
+
+
+
+
+
+<div id="content">
+	<!-- Placeholder( "body" ) -->
+		
+	<!-- PageTypes\UniversalHomePage.cshtml -->
+	<div class="ui-universal-home-page ui-page">
+		<div class="ui-page-title">
+			<div class="ui-contain">
+				<h1><a href="/extension">University of Idaho Extension</a></h1>
+				<div class="ui-cta">
+
+<!-- ConnectLink.cshtml -->
+<div class="ui-cta-action">
+	<a href="/extension/publications/publication-search-results">Search Publications</a>
+</div>
+</div>
+			</div>
+		</div>
+		<!-- Placeholder( "slideshow-layout" ) -->
+		
+
+	<!-- ComponentLayouts\SlideshowPartialScreen.cshtml -->
+	<button class="ui-sidebar-menu-toggle">Menu<span class="icon-play"></span></button>
+	<div class="ui-page-wrapper">
+		<div class="ui-page-wrapper-inner">
+			<div class="ui-page-sidebar">
+				<div class="ui-obj-subnav">
+					<!-- ViewRendering( "/Views/Navigation/SubNavMenu.cshtml" ) -->
+					
+
+
+
+<!-- Views\Navigation\SubNavMenu.cshtml -->
+<nav>
+
+
+
+<ul class="subnav-level-1">
+
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="/extension/programs" class=" level-1">
+                            Program Areas
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="/extension/directory" class=" level-1">
+                            Directory
+                                <span class="toggle collapsed">
+                                    <span class="icon-plus"></span>
+                                    <span class="icon-minus"></span>
+                                </span>
+                                <span class="menu-arrow"></span>
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/directory/counties" class="without-children ">Counties <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/directory/people" class="without-children ">Our People <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/cals/idaho-agricultural-experiment-station/research-and-extension-centers" class="without-children ">Research &amp; Extension Centers <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/directory/profile" class="without-children "> <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/directory/administrative-team" class="without-children ">Administrative Team <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="active active-menu">
+                <div class="subnav-level-2-wrapper active-item">
+                    <span>
+                        <a href="/extension/publications" class="current level-1">
+                            Publications
+                                <span class="toggle selected">
+                                    <span class="icon-plus"></span>
+                                    <span class="icon-minus"></span>
+                                </span>
+                                <span class="menu-arrow"></span>
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 open">
+
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/youth" class="without-children ">4-H Youth Development <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/agriculture" class="with-children  level-2">
+                                            Agriculture
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+					<a href="/extension/publications/agriculture/animals" class="with-children  level-3">
+							Animals &amp; Livestock
+							<span class="toggle collapsed">
+									<span class="icon-plus"></span>
+									<span class="icon-minus"></span>
+							</span>
+
+							<span class="menu-arrow"></span>
+					</a>
+					<ul class="subnav-level-4 ">
+									<li class="">
+											<a href="/extension/publications/agriculture/animals/beef-cattle" class="with-children ">Beef Cattle <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/animals/dairy-cattle" class="with-children ">Dairy Cattle <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/animals/horses" class="with-children ">Horses <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/animals/poultry-rabbits" class="with-children ">Poultry &amp; Rabbits <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/animals/sheep-goats-swine" class="with-children ">Sheep, Goats &amp; Swine <span class="menu-arrow"></span></a>
+									</li>
+					</ul>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/beneficial-insects" class="without-children ">Beneficial Insects <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/buildings-equipment" class="without-children ">Buildings &amp; Equipment <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+					<a href="/extension/publications/agriculture/crop" class="with-children  level-3">
+							Crop Production
+							<span class="toggle collapsed">
+									<span class="icon-plus"></span>
+									<span class="icon-minus"></span>
+							</span>
+
+							<span class="menu-arrow"></span>
+					</a>
+					<ul class="subnav-level-4 ">
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/alternative-crops" class="with-children ">Alternative Crops <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/beans-peas-lentils" class="with-children ">Beans, Peas &amp; Lentils <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/berries-grapes" class="with-children ">Berries &amp; Grapes <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/cereals" class="with-children ">Cereals <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/christmas-trees" class="with-children ">Christmas Trees <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/corn" class="with-children ">Corn <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/cover-crops" class="with-children ">Cover Crops <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/forage-crops-pasture" class="with-children ">Forage Crops &amp; Pasture <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/greenhouse-nursery-crops" class="with-children ">Greenhouse &amp; Nursery Crops <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/idaho-crop-profiles" class="with-children ">Idaho Crop Profiles <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/oilseed-crops" class="with-children ">Oilseed Crops <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/onions" class="with-children ">Onions <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/potatoes" class="with-children ">Potatoes <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/seed-crops" class="with-children ">Seed Crops <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/sugar-beets" class="with-children ">Sugar Beets <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/tree-fruits-nuts" class="with-children ">Tree Fruits &amp; Nuts <span class="menu-arrow"></span></a>
+									</li>
+					</ul>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/fertilizer-guides" class="without-children ">Fertilizer Guides <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/fertilizers-soils" class="without-children ">Fertilizers &amp; Soils <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/irrigation" class="without-children ">Irrigation <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/on-farm-testing" class="without-children ">On-Farm Testing <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/pests-pesticides" class="without-children ">Pests &amp; Pesticides <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/plant-diseases" class="without-children ">Plant Diseases <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/small-acreage-farming" class="without-children ">Small-Acreage Farming <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/weeds" class="without-children ">Weeds <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/animals" class="with-children  level-2">
+                                            Animals &amp; Livestock
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/animals/beef-cattle" class="without-children ">Beef Cattle <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/animals/dairy-cattle" class="without-children ">Dairy Cattle <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/animals/horses" class="without-children ">Horses <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/animals/poultry-rabbits" class="without-children ">Poultry &amp; Rabbits <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/animals/sheep-goats-swine" class="without-children ">Sheep, Goats &amp; Swine <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/business" class="with-children  level-2">
+                                            Business &amp; Economics
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/agricultural-economics" class="without-children ">Agricultural Economics <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/business-management-marketing" class="without-children ">Business Management &amp; Marketing <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/economics" class="without-children ">Economics <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/entrepreneurship" class="without-children ">Entrepreneurship <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/farm-enterprise-budgets" class="without-children ">Farm/Enterprise Budgets <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/public-policy" class="without-children ">Public Policy <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/community" class="without-children ">Community Development <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/crop" class="with-children  level-2">
+                                            Crop Production
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/alternative-crops" class="without-children ">Alternative Crops <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/beans-peas-lentils" class="without-children ">Beans, Peas &amp; Lentils <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/berries-grapes" class="without-children ">Berries &amp; Grapes <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/cereals" class="without-children ">Cereals <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/christmas-trees" class="without-children ">Christmas Trees <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/corn" class="without-children ">Corn <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/cover-crops" class="without-children ">Cover Crops <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/forage-crops-pasture" class="without-children ">Forage Crops &amp; Pasture <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/greenhouse-nursery-crops" class="without-children ">Greenhouse &amp; Nursery Crops <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/idaho-crop-profiles" class="without-children ">Idaho Crop Profiles <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/oilseed-crops" class="without-children ">Oilseed Crops <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/onions" class="without-children ">Onions <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/potatoes" class="without-children ">Potatoes <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/seed-crops" class="without-children ">Seed Crops <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/sugar-beets" class="without-children ">Sugar Beets <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/tree-fruits-nuts" class="without-children ">Tree Fruits &amp; Nuts <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/family" class="without-children ">Family &amp; Home <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/forestry" class="with-children  level-2">
+                                            Forestry, Range &amp; Water
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/forestry" class="without-children ">Forestry <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/natural-resource-conservation" class="without-children ">Natural Resource Conservation <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/rangeland" class="without-children ">Rangeland <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/recreation-tourism" class="without-children ">Recreation &amp; Tourism <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/water" class="without-children ">Water <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/wildfire" class="without-children ">Wildfire <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/wildlife" class="without-children ">Wildlife <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/food-and-health" class="with-children  level-2">
+                                            Food &amp; Health
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/food-and-health/food-preparation-nutrition" class="without-children ">Food Preparation &amp; Nutrition <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/food-and-health/food-preservation-safety" class="without-children ">Food Preservation &amp; Safety <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/food-and-health/health-wellness" class="without-children ">Health &amp; Wellness <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/gardens" class="with-children  level-2">
+                                            Gardens &amp; Landscapes
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/beneficial-insects" class="without-children ">Beneficial Insects <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/fertilizers-soils" class="without-children ">Fertilizers &amp; Soils <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/flowers-shrubs-ornamentals" class="without-children ">Flowers, Shrubs &amp; Ornamentals <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/fruits-nuts" class="without-children ">Fruits &amp; Nuts <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/general" class="without-children ">General <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/idaho-greenthumb-how-to" class="without-children ">Idaho Green Thumb How-To <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/lawns" class="without-children ">Lawns <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/pests-pesticides" class="without-children ">Pests &amp; Pesticides <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/plant-diseases" class="without-children ">Plant Diseases <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/short-season-high-altitude" class="without-children ">Short-Season High-Altitude Gardening <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/vegetables-herbs" class="without-children ">Vegetables &amp; Herbs <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/weeds" class="without-children ">Weeds <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/tools" class="without-children ">Tools for Educators <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/publicaciones" class="without-children ">Publicaciones en Espa&#241;ol <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/videos" class="without-children ">Videos <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/about" class="without-children ">About <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="/extension/news" class=" level-1">
+                            News &amp; Events
+                                <span class="toggle collapsed">
+                                    <span class="icon-plus"></span>
+                                    <span class="icon-minus"></span>
+                                </span>
+                                <span class="menu-arrow"></span>
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/calendar" class="with-children  level-2">
+                                            Calendar
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/calendar/submit" class="without-children ">Submit an Event <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/story" class="with-children  level-2">
+                                            Featured Stories
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2025/forestry-education" class="without-children ">Forestry Education <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2025/erickson-games" class="without-children ">Adventures in Finance <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2024/forestry-educators" class="without-children ">Generations of Experience <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2024/know-your-government" class="without-children ">Lessons in Government <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2024/digital-workers" class="without-children ">Digital Miracle Workers <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2023/manure" class="without-children ">Value in Manure <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2023/flowers" class="without-children ">A Budding Field <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2023/wildfire-simulation" class="without-children ">Wildfire Simulation <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/express" class="with-children  level-2">
+                                            Newsletter
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2025-february" class="without-children ">February 2025 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2024-september" class="without-children ">September 2024 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2024-may" class="without-children ">May 2024 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2023-november" class="without-children ">November 2023 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2023-july" class="without-children ">July 2023 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2023-january" class="without-children ">January 2023 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/ag-talk-tuesday" class="without-children ">Ag Talk Tuesday <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/food-safety" class="without-children ">Virtual Food Safety <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/war-on-weeds" class="without-children ">War on Weeds <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/fair" class="without-children ">Fair <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="https://keeplearning.uidaho.edu/public/category/programArea.do?method=load&amp;selectedProgramAreaId=1023467" class=" level-1">
+                            Online Courses
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="https://ask2.extension.org/" class=" level-1">
+                            Ask Extension
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="/extension/about" class=" level-1">
+                            About
+                                <span class="toggle collapsed">
+                                    <span class="icon-plus"></span>
+                                    <span class="icon-minus"></span>
+                                </span>
+                                <span class="menu-arrow"></span>
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/about/impacts" class="without-children ">Impact Statements <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/about/trends" class="without-children ">Extension Trends <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="/extension/login/employee" class=" level-1">
+                            Employee Resources
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+
+                    </ul>
+                </div>
+            </li>
+    </ul>
+</nav>
+
+				</div>
+				<div>
+					<!-- ViewRendering( "/Views/Components/LocationContainer.cshtml" ) -->
+					
+
+
+
+
+
+<!-- Components\LocationContainer.cshtml -->
+<div class="ui-obj-location-container">
+	<div id="locations_82" class="panel-group">
+		
+				<h2>Contact</h2>
+			<div class="panel panel-default ui-obj-location">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a href="#mos_47" data-parent="#locations" data-toggle="collapse" class="">
+
+							
+							<span>University of Idaho Extension Publishing</span>
+
+							<span class="icon-plus"></span>
+							<span class="icon-minus"></span>
+						</a>
+					</h3>
+				</div>
+				<div class="panel-collapse collapse in" id="mos_47">
+
+					
+					<div class="panel-body">
+						<p><b></b></p>
+							<p>Physical Address: <br />E. J. Iddings Agricultural Science Laboratory, Room 10<br />
+606 S Rayburn St</p> 
+							<p>Mailing Address: <br />875 Perimeter Drive MS 2332
+Moscow, ID 83844-2332</p> 
+						<div class="contact-info">
+ <p>Phone: 208-885-7982</p> 							 <p>Fax: 208-885-9046</p> 							 <p>Email: <a href="mailto:calspubs@uidaho.edu">calspubs@uidaho.edu</a></p> 													</div>
+
+
+							<span class="icon-link icon-viewmap"><a href="https://www.google.com/maps/place/Ag+Science,+University+of+Idaho,+Moscow,+ID+83844/@46.7295899,-117.0150079,17z/data=!3m1!5s0x54a02786a08b27a7:0x31a592d76ae078e0!4m7!1m4!3m3!1s0x54a02786bdd964e7:0xb9fc701e62ac90ac!2s606+S+Rayburn+St,+University+of+Idaho,+Moscow,+ID+83844!3b1!3m1!1s0x54a02786a1021e1b:0xc98177e5b526ae9">Location</a></span> 						<ul class="ui-social-icons">
+							<!-- GetLocationSocialLinksHtml() -->
+<li>
+<a href="https://www.facebook.com/UidahoExtension" aria-labelledby="UidLocationSocial-Facebook-175">
+<svg viewBox="0 0 1024 1017.78">
+<title id="UidLocationSocial-Facebook-175">Facebook</title>
+<path d="m1024,512c0,255.55-187.23,467.37-432,505.78v-357.78h119.3l22.7-148h-142v-96.04c0-40.49,19.84-79.96,83.44-79.96h64.56v-126s-58.59-10-114.61-10c-116.95,0-193.39,70.88-193.39,199.2v112.8h-130v148h130v357.78C187.23,979.37,0,767.55,0,512,0,229.23,229.23,0,512,0s512,229.23,512,512Z" />
+</svg>
+</a>
+</li>
+<li>
+<a href="https://twitter.com/uidahoextension" aria-labelledby="UidLocationSocial-Twitter-175">
+<svg viewBox="0 0 1200 1227">
+<title id="UidLocationSocial-Twitter-175">Twitter</title>
+<path d="m714.16,519.28L1160.89,0h-105.86l-387.89,450.89L357.33,0H0l468.49,681.82L0,1226.37h105.87l409.63-476.15,327.18,476.15h357.33l-485.86-707.09h.03Zm-145,168.54l-47.47-67.89L144.01,79.69h162.6l304.8,435.99,47.47,67.89,396.2,566.72h-162.6l-323.31-462.45v-.03Z" />
+</svg>
+</a>
+</li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>
+
+				</div>
+				<div>
+					<!-- Placeholder( "affiliates" ) -->
+					
+				</div>
+			</div>
+			<div class="ui-page-content partial">
+				<div class="ui-home-slideshow partial">
+					<!-- Placeholder( "slideshow" ) -->
+					
+
+
+
+
+<!-- Components\Slideshow.cshtml -->
+<div id="slideshow-0d86b7ed-f11d-4bfc-b94b-a776b76b69fd-" class="ui-obj-slideshow carousel slide aspect-16-9" 
+		data-ride="carousel" data-wrap="false" data-interval="false" 
+		data-randomize="">
+
+
+
+<div class="carousel-inner" role="listbox">
+
+
+
+
+        <!-- Controls -->
+    </div>
+    <script>
+        UIdaho.q.push('objects/slideshow');
+    </script>
+</div>
+
+				</div>
+				<div id="primary-content" class="partial-main-content">
+
+	
+
+					<!-- ViewRendering( "/Views/Navigation/Breadcrumbs.cshtml" ) -->
+					
+
+
+
+
+
+
+<!-- Navigation\Breadcrumbs.cshtml -->
+<nav class="ui-obj-breadcrumb" aria-label="Breadcrumb">
+	<ol>
+		
+		<li>
+			<a href="/">
+				<span class="icon-home"></span> 
+
+				
+				<span class="sr-only"></span> 
+			</a>
+		</li>
+
+				<li>
+					<a href="/extension">
+							Extension</a>
+				</li>
+
+
+		<li><a href="/extension/publications" aria-current="page">Publications</a></li>
+	</ol>
+</nav>
+
+
+					<!-- ViewRendering( "/Views/Components/SocialSharing.cshtml" ) -->
+					
+
+
+
+
+
+
+
+					<h1>Publications</h1>
+
+					<!-- Placeholder( "content" ) -->
+					
+
+<!-- ComponentLayouts\BasicColumn.cshtml -->
+<div class="obj-basic-column">
+
+
+
+
+
+	
+
+	<!-- DynamicPlaceholder( "basic-column" ) -->
+	
+<div class="ui-obj-rich-text">
+	<p>The UI Extension Publications Catalog is your source for current, peer-reviewed, research-based educational materials produced by University of Idaho experts. Explore the topics, search for a publication, or <a href="/extension/publications/about">contact us</a>&nbsp;if you need assistance.</p>
+</div>
+
+</div>
+
+
+<!-- ComponentLayouts\ThreeColumn.cshtml -->
+<div class="obj-three-column row">
+
+
+
+
+
+	<div class="col-sm-12 col-md-6 col-lg-4">
+
+		
+
+		<!-- DynamicPlaceholder( "column-one" ) -->
+		
+
+
+
+
+<!-- Components\DynamicPromoSmall.cshtml -->
+
+<div class="ui-obj-dynamic-promo-sm height-match">
+	<div class="stripe">
+		<a href="/extension/publications/youth">
+			<div class="image-container" style="background-image:url(/-/media/uidaho-responsive/images/extension/publications/1200x675-4h-youth-development.jpg?rev=02e44c381e594f00b029d543266eaa6a);"></div>
+			<span class="ada-text">4-H Youth Development publications</span>
+		</a>
+	</div>
+	<div class="promo-inner">
+		<div class="text-wrapper">
+			<a href="/extension/publications/youth"><span class="promo-link"></span></a>
+			<span class="h3">4-H Youth Development</span>
+
+			<p class="cta"><a href="/extension/publications/youth">4-H Youth development publications</a></p>
+		</div>
+	</div>
+</div>
+
+	</div>
+	<div class="col-sm-12 col-md-6 col-lg-4">
+		<!-- DynamicPlaceholder( "column-two" ) -->
+		
+
+
+
+
+<!-- Components\DynamicPromoSmall.cshtml -->
+
+<div class="ui-obj-dynamic-promo-sm height-match">
+	<div class="stripe">
+		<a href="/extension/publications/agriculture">
+			<div class="image-container" style="background-image:url(/-/media/uidaho-responsive/images/extension/publications/1200x675-farm-ranch-management.jpg?rev=de5775cb3d64457793567aea464b3939);"></div>
+			<span class="ada-text">farm and ranch management, aerial view of a farm</span>
+		</a>
+	</div>
+	<div class="promo-inner">
+		<div class="text-wrapper">
+			<a href="/extension/publications/agriculture"><span class="promo-link"></span></a>
+			<span class="h3">Agriculture</span>
+
+			<p class="cta"><a href="/extension/publications/agriculture">Agriculture publications</a></p>
+		</div>
+	</div>
+</div>
+
+	</div>
+	<div class="col-sm-12 col-md-12 col-lg-4">
+		<!-- DynamicPlaceholder( "column-three" ) -->
+		
+	</div>
+</div>
+
+
+<!-- ComponentLayouts\ThreeColumn.cshtml -->
+<div class="obj-three-column row">
+
+
+
+
+
+	<div class="col-sm-12 col-md-6 col-lg-4">
+
+		
+
+		<!-- DynamicPlaceholder( "column-one" ) -->
+		
+
+
+
+
+<!-- Components\DynamicPromoSmall.cshtml -->
+
+<div class="ui-obj-dynamic-promo-sm height-match">
+	<div class="stripe">
+		<a href="/extension/publications/animals">
+			<div class="image-container" style="background-image:url(/-/media/uidaho-responsive/images/extension/publications/1200x675-livestock-and-others.jpg?rev=588c51f1e8e04be8af584c57ebe109ed);"></div>
+			<span class="ada-text">livestock - cows</span>
+		</a>
+	</div>
+	<div class="promo-inner">
+		<div class="text-wrapper">
+			<a href="/extension/publications/animals"><span class="promo-link"></span></a>
+			<span class="h3">Animals &amp; Livestock</span>
+
+			<p class="cta"><a href="/extension/publications/animals">Animals &amp; Livestock publications</a></p>
+		</div>
+	</div>
+</div>
+
+	</div>
+	<div class="col-sm-12 col-md-6 col-lg-4">
+		<!-- DynamicPlaceholder( "column-two" ) -->
+		
+
+
+
+
+<!-- Components\DynamicPromoSmall.cshtml -->
+
+<div class="ui-obj-dynamic-promo-sm height-match">
+	<div class="stripe">
+		<a href="/extension/publications/business">
+			<div class="image-container" style="background-image:url(/-/media/uidaho-responsive/images/extension/publications/1200x675-business-promo.jpg?rev=7e85fcf03c824571978a7a9541190793);"></div>
+			<span class="ada-text">Laptop on desk</span>
+		</a>
+	</div>
+	<div class="promo-inner">
+		<div class="text-wrapper">
+			<a href="/extension/publications/business"><span class="promo-link"></span></a>
+			<span class="h3">Business &amp; Economics</span>
+
+			<p class="cta"><a href="/extension/publications/business">Business &amp; Economics publications</a></p>
+		</div>
+	</div>
+</div>
+
+	</div>
+	<div class="col-sm-12 col-md-12 col-lg-4">
+		<!-- DynamicPlaceholder( "column-three" ) -->
+		
+
+
+
+
+<!-- Components\DynamicPromoSmall.cshtml -->
+
+<div class="ui-obj-dynamic-promo-sm height-match">
+	<div class="stripe">
+		<a href="/extension/publications/community">
+			<div class="image-container" style="background-image:url(/-/media/uidaho-responsive/images/extension/publications/1200x675-community-development.jpg?rev=65b03b315b2a4b72ad483fe080c6f274);"></div>
+			<span class="ada-text">educating the community</span>
+		</a>
+	</div>
+	<div class="promo-inner">
+		<div class="text-wrapper">
+			<a href="/extension/publications/community"><span class="promo-link"></span></a>
+			<span class="h3">Community Development</span>
+
+			<p class="cta"><a href="/extension/publications/community">Community development publications</a></p>
+		</div>
+	</div>
+</div>
+
+	</div>
+</div>
+
+
+<!-- ComponentLayouts\ThreeColumn.cshtml -->
+<div class="obj-three-column row">
+
+
+
+
+
+	<div class="col-sm-12 col-md-6 col-lg-4">
+
+		
+
+		<!-- DynamicPlaceholder( "column-one" ) -->
+		
+
+
+
+
+<!-- Components\DynamicPromoSmall.cshtml -->
+
+<div class="ui-obj-dynamic-promo-sm height-match">
+	<div class="stripe">
+		<a href="/extension/publications/crop">
+			<div class="image-container" style="background-image:url(/-/media/uidaho-responsive/images/extension/publications/1200x675-crop-production.jpg?rev=8ae9f841ed81457988afbd4894555069);"></div>
+			<span class="ada-text">crop production harvesting corn</span>
+		</a>
+	</div>
+	<div class="promo-inner">
+		<div class="text-wrapper">
+			<a href="/extension/publications/crop"><span class="promo-link"></span></a>
+			<span class="h3">Crop Production</span>
+
+			<p class="cta"><a href="/extension/publications/crop">Crop Production Publications</a></p>
+		</div>
+	</div>
+</div>
+
+	</div>
+	<div class="col-sm-12 col-md-6 col-lg-4">
+		<!-- DynamicPlaceholder( "column-two" ) -->
+		
+
+
+
+
+<!-- Components\DynamicPromoSmall.cshtml -->
+
+<div class="ui-obj-dynamic-promo-sm height-match">
+	<div class="stripe">
+		<a href="/extension/publications/family">
+			<div class="image-container" style="background-image:url(/-/media/uidaho-responsive/images/extension/publications/1200x675-family-promo.jpg?rev=2825bb22e6f6437da8dfec18b401e32b);"></div>
+			<span class="ada-text">People of various ages sit around table with books.</span>
+		</a>
+	</div>
+	<div class="promo-inner">
+		<div class="text-wrapper">
+			<a href="/extension/publications/family"><span class="promo-link"></span></a>
+			<span class="h3">Family &amp; Home</span>
+
+			<p class="cta"><a href="/extension/publications/family">Family &amp; Home Publications</a></p>
+		</div>
+	</div>
+</div>
+
+	</div>
+	<div class="col-sm-12 col-md-12 col-lg-4">
+		<!-- DynamicPlaceholder( "column-three" ) -->
+		
+
+
+
+
+<!-- Components\DynamicPromoSmall.cshtml -->
+
+<div class="ui-obj-dynamic-promo-sm height-match">
+	<div class="stripe">
+		<a href="/extension/publications/forestry">
+			<div class="image-container" style="background-image:url(/-/media/uidaho-responsive/images/extension/publications/1200x675-forestry-range-water.jpg?rev=9a7f2464a5c64e048879d6ab08fd53ef);"></div>
+			<span class="ada-text">forest, water</span>
+		</a>
+	</div>
+	<div class="promo-inner">
+		<div class="text-wrapper">
+			<a href="/extension/publications/forestry"><span class="promo-link"></span></a>
+			<span class="h3">Forestry, Range &amp; Water</span>
+
+			<p class="cta"><a href="/extension/publications/forestry">Forestry, Range &amp; Water Publications</a></p>
+		</div>
+	</div>
+</div>
+
+	</div>
+</div>
+
+
+<!-- ComponentLayouts\ThreeColumn.cshtml -->
+<div class="obj-three-column row">
+
+
+
+
+
+	<div class="col-sm-12 col-md-6 col-lg-4">
+
+		
+
+		<!-- DynamicPlaceholder( "column-one" ) -->
+		
+
+
+
+
+<!-- Components\DynamicPromoSmall.cshtml -->
+
+<div class="ui-obj-dynamic-promo-sm height-match">
+	<div class="stripe">
+		<a href="/extension/publications/food-and-health">
+			<div class="image-container" style="background-image:url(/-/media/uidaho-responsive/images/extension/publications/1200x675-food-and-health.jpg?rev=a6a4abd0a16a464e9e0e44d853602f30);"></div>
+			<span class="ada-text">Food and health — cutting strawberries with gloves on to prevent cross-contamination</span>
+		</a>
+	</div>
+	<div class="promo-inner">
+		<div class="text-wrapper">
+			<a href="/extension/publications/food-and-health"><span class="promo-link"></span></a>
+			<span class="h3">Food &amp; Health</span>
+
+			<p class="cta"><a href="/extension/publications/food-and-health">Food &amp; Health publications</a></p>
+		</div>
+	</div>
+</div>
+
+	</div>
+	<div class="col-sm-12 col-md-6 col-lg-4">
+		<!-- DynamicPlaceholder( "column-two" ) -->
+		
+
+
+
+
+<!-- Components\DynamicPromoSmall.cshtml -->
+
+<div class="ui-obj-dynamic-promo-sm height-match">
+	<div class="stripe">
+		<a href="/extension/publications/gardens">
+			<div class="image-container" style="background-image:url(/-/media/uidaho-responsive/images/extension/publications/1200x675-gardens-landscapes.jpg?rev=36b4cb06f9e649ce839408ef003413e2);"></div>
+			<span class="ada-text">Native plant garden landscaped</span>
+		</a>
+	</div>
+	<div class="promo-inner">
+		<div class="text-wrapper">
+			<a href="/extension/publications/gardens"><span class="promo-link"></span></a>
+			<span class="h3">Gardens &amp; Landscapes</span>
+
+			<p class="cta"><a href="/extension/publications/gardens">Gardens &amp; Landscapes Publications</a></p>
+		</div>
+	</div>
+</div>
+
+	</div>
+	<div class="col-sm-12 col-md-12 col-lg-4">
+		<!-- DynamicPlaceholder( "column-three" ) -->
+		
+
+
+
+
+<!-- Components\DynamicPromoSmall.cshtml -->
+
+<div class="ui-obj-dynamic-promo-sm height-match">
+	<div class="stripe">
+		<a href="/extension/publications/publicaciones">
+			<div class="image-container" style="background-image:url(/-/media/uidaho-responsive/images/extension/publications/1200x675-spanish-publications.jpg?rev=ef0caa21722a4cb2abc076aaa05886e0);"></div>
+			<span class="ada-text">Publications in Spanish; Publicaciones en Espa&#241;ol</span>
+		</a>
+	</div>
+	<div class="promo-inner">
+		<div class="text-wrapper">
+			<a href="/extension/publications/publicaciones"><span class="promo-link"></span></a>
+			<span class="h3">Publicaciones en Espa&#241;ol</span>
+
+			<p class="cta"><a href="/extension/publications/publicaciones">Publicaciones en Espa&#241;ol</a></p>
+		</div>
+	</div>
+</div>
+
+	</div>
+</div>
+
+
+<!-- ComponentLayouts\BasicColumn.cshtml -->
+<div class="obj-basic-column">
+
+
+
+
+
+	
+
+	<!-- DynamicPlaceholder( "basic-column" ) -->
+	
+<div class="ui-obj-rich-text">
+	<ul>
+    <li><a href="/extension/publications/about/publishing-guidelines">How to get published through UI Extension</a></li>
+    <li><a href="https://uidaho.expressacademic.org/login.php">FastTrack Peer-Review System Login</a></li>
+</ul>
+</div>
+
+</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div>
+	<div class="obj-affiliate-mobile-container"></div>
+	<div class="ui-obj-location-container-mobile">
+		
+
+
+
+
+
+<!-- Components\LocationContainer.cshtml -->
+<div class="ui-obj-location-container">
+	<div id="locations_82" class="panel-group">
+		
+				<h2>Contact</h2>
+			<div class="panel panel-default ui-obj-location">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a href="#mos_47" data-parent="#locations" data-toggle="collapse" class="">
+
+							
+							<span>University of Idaho Extension Publishing</span>
+
+							<span class="icon-plus"></span>
+							<span class="icon-minus"></span>
+						</a>
+					</h3>
+				</div>
+				<div class="panel-collapse collapse in" id="mos_47">
+
+					
+					<div class="panel-body">
+						<p><b></b></p>
+							<p>Physical Address: <br />E. J. Iddings Agricultural Science Laboratory, Room 10<br />
+606 S Rayburn St</p> 
+							<p>Mailing Address: <br />875 Perimeter Drive MS 2332
+Moscow, ID 83844-2332</p> 
+						<div class="contact-info">
+ <p>Phone: 208-885-7982</p> 							 <p>Fax: 208-885-9046</p> 							 <p>Email: <a href="mailto:calspubs@uidaho.edu">calspubs@uidaho.edu</a></p> 													</div>
+
+
+							<span class="icon-link icon-viewmap"><a href="https://www.google.com/maps/place/Ag+Science,+University+of+Idaho,+Moscow,+ID+83844/@46.7295899,-117.0150079,17z/data=!3m1!5s0x54a02786a08b27a7:0x31a592d76ae078e0!4m7!1m4!3m3!1s0x54a02786bdd964e7:0xb9fc701e62ac90ac!2s606+S+Rayburn+St,+University+of+Idaho,+Moscow,+ID+83844!3b1!3m1!1s0x54a02786a1021e1b:0xc98177e5b526ae9">Location</a></span> 						<ul class="ui-social-icons">
+							<!-- GetLocationSocialLinksHtml() -->
+<li>
+<a href="https://www.facebook.com/UidahoExtension" aria-labelledby="UidLocationSocial-Facebook-176">
+<svg viewBox="0 0 1024 1017.78">
+<title id="UidLocationSocial-Facebook-176">Facebook</title>
+<path d="m1024,512c0,255.55-187.23,467.37-432,505.78v-357.78h119.3l22.7-148h-142v-96.04c0-40.49,19.84-79.96,83.44-79.96h64.56v-126s-58.59-10-114.61-10c-116.95,0-193.39,70.88-193.39,199.2v112.8h-130v148h130v357.78C187.23,979.37,0,767.55,0,512,0,229.23,229.23,0,512,0s512,229.23,512,512Z" />
+</svg>
+</a>
+</li>
+<li>
+<a href="https://twitter.com/uidahoextension" aria-labelledby="UidLocationSocial-Twitter-176">
+<svg viewBox="0 0 1200 1227">
+<title id="UidLocationSocial-Twitter-176">Twitter</title>
+<path d="m714.16,519.28L1160.89,0h-105.86l-387.89,450.89L357.33,0H0l468.49,681.82L0,1226.37h105.87l409.63-476.15,327.18,476.15h357.33l-485.86-707.09h.03Zm-145,168.54l-47.47-67.89L144.01,79.69h162.6l304.8,435.99,47.47,67.89,396.2,566.72h-162.6l-323.31-462.45v-.03Z" />
+</svg>
+</a>
+</li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>
+
+	</div>
+	<div class="ui-sidebar-menu-tablet">
+
+
+
+
+<!-- Views\Navigation\SubNavMenu.cshtml -->
+<nav>
+
+
+
+<ul class="subnav-level-1">
+
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="/extension/programs" class=" level-1">
+                            Program Areas
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="/extension/directory" class=" level-1">
+                            Directory
+                                <span class="toggle collapsed">
+                                    <span class="icon-plus"></span>
+                                    <span class="icon-minus"></span>
+                                </span>
+                                <span class="menu-arrow"></span>
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/directory/counties" class="without-children ">Counties <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/directory/people" class="without-children ">Our People <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/cals/idaho-agricultural-experiment-station/research-and-extension-centers" class="without-children ">Research &amp; Extension Centers <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/directory/profile" class="without-children "> <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/directory/administrative-team" class="without-children ">Administrative Team <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class="active active-menu">
+                <div class="subnav-level-2-wrapper active-item">
+                    <span>
+                        <a href="/extension/publications" class="current level-1">
+                            Publications
+                                <span class="toggle selected">
+                                    <span class="icon-plus"></span>
+                                    <span class="icon-minus"></span>
+                                </span>
+                                <span class="menu-arrow"></span>
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 open">
+
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/youth" class="without-children ">4-H Youth Development <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/agriculture" class="with-children  level-2">
+                                            Agriculture
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+					<a href="/extension/publications/agriculture/animals" class="with-children  level-3">
+							Animals &amp; Livestock
+							<span class="toggle collapsed">
+									<span class="icon-plus"></span>
+									<span class="icon-minus"></span>
+							</span>
+
+							<span class="menu-arrow"></span>
+					</a>
+					<ul class="subnav-level-4 ">
+									<li class="">
+											<a href="/extension/publications/agriculture/animals/beef-cattle" class="with-children ">Beef Cattle <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/animals/dairy-cattle" class="with-children ">Dairy Cattle <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/animals/horses" class="with-children ">Horses <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/animals/poultry-rabbits" class="with-children ">Poultry &amp; Rabbits <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/animals/sheep-goats-swine" class="with-children ">Sheep, Goats &amp; Swine <span class="menu-arrow"></span></a>
+									</li>
+					</ul>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/beneficial-insects" class="without-children ">Beneficial Insects <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/buildings-equipment" class="without-children ">Buildings &amp; Equipment <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+					<a href="/extension/publications/agriculture/crop" class="with-children  level-3">
+							Crop Production
+							<span class="toggle collapsed">
+									<span class="icon-plus"></span>
+									<span class="icon-minus"></span>
+							</span>
+
+							<span class="menu-arrow"></span>
+					</a>
+					<ul class="subnav-level-4 ">
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/alternative-crops" class="with-children ">Alternative Crops <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/beans-peas-lentils" class="with-children ">Beans, Peas &amp; Lentils <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/berries-grapes" class="with-children ">Berries &amp; Grapes <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/cereals" class="with-children ">Cereals <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/christmas-trees" class="with-children ">Christmas Trees <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/corn" class="with-children ">Corn <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/cover-crops" class="with-children ">Cover Crops <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/forage-crops-pasture" class="with-children ">Forage Crops &amp; Pasture <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/greenhouse-nursery-crops" class="with-children ">Greenhouse &amp; Nursery Crops <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/idaho-crop-profiles" class="with-children ">Idaho Crop Profiles <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/oilseed-crops" class="with-children ">Oilseed Crops <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/onions" class="with-children ">Onions <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/potatoes" class="with-children ">Potatoes <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/seed-crops" class="with-children ">Seed Crops <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/sugar-beets" class="with-children ">Sugar Beets <span class="menu-arrow"></span></a>
+									</li>
+									<li class="">
+											<a href="/extension/publications/agriculture/crop/tree-fruits-nuts" class="with-children ">Tree Fruits &amp; Nuts <span class="menu-arrow"></span></a>
+									</li>
+					</ul>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/fertilizer-guides" class="without-children ">Fertilizer Guides <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/fertilizers-soils" class="without-children ">Fertilizers &amp; Soils <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/irrigation" class="without-children ">Irrigation <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/on-farm-testing" class="without-children ">On-Farm Testing <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/pests-pesticides" class="without-children ">Pests &amp; Pesticides <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/plant-diseases" class="without-children ">Plant Diseases <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/small-acreage-farming" class="without-children ">Small-Acreage Farming <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/agriculture/weeds" class="without-children ">Weeds <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/animals" class="with-children  level-2">
+                                            Animals &amp; Livestock
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/animals/beef-cattle" class="without-children ">Beef Cattle <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/animals/dairy-cattle" class="without-children ">Dairy Cattle <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/animals/horses" class="without-children ">Horses <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/animals/poultry-rabbits" class="without-children ">Poultry &amp; Rabbits <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/animals/sheep-goats-swine" class="without-children ">Sheep, Goats &amp; Swine <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/business" class="with-children  level-2">
+                                            Business &amp; Economics
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/agricultural-economics" class="without-children ">Agricultural Economics <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/business-management-marketing" class="without-children ">Business Management &amp; Marketing <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/economics" class="without-children ">Economics <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/entrepreneurship" class="without-children ">Entrepreneurship <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/farm-enterprise-budgets" class="without-children ">Farm/Enterprise Budgets <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/business/public-policy" class="without-children ">Public Policy <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/community" class="without-children ">Community Development <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/crop" class="with-children  level-2">
+                                            Crop Production
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/alternative-crops" class="without-children ">Alternative Crops <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/beans-peas-lentils" class="without-children ">Beans, Peas &amp; Lentils <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/berries-grapes" class="without-children ">Berries &amp; Grapes <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/cereals" class="without-children ">Cereals <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/christmas-trees" class="without-children ">Christmas Trees <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/corn" class="without-children ">Corn <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/cover-crops" class="without-children ">Cover Crops <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/forage-crops-pasture" class="without-children ">Forage Crops &amp; Pasture <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/greenhouse-nursery-crops" class="without-children ">Greenhouse &amp; Nursery Crops <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/idaho-crop-profiles" class="without-children ">Idaho Crop Profiles <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/oilseed-crops" class="without-children ">Oilseed Crops <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/onions" class="without-children ">Onions <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/potatoes" class="without-children ">Potatoes <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/seed-crops" class="without-children ">Seed Crops <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/sugar-beets" class="without-children ">Sugar Beets <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/crop/tree-fruits-nuts" class="without-children ">Tree Fruits &amp; Nuts <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/family" class="without-children ">Family &amp; Home <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/forestry" class="with-children  level-2">
+                                            Forestry, Range &amp; Water
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/forestry" class="without-children ">Forestry <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/natural-resource-conservation" class="without-children ">Natural Resource Conservation <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/rangeland" class="without-children ">Rangeland <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/recreation-tourism" class="without-children ">Recreation &amp; Tourism <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/water" class="without-children ">Water <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/wildfire" class="without-children ">Wildfire <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/forestry/wildlife" class="without-children ">Wildlife <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/food-and-health" class="with-children  level-2">
+                                            Food &amp; Health
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/food-and-health/food-preparation-nutrition" class="without-children ">Food Preparation &amp; Nutrition <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/food-and-health/food-preservation-safety" class="without-children ">Food Preservation &amp; Safety <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/food-and-health/health-wellness" class="without-children ">Health &amp; Wellness <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/gardens" class="with-children  level-2">
+                                            Gardens &amp; Landscapes
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/beneficial-insects" class="without-children ">Beneficial Insects <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/fertilizers-soils" class="without-children ">Fertilizers &amp; Soils <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/flowers-shrubs-ornamentals" class="without-children ">Flowers, Shrubs &amp; Ornamentals <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/fruits-nuts" class="without-children ">Fruits &amp; Nuts <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/general" class="without-children ">General <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/idaho-greenthumb-how-to" class="without-children ">Idaho Green Thumb How-To <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/lawns" class="without-children ">Lawns <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/pests-pesticides" class="without-children ">Pests &amp; Pesticides <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/plant-diseases" class="without-children ">Plant Diseases <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/short-season-high-altitude" class="without-children ">Short-Season High-Altitude Gardening <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/vegetables-herbs" class="without-children ">Vegetables &amp; Herbs <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/publications/gardens/weeds" class="without-children ">Weeds <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/tools" class="without-children ">Tools for Educators <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/publicaciones" class="without-children ">Publicaciones en Espa&#241;ol <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/videos" class="without-children ">Videos <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/publications/about" class="without-children ">About <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="/extension/news" class=" level-1">
+                            News &amp; Events
+                                <span class="toggle collapsed">
+                                    <span class="icon-plus"></span>
+                                    <span class="icon-minus"></span>
+                                </span>
+                                <span class="menu-arrow"></span>
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/calendar" class="with-children  level-2">
+                                            Calendar
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/calendar/submit" class="without-children ">Submit an Event <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/story" class="with-children  level-2">
+                                            Featured Stories
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2025/forestry-education" class="without-children ">Forestry Education <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2025/erickson-games" class="without-children ">Adventures in Finance <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2024/forestry-educators" class="without-children ">Generations of Experience <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2024/know-your-government" class="without-children ">Lessons in Government <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2024/digital-workers" class="without-children ">Digital Miracle Workers <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2023/manure" class="without-children ">Value in Manure <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2023/flowers" class="without-children ">A Budding Field <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/story/2023/wildfire-simulation" class="without-children ">Wildfire Simulation <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/express" class="with-children  level-2">
+                                            Newsletter
+                                            <span class="toggle collapsed">
+                                                <span class="icon-plus"></span>
+                                                <span class="icon-minus"></span>
+                                            </span>
+
+                                            <span class="menu-arrow"></span>
+                                        </a>
+<ul class="subnav-level-3 ">
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2025-february" class="without-children ">February 2025 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2024-september" class="without-children ">September 2024 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2024-may" class="without-children ">May 2024 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2023-november" class="without-children ">November 2023 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2023-july" class="without-children ">July 2023 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+		<li class="">
+			<div class="subnav-level-4-wrapper">
+						<a href="/extension/news/express/2023-january" class="without-children ">January 2023 <span class="menu-arrow"></span></a>
+			</div>
+		</li>
+</ul>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/ag-talk-tuesday" class="without-children ">Ag Talk Tuesday <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/food-safety" class="without-children ">Virtual Food Safety <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/war-on-weeds" class="without-children ">War on Weeds <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/news/fair" class="without-children ">Fair <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="https://keeplearning.uidaho.edu/public/category/programArea.do?method=load&amp;selectedProgramAreaId=1023467" class=" level-1">
+                            Online Courses
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="https://ask2.extension.org/" class=" level-1">
+                            Ask Extension
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="/extension/about" class=" level-1">
+                            About
+                                <span class="toggle collapsed">
+                                    <span class="icon-plus"></span>
+                                    <span class="icon-minus"></span>
+                                </span>
+                                <span class="menu-arrow"></span>
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/about/impacts" class="without-children ">Impact Statements <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+                            <li class="">
+                                <div class="subnav-level-3-wrapper">
+                                        <a href="/extension/about/trends" class="without-children ">Extension Trends <span class="menu-arrow"></span></a>
+                                </div>
+                            </li>
+
+                    </ul>
+                </div>
+            </li>
+            <li class=" ">
+                <div class="subnav-level-2-wrapper ">
+                    <span>
+                        <a href="/extension/login/employee" class=" level-1">
+                            Employee Resources
+                        </a>
+                    </span>
+                    <ul class="subnav-level-2 ">
+
+
+                    </ul>
+                </div>
+            </li>
+    </ul>
+</nav>
+
+
+		<div class="obj-affiliate-tablet-container"></div>
+
+
+
+
+
+
+
+<!-- Components\LocationContainer.cshtml -->
+<div class="ui-obj-location-container">
+	<div id="locations_90" class="panel-group">
+		
+				<h2>Contact</h2>
+			<div class="panel panel-default ui-obj-location">
+				<div class="panel-heading">
+					<h3 class="panel-title">
+						<a href="#mos_98" data-parent="#locations" data-toggle="collapse" class="">
+
+							
+							<span>University of Idaho Extension Publishing</span>
+
+							<span class="icon-plus"></span>
+							<span class="icon-minus"></span>
+						</a>
+					</h3>
+				</div>
+				<div class="panel-collapse collapse in" id="mos_98">
+
+					
+					<div class="panel-body">
+						<p><b></b></p>
+							<p>Physical Address: <br />E. J. Iddings Agricultural Science Laboratory, Room 10<br />
+606 S Rayburn St</p> 
+							<p>Mailing Address: <br />875 Perimeter Drive MS 2332
+Moscow, ID 83844-2332</p> 
+						<div class="contact-info">
+ <p>Phone: 208-885-7982</p> 							 <p>Fax: 208-885-9046</p> 							 <p>Email: <a href="mailto:calspubs@uidaho.edu">calspubs@uidaho.edu</a></p> 													</div>
+
+
+							<span class="icon-link icon-viewmap"><a href="https://www.google.com/maps/place/Ag+Science,+University+of+Idaho,+Moscow,+ID+83844/@46.7295899,-117.0150079,17z/data=!3m1!5s0x54a02786a08b27a7:0x31a592d76ae078e0!4m7!1m4!3m3!1s0x54a02786bdd964e7:0xb9fc701e62ac90ac!2s606+S+Rayburn+St,+University+of+Idaho,+Moscow,+ID+83844!3b1!3m1!1s0x54a02786a1021e1b:0xc98177e5b526ae9">Location</a></span> 						<ul class="ui-social-icons">
+							<!-- GetLocationSocialLinksHtml() -->
+<li>
+<a href="https://www.facebook.com/UidahoExtension" aria-labelledby="UidLocationSocial-Facebook-177">
+<svg viewBox="0 0 1024 1017.78">
+<title id="UidLocationSocial-Facebook-177">Facebook</title>
+<path d="m1024,512c0,255.55-187.23,467.37-432,505.78v-357.78h119.3l22.7-148h-142v-96.04c0-40.49,19.84-79.96,83.44-79.96h64.56v-126s-58.59-10-114.61-10c-116.95,0-193.39,70.88-193.39,199.2v112.8h-130v148h130v357.78C187.23,979.37,0,767.55,0,512,0,229.23,229.23,0,512,0s512,229.23,512,512Z" />
+</svg>
+</a>
+</li>
+<li>
+<a href="https://twitter.com/uidahoextension" aria-labelledby="UidLocationSocial-Twitter-177">
+<svg viewBox="0 0 1200 1227">
+<title id="UidLocationSocial-Twitter-177">Twitter</title>
+<path d="m714.16,519.28L1160.89,0h-105.86l-387.89,450.89L357.33,0H0l468.49,681.82L0,1226.37h105.87l409.63-476.15,327.18,476.15h357.33l-485.86-707.09h.03Zm-145,168.54l-47.47-67.89L144.01,79.69h162.6l304.8,435.99,47.47,67.89,396.2,566.72h-162.6l-323.31-462.45v-.03Z" />
+</svg>
+</a>
+</li>
+
+						</ul>
+					</div>
+				</div>
+			</div>
+	</div>
+</div>
+
+	</div>
+
+</div>
+
+<!-- Placeholder( "footer" ) -->
+
+
+
+
+
+
+
+<!-- Navigation\GlobalFooter.cshtml -->
+<footer class="ui-obj-footer">
+	<div class="ghf-global-footer-inner">
+
+
+				
+		
+		<ul class="ui-social-icons">
+			<!-- GetFooterSocialLinksHtml() -->
+<li>
+<a href="https://www.facebook.com/uidaho" aria-labelledby="UidFooterIconTitle-Facebook">
+<svg viewBox="0 0 1024 1017.78">
+<title id="UidFooterIconTitle-Facebook">Facebook</title>
+<path d="m1024,512c0,255.55-187.23,467.37-432,505.78v-357.78h119.3l22.7-148h-142v-96.04c0-40.49,19.84-79.96,83.44-79.96h64.56v-126s-58.59-10-114.61-10c-116.95,0-193.39,70.88-193.39,199.2v112.8h-130v148h130v357.78C187.23,979.37,0,767.55,0,512,0,229.23,229.23,0,512,0s512,229.23,512,512Z" />
+</svg>
+</a>
+</li>
+<li>
+<a href="https://zeemee.app.link/uidaho" aria-labelledby="UidFooterIconTitle-zeemee">
+<svg viewBox="0 0 165.06 165.06">
+<title id="UidFooterIconTitle-zeemee">ZeeMee</title>
+<path d="m82.53,0C36.95,0,0,36.95,0,82.53s36.95,82.53,82.53,82.53,82.53-36.95,82.53-82.53S128.11,0,82.53,0ZM28.8,123.62h3.12c22-2.93,59.34-58.61,54.4-72.16-2.75-6.78-13.74-9.71-26.19-9.71-8.24,0-18.86,1.47-29.85,3.85,10.43-33.89,106.04-38.65,103.83.94-20.15.73-41.57,37.18-41.57,60.26-.02,2.47.29,4.94.92,7.33,2.38,5.49,7.14,8.24,13.19,8.24s16.67-2.2,29.67-4.94c-7.15,35.31-110.26,39.89-107.52,6.19Z" />
+</svg>
+</a>
+</li>
+<li>
+<a href="https://twitter.com/uidaho" aria-labelledby="UidFooterIconTitle-Twitter">
+<svg viewBox="0 0 1200 1227">
+<title id="UidFooterIconTitle-Twitter">Twitter</title>
+<path d="m714.16,519.28L1160.89,0h-105.86l-387.89,450.89L357.33,0H0l468.49,681.82L0,1226.37h105.87l409.63-476.15,327.18,476.15h357.33l-485.86-707.09h.03Zm-145,168.54l-47.47-67.89L144.01,79.69h162.6l304.8,435.99,47.47,67.89,396.2,566.72h-162.6l-323.31-462.45v-.03Z" />
+</svg>
+</a>
+</li>
+<li>
+<a href="http://instagram.com/uidaho" aria-labelledby="UidFooterIconTitle-instagram">
+<svg viewBox="0 0 200 200">
+<title id="UidFooterIconTitle-instagram">Instagram</title>
+<path d="m100,18.02c26.7,0,29.86.1,40.41.58,9.75.44,15.04,2.07,18.57,3.44,4.67,1.81,8,3.98,11.5,7.48,3.5,3.5,5.67,6.83,7.48,11.5,1.37,3.52,3,8.82,3.44,18.57.48,10.54.58,13.71.58,40.41s-.1,29.86-.58,40.41c-.44,9.75-2.07,15.04-3.44,18.57-1.81,4.67-3.98,8-7.48,11.5-3.5,3.5-6.83,5.67-11.5,7.48-3.52,1.37-8.82,3-18.57,3.44-10.54.48-13.71.58-40.41.58s-29.87-.1-40.41-.58c-9.75-.44-15.04-2.07-18.57-3.44-4.67-1.81-8-3.98-11.5-7.48-3.5-3.5-5.67-6.83-7.48-11.5-1.37-3.52-3-8.82-3.44-18.57-.48-10.54-.58-13.71-.58-40.41s.1-29.86.58-40.41c.44-9.75,2.07-15.04,3.44-18.57,1.81-4.67,3.98-8,7.48-11.5s6.83-5.67,11.5-7.48c3.52-1.37,8.82-3,18.57-3.44,10.54-.48,13.71-.58,40.41-.58m0-18.02c-27.16,0-30.56.11-41.23.6-10.64.49-17.91,2.18-24.27,4.65-6.58,2.56-12.15,5.97-17.71,11.53-5.56,5.56-8.98,11.14-11.53,17.71-2.47,6.36-4.16,13.63-4.65,24.27-.49,10.67-.6,14.07-.6,41.23s.11,30.56.6,41.23c.49,10.64,2.18,17.91,4.65,24.27,2.56,6.58,5.97,12.15,11.53,17.71,5.56,5.56,11.14,8.98,17.71,11.53,6.36,2.47,13.63,4.16,24.27,4.65,10.67.49,14.07.6,41.23.6s30.56-.11,41.23-.6c10.64-.49,17.91-2.18,24.27-4.65,6.58-2.56,12.15-5.97,17.71-11.53,5.56-5.56,8.98-11.14,11.53-17.71,2.47-6.36,4.16-13.63,4.65-24.27.49-10.67.6-14.07.6-41.23s-.11-30.56-.6-41.23c-.49-10.64-2.18-17.91-4.65-24.27-2.56-6.58-5.97-12.15-11.53-17.71-5.56-5.56-11.14-8.98-17.71-11.53-6.36-2.47-13.63-4.16-24.27-4.65-10.67-.49-14.07-.6-41.23-.6h0Zm0,48.65c-28.36,0-51.35,22.99-51.35,51.35s22.99,51.35,51.35,51.35,51.35-22.99,51.35-51.35-22.99-51.35-51.35-51.35Zm0,84.68c-18.41,0-33.33-14.92-33.33-33.33s14.92-33.33,33.33-33.33,33.33,14.92,33.33,33.33-14.92,33.33-33.33,33.33Zm53.38-98.71c-6.63,0-12,5.37-12,12s5.37,12,12,12,12-5.37,12-12-5.37-12-12-12Z" />
+</svg>
+</a>
+</li>
+<li>
+<a href="https://www.youtube.com/user/uidahovideo" aria-labelledby="UidFooterIconTitle-YouTube">
+<svg viewBox="0 0 200 200">
+<title id="UidFooterIconTitle-YouTube">YouTube</title>
+<path d="m177,0H23C10.35,0,0,10.35,0,23v154c0,12.65,10.35,23,23,23h154c12.65,0,23-10.35,23-23V23c0-12.65-10.35-23-23-23Zm-9.89,105.07c0,10.86-1.34,21.72-1.34,21.72,0,0-1.31,9.25-5.33,13.32-5.1,5.34-10.82,5.37-13.45,5.68-18.78,1.36-46.98,1.4-46.98,1.4,0,0-34.89-.32-45.63-1.35-2.99-.56-9.69-.39-14.8-5.74-4.02-4.07-5.33-13.32-5.33-13.32,0,0-1.34-10.86-1.34-21.72v-10.18c0-10.86,1.34-21.72,1.34-21.72,0,0,1.31-9.25,5.33-13.32,5.11-5.34,10.82-5.37,13.45-5.68,18.78-1.36,46.95-1.36,46.95-1.36h.06s28.17,0,46.95,1.36c2.62.31,8.34.34,13.45,5.68,4.02,4.07,5.33,13.32,5.33,13.32,0,0,1.34,10.86,1.34,21.72v10.18Zm-80.97-25.37l36.26,18.92-36.26,18.79h0s0,0,0,0v-37.71Z" />
+</svg>
+</a>
+</li>
+<li>
+<a href="https://www.linkedin.com/school/10313" aria-labelledby="UidFooterIconTitle-linkedin">
+<svg viewBox="0 0 200 200">
+<title id="UidFooterIconTitle-linkedin">LinkedIn</title>
+<path d="m185.19,0H14.76C6.62,0,0,6.46,0,14.41v171.16c0,7.96,6.62,14.43,14.76,14.43h170.42c8.16,0,14.81-6.47,14.81-14.43V14.41c0-7.95-6.66-14.41-14.81-14.41ZM59.32,170.43h-29.68v-95.44h29.68v95.44Zm-14.84-108.49c-9.51,0-17.19-7.71-17.19-17.21s7.69-17.2,17.19-17.2,17.19,7.71,17.19,17.2-7.71,17.21-17.19,17.21Zm125.94,108.49h-29.63v-46.41c0-11.07-.22-25.31-15.42-25.31s-17.79,12.06-17.79,24.51v47.22h-29.65v-95.44h28.46v13.04h.4c3.96-7.5,13.64-15.42,28.07-15.42,30.02,0,35.56,19.76,35.56,45.47v52.35Z" />
+</svg>
+</a>
+</li>
+
+		</ul>
+
+
+
+		<nav>
+			<ul>
+						<li>
+							<a href="/">
+								U of I Home
+							</a>
+						</li>
+						<li>
+							<a href="/about">
+								About
+							</a>
+						</li>
+						<li>
+							<a href="/academics">
+								Academics
+							</a>
+						</li>
+						<li>
+							<a href="/admissions">
+								Admissions
+							</a>
+						</li>
+						<li>
+							<a href="https://map.concept3d.com/?id=2155#!ct/80250,80249,80271,80272,80262,80263,80251,80266,80267,80268,80269,80270?s/?mc/46.725793243583,-117.01964020729?z/16?lvl/0?share">
+								Campus Map
+							</a>
+						</li>
+						<li>
+							<a href="http://govandals.com/">
+								Athletics
+							</a>
+						</li>
+						<li>
+							<a href="/events">
+								Events
+							</a>
+						</li>
+						<li>
+							<a href="/governance">
+								Governance
+							</a>
+						</li>
+						<li>
+							<a href="/outreach">
+								Outreach
+							</a>
+						</li>
+						<li>
+							<a href="/governance/policy/policies/privacy-statement">
+								Privacy
+							</a>
+						</li>
+						<li>
+							<a href="/research">
+								Research
+							</a>
+						</li>
+						<li>
+							<a href="/student-life">
+								Student Life
+							</a>
+						</li>
+						<li>
+							<a href="/brand/ucm/web-and-digital/web-accessibility">
+								Web Accessibility
+							</a>
+						</li>
+			</ul>
+		</nav>
+
+		<address>
+				875 Perimeter Drive | Moscow, ID 83844<br />
+p. 208-885-6111 | <a href="mailto:info@uidaho.edu">info@uidaho.edu</a><br />
+		</address>
+		<p class="ghf-copyright">
+				&#169; 2025 University of Idaho All Rights Reserved.
+		</p>
+	</div>
+</footer>
+
+
+
+
+
+
+  
+
+
+</div>
+						
+
+
+<script src="/bundles/common.js?v=BudEFDSRKsa7Yi6X3cqyJqq8s76anJ1Sgq5BHXdOjZY1"></script>
+
+
+<script>
+	// Configure RequireJS, for .Design.JavaScript.RequireJS.  -CMA 191122.
+	requirejs.config({
+		baseUrl: '/Scripts/',
+		bundles: {
+				'/bundles/common.js?v=BudEFDSRKsa7Yi6X3cqyJqq8s76anJ1Sgq5BHXdOjZY1': [
+						'jquery',
+						'objects/*',
+						'plugins/*'
+				]
+		},
+		paths: {
+				bootstrap: "/Scripts/bootstrap.min",
+				order: '/Scripts/order.min',
+				vimeo: '//f.vimeocdn.com/js/froogaloop2.min',
+
+				// Make some scripts available to page-content JavaScript, for 
+				// .Spec.ContentFeatures.JavaScriptSupport.  Note that this [paths] 
+				// property does not cause these scripts to be *loaded*; that happens 
+				// only if page content calls require( [ "module_name" ], ... ).
+				// -CMA 230208.
+
+				Uid_CanvasModule: "/Scripts/External/CanvasJs/canvasjs.min", 
+
+				Uid_SlickModule:
+						"//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min", 
+
+				// Note, the "youtube" module name defined here is referenced by
+				// *data*, not code.  Our Sitecore Video items can specify this module 
+				// name in their "Source" field; then our Components\Video.cshtml 
+				// "requires" the module specified by that "Source" field.  
+				// -CMA 210603.
+				youtube: "//www.youtube.com/player_api?noext",
+
+		},
+		shim: {
+				bootstrap: ['jquery'],
+				vimeo: { exports: '$f' },
+				youtube: { exports: 'YT' }
+		}
+	});
+
+	// Load generally required scripts for .Design.JavaScript.RequireJS, as 
+	// well as scripts from paths added to UIdaho.q, for 
+	// .Design.JavaScript.UIdahoObject.  -CMA 191122.
+
+	var requiredScripts = 
+                [ 'order!jquery', 'order!bootstrap', 'order!objects/global' ];
+
+	require(requiredScripts.concat(UIdaho.q));
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+
+
+
+  
+
+
+</html>

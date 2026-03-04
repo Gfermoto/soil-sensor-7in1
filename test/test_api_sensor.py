@@ -18,7 +18,7 @@ def test_sensor_api():
     # Тестируем локальный API (если ESP32 подключен)
     test_urls = [
         "http://192.168.4.1/api/v1/sensor",
-        "http://192.168.2.74/api/v1/sensor",
+        "http://192.168.2.65/api/v1/sensor",
         "http://localhost:8080/api/v1/sensor"
     ]
 

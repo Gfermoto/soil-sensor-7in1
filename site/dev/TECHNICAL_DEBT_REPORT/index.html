@@ -15,18 +15,22 @@
         <link rel="canonical" href="https://gfermoto.github.io/soil-sensor-7in1/dev/TECHNICAL_DEBT_REPORT/">
       
       
+        <link rel="prev" href="../TECHNICAL_DEBT_QUICK_REFERENCE/">
+      
+      
+        <link rel="next" href="../REFACTORING_PLAN/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
-        <title>🔧 ТЕХНИЧЕСКИЙ ДОЛГ - АКТУАЛЬНЫЙ ОТЧЕТ - JXCT Soil Sensor v3.13.0</title>
+        <title>Отчёт техдолга - JXCT Soil Sensor v3.13.2</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -76,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#-" class="md-skip">
+        <a href="#технический-долг" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -94,7 +98,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href="../.." title="JXCT Soil Sensor v3.13.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.13.0" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.13.2" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.13.2" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
@@ -107,13 +111,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            JXCT Soil Sensor v3.13.0
+            JXCT Soil Sensor v3.13.2
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              🔧 ТЕХНИЧЕСКИЙ ДОЛГ - АКТУАЛЬНЫЙ ОТЧЕТ
+              Отчёт техдолга
             
           </span>
         </div>
@@ -203,7 +207,7 @@
         <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Перейти к репозиторию" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     Gfermoto/soil-sensor-7in1
@@ -237,10 +241,32 @@
   
     
   
-  🏠 Главная
+  Главная
 
       </a>
     </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../CHANGELOG/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Проект
+
+        </a>
+      </li>
+    
   
 
       
@@ -258,7 +284,7 @@
   
     
   
-  📚 Руководства
+  Руководства
 
         </a>
       </li>
@@ -274,13 +300,13 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../api-overview/" class="md-tabs__link">
+        <a href="../../manuals/API/" class="md-tabs__link">
           
   
   
     
   
-  🔌 API
+  API
 
         </a>
       </li>
@@ -292,17 +318,41 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../../SCRIPTS_GUIDE/" class="md-tabs__link">
           
   
   
     
   
-  🛠️ Разработка
+  Разработка
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../manuals/NUTRIENT_INTERACTIONS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Руководства (доп.)
 
         </a>
       </li>
@@ -324,7 +374,7 @@
   
     
   
-  🧪 Тестирование
+  Тестирование
 
         </a>
       </li>
@@ -356,19 +406,19 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="JXCT Soil Sensor v3.13.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.13.0" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.13.2" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.13.2" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
     </a>
-    JXCT Soil Sensor v3.13.0
+    JXCT Soil Sensor v3.13.2
   </label>
   
     <div class="md-nav__source">
       <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Перейти к репозиторию" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     Gfermoto/soil-sensor-7in1
@@ -390,7 +440,7 @@
   
   
   <span class="md-ellipsis">
-    🏠 Главная
+    Главная
     
   </span>
   
@@ -408,20 +458,6 @@
   
     
     
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
       
         
       
@@ -450,7 +486,7 @@
   
   
   <span class="md-ellipsis">
-    📚 Руководства
+    Проект
     
   </span>
   
@@ -461,7 +497,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
-            📚 Руководства
+            Проект
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -472,12 +508,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manuals/USER_GUIDE/" class="md-nav__link">
+      <a href="../../CHANGELOG/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    👤 Руководство пользователя
+    Журнал изменений
     
   </span>
   
@@ -495,173 +531,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../manuals/AGRO_RECOMMENDATIONS/" class="md-nav__link">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    🌱 Агрономические рекомендации
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manuals/TECHNICAL_DOCS/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    🔧 Техническая документация
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manuals/WIRING_DIAGRAM/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    🔌 Схема подключения
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manuals/API/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    📖 API документация
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manuals/MODBUS_PROTOCOL/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    📡 Протокол Modbus
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manuals/CONFIG_MANAGEMENT/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    ⚙️ Управление конфигурацией
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manuals/VERSION_MANAGEMENT/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    🏷️ Управление версиями
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../manuals/COMPENSATION_GUIDE/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    ⚖️ Руководство по компенсации
+    Руководство для контрибьюторов
     
   </span>
   
@@ -687,6 +562,18 @@
   
     
     
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -717,7 +604,7 @@
   
   
   <span class="md-ellipsis">
-    🔌 API
+    Руководства
     
   </span>
   
@@ -728,7 +615,7 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            🔌 API
+            Руководства
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -739,12 +626,81 @@
   
   
     <li class="md-nav__item">
-      <a href="../../api-overview/" class="md-nav__link">
+      <a href="../../manuals/USER_GUIDE/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    📋 Обзор API
+    Руководство пользователя
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/AGRO_RECOMMENDATIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Агрономические рекомендации
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/TECHNICAL_DOCS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Техническая документация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/WIRING_DIAGRAM/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Схема подключения
     
   </span>
   
@@ -767,7 +723,7 @@
   
   
   <span class="md-ellipsis">
-    📖 API документация
+    API документация
     
   </span>
   
@@ -785,12 +741,81 @@
   
   
     <li class="md-nav__item">
-      <a href="../../DOXYGEN_API/" class="md-nav__link">
+      <a href="../../manuals/MODBUS_PROTOCOL/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    🖥️ C++ API (Doxygen)
+    Протокол Modbus
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/CONFIG_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Управление конфигурацией
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/VERSION_MANAGEMENT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Управление версиями
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/COMPENSATION_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Руководство по компенсации
     
   </span>
   
@@ -816,6 +841,8 @@
   
     
     
+      
+        
       
         
       
@@ -842,7 +869,7 @@
   
   
   <span class="md-ellipsis">
-    🛠️ Разработка
+    API
     
   </span>
   
@@ -853,7 +880,139 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            🛠️ Разработка
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API документация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOXYGEN_API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    C++ API (Doxygen)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Разработка
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Разработка
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -869,7 +1028,394 @@
   
   
   <span class="md-ellipsis">
-    🚀 Руководство по скриптам
+    Руководство по скриптам
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ARCH_OVERALL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Архитектура
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CLANG_TOOLS_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clang Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TECHNICAL_DEBT_QUICK_REFERENCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Технический долг
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Отчёт техдолга
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Отчёт техдолга
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#категории" class="md-nav__link">
+    <span class="md-ellipsis">
+      Категории
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Категории">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-потенциальные-баги-приоритет-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Потенциальные баги (приоритет 1)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-читаемость-приоритет-2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Читаемость (приоритет 2)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-модернизация-приоритет-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Модернизация (приоритет 3)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-разное-приоритет-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Разное (приоритет 4)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#проблемные-файлы" class="md-nav__link">
+    <span class="md-ellipsis">
+      Проблемные файлы
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#план" class="md-nav__link">
+    <span class="md-ellipsis">
+      План
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#команда" class="md-nav__link">
+    <span class="md-ellipsis">
+      Команда
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../REFACTORING_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    План рефакторинга
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PRE_PUBLISH_REVIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ревью перед публикацией
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Безопасность
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGORITHMS_OVERVIEW_TG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Алгоритмы (TG)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Руководства (доп.)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Руководства (доп.)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../manuals/NUTRIENT_INTERACTIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Взаимодействие питательных веществ
     
   </span>
   
@@ -915,15 +1461,15 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
-    🧪 Тестирование
+    Тестирование
     
   </span>
   
@@ -931,10 +1477,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            🧪 Тестирование
+            Тестирование
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -950,7 +1496,7 @@
   
   
   <span class="md-ellipsis">
-    📖 Руководство по тестированию
+    Руководство по тестированию
     
   </span>
   
@@ -973,7 +1519,7 @@
   
   
   <span class="md-ellipsis">
-    ⚡ Быстрая справка по тестированию
+    Быстрая справка
     
   </span>
   
@@ -1010,235 +1556,52 @@
   
 
 
-<h1 id="-">🔧 ТЕХНИЧЕСКИЙ ДОЛГ - АКТУАЛЬНЫЙ ОТЧЕТ<a class="headerlink" href="#-" title="Постоянная ссылка">&para;</a></h1>
-<p><strong>Дата анализа:</strong> 29.07.2025<br />
-<strong>Версия системы:</strong> 3.10.0<br />
-<strong>Инструмент:</strong> clang-tidy 20.1.0<br />
-<strong>Статус:</strong> 🔍 ТРЕБУЕТ РЕФАКТОРИНГА  </p>
-<hr />
-<h2 id="_1">📊 ИСПОЛНИТЕЛЬНОЕ РЕЗЮМЕ<a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_2">🎯 КЛЮЧЕВЫЕ МЕТРИКИ<a class="headerlink" href="#_2" title="Постоянная ссылка">&para;</a></h3>
+<h1 id="технический-долг">Технический долг<a class="headerlink" href="#технический-долг" title="Постоянная ссылка">&para;</a></h1>
+<p><strong>Инструмент:</strong> clang-tidy<br />
+<strong>Состояние:</strong> ~125–169 предупреждений</p>
+<h2 id="категории">Категории<a class="headerlink" href="#категории" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="1-потенциальные-баги-приоритет-1">1. Потенциальные баги (приоритет 1)<a class="headerlink" href="#1-потенциальные-баги-приоритет-1" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Всего предупреждений:</strong> 169 (↑ с 125)</li>
-<li><strong>Критические проблемы:</strong> 19 (потенциальные баги)</li>
-<li><strong>Файлов с проблемами:</strong> 15 из 32</li>
-<li><strong>Время на устранение:</strong> ~5-7 дней</li>
+<li><code>bugprone-easily-swappable-parameters</code> — соседние параметры одного типа</li>
+<li><code>bugprone-narrowing-conversions</code> — narrowing int→float</li>
+<li><code>bugprone-integer-division</code> — целочисленное деление</li>
 </ul>
-<h3 id="_3">📈 ДИНАМИКА ТЕХНИЧЕСКОГО ДОЛГА<a class="headerlink" href="#_3" title="Постоянная ссылка">&para;</a></h3>
-<table>
-<thead>
-<tr>
-<th>Дата</th>
-<th>Предупреждения</th>
-<th>Изменение</th>
-<th>Статус</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>15.07.2025</td>
-<td>125</td>
-<td>-</td>
-<td>Базовая линия</td>
-</tr>
-<tr>
-<td>29.07.2025</td>
-<td>169</td>
-<td>+44</td>
-<td>⚠️ Рост долга</td>
-</tr>
-</tbody>
-</table>
-<hr />
-<h2 id="_4">🔍 ДЕТАЛЬНЫЙ АНАЛИЗ ПО КАТЕГОРИЯМ<a class="headerlink" href="#_4" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-19-1">1. 🚨 ПОТЕНЦИАЛЬНЫЕ БАГИ (19 проблем) - ПРИОРИТЕТ 1<a class="headerlink" href="#1-19-1" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="bugprone-easily-swappable-parameters-16"><code>bugprone-easily-swappable-parameters</code> (16 случаев)<a class="headerlink" href="#bugprone-easily-swappable-parameters-16" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Описание:</strong> Соседние параметры одинакового типа легко перепутать
-<strong>Критичность:</strong> ВЫСОКАЯ</p>
-<p><strong>Проблемные файлы:</strong>
-- <code>src/advanced_filters.cpp:162</code> - KalmanFilter(float, float)
-- <code>src/modbus_sensor.cpp:38</code> - RegisterConversion(convertible types)
-- <code>src/validation_utils.cpp:24</code> - IntervalValidation(unsigned long, unsigned long, unsigned long)</p>
-<p><strong>Решение:</strong>
-<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1">// БЫЛО</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setRange</span><span class="p">(</span><span class="kt">float</span><span class="w"> </span><span class="n">min</span><span class="p">,</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">max</span><span class="p">);</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1">// ДОЛЖНО БЫТЬ</span>
-</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">struct</span><span class="w"> </span><span class="nc">Range</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">min</span><span class="p">;</span><span class="w"> </span><span class="kt">float</span><span class="w"> </span><span class="n">max</span><span class="p">;</span><span class="w"> </span><span class="p">};</span>
-</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kt">void</span><span class="w"> </span><span class="nf">setRange</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Range</span><span class="o">&amp;</span><span class="w"> </span><span class="n">range</span><span class="p">);</span>
-</span></code></pre></div></p>
-<h4 id="bugprone-narrowing-conversions-1"><code>bugprone-narrowing-conversions</code> (1 случай)<a class="headerlink" href="#bugprone-narrowing-conversions-1" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Файл:</strong> <code>src/modbus_sensor.cpp:284</code>
-<strong>Проблема:</strong> narrowing conversion from 'int' to 'float'
-<strong>Решение:</strong> Использовать explicit cast</p>
-<h4 id="bugprone-integer-division-2"><code>bugprone-integer-division</code> (2 случая)<a class="headerlink" href="#bugprone-integer-division-2" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Проблема:</strong> Целочисленное деление может привести к потере точности
-<strong>Решение:</strong> Использовать float литералы</p>
-<h3 id="2-74-2">2. 📖 ЧИТАЕМОСТЬ КОДА (74 проблемы) - ПРИОРИТЕТ 2<a class="headerlink" href="#2-74-2" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="readability-convert-member-functions-to-static-19"><code>readability-convert-member-functions-to-static</code> (19 случаев)<a class="headerlink" href="#readability-convert-member-functions-to-static-19" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Описание:</strong> Функции-члены не используют состояние объекта
-<strong>Файлы:</strong> Распределены по всем модулям
-<strong>Решение:</strong> Сделать функции статическими</p>
-<h4 id="readability-identifier-length-8"><code>readability-identifier-length</code> (8 случаев)<a class="headerlink" href="#readability-identifier-length-8" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Проблема:</strong> Слишком короткие имена переменных
-<strong>Примеры:</strong> <code>i</code>, <code>j</code>, <code>x</code>, <code>y</code>
-<strong>Решение:</strong> Использовать описательные имена</p>
-<h4 id="readability-else-after-return-5"><code>readability-else-after-return</code> (5 случаев)<a class="headerlink" href="#readability-else-after-return-5" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Проблема:</strong> Избыточные else после return
-<strong>Решение:</strong> Убрать лишние else блоки</p>
-<h3 id="3-38-3">3. 🔄 МОДЕРНИЗАЦИЯ (38 проблем) - ПРИОРИТЕТ 3<a class="headerlink" href="#3-38-3" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="modernize-use-nodiscard-12"><code>modernize-use-nodiscard</code> (12 случаев)<a class="headerlink" href="#modernize-use-nodiscard-12" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Проблема:</strong> Функции должны быть помечены [[nodiscard]]
-<strong>Файлы:</strong> <code>modbus_sensor.cpp</code>, <code>validation_utils.cpp</code>
-<strong>Решение:</strong> Добавить атрибут [[nodiscard]]</p>
-<h4 id="modernize-raw-string-literal-11"><code>modernize-raw-string-literal</code> (11 случаев)<a class="headerlink" href="#modernize-raw-string-literal-11" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Проблема:</strong> Использование обычных строк вместо raw literals
-<strong>Решение:</strong> Использовать R"(...)" для сложных строк</p>
-<h4 id="modernize-return-braced-init-list-8"><code>modernize-return-braced-init-list</code> (8 случаев)<a class="headerlink" href="#modernize-return-braced-init-list-8" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Проблема:</strong> Избыточное повторение типа в return
-<strong>Решение:</strong> Использовать braced initialization</p>
-<h3 id="4-38-4">4. 🔧 РАЗНОЕ (38 проблем) - ПРИОРИТЕТ 4<a class="headerlink" href="#4-38-4" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="misc-const-correctness-20"><code>misc-const-correctness</code> (20 случаев)<a class="headerlink" href="#misc-const-correctness-20" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Проблема:</strong> Переменные могут быть const
-<strong>Файл:</strong> <code>src/fake_sensor.cpp:46</code> - переменная 'npk'
-<strong>Решение:</strong> Добавить const где возможно</p>
-<h4 id="misc-use-internal-linkage-9"><code>misc-use-internal-linkage</code> (9 случаев)<a class="headerlink" href="#misc-use-internal-linkage-9" title="Постоянная ссылка">&para;</a></h4>
-<p><strong>Проблема:</strong> Функции могут быть статическими
-<strong>Файлы:</strong> <code>modbus_sensor.cpp</code> - getModbus, getSensorDataRef, getSensorCache
-<strong>Решение:</strong> Добавить static или anonymous namespace</p>
-<hr />
-<h2 id="-5">📁 ПРОБЛЕМНЫЕ ФАЙЛЫ (ТОП-5)<a class="headerlink" href="#-5" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-srcbusinesscrop_recommendation_enginecpp-19">1. <code>src/business/crop_recommendation_engine.cpp</code> (19 предупреждений)<a class="headerlink" href="#1-srcbusinesscrop_recommendation_enginecpp-19" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Категории:</strong>
-- Читаемость: 12 проблем
-- Модернизация: 4 проблемы<br />
-- Разное: 3 проблемы</p>
-<p><strong>Приоритет:</strong> ВЫСОКИЙ (бизнес-логика)</p>
-<h3 id="2-srcmodbus_sensorcpp-9">2. <code>src/modbus_sensor.cpp</code> (9 предупреждений)<a class="headerlink" href="#2-srcmodbus_sensorcpp-9" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Категории:</strong>
-- Потенциальные баги: 2 проблемы
-- Модернизация: 4 проблемы
-- Разное: 3 проблемы</p>
-<p><strong>Приоритет:</strong> КРИТИЧЕСКИЙ (основной датчик)</p>
-<h3 id="3-srcwebweb_templatescpp">3. <code>src/web/web_templates.cpp</code> (множественные неиспользуемые функции)<a class="headerlink" href="#3-srcwebweb_templatescpp" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Проблемы:</strong>
-- Неиспользуемые функции: setAction, setMethod, setFormContent
-- Конструкторы без explicit
-- Неиспользуемые методы классов</p>
-<p><strong>Приоритет:</strong> СРЕДНИЙ (требует очистки)</p>
-<h3 id="4-srcvalidation_utilscpp-3">4. <code>src/validation_utils.cpp</code> (3 предупреждения)<a class="headerlink" href="#4-srcvalidation_utilscpp-3" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Проблемы:</strong>
-- bugprone-easily-swappable-parameters
-- Отсутствие [[nodiscard]]</p>
-<p><strong>Приоритет:</strong> ВЫСОКИЙ (критическая валидация)</p>
-<h3 id="5-srcadvanced_filterscpp-1">5. <code>src/advanced_filters.cpp</code> (1 предупреждение)<a class="headerlink" href="#5-srcadvanced_filterscpp-1" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Проблема:</strong> bugprone-easily-swappable-parameters в KalmanFilter
-<strong>Приоритет:</strong> СРЕДНИЙ</p>
-<hr />
-<h2 id="_5">🎯 ПЛАН УСТРАНЕНИЯ ТЕХНИЧЕСКОГО ДОЛГА<a class="headerlink" href="#_5" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="1-1-2">Этап 1: Критические исправления (1-2 дня)<a class="headerlink" href="#1-1-2" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Цель:</strong> Устранить 19 потенциальных багов</p>
-<p><strong>Задачи:</strong>
-- [ ] Исправить легко перепутываемые параметры (16 случаев)
-- [ ] Устранить narrowing conversions (1 случай)
-- [ ] Исправить integer division (2 случая)</p>
-<p><strong>Результат:</strong> 0 критических проблем</p>
-<h3 id="2-2-3">Этап 2: Улучшение читаемости (2-3 дня)<a class="headerlink" href="#2-2-3" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Цель:</strong> Устранить 74 проблемы читаемости</p>
-<p><strong>Задачи:</strong>
-- [ ] Сделать функции статическими (19 случаев)
-- [ ] Улучшить именование переменных (8 случаев)
-- [ ] Убрать лишние else после return (5 случаев)
-- [ ] Остальные проблемы читаемости (42 случая)</p>
-<p><strong>Результат:</strong> Чистый, читаемый код</p>
-<h3 id="3-1-2">Этап 3: Модернизация кода (1-2 дня)<a class="headerlink" href="#3-1-2" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Цель:</strong> Привести к стандартам C++17</p>
-<p><strong>Задачи:</strong>
-- [ ] Добавить [[nodiscard]] атрибуты (12 случаев)
-- [ ] Использовать raw string literals (11 случаев)
-- [ ] Применить braced initialization (8 случаев)
-- [ ] Остальная модернизация (7 случаев)</p>
-<p><strong>Результат:</strong> Современный C++17 код</p>
-<h3 id="4-1">Этап 4: Финальная очистка (1 день)<a class="headerlink" href="#4-1" title="Постоянная ссылка">&para;</a></h3>
-<p><strong>Цель:</strong> Устранить остальные проблемы</p>
-<p><strong>Задачи:</strong>
-- [ ] Добавить const correctness (20 случаев)
-- [ ] Улучшить internal linkage (9 случаев)
-- [ ] Удалить неиспользуемые функции
-- [ ] Финальная проверка</p>
-<p><strong>Результат:</strong> 0 предупреждений clang-tidy</p>
-<hr />
-<h2 id="_6">📊 МЕТРИКИ УСПЕХА<a class="headerlink" href="#_6" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_7">Целевые показатели<a class="headerlink" href="#_7" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Файлы:</strong> advanced_filters.cpp, modbus_sensor.cpp, validation_utils.cpp</p>
+<h3 id="2-читаемость-приоритет-2">2. Читаемость (приоритет 2)<a class="headerlink" href="#2-читаемость-приоритет-2" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Предупреждения clang-tidy:</strong> 169 → 0</li>
-<li><strong>Покрытие тестами:</strong> 100% (сохранить)</li>
-<li><strong>Время сборки:</strong> &lt;2 минут (сохранить)</li>
-<li><strong>Функциональность:</strong> 100% (без регрессий)</li>
+<li><code>readability-convert-member-functions-to-static</code> — методы без состояния</li>
+<li><code>readability-identifier-length</code> — короткие имена (i, j, x)</li>
+<li><code>readability-else-after-return</code> — лишние else</li>
 </ul>
-<h3 id="_8">Критерии качества<a class="headerlink" href="#_8" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="3-модернизация-приоритет-3">3. Модернизация (приоритет 3)<a class="headerlink" href="#3-модернизация-приоритет-3" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li>✅ 0 потенциальных багов</li>
-<li>✅ 0 проблем читаемости</li>
-<li>✅ Современный C++17 код</li>
-<li>✅ Все тесты проходят</li>
+<li><code>modernize-use-nodiscard</code> — атрибут [[nodiscard]]</li>
+<li><code>modernize-raw-string-literal</code> — R"(...)"</li>
+<li><code>modernize-return-braced-init-list</code> — braced init</li>
 </ul>
-<hr />
-<h2 id="_9">💰 ОЦЕНКА СТОИМОСТИ<a class="headerlink" href="#_9" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_10">Временные затраты<a class="headerlink" href="#_10" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="4-разное-приоритет-4">4. Разное (приоритет 4)<a class="headerlink" href="#4-разное-приоритет-4" title="Постоянная ссылка">&para;</a></h3>
 <ul>
-<li><strong>Этап 1:</strong> 2 дня (критические исправления)</li>
-<li><strong>Этап 2:</strong> 3 дня (читаемость)</li>
-<li><strong>Этап 3:</strong> 2 дня (модернизация)</li>
-<li><strong>Этап 4:</strong> 1 день (финальная очистка)</li>
-<li><strong>Итого:</strong> 8 рабочих дней</li>
+<li><code>misc-const-correctness</code> — добавить const</li>
+<li><code>misc-use-internal-linkage</code> — static / anonymous namespace</li>
 </ul>
-<h3 id="roi-return-on-investment">ROI (Return on Investment)<a class="headerlink" href="#roi-return-on-investment" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li><strong>Снижение времени отладки:</strong> 30%</li>
-<li><strong>Улучшение читаемости:</strong> 50%</li>
-<li><strong>Снижение багов:</strong> 40%</li>
-<li><strong>Упрощение поддержки:</strong> 60%</li>
-</ul>
-<hr />
-<h2 id="_11">⚠️ РИСКИ И МИТИГАЦИЯ<a class="headerlink" href="#_11" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="_12">Потенциальные риски<a class="headerlink" href="#_12" title="Постоянная ссылка">&para;</a></h3>
+<h2 id="проблемные-файлы">Проблемные файлы<a class="headerlink" href="#проблемные-файлы" title="Постоянная ссылка">&para;</a></h2>
 <ol>
-<li><strong>Регрессии функциональности</strong></li>
-<li>
-<p><strong>Митигация:</strong> Полное тестирование после каждого этапа</p>
-</li>
-<li>
-<p><strong>Увеличение времени сборки</strong></p>
-</li>
-<li>
-<p><strong>Митигация:</strong> Мониторинг производительности</p>
-</li>
-<li>
-<p><strong>Конфликты в Git</strong></p>
-</li>
-<li><strong>Митигация:</strong> Работа в отдельной ветке refactoring</li>
+<li>crop_recommendation_engine.cpp — 19 предупреждений</li>
+<li>modbus_sensor.cpp — 9</li>
+<li>web_templates.cpp — неиспользуемые функции</li>
+<li>validation_utils.cpp — 3</li>
+<li>advanced_filters.cpp — 1</li>
 </ol>
-<h3 id="_13">План тестирования<a class="headerlink" href="#_13" title="Постоянная ссылка">&para;</a></h3>
-<ul>
-<li>Запуск всех тестов после каждого изменения</li>
-<li>Проверка функциональности веб-интерфейса</li>
-<li>Валидация научных формул</li>
-<li>Тестирование на реальном оборудовании</li>
-</ul>
-<hr />
-<h2 id="_14">🎯 ЗАКЛЮЧЕНИЕ<a class="headerlink" href="#_14" title="Постоянная ссылка">&para;</a></h2>
-<p><strong>Текущий технический долг составляет 169 предупреждений clang-tidy.</strong></p>
-<p>Система функционально стабильна, но требует рефакторинга для:
-- Устранения потенциальных багов
-- Улучшения читаемости кода<br />
-- Модернизации до C++17 стандартов
-- Снижения стоимости поддержки</p>
-<p><strong>Рекомендация:</strong> Начать рефакторинг немедленно, пока долг не вырос еще больше.</p>
-<hr />
-<p><strong>Подготовлено:</strong> DevOps Team JXCT<br />
-<strong>Утверждено:</strong> Technical Architect<br />
-<strong>Следующий анализ:</strong> После завершения рефакторинга</p>
+<h2 id="план">План<a class="headerlink" href="#план" title="Постоянная ссылка">&para;</a></h2>
+<ol>
+<li>Критические (1–2 дня): 19 потенциальных багов</li>
+<li>Читаемость (2–3 дня): 74 проблемы</li>
+<li>Модернизация (1–2 дня): C++17</li>
+<li>Очистка (1 день): const, linkage, неиспользуемое</li>
+</ol>
+<h2 id="команда">Команда<a class="headerlink" href="#команда" title="Постоянная ссылка">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python<span class="w"> </span>scripts/run_clang_tidy_analysis.py
+</span></code></pre></div>
 
 
 
@@ -1283,14 +1646,15 @@
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
     
     
     <a href="https://github.com/Gfermoto/soil-sensor-7in1" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
     
@@ -1298,7 +1662,7 @@
     
     
     <a href="https://t.me/Gfermoto" target="_blank" rel="noopener" title="Telegram Support" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8m114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.45 10.45 0 0 1 3.53 6.716 43.8 43.8 0 0 1 .417 9.769"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496m115 168.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7.2-.7.3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2.5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3.6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6.5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7.5 3.2.6 6.5.4 9.8z"/></svg>
     </a>
   
 </div>
@@ -1315,10 +1679,10 @@
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.follow", "toc.integrate", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link", "header.autohide"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.follow", "toc.integrate", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>

@@ -1,20 +1,20 @@
-# 🚀 Руководство по скриптам JXCT
+# Руководство по скриптам JXCT
 
 **Версия:** 3.10.0
 **Дата:** Июль 2025
 
 ---
 
-## 📋 Обзор {#Obzor}
+## Обзор
 
 В проекте JXCT есть два типа скриптов для автоматизации разработки:
 
-- **🔄 Автоматические** — работают без ожидания ввода пользователя
-- **💬 Интерактивные** — требуют ручного подтверждения
+- **Автоматические** — работают без ожидания ввода пользователя
+- **Интерактивные** — требуют ручного подтверждения
 
-## 🔄 Автоматические скрипты {#Avtomaticheskie-skripty}
+## Автоматические скрипты
 
-### 1. `auto_deploy.ps1` — Автоматический деплой {#1-auto_deployps1-Avtomaticheskiy-deploy}
+### 1. `auto_deploy.ps1` — Автоматический деплой
 
 Полностью автоматический деплой документации без ожидания ввода.
 
@@ -33,13 +33,13 @@
 ```
 
 **Что делает:**
-- ✅ Автоматически коммитит незафиксированные изменения
-- ✅ Генерирует документацию через MkDocs
-- ✅ Проверяет корректность сборки
-- ✅ Отправляет изменения в Git
-- ✅ Не требует ручного ввода
+- Автоматически коммитит незафиксированные изменения
+- Генерирует документацию через MkDocs
+- Проверяет корректность сборки
+- Отправляет изменения в Git
+- Не требует ручного ввода
 
-### 2. `auto_test.ps1` — Автоматическое тестирование {#2-auto_testps1-Avtomaticheskoe-testirovanie}
+### 2. `auto_test.ps1` — Автоматическое тестирование
 
 Запуск всех тестов с автоматической генерацией отчетов.
 
@@ -61,13 +61,13 @@
 ```
 
 **Что тестирует:**
-- 📋 Простые unit-тесты
-- 🔄 E2E тесты (если не пропущены)
-- ⚡ Performance тесты (если не пропущены)
-- 🔍 Comprehensive тесты
-- 📊 Автоматическая генерация отчетов
+- Простые unit-тесты
+- E2E тесты (если не пропущены)
+- Performance тесты (если не пропущены)
+- Comprehensive тесты
+- Автоматическая генерация отчетов
 
-### 3. `deploy.ps1` — Гибридный деплой {#3-deployps1-Gibridnyy-deploy}
+### 3. `deploy.ps1` — Гибридный деплой
 
 Поддерживает как автоматический, так и интерактивный режим.
 
@@ -82,9 +82,9 @@
 .\scripts\deploy.ps1
 ```
 
-## 🧪 Тестовые скрипты {#Testovye-skripty}
+## Тестовые скрипты
 
-### Python скрипты для тестирования {#python-skripty-dlya-testirovaniya}
+### Python скрипты для тестирования
 
 ```bash
 # Простые тесты
@@ -100,11 +100,11 @@ python scripts/run_performance_tests.py
 python scripts/run_comprehensive_tests.py
 ```
 
-### Анализ качества кода {#Analiz-kachestva-koda}
+### Анализ качества кода
 
 ```bash
 # Анализ технического долга
-python scripts/analyze_technical_debt.py
+python scripts/audit/analyze_technical_debt.py
 
 # Проверка консистентности документации
 python scripts/doc_consistency_check.py
@@ -113,9 +113,9 @@ python scripts/doc_consistency_check.py
 python scripts/generate_ci_summary.py
 ```
 
-## 🏷️ Управление версиями {#Upravlenie-versiyami}
+## Управление версиями
 
-### Release Manager {#release-manager}
+### Release Manager
 
 ```powershell
 # Поднять patch версию (3.10.0 -> 3.10.1)
@@ -131,7 +131,7 @@ python scripts/generate_ci_summary.py
 .\scripts\release.ps1 bump -Type patch
 ```
 
-### Python напрямую {#python-napryamuyu}
+### Python напрямую
 
 ```bash
 # Поднять версию
@@ -144,24 +144,24 @@ python scripts/release_manager.py release --version "3.10.1"
 python scripts/release_manager.py sync
 ```
 
-## 🎯 Рекомендации по использованию {#Rekomendatsii-po-ispolzovaniyu}
+## Рекомендации по использованию
 
-### Для разработки: {#Dlya-razrabotki}
+### Для разработки
 - Используйте `auto_deploy.ps1` для быстрых обновлений
 - Используйте `auto_test.ps1` для проверки качества кода
 - Запускайте тесты перед каждым коммитом
 
-### Для CI/CD: {#Dlya-cicd}
+### Для CI/CD
 - Используйте автоматические скрипты с флагами
 - Настройте автоматический запуск тестов перед деплоем
 - Используйте `-SkipE2E` для быстрых проверок
 
-### Для релизов: {#Dlya-relizov}
+### Для релизов
 - Используйте `release.ps1` для управления версиями
 - Комбинируйте с автоматическими скриптами
 - Всегда тестируйте перед релизом
 
-## ⚡ Быстрые команды {#Bystrye-komandy}
+## Быстрые команды
 
 ```powershell
 # Быстрый деплой
@@ -174,22 +174,22 @@ python scripts/release_manager.py sync
 .\scripts\auto_test.ps1 && .\scripts\auto_deploy.ps1
 
 # Проверка качества кода
-python scripts/analyze_technical_debt.py
+python scripts/audit/analyze_technical_debt.py
 
 # Форматирование кода
 python scripts/auto_format.py
 ```
 
-## 🔧 Настройка {#Nastroyka}
+## Настройка
 
-### Требования {#Trebovaniya}
+### Требования
 
 - **Python 3.8+** — для Python скриптов
 - **PowerShell 5.1+** — для PowerShell скриптов
 - **Git** — для управления версиями
 - **PlatformIO** — для сборки ESP32 (опционально)
 
-### Установка зависимостей {#Ustanovka-zavisimostey}
+### Установка зависимостей
 
 ```bash
 # Установка Python пакетов
@@ -199,7 +199,7 @@ pip install -r requirements.txt
 pip install platformio
 ```
 
-### Переменные окружения {#Peremennye-okruzheniya}
+### Переменные окружения
 
 ```bash
 # Для автоматических коммитов
@@ -211,24 +211,24 @@ export JXCT_TEST_DEVICE_IP="192.168.1.100"
 export JXCT_TEST_TIMEOUT="30"
 ```
 
-## 📊 Мониторинг и отчеты {#Monitoring-i-otchety}
+## Мониторинг и отчеты
 
-### Где сохраняются отчеты {#Gde-sohranyayutsya-otchety}
+### Где сохраняются отчеты
 
 - **`test_reports/`** — результаты тестирования
 - **Git history** — история деплоев и изменений
 - **Console output** — детальные логи выполнения
 
-### Типы отчетов {#Tipy-otchetov}
+### Типы отчетов
 
 - **JSON отчеты** — для машинной обработки
 - **HTML отчеты** — для просмотра в браузере
 - **Markdown отчеты** — для документации
 - **CI отчеты** — для интеграции с CI/CD
 
-## 🚨 Устранение проблем {#Ustranenie-problem}
+## Устранение проблем
 
-### Ошибка "Python не найден" {#Oshibka-python-ne-nayden}
+### Ошибка "Python не найден"
 ```bash
 # Проверьте установку Python
 python --version
@@ -237,13 +237,13 @@ python --version
 # Windows: https://docs.python.org/3/using/windows.html
 ```
 
-### Ошибка "Git не найден" {#Oshibka-git-ne-nayden}
+### Ошибка "Git не найден"
 ```bash
 # Установите Git
 # https://git-scm.com/downloads
 ```
 
-### Ошибка коммита {#Oshibka-kommita}
+### Ошибка коммита
 ```bash
 # Проверьте git статус
 git status
@@ -253,7 +253,7 @@ git config --global user.name "Your Name"
 git config --global user.email "your.email@example.com"
 ```
 
-### Ошибка тестирования {#Oshibka-testirovaniya}
+### Ошибка тестирования
 ```bash
 # Проверьте подключение к устройству
 ping 192.168.1.100
@@ -264,9 +264,9 @@ cat test_reports/latest_test_report.json
 
 ---
 
-## 🚀 Быстрые команды разработки
+## Быстрые команды разработки
 
-### ⚡ Основные команды
+### Основные команды
 
 ```bash
 # Быстрая сборка и тестирование
@@ -282,7 +282,7 @@ python scripts/auto_version.py && python scripts/sync_versions.py
 python scripts/gen_docs.py && mkdocs build
 ```
 
-### 🔧 Настройка среды разработки
+### Настройка среды разработки
 
 #### Требования
 - **Python 3.8+** с pip
@@ -316,14 +316,14 @@ pio run -e esp32dev
 clang-tidy --version
 ```
 
-### 📊 Команды мониторинга
+### Команды мониторинга
 
 ```bash
 # Статус проекта
 python scripts/generate_ci_summary.py
 
 # Анализ технического долга
-python scripts/analyze_technical_debt.py
+python scripts/audit/analyze_technical_debt.py
 
 # Проверка производительности
 python scripts/performance_monitor.py
@@ -332,7 +332,7 @@ python scripts/performance_monitor.py
 python scripts/validate_formula_consistency.py
 ```
 
-### 🔄 Workflow команды
+### Workflow команды
 
 ```bash
 # Ежедневная проверка
@@ -345,7 +345,7 @@ make pre-commit   # или python scripts/pre-commit.py
 make release      # или python scripts/release_manager.py
 ```
 
-### 🐛 Отладка
+### Отладка
 
 ```bash
 # Подробный лог сборки
@@ -361,7 +361,7 @@ pio run -e esp32dev -t size
 pio device monitor
 ```
 
-### 🏗️ Среда разработки
+### Среда разработки
 
 #### VS Code настройка
 - Установите PlatformIO IDE extension
@@ -379,7 +379,7 @@ alias jxctbuild='pio run -e esp32dev && python scripts/run_simple_tests.py'
 
 ---
 
-## 📚 Дополнительные ресурсы {#Dopolnitelnye-resursy}
+## Дополнительные ресурсы
 
 - [Руководство по тестированию](TESTING_GUIDE.md)
 - [Быстрая справка по тестированию](TESTING_QUICK_REFERENCE.md)

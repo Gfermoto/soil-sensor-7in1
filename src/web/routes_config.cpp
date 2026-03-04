@@ -11,8 +11,8 @@
 #include "../../include/jxct_strings.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
-#include "../../include/validation_utils.h"     // ✅ Валидация входных данных
-#include "../../include/web/csrf_protection.h"  // 🔒 CSRF защита
+#include "../../include/validation_utils.h"
+#include "../../include/web/csrf_protection.h"
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
 
@@ -299,7 +299,7 @@ void setupConfigRoutes()
                  {
                      logWebRequest("POST", "/save_intervals", webServer.client().remoteIP().toString());
 
-                     // ✅ CSRF защита
+                     // CSRF защита
                      if (!checkCSRFSafety())
                      {
                          logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
@@ -508,7 +508,7 @@ void setupConfigRoutes()
                 return;
             }
 
-            // ✅ CSRF защита - критическая операция импорта конфигурации!
+            // CSRF защита для импорта конфигурации
             if (!checkCSRFSafety())
             {
                 logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());

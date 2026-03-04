@@ -1,36 +1,44 @@
-# 📊 API документация JXCT 7-в-1
+# API документация JXCT 7-в-1
 
 **Дата:** Июль 2025
-**Версия API:** v3.13.2
+**Версия прошивки:** 3.13.2
+**Версия API (в коде):** v1 — см. `include/jxct_strings.h`, `#define API_ROOT "/api/v1"`
 **Статус:** Актуально
 
 REST API для интеграции с JXCT Soil Sensor v3.13.2
 
-### 🔗 Связанная документация {#Svyazannaya-dokumentatsiya}
-- **[🖥️ C++ API](https://gfermoto.github.io/soil-sensor-7in1/api/index.html)** - Документация исходного кода
-- **[🏗️ Архитектура](TECHNICAL_DOCS.md)** - Техническая документация
-- **[🧪 Тестирование](../TESTING_GUIDE.md)** - Как тестировать API
+### Связанная документация {#svyazannaya-dokumentatsiya}
+- [C++ API](https://gfermoto.github.io/soil-sensor-7in1/api/index.html) — документация исходного кода
+- [Архитектура](TECHNICAL_DOCS.md) — техническая документация
+- [Тестирование](../TESTING_GUIDE.md) — как тестировать API
 
 ---
 
-## ℹ️ Примечание по совместимости
+## Примечание по совместимости
 
-- Устройство поддерживает как новые маршруты `/api/v3.13.2/*`, так и совместимые с более старыми тестами/клиентами пути:
-  - `GET /health` — возвращает JSON (диагностика системы). Поддерживается и используется в тестах.
-  - `GET /sensor_json` — JSON с показаниями (legacy alias). Поддерживается.
-  - `GET /status` — HTML-страница статуса (не JSON). Используется для ручной диагностики.
-  - Новые эквиваленты: `GET /api/v3.13.2/system/health`, `GET /api/v3.13.2/sensor`.
+В коде (`include/jxct_strings.h`) используется `API_ROOT = "/api/v1"`. Реальные пути API:
 
-Рекомендация: для новых интеграций использовать `/api/v3.13.2/*`. Для обратной совместимости перечисленные legacy пути остаются доступными.
+- `GET /api/v1/sensor` — данные датчика
+- `GET /api/v1/system/health` — диагностика
+- `GET /api/v1/system/status` — статус сервисов
+- `POST /api/v1/system/reset` — сброс настроек
+- `POST /api/v1/system/reboot` — перезагрузка
+- `GET /api/v1/config/export` — экспорт конфигурации
+
+Legacy пути (поддерживаются):
+- `GET /health` — диагностика
+- `GET /sensor_json` — данные датчика
+- `GET /status` — HTML-страница статуса
+- `POST /api/config/import` — импорт конфигурации (без версии в пути)
 
 ## 📋 Содержание {#Soderzhanie}
 
-- [Связанная документация](#Svyazannaya-dokumentatsiya)
+- [Связанная документация](#svyazannaya-dokumentatsiya)
 - [Содержание](#Soderzhanie)
-- [🆕 API v3.13.2 Endpoints](#api-v3.13.2-endpoints)
+- [🆕 API v1 Endpoints](#api-v1-endpoints)
 - [Доступ к API](#Dostup-k-api)
-  - [Таблица актуальных эндпоинтов (API v3.13.2)](#Tablitsa-aktualnyh-endpointov-api-v3.13.2)
-  - [УстаревшиеDEPRECATED эндпоинты](#Ustarevshiedeprecated-endpointy)
+  - [Таблица актуальных эндпоинтов (API v1)](#tablitsa-aktualnyh-endpointov)
+  - [Legacy эндпоинты](#legacy-endpointy)
 - [🆕 Калибровка и научные сервисы](#calibration-scientific-services)
 - [🆕 Отчеты и мониторинг](#reports-monitoring)
 - [Веб-страницы](#Veb-stranitsy)
@@ -56,28 +64,27 @@ REST API для интеграции с JXCT Soil Sensor v3.13.2
 
 ---
 
-## 🆕 API v3.13.2 Endpoints {#api-v3.13.2-endpoints}
+## API v1 Endpoints (соответствует jxct_strings.h) {#api-v1-endpoints}
 
-### 🎯 **Основные API v3.13.2 маршруты**
-
-Новая архитектура API v3.13.2 с улучшенной структурой и функциональностью:
+### Основные маршруты
 
 | Endpoint | Метод | Описание | Статус |
 |----------|-------|----------|--------|
-| `/api/v3.13.2/sensor` | GET | Данные датчика с timestamp | ✅ Активен |
-| `/api/v3.13.2/system/health` | GET | Состояние системы | ✅ Активен |
-| `/api/v3.13.2/system/status` | GET | Статус сервисов | ✅ Активен |
-| `/api/v3.13.2/system/reset` | POST | Сброс настроек | ✅ Активен |
-| `/api/v3.13.2/system/reboot` | POST | Перезагрузка | ✅ Активен |
-| `/api/v3.13.2/config/export` | GET | Экспорт конфигурации | ✅ Активен |
+| `/api/v1/sensor` | GET | Данные датчика с timestamp | Активен |
+| `/api/v1/system/health` | GET | Состояние системы | Активен |
+| `/api/v1/system/status` | GET | Статус сервисов | Активен |
+| `/api/v1/system/reset` | POST | Сброс настроек | Активен |
+| `/api/v1/system/reboot` | POST | Перезагрузка | Активен |
+| `/api/v1/config/export` | GET | Экспорт конфигурации | Активен |
+| `/api/config/import` | POST | Импорт конфигурации | Активен |
 
-### 📊 **Структура ответа API v3.13.2**
+### Структура ответа
 
-**GET /api/v3.13.2/sensor:**
+**GET /api/v1/sensor:**
 ```json
 {
   "timestamp": "2025-07-11T14:30:00Z",
-  "version": "3.10.0",
+  "version": "3.13.2",
   "sensor_data": {
     "temperature": 24.5,
     "humidity": 65.2,
@@ -94,7 +101,7 @@ REST API для интеграции с JXCT Soil Sensor v3.13.2
 }
 ```
 
-**GET /api/v3.13.2/system/health:**
+**GET /api/v1/system/health:**
 ```json
 {
   "system": "healthy",
@@ -117,29 +124,26 @@ REST API для интеграции с JXCT Soil Sensor v3.13.2
 
 **Все endpoints открыты** - авторизация не требуется.
 
-### 📋 Таблица актуальных эндпоинтов (API v3.13.2) {#Tablitsa-aktualnyh-endpointov-api-v3.13.2}
+### Таблица актуальных эндпоинтов {#tablitsa-aktualnyh-endpointov}
 
 | Метод | Путь | Описание |
 |-------|------|----------|
-| GET   | `/api/v3.13.2/sensor`         | Основные данные датчика (JSON) |
-| GET   | `/api/v3.13.2/system/health`  | Полная диагностика устройства  |
-| GET   | `/api/v3.13.2/system/status`  | Краткий статус сервисов        |
-| POST  | `/api/v3.13.2/system/reset`   | Сброс настроек (307 на `/reset`) |
-| POST  | `/api/v3.13.2/system/reboot`  | Перезагрузка (307 на `/reboot`) |
-| GET   | `/api/v3.13.2/config/export`  | Скачать конфигурацию (JSON, без паролей) |
-| POST  | `/api/v3.13.2/config/import`  | Импорт конфигурации            |
+| GET   | `/api/v1/sensor`         | Основные данные датчика (JSON) |
+| GET   | `/api/v1/system/health`  | Полная диагностика устройства  |
+| GET   | `/api/v1/system/status`  | Краткий статус сервисов        |
+| POST  | `/api/v1/system/reset`   | Сброс настроек (307 на `/reset`) |
+| POST  | `/api/v1/system/reboot`  | Перезагрузка (307 на `/reboot`) |
+| GET   | `/api/v1/config/export`  | Скачать конфигурацию (JSON, без паролей) |
+| POST  | `/api/config/import`     | Импорт конфигурации            |
 
-### 🕑 Устаревшие/DEPRECATED эндпоинты {#Ustarevshiedeprecated-endpointy}
+### Legacy эндпоинты {#legacy-endpointy}
 
 | Метод | Путь | Описание |
 |-------|------|----------|
-| GET   | `/sensor_json`           | Те же данные (legacy, будет удалён в будущих версиях) |
-| GET   | `/api/sensor`            | DEPRECATED alias → `/api/v3.13.2/sensor` |
-| GET   | `/api/config/export`     | DEPRECATED alias → `/api/v3.13.2/config/export` |
-| POST  | `/api/config/import`     | DEPRECATED alias → `/api/v3.13.2/config/import` |
-| POST  | `/reset`                 | Legacy сброс (будет удалён) |
-| POST  | `/reboot`                | Legacy перезагрузка (будет удалён) |
-| GET   | `/health`                | Старый путь диагностики |
+| GET   | `/sensor_json`           | Те же данные (legacy) |
+| GET   | `/health`                | Диагностика (legacy) |
+| POST  | `/reset`                 | Сброс (legacy) |
+| POST  | `/reboot`                | Перезагрузка (legacy) |
 
 ---
 
@@ -182,10 +186,10 @@ curl -X POST http://192.168.4.1/save \
 | Endpoint | Метод | Описание | Статус |
 |----------|-------|----------|--------|
 | `/api/calibration/status` | GET | Статус калибровки | ✅ Активен |
-| `/api/calibration/temperature/add` | POST | Добавить точку калибровки температуры | ✅ Активен |
-| `/api/calibration/humidity/add` | POST | Добавить точку калибровки влажности | ✅ Активен |
-| `/api/calibration/ec/add` | POST | Добавить точку калибровки EC | ✅ Активен |
-| `/api/calibration/ph/add` | POST | Добавить точку калибровки pH | ✅ Активен |
+| `/api/calibration/temperature` | POST | Добавить точку калибровки температуры | Активен |
+| `/api/calibration/humidity` | POST | Добавить точку калибровки влажности | Активен |
+| `/api/calibration/ec` | POST | Добавить точку калибровки EC | Активен |
+| `/api/calibration/ph` | POST | Добавить точку калибровки pH | Активен |
 | `/api/calibration/reset` | POST | Сброс калибровки | ✅ Активен |
 
 **GET /api/calibration/status:**
@@ -203,7 +207,7 @@ curl -X POST http://192.168.4.1/save \
 }
 ```
 
-**POST /api/calibration/temperature/add:**
+**POST /api/calibration/temperature:**
 ```json
 {
   "reference_value": 25.0,
@@ -267,7 +271,7 @@ mosquitto_pub -h mqtt.local -t "jxct/command" -m "publish_test"
 |----------|-------|----------|--------|
 | `/api/reports/test-summary` | GET | Сводка результатов тестирования | ✅ Активен |
 | `/api/reports/technical-debt` | GET | Отчет по техническому долгу | ✅ Активен |
-| `/api/reports/performance` | GET | Метрики производительности | ✅ Активен |
+| `/api/reports/full` | GET | Полный отчёт (test-summary + technical-debt) | Активен |
 | `/reports` | GET | HTML-страница отчетов | ✅ Активен |
 | `/reports/dashboard.html` | GET | Дашборд метрик | ✅ Активен |
 
@@ -305,7 +309,7 @@ mosquitto_pub -h mqtt.local -t "jxct/command" -m "publish_test"
 }
 ```
 
-### 🏠 **MQTT интеграция**
+### 🏠 **MQTT интеграция** {#mqtt-integratsiya}
 
 ### Топики публикации {#Topiki-publikatsii}
 ```
@@ -341,7 +345,7 @@ mosquitto_pub -h mqtt.local -t "jxct/command" -m "publish_test"
 
 API поддерживает CORS для локальных сетей:
 ```javascript
-fetch('http://192.168.4.1/api/sensor')
+fetch('http://192.168.4.1/api/v1/sensor')
   .then(response => response.json())
   .then(data => console.log(data));
 ```
@@ -353,7 +357,7 @@ fetch('http://192.168.4.1/api/sensor')
 import requests
 
 # Получить данные датчика
-response = requests.get('http://192.168.4.1/api/sensor')
+response = requests.get('http://192.168.4.1/api/v1/sensor')
 data = response.json()
 print(f"Температура: {data['temperature']}°C")
 ```
@@ -363,7 +367,7 @@ print(f"Температура: {data['temperature']}°C")
 const axios = require('axios');
 
 async function getSensorData() {
-  const response = await axios.get('http://192.168.4.1/api/sensor');
+  const response = await axios.get('http://192.168.4.1/api/v1/sensor');
   return response.data;
 }
 ```
@@ -373,7 +377,7 @@ async function getSensorData() {
 # configuration.yaml
 sensor:
   - platform: rest
-    resource: http://192.168.4.1/api/sensor
+    resource: http://192.168.4.1/api/v1/sensor
     name: "JXCT Soil Sensor"
     json_attributes:
       - temperature

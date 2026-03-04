@@ -16,7 +16,7 @@
 #include "modbus_sensor.h"
 #include "mqtt_client.h"
 #include "thingspeak_client.h"
-#include "web/csrf_protection.h"  // 🔒 CSRF защита
+#include "web/csrf_protection.h"
 #include "web_routes.h"           // 🏗️ Модульная архитектура v2.4.5
 
 // Константы
@@ -438,6 +438,6 @@ void setupWebServer()
 
     webServer.begin();
     logSuccessSafe("\1", currentWiFiMode == WiFiMode::AP ? "AP" : "STA");
-    logSystem("✅ Активные модули: main, data, config, service, ota, error_handlers");
+    logSystem("Активные модули: main, data, config, service, ota, error_handlers");
     logSystem("📋 Полный набор маршрутов готов к использованию");
 }

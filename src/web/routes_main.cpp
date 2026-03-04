@@ -2,7 +2,7 @@
 #include "../../include/jxct_constants.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
-#include "../../include/validation_utils.h"  // ✅ Валидация
+#include "../../include/validation_utils.h"
 #include "../../include/web_routes.h"
 #include "../wifi_manager.h"
 
@@ -73,7 +73,7 @@ void setupMainRoutes()
             // Сохраняем остальные настройки только в режиме STA
             if (currentWiFiMode == WiFiMode::STA)
             {
-                // ✅ Явное приведение bool для битовых полей
+                // Явное приведение bool для битовых полей
                 config.flags.mqttEnabled = static_cast<uint8_t>(webServer.hasArg("mqtt_enabled"));
                 strlcpy(config.mqttServer, webServer.arg("mqtt_server").c_str(), sizeof(config.mqttServer));
                 config.mqttPort = webServer.arg("mqtt_port").toInt();

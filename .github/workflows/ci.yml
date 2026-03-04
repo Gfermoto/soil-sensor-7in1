@@ -230,8 +230,8 @@ jobs:
       - name: Technical debt analysis
         run: |
           echo "Running technical debt analysis..."
-          if [ -f "scripts/analyze_technical_debt.py" ]; then
-            python scripts/analyze_technical_debt.py --project-root . --output test_reports/technical-debt.json --verbose
+          if [ -f "scripts/audit/analyze_technical_debt.py" ]; then
+            python scripts/audit/analyze_technical_debt.py --project-root . --output test_reports/technical-debt.json --verbose
           else
             echo "Technical debt script not found, creating fallback report"
             mkdir -p test_reports

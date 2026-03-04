@@ -63,12 +63,6 @@ theme:
   favicon: assets/images/favicon.png
   logo: assets/images/favicon.png
 
-# Иконки
-icon:
-  repo: fontawesome/brands/github
-  edit: material/pencil
-  view: material/eye
-
 # Плагины
 plugins:
   - search:
@@ -82,6 +76,9 @@ markdown_extensions:
       title: "Содержание"
       permalink_title: "Постоянная ссылка"
       baselevel: 1
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
@@ -104,31 +101,38 @@ markdown_extensions:
   - pymdownx.smartsymbols
   - pymdownx.saneheaders
 
-# Консолидированная навигация
+# Навигация
 nav:
-  - 🏠 Главная: index.md
-  - 📋 Проект:
-    - 📝 Журнал изменений: CHANGELOG.md
-    - 🤝 Руководство для контрибьюторов: CONTRIBUTING.md
-  - 📚 Руководства:
-    - 👤 Руководство пользователя: manuals/USER_GUIDE.md
-    - 🌱 Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
-    - 🔧 Техническая документация: manuals/TECHNICAL_DOCS.md
-    - 🔌 Схема подключения: manuals/WIRING_DIAGRAM.md
-    - 📖 API документация: manuals/API.md
-    - 📡 Протокол Modbus: manuals/MODBUS_PROTOCOL.md
-    - ⚙️ Управление конфигурацией: manuals/CONFIG_MANAGEMENT.md
-    - 🏷️ Управление версиями: manuals/VERSION_MANAGEMENT.md
-    - ⚖️ Руководство по компенсации: manuals/COMPENSATION_GUIDE.md
-  - 🔌 API:
-    - 📖 API документация: manuals/API.md
-    - 🖥️ C++ API (Doxygen): DOXYGEN_API.md
-    - 📚 HTML документация: api/README.md
-  - 🛠️ Разработка:
-    - 🚀 Руководство по скриптам: SCRIPTS_GUIDE.md
-    - 📊 Раздел разработки: dev/README.md
-    - 🚨 Критический аудит: dev/CRITICAL_AUDIT_REPORT.md
-    - 🔧 Исправление ThingSpeak: dev/THINGSPEAK_RATE_LIMITING_FIX.md
-  - 🧪 Тестирование:
-    - 📖 Руководство по тестированию: TESTING_GUIDE.md
-    - ⚡ Быстрая справка по тестированию: TESTING_QUICK_REFERENCE.md
+  - Главная: index.md
+  - Проект:
+    - Журнал изменений: CHANGELOG.md
+    - Руководство для контрибьюторов: CONTRIBUTING.md
+  - Руководства:
+    - Руководство пользователя: manuals/USER_GUIDE.md
+    - Агрономические рекомендации: manuals/AGRO_RECOMMENDATIONS.md
+    - Техническая документация: manuals/TECHNICAL_DOCS.md
+    - Схема подключения: manuals/WIRING_DIAGRAM.md
+    - API документация: manuals/API.md
+    - Протокол Modbus: manuals/MODBUS_PROTOCOL.md
+    - Управление конфигурацией: manuals/CONFIG_MANAGEMENT.md
+    - Управление версиями: manuals/VERSION_MANAGEMENT.md
+    - Руководство по компенсации: manuals/COMPENSATION_GUIDE.md
+  - API:
+    - API документация: manuals/API.md
+    - C++ API (Doxygen): DOXYGEN_API.md
+  - Разработка:
+    - Руководство по скриптам: SCRIPTS_GUIDE.md
+    - Раздел разработки: dev/README.md
+    - Архитектура: dev/ARCH_OVERALL.md
+    - Clang Tools: dev/CLANG_TOOLS_GUIDE.md
+    - Технический долг: dev/TECHNICAL_DEBT_QUICK_REFERENCE.md
+    - Отчёт техдолга: dev/TECHNICAL_DEBT_REPORT.md
+    - План рефакторинга: dev/REFACTORING_PLAN.md
+    - Ревью перед публикацией: dev/PRE_PUBLISH_REVIEW.md
+    - Безопасность: dev/SECURITY.md
+    - Алгоритмы (TG): ALGORITHMS_OVERVIEW_TG.md
+  - Руководства (доп.):
+    - Взаимодействие питательных веществ: manuals/NUTRIENT_INTERACTIONS.md
+  - Тестирование:
+    - Руководство по тестированию: TESTING_GUIDE.md
+    - Быстрая справка: TESTING_QUICK_REFERENCE.md

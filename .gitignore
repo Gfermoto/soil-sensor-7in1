@@ -73,18 +73,20 @@ test_manifest.json
 # Временные файлы документации
 WEB_INTERFACE_IMPROVEMENTS.md
 
-# Автогенерируемые отчёты (оставляем только последние)
+# Автогенерируемые отчёты (только JSON для CI)
 test_reports/*.json
 test_reports/*.html
 test_reports/*.md
+test_reports/*.txt
 !test_reports/README.md
+!test_reports/MASTER_TEST_SUMMARY.md
+!test_reports/technical-debt-assessment.md
 
-# Автогенерация документации (не коммитим в ветках, сайт собирается из main)
+# Артефакты сборки
+*.bin
+firmware_*_ota.bin
+
+# Автогенерация документации (генерировать в CI)
 /docs/doxygen/
+/docs/api/
 /html/
-
-# Точечные исключения: разрешаем отслеживание при необходимости (например, в main)
-!/docs/doxygen/
-!/docs/doxygen/**
-!/html/
-!/html/**

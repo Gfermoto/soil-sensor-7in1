@@ -24,7 +24,7 @@ def check_requirements():
         print("💡 Установите: pip install requests")
         return False
 
-def run_e2e_tests(device_ip="192.168.4.1", timeout=10):
+def run_e2e_tests(device_ip="192.168.2.65", timeout=10):
     """Запуск E2E тестов"""
     if not check_requirements():
         return False
@@ -81,7 +81,7 @@ def generate_report(results, output_file="test_reports/e2e-test-report.json"):
 def main():
     """Главная функция"""
     parser = argparse.ArgumentParser(description="Запуск E2E тестов JXCT")
-    parser.add_argument("--ip", default="192.168.4.1",
+    parser.add_argument("--ip", default="192.168.2.65",
                        help="IP адрес ESP32 устройства")
     parser.add_argument("--timeout", type=int, default=10,
                        help="Таймаут для HTTP запросов")

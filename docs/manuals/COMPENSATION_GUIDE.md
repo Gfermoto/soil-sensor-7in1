@@ -1,4 +1,4 @@
-# 🔬 Научное обоснование компенсации показаний JXCT 7-в-1
+# Научное обоснование компенсации показаний JXCT 7-в-1
 
 **Версия:** 3.10.1
 **Дата обновления:** 11.07.2025
@@ -141,9 +141,6 @@ void processSensorData(SensorData& sensorData, const Config& config) {
         gCompensationService.correctNPK(sensorData.temperature, sensorData.humidity, soil, npk);
     }
 }
-```
-    G --> H[Финальные скорректированные данные]
-    E --> I[Логирование ошибки]
 ```
 
 ### 2.2 Последовательность выполнения

@@ -77,7 +77,7 @@ class ComprehensiveTestRunner:
         """Запуск анализа технического долга"""
         try:
             result = subprocess.run([
-                sys.executable, "scripts/analyze_technical_debt.py"
+                sys.executable, "scripts/audit/analyze_technical_debt.py"
             ], cwd=self.project_root, capture_output=True, text=True)
 
             debt_file = self.project_root / "test_reports" / "technical-debt-ci.json"

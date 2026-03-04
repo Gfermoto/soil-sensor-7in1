@@ -1,5 +1,0 @@
-var searchData=
-[
-  ['indoor_0',['INDOOR',['../sensor__types_8h.html#a54f442671b9c65b2525421ca36f4f32aa0ab3790f669b52c65c734a1e7b68f8e1',1,'sensor_types.h']]],
-  ['info_1',['INFO',['../jxct__ui__system_8h.html#a3a7dcde2dab208051cb338c215f88e5ea551b723eafd6a31d444fcb2f5920fbd3',1,'jxct_ui_system.h']]]
-];

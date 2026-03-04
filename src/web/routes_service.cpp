@@ -12,8 +12,8 @@
 #include "../../include/jxct_strings.h"
 #include "../../include/jxct_ui_system.h"
 #include "../../include/logger.h"
-#include "../../include/web/csrf_protection.h"  // 🔒 CSRF защита
-#include "../../include/web_routes.h"           // ✅ CSRF защита
+#include "../../include/web/csrf_protection.h"
+#include "../../include/web_routes.h"
 #include "../modbus_sensor.h"
 #include "../mqtt_client.h"
 #include "../thingspeak_client.h"
@@ -50,7 +50,7 @@ void setupServiceRoutes()
     webServer.on("/service_status", HTTP_GET, sendServiceStatusJson);
     webServer.on(API_SYSTEM_STATUS, HTTP_GET, sendServiceStatusJson);
 
-    // ✅ ДОБАВЛЕНО: Маршрут для сброса блокировки ThingSpeak
+    // Маршрут сброса блокировки ThingSpeak
     webServer.on("/reset_thingspeak", HTTP_POST, 
         []() {
             logWebRequest("POST", "/reset_thingspeak", webServer.client().remoteIP().toString());
@@ -65,7 +65,7 @@ void setupServiceRoutes()
         }
     );
 
-    // ✅ ДОБАВЛЕНО: Маршрут для диагностики ThingSpeak
+    // Маршрут диагностики ThingSpeak
     webServer.on("/diagnose_thingspeak", HTTP_GET, 
         []() {
             logWebRequest("GET", "/diagnose_thingspeak", webServer.client().remoteIP().toString());
@@ -74,7 +74,7 @@ void setupServiceRoutes()
         }
     );
 
-    // ✅ ДОБАВЛЕНО: Маршрут для получения диагностики ThingSpeak в JSON
+    // Маршрут диагностики ThingSpeak в JSON
     webServer.on("/api/thingspeak_diagnostics", HTTP_GET, 
         []() {
             logWebRequest("GET", "/api/thingspeak_diagnostics", webServer.client().remoteIP().toString());
@@ -112,7 +112,7 @@ void setupServiceRoutes()
             html += getCSRFHiddenField();
             html += generateButton(ButtonType::SECONDARY, ButtonConfig{"🔄", "Перезагрузить", ""}) + "</form>";
             
-            // ✅ ДОБАВЛЕНО: Кнопки управления ThingSpeak
+            // Кнопки управления ThingSpeak
             if (config.flags.thingSpeakEnabled) {
                 html += "<div style='margin-top:15px;padding:10px;background:#f8f9fa;border-radius:5px;'>";
                 html += "<h3>🔗 ThingSpeak Управление</h3>";
@@ -161,7 +161,7 @@ void setupServiceRoutes()
             html += "document.getElementById('status-block').innerHTML=html;";
             html += "});}setInterval(updateStatus," + String(config.webUpdateInterval) + ");updateStatus();";
             
-            // ✅ ДОБАВЛЕНО: JavaScript для отображения диагностики ThingSpeak
+            // JavaScript для диагностики ThingSpeak
             html += "function showThingSpeakDiagnostics() {";
             html += "  fetch('/api/thingspeak_diagnostics')";
             html += "    .then(response => response.json())";
@@ -199,7 +199,7 @@ void setupServiceRoutes()
                  {
                      logWebRequest("POST", webServer.uri(), webServer.client().remoteIP().toString());
 
-                     // ✅ CSRF защита - критическая операция сброса!
+                     // CSRF защита
                      if (!checkCSRFSafety())
                      {
                          logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());
@@ -239,7 +239,7 @@ void setupServiceRoutes()
                  {
                      logWebRequest("POST", webServer.uri(), webServer.client().remoteIP().toString());
 
-                     // ✅ CSRF защита - критическая операция перезагрузки!
+                     // CSRF защита
                      if (!checkCSRFSafety())
                      {
                          logWarnSafe("\1", webServer.client().remoteIP().toString().c_str());

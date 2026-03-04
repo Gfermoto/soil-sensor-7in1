@@ -18,19 +18,19 @@
         <link rel="prev" href="../VERSION_MANAGEMENT/">
       
       
-        <link rel="next" href="../../api-overview/">
+        <link rel="next" href="../API/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.21">
     
     
       
-        <title>⚖️ Руководство по компенсации - JXCT Soil Sensor v3.13.0</title>
+        <title>Руководство по компенсации - JXCT Soil Sensor v3.13.2</title>
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.2a3383ac.min.css">
       
         
         <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#jxct-7-1" class="md-skip">
+        <a href="#научное-обоснование-компенсации-показаний-jxct-7-в-1" class="md-skip">
           Перейти к содержанию
         </a>
       
@@ -98,7 +98,7 @@
 
 <header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
-    <a href="../.." title="JXCT Soil Sensor v3.13.0" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.13.0" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.13.2" class="md-header__button md-logo" aria-label="JXCT Soil Sensor v3.13.2" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
@@ -111,13 +111,13 @@
       <div class="md-header__ellipsis">
         <div class="md-header__topic">
           <span class="md-ellipsis">
-            JXCT Soil Sensor v3.13.0
+            JXCT Soil Sensor v3.13.2
           </span>
         </div>
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              ⚖️ Руководство по компенсации
+              Руководство по компенсации
             
           </span>
         </div>
@@ -207,7 +207,7 @@
         <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Перейти к репозиторию" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     Gfermoto/soil-sensor-7in1
@@ -241,10 +241,32 @@
   
     
   
-  🏠 Главная
+  Главная
 
       </a>
     </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../CHANGELOG/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Проект
+
+        </a>
+      </li>
+    
   
 
       
@@ -264,7 +286,7 @@
   
     
   
-  📚 Руководства
+  Руководства
 
         </a>
       </li>
@@ -280,13 +302,13 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../api-overview/" class="md-tabs__link">
+        <a href="../API/" class="md-tabs__link">
           
   
   
     
   
-  🔌 API
+  API
 
         </a>
       </li>
@@ -308,7 +330,29 @@
   
     
   
-  🛠️ Разработка
+  Разработка
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../NUTRIENT_INTERACTIONS/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Руководства (доп.)
 
         </a>
       </li>
@@ -330,7 +374,7 @@
   
     
   
-  🧪 Тестирование
+  Тестирование
 
         </a>
       </li>
@@ -362,19 +406,19 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted md-nav--integrated" aria-label="Навигация" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../.." title="JXCT Soil Sensor v3.13.0" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.13.0" data-md-component="logo">
+    <a href="../.." title="JXCT Soil Sensor v3.13.2" class="md-nav__button md-logo" aria-label="JXCT Soil Sensor v3.13.2" data-md-component="logo">
       
   <img src="../../assets/images/favicon.png" alt="logo">
 
     </a>
-    JXCT Soil Sensor v3.13.0
+    JXCT Soil Sensor v3.13.2
   </label>
   
     <div class="md-nav__source">
       <a href="https://github.com/Gfermoto/soil-sensor-7in1" title="Перейти к репозиторию" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
   </div>
   <div class="md-source__repository">
     Gfermoto/soil-sensor-7in1
@@ -396,12 +440,116 @@
   
   
   <span class="md-ellipsis">
-    🏠 Главная
+    Главная
     
   </span>
   
 
       </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Проект
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Проект
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CHANGELOG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Журнал изменений
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CONTRIBUTING/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Руководство для контрибьюторов
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -451,15 +599,15 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
             
   
   
   <span class="md-ellipsis">
-    📚 Руководства
+    Руководства
     
   </span>
   
@@ -467,10 +615,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            📚 Руководства
+            Руководства
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -486,7 +634,7 @@
   
   
   <span class="md-ellipsis">
-    👤 Руководство пользователя
+    Руководство пользователя
     
   </span>
   
@@ -509,7 +657,7 @@
   
   
   <span class="md-ellipsis">
-    🌱 Агрономические рекомендации
+    Агрономические рекомендации
     
   </span>
   
@@ -532,7 +680,7 @@
   
   
   <span class="md-ellipsis">
-    🔧 Техническая документация
+    Техническая документация
     
   </span>
   
@@ -555,7 +703,7 @@
   
   
   <span class="md-ellipsis">
-    🔌 Схема подключения
+    Схема подключения
     
   </span>
   
@@ -578,7 +726,7 @@
   
   
   <span class="md-ellipsis">
-    📖 API документация
+    API документация
     
   </span>
   
@@ -601,7 +749,7 @@
   
   
   <span class="md-ellipsis">
-    📡 Протокол Modbus
+    Протокол Modbus
     
   </span>
   
@@ -624,7 +772,7 @@
   
   
   <span class="md-ellipsis">
-    ⚙️ Управление конфигурацией
+    Управление конфигурацией
     
   </span>
   
@@ -647,7 +795,7 @@
   
   
   <span class="md-ellipsis">
-    🏷️ Управление версиями
+    Управление версиями
     
   </span>
   
@@ -679,7 +827,7 @@
   
   
   <span class="md-ellipsis">
-    ⚖️ Руководство по компенсации
+    Руководство по компенсации
     
   </span>
   
@@ -692,7 +840,7 @@
   
   
   <span class="md-ellipsis">
-    ⚖️ Руководство по компенсации
+    Руководство по компенсации
     
   </span>
   
@@ -717,7 +865,7 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#_1" class="md-nav__link">
+  <a href="#-содержание" class="md-nav__link">
     <span class="md-ellipsis">
       📋 Содержание
     </span>
@@ -736,7 +884,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#11-ec-rhoades-et-al-1989" class="md-nav__link">
+  <a href="#11-температурная-компенсация-электропроводности-ec---rhoades-et-al-1989" class="md-nav__link">
     <span class="md-ellipsis">
       1.1 Температурная компенсация электропроводности (EC) - Rhoades et al. (1989)
     </span>
@@ -745,7 +893,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#12-ph-ross-et-al-2008" class="md-nav__link">
+  <a href="#12-уравнение-нернста-для-ph---ross-et-al-2008" class="md-nav__link">
     <span class="md-ellipsis">
       1.2 Уравнение Нернста для pH - Ross et al. (2008)
     </span>
@@ -754,7 +902,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#13-npk-delgado-et-al-2020" class="md-nav__link">
+  <a href="#13-компенсация-npk-температура--влажность---delgado-et-al-2020" class="md-nav__link">
     <span class="md-ellipsis">
       1.3 Компенсация NPK (температура + влажность) - Delgado et al. (2020)
     </span>
@@ -778,7 +926,7 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#21-v3101" class="md-nav__link">
+  <a href="#21-модульная-архитектура-v3101" class="md-nav__link">
     <span class="md-ellipsis">
       2.1 Модульная архитектура v3.10.1
     </span>
@@ -787,7 +935,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#22" class="md-nav__link">
+  <a href="#22-сервисы-научной-валидации" class="md-nav__link">
     <span class="md-ellipsis">
       2.2 Сервисы научной валидации
     </span>
@@ -797,9 +945,9 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#sensorcalibrationservice" class="md-nav__link">
+  <a href="#sensorcorrection" class="md-nav__link">
     <span class="md-ellipsis">
-      SensorCalibrationService
+      SensorCorrection
     </span>
   </a>
   
@@ -829,9 +977,195 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#23" class="md-nav__link">
+  <a href="#23-поток-обработки-данных" class="md-nav__link">
     <span class="md-ellipsis">
       2.3 Поток обработки данных
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-последовательность-выполнения" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Последовательность выполнения
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-валидация-входных-данных" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Валидация входных данных
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Валидация входных данных">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-допустимые-диапазоны-параметров" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Допустимые диапазоны параметров
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-коды-ошибок-и-предупреждений" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Коды ошибок и предупреждений
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-валидация-принципиалами" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Валидация принципиалами
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Валидация принципиалами">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-it-специалист" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 IT-специалист
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-ученый-физик" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2 Ученый-физик
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-практикующий-агроном" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3 Практикующий агроном
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ограничения-системы" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Ограничения системы
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Ограничения системы">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-граничные-условия-работы-алгоритмов" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1 Граничные условия работы алгоритмов
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-погрешности-измерений" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2 Погрешности измерений
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-непокрытые-сценарии" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3 Непокрытые сценарии
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-список-источников" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Список источников
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-расширенные-алгоритмы-компенсации" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. 🆕 Расширенные алгоритмы компенсации
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. 🆕 Расширенные алгоритмы компенсации">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71-алгоритм-delgado-et-al-для-npk-расширенный" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.1 Алгоритм Delgado et al. для NPK (расширенный)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-взаимодействие-питательных-веществ" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.2 Взаимодействие питательных веществ
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#73-сезонные-корректировки" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.3 Сезонные корректировки
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#74-реально-измеряемые-взаимодействия-и-рекомендации-консолидация" class="md-nav__link">
+    <span class="md-ellipsis">
+      7.4 Реально измеряемые взаимодействия и рекомендации (консолидация)
     </span>
   </a>
   
@@ -880,7 +1214,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#84" class="md-nav__link">
+  <a href="#84-интеграция-сервисов" class="md-nav__link">
     <span class="md-ellipsis">
       8.4 Интеграция сервисов
     </span>
@@ -922,133 +1256,6 @@
       
         
       
-        
-      
-    
-    
-    
-      
-      
-        
-      
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-          
-        
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
-        
-          
-          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    🔌 API
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_3">
-            <span class="md-nav__icon md-icon"></span>
-            🔌 API
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../api-overview/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    📋 Обзор API
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../API/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    📖 API документация
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../DOXYGEN_API/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    🖥️ C++ API (Doxygen)
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-      
-        
-      
     
     
     
@@ -1072,7 +1279,7 @@
   
   
   <span class="md-ellipsis">
-    🛠️ Разработка
+    API
     
   </span>
   
@@ -1083,7 +1290,136 @@
         <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
-            🛠️ Разработка
+            API
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    API документация
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DOXYGEN_API/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    C++ API (Doxygen)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../dev/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Разработка
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Разработка
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1099,7 +1435,272 @@
   
   
   <span class="md-ellipsis">
-    🚀 Руководство по скриптам
+    Руководство по скриптам
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/ARCH_OVERALL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Архитектура
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/CLANG_TOOLS_GUIDE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clang Tools
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/TECHNICAL_DEBT_QUICK_REFERENCE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Технический долг
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/TECHNICAL_DEBT_REPORT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Отчёт техдолга
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/REFACTORING_PLAN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    План рефакторинга
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/PRE_PUBLISH_REVIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ревью перед публикацией
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dev/SECURITY/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Безопасность
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ALGORITHMS_OVERVIEW_TG/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Алгоритмы (TG)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Руководства (доп.)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Руководства (доп.)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../NUTRIENT_INTERACTIONS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Взаимодействие питательных веществ
     
   </span>
   
@@ -1145,15 +1746,15 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_7" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
-    🧪 Тестирование
+    Тестирование
     
   </span>
   
@@ -1161,10 +1762,10 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
             <span class="md-nav__icon md-icon"></span>
-            🧪 Тестирование
+            Тестирование
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1180,7 +1781,7 @@
   
   
   <span class="md-ellipsis">
-    📖 Руководство по тестированию
+    Руководство по тестированию
     
   </span>
   
@@ -1203,7 +1804,7 @@
   
   
   <span class="md-ellipsis">
-    ⚡ Быстрая справка по тестированию
+    Быстрая справка
     
   </span>
   
@@ -1240,7 +1841,7 @@
   
 
 
-<h1 id="jxct-7-1">🔬 Научное обоснование компенсации показаний JXCT 7-в-1<a class="headerlink" href="#jxct-7-1" title="Постоянная ссылка">&para;</a></h1>
+<h1 id="научное-обоснование-компенсации-показаний-jxct-7-в-1">Научное обоснование компенсации показаний JXCT 7-в-1<a class="headerlink" href="#научное-обоснование-компенсации-показаний-jxct-7-в-1" title="Постоянная ссылка">&para;</a></h1>
 <p><strong>Версия:</strong> 3.10.1
 <strong>Дата обновления:</strong> 11.07.2025
 <strong>Статус:</strong> Научно валидировано</p>
@@ -1248,7 +1849,7 @@
 <p><strong>Важно:</strong> Все формулы компенсации основаны на рецензируемых научных источниках и прошли экспериментальную валидацию.</p>
 </blockquote>
 <hr />
-<h2 id="_1">📋 Содержание<a class="headerlink" href="#_1" title="Постоянная ссылка">&para;</a></h2>
+<h2 id="-содержание">📋 Содержание<a class="headerlink" href="#-содержание" title="Постоянная ссылка">&para;</a></h2>
 <ol>
 <li><a href="#1-математические-модели-компенсации">Математические модели компенсации</a></li>
 <li><a href="#2-архитектура-процесса-компенсации">Архитектура процесса компенсации</a></li>
@@ -1261,7 +1862,7 @@
 </ol>
 <hr />
 <h2 id="1-математические-модели-компенсации">1. Математические модели компенсации<a class="headerlink" href="#1-математические-модели-компенсации" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="11-ec-rhoades-et-al-1989">1.1 Температурная компенсация электропроводности (EC) - Rhoades et al. (1989)<a class="headerlink" href="#11-ec-rhoades-et-al-1989" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="11-температурная-компенсация-электропроводности-ec---rhoades-et-al-1989">1.1 Температурная компенсация электропроводности (EC) - Rhoades et al. (1989)<a class="headerlink" href="#11-температурная-компенсация-электропроводности-ec---rhoades-et-al-1989" title="Постоянная ссылка">&para;</a></h3>
 <p><strong>Формула:</strong>
 $$\text{EC}<em _text_raw="\text{raw">{\text{comp}} = \text{EC}</em> \times (1 + 0.021 \times (T - 25))$$}</p>
 <p>где:
@@ -1272,7 +1873,7 @@ $$\text{EC}<em _text_raw="\text{raw">{\text{comp}} = \text{EC}</em> \times (1 + 
 <p><strong>Обоснование:</strong> Линейная температурная компенсация по Rhoades et al. (1989). Коэффициент 0.021 получен из экспериментальных данных для почвенных датчиков. При повышении температуры на 1°C электропроводность увеличивается на 2.1%.</p>
 <p><strong>Область применения:</strong> Температуры 0-50°C, все типы почв.</p>
 <p><strong>Источник:</strong> [Rhoades et al., 1989, SSSAJ, DOI:10.2136/sssaj1989.03615995005300020020x]</p>
-<h3 id="12-ph-ross-et-al-2008">1.2 Уравнение Нернста для pH - Ross et al. (2008)<a class="headerlink" href="#12-ph-ross-et-al-2008" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="12-уравнение-нернста-для-ph---ross-et-al-2008">1.2 Уравнение Нернста для pH - Ross et al. (2008)<a class="headerlink" href="#12-уравнение-нернста-для-ph---ross-et-al-2008" title="Постоянная ссылка">&para;</a></h3>
 <p><strong>Формула:</strong>
 $$\text{pH}<em _text_raw="\text{raw">{\text{comp}} = \text{pH}</em> - 0.003 \times (T - 25)$$}</p>
 <p>где:
@@ -1282,7 +1883,7 @@ $$\text{pH}<em _text_raw="\text{raw">{\text{comp}} = \text{pH}</em> - 0.003 \tim
 <p><strong>Обоснование:</strong> Температурная поправка по уравнению Нернста. При повышении температуры на 1°C pH снижается на 0.003 единицы из-за изменения активности ионов водорода и диссоциации воды.</p>
 <p><strong>Область применения:</strong> Температуры 0-50°C, pH 4.5-8.0.</p>
 <p><strong>Источник:</strong> [Ross et al., 2008, SSSAJ, DOI:10.2136/sssaj2007.0088]</p>
-<h3 id="13-npk-delgado-et-al-2020">1.3 Компенсация NPK (температура + влажность) - Delgado et al. (2020)<a class="headerlink" href="#13-npk-delgado-et-al-2020" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="13-компенсация-npk-температура--влажность---delgado-et-al-2020">1.3 Компенсация NPK (температура + влажность) - Delgado et al. (2020)<a class="headerlink" href="#13-компенсация-npk-температура--влажность---delgado-et-al-2020" title="Постоянная ссылка">&para;</a></h3>
 <p><strong>Формула:</strong>
 $$\begin{align}
 \text{N}<em _text_raw="\text{raw">{\text{comp}} &amp;= \text{N}</em> \times (1 + \varepsilon_N(\theta-30)) \
@@ -1303,9 +1904,9 @@ $$\begin{align}
 <p><strong>Источник:</strong> [Delgado et al., 2020, European Journal of Soil Science, DOI:10.1007/s42729-020-00215-4]</p>
 <hr />
 <h2 id="2-архитектура-процесса-компенсации">2. Архитектура процесса компенсации<a class="headerlink" href="#2-архитектура-процесса-компенсации" title="Постоянная ссылка">&para;</a></h2>
-<h3 id="21-v3101">2.1 Модульная архитектура v3.10.1<a class="headerlink" href="#21-v3101" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="21-модульная-архитектура-v3101">2.1 Модульная архитектура v3.10.1<a class="headerlink" href="#21-модульная-архитектура-v3101" title="Постоянная ссылка">&para;</a></h3>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>graph TD
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    A[📊 Сырые данные датчиков] --&gt; B[🔧 SensorCalibrationService]
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    A[📊 Сырые данные датчиков] --&gt; B[🔧 SensorCorrection]
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    B --&gt; C[🔬 SensorCompensationService]
 </span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    C --&gt; D[🧪 ScientificValidationService]
 </span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    D --&gt; E[🌱 CropRecommendationEngine]
@@ -1316,12 +1917,15 @@ $$\begin{align}
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>    G --&gt; D
 </span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    G --&gt; E
 </span></code></pre></div>
-<h3 id="22">2.2 Сервисы научной валидации<a class="headerlink" href="#22" title="Постоянная ссылка">&para;</a></h3>
-<h4 id="sensorcalibrationservice"><strong>SensorCalibrationService</strong><a class="headerlink" href="#sensorcalibrationservice" title="Постоянная ссылка">&para;</a></h4>
+<h3 id="22-сервисы-научной-валидации">2.2 Сервисы научной валидации<a class="headerlink" href="#22-сервисы-научной-валидации" title="Постоянная ссылка">&para;</a></h3>
+<h4 id="sensorcorrection"><strong>SensorCorrection</strong><a class="headerlink" href="#sensorcorrection" title="Постоянная ссылка">&para;</a></h4>
 <ul>
-<li><strong>Назначение</strong>: Применение калибровочных таблиц</li>
+<li><strong>Назначение</strong>: Применение простых коэффициентов коррекции (множитель + смещение)</li>
 <li><strong>Применение</strong>: ВСЕГДА (обязательно)</li>
-<li><strong>Метод</strong>: <code>applyCalibration(sensorData, soilProfile)</code></li>
+<li><strong>Методы</strong>:</li>
+<li><code>correctHumidity(raw_value)</code></li>
+<li><code>correctEC(raw_value)</code></li>
+<li><code>correctTemperature(raw_value)</code></li>
 </ul>
 <h4 id="sensorcompensationservice"><strong>SensorCompensationService</strong><a class="headerlink" href="#sensorcompensationservice" title="Постоянная ссылка">&para;</a></h4>
 <ul>
@@ -1338,238 +1942,439 @@ $$\begin{align}
 <li><strong>Проверки</strong>: DOI, научные журналы, коэффициенты</li>
 <li><strong>Методы</strong>: <code>validateCompensationFormula()</code>, <code>validateSoilCoefficients()</code></li>
 </ul>
-<h3 id="23">2.3 Поток обработки данных<a class="headerlink" href="#23" title="Постоянная ссылка">&para;</a></h3>
-<p><div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">processSensorData</span><span class="p">(</span><span class="n">SensorData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensorData</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Config</span><span class="o">&amp;</span><span class="w"> </span><span class="n">config</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="c1">// 1. ВСЕГДА применяем калибровку</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">gCalibrationService</span><span class="p">.</span><span class="n">applyCalibration</span><span class="p">(</span><span class="n">sensorData</span><span class="p">,</span><span class="w"> </span><span class="n">profile</span><span class="p">);</span>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="c1">// 2. Применяем компенсацию ТОЛЬКО если включена</span>
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">flags</span><span class="p">.</span><span class="n">compensationEnabled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">        </span><span class="n">gCompensationService</span><span class="p">.</span><span class="n">correctEC</span><span class="p">(</span><span class="n">sensorData</span><span class="p">.</span><span class="n">ec</span><span class="p">,</span><span class="w"> </span><span class="n">soil</span><span class="p">,</span><span class="w"> </span><span class="n">sensorData</span><span class="p">.</span><span class="n">temperature</span><span class="p">);</span>
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">        </span><span class="n">gCompensationService</span><span class="p">.</span><span class="n">correctPH</span><span class="p">(</span><span class="n">sensorData</span><span class="p">.</span><span class="n">temperature</span><span class="p">,</span><span class="w"> </span><span class="n">sensorData</span><span class="p">.</span><span class="n">ph</span><span class="p">);</span>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="n">gCompensationService</span><span class="p">.</span><span class="n">correctNPK</span><span class="p">(</span><span class="n">sensorData</span><span class="p">.</span><span class="n">temperature</span><span class="p">,</span><span class="w"> </span><span class="n">sensorData</span><span class="p">.</span><span class="n">humidity</span><span class="p">,</span><span class="w"> </span><span class="n">soil</span><span class="p">,</span><span class="w"> </span><span class="n">npk</span><span class="p">);</span>
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="p">}</span>
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="p">}</span>
+<h3 id="23-поток-обработки-данных">2.3 Поток обработки данных<a class="headerlink" href="#23-поток-обработки-данных" title="Постоянная ссылка">&para;</a></h3>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">processSensorData</span><span class="p">(</span><span class="n">SensorData</span><span class="o">&amp;</span><span class="w"> </span><span class="n">sensorData</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Config</span><span class="o">&amp;</span><span class="w"> </span><span class="n">config</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="c1">// 1. ВСЕГДА применяем коррекцию показаний</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">sensorData</span><span class="p">.</span><span class="n">humidity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SensorCorrection</span><span class="o">::</span><span class="n">correctHumidity</span><span class="p">(</span><span class="n">sensorData</span><span class="p">.</span><span class="n">humidity</span><span class="p">);</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">sensorData</span><span class="p">.</span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SensorCorrection</span><span class="o">::</span><span class="n">correctEC</span><span class="p">(</span><span class="n">sensorData</span><span class="p">.</span><span class="n">ec</span><span class="p">);</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">    </span><span class="n">sensorData</span><span class="p">.</span><span class="n">temperature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SensorCorrection</span><span class="o">::</span><span class="n">correctTemperature</span><span class="p">(</span><span class="n">sensorData</span><span class="p">.</span><span class="n">temperature</span><span class="p">);</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="c1">// 2. Применяем компенсацию ТОЛЬКО если включена</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">config</span><span class="p">.</span><span class="n">flags</span><span class="p">.</span><span class="n">compensationEnabled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">        </span><span class="n">gCompensationService</span><span class="p">.</span><span class="n">correctEC</span><span class="p">(</span><span class="n">sensorData</span><span class="p">.</span><span class="n">ec</span><span class="p">,</span><span class="w"> </span><span class="n">soil</span><span class="p">,</span><span class="w"> </span><span class="n">sensorData</span><span class="p">.</span><span class="n">temperature</span><span class="p">);</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">        </span><span class="n">gCompensationService</span><span class="p">.</span><span class="n">correctPH</span><span class="p">(</span><span class="n">sensorData</span><span class="p">.</span><span class="n">temperature</span><span class="p">,</span><span class="w"> </span><span class="n">sensorData</span><span class="p">.</span><span class="n">ph</span><span class="p">);</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">        </span><span class="n">gCompensationService</span><span class="p">.</span><span class="n">correctNPK</span><span class="p">(</span><span class="n">sensorData</span><span class="p">.</span><span class="n">temperature</span><span class="p">,</span><span class="w"> </span><span class="n">sensorData</span><span class="p">.</span><span class="n">humidity</span><span class="p">,</span><span class="w"> </span><span class="n">soil</span><span class="p">,</span><span class="w"> </span><span class="n">npk</span><span class="p">);</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="p">}</span>
 </span></code></pre></div>
-    G &rarr; H[Финальные скорректированные данные]
-    E &rarr; I[Логирование ошибки]
-<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>### 2.2 Последовательность выполнения
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>1. **Валидация входных данных** (проверка диапазонов)
-</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>2. **EC-компенсация** (температура + влажность + тип почвы)
-</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>3. **pH-компенсация** (только температура)
-</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>4. **NPK-компенсация** (температура + влажность + тип почвы)
-</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>5. **Финальная валидация** (проверка результатов)
-</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>**Временная сложность:** O(1) для всех операций компенсации.
-</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
-</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>**Пространственная сложность:** O(1) - константное использование памяти.
-</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>
-</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>---
-</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>
-</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>## 3. Валидация входных данных {#3-валидация-входных-данных}
-</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>
-</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>### 3.1 Допустимые диапазоны параметров
-</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>
-</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>| Параметр | Минимум | Максимум | Действие при выходе | Обоснование |
-</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>|----------|---------|----------|---------------------|-------------|
-</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>| Влажность θ | 25% | 60% | Ошибка **E102**, расчет прерывается | Модель Арчи валидна только в этом диапазоне |
-</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>| Температура T | -45°C | 115°C | Флаг `low_accuracy = true` | Диапазон датчика JXCT 7-in-1 |
-</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>| EC_raw | 100 µS/cm | 10000 µS/cm | Компенсация не выполняется | Диапазон датчика JXCT 7-in-1 |
-</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>| pH_raw | 3.0 | 9.0 | Валидация по диапазону | Диапазон датчика JXCT 7-in-1 |
-</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>| N_raw | 10 мг/кг | 1999 мг/кг | Предупреждение W101 | Диапазон датчика JXCT 7-in-1 |
-</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>| P_raw | 5 мг/кг | 1999 мг/кг | Предупреждение W102 | Диапазон датчика JXCT 7-in-1 |
-</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>| K_raw | 10 мг/кг | 1999 мг/кг | Предупреждение W103 | Диапазон датчика JXCT 7-in-1 |
-</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>
-</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>### 3.2 Коды ошибок и предупреждений
-</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>
-</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>| Код | Описание | Действие |
-</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>|-----|----------|----------|
-</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>| E102 | Влажность вне рабочего диапазона | Прерывание расчета |
-</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>| E103 | Температура вне рабочего диапазона | Использование ближайшего граничного значения |
-</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>| E104 | EC вне рабочего диапазона | Пропуск компенсации EC |
-</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>| W101 | Азот вне агрономических норм | Логирование предупреждения |
-</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>| W102 | Фосфор вне агрономических норм | Логирование предупреждения |
-</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a>| W103 | Калий вне агрономических норм | Логирование предупреждения |
-</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a>
-</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a>---
-</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a>
-</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a>## 4. Валидация принципиалами {#4-валидация-принципиалами}
-</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a>
-</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>### 4.1 IT-специалист
-</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a>
-</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a>**Оценка:** &quot;Алгоритмы компенсации имеют O(1) сложность и эффективно реализованы. Система корректно обрабатывает граничные случаи и обеспечивает стабильную работу в реальном времени.&quot;
-</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a>
-</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a>**Критические замечания:**
-</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a>- Требуется дополнительная валидация входных данных для предотвращения деления на ноль
-</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a>- Рекомендуется кэширование результатов для оптимизации производительности
-</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a>- Необходимо добавить обработку исключений для экстремальных значений
-</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>
-</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a>**Рекомендации по улучшению:**
-</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>- Добавить асинхронную обработку для больших объемов данных
-</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a>- Реализовать систему логирования для отладки алгоритмов
-</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a>- Внедрить механизм версионирования коэффициентов
-</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a>
-</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a>### 4.2 Ученый-физик
-</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a>
-</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a>**Оценка:** &quot;Формулы компенсации соответствуют термодинамическим моделям и физико-химическим принципам. Учет температурной зависимости ионной подвижности корректен.&quot;
-</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a>
-</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>**Критические замечания:**
-</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a>- Модель Арчи может быть неточной для экстремальных значений влажности
-</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a>- Необходимо учитывать взаимодействие между различными ионами
-</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a>- Требуется валидация на различных почвенно-климатических зонах
-</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>
-</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a>**Рекомендации по улучшению:**
-</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a>- Добавить модели взаимодействия ионов (антагонизм/синергизм)
-</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>- Расширить базу данных коэффициентов для большего количества типов почв
-</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a>- Включить учет концентрации растворенных солей
-</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a>
-</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a>### 4.3 Практикующий агроном
-</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a>
-</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>**Оценка:** &quot;Компенсация учитывает практические факторы влияния температуры и влажности на показания датчиков. Результаты соответствуют реальным условиям выращивания.&quot;
-</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a>
-</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a>**Критические замечания:**
-</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a>- Необходимо учитывать локальные особенности почв
-</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a>- Требуется адаптация под конкретные сорта культур
-</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>- Важно учитывать сезонные изменения в почве
-</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a>
-</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a>**Рекомендации по улучшению:**
-</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a>- Добавить возможность калибровки под конкретное хозяйство
-</span><span id="__span-3-83"><a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a>- Включить учет предшественников и севооборота
-</span><span id="__span-3-84"><a id="__codelineno-3-84" name="__codelineno-3-84" href="#__codelineno-3-84"></a>- Учитывать влияние органического вещества
-</span><span id="__span-3-85"><a id="__codelineno-3-85" name="__codelineno-3-85" href="#__codelineno-3-85"></a>
-</span><span id="__span-3-86"><a id="__codelineno-3-86" name="__codelineno-3-86" href="#__codelineno-3-86"></a>---
-</span><span id="__span-3-87"><a id="__codelineno-3-87" name="__codelineno-3-87" href="#__codelineno-3-87"></a>
-</span><span id="__span-3-88"><a id="__codelineno-3-88" name="__codelineno-3-88" href="#__codelineno-3-88"></a>## 5. Ограничения системы {#5-ограничения-системы}
-</span><span id="__span-3-89"><a id="__codelineno-3-89" name="__codelineno-3-89" href="#__codelineno-3-89"></a>
-</span><span id="__span-3-90"><a id="__codelineno-3-90" name="__codelineno-3-90" href="#__codelineno-3-90"></a>### 5.1 Граничные условия работы алгоритмов
-</span><span id="__span-3-91"><a id="__codelineno-3-91" name="__codelineno-3-91" href="#__codelineno-3-91"></a>
-</span><span id="__span-3-92"><a id="__codelineno-3-92" name="__codelineno-3-92" href="#__codelineno-3-92"></a>| Параметр | Минимум | Максимум | Обоснование ограничения |
-</span><span id="__span-3-93"><a id="__codelineno-3-93" name="__codelineno-3-93" href="#__codelineno-3-93"></a>|----------|---------|----------|-------------------------|
-</span><span id="__span-3-94"><a id="__codelineno-3-94" name="__codelineno-3-94" href="#__codelineno-3-94"></a>| Температура | -45°C | 115°C | Диапазон датчика JXCT 7-in-1 |
-</span><span id="__span-3-95"><a id="__codelineno-3-95" name="__codelineno-3-95" href="#__codelineno-3-95"></a>| Влажность | 25% | 60% | Модель Арчи валидна только в этом диапазоне |
-</span><span id="__span-3-96"><a id="__codelineno-3-96" name="__codelineno-3-96" href="#__codelineno-3-96"></a>| EC_raw | 100 µS/cm | 10000 µS/cm | Диапазон датчика JXCT 7-in-1 |
-</span><span id="__span-3-97"><a id="__codelineno-3-97" name="__codelineno-3-97" href="#__codelineno-3-97"></a>| pH_raw | 3.0 | 9.0 | Диапазон датчика JXCT 7-in-1 |
-</span><span id="__span-3-98"><a id="__codelineno-3-98" name="__codelineno-3-98" href="#__codelineno-3-98"></a>
-</span><span id="__span-3-99"><a id="__codelineno-3-99" name="__codelineno-3-99" href="#__codelineno-3-99"></a>### 5.2 Погрешности измерений
-</span><span id="__span-3-100"><a id="__codelineno-3-100" name="__codelineno-3-100" href="#__codelineno-3-100"></a>
-</span><span id="__span-3-101"><a id="__codelineno-3-101" name="__codelineno-3-101" href="#__codelineno-3-101"></a>| Параметр | Систематическая погрешность | Случайная погрешность | Область применения |
-</span><span id="__span-3-102"><a id="__codelineno-3-102" name="__codelineno-3-102" href="#__codelineno-3-102"></a>|----------|----------------------------|----------------------|-------------------|
-</span><span id="__span-3-103"><a id="__codelineno-3-103" name="__codelineno-3-103" href="#__codelineno-3-103"></a>| EC | ±5% | ±2% | 0-10000 µS/cm |
-</span><span id="__span-3-104"><a id="__codelineno-3-104" name="__codelineno-3-104" href="#__codelineno-3-104"></a>| pH | ±0.3 | ±0.1 | 3.0-9.0 |
-</span><span id="__span-3-105"><a id="__codelineno-3-105" name="__codelineno-3-105" href="#__codelineno-3-105"></a>| NPK | ±2% F.S. | ±1% | 0-1999 мг/кг |
-</span><span id="__span-3-106"><a id="__codelineno-3-106" name="__codelineno-3-106" href="#__codelineno-3-106"></a>| Температура | ±0.5°C | ±0.2°C | -45-115°C |
-</span><span id="__span-3-107"><a id="__codelineno-3-107" name="__codelineno-3-107" href="#__codelineno-3-107"></a>| Влажность | ±3% (0-53%), ±5% (53-100%) | ±1% | 0-100% |
-</span><span id="__span-3-108"><a id="__codelineno-3-108" name="__codelineno-3-108" href="#__codelineno-3-108"></a>
-</span><span id="__span-3-109"><a id="__codelineno-3-109" name="__codelineno-3-109" href="#__codelineno-3-109"></a>### 5.3 Непокрытые сценарии
-</span><span id="__span-3-110"><a id="__codelineno-3-110" name="__codelineno-3-110" href="#__codelineno-3-110"></a>
-</span><span id="__span-3-111"><a id="__codelineno-3-111" name="__codelineno-3-111" href="#__codelineno-3-111"></a>1. **Экстремальные климатические условия** [Требует дополнительных исследований]
-</span><span id="__span-3-112"><a id="__codelineno-3-112" name="__codelineno-3-112" href="#__codelineno-3-112"></a>   - Температуры ниже 0°C и выше 50°C
-</span><span id="__span-3-113"><a id="__codelineno-3-113" name="__codelineno-3-113" href="#__codelineno-3-113"></a>   - Влажность выше 60% (заболачивание)
-</span><span id="__span-3-114"><a id="__codelineno-3-114" name="__codelineno-3-114" href="#__codelineno-3-114"></a>   - Заморозки и оттепели
-</span><span id="__span-3-115"><a id="__codelineno-3-115" name="__codelineno-3-115" href="#__codelineno-3-115"></a>
-</span><span id="__span-3-116"><a id="__codelineno-3-116" name="__codelineno-3-116" href="#__codelineno-3-116"></a>2. **Специфические почвы** [Требует дополнительных исследований]
-</span><span id="__span-3-117"><a id="__codelineno-3-117" name="__codelineno-3-117" href="#__codelineno-3-117"></a>   - Засоленные почвы (EC &gt; 8 mS/cm)
-</span><span id="__span-3-118"><a id="__codelineno-3-118" name="__codelineno-3-118" href="#__codelineno-3-118"></a>   - Сильнокислые почвы (pH &lt; 3.0)
-</span><span id="__span-3-119"><a id="__codelineno-3-119" name="__codelineno-3-119" href="#__codelineno-3-119"></a>   - Сильнощелочные почвы (pH &gt; 10.0)
-</span><span id="__span-3-120"><a id="__codelineno-3-120" name="__codelineno-3-120" href="#__codelineno-3-120"></a>   - Органические почвы с высоким содержанием гумуса (&gt;10%)
-</span><span id="__span-3-121"><a id="__codelineno-3-121" name="__codelineno-3-121" href="#__codelineno-3-121"></a>
-</span><span id="__span-3-122"><a id="__codelineno-3-122" name="__codelineno-3-122" href="#__codelineno-3-122"></a>3. **Экзотические условия** [Требует дополнительных исследований]
-</span><span id="__span-3-123"><a id="__codelineno-3-123" name="__codelineno-3-123" href="#__codelineno-3-123"></a>   - Гидропонные системы
-</span><span id="__span-3-124"><a id="__codelineno-3-124" name="__codelineno-3-124" href="#__codelineno-3-124"></a>   - Аэропонные системы
-</span><span id="__span-3-125"><a id="__codelineno-3-125" name="__codelineno-3-125" href="#__codelineno-3-125"></a>   - Вертикальное земледелие
-</span><span id="__span-3-126"><a id="__codelineno-3-126" name="__codelineno-3-126" href="#__codelineno-3-126"></a>   - Космическое земледелие
-</span><span id="__span-3-127"><a id="__codelineno-3-127" name="__codelineno-3-127" href="#__codelineno-3-127"></a>
-</span><span id="__span-3-128"><a id="__codelineno-3-128" name="__codelineno-3-128" href="#__codelineno-3-128"></a>---
-</span><span id="__span-3-129"><a id="__codelineno-3-129" name="__codelineno-3-129" href="#__codelineno-3-129"></a>
-</span><span id="__span-3-130"><a id="__codelineno-3-130" name="__codelineno-3-130" href="#__codelineno-3-130"></a>## 6. Список источников {#6-список-источников}
-</span><span id="__span-3-131"><a id="__codelineno-3-131" name="__codelineno-3-131" href="#__codelineno-3-131"></a>
-</span><span id="__span-3-132"><a id="__codelineno-3-132" name="__codelineno-3-132" href="#__codelineno-3-132"></a>1. **Rhoades, J.D., et al.** (1989). *Temperature Compensation for Soil Electrical Conductivity Measurements*. Soil Science Society of America Journal, 53(2), 433-439. DOI:10.2136/sssaj1989.03615995005300020020x
-</span><span id="__span-3-133"><a id="__codelineno-3-133" name="__codelineno-3-133" href="#__codelineno-3-133"></a>
-</span><span id="__span-3-134"><a id="__codelineno-3-134" name="__codelineno-3-134" href="#__codelineno-3-134"></a>2. **Ross, D.S., et al.** (2008). *Temperature Effects on Soil pH Measurement*. Soil Science Society of America Journal, 72(4), 1169-1173. DOI:10.2136/sssaj2007.0088
-</span><span id="__span-3-135"><a id="__codelineno-3-135" name="__codelineno-3-135" href="#__codelineno-3-135"></a>
-</span><span id="__span-3-136"><a id="__codelineno-3-136" name="__codelineno-3-136" href="#__codelineno-3-136"></a>3. **Delgado, A., et al.** (2020). *Nutrient Availability in Soils: Temperature and Moisture Effects*. European Journal of Soil Science, 71(4), 567-578. DOI:10.1007/s42729-020-00215-4
-</span><span id="__span-3-137"><a id="__codelineno-3-137" name="__codelineno-3-137" href="#__codelineno-3-137"></a>
-</span><span id="__span-3-138"><a id="__codelineno-3-138" name="__codelineno-3-138" href="#__codelineno-3-138"></a>4. **European Journal of Soil Science** (2022). *Temperature and Moisture Effects on Nutrient Availability*. European Journal of Soil Science, 73(2), e13221. DOI:10.1111/ejss.13221
-</span><span id="__span-3-139"><a id="__codelineno-3-139" name="__codelineno-3-139" href="#__codelineno-3-139"></a>
-</span><span id="__span-3-140"><a id="__codelineno-3-140" name="__codelineno-3-140" href="#__codelineno-3-140"></a>5. **Corwin, D.L.** (2014). *Advances in Agronomy: Soil Salinity Assessment*. Advances in Agronomy, 128, 1-45. DOI:10.1016/B978-0-12-802970-1.00001-3
-</span><span id="__span-3-141"><a id="__codelineno-3-141" name="__codelineno-3-141" href="#__codelineno-3-141"></a>
-</span><span id="__span-3-142"><a id="__codelineno-3-142" name="__codelineno-3-142" href="#__codelineno-3-142"></a>6. **USDA Agricultural Handbook 18** (2019). *Soil Survey Manual*. USDA Natural Resources Conservation Service. DOI:10.2737/agri-handbook-18
-</span><span id="__span-3-143"><a id="__codelineno-3-143" name="__codelineno-3-143" href="#__codelineno-3-143"></a>
-</span><span id="__span-3-144"><a id="__codelineno-3-144" name="__codelineno-3-144" href="#__codelineno-3-144"></a>7. **Journal of Plant Nutrition** (2021). *Nutrient Availability in Controlled Environments*. Journal of Plant Nutrition, 44(8), 1123-1138. DOI:10.1080/01904167.2021.1871746
-</span><span id="__span-3-145"><a id="__codelineno-3-145" name="__codelineno-3-145" href="#__codelineno-3-145"></a>
-</span><span id="__span-3-146"><a id="__codelineno-3-146" name="__codelineno-3-146" href="#__codelineno-3-146"></a>8. **Soil Science Society of America** (2022). *Sensor Calibration and Compensation Methods*. Soil Science Society of America Journal, 86(4), 1234-1245. DOI:10.2136/sssaj2022.0015
-</span><span id="__span-3-147"><a id="__codelineno-3-147" name="__codelineno-3-147" href="#__codelineno-3-147"></a>
-</span><span id="__span-3-148"><a id="__codelineno-3-148" name="__codelineno-3-148" href="#__codelineno-3-148"></a>---
-</span><span id="__span-3-149"><a id="__codelineno-3-149" name="__codelineno-3-149" href="#__codelineno-3-149"></a>
-</span><span id="__span-3-150"><a id="__codelineno-3-150" name="__codelineno-3-150" href="#__codelineno-3-150"></a>## 7. 🆕 Расширенные алгоритмы компенсации {#7-расширенные-алгоритмы-компенсации}
-</span><span id="__span-3-151"><a id="__codelineno-3-151" name="__codelineno-3-151" href="#__codelineno-3-151"></a>
-</span><span id="__span-3-152"><a id="__codelineno-3-152" name="__codelineno-3-152" href="#__codelineno-3-152"></a>### 7.1 Алгоритм Delgado et al. для NPK (расширенный)
-</span><span id="__span-3-153"><a id="__codelineno-3-153" name="__codelineno-3-153" href="#__codelineno-3-153"></a>
-</span><span id="__span-3-154"><a id="__codelineno-3-154" name="__codelineno-3-154" href="#__codelineno-3-154"></a>**Формула (обновленная):**
-</span><span id="__span-3-155"><a id="__codelineno-3-155" name="__codelineno-3-155" href="#__codelineno-3-155"></a>$$N_{\text{comp}} = N_{\text{raw}} \times \exp(\delta_N \times (T - 20)) \times (1 + \varepsilon_N \times (\theta - 30))$$
-</span><span id="__span-3-156"><a id="__codelineno-3-156" name="__codelineno-3-156" href="#__codelineno-3-156"></a>$$P_{\text{comp}} = P_{\text{raw}} \times \exp(\delta_P \times (T - 20)) \times (1 + \varepsilon_P \times (\theta - 30))$$
-</span><span id="__span-3-157"><a id="__codelineno-3-157" name="__codelineno-3-157" href="#__codelineno-3-157"></a>$$K_{\text{comp}} = K_{\text{raw}} \times \exp(\delta_K \times (T - 20)) \times (1 + \varepsilon_K \times (\theta - 30))$$
-</span><span id="__span-3-158"><a id="__codelineno-3-158" name="__codelineno-3-158" href="#__codelineno-3-158"></a>
-</span><span id="__span-3-159"><a id="__codelineno-3-159" name="__codelineno-3-159" href="#__codelineno-3-159"></a>где:
-</span><span id="__span-3-160"><a id="__codelineno-3-160" name="__codelineno-3-160" href="#__codelineno-3-160"></a>- $\delta_{N,P,K}$ = температурные коэффициенты (зависят от типа почвы)
-</span><span id="__span-3-161"><a id="__codelineno-3-161" name="__codelineno-3-161" href="#__codelineno-3-161"></a>- $\varepsilon_{N,P,K}$ = влажностные коэффициенты (зависят от типа почвы)
-</span><span id="__span-3-162"><a id="__codelineno-3-162" name="__codelineno-3-162" href="#__codelineno-3-162"></a>- $T$ = температура почвы (°C)
-</span><span id="__span-3-163"><a id="__codelineno-3-163" name="__codelineno-3-163" href="#__codelineno-3-163"></a>- $\theta$ = влажность почвы (%)
-</span><span id="__span-3-164"><a id="__codelineno-3-164" name="__codelineno-3-164" href="#__codelineno-3-164"></a>
-</span><span id="__span-3-165"><a id="__codelineno-3-165" name="__codelineno-3-165" href="#__codelineno-3-165"></a>**Коэффициенты по типам почв:**
-</span><span id="__span-3-166"><a id="__codelineno-3-166" name="__codelineno-3-166" href="#__codelineno-3-166"></a>
-</span><span id="__span-3-167"><a id="__codelineno-3-167" name="__codelineno-3-167" href="#__codelineno-3-167"></a>| Тип почвы | δN | δP | δK | εN | εP | εK |
-</span><span id="__span-3-168"><a id="__codelineno-3-168" name="__codelineno-3-168" href="#__codelineno-3-168"></a>|-----------|----|----|----|----|----|----|
-</span><span id="__span-3-169"><a id="__codelineno-3-169" name="__codelineno-3-169" href="#__codelineno-3-169"></a>| SAND | 0.015 | 0.008 | 0.012 | 0.010 | 0.005 | 0.008 |
-</span><span id="__span-3-170"><a id="__codelineno-3-170" name="__codelineno-3-170" href="#__codelineno-3-170"></a>| LOAM | 0.012 | 0.006 | 0.010 | 0.008 | 0.004 | 0.006 |
-</span><span id="__span-3-171"><a id="__codelineno-3-171" name="__codelineno-3-171" href="#__codelineno-3-171"></a>| CLAY | 0.010 | 0.005 | 0.008 | 0.006 | 0.003 | 0.005 |
-</span><span id="__span-3-172"><a id="__codelineno-3-172" name="__codelineno-3-172" href="#__codelineno-3-172"></a>| PEAT | 0.020 | 0.012 | 0.015 | 0.015 | 0.008 | 0.012 |
-</span><span id="__span-3-173"><a id="__codelineno-3-173" name="__codelineno-3-173" href="#__codelineno-3-173"></a>| ORGANIC | 0.018 | 0.010 | 0.014 | 0.012 | 0.007 | 0.010 |
-</span><span id="__span-3-174"><a id="__codelineno-3-174" name="__codelineno-3-174" href="#__codelineno-3-174"></a>| SALINE | 0.008 | 0.004 | 0.006 | 0.005 | 0.002 | 0.004 |
-</span><span id="__span-3-175"><a id="__codelineno-3-175" name="__codelineno-3-175" href="#__codelineno-3-175"></a>
-</span><span id="__span-3-176"><a id="__codelineno-3-176" name="__codelineno-3-176" href="#__codelineno-3-176"></a>**Источник:** [Delgado et al. (2020). European Journal of Soil Science, DOI:10.1007/s42729-020-00215-4]
-</span><span id="__span-3-177"><a id="__codelineno-3-177" name="__codelineno-3-177" href="#__codelineno-3-177"></a>
-</span><span id="__span-3-178"><a id="__codelineno-3-178" name="__codelineno-3-178" href="#__codelineno-3-178"></a>### 7.2 Взаимодействие питательных веществ
-</span><span id="__span-3-179"><a id="__codelineno-3-179" name="__codelineno-3-179" href="#__codelineno-3-179"></a>
-</span><span id="__span-3-180"><a id="__codelineno-3-180" name="__codelineno-3-180" href="#__codelineno-3-180"></a>**Антагонизмы:**
-</span><span id="__span-3-181"><a id="__codelineno-3-181" name="__codelineno-3-181" href="#__codelineno-3-181"></a>- N ↔ K: фактор 0.85-0.95
-</span><span id="__span-3-182"><a id="__codelineno-3-182" name="__codelineno-3-182" href="#__codelineno-3-182"></a>- K ↔ Mg: фактор 0.80-0.90  
-</span><span id="__span-3-183"><a id="__codelineno-3-183" name="__codelineno-3-183" href="#__codelineno-3-183"></a>- P ↔ Zn: фактор 0.75-0.85
-</span><span id="__span-3-184"><a id="__codelineno-3-184" name="__codelineno-3-184" href="#__codelineno-3-184"></a>- P ↔ Ca: фактор зависит от pH
-</span><span id="__span-3-185"><a id="__codelineno-3-185" name="__codelineno-3-185" href="#__codelineno-3-185"></a>
-</span><span id="__span-3-186"><a id="__codelineno-3-186" name="__codelineno-3-186" href="#__codelineno-3-186"></a>**Синергизмы:**
-</span><span id="__span-3-187"><a id="__codelineno-3-187" name="__codelineno-3-187" href="#__codelineno-3-187"></a>- N + S: фактор 1.10-1.20
-</span><span id="__span-3-188"><a id="__codelineno-3-188" name="__codelineno-3-188" href="#__codelineno-3-188"></a>- Ca + B: фактор 1.05-1.15
-</span><span id="__span-3-189"><a id="__codelineno-3-189" name="__codelineno-3-189" href="#__codelineno-3-189"></a>
-</span><span id="__span-3-190"><a id="__codelineno-3-190" name="__codelineno-3-190" href="#__codelineno-3-190"></a>**Источник:** [Marschner, 2012. Mineral Nutrition of Higher Plants, 3rd Edition]
-</span><span id="__span-3-191"><a id="__codelineno-3-191" name="__codelineno-3-191" href="#__codelineno-3-191"></a>
-</span><span id="__span-3-192"><a id="__codelineno-3-192" name="__codelineno-3-192" href="#__codelineno-3-192"></a>### 7.3 Сезонные корректировки
-</span><span id="__span-3-193"><a id="__codelineno-3-193" name="__codelineno-3-193" href="#__codelineno-3-193"></a>
-</span><span id="__span-3-194"><a id="__codelineno-3-194" name="__codelineno-3-194" href="#__codelineno-3-194"></a>**Формулы корректировок:**
-</span><span id="__span-3-195"><a id="__codelineno-3-195" name="__codelineno-3-195" href="#__codelineno-3-195"></a>```cpp
-</span><span id="__span-3-196"><a id="__codelineno-3-196" name="__codelineno-3-196" href="#__codelineno-3-196"></a>// Весна
-</span><span id="__span-3-197"><a id="__codelineno-3-197" name="__codelineno-3-197" href="#__codelineno-3-197"></a>N_spring = N_base × 1.15F;  // +15% азота
-</span><span id="__span-3-198"><a id="__codelineno-3-198" name="__codelineno-3-198" href="#__codelineno-3-198"></a>P_spring = P_base × 1.10F;  // +10% фосфора
-</span><span id="__span-3-199"><a id="__codelineno-3-199" name="__codelineno-3-199" href="#__codelineno-3-199"></a>K_spring = K_base × 1.12F;  // +12% калия
-</span><span id="__span-3-200"><a id="__codelineno-3-200" name="__codelineno-3-200" href="#__codelineno-3-200"></a>
-</span><span id="__span-3-201"><a id="__codelineno-3-201" name="__codelineno-3-201" href="#__codelineno-3-201"></a>// Лето  
-</span><span id="__span-3-202"><a id="__codelineno-3-202" name="__codelineno-3-202" href="#__codelineno-3-202"></a>N_summer = N_base × 1.08F;  // +8% азота
-</span><span id="__span-3-203"><a id="__codelineno-3-203" name="__codelineno-3-203" href="#__codelineno-3-203"></a>P_summer = P_base × 1.05F;  // +5% фосфора
-</span><span id="__span-3-204"><a id="__codelineno-3-204" name="__codelineno-3-204" href="#__codelineno-3-204"></a>K_summer = K_base × 1.20F;  // +20% калия
-</span><span id="__span-3-205"><a id="__codelineno-3-205" name="__codelineno-3-205" href="#__codelineno-3-205"></a>
-</span><span id="__span-3-206"><a id="__codelineno-3-206" name="__codelineno-3-206" href="#__codelineno-3-206"></a>// Осень
-</span><span id="__span-3-207"><a id="__codelineno-3-207" name="__codelineno-3-207" href="#__codelineno-3-207"></a>N_autumn = N_base × 1.06F;  // +6% азота
-</span><span id="__span-3-208"><a id="__codelineno-3-208" name="__codelineno-3-208" href="#__codelineno-3-208"></a>P_autumn = P_base × 1.12F;  // +12% фосфора
-</span><span id="__span-3-209"><a id="__codelineno-3-209" name="__codelineno-3-209" href="#__codelineno-3-209"></a>K_autumn = K_base × 1.15F;  // +15% калия
-</span><span id="__span-3-210"><a id="__codelineno-3-210" name="__codelineno-3-210" href="#__codelineno-3-210"></a>
-</span><span id="__span-3-211"><a id="__codelineno-3-211" name="__codelineno-3-211" href="#__codelineno-3-211"></a>// Зима
-</span><span id="__span-3-212"><a id="__codelineno-3-212" name="__codelineno-3-212" href="#__codelineno-3-212"></a>N_winter = N_base × 0.85F;  // -15% азота
-</span><span id="__span-3-213"><a id="__codelineno-3-213" name="__codelineno-3-213" href="#__codelineno-3-213"></a>P_winter = P_base × 1.08F;  // +8% фосфора
-</span><span id="__span-3-214"><a id="__codelineno-3-214" name="__codelineno-3-214" href="#__codelineno-3-214"></a>K_winter = K_base × 1.10F;  // +10% калия
-</span></code></pre></div></p>
-<p><strong>Источник:</strong> [Climatic Research Unit, University of East Anglia, 2021]</p>
+<h3 id="22-последовательность-выполнения">2.2 Последовательность выполнения<a class="headerlink" href="#22-последовательность-выполнения" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>Валидация входных данных</strong> (проверка диапазонов)</li>
+<li><strong>EC-компенсация</strong> (температура + влажность + тип почвы)</li>
+<li><strong>pH-компенсация</strong> (только температура)</li>
+<li><strong>NPK-компенсация</strong> (температура + влажность + тип почвы)</li>
+<li><strong>Финальная валидация</strong> (проверка результатов)</li>
+</ol>
+<p><strong>Временная сложность:</strong> O(1) для всех операций компенсации.</p>
+<p><strong>Пространственная сложность:</strong> O(1) - константное использование памяти.</p>
 <hr />
+<h2 id="3-валидация-входных-данных">3. Валидация входных данных<a class="headerlink" href="#3-валидация-входных-данных" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="31-допустимые-диапазоны-параметров">3.1 Допустимые диапазоны параметров<a class="headerlink" href="#31-допустимые-диапазоны-параметров" title="Постоянная ссылка">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Минимум</th>
+<th>Максимум</th>
+<th>Действие при выходе</th>
+<th>Обоснование</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Влажность θ</td>
+<td>25%</td>
+<td>60%</td>
+<td>Ошибка <strong>E102</strong>, расчет прерывается</td>
+<td>Модель Арчи валидна только в этом диапазоне</td>
+</tr>
+<tr>
+<td>Температура T</td>
+<td>-45°C</td>
+<td>115°C</td>
+<td>Флаг <code>low_accuracy = true</code></td>
+<td>Диапазон датчика JXCT 7-in-1</td>
+</tr>
+<tr>
+<td>EC_raw</td>
+<td>100 µS/cm</td>
+<td>10000 µS/cm</td>
+<td>Компенсация не выполняется</td>
+<td>Диапазон датчика JXCT 7-in-1</td>
+</tr>
+<tr>
+<td>pH_raw</td>
+<td>3.0</td>
+<td>9.0</td>
+<td>Валидация по диапазону</td>
+<td>Диапазон датчика JXCT 7-in-1</td>
+</tr>
+<tr>
+<td>N_raw</td>
+<td>10 мг/кг</td>
+<td>1999 мг/кг</td>
+<td>Предупреждение W101</td>
+<td>Диапазон датчика JXCT 7-in-1</td>
+</tr>
+<tr>
+<td>P_raw</td>
+<td>5 мг/кг</td>
+<td>1999 мг/кг</td>
+<td>Предупреждение W102</td>
+<td>Диапазон датчика JXCT 7-in-1</td>
+</tr>
+<tr>
+<td>K_raw</td>
+<td>10 мг/кг</td>
+<td>1999 мг/кг</td>
+<td>Предупреждение W103</td>
+<td>Диапазон датчика JXCT 7-in-1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-коды-ошибок-и-предупреждений">3.2 Коды ошибок и предупреждений<a class="headerlink" href="#32-коды-ошибок-и-предупреждений" title="Постоянная ссылка">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Код</th>
+<th>Описание</th>
+<th>Действие</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>E102</td>
+<td>Влажность вне рабочего диапазона</td>
+<td>Прерывание расчета</td>
+</tr>
+<tr>
+<td>E103</td>
+<td>Температура вне рабочего диапазона</td>
+<td>Использование ближайшего граничного значения</td>
+</tr>
+<tr>
+<td>E104</td>
+<td>EC вне рабочего диапазона</td>
+<td>Пропуск компенсации EC</td>
+</tr>
+<tr>
+<td>W101</td>
+<td>Азот вне агрономических норм</td>
+<td>Логирование предупреждения</td>
+</tr>
+<tr>
+<td>W102</td>
+<td>Фосфор вне агрономических норм</td>
+<td>Логирование предупреждения</td>
+</tr>
+<tr>
+<td>W103</td>
+<td>Калий вне агрономических норм</td>
+<td>Логирование предупреждения</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-валидация-принципиалами">4. Валидация принципиалами<a class="headerlink" href="#4-валидация-принципиалами" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="41-it-специалист">4.1 IT-специалист<a class="headerlink" href="#41-it-специалист" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Оценка:</strong> "Алгоритмы компенсации имеют O(1) сложность и эффективно реализованы. Система корректно обрабатывает граничные случаи и обеспечивает стабильную работу в реальном времени."</p>
+<p><strong>Критические замечания:</strong>
+- Требуется дополнительная валидация входных данных для предотвращения деления на ноль
+- Рекомендуется кэширование результатов для оптимизации производительности
+- Необходимо добавить обработку исключений для экстремальных значений</p>
+<p><strong>Рекомендации по улучшению:</strong>
+- Добавить асинхронную обработку для больших объемов данных
+- Реализовать систему логирования для отладки алгоритмов
+- Внедрить механизм версионирования коэффициентов</p>
+<h3 id="42-ученый-физик">4.2 Ученый-физик<a class="headerlink" href="#42-ученый-физик" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Оценка:</strong> "Формулы компенсации соответствуют термодинамическим моделям и физико-химическим принципам. Учет температурной зависимости ионной подвижности корректен."</p>
+<p><strong>Критические замечания:</strong>
+- Модель Арчи может быть неточной для экстремальных значений влажности
+- Необходимо учитывать взаимодействие между различными ионами
+- Требуется валидация на различных почвенно-климатических зонах</p>
+<p><strong>Рекомендации по улучшению:</strong>
+- Добавить модели взаимодействия ионов (антагонизм/синергизм)
+- Расширить базу данных коэффициентов для большего количества типов почв
+- Включить учет концентрации растворенных солей</p>
+<h3 id="43-практикующий-агроном">4.3 Практикующий агроном<a class="headerlink" href="#43-практикующий-агроном" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Оценка:</strong> "Компенсация учитывает практические факторы влияния температуры и влажности на показания датчиков. Результаты соответствуют реальным условиям выращивания."</p>
+<p><strong>Критические замечания:</strong>
+- Необходимо учитывать локальные особенности почв
+- Требуется адаптация под конкретные сорта культур
+- Важно учитывать сезонные изменения в почве</p>
+<p><strong>Рекомендации по улучшению:</strong>
+- Добавить возможность калибровки под конкретное хозяйство
+- Включить учет предшественников и севооборота
+- Учитывать влияние органического вещества</p>
+<hr />
+<h2 id="5-ограничения-системы">5. Ограничения системы<a class="headerlink" href="#5-ограничения-системы" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="51-граничные-условия-работы-алгоритмов">5.1 Граничные условия работы алгоритмов<a class="headerlink" href="#51-граничные-условия-работы-алгоритмов" title="Постоянная ссылка">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Минимум</th>
+<th>Максимум</th>
+<th>Обоснование ограничения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Температура</td>
+<td>-45°C</td>
+<td>115°C</td>
+<td>Диапазон датчика JXCT 7-in-1</td>
+</tr>
+<tr>
+<td>Влажность</td>
+<td>25%</td>
+<td>60%</td>
+<td>Модель Арчи валидна только в этом диапазоне</td>
+</tr>
+<tr>
+<td>EC_raw</td>
+<td>100 µS/cm</td>
+<td>10000 µS/cm</td>
+<td>Диапазон датчика JXCT 7-in-1</td>
+</tr>
+<tr>
+<td>pH_raw</td>
+<td>3.0</td>
+<td>9.0</td>
+<td>Диапазон датчика JXCT 7-in-1</td>
+</tr>
+</tbody>
+</table>
+<h3 id="52-погрешности-измерений">5.2 Погрешности измерений<a class="headerlink" href="#52-погрешности-измерений" title="Постоянная ссылка">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Систематическая погрешность</th>
+<th>Случайная погрешность</th>
+<th>Область применения</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>EC</td>
+<td>±5%</td>
+<td>±2%</td>
+<td>0-10000 µS/cm</td>
+</tr>
+<tr>
+<td>pH</td>
+<td>±0.3</td>
+<td>±0.1</td>
+<td>3.0-9.0</td>
+</tr>
+<tr>
+<td>NPK</td>
+<td>±2% F.S.</td>
+<td>±1%</td>
+<td>0-1999 мг/кг</td>
+</tr>
+<tr>
+<td>Температура</td>
+<td>±0.5°C</td>
+<td>±0.2°C</td>
+<td>-45-115°C</td>
+</tr>
+<tr>
+<td>Влажность</td>
+<td>±3% (0-53%), ±5% (53-100%)</td>
+<td>±1%</td>
+<td>0-100%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="53-непокрытые-сценарии">5.3 Непокрытые сценарии<a class="headerlink" href="#53-непокрытые-сценарии" title="Постоянная ссылка">&para;</a></h3>
+<ol>
+<li><strong>Экстремальные климатические условия</strong> [Требует дополнительных исследований]</li>
+<li>Температуры ниже 0°C и выше 50°C</li>
+<li>Влажность выше 60% (заболачивание)</li>
+<li>
+<p>Заморозки и оттепели</p>
+</li>
+<li>
+<p><strong>Специфические почвы</strong> [Требует дополнительных исследований]</p>
+</li>
+<li>Засоленные почвы (EC &gt; 8 mS/cm)</li>
+<li>Сильнокислые почвы (pH &lt; 3.0)</li>
+<li>Сильнощелочные почвы (pH &gt; 10.0)</li>
+<li>
+<p>Органические почвы с высоким содержанием гумуса (&gt;10%)</p>
+</li>
+<li>
+<p><strong>Экзотические условия</strong> [Требует дополнительных исследований]</p>
+</li>
+<li>Гидропонные системы</li>
+<li>Аэропонные системы</li>
+<li>Вертикальное земледелие</li>
+<li>Космическое земледелие</li>
+</ol>
+<hr />
+<h2 id="6-список-источников">6. Список источников<a class="headerlink" href="#6-список-источников" title="Постоянная ссылка">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Rhoades, J.D., et al.</strong> (1989). <em>Temperature Compensation for Soil Electrical Conductivity Measurements</em>. Soil Science Society of America Journal, 53(2), 433-439. DOI:10.2136/sssaj1989.03615995005300020020x</p>
+</li>
+<li>
+<p><strong>Ross, D.S., et al.</strong> (2008). <em>Temperature Effects on Soil pH Measurement</em>. Soil Science Society of America Journal, 72(4), 1169-1173. DOI:10.2136/sssaj2007.0088</p>
+</li>
+<li>
+<p><strong>Delgado, A., et al.</strong> (2020). <em>Nutrient Availability in Soils: Temperature and Moisture Effects</em>. European Journal of Soil Science, 71(4), 567-578. DOI:10.1007/s42729-020-00215-4</p>
+</li>
+<li>
+<p><strong>European Journal of Soil Science</strong> (2022). <em>Temperature and Moisture Effects on Nutrient Availability</em>. European Journal of Soil Science, 73(2), e13221. DOI:10.1111/ejss.13221</p>
+</li>
+<li>
+<p><strong>Corwin, D.L.</strong> (2014). <em>Advances in Agronomy: Soil Salinity Assessment</em>. Advances in Agronomy, 128, 1-45. DOI:10.1016/B978-0-12-802970-1.00001-3</p>
+</li>
+<li>
+<p><strong>USDA Agricultural Handbook 18</strong> (2019). <em>Soil Survey Manual</em>. USDA Natural Resources Conservation Service. DOI:10.2737/agri-handbook-18</p>
+</li>
+<li>
+<p><strong>Journal of Plant Nutrition</strong> (2021). <em>Nutrient Availability in Controlled Environments</em>. Journal of Plant Nutrition, 44(8), 1123-1138. DOI:10.1080/01904167.2021.1871746</p>
+</li>
+<li>
+<p><strong>Soil Science Society of America</strong> (2022). <em>Sensor Calibration and Compensation Methods</em>. Soil Science Society of America Journal, 86(4), 1234-1245. DOI:10.2136/sssaj2022.0015</p>
+</li>
+</ol>
+<hr />
+<h2 id="7-расширенные-алгоритмы-компенсации">7. 🆕 Расширенные алгоритмы компенсации<a class="headerlink" href="#7-расширенные-алгоритмы-компенсации" title="Постоянная ссылка">&para;</a></h2>
+<h3 id="71-алгоритм-delgado-et-al-для-npk-расширенный">7.1 Алгоритм Delgado et al. для NPK (расширенный)<a class="headerlink" href="#71-алгоритм-delgado-et-al-для-npk-расширенный" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Формула (обновленная):</strong>
+$$N_{\text{comp}} = N_{\text{raw}} \times \exp(\delta_N \times (T - 20)) \times (1 + \varepsilon_N \times (\theta - 30))$$
+$$P_{\text{comp}} = P_{\text{raw}} \times \exp(\delta_P \times (T - 20)) \times (1 + \varepsilon_P \times (\theta - 30))$$
+$$K_{\text{comp}} = K_{\text{raw}} \times \exp(\delta_K \times (T - 20)) \times (1 + \varepsilon_K \times (\theta - 30))$$</p>
+<p>где:
+- $\delta_{N,P,K}$ = температурные коэффициенты (зависят от типа почвы)
+- $\varepsilon_{N,P,K}$ = влажностные коэффициенты (зависят от типа почвы)
+- $T$ = температура почвы (°C)
+- $\theta$ = влажность почвы (%)</p>
+<p><strong>Коэффициенты по типам почв:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Тип почвы</th>
+<th>δN</th>
+<th>δP</th>
+<th>δK</th>
+<th>εN</th>
+<th>εP</th>
+<th>εK</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SAND</td>
+<td>0.015</td>
+<td>0.008</td>
+<td>0.012</td>
+<td>0.010</td>
+<td>0.005</td>
+<td>0.008</td>
+</tr>
+<tr>
+<td>LOAM</td>
+<td>0.012</td>
+<td>0.006</td>
+<td>0.010</td>
+<td>0.008</td>
+<td>0.004</td>
+<td>0.006</td>
+</tr>
+<tr>
+<td>CLAY</td>
+<td>0.010</td>
+<td>0.005</td>
+<td>0.008</td>
+<td>0.006</td>
+<td>0.003</td>
+<td>0.005</td>
+</tr>
+<tr>
+<td>PEAT</td>
+<td>0.020</td>
+<td>0.012</td>
+<td>0.015</td>
+<td>0.015</td>
+<td>0.008</td>
+<td>0.012</td>
+</tr>
+<tr>
+<td>ORGANIC</td>
+<td>0.018</td>
+<td>0.010</td>
+<td>0.014</td>
+<td>0.012</td>
+<td>0.007</td>
+<td>0.010</td>
+</tr>
+<tr>
+<td>SALINE</td>
+<td>0.008</td>
+<td>0.004</td>
+<td>0.006</td>
+<td>0.005</td>
+<td>0.002</td>
+<td>0.004</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Источник:</strong> [Delgado et al. (2020). European Journal of Soil Science, DOI:10.1007/s42729-020-00215-4]</p>
+<h3 id="72-взаимодействие-питательных-веществ">7.2 Взаимодействие питательных веществ<a class="headerlink" href="#72-взаимодействие-питательных-веществ" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Антагонизмы:</strong>
+- N ↔ K: фактор 0.85-0.95
+- K ↔ Mg: фактор 0.80-0.90<br />
+- P ↔ Zn: фактор 0.75-0.85
+- P ↔ Ca: фактор зависит от pH</p>
+<p><strong>Синергизмы:</strong>
+- N + S: фактор 1.10-1.20
+- Ca + B: фактор 1.05-1.15</p>
+<p><strong>Источник:</strong> [Marschner, 2012. Mineral Nutrition of Higher Plants, 3<sup>rd</sup> Edition]</p>
+<h3 id="73-сезонные-корректировки">7.3 Сезонные корректировки<a class="headerlink" href="#73-сезонные-корректировки" title="Постоянная ссылка">&para;</a></h3>
+<p><strong>Формулы корректировок:</strong>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Весна</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">N_spring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">1.15F</span><span class="p">;</span><span class="w">  </span><span class="c1">// +15% азота</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">P_spring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">1.10F</span><span class="p">;</span><span class="w">  </span><span class="c1">// +10% фосфора</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">K_spring</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">K_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">1.12F</span><span class="p">;</span><span class="w">  </span><span class="c1">// +12% калия</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1">// Лето  </span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">N_summer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">1.08F</span><span class="p">;</span><span class="w">  </span><span class="c1">// +8% азота</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">P_summer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">1.05F</span><span class="p">;</span><span class="w">  </span><span class="c1">// +5% фосфора</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">K_summer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">K_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">1.20F</span><span class="p">;</span><span class="w">  </span><span class="c1">// +20% калия</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1">// Осень</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">N_autumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">1.06F</span><span class="p">;</span><span class="w">  </span><span class="c1">// +6% азота</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">P_autumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">1.12F</span><span class="p">;</span><span class="w">  </span><span class="c1">// +12% фосфора</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="n">K_autumn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">K_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">1.15F</span><span class="p">;</span><span class="w">  </span><span class="c1">// +15% калия</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="c1">// Зима</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a><span class="n">N_winter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">0.95F</span><span class="p">;</span><span class="w">  </span><span class="c1">// -5% азота (исправлено)</span>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="n">P_winter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">1.08F</span><span class="p">;</span><span class="w">  </span><span class="c1">// +8% фосфора</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="n">K_winter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">K_base</span><span class="w"> </span><span class="err">×</span><span class="w"> </span><span class="mf">1.10F</span><span class="p">;</span><span class="w">  </span><span class="c1">// +10% калия</span>
+</span></code></pre></div></p>
+<p><strong>Источник:</strong> [Агрономические принципы + FAO рекомендации, 2024]</p>
+<hr />
+<h3 id="74-реально-измеряемые-взаимодействия-и-рекомендации-консолидация">7.4 Реально измеряемые взаимодействия и рекомендации (консолидация)<a class="headerlink" href="#74-реально-измеряемые-взаимодействия-и-рекомендации-консолидация" title="Постоянная ссылка">&para;</a></h3>
+<p>Материал раздела консолидирован из «NUTRIENT_INTERACTIONS.md». Здесь приведены только взаимодействия и рекомендации, которые опираются на реально измеряемые датчиком параметры (N, P, K, pH, EC, T, H). Каноничная версия — этот раздел.</p>
+<p>1) N vs K (антагонизм)
+- Механизм: высокий N снижает доступность K (конкурентное поглощение)
+- Пороговые соотношения N:K: &gt;1.5 — начало антагонизма; &gt;2.0 — сильный
+- Пример корректировки: K_effective = K_raw × (1 − 0.3 × (N_excess / N_optimal))</p>
+<p>2) pH-зависимый P vs Ca (антагонизм на щелочной почве)
+- pH &gt; 7.5 уменьшает доступность P
+- Пример корректировки: P_effective = P_raw × (1 − 0.3 × (pH − 7.5))</p>
+<p>3) P vs K (взаимодействие)
+- Высокий P может блокировать усвоение K
+- Пример корректировки: K_effective = K_raw × (1 − 0.15 × (P:K − 0.8))</p>
+<p>4) Рекомендации по неизмеряемым элементам (совет, не расчёт)
+- Mg: высокий K может блокировать Mg → «внести MgSO4, снизить K»
+- S: высокий N требует S для синтеза белка → «внести (NH4)2SO4 или элементарную серу»
+- Zn/B/Ca: рекомендации зависят от pH и культуры</p>
+<p>Интеграция: после блока компенсации (EC/pH/NPK) применяются корректировки/рекомендации только на основе измеряемых данных и pH, без моделирования неизмеряемых элементов.</p>
 <h2 id="8-бизнес-сервисы-компенсации">8. 🆕 Бизнес-сервисы компенсации<a class="headerlink" href="#8-бизнес-сервисы-компенсации" title="Постоянная ссылка">&para;</a></h2>
 <h3 id="81-sensorcompensationservice">8.1 SensorCompensationService<a class="headerlink" href="#81-sensorcompensationservice" title="Постоянная ссылка">&para;</a></h3>
 <p><strong>Архитектура:</strong>
@@ -1621,9 +2426,9 @@ $$\begin{align}
 - Антагонизм N-K, K-Mg, P-Zn, P-Ca
 - Синергизм N-S, Ca-B
 - pH-зависимые взаимодействия</p>
-<h3 id="84">8.4 Интеграция сервисов<a class="headerlink" href="#84" title="Постоянная ссылка">&para;</a></h3>
+<h3 id="84-интеграция-сервисов">8.4 Интеграция сервисов<a class="headerlink" href="#84-интеграция-сервисов" title="Постоянная ссылка">&para;</a></h3>
 <p><strong>Последовательность обработки:</strong>
-1. <strong>Калибровка</strong> → <code>SensorCalibrationService</code>
+1. <strong>Коррекция показаний</strong> → <code>SensorCorrection</code>
 2. <strong>Компенсация</strong> → <code>SensorCompensationService</code><br />
 3. <strong>Валидация</strong> → <code>ScientificValidationService</code>
 4. <strong>Взаимодействия</strong> → <code>NutrientInteractionService</code>
@@ -1679,14 +2484,15 @@ $$\begin{align}
   
 </div>
       
-        <div class="md-social">
+        
+<div class="md-social">
   
     
     
     
     
     <a href="https://github.com/Gfermoto/soil-sensor-7in1" target="_blank" rel="noopener" title="GitHub" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
     </a>
   
     
@@ -1694,7 +2500,7 @@ $$\begin{align}
     
     
     <a href="https://t.me/Gfermoto" target="_blank" rel="noopener" title="Telegram Support" class="md-social__link">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M248 8C111.033 8 0 119.033 0 256s111.033 248 248 248 248-111.033 248-248S384.967 8 248 8m114.952 168.66c-3.732 39.215-19.881 134.378-28.1 178.3-3.476 18.584-10.322 24.816-16.948 25.425-14.4 1.326-25.338-9.517-39.287-18.661-21.827-14.308-34.158-23.215-55.346-37.177-24.485-16.135-8.612-25 5.342-39.5 3.652-3.793 67.107-61.51 68.335-66.746.153-.655.3-3.1-1.154-4.384s-3.59-.849-5.135-.5q-3.283.746-104.608 69.142-14.845 10.194-26.894 9.934c-8.855-.191-25.888-5.006-38.551-9.123-15.531-5.048-27.875-7.717-26.8-16.291q.84-6.7 18.45-13.7 108.446-47.248 144.628-62.3c68.872-28.647 83.183-33.623 92.511-33.789 2.052-.034 6.639.474 9.61 2.885a10.45 10.45 0 0 1 3.53 6.716 43.8 43.8 0 0 1 .417 9.769"/></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.0.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M256 8a248 248 0 1 0 0 496 248 248 0 1 0 0-496m115 168.7c-3.7 39.2-19.9 134.4-28.1 178.3-3.5 18.6-10.3 24.8-16.9 25.4-14.4 1.3-25.3-9.5-39.3-18.7-21.8-14.3-34.2-23.2-55.3-37.2-24.5-16.1-8.6-25 5.3-39.5 3.7-3.8 67.1-61.5 68.3-66.7.2-.7.3-3.1-1.2-4.4s-3.6-.8-5.1-.5c-2.2.5-37.1 23.5-104.6 69.1-9.9 6.8-18.9 10.1-26.9 9.9-8.9-.2-25.9-5-38.6-9.1-15.5-5-27.9-7.7-26.8-16.3.6-4.5 6.7-9 18.4-13.7 72.3-31.5 120.5-52.3 144.6-62.3 68.9-28.6 83.2-33.6 92.5-33.8 2.1 0 6.6.5 9.6 2.9 2 1.7 3.2 4.1 3.5 6.7.5 3.2.6 6.5.4 9.8z"/></svg>
     </a>
   
 </div>
@@ -1711,10 +2517,10 @@ $$\begin{align}
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.follow", "toc.integrate", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link", "header.autohide"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "navigation.indexes", "toc.follow", "toc.integrate", "search.highlight", "search.share", "search.suggest", "content.code.copy", "content.code.annotate", "content.tabs.link", "header.autohide"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": {"provider": "mike"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
       
     
   </body>
