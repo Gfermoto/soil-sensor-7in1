@@ -10,6 +10,14 @@ IoT система мониторинга почвы на базе ESP32.
 
 7 параметров почвы (влажность, температура, pH, EC, NPK), веб-интерфейс, OTA, MQTT. Модель Арчи для EC, уравнение Нернста для pH.
 
+**Статья на Habr:** [IoT-датчик почвы 7-в-1 на ESP32: научная компенсация, 24 культуры и open-source прошивка](habr_article/article.md) — текст для публикации в `habr_article/`
+
+## Схема подключения
+
+![Полная схема: ESP32 + SP3485E + JXCT + питание](habr_article/images/wiring_full_system.png)
+
+![Таблица пинов](habr_article/images/wiring_pin_table.png)
+
 ## Быстрый старт
 
 ```bash

@@ -2,6 +2,8 @@
 
 IoT система мониторинга почвы на базе ESP32.
 
+**Статья на Habr:** [IoT-датчик почвы 7-в-1 на ESP32: научная компенсация, 24 культуры и open-source прошивка](https://github.com/Gfermoto/soil-sensor-7in1/blob/main/habr_article/article.md) — текст для публикации.
+
 [![Version](https://img.shields.io/github/v/tag/Gfermoto/soil-sensor-7in1?color=blue&label=version)](https://github.com/Gfermoto/soil-sensor-7in1/releases)
 [![Platform](https://img.shields.io/badge/platform-ESP32-green.svg)](https://www.espressif.com/en/products/socs/esp32)
 [![License](https://img.shields.io/github/license/Gfermoto/soil-sensor-7in1?color=yellow&label=license)](https://github.com/Gfermoto/soil-sensor-7in1/blob/main/LICENSE)

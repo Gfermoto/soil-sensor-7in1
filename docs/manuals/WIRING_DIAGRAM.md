@@ -63,6 +63,12 @@
 | A           | A+       | RS-485 A    | Неинвертирующая линия RS-485 |
 | B           | B-       | RS-485 B    | Инвертирующая линия RS-485 |
 
+#### Схемы подключения {#Shemy-podklyucheniya}
+
+![Полная схема: ESP32 + SP3485E + JXCT + питание](../images/wiring_full_system.png)
+
+![Таблица пинов](../images/wiring_pin_table.png)
+
 ## ⚡ Питание датчика {#pitanie-datchika}
 
 ### Требования к питанию {#Trebovaniya-k-pitaniyu}
