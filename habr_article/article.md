@@ -59,6 +59,8 @@ ESP32 общается с датчиком через RS485. Нужен тран
 
 **Схемы подключения (PNG):**
 
+![Полная схема подключения](images/wiring_full_system.png)
+
 ![Схема ESP32 → SP3485E](images/wiring_esp32_sp3485.png)
 
 ![Таблица пинов](images/wiring_pin_table.png)
