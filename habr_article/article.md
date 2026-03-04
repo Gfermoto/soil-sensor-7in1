@@ -32,36 +32,36 @@ ESP32 общается с датчиком через RS485. Нужен тран
 
 **ESP32 → SP3485E:**
 
-```
-ESP32 GPIO   │ SP3485E Pin │ Функция
-─────────────┼────────────┼──────────────────────────────────
-GPIO16       │ RO         │ Receive Output (UART RX)
-GPIO17       │ DI         │ Data Input (UART TX)
-GPIO4        │ DE         │ Driver Enable
-GPIO5        │ RE         │ Receiver Enable
-GND          │ GND        │ Общий провод
-3.3V         │ VCC        │ Питание SP3485E
-```
+| ESP32 GPIO | SP3485E Pin | Функция |
+|------------|-------------|---------|
+| GPIO16 | RO | Receive Output (UART RX) |
+| GPIO17 | DI | Data Input (UART TX) |
+| GPIO4 | DE | Driver Enable |
+| GPIO5 | RE | Receiver Enable |
+| GND | GND | Общий провод |
+| 3.3V | VCC | Питание SP3485E |
 
 **SP3485E → JXCT (линия RS485):**
 
-```
-SP3485E      │ JXCT       │ Функция
-─────────────┼────────────┼─────────────────
-A+           │ A+ (жёлт.) │ RS485 Data+
-B-           │ B- (син.)  │ RS485 Data-
-```
+| SP3485E | JXCT | Функция |
+|---------|------|---------|
+| A+ | A+ (жёлт.) | RS485 Data+ |
+| B- | B- (син.) | RS485 Data- |
 
 **Питание датчика (отдельное):**
 
-```
-Источник 12-24V DC  │ JXCT Pin │ Функция
-────────────────────┼──────────┼─────────────────
-V+                  │ VCC      │ Питание датчика
-GND                 │ GND      │ Общий минус
-```
+| Источник 12–24 V DC | JXCT Pin | Функция |
+|---------------------|----------|---------|
+| V+ | VCC | Питание датчика |
+| GND | GND | Общий минус |
 
 Важно: GND ESP32, SP3485E и блока питания датчика — общий. На длинных линиях RS485 — терминатор 120 Ом между A и B. Полярность A+/B- соблюдать строго.
+
+**Схемы подключения (PNG):**
+
+![Схема ESP32 → SP3485E](images/wiring_esp32_sp3485.png)
+
+![Таблица пинов](images/wiring_pin_table.png)
 
 ---
 
@@ -236,27 +236,15 @@ MQTT Discovery включён. Настройте брокер в web UI — д�
 
 ## Архитектура
 
-```
-Modbus RTU (9600)
-       ↓
-modbus_sensor → SensorData (raw)
-       ↓
-SensorCorrection (slope/offset)
-       ↓
-CalibrationManager (CSV таблицы)
-       ↓
-SensorCompensationService (Rhoades, Nernst, Delgado)
-       ↓
-NutrientInteractionService (NPK антагонизм/синергизм)
-       ↓
-AdvancedFilters (Калман, медиана, outlier)
-       ↓
-CropRecommendationEngine (рекомендации)
-       ↓
-┌──────────────────────────────────────────────────┐
-│  Веб-интерфейс  │  REST API  │  MQTT  │ ThingSpeak │
-└──────────────────────────────────────────────────┘
-```
+1. Modbus RTU (9600)
+2. modbus_sensor → SensorData (raw)
+3. SensorCorrection (slope/offset)
+4. CalibrationManager (CSV таблицы)
+5. SensorCompensationService (Rhoades, Nernst, Delgado)
+6. NutrientInteractionService (NPK антагонизм/синергизм)
+7. AdvancedFilters (Калман, медиана, outlier)
+8. CropRecommendationEngine (рекомендации)
+9. **Выход:** Веб-интерфейс | REST API | MQTT | ThingSpeak
 
 ---
 
