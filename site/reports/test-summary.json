@@ -1,0 +1,15 @@
+{
+  "timestamp": "$(date -u '+%Y-%m-%dT%H:%M:%SZ')",
+  "project": "JXCT Soil Sensor",
+  "version": "3.10.1",
+  "summary": {
+    "total": 90,
+    "passed": 90,
+    "failed": 0,
+    "success_rate": 100.0
+  },
+  "tests": {
+    "unit_tests": {"total": 67, "passed": 67, "failed": 0},
+    "integration_tests": {"total": 23, "passed": 23, "failed": 0}
+  }
+}
